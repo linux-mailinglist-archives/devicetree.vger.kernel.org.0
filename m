@@ -2,114 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A5766D2AE9
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 00:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7956D6D2B17
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 00:13:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231721AbjCaWHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 18:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35866 "EHLO
+        id S233507AbjCaWNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 18:13:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233383AbjCaWHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 18:07:11 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 889A12221A
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 15:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1680300378;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=u4U8Z/tCC6KI1ZHcEPqkuT5mdoVjDaEr2xngNPO60lM=;
-        b=evHOhfHuV9ymClX32BL75ijuDOchNT665K0fLJCM6NH6ygBitSKR6/uNxj2NqL9W9DCTie
-        xzKXIX4HjWjY9V9GnvTem0xm2HdxilspeCEculUMKSs5oXjAckM8f/E99W9D9lFVXtRvyV
-        HzbLGH3X2Qbc7VAwp/lwnRMjY1y5y1U=
-Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com
- [209.85.160.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-588-Ex_cLv9JNJ--lj1gMeO3BA-1; Fri, 31 Mar 2023 18:06:17 -0400
-X-MC-Unique: Ex_cLv9JNJ--lj1gMeO3BA-1
-Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-1802c0ae9bbso2354149fac.5
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 15:06:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680300377;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S233460AbjCaWM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 18:12:56 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EA120619
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 15:12:36 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id i6so29069525ybu.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 15:12:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1680300755;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=u4U8Z/tCC6KI1ZHcEPqkuT5mdoVjDaEr2xngNPO60lM=;
-        b=eh9eNl9Ot6lAaGhLD2DDGsJzK0m2Quyt06bfL7o2KkeovcH8FAjR5VzfhqmnvHkKK4
-         slFbZ2mz7CpSlKbeyc27B9GSscBPMEWeXq4bfcmq6fDo//lyEpTQ+hRa1vqDUtuU3s0Y
-         pX1Itdc3w96xXhmOmyoykarAVPnzldw+jotGlrok/Y3b419vp5SsORcwfJzYl6DZgwjS
-         mMEfuZzL2xbAXXmEazkyuAFGh+102PzzyAdU0vRYzXfyb7rVnKAlRWKh4Iw7xH+4ONuE
-         eazyCdMpEvI4XOuYcfuD5XGUQSbcZzeqUOA6+aRIKHi+EGTnmu1PGmexxwoqNPS2Db1i
-         qC1A==
-X-Gm-Message-State: AAQBX9ciBSoPLEV6QJvharRzqPSjrK/MF5CR2YaH/Ofw8vVO9l5nENfk
-        Rrs8p+FTwTQYmPHI5dBbAVGkf3n4EZGUSXDcnRotEvL4h4gxH9qzNWp5kO5Fg03yVvyHsiQqNcS
-        wMemt5bGHAySlY/vc5GKCsg==
-X-Received: by 2002:a05:6871:282:b0:172:80fd:8482 with SMTP id i2-20020a056871028200b0017280fd8482mr19329664oae.5.1680300376877;
-        Fri, 31 Mar 2023 15:06:16 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bGGsF2laKAGdPP0P41FMsK9S+A2djDpOUWZkU3NZ+9W7d4GHZmrs+i2VfMoBvGhIEn0N/dew==
-X-Received: by 2002:a05:6871:282:b0:172:80fd:8482 with SMTP id i2-20020a056871028200b0017280fd8482mr19329633oae.5.1680300376680;
-        Fri, 31 Mar 2023 15:06:16 -0700 (PDT)
-Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id h11-20020a9d798b000000b0069f74706056sm641395otm.9.2023.03.31.15.06.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 15:06:16 -0700 (PDT)
-Date:   Fri, 31 Mar 2023 17:06:13 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        bhupesh.sharma@linaro.org, wens@csie.org, jernej.skrabec@gmail.com,
-        samuel@sholland.org, mturquette@baylibre.com,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        richardcochran@gmail.com, linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
-Subject: Re: [PATCH net-next v3 00/12] Add EMAC3 support for sa8540p-ride
-Message-ID: <20230331220613.2cr2r5mcf2wwse4j@halaney-x13s>
-References: <20230331214549.756660-1-ahalaney@redhat.com>
+        bh=gbsW0FcE5qqhDIMlHuiVbXHRMEHkoDZZEt/YtNg2DNM=;
+        b=FvQAvC3TAZE9QE7W+H8Y6xq0+90J+AkW9Jq3WfZu1mXlXG9GIX2cQkzK8LehXPaZe8
+         XZy9U3wkpFLYGZztz86NMDdQV69wFvoFgI3SkxSs6Vmn8Q7aJhTJlDFFbGOQu1GV1TWk
+         wzd3Od3pdOCll8RyKStkF4G4OWC5IFoyT3OWw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680300755;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gbsW0FcE5qqhDIMlHuiVbXHRMEHkoDZZEt/YtNg2DNM=;
+        b=xO/fleN1pw97NnXBfo9434IbWXfG9Sqt+zqgbhvrdtbVXEl6KfCLEaos80Mt0jCNOH
+         XJIHTaVWE7hEP9l3d7OKi+1sNfr4ere6Piv0kF1M6aP26wJzOxaQrPz8NAjQiA8lCbqP
+         Xm+goCC+kFB/btEHPm3KJmAL9Ya47TkSpqS6r4586qIC52y1ma6gUhq0FyQxWZfemm9Y
+         hEV++IahZXSFC8yW7Eydt7WyKlPs3gAilUY/BdV5YF98IBpxroXj8CvIgBTrnfG+Hqif
+         oKSDkh0nsQZhPrSfG3WyiFFOgMdsS6Xtrcx9OAzsEG+/R7N39nOKOrFia8oJ6AMH4l8G
+         Qjzw==
+X-Gm-Message-State: AAQBX9esprpqaHDMMSLg3QILZPOKczDsUyefUNLfeALY4PI5Vgkjppi2
+        fIZCzPkXM718FdhSfaG/KlTnxg==
+X-Google-Smtp-Source: AKy350Zwij10RXkh5IOn5YyhAQQl1uJBaGHEDTVmJ///DgObvKiniO3Hppma1Q1jCpKg4AeBU8jdTw==
+X-Received: by 2002:a25:b122:0:b0:b60:d281:de97 with SMTP id g34-20020a25b122000000b00b60d281de97mr8813526ybj.28.1680300754850;
+        Fri, 31 Mar 2023 15:12:34 -0700 (PDT)
+Received: from localhost ([2620:0:1035:15:a8f6:869a:3ef5:e1d])
+        by smtp.gmail.com with UTF8SMTPSA id p7-20020a81b107000000b00545a782b485sm787373ywh.113.2023.03.31.15.12.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 15:12:34 -0700 (PDT)
+From:   Mark Yacoub <markyacoub@chromium.org>
+X-Google-Original-From: Mark Yacoub <markyacoub@google.com>
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+Cc:     seanpaul@chromium.org, suraj.kandpal@intel.com,
+        dianders@chromium.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        Rob Herring <robh@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Mark Yacoub <markyacoub@chromium.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v8 08/10] dt-bindings: msm/dp: Add bindings for HDCP registers
+Date:   Fri, 31 Mar 2023 18:12:10 -0400
+Message-Id: <20230331221213.1691997-9-markyacoub@google.com>
+X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
+In-Reply-To: <20230331221213.1691997-1-markyacoub@google.com>
+References: <20230331221213.1691997-1-markyacoub@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230331214549.756660-1-ahalaney@redhat.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 04:45:37PM -0500, Andrew Halaney wrote:
-> This is a forward port / upstream refactor of code delivered
-> downstream by Qualcomm over at [0] to enable the DWMAC5 based
-> implementation called EMAC3 on the sa8540p-ride dev board.
-> 
-> From what I can tell with the board schematic in hand,
-> as well as the code delivered, the main changes needed are:
-> 
->     1. A new address space layout for /dwmac5/EMAC3 MTL/DMA regs
->     2. A new programming sequence required for the EMAC3 base platforms
-> 
-> This series makes the change for 1 above as well as other housekeeping items
-> such as converting dt-bindings to yaml, etc.
-> 
-> As requested[1], it has been split up by compile time / maintainer tree.
-> I will post a link to the associated devicetree changes that together
-> with this series get the hardware functioning.
+From: Sean Paul <seanpaul@chromium.org>
 
-As promised: https://lore.kernel.org/netdev/20230331215804.783439-1-ahalaney@redhat.com/T/#t
+Add the bindings for the MSM DisplayPort HDCP registers
+which are required to write the HDCP key into the display controller as
+well as the registers to enable HDCP authentication/key
+exchange/encryption.
 
-Thanks in advance for any reviews!
-- Andrew
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+
+---
+Changes in v2:
+-Drop register range names (Stephen)
+-Fix yaml errors (Rob)
+Changes in v3:
+-Add new compatible string for dp-hdcp
+-Add descriptions to reg
+-Add minItems/maxItems to reg
+-Make reg depend on the new hdcp compatible string
+Changes in v4:
+-Rebase on Bjorn's multi-dp patchset
+Changes in v4.5:
+-Remove maxItems from reg (Rob)
+-Remove leading zeros in example (Rob)
+Changes in v5:
+-None
+Changes in v6:
+-Rebased: modify minItems instead of adding it as new line.
+Changes in v7:
+-Revert the change to minItems
+-Added the maxItems to Reg
+Changes in v8:
+-None
+
+ .../devicetree/bindings/display/msm/dp-controller.yaml     | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+index 0e8d8df686dc9..4763a2ff12fb7 100644
+--- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+@@ -34,6 +34,8 @@ properties:
+       - description: link register block
+       - description: p0 register block
+       - description: p1 register block
++      - description: (Optional) Registers for HDCP device key injection
++      - description: (Optional) Registers for HDCP TrustZone interaction
+ 
+   interrupts:
+     maxItems: 1
+@@ -159,6 +161,7 @@ allOf:
+         aux-bus: false
+         reg:
+           minItems: 5
++          maxItems: 7
+       required:
+         - "#sound-dai-cells"
+ 
+@@ -176,7 +179,9 @@ examples:
+               <0xae90200 0x200>,
+               <0xae90400 0xc00>,
+               <0xae91000 0x400>,
+-              <0xae91400 0x400>;
++              <0xae91400 0x400>,
++              <0xaed1000 0x174>,
++              <0xaee1000 0x2c>;
+         interrupt-parent = <&mdss>;
+         interrupts = <12>;
+         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+-- 
+2.40.0.348.gf938b09366-goog
 
