@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 735E16D25E9
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6556D25ED
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231566AbjCaQn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 12:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
+        id S231676AbjCaQpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 12:45:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231317AbjCaQnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:43:35 -0400
-Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7002320DA6;
-        Fri, 31 Mar 2023 09:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=xg33sxZuQ2RDlsNvpuyqfRcABGyvjFqfHrPtwUhWZB8=; b=ap9VL4WkE69rdt5PzmNLx1JB/C
-        wxWmbYnxZu41dNbvCmrDo3fGo7/CDkxGcyD9WaIPsKuwRjGLCv1lQSoDhlEoDIYo9gGv80WY+RGno
-        2U53odDf5bNNnJ9OTipIcM4cjVi8BDKilacEdbm96ZUezo9J1qBFNikJvSHABicO4MfTZ0Zt3jmyu
-        e5MR32omZ/2Iw8pW2MixsdYH9YmP/ZUUPxyXrVf//WhJRoutMVi3By+0+3Jz8JDVw3djOizbNS2FY
-        wpY6epaitQpNBL+lB5JWyndKJGCRrPGLIUZyWM0Vm86nkpA6UUnT/F0hNDxEkhyT0C9AR/xTpXjcp
-        5+lF8uWQ==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <lars@metafoo.de>)
-        id 1piHpG-000H5h-Nh; Fri, 31 Mar 2023 18:42:06 +0200
-Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
-        by sslproxy02.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1piHpG-000Rew-Bc; Fri, 31 Mar 2023 18:42:06 +0200
-Message-ID: <877b6d75-cd3d-14b4-5e7e-639fa1c8e2d5@metafoo.de>
-Date:   Fri, 31 Mar 2023 09:42:03 -0700
+        with ESMTP id S231531AbjCaQpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:45:00 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27ECA5FE1
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:43:40 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id lr16-20020a17090b4b9000b0023f187954acso23951094pjb.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680281014;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wLr+iiNqb1ZBQGvqnlVWR+X2NxcFaq++wph0hIOBr8U=;
+        b=P1oF/yAS5meoHqrtMYIHxYP1rDgoZl+Eugm/jMw89X0wiAkGSvLbeD0CBLTcrLeJ8+
+         SnNUdf4/ANcLWjz7365AhnL+WfxC9gFEwDlPonnzDV3kOqktlOQ/FcHseLwWeUSwf8/8
+         329KK18UiqFsHQLAW1ZL4UM3axAk9H1FvCYxnCjcKer8x3uwlSnPaDceSa7V++bT06ta
+         tZ78t6jdVRDZeCHQ+TQqfzQcR8rvQ2PqrEIg9844gUbjO1h5ff2RAOLSsi8gnlitoj71
+         m/dF6dN2jijI52R/GY8lH6IuyuXIYAcVSMJQbTpUeyr6kSCpsVPFtB+KS6NCVaoBX0cu
+         4LzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680281014;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wLr+iiNqb1ZBQGvqnlVWR+X2NxcFaq++wph0hIOBr8U=;
+        b=BXBRXhW9FJK4Zlrwi2zWQDwRvTiDnUdg0BJqSsBnptngct99iSAnz3IS8ii0jBThSO
+         sv4mExvPrVK5QjHieKoUOzi7sbHvcWRV7pnpL4/x55Y+WiOdUApyu0/JuVO6OE33W0Ug
+         28PBR5qcc1LC8EYuu7FlT05RMVZflGuAo23GYwaJmZmwHyNTwcjwQML8JX+lmd7d+lA7
+         jiCGLnPxVLhi/0saVyjlNk6wx+EWDQD3YOsWVRTJwJ90840skZMtyX01TNL0P6dX/CBm
+         +woD+fxbcmff7Tm2PRPtHDIa0VVqiAe5/+cO7b5Mn360iO77dhU5G14FcSdMryTT3fza
+         tiBg==
+X-Gm-Message-State: AAQBX9dFSS0XsdJPx9mzK8LXTQLxaQ1YcpNP8la9i9n/7FLQLNDFtJZq
+        VVyTFzvGar8AmhxFNSR2kTgtww==
+X-Google-Smtp-Source: AKy350ajd8QCmQ2AlNsN3xm7jpE7Mh5DmDG/CisUsSsJLZumDbwxPugMr400ybSBcJQQ53A+iOSWqg==
+X-Received: by 2002:a17:902:ecc2:b0:19c:da68:337a with SMTP id a2-20020a170902ecc200b0019cda68337amr35223895plh.31.1680281014407;
+        Fri, 31 Mar 2023 09:43:34 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c5e:53ce:1f39:30a5:d20f:f205])
+        by smtp.gmail.com with ESMTPSA id x13-20020a170902b40d00b0019b089bc8d7sm1798767plr.78.2023.03.31.09.43.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 09:43:34 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org
+Subject: [PATCH v4 00/11] arm64: qcom: Enable Crypto Engine for a few Qualcomm SoCs
+Date:   Fri, 31 Mar 2023 22:13:12 +0530
+Message-Id: <20230331164323.729093-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] i2c: cadence: Add reset controller support
-To:     Michal Simek <michal.simek@amd.com>, Wolfram Sang <wsa@kernel.org>
-Cc:     Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230330180448.269635-1-lars@metafoo.de>
- <20230330180448.269635-2-lars@metafoo.de>
- <1e929c0d-9a3c-1adb-b5de-e953f2cf3795@amd.com>
-Content-Language: en-US
-From:   Lars-Peter Clausen <lars@metafoo.de>
-In-Reply-To: <1e929c0d-9a3c-1adb-b5de-e953f2cf3795@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26861/Fri Mar 31 09:24:12 2023)
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,74 +71,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/30/23 23:49, Michal Simek wrote:
->
->
-> On 3/30/23 20:04, Lars-Peter Clausen wrote:
->> The Cadence I2C controller has an external reset signal that needs to be
->> de-asserted before the I2C controller can be used.
->>
->> Add support to the driver to be able to take the peripheral out of reset
->> using the reset controller API. The reset is optional in the driver for
->> compatibility to systems where the reset managed by the bootloader.
->>
->> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
->> ---
->>   drivers/i2c/busses/i2c-cadence.c | 26 ++++++++++++++++++++++----
->>   1 file changed, 22 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/i2c/busses/i2c-cadence.c 
->> b/drivers/i2c/busses/i2c-cadence.c
->> index 8f61a633c42c..102774ab2497 100644
->> --- a/drivers/i2c/busses/i2c-cadence.c
->> +++ b/drivers/i2c/busses/i2c-cadence.c
->> @@ -16,6 +16,7 @@
->>   #include <linux/of.h>
->>   #include <linux/pm_runtime.h>
->>   #include <linux/pinctrl/consumer.h>
->> +#include <linux/reset.h>
->>     /* Register offsets for the I2C device. */
->>   #define CDNS_I2C_CR_OFFSET        0x00 /* Control Register, RW */
->> @@ -178,6 +179,7 @@ enum cdns_i2c_slave_state {
->>    * @bus_hold_flag:    Flag used in repeated start for clearing HOLD 
->> bit
->>    * @clk:        Pointer to struct clk
->>    * @clk_rate_change_nb:    Notifier block for clock rate changes
->> + * @reset:        Reset control for the device
->>    * @quirks:        flag for broken hold bit usage in r1p10
->>    * @ctrl_reg:        Cached value of the control register.
->>    * @ctrl_reg_diva_divb: value of fields DIV_A and DIV_B from CR 
->> register
->> @@ -204,6 +206,7 @@ struct cdns_i2c {
->>       unsigned int bus_hold_flag;
->>       struct clk *clk;
->>       struct notifier_block clk_rate_change_nb;
->> +    struct reset_control *reset;
->>       u32 quirks;
->>       u32 ctrl_reg;
->>       struct i2c_bus_recovery_info rinfo;
->> @@ -1325,10 +1328,22 @@ static int cdns_i2c_probe(struct 
->> platform_device *pdev)
->>           return dev_err_probe(&pdev->dev, PTR_ERR(id->clk),
->>                        "input clock not found.\n");
->>   +    id->reset = devm_reset_control_get_optional_shared(&pdev->dev, 
->> NULL);
->> +    if (IS_ERR(id->reset))
->> +        return dev_err_probe(&pdev->dev, PTR_ERR(id->reset),
->> +                             "Failed to request reset.\n");
->
-> incorrect alignment.
->
->> +
->>       ret = clk_prepare_enable(id->clk);
->>       if (ret)
->>           dev_err(&pdev->dev, "Unable to enable clock.\n");
->>   +    ret = reset_control_deassert(id->reset);
->> +    if (ret) {
->> +        dev_err_probe(&pdev->dev, ret,
->> +                      "Failed to de-assert reset.\n");
->
-> incorrect alignment
-Wrong tabstop, that's embarrassing. Will fix.
+Changes since v3:
+-----------------
+- v3 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230328092815.292665-1-bhupesh.sharma@linaro.org/
+- Collected Acks from Krzysztof for a couple of patches sent in v3.
+- Fixed review comments from Krzysztof regarding DMA binding document
+  and also added a couple of new patches which are required to fix the
+  'dtbs_check' errors highlighted after this fix.
 
+Changes since v2:
+-----------------
+- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230322114519.3412469-1-bhupesh.sharma@linaro.org/
+- No functional change since v2. As the sdm845 patch from v1 was accepted in linux-next,
+  dropped it from this version.
+
+Changes since v1:
+-----------------
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230321190118.3327360-1-bhupesh.sharma@linaro.org/
+- Folded the BAM DMA dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230321184811.3325725-1-bhupesh.sharma@linaro.org/)
+- Folded the QCE dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230320073816.3012198-1-bhupesh.sharma@linaro.org/)
+- Folded Neil's SM8450 dts patch in this series.
+- Addressed review comments from Rob, Stephan and Konrad.
+- Collected Konrad's R-B for [PATCH 5/9].
+
+This patchset enables Crypto Engine support for Qualcomm SoCs like
+SM6115, SM8150, SM8250, SM8350 and SM8450.
+
+Note that:
+- SM8250 crypto engine patch utilizes the work already done by myself and
+  Vladimir.
+- SM8350 crypto engine patch utilizes the work already done by Robert.
+- SM8450 crypto engine patch utilizes the work already done by Neil.
+
+Also this patchset is rebased on linux-next/master.
+
+Bhupesh Sharma (10):
+  dt-bindings: dma: Add support for SM6115 and QCM2290 SoCs
+  dt-bindings: dma: Increase iommu maxItems for BAM DMA
+  arm64: dts: qcom: sdm8550: Fix the BAM DMA engine compatible string
+  arm64: dts: qcom: sdm845: Fix the slimbam DMA engine compatible string
+  dt-bindings: qcom-qce: Fix compatible combinations for SM8150 and
+    IPQ4019 SoCs
+  dt-bindings: qcom-qce: Add compatibles for SM6115 and QCM2290
+  arm64: dts: qcom: sm6115: Add Crypto Engine support
+  arm64: dts: qcom: sm8150: Add Crypto Engine support
+  arm64: dts: qcom: sm8250: Add Crypto Engine support
+  arm64: dts: qcom: sm8350: Add Crypto Engine support
+
+Neil Armstrong (1):
+  arm64: dts: qcom: sm8450: add crypto nodes
+
+ .../devicetree/bindings/crypto/qcom-qce.yaml  |  8 ++++++
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 22 +++++++++------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          | 28 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  2 +-
+ 9 files changed, 140 insertions(+), 10 deletions(-)
+
+-- 
+2.38.1
 
