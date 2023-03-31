@@ -2,214 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 852886D202B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35BA66D202F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232328AbjCaMZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 08:25:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40920 "EHLO
+        id S232319AbjCaMZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 08:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232341AbjCaMZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:25:23 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100761EA35;
-        Fri, 31 Mar 2023 05:24:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1680265499; x=1711801499;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GZC2TiUJ6vJPwXEcNjYqansieGSLZd4+5qeXsm1kRXw=;
-  b=nZYnlYIVklbq2B0UgkaO5OwKf7yyK64lc7EZhswRR8vI5Puh6qrVXza4
-   jQxiLlxLOb4l1b5bGUftJ1ITv7vh2EGkKcIpiOX9G8ilqf9g2DRXD7+sp
-   SLK8Ni1sqkno9l+0WfikM3f1QBYITJdqcVfmCczTHGRwVgZduuM9ptKP7
-   rMyKOUrXygz5iYBZPOxuHbG9gF81+K1NQhodOpocIpgDxJFAX3uKfNwXT
-   lKbcIu6qFwBL7zod5sKe1pmkukTn705fIQFq6MMFGu6kdcv+wFkEYuvzn
-   DQ2j+e3B09bfZ+Y2uzF86be02Hge6/VfYRU0b2Irc2WNh+VfjUeOFuiZ2
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,307,1673938800"; 
-   d="asc'?scan'208";a="207583725"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Mar 2023 05:24:58 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 31 Mar 2023 05:24:57 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 31 Mar 2023 05:24:54 -0700
-Date:   Fri, 31 Mar 2023 13:24:41 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232367AbjCaMZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:25:49 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20EE51F7A9
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:25:27 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id s13so12763261wmr.4
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:25:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680265525;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8HYghAo66yMblfTK3o0c5DfZlVRc0aKeUwrWVglJyP4=;
+        b=aN/oqCFS/Lo6aMBW9sPPiJCV3+qFR/v3dGBRHEgZhgpqNgzgR9BRznyalMEBolRcz6
+         s7KC/bs57w64iLqaEv1iwT5QtVIbyyDol3EdbJS5qZW5ckbETu5SDT9oJdon9loXlTsP
+         Yvyz+Vs+BD2G23MxER6an0MLDH9PkRjaPlsjawF48xEHx46BKuULWhdzqVlS6eLERNO+
+         iDQ/pnX46OUmx26b5SDMt660BXDMU1x7z/350kU1bavIxS1NYohAORW1ob6N9OfhnUfm
+         emDpO6OoGW3isNxDe2s8NTv9hjnGzXWDJkssgBtvv99Yq9Phlzm/9t7XOeSmSXIGMhqr
+         P0sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680265525;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8HYghAo66yMblfTK3o0c5DfZlVRc0aKeUwrWVglJyP4=;
+        b=d+446IAdHwka2Gwas6hO1JwpkOD5EdhVArfZiUKi5IWq24LSc30/cGE4dOTA/lyxEx
+         vCZZ8rbDiXN4d4Mk+AuZ9PjPfD9kczLIFjezqGsTbuEEJDQwEZM/4tr7QkYZQbKJS93K
+         5SXtLv9bm6roXV2N9+8CO7/yxEq/1QisC5IQRBu1+nRbreKyV21DpUw/uXwnBLHQ/8U0
+         ZfnhYMOpRzHEUOqqX8O3Nkt5gDps1q8a09EuOB/YhouX3LoQwR+IaSfpIBsJBOEJUElO
+         yUzmNrprHBavbm9aQF+o73i4pBh3JW8ROUFtpxMIIfnPD9ZPyDXLP7bnS25XVWpp4nyx
+         IM4Q==
+X-Gm-Message-State: AO0yUKX/2eQ88oSz3AAwmKKCNe2Htilms6whK+bt7l1TAmD741sViV+y
+        kgYOhyXQIWXyTNHfDgsylNQD9w==
+X-Google-Smtp-Source: AK7set95AU6PXV/8AzOCjcliGQVfX4hlG+ooUZAbxjznOxWDJQvQIAVmvxrZbwoLr30NuEbkDSgSQA==
+X-Received: by 2002:a7b:c409:0:b0:3ed:2a91:3bc9 with SMTP id k9-20020a7bc409000000b003ed2a913bc9mr21152686wmi.15.1680265525488;
+        Fri, 31 Mar 2023 05:25:25 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id n13-20020a7bc5cd000000b003ede3e54ed7sm2563895wmk.6.2023.03.31.05.25.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 05:25:25 -0700 (PDT)
+Date:   Fri, 31 Mar 2023 15:25:23 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
- pointers for cache management
-Message-ID: <f12f9773-77b5-4ba6-9e9e-adbc67ca0110@spud>
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 1/5] clk: Introduce
+ devm_clk_hw_register_gate_parent_data()
+Message-ID: <ZCbRM3uRQUSQitRG@linaro.org>
+References: <20230301163257.49005-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NYzJoNNExCmWWzsp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230301163257.49005-1-marex@denx.de>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---NYzJoNNExCmWWzsp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey,
-
-I think most of what I wanted to talk about has been raised by Arnd or
-Geert, so I kinda only have a couple of small comments for you here.
-
-On Thu, Mar 30, 2023 at 09:42:12PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Currently, selecting which CMOs to use on a given platform is done using
-> and ALTERNATIVE_X() macro. This was manageable when there were just two
-> CMO implementations, but now that there are more and more platforms coming
-> needing custom CMOs, the use of the ALTERNATIVE_X() macro is unmanageable.
->=20
-> To avoid such issues this patch switches to use of function pointers
-> instead of ALTERNATIVE_X() macro for cache management (the only drawback
-> being performance over the previous approach).
->=20
-> void (*clean_range)(unsigned long addr, unsigned long size);
-> void (*inv_range)(unsigned long addr, unsigned long size);
-> void (*flush_range)(unsigned long addr, unsigned long size);
-
-So, given Arnd has renamed the generic helpers, should we use the
-writeback/invalidate/writeback & invalidate terminology here too?
-I think it'd be nice to make the "driver" functions match the generic
-implementations's names (even though that means not making the
-instruction naming).
-
-> The above function pointers are provided to be overridden for platforms
-> needing CMO.
->=20
-> Convert ZICBOM and T-HEAD CMO to use function pointers.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 23-03-01 17:32:53, Marek Vasut wrote:
+> Add an API for clock gate that uses parent_data for the parent instead of
+> a string parent_name.
+> 
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
-> v6->v7
-> * Updated commit description
-> * Fixed build issues when CONFIG_ERRATA_THEAD_CMO=3Dn
-> * Used static const struct ptr to register CMO ops
-> * Dropped riscv_dma_noncoherent_cmo_ops
 
-> * Moved ZICBOM CMO setup to setup.c
+Applied, thanks!
 
-Why'd you do that?
-What is the reason that the Zicbom stuff cannot live in
-dma-noncoherent.[ch] and only expose, say:
-void riscv_cbom_register_cmo_ops(void)
-{
-	riscv_noncoherent_register_cache_ops(&zicbom_cmo_ops);
-}
-which you then call from setup.c?
+[1/5] clk: Introduce devm_clk_hw_register_gate_parent_data()
+      commit: 27fc5ec673b527dbc2f44787246a39c5ecc01de5
+[2/5] clk: imx: imx8mp: Add audiomix block control
+      commit: 6cd95f7b151cdd7852ed9f212faeea8f98ecba10
+[3/5] dt-bindings: clock: imx8mp: Add audiomix block control
+      commit: 95a0aa7bb10e79cfbe8a1dc4b993d21dd58c253f
 
-> v5->v6
-> * New patch
+
+Best regards,
+--
+Abel Vesa <abel.vesa@linaro.org>
+
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jacky Bai <ping.bai@nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marco Felsch <m.felsch@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
 > ---
->  arch/riscv/errata/thead/errata.c         | 76 ++++++++++++++++++++++++
->  arch/riscv/include/asm/dma-noncoherent.h | 73 +++++++++++++++++++++++
->  arch/riscv/include/asm/errata_list.h     | 53 -----------------
->  arch/riscv/kernel/setup.c                | 49 ++++++++++++++-
->  arch/riscv/mm/dma-noncoherent.c          | 25 ++++++--
->  arch/riscv/mm/pmem.c                     |  6 +-
->  6 files changed, 221 insertions(+), 61 deletions(-)
->  create mode 100644 arch/riscv/include/asm/dma-noncoherent.h
-
-> +#ifdef CONFIG_RISCV_ISA_ZICBOM
+> V3: New patch
+> V4: - Rebase on next 20230223
+> V5: Add TB from Adam and Alexander
+> V6: Add RB from Fabio
+> V7: Add RB from Peng
+> ---
+>  include/linux/clk-provider.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 842e72a5348fa..92b7c794c6272 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, const char *name,
+>  	__devm_clk_hw_register_gate((dev), NULL, (name), (parent_name), NULL, \
+>  			       NULL, (flags), (reg), (bit_idx),		      \
+>  			       (clk_gate_flags), (lock))
 > +
-> +#define ZICBOM_CMO_OP(_op, _start, _size, _cachesize)				\
-> +	asm volatile("mv a0, %1\n\t"						\
-> +		     "j 2f\n\t"							\
-> +		     "3:\n\t"							\
-> +		     CBO_##_op(a0)						\
-> +		     "add a0, a0, %0\n\t"					\
-> +		     "2:\n\t"							\
-> +		     "bltu a0, %2, 3b\n\t"					\
-> +		     : : "r"(_cachesize),					\
-> +			 "r"((unsigned long)(_start) & ~((_cachesize) - 1UL)),	\
-> +			 "r"((unsigned long)(_start) + (_size))			\
-> +		     : "a0")
+> +/**
+> + * devm_clk_hw_register_gate - register a gate clock with the clock framework
+> + * @dev: device that is registering this clock
+> + * @name: name of this clock
+> + * @parent_data: parent clk data
+> + * @flags: framework-specific flags for this clock
+> + * @reg: register address to control gating of this clock
+> + * @bit_idx: which bit in the register controls gating of this clock
+> + * @clk_gate_flags: gate-specific flags for this clock
+> + * @lock: shared register lock for this clock
+> + */
+> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data, flags,  \
+> +					      reg, bit_idx, clk_gate_flags,   \
+> +					      lock)			      \
+> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
+> +				    (parent_data), (flags), (reg), (bit_idx), \
+> +				    (clk_gate_flags), (lock))
 > +
-> +static void zicbom_cmo_clean_range(unsigned long addr, unsigned long siz=
-e)
-> +{
-> +	ZICBOM_CMO_OP(clean, addr, size, riscv_cbom_block_size);
-> +}
-> +
-> +static void zicbom_cmo_flush_range(unsigned long addr, unsigned long siz=
-e)
-> +{
-> +	ZICBOM_CMO_OP(flush, addr, size, riscv_cbom_block_size);
-> +}
-> +
-> +static void zicbom_cmo_inval_range(unsigned long addr, unsigned long siz=
-e)
-> +{
-> +	ZICBOM_CMO_OP(inval, addr, size, riscv_cbom_block_size);
-> +}
-> +
-> +const struct riscv_cache_ops zicbom_cmo_ops =3D {
-> +	.clean_range =3D &zicbom_cmo_clean_range,
-> +	.inv_range =3D &zicbom_cmo_inval_range,
-> +	.flush_range =3D &zicbom_cmo_flush_range,
-> +};
-> +
-> +static void zicbom_register_cmo_ops(void)
-> +{
-> +	riscv_noncoherent_register_cache_ops(&zicbom_cmo_ops);
-> +}
-> +#else
-> +static void zicbom_register_cmo_ops(void) {}
-> +#endif
-
-I think all of the above should be prefixed with riscv_cbom to match the
-other riscv_cbom stuff we already have.
-Although, given the discussion elsewhere about just falling back to
-zicbom in the absence of specific ops, most of these functions will
-probably disappear (if not all of them).
-
-Cheers,
-Conor.
-
---NYzJoNNExCmWWzsp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCbRCAAKCRB4tDGHoIJi
-0iABAP0Trlhgk1WaIkkfLh4tD9+60uHDfVxoza/L6pLJeFjFHQEA3/A12eco/Ys/
-47yBDYcaX9uUeMwY1iHDMykWNK0fCQM=
-=fsaO
------END PGP SIGNATURE-----
-
---NYzJoNNExCmWWzsp--
+>  void clk_unregister_gate(struct clk *clk);
+>  void clk_hw_unregister_gate(struct clk_hw *hw);
+>  int clk_gate_is_enabled(struct clk_hw *hw);
+> -- 
+> 2.39.2
+> 
