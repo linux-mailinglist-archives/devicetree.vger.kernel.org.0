@@ -2,119 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E926E6D191E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6007E6D1977
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230355AbjCaH6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 03:58:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
+        id S231139AbjCaILO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjCaH6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:58:48 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C50710D7;
-        Fri, 31 Mar 2023 00:58:47 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id F15D35C01C0;
-        Fri, 31 Mar 2023 03:58:46 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 31 Mar 2023 03:58:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1680249526; x=1680335926; bh=wH
-        aFZh9Hjt71v1c/Rx3QN0Gf6IAjxia8M9ANG/7PiMU=; b=alX5bdCEDMDEuYnsGY
-        iucLQv7b+7i/49as9dH58EZpEOY5EJ7tFCR6CH3KYDHdqaTUDBSrN9ix6SxTvOuK
-        RXVYmGGDuIANQthZQpO5ycyI/bhajwGTOh0seZjerEpGD4BK0LgrTR/OKxjUec1X
-        myW5ESxHyfLX44jhpKE8ASdQN/drjHC39jbNDhOtz/XuYPssieX2lQ+BRDJ7b7Jl
-        wDzM9HVU+vFtBfkmpg8u5T6QWmNzDeBtLcFMvwGfA9JVaqCWAUWLjBYOaujQLEfe
-        9W1pkxpXoc5X0WOQoEknBmMUWr26duTk3tr6FerxFCew9a4RxhrQhppGvuSc22Ii
-        eTpA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1680249526; x=1680335926; bh=wHaFZh9Hjt71v
-        1c/Rx3QN0Gf6IAjxia8M9ANG/7PiMU=; b=lOFo7bxKojH/ePY7knlvBmje9OV5V
-        gAk/zPc9PytSlgFWPVulRG9PaF9ZIk/PUiFNe9cmHu8N9oPwKSOJOjkfBAvM/suG
-        fFt1herjaPgjtkgOCQZh9gQiGVljbAdoJTtSLbYtiwCcLrZDOy3tJTY9UWRC/VsX
-        AXdldjgnbBVEqkPd2dyd9uZckb/9RpjhwmzGc/3VqC695dBqPCLQlc6aIUKkSYTt
-        2K2+EIk2L2EKKo5BCd6iGv7CCh2sOd/K+jzVhzV7D57+sZa3G4jQ9C/MPlQUsk6L
-        Vi30Fw2QlVhMVfk68pIJjneX1Amp8uq1aKX1hJykno83ZxhCRgC884o/Q==
-X-ME-Sender: <xms:tpImZFe0R5LrJjfZVziAaclxa3r3gUK2RftkazW6Abe0mgk2XuItPQ>
-    <xme:tpImZDMPuK6H_FxYZlXtgaLYbb5td-oTgJLXyx7ovk4DldqHNzhvLFmj_U4XQe0jj
-    dVavPtsveYX25Gww0A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeitddguddvhecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:tpImZOiiavZKiAdFLvHv21kMcSBx5Nmsq3z0G444kPGg53uBE8YR4A>
-    <xmx:tpImZO84h1zvkCjOtw8iH-yt0-Wco_jCxImi07LPYgHj-OQRNMa4-w>
-    <xmx:tpImZBu8Ud1zpxVhotDPQlb5kQdk1VxBHvejmkemGuJA-trhf2zGHA>
-    <xmx:tpImZBOP00k0sZkgqZYLG4AwRG_aWQenGN2-v3KvCkqAzgbyP4WR9Q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 08457B6008D; Fri, 31 Mar 2023 03:58:46 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-238-g746678b8b6-fm-20230329.001-g746678b8
-Mime-Version: 1.0
-Message-Id: <887fe1ff-0bb7-485d-a7ef-262bab808c31@app.fastmail.com>
-In-Reply-To: <c63bace6-1046-4428-97ba-6f12fd119dc6@spud>
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <6ca5941a-8803-477d-8b40-17292decc5af@app.fastmail.com>
- <c63bace6-1046-4428-97ba-6f12fd119dc6@spud>
-Date:   Fri, 31 Mar 2023 09:58:25 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Conor.Dooley" <conor.dooley@microchip.com>
-Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        "Andrew Jones" <ajones@ventanamicro.com>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        "Samuel Holland" <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S231186AbjCaILN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:11:13 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E620626BD;
+        Fri, 31 Mar 2023 01:11:11 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8E4DB6603130;
+        Fri, 31 Mar 2023 09:11:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680250270;
+        bh=eLIqrRye+6wN0NKeakPjuTqIkvbMUkhOj6K5fUjYHQ0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TpmHQG8Kj4+EqwCZ/xIQoeeZVWeAL+0kbNCBwBIzkiXe/IOCr17X198j5XMT0oEHs
+         7yI2hZ/1LM3BRwZ8m4BCifdhfZsim3JDxX8nYTDsXeMJ/F+pgrLI4JE2jEdfZkk+xU
+         Vz/kpEhJljekn0ysAAmsj285znG4V0zbaLXKIEUhHxU0CNybcLX1rwbzFjKNm7wM7A
+         c/7d+O45nBqHVUowUcD/TsCQzjvLC2ZFL0Rubaa2uHiy5hwQHWES54rvAe9mw/Z2Q3
+         AB1kG7nQ6z7pSA7enBQjybCqQB8OLgTKtC6qHAuQqh57EqKgBRPyQW/q+SbEDlxf8r
+         czG+qasfrfwRA==
+Message-ID: <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
+Date:   Fri, 31 Mar 2023 10:11:07 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 RESEND 2/2] drm/panfrost: Add basic support for speed
+ binning
+To:     airlied@gmail.com, boris.brezillon@collabora.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
+        steven.price@arm.com, alyssa.rosenzweig@collabora.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "Biju Das" <biju.das.jz@bp.renesas.com>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function pointers
- for cache management
-Content-Type: text/plain
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        kernel@collabora.com
+References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
+ <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023, at 09:54, Conor Dooley wrote:
-> On Thu, Mar 30, 2023 at 11:34:02PM +0200, Arnd Bergmann wrote:
->> On Thu, Mar 30, 2023, at 22:42, Prabhakar wrote:
->> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
->> > +#ifdef CONFIG_ERRATA_THEAD_CMO
->> 
->> I would rename this to not call this an 'ERRATA' but
->> just make it a driver. Not important though, and there
->> was probably a reason you did it like this.
->
-> I think what was discussed in a prior iteration was that we'd leave
-> refactoring the T-HEAD bits into a driver for a subsequent work.
+Il 23/03/23 10:08, AngeloGioacchino Del Regno ha scritto:
+> Some SoCs implementing ARM Mali GPUs are subject to speed binning:
+> this means that some versions of the same SoC model may need to be
+> limited to a slower frequency compared to the other:
+> this is being addressed by reading nvmem (usually, an eFuse array)
+> containing a number that identifies the speed binning of the chip,
+> which is usually related to silicon quality.
+> 
+> To address such situation, add basic support for reading the
+> speed-bin through nvmem, as to make it possible to specify the
+> supported hardware in the OPP table for GPUs.
+> This commit also keeps compatibility with any platform that does
+> not specify (and does not even support) speed-binning.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Ok, makes sense.
+Hello maintainers,
+I've seen that this got archived in the dri-devel patchwork; because of that and
+only that, I'm sending this ping to get this patch reviewed.
 
-     Arnd
+(perhaps we can even get it picked for v6.4?)
+
+Regards,
+Angelo
+
+> ---
+>   drivers/gpu/drm/panfrost/panfrost_devfreq.c | 30 +++++++++++++++++++++
+>   1 file changed, 30 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_devfreq.c b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> index fe5f12f16a63..58dfb15a8757 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> @@ -4,6 +4,7 @@
+>   #include <linux/clk.h>
+>   #include <linux/devfreq.h>
+>   #include <linux/devfreq_cooling.h>
+> +#include <linux/nvmem-consumer.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_opp.h>
+>   
+> @@ -82,6 +83,31 @@ static struct devfreq_dev_profile panfrost_devfreq_profile = {
+>   	.get_dev_status = panfrost_devfreq_get_dev_status,
+>   };
+>   
+> +static int panfrost_read_speedbin(struct device *dev)
+> +{
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = nvmem_cell_read_variable_le_u32(dev, "speed-bin", &val);
+> +	if (ret) {
+> +		/*
+> +		 * -ENOENT means that this platform doesn't support speedbins
+> +		 * as it didn't declare any speed-bin nvmem: in this case, we
+> +		 * keep going without it; any other error means that we are
+> +		 * supposed to read the bin value, but we failed doing so.
+> +		 */
+> +		if (ret != -ENOENT) {
+> +			DRM_DEV_ERROR(dev, "Cannot read speed-bin (%d).", ret);
+> +			return ret;
+> +		}
+> +
+> +		return 0;
+> +	}
+> +	DRM_DEV_DEBUG(dev, "Using speed-bin = 0x%x\n", val);
+> +
+> +	return devm_pm_opp_set_supported_hw(dev, &val, 1);
+> +}
+> +
+>   int panfrost_devfreq_init(struct panfrost_device *pfdev)
+>   {
+>   	int ret;
+> @@ -101,6 +127,10 @@ int panfrost_devfreq_init(struct panfrost_device *pfdev)
+>   		return 0;
+>   	}
+>   
+> +	ret = panfrost_read_speedbin(dev);
+> +	if (ret)
+> +		return ret;
+> +
+>   	ret = devm_pm_opp_set_regulators(dev, pfdev->comp->supply_names);
+>   	if (ret) {
+>   		/* Continue if the optional regulator is missing */
+
+
