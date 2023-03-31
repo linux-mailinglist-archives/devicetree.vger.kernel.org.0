@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDD26D265F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9ED6D2660
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231247AbjCaQ7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 12:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36610 "EHLO
+        id S231136AbjCaQ7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 12:59:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbjCaQ7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:59:08 -0400
+        with ESMTP id S231837AbjCaQ7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:59:09 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 45324CC32
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 75BEAD52B
         for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:58:59 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F3326106F;
-        Fri, 31 Mar 2023 09:59:42 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8BA1511FB;
+        Fri, 31 Mar 2023 09:59:43 -0700 (PDT)
 Received: from [10.1.196.177] (eglon.cambridge.arm.com [10.1.196.177])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ECE7E3F6C4;
-        Fri, 31 Mar 2023 09:58:51 -0700 (PDT)
-Message-ID: <cbbcd0e3-7269-315f-af13-208a3282f17b@arm.com>
-Date:   Fri, 31 Mar 2023 17:58:49 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DCCA63F793;
+        Fri, 31 Mar 2023 09:58:52 -0700 (PDT)
+Message-ID: <f9bb371f-427f-84f7-690c-8f96fff31d43@arm.com>
+Date:   Fri, 31 Mar 2023 17:58:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
 Subject: Re: [PATCH 1/6] dt-bindings: firmware: Add arm,errata-management
 Content-Language: en-GB
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
         Sudeep Holla <sudeep.holla@arm.com>,
         Marc Zyngier <maz@kernel.org>,
         Oliver Upton <oliver.upton@linux.dev>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andre Przywara <andre.przywara@arm.com>
 References: <20230330165128.3237939-1-james.morse@arm.com>
  <20230330165128.3237939-2-james.morse@arm.com>
- <CAL_Jsq+kejKAY6+kVQ1xL9z0vR=dxneTHKvufW2MUSy3mzgj-A@mail.gmail.com>
+ <8a1b2aeb-c89e-d8de-1784-e0cf9ec33aa3@linaro.org>
 From:   James Morse <james.morse@arm.com>
-In-Reply-To: <CAL_Jsq+kejKAY6+kVQ1xL9z0vR=dxneTHKvufW2MUSy3mzgj-A@mail.gmail.com>
+In-Reply-To: <8a1b2aeb-c89e-d8de-1784-e0cf9ec33aa3@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
@@ -54,10 +55,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Krzysztof
 
-On 31/03/2023 14:46, Rob Herring wrote:
-> On Thu, Mar 30, 2023 at 11:52 AM James Morse <james.morse@arm.com> wrote:
+On 31/03/2023 09:29, Krzysztof Kozlowski wrote:
+> On 30/03/2023 18:51, James Morse wrote:
 >> The Errata Management SMCCC interface allows firmware to advertise whether
 >> the OS is affected by an erratum, or if a higher exception level has
 >> mitigated the issue. This allows properties of the device that are not
@@ -68,20 +69,53 @@ On 31/03/2023 14:46, Rob Herring wrote:
 >> firmware than the device tree. Erratum workarounds typically have to
 >> fail safe, and assume the platform is affected putting correctness
 >> above performance.
+>>
+>> Instead of adding a device-tree entry for any CPU errata that is
+>> relevant (or not) to the platform, allow the device-tree to describe
+>> firmware's responses for the SMCCC interface. This could be used as
+>> the data source for the firmware interface, or be parsed by the OS if
+>> the firmware interface is missing.
+>>
+>> Most errata can be detected from CPU id registers. These mechanisms
+>> are only needed for the rare cases that external knowledge is needed.
+
+>> diff --git a/Documentation/devicetree/bindings/firmware/arm,errata-management.yaml b/Documentation/devicetree/bindings/firmware/arm,errata-management.yaml
+>> new file mode 100644
+>> index 000000000000..9baeb3d35213
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/firmware/arm,errata-management.yaml
+>> @@ -0,0 +1,77 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/firmware/arm,errata-management.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > 
-> Updating the DT is still harder than updating the kernel. A well
-> designed binding allows for errata fixes without DT changes. That
-> generally means specific compatibles up front rather than adding
-> properties to turn things on/off.
+> Except missing testing...
 
-I started with a per-erratum identifier, but there are 8 of them, and its hard to know
-where to put it. The CPU side is detectable from the MIDR,its an interconnect property
-that we need to know ... but the interconnect isn't described in the DT. (but the obvious
-compatible string identifies the PMU)
+After a couple of hours of testing this, I went blind and missed that it was still
+complaining about spaces.
 
 
-> Do we really want to encourage/endorse/support non-updatable firmware?
-> We've rejected plenty of things with 'fix your firmware'.
+>> +
+>> +title: Errata Management Firmware Interface
+>> +
+>> +maintainers:
+>> +  - James Morse <james.morse@arm.com>
+>> +
+>> +description: |+
+> 
+> Do not need '|+'.
+> 
+>> +  The SMC-CC has an erratum discovery interface that allows the OS to discover
+>> +  whether a particular CPU is affected by a specific erratum when the
+>> +  configurations affected is only known by firmware. See the specification of
+>> +  the same title on developer.arm.com, document DEN0100.
+>> +  Provide the values that should be used by the interface, either to supplement
+>> +  firmware, or override the values firmware provides.
+> 
+> Why? If you have the discovery interface, don't add stuff to the DT, but
+> use that interface.
 
 A DT property was explicitly requested by Marc Z on the RFC:
 https://lore.kernel.org/linux-arm-kernel/86mt5dxxbc.wl-maz@kernel.org/
@@ -94,46 +128,33 @@ Adding a DT property to describe the hardware state of the erratum avoids the ne
 separate kernel builds to work around the missing firmware.
 
 
->> Instead of adding a device-tree entry for any CPU errata that is
->> relevant (or not) to the platform, allow the device-tree to describe
->> firmware's responses for the SMCCC interface. This could be used as
->> the data source for the firmware interface, or be parsed by the OS if
->> the firmware interface is missing.
-
-> What's to prevent vendors from only using the DT mechanism and never
-> supporting the SMCCC interface? I'm sure some will love to not have to
-> make a firmware update when they can just fix it in DT.
-
-The firmware interface has to exist for ACPI systems where EL3 can't influence the ACPI
-tables, which typically get replaced if the part is OEM'd.
-
-Ultimately all the interface is describing is a non-discoverable hardware property
-relevant to an erratum. These are often configurations the silicon manufacturer chooses.
-In this case its the behaviour of the interconnect.
-
-If we didn't have to support ACPI systems, this stuff would only have been in the DT. With
-
-
-> The downside to this extendable binding compared to simple properties
-> is parsing a flat tree is slow and more complicated. So it may be
-> difficult to support if you need this early in boot.
-
-I do need this early in the boot, but I'm not worried about the delay as these tables
-should be small.
-
-
->> Most errata can be detected from CPU id registers. These mechanisms
->> are only needed for the rare cases that external knowledge is needed.
+>> +      - const: arm,cpu-erratum-list
+>> +
+>> +  arm,erratum-affected:
+>> +    description: Erratum numbers that this CPU is affected by.
 > 
-> And also have significant performance impact. In the end, how many
-> platforms are there that can't fix these in firmware and need a
-> mainline/distro kernel optimized to avoid the work-around. I suspect
-> the number is small enough it could be a list in the kernel.
+> Isn't this explicit from CPU compatible?
 
-At a guess, its all mobile phones produced in the last 2 years that want to run a version
-of Android that uses virtualisation. Cortex-A78 is affected, but I don't know when the
-first products were shipped.
+I'll drop it from the compatible. The concern is arm add erratum in other IP to this
+interface, hence shoving 'cpu' in a few places to future proof it against changes in the spec.
 
+
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 1
+
+> What do the numbers mean?
+
+The numbers are unique identifiers issued by the CPU designer to identify the part
+affected and the erratum. See the cover-letter for links to arms documents for all these
+CPUs, or Documentation/arm64/silicon-errata.txt for a table of those the kernel works around.
+
+
+> maxItems?
+
+If there are zero entries, the table can be omitted, hence minItems.
+
+This is the first erratum workaround that needs to know non-discoverable CPU properties,
+but there will be others.
 
 
 Thanks,
