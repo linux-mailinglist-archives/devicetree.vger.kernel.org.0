@@ -2,317 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A45546D30B7
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 14:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 389776D30F7
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 15:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjDAMVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 08:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40228 "EHLO
+        id S229810AbjDANWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 09:22:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjDAMVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 08:21:35 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B45191F6
-        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 05:21:33 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id b6so5674382ljr.1
-        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 05:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680351692;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AZ2ewhbHO8gaVPhu+Agj8Vv62N4QLjibp6e4jDmUV/Y=;
-        b=FPxzYjka4DKzGeWgiF70dDCv1l3rXWTAO67npQHzlvtK1jmylgS32BCQEz6um6UnWP
-         S4qpjwyPcHTcu6fo9OmTt07m+TZa0mzIphw4WyCJA+1ki9ThfEOKoT3+VRKlajpQd3jW
-         U9WvZ2dJqHzU9uJnrDIxkRkjR3ukttAn0U4ayxqqoeyTvEDakpL6M7BP+CVWt37oOeMC
-         j/4P3WsBn76jnqHMPzlk0IqvqedlJocDD9gc86BbVsl0nzuh7EqybFfJYIA9+ptZ0kmf
-         guXc4xLuJVTp1L+zlaTar8IqFQETeHJ2iE04VFMVcEXF4Ac1L7ufXY7oP8+F5D/myZJt
-         2meg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680351692;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AZ2ewhbHO8gaVPhu+Agj8Vv62N4QLjibp6e4jDmUV/Y=;
-        b=BBe8YLrY8Zww+OBkbHVYrg31zRVf3cDExlFMGMKgSSZfzJ8r8BVDKZplnTSqdQFHQI
-         KTgqW+BtIso65Ezmw3QZlg2x1k6LUPW1qBs932VxHGfKh7UOn7uBnzgyYNXKRvHGKabZ
-         djkKZNF7EFHNM3dMR7tYNsBDtuaeGNqwUClf9yfoj7RB8vehTbXqix50JyQB/g99K6x8
-         pk7tsNbn26DxYapeUz1fVx3lX6RlqB0gzpuwYC80rFCzU/2r2QP6k0PKxpWTnQL/nKei
-         A5PdahHMDu9b3P8QwZ6XRL1ay3tCOpsXsqR0PU7jiLjvWSXEne8n5UnZRrwqGl9/NB93
-         aa3w==
-X-Gm-Message-State: AAQBX9fKWbSvoXm2+9kN1pM1HAAQI2Zck2N7X4iAVtOZ+8e9VzL6vX9R
-        HCA5uknAb/t79ab2lxcdmI4oBQ==
-X-Google-Smtp-Source: AKy350bvn9XtMMorAvyMJCKZdH+KM11VYlH3otHJHzrzFhCFLo17S89b+0vEhCvj2WBvTXf0iQZ8OQ==
-X-Received: by 2002:a2e:9b81:0:b0:295:a8e6:6b15 with SMTP id z1-20020a2e9b81000000b00295a8e66b15mr3721567lji.4.1680351692004;
-        Sat, 01 Apr 2023 05:21:32 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id e8-20020a2e8ec8000000b00293534d9757sm789793ljl.81.2023.04.01.05.21.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Apr 2023 05:21:31 -0700 (PDT)
-Message-ID: <0ff99bb5-4792-270d-b03e-2638939f160f@linaro.org>
-Date:   Sat, 1 Apr 2023 14:21:26 +0200
+        with ESMTP id S229566AbjDANWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 09:22:03 -0400
+Received: from out-29.mta0.migadu.com (out-29.mta0.migadu.com [91.218.175.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56C61D922
+        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 06:22:00 -0700 (PDT)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+        t=1680355318;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=UNKDCLqy6oJGz1iDvXsYwdDZGden5gwWWMqBVtiiy88=;
+        b=BQNkSlc0WUPsFDR1EYAGUDqRrFB8Z0JO8ghqZaaY4ysmALK6EYfFaeTx+ZHqdCc1NbqTps
+        01vvjb0KFJH9OcfdeBLnKIsWahUvgH/dcHEihA0LCkk5yxwZB0Z387y4I+Bdltpug1A8ck
+        Jn0gj6LQw2cxlEaaEgdSov7DK218tD4=
+From:   Henrik Grimler <henrik@grimler.se>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alim.akhtar@samsung.com, m.szyprowski@samsung.com,
+        jenneron@protonmail.com, markuss.broks@gmail.com,
+        martin.juecker@gmail.com, virag.david003@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        replicant@osuosl.org
+Cc:     Henrik Grimler <henrik@grimler.se>
+Subject: [PATCH 0/2] ARM: dts: add mmc aliases for Exynos devices
+Date:   Sat,  1 Apr 2023 15:21:32 +0200
+Message-Id: <20230401132134.12887-1-henrik@grimler.se>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [RESEND PATCH v2 1/1] arm64: dts: qcom: sm6115: Add CPU
- idle-states
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org
-References: <20230330193303.612475-1-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230330193303.612475-1-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+It is convenient to have fixed mmcblk numbering of the eMMC and sdcard
+so that assigned numbers will not change from boot-to-boot or
+depending on if storage devices are actually attached or not.
+
+Anton Bambura has done the work for the chromebooks while I have
+looked at the other devices.  On the chromebooks, mmc0 is used for
+eMMC and mmc1 for sdcard, while mmc0 is used for eMMC and mmc2 for
+sdcard on the other boards, simply because Anton and I had different
+preferences.
+
+Also drop mshc aliases while we are at it and instead add mmc
+capabilities to the individual device trees (right now they are added
+depending on alias index).  I have tested the changes on
+exynos4412-odroid-u2 and exynos5422-odroid-xu4: the MMC_CAP_1_8V_DDR
+and MMC_CAP_8_BIT_DATA caps are set correctly (meaning they are set
+for mshc_0/mmc_0 but not mshc_2/mmc_2) both before and after this
+patchset.
+
+---
+
+Changes since v5:
+* Make mmc index numbering linear per default (that is, always use 0,
+  1, 2 instead of for example 0, 2, 3) for devices where no documentation
+  or schematics are available that use other numbering.
+* Drop Marek's test tag for patch 2 since mmc numbering has been updated
+* Add mmc0 alias to exynos5422-samsung-k3g, was accidentally dropped in v5
+
+Changes since v4:
+* Do not set mmc-ddr-1_8v for sdhci_0 on Exynos 4210,
+  following Marek's tests
+* Collect tags
+
+Changes since v3:
+* Skip sorting of nodes, to not make reviewing impossible (and I need
+  to read up on preferred style)
+* Move two mmc alias additions from patch 1 to patch 2
+
+Changes since v2:
+* Set mmc-ddr-1_8v in device trees so that MMC_CAP_1_8V_DDR is set
+  also after removal of mshc0 alias.  Issue was pointed out by Krzysztof
+  and David.
+* Fix whitespace issue in patch 2 which was pointed out by Krzysztof
+* Reword commit message of patch 2 after Rob's comment
+
+Changes since v1:
+* Move mshc alias cleanup to a separate commit
+* Use mmc0 and mmc1 (instead of mmc0 and mmc2) for eMMC and sdcard on
+  chromebooks
+* Address Krzysztof's review comments:
+ - Make changes per device rather than in soc dtsi
 
 
-On 30.03.2023 21:33, Bhupesh Sharma wrote:
-> Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
-> Changes since v1:
-> - v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
-> - Addressed Konrad's comments on v1 and added GDHS and Power Collapse
->   cluster power states.
-> 
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 136 +++++++++++++++++++++++++++
->  1 file changed, 136 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 2a51c938bbcb..b63395d476ed 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -45,6 +45,8 @@ CPU0: cpu@0 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD0>;
-> +			power-domain-names = "psci";
->  			L2_0: l2-cache {
->  				compatible = "cache";
->  				cache-level = <2>;
-> @@ -61,6 +63,8 @@ CPU1: cpu@1 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD1>;
-> +			power-domain-names = "psci";
->  		};
->  
->  		CPU2: cpu@2 {
-> @@ -73,6 +77,8 @@ CPU2: cpu@2 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD2>;
-> +			power-domain-names = "psci";
->  		};
->  
->  		CPU3: cpu@3 {
-> @@ -85,6 +91,8 @@ CPU3: cpu@3 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD3>;
-> +			power-domain-names = "psci";
->  		};
->  
->  		CPU4: cpu@100 {
-> @@ -97,6 +105,8 @@ CPU4: cpu@100 {
->  			dynamic-power-coefficient = <282>;
->  			next-level-cache = <&L2_1>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD4>;
-> +			power-domain-names = "psci";
->  			L2_1: l2-cache {
->  				compatible = "cache";
->  				cache-level = <2>;
-> @@ -113,6 +123,8 @@ CPU5: cpu@101 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_1>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD5>;
-> +			power-domain-names = "psci";
->  		};
->  
->  		CPU6: cpu@102 {
-> @@ -125,6 +137,8 @@ CPU6: cpu@102 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_1>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD6>;
-> +			power-domain-names = "psci";
->  		};
->  
->  		CPU7: cpu@103 {
-> @@ -137,6 +151,8 @@ CPU7: cpu@103 {
->  			enable-method = "psci";
->  			next-level-cache = <&L2_1>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD7>;
-> +			power-domain-names = "psci";
->  		};
->  
->  		cpu-map {
-> @@ -176,6 +192,68 @@ core3 {
->  				};
->  			};
->  		};
-> +
-> +		idle-states {
-> +			entry-method = "psci";
-> +
-> +			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> +				compatible = "arm,idle-state";
-> +				idle-state-name = "silver-rail-power-collapse";
-> +				arm,psci-suspend-param = <0x40000003>;
-> +				entry-latency-us = <290>;
-> +				exit-latency-us = <376>;
-> +				min-residency-us = <1182>;
-> +				local-timer-stop;
-> +			};
-> +
-> +			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-> +				compatible = "arm,idle-state";
-> +				idle-state-name = "gold-rail-power-collapse";
-> +				arm,psci-suspend-param = <0x40000003>;
-> +				entry-latency-us = <297>;
-> +				exit-latency-us = <324>;
-> +				min-residency-us = <1110>;
-> +				local-timer-stop;
-> +			};
-> +		};
-> +
-> +		domain-idle-states {
-> +			CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
-> +				/* GDHS */
-> +				compatible = "domain-idle-state";
-> +				arm,psci-suspend-param = <0x40000022>;
-This 0x22 ending seems very sus.
+Henrik Grimler (2):
+  ARM: dts: exynos: replace mshc0 alias with mmc-ddr-1_8v property
+  ARM: dts: exynos: add mmc aliases
 
-The last nibble represents the core-level power state and the
-penultimate one represents the same at cluster level. A value
-of 2 in that cluster nibble is actually undefined by the PSCI spec,
-whereas the value of 4 (as you have in all of the other idle
-states, including D3G for the perf cluster) corresponds to
-"Retention", so unless there's a very weird nuance in the
-TZ for this SoC, it should probably end in 0x42.
+ arch/arm/boot/dts/exynos3250-artik5-eval.dts        | 5 +++++
+ arch/arm/boot/dts/exynos3250-artik5.dtsi            | 6 ++++++
+ arch/arm/boot/dts/exynos3250-monk.dts               | 2 ++
+ arch/arm/boot/dts/exynos3250-rinato.dts             | 3 +++
+ arch/arm/boot/dts/exynos3250.dtsi                   | 3 ---
+ arch/arm/boot/dts/exynos4210-i9100.dts              | 6 ++++++
+ arch/arm/boot/dts/exynos4210-origen.dts             | 5 +++++
+ arch/arm/boot/dts/exynos4210-smdkv310.dts           | 4 ++++
+ arch/arm/boot/dts/exynos4210-trats.dts              | 6 ++++++
+ arch/arm/boot/dts/exynos4210-universal_c210.dts     | 6 ++++++
+ arch/arm/boot/dts/exynos4412-itop-elite.dts         | 4 ++++
+ arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi     | 5 +++++
+ arch/arm/boot/dts/exynos4412-midas.dtsi             | 4 ++++
+ arch/arm/boot/dts/exynos4412-odroid-common.dtsi     | 6 ++++++
+ arch/arm/boot/dts/exynos4412-origen.dts             | 6 ++++++
+ arch/arm/boot/dts/exynos4412-p4note.dtsi            | 7 +++++++
+ arch/arm/boot/dts/exynos4412-smdk4412.dts           | 4 ++++
+ arch/arm/boot/dts/exynos4412-tiny4412.dts           | 4 ++++
+ arch/arm/boot/dts/exynos4412.dtsi                   | 1 -
+ arch/arm/boot/dts/exynos5250-arndale.dts            | 6 ++++++
+ arch/arm/boot/dts/exynos5250-smdk5250.dts           | 3 +++
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi       | 4 ++++
+ arch/arm/boot/dts/exynos5250-spring.dts             | 6 ++++++
+ arch/arm/boot/dts/exynos5250.dtsi                   | 4 ----
+ arch/arm/boot/dts/exynos5260-xyref5260.dts          | 6 ++++++
+ arch/arm/boot/dts/exynos5410-odroidxu.dts           | 3 +++
+ arch/arm/boot/dts/exynos5410-smdk5410.dts           | 6 ++++++
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts       | 6 ++++++
+ arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi | 6 ++++++
+ arch/arm/boot/dts/exynos5420-peach-pit.dts          | 4 ++++
+ arch/arm/boot/dts/exynos5420-smdk5420.dts           | 6 ++++++
+ arch/arm/boot/dts/exynos5420.dtsi                   | 3 ---
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi       | 4 ++++
+ arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi  | 5 +++++
+ arch/arm/boot/dts/exynos5422-samsung-k3g.dts        | 5 +++++
+ arch/arm/boot/dts/exynos5800-peach-pi.dts           | 4 ++++
+ 36 files changed, 157 insertions(+), 11 deletions(-)
 
-Otherwise I think this LGTM now!
 
-Konrad
-> +				entry-latency-us = <360>;
-> +				exit-latency-us = <421>;
-> +				min-residency-us = <782>;
-> +			};
-> +
-> +			CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
-> +				/* Power Collapse */
-> +				compatible = "domain-idle-state";
-> +				arm,psci-suspend-param = <0x41000044>;
-> +				entry-latency-us = <800>;
-> +				exit-latency-us = <2118>;
-> +				min-residency-us = <7376>;
-> +			};
-> +
-> +			CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
-> +				/* GDHS */
-> +				compatible = "domain-idle-state";
-> +				arm,psci-suspend-param = <0x40000042>;
-> +				entry-latency-us = <314>;
-> +				exit-latency-us = <345>;
-> +				min-residency-us = <660>;
-> +			};
-> +
-> +			CLUSTER_1_SLEEP_1: cluster-sleep-1-1 {
-> +				/* Power Collapse */
-> +				compatible = "domain-idle-state";
-> +				arm,psci-suspend-param = <0x41000044>;
-> +				entry-latency-us = <640>;
-> +				exit-latency-us = <1654>;
-> +				min-residency-us = <8094>;
-> +			};
-> +		};
->  	};
->  
->  	firmware {
-> @@ -199,6 +277,64 @@ pmu {
->  	psci {
->  		compatible = "arm,psci-1.0";
->  		method = "smc";
-> +
-> +		CPU_PD0: power-domain-cpu0 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_0_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD1: power-domain-cpu1 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_0_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD2: power-domain-cpu2 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_0_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD3: power-domain-cpu3 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_0_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD4: power-domain-cpu4 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_1_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD5: power-domain-cpu5 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_1_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD6: power-domain-cpu6 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_1_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD7: power-domain-cpu7 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_1_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CLUSTER_0_PD: power-domain-cpu-cluster0 {
-> +			#power-domain-cells = <0>;
-> +			domain-idle-states = <&CLUSTER_0_SLEEP_0>, <&CLUSTER_0_SLEEP_1>;
-> +		};
-> +
-> +		CLUSTER_1_PD: power-domain-cpu-cluster1 {
-> +			#power-domain-cells = <0>;
-> +			domain-idle-states = <&CLUSTER_1_SLEEP_0>, <&CLUSTER_1_SLEEP_1>;
-> +		};
->  	};
->  
->  	reserved_memory: reserved-memory {
+base-commit: 0e84f3493a37d50f2f629dbea670135b8a8ee391
+-- 
+2.30.2
+
