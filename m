@@ -2,169 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9923E6D3311
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 20:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50CBA6D331D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 20:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjDASUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 14:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49286 "EHLO
+        id S229529AbjDAS0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 14:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjDASUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 14:20:06 -0400
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0F01A96A;
-        Sat,  1 Apr 2023 11:20:05 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id h1-20020a4adcc1000000b0053e9796cc7dso1182226oou.4;
-        Sat, 01 Apr 2023 11:20:05 -0700 (PDT)
+        with ESMTP id S229475AbjDAS0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 14:26:22 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9649C1B34F
+        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 11:26:20 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id m6-20020a05600c3b0600b003ee6e324b19so15783915wms.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 11:26:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680373205;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fITr2HwYgqLUUk1Kke5I+QMgFMyvuPMKr1ZR1hYIU3I=;
-        b=TWTywiVBMaANiqanN77gtisbmbm/wLVaWH+qyvtSiG7Ip59YMo9aZDcndAj+mKA+np
-         pmRQ/MRD3zciKrhFt0RuZvZz2+h78fnTzX/LcAXMYKtlKZxIYQAoAP4r4EremUZ3sz0b
-         qkxGHWGCNrdO76vAQ9tDN0qdcTRQQlaidz9AixfK1WPfKQHehUmHtsft+IME2e+dtrn+
-         19VBxkzkYCibQxoy7a1ESloaQXtfmxLJ3EhA8uCs0lomI+AfOuw00QACf/hwYVUCwKKU
-         3oeE4S6hC+9ht1tFV7Nti8PwpFUsmbeyI9oqrOcY2RqMGsSjyUcsTXnL2A5iKKaz4EDY
-         DGlQ==
+        d=linaro.org; s=google; t=1680373579;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BmCy6VstbUOc3/xi1baviqGZ3ffqW2yzhLuCH0NJ8cM=;
+        b=iRNAbZcnGm4v/2nYJgxYOjSIwf7SFo/i6FI52KvRKcGnrsDxGXxsfOwnqtiknn9QY1
+         aKVafJH8a4E/i/kJwX48a/+cpclFy90mcX4WR/9o+wvwL7ihU3jPku+S2hmBfgjdtlz3
+         T4Oc+gQnaxV0bgFJL7G1POnMZyxgnMgxQMwGYfxLw7NntnQzKX4c2PJEIur5sAB+Z8sN
+         gE9FmaDn3N84PUjXt6hNug1cLfA8T9x2LZEzIPaIRNU3ymkZe2TR/G0kgl4klGPOH2ru
+         LII5E6x4GLPdCDWR4vPORkL3+cB57U5XnNjydDabLVo2Ji86LhladCF4xNrLxxpEe4+Z
+         clqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680373205;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1680373579;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fITr2HwYgqLUUk1Kke5I+QMgFMyvuPMKr1ZR1hYIU3I=;
-        b=4KZZTrmE3AoMbjSz20UJl7GnYRKXDst9iNBh+O56qN/lb0MJRvbThz+5/BznqLrGk5
-         P8cdwQFyaaXYhnJixQxdBdsccMdisEqXbbN1gND4RFwW2SPAUW2uSP5LpAZEkvo5qDSH
-         oVEt1Lh0xQ+OLsR01zZqnHfffvU/aurP9aXW6DVXkZJRTbEoCas/HEnpR1c/W3ZAMpuW
-         qL051+6ScaT8yPaEz9itcmQOqyPtJLj5WJ6eQVUB10HnzZi+iVUyzhQ3j53nA2sFecNj
-         EaKY5hAcK6hRrg938vfbSD759W/DYEG6EWiip3TwVzC8LpgF9x0U40dUenvwX2fK3XEi
-         2oDw==
-X-Gm-Message-State: AAQBX9dvJaU4oHZJwM31z7zXfVSRGwyQfGbXFZJAfytpFNDI/yGVeU1e
-        EDupFsU3Wz7pBrNPh3hqh6o=
-X-Google-Smtp-Source: AKy350ZGi7A5EVHermG2a+d2Y1EJ0swdZU4PDDJgxPBdTR3MqzeWevqrtPAxWogwUpGjkvCHzT782A==
-X-Received: by 2002:a4a:bd8c:0:b0:53c:5f89:eb85 with SMTP id k12-20020a4abd8c000000b0053c5f89eb85mr6913034oop.2.1680373205132;
-        Sat, 01 Apr 2023 11:20:05 -0700 (PDT)
-Received: from heimdal.localdomain ([2804:431:cfec:79f0:85a3:2af2:a6f4:1842])
-        by smtp.gmail.com with ESMTPSA id e193-20020a4a55ca000000b005255e556399sm2159485oob.43.2023.04.01.11.20.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Apr 2023 11:20:04 -0700 (PDT)
-From:   =?UTF-8?q?Andr=C3=A9=20Morishita?= <andremorishita@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        anish kumar <yesanishhere@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mairacanal@riseup.net, dri-devel@lists.freedesktop.org,
-        daniel.baluta@nxp.com,
-        =?UTF-8?q?Andr=C3=A9=20Morishita?= <andremorishita@gmail.com>
-Subject: [PATCH v3] ASoC: dt-bindings: maxim,max98371: Convert to DT schema
-Date:   Sat,  1 Apr 2023 15:19:29 -0300
-Message-Id: <20230401181930.533067-1-andremorishita@gmail.com>
-X-Mailer: git-send-email 2.40.0
+        bh=BmCy6VstbUOc3/xi1baviqGZ3ffqW2yzhLuCH0NJ8cM=;
+        b=uydPWHq0X+58ttkbhhIRuDf9Ef/TWXziF314qcupCnzhecjdW4bFtobEMDkgzdUOHg
+         mE+2jo4TRzB0n8Pr0Uu9MG543X7vmkqPVV9ptPuPtYlJSq5V1o4ArXVH59q2nAm70GCI
+         CVLbWhMe5dENtimW3NXxLwx2czDSDwLU7v2ny0e9a3gZeDooXi4cY8o2HegIJQC6STwb
+         uNVp9783m3lbIb4qpza6GEKi659O5+zez5JqnOcDr82qPQodSyy+hLZO6+jBaEpOYNHO
+         T5keLr34k7aWhhFBc1rk5g3elGzRxntg8zSwC8slEBjAWHwo+z6lW/r7GxUk7eZNl34g
+         chxQ==
+X-Gm-Message-State: AO0yUKWSCrf54/ttsWIQPC738yVbBrCUSZgt1Cn5pXuB+/kkU1udrzFH
+        /2jsPbgN5FG/XPiOSU7xrPg8IFfxXf5NgbRWjNtZ3g==
+X-Google-Smtp-Source: AK7set+Q74Lb+HjO5VFRCckLXBV9Mi5Sr+RT30qJcFIipQMV3ifbubQ+xOe7udGHXnJl3PfLadOPAgA3T7fLi0fBnJE=
+X-Received: by 2002:a7b:ce16:0:b0:3ed:6afb:5272 with SMTP id
+ m22-20020a7bce16000000b003ed6afb5272mr7198406wmc.8.1680373578974; Sat, 01 Apr
+ 2023 11:26:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20230330193303.612475-1-bhupesh.sharma@linaro.org> <0ff99bb5-4792-270d-b03e-2638939f160f@linaro.org>
+In-Reply-To: <0ff99bb5-4792-270d-b03e-2638939f160f@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sat, 1 Apr 2023 23:56:07 +0530
+Message-ID: <CAH=2NtzPReiUHuEAW8PsQJvNzOYvb71pZ7SWRbThWdLT7_a0ug@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 1/1] arm64: dts: qcom: sm6115: Add CPU idle-states
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Maxim Integrated MAX98371 audio codec bindings to DT schema.
+Hi Konrad,
 
-Signed-off-by: André Morishita <andremorishita@gmail.com>
----
-Changes in v3:
-  - Make commit message and subject as v1 with ASoC subject prefix
+On Sat, 1 Apr 2023 at 17:51, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 30.03.2023 21:33, Bhupesh Sharma wrote:
+> > Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> > Changes since v1:
+> > - v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
+> > - Addressed Konrad's comments on v1 and added GDHS and Power Collapse
+> >   cluster power states.
+> >
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 136 +++++++++++++++++++++++++++
+> >  1 file changed, 136 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index 2a51c938bbcb..b63395d476ed 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -45,6 +45,8 @@ CPU0: cpu@0 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_0>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > +                     power-domains = <&CPU_PD0>;
+> > +                     power-domain-names = "psci";
+> >                       L2_0: l2-cache {
+> >                               compatible = "cache";
+> >                               cache-level = <2>;
+> > @@ -61,6 +63,8 @@ CPU1: cpu@1 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_0>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > +                     power-domains = <&CPU_PD1>;
+> > +                     power-domain-names = "psci";
+> >               };
+> >
+> >               CPU2: cpu@2 {
+> > @@ -73,6 +77,8 @@ CPU2: cpu@2 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_0>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > +                     power-domains = <&CPU_PD2>;
+> > +                     power-domain-names = "psci";
+> >               };
+> >
+> >               CPU3: cpu@3 {
+> > @@ -85,6 +91,8 @@ CPU3: cpu@3 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_0>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > +                     power-domains = <&CPU_PD3>;
+> > +                     power-domain-names = "psci";
+> >               };
+> >
+> >               CPU4: cpu@100 {
+> > @@ -97,6 +105,8 @@ CPU4: cpu@100 {
+> >                       dynamic-power-coefficient = <282>;
+> >                       next-level-cache = <&L2_1>;
+> >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > +                     power-domains = <&CPU_PD4>;
+> > +                     power-domain-names = "psci";
+> >                       L2_1: l2-cache {
+> >                               compatible = "cache";
+> >                               cache-level = <2>;
+> > @@ -113,6 +123,8 @@ CPU5: cpu@101 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_1>;
+> >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > +                     power-domains = <&CPU_PD5>;
+> > +                     power-domain-names = "psci";
+> >               };
+> >
+> >               CPU6: cpu@102 {
+> > @@ -125,6 +137,8 @@ CPU6: cpu@102 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_1>;
+> >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > +                     power-domains = <&CPU_PD6>;
+> > +                     power-domain-names = "psci";
+> >               };
+> >
+> >               CPU7: cpu@103 {
+> > @@ -137,6 +151,8 @@ CPU7: cpu@103 {
+> >                       enable-method = "psci";
+> >                       next-level-cache = <&L2_1>;
+> >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > +                     power-domains = <&CPU_PD7>;
+> > +                     power-domain-names = "psci";
+> >               };
+> >
+> >               cpu-map {
+> > @@ -176,6 +192,68 @@ core3 {
+> >                               };
+> >                       };
+> >               };
+> > +
+> > +             idle-states {
+> > +                     entry-method = "psci";
+> > +
+> > +                     LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> > +                             compatible = "arm,idle-state";
+> > +                             idle-state-name = "silver-rail-power-collapse";
+> > +                             arm,psci-suspend-param = <0x40000003>;
+> > +                             entry-latency-us = <290>;
+> > +                             exit-latency-us = <376>;
+> > +                             min-residency-us = <1182>;
+> > +                             local-timer-stop;
+> > +                     };
+> > +
+> > +                     BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> > +                             compatible = "arm,idle-state";
+> > +                             idle-state-name = "gold-rail-power-collapse";
+> > +                             arm,psci-suspend-param = <0x40000003>;
+> > +                             entry-latency-us = <297>;
+> > +                             exit-latency-us = <324>;
+> > +                             min-residency-us = <1110>;
+> > +                             local-timer-stop;
+> > +                     };
+> > +             };
+> > +
+> > +             domain-idle-states {
+> > +                     CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
+> > +                             /* GDHS */
+> > +                             compatible = "domain-idle-state";
+> > +                             arm,psci-suspend-param = <0x40000022>;
+> This 0x22 ending seems very sus.
+>
+> The last nibble represents the core-level power state and the
+> penultimate one represents the same at cluster level. A value
+> of 2 in that cluster nibble is actually undefined by the PSCI spec,
+> whereas the value of 4 (as you have in all of the other idle
+> states, including D3G for the perf cluster) corresponds to
+> "Retention", so unless there's a very weird nuance in the
+> TZ for this SoC, it should probably end in 0x42.
+>
+> Otherwise I think this LGTM now!
 
-Changes in v2:
-   - Generic node names - codec (Krzysztof)
-   - Drop label max98371 (Krzysztof)
-   - Add sound-dai-cells in example (Krzysztof)
+I am also learning by experiment about the exact values to use here,
+as the only ready reckoner of how these values are calculated, seems
+to be available via [1].
 
- .../devicetree/bindings/sound/max98371.txt    | 17 --------
- .../bindings/sound/maxim,max98371.yaml        | 42 +++++++++++++++++++
- 2 files changed, 42 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/max98371.txt
- create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98371.yaml
+Also it seems the downstream code uses the following approach to
+calculate the LPM state suspend-param, which for example for
+CLUSTER_0_SLEEP_1 states turns out to be:
 
-diff --git a/Documentation/devicetree/bindings/sound/max98371.txt b/Documentation/devicetree/bindings/sound/max98371.txt
-deleted file mode 100644
-index 8b2b2704b574..000000000000
---- a/Documentation/devicetree/bindings/sound/max98371.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--max98371 codec
--
--This device supports I2C mode only.
--
--Required properties:
--
--- compatible : "maxim,max98371"
--- reg : The chip select number on the I2C bus
--
--Example:
--
--&i2c {
--	max98371: max98371@31 {
--		compatible = "maxim,max98371";
--		reg = <0x31>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/maxim,max98371.yaml b/Documentation/devicetree/bindings/sound/maxim,max98371.yaml
-new file mode 100644
-index 000000000000..14fba34ef81a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/maxim,max98371.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/maxim,max98371.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX98371 audio codec
-+
-+maintainers:
-+  - anish kumar <yesanishhere@gmail.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: maxim,max98371
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        codec@31 {
-+            compatible = "maxim,max98371";
-+            reg = <0x31>;
-+            #sound-dai-cells = <0>;
-+        };
-+    };
--- 
-2.40.0
+    state_id = get_cluster_id(cpu->parent, &affinity_level, from_idle); = 0x40
+    power_state = (is-reset << 30) = 0x40000000
+    affinity_level = (affinity level & 0x3) << 24 = 0x1000000
+    state_id += power_state + affinity_level + psci_id;
 
+    = 0x40000000 + 0x1000000 + 0x40 + 0x4 = 0x41000044
+
+For the D3G cases as well, I just used the 'qcom,psci-mode = <2>'
+value as provided in downstream code (see [2]), for the overall
+calculations.
+
+Also, the only usage of D3G state I could find upstream (in qcom dtsi
+files0 is for 'msm8916' (see [3]), which also uses the value with
+ending 0x2 -> 'arm,psci-suspend-param = <0x41000032>'
+
+[1]. https://patchwork.kernel.org/project/linux-arm-msm/patch/20201221002907.2870059-3-danny@kdrag0n.dev/#23857409
+[2]. https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/tags/android-11.0.0_r0.56/qcom/bengal-pm.dtsi#127
+[3]. https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/msm8916.dtsi#L209
+
+Thanks,
+Bhupesh
+
+> > +                             entry-latency-us = <360>;
+> > +                             exit-latency-us = <421>;
+> > +                             min-residency-us = <782>;
+> > +                     };
+> > +
+> > +                     CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
+> > +                             /* Power Collapse */
+> > +                             compatible = "domain-idle-state";
+> > +                             arm,psci-suspend-param = <0x41000044>;
+> > +                             entry-latency-us = <800>;
+> > +                             exit-latency-us = <2118>;
+> > +                             min-residency-us = <7376>;
+> > +                     };
+> > +
+> > +                     CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
+> > +                             /* GDHS */
+> > +                             compatible = "domain-idle-state";
+> > +                             arm,psci-suspend-param = <0x40000042>;
+> > +                             entry-latency-us = <314>;
+> > +                             exit-latency-us = <345>;
+> > +                             min-residency-us = <660>;
+> > +                     };
+> > +
+> > +                     CLUSTER_1_SLEEP_1: cluster-sleep-1-1 {
+> > +                             /* Power Collapse */
+> > +                             compatible = "domain-idle-state";
+> > +                             arm,psci-suspend-param = <0x41000044>;
+> > +                             entry-latency-us = <640>;
+> > +                             exit-latency-us = <1654>;
+> > +                             min-residency-us = <8094>;
+> > +                     };
+> > +             };
+> >       };
+> >
+> >       firmware {
+> > @@ -199,6 +277,64 @@ pmu {
+> >       psci {
+> >               compatible = "arm,psci-1.0";
+> >               method = "smc";
+> > +
+> > +             CPU_PD0: power-domain-cpu0 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_0_PD>;
+> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD1: power-domain-cpu1 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_0_PD>;
+> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD2: power-domain-cpu2 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_0_PD>;
+> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD3: power-domain-cpu3 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_0_PD>;
+> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD4: power-domain-cpu4 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_1_PD>;
+> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD5: power-domain-cpu5 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_1_PD>;
+> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD6: power-domain-cpu6 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_1_PD>;
+> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CPU_PD7: power-domain-cpu7 {
+> > +                     #power-domain-cells = <0>;
+> > +                     power-domains = <&CLUSTER_1_PD>;
+> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > +             };
+> > +
+> > +             CLUSTER_0_PD: power-domain-cpu-cluster0 {
+> > +                     #power-domain-cells = <0>;
+> > +                     domain-idle-states = <&CLUSTER_0_SLEEP_0>, <&CLUSTER_0_SLEEP_1>;
+> > +             };
+> > +
+> > +             CLUSTER_1_PD: power-domain-cpu-cluster1 {
+> > +                     #power-domain-cells = <0>;
+> > +                     domain-idle-states = <&CLUSTER_1_SLEEP_0>, <&CLUSTER_1_SLEEP_1>;
+> > +             };
+> >       };
+> >
+> >       reserved_memory: reserved-memory {
