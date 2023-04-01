@@ -2,137 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 479546D2E58
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 07:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5696D2F2D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 11:09:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232925AbjDAFRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 01:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60740 "EHLO
+        id S229656AbjDAJJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 05:09:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbjDAFRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 01:17:20 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF99FF0D;
-        Fri, 31 Mar 2023 22:17:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680326238; x=1711862238;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qe5YQmBy6JiuD2SFWD335bK1/XLd/LkYkrn4i1M8DjE=;
-  b=jClM9VJDPqbMguh+TPDnt8mbd3RadCt2VXMAD5ksFTonChbx1eKRXcrT
-   8QrSshKrKv8fWqqqKgJWuTPLxoqYpjwltl5tMYUzINBjD8RYfYcQtnzXZ
-   fds9SvP12/OqsVqch4KLBZyDIkhu5L6ijcM4ssPOnmlAora/ryIOOZHHZ
-   lgpLz86Z6dBG5Ga5jruN27ElYvB354geRyA0zDmNKa1ijpzAlBoSIf9gS
-   KTkQNJTCs42kfr/tr1AGG2nlDHjmAeE9UYr0R4GjQ9HXHTX3/mMMQISgA
-   uHiZ4TNcapG6cf1LiFPj1aGFwy9HNxQVIY/rxUU/xT6bP2LF15P0RA3+M
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="427902172"
-X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; 
-   d="scan'208";a="427902172"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 22:17:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="931430206"
-X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; 
-   d="scan'208";a="931430206"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 31 Mar 2023 22:17:14 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1piTc1-000MUn-0t;
-        Sat, 01 Apr 2023 05:17:13 +0000
-Date:   Sat, 1 Apr 2023 13:16:38 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S229469AbjDAJJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 05:09:38 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432ED1DF90;
+        Sat,  1 Apr 2023 02:09:36 -0700 (PDT)
+Received: from localhost ([31.220.113.145]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1M6DrU-1pp7sm3o9w-006fUD; Sat, 01 Apr 2023 11:09:21 +0200
+Date:   Sat, 1 Apr 2023 11:09:20 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jack.zhu@starfivetech.com, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v3 9/9] media: starfive: Add Starfive Camera Subsystem
- driver
-Message-ID: <202304011300.mT9MprJK-lkp@intel.com>
-References: <20230331121826.96973-10-jack.zhu@starfivetech.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Support Honeywell mpr pressure sensor
+Message-ID: <ZCf0wM4RT5bFWlhF@arbad>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230331121826.96973-10-jack.zhu@starfivetech.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:zgK+ygCVCXelTMtxUNUbxPQkWEUqky6UIddEf/3OxztOxS/sadi
+ dz4idOyCKysgFLqhWCjJ0Sa55bmSxV6s5yNhqMrYRZxZS8HyYl+LZywvJF2YumLKACO29/N
+ wVR6qcGTGgNz6aQHnqB7CbdP2LjIJFt2fy3o4ymG2hSq226+dmAzm1j3A4smJ1yYU6uU7ny
+ hi0MOCz7f7jKrvjJrDvNg==
+UI-OutboundReport: notjunk:1;M01:P0:wlNVorxbB08=;BadEdK7XXimWzepSUbpO9RoqmTj
+ 9d7JigPJ9GT3ENAnYwIBuFPmAjNXC84063jgTa9HrhqiCj5PoHPIFDuicZpNMacKQbg7RKUFR
+ Ryjs2a4Q+jxhDuhYUagnhCuvIuuhK9THl4Y3v3pBRHg6RsSPosNuwfQPVDacR1oVQgrz9qPb2
+ JZj37yh6+n6z2QbXdBqHscSw4KN9ClOXG3zAps2DAmhw5I56M2t3/f98LO2NtQ30bGA+8YoTV
+ aLFkuka1I4KV+AFMMSLCV/Nrhsgm0pLArOjCcNNufpFM4tawRCuRf42db2flecB6PcMOrPuQp
+ UAVwYwr/8K9bFVuT72rmwBUUGDvqPwueeiVQnYbJq5qMIEUWmQ4m6ojcVwP4dHyvPGqQJsxxU
+ XvRCwYiOhHC4g9gR1Jx4viyQ0E6KykEgJOZ2tJAfG1HE+BtRzYSMJVZbLpwbh6/jvD7sSu5RC
+ LS4IjaWtyVghWO5Pt4HA+wI4x/fJmrIUPq4CbMuJbSKjkq1kX/Ok6E08QjJoY2rKTlkfMUpBZ
+ WSRFBPDhac+oCYZwvw2CR9jU2dbnOqsC1h5rAhK3+F21vMh8zOcCu9ITWwsLWmfdr465IHzz0
+ //e1T0Hqv9uvtcmHBdvhKcejotGlU0Jm0fg2xDIORIbn4D7lzZXX8wS9jGDq7Fg+sKYWime+4
+ 2TIH9iUsGUgUWHufzNoQiKsXnKjYnSHxXkhGjzr8vg==
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
+Support Honeywell mpr pressure sensor.
 
-I love your patch! Perhaps something to improve:
-
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on robh/for-next linus/master v6.3-rc4 next-20230331]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230331-202001
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20230331121826.96973-10-jack.zhu%40starfivetech.com
-patch subject: [PATCH v3 9/9] media: starfive: Add Starfive Camera Subsystem driver
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20230401/202304011300.mT9MprJK-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/421adbf9815b633e8bac5da7146c33aac01e283c
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230331-202001
-        git checkout 421adbf9815b633e8bac5da7146c33aac01e283c
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304011300.mT9MprJK-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/media/platform/starfive/stf_vin.c: In function 'stf_vin_map_isp_pad':
-   drivers/media/platform/starfive/stf_vin.c:99:24: warning: implicit conversion from 'enum isp_line_id' to 'enum isp_pad_id' [-Wenum-conversion]
-      99 |                 pad_id = vin_map_isp_line(line);
-         |                        ^
-   drivers/media/platform/starfive/stf_vin.c: In function 'vin_output_init_addrs':
-   drivers/media/platform/starfive/stf_vin.c:683:20: warning: variable 'pong_addr' set but not used [-Wunused-but-set-variable]
-     683 |         dma_addr_t pong_addr;
-         |                    ^~~~~~~~~
-   At top level:
->> drivers/media/platform/starfive/stf_vin.c:33:32: warning: 'vin_formats_raw' defined but not used [-Wunused-const-variable=]
-      33 | static const struct vin_format vin_formats_raw[] = {
-         |                                ^~~~~~~~~~~~~~~
+This patch series adds support for Honeywell mpr pressure sensors. There are a variety of sensors
+with different pressure range supported. The pressure range needs to be set up in the device tree as
+minimum and maximum pressure in Pascal.
 
 
-vim +/vin_formats_raw +33 drivers/media/platform/starfive/stf_vin.c
+Andreas Klinger (3):
+  dt-bindings: iio: pressure: Support Honeywell mpr sensors
+  iio: pressure: Honeywell mpr pressure sensor
+  MAINTAINERS: Add Honeywell mpr sensor
 
-    32	
-  > 33	static const struct vin_format vin_formats_raw[] = {
-    34		{ MEDIA_BUS_FMT_SBGGR12_1X12, 12},
-    35		{ MEDIA_BUS_FMT_SRGGB12_1X12, 12},
-    36		{ MEDIA_BUS_FMT_SGRBG12_1X12, 12},
-    37		{ MEDIA_BUS_FMT_SGBRG12_1X12, 12},
-    38	};
-    39	
+ .../bindings/iio/pressure/honeywell,mpr.yaml  |  74 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/pressure/Kconfig                  |  12 +
+ drivers/iio/pressure/Makefile                 |   1 +
+ drivers/iio/pressure/mpr.c                    | 307 ++++++++++++++++++
+ 5 files changed, 401 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mpr.yaml
+ create mode 100644 drivers/iio/pressure/mpr.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.30.2
