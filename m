@@ -2,113 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 639E06D2D7C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 03:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 895806D2DA1
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 04:13:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234033AbjDAB6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 21:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45510 "EHLO
+        id S233304AbjDACNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 22:13:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233545AbjDAB5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 21:57:53 -0400
-X-Greylist: delayed 167 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 31 Mar 2023 18:55:56 PDT
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D161BF5D;
-        Fri, 31 Mar 2023 18:55:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1680313641; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=e872dxYKwpEmkU7ojBV5oxWY5yPEVsfRppSkHWLXyxK2QRHALoTZ9ES6HSu0fkI63hh9IOHCYdBwTS+ZbV3+Zls/3GA3nO3hcXl2iwSghOjUxIyJB7J0KVAyoSIes/wZwCZms0/cpoarR9COjb43mAeXnzLWeCHMbajgc4zEIsY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1680313641; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=S+zGGBqMP5BV/39K5ihbzESIqXi6/hEN1mEtg1ES/40=; 
-        b=btAeaJbnSX/otV9mzt0oRQCU3prXUl72yptb7/sh1Rrl+y5PyRWVjtijnSRkb0rbpdnfco6kN+279LU0EcEzyRo5BGMA2nO840LEOWEg21t6GbsNdQjSf/bjTBAOYBdTfyUNPAVSNfb3ULDG3e3CuyskO3jjDA0PU6jWsoJES5A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680313641;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=S+zGGBqMP5BV/39K5ihbzESIqXi6/hEN1mEtg1ES/40=;
-        b=UEXpHn7Z+mCjHatAbJ0EA4GpqEOoPHeQOAUlyvlwbEosnOLM6kNtXZ5N2bV2ZanW
-        isQtmIrTPnWFFUtF/Y9pg4r5PEyaECLlf5/XHGVjA+QObak+fM3wcVGtNDAVk2cgnOb
-        B8pu/N9Ybs16FU1NHih8uOiB3KMgSfSEtNDRa2so=
-Received: from edelgard.fodlan.icenowy.me (120.85.97.183 [120.85.97.183]) by mx.zohomail.com
-        with SMTPS id 1680313639213673.7042963583667; Fri, 31 Mar 2023 18:47:19 -0700 (PDT)
-Message-ID: <40cdea465fef49a8a337b48e2a748138c66a08eb.camel@icenowy.me>
-Subject: Re: [PATCH v7 0/6] RISC-V non-coherent function pointer based CMO +
- non-coherent DMA support for AX45MP
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Conor Dooley <conor@kernel.org>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233099AbjDACNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 22:13:23 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CEF173F;
+        Fri, 31 Mar 2023 19:13:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680315202; x=1711851202;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Eka2BumyS/dRgCVD/9HCoyWAmeSkOvL1lRg44jTlg40=;
+  b=LOvst/4q7pyE76VG/YZxdHvfhxFTuUPUj5LvK2Sxj1i0TlGUjjSNoiV3
+   9jTWoGoO8VkYK3/P3FrH19K9Vi88tZn67KXc7+RvZK75NyrxVkI5uGIyT
+   BXTc65fMRzoEuJIn5zxhDeHFLfv/LJDIA5xDS6Y5cFr+enFNc38X8PjKK
+   yxIfUo1c0CPR+VX0iYtpt9XidT33KpdrxHAEUsWBzraocPqpmF09RzcUg
+   F1vZMePw23QQsNwx0JIR0aM66n//K622vCMw6zwwaz1huNBcv6m5Qlh6T
+   XcFRw4UXPshbcJwDIAKq1wvnYwnZrCWWkDUL4AZEjuNliS+PgfJsMn2Fq
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="339097605"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; 
+   d="scan'208";a="339097605"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 19:13:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="931398666"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; 
+   d="scan'208";a="931398666"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 31 Mar 2023 19:13:07 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1piQjr-000MMw-00;
+        Sat, 01 Apr 2023 02:13:07 +0000
+Date:   Sat, 1 Apr 2023 10:12:52 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Date:   Sat, 01 Apr 2023 09:47:05 +0800
-In-Reply-To: <0d5590e4-e78b-4197-bf17-9de54466470d@spud>
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-         <b2dcda17-5850-47c1-94bc-4ca87f900581@spud>
-         <CA+V-a8s+=OY6CX4XTUwyAE9b=rdJZZfgAaY2nU+6aqnu=X9nxQ@mail.gmail.com>
-         <0d5590e4-e78b-4197-bf17-9de54466470d@spud>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+        jack.zhu@starfivetech.com, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v3 2/9] media: admin-guide: Add starfive_camss.rst for
+ Starfive Camera Subsystem
+Message-ID: <202304010958.qMr3POf6-lkp@intel.com>
+References: <20230331121826.96973-3-jack.zhu@starfivetech.com>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230331121826.96973-3-jack.zhu@starfivetech.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E5=9C=A8 2023-03-31=E6=98=9F=E6=9C=9F=E4=BA=94=E7=9A=84 21:15 +0100=EF=BC=
-=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Fri, Mar 31, 2023 at 08:09:16PM +0000, Lad, Prabhakar wrote:
-> > Hi Conor,
-> >=20
-> > On Fri, Mar 31, 2023 at 7:05=E2=80=AFPM Conor Dooley <conor@kernel.org>
-> > wrote:
-> > >=20
-> > > On Thu, Mar 30, 2023 at 09:42:11PM +0100, Prabhakar wrote:
-> > >=20
-> > > > - This series requires testing on Cores with zicbom and T-Head
-> > > > SoCs
-> > >=20
-> > > I don't actually know if there are Zicbom parts, may need to test
-> > > that
-> > > on QEMU.
-> > > I had to revert unrelated content to boot, but my D1 NFS setup
-> > > seems to
-> > > work fine with these changes, so where it is relevant:
-> > > Tested-by: Conor Dooley <conor.dooley@microchip.com> # tyre-
-> > > kicking on D1
-> > >=20
-> > Thank you for testing this. By any chance did you compare the
-> > performance?
->=20
-> No, just tyre kicking. Icenowy had some benchmark for it IIRC, I
-> think
-> mining some coin or w/e. +CC them.
+Hi Jack,
 
-I previously tested the function pointer based CMO, it do not affect
-the performance beyond the measurement error. Maybe it's because CMO
-operations are only done at the start and end of DMA operations.
+I love your patch! Perhaps something to improve:
 
-My previous test system is LiteX + OpenC906.
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on robh/for-next linus/master v6.3-rc4 next-20230331]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230331-202001
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20230331121826.96973-3-jack.zhu%40starfivetech.com
+patch subject: [PATCH v3 2/9] media: admin-guide: Add starfive_camss.rst for Starfive Camera Subsystem
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/2e986871a1e6e63c6915803102a6025f19781772
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230331-202001
+        git checkout 2e986871a1e6e63c6915803102a6025f19781772
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304010958.qMr3POf6-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Documentation/admin-guide/media/v4l-drivers.rst:9: WARNING: toctree contains reference to nonexisting document 'admin-guide/media/starfive'
+>> Documentation/admin-guide/media/starfive_camss.rst: WARNING: document isn't included in any toctree
+
+vim +9 Documentation/admin-guide/media/v4l-drivers.rst
+
+33fc918ab89bec Mauro Carvalho Chehab 2020-04-18  8  
+33fc918ab89bec Mauro Carvalho Chehab 2020-04-18 @9  .. toctree::
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
