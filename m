@@ -2,87 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E12386D2DF3
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 05:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2B026D2E03
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 05:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbjDADbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 23:31:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38370 "EHLO
+        id S231532AbjDAD65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 23:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjDADbb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 23:31:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E29E053;
-        Fri, 31 Mar 2023 20:31:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C637562D66;
-        Sat,  1 Apr 2023 03:31:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C5F8C433A0;
-        Sat,  1 Apr 2023 03:31:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680319889;
-        bh=Q7c4c+RY22KeWJ/6uXRisSnChQKt8LeWKraYLrFdG44=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lpLjgFFhbpZegkAbU50XIUAWnA6183iLf9IWaR0Ns2TTx0If7l+GDWiC7/rMIIgVs
-         qxF8+XF8zVAk6bDb+tqok1VyIPRQ6cXq7GlfR2ayuC2q4wCnQfxTvPHQ41ohMCPgnH
-         YByuXDCG7phn0nl9c7NveWt5hOuPDmjv3uRqcVzgUEyFezAw4VxeCp+py4YSKRrdWb
-         8aW/GBXul9LF3osj3WhGQnpnn0rAkOTu6cnQ9Y/9qS9d/Q444rr/rCA4oBjSymiqpR
-         +qcc+LajJ+bsNP+cOgByb+Y+9IYZoyiTN8lgBpA7SUJdDpkwmAoOIbbUpIPvA8A1wD
-         xmgO2QTYSr5Xg==
-Received: by mail-ed1-f50.google.com with SMTP id ek18so97262136edb.6;
-        Fri, 31 Mar 2023 20:31:29 -0700 (PDT)
-X-Gm-Message-State: AAQBX9eOB5nnut/M7RVEtnoGVGy2j91gw81Errb3DO0p0invcTcLd4EE
-        /OQUX3ze0LQmt1Ev6Kkp+BO5mLzgR2Wxhxqz+cM=
-X-Google-Smtp-Source: AKy350a73nHShUqaxQ4pOVyv2riRCY11tklTbXjhohiW8sHVhKSoq36mJRcY1c6SaoSyODpJyWQSekcJERUzox94eUI=
-X-Received: by 2002:a50:d543:0:b0:4ad:7439:cec7 with SMTP id
- f3-20020a50d543000000b004ad7439cec7mr14379125edj.7.1680319887322; Fri, 31 Mar
- 2023 20:31:27 -0700 (PDT)
+        with ESMTP id S231781AbjDAD6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 23:58:53 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871B5FF0D;
+        Fri, 31 Mar 2023 20:58:52 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-17aceccdcf6so25211929fac.9;
+        Fri, 31 Mar 2023 20:58:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680321532;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b2U2XsDHoLzpn+9gItu80aF7GJfiGDWT6BnwKoZhBKk=;
+        b=P17LuxdfVhQ828hU9BHWbH9FWZHsiFYo/ELy7uKQQC40YXCaOVwca1RwfDs/BlQTJs
+         Eg9LzC0pNJCFdOxuaS2VJGj35NpWIRjlL/RcM3Yy1gPN+cdEN0zM3ajbxyAOBavK0byu
+         c7NBAGqO6LxR0ba5DRdQI7ASh2kcyc+WeVpDj+utfio8F1k7ldyQnp5hUkmmJm9BlWKa
+         iuauG7pQ4ERMd11czXkXk5UhxE3qZeZ7tPP0af9hK0WdDIC5RyO619B+PPWImL6eW/bu
+         lRs2i5jM9S/y6m+yrfOAh+9EZWPUIGtmDiSfPf9jhxi5DaEdKivJvBdLNV4U9JFqBmOQ
+         /Cig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680321532;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b2U2XsDHoLzpn+9gItu80aF7GJfiGDWT6BnwKoZhBKk=;
+        b=BEi2nMfR0MViN03clfXqUu/SzD1n6OdXuIXKqrh32r+71n0+tU0q/knDWZO6B/VYpD
+         xmZWdOIPSGrhbmoedIATv/BafJLJCUiC06yPqCCh3KKhELh/z8LgJFl45YYbex5Ia9tO
+         P8/Ep78A4UVj6o2yX0tL1YNmRktsrI3DRIABt+vySIbIoEHS57oUeJ2XAjKYLOK+dNLu
+         +iOEShqhI1/o2KoLThU9Lla72exxZNgNLZGgOO3lrhajYnkLxlU7pOKNke6RXbMwPkJV
+         vaiiZzdK7U41TLLh6v5OLOJQKJDZAd4TCguXOD5lBw4Z1qNB/WfnARBfxbSM9O2GSEwp
+         vdvQ==
+X-Gm-Message-State: AAQBX9cuoKwC2Bx874afQvtQhAVFF5jjJzzjA/N2QSaHoXFaN7/GlPSs
+        bIuEk3UAsjCYpcF0/DUtTag=
+X-Google-Smtp-Source: AKy350YkXdYUmmYhpswBXz+/2z7ssiOIinB0jx2wQCZKq5zKmY7eC7HkeqBQ+BIXkp8JA6MXqUPuYQ==
+X-Received: by 2002:a05:6870:560c:b0:17a:d2ab:aeb8 with SMTP id m12-20020a056870560c00b0017ad2abaeb8mr17985248oao.33.1680321531834;
+        Fri, 31 Mar 2023 20:58:51 -0700 (PDT)
+Received: from heimdal.localdomain ([2804:431:cfec:79f0:85a3:2af2:a6f4:1842])
+        by smtp.gmail.com with ESMTPSA id ug13-20020a0568714d0d00b001727c3bf124sm1593845oab.31.2023.03.31.20.58.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 20:58:51 -0700 (PDT)
+From:   =?UTF-8?q?Andr=C3=A9=20Morishita?= <andremorishita@gmail.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        anish kumar <yesanishhere@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     mairacanal@riseup.net, dri-devel@lists.freedesktop.org,
+        daniel.baluta@nxp.com,
+        =?UTF-8?q?Andr=C3=A9=20Morishita?= <andremorishita@gmail.com>
+Subject: [PATCH v2] ASoC: dt-bindings: maxim,max98371: DT schema improvement
+Date:   Sat,  1 Apr 2023 00:57:54 -0300
+Message-Id: <20230401035756.856752-1-andremorishita@gmail.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230331020527.482991-1-andremorishita@gmail.com>
+References: <20230331020527.482991-1-andremorishita@gmail.com>
 MIME-Version: 1.0
-References: <20230310144727.1545699-1-robh@kernel.org>
-In-Reply-To: <20230310144727.1545699-1-robh@kernel.org>
-From:   Timur Tabi <timur@kernel.org>
-Date:   Fri, 31 Mar 2023 22:30:50 -0500
-X-Gmail-Original-Message-ID: <CAOZdJXUo=o1k+TeToiZT=EbSC=NKZ5B+AsONpH5G1CkZJtVp=w@mail.gmail.com>
-Message-ID: <CAOZdJXUo=o1k+TeToiZT=EbSC=NKZ5B+AsONpH5G1CkZJtVp=w@mail.gmail.com>
-Subject: Re: [PATCH] serial: Use of_property_read_bool() for boolean properties
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 8:48=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/tty/serial/imx.c       | 14 +++++---------
->  drivers/tty/serial/mxs-auart.c |  4 ++--
->  drivers/tty/serial/ucc_uart.c  |  2 +-
+Improve Maxim Integrated MAX98371 audio codec bindings DT schema conversion
 
-ucc_uart.c portion:
+Signed-off-by: André Morishita <andremorishita@gmail.com>
+---
+Changes in v2
+- Generic node names - codec (Krzysztof)
+- Drop label max98371 (Krzysztof)
+- Add sound-dai-cells in example (Krzysztof)
 
-Acked-by: Timur Tabi <timur@kernel.org>
+ .../devicetree/bindings/sound/max98371.txt    | 17 --------
+ .../bindings/sound/maxim,max98371.yaml        | 42 +++++++++++++++++++
+ 2 files changed, 42 insertions(+), 17 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/max98371.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98371.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/max98371.txt b/Documentation/devicetree/bindings/sound/max98371.txt
+deleted file mode 100644
+index 8b2b2704b574..000000000000
+--- a/Documentation/devicetree/bindings/sound/max98371.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-max98371 codec
+-
+-This device supports I2C mode only.
+-
+-Required properties:
+-
+-- compatible : "maxim,max98371"
+-- reg : The chip select number on the I2C bus
+-
+-Example:
+-
+-&i2c {
+-	max98371: max98371@31 {
+-		compatible = "maxim,max98371";
+-		reg = <0x31>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98371.yaml b/Documentation/devicetree/bindings/sound/maxim,max98371.yaml
+new file mode 100644
+index 000000000000..14fba34ef81a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/maxim,max98371.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/maxim,max98371.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX98371 audio codec
++
++maintainers:
++  - anish kumar <yesanishhere@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: maxim,max98371
++
++  '#sound-dai-cells':
++    const: 0
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@31 {
++            compatible = "maxim,max98371";
++            reg = <0x31>;
++            #sound-dai-cells = <0>;
++        };
++    };
+-- 
+2.40.0
+
