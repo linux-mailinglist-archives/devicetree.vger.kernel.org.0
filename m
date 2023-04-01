@@ -2,606 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 333416D30FE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 15:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 033CE6D310E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 15:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbjDANWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 09:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51584 "EHLO
+        id S229485AbjDANcB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 1 Apr 2023 09:32:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjDANWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 09:22:15 -0400
-Received: from out-27.mta0.migadu.com (out-27.mta0.migadu.com [91.218.175.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EEA22903
-        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 06:22:06 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-        t=1680355324;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=MQ0AQNzdO95/jAQpjxpaGguugv4s17ONa+bfFnKclPI=;
-        b=myiJuwqJH+FX+KtlGhlTnC9/IRpP5zjmJakutjYk9DjROMooHdCU/0Lkm5tUs/HlfngB3t
-        62QwoixKoE3xfP2qclg+Zw4LXW3RhyxsKOwH0PzuI4vTofvChJmKkjXqbsZtEsfgIpZW3m
-        4lLdoqrBe/ZfxE4InT7W0j9sxFX4GHs=
-From:   Henrik Grimler <henrik@grimler.se>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, m.szyprowski@samsung.com,
-        jenneron@protonmail.com, markuss.broks@gmail.com,
-        martin.juecker@gmail.com, virag.david003@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        replicant@osuosl.org
-Cc:     Henrik Grimler <henrik@grimler.se>,
-        Valentine Iourine <iourine@iourine.msk.su>
-Subject: [PATCH v6 2/2] ARM: dts: exynos: add mmc aliases
-Date:   Sat,  1 Apr 2023 15:21:34 +0200
-Message-Id: <20230401132134.12887-3-henrik@grimler.se>
-In-Reply-To: <20230401132134.12887-1-henrik@grimler.se>
-References: <20230401132134.12887-1-henrik@grimler.se>
+        with ESMTP id S229461AbjDANcA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 09:32:00 -0400
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DF73AB5;
+        Sat,  1 Apr 2023 06:31:56 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-545cb3c9898so392020167b3.7;
+        Sat, 01 Apr 2023 06:31:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680355915;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CMLjaNTG/vxBEa8ZgHssFzA8vDTxXHgXd9BXN8Mlh3k=;
+        b=UH4mdtg2MKJN1UQYhiTfItKkdiixMw0D3b+ZpbNeIJ0+jz/1YC5gAjma4Xb2BzDnyJ
+         dNQnH+b8GoT/fbfYaExg+2xbvQlLexmqcjC86d5Ku9Pfk515tl5dh6EAkudkBHO7w7+p
+         RGzIK6gmBdqyT7a1Fk43PCp69CEp8UDIF4aONW3pfrl/0lPu6T/2Beun3GE+aBz7fq56
+         V76p647gzN/RanBwWfGTCyDWNRrwVOLKFgla5QdTL7fmmLZlVkSUbenKL9n3hoXS2v1N
+         UULB/q34F/rB/eo+HfkMwUwxx/ssbmj/u12Dg4OXD6xXQKfqpY8ZLTGt2sXVHNguR0U9
+         LRQQ==
+X-Gm-Message-State: AAQBX9cKkQNRRdRiqM3/Mu9jJqmqW1JAlPKX/DYVB/oG0GVZCB3cN3J1
+        e20pjdFkj6LXUbsYbew7+9lu9JzGM4UgbA==
+X-Google-Smtp-Source: AKy350byAcCJtAhyJUI939AKGqQvsqx9XcxR95hxLMBNkMLCJAB/9uGcGB53VO7aVsvJasEeMzbSoA==
+X-Received: by 2002:a81:fd12:0:b0:533:9fa7:bbe9 with SMTP id g18-20020a81fd12000000b005339fa7bbe9mr29547493ywn.8.1680355915568;
+        Sat, 01 Apr 2023 06:31:55 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 142-20020a810e94000000b00545a08184c1sm1176823ywo.81.2023.04.01.06.31.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Apr 2023 06:31:55 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5456249756bso467162177b3.5;
+        Sat, 01 Apr 2023 06:31:54 -0700 (PDT)
+X-Received: by 2002:a81:b617:0:b0:544:4008:baa1 with SMTP id
+ u23-20020a81b617000000b005444008baa1mr15177048ywh.4.1680355914630; Sat, 01
+ Apr 2023 06:31:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <cover.1680248888.git.geert+renesas@glider.be> <b8701c04d27e51618444a747c4f4be5cc889ce28.1680248888.git.geert+renesas@glider.be>
+ <CAL_JsqJJoTGjTihcCiX8qOowb7tSjxg-rjLVskVPuWvSn=0ikA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJJoTGjTihcCiX8qOowb7tSjxg-rjLVskVPuWvSn=0ikA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 1 Apr 2023 15:31:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXvFu2vFXXxCK02UD_Ls_KruYBmdB6b7LdzPkFVZ=qi+Q@mail.gmail.com>
+Message-ID: <CAMuHMdXvFu2vFXXxCK02UD_Ls_KruYBmdB6b7LdzPkFVZ=qi+Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] of: address: Reshuffle to remove forward declarations
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add aliases for eMMC, SD card and WiFi where applicable, so that
-assigned mmc indeces are always the same.
+Hi Rob,
 
-Co-developed-by: Anton Bambura <jenneron@protonmail.com>
-Signed-off-by: Anton Bambura <jenneron@protonmail.com>
-[ Tested on exynos5800-peach-pi ]
-Tested-by: Valentine Iourine <iourine@iourine.msk.su>
-Signed-off-by: Henrik Grimler <henrik@grimler.se>
----
+On Fri, Mar 31, 2023 at 6:28 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Fri, Mar 31, 2023 at 2:52 AM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> > Reshuffle the code to get rid of the forward declarations, which
+> > improves readability.
+>
+> Is git blame smart enough to ignore this move? If not, I'd rather keep
+> the blame than save 3 lines.
 
-Changes since v5:
-* Make index numbering linear per default (that is, always use 0, 1, 2
-  instead of for example 0, 2, 3) for devices where no documentation
-  or schematics are available that use other numbering.
-* Drop Marek's test tag since numbering has been updated
-* Add mmc0 alias to exynos5422-samsung-k3g, was accidentally dropped in v5
+Apparently (I didn't know before ;-), it is, when using the -M option:
 
-Changes since v4:
-* Do not set mmc-ddr-1_8v for sdhci_0 on Exynos 4210,
-  following Marek's tests
+$ git blame -- drivers/of/address.c | tail -3
+1db096f9167bc267e (Geert Uytterhoeven        2023-03-30 13:42:05 +0200
+1150) return mem;
+1db096f9167bc267e (Geert Uytterhoeven        2023-03-30 13:42:05 +0200 1151) }
+1db096f9167bc267e (Geert Uytterhoeven        2023-03-30 13:42:05 +0200
+1152) EXPORT_SYMBOL(of_io_request_and_map);
 
-Changes since v3:
-* Drop attempt at node sorting/cleaning
-* Move two mmc alias additions to the other patch
-* Update commit message
+$ git blame -M -- drivers/of/address.c | tail -3
+efd342fb0031a1775 (Matthias Brugger          2014-07-18 11:36:39 +0200
+1150) return mem;
+efd342fb0031a1775 (Matthias Brugger          2014-07-18 11:36:39 +0200 1151) }
+efd342fb0031a1775 (Matthias Brugger          2014-07-18 11:36:39 +0200
+1152) EXPORT_SYMBOL(of_io_request_and_map);
 
-Changes since v2:
-* Set mmc-ddr-1_8v in device trees for mshc_0/mmc_0
+Gr{oetje,eeting}s,
 
- arch/arm/boot/dts/exynos3250-artik5-eval.dts        | 4 ++++
- arch/arm/boot/dts/exynos3250-artik5.dtsi            | 5 +++++
- arch/arm/boot/dts/exynos3250-monk.dts               | 1 +
- arch/arm/boot/dts/exynos3250-rinato.dts             | 2 ++
- arch/arm/boot/dts/exynos4210-i9100.dts              | 6 ++++++
- arch/arm/boot/dts/exynos4210-origen.dts             | 5 +++++
- arch/arm/boot/dts/exynos4210-smdkv310.dts           | 4 ++++
- arch/arm/boot/dts/exynos4210-trats.dts              | 6 ++++++
- arch/arm/boot/dts/exynos4210-universal_c210.dts     | 6 ++++++
- arch/arm/boot/dts/exynos4412-itop-elite.dts         | 4 ++++
- arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi     | 4 ++++
- arch/arm/boot/dts/exynos4412-midas.dtsi             | 3 +++
- arch/arm/boot/dts/exynos4412-odroid-common.dtsi     | 5 +++++
- arch/arm/boot/dts/exynos4412-origen.dts             | 5 +++++
- arch/arm/boot/dts/exynos4412-p4note.dtsi            | 6 ++++++
- arch/arm/boot/dts/exynos4412-smdk4412.dts           | 4 ++++
- arch/arm/boot/dts/exynos4412-tiny4412.dts           | 4 ++++
- arch/arm/boot/dts/exynos5250-arndale.dts            | 5 +++++
- arch/arm/boot/dts/exynos5250-smdk5250.dts           | 2 ++
- arch/arm/boot/dts/exynos5250-snow-common.dtsi       | 3 +++
- arch/arm/boot/dts/exynos5250-spring.dts             | 5 +++++
- arch/arm/boot/dts/exynos5260-xyref5260.dts          | 5 +++++
- arch/arm/boot/dts/exynos5410-odroidxu.dts           | 2 ++
- arch/arm/boot/dts/exynos5410-smdk5410.dts           | 5 +++++
- arch/arm/boot/dts/exynos5420-arndale-octa.dts       | 5 +++++
- arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi | 5 +++++
- arch/arm/boot/dts/exynos5420-peach-pit.dts          | 3 +++
- arch/arm/boot/dts/exynos5420-smdk5420.dts           | 5 +++++
- arch/arm/boot/dts/exynos5422-odroid-core.dtsi       | 4 ++++
- arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi  | 4 ++++
- arch/arm/boot/dts/exynos5422-samsung-k3g.dts        | 4 ++++
- arch/arm/boot/dts/exynos5800-peach-pi.dts           | 3 +++
- 32 files changed, 134 insertions(+)
+                        Geert
 
-diff --git a/arch/arm/boot/dts/exynos3250-artik5-eval.dts b/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-index a1e22f630638..660cc7fac4db 100644
---- a/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-+++ b/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-@@ -16,6 +16,10 @@ / {
- 	model = "Samsung ARTIK5 evaluation board";
- 	compatible = "samsung,artik5-eval", "samsung,artik5",
- 			"samsung,exynos3250", "samsung,exynos3";
-+
-+	aliases {
-+		mmc0 = &mshc_2;
-+	};
- };
- 
- &mshc_2 {
-diff --git a/arch/arm/boot/dts/exynos3250-artik5.dtsi b/arch/arm/boot/dts/exynos3250-artik5.dtsi
-index b81e1a9df126..3fdd922e635c 100644
---- a/arch/arm/boot/dts/exynos3250-artik5.dtsi
-+++ b/arch/arm/boot/dts/exynos3250-artik5.dtsi
-@@ -17,6 +17,11 @@
- / {
- 	compatible = "samsung,artik5", "samsung,exynos3250", "samsung,exynos3";
- 
-+	aliases {
-+		mmc0 = &mshc_0;
-+		mmc1 = &mshc_1;
-+	};
-+
- 	chosen {
- 		stdout-path = &serial_2;
- 	};
-diff --git a/arch/arm/boot/dts/exynos3250-monk.dts b/arch/arm/boot/dts/exynos3250-monk.dts
-index 861c26824d4f..2de877d4ccc5 100644
---- a/arch/arm/boot/dts/exynos3250-monk.dts
-+++ b/arch/arm/boot/dts/exynos3250-monk.dts
-@@ -22,6 +22,7 @@ / {
- 
- 	aliases {
- 		i2c7 = &i2c_max77836;
-+		mmc0 = &mshc_0;
- 	};
- 
- 	memory@40000000 {
-diff --git a/arch/arm/boot/dts/exynos3250-rinato.dts b/arch/arm/boot/dts/exynos3250-rinato.dts
-index a252a5f667eb..88fb3e68ff02 100644
---- a/arch/arm/boot/dts/exynos3250-rinato.dts
-+++ b/arch/arm/boot/dts/exynos3250-rinato.dts
-@@ -23,6 +23,8 @@ / {
- 
- 	aliases {
- 		i2c7 = &i2c_max77836;
-+		mmc0 = &mshc_0;
-+		mmc1 = &mshc_1;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-index bba85011ecc9..37cd4dde53e4 100644
---- a/arch/arm/boot/dts/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-@@ -25,6 +25,12 @@ memory@40000000 {
- 		reg = <0x40000000 0x40000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &sdhci_0;
-+		mmc1 = &sdhci_2;
-+		mmc2 = &sdhci_3;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos4210-origen.dts b/arch/arm/boot/dts/exynos4210-origen.dts
-index 1103e7f92b57..f1927ca15e08 100644
---- a/arch/arm/boot/dts/exynos4210-origen.dts
-+++ b/arch/arm/boot/dts/exynos4210-origen.dts
-@@ -30,6 +30,11 @@ memory@40000000 {
- 		       0x70000000 0x10000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &sdhci_0;
-+		mmc1 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
- 		stdout-path = "serial2:115200n8";
-diff --git a/arch/arm/boot/dts/exynos4210-smdkv310.dts b/arch/arm/boot/dts/exynos4210-smdkv310.dts
-index 181c99eca675..b566f878ed84 100644
---- a/arch/arm/boot/dts/exynos4210-smdkv310.dts
-+++ b/arch/arm/boot/dts/exynos4210-smdkv310.dts
-@@ -25,6 +25,10 @@ memory@40000000 {
- 		reg = <0x40000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
- 		stdout-path = "serial1:115200n8";
-diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
-index b8e9dd23fc51..ff6ee4b2c31b 100644
---- a/arch/arm/boot/dts/exynos4210-trats.dts
-+++ b/arch/arm/boot/dts/exynos4210-trats.dts
-@@ -26,6 +26,12 @@ memory@40000000 {
- 			0x70000000 0x10000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &sdhci_0;
-+		mmc1 = &sdhci_2;
-+		mmc2 = &sdhci_3;
-+	};
-+
- 	chosen {
- 		bootargs = "root=/dev/mmcblk0p5 rootwait earlyprintk panic=5";
- 		stdout-path = "serial2:115200n8";
-diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-index 140abfb38e1d..8fe0d5d2be2d 100644
---- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
-+++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-@@ -24,6 +24,12 @@ memory@40000000 {
- 			0x50000000 0x10000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &sdhci_0;
-+		mmc1 = &sdhci_2;
-+		mmc2 = &sdhci_3;
-+	};
-+
- 	chosen {
- 		bootargs = "root=/dev/mmcblk0p5 rw rootwait earlyprintk panic=5 maxcpus=1";
- 		stdout-path = "serial2:115200n8";
-diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-index 6260da187e92..ded232b04e0d 100644
---- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
-+++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-@@ -20,6 +20,10 @@ / {
- 	model = "TOPEET iTop 4412 Elite board based on Exynos4412";
- 	compatible = "topeet,itop4412-elite", "samsung,exynos4412", "samsung,exynos4";
- 
-+	aliases {
-+		mmc1 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		bootargs = "root=/dev/mmcblk0p2 rw rootfstype=ext4 rootdelay=1 rootwait";
- 		stdout-path = "serial2:115200n8";
-diff --git a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
-index ca8d42b2ce3b..7bc6968af9c3 100644
---- a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
-@@ -23,6 +23,10 @@ memory@40000000 {
- 		reg = <0x40000000 0x40000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mshc_0;
-+	};
-+
- 	firmware@203f000 {
- 		compatible = "samsung,secure-firmware";
- 		reg = <0x0203f000 0x1000>;
-diff --git a/arch/arm/boot/dts/exynos4412-midas.dtsi b/arch/arm/boot/dts/exynos4412-midas.dtsi
-index 82aed59cba7c..e6b949c1a00f 100644
---- a/arch/arm/boot/dts/exynos4412-midas.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-midas.dtsi
-@@ -25,6 +25,9 @@ / {
- 	aliases {
- 		i2c11 = &i2c_max77693;
- 		i2c12 = &i2c_max77693_fuel;
-+		mmc0 = &mshc_0;
-+		mmc2 = &sdhci_2;
-+		mmc3 = &sdhci_3;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-index 25e082fda955..45ef7b7ba7e0 100644
---- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-@@ -13,6 +13,11 @@
- #include "exynos-mfc-reserved-memory.dtsi"
- 
- / {
-+	aliases {
-+		mmc0 = &mshc_0;
-+		mmc2 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		stdout-path = &serial_1;
- 	};
-diff --git a/arch/arm/boot/dts/exynos4412-origen.dts b/arch/arm/boot/dts/exynos4412-origen.dts
-index f6cebf73b839..23b151645d66 100644
---- a/arch/arm/boot/dts/exynos4412-origen.dts
-+++ b/arch/arm/boot/dts/exynos4412-origen.dts
-@@ -25,6 +25,11 @@ memory@40000000 {
- 		reg = <0x40000000 0x40000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mshc_0;
-+		mmc1 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
-index 9052b3ebb3e8..0b89d5682f85 100644
---- a/arch/arm/boot/dts/exynos4412-p4note.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
-@@ -26,6 +26,12 @@ memory@40000000 {
- 		reg = <0x40000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mshc_0;
-+		mmc2 = &sdhci_2;
-+		mmc3 = &sdhci_3;
-+	};
-+
- 	chosen {
- 		stdout-path = &serial_2;
- 	};
-diff --git a/arch/arm/boot/dts/exynos4412-smdk4412.dts b/arch/arm/boot/dts/exynos4412-smdk4412.dts
-index a40ff394977c..715dfcba1417 100644
---- a/arch/arm/boot/dts/exynos4412-smdk4412.dts
-+++ b/arch/arm/boot/dts/exynos4412-smdk4412.dts
-@@ -22,6 +22,10 @@ memory@40000000 {
- 		reg = <0x40000000 0x40000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
- 		stdout-path = "serial1:115200n8";
-diff --git a/arch/arm/boot/dts/exynos4412-tiny4412.dts b/arch/arm/boot/dts/exynos4412-tiny4412.dts
-index e0b6162d2e2a..5a2dcdc5c28b 100644
---- a/arch/arm/boot/dts/exynos4412-tiny4412.dts
-+++ b/arch/arm/boot/dts/exynos4412-tiny4412.dts
-@@ -17,6 +17,10 @@ / {
- 	model = "FriendlyARM TINY4412 board based on Exynos4412";
- 	compatible = "friendlyarm,tiny4412", "samsung,exynos4412", "samsung,exynos4";
- 
-+	aliases {
-+		mmc0 = &sdhci_2;
-+	};
-+
- 	chosen {
- 		stdout-path = &serial_0;
- 	};
-diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
-index 8f01337bb291..d586189966da 100644
---- a/arch/arm/boot/dts/exynos5250-arndale.dts
-+++ b/arch/arm/boot/dts/exynos5250-arndale.dts
-@@ -23,6 +23,11 @@ memory@40000000 {
- 		reg = <0x40000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos5250-smdk5250.dts b/arch/arm/boot/dts/exynos5250-smdk5250.dts
-index f7d4017e1ede..bb623726ef1e 100644
---- a/arch/arm/boot/dts/exynos5250-smdk5250.dts
-+++ b/arch/arm/boot/dts/exynos5250-smdk5250.dts
-@@ -17,6 +17,8 @@ / {
- 	compatible = "samsung,smdk5250", "samsung,exynos5250", "samsung,exynos5";
- 
- 	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
- 	};
- 
- 	memory@40000000 {
-diff --git a/arch/arm/boot/dts/exynos5250-snow-common.dtsi b/arch/arm/boot/dts/exynos5250-snow-common.dtsi
-index dea2dc818578..59b2cc35c37b 100644
---- a/arch/arm/boot/dts/exynos5250-snow-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5250-snow-common.dtsi
-@@ -15,6 +15,9 @@
- / {
- 	aliases {
- 		i2c104 = &i2c_104;
-+		mmc0 = &mmc_0; /* eMMC */
-+		mmc1 = &mmc_2; /* SD */
-+		mmc2 = &mmc_3; /* WiFi */
- 	};
- 
- 	memory@40000000 {
-diff --git a/arch/arm/boot/dts/exynos5250-spring.dts b/arch/arm/boot/dts/exynos5250-spring.dts
-index 8980cdbdcb3b..c12bb17631b7 100644
---- a/arch/arm/boot/dts/exynos5250-spring.dts
-+++ b/arch/arm/boot/dts/exynos5250-spring.dts
-@@ -23,6 +23,11 @@ memory@40000000 {
- 		reg = <0x40000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_1;
-+	};
-+
- 	chosen {
- 		bootargs = "console=tty1";
- 		stdout-path = "serial3:115200n8";
-diff --git a/arch/arm/boot/dts/exynos5260-xyref5260.dts b/arch/arm/boot/dts/exynos5260-xyref5260.dts
-index 0fd728bc0b75..d072a7398866 100644
---- a/arch/arm/boot/dts/exynos5260-xyref5260.dts
-+++ b/arch/arm/boot/dts/exynos5260-xyref5260.dts
-@@ -18,6 +18,11 @@ memory@20000000 {
- 		reg = <0x20000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos5410-odroidxu.dts b/arch/arm/boot/dts/exynos5410-odroidxu.dts
-index 1ed73f3b4ac0..882fc77c4bc4 100644
---- a/arch/arm/boot/dts/exynos5410-odroidxu.dts
-+++ b/arch/arm/boot/dts/exynos5410-odroidxu.dts
-@@ -21,6 +21,8 @@ / {
- 
- 	aliases {
- 		ethernet = &ethernet;
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
- 	};
- 
- 	memory@40000000 {
-diff --git a/arch/arm/boot/dts/exynos5410-smdk5410.dts b/arch/arm/boot/dts/exynos5410-smdk5410.dts
-index b4a74f9cf319..bb29b76f6f6a 100644
---- a/arch/arm/boot/dts/exynos5410-smdk5410.dts
-+++ b/arch/arm/boot/dts/exynos5410-smdk5410.dts
-@@ -18,6 +18,11 @@ memory@40000000 {
- 		reg = <0x40000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos5420-arndale-octa.dts b/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-index 5ed55a5b0c67..809ddda02e53 100644
---- a/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-+++ b/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-@@ -23,6 +23,11 @@ memory@20000000 {
- 		reg = <0x20000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial3:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi b/arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi
-index 6a51cb14b58a..f525b2f5e4e0 100644
---- a/arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi
-@@ -28,6 +28,11 @@ / {
- 	 * for more details.
- 	 */
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc2 = &mmc_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos5420-peach-pit.dts b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-index df863b909ff7..7a48f2b32819 100644
---- a/arch/arm/boot/dts/exynos5420-peach-pit.dts
-+++ b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-@@ -31,6 +31,9 @@ / {
- 	aliases {
- 		/* Assign 20 so we don't get confused w/ builtin ones */
- 		i2c20 = &i2c_tunnel;
-+		mmc0 = &mmc_0; /* eMMC */
-+		mmc1 = &mmc_2; /* uSD */
-+		mmc2 = &mmc_1; /* WiFi */
- 	};
- 
- 	backlight: backlight {
-diff --git a/arch/arm/boot/dts/exynos5420-smdk5420.dts b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-index 0a9371bec3e0..e299344e427a 100644
---- a/arch/arm/boot/dts/exynos5420-smdk5420.dts
-+++ b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-@@ -21,6 +21,11 @@ memory@20000000 {
- 		reg = <0x20000000 0x80000000>;
- 	};
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+		mmc1 = &mmc_2;
-+	};
-+
- 	chosen {
- 		bootargs = "init=/linuxrc";
- 		stdout-path = "serial2:115200n8";
-diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-index 30fc677d8bac..2f5b8602e020 100644
---- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-@@ -19,6 +19,10 @@ memory@40000000 {
- 		reg = <0x40000000 0x7ea00000>;
- 	};
- 
-+	aliases {
-+		mmc2 = &mmc_2;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-index d1b8e59e2daf..b4a851aa8881 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-@@ -13,6 +13,10 @@
- #include "exynos5422-odroid-core.dtsi"
- 
- / {
-+	aliases {
-+		mmc0 = &mmc_0;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/exynos5422-samsung-k3g.dts b/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
-index 13134592c199..4c598b46c5ff 100644
---- a/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
-+++ b/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
-@@ -19,6 +19,10 @@ / {
- 
- 	chassis-type = "handset";
- 
-+	aliases {
-+		mmc0 = &mmc_0;
-+	}
-+
- 	memory@20000000 {
- 		device_type = "memory";
- 		reg = <0x20000000 0x80000000>; /* 2 GiB */
-diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-index 37af8fbd215c..1f544f12da6c 100644
---- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-+++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-@@ -29,6 +29,9 @@ / {
- 	aliases {
- 		/* Assign 20 so we don't get confused w/ builtin ones */
- 		i2c20 = &i2c_tunnel;
-+		mmc0 = &mmc_0; /* eMMC */
-+		mmc1 = &mmc_2; /* SD */
-+		mmc2 = &mmc_1; /* WiFi */
- 	};
- 
- 	backlight: backlight {
 -- 
-2.30.2
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
