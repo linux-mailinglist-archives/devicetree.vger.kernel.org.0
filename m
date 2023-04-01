@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47A66D3270
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 17:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C92E6D3271
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 17:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjDAPtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 11:49:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33478 "EHLO
+        id S229612AbjDAPtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 11:49:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjDAPtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 11:49:41 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BDE20620
-        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 08:49:40 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id gp15-20020a17090adf0f00b0023d1bbd9f9eso28571336pjb.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 08:49:40 -0700 (PDT)
+        with ESMTP id S229810AbjDAPtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 11:49:45 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904B524AD6
+        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 08:49:44 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id d13so23481489pjh.0
+        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 08:49:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680364180;
+        d=linaro.org; s=google; t=1680364184;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+N3Lew9LFdFmBLa2xh7Y61frxhM4EhNwmm0GMfVIfIo=;
-        b=nzaTnmRkDihaYkXInNf/oggEORv36u93mfkPRLg2rVTdtIZHUpS5XWtKt481tOQPS0
-         6ld0wsXk7xo4Qj860x/S44QXU+b74um4dnEhRs3NZeRR70X3iX7uMHJhRWdby6s4WRAk
-         t5roh3FFAM/qA/Z089pW5Un82e4/aKc1ZMfK4KX6pmb0Zm/AGofTFxKiXOT7A3X2jt/4
-         bilsQ+4OKp/qloCfYBX2tS5/bOrgbaXCgsKT8W0OvW2iWFBUWtySZ5mtE+oOUEN6us3n
-         slKlUKje1xPsM4VB3Ts/HWeQtaeIOGM0nz7OWFhTtc7YB9eSjAuzlNzbdJel56PxrPNH
-         mtXw==
+        bh=0XxX9v4o0e9A74KVKINLnIuAStvu5tpKtcGeS/xTyjw=;
+        b=jwCIYHio2McD+8FXZ6aibHPMSWP88pY8QBlEyDOCcDHMAb2TtaArVkFKtHMdv+ft1x
+         09BmXEvC256DiBUubxpE+HDUq/uPAZarxS2HgII2R9vdQ66g+G467w86LpSBw2zqinmK
+         LuyN0U2eNbkUVcrGpdxF/NAKqhzsIT+qLSZzNfMSh2nnPnfX4Q752LXtmWKRWf6Lld+D
+         eD/4yrZ378Oqj3UP3CIl2buoa0GO8XssGdgrSF61rhsHBvzTzbxj0kD8FOHPyBQvqJ3E
+         i6VP8GmkOxvU64IqmUFJwvn1foNoKtR9FBB3WqeBwLqGrK2+/097rYoT5UKViOoI5Jgm
+         /uDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680364180;
+        d=1e100.net; s=20210112; t=1680364184;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+N3Lew9LFdFmBLa2xh7Y61frxhM4EhNwmm0GMfVIfIo=;
-        b=xCUog9B09EdKSFvAyd5EpkjMDeQrI85shY1ElN+D+rhAqrxK6oJ4FMps5hDWXAFT/O
-         SnEhbNtEQSJJ6Az1LuwcTgq3en2DQ0abewvnmQRCJuP/HP9eg/pfHyhUCskzsB3mN4Q2
-         wp9Ljhd94Fa7SF6RDGmrvA0F4j8fDu5BYPkbFDljLtSEPE//AzBQz18Ck1uscy8aPfhl
-         NSLuEpRjjpEGfoA/yEaGpfqcHg2Tf+XTOcejxVhBQwwE0Q8mWMgxpP+ihbyoTRXbC0tB
-         28rIO7TZgYIu7IoK87jwXW2cbow6ASiEN8usTEthkycCMLaI7OSpozay/IEhXEpLBfeA
-         TtUA==
-X-Gm-Message-State: AAQBX9dowNtV3OUoPQMfNOHOY15+r4WKecf7sTbL934282Co5BpKg0IO
-        JiraTFks3xlGDrR0X6CP5uWcCA==
-X-Google-Smtp-Source: AKy350Y/NByujPBHL4YU9jRF/JypPgvXlE4LVbUU/slgWplAFy/nwLEiSMuN+PEx4TbS7PkdjtXHjA==
-X-Received: by 2002:a05:6a20:1445:b0:e4:663a:f645 with SMTP id a5-20020a056a20144500b000e4663af645mr6198016pzi.16.1680364180309;
-        Sat, 01 Apr 2023 08:49:40 -0700 (PDT)
+        bh=0XxX9v4o0e9A74KVKINLnIuAStvu5tpKtcGeS/xTyjw=;
+        b=0B52eVyLs6i4lLnnqjtiF4+qGYYUmEKgaRK/oF7mreFRFTlHpy8VhBtWG1rGquW2oJ
+         WLIvDX7vIm1utZHJrLSAXsK7e5GBPnI/SsaVkZwQ2eMtqcU5ynDsU1em02qMDgqR2KDV
+         umOYZ9MiFq8w0rirYrfSGGmaWTfPx9+6nsfY0kWuRmEKnVEkkBgiTnK/yg8q9kXrib8D
+         eS3qRz2fnZhqKAubGt3cp6m5MmLB6otDh87KCMCsgdqFk9HB5twJizHtQ9HC26HSojwB
+         r0PrCQYv9MVX2ejG5mOri6/ZlpT5VM732xDc/KmrwmdaVKmZzO2YngHiZvgEo48gat5o
+         3hjw==
+X-Gm-Message-State: AAQBX9cwsqWcokhy6pG5mwJDc/Cad+iGQwFSRMbcLKG7NA5T8CqVOMYz
+        xH0Kjmg4mG7/EfNV+odF6XirGg==
+X-Google-Smtp-Source: AKy350awvfGT7Nqv73PoQZ7BRCcmmbD6AC4VvpCw4O2VXwKQumhywOswA1HdtnFQOi9jNQenyVGgcQ==
+X-Received: by 2002:a05:6a20:1610:b0:e4:83b4:bb9d with SMTP id l16-20020a056a20161000b000e483b4bb9dmr6369178pzj.29.1680364183964;
+        Sat, 01 Apr 2023 08:49:43 -0700 (PDT)
 Received: from localhost.localdomain ([223.233.66.184])
-        by smtp.gmail.com with ESMTPSA id 65-20020a630444000000b0050fb4181e8bsm3385367pge.40.2023.04.01.08.49.36
+        by smtp.gmail.com with ESMTPSA id 65-20020a630444000000b0050fb4181e8bsm3385367pge.40.2023.04.01.08.49.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Apr 2023 08:49:40 -0700 (PDT)
+        Sat, 01 Apr 2023 08:49:43 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
         bhupesh.sharma@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski@linaro.org
-Subject: [PATCH v4 1/2] dt-bindings: phy: qcom,qmp-usb: Fix phy subnode for SM6115 & QCM2290 USB3 PHY
-Date:   Sat,  1 Apr 2023 21:17:24 +0530
-Message-Id: <20230401154725.1059563-2-bhupesh.sharma@linaro.org>
+Subject: [PATCH v4 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+Date:   Sat,  1 Apr 2023 21:17:25 +0530
+Message-Id: <20230401154725.1059563-3-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230401154725.1059563-1-bhupesh.sharma@linaro.org>
 References: <20230401154725.1059563-1-bhupesh.sharma@linaro.org>
@@ -72,45 +72,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The USB3 SS (QMP) PHY found on Qualcomm SM6115 & QCM2290 SoCs is
-similar to sm8150 QMP PHY in the sense that the phy subnode supports
-6 regs, namely TX lane 1, RX lane 1, PCS, TX lane 2, RX lane 2 and
-PCS_MISC.
+Add USB superspeed qmp phy node to dtsi.
 
-Update the dt-bindings document to reflect the same.
+Make sure that the various board dts files (which include sm4250.dtsi file)
+continue to work as intended.
 
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- .../devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 36 +++++++++++++++++--
+ .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+ 3 files changed, 40 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-index e81a38281f8c..1575dc70bcf2 100644
---- a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-@@ -276,7 +276,9 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - qcom,qcm2290-qmp-usb3-phy
-               - qcom,sdm845-qmp-usb3-phy
-+              - qcom,sm6115-qmp-usb3-phy
-               - qcom,sm8150-qmp-usb3-phy
-               - qcom,sm8350-qmp-usb3-phy
-               - qcom,sm8450-qmp-usb3-phy
-@@ -318,12 +320,10 @@ allOf:
-             enum:
-               - qcom,ipq6018-qmp-usb3-phy
-               - qcom,ipq8074-qmp-usb3-phy
--              - qcom,qcm2290-qmp-usb3-phy
-               - qcom,sc7180-qmp-usb3-phy
-               - qcom,sc8180x-qmp-usb3-phy
-               - qcom,sdx55-qmp-usb3-uni-phy
-               - qcom,sdx65-qmp-usb3-uni-phy
--              - qcom,sm6115-qmp-usb3-phy
-               - qcom,sm8150-qmp-usb3-uni-phy
-               - qcom,sm8250-qmp-usb3-phy
-     then:
+diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+index a1f0622db5a0..75951fd439df 100644
+--- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
++++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+@@ -242,6 +242,9 @@ &usb {
+ &usb_dwc3 {
+ 	maximum-speed = "high-speed";
+ 	dr_mode = "peripheral";
++
++	phys = <&usb_hsphy>;
++	phy-names = "usb2-phy";
+ };
+ 
+ &usb_hsphy {
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 2a51c938bbcb..b2fa565e4816 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -650,6 +650,38 @@ usb_hsphy: phy@1613000 {
+ 			status = "disabled";
+ 		};
+ 
++		usb_qmpphy: phy@1615000 {
++			compatible = "qcom,sm6115-qmp-usb3-phy";
++			reg = <0x0 0x01615000 0x0 0x200>;
++			clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
++				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
++				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
++			clock-names = "cfg_ahb",
++				      "ref",
++				      "com_aux";
++			resets = <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>,
++				 <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>;
++			reset-names = "phy_phy", "phy";
++			status = "disabled";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			usb_ssphy: phy@1615200 {
++				reg = <0x0 0x01615200 0x0 0x200>,
++				      <0x0 0x01615400 0x0 0x200>,
++				      <0x0 0x01615c00 0x0 0x400>,
++				      <0x0 0x01615600 0x0 0x200>,
++				      <0x0 0x01615800 0x0 0x200>,
++				      <0x0 0x01615a00 0x0 0x100>;
++				#clock-cells = <0>;
++				#phy-cells = <0>;
++				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
++				clock-names = "pipe0";
++				clock-output-names = "usb3_phy_pipe_clk_src";
++			};
++		};
++
+ 		qfprom@1b40000 {
+ 			compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
+ 			reg = <0x0 0x01b40000 0x0 0x7000>;
+@@ -1100,8 +1132,8 @@ usb_dwc3: usb@4e00000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x0 0x04e00000 0x0 0xcd00>;
+ 				interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
+-				phys = <&usb_hsphy>;
+-				phy-names = "usb2-phy";
++				phys = <&usb_hsphy>, <&usb_ssphy>;
++				phy-names = "usb2-phy", "usb3-phy";
+ 				iommus = <&apps_smmu 0x120 0x0>;
+ 				snps,dis_u2_susphy_quirk;
+ 				snps,dis_enblslpm_quirk;
+diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+index 10c9d338446c..d60cc024749b 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
++++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+@@ -280,6 +280,9 @@ &usb {
+ &usb_dwc3 {
+ 	maximum-speed = "high-speed";
+ 	dr_mode = "peripheral";
++
++	phys = <&usb_hsphy>;
++	phy-names = "usb2-phy";
+ };
+ 
+ &usb_hsphy {
 -- 
 2.38.1
 
