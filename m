@@ -2,109 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D27D6D31E7
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 17:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 644B86D31B6
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 17:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjDAPNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 11:13:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45208 "EHLO
+        id S229957AbjDAPAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 11:00:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjDAPNO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 11:13:14 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4323A2544F;
-        Sat,  1 Apr 2023 08:12:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680361957; x=1711897957;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OLApVVMOJ2Css0D7py5ZiNmtjsFz6UxJsp+PhEah9l4=;
-  b=OUxBy8TY6cVrFJQHIhDJ+ATICQu5TtkXJSP/aMEGsISW/wO2P6HWnZ4s
-   2Yk9R7y25zDBkHZOuuBaHQWaB7K/vBicZ4bBW7nQyZz6MyB3pVoMbKLWg
-   2ZH4COJQ+Qg+7Uc82uM/1GiWJyISt5rCrsbFmNEn/C37WaDi/yA1tJQLW
-   +KLxNwgk3ecbmbLOzCjI4jqB/zp5OyJWr9uv85vbnEc1P3YOrE6ivyZDb
-   ke4CHr2oq3pnGxIWyu0Zo2dwY+4zT6mafnYlpVUyg6T9FTOoadvCwvDMQ
-   SKXwe4S8nF8lJRSrq9xQFYIteVi9xM1T3RGAAiidIzAFQvlod7Rc2dJDf
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="369459092"
-X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; 
-   d="scan'208";a="369459092"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2023 08:12:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="796475551"
-X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; 
-   d="scan'208";a="796475551"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 01 Apr 2023 08:12:32 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1picu7-000MsF-2s;
-        Sat, 01 Apr 2023 15:12:31 +0000
-Date:   Sat, 1 Apr 2023 23:11:44 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        m.szyprowski@samsung.com, jenneron@protonmail.com,
-        markuss.broks@gmail.com, martin.juecker@gmail.com,
-        virag.david003@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        replicant@osuosl.org
-Cc:     oe-kbuild-all@lists.linux.dev, Henrik Grimler <henrik@grimler.se>,
-        Valentine Iourine <iourine@iourine.msk.su>
-Subject: Re: [PATCH v6 2/2] ARM: dts: exynos: add mmc aliases
-Message-ID: <202304012305.NdtndVxO-lkp@intel.com>
-References: <20230401132134.12887-3-henrik@grimler.se>
+        with ESMTP id S229852AbjDAPAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 11:00:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4311FD15;
+        Sat,  1 Apr 2023 08:00:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3B092608C4;
+        Sat,  1 Apr 2023 15:00:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB4A4C4339C;
+        Sat,  1 Apr 2023 15:00:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680361229;
+        bh=tBvxCKnC7dkXLKyIXibho57HiZ0ol0RWN0+BvHDt4p0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SAmu/zhFfEg1yLPiIxmglcKEg/mXs22MZ04hbs4Zm9XPMahPrRLvvLzgjOrxiAOOO
+         DHMplbNYPGfri5r+nnRb4J9BjgH6sKr8dEPQVMbtmlChhHPAdIfro4CovQXv+wxTdt
+         Qss9u+/ZXlX/8/JpjBRatzk4dnLuhjGFRWhI7pbnPA7YRhzdQcqiUZGrswJBBoshVt
+         RCAPBnKh6VpJZ4BQT+VG/vIH7ZySXcV5IAlaUG89OMuiNVnGQgdLIhPhHBOCc/4fVr
+         aadOXkiq4g5gqHZJuP0iIdQ4oCmwIKr9cpyQkc7Rtf5gAdlr41/yxfPcx5sNo4JQ0a
+         8mi6XpF0U7ofw==
+Date:   Sat, 1 Apr 2023 16:15:37 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Denis Ciocca <denis.ciocca@st.com>, devicetree@vger.kernel.org,
+        Diederik de Haas <didi.debian@cknow.org>
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Fix repeated text
+Message-ID: <20230401161537.687e6ff8@jic23-huawei>
+In-Reply-To: <CACRpkdbM_Dron8irHbP77MW2=Yq6o2MAUdYSTE1jcfSHsXZfQg@mail.gmail.com>
+References: <20230329074614.1037625-1-linus.walleij@linaro.org>
+        <23b2de4b-1198-bfcc-fd74-285da9af4fb3@linaro.org>
+        <CACRpkdbM_Dron8irHbP77MW2=Yq6o2MAUdYSTE1jcfSHsXZfQg@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230401132134.12887-3-henrik@grimler.se>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Henrik,
+On Wed, 29 Mar 2023 10:39:08 +0200
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
-Thank you for the patch! Yet something to improve:
+> On Wed, Mar 29, 2023 at 10:25=E2=80=AFAM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> > Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
+> > commit msg (Jonathan's, Lars', Rob's, mine, DT list). There is no single
+> > need to store automated output of get_maintainers.pl in the git log. It
+> > can be easily re-created at any given time, thus its presence in the git
+> > history is redundant and obfuscates the log.
+> >
+> > If you need it for your own patch management purposes, keep it under the
+> > --- separator. =20
+>=20
+> Oh yeah I've seen that people do this these days, just (old) bad habits.
+>=20
+> I am trying to use b4 for this going forward, it always does the right th=
+ing.
+>=20
+> Thanks!
+> Linus Walleij
 
-[auto build test ERROR on 0e84f3493a37d50f2f629dbea670135b8a8ee391]
+Applied with suggested tweaks.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Henrik-Grimler/ARM-dts-exynos-replace-mshc0-alias-with-mmc-ddr-1_8v-property/20230401-212318
-base:   0e84f3493a37d50f2f629dbea670135b8a8ee391
-patch link:    https://lore.kernel.org/r/20230401132134.12887-3-henrik%40grimler.se
-patch subject: [PATCH v6 2/2] ARM: dts: exynos: add mmc aliases
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20230401/202304012305.NdtndVxO-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/f28175ed67208fd6411a3ce477762d7b032fe52e
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Henrik-Grimler/ARM-dts-exynos-replace-mshc0-alias-with-mmc-ddr-1_8v-property/20230401-212318
-        git checkout f28175ed67208fd6411a3ce477762d7b032fe52e
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+Thanks,
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304012305.NdtndVxO-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm/boot/dts/exynos5422-samsung-k3g.dts:26.2-17 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Jonathan
