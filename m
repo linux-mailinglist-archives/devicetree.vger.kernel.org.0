@@ -2,103 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 033CE6D310E
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 15:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B2E06D3129
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 16:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229485AbjDANcB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 1 Apr 2023 09:32:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
+        id S230034AbjDAODz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 10:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjDANcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 09:32:00 -0400
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DF73AB5;
-        Sat,  1 Apr 2023 06:31:56 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-545cb3c9898so392020167b3.7;
-        Sat, 01 Apr 2023 06:31:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680355915;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CMLjaNTG/vxBEa8ZgHssFzA8vDTxXHgXd9BXN8Mlh3k=;
-        b=UH4mdtg2MKJN1UQYhiTfItKkdiixMw0D3b+ZpbNeIJ0+jz/1YC5gAjma4Xb2BzDnyJ
-         dNQnH+b8GoT/fbfYaExg+2xbvQlLexmqcjC86d5Ku9Pfk515tl5dh6EAkudkBHO7w7+p
-         RGzIK6gmBdqyT7a1Fk43PCp69CEp8UDIF4aONW3pfrl/0lPu6T/2Beun3GE+aBz7fq56
-         V76p647gzN/RanBwWfGTCyDWNRrwVOLKFgla5QdTL7fmmLZlVkSUbenKL9n3hoXS2v1N
-         UULB/q34F/rB/eo+HfkMwUwxx/ssbmj/u12Dg4OXD6xXQKfqpY8ZLTGt2sXVHNguR0U9
-         LRQQ==
-X-Gm-Message-State: AAQBX9cKkQNRRdRiqM3/Mu9jJqmqW1JAlPKX/DYVB/oG0GVZCB3cN3J1
-        e20pjdFkj6LXUbsYbew7+9lu9JzGM4UgbA==
-X-Google-Smtp-Source: AKy350byAcCJtAhyJUI939AKGqQvsqx9XcxR95hxLMBNkMLCJAB/9uGcGB53VO7aVsvJasEeMzbSoA==
-X-Received: by 2002:a81:fd12:0:b0:533:9fa7:bbe9 with SMTP id g18-20020a81fd12000000b005339fa7bbe9mr29547493ywn.8.1680355915568;
-        Sat, 01 Apr 2023 06:31:55 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 142-20020a810e94000000b00545a08184c1sm1176823ywo.81.2023.04.01.06.31.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Apr 2023 06:31:55 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5456249756bso467162177b3.5;
-        Sat, 01 Apr 2023 06:31:54 -0700 (PDT)
-X-Received: by 2002:a81:b617:0:b0:544:4008:baa1 with SMTP id
- u23-20020a81b617000000b005444008baa1mr15177048ywh.4.1680355914630; Sat, 01
- Apr 2023 06:31:54 -0700 (PDT)
+        with ESMTP id S229379AbjDAODy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 10:03:54 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D61BB45E;
+        Sat,  1 Apr 2023 07:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Aspgqd2CQUgGC6jhO6bVKbJh3b17oUccwUnqrYvry14=; b=l6SufDvpkl9yE8WeR8MCi53qAJ
+        DT1Xt9qRWdXDjc9WLSPsreYLo4vz2pxZk2YLxe57g4hT9CM99TtJpXHrRxa+V5Vsq1B/Uj4q+F143
+        fzG4iJqOxOX7xxauiR1prcnI6XVn4YJr0Yk9Wsw5kykrD4I8dkVItKSrZjKFTtee7WoJ2KgbcpdpT
+        Ex81BO0YMWjT/bqOKgPji9XbeqYft+XqF5HVwCBgG7l4xe/TZn+PAbvQRpAGacLLOWUb5lfJ6+gj0
+        o6a0wAD/OYOl9feCvRwEvAKh66QDnT5jl4+Lmg2gf8Lk3FmIuOxfXiAUNLRTgBsjoAIP/NfeaAthU
+        kKT2h9aw==;
+Received: from p200300ccff2d4a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2d:4a00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pibpd-0006fe-Bj; Sat, 01 Apr 2023 16:03:49 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pibpc-00E73O-2m;
+        Sat, 01 Apr 2023 16:03:48 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@kernel.org,
+        Tony Lindgren <tony@atomide.com>
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v3 0/2] dt-bindings: omap: Convert omap.txt to yaml
+Date:   Sat,  1 Apr 2023 16:02:46 +0200
+Message-Id: <20230401140248.3363674-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <cover.1680248888.git.geert+renesas@glider.be> <b8701c04d27e51618444a747c4f4be5cc889ce28.1680248888.git.geert+renesas@glider.be>
- <CAL_JsqJJoTGjTihcCiX8qOowb7tSjxg-rjLVskVPuWvSn=0ikA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJJoTGjTihcCiX8qOowb7tSjxg-rjLVskVPuWvSn=0ikA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Sat, 1 Apr 2023 15:31:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXvFu2vFXXxCK02UD_Ls_KruYBmdB6b7LdzPkFVZ=qi+Q@mail.gmail.com>
-Message-ID: <CAMuHMdXvFu2vFXXxCK02UD_Ls_KruYBmdB6b7LdzPkFVZ=qi+Q@mail.gmail.com>
-Subject: Re: [PATCH 3/3] of: address: Reshuffle to remove forward declarations
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Convert board compatibles to yaml and add the new yaml file to
+MAINTAINERS so that emails are properly distributed
 
-On Fri, Mar 31, 2023 at 6:28 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Fri, Mar 31, 2023 at 2:52 AM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> > Reshuffle the code to get rid of the forward declarations, which
-> > improves readability.
->
-> Is git blame smart enough to ignore this move? If not, I'd rather keep
-> the blame than save 3 lines.
+Changes in V3:
+ - update MAINTAINERS
+ - remove converted stuff from .txt
 
-Apparently (I didn't know before ;-), it is, when using the -M option:
+Changes in V2:
+- renamed file
+- fixed gta04
+- added Openpandora, Epson Moverio BT-200
+- drop example
+- remove descriptions if just reformatting the name
 
-$ git blame -- drivers/of/address.c | tail -3
-1db096f9167bc267e (Geert Uytterhoeven        2023-03-30 13:42:05 +0200
-1150) return mem;
-1db096f9167bc267e (Geert Uytterhoeven        2023-03-30 13:42:05 +0200 1151) }
-1db096f9167bc267e (Geert Uytterhoeven        2023-03-30 13:42:05 +0200
-1152) EXPORT_SYMBOL(of_io_request_and_map);
+Andreas Kemnade (1):
+  MAINTAINERS: add board bindings list to OMAP2+ files
 
-$ git blame -M -- drivers/of/address.c | tail -3
-efd342fb0031a1775 (Matthias Brugger          2014-07-18 11:36:39 +0200
-1150) return mem;
-efd342fb0031a1775 (Matthias Brugger          2014-07-18 11:36:39 +0200 1151) }
-efd342fb0031a1775 (Matthias Brugger          2014-07-18 11:36:39 +0200
-1152) EXPORT_SYMBOL(of_io_request_and_map);
+Andrew Davis (1):
+  dt-bindings: omap: Convert omap.txt to yaml
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../devicetree/bindings/arm/omap/omap.txt     | 185 ------------------
+ Documentation/devicetree/bindings/arm/ti.yaml | 157 +++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 158 insertions(+), 185 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/ti.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
