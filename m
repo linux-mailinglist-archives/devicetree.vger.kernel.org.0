@@ -2,99 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 501AC6D2D91
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 04:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 639E06D2D7C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 03:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232712AbjDACE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 22:04:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36276 "EHLO
+        id S234033AbjDAB6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 21:58:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229909AbjDACE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 22:04:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6A651718;
-        Fri, 31 Mar 2023 19:04:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 99A3AB83303;
-        Sat,  1 Apr 2023 01:42:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E88BC4339C;
-        Sat,  1 Apr 2023 01:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680313366;
-        bh=HLziX9yQsRyMNBX7Zv2bMuzsajdwysD2DN7RUAmWucM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dwnVhk+Sz8rXtof6yIwBHHun3QwIs1Xqf0QgRO1WZhKM0E2HvYVfG46dT6uR331UD
-         VQk/X8RG8BuJZJtIXEYh3jTYt2eZ1AF1QOjN4RaTVA3CJoiMUG4l2jkF23/1J92/R/
-         ovjqa9jFQhw1NpPRgMP/w6OrsTOA6oCEXeUqkI45FrrmniFvi7Xo7e0xTAV5MkmdZ7
-         zrD4F1dQtRZHKsn8S1+XHVMSyO6QyJaiQXhI4GPrzcNdfg0H3xL4nPXTUpzbxgNWDL
-         4Qg7If8lyLkX2FTgWQCbI5dmt1SbezMceoYyuLB8/6iCwXpK3FQ8celQ5a76JEG0d1
-         mgLC4jdcKroDw==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Luca Weiss <luca@z3ntu.xyz>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 02/24] ARM: dts: qcom: apq8026-lg-lenok: add missing reserved memory
-Date:   Fri, 31 Mar 2023 21:42:18 -0400
-Message-Id: <20230401014242.3356780-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230401014242.3356780-1-sashal@kernel.org>
-References: <20230401014242.3356780-1-sashal@kernel.org>
+        with ESMTP id S233545AbjDAB5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 21:57:53 -0400
+X-Greylist: delayed 167 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 31 Mar 2023 18:55:56 PDT
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D161BF5D;
+        Fri, 31 Mar 2023 18:55:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1680313641; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=e872dxYKwpEmkU7ojBV5oxWY5yPEVsfRppSkHWLXyxK2QRHALoTZ9ES6HSu0fkI63hh9IOHCYdBwTS+ZbV3+Zls/3GA3nO3hcXl2iwSghOjUxIyJB7J0KVAyoSIes/wZwCZms0/cpoarR9COjb43mAeXnzLWeCHMbajgc4zEIsY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1680313641; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=S+zGGBqMP5BV/39K5ihbzESIqXi6/hEN1mEtg1ES/40=; 
+        b=btAeaJbnSX/otV9mzt0oRQCU3prXUl72yptb7/sh1Rrl+y5PyRWVjtijnSRkb0rbpdnfco6kN+279LU0EcEzyRo5BGMA2nO840LEOWEg21t6GbsNdQjSf/bjTBAOYBdTfyUNPAVSNfb3ULDG3e3CuyskO3jjDA0PU6jWsoJES5A=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680313641;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=S+zGGBqMP5BV/39K5ihbzESIqXi6/hEN1mEtg1ES/40=;
+        b=UEXpHn7Z+mCjHatAbJ0EA4GpqEOoPHeQOAUlyvlwbEosnOLM6kNtXZ5N2bV2ZanW
+        isQtmIrTPnWFFUtF/Y9pg4r5PEyaECLlf5/XHGVjA+QObak+fM3wcVGtNDAVk2cgnOb
+        B8pu/N9Ybs16FU1NHih8uOiB3KMgSfSEtNDRa2so=
+Received: from edelgard.fodlan.icenowy.me (120.85.97.183 [120.85.97.183]) by mx.zohomail.com
+        with SMTPS id 1680313639213673.7042963583667; Fri, 31 Mar 2023 18:47:19 -0700 (PDT)
+Message-ID: <40cdea465fef49a8a337b48e2a748138c66a08eb.camel@icenowy.me>
+Subject: Re: [PATCH v7 0/6] RISC-V non-coherent function pointer based CMO +
+ non-coherent DMA support for AX45MP
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor@kernel.org>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Date:   Sat, 01 Apr 2023 09:47:05 +0800
+In-Reply-To: <0d5590e4-e78b-4197-bf17-9de54466470d@spud>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+         <b2dcda17-5850-47c1-94bc-4ca87f900581@spud>
+         <CA+V-a8s+=OY6CX4XTUwyAE9b=rdJZZfgAaY2nU+6aqnu=X9nxQ@mail.gmail.com>
+         <0d5590e4-e78b-4197-bf17-9de54466470d@spud>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Luca Weiss <luca@z3ntu.xyz>
+=E5=9C=A8 2023-03-31=E6=98=9F=E6=9C=9F=E4=BA=94=E7=9A=84 21:15 +0100=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Fri, Mar 31, 2023 at 08:09:16PM +0000, Lad, Prabhakar wrote:
+> > Hi Conor,
+> >=20
+> > On Fri, Mar 31, 2023 at 7:05=E2=80=AFPM Conor Dooley <conor@kernel.org>
+> > wrote:
+> > >=20
+> > > On Thu, Mar 30, 2023 at 09:42:11PM +0100, Prabhakar wrote:
+> > >=20
+> > > > - This series requires testing on Cores with zicbom and T-Head
+> > > > SoCs
+> > >=20
+> > > I don't actually know if there are Zicbom parts, may need to test
+> > > that
+> > > on QEMU.
+> > > I had to revert unrelated content to boot, but my D1 NFS setup
+> > > seems to
+> > > work fine with these changes, so where it is relevant:
+> > > Tested-by: Conor Dooley <conor.dooley@microchip.com> # tyre-
+> > > kicking on D1
+> > >=20
+> > Thank you for testing this. By any chance did you compare the
+> > performance?
+>=20
+> No, just tyre kicking. Icenowy had some benchmark for it IIRC, I
+> think
+> mining some coin or w/e. +CC them.
 
-[ Upstream commit ecd240875e877d78fd03efbc62292f550872df3f ]
+I previously tested the function pointer based CMO, it do not affect
+the performance beyond the measurement error. Maybe it's because CMO
+operations are only done at the start and end of DMA operations.
 
-Turns out these two memory regions also need to be avoided, otherwise
-weird things will happen when Linux tries to use this memory.
-
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
-Link: https://lore.kernel.org/r/20230308-lenok-reserved-memory-v1-1-b8bf6ff01207@z3ntu.xyz
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-index 193569f0ca5f7..4bdadb7681c30 100644
---- a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-+++ b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-@@ -26,6 +26,16 @@ chosen {
- 	};
- 
- 	reserved-memory {
-+		sbl_region: sbl@2f00000 {
-+			reg = <0x02f00000 0x100000>;
-+			no-map;
-+		};
-+
-+		external_image_region: external-image@3100000 {
-+			reg = <0x03100000 0x200000>;
-+			no-map;
-+		};
-+
- 		adsp_region: adsp@3300000 {
- 			reg = <0x03300000 0x1400000>;
- 			no-map;
--- 
-2.39.2
-
+My previous test system is LiteX + OpenC906.
