@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 120076D34BC
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 00:08:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C506D34B7
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 00:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbjDAWIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 18:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41060 "EHLO
+        id S229765AbjDAWIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 18:08:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjDAWI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 18:08:28 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964B12951B
-        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 15:08:24 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id a44so7992951ljr.10
-        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 15:08:24 -0700 (PDT)
+        with ESMTP id S230216AbjDAWI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 18:08:26 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59B12BEE4
+        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 15:08:23 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id s20so6332789ljp.7
+        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 15:08:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680386902;
+        d=linaro.org; s=google; t=1680386903;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Prd++xPaLuXWKrZ9/YvClXLdfWQ6hYA83t8qkIsDY/s=;
-        b=X0HJIBmB+sEjaqhIloH0DkRY8Qaqtm4WsmOB2ZeSD+a2griARyH/GFyzmz1kMhjd8d
-         dZSrBTSRWAWxRCcURw1a8buklE/v9eYxgjgrGda3hMpM3Oerm506ZTHOqpo7g0fiv59r
-         h8tHxmPG0kwU8YVloZHepoeE4NZEo2YIc5KEHIhxttk+h1sUrgtBvO5qB+StZNi0jA8t
-         UtqLhXqdNguId/JTTMTykMw8AosFguRucZ147HknoQc8xACoWCpLixgzW387VVITeX45
-         iJLVD3MZeR7NQIA/EN/viMBJiAz/h/XZcJ6Zf99lb1xtJ5MqoVkpDXsThdUKF58eTH75
-         ofbQ==
+        bh=vpAPdB8a1KxE/31P7n445ITkGLoAKYAjcNmqI1cmGfU=;
+        b=SD4iocEM9j+/oieJlsvl9UQdJPs2hHxkezcB9YDxP97z8qcJtXlMgBBX2Oip75L1Gr
+         uThwfZZ1MXX+s4rdHGk+iRCmzLXGhz9qJE5nXAYpacVn1R9MV7A0kdvJkjDoketVY2pv
+         tco6T4uVW8GttLasAQnLiqPnwHc16IPSheNGWQLhNsu+AN03TGrPFECudDW9G5Kke9+4
+         QI72OscETsAF9ZqThS4Do+D4c0VyPFjpilCsUstnVXeQwl5WEVBU62wngNRjOx3up3xv
+         9gHMOTwHDNsUgFB3RiUdhPWPUA+3mTYYmKtNsTOBWaQwiOrvxolIqekKii2QWLKokDAq
+         +k6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680386902;
+        d=1e100.net; s=20210112; t=1680386903;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Prd++xPaLuXWKrZ9/YvClXLdfWQ6hYA83t8qkIsDY/s=;
-        b=upJPoja9n8SZZt3kGpkW7RYTP2nRFKwGOC6MxwpDUHFb0IpmnFGyoXi42ASDMs47+H
-         eqS9cbBgLgVucWT/5D8NHJepeil7XF0CeaBeZpdvX0v1isYMlv1wnb5WKLAloxnIps2X
-         H4xOlgVjU4D7GnslIT+cA7sPi8mgBGjxGaR4lLRb5kSpc2G4EvSIypLnqrg8dtzkhiV5
-         R62hyV8+9fmC54rO979J2AFnbZfQ1KzWgwcc9YI+5U3eGI6JVSlYKL+54mBIkUeQLWID
-         5ZDiKjZ8ZlXoKuj/+LIXHQA8hpTp/mmZFbxIMEZ8eoSswWwHxkyM1FNQw3hegmEHSg4r
-         QpKA==
-X-Gm-Message-State: AAQBX9cKbyW/OC7UO2c1MzuFpEuQLgV3PGk31/8GNfU0m3XEjurK/OFP
-        0nmWWzcVWSlK9yHNZC9dz5SiOg==
-X-Google-Smtp-Source: AKy350Y07FInGOk+rwDxq5xduEweLqehE6tsu1usirPoiFmQj1rrjZUT/sX9JfowVUsm9AU45VYS4Q==
-X-Received: by 2002:a2e:aa8b:0:b0:2a1:ed00:4b9e with SMTP id bj11-20020a2eaa8b000000b002a1ed004b9emr3834703ljb.1.1680386902809;
-        Sat, 01 Apr 2023 15:08:22 -0700 (PDT)
+        bh=vpAPdB8a1KxE/31P7n445ITkGLoAKYAjcNmqI1cmGfU=;
+        b=bxQs32ZTa8Y2fZ2FOoiwh44CG2O6wGNTqqDpeFcPGeyhtLWI28EqvfSdELvvh2twD9
+         0tSm+OO+10tR5PU4Lz/pnyi+cYpQ+f5E00hkMUbjknY9x8Rv3kYaZnFjjgDhGzP4BOT3
+         7GTbYqFn2PuuR+SlEokIyxYjCBBYgPjQde8UjzegCZm7U6j8kg74zT0MZtdeEkv39Cwz
+         PAvQ8xeT1uti6dYWIi5nPJASd0iPIwzLBy76GGxlG3uUaHw+nXvM5UAhGO+Q3s84NiWO
+         oB2B2JSWyfxh9i1RmPMzOKm2YOFwvoGLz0UsLpi/2YWx4HkLTYsUl8c1VyUeMCFN2nOX
+         mH2Q==
+X-Gm-Message-State: AAQBX9dBVw3+Kdcl+bjDCEE2hph0tuRbT/l/5mEUZfir2Av2Wfz23W+Q
+        XNMQ7RjIxMRbSW/O83umWZob8Q==
+X-Google-Smtp-Source: AKy350ZvcqUde57P5OLtX4UdluqR5qLCim03qpfPgnHRL+SLBDdb8ouQPncf3Zd94cdr2C7KW55hqQ==
+X-Received: by 2002:a2e:83d5:0:b0:298:6d34:31c6 with SMTP id s21-20020a2e83d5000000b002986d3431c6mr8739886ljh.47.1680386903378;
+        Sat, 01 Apr 2023 15:08:23 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
         by smtp.gmail.com with ESMTPSA id k17-20020a2e9211000000b0029bd4d0d3f2sm997590ljg.33.2023.04.01.15.08.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Apr 2023 15:08:22 -0700 (PDT)
+        Sat, 01 Apr 2023 15:08:23 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Johan Hovold <johan+linaro@kernel.org>,
         Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Subject: [PATCH v2 18/22] arm64: dts: qcom: sc8280xp*: use pm8350c.dtsi
-Date:   Sun,  2 Apr 2023 01:08:06 +0300
-Message-Id: <20230401220810.3563708-19-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 19/22] arm64: dts: qcom: sc8280xp*: use pmr735a.dtsi
+Date:   Sun,  2 Apr 2023 01:08:07 +0300
+Message-Id: <20230401220810.3563708-20-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
 References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
@@ -76,109 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Employ PMIC_SID/_LABEL and switch sc8280xp-pmics to use pm8350c.dtsi in
-order to reduce duplication and possible discrepancies.
+Stop duplicating declarations of pmr735a PMICs, use existing file to
+prevent possible future issues.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  4 +--
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  4 +--
- arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  | 32 +++----------------
- 3 files changed, 8 insertions(+), 32 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 20 ++------------------
+ 1 file changed, 2 insertions(+), 18 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index d7b537284990..18f821d99434 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -24,7 +24,7 @@ aliases {
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&pmc8280c_lpg 3 1000000>;
-+		pwms = <&pmc8280c_pwm 3 1000000>;
- 		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&vreg_edp_bl>;
- 
-@@ -555,7 +555,7 @@ &pcie4_phy {
- 	status = "okay";
- };
- 
--&pmc8280c_lpg {
-+&pmc8280c_pwm {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 590400985055..c74d32f7931e 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -54,7 +54,7 @@ wcd938x: audio-codec {
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&pmc8280c_lpg 3 1000000>;
-+		pwms = <&pmc8280c_pwm 3 1000000>;
- 		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&vreg_edp_bl>;
- 
-@@ -725,7 +725,7 @@ &pcie4_phy {
- 	status = "okay";
- };
- 
--&pmc8280c_lpg {
-+&pmc8280c_pwm {
- 	status = "okay";
- };
- 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-index 69f79ed87f62..3d2914d13fd2 100644
+index 3d2914d13fd2..7a1298a71791 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-@@ -16,40 +16,16 @@
- #define PMIC_NODE pmc82801
- #include "pm8350.dtsi"
- 
-+#define PMIC_SID 2
-+#define PMIC_LABEL pmc8280c
-+#include "pm8350c.dtsi"
-+
- #define PMIC_SID 3
- #define PMIC_LABEL pmc8280_2
+@@ -25,21 +25,5 @@
  #define PMIC_NODE pmc82802
  #include "pm8350.dtsi"
  
- &spmi_bus {
--	pmc8280c: pmic@2 {
--		compatible = "qcom,pm8350c", "qcom,spmi-pmic";
--		reg = <0x2 SPMI_USID>;
+-&spmi_bus {
+-	pmr735a: pmic@4 {
+-		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
+-		reg = <0x4 SPMI_USID>;
 -		#address-cells = <1>;
 -		#size-cells = <0>;
 -
--		pmc8280c_gpios: gpio@8800 {
--			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
+-		pmr735a_gpios: gpio@8800 {
+-			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
 -			reg = <0x8800>;
 -			gpio-controller;
--			gpio-ranges = <&pmc8280c_gpios 0 0 9>;
+-			gpio-ranges = <&pmr735a_gpios 0 0 4>;
 -			#gpio-cells = <2>;
 -			interrupt-controller;
 -			#interrupt-cells = <2>;
 -		};
--
--		pmc8280c_lpg: pwm {
--			compatible = "qcom,pm8350c-pwm";
--
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			#pwm-cells = <2>;
--
--			status = "disabled";
--		};
 -	};
--
- 	pmr735a: pmic@4 {
- 		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
- 		reg = <0x4 SPMI_USID>;
+-};
++/* SID 4 */
++#include "pmr735a.dtsi"
 -- 
 2.30.2
 
