@@ -2,103 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AA976D3018
-	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 13:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7871C6D302F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Apr 2023 13:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbjDALU7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 1 Apr 2023 07:20:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54644 "EHLO
+        id S229491AbjDAL1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 07:27:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbjDALUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 07:20:40 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EA751CBAE;
-        Sat,  1 Apr 2023 04:19:59 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9BF7224E197;
-        Sat,  1 Apr 2023 19:19:58 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 1 Apr
- 2023 19:19:58 +0800
-Received: from ubuntu.localdomain (113.72.144.76) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 1 Apr
- 2023 19:19:57 +0800
-From:   Hal Feng <hal.feng@starfivetech.com>
-To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-CC:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229792AbjDAL11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 07:27:27 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D7425457;
+        Sat,  1 Apr 2023 04:27:02 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 331BQYQh094885;
+        Sat, 1 Apr 2023 06:26:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680348394;
+        bh=W+MXFnEfkopbtJFIpkBc7tUZLZW+yMtB+YrUMRSQcG0=;
+        h=From:To:CC:Subject:Date;
+        b=mgRPcQv+q/e6yxTsEJg7RYwmg32/ILnRg+5mj3jFCuz+Y4FCiZymV5fJyfydZs+8v
+         qT8dBL3/NCFMZxcXMrx519S/AiAGFpEtynCaGmLFOW3YYq+7aBsQJVLB6i8XHwGoWZ
+         9lC1vYCY2ZUvT0woMZhY5mSbyUiMyzJiAS2QBNb4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 331BQYdj120059
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 1 Apr 2023 06:26:34 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sat, 1
+ Apr 2023 06:26:34 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sat, 1 Apr 2023 06:26:34 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 331BQXkn005537;
+        Sat, 1 Apr 2023 06:26:34 -0500
+From:   Achal Verma <a-verma1@ti.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Wilczy_ski <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 22/22] riscv: dts: starfive: jh7110: Correct the properties of S7 core
-Date:   Sat, 1 Apr 2023 19:19:34 +0800
-Message-ID: <20230401111934.130844-23-hal.feng@starfivetech.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230401111934.130844-1-hal.feng@starfivetech.com>
-References: <20230401111934.130844-1-hal.feng@starfivetech.com>
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Dhananjay Vilasrao Kangude <dkangude@cadence.com>,
+        Anindita Das <dasa@cadence.com>,
+        Yuan Zhao <yuanzhao@cadence.com>,
+        Milind Parab <mparab@cadence.com>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Achal Verma <a-verma1@ti.com>
+Subject: [PATCH v12 0/5] PCI: add 4x lane support for pci-j721e controllers
+Date:   Sat, 1 Apr 2023 16:56:28 +0530
+Message-ID: <20230401112633.2406604-1-a-verma1@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [113.72.144.76]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The S7 core has no L1 data cache and MMU, so delete some
-related properties.
+Adding of additional support to Cadence PCIe controller (i.e. pci-j721e.c)
+for up to 4x lanes, and reworking of driver to define maximum lanes per
+board configuration.
 
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 9 ---------
- 1 file changed, 9 deletions(-)
+Changes from v1:
+* Reworked 'PCI: j721e: Add PCIe 4x lane selection support' to not cause
+  regressions on 1-2x lane platforms
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index d484ecdf93f7..4c5fdb905da8 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -20,21 +20,12 @@ cpus {
- 		S7_0: cpu@0 {
- 			compatible = "sifive,s7", "riscv";
- 			reg = <0>;
--			d-cache-block-size = <64>;
--			d-cache-sets = <64>;
--			d-cache-size = <8192>;
--			d-tlb-sets = <1>;
--			d-tlb-size = <40>;
- 			device_type = "cpu";
- 			i-cache-block-size = <64>;
- 			i-cache-sets = <64>;
- 			i-cache-size = <16384>;
--			i-tlb-sets = <1>;
--			i-tlb-size = <40>;
--			mmu-type = "riscv,sv39";
- 			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imac_zba_zbb";
--			tlb-split;
- 			status = "disabled";
- 
- 			cpu0_intc: interrupt-controller {
+Changes from v2:
+* Correct dev_warn format string from %d to %u since lane count is a
+  unsigned integer
+* Update CC list
+
+Changes from v3:
+* Use the max_lanes setting per chip for the mask size required since
+  bootloader could have set num_lanes to a higher value that the
+  device tree which would leave in an undefined state
+* Reorder patches do the previous change to not break bisect
+* Remove line breaking for dev_warn to allow better grepping and since
+  no strict 80 columns anymore
+
+Changes from v4:
+* Correct invalid settings for j7200 PCIe RC + EP
+* Add j784s4 configuration for selection of 4x lanes
+
+Changes from v5:
+* Dropped 'PCI: j721e: Add warnings on num-lanes misconfiguration' patch
+  from series
+* Reworded 'PCI: j721e: Add per platform maximum lane settings' commit
+  message
+* Added yaml documentation and schema checks for ti,j721e-pci-* lane
+  checking
+
+Changes from v6:
+* Fix wordwrapping in commit messages from ~65 columns to correct 75
+  columns
+* Re-ran get_maintainers.pl to add missing maintainers in CC
+
+Changes from v7:
+* Addressed review comments in ti,j721e-pci-ep.yaml and
+  ti,j721e-pci-host.yaml from v6
+* Added warn message if num-lanes property value is invalid.
+* Addressed build issue reported in
+  https://lore.kernel.org/all/202211260346.4JvNnDdc-lkp@intel.com/
+
+Changes from v8:
+* Use "const: 1" in ti,j721e-pci-ep.yaml and ti,j721e-pci-host.yaml
+  when num-lanes min and max values are equal.
+
+Changes from v9:
+* Rebase on next-20230315
+
+Changes from v10:
+* Rebase on next-20230317
+
+Changes from v12:
+* Rebase on next-20230331
+
+Matt Ranostay (5):
+  dt-bindings: PCI: ti,j721e-pci-*: add checks for num-lanes
+  PCI: j721e: Add per platform maximum lane settings
+  PCI: j721e: Add PCIe 4x lane selection support
+  dt-bindings: PCI: ti,j721e-pci-*: add j784s4-pci-* compatible strings
+  PCI: j721e: add j784s4 PCIe configuration
+
+ .../bindings/pci/ti,j721e-pci-ep.yaml         | 39 ++++++++++++++--
+ .../bindings/pci/ti,j721e-pci-host.yaml       | 39 ++++++++++++++--
+ drivers/pci/controller/cadence/pci-j721e.c    | 45 ++++++++++++++++---
+ 3 files changed, 112 insertions(+), 11 deletions(-)
+
 -- 
-2.38.1
+2.25.1
 
