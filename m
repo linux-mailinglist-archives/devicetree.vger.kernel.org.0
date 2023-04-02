@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2FC26D3553
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 05:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54E46D359D
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 07:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjDBDD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 23:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56214 "EHLO
+        id S229952AbjDBFfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 01:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjDBDD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 23:03:57 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F3520C3A;
-        Sat,  1 Apr 2023 20:03:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680404636; x=1711940636;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UwGIjXk3/Uoh9jUrJy/wr/+7yvyMHOiCs5iNw+KoTj8=;
-  b=MsYVmEvFEyy7DSx/e3YcPU4wLoNy3O8xGU7hObWELVA0KxyvcXeo/Gke
-   ImQYCQhgD9MeJxnU1XjrNdNH6BsrD2/1eU9jOIp+pSi8wBUaNqS6fnW8j
-   B9jm2mJ9/2Lhqr6y0SSUCXLavIqoVjKBOqSiB3O1axJa1PRwh9CVINH0A
-   SO/jB0eM0IztforZ6J4D7rNJGd0mgQkFtxz8XpqcVK+K6iIuJBIlNq4l2
-   2c31tUb1e5tFpr78EB1ZCt0AIUvuj6HrNSIOZCIPerrRwN97ST41sgmNK
-   V4ZqAUblFdDrq9HihBRRnwHfCAAhpB3LQc29pTrPLviJuWpL0tUmMsayI
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="330260334"
-X-IronPort-AV: E=Sophos;i="5.98,311,1673942400"; 
-   d="scan'208";a="330260334"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2023 20:03:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="718147955"
-X-IronPort-AV: E=Sophos;i="5.98,311,1673942400"; 
-   d="scan'208";a="718147955"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 01 Apr 2023 20:03:52 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pio0Q-000NCN-2f;
-        Sun, 02 Apr 2023 03:03:46 +0000
-Date:   Sun, 2 Apr 2023 11:02:49 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: pressure: Honeywell mpr pressure sensor
-Message-ID: <202304021013.6NytoSFn-lkp@intel.com>
-References: <ZCf085W4XL2PtQf6@arbad>
+        with ESMTP id S229492AbjDBFfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 01:35:42 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E2261B7C6
+        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 22:35:40 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id y14so26188554wrq.4
+        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 22:35:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680413738;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zF3oKohIhhLJKd1QNch/n6u1agXLLOguv1dKAbb5oNs=;
+        b=Wb9rIRHuELGn/5H8BgxsO7O97HeB5oiDDKs2v2wKk0oXqzmLMP76NQyp03Y9WHn7NM
+         uf6O+fP4/BxYcikXrHUwTp6+ZALpBf44S3EgeVbPo3hPbQPx7U9CrrMTuzKDBbRMlD7K
+         jxxMD5QA7YFkLycwUYs1+MA0IOsvjZ8hXIt8QsrOA2vKPhq26MLK1OTRRJZkiSc9Bjmp
+         oVjiVqMxVR8gDDOejKUTF11OEaVJSxiynd3pk8Zwiltl6JyZBPw36fi5v3eFSFnoGXKx
+         jh6CLBvnRsfqC3hK+Vgsux4yIdpCMLWv90KxEMw7OoDEQCbt8q+0QBLNq2F0/A3pBdBx
+         nV6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680413738;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zF3oKohIhhLJKd1QNch/n6u1agXLLOguv1dKAbb5oNs=;
+        b=OMqDk/wEpNgQ++fO3yVcfB+Ad0xyUAIF72/PJ99UDrnmZo2gb8V5lV9aDiG/oc9Luh
+         HGhFfhtHMHnsQ/v6tY0Fi5dtN9m/S95sl+CxehTtUGREN9UXhb1NNIsJ0OVediau66wr
+         dgtXYIAWgCvXKn8me+VXTkZP8PwjTp01qjDtYSMyeOXLaesdbvZ0B/gs2vHqf0n2Izs8
+         Qbpbch3acuEKpg+E+zlVBj7TRK2vVyBaEK38YkHvfybhUH9jPax8iXrC9wf3DVzyWSrg
+         imRRSO8tCTO+rCPT6W9CeFWmkSETfKhjInZ19KRBvYoLLRTqUMRosbrNSg0qdp6akCKY
+         cEhA==
+X-Gm-Message-State: AAQBX9cBqFKotZ8amu11I28sko1DGyeCUpjyd26fm3BpJwR9y7gUocUH
+        QqpwqZznfsVo5bg13WjIrXLIhFw3Yaawidfwp5PtH/zlohlOvFHxCgY=
+X-Google-Smtp-Source: AKy350Yvj3z/JViDBysPD9wGuatiM+Z9teHEtvB8EXqIgjRI+UzWAYBpYdg92tH0fX0ytHcyXVCOvCmIotcGqT+cz88=
+X-Received: by 2002:a05:6000:5c1:b0:2d7:9771:fc4b with SMTP id
+ bh1-20020a05600005c100b002d79771fc4bmr4303491wrb.5.1680413738137; Sat, 01 Apr
+ 2023 22:35:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZCf085W4XL2PtQf6@arbad>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+References: <20230330193303.612475-1-bhupesh.sharma@linaro.org>
+ <0ff99bb5-4792-270d-b03e-2638939f160f@linaro.org> <CAH=2NtzPReiUHuEAW8PsQJvNzOYvb71pZ7SWRbThWdLT7_a0ug@mail.gmail.com>
+ <e5b758ed-f279-ecc3-3be4-039c5a19b212@linaro.org>
+In-Reply-To: <e5b758ed-f279-ecc3-3be4-039c5a19b212@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 2 Apr 2023 11:05:26 +0530
+Message-ID: <CAH=2NtzXjgQEaTDVZip6GEHhterker2B3c+w_4A5J4W_LDTctA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 1/1] arm64: dts: qcom: sm6115: Add CPU idle-states
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,43 +70,178 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
+On Sun, 2 Apr 2023 at 01:28, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 01/04/2023 21:26, Bhupesh Sharma wrote:
+> > Hi Konrad,
+> >
+> > On Sat, 1 Apr 2023 at 17:51, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >>
+> >>
+> >> On 30.03.2023 21:33, Bhupesh Sharma wrote:
+> >>> Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
+> >>>
+> >>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> >>> ---
+> >>> Changes since v1:
+> >>> - v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
+> >>> - Addressed Konrad's comments on v1 and added GDHS and Power Collapse
+> >>>    cluster power states.
+> >>>
+> >>>   arch/arm64/boot/dts/qcom/sm6115.dtsi | 136 +++++++++++++++++++++++++++
+> >>>   1 file changed, 136 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> >>> index 2a51c938bbcb..b63395d476ed 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> >>> @@ -45,6 +45,8 @@ CPU0: cpu@0 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_0>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+> >>> +                     power-domains = <&CPU_PD0>;
+> >>> +                     power-domain-names = "psci";
+> >>>                        L2_0: l2-cache {
+> >>>                                compatible = "cache";
+> >>>                                cache-level = <2>;
+> >>> @@ -61,6 +63,8 @@ CPU1: cpu@1 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_0>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+> >>> +                     power-domains = <&CPU_PD1>;
+> >>> +                     power-domain-names = "psci";
+> >>>                };
+> >>>
+> >>>                CPU2: cpu@2 {
+> >>> @@ -73,6 +77,8 @@ CPU2: cpu@2 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_0>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+> >>> +                     power-domains = <&CPU_PD2>;
+> >>> +                     power-domain-names = "psci";
+> >>>                };
+> >>>
+> >>>                CPU3: cpu@3 {
+> >>> @@ -85,6 +91,8 @@ CPU3: cpu@3 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_0>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+> >>> +                     power-domains = <&CPU_PD3>;
+> >>> +                     power-domain-names = "psci";
+> >>>                };
+> >>>
+> >>>                CPU4: cpu@100 {
+> >>> @@ -97,6 +105,8 @@ CPU4: cpu@100 {
+> >>>                        dynamic-power-coefficient = <282>;
+> >>>                        next-level-cache = <&L2_1>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+> >>> +                     power-domains = <&CPU_PD4>;
+> >>> +                     power-domain-names = "psci";
+> >>>                        L2_1: l2-cache {
+> >>>                                compatible = "cache";
+> >>>                                cache-level = <2>;
+> >>> @@ -113,6 +123,8 @@ CPU5: cpu@101 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_1>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+> >>> +                     power-domains = <&CPU_PD5>;
+> >>> +                     power-domain-names = "psci";
+> >>>                };
+> >>>
+> >>>                CPU6: cpu@102 {
+> >>> @@ -125,6 +137,8 @@ CPU6: cpu@102 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_1>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+> >>> +                     power-domains = <&CPU_PD6>;
+> >>> +                     power-domain-names = "psci";
+> >>>                };
+> >>>
+> >>>                CPU7: cpu@103 {
+> >>> @@ -137,6 +151,8 @@ CPU7: cpu@103 {
+> >>>                        enable-method = "psci";
+> >>>                        next-level-cache = <&L2_1>;
+> >>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+> >>> +                     power-domains = <&CPU_PD7>;
+> >>> +                     power-domain-names = "psci";
+> >>>                };
+> >>>
+> >>>                cpu-map {
+> >>> @@ -176,6 +192,68 @@ core3 {
+> >>>                                };
+> >>>                        };
+> >>>                };
+> >>> +
+> >>> +             idle-states {
+> >>> +                     entry-method = "psci";
+> >>> +
+> >>> +                     LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> >>> +                             compatible = "arm,idle-state";
+> >>> +                             idle-state-name = "silver-rail-power-collapse";
+> >>> +                             arm,psci-suspend-param = <0x40000003>;
+> >>> +                             entry-latency-us = <290>;
+> >>> +                             exit-latency-us = <376>;
+> >>> +                             min-residency-us = <1182>;
+> >>> +                             local-timer-stop;
+> >>> +                     };
+> >>> +
+> >>> +                     BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> >>> +                             compatible = "arm,idle-state";
+> >>> +                             idle-state-name = "gold-rail-power-collapse";
+> >>> +                             arm,psci-suspend-param = <0x40000003>;
+> >>> +                             entry-latency-us = <297>;
+> >>> +                             exit-latency-us = <324>;
+> >>> +                             min-residency-us = <1110>;
+> >>> +                             local-timer-stop;
+> >>> +                     };
+> >>> +             };
+> >>> +
+> >>> +             domain-idle-states {
+> >>> +                     CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
+> >>> +                             /* GDHS */
+> >>> +                             compatible = "domain-idle-state";
+> >>> +                             arm,psci-suspend-param = <0x40000022>;
+> >> This 0x22 ending seems very sus.
+> >>
+> >> The last nibble represents the core-level power state and the
+> >> penultimate one represents the same at cluster level. A value
+> >> of 2 in that cluster nibble is actually undefined by the PSCI spec,
+> >> whereas the value of 4 (as you have in all of the other idle
+> >> states, including D3G for the perf cluster) corresponds to
+> >> "Retention", so unless there's a very weird nuance in the
+> >> TZ for this SoC, it should probably end in 0x42.
+> >>
+> >> Otherwise I think this LGTM now!
+> >
+> > I am also learning by experiment about the exact values to use here,
+> > as the only ready reckoner of how these values are calculated, seems
+> > to be available via [1].
+> >
+> > Also it seems the downstream code uses the following approach to
+> > calculate the LPM state suspend-param, which for example for
+> > CLUSTER_0_SLEEP_1 states turns out to be:
+> >
+> >      state_id = get_cluster_id(cpu->parent, &affinity_level, from_idle); = 0x40
+> >      power_state = (is-reset << 30) = 0x40000000
+> >      affinity_level = (affinity level & 0x3) << 24 = 0x1000000
+> >      state_id += power_state + affinity_level + psci_id;
+> >
+> >      = 0x40000000 + 0x1000000 + 0x40 + 0x4 = 0x41000044
+> >
+> > For the D3G cases as well, I just used the 'qcom,psci-mode = <2>'
+> > value as provided in downstream code (see [2]), for the overall
+> > calculations.
+> >
+> > Also, the only usage of D3G state I could find upstream (in qcom dtsi
+> > files0 is for 'msm8916' (see [3]), which also uses the value with
+> > ending 0x2 -> 'arm,psci-suspend-param = <0x41000032>'
+>
+> D3G has min-child-idx = 1, so the end PSCI param should be 0x41000023
+> D3 is 0x41000043
 
-I love your patch! Yet something to improve:
+Ok, let me recheck at my end as well.
 
-[auto build test ERROR on jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mpr-sensors/20230401-171226
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/ZCf085W4XL2PtQf6%40arbad
-patch subject: [PATCH 2/3] iio: pressure: Honeywell mpr pressure sensor
-config: arm-buildonly-randconfig-r004-20230401 (https://download.01.org/0day-ci/archive/20230402/202304021013.6NytoSFn-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/6a49dae45811d8a644c56dc18b6cdbc6ea67df98
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mpr-sensors/20230401-171226
-        git checkout 6a49dae45811d8a644c56dc18b6cdbc6ea67df98
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304021013.6NytoSFn-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "__aeabi_ldivmod" [drivers/iio/pressure/mpr.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Thanks
+Bhupesh
