@@ -2,47 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C1E6D37B5
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 13:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DAC76D37C0
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 13:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbjDBLoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 07:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43632 "EHLO
+        id S229945AbjDBLzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 07:55:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbjDBLoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 07:44:09 -0400
-Received: from smtp.smtpout.orange.fr (smtp-15.smtpout.orange.fr [80.12.242.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4864B22E90
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 04:44:07 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-        by smtp.orange.fr with ESMTPA
-        id iw7tpzqjOuZFDiw7upFXdu; Sun, 02 Apr 2023 13:44:05 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 02 Apr 2023 13:44:05 +0200
-X-ME-IP: 86.243.2.178
-Message-ID: <a4927787-4fcc-27c5-c838-760e0b07a334@wanadoo.fr>
-Date:   Sun, 2 Apr 2023 13:44:01 +0200
+        with ESMTP id S229503AbjDBLzM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 07:55:12 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBA3D308
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 04:55:10 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-544f7c176easo502228947b3.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 04:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680436510;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QCb+PvVz9vDjaUXWhXFHA5eliELDec/Jtrdt7VRzzHI=;
+        b=P+CWpB2UIFi7fSl+IhvqqE3HDSFwVgZ3g5oitw7gV4Iw2zlCjzmspx475zX0JXaEv4
+         UBIRKMn+PaS38WH5q/AYJC0FQJWSeYnCOlN4e6pPOYrExnxzxkt/MiNby+G8VC2lSkj2
+         OTIKTgCjCWa7+Rp20UKuhgeme84Pb50kS3qZMeuwIxT+v38Km+/7GZjns44qwrJJYpMD
+         buVJBeMjH3dbBm5Y7jFdGTqw6U4vSSTlgOCttNXMr8+fefXoX1X76agn09SEDCoHbNmL
+         D7j4/To5+q8MPj0hfZQxrB4QT8vYp6IFuMD4Lohk3vLEbcTH+ZT7Ndt6INxABBUJMcBH
+         g+ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680436510;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QCb+PvVz9vDjaUXWhXFHA5eliELDec/Jtrdt7VRzzHI=;
+        b=1ZSqn/990Bl13D/gOxlsLiDx53BkALZC5Ob3OR1oHjcZzI/OolRt67Sg3xr1qFckJ5
+         CW41q1Xm+0eTx3y1T6xsa/u+0bnuUGLyMypD6+hEVY8cugOrg2NHRu3EViYKLZ+XIS9a
+         oHSttZopZqhBf2KxSdkGKIwzlJ+O4JI22VMF3yIchXD69eJbIzHwvAY3Su1l3msIGBX4
+         KAYRhhxAFjvtRs1Iz5orTEhBIIWU2lN7PTn+Z+tBbaQRxgj6H19i0YhHWPLa3XiseD+O
+         IXT8eDvqkY4RlMxfAE07mR6vPxUPdu2l5F5Fb3BUHn/rjADFLbCzR97/vYY07ayMFN8x
+         9hKQ==
+X-Gm-Message-State: AAQBX9d/h6iSHNGQAq9TH5G4f8cZM6H6ktBg5IWhrb1ASnTc/sLA6SPL
+        zmQLHpBLAju5cs+KXpTTXolzTf0HKOweTGxSFEXgv46YQc1Ha1h/TNg=
+X-Google-Smtp-Source: AKy350b5CVIF0s9p1uDLO//v8xxaCU59UCLNsAz4bzleOn08Q3r/xLEZFSD+qiYv3wKgQFzHm4Dux3TWxzNRWXM2G7g=
+X-Received: by 2002:a81:7e10:0:b0:52f:184a:da09 with SMTP id
+ o16-20020a817e10000000b0052f184ada09mr8060907ywn.2.1680436510167; Sun, 02 Apr
+ 2023 04:55:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 2/2] spi: loongson: add bus driver for the loongson spi
- controller
-Content-Language: fr
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, liupeibao@loongson.cn,
-        loongson-kernel@lists.loongnix.cn, lvjianmin@loongson.cn,
-        robh+dt@kernel.org, wanghongliang@loongson.cn
-References: <20230401095652.17364-1-zhuyinbo@loongson.cn>
- <20230401095652.17364-3-zhuyinbo@loongson.cn>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20230401095652.17364-3-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-10-dmitry.baryshkov@linaro.org> <127c7d41-b7dc-6c9a-0653-f5bf2a626907@linaro.org>
+In-Reply-To: <127c7d41-b7dc-6c9a-0653-f5bf2a626907@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 2 Apr 2023 14:54:59 +0300
+Message-ID: <CAA8EJpqg15KVx+H_29kJO-KfDEN3LFHZCfpfTWM40WMa2PoAXw@mail.gmail.com>
+Subject: Re: [PATCH v2 09/22] arm64: dts: qcom: pmk8350: allow overriding the label
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,138 +73,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 01/04/2023 à 11:56, Yinbo Zhu a écrit :
-> This bus driver supports the Loongson spi hardware controller in the
-> Loongson platforms and supports to use DTS and PCI framework to
-> register spi device resources.
-> 
-> Signed-off-by: Yinbo Zhu <zhuyinbo-cXZgJK919ebM1kAEIRd3EQ@public.gmane.org>
-> ---
+On Sun, 2 Apr 2023 at 12:44, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
+> > sc8280xp-pmics.dtsi incorporates a copy of pmk8350, but the dts files
+> > use labels following the markings found in the schematics. Allow
+> > overriding the labels in pmk8350.dtsi.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi | 13 +++++++++
+> >  arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi | 14 ++++++++++
+> >  arch/arm64/boot/dts/qcom/pmk8350.dtsi         | 28 +++++++++++--------
+> >  3 files changed, 44 insertions(+), 11 deletions(-)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> >  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> > new file mode 100644
+> > index 000000000000..1c81269f0783
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> > @@ -0,0 +1,13 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +/* cleanly revert the effects pmic-dyn-header.dtsi */
+> > +
+> > +#undef LABEL
+> > +#undef _LABEL
+> > +#undef __LABEL
+>
+> That makes the code less readable.
+>
+> > +
+> > +#undef PMIC_SID
+> > +#undef PMIC_LABEL
+>
+> And it keeps growing and confusing.
+>
+> > diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+> > new file mode 100644
+> > index 000000000000..75f0448568bd
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+> > @@ -0,0 +1,14 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +/*
+> > + * Preprocessor symbols to assist in describing PMICs which have configurable
+> > + * SID. All effects of this header (or its parameters) must be reverted in
+> > + * pmic-dyn-footer.dtsi.
+> > + */
+> > +
+> > +#define LABEL(name) _LABEL(PMIC_LABEL, name)
+> > +#define _LABEL(pmic, name) __LABEL(pmic, name)
+> > +#define __LABEL(pmic, name) pmic ## _ ## name
+>
+> No, defines in DTS should be simple. This makes it ungrepable.
 
-[...]
+I see. I still think that we should remove this duplication. Would you
+prefer for me to define all pmk8350.dtsi labels individually? What
+kind of approach could you possibly propose?
 
-> +int loongson_spi_init_master(struct device *dev, struct resource *res)
-> +{
-> +	struct spi_master *master;
-> +	struct loongson_spi *spi;
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	master = spi_alloc_master(dev, sizeof(struct loongson_spi));
 
-devm_spi_alloc_master()?
-(to simplify code and be consistent with devm_ function below)
-
-> +	if (master == NULL) {
-> +		dev_dbg(dev, "master allocation failed\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-> +	master->setup = loongson_spi_setup;
-> +	master->prepare_message = loongson_spi_prepare_message;
-> +	master->transfer_one = loongson_spi_transfer_one;
-> +	master->unprepare_message = loongson_spi_unprepare_message;
-> +	master->set_cs = loongson_spi_set_cs;
-> +	master->num_chipselect = 4;
-> +	master->dev.of_node = of_node_get(dev->of_node);
-> +	dev_set_drvdata(dev, master);
-> +
-> +	spi = spi_master_get_devdata(master);
-> +
-> +	spi->master = master;
-> +
-> +	spi->base = devm_ioremap(dev, res->start, resource_size(res));
-> +	if (spi->base == NULL) {
-> +		dev_err(dev, "cannot map io\n");
-> +		ret = -ENXIO;
-> +		goto free_master;
-> +	}
-> +
-> +	clk = devm_clk_get(dev, NULL);
-> +	if (!IS_ERR(clk))
-> +		spi->clk_rate = clk_get_rate(clk);
-> +
-> +	loongson_spi_reginit(spi);
-> +
-> +	spi->mode = 0;
-> +	if (of_get_property(dev->of_node, "spi-nocs", NULL))
-> +		spi->mode |= SPI_NO_CS;
-> +
-> +	ret = spi_register_master(master);
-> +	if (ret < 0)
-> +		goto free_master;
-> +
-> +	return ret;
-> +
-> +free_master:
-> +	kfree(master);
-> +	spi_master_put(master);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(loongson_spi_init_master);
-
-[...]
-
-> diff --git a/drivers/spi/spi-loongson-pci.c b/drivers/spi/spi-loongson-pci.c
-> new file mode 100644
-> index 000000000000..b811de769ecb
-> --- /dev/null
-> +++ b/drivers/spi/spi-loongson-pci.c
-> @@ -0,0 +1,89 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// PCI interface driver for Loongson SPI Support
-> +// Copyright (C) 2023 Loongson Technology Corporation Limited
-> +
-> +#include <linux/pci.h>
-> +
-> +#include "spi-loongson.h"
-> +
-> +static int loongson_spi_pci_register(struct pci_dev *pdev,
-> +			const struct pci_device_id *ent)
-> +{
-> +	int ret;
-> +	unsigned char v8;
-> +	struct resource res[2];
-> +	struct device *dev = &pdev->dev;
-> +
-> +	ret = pci_enable_device(pdev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "cannot enable pci device\n");
-> +		goto err_out;
-> +	}
-> +
-> +	ret = pci_request_region(pdev, 0, "loongson-spi io");
-> +	if (ret < 0) {
-> +		dev_err(dev, "cannot request region 0.\n");
-> +		goto err_out;
-> +	}
-> +
-> +	res[0].start = pci_resource_start(pdev, 0);
-> +	res[0].end = pci_resource_end(pdev, 0);
-> +	ret = pci_read_config_byte(pdev, PCI_INTERRUPT_LINE, &v8);
-> +
-> +	if (ret == PCIBIOS_SUCCESSFUL) {
-> +		res[1].start = v8;
-> +		res[1].end = v8;
-> +	}
-> +
-> +	ret = loongson_spi_init_master(dev, res);
-> +	if (ret)
-> +		dev_err(dev, "failed to initialize master\n");
-> +
-> +err_out:
-> +	return ret;
-> +}
-> +
-> +static void loongson_spi_pci_unregister(struct pci_dev *pdev)
-> +{
-> +	pci_release_region(pdev, 0);
-
-pci_disable_device()?
-
-> +}
-
-CJ
-
+-- 
+With best wishes
+Dmitry
