@@ -2,256 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4EC6D36D2
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 12:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FB266D36DB
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 12:07:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230375AbjDBKEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 06:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
+        id S230392AbjDBKHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 06:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbjDBKEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 06:04:05 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF9EE9
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 03:04:03 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id ew6so106286940edb.7
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 03:04:03 -0700 (PDT)
+        with ESMTP id S229492AbjDBKHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 06:07:23 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4933830D6
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 03:07:20 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id y2so17316960pfw.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 03:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680429842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rWWy4/C/MQgzPNUE4XEgKsI2Wpmjz+E0b50/BZkhNms=;
-        b=zHfMH1RqOgycPSQTA7+6D3Fz+l9Qn/YMk8q5q0EmI2US6wbZZ4i7Q/+cacvqPL3GKW
-         1wQCaYv6ZapFjulMoPRBonzpFwCnLMc/WykELnBqXARckdOwOexryIbiNZMZO+6Q/32L
-         RcC1QyQ3eNb3mweLXEJoXBFYkIK6Ala2COTplA1m0UB+JRTBallbGDPshUlTJaId6tua
-         NKoUYqvvw5MXAsDOIXxWQ1W8HC5OKccsPMr1Xm4IYdCWWyyIYGc94nWrICRhqCTOTXl9
-         /9xYG/nj7odPI05+QBe/VcfWNbdhBPCacQ6PUemuIA6Rhg0gBwlSevam5oL6wYcEMjKC
-         ZtmQ==
+        d=linaro.org; s=google; t=1680430040;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LbcpNdii47h7TS2sDEqIBCRRzLggrrEsT68ykuaA9G4=;
+        b=R86U4rubSlMu45rTmKuGAh1ipkQWxDqIc2yaQZ85Du3zUVU3JZp41800pHfCldruTL
+         KPKq6BNNFQ0rySvQyQyESWp2hOy0Nwk44tENFq9vQTsgIaBZzTjP8Y1N7/7A4QRta6Yh
+         dDSdteaVIY/4BHTJ7zM8AKmN8uefWwklMnLqydTVxfws2kPecGsNB+/AktaX8JcQ4a1u
+         lpyTQdyxhvpm71bo+GQV56pqgnvM3Nf5Y9NVLsy8YJytVkCo/IlJMC9yEuIfcsHAgjIl
+         8JM117lDSm3WacL7KxP27R3suAD4W247audx3IXuGvHIkJAQAwCCj+Rhyn3KPqJ12ut5
+         yimQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680429842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rWWy4/C/MQgzPNUE4XEgKsI2Wpmjz+E0b50/BZkhNms=;
-        b=gk9Jp23gUfmW8Tx9ohu/PqTCG+s/v6rW6dRGS4a4/EpmWvWfYt/uqFWoqhZ1Zqcjax
-         tz6XQ5ZeOjH5HCYsftCOgIB1cnlJv3wGnihkJ6Uz7T3btFVVloZ4ogAtB4Fv9nwJcrRn
-         gzLVYOWVR7O2M/bpIoVa3nu0KKp/RHOfYMEE8RlANfLitjE35/Idw8BWE6ciGH2m5b40
-         P7pmPpONuuQwbWFVDN7k4VymHqGp+Jg8Sts/a+xsMaWGeCFyuzz2bf1/zpa1Wjk6mAZA
-         Zit62OoLWTMc0ou5E0BGPXmy52bMFPMcAUMH3FQswcY9TKBY9Nv7JrbMgvaj2w1GcLYV
-         BsKA==
-X-Gm-Message-State: AAQBX9e/Xtm0FvtqwQLItG8hXOUMdRQ4XlSinrJqlMcomjOMWxQbWqT1
-        adjsCVXthp4BN0Dgq/c5Z8cudw==
-X-Google-Smtp-Source: AKy350Z6ozQ06SwDgcfVTIcnq2kml/s8Zkv04sjL3OVXwXRjTz5RHdXAIaCfn+dtxdMEcd1GVqU9Yw==
-X-Received: by 2002:a17:906:3a43:b0:932:aa80:406 with SMTP id a3-20020a1709063a4300b00932aa800406mr36073258ejf.32.1680429841864;
-        Sun, 02 Apr 2023 03:04:01 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
-        by smtp.gmail.com with ESMTPSA id z95-20020a509e68000000b004c10b4f9ebesm3109562ede.15.2023.04.02.03.04.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Apr 2023 03:04:01 -0700 (PDT)
-Message-ID: <9fcb66fa-aadc-8660-bd4a-452c4811ced9@linaro.org>
-Date:   Sun, 2 Apr 2023 12:04:00 +0200
+        d=1e100.net; s=20210112; t=1680430040;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LbcpNdii47h7TS2sDEqIBCRRzLggrrEsT68ykuaA9G4=;
+        b=i0I3KqO9gc+//0X7swGB2m2vfNU4854PFT0AXn7sWMRp/iJHHwpczTJPW9Fu7qI86T
+         3Ka5nVdWYqnYldorpf/dZqUkf+PFVC4kALRlRKcGOcskmW7ZYtxbm6Q47Z/kDt0Ja4Hh
+         A01ajl6/G4tBNgFJvMz9DF1nbUEv0xjeEQw+yvQFT/oXiICccRiSicyYZw/DQmipq84o
+         LkbU0OQnUutDeD0xCAByLc1TtxYgJqMVgLPwGAJvNzrANu7AlqOlQlP70XvvxQa6s8D2
+         GmuLcmExNAYfpsY5DewCq2ZB1ewQbZT8m/V+ZVKgD8SLwJ/+swPJjzSSb/rFDLcSFIE5
+         jPxg==
+X-Gm-Message-State: AAQBX9dP4HCjEr4gyrfVyFZOcI4jj6uH5JABsbNK8MLqRLcFUb3aYXP0
+        GAuIQeWypBa7nSPGfs+YPfnMvA==
+X-Google-Smtp-Source: AKy350ZBYGQQN100axzsFpPvHBD8jqrHFqg3mLi4YgSLtrKJamjsjGuvXDq36mOgNs3Fq6UKyxZbYw==
+X-Received: by 2002:a62:1c49:0:b0:626:80f:7a0d with SMTP id c70-20020a621c49000000b00626080f7a0dmr31584270pfc.8.1680430039671;
+        Sun, 02 Apr 2023 03:07:19 -0700 (PDT)
+Received: from localhost.localdomain ([223.233.66.184])
+        by smtp.gmail.com with ESMTPSA id a26-20020a62bd1a000000b0062dba4e4706sm4788739pff.191.2023.04.02.03.07.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Apr 2023 03:07:19 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org
+Subject: [PATCH v5 00/11] arm64: qcom: Enable Crypto Engine for a few Qualcomm SoCs
+Date:   Sun,  2 Apr 2023 15:34:58 +0530
+Message-Id: <20230402100509.1154220-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 2/2] spi: loongson: add bus driver for the loongson spi
- controller
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230401095652.17364-1-zhuyinbo@loongson.cn>
- <20230401095652.17364-3-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230401095652.17364-3-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2023 11:56, Yinbo Zhu wrote:
-> This bus driver supports the Loongson spi hardware controller in the
-> Loongson platforms and supports to use DTS and PCI framework to
-> register spi device resources.
-> 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
+Changes since v4:
+-----------------
+- v4 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230331164323.729093-1-bhupesh.sharma@linaro.org/
+- Collected R-Bs from Konrad for a couple of patches sent in v4.
+- Fixed incorrect email IDs for a couple of patches sent in v3, which I used for
+  some patches created on a different work machine.
+- No functional changes since v3.
 
+Changes since v3:
+-----------------
+- v3 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230328092815.292665-1-bhupesh.sharma@linaro.org/
+- Collected Acks from Krzysztof for a couple of patches sent in v3.
+- Fixed review comments from Krzysztof regarding DMA binding document
+  and also added a couple of new patches which are required to fix the
+  'dtbs_check' errors highlighted after this fix.
 
-...
+Changes since v2:
+-----------------
+- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230322114519.3412469-1-bhupesh.sharma@linaro.org/
+- No functional change since v2. As the sdm845 patch from v1 was accepted in linux-next,
+  dropped it from this version.
 
-> +
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/kernel.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/clk.h>
-> +#include <linux/io.h>
-> +
-> +#include "spi-loongson.h"
-> +
-> +static inline void loongson_spi_write_reg(struct loongson_spi *spi, unsigned char reg,
-> +					  unsigned char data)
-> +{
-> +	writeb(data, spi->base + reg);
+Changes since v1:
+-----------------
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230321190118.3327360-1-bhupesh.sharma@linaro.org/
+- Folded the BAM DMA dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230321184811.3325725-1-bhupesh.sharma@linaro.org/)
+- Folded the QCE dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230320073816.3012198-1-bhupesh.sharma@linaro.org/)
+- Folded Neil's SM8450 dts patch in this series.
+- Addressed review comments from Rob, Stephan and Konrad.
+- Collected Konrad's R-B for [PATCH 5/9].
 
-This wrapper does not simplify anything.
+This patchset enables Crypto Engine support for Qualcomm SoCs like
+SM6115, SM8150, SM8250, SM8350 and SM8450.
 
-> +}
-> +
-> +static inline char loongson_spi_read_reg(struct loongson_spi *spi, unsigned char reg)
-> +{
-> +	return readb(spi->base + reg);
+Note that:
+- SM8250 crypto engine patch utilizes the work already done by myself and
+  Vladimir.
+- SM8350 crypto engine patch utilizes the work already done by Robert.
+- SM8450 crypto engine patch utilizes the work already done by Neil.
 
-Neither this one.
+Also this patchset is rebased on linux-next/master.
 
-> +}
-> +
-> +static void loongson_spi_set_cs(struct spi_device *spi, bool val)
-> +{
-> +	int cs;
-> +	struct loongson_spi *loongson_spi = spi_master_get_devdata(spi->master);
-> +
+Bhupesh Sharma (10):
+  dt-bindings: dma: Add support for SM6115 and QCM2290 SoCs
+  dt-bindings: dma: Increase iommu maxItems for BAM DMA
+  arm64: dts: qcom: sdm8550: Fix the BAM DMA engine compatible string
+  arm64: dts: qcom: sdm845: Fix the slimbam DMA engine compatible string
+  dt-bindings: qcom-qce: Fix compatible combinations for SM8150 and
+    IPQ4019 SoCs
+  dt-bindings: qcom-qce: Add compatibles for SM6115 and QCM2290
+  arm64: dts: qcom: sm6115: Add Crypto Engine support
+  arm64: dts: qcom: sm8150: Add Crypto Engine support
+  arm64: dts: qcom: sm8250: Add Crypto Engine support
+  arm64: dts: qcom: sm8350: Add Crypto Engine support
 
-(...)
+Neil Armstrong (1):
+  arm64: dts: qcom: sm8450: add crypto nodes
 
-> +
-> +static int __init loongson_spi_pci_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = pci_register_driver(&loongson_spi_pci_driver);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static void __exit loongson_spi_pci_exit(void)
-> +{
-> +	pci_unregister_driver(&loongson_spi_pci_driver);
-> +}
-> +
-> +module_init(loongson_spi_pci_init);
-> +module_exit(loongson_spi_pci_exit);
+ .../devicetree/bindings/crypto/qcom-qce.yaml  |  8 ++++++
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 22 +++++++++------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          | 28 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  2 +-
+ 9 files changed, 140 insertions(+), 10 deletions(-)
 
-module_xxx_driver?
-
-> +
-> +MODULE_DESCRIPTION("Loongson spi pci driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/spi/spi-loongson-plat.c b/drivers/spi/spi-loongson-plat.c
-> new file mode 100644
-> index 000000000000..8f4aa70168f3
-> --- /dev/null
-> +++ b/drivers/spi/spi-loongson-plat.c
-> @@ -0,0 +1,66 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Platform driver for Loongson SPI Support
-> +// Copyright (C) 2023 Loongson Technology Corporation Limited
-> +
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +
-> +#include "spi-loongson.h"
-> +
-> +static int loongson_spi_platform_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (res == NULL) {
-> +		dev_err(dev, "cannot get io resource memory\n");
-> +		return -ENOENT;
-> +	}
-> +
-> +	ret = loongson_spi_init_master(dev, res);
-> +	if (ret)
-> +		dev_err(dev, "failed to initialize master\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id loongson_spi_id_table[] = {
-> +	{ .compatible = "loongson,ls2k-spi", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, loongson_spi_id_table);
-> +
-> +static struct platform_driver loongson_spi_plat_driver = {
-> +	.probe = loongson_spi_platform_probe,
-> +	.driver	= {
-> +		.name	= "loongson-spi",
-> +		.owner	= THIS_MODULE,
-
-Really? We get rid of it years ago. I bet you did not run coccicheck,
-smatch, sparse...
-
-> +		.bus = &platform_bus_type,
-> +		.pm = &loongson_spi_dev_pm_ops,
-> +		.of_match_table = loongson_spi_id_table,
-> +	},
-> +};
-> +
-> +static int __init loongson_spi_plat_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = platform_driver_register(&loongson_spi_plat_driver);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static void __exit loongson_spi_plat_exit(void)
-> +{
-> +	platform_driver_unregister(&loongson_spi_plat_driver);
-> +}
-> +
-> +module_init(loongson_spi_plat_init);
-> +module_exit(loongson_spi_plat_exit);
-
-module_platform_driver.
-
-> +
-> +MODULE_DESCRIPTION("Loongson spi platform driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/spi/spi-loongson.h b/drivers/spi/spi-loongson.h
-> new file mode 100644
-> index 000000000000..44818340188d
-> --- /dev/null
-> +++ b/drivers/spi/spi-loongson.h
-> @@ -0,0 +1,41 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/* Header File for Loongson SPI Driver. */
-> +/* Copyright (C) 2023 Loongson Technology Corporation Limited */
-> +
-> +#ifndef __LINUX_SPI_LOONGSON_H
-> +#define __LINUX_SPI_LOONGSON_H
-> +
-> +#define	LOONGSON_SPI_SPCR_REG	0x00
-
-There is just one space after #define.
-
-
-Best regards,
-Krzysztof
+-- 
+2.38.1
 
