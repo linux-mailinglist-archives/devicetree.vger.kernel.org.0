@@ -2,90 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 816F16D35BC
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 08:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 728DC6D3612
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 10:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbjDBGJZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 2 Apr 2023 02:09:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53254 "EHLO
+        id S229492AbjDBIMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 04:12:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjDBGJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 02:09:24 -0400
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0310B762;
-        Sat,  1 Apr 2023 23:09:23 -0700 (PDT)
-Received: by mail-ed1-f52.google.com with SMTP id h8so105379110ede.8;
-        Sat, 01 Apr 2023 23:09:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680415761;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6rTS/ruyRiwSLe4zYoc3zyVGgTu2JSYGkMmye5BXjHs=;
-        b=1Bh8wEkgt3sYzSOM6kgMooEIzRr67A4ZPgyhAkf61rTWTDlITVSVk26g5SLLojh2XT
-         FwZSr1r9pUUarjOIqQR7s2KvPcjHASgMPB4078jI/3jGEozcxNz2lfh3KDMxc28GBbqa
-         WaklIJg718frf7CwKLOIyLWoAKpQ0H4ZkW/K9l6IG0FiIkgqHlyXAWywqSwDhs/65oyt
-         IaWss7YIlwpyL/rowzFzSZ62vB12OFttF5gWmVGnIVKXRp8GMywJv3OG2ipBNlqstvDt
-         YxtVJonCR6ZImkfi78mdAIj7pCNxMoPKZvKS58+OEFY2ImuU4ldJbYyTWG7vTKCPFGBP
-         tR3A==
-X-Gm-Message-State: AAQBX9coEs/y+ecFYGe/HN0Bsl7BJkHGWaZm6Gzh7Boo7nFpRdGEoQG4
-        OxH0dY9/lNhh29ELApohSx0KKGv5QUgvIA==
-X-Google-Smtp-Source: AKy350aUIsqQNq8Vogl7eQmHCwbAYMDF3GsYpLyFzTzRpoJ2emJVeVIOg+1OyouL2FQtmW/9COCdpg==
-X-Received: by 2002:a17:907:8c83:b0:931:41af:8ecb with SMTP id td3-20020a1709078c8300b0093141af8ecbmr34040289ejc.49.1680415761386;
-        Sat, 01 Apr 2023 23:09:21 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id g1-20020a170906394100b00933356c681esm2856336eje.150.2023.04.01.23.09.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Apr 2023 23:09:21 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id i9so26209433wrp.3;
-        Sat, 01 Apr 2023 23:09:20 -0700 (PDT)
-X-Received: by 2002:adf:efc8:0:b0:2e6:e4df:a7bd with SMTP id
- i8-20020adfefc8000000b002e6e4dfa7bdmr646032wrp.7.1680415760483; Sat, 01 Apr
- 2023 23:09:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230401001850.4988-1-andre.przywara@arm.com> <20230401001850.4988-2-andre.przywara@arm.com>
-In-Reply-To: <20230401001850.4988-2-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Sun, 2 Apr 2023 14:09:09 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65t1bsfvg8WhfcuwsnAnbq4tXKz1YCKL719VHDd2D=8pg@mail.gmail.com>
-Message-ID: <CAGb2v65t1bsfvg8WhfcuwsnAnbq4tXKz1YCKL719VHDd2D=8pg@mail.gmail.com>
-Subject: Re: [PATCH v10 1/3] dt-bindings: mfd: x-powers,axp152: Document the
- AXP313a variant
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229459AbjDBIMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 04:12:18 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C66EB7E;
+        Sun,  2 Apr 2023 01:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680423137; x=1711959137;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vJzYzObt+0tswbNIyNBkxTex9FQdktq8tuwEvNZt8w8=;
+  b=h35jMJO6lghJNWfxHwKKdL5AYmS5rnQ1Ei3cmUnlZtSzHfvCff1sHp1K
+   AdoYYDoVl8kE1ox8wFfScz3tH3i8ZaWZLdtptesYMaUcrUN+ZuQmeXZAH
+   m12+GGRj29LnHh3Xf8H+Lo/Q9RCVQEc8KAbXn3ByLHSGwj6cyTmL5STUy
+   m4javTMFjoEWLAbUM9io30SKQMbW5+AomzkZOsSqYLW0IH4Vwz0nspgK8
+   4rBGZv5gpNMnCBlO4jyo1HK7mN8NmgY+tRnv4QEqwjcbUY9P3cYcb22s8
+   joFjNQ/OAW0FINvIlXBsiuBhF30JwHKmtsGuU2z5MNYUjMDTT47BRiCa+
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="340444910"
+X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; 
+   d="scan'208";a="340444910"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2023 01:12:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="931673352"
+X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; 
+   d="scan'208";a="931673352"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmsmga006.fm.intel.com with ESMTP; 02 Apr 2023 01:12:14 -0700
+Date:   Sun, 2 Apr 2023 16:00:34 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-fpga@vger.kernel.org, conor@kernel.org,
+        Daire McNamara <daire.mcnamara@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        martin.botka1@gmail.com, Shengyu Qu <wiagn233@outlook.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Tom Rix <trix@redhat.com>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] PolarFire SoC Auto Update Support
+Message-ID: <ZCk2IgDjHRUlyD+t@yilunxu-OptiPlex-7050>
+References: <20230331071823.956087-1-conor.dooley@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230331071823.956087-1-conor.dooley@microchip.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 1, 2023 at 8:19 AM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> From: Martin Botka <martin.botka@somainline.org>
->
-> The X-Powers AXP313a is a PMIC used on some devices with the Allwinner
-> H616 or H313 SoC.
-> According to the datasheet, the DC/DC converter PWM frequency is fixed
-> (to 3 MHz), so disallow the property that lets us set this frequency
-> for the other PMICs.
->
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On 2023-03-31 at 08:18:16 +0100, Conor Dooley wrote:
+> Hey all,
+> 
+> This patchset adds support for the "Auto Update" feature on PolarFire
+> SoC that allows for writing an FPGA bistream to the SPI flash connected
+> to the system controller.
+> On powercycle (or reboot depending on how the firmware implements the
+> openSBI SRST extension) "Auto Update" will take place, and program the
+> FPGA with the contents of the SPI flash - provided that that image is
+> valid and an actual upgrade from that already programmed!
+> 
+> Unfortunately, this series is not really testable yet - the Engineering
+> Sample silicon on most dev boards has a bug in the QSPI controller
+> connected to the system controller's flash and cannot access it.
+> Pre-production and later silicon has this bug fixed.
+> 
+> I previously posted an RFC about my approach in this driver, since as a
+> flash-based FPGA we are somewhat different to the existing
+> self-reprogramming drivers here. That RFC is here:
+> https://lore.kernel.org/linux-fpga/20221121225748.124900-1-conor@kernel.org/
+> 
+> This series depends on the following fixes:
+> https://lore.kernel.org/all/d7c3ec51-8493-444a-bdec-2a30b0a15bdc@spud/
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Is that series already merged? If yes, just remove this line.
+If no, either put all of them in one series, or still make this series
+as RFC until the dependency is resolved.
+
+Thanks,
+Yilun
+
+> 
+> The patch adding the driver depends on the soc patches earlier in the
+> series, so taking both through the same tree makes sense. Depending on
+> sequencing with the dependencies, me taking it through the soc tree
+> (with Acks etc of course) may make the most sense.
+> 
+> Cheers,
+> Conor.
+> 
+> Changes in v2:
+> - per Russ' suggestion, the driver has been switched to using the
+>   firmware-upload API rather than the fpga one
+> - as a result of that change, the structure of the driver has changed
+>   significantly, although most of that is reshuffling existing code
+>   around
+> - check if the upgrade is possible in probe and fail if it isn't
+> - only write the image index if it is not already set
+> - delete the now unneeded debugfs bits
+> 
+> CC: Conor Dooley <conor.dooley@microchip.com>
+> CC: Daire McNamara <daire.mcnamara@microchip.com>
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Moritz Fischer <mdf@kernel.org>
+> CC: Wu Hao <hao.wu@intel.com>
+> CC: Xu Yilun <yilun.xu@intel.com>
+> CC: Tom Rix <trix@redhat.com>
+> CC; Russ Weight <russell.h.weight@intel.com>
+> CC: linux-riscv@lists.infradead.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> CC: linux-fpga@vger.kernel.org
+> 
+> Conor Dooley (7):
+>   soc: microchip: mpfs: add a prefix to rx_callback()
+>   dt-bindings: soc: microchip: add a property for system controller
+>     flash
+>   soc: microchip: mpfs: enable access to the system controller's flash
+>   soc: microchip: mpfs: print service status in warning message
+>   soc: microchip: mpfs: add auto-update subdev to system controller
+>   fpga: add PolarFire SoC Auto Update support
+>   riscv: dts: microchip: add the mpfs' system controller qspi &
+>     associated flash
+> 
+>  .../microchip,mpfs-sys-controller.yaml        |  10 +
+>  .../boot/dts/microchip/mpfs-icicle-kit.dts    |  21 +
+>  arch/riscv/boot/dts/microchip/mpfs.dtsi       |  24 +-
+>  drivers/fpga/Kconfig                          |  11 +
+>  drivers/fpga/Makefile                         |   3 +-
+>  drivers/fpga/microchip-auto-update.c          | 494 ++++++++++++++++++
+>  drivers/soc/microchip/Kconfig                 |   1 +
+>  drivers/soc/microchip/mpfs-sys-controller.c   |  37 +-
+>  include/soc/microchip/mpfs.h                  |   2 +
+>  9 files changed, 591 insertions(+), 12 deletions(-)
+>  create mode 100644 drivers/fpga/microchip-auto-update.c
+> 
+> -- 
+> 2.39.2
+> 
