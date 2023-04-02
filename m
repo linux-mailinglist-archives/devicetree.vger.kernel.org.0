@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D2316D39FA
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 21:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B5996D3A43
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 22:25:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230501AbjDBTXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 15:23:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33526 "EHLO
+        id S229503AbjDBUZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 16:25:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjDBTXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 15:23:06 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 334366194
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 12:23:05 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id o2so26076153plg.4
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 12:23:05 -0700 (PDT)
+        with ESMTP id S229498AbjDBUZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 16:25:48 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C18B753;
+        Sun,  2 Apr 2023 13:25:45 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id r7-20020a17090b050700b002404be7920aso26500166pjz.5;
+        Sun, 02 Apr 2023 13:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680463384;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vE40mJuVkISt0zg8IVAmmNvtPq9ArtEbvKSLEgCOttk=;
-        b=TwRPnhnCOOAGGbAVHaQktRGBNd5rGhboJlwb8g2O9KZjC16mMprKYOWUW9XavqNu1l
-         WLlsy1tJB2TGoEAEgh9LAQfguXiNxulkLPMms9K/HReh9z2cUhMMn7U6WNy8AEuvxicJ
-         swL1XeSl8x49Imx48UzHuYyy5ekGX8lakRsN2UxKGPCgt8YUNGYe1wLenJ3GPRAvAMJO
-         ad5t82wRD7wA17vilU8g1L9PZ1YF86uocyiLNCUz2ID9Rz0P1KHRO+NC3gRE4ZTWX8P5
-         59DZ2oybQNxkYf81/udJipsMVy7HZksSscJi8dBqfPuLpoSZgCvDc6Y52gA+YhgMTnuy
-         Wg5Q==
+        d=gmail.com; s=20210112; t=1680467145;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0DsL/zBRqxPzwYW1xlbJyW3fgq5H/wMYEgPOt72hbcQ=;
+        b=JJL/4gKUlB+EDrmdGZlbC1jz+27kAyWFXYi5QE2itDS70n3dKKpBlG5+H8Zc68dOF0
+         ctfaF/pXj+iAi677i+bxPEBCNwiATGOLjXQZ5f0bS5WBmt3uLh/0STx2EY3hKLsE6QfG
+         wVvIubAgfSBn/xRwaBQwpOXKNhiAWvk/yhfR7SnPz5NBfO6/p4Fssiz/SDGCBkNKodFu
+         QHfeGzE5VJ38VoIhteEi60M8Zx0E5LQu+vXCOvS+PF1BAYO+BLJ+5yTPTifCkIaFR2xC
+         FERc+F5lNGfUyatG99e1THh9yfVJXvp4xC9IFiNGKkxOh8JMkJtQmTj5DYKxqIZRFPGl
+         Bx+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680463384;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vE40mJuVkISt0zg8IVAmmNvtPq9ArtEbvKSLEgCOttk=;
-        b=JaWC46tnFC3g4rMw/ibF32EHGcevyzNMaLWFxnvjCdyYt0X6RJSscVcQFGFmZ+WEK3
-         yflYrFeOF5WjPshdvjPgXVty0iKfypZlgHyXuw85Rr3Sf40TzyoTNCR2ulGB5+nSQn3S
-         /a5T5XaqFbt9EXqpWD4TakxHMll80DxrJ2/wSj7/xdAO/vVJTG9hnXdSYYeQ4c8Dn9KQ
-         Yr4rntuzsXcUDMLCYWSGwd0BPxymRuxsMF4NwPtwQH9FoO4po6TEuF5rKAEx6yYYjMcW
-         OIf8eDCSdhobA142xA3isR7Euy+9UpXYPQkkb3O6wghv2lDE3Gp6J1cjtWYOFaRP+/4l
-         WnHg==
-X-Gm-Message-State: AAQBX9fsWPlLRZk6qnizUpO7ZafHpUcWtl3KpOr1g6MDlKvBNylpykY5
-        hIUS+nFsqCgngOBrRcvNh2DZVDLGXsmQvC6ONrY=
-X-Google-Smtp-Source: AKy350Zd+/wW23AwEjuqo3eWsl5u+NrmVu1w/cHtr2A4fYMr3uPvIyZ0HGiU+llgheJraqztaXSsrnRbA5B0F7flqE8=
-X-Received: by 2002:a17:902:b196:b0:19f:36ab:c34 with SMTP id
- s22-20020a170902b19600b0019f36ab0c34mr11744326plr.10.1680463384710; Sun, 02
- Apr 2023 12:23:04 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680467145;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0DsL/zBRqxPzwYW1xlbJyW3fgq5H/wMYEgPOt72hbcQ=;
+        b=ryJGBpcdIDBH8t/FIyhb4rhJa0Xxr6Ym+32beqR3dHU6yidGtqF+E0qKpcLieb40pp
+         ZXxCWHmbrfSWWQu7eXZGEtbbTLiq3/lKx87sje8/kcwhDxu5gvTvAhM/eyIzhChB84/d
+         rooHqX06jjWd1xLlByWcKmbubWIrw0mzwoC3NFwE0AqfwkbwJTK11ruSv5d0heC/s9g4
+         nAbN5PbVMVI4A2agDR6eQXoPxIyFLWYnNR7spdhBVpK2x6k9P2ODGfeUvlok63bLtuN1
+         nZeyOUumIRL37MkifxTtUtD0eVUtwhW7OmiXJlBcPZwX6l94hjRD8KYV7GFri+GuNkIG
+         AOuA==
+X-Gm-Message-State: AO0yUKVF4bhcxaWzazz+wC8+uP5kU4Ug93ss6it/yfWDnZQ9XlDfeaRl
+        w34Efh/pcrBb8ewiGsY0VVE=
+X-Google-Smtp-Source: AK7set9XUGbrFlE96WF8zHGlheV864DgSZZVFIrFsngxHwfoI5PoH44vD2xhON661YS8gY4fORuaVg==
+X-Received: by 2002:a05:6a20:c426:b0:d3:9c13:606 with SMTP id en38-20020a056a20c42600b000d39c130606mr27917046pzb.47.1680467144889;
+        Sun, 02 Apr 2023 13:25:44 -0700 (PDT)
+Received: from pavilion.. ([2409:40f2:100f:dc7:7586:11f6:6763:e4a6])
+        by smtp.gmail.com with ESMTPSA id i17-20020aa787d1000000b00627ed4e23e0sm5402146pfo.101.2023.04.02.13.25.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Apr 2023 13:25:44 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        danascape@gmail.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        shengjiu.wang@nxp.com
+Subject: Re: [PATCH v5] ASoC: dt-bindings: ak4458: Convert to dtschema
+Date:   Mon,  3 Apr 2023 01:55:37 +0530
+Message-Id: <20230402202537.4373-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <7554941f-0b90-5cef-48e4-eda12ef92674@linaro.org>
+References: <7554941f-0b90-5cef-48e4-eda12ef92674@linaro.org>
 MIME-Version: 1.0
-Received: by 2002:a17:902:d212:b0:1a1:b153:bc6f with HTTP; Sun, 2 Apr 2023
- 12:23:04 -0700 (PDT)
-Reply-To: lassounadage563@gmail.com
-From:   Ms Nadage Lassou <nadagelassou@gmail.com>
-Date:   Sun, 2 Apr 2023 20:23:04 +0100
-Message-ID: <CAJ97MqSuro_c5CJycfAoXjAq=GeSC=8jkbdrHW4t5biPm-ighg@mail.gmail.com>
-Subject: PLEASE REPLY BACK URGENT
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        SUBJ_ALL_CAPS,UNDISC_FREEM autolearn=no autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
-X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings.
+The patch has no major change, as mentioned under the changelog.
+The alignment was changed according to the comment in v4
 
-I am Ms Nadage Lassou,I have something important to discuss with you.
-i will send you the details once i hear from you.
-Thanks,
-Ms Nadage Lassou
+Apologies,
+
+Saalim
