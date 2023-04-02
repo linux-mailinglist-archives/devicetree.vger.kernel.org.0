@@ -2,162 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4D46D3631
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 10:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A496D369B
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:43:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbjDBIXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 04:23:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48318 "EHLO
+        id S229492AbjDBJnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 05:43:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbjDBIXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 04:23:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7242F1A952;
-        Sun,  2 Apr 2023 01:23:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0036D61084;
-        Sun,  2 Apr 2023 08:23:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D4D1C4339B;
-        Sun,  2 Apr 2023 08:23:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680423788;
-        bh=rqmI+2ncgqv8TeVA56uwwXT2fHfEv1PS7v4WdYAbJXw=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=U03GhHvo77HswkSeu6SilRZCfbKYZ8VczUx+ZoWMRuVVCmcLL7PiM2mtrJaiIHLdq
-         Y9NwfQGrD2kBzXRX9J0Rw0g0yzmLQwGqDxnSQFRdoraT7iv8SzFgsu4V1QXnJTSuKo
-         oSGybFvAOiNCiKSWZtofVLER2qVUuckiul79YCLyRsolojJ7SltDyP5dmMrK3MM1zt
-         gOSIHj4VZmx7gsuuiIoY2gUT+UDwGSXT4obZkUtSMkxgqKXQS9AjPGHJjo+UnTDHWH
-         58aG/tYd+uM+1MhPM9pWdPC/YU/xIaUzssvW70fljgwKCJAiZwQyNjkYIGZTaXoZto
-         w/PIi0HK2AXiw==
-Date:   Sun, 02 Apr 2023 09:23:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Xu Yilun <yilun.xu@intel.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-CC:     linux-fpga@vger.kernel.org,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-        Tom Rix <trix@redhat.com>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] PolarFire SoC Auto Update Support
-User-Agent: K-9 Mail for Android
-In-Reply-To: <ZCk2IgDjHRUlyD+t@yilunxu-OptiPlex-7050>
-References: <20230331071823.956087-1-conor.dooley@microchip.com> <ZCk2IgDjHRUlyD+t@yilunxu-OptiPlex-7050>
-Message-ID: <958EDDDE-B62D-4CCC-9851-0F01516D95CD@kernel.org>
+        with ESMTP id S229945AbjDBJnT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:43:19 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A5A1A471
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 02:42:58 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id i5so106446032eda.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 02:42:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680428564;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xmOyDxhsRopi36Lx/Ljk8A9Cwl6udet2Bmq7NGembFQ=;
+        b=qUzamM9T87te8vAKpDkdQw0fAY8Zp3lmvmi48v248rZSyldgZgnenDPmkS1Djsjp+P
+         YzkCqJYDYNOD/zSMyX2bQ5zXz01d4GMbAhpvQonjGMwg7ExDyFedy7WjJQNmvEzVRlBe
+         Nn2rA8RvzLSYEl+nyZ2rjaeenRcqylKxU5PZkMXOtzksjj3kZW7ffs2yQ9Ii7IsiVkJG
+         JK3RICetHe8Z06C7/JaC6RKRN5vnb98/eIdrWlwhVbjb56DHGjoWYTol+NwB8/TXhn+8
+         ThIBmfhZy1rdBCwON/eSWN8I3pRD2uH1eR2ydNKFpBOXxGB7r/FWTWpumRqpOXDM+1pE
+         1ahA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680428564;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xmOyDxhsRopi36Lx/Ljk8A9Cwl6udet2Bmq7NGembFQ=;
+        b=zSt2jqLihC31xyvNZx29N8ghlj3rdnrXtnmB+w/loDWDhbsZkki3H/Mgfb3Z2uH7Gs
+         hwQNv4R36PWshjUSf+IDLsAiMdXk56E62Z7TamXfLLvc7DOFLv6ZRZ2qTxqm5fNDhYBx
+         NpZKfvLBM/GNMRR/DU4c9zrThcovykCno5kpup9bFHEMxu7pWMI1lH46MFNKSZ9z6I1r
+         rCeqJo/nFEEs0xXqWsqCJvOigNU4GLmvwq+1G+Big6FnV6LZPsTCErfRyNFnTRI2ghfn
+         1BDg4Pjok7c8j/F/n7GHRWqFA/5T/Y4l6LklLQ5mu8yRhh6OWOlFioObWw/hNn5x+wn3
+         uLuw==
+X-Gm-Message-State: AAQBX9f1rWAfNam4Cnbpg1wThqrBUC4HDI7rVlS6icgddSuo4ADdHcpA
+        EDrmzhJWv8v2d/b6h6Ucy/MWnQ==
+X-Google-Smtp-Source: AKy350ZUv7YTFaz4s0N/EXlxxMCy7BUAOM64h64AGRtC4n4HDyX5TtFkLWwJ/h/7j3Z5CGBCofyVkQ==
+X-Received: by 2002:a05:6402:445:b0:502:3ff1:2fcc with SMTP id p5-20020a056402044500b005023ff12fccmr21340037edw.35.1680428564225;
+        Sun, 02 Apr 2023 02:42:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
+        by smtp.gmail.com with ESMTPSA id v14-20020a50a44e000000b004bc15a440f1sm3076440edb.78.2023.04.02.02.42.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Apr 2023 02:42:43 -0700 (PDT)
+Message-ID: <0d7d1fcb-e914-907b-0ed5-44e104929766@linaro.org>
+Date:   Sun, 2 Apr 2023 11:42:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 03/22] arm64: dts: qcom: sc8280xp-pmics: use pmk8350
+ specifics for pon device
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-4-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230401220810.3563708-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 02/04/2023 00:07, Dmitry Baryshkov wrote:
+> Following the commit c0ee8e0ba5cc ("arm64: dts: qcom: pmk8350: Use the
+> correct PON compatible") and commit f46ef374e0dc ("arm64: dts: qcom:
+> pmk8350: Specify PBS register for PON") use "qcom,pmk8350-pon" compat
+> string and add RBS region to the PON device.
+> 
+> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
+
+There is no compatible qcom,pmk8350-pon documented at ccd3517faf18, so
+backporting it there is incorrect. qcom,pmk8350-pon is neither in v5.19
+nor in v6.0.
 
 
-On 2 April 2023 09:00:34 IST, Xu Yilun <yilun=2Exu@intel=2Ecom> wrote:
->On 2023-03-31 at 08:18:16 +0100, Conor Dooley wrote:
->> Hey all,
->>=20
->> This patchset adds support for the "Auto Update" feature on PolarFire
->> SoC that allows for writing an FPGA bistream to the SPI flash connected
->> to the system controller=2E
->> On powercycle (or reboot depending on how the firmware implements the
->> openSBI SRST extension) "Auto Update" will take place, and program the
->> FPGA with the contents of the SPI flash - provided that that image is
->> valid and an actual upgrade from that already programmed!
->>=20
->> Unfortunately, this series is not really testable yet - the Engineering
->> Sample silicon on most dev boards has a bug in the QSPI controller
->> connected to the system controller's flash and cannot access it=2E
->> Pre-production and later silicon has this bug fixed=2E
->>=20
->> I previously posted an RFC about my approach in this driver, since as a
->> flash-based FPGA we are somewhat different to the existing
->> self-reprogramming drivers here=2E That RFC is here:
->> https://lore=2Ekernel=2Eorg/linux-fpga/20221121225748=2E124900-1-conor@=
-kernel=2Eorg/
->>=20
->> This series depends on the following fixes:
->> https://lore=2Ekernel=2Eorg/all/d7c3ec51-8493-444a-bdec-2a30b0a15bdc@sp=
-ud/
->
->Is that series already merged? If yes, just remove this line=2E
->If no, either put all of them in one series, or still make this series
->as RFC until the dependency is resolved=2E
+Best regards,
+Krzysztof
 
-Merged into what?
-I'll be applying the dependencies tomorrow probably=2E
-
->
->Thanks,
->Yilun
->
->>=20
->> The patch adding the driver depends on the soc patches earlier in the
->> series, so taking both through the same tree makes sense=2E Depending o=
-n
->> sequencing with the dependencies, me taking it through the soc tree
->> (with Acks etc of course) may make the most sense=2E
->>=20
->> Cheers,
->> Conor=2E
->>=20
->> Changes in v2:
->> - per Russ' suggestion, the driver has been switched to using the
->>   firmware-upload API rather than the fpga one
->> - as a result of that change, the structure of the driver has changed
->>   significantly, although most of that is reshuffling existing code
->>   around
->> - check if the upgrade is possible in probe and fail if it isn't
->> - only write the image index if it is not already set
->> - delete the now unneeded debugfs bits
->>=20
->> CC: Conor Dooley <conor=2Edooley@microchip=2Ecom>
->> CC: Daire McNamara <daire=2Emcnamara@microchip=2Ecom>
->> CC: Rob Herring <robh+dt@kernel=2Eorg>
->> CC: Krzysztof Kozlowski <krzysztof=2Ekozlowski+dt@linaro=2Eorg>
->> CC: Moritz Fischer <mdf@kernel=2Eorg>
->> CC: Wu Hao <hao=2Ewu@intel=2Ecom>
->> CC: Xu Yilun <yilun=2Exu@intel=2Ecom>
->> CC: Tom Rix <trix@redhat=2Ecom>
->> CC; Russ Weight <russell=2Eh=2Eweight@intel=2Ecom>
->> CC: linux-riscv@lists=2Einfradead=2Eorg
->> CC: devicetree@vger=2Ekernel=2Eorg
->> CC: linux-kernel@vger=2Ekernel=2Eorg
->> CC: linux-fpga@vger=2Ekernel=2Eorg
->>=20
->> Conor Dooley (7):
->>   soc: microchip: mpfs: add a prefix to rx_callback()
->>   dt-bindings: soc: microchip: add a property for system controller
->>     flash
->>   soc: microchip: mpfs: enable access to the system controller's flash
->>   soc: microchip: mpfs: print service status in warning message
->>   soc: microchip: mpfs: add auto-update subdev to system controller
->>   fpga: add PolarFire SoC Auto Update support
->>   riscv: dts: microchip: add the mpfs' system controller qspi &
->>     associated flash
->>=20
->>  =2E=2E=2E/microchip,mpfs-sys-controller=2Eyaml        |  10 +
->>  =2E=2E=2E/boot/dts/microchip/mpfs-icicle-kit=2Edts    |  21 +
->>  arch/riscv/boot/dts/microchip/mpfs=2Edtsi       |  24 +-
->>  drivers/fpga/Kconfig                          |  11 +
->>  drivers/fpga/Makefile                         |   3 +-
->>  drivers/fpga/microchip-auto-update=2Ec          | 494 ++++++++++++++++=
-++
->>  drivers/soc/microchip/Kconfig                 |   1 +
->>  drivers/soc/microchip/mpfs-sys-controller=2Ec   |  37 +-
->>  include/soc/microchip/mpfs=2Eh                  |   2 +
->>  9 files changed, 591 insertions(+), 12 deletions(-)
->>  create mode 100644 drivers/fpga/microchip-auto-update=2Ec
->>=20
->> --=20
->> 2=2E39=2E2
->>=20
