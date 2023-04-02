@@ -2,99 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB9596D35C6
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 08:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2FC26D3553
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 05:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbjDBGSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 02:18:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56504 "EHLO
+        id S229606AbjDBDD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Apr 2023 23:03:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjDBGSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 02:18:03 -0400
-X-Greylist: delayed 5141 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 01 Apr 2023 23:17:59 PDT
-Received: from smtp1.fnusa.cz (smtp1.fnusa.cz [195.113.158.210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2112719;
-        Sat,  1 Apr 2023 23:17:59 -0700 (PDT)
-Received: from smtp1.fnusa.cz (mailfilter.fnusa.cz [172.30.0.204])
-        by smtp1.fnusa.cz (Postfix) with ESMTP id 51C53124227;
-        Sun,  2 Apr 2023 04:15:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fnusa.cz; s=mail;
-        t=1680401739; bh=IU4mCxmrdujbtHuvc2BpTiNEjSoggtVt7iwDndb7l/k=;
-        h=Date:From:Reply-To:Subject:From;
-        b=tTh/kIx0SwaPeVPVlK8T3khy3XrQwZcq+W1agTbEkUB2bwIMISq50IS+9X8QHdLDB
-         NUUsRhSmYRwaukZL26KxV9jFdzTKsrv/Wz6Rkydhg50w7scE5/8I8a6MYMCm7fVyQO
-         1DgFrxrA8kABFeuZr1QBqyIxk09qW/n4GkTnIUV0=
+        with ESMTP id S229603AbjDBDD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 23:03:57 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F3520C3A;
+        Sat,  1 Apr 2023 20:03:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680404636; x=1711940636;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UwGIjXk3/Uoh9jUrJy/wr/+7yvyMHOiCs5iNw+KoTj8=;
+  b=MsYVmEvFEyy7DSx/e3YcPU4wLoNy3O8xGU7hObWELVA0KxyvcXeo/Gke
+   ImQYCQhgD9MeJxnU1XjrNdNH6BsrD2/1eU9jOIp+pSi8wBUaNqS6fnW8j
+   B9jm2mJ9/2Lhqr6y0SSUCXLavIqoVjKBOqSiB3O1axJa1PRwh9CVINH0A
+   SO/jB0eM0IztforZ6J4D7rNJGd0mgQkFtxz8XpqcVK+K6iIuJBIlNq4l2
+   2c31tUb1e5tFpr78EB1ZCt0AIUvuj6HrNSIOZCIPerrRwN97ST41sgmNK
+   V4ZqAUblFdDrq9HihBRRnwHfCAAhpB3LQc29pTrPLviJuWpL0tUmMsayI
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="330260334"
+X-IronPort-AV: E=Sophos;i="5.98,311,1673942400"; 
+   d="scan'208";a="330260334"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2023 20:03:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="718147955"
+X-IronPort-AV: E=Sophos;i="5.98,311,1673942400"; 
+   d="scan'208";a="718147955"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 01 Apr 2023 20:03:52 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pio0Q-000NCN-2f;
+        Sun, 02 Apr 2023 03:03:46 +0000
+Date:   Sun, 2 Apr 2023 11:02:49 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: pressure: Honeywell mpr pressure sensor
+Message-ID: <202304021013.6NytoSFn-lkp@intel.com>
+References: <ZCf085W4XL2PtQf6@arbad>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZCf085W4XL2PtQf6@arbad>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=3.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,REPLYTO_WITHOUT_TO_CC,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-Received: from zimbros.fnusa.cz (zimbros.fnusa.cz [172.30.0.176])
-        by smtp1.fnusa.cz (Postfix) with ESMTP id C711B124236;
-        Sun,  2 Apr 2023 04:15:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fnusa.cz; s=mail;
-        t=1680401729; bh=IU4mCxmrdujbtHuvc2BpTiNEjSoggtVt7iwDndb7l/k=;
-        h=Date:From:Reply-To:Subject:From;
-        b=G8tdfk69Y0Elnam7EmTkugs8Wt4b5huQFRxj0lkvBWCxsGTmym9d+MAujZYNe3mZ5
-         4XWyBi2Ndli1BGVdC9xbbb7V8H2mHkBms8aC5A5rrbj6QaQiOzUB2yo1bzX3J0HM0O
-         fqGcVEpA7IIiRicCo8qHHu76uVGxL5Fom9ovZCXE=
-Date:   Sun, 2 Apr 2023 04:15:11 +0200 (CEST)
-From:   MK <andrea.vachova@fnusa.cz>
-Reply-To: MK <MK008@bahnhof.se>
-Message-ID: <1927838213.34380608.1680401711698.JavaMail.zimbra@fnusa.cz>
-Subject: Hallo Sonnenschein, wie geht es dir?
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [2001:9b1:8826:0:98:128:186:102]
-X-Mailer: Zimbra 8.6.0_GA_1182 (zclient/8.6.0_GA_1182)
-Thread-Topic: Hallo Sonnenschein, wie geht es dir?
-Thread-Index: UFpzAMAwLzTg8dYaYyoSXfiGsWPSeQ==
-X-AV-Checked: ClamAV using ClamSMTP
-X-Spam-Level: **
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Es tut mir leid, Sie zu st=C3=B6ren und in Ihre Privatsph=C3=A4re einzudrin=
-gen. Ich bin ledig,
-  einsam und auf der Suche nach einem f=C3=BCrsorglichen, liebevollen und r=
-omantischen Begleiter.
+Hi Andreas,
 
-Ich bin ein heimlicher Verehrer und w=C3=BCrde gerne die Gelegenheit dazu n=
-utzen
-mehr voneinander erfahren. Ich wei=C3=9F, es ist seltsam, Sie zu kontaktier=
-en
-auf diese Weise und ich hoffe, Sie k=C3=B6nnen mir verzeihen. Ich bin ein s=
-ch=C3=BCchterner Mensch u
-Das ist der einzige Weg, wie ich wei=C3=9F, dass ich Ihre Aufmerksamkeit er=
-regen k=C3=B6nnte. Ich will nur
-zu wissen, was Sie denken, und meine Absicht ist es nicht, Sie zu beleidige=
-n.
-Ich hoffe, wir k=C3=B6nnen Freunde sein, wenn es das ist, was Sie wollen, o=
-bwohl ich es w=C3=BCnsche
-mehr als nur ein Freund zu sein. Ich wei=C3=9F, dass Sie ein paar Fragen ha=
-ben
-Fragen Sie und ich hoffe, ich kann einige Ihrer Neugier mit ein paar befrie=
-digen
-Antworten.
+I love your patch! Yet something to improve:
 
-Ich glaube an das Sprichwort: =E2=80=9EF=C3=BCr die Welt bist du nur eine P=
-erson,
-aber f=C3=BCr jemand Besonderen bist du die Welt. Alles was ich will ist Li=
-ebe,
-romantische F=C3=BCrsorge und Aufmerksamkeit von einem besonderen Begleiter=
-, der ich bin
-hoffend w=C3=A4rst du.
+[auto build test ERROR on jic23-iio/togreg]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Ich hoffe, dass diese Botschaft der Beginn einer langen Frist sein wird
-Kommunikation zwischen uns, senden Sie einfach eine Antwort auf diese Nachr=
-icht, it
-wird mich gl=C3=BCcklich machen.
+url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mpr-sensors/20230401-171226
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/ZCf085W4XL2PtQf6%40arbad
+patch subject: [PATCH 2/3] iio: pressure: Honeywell mpr pressure sensor
+config: arm-buildonly-randconfig-r004-20230401 (https://download.01.org/0day-ci/archive/20230402/202304021013.6NytoSFn-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/6a49dae45811d8a644c56dc18b6cdbc6ea67df98
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mpr-sensors/20230401-171226
+        git checkout 6a49dae45811d8a644c56dc18b6cdbc6ea67df98
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304021013.6NytoSFn-lkp@intel.com/
 
-Umarmungen und K=C3=BCsse,
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-Heimlicher Verehrer.
+>> ERROR: modpost: "__aeabi_ldivmod" [drivers/iio/pressure/mpr.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
