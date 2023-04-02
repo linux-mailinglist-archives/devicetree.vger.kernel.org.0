@@ -2,151 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD7D86D39F8
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 21:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2316D39FA
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 21:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbjDBTTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 15:19:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60800 "EHLO
+        id S230501AbjDBTXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 15:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjDBTTw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 15:19:52 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374C9BBB9;
-        Sun,  2 Apr 2023 12:19:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D6AB5B81002;
-        Sun,  2 Apr 2023 19:19:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E23E0C433EF;
-        Sun,  2 Apr 2023 19:19:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680463187;
-        bh=inEW+jtO8y4n3Uvc+E4dflVytHhuhEnZfJdXbyiVNQo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Sd8FP0S9LEIbmuopOGvYgeBYVUgWX9q8cUDUakVOjKeHCvx83hNM9Lj0HSCygouZj
-         ot8ftyp97Cho3JQVGFZolvn5+2pz0QN8wTdwpkAHxntMKMW1q04TjaSp4IOZLghZjz
-         4PwkLxDnovGltyZ+9WsJzmhL/dIs2gbbEemDql+UaAU7kaIvkzMahAkNY1RZzbVB8P
-         hZS/Zp+zlNZ4zt0TYDx2wBwsGHNKxfL9DAKLJtiTK/nqbI3gW/8VLNjxQgVRq0SGFP
-         SskcGRhhcyAUOYkpLHbR7BRJBbTPbDtXV2dN1aRIXQTuk6bR+KbpIlI4ZuiiqLOG3b
-         SpubQ4ePEAxew==
-Date:   Sun, 2 Apr 2023 20:19:41 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 00/22] Basic clock, reset & device tree support for
- StarFive JH7110 RISC-V SoC
-Message-ID: <acb36897-8085-4f41-9b68-b243467ffc6f@spud>
-References: <20230401111934.130844-1-hal.feng@starfivetech.com>
+        with ESMTP id S229448AbjDBTXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 15:23:06 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 334366194
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 12:23:05 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id o2so26076153plg.4
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 12:23:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680463384;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vE40mJuVkISt0zg8IVAmmNvtPq9ArtEbvKSLEgCOttk=;
+        b=TwRPnhnCOOAGGbAVHaQktRGBNd5rGhboJlwb8g2O9KZjC16mMprKYOWUW9XavqNu1l
+         WLlsy1tJB2TGoEAEgh9LAQfguXiNxulkLPMms9K/HReh9z2cUhMMn7U6WNy8AEuvxicJ
+         swL1XeSl8x49Imx48UzHuYyy5ekGX8lakRsN2UxKGPCgt8YUNGYe1wLenJ3GPRAvAMJO
+         ad5t82wRD7wA17vilU8g1L9PZ1YF86uocyiLNCUz2ID9Rz0P1KHRO+NC3gRE4ZTWX8P5
+         59DZ2oybQNxkYf81/udJipsMVy7HZksSscJi8dBqfPuLpoSZgCvDc6Y52gA+YhgMTnuy
+         Wg5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680463384;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vE40mJuVkISt0zg8IVAmmNvtPq9ArtEbvKSLEgCOttk=;
+        b=JaWC46tnFC3g4rMw/ibF32EHGcevyzNMaLWFxnvjCdyYt0X6RJSscVcQFGFmZ+WEK3
+         yflYrFeOF5WjPshdvjPgXVty0iKfypZlgHyXuw85Rr3Sf40TzyoTNCR2ulGB5+nSQn3S
+         /a5T5XaqFbt9EXqpWD4TakxHMll80DxrJ2/wSj7/xdAO/vVJTG9hnXdSYYeQ4c8Dn9KQ
+         Yr4rntuzsXcUDMLCYWSGwd0BPxymRuxsMF4NwPtwQH9FoO4po6TEuF5rKAEx6yYYjMcW
+         OIf8eDCSdhobA142xA3isR7Euy+9UpXYPQkkb3O6wghv2lDE3Gp6J1cjtWYOFaRP+/4l
+         WnHg==
+X-Gm-Message-State: AAQBX9fsWPlLRZk6qnizUpO7ZafHpUcWtl3KpOr1g6MDlKvBNylpykY5
+        hIUS+nFsqCgngOBrRcvNh2DZVDLGXsmQvC6ONrY=
+X-Google-Smtp-Source: AKy350Zd+/wW23AwEjuqo3eWsl5u+NrmVu1w/cHtr2A4fYMr3uPvIyZ0HGiU+llgheJraqztaXSsrnRbA5B0F7flqE8=
+X-Received: by 2002:a17:902:b196:b0:19f:36ab:c34 with SMTP id
+ s22-20020a170902b19600b0019f36ab0c34mr11744326plr.10.1680463384710; Sun, 02
+ Apr 2023 12:23:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SO2Uk5pRGCbZdMav"
-Content-Disposition: inline
-In-Reply-To: <20230401111934.130844-1-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Received: by 2002:a17:902:d212:b0:1a1:b153:bc6f with HTTP; Sun, 2 Apr 2023
+ 12:23:04 -0700 (PDT)
+Reply-To: lassounadage563@gmail.com
+From:   Ms Nadage Lassou <nadagelassou@gmail.com>
+Date:   Sun, 2 Apr 2023 20:23:04 +0100
+Message-ID: <CAJ97MqSuro_c5CJycfAoXjAq=GeSC=8jkbdrHW4t5biPm-ighg@mail.gmail.com>
+Subject: PLEASE REPLY BACK URGENT
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        SUBJ_ALL_CAPS,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Greetings.
 
---SO2Uk5pRGCbZdMav
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Hal,
-
-On Sat, Apr 01, 2023 at 07:19:12PM +0800, Hal Feng wrote:
-> This patch series adds basic clock, reset & DT support for StarFive
-> JH7110 SoC.
->=20
-> @Stephen and @Conor, I have made this series start with the shared
-> dt-bindings, so it will be easier to merge.
-
-Thanks. I probably should have asked for that, makes my life easier
-that's for sure!
-
-> @Conor, patch 1, 2, 16~21 were already in your branch. Patch 22 is the
-> same with the patch [1] I submitted before, which you had accepted but
-> not merge it into your branch.
-
-I hadn't merged that into anywhere, so I just went and dropped the
-original incarnation of that branch and have re-created it.
-I don't recall there being a maintainers pattern error (from running
-scripts/get_maintainer.pl --self-test=3Dpatterns) with what I had done in
-my branch, but with your patch 1 applied I see one. To save myself a
-complaint from LKP, I stripped out the MAINTAINERS bits from patch 1
-into their own patch that can go with the clock/reset bits.
-
-I squashed 22 into "riscv: dts: starfive: Add initial StarFive JH7110
-device tree" since there's no reason to add something knowingly
-incorrect IMO.
-
-I've gone and pushed out the following as riscv-jh7110_initial_dts:
-riscv: dts: starfive: Add StarFive JH7110 VisionFive 2 board device
-riscv: dts: starfive: Add StarFive JH7110 pin function definitions
-riscv: dts: starfive: Add initial StarFive JH7110 device tree
-dt-bindings: riscv: Add SiFive S7 compatible
-dt-bindings: interrupt-controller: Add StarFive JH7110 plic
-dt-bindings: timer: Add StarFive JH7110 clint
-dt-bindings: clock: Add StarFive JH7110 always-on clock and reset generator
-dt-bindings: clock: Add StarFive JH7110 system clock and reset generator
-
-And the rest as riscv-jh7110_clk_reset:
-MAINTAINERS: generalise StarFive clk/reset entries
-reset: starfive: Add StarFive JH7110 reset driver
-clk: starfive: Add StarFive JH7110 always-on clock driver
-clk: starfive: Add StarFive JH7110 system clock driver
-reset: starfive: jh71x0: Use 32bit I/O on 32bit registers
-reset: starfive: Rename "jh7100" to "jh71x0" for the common code
-reset: starfive: Extract the common JH71X0 reset code
-reset: starfive: Factor out common JH71X0 reset code
-reset: Create subdirectory for StarFive drivers
-reset: starfive: Replace SOC_STARFIVE with ARCH_STARFIVE
-clk: starfive: Rename "jh7100" to "jh71x0" for the common code
-clk: starfive: Rename clk-starfive-jh7100.h to clk-starfive-jh71x0.h
-clk: starfive: Factor out common JH7100 and JH7110 code
-clk: starfive: Replace SOC_STARFIVE with ARCH_STARFIVE
-dt-bindings: clock: Add StarFive JH7110 always-on clock and reset generator
-dt-bindings: clock: Add StarFive JH7110 system clock and reset generator
-
-<https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/refs>
-
-As it looks like everything has been resolved in terms of comments on
-v6, provided LKP doesn't complain or people don't spot something else,
-my plan is to send Stephen a PR around Wednesday for the driver bits.
-
-Please LMK if I screwed up anything,
-Conor.
-
---SO2Uk5pRGCbZdMav
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCnVTQAKCRB4tDGHoIJi
-0kgSAP0ZhGnMAGUiJ+KlSFzyP2jt+4RI/2QTwN1oKvhgmXYp9gEA51va6jlAkqWF
-g5FAbwRJR2vtVawWCI8Mfw/SSpp/jQk=
-=ZYkW
------END PGP SIGNATURE-----
-
---SO2Uk5pRGCbZdMav--
+I am Ms Nadage Lassou,I have something important to discuss with you.
+i will send you the details once i hear from you.
+Thanks,
+Ms Nadage Lassou
