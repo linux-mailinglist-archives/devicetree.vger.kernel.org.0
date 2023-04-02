@@ -2,159 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C4B76D36B7
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B22FD6D36BC
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:52:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbjDBJvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 05:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49256 "EHLO
+        id S230382AbjDBJwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 05:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbjDBJv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:51:26 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2200C2702E;
-        Sun,  2 Apr 2023 02:51:17 -0700 (PDT)
-Received: from localhost (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 124C0660312B;
-        Sun,  2 Apr 2023 10:51:15 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680429075;
-        bh=kJdtSesynjBrpuEEDEDtpj5X9IcAxkUH0Y/1s8Txv6c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VPVs0DcGUSDRxbBrFcdRhMjqt8jtEg5eb28bos+eF5kpI1VDZqZ+dhsFH6buDdKEF
-         WRtsAa5DN849V5kQTAZqh5CSiBloB8WjFuyNhoQOPhwCLtLqjX41p9uS7ig9l+0g7O
-         x+YMryXdGC068oBI9C4vV1pMHo2HR7hpKbgZrM6yfoRb55Oh08or6wydCW73SySoDl
-         wI6DD6mb+GWdIwzNpGS3MsuMEvfsi3FV4pI4887sWayoBH6bMHxmvqRZH22yVcpoGN
-         b9Wwd9LRONXwRIlWMy0iTmmYe3yohpbl5kNze3lBsMqTI2caZkP7C2rUdnPF9IMStE
-         xba9WMu6jAwSg==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH v4 5/5] arm64: dts: rockchip: rk3588-rock-5b: Add analog audio
-Date:   Sun,  2 Apr 2023 12:50:54 +0300
-Message-Id: <20230402095054.384739-6-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230402095054.384739-1-cristian.ciocaltea@collabora.com>
-References: <20230402095054.384739-1-cristian.ciocaltea@collabora.com>
+        with ESMTP id S230410AbjDBJwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:52:07 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23D12BEFD
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 02:51:46 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id cn12so106330963edb.4
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 02:51:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680429100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VtpKmFwiRWVvKgjdJEqRBjQAY2R7xfBVK1CctuD/jnI=;
+        b=a1OauSmnroqA92tm72U2fJaJ7jeeyA+4iIRmLXGjfKsEUjn4ixg50kd6UXIgiv4KcF
+         9vpBKxSavL4zgKlZAVjwGxeoeiRBCazsL4Lw9+i8pVVWvA/EQZOzSDmpMu9wDD5PfcSX
+         W3MEs6xHpIJdqV/2YSw44DQT0jaiI9RrS3FeZPHa2Xqoe2xFNMaaCqnO5PQHdfpEtVGO
+         7E56lInEGU7Pz4LJwN54dF+BRs0ZYqDJWtwJdCh7bHfc0dEv/O/rT9hfAvpGm/vO6RJb
+         igr0bn7Yt2VxpOVPT/lXWNklJ8IhYZLgkH/pGzRErqyEDK7dPFGS1xovr9jS89oTXUEz
+         qa2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680429100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VtpKmFwiRWVvKgjdJEqRBjQAY2R7xfBVK1CctuD/jnI=;
+        b=OR7sJpDB2eP/Fro+CTL+WNaSUVdRAVTVQf4Om3xBQ5kU9ocDUvOtUD0lDwztu3P6Ly
+         +PtNmOWEROQOT0BF5NgYspafbrG4ubA772XlRBz3H9OQJOI4kddVBoue1U28dHCjxQBI
+         8NWISFYIsgMPJzhEwGICDZWDafCAaqcu+3SODHLgavTkT4poYFY5kDXJE9ZHt7qAynbj
+         0iK0XLIR81bNx0XCWmCB6FrulAaB8nhrIAChuXoxYVoVEhgz9igrIAfAqu5+2VDEgVuw
+         hP3Ln1KsZV7rLtq0Ag99txuK/oCyYSSXIRc72QHHkjrFUNkZFE58Wzteue5UEJlxS7w0
+         +neg==
+X-Gm-Message-State: AAQBX9e2eZTTaxoOjMMkJkj+5jhkHnikPQG4/RtGTzqtrCkIRzvqT6GA
+        KDmaQ5VgalulIZROVrK7XAqDjA==
+X-Google-Smtp-Source: AKy350bUhaStaDcQ/WmJ1j53zqULVe4euLitHguszu0+zPX9A/KeQLZ+ZOUC29jeFcchmqIOUEXN4Q==
+X-Received: by 2002:a17:906:a04a:b0:8b1:bab0:aa3d with SMTP id bg10-20020a170906a04a00b008b1bab0aa3dmr31676898ejb.8.1680429100553;
+        Sun, 02 Apr 2023 02:51:40 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
+        by smtp.gmail.com with ESMTPSA id e27-20020a50d4db000000b004fadc041e13sm3085894edj.42.2023.04.02.02.51.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Apr 2023 02:51:40 -0700 (PDT)
+Message-ID: <af18b9a3-2960-8fbb-0d19-ee7d3b3f89ab@linaro.org>
+Date:   Sun, 2 Apr 2023 11:51:39 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 21/22] arch: arm64: dts: qcom: pm8150: support SID
+ greater that 9
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-22-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230401220810.3563708-22-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary DT nodes for the Rock 5B board to enable the analog
-audio support provided by the Everest Semi ES8316 codec.
+On 02/04/2023 00:08, Dmitry Baryshkov wrote:
+> Supporting SIDs greater than 9 required additional handling in order to
+> properly generatae hex values. Apply this customization to pm8150.dtsi.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi          | 16 ++++++++--------
+>  arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi |  6 ++++++
+>  arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi |  6 ++++++
+>  3 files changed, 20 insertions(+), 8 deletions(-)
+> 
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
+> diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> index 83a2bada48ff..f3743ef3aa13 100644
+> --- a/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> @@ -11,6 +11,12 @@
+>  
+>  #undef NODE
+>  
+> +#undef HEX
+> +#undef _HEX
+> +
+> +#undef PMIC_SID_HEX
+> +#undef PMIC_SID1_HEX
+> +
+>  #undef PMIC_SID
+>  #undef PMIC_SID1
+>  #undef PMIC_LABEL
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 95805cb0adfa..a9e12e098d48 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -2,6 +2,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "rk3588.dtsi"
- 
- / {
-@@ -17,6 +18,23 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	sound {
-+		compatible = "audio-graph-card";
-+		label = "Analog";
-+
-+		widgets = "Microphone", "Mic Jack",
-+			  "Headphone", "Headphones";
-+
-+		routing = "MIC2", "Mic Jack",
-+			  "Headphones", "HPOL",
-+			  "Headphones", "HPOR";
-+
-+		dais = <&i2s0_8ch_p0>;
-+		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+	};
-+
- 	vcc5v0_sys: vcc5v0-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
-@@ -27,6 +45,50 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 	};
- };
- 
-+&i2c7 {
-+	status = "okay";
-+
-+	es8316: es8316@11 {
-+		compatible = "everest,es8316";
-+		reg = <0x11>;
-+		clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			es8316_p0_0: endpoint {
-+				remote-endpoint = <&i2s0_8ch_p0_0>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2s0_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s0_lrck
-+		     &i2s0_mclk
-+		     &i2s0_sclk
-+		     &i2s0_sdi0
-+		     &i2s0_sdo0>;
-+	status = "okay";
-+
-+	i2s0_8ch_p0: port {
-+		i2s0_8ch_p0_0: endpoint {
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+			remote-endpoint = <&es8316_p0_0>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	sound {
-+		hp_detect: hp-detect {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
- &sdhci {
- 	bus-width = <8>;
- 	no-sdio;
--- 
-2.40.0
+Same comment as for previous patches - all undefs must be gone.
+
+Maybe I should not have acked all these changes customized SID ("include
+sid into defines") because it looks like it opened can of worms.
+
+Best regards,
+Krzysztof
 
