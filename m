@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A496D369B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CF626D369F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbjDBJnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 05:43:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
+        id S229447AbjDBJod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 05:44:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjDBJnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:43:19 -0400
+        with ESMTP id S229729AbjDBJoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:44:32 -0400
 Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A5A1A471
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 02:42:58 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id i5so106446032eda.0
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 02:42:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0777AD2
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 02:44:30 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id eg48so106156960edb.13
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 02:44:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680428564;
+        d=linaro.org; s=google; t=1680428668;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xmOyDxhsRopi36Lx/Ljk8A9Cwl6udet2Bmq7NGembFQ=;
-        b=qUzamM9T87te8vAKpDkdQw0fAY8Zp3lmvmi48v248rZSyldgZgnenDPmkS1Djsjp+P
-         YzkCqJYDYNOD/zSMyX2bQ5zXz01d4GMbAhpvQonjGMwg7ExDyFedy7WjJQNmvEzVRlBe
-         Nn2rA8RvzLSYEl+nyZ2rjaeenRcqylKxU5PZkMXOtzksjj3kZW7ffs2yQ9Ii7IsiVkJG
-         JK3RICetHe8Z06C7/JaC6RKRN5vnb98/eIdrWlwhVbjb56DHGjoWYTol+NwB8/TXhn+8
-         ThIBmfhZy1rdBCwON/eSWN8I3pRD2uH1eR2ydNKFpBOXxGB7r/FWTWpumRqpOXDM+1pE
-         1ahA==
+        bh=vn5NEjd5HxbmJ5xnivXojSVCvItNCyhz+rzufNyUSX8=;
+        b=UeMgt12la9dzr72IcV5i6pLKXlWfuOQPANo1sTu+HocyldeCdIfWhR2E7VddSfDr7b
+         y0yvKxXbRQx/dwNvd13T2GkPWi8UnPeFM4UsYPQBhBndcR4URSrT36O+9jFRquZnGM4W
+         SygoPqFvJUGqZ3k2abPEgt3nGfvNOORqa6ZLmwf/FReduYnj6MyPd5SaUnAtwGFhYO5+
+         SHIyRAi5O5/a9b+OyhQenau6GBysxjPsILtArM34zPcYbBlSObjgABhJC1XZXvtBHEwt
+         8WomHY1oPD1lvc+zJg5knt8HMeg0z7ibPFZOYF2EWdWUqho5JgpHogly73QRQOjyFG7m
+         LphA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680428564;
+        d=1e100.net; s=20210112; t=1680428668;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xmOyDxhsRopi36Lx/Ljk8A9Cwl6udet2Bmq7NGembFQ=;
-        b=zSt2jqLihC31xyvNZx29N8ghlj3rdnrXtnmB+w/loDWDhbsZkki3H/Mgfb3Z2uH7Gs
-         hwQNv4R36PWshjUSf+IDLsAiMdXk56E62Z7TamXfLLvc7DOFLv6ZRZ2qTxqm5fNDhYBx
-         NpZKfvLBM/GNMRR/DU4c9zrThcovykCno5kpup9bFHEMxu7pWMI1lH46MFNKSZ9z6I1r
-         rCeqJo/nFEEs0xXqWsqCJvOigNU4GLmvwq+1G+Big6FnV6LZPsTCErfRyNFnTRI2ghfn
-         1BDg4Pjok7c8j/F/n7GHRWqFA/5T/Y4l6LklLQ5mu8yRhh6OWOlFioObWw/hNn5x+wn3
-         uLuw==
-X-Gm-Message-State: AAQBX9f1rWAfNam4Cnbpg1wThqrBUC4HDI7rVlS6icgddSuo4ADdHcpA
-        EDrmzhJWv8v2d/b6h6Ucy/MWnQ==
-X-Google-Smtp-Source: AKy350ZUv7YTFaz4s0N/EXlxxMCy7BUAOM64h64AGRtC4n4HDyX5TtFkLWwJ/h/7j3Z5CGBCofyVkQ==
-X-Received: by 2002:a05:6402:445:b0:502:3ff1:2fcc with SMTP id p5-20020a056402044500b005023ff12fccmr21340037edw.35.1680428564225;
-        Sun, 02 Apr 2023 02:42:44 -0700 (PDT)
+        bh=vn5NEjd5HxbmJ5xnivXojSVCvItNCyhz+rzufNyUSX8=;
+        b=gLbUS33fXjcXl365Gaio860xd/zwIn0GobLmeDbB208Lu1pa82BsK4mJWNuu76kbHL
+         VmGQVF4cssEtjr7SrlL265+cJlyUy55JVBY5OeHz+xx8Tu3mVXPohjTtUNEVVPAhljAy
+         vz51v8GncVXAVsJgsYaUfZq7xg07zgJyFxFUfwehqUy6wetQmFGltphNhb0NeIenU0+N
+         Ez161HFJ+JVfG8m/rEa0rGp1X9GR/GQyFZDyI67I5QpR0UM7QUMac4ddRtNqk3GKTSlN
+         LqPrTo62mGwUQCBU59lkJIcFVCyguRxYOj5i8c5ZrNatasKMQ5s6Ahwd5St59ZmtHbjk
+         B9fQ==
+X-Gm-Message-State: AAQBX9dcS5Ua9atxRJVkhQhbfTD8wTdCnijZOpEn6GMp2qwViF6kvDiJ
+        0nD03bxOQpkv/mDkF9kGTvVDqw==
+X-Google-Smtp-Source: AKy350ZMwsCRQlnRgKv7v+6WOTDv5YiGE0CHA/yKzYVpxAcQqLEcK9k4443zKfTFU2IkMRh1CIxNyg==
+X-Received: by 2002:a17:906:8a41:b0:92b:6f92:7705 with SMTP id gx1-20020a1709068a4100b0092b6f927705mr29131753ejc.40.1680428668508;
+        Sun, 02 Apr 2023 02:44:28 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
-        by smtp.gmail.com with ESMTPSA id v14-20020a50a44e000000b004bc15a440f1sm3076440edb.78.2023.04.02.02.42.43
+        by smtp.gmail.com with ESMTPSA id b17-20020a50b411000000b004bf7905559asm3106582edh.44.2023.04.02.02.44.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Apr 2023 02:42:43 -0700 (PDT)
-Message-ID: <0d7d1fcb-e914-907b-0ed5-44e104929766@linaro.org>
-Date:   Sun, 2 Apr 2023 11:42:42 +0200
+        Sun, 02 Apr 2023 02:44:28 -0700 (PDT)
+Message-ID: <127c7d41-b7dc-6c9a-0653-f5bf2a626907@linaro.org>
+Date:   Sun, 2 Apr 2023 11:44:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 03/22] arm64: dts: qcom: sc8280xp-pmics: use pmk8350
- specifics for pon device
+Subject: Re: [PATCH v2 09/22] arm64: dts: qcom: pmk8350: allow overriding the
+ label
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -68,9 +68,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
 References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-4-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-10-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230401220810.3563708-4-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230401220810.3563708-10-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,16 +84,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/04/2023 00:07, Dmitry Baryshkov wrote:
-> Following the commit c0ee8e0ba5cc ("arm64: dts: qcom: pmk8350: Use the
-> correct PON compatible") and commit f46ef374e0dc ("arm64: dts: qcom:
-> pmk8350: Specify PBS register for PON") use "qcom,pmk8350-pon" compat
-> string and add RBS region to the PON device.
+> sc8280xp-pmics.dtsi incorporates a copy of pmk8350, but the dts files
+> use labels following the markings found in the schematics. Allow
+> overriding the labels in pmk8350.dtsi.
 > 
-> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi | 13 +++++++++
+>  arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi | 14 ++++++++++
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi         | 28 +++++++++++--------
+>  3 files changed, 44 insertions(+), 11 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> new file mode 100644
+> index 000000000000..1c81269f0783
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +/* cleanly revert the effects pmic-dyn-header.dtsi */
+> +
+> +#undef LABEL
+> +#undef _LABEL
+> +#undef __LABEL
 
-There is no compatible qcom,pmk8350-pon documented at ccd3517faf18, so
-backporting it there is incorrect. qcom,pmk8350-pon is neither in v5.19
-nor in v6.0.
+That makes the code less readable.
+
+> +
+> +#undef PMIC_SID
+> +#undef PMIC_LABEL
+
+And it keeps growing and confusing.
+
+> diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+> new file mode 100644
+> index 000000000000..75f0448568bd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+> @@ -0,0 +1,14 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +/*
+> + * Preprocessor symbols to assist in describing PMICs which have configurable
+> + * SID. All effects of this header (or its parameters) must be reverted in
+> + * pmic-dyn-footer.dtsi.
+> + */
+> +
+> +#define LABEL(name) _LABEL(PMIC_LABEL, name)
+> +#define _LABEL(pmic, name) __LABEL(pmic, name)
+> +#define __LABEL(pmic, name) pmic ## _ ## name
+
+No, defines in DTS should be simple. This makes it ungrepable.
+
 
 
 Best regards,
