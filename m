@@ -2,192 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4A46D34C1
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 00:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB9596D35C6
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 08:18:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbjDAWIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Apr 2023 18:08:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41012 "EHLO
+        id S230208AbjDBGSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 02:18:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbjDAWIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Apr 2023 18:08:30 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE002782C
-        for <devicetree@vger.kernel.org>; Sat,  1 Apr 2023 15:08:25 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id t14so26660016ljd.5
-        for <devicetree@vger.kernel.org>; Sat, 01 Apr 2023 15:08:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680386905;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OGkRD76uD7OXKz4EqwytB34LnS2rXp7QOWAbxt/JqAk=;
-        b=Dd/vxYQVguwM1BNjjHEvOXpOK4Btzb9q0wk/ayUlAZjwl1a8QeFs4FjTueJiKl8pr+
-         pm+z4eQ2ZoaYTD+x8FJA/FPSe88rxRmK3a/t/vG/t4RxOERQUNyyb7SDDKEU4+SabR76
-         B/O7gWPDVNqnu8akwMkdBkjLYuaBQBjPBPVnONqVYUf99Y8LWWM/6a28tHtYKebLqoT6
-         mROqxKGKAmAhX3pREMfxWtQo20NB+jVztw0qw3mNlRmztxv9VuLLaSre2EffBwgKgtEo
-         g7nHsSb+Yz6jPYQYLrp1cPes8Gaf/Ow6uYRI3mgyI+UtcaODxGyK+zpLJ8dzlCjGXGZK
-         B/Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680386905;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OGkRD76uD7OXKz4EqwytB34LnS2rXp7QOWAbxt/JqAk=;
-        b=HJ4VyQ++oJdpShCwGYbyVsk6cvNORO/1omQPcTnq/Gky7iDt7w/MtyxcTBiRIMB7oT
-         9ezh5DFyTPVxRsKwFt1IQd7VcapfsQ15H6YbWgdYI7SnkcqOIGBDZFaQ7gfa7oX5Gz3s
-         IrzmED0et0dMv+K2wsYeLRK0J1aor76t5gK5JtjaZ6Zi8URT24njhTBqJ3F+ia1uuIpo
-         fW5+a9yNF6d/4lu/5cqovUL/OA5XS21hpsICoQ4hg0LOy9nBrS5MkfCXj3KPBnYjQORO
-         JQ9eW7RjFoxNbm5oFxKTUf9QKmCXFQy+IimLVaErJRoIVcn4RaeYJG+4ze0SQU+bl0TT
-         9l3w==
-X-Gm-Message-State: AAQBX9e21xWZA9KeK0Oob3qmRsy4+J6S3Cl+n3gObCXrBfHfpdO4KIHl
-        IDTJXBCVRRth6PlcIEhcWnqHDQ==
-X-Google-Smtp-Source: AKy350YuIagO5QqOGb/PQPnYyzndtjqejr5GChId1RnzSZ/hYDurDo9gfWtskkjeeHjAN4ZuUeYktg==
-X-Received: by 2002:a2e:8508:0:b0:2a6:3161:6eed with SMTP id j8-20020a2e8508000000b002a631616eedmr296752lji.32.1680386905148;
-        Sat, 01 Apr 2023 15:08:25 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id k17-20020a2e9211000000b0029bd4d0d3f2sm997590ljg.33.2023.04.01.15.08.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Apr 2023 15:08:24 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Subject: [PATCH v2 22/22] arm64: dts: qcom sa8540p-pmics: switch to pm8150.dtsi
-Date:   Sun,  2 Apr 2023 01:08:10 +0300
-Message-Id: <20230401220810.3563708-23-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229445AbjDBGSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 02:18:03 -0400
+X-Greylist: delayed 5141 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 01 Apr 2023 23:17:59 PDT
+Received: from smtp1.fnusa.cz (smtp1.fnusa.cz [195.113.158.210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2112719;
+        Sat,  1 Apr 2023 23:17:59 -0700 (PDT)
+Received: from smtp1.fnusa.cz (mailfilter.fnusa.cz [172.30.0.204])
+        by smtp1.fnusa.cz (Postfix) with ESMTP id 51C53124227;
+        Sun,  2 Apr 2023 04:15:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fnusa.cz; s=mail;
+        t=1680401739; bh=IU4mCxmrdujbtHuvc2BpTiNEjSoggtVt7iwDndb7l/k=;
+        h=Date:From:Reply-To:Subject:From;
+        b=tTh/kIx0SwaPeVPVlK8T3khy3XrQwZcq+W1agTbEkUB2bwIMISq50IS+9X8QHdLDB
+         NUUsRhSmYRwaukZL26KxV9jFdzTKsrv/Wz6Rkydhg50w7scE5/8I8a6MYMCm7fVyQO
+         1DgFrxrA8kABFeuZr1QBqyIxk09qW/n4GkTnIUV0=
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=3.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,REPLYTO_WITHOUT_TO_CC,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Received: from zimbros.fnusa.cz (zimbros.fnusa.cz [172.30.0.176])
+        by smtp1.fnusa.cz (Postfix) with ESMTP id C711B124236;
+        Sun,  2 Apr 2023 04:15:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fnusa.cz; s=mail;
+        t=1680401729; bh=IU4mCxmrdujbtHuvc2BpTiNEjSoggtVt7iwDndb7l/k=;
+        h=Date:From:Reply-To:Subject:From;
+        b=G8tdfk69Y0Elnam7EmTkugs8Wt4b5huQFRxj0lkvBWCxsGTmym9d+MAujZYNe3mZ5
+         4XWyBi2Ndli1BGVdC9xbbb7V8H2mHkBms8aC5A5rrbj6QaQiOzUB2yo1bzX3J0HM0O
+         fqGcVEpA7IIiRicCo8qHHu76uVGxL5Fom9ovZCXE=
+Date:   Sun, 2 Apr 2023 04:15:11 +0200 (CEST)
+From:   MK <andrea.vachova@fnusa.cz>
+Reply-To: MK <MK008@bahnhof.se>
+Message-ID: <1927838213.34380608.1680401711698.JavaMail.zimbra@fnusa.cz>
+Subject: Hallo Sonnenschein, wie geht es dir?
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [2001:9b1:8826:0:98:128:186:102]
+X-Mailer: Zimbra 8.6.0_GA_1182 (zclient/8.6.0_GA_1182)
+Thread-Topic: Hallo Sonnenschein, wie geht es dir?
+Thread-Index: UFpzAMAwLzTg8dYaYyoSXfiGsWPSeQ==
+X-AV-Checked: ClamAV using ClamSMTP
+X-Spam-Level: **
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sa8540-pmics.dtsi contains 4 stripped down versions of pm8150 PMIC
-declarations. Change it to use pm8150.dtsi directly.
+Es tut mir leid, Sie zu st=C3=B6ren und in Ihre Privatsph=C3=A4re einzudrin=
+gen. Ich bin ledig,
+  einsam und auf der Suche nach einem f=C3=BCrsorglichen, liebevollen und r=
+omantischen Begleiter.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi | 96 ++++-----------------
- 1 file changed, 19 insertions(+), 77 deletions(-)
+Ich bin ein heimlicher Verehrer und w=C3=BCrde gerne die Gelegenheit dazu n=
+utzen
+mehr voneinander erfahren. Ich wei=C3=9F, es ist seltsam, Sie zu kontaktier=
+en
+auf diese Weise und ich hoffe, Sie k=C3=B6nnen mir verzeihen. Ich bin ein s=
+ch=C3=BCchterner Mensch u
+Das ist der einzige Weg, wie ich wei=C3=9F, dass ich Ihre Aufmerksamkeit er=
+regen k=C3=B6nnte. Ich will nur
+zu wissen, was Sie denken, und meine Absicht ist es nicht, Sie zu beleidige=
+n.
+Ich hoffe, wir k=C3=B6nnen Freunde sein, wenn es das ist, was Sie wollen, o=
+bwohl ich es w=C3=BCnsche
+mehr als nur ein Freund zu sein. Ich wei=C3=9F, dass Sie ein paar Fragen ha=
+ben
+Fragen Sie und ich hoffe, ich kann einige Ihrer Neugier mit ein paar befrie=
+digen
+Antworten.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
-index 1221be89b3de..201297b6bb19 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
-@@ -7,80 +7,22 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
--&spmi_bus {
--	pmm8540a: pmic@0 {
--		compatible = "qcom,pm8150", "qcom,spmi-pmic";
--		reg = <0x0 SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		rtc@6000 {
--			compatible = "qcom,pm8941-rtc";
--			reg = <0x6000>, <0x6100>;
--			reg-names = "rtc", "alarm";
--			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
--			wakeup-source;
--		};
--
--		pmm8540a_gpios: gpio@c000 {
--			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
--			reg = <0xc000>;
--			gpio-controller;
--			gpio-ranges = <&pmm8540a_gpios 0 0 10>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
--
--	pmm8540c: pmic@4 {
--		compatible = "qcom,pm8150", "qcom,spmi-pmic";
--		reg = <0x4 SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		pmm8540c_gpios: gpio@c000 {
--			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
--			reg = <0xc000>;
--			gpio-controller;
--			gpio-ranges = <&pmm8540c_gpios 0 0 10>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
--
--	pmm8540e: pmic@8 {
--		compatible = "qcom,pm8150", "qcom,spmi-pmic";
--		reg = <0x8 SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		pmm8540e_gpios: gpio@c000 {
--			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
--			reg = <0xc000>;
--			gpio-controller;
--			gpio-ranges = <&pmm8540e_gpios 0 0 10>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
--
--	pmm8540g: pmic@c {
--		compatible = "qcom,pm8150", "qcom,spmi-pmic";
--		reg = <0xc SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		pmm8540g_gpios: gpio@c000 {
--			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
--			reg = <0xc000>;
--			gpio-controller;
--			gpio-ranges = <&pmm8540g_gpios 0 0 10>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
--};
-+#define PMIC_SID 0
-+#define PMIC_SID1 1
-+#define PMIC_LABEL pmm8540a
-+#include "pm8150.dtsi"
-+
-+#define PMIC_SID 4
-+#define PMIC_SID1 5
-+#define PMIC_LABEL pmm8540c
-+#include "pm8150.dtsi"
-+
-+#define PMIC_SID 8
-+#define PMIC_SID1 9
-+#define PMIC_LABEL pmm8540e
-+#include "pm8150.dtsi"
-+
-+#define PMIC_SID c
-+#define PMIC_SID1 d
-+#define PMIC_LABEL pmm8540g
-+#include "pm8150.dtsi"
--- 
-2.30.2
+Ich glaube an das Sprichwort: =E2=80=9EF=C3=BCr die Welt bist du nur eine P=
+erson,
+aber f=C3=BCr jemand Besonderen bist du die Welt. Alles was ich will ist Li=
+ebe,
+romantische F=C3=BCrsorge und Aufmerksamkeit von einem besonderen Begleiter=
+, der ich bin
+hoffend w=C3=A4rst du.
 
+Ich hoffe, dass diese Botschaft der Beginn einer langen Frist sein wird
+Kommunikation zwischen uns, senden Sie einfach eine Antwort auf diese Nachr=
+icht, it
+wird mich gl=C3=BCcklich machen.
+
+
+Umarmungen und K=C3=BCsse,
+
+Heimlicher Verehrer.
