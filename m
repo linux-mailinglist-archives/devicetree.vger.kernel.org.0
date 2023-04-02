@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4AE16D3760
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 12:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2500C6D3769
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 12:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230341AbjDBKrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 06:47:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
+        id S230368AbjDBKtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 06:49:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230340AbjDBKrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 06:47:07 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9266E12845
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 03:47:04 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id i5so106747851eda.0
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 03:47:04 -0700 (PDT)
+        with ESMTP id S230141AbjDBKtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 06:49:46 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA61A11EBA
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 03:49:43 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id ew6so106490143edb.7
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 03:49:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680432423;
+        d=linaro.org; s=google; t=1680432582;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=boY93jyd6+T4l8iYNZlZE0N095pRX4NnlYNcBxMegqE=;
-        b=KJF9SsfWvwvyR4Yw5C5V1+mHelTyrF51rvwVQmy4cS34/YnHeIMNzaqun0xl6GDRdi
-         yCD7Nxe7hxn7VJgirW/NXE9dHznT7Q4+fQq2Lrp+ZET8RipTCo/T+L8x7zqJN+m/lDh9
-         cZDJjGN5Q7c8bb5MzjB78EtPkDrxHezKhnJPw4d4ZNrsLyWGqZj4D2nf8OSWYTWOTHrY
-         uL7y6P8t3S//PuVzPNZERT9zxrfHouWnW80Yf+LkQM4jLAitXRfilQSjvegdz8c9tle/
-         vKbV8EzMR0n9zSGiX6dptsHQVHJG2nPPYST7+x/N3QFgjovOM+wp/Z5FmHInkWg0snZ+
-         YGFA==
+        bh=hjR00TgAnnMwLDCvz0xT0MzHATrmHlJrCAFtw5aFKdk=;
+        b=pkSrbHT2FYuk1Z6tCCsWbzsSFqJrBPI6wjADRsIIxnUglOL3L9Qu6voguaiIUrnnU2
+         JPjcWYsxgRQbir6z1Wx/eDztWZiSw5OBWG4HtkXAkEsR3exMnhz0XP47cDxIk6Dl7vDa
+         f3vCSRhXip5T1S8AQVDzFKP6Cd31AO9Ihs6Sy4B1AeWwcE0FX2PpeYJxULMlok4JVIPp
+         ydNNsv8E8ral5yWhU2/zxN5VSC6lRhnlGefjW3J8G1lAF3F1c4YYF0/9Xlyl0isNvVjf
+         m8ucRuuoWEMiGSBM5/+sHQuME5Lqt7GIZKs0VmolQsb3CzO+35GIp315QJlpRNegKbnL
+         Lzig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680432423;
+        d=1e100.net; s=20210112; t=1680432582;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=boY93jyd6+T4l8iYNZlZE0N095pRX4NnlYNcBxMegqE=;
-        b=DJskLYSBxfb1ymDr5m5UGBTaUCaEaT96gLgBN3iYedZkNNBbXgrngYmk0to7uEXVWp
-         eCTK4znQOEM+mGESqo8DGVrd86f/3khPYMGfK7t3FX424ex+p9cHAtvQAzs7isUR0cVm
-         qcoShq9P1EjIN3wkGhVsXpYEfzM3e5lrSEkCYYIQd6zStojWA5As8rFzlO9pNZekJRpZ
-         0F86fB1blpmyS+SuVx8yNJzTrh+rhsMBeF5OGnFSY3H2B8qujEFpmiKgePkf/9U22fYy
-         yWA+mO14QEiY2d7W1GGAkCfWzRchZMqy55ZUqzjgG9n4D2/9jjAdjWviyXQXjE7hkGQm
-         SdbA==
-X-Gm-Message-State: AAQBX9efvUgLNj2SPZvA+kiGxHcPp5m3r4v3sdq4HOajYiLHJ87sq7w5
-        5MNkRgiA3hWgQ+/t2FO2kDmHiA==
-X-Google-Smtp-Source: AKy350ZEHhfp/UzJ0URFQoZ1spvf7xAJ6vhppv6/DhrVo837ythU/SyCg9S1R8dhbRGHXfjkskDSVQ==
-X-Received: by 2002:aa7:d885:0:b0:4fd:2155:74ef with SMTP id u5-20020aa7d885000000b004fd215574efmr32584061edq.19.1680432423031;
-        Sun, 02 Apr 2023 03:47:03 -0700 (PDT)
+        bh=hjR00TgAnnMwLDCvz0xT0MzHATrmHlJrCAFtw5aFKdk=;
+        b=v0NO32aNJlV2liFhGiDC4mNNjTUQVI4u4HZaxp6Bw6Bj9N7W+eYyqqy8uVUKzaMwJu
+         lF6E7Nn+qfvgDLezPD5VWmYpelM2tRGg1kk7hLGyBBRIhr26JMf9gC+TEfDaPQabCK1c
+         MqAFMrYPKSCchFmI1QYOIJ0S2QyVnU1/H1s/0+JbXeuXFeH5ae4skDFvD9ZTg3OFPLIB
+         jLWQUZhd0t+3s1JC0uL/72/sX+OeI6OIsmeala8oc7en3NTFNZtzAp5cD2JHzekMtymQ
+         6g8eMtnNNw/5T7pMNY2CnTyhWV7vYId6oPETaMlhymYGnONmTjCJu+NgvXJ2IP483XIh
+         0ZnA==
+X-Gm-Message-State: AAQBX9eGSj+7T/0C2N+NXI5DB3GVji2+TRWJ7mHrfLyjfCSibSUKBBLP
+        odXzxzwlvnxJ4zi0HCSb4/eS4g==
+X-Google-Smtp-Source: AKy350bwisRgcgGnMtchBJUcbuj4Pcg+osZs9dbE8qToLV5KDtYpFRlg5/KXsZxdQi+Q/OWZDnLNPA==
+X-Received: by 2002:a17:907:a42a:b0:947:d757:d822 with SMTP id sg42-20020a170907a42a00b00947d757d822mr6531312ejc.68.1680432582447;
+        Sun, 02 Apr 2023 03:49:42 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
-        by smtp.gmail.com with ESMTPSA id u26-20020a50a41a000000b004fb95f51f54sm3142513edb.12.2023.04.02.03.47.01
+        by smtp.gmail.com with ESMTPSA id ee55-20020a056402293700b004aef147add6sm3082265edb.47.2023.04.02.03.49.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Apr 2023 03:47:02 -0700 (PDT)
-Message-ID: <8a22aea9-5027-e8a4-db80-ce79f3830e10@linaro.org>
-Date:   Sun, 2 Apr 2023 12:47:01 +0200
+        Sun, 02 Apr 2023 03:49:42 -0700 (PDT)
+Message-ID: <a13ae120-b50c-b5ef-a686-bc811e6b9d37@linaro.org>
+Date:   Sun, 2 Apr 2023 12:49:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [Patch v4 01/10] dt-bindings: memory: tegra: add bpmp ref in
- tegra234-mc node
+Subject: Re: [PATCH net-next v3 04/12] dt-bindings: net: qcom,ethqos: Add
+ Qualcomm sc8280xp compatibles
 Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     treding@nvidia.com, dmitry.osipenko@collabora.com,
-        viresh.kumar@linaro.org, rafael@kernel.org, jonathanh@nvidia.com,
-        robh+dt@kernel.org, lpieralisi@kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
-        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-References: <20230327161426.32639-1-sumitg@nvidia.com>
- <20230327161426.32639-2-sumitg@nvidia.com>
- <787f656a-223d-5eed-e311-9cc7a6c46452@linaro.org> <ZCLF6ZRH528pu/r3@orome>
- <79d8044f-ce68-463e-66f7-8755e253bc99@linaro.org> <ZCLiCWRYbO98qwCn@orome>
- <0b393600-3f08-c2e8-9b02-664c6a984de1@nvidia.com>
+To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        bhupesh.sharma@linaro.org, wens@csie.org, jernej.skrabec@gmail.com,
+        samuel@sholland.org, mturquette@baylibre.com,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        richardcochran@gmail.com, linux@armlinux.org.uk, veekhee@apple.com,
+        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
+        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
+        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
+        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
+References: <20230331214549.756660-1-ahalaney@redhat.com>
+ <20230331214549.756660-5-ahalaney@redhat.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0b393600-3f08-c2e8-9b02-664c6a984de1@nvidia.com>
+In-Reply-To: <20230331214549.756660-5-ahalaney@redhat.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -86,70 +90,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 19:12, Sumit Gupta wrote:
+On 31/03/2023 23:45, Andrew Halaney wrote:
+> The sc8280xp has a new version of the ETHQOS hardware in it, EMAC v3.
+> Add a compatible for this.
 > 
-> 
-> On 28/03/23 18:18, Thierry Reding wrote:
->> On Tue, Mar 28, 2023 at 01:22:26PM +0200, Krzysztof Kozlowski wrote:
->>> On 28/03/2023 12:48, Thierry Reding wrote:
->>>> On Tue, Mar 28, 2023 at 09:23:04AM +0200, Krzysztof Kozlowski wrote:
->>>>> On 27/03/2023 18:14, Sumit Gupta wrote:
->>>>>> For Tegra234, add the "nvidia,bpmp" property within the Memory
->>>>>> Controller (MC) node to reference BPMP node. This is needed in
->>>>>> the MC driver to pass the client info to the BPMP-FW when memory
->>>>>> interconnect support is available.
->>>>>>
->>>>>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
->>>>>> ---
->>>>>>   .../bindings/memory-controllers/nvidia,tegra186-mc.yaml    | 7 +++++++
->>>>>>   1 file changed, 7 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>> index 935d63d181d9..398d27bb2373 100644
->>>>>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>> @@ -58,6 +58,10 @@ properties:
->>>>>>     "#interconnect-cells":
->>>>>>       const: 1
->>>>>>   
->>>>>> +  nvidia,bpmp:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description: phandle of the node representing the BPMP
->>>>>
->>>>> Why do you need this multiple times? Both in parent and all external-mc
->>>>> children?
->>>>
->>>> We've had nvidia,bpmp in the external memory controller node since
->>>> basically the beginning because we've always needed it there. For newer
->>>> chips we now also need it for the memory controller.
->>>>
->>>> Ideally I think we would only have this in the MC and have the EMC
->>>> driver reference it via the EMC's parent (i.e. MC), but that would break
->>>> backwards-compatibility. Reaching into the EMC's DT node from the MC was
->>>> another option that we discussed internally, but it didn't look right
->>>> given how this is also needed by the MC.
->>>>
->>>> One thing we could potentially do is deprecate the nvidia,bpmp phandle
->>>> in the EMC and only keep it as a fallback in the drivers in case the
->>>> parent MC doesn't find it's own in the DT.
->>>
->>> Yes, deprecation would answer to my question.
->>
->> Okay, great. Sumit, you can resolve this by adding a "deprecated: true"
->> to the EMC's nvidia,bpmp property schema. In the driver we can then try
->> to look at the MC's ->bpmp and if it exists reuse that. If it doesn't
->> exist, we can keep the existing lookup as a fallback for device trees
->> that haven't been updated yet.
-> 
-> We can't use MC's->bpmp in the EMC driver's probe as it will be NULL. 
-> This is because MC driver uses "arch_initcall" and gets probed earlier 
-> than BPMP. We can do this in another way as below change. This way we 
-> can use the existing "nvidia,bpmp" property from EMC node and don't need 
-> to move it to the MC node. Please share if this change sounds OK.
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 
-Then rather it sounds like time to fix these
-orderings/arch_initcall/missing defer.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
