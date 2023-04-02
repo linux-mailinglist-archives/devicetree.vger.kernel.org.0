@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF626D369F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:44:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46ADF6D36A1
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 11:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjDBJod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 05:44:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
+        id S230174AbjDBJr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 05:47:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbjDBJoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:44:32 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0777AD2
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 02:44:30 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id eg48so106156960edb.13
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 02:44:29 -0700 (PDT)
+        with ESMTP id S229459AbjDBJr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 05:47:28 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481D32D45
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 02:47:27 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id ew6so106192721edb.7
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 02:47:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680428668;
+        d=linaro.org; s=google; t=1680428846;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vn5NEjd5HxbmJ5xnivXojSVCvItNCyhz+rzufNyUSX8=;
-        b=UeMgt12la9dzr72IcV5i6pLKXlWfuOQPANo1sTu+HocyldeCdIfWhR2E7VddSfDr7b
-         y0yvKxXbRQx/dwNvd13T2GkPWi8UnPeFM4UsYPQBhBndcR4URSrT36O+9jFRquZnGM4W
-         SygoPqFvJUGqZ3k2abPEgt3nGfvNOORqa6ZLmwf/FReduYnj6MyPd5SaUnAtwGFhYO5+
-         SHIyRAi5O5/a9b+OyhQenau6GBysxjPsILtArM34zPcYbBlSObjgABhJC1XZXvtBHEwt
-         8WomHY1oPD1lvc+zJg5knt8HMeg0z7ibPFZOYF2EWdWUqho5JgpHogly73QRQOjyFG7m
-         LphA==
+        bh=KcPEW/fU+HSUxmyrURzhSPS3MkAlKArgWKHjF8kaX/A=;
+        b=s5ercffMxwZJXRMxxHnx1D9sCBIchZqgWUbw3dgLIg7H+W2wqm/xsKEZf2HhOrwdJT
+         qwicJLwgMuZFKBBiFE9pYetTkhlf9Y178aHfgyzV6XS9FewEm2ZW6e9EDXZUp8Ha+oAB
+         kRTLLOmbN/RJ0gIH8qPbILmu4RHRGbMpSpbpfUuAdC2fTd3k6qby63tvrJWvnhcq9Lkp
+         inX6qRQl0G8sSmRfmRMSNQJcOfsRdfCnxEHlCct75JX0hAwfjZqa5VuOU4TRFqARa80l
+         OFpb1jxx1PfmCIeUjKZBxmZXQ6pjwhUKz0yF6RBqfXSCaCOoVLilDgEsEKVhtJVckroF
+         MOkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680428668;
+        d=1e100.net; s=20210112; t=1680428846;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vn5NEjd5HxbmJ5xnivXojSVCvItNCyhz+rzufNyUSX8=;
-        b=gLbUS33fXjcXl365Gaio860xd/zwIn0GobLmeDbB208Lu1pa82BsK4mJWNuu76kbHL
-         VmGQVF4cssEtjr7SrlL265+cJlyUy55JVBY5OeHz+xx8Tu3mVXPohjTtUNEVVPAhljAy
-         vz51v8GncVXAVsJgsYaUfZq7xg07zgJyFxFUfwehqUy6wetQmFGltphNhb0NeIenU0+N
-         Ez161HFJ+JVfG8m/rEa0rGp1X9GR/GQyFZDyI67I5QpR0UM7QUMac4ddRtNqk3GKTSlN
-         LqPrTo62mGwUQCBU59lkJIcFVCyguRxYOj5i8c5ZrNatasKMQ5s6Ahwd5St59ZmtHbjk
-         B9fQ==
-X-Gm-Message-State: AAQBX9dcS5Ua9atxRJVkhQhbfTD8wTdCnijZOpEn6GMp2qwViF6kvDiJ
-        0nD03bxOQpkv/mDkF9kGTvVDqw==
-X-Google-Smtp-Source: AKy350ZMwsCRQlnRgKv7v+6WOTDv5YiGE0CHA/yKzYVpxAcQqLEcK9k4443zKfTFU2IkMRh1CIxNyg==
-X-Received: by 2002:a17:906:8a41:b0:92b:6f92:7705 with SMTP id gx1-20020a1709068a4100b0092b6f927705mr29131753ejc.40.1680428668508;
-        Sun, 02 Apr 2023 02:44:28 -0700 (PDT)
+        bh=KcPEW/fU+HSUxmyrURzhSPS3MkAlKArgWKHjF8kaX/A=;
+        b=5RoGcAi5zLH2jFqKEAFSxqyMqWV3lZMFywo5AqIQ70uPvtmSbsdPj66aZjiolsxrwg
+         wAWeVP+C4yYOGfRvyTBrdQCbKBMvIQWDdmYSoTdW3d/bOxs8fpsNwAbj+N/5/PhEXgAi
+         JT51exVL+RpzbOhVo/EmVgvHNUgoTm5THaV8kh8Uy2fTVUSw0qPJXXLyR75AUTFZKRoh
+         MVw2fkPjW6S82mA+9kYyRz9OR0XlttClqfLYZUmZiLdG/TqKb/vTZ4EVfGhWs8h3uTDh
+         dpeOXc16T9JBjlg8nomvXUSF+jvnyWh1IsKaA6kpo4xw3eS5gG+QZ5DjTBgMWm8l+RFF
+         xolw==
+X-Gm-Message-State: AAQBX9epq8jqs8sGLo2m3QJDZAOPa11qOLeIaETtId00qLMziEaaWUU4
+        AhWFYHs28Vl8kKW4mLtR61xzDA==
+X-Google-Smtp-Source: AKy350bhEERVWSccArtnTOWjpQACVIbk5hc8rsqgANsF1kpbIxZtcxwQ43+zwqJ0vnYrtsVXuvRdJw==
+X-Received: by 2002:a17:906:26c4:b0:933:130e:e81a with SMTP id u4-20020a17090626c400b00933130ee81amr12807581ejc.32.1680428845762;
+        Sun, 02 Apr 2023 02:47:25 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
-        by smtp.gmail.com with ESMTPSA id b17-20020a50b411000000b004bf7905559asm3106582edh.44.2023.04.02.02.44.27
+        by smtp.gmail.com with ESMTPSA id l22-20020a1709061c5600b00927f6c799e6sm3027703ejg.132.2023.04.02.02.47.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Apr 2023 02:44:28 -0700 (PDT)
-Message-ID: <127c7d41-b7dc-6c9a-0653-f5bf2a626907@linaro.org>
-Date:   Sun, 2 Apr 2023 11:44:27 +0200
+        Sun, 02 Apr 2023 02:47:25 -0700 (PDT)
+Message-ID: <eecb67a5-38eb-5870-1124-0199766d1189@linaro.org>
+Date:   Sun, 2 Apr 2023 11:47:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 09/22] arm64: dts: qcom: pmk8350: allow overriding the
- label
+Subject: Re: [PATCH v2 20/22] arm64: dts: qcom: pm8150: convert to use dynamic
+ SID/LABEL
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -68,9 +68,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
 References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-10-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-21-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230401220810.3563708-10-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230401220810.3563708-21-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,68 +83,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2023 00:07, Dmitry Baryshkov wrote:
-> sc8280xp-pmics.dtsi incorporates a copy of pmk8350, but the dts files
-> use labels following the markings found in the schematics. Allow
-> overriding the labels in pmk8350.dtsi.
+On 02/04/2023 00:08, Dmitry Baryshkov wrote:
+> SA8450p-based platforms have 4 instances of pm8150. Convert pm8150.dtsi
+> to use pmic-dyn-header.dtsi in order to support dynamic and label
+> assignment.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi | 13 +++++++++
->  arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi | 14 ++++++++++
->  arch/arm64/boot/dts/qcom/pmk8350.dtsi         | 28 +++++++++++--------
->  3 files changed, 44 insertions(+), 11 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi          | 53 ++++++++++++-------
+>  arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi |  1 +
+>  2 files changed, 36 insertions(+), 18 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
-> new file mode 100644
-> index 000000000000..1c81269f0783
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
+> diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> index db90c55fa2cf..77bb325e425b 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> @@ -9,13 +9,28 @@
+>  #include <dt-bindings/spmi/spmi.h>
+>  #include <dt-bindings/iio/qcom,spmi-vadc.h>
+>  
+> +/* (Sadly) this PMIC can be configured to be at different SIDs */
+> +#ifndef PMIC_SID
+> +	#define PMIC_SID 0
+> +#endif
+
+No, the DTS code must be simple, no ifndefs for some defines. This means
+that sometimes you expect here define, sometimes not. It's not easy to
+maintain and understand the code. Define must be simple and always
+defined, not sometimes.
+
 > +
-> +/* cleanly revert the effects pmic-dyn-header.dtsi */
+> +#ifndef PMIC_SID1
+> +	#define PMIC_SID1 1
+> +#endif
 > +
-> +#undef LABEL
-> +#undef _LABEL
-> +#undef __LABEL
-
-That makes the code less readable.
-
+> +#ifndef PMIC_LABEL
+> +	#define PMIC_LABEL pm8150
+> +#endif
 > +
-> +#undef PMIC_SID
-> +#undef PMIC_LABEL
-
-And it keeps growing and confusing.
-
-> diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
-> new file mode 100644
-> index 000000000000..75f0448568bd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
+> +#include "pmic-dyn-header.dtsi"
 > +
-> +/*
-> + * Preprocessor symbols to assist in describing PMICs which have configurable
-> + * SID. All effects of this header (or its parameters) must be reverted in
-> + * pmic-dyn-footer.dtsi.
-> + */
-> +
-> +#define LABEL(name) _LABEL(PMIC_LABEL, name)
-> +#define _LABEL(pmic, name) __LABEL(pmic, name)
-> +#define __LABEL(pmic, name) pmic ## _ ## name
+>  / {
+>  	thermal-zones {
+> -		pm8150-thermal {
+> +		NODE(thermal) {
+>  			polling-delay-passive = <100>;
+>  			polling-delay = <0>;
+>  
+> -			thermal-sensors = <&pm8150_temp>;
+> +			thermal-sensors = <&LABEL(temp)>;
+>  
+>  			trips {
+>  				trip0 {
+> @@ -41,9 +56,9 @@ trip2 {
+>  };
+>  
+>  &spmi_bus {
+> -	pm8150_0: pmic@0 {
+> +	pmic@0 {
+>  		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+> -		reg = <0x0 SPMI_USID>;
+> +		reg = <PMIC_SID SPMI_USID>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+> @@ -55,7 +70,7 @@ pon: pon@800 {
+>  
+>  			pon_pwrkey: pwrkey {
+>  				compatible = "qcom,pm8941-pwrkey";
+> -				interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +				interrupts = <PMIC_SID 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
+>  				debounce = <15625>;
+>  				bias-pull-up;
+>  				linux,code = <KEY_POWER>;
+> @@ -65,7 +80,7 @@ pon_pwrkey: pwrkey {
+>  
+>  			pon_resin: resin {
+>  				compatible = "qcom,pm8941-resin";
+> -				interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+> +				interrupts = <PMIC_SID 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+>  				debounce = <15625>;
+>  				bias-pull-up;
+>  
+> @@ -73,22 +88,22 @@ pon_resin: resin {
+>  			};
+>  		};
+>  
+> -		pm8150_temp: temp-alarm@2400 {
+> +		LABEL(temp): temp-alarm@2400 {
 
-No, defines in DTS should be simple. This makes it ungrepable.
-
+NAK for all defines creating labels.
 
 
 Best regards,
