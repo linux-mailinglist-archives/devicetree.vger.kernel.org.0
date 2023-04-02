@@ -2,147 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DAC76D37C0
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 13:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC74F6D37FB
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 14:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjDBLzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 07:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
+        id S230300AbjDBMzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 08:55:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbjDBLzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 07:55:12 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBA3D308
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 04:55:10 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-544f7c176easo502228947b3.9
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 04:55:10 -0700 (PDT)
+        with ESMTP id S229646AbjDBMzX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 08:55:23 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EF8BB96;
+        Sun,  2 Apr 2023 05:55:21 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id r7-20020a17090b050700b002404be7920aso25919011pjz.5;
+        Sun, 02 Apr 2023 05:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680436510;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QCb+PvVz9vDjaUXWhXFHA5eliELDec/Jtrdt7VRzzHI=;
-        b=P+CWpB2UIFi7fSl+IhvqqE3HDSFwVgZ3g5oitw7gV4Iw2zlCjzmspx475zX0JXaEv4
-         UBIRKMn+PaS38WH5q/AYJC0FQJWSeYnCOlN4e6pPOYrExnxzxkt/MiNby+G8VC2lSkj2
-         OTIKTgCjCWa7+Rp20UKuhgeme84Pb50kS3qZMeuwIxT+v38Km+/7GZjns44qwrJJYpMD
-         buVJBeMjH3dbBm5Y7jFdGTqw6U4vSSTlgOCttNXMr8+fefXoX1X76agn09SEDCoHbNmL
-         D7j4/To5+q8MPj0hfZQxrB4QT8vYp6IFuMD4Lohk3vLEbcTH+ZT7Ndt6INxABBUJMcBH
-         g+ZA==
+        d=gmail.com; s=20210112; t=1680440121;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BpzI7Au0Q9dN4lD4MrjFVfTVGtzJnGuXlYcSG+gzAgM=;
+        b=YRm7lKLzpWSTbjXr7/lR2eKETP18fhNBuZf4Z4FzVLBRsgmWVJ0KU07DRToZeZvcUt
+         QRP3SSkWTkhAzZmMkI0cE1NINqjbS8K6c0vJWE4zDyRNb0KQnQlv5gFTl3WwrgGEqdwk
+         0gYjSRKIwXqvR0Q8HNH+EkM+uUXcffaFLpa/q7XVTLmQ9ztzCRKttIOtO/1v4TJckkox
+         CZoePAq9JMJad4uJyc27enzTyNviWi7Y81GucQi5c9AA3vTYXr9APemFODPGTYwwg9d/
+         ZC1nx+ZG+I55QJibqC4Ync7u33OvqTMh56uVr3muA6nqjzayqDwXcgY7+szrgN93yZt3
+         Cf0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680436510;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QCb+PvVz9vDjaUXWhXFHA5eliELDec/Jtrdt7VRzzHI=;
-        b=1ZSqn/990Bl13D/gOxlsLiDx53BkALZC5Ob3OR1oHjcZzI/OolRt67Sg3xr1qFckJ5
-         CW41q1Xm+0eTx3y1T6xsa/u+0bnuUGLyMypD6+hEVY8cugOrg2NHRu3EViYKLZ+XIS9a
-         oHSttZopZqhBf2KxSdkGKIwzlJ+O4JI22VMF3yIchXD69eJbIzHwvAY3Su1l3msIGBX4
-         KAYRhhxAFjvtRs1Iz5orTEhBIIWU2lN7PTn+Z+tBbaQRxgj6H19i0YhHWPLa3XiseD+O
-         IXT8eDvqkY4RlMxfAE07mR6vPxUPdu2l5F5Fb3BUHn/rjADFLbCzR97/vYY07ayMFN8x
-         9hKQ==
-X-Gm-Message-State: AAQBX9d/h6iSHNGQAq9TH5G4f8cZM6H6ktBg5IWhrb1ASnTc/sLA6SPL
-        zmQLHpBLAju5cs+KXpTTXolzTf0HKOweTGxSFEXgv46YQc1Ha1h/TNg=
-X-Google-Smtp-Source: AKy350b5CVIF0s9p1uDLO//v8xxaCU59UCLNsAz4bzleOn08Q3r/xLEZFSD+qiYv3wKgQFzHm4Dux3TWxzNRWXM2G7g=
-X-Received: by 2002:a81:7e10:0:b0:52f:184a:da09 with SMTP id
- o16-20020a817e10000000b0052f184ada09mr8060907ywn.2.1680436510167; Sun, 02 Apr
- 2023 04:55:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-10-dmitry.baryshkov@linaro.org> <127c7d41-b7dc-6c9a-0653-f5bf2a626907@linaro.org>
-In-Reply-To: <127c7d41-b7dc-6c9a-0653-f5bf2a626907@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 2 Apr 2023 14:54:59 +0300
-Message-ID: <CAA8EJpqg15KVx+H_29kJO-KfDEN3LFHZCfpfTWM40WMa2PoAXw@mail.gmail.com>
-Subject: Re: [PATCH v2 09/22] arm64: dts: qcom: pmk8350: allow overriding the label
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20210112; t=1680440121;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BpzI7Au0Q9dN4lD4MrjFVfTVGtzJnGuXlYcSG+gzAgM=;
+        b=Y9fuZVO7gZnR53oNa4bh17kZ0fBShABDNnoTZVq0ZIimEliRoje2IAvrwz1NSWGuSX
+         L0mbssNL9whCkjnEbIfQOXAKc1F54cVHho7lP7emBPg6loDvu+ldX7fRVxeY6VE3iyCz
+         cSND1DWObz4r5xzHq5jAKG30qPnidBf3M3vHs6DRyvegXsntO10znV0IHRbCXVioeOnE
+         IS5eebtBXs//Af0tPv/CQ21GeAt6kNALqIxeBD3GqRexyEnhsIRcbkJUb4Tza29n5DXT
+         ov1VjMnUF0oOTV03P0DyFCSR7S2OpWwkYeeEaLSvyPhpHu3iKU1itAKjjPF4RHNSD6to
+         Ba5Q==
+X-Gm-Message-State: AO0yUKXCDi/IRAEoVWwtLjbphXj6S954nvuDf/THaIU2q4a6sC72k6Zi
+        8G96dYMXvCPYRIS/eq7TEC8=
+X-Google-Smtp-Source: AK7set9J/bkXp2IenXpcl+alnaEaJ4zMy00BFKY8+Lxc7qyJBXhV5hWxvqaGDWqoua6UVYXpUpoStg==
+X-Received: by 2002:a05:6a20:4d94:b0:cc:d514:62cf with SMTP id gj20-20020a056a204d9400b000ccd51462cfmr24024616pzb.43.1680440120717;
+        Sun, 02 Apr 2023 05:55:20 -0700 (PDT)
+Received: from debian.me (subs28-116-206-12-38.three.co.id. [116.206.12.38])
+        by smtp.gmail.com with ESMTPSA id u16-20020aa78490000000b006242f4a8945sm5004103pfn.182.2023.04.02.05.55.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Apr 2023 05:55:20 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id A138010665A; Sun,  2 Apr 2023 19:55:16 +0700 (WIB)
+Date:   Sun, 2 Apr 2023 19:55:16 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Lucas Tanure <tanure@linux.com>,
+        kernelnewbies <kernelnewbies@kernelnewbies.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: Kernel Panic - V6.2 - Reseved memory issue
+Message-ID: <ZCl7NFN5igCkIaLz@debian.me>
+References: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Wq5IN3qnESGv29nn"
+Content-Disposition: inline
+In-Reply-To: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2 Apr 2023 at 12:44, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
-> > sc8280xp-pmics.dtsi incorporates a copy of pmk8350, but the dts files
-> > use labels following the markings found in the schematics. Allow
-> > overriding the labels in pmk8350.dtsi.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi | 13 +++++++++
-> >  arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi | 14 ++++++++++
-> >  arch/arm64/boot/dts/qcom/pmk8350.dtsi         | 28 +++++++++++--------
-> >  3 files changed, 44 insertions(+), 11 deletions(-)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
-> > new file mode 100644
-> > index 000000000000..1c81269f0783
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-footer.dtsi
-> > @@ -0,0 +1,13 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2023, Linaro Limited
-> > + */
-> > +
-> > +/* cleanly revert the effects pmic-dyn-header.dtsi */
-> > +
-> > +#undef LABEL
-> > +#undef _LABEL
-> > +#undef __LABEL
->
-> That makes the code less readable.
->
-> > +
-> > +#undef PMIC_SID
-> > +#undef PMIC_LABEL
->
-> And it keeps growing and confusing.
->
-> > diff --git a/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
-> > new file mode 100644
-> > index 000000000000..75f0448568bd
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/pmic-dyn-header.dtsi
-> > @@ -0,0 +1,14 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2023, Linaro Limited
-> > + */
-> > +
-> > +/*
-> > + * Preprocessor symbols to assist in describing PMICs which have configurable
-> > + * SID. All effects of this header (or its parameters) must be reverted in
-> > + * pmic-dyn-footer.dtsi.
-> > + */
-> > +
-> > +#define LABEL(name) _LABEL(PMIC_LABEL, name)
-> > +#define _LABEL(pmic, name) __LABEL(pmic, name)
-> > +#define __LABEL(pmic, name) pmic ## _ ## name
->
-> No, defines in DTS should be simple. This makes it ungrepable.
 
-I see. I still think that we should remove this duplication. Would you
-prefer for me to define all pmk8350.dtsi labels individually? What
-kind of approach could you possibly propose?
+--Wq5IN3qnESGv29nn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Apr 02, 2023 at 09:10:36AM +0100, Lucas Tanure wrote:
+> Log:
+>=20
+> [ 9.792966] SError Interrupt on CPU3, code 0x00000000bf000000 -- SError
+> [ 9.792980] CPU: 3 PID: 3471 Comm: kded5 Tainted: G C 6.2.0 #1
+> [ 9.792985] Hardware name: Khadas VIM3 (DT)
+> [ 9.792987] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=
+=3D--)
+> [ 9.792991] pc : kmem_cache_free_bulk.part.98+0x1f0/0x528
+> [ 9.793004] lr : kmem_cache_free_bulk.part.98+0x2f8/0x528
+> [ 9.793008] sp : ffff80000a2eb7f0
+> [ 9.793009] x29: ffff80000a2eb7f0 x28: ffff00001f358518 x27: ffff00000000=
+8800
+> [ 9.793016] x26: ffff00000262b300 x25: ffff00000262b300 x24: 000000000000=
+0001
+> [ 9.793019] x23: ffff00000262b000 x22: 0000000000000000 x21: ffff00001f35=
+8538
+> [ 9.793022] x20: fffffc0000098ac0 x19: 0000000000000004 x18: 000000000000=
+0040
+> [ 9.793025] x17: 0000000000000018 x16: 00000000000007f8 x15: 000000000000=
+0003
+> [ 9.793028] x14: 0000000000000006 x13: ffff800008e48550 x12: 0000ffff9dc9=
+1fff
+> [ 9.793031] x11: 0000000000000004 x10: 0000000000000001 x9 : ffff000007e9=
+3680
+> [ 9.793035] x8 : 0000000000000020 x7 : ffff000001d2b100 x6 : 000000000000=
+0007
+> [ 9.793037] x5 : 0000000000000020 x4 : ffff000000008800 x3 : 000000000000=
+0001
+> [ 9.793040] x2 : 0000000000000007 x1 : 0000000000000000 x0 : ffff00001f35=
+8540
+> [ 9.793045] Kernel panic - not syncing: Asynchronous SError Interrupt
+>=20
+> This doesn't happen with downstream Khadas 6.2 kernel, and that's
+> because the downstream kernel removed this from
+> early_init_dt_reserve_memory (drivers/of/fdt.c):
+>=20
+> /*
+> * If the memory is already reserved (by another region), we
+> * should not allow it to be marked nomap, but don't worry
+> * if the region isn't memory as it won't be mapped.
+> */
+> if (memblock_overlaps_region(&memblock.memory, base, size) &&
+>     memblock_is_region_reserved(base, size))
+>           return -EBUSY;
+>=20
 
--- 
-With best wishes
-Dmitry
+What commit on downstream kernel that fix the issue? Can you reproduce
+on mainline with above conditional removed? Alternatively, can
+you post the downstream fix here?
+
+Also, can you find last working commit on mainline? If so, this is
+regression.
+
+Thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--Wq5IN3qnESGv29nn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZCl7LwAKCRD2uYlJVVFO
+o9EWAQCPtYrbWdu3QEMuqKyChX9q9UnlkrbF0Vwm/6YqiqGRAgEAwqg0FslXEiJE
+jh7cVhCBy9zWyiCJf+XjOLmQ9SPjTQA=
+=w4gz
+-----END PGP SIGNATURE-----
+
+--Wq5IN3qnESGv29nn--
