@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3275A6D374A
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 12:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88DB76D374E
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 12:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbjDBK2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 06:28:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51748 "EHLO
+        id S230511AbjDBK3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 06:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjDBK23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 06:28:29 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA7BBB96
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 03:28:27 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id b20so106481747edd.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 03:28:27 -0700 (PDT)
+        with ESMTP id S230512AbjDBK3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 06:29:31 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D85EBDF3
+        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 03:29:29 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id er13so65478443edb.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 03:29:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680431306;
+        d=linaro.org; s=google; t=1680431368;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=of9U+7t6Yuf9+Y98WIM4IUCakS5RAWajzrK84hySHdg=;
-        b=tEKG3h1wLi/hGqwYpD36pjDL0MohbkNlngRrseU17jt46mofxhxwA7W2BD9+f1lo0K
-         pLc/TfydwCf8aPrfHQMwlr75sG9gj1SkI/v8oIku3Qid2v385Jp97r6J73KYlkf2AzSd
-         bc0B0LbFwFmu9Ywm7lP7ni9Mo8HT/RazybqcYRnyU6BtWtSzEv3YxhFnzT39bukkgKDf
-         b4m4pwExvMJK7hYMDVpi6cC9PZ7k6XNSKbLmS/WJHWsUg/ByrTFq/tUKEA/voh2tzOKI
-         VJsy6QsvwcHP5YK4guZ7cpG3m1QKL8r39xhPwsGo3etmmTK37dlz9X63+ap12WhD16MA
-         TtZw==
+        bh=C6hHjqC1U74CbYwMDYATAAu4fzKjmRLhBEpPZXe0ZsA=;
+        b=ruPF2QZPz9qstwHmQA9O5ioo9/AmK2TD/9SOkxf2/T1tyxhzfbPmqHwJuNtD4tygSC
+         NZ08kXlgPnAV89UJO+7ArdDFPhoRpROhOEeViHXPKdtM8joNDSiIA9/sAPi8HkhtPFmv
+         UTeygrJUgqf5R0+O2sSj1r/VlQyn+5GVPgceBXoIyBs0ky9paGS8A9corrD2qcjDkZJw
+         +GohSBP0E8ezmjSdNAVz/Hohog5526byXPzj9L6taMAN8y1l7cqVr5W0QqFw/UFNMHAG
+         89BYPCUH3pTRZGqzNbd2RET5wsE590LWFlXMNtOgDYORTC1JuU6cA4MghmvLbVNOIFo1
+         Jr0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680431306;
+        d=1e100.net; s=20210112; t=1680431368;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=of9U+7t6Yuf9+Y98WIM4IUCakS5RAWajzrK84hySHdg=;
-        b=tS9JsVakbcJWuwVBEVBCJ6eL6xNwFsqAkUb7889NPb8b1AubFLeXeZ6e+uB3/hHOQy
-         O9UwGpbcSY/mDx9/eq7LtY4Mi1uAltlKmPdK9WoDCpukxNd9MKby0QdS6lbPyTCXShND
-         CLaEABcIEanyZG85lVT2Jsgyh2hjWimwwyYjQoMY+SNwo/u1A2FW8h2MaxtHvtTjnZsp
-         yLq2PDflQkdcMwWDp6mlJRRHgFEsxugV7XWZ6XmifIZTGFMxEQtGwbx7EKTn1Vk+7q3p
-         PYt/Bcbn4a1o8MVviS3J+vLZCjGp+4uU7zAlik1It2CHC5YVUEx2GQzL4//rztTucYB2
-         ArUA==
-X-Gm-Message-State: AAQBX9eFA+vD4TpMQ+DKNgZtoRsh3LFYTOxYL3qcLbKKpYYH3erQ+N25
-        qIozDDPnrvnUvpGOsBWcMtUeRw==
-X-Google-Smtp-Source: AKy350brOmbUTD8JAdjX9mxWM8kcm7XdQ4+erHXIXvxhKN1w3oRn5a18uQmYzzbnS3VVDnozhduOxw==
-X-Received: by 2002:a17:906:cecf:b0:932:2412:8abf with SMTP id si15-20020a170906cecf00b0093224128abfmr34927375ejb.62.1680431306117;
-        Sun, 02 Apr 2023 03:28:26 -0700 (PDT)
+        bh=C6hHjqC1U74CbYwMDYATAAu4fzKjmRLhBEpPZXe0ZsA=;
+        b=fDT0moHEwjtUQsy6RqfGRhG8rGNNRBKW+vM16JpY4DJgzIURdjC9lWHkACflYZBJN6
+         A9rJmFhutzNIjSpLEVyABsmBTwada6IdoxAEaf3oN5nrhCqlCQ/Dv0iHLHvB+onHCy+2
+         We0kFZvos9bAXT4MwZ+n5zK4exTD9P2sZx/aPh6pdA+CzW1ZMKNXvBMejClS3nFMdj+y
+         zGm3M551FpjRLaATAxoHF8DNAnU3yNqohDFIh+FwUQjbTmJr2GOzaW01KAMxr6X69W+P
+         hc23LJUCOiTtA5dgskbLIW7nsiZ9XE/JNmoA6lQR1lUTCFl0aKeHlOlwG+dbPcnIDcRJ
+         tFGg==
+X-Gm-Message-State: AAQBX9druVDipGofNFrUNOfE7pMUlqK5FzkabbOGNTqH78RIUUmt2wH+
+        7XYPYceFpm/SYd2uXecGyyFWfg==
+X-Google-Smtp-Source: AKy350bGwWF280N/Nf87rAMvnddqrOCbEeVR9BWjRMAVUgFlfC0lx0f67CqSzibpIqhXCEaKu/7+Lg==
+X-Received: by 2002:a17:907:74c:b0:947:4481:105b with SMTP id xc12-20020a170907074c00b009474481105bmr17015853ejb.3.1680431367895;
+        Sun, 02 Apr 2023 03:29:27 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7f7f:6a30:7a20:94d5? ([2a02:810d:15c0:828:7f7f:6a30:7a20:94d5])
-        by smtp.gmail.com with ESMTPSA id ld4-20020a1709079c0400b009486efb9192sm370873ejc.11.2023.04.02.03.28.25
+        by smtp.gmail.com with ESMTPSA id h15-20020a1709060f4f00b008b1797b77b2sm3062493ejj.221.2023.04.02.03.29.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Apr 2023 03:28:25 -0700 (PDT)
-Message-ID: <708503d5-a272-77ee-b9dd-694e03119af4@linaro.org>
-Date:   Sun, 2 Apr 2023 12:28:24 +0200
+        Sun, 02 Apr 2023 03:29:27 -0700 (PDT)
+Message-ID: <70b21530-3543-28ab-50f9-716d4c3f456f@linaro.org>
+Date:   Sun, 2 Apr 2023 12:29:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V4 2/6] dt-bindings: w1: Add DS2482/DS2484 I2C to 1-W
- bridges
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sa8540p-ride: Add ethernet nodes
 Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com
-References: <20230331210840.4061-1-stefan.wahren@chargebyte.com>
- <20230331210840.4061-3-stefan.wahren@chargebyte.com>
+To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        netdev@vger.kernel.org, bmasney@redhat.com, echanude@redhat.com,
+        ncai@quicinc.com, jsuraj@qti.qualcomm.com, hisunil@quicinc.com
+References: <20230331215804.783439-1-ahalaney@redhat.com>
+ <20230331215804.783439-4-ahalaney@redhat.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230331210840.4061-3-stefan.wahren@chargebyte.com>
+In-Reply-To: <20230331215804.783439-4-ahalaney@redhat.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,33 +80,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2023 23:08, Stefan Wahren wrote:
-> Even this binding look trivial, the actual hardware supports more
-> features (e.g. sleep mode control GPIO). So add this as a dedicated
-> devicetree binding for the Maxim DS2482/DS2484 I2C to 1-W bridges,
-> which can be extended later.
+On 31/03/2023 23:58, Andrew Halaney wrote:
+> Enable both the MACs found on the board.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
-> ---
->  .../devicetree/bindings/w1/maxim,ds2482.yaml  | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
-> new file mode 100644
-> index 000000000000..fd692a3a7400
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
+> ethernet0 and ethernet1 both ultimately go to a series of on board
+> switches which aren't managed by this processor.
 
-This is still incomplete as it does not allow children, but you
-mentioned it in commit msg and other two bindings are limited as well,
-so sounds ok:
+>  
+> +&ethernet0 {
+> +	snps,mtl-rx-config = <&mtl_rx_setup>;
+> +	snps,mtl-tx-config = <&mtl_tx_setup>;
+> +
+> +	max-speed = <1000>;
+> +	phy-handle = <&rgmii_phy>;
+> +	phy-mode = "rgmii-txid";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&ethernet0_default>;
+> +
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <0x1>;
+> +		#size-cells = <0x0>;
+> +
+> +		compatible = "snps,dwmac-mdio";
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Compatible is always, always the first property.
 
 Best regards,
 Krzysztof
