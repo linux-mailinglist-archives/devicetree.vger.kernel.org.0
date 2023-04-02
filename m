@@ -2,184 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 018506D380B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 15:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D786D382B
+	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 15:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230204AbjDBNLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 09:11:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38832 "EHLO
+        id S229805AbjDBN4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 09:56:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjDBNLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 09:11:48 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61759EF3;
-        Sun,  2 Apr 2023 06:11:46 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id m8so4643558wmq.5;
-        Sun, 02 Apr 2023 06:11:46 -0700 (PDT)
+        with ESMTP id S229448AbjDBN4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 09:56:06 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE6EB9ED0;
+        Sun,  2 Apr 2023 06:56:04 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id t10so107328136edd.12;
+        Sun, 02 Apr 2023 06:56:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680441105; x=1683033105;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GnKA/rJs/YqdQyIRLVbwT2UTWdW3DnAQlOaSJno/au0=;
-        b=Ymd35wN2lMaWHqCqSopqFnECFfw8b8flj6TTeYkZ2I7gLilnjtJmC4lM0xAfFwuTAI
-         AmrPN+fXKqN7l4VnIHmEeu//ekJkI/0J7l85WZk2FwMxMtOfbXLHfeYkMSPXJ499ArqF
-         NJD7ZoaPY/1WRrYvKxmpn53lAeOPpMaNtQoxw3xqvoLULqMiJFZ8LzLL12Zx7K45H4yq
-         nfRapQyc+LAVNYt57uyA4R4+4j8k+n0MZymZxy0+2B2euTAYktFjdLZ6XpWePyeDG3dO
-         hmTPYEoyfzHEPgw0GNXswE1siKsfuYtaCIOsCTwwn+bIb9dnh2OYIiacznUjSQXnODIF
-         TRGg==
+        d=gmail.com; s=20210112; t=1680443763;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fjf6bGXfCGtw1GBhD6mA8LYND1B2VUNBKMqAY73qJpg=;
+        b=DWwYhDXRq06e6xUZlJSb3L79IGw9284KnRGOv5rQNXLBk4zV/gAkT47OCVqs/28rgE
+         nqzACeJLaILlkssk9f/FrgD/fKmuSlOxDcHWqniSaF5eM1z/u1II8PuW3opqtnZyQq/d
+         DHbX6Mgh9433tuRIz9l2jeUxxy2eAKPqJ+LV7kqQuZs1kHoGGh0cj1spt3PxXCjyCFRq
+         3J6qGssaXuOPt3M401lj1+ilj1k0d6C+zV4cqhTbttL9sONdMAHPVM8k+f7BtvWTn+r8
+         Vfb1xZkvfGTKu5aUIvP+RvmoBwgKvEHlzgNACtnJphOoR8Usgt/75jd77nBuH5zcfNbs
+         EQpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680441105; x=1683033105;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GnKA/rJs/YqdQyIRLVbwT2UTWdW3DnAQlOaSJno/au0=;
-        b=XGnUdA/FNRlzPVr37MGit7JKIewfwtXYUupLU/6TJfFqUFkV5QXdFESvqACttab2jd
-         G43e03kk747aJkE6zvV//J9E8SdkNAsfDleF6/adsRt7NG9R89pcGbCbxelxx8i6OKQd
-         PxZOXkJe5icvkLNI8WMbDKnAMZFZCw/YckMcvyuTUdqDG7uZWSdi69jkQsPN9TedIJ6A
-         GOj+eCHfklwo1OCkrTaeq4qVaFZOeGyuqOcws1tjN9/WvLXdFCb6Bi0VC/EQS2fClTcf
-         xtBU/XjPC1WvlEehLpuqkoHhrL7ysTWulFtO+pBn4eZojGD0jHBlYe/GBYzN70d9BRg2
-         UYmA==
-X-Gm-Message-State: AO0yUKUtqjbewYdbQzMybnFJ/mXQYXM6xkaGVTlWu/Fu7iK3ZADvjH+y
-        lwAspErCD95EMpGAB6WleJifH6be6fF846nh
-X-Google-Smtp-Source: AK7set+BE9+1XY1jQ2bVkiXLFXArtJVu5K69SzBLX7UK84QvLfETulq5BPtiC2yulCArNHPmSc9hOg==
-X-Received: by 2002:a1c:790e:0:b0:3ed:a82d:dfe2 with SMTP id l14-20020a1c790e000000b003eda82ddfe2mr23897436wme.29.1680441104976;
-        Sun, 02 Apr 2023 06:11:44 -0700 (PDT)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id 5-20020a05600c228500b003e91b9a92c9sm9025808wmf.24.2023.04.02.06.11.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 02 Apr 2023 06:11:44 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.2\))
-Subject: Re: Kernel Panic - V6.2 - Reseved memory issue
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
-Date:   Sun, 2 Apr 2023 17:11:41 +0400
-Cc:     kernelnewbies <kernelnewbies@kernelnewbies.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        AML <linux-amlogic@lists.infradead.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <9BAD677A-74AF-4515-B19C-A15A69CE53EF@gmail.com>
-References: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
-To:     tanure@linux.com, Stefan Agner <stefan@agner.ch>
-X-Mailer: Apple Mail (2.3696.120.41.1.2)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        d=1e100.net; s=20210112; t=1680443763;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fjf6bGXfCGtw1GBhD6mA8LYND1B2VUNBKMqAY73qJpg=;
+        b=IBk/i+8nKUdQ3DvwsOZHjroBc8eb4Ygs8HnSz+3xv3Nk8d8OW8AWJufDDHst6pEUAs
+         QPplm0arHik02H+L2HnTOB3hVFeZ5cqKs7VVHbwS+Q2NbpBS5cMPEqn72jWPQjSJoVu8
+         10YsYK8kxAXonphlTjH99aOhDV3pPe2OSWzcMutJOoEUS/ZdCrmmwz8b2aNgiFEhF9LM
+         cHXFKqO3myvcIwcvNwFhfcmLsLr7q914ExJTjLVYSMZm0YWUV4uCPXDpB/WWIBiIsc4v
+         eqAi/zX15LRgajnyvaxB8s1iAnqBBVM7KbZP9KoQ+vGZKhw29sW7oJJrb7o26W5tMax9
+         Z0/A==
+X-Gm-Message-State: AAQBX9fNHH5WUdHj4rWFq9XLrOZArFL3Ni2pbvQtB5EyN6qSk2BqZJ2p
+        obyYotowuX0fe7BsE2SP/34=
+X-Google-Smtp-Source: AKy350YHTd19GvIKiUIBvMbpofhO2HvoDSBZHULzst9eKdZbPLjOWCXpfLklvh7BZCi4UZUHOhlhxw==
+X-Received: by 2002:a17:906:ad9:b0:930:8714:6739 with SMTP id z25-20020a1709060ad900b0093087146739mr30762837ejf.30.1680443763130;
+        Sun, 02 Apr 2023 06:56:03 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8109:8c00:3b40:6e94:3cde:dfbe:3d7b])
+        by smtp.gmail.com with ESMTPSA id h13-20020a1709063c0d00b008b176df2899sm3241853ejg.160.2023.04.02.06.55.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Apr 2023 06:55:59 -0700 (PDT)
+From:   Nikita Bondarenko <n2h9z4@gmail.com>
+To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
+        rjui@broadcom.com, sbranden@broadcom.com
+Cc:     Nikita Bondarenko <n2h9z4@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: watchdog: brcm,kona-wdt: convert txt file to yaml
+Date:   Sun,  2 Apr 2023 15:55:55 +0200
+Message-Id: <20230402135555.62507-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 2 Apr 2023, at 12:10 pm, Lucas Tanure <tanure@linux.com> wrote:
->=20
-> Hi,
->=20
-> I am trying to fix a kernel panic I am seeing on my vim3 board =
-(Amlogic A311D).
-> I don't have enough knowledge about this area, but my current guess is
-> the kernel is using a piece of memory belonging to ARM-trusted
-> firmware that I shouldn't.
-> Log:
->=20
-> [ 9.792966] SError Interrupt on CPU3, code 0x00000000bf000000 -- =
-SError
-> [ 9.792980] CPU: 3 PID: 3471 Comm: kded5 Tainted: G C 6.2.0 #1
-> [ 9.792985] Hardware name: Khadas VIM3 (DT)
-> [ 9.792987] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS =
-BTYPE=3D--)
-> [ 9.792991] pc : kmem_cache_free_bulk.part.98+0x1f0/0x528
-> [ 9.793004] lr : kmem_cache_free_bulk.part.98+0x2f8/0x528
-> [ 9.793008] sp : ffff80000a2eb7f0
-> [ 9.793009] x29: ffff80000a2eb7f0 x28: ffff00001f358518 x27: =
-ffff000000008800
-> [ 9.793016] x26: ffff00000262b300 x25: ffff00000262b300 x24: =
-0000000000000001
-> [ 9.793019] x23: ffff00000262b000 x22: 0000000000000000 x21: =
-ffff00001f358538
-> [ 9.793022] x20: fffffc0000098ac0 x19: 0000000000000004 x18: =
-0000000000000040
-> [ 9.793025] x17: 0000000000000018 x16: 00000000000007f8 x15: =
-0000000000000003
-> [ 9.793028] x14: 0000000000000006 x13: ffff800008e48550 x12: =
-0000ffff9dc91fff
-> [ 9.793031] x11: 0000000000000004 x10: 0000000000000001 x9 : =
-ffff000007e93680
-> [ 9.793035] x8 : 0000000000000020 x7 : ffff000001d2b100 x6 : =
-0000000000000007
-> [ 9.793037] x5 : 0000000000000020 x4 : ffff000000008800 x3 : =
-0000000000000001
-> [ 9.793040] x2 : 0000000000000007 x1 : 0000000000000000 x0 : =
-ffff00001f358540
-> [ 9.793045] Kernel panic - not syncing: Asynchronous SError Interrupt
->=20
-> This doesn't happen with downstream Khadas 6.2 kernel, and that's
-> because the downstream kernel removed this from
-> early_init_dt_reserve_memory (drivers/of/fdt.c):
->=20
-> /*
-> * If the memory is already reserved (by another region), we
-> * should not allow it to be marked nomap, but don't worry
-> * if the region isn't memory as it won't be mapped.
-> */
-> if (memblock_overlaps_region(&memblock.memory, base, size) &&
->    memblock_is_region_reserved(base, size))
->          return -EBUSY;
->=20
->=20
-> And this causes 3 MiB of memory belonging to ARM Trusted firmware to
-> be reserved.
->=20
-> arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi :
-> /* 3 MiB reserved for ARM Trusted Firmware (BL31) */
-> secmon_reserved: secmon@5000000 {
->        reg =3D <0x0 0x05000000 0x0 0x300000>;
->        no-map;
-> };
->=20
-> And the mainline kernel fails to reserve that memory:
-> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for
-> node 'secmon@5000000': base 0x0000000005000000, size 3 MiB
->=20
-> It fails to reserve because memblock_overlaps_region and
-> memblock_is_region_reserved return one.
-> I think memblock_is_region_reserved is saying the memory is already
-> reserved by uboot and shouldn't be nomap, but it should.
->=20
-> Is there a bug here?
-> Why the kernel is failing to reserve this memory?
-> Is this an u-boot issue?
->=20
-> I would appreciate any help. The current mainline kernel fails 90% of
-> the time to boot into the Vim3 board.
+Remove device tree binding in txt
+Add device tree binding in json-schema
 
-The issue was raised before by Stefan Agner here:
 
-=
-https://lore.kernel.org/linux-arm-kernel/40ca11f84b7cdbfb9ad2ddd480cb204a@=
-agner.ch/
+Signed-off-by: Nikita Bondarenko <n2h9z4@gmail.com>
+---
 
-The thread sort of points at the general issue but the conversation
-fizzled out and didn=E2=80=99t lead to any changes. At one point Stefan =
-made
-a suggestion about reverting part of the code, leading to this patch
-in my own patchset:
+Changes in v2, according to review comments:
+- use subject prefixes matching the subsystem in patch subject
+- add commit message
+- update the list of maintainers: add here all maintainers returned by scripts/get_maintainer.p who are marked as "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX"
+- remove quotes in - $ref: watchdog.yaml#
+- remove description for reg
+- leave one example
+- add all SoCs mentioned in txt file description to compatible enum values 
 
-=
-https://github.com/chewitt/linux/commit/9633c9b24f6f16afdb7fa8c2e163b6ea7a=
-7ac5f8
+Both checks (dtbs_check, dt_binding_check) return no error:
 
-The issue is still present and the patch does work around it. The
-crashes would probably show up more, only a large percentage of
-distros that actively support Amlogic boards (and several vendors)
-are picking chunks of my curated LibreELEC patchset for their own
-kernels and thus that patch is quite widely used.
+make  DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml ARCH=arm dtbs_check
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
 
-Christian
+make  DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml ARCH=arm dt_binding_check
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTEX    Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.example.dts
+  DTC_CHK Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.example.dtb
+
+ .../bindings/watchdog/brcm,kona-wdt.txt       | 15 -------
+ .../bindings/watchdog/brcm,kona-wdt.yaml      | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 15 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
+
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
+deleted file mode 100644
+index 2b86a00e351d..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-Broadcom Kona Family Watchdog Timer
+------------------------------------
+-
+-This watchdog timer is used in the following Broadcom SoCs:
+-  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
+-
+-Required properties:
+-  - compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
+-  - reg: memory address & range
+-
+-Example:
+-	watchdog@35002f40 {
+-		compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
+-		reg = <0x35002f40 0x6c>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
+new file mode 100644
+index 000000000000..c7627c00556a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/brcm,kona-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Kona Family Watchdog Timer
++
++description: |
++  This watchdog timer is used in the following Broadcom SoCs:
++  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
++
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++  - Ray Jui <rjui@broadcom.com>
++  - Scott Branden <sbranden@broadcom.com>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm11130-wdt
++      - brcm,bcm11140-wdt
++      - brcm,bcm11351-wdt
++      - brcm,bcm28145-wdt
++      - brcm,bcm28155-wdt
++      - brcm,kona-wdt
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@35002f40 {
++      compatible = "brcm,bcm11130-wdt";
++      reg = <0x35002f40 0x6c>;
++    };
+-- 
+2.34.1
 
