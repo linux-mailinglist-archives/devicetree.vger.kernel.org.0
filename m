@@ -2,213 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 044EA6D51AC
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1FE6D51D9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 22:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232250AbjDCT6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 15:58:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38420 "EHLO
+        id S232806AbjDCUFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 16:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232587AbjDCT6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:58:11 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A423912B;
-        Mon,  3 Apr 2023 12:58:10 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id d22-20020a9d5e16000000b0069b5252ced7so16251542oti.13;
-        Mon, 03 Apr 2023 12:58:10 -0700 (PDT)
+        with ESMTP id S232291AbjDCUFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 16:05:40 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAAD8273D
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 13:05:37 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id r29so30548884wra.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 13:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680552336;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ypjGSD9MoiyC/BSmZV4rpdSicxantTDyraV9ZwR3Wko=;
+        b=HUKwUP5VZRNpodrnPPM3ifw1bAJa/1Pwl19tZY0gZTDQdqvslDjrKagBUWgrt8/NY1
+         iJ2tN7m+ZqpRE+cPJMdWcNCThCpokwmT7wlwclKRVO8wDwCdc/pV4pkMjvEhq5no8djC
+         kPGn53hin1pRv+iB8fzqU95rfylIHRDYJ0C5vDUFdDcMnNXlFDzMODxFRuRHDnhIfDgD
+         CXJ6y6TnYjCZVy6iOCDFQph/FZRUWWpdmfYk6xaMyt1+X7y038/HXHZtZNOQxDMfQztv
+         7Znx05mTUxZUmAcoNI+qMtJA3exG/ecL3Ah/qeCHRICM69kcalZ0fIqnlwgmhR9/jGmJ
+         RS1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680551890;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r0ZVpErobEk7siRufyklDa0K2HoTMPy0mGGHyR65Aiw=;
-        b=IGJlgGc6ui55ZzDAe/ckr5JVUxboqr8j8rhIUkuET3kVEeEFnJz/e2U+Bm5rH5ebuK
-         Opddx2dUsuQitvJ8/KPoG7FZafHsdVBG77WUs0TLjSyOdJhqv1NyCrzSEdZW+eUsDHCu
-         E+aUa+CKX1aAs2n/yzi0zTI76H7gYX44srGAaRBM/mkvBlUdFH4cH/Cv1wb9AGVXbtUm
-         7Y61f3JZcoFTw2kSgXOqJQSzx6LGNYOdlXDXIsJD6bapinI8HWJPONjXMtUn8+6RQ1o6
-         hjbB+a0pLzbhRTAhppKLZb45bC2ssfSo2PnubbMJpSnhd9e5eBPdCDcYspCyHw+c28XV
-         UcSw==
-X-Gm-Message-State: AAQBX9dtxoyNMKcR0IrpW3SKZsnZ0DYtRclutN/k8k1fqiG1Si2v3w8Q
-        MtwFfv/cRpX3aBmtyBU58zl/3YH4uA==
-X-Google-Smtp-Source: AKy350bGZH8h9G3cgIbWhS5PENOUJZ25o+LP1PRC4PeBlq22dweLKKypO5LxOd8z91F0sr/RVTOEfg==
-X-Received: by 2002:a9d:291:0:b0:69f:a848:1bb2 with SMTP id 17-20020a9d0291000000b0069fa8481bb2mr9204636otl.8.1680551889791;
-        Mon, 03 Apr 2023 12:58:09 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c21-20020a9d67d5000000b006a205a8d5bdsm4702200otn.45.2023.04.03.12.58.08
+        d=1e100.net; s=20210112; t=1680552336;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ypjGSD9MoiyC/BSmZV4rpdSicxantTDyraV9ZwR3Wko=;
+        b=p4VUXVfpuCmcEcEYhFn/Du0Ubu9QGHUKoKf96oZIqATrSUxi8h25AgjHBYKvVGFxhB
+         hlH+CZMUwTYM1F602fvhLu9+iJslqhgBacD7lEctnbhDPn7CKrNoytP7anNtztzlxLJt
+         HrNSvUFkP8owxX/WYT0ntk54SIf8OpWiaaGcomOOw+vuRupXLjvfoG/FxNHwt/va2PRJ
+         d64AdJA9881n/Th+6mkyXR6wMCs5bJ4cZGfoHfGIXCco8UfQz3HEFmNGqKThq+29wTrV
+         0gPxDeHlA3nTFnpMWX03DKfEaeAbA1s64g5o8lv6r99rB3ZqwgKpmwlhN9i19HosI/1F
+         LYPQ==
+X-Gm-Message-State: AAQBX9edbVrdmza/h/hZ0vcLdcqwMv8k8C9XtC9GgQPWB+e1Nu002ueS
+        eFbTf05iNQvlZYVWUcm5lR+S3g==
+X-Google-Smtp-Source: AKy350Ykoxehj3xlHAZUYS0YuJeY0lOEIiHNddtOkaPl+8pQTa1wGWFgeMQoaWYcLwn59zlnlqdkXg==
+X-Received: by 2002:adf:dbcf:0:b0:2ce:da65:1e1d with SMTP id e15-20020adfdbcf000000b002ceda651e1dmr14024101wrj.24.1680552336280;
+        Mon, 03 Apr 2023 13:05:36 -0700 (PDT)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id iv19-20020a05600c549300b003ef69873cf1sm20798037wmb.40.2023.04.03.13.05.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 12:58:09 -0700 (PDT)
-Received: (nullmailer pid 1465383 invoked by uid 1000);
-        Mon, 03 Apr 2023 19:58:08 -0000
-Date:   Mon, 3 Apr 2023 14:58:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Marussi <cristian.marussi@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, sudeep.holla@arm.com,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        nicola.mazzucato@arm.com, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: Support
- mailboxes unidirectional channels
-Message-ID: <20230403195808.GA1362828-robh@kernel.org>
-References: <20230327154528.460836-1-cristian.marussi@arm.com>
- <20230327154528.460836-2-cristian.marussi@arm.com>
+        Mon, 03 Apr 2023 13:05:35 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: [PATCH v5 0/6] Add dedicated Qcom ICE driver
+Date:   Mon,  3 Apr 2023 23:05:24 +0300
+Message-Id: <20230403200530.2103099-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327154528.460836-2-cristian.marussi@arm.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 04:45:27PM +0100, Cristian Marussi wrote:
-> SCMI defines two kinds of communication channels between the agent and the
-> platform: one bidirectional 'a2p' channel used by the agent to send SCMI
-> commands and synchronously receive the related replies, and an optional
-> 'p2a' unidirectional channel used to asynchronously receive delayed
-> responses and notifications emitted from the platform.
-> 
-> When configuring an SCMI transport based on mailboxes, the current binding
-> supports only mailboxes providing bidirectional channels: in such a case
-> one mailbox channel can be easily assigned to each SCMI channel as above
-> described.
-> 
-> In case, instead, to have to deal with mailboxes providing only distinct
-> unidirectional channels, it becomes necessary to extend the binding in
-> order to be able to bind 2 distinct unidirectional mailbox channels to the
-> same SCMI 'a2p' channel.
-> 
-> Bidirectional and unidirectional channels support for the SCMI mailbox
-> transport can coexist by carefully considering the effective combination
-> of defined 'mboxes' and 'shmem' descriptors.
-> 
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> ---
-> v1 --> v2
-> - added mbox-names unidirectional definitions and example
-> ---
->  .../bindings/firmware/arm,scmi.yaml           | 76 ++++++++++++++++---
->  1 file changed, 66 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 2f7c51c75e85..0204b102b47f 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -56,17 +56,41 @@ properties:
->      description:
->        Specifies the mailboxes used to communicate with SCMI compliant
->        firmware.
-> -    items:
-> -      - const: tx
-> -      - const: rx
-> +    oneOf:
-> +      - items:
-> +          - const: tx
-> +      - items:
-> +          - const: tx
-> +          - const: rx
+As both SDCC and UFS drivers use the ICE with duplicated implementation,
+while none of the currently supported platforms make use concomitantly
+of the same ICE IP block instance, the new SM8550 allows both UFS and
+SDCC to do so. In order to support such scenario, there is a need for
+a unified implementation and a devicetree node to be shared between
+both types of storage devices. So lets drop the duplicate implementation
+of the ICE from both SDCC and UFS and make it a dedicated (soc) driver.
+Also, switch all UFS and SDCC devicetree nodes to use the new ICE
+approach.
 
-These 2 'items' can be collapsed to 1 with 'minItems: 1' added.
+The v4 is here:
+https://lore.kernel.org/all/20230327134734.3256974-1-abel.vesa@linaro.org/
 
-> +      - items:
-> +          - const: tx
-> +          - const: tx_reply
-> +      - items:
-> +          - const: tx
-> +          - const: tx_reply
-> +          - const: rx
+Changes since v4:
+ * dropped the SDHCI dt-bindings patch as it will be added along
+   with the first use of qcom,ice property from an SDHCI DT node
 
-Same on these 2 with 'minItems: 2' added.
+See each individual patch for changelogs.
 
->  
->    mboxes:
->      description:
->        List of phandle and mailbox channel specifiers. It should contain
-> -      exactly one or two mailboxes, one for transmitting messages("tx")
-> -      and another optional for receiving the notifications("rx") if supported.
-> +      exactly one, two or three mailboxes; the first one or two for transmitting
-> +      messages ("tx") and another optional ("rx") for receiving notifications
-> +      and delayed responses, if supported by the platform.
-> +      The number of mailboxes needed for transmitting messages depends on the
-> +      type of channels exposed by the specific underlying mailbox controller;
-> +      one single channel descriptor is enough if such channel is bidirectional,
-> +      while two channel descriptors are needed to represent the SCMI ("tx")
-> +      channel if the underlying mailbox channels are of unidirectional type.
-> +      The effective combination in numbers of mboxes and shmem descriptors let
-> +      the SCMI subsystem determine unambiguosly which type of SCMI channels are
-> +      made available by the underlying mailbox controller and how to use them.
-> +       1 mbox / 1 shmem => SCMI TX over 1 mailbox bidirectional channel
-> +       2 mbox / 2 shmem => SCMI TX and RX over 2 mailbox bidirectional channels
-> +       2 mbox / 1 shmem => SCMI TX over 2 mailbox unidirectional channels
-> +       3 mbox / 2 shmem => SCMI TX and RX over 3 mailbox unidirectional channels
-> +      Any other combination of mboxes and shmem is invalid.
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->  
->    shmem:
->      description:
-> @@ -228,13 +252,23 @@ $defs:
->          maxItems: 1
->  
->        mbox-names:
-> -        items:
-> -          - const: tx
-> -          - const: rx
-> +        oneOf:
-> +          - items:
-> +              - const: tx
-> +          - items:
-> +              - const: tx
-> +              - const: rx
-> +          - items:
-> +              - const: tx
-> +              - const: tx_reply
-> +          - items:
-> +              - const: tx
-> +              - const: tx_reply
-> +              - const: rx
->  
->        mboxes:
->          minItems: 1
-> -        maxItems: 2
-> +        maxItems: 3
->  
->        shmem:
->          minItems: 1
-> @@ -393,6 +427,28 @@ examples:
->          };
->      };
->  
-> +  - |
-> +    firmware {
-> +        scmi {
-> +            compatible = "arm,scmi";
-> +            mboxes = <&mhu_U_tx 0 0>, <&mhu_U_rx 0 0>;
-> +            mbox-names = "tx", "tx_reply";
-> +            shmem = <&cpu_scp_lpri0>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            scmi_dvfs_2: protocol@13 {
-> +                reg = <0x13>;
-> +                #clock-cells = <1>;
-> +
-> +                mboxes = <&mhu_U_tx 1 0>, <&mhu_U_rx 1 0>, <&mhu_U_rx 1 1>;
-> +                mbox-names = "tx", "tx_reply", "rx";
-> +                shmem = <&cpu_scp_hpri0>, <&cpu_scp_hpri1>;
-> +            };
-> +        };
-> +    };
-> +
->    - |
->      firmware {
->          scmi {
-> -- 
-> 2.34.1
-> 
+Abel Vesa (6):
+  dt-bindings: crypto: Add Qualcomm Inline Crypto Engine
+  dt-bindings: ufs: qcom: Add ICE phandle
+  soc: qcom: Make the Qualcomm UFS/SDCC ICE a dedicated driver
+  scsi: ufs: ufs-qcom: Switch to the new ICE API
+  mmc: sdhci-msm: Switch to the new ICE API
+  arm64: dts: qcom: sm8550: Add the Inline Crypto Engine node
+
+ .../crypto/qcom,inline-crypto-engine.yaml     |  42 ++
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |  19 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  10 +
+ drivers/mmc/host/Kconfig                      |   2 +-
+ drivers/mmc/host/sdhci-msm.c                  | 220 +++--------
+ drivers/soc/qcom/Kconfig                      |   4 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/ice.c                        | 365 ++++++++++++++++++
+ drivers/ufs/host/Kconfig                      |   2 +-
+ drivers/ufs/host/Makefile                     |   4 +-
+ drivers/ufs/host/ufs-qcom-ice.c               | 244 ------------
+ drivers/ufs/host/ufs-qcom.c                   |  97 ++++-
+ drivers/ufs/host/ufs-qcom.h                   |  32 +-
+ include/soc/qcom/ice.h                        |  37 ++
+ 14 files changed, 626 insertions(+), 453 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+ create mode 100644 drivers/soc/qcom/ice.c
+ delete mode 100644 drivers/ufs/host/ufs-qcom-ice.c
+ create mode 100644 include/soc/qcom/ice.h
+
+-- 
+2.34.1
+
