@@ -2,135 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 924B16D5135
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F79A6D5143
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:24:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233436AbjDCTUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 15:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41390 "EHLO
+        id S231627AbjDCTYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 15:24:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233145AbjDCTUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:20:08 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4515C2713
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 12:19:44 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id cn12so121586377edb.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 12:19:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680549583;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rO01+3k4fzVS/CqC5YjvddkQFJufKZJtp6FmS8S3Vzg=;
-        b=Yi7A7zkfu+IHMbck2/TitvdJ6L4cw+Vm0TPV9ZEdJNaXE2NYh5wdbS816CRXVg1CxL
-         o5p0DvQniMBWegtUeBvP+ZarG3PhT4+CAPAcgwSsl69C+lJqOuCiahmTb9xJ4WAjR7T3
-         BWJz6rzqv40oWo/QS0xLlgDHKMUE0ozRFQQorBjzztoMXAVWRojOe1homea76gTy/GA6
-         Vxd/XrKS4xy2JybNYgoqpiM2XMbBxbYzFClQ1AdvWbdRZgEYbSGI7SlMede0+eaOSIud
-         lxNFqCwLwfj8hj81cTDnFqUvaUjD4sCMZOgFUTRWabMMu25FVvYPyOjf+AToCzO0oPQc
-         aFeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680549583;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rO01+3k4fzVS/CqC5YjvddkQFJufKZJtp6FmS8S3Vzg=;
-        b=nj1RpHAOKVRDMJwrJCips7h8tmdDWpreGiutaC6M1IOgrjISM3kCWWJ0gdiUazfVHn
-         FbvsNx5uUJQqD+/oW3PAhjWphaVI2umQ5NH7IinI2GI/QoZiq8XbGALwS6H/PIf4uffl
-         mVHN79fTPiq+5CeC5lMCvYTK4WhROvs6KUGJa4Eahruk8OAt/Eyb0wfFnpNTdaQ2Pb9h
-         Lq4wFiKPwFsDrOFNIpW02TWPX8mw8tZI9KYPCWxBFib3+djxi3jvbEJwONSBCZ69qTaz
-         tZe/+QiKuxMzx9EMjlpd6tf9+++rwZSuiJKB+QZa0Ue6/YKGE50syZ/5IxpYjP2rd+yW
-         i0hg==
-X-Gm-Message-State: AAQBX9dXmUdCnXTwh1v12ttBB5bpjUveZ+9x/+KcOr0snaTysuNZ0TZI
-        D6yUH0cofUIDY5WAhGR/zp38bfrp2Esd4bWZ8mQ=
-X-Google-Smtp-Source: AKy350bqVpOgQVbWoSPL7MpqchC8QTkyqwgB6DRPSqU1gag0Z4fSDQBJAF/ATSBK3zN8Uba0NWmgGQ==
-X-Received: by 2002:a17:907:25cb:b0:946:f79b:e785 with SMTP id ae11-20020a17090725cb00b00946f79be785mr22215288ejc.2.1680549582892;
-        Mon, 03 Apr 2023 12:19:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id h23-20020a170906261700b008e0bb004976sm4882835ejc.134.2023.04.03.12.19.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 12:19:41 -0700 (PDT)
-Message-ID: <d8f3432a-b364-e939-c1f2-b4d55b1586e9@linaro.org>
-Date:   Mon, 3 Apr 2023 21:19:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: usb: mtk-xhci: add an optional frame
- count clock
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S231411AbjDCTYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:24:49 -0400
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178A5E7C;
+        Mon,  3 Apr 2023 12:24:47 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkzcv-3yyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4505:1fdc::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Pr16v6hS3z49Q0d;
+        Mon,  3 Apr 2023 22:24:39 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1680549885;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Tp5qcqPaxivMIuFMRKaAe5HT8V/qPK5f6UKZnTDqXZs=;
+        b=wj8iMdaB6O5svgBz97QcbFfxl9pOUa1PNhWR6/nMI8DJ/TlBNBIzxaoXQ4xFtAVcllZBGn
+        1h11XWEmzs+t+7S8wZmoH14Ni8IZIiAbMuwhBvBpaZQSxGqHI3PBS4/eRQdeOwpNSUUZ4Q
+        9oD4KR5OR/7ixTFuQJjiBae6kKroRXjgsr1oQ1YHFdRtSRUWdkyXT6ydrbBKs2fI2Nf6at
+        KgPm5BT3ib2zzo+p3tbEYZMZCdzbPUGlXdxIKRq6Wl3LoBqS5w7Tcdh9ze+jq4BX8ZDee1
+        E31/c03A+3U1KSnRAQJPWWdm9O+j4FuxlElRkzejBkCFdfXldIoFoa2cL7+rAQ==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1680549885; a=rsa-sha256;
+        cv=none;
+        b=pTLkgQTxUMn8kAT5W3Z+ogFont60P6E8KePKCXivg0tBgmGITjjXMVNgPLPZmGVszTwkb9
+        8xmV8K+JZuzm7F5CFJy//1r6ial5+VTAqVELsLbmuuAMfOY1FbI3yDkl8ZCGK0ToM5mF6F
+        iXE23DARwHLsLEzlUBnPniLP4sabKK6I8VHkzWvPos67ec7cBwbNsoN6VKbLTay13Lx0Te
+        srYyEk9eLJ72MlypaetY0e3iRJp+oyVh9XtQdLwdV+Gk7bvcCtArTcbo8tYuuL7peYlIWK
+        3MAa6H4E+TVhwLzsPEbZwvIuhCayXj1Up3OmaEuUmeKIlKMxGrnJHjS1tylKqw==
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=lahtoruutu; t=1680549885;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Tp5qcqPaxivMIuFMRKaAe5HT8V/qPK5f6UKZnTDqXZs=;
+        b=nDY5LUXsU7qY8CejlN+YlEuCBrJE/yaOwuV73ThTDfxvd8Q/gVoeJnKw2jhXh4fy8A7SPX
+        04/1VA27KvucaNF6obkcJs2PPrdTE0lqb28f0pJOkLQXoIeseCKj3IvDUyXnBCVMbpl03s
+        yasLIby0zyRIhZg4rK6kfJ04rUVkkEFvNGm5TZYXULNkyhoQREHpmP/LL8JdsOm0Nmc2LH
+        0bmnev2mHgSMrVvTzXkiub2kKx9ZZcsn7/QC6F+28qWZ7KKjWBErPDIXmgXOy47iBBRRO6
+        0ZiawUTptzsFdcFQ0UPZ510Z4RUtHySIcAMki/r3tFx2/Ka+zwbnh9UJRyw49Q==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 4C2E2634C91;
+        Mon,  3 Apr 2023 22:22:09 +0300 (EEST)
+Date:   Mon, 3 Apr 2023 22:22:08 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Stanimir Varbanov <stanimir.k.varbanov@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Joe Tessler <jrt@google.com>,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Benoit Parrot <bparrot@ti.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Tianping Fang <tianping.fang@mediatek.com>
-References: <20230403060232.25699-1-chunfeng.yun@mediatek.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403060232.25699-1-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] media: dt-bindings: Drop unneeded quotes
+Message-ID: <ZCsnYGMkV2Zrw3fJ@valkosipuli.retiisi.eu>
+References: <20230320233944.2920964-1-robh@kernel.org>
+ <ZCaoVwRuxVOTZdI4@valkosipuli.retiisi.eu>
+ <36febd82-85b2-aa4d-c7e0-6343b119e0cc@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <36febd82-85b2-aa4d-c7e0-6343b119e0cc@gmail.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 08:02, Chunfeng Yun wrote:
-> Add optional clock 'frmcnt_ck' used on 4nm or advanced process SoC
+Hi Stan,
+
+How are you doing?
+
+On Mon, Apr 03, 2023 at 08:26:28PM +0300, Stanimir Varbanov wrote:
+> Hei Sakari,
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml          | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> On 31.03.23 г. 12:31 ч., Sakari Ailus wrote:
+> > Hi Rob,
+> > 
+> > On Mon, Mar 20, 2023 at 06:39:42PM -0500, Rob Herring wrote:
+> > > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> > > checking for this can be enabled in yamllint.
+> > > 
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > 
+> > This patch contains changes to Qualcomm bindings that have been already
+> > made by other patches by Krzysztof. I think these took some time to get
+> > merged to the media tree.
+> > 
+> > I've dropped those, the result is here:
+> > 
+> > <URL:https://git.linuxtv.org/sailus/media_tree.git/commit/?id=d75cae0884e80bba486f85e82b33a1dae3c9c976>
+> > 
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> index c119caa9ad16..ee8167fbc541 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> @@ -77,6 +77,7 @@ properties:
->        - description: Mcu bus clock for register access
->        - description: DMA bus clock for data transfer
->        - description: controller clock
-> +      - description: frame count clock
->  
->    clock-names:
->      minItems: 1
-> @@ -86,14 +87,15 @@ properties:
->        - const: mcu_ck
->        - const: dma_ck
->        - const: xhci_ck
-> +      - const: frmcnt_ck
+> Do you think it will fix this pull request failure?
+> 
+> https://lore.kernel.org/all/20230329214310.2503484-1-jenkins@linuxtv.org/
 
+Ah, it seems to be the same issue here.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The patch has been merged via my tree, whereas the rest of the patchset was
+apparently merged by Hans earlier on.
 
->  
->    assigned-clocks:
->      minItems: 1
-> -    maxItems: 5
-> +    maxItems: 6
+<URL:https://patchwork.linuxtv.org/project/linux-media/list/?series=9531&submitter=&state=*&q=&archive=&delegate=>
 
-But these should be dropped:
-https://lore.kernel.org/linux-devicetree/20230403191850.374839-1-krzysztof.kozlowski@linaro.org/T/#t
+-- 
+Kind regards,
 
->  
->    assigned-clock-parents:
->      minItems: 1
-> -    maxItems: 5
-> +    maxItems: 6
->  
->    phys:
->      description:
-
-Best regards,
-Krzysztof
-
+Sakari Ailus
