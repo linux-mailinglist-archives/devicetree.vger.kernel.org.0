@@ -2,136 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA1F6D443A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6D16D4467
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjDCMRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:17:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41264 "EHLO
+        id S231889AbjDCMbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:31:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjDCMRu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:17:50 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ADFC1025F;
-        Mon,  3 Apr 2023 05:17:48 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 4C03824DFFD;
-        Mon,  3 Apr 2023 20:17:41 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
- 2023 20:17:41 +0800
-Received: from [192.168.125.145] (183.27.97.179) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
- 2023 20:17:40 +0800
-Message-ID: <670fbeaf-334b-b6d7-d48c-0828c5f1d841@starfivetech.com>
-Date:   Mon, 3 Apr 2023 20:17:39 +0800
+        with ESMTP id S231571AbjDCMbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:31:39 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6326E30CF;
+        Mon,  3 Apr 2023 05:31:38 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0C79866015EC;
+        Mon,  3 Apr 2023 13:31:36 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680525096;
+        bh=/rD9SAGPy66J6vfoFhFaVN4WJbqvWHJM6qbPGrEgfek=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Ih2nysv0vMZHXiRAuIl/l7UkUx5AnzQDMZuQF8qPUo6H15HuGNVGGeDXy7vxdEg/Z
+         gE7xGtEPcQOPj6i3iBsj3XXjCVEYih3EJC4hOnhPVUL/w97e3F6oWg89j8y71onM0I
+         MWmX0CGJZpRwsfXFPTw64goi7H+XNfC1/oZjriYDgKotL0153TjxN6WSjxE+jO48UC
+         RhKYfsiaT9PX+OkieLLJYxFcK/CFg68iJlTMQvbzJ8s28LeDMtoAz3b1wlWmzZXNDl
+         7mXHekHJVhLBvX/ZtyYRUfBWITijznfn/vOoaTjC6+AT+AdWqabKvgxycM1mevHL7j
+         JGiLw8OA9Kf/A==
+Message-ID: <4268fd53-9c1b-4b29-437f-5f792292e48d@collabora.com>
+Date:   Mon, 3 Apr 2023 14:31:33 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: sound: Add TDM for StarFive JH7110
+Subject: Re: [PATCH 4/7] usb: mtu3: unlock @mtu->lock just before giving back
+ request
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230329153320.31390-1-walker.chen@starfivetech.com>
- <20230329153320.31390-2-walker.chen@starfivetech.com>
- <c999da90-1cb9-c767-23bc-c28d37708cf2@linaro.org>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <c999da90-1cb9-c767-23bc-c28d37708cf2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Eddie Hung <eddie.hung@mediatek.com>,
+        Tianping Fang <tianping.fang@mediatek.com>
+References: <20230403025230.25035-1-chunfeng.yun@mediatek.com>
+ <20230403025230.25035-4-chunfeng.yun@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230403025230.25035-4-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.179]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.3 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/3/30 15:39, Krzysztof Kozlowski wrote:
-> On 29/03/2023 17:33, Walker Chen wrote:
->> Add bindings to describe the TDM driver for the StarFive JH7110 SoC.
->> 
->> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
->> ---
->>  .../bindings/sound/starfive,jh7110-tdm.yaml   | 95 +++++++++++++++++++
->>  1 file changed, 95 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml b/Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
->> new file mode 100644
->> index 000000000000..d65b9ed781ef
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
->> @@ -0,0 +1,95 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/starfive,jh7110-tdm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 TDM Controller
->> +
->> +description: |
->> +  The TDM Controller is a Time Division Multiplexed audio interface
->> +  integrated in StarFive JH7110 SoC, allowing up to 8 channels of
->> +  audio over a serial interface. The TDM controller can operate both
->> +  in master and slave mode.
->> +
->> +maintainers:
->> +  - Walker Chen <walker.chen@starfivetech.com>
->> +
+Il 03/04/23 04:52, Chunfeng Yun ha scritto:
+> No need unlock @mtu->lock when unmap request, unlock it just before
+> giving back request, due to we do not lock this spinlock when map
+> the request.
 > 
-> Missing allOf: with $ref to dai-common.
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Indeed missing allOf, thank you for kind reminding.
-
-> 
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - starfive,jh7110-tdm
->> +
->> +  reg:
->> +    maxItems: 1
-> 
-> (...)
-> 
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - dmas
->> +  - dma-names
->> +  - "#sound-dai-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    tdm: tdm@10090000 {
-> 
-> Drop tdm label, not used.
-
-Ok, will drop it.
-
-Best regards,
-Walker
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
