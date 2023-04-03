@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AB0C6D441A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07A776D4421
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232291AbjDCMF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:05:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33188 "EHLO
+        id S232299AbjDCMHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232195AbjDCMFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:05:21 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F422199F
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:05:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A9406B81662
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 12:05:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56E43C433EF;
-        Mon,  3 Apr 2023 12:05:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680523512;
-        bh=oiMtx+LnYiG4vaROlCccOnqEx5ZswceMfPJwtiZAo60=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ipJpAZMUuA5kUWnhfXaqT7+tLJxk1Oupmn7ySsRjrikv0cbAIpMNv4tiLqE0Rf6lL
-         bojWtOf2ordMtXkl6kVbaVsBu5QD7Vr8ezcEtuqO1ryqszgMPIU96cebpctarLmKbe
-         kdR2UHctxLqtPxfJIyPlYI0cOwobogIrsUmHJ+WD5PwmDADp20ypKW6W8mE14jGD9N
-         ZYYRhWb2C6Qdl4q4FixVJHaEVESzn/IGnilIComOETD2GZedjhwtZQ1naGENaopYa9
-         3aVcfpJk32ZMJLhZOxexxL3kZuA8CWALPTCzEKBvLEfDu/+cmTeFOzbm3ChgRhHE9H
-         kk/nQI/VMjE3A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1pjIvt-005ISy-TG;
-        Mon, 03 Apr 2023 13:05:10 +0100
-Date:   Mon, 03 Apr 2023 13:05:09 +0100
-Message-ID: <86zg7puq6i.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     James Morse <james.morse@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Oliver Upton <oliver.upton@linux.dev>,
+        with ESMTP id S231897AbjDCMHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:07:35 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB7FA9;
+        Mon,  3 Apr 2023 05:07:31 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 1625724E38D;
+        Mon,  3 Apr 2023 20:07:22 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
+ 2023 20:07:22 +0800
+Received: from [192.168.125.145] (183.27.97.179) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
+ 2023 20:07:21 +0800
+Message-ID: <8128d57b-17cd-8307-ed8c-2611a5658e18@starfivetech.com>
+Date:   Mon, 3 Apr 2023 20:07:20 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v6 2/4] dmaengine: dw-axi-dmac: Add support for StarFive
+ JH7110 DMA
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Subject: Re: [PATCH 1/6] dt-bindings: firmware: Add arm,errata-management
-In-Reply-To: <dcd8b3d4-8255-0ec1-55ea-4c489e316e24@linaro.org>
-References: <20230330165128.3237939-1-james.morse@arm.com>
-        <20230330165128.3237939-2-james.morse@arm.com>
-        <8a1b2aeb-c89e-d8de-1784-e0cf9ec33aa3@linaro.org>
-        <f9bb371f-427f-84f7-690c-8f96fff31d43@arm.com>
-        <dcd8b3d4-8255-0ec1-55ea-4c489e316e24@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: krzysztof.kozlowski@linaro.org, james.morse@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, lpieralisi@kernel.org, sudeep.holla@arm.com, oliver.upton@linux.dev, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, andre.przywara@arm.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230322094820.24738-1-walker.chen@starfivetech.com>
+ <20230322094820.24738-3-walker.chen@starfivetech.com>
+ <ZCbMRdSCf5vKUk/c@matsya>
+Content-Language: en-US
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <ZCbMRdSCf5vKUk/c@matsya>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.179]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.3 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,94 +61,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 03 Apr 2023 10:15:19 +0100,
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+
+On 2023/3/31 20:04, Vinod Koul wrote:
+> On 22-03-23, 17:48, Walker Chen wrote:
+>> Add DMA reset operation in device probe and use different configuration
+>> on CH_CFG registers according to match data. Update all uses of
+>> of_device_is_compatible with of_device_get_match_data.
+>> 
+>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+>> ---
+>>  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 38 ++++++++++++++++---
+>>  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
+>>  2 files changed, 34 insertions(+), 5 deletions(-)
+>> 
+>> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+>> index 4169e1d7d5ca..6cfcb541d8c3 100644
+>> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+>> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+>> @@ -21,10 +21,12 @@
+>>  #include <linux/kernel.h>
+>>  #include <linux/module.h>
+>>  #include <linux/of.h>
+>> +#include <linux/of_device.h>
+>>  #include <linux/of_dma.h>
+>>  #include <linux/platform_device.h>
+>>  #include <linux/pm_runtime.h>
+>>  #include <linux/property.h>
+>> +#include <linux/reset.h>
+>>  #include <linux/slab.h>
+>>  #include <linux/types.h>
+>>  
+>> @@ -46,6 +48,10 @@
+>>  	DMA_SLAVE_BUSWIDTH_32_BYTES	| \
+>>  	DMA_SLAVE_BUSWIDTH_64_BYTES)
+>>  
+>> +#define AXI_DMA_FLAG_HAS_APB_REGS	BIT(0)
+>> +#define AXI_DMA_FLAG_HAS_RESETS		BIT(1)
+>> +#define AXI_DMA_FLAG_USE_CFG2		BIT(2)
+>> +
+>>  static inline void
+>>  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
+>>  {
+>> @@ -86,7 +92,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
+>>  
+>>  	cfg_lo = (config->dst_multblk_type << CH_CFG_L_DST_MULTBLK_TYPE_POS |
+>>  		  config->src_multblk_type << CH_CFG_L_SRC_MULTBLK_TYPE_POS);
+>> -	if (chan->chip->dw->hdata->reg_map_8_channels) {
+>> +	if (chan->chip->dw->hdata->reg_map_8_channels &&
+>> +	    !chan->chip->dw->hdata->use_cfg2) {
 > 
-> On 31/03/2023 18:58, James Morse wrote:
-> > Hi Krzysztof
-> > 
-> > On 31/03/2023 09:29, Krzysztof Kozlowski wrote:
-> >> On 30/03/2023 18:51, James Morse wrote:
-> >>> The Errata Management SMCCC interface allows firmware to advertise whether
-> >>> the OS is affected by an erratum, or if a higher exception level has
-> >>> mitigated the issue. This allows properties of the device that are not
-> >>> discoverable by the OS to be described. e.g. some errata depend on the
-> >>> behaviour of the interconnect, which is not visible to the OS.
-> >>>
-> >>> Deployed devices may find it significantly harder to update EL3
-> >>> firmware than the device tree. Erratum workarounds typically have to
-> >>> fail safe, and assume the platform is affected putting correctness
-> >>> above performance.
-> >>>
-> >>> Instead of adding a device-tree entry for any CPU errata that is
-> >>> relevant (or not) to the platform, allow the device-tree to describe
-> >>> firmware's responses for the SMCCC interface. This could be used as
-> >>> the data source for the firmware interface, or be parsed by the OS if
-> >>> the firmware interface is missing.
-> >>>
-> >>> Most errata can be detected from CPU id registers. These mechanisms
-> >>> are only needed for the rare cases that external knowledge is needed.
-> > 
-> >>> diff --git a/Documentation/devicetree/bindings/firmware/arm,errata-management.yaml b/Documentation/devicetree/bindings/firmware/arm,errata-management.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..9baeb3d35213
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/firmware/arm,errata-management.yaml
-> >>> @@ -0,0 +1,77 @@
-> >>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/firmware/arm,errata-management.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>
-> >> Except missing testing...
-> > 
-> > After a couple of hours of testing this, I went blind and missed that it was still
-> > complaining about spaces.
-> > 
-> > 
-> >>> +
-> >>> +title: Errata Management Firmware Interface
-> >>> +
-> >>> +maintainers:
-> >>> +  - James Morse <james.morse@arm.com>
-> >>> +
-> >>> +description: |+
-> >>
-> >> Do not need '|+'.
-> >>
-> >>> +  The SMC-CC has an erratum discovery interface that allows the OS to discover
-> >>> +  whether a particular CPU is affected by a specific erratum when the
-> >>> +  configurations affected is only known by firmware. See the specification of
-> >>> +  the same title on developer.arm.com, document DEN0100.
-> >>> +  Provide the values that should be used by the interface, either to supplement
-> >>> +  firmware, or override the values firmware provides.
-> >>
-> >> Why? If you have the discovery interface, don't add stuff to the DT, but
-> >> use that interface.
-
-If you read the cover letter, you'll notice that *nobody* implements
-the discovery mechanism, and yet we still need a way to identify
-broken systems.
-
-> > 
-> > A DT property was explicitly requested by Marc Z on the RFC:
-> > https://lore.kernel.org/linux-arm-kernel/86mt5dxxbc.wl-maz@kernel.org/
-> > 
-> > The concern is that platforms where the CPU is affected, but the issue is masked by the
-> > interconnect will never bother with a firmware interface. The kernel can't know this, so
-> > has to enable the workaround at the cost of performance.
+> I think this will break existing users.. 
 > 
-> It would have to bother DT, so same problem... DT is not optimization
-> mechanism for SW decisions.
+> This is set for reg_map_8_channels && use_cfg2, latter being set only
+> for new controller, so what about existing users of these bits?
 
-What does SW has to do with this? This describes the state of the
-HW. The HW is broken, SW has no way to discover it otherwise, so DT
-*is* the place to put it.
+Firstly thank you for your comments!
+There is a statement 'use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);' to be added in dw_probe function.
+Assuming older/existing platform run this code block, e.g. when compatible is "snps,axi-dma-1.01a", 
+the value of variable 'use_cfg2' is still false, the original logic will not be broken. So other existing
+users are not affected by this.
+Looking forward to your more comments. Thanks!
 
-In any case, it is far easier to update a DT that your EL3 firmware.
+Best regards,
+Walker
 
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
