@@ -2,91 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E039F6D5158
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:29:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFC66D516C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232677AbjDCT3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 15:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49872 "EHLO
+        id S231593AbjDCTfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 15:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230044AbjDCT3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:29:15 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9828910D8;
-        Mon,  3 Apr 2023 12:29:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=AAqqz91IkxtBpU9F67YVn5gGJYIyol387UJgSDAtT5U=; b=Y9As7AFU5T2norvvnESMx00ZZb
-        CYNv8XYgnCcZLniLA2prGlo6gYvkmZEMVYbhxV0oBeZRy+Kt0s2/OqmDL1kbWcxwsJf4bVXlBAr+G
-        x8YKc56647hjKvbBLGqpCBuwe+gFcxoF+6koa6a/3xnsZZYt1BYhIlf6zsAXyefmWs8g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pjPrH-009Jxd-N3; Mon, 03 Apr 2023 21:28:51 +0200
-Date:   Mon, 3 Apr 2023 21:28:51 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        with ESMTP id S231538AbjDCTfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:35:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A06FA3;
+        Mon,  3 Apr 2023 12:35:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E9732625A0;
+        Mon,  3 Apr 2023 19:35:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A1F2C433D2;
+        Mon,  3 Apr 2023 19:35:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680550523;
+        bh=jvtnWZFI2fGJeH2PxHp6LZJsWoWybXxjuO7vI5xdc+k=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Y6p7mCvxr0BUh3aKtOMbCLM5/EIMGrzSJ9otvW1VaUDMJMnk+iJjhwZovzRPSKHGh
+         enymh2tMk49s2QKiOozwHvchGRtbYQRL5Ol/YfMF9gBH3tf8iU7w/Q1CLoygJ/bTvB
+         pQbNPxG0FRPjVBMDEsi+Nz9y8JWClfstHkWoHyRXWX6WH0PPIrD7MZr4C8+56Z8Uh2
+         /PSARdk4QAzH33kABAqlbI1+dr9kSBiUKatImd/nON1sEIWAP53B1n8LL2coMuD2AW
+         G7EyDPUI4pvKeK+h9F2Z18SyAKN3F1Mcgl1HbSlKPnpJQ8l8FD0dgBJBQTBbpneqr8
+         w2jCLwTX9pGSw==
+From:   Conor Dooley <conor@kernel.org>
+To:     linux-fpga@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     conor@kernel.org, Daire McNamara <daire.mcnamara@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [net-next PATCH v6 16/16] arm: mvebu: dt: Add PHY LED support
- for 370-rd WAN port
-Message-ID: <dc344367-4b17-4582-bb03-52f941cb802c@lunn.ch>
-References: <20230327141031.11904-1-ansuelsmth@gmail.com>
- <20230327141031.11904-17-ansuelsmth@gmail.com>
- <20230403184611.GA1352384-robh@kernel.org>
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/7] PolarFire SoC Auto Update Support
+Date:   Mon,  3 Apr 2023 20:34:59 +0100
+Message-Id: <20230403-audacity-champion-9aa7a47939f0@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230331071823.956087-1-conor.dooley@microchip.com>
+References: <20230331071823.956087-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230403184611.GA1352384-robh@kernel.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=818; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=YlEC6sgE+Yocm04DZPoSm8ShZaYEwmR3DSX9EC6jsCo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCnaWomZhzYo6ft1XXtpV/K3bxuLt0rLQtVrvUefWJxPF 5i+WM6yo5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABNZGcbwV7Cda2eLu27inZjv HTJbdki4z2NY1VTb/WTRSr1nNfvnOzMyrGc6fDhNrmezc+TWuuqrzzL28D51PvBx0jnRf9eXfCn 4zwIA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +		leds {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			led@0 {
-> > +				reg = <0>;
-> > +				label = "WAN";
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Fri, 31 Mar 2023 08:18:16 +0100, Conor Dooley wrote:
+> Hey all,
 > 
-> WAN or
+> This patchset adds support for the "Auto Update" feature on PolarFire
+> SoC that allows for writing an FPGA bistream to the SPI flash connected
+> to the system controller.
+> On powercycle (or reboot depending on how the firmware implements the
+> openSBI SRST extension) "Auto Update" will take place, and program the
+> FPGA with the contents of the SPI flash - provided that that image is
+> valid and an actual upgrade from that already programmed!
 > 
-> > +				color = <LED_COLOR_ID_WHITE>;
-> > +				function = LED_FUNCTION_LAN;
-> 
-> LAN?
+> [...]
 
-Hi Rob
+Gonna take this one patch, since it's got ~nothing to do with the rest
+of the series really, so:
 
-I did not know there was LED_FUNCTION_WAN. I just blindly copied it
-from some other DT fragment.
+Applied to riscv-soc-for-next, thanks!
 
-I will change this, thanks.
+[1/7] soc: microchip: mpfs: add a prefix to rx_callback()
+      https://git.kernel.org/conor/c/4dd472bdafcb
 
-	Andrew
+Thanks,
+Conor.
