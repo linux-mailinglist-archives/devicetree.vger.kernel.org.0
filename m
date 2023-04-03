@@ -2,108 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F7FE6D4096
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE88D6D409F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231909AbjDCJ2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:28:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58578 "EHLO
+        id S232069AbjDCJbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:31:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232020AbjDCJ2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:28:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D005D44A8
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:28:29 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pjGUE-0008BG-Kt; Mon, 03 Apr 2023 11:28:26 +0200
-Message-ID: <a8cedf08-7b7d-712c-1c35-4da8d0542e72@pengutronix.de>
-Date:   Mon, 3 Apr 2023 11:28:25 +0200
+        with ESMTP id S232065AbjDCJbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:31:31 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B492D7B
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:31:29 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id t10so114510427edd.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:31:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680514287;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NPh+EMUaLdi2l+M+ekkhJU7AhmrhVeIn6TgP3iXWonE=;
+        b=DFmUo+L+r1nbQLbhsZ74wuyxun8LuYXe6M1hSwvmx7Ez7wmO/cK1hWOXGEoPMiRYMx
+         iQ+fTKC1i7LTsWzkT7Q2EGmLT1k+LPZ7z1hxsDA9/ROAWZhkdWzU8pDjLQLfDHMcHtw1
+         MKGUq+v5v1q5C7iHkHudPEzf4wNVCQvGA3iytlwW4pm/BZKQlw32HDfgFnNvG5ef5HDt
+         qTUDR07pWufV7uD3j0lqvIZDQPIaar9GATF/0QCWkV74x6WC/dz5zaqM+dh76HpgUbDI
+         DE9l6DsEv8Jcp8/yrnOtQPJgeDpDl84bUMuzVGZNkuTlDPQuR4w9zgmzkKeQB5wyv5SW
+         /D6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680514287;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NPh+EMUaLdi2l+M+ekkhJU7AhmrhVeIn6TgP3iXWonE=;
+        b=ZC8uor+e14xJ0TNy91msr9WFapSnd3mRcQfrw7yLUXLqOdjZKp3YrVOEXjq8SQ6d1h
+         ultdeutI/CyUPD3/7D6GljuGVZICFVR7z0v4VJ5KPDHBnk3evt3mbM3kd1z7LDjGeSXc
+         o40w8QISSf20tGMHs/ZuD7BOWITm1YroQ3MGo3QcLk44tAiwYviAHYTGQQ+/9fb1ivxy
+         cLMsD+xKLq3lRHIpLmZMOwraq5eyXePYFnqhtxs334m3T2UOhL4Nm94NY9Jp7tjxL1KF
+         W8PjMxWUz3JonWxf/VJQA1yixmeNv+oVZS/lMzSDAmDOJv0mPdeRZdhIg4/eTG6J17Bx
+         21Dg==
+X-Gm-Message-State: AAQBX9fronqQ6U4qh3YomfTLrXt3H6XFEg9xu/zy0DaBkdCsv7tbnT0O
+        Ih+qbaRuRZsm7zjPydvneE3zQg==
+X-Google-Smtp-Source: AKy350ZZKIe0XlZ5unRDt/7zn2r/gepDCwan5IHWh/Z2tdxfGiKQQF3K6cy7KtDVd2EBLddBhONZVg==
+X-Received: by 2002:a17:906:d8a9:b0:925:5705:b5b8 with SMTP id qc9-20020a170906d8a900b009255705b5b8mr35741794ejb.58.1680514287645;
+        Mon, 03 Apr 2023 02:31:27 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
+        by smtp.gmail.com with ESMTPSA id e7-20020a170906c00700b0093f83562f09sm4284868ejz.87.2023.04.03.02.31.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 02:31:27 -0700 (PDT)
+Message-ID: <5e487bc2-0a5a-4fa1-bc02-2647fa3a887a@linaro.org>
+Date:   Mon, 3 Apr 2023 11:31:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [Linux-stm32] [PATCH v7 10/10] ARM: dts: stm32: add
- STM32MP1-based Phytec board
+Subject: Re: [PATCH] dt-bindings: watchdog: alphascale-asm9260: convert to DT
+ schema
 Content-Language: en-US
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-stm32@st-md-mailman.stormreply.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230330050408.3806093-1-s.trumtrar@pengutronix.de>
- <20230330050408.3806093-11-s.trumtrar@pengutronix.de>
- <31b1300b-7dd9-9bdf-be01-a79b1ac6e8cd@foss.st.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <31b1300b-7dd9-9bdf-be01-a79b1ac6e8cd@foss.st.com>
+To:     Om Parikh <hack3r-0m@proton.me>, daniel.baluta@nxp.com
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Olof Johansson <olof@lixom.net>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230403004138.326482-1-hack3r-0m@proton.me>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230403004138.326482-1-hack3r-0m@proton.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-3.6 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alexandre,
+On 03/04/2023 02:42, Om Parikh wrote:
+> this patch replaces the txt file and adds YAML bindings file
 
-On 03.04.23 11:15, Alexandre TORGUE wrote:
-> On 3/30/23 07:04, Steffen Trumtrar wrote:
->> Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec
->> stm32m157c-som.
->>
->> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
->> ---
+Do not use "This commit/patch", but imperative mood. See:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-[snip]
+Use full sentences, so start with capital letter.
 
->> +/ {
->> +    model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
->> +    compatible = "phytec,phycore-stm32mp1-3",
->> +             "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
->> +
->> +    aliases {
->> +        mmc0 = &sdmmc1;
->> +        mmc1 = &sdmmc2;
->> +        mmc2 = &sdmmc3;
+> adhering to the json-schema for alphascale-asm9260. It is a
+> demo patch for potential further contributions to the GSOC
+> project.
+
+Drop unrelated messages.
+
 > 
-> mmc aliases are still used in linux?
+> (see: https://wiki.linuxfoundation.org/gsoc/2023-gsoc-device-tree-bindings)
 
-Since kernel commit fa2d0aa96941 ("mmc: core: Allow setting slot
-index via device tree alias") added with v5.10-rc1, aliases
-dictate kernel numbering of /dev/mmcblk devices, so it's good
-to have these aliases for consistency as the alternative of
-using PARTUUID breaks down once the same image is flashed to
-both SD and eMMC and use of an initrd is not always practical.
+Drop, not related to Linux kernel.
 
->> +&sdmmc1 {
->> +    secure-status = "disabled";
->> +};
->> +
->> +&sdmmc2 {
->> +    status = "okay";
->> +    secure-status = "disabled";
->> +};
+Anyway, send your patches first through you mentor, so we won't have to
+comment on trivial things.
+
+
+Daniel,
+Are you doing a review of your mentees?
+
 > 
-> What is the need to put the secure status disabled for SDMMC nodes ?
+> Signed-off-by: Om Parikh <hack3r-0m@proton.me>
+> ---
+>  .../watchdog/alphascale,asm9260-wdt.yaml      | 76 +++++++++++++++++++
+>  .../bindings/watchdog/alphascale-asm9260.txt  | 35 ---------
+>  2 files changed, 76 insertions(+), 35 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml
+> new file mode 100644
+> index 000000000000..1f7baaf6b0f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/alphascale,asm9260-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Alphascale asm9260 Watchdog timer
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
 
-TF-A parses them, but for SDMMC, it should have no effect, so I agree
-they can be removed.
+Drop quotes.
 
-Cheers,
-Ahmad
+> +
+> +maintainers:
+> +  - Oleksij Rempel <linux@rempel-privat.de>
+> +  - Olof Johansson <olof@lixom.net>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - alphascale,asm9260
+> +      - alphascale,asm9260devkit
+
+NAK, this does not make any sense. I don't understand what do you want
+to document here. These are boards.
 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
 
