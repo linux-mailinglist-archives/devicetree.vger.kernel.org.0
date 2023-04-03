@@ -2,100 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C6E6D4D42
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 18:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 253526D4D46
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 18:12:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230108AbjDCQLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 12:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42026 "EHLO
+        id S232395AbjDCQMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 12:12:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbjDCQLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 12:11:17 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0D1AB
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 09:11:16 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1A89183AA4;
-        Mon,  3 Apr 2023 18:11:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1680538275;
-        bh=FcmaPUPqe9Yg3VZFvzWFPVFfNahe4d7BH9GnamqcLmU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Wc5T1pB/g9qHPtv+6YtSYI8k8Fg9TWqiJQ4m/a3a9XwDs67hGIGsfp9YYOTytjNch
-         Mk3E1znZEqCgnAwghf52M5JWsZpwnfr+j06qjLvQBX3PPv6inpPWFoveiohnCvAHmI
-         ZZj4Xx1iVzPqWO8h0zucyigBvkTXWbwvhEr9FuNMS7JAVJX7c9zi2y+alcQzm+WySi
-         07b4Y6bTz7m9vLCgLXdk111/+EFZgsG/X06y6FqdnTZeVIYwPRzhegEkA+Uej4bx55
-         vhjSUw/c8elvtK6nZvKxScSGbqnMzYOXlT4zUOECwE1yK+uakSkDfxoTqNFZis+AAs
-         tBdMKhiBIGd0Q==
-Message-ID: <642bd444-9cc3-43aa-53d9-90cebbcd9000@denx.de>
-Date:   Mon, 3 Apr 2023 18:11:14 +0200
+        with ESMTP id S230080AbjDCQML (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 12:12:11 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB88C3
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 09:12:10 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id i6so35453348ybu.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 09:12:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680538329;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ckRoaRfuFXSxICrM929LhPKiHMEGVxGno6xY+TLvhpw=;
+        b=FVhe/9/B5nnJIV+P+o3lR0MP8LctNsUM8vqI6LLpp5pOt9jJiOh9UHqSCQPsQ9Idbx
+         PveyIETXxV9OXgvwdBG8WHQZiqo1///a8v4eJZzdQOnew15zDxUkUg3g1+3GN1V8WWm5
+         UBIW3hmoHELoAQHoaOrQRZJL3C91NcfwFDS2CXp3wVnxQBOEPfPcYFkZJUszKf4znOGi
+         EoY3CoyLXyg21b0tp9g3XgeYo2tzFUjtWPCLP9jRuuwzs9VJLXxFHbjX7r2UUsb9Ovqq
+         KCEszdUu1e8jBQ2HJel2Fc9oVXahuP33s6Mr9oxYSXXYoq9e3T2GHwJre1EWKGo6zRmU
+         bbcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680538329;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ckRoaRfuFXSxICrM929LhPKiHMEGVxGno6xY+TLvhpw=;
+        b=yw4lc2K/cDJzJUDOy2wt3jMmN1+NsFCQ0sxeZ2E4nLvULgNjTF2gbtiQeo6O84REc9
+         LyBgargyJ53zyjmqq2V1UzZ9DWgN+fyFfKkOAwWu6kVdIz7o2MZAGO2i50u+YFCpgql3
+         nNuu4U8OIYjOztCWQ9xsDtqqYfUh7hpWi0/gtNqITV4FT+z9FHbahj7hQx8oci0GfqA5
+         sZ673HzmVly/AMJwYBONuSV5yCrFHk9sarVfnYkumgkFzznlSXqt70rD9FuIOer44zjk
+         cVP6n6kv2q0hehq4f6fv7gbXIhuSSgzXVphxIPO/EGG9JDduCxh9sPUqon7oUnapWyQS
+         ucCQ==
+X-Gm-Message-State: AAQBX9fco39EdPiffo5/aWqm4BW+DNFSUq9T5L0tvGEDpO3m1dP7DCsR
+        PmAnujjdATPbf62GrXHxY9gf/UN9K8zacXLLQsooYA==
+X-Google-Smtp-Source: AKy350bgZqCXxxXnZWum0y79BB4tNnWGNnYcibSUYJZtBvIrylGXzXDniMPLIwWkuC258xvk77u2JPwshx6cwkUy1ns=
+X-Received: by 2002:a05:6902:168d:b0:b6c:2d28:b3e7 with SMTP id
+ bx13-20020a056902168d00b00b6c2d28b3e7mr23000047ybb.9.1680538329177; Mon, 03
+ Apr 2023 09:12:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge to
- yaml
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        jagan@amarulasolutions.com, inki.dae@samsung.com,
-        Fabio Estevam <festevam@denx.de>
-References: <20230331195746.114840-1-festevam@gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230331195746.114840-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-3.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1680271114-1534-4-git-send-email-quic_vpolimer@quicinc.com>
+ <CAA8EJppc3LDQy2RgVZbWki4Y-_FOTK67Y8RfK5Bm9gqdfqMjqQ@mail.gmail.com> <BN0PR02MB8173E9FF869F7EEFCE1F5410E4929@BN0PR02MB8173.namprd02.prod.outlook.com>
+In-Reply-To: <BN0PR02MB8173E9FF869F7EEFCE1F5410E4929@BN0PR02MB8173.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 3 Apr 2023 19:11:58 +0300
+Message-ID: <CAA8EJprj5cmB_STfv45NDCJ_e=aWfwMgaNmGkQBqFa8fQq6gQw@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] msm: skip the atomic commit of self refresh while
+ PSR running
+To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
+Cc:     "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robdclark@gmail.com" <robdclark@gmail.com>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
+        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/31/23 21:57, Fabio Estevam wrote:
-[...]
+On Mon, 3 Apr 2023 at 15:01, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
+>
+> > On Fri, 31 Mar 2023 at 16:59, Vinod Polimera <quic_vpolimer@quicinc.com>
+> > wrote:
+> > >
+> > > In certain CPU stress conditions, there can be a delay in scheduling commit
+> > > work and it was observed that PSR commit from a different work queue
+> > was
+> > > scheduled. Avoid these commits as display is already in PSR mode.
+> > >
+> > > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> > > ---
+> > >  drivers/gpu/drm/msm/msm_atomic.c | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/msm_atomic.c
+> > b/drivers/gpu/drm/msm/msm_atomic.c
+> > > index 645fe53..f8141bb 100644
+> > > --- a/drivers/gpu/drm/msm/msm_atomic.c
+> > > +++ b/drivers/gpu/drm/msm/msm_atomic.c
+> > > @@ -192,6 +192,9 @@ int msm_atomic_check(struct drm_device *dev,
+> > struct drm_atomic_state *state)
+> > >                         new_crtc_state->mode_changed = true;
+> > >                         state->allow_modeset = true;
+> > >                 }
+> > > +
+> > > +               if (old_crtc_state->self_refresh_active && new_crtc_state-
+> > >self_refresh_active)
+> > > +                       return -EINVAL;
+> >
+> > EINVAL here means that atomic_check will fail if both old and new
+> > states are in SR mode. For example, there might be a mode set for
+> > another CRTC (while keeping this one in SR mode). I don't think this
+> > is correct. We should skip/shortcut the commit, that's true. But I
+> > doubt that returning an error here is a proper way to do this. Please
+> > correct me if I'm wrong.
+>
+> If there is a modeset on same crtc with a different connector. The new_crtc_state will not have self_refresh_active set.
+> Self_refresh_active is set from the helper library, which will duplicate the old_state and just adds self_refresh_active to true and active to false.
+> so we can be confident that if we are checking for self_refresh_active status then it should be coming from the library call.
+>
+> Also the EINVAL is returned to the self_refresh library API and the function will be retired.
 
-> -Example:
-> -
-> -	dsi@11c80000 {
-> -		compatible = "samsung,exynos4210-mipi-dsi";
-> -		reg = <0x11C80000 0x10000>;
-> -		interrupts = <0 79 0>;
-> -		clocks = <&clock 286>, <&clock 143>;
-> -		clock-names = "bus_clk", "sclk_mipi";
-> -		phys = <&mipi_phy 1>;
-> -		phy-names = "dsim";
-> -		vddcore-supply = <&vusb_reg>;
-> -		vddio-supply = <&vmipi_reg>;
-> -		power-domains = <&pd_lcd0>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
+Maybe I misunderstand you here. However, in this way EINVAL is
+returned to drm_atomic_check_only() and not to the SR code.
 
-(*)
+> And self_refresh_active is cleared on every commit : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/drm_atomic_state_helper.c#n158
 
-> -		samsung,pll-clock-frequency = <24000000>;
-> -
-> -		panel@1 {
-> -			reg = <0>;
-> -			...
-> -			port {
-> -				panel_ep: endpoint {
-> -					remote-endpoint = <&dsi_ep>;
-> -				};
-> -			};
-> -		};
-> -
-> -		ports {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
+And this means that this check will not trigger at all, if I'm not
+mistaken. You've added code to msm_atomic_check(), so
+drm_self_refresh_helper_alter_state() was not called (yet) and thus
+new_crtc_state->self_refresh_active is set to false, fresh after
+crtc's duplicate_state.
 
-You likely don't need the address/size cells here if the super-node 
-already defined those (*) above
+--
+With best wishes
+Dmitry
