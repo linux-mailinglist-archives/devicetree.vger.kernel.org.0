@@ -2,98 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63CC36D403F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41ADC6D4073
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:23:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231993AbjDCJXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
+        id S231947AbjDCJXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:23:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231679AbjDCJXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:23:03 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A128FCC1B
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:22:47 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id i5so114784533eda.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:22:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680513763;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fjeXiHYDWLDYDH3tp2OHz3EiswuWFVd+Ntpw6O0fatQ=;
-        b=z6Av2ppJybkbEQzB/0dLSbhCmvSMg5sYHB4466FR8KqhH52rocQ3sWeQY3mdCNFvo5
-         XfaL9ToasOWr2ICYR62hiz2ND++yoH3QWb+0nPmUcBtCWGHZkhKPvOcoLoU5+lKJMUKG
-         C2hTVV9C8i1v1O7A89inr67fbEcNcmo3JZn85HtACkWz6CegDyAhZ0TfZtFYEUzffekY
-         vYXwosGWmAZiHATxb0yuWMxjpSbHTMmnQkZuj9oWI+2USGbWIuNCGH78B7kcQzzxCUT0
-         fwZH//+Tx2IYhjk41NbaurMuAep+vwsZDHnA+zPXBfPxmyFHfq1wTjmK9c5miaSfnkMN
-         A4Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680513763;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fjeXiHYDWLDYDH3tp2OHz3EiswuWFVd+Ntpw6O0fatQ=;
-        b=q6QAKdVrygRoWEMsivRMHFyMkMxnvfOgJyTUs6AWS9ff2ZGUn/uu1nVfanlYtuIJ5u
-         N6C2WVvZIUigMIHrXrFKbqgSSLKMmnd7T/bUazVr2tgXz1v9GUIauCfyoprW17u0rpLx
-         arbJdpqtn5ktEpj9cDtnwcpN2b/Rz7soW7Zrce5hlWftor5b+Qo23nyuazRDyftG+OsC
-         Xy2jhs2/AVvyiNMbrPXUqgKUotdGS32l4qIdXCzR5Ik48z5/gm0xL2AtNTJ8rwausfHM
-         /5UHRqBRC7jkpHwueHuKG8xiJUy7rR+JqcwxyPojWmDob6+FJOxrC4djTXngOgZvBzRa
-         pBjA==
-X-Gm-Message-State: AAQBX9cabqQB3bgMD4sdh+BfqfJXL2Fv+IufU1NssRc8vI+CBHUSDJLg
-        iAg9YaN0xsdhBRFkGsqQhgWkyw==
-X-Google-Smtp-Source: AKy350Yj5ESiRy5699EV3GW6T9BfJpuMHWCkbBNGLqd26yEE0yjjj1FOYFwSJySIaibJItggeUy8Yw==
-X-Received: by 2002:aa7:d5d5:0:b0:4af:63a7:7474 with SMTP id d21-20020aa7d5d5000000b004af63a77474mr30655770eds.17.1680513763451;
-        Mon, 03 Apr 2023 02:22:43 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id b17-20020a50b411000000b004bf7905559asm4347630edh.44.2023.04.03.02.22.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:22:43 -0700 (PDT)
-Message-ID: <5f324c32-86a3-a1af-cfe6-b41c4b3979f4@linaro.org>
-Date:   Mon, 3 Apr 2023 11:22:41 +0200
+        with ESMTP id S232024AbjDCJXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:23:48 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E936A44BE;
+        Mon,  3 Apr 2023 02:23:28 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3338pK5d019557;
+        Mon, 3 Apr 2023 11:23:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=YjNvltbkqwv0GajfCzB3caqZQqY82G0xYqYSg7vFACs=;
+ b=RlIIgGiDacMsSyG2Gyy5QT6mHHaCKkUMyzJapbg641ACmQQQFDHc5ssGcxW1jM14dG0Q
+ 4gMZ5C2mDaXBW1KGS5Lz68NG17bgrjRag0nxFOHcIlotw4z9YO+vr+eadH5rbL5y7g+k
+ wXKMGC+OHqr0WH36sRXgOvrbfftQKre4bcr5+LAtDbQgV+yXZQWsezXaw2ZDv9DcoYbQ
+ b+9oSQS59LF1CACM3dHvT3SRD8iVZ9BNifTfqXE1Q2DbxKlmjbffcRpDZQaTWd3EiY5t
+ J8dn4qEfgyLm8iDM8kUQeWHfuvcmUazwea8ciFOomEyxFSrfl1+aINvXZX38y6aT0RqH Mg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pqunhg8j3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Apr 2023 11:23:18 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 099E310002A;
+        Mon,  3 Apr 2023 11:23:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 300802138D4;
+        Mon,  3 Apr 2023 11:23:17 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 3 Apr
+ 2023 11:23:16 +0200
+Message-ID: <f4721c8a-d4f0-d391-b9c9-d1a8cf5538b4@foss.st.com>
+Date:   Mon, 3 Apr 2023 11:23:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V2 2/4] dt-binding: clock: imx8mp: Add LDB clock entry
+Subject: Re: [PATCH] ARM: dts: stm32: Add QSPI support on STM32MP13x SoC
+ family
+To:     <patrice.chotard@foss.st.com>, <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230331071907.4127388-1-patrice.chotard@foss.st.com>
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20230403081246.3194230-1-peng.fan@oss.nxp.com>
- <20230403081246.3194230-2-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403081246.3194230-2-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230331071907.4127388-1-patrice.chotard@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-03_06,2023-03-31_01,2023-02-09_01
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 10:12, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add LDB clock entry for i.MX8MP
+hi Patrice
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
+On 3/31/23 09:19, patrice.chotard@foss.st.com wrote:
+> From: Patrice Chotard <patrice.chotard@foss.st.com>
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Add QSPI support on STM32MP13x SoC family
+> 
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 > ---
+>   arch/arm/boot/dts/stm32mp131.dtsi | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
 > 
-> V2:
->  New
-Best regards,
-Krzysztof
+> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+> index 5949473cbbfd..544c755b6e67 100644
+> --- a/arch/arm/boot/dts/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
+> @@ -1137,6 +1137,21 @@ mdma: dma-controller@58000000 {
+>   			dma-requests = <48>;
+>   		};
+>   
+> +		qspi: spi@58003000 {
+> +			compatible = "st,stm32f469-qspi";
+> +			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
+> +			reg-names = "qspi", "qspi_mm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&mdma 26 0x2 0x10100002 0x0 0x0>,
+> +			       <&mdma 26 0x2 0x10100008 0x0 0x0>;
+> +			dma-names = "tx", "rx";
+> +			clocks = <&rcc QSPI_K>;
+> +			resets = <&rcc QSPI_R>;
+> +			status = "disabled";
+> +		};
+> +
+>   		sdmmc1: mmc@58005000 {
+>   			compatible = "st,stm32-sdmmc2", "arm,pl18x", "arm,primecell";
+>   			arm,primecell-periphid = <0x20253180>;
+Applied on stm32-next.
 
+Thanks.
+Alex
