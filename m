@@ -2,110 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00EC86D44FD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E0F6D4509
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231778AbjDCM5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
+        id S231532AbjDCM7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:59:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230269AbjDCM5D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:57:03 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D1B46B8
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:57:02 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id b20so116968540edd.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:57:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680526621;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N9PXbgDl7LeRBeujLG4sJDCnMB4TWVsRHSKuyMeCJLc=;
-        b=Ovu9SuSRZuBTPFeZVLE4CtW9jF4sSj8AI99HjwWXOch+RnqponLdZXviwvIFo8d4Ga
-         HfKie88WuwpL10J+WMmIdyb+nryWYi+Hvynb3tEJGxaWVSf7hfCKvhbRB1BFaACgNIuT
-         mMAmeKPdSvtSMD+YFDtLMNj/ntAGWzz30l4eS9uURoBevGJ4dz0nTIniwp6/YjCkB6Az
-         eBqe+OqNnQtOsA+1ue5FcRb5vmY5WZY9QAqO7hWETr5A1YD/56nARDy2GQoTE7KizoYd
-         PajbNil5N8AygAcMFA5zN7tNgARwt/KEI1Zak6kSjn54GE8HWFIhEUVytADY33h6omCn
-         fJWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680526621;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N9PXbgDl7LeRBeujLG4sJDCnMB4TWVsRHSKuyMeCJLc=;
-        b=efLNJ4eDbEsKz98+PLhmFmS8q4K1okBu9wLTKdIt1PpJeaKFt4zBgmkTiAFIhlyqeg
-         10XXWubOhV3JmbrQT9XLaMhX97PErGCRaA7B9xgFLJna0r1qBqGkK3+ltgsdppgYqSHv
-         ZY77W0aVQ15BafhycYsK9d4YR7Siglx7NwUtMEw+qsG7g/Ypo2cHCmSKK/mpGPuaFPM4
-         KxiPFssISZrWigJUrv6W7+0jmL4+W1gqkaW0GgZ20VM6ixh4eY5AmPutpDXXU/ZSUM0+
-         DmeFntOZwrKpKnnrISeLAUCiAsNtnHcvBS3J83Rx9JMxyDuG1g/+n8RHliGQB4eLo3wm
-         BH2g==
-X-Gm-Message-State: AAQBX9ddzLH8yGnRQdMvWQylbAutm6vI9imxjScg4+gtwrEcUKPYBnwF
-        GBkvk+lmAJM8xbT8xWeYdJMt5g==
-X-Google-Smtp-Source: AKy350abfZ6sIteFU0M7hfXJkWONPCgcKYoCCqznwTV3GlqPHt5XHyN3ybOGekoNoWZk7JDL60xBlg==
-X-Received: by 2002:aa7:d806:0:b0:4fc:3777:f630 with SMTP id v6-20020aa7d806000000b004fc3777f630mr33601867edq.0.1680526620839;
-        Mon, 03 Apr 2023 05:57:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id d12-20020a50f68c000000b004af73333d6esm4605441edn.53.2023.04.03.05.56.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 05:57:00 -0700 (PDT)
-Message-ID: <46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org>
-Date:   Mon, 3 Apr 2023 14:56:59 +0200
+        with ESMTP id S231514AbjDCM7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:59:03 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1797B3A9B;
+        Mon,  3 Apr 2023 05:58:59 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 2625724E094;
+        Mon,  3 Apr 2023 20:58:56 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
+ 2023 20:58:56 +0800
+Received: from [192.168.125.145] (183.27.97.179) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
+ 2023 20:58:55 +0800
+Message-ID: <693c38f8-6aec-dd50-94a0-65300b6ed1b2@starfivetech.com>
+Date:   Mon, 3 Apr 2023 20:58:54 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 21/22] arch: arm64: dts: qcom: pm8150: support SID
- greater that 9
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: add tdm node and sound card
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-22-dmitry.baryshkov@linaro.org>
- <af18b9a3-2960-8fbb-0d19-ee7d3b3f89ab@linaro.org>
- <b33337de-1a09-aa72-7f1f-fabf85ddcd9d@linaro.org>
- <CAA8EJprnv0uqEq=uJ8z+Az-izwk-kscXiELVqrP9BPBFQpJE4A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJprnv0uqEq=uJ8z+Az-izwk-kscXiELVqrP9BPBFQpJE4A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230329153320.31390-1-walker.chen@starfivetech.com>
+ <20230329153320.31390-4-walker.chen@starfivetech.com>
+ <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [183.27.97.179]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.3 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 13:45, Dmitry Baryshkov wrote:
->> Konrad
->>>> +
->>>>  #undef PMIC_SID
->>>>  #undef PMIC_SID1
->>>>  #undef PMIC_LABEL
->>>
->>> Same comment as for previous patches - all undefs must be gone.
+
+
+On 2023/3/30 15:43, Krzysztof Kozlowski wrote:
+> On 29/03/2023 17:33, Walker Chen wrote:
+>> Add the tdm controller node and sound card for the StarFive JH7110 SoC.
+>> 
+>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+>> ---
+>>  .../jh7110-starfive-visionfive-2.dtsi         | 87 +++++++++++++++++++
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 34 ++++++++
+>>  2 files changed, 121 insertions(+)
+>> 
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> index 1155b97b593d..35137c2edf5d 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> @@ -62,6 +62,10 @@
+>>  	clock-frequency = <297000000>;
+>>  };
+>>  
+>> +&wm8960_mclk {
+>> +	clock-frequency = <24576000>;
+>> +};
+>> +
+>>  &i2srx_bclk_ext {
+>>  	clock-frequency = <12288000>;
+>>  };
+>> @@ -102,6 +106,14 @@
+>>  	pinctrl-names = "default";
+>>  	pinctrl-0 = <&i2c0_pins>;
+>>  	status = "okay";
+>> +
+>> +	wm8960: codec@1a {
+>> +		compatible = "wlf,wm8960";
+>> +		reg = <0x1a>;
+>> +		#sound-dai-cells = <0>;
+>> +
+>> +		wlf,shared-lrclk;
+>> +	};
+>>  };
+>>  
+>>  &i2c2 {
+>> @@ -214,6 +226,40 @@
+>>  			slew-rate = <0>;
+>>  		};
+>>  	};
+>> +
+>> +	tdm0_pins: tdm0-pins {
+>> +		tdm0-pins-tx {
+>> +			pinmux = <GPIOMUX(44, GPOUT_SYS_TDM_TXD,
+>> +					      GPOEN_ENABLE,
+>> +					      GPI_NONE)>;
+>> +			bias-pull-up;
+>> +			drive-strength = <2>;
+>> +			input-disable;
+>> +			input-schmitt-disable;
+>> +			slew-rate = <0>;
+>> +		};
+>> +
+>> +		tdm0-pins-rx {
+>> +			pinmux = <GPIOMUX(61, GPOUT_HIGH,
+>> +					      GPOEN_DISABLE,
+>> +					      GPI_SYS_TDM_RXD)>;
+>> +			input-enable;
+>> +		};
+>> +
+>> +		tdm0-pins-sync {
+>> +			pinmux = <GPIOMUX(63, GPOUT_HIGH,
+>> +					      GPOEN_DISABLE,
+>> +					      GPI_SYS_TDM_SYNC)>;
+>> +			input-enable;
+>> +		};
+>> +
+>> +		tdm0-pins-pcmclk {
+>> +			pinmux = <GPIOMUX(38, GPOUT_HIGH,
+>> +					      GPOEN_DISABLE,
+>> +					      GPI_SYS_TDM_CLK)>;
+>> +			input-enable;
+>> +		};
+>> +	};
+>>  };
+>>  
+>>  &uart0 {
+>> @@ -221,3 +267,44 @@
+>>  	pinctrl-0 = <&uart0_pins>;
+>>  	status = "okay";
+>>  };
+>> +
+>> +&tdm {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&tdm0_pins>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&sound0 {
+>> +	simple-audio-card,dai-link@0 {
+>> +		reg = <0>;
+>> +		status = "okay";
 > 
-> This means that we can not include two copies of the same PMIC (which
-> do have on both platforms).
+> Why? Drop.
 
-Consider spi15 and spi16:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sm8250.dtsi?h=v6.3-rc5&id=7e364e56293bb98cae1b55fd835f5991c4e96e7d#n1045
+Will drop it.
 
-Do you see it written as #include "qcom-sm8250-spi.dtsi" with
-parametrizing the reg/unit address, interrupts etc?
+> 
+>> +		format = "dsp_a";
+>> +		bitclock-master = <&dailink_master>;
+>> +		frame-master = <&dailink_master>;
+>> +
+>> +		widgets =
+> 
+> Drop line break.
 
-No. Neither PMIC should be. It is not a special device.
+OK, will drop it.
+
+> 
+>> +				"Microphone", "Mic Jack",
+>> +				"Line", "Line In",
+>> +				"Line", "Line Out",
+>> +				"Speaker", "Speaker",
+>> +				"Headphone", "Headphone Jack";
+>> +		routing =
+> 
+> Drop unnecessary line break.
+
+OK, will drop it.
+
+> 
+>> +				"Headphone Jack", "HP_L",
+>> +				"Headphone Jack", "HP_R",
+>> +				"Speaker", "SPK_LP",
+>> +				"Speaker", "SPK_LN",
+>> +				"LINPUT1", "Mic Jack",
+>> +				"LINPUT3", "Mic Jack",
+>> +				"RINPUT1", "Mic Jack",
+>> +				"RINPUT2", "Mic Jack";
+>> +		cpu {
+>> +			sound-dai = <&tdm>;
+>> +		};
+>> +
+>> +		dailink_master:codec {
+> 
+> Missing space after label:.
+
+Will be fixed.
+
+> 
+>> +			sound-dai = <&wm8960>;
+>> +			clocks = <&wm8960_mclk>;
+>> +			clock-names = "mclk";
+>> +		};
+>> +	};
+>> +};
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> index b503b6137743..a89158d1d7a6 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> @@ -210,6 +210,12 @@
+>>  		#clock-cells = <0>;
+>>  	};
+>>  
+>> +	wm8960_mclk: wm8960_mclk {
+> 
+> No underscores in node names. Use consistent naming - do you see here
+> any nodes named "mclk"?
+> 
+> Anyway this is some fake clock. Real clock should come out from wm8960.
+
+Thank you for pointing out this, it will be fixed.
+
+> 
+>> +		compatible = "fixed-clock";
+>> +		clock-output-names = "wm8960_mclk";
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>>  	i2srx_bclk_ext: i2srx-bclk-ext-clock {
+>>  		compatible = "fixed-clock";
+>>  		clock-output-names = "i2srx_bclk_ext";
+>> @@ -375,6 +381,27 @@
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		tdm: tdm@10090000 {
+>> +			compatible = "starfive,jh7110-tdm";
+>> +			reg = <0x0 0x10090000 0x0 0x1000>;
+>> +			clocks = <&syscrg JH7110_SYSCLK_TDM_AHB>,
+>> +				 <&syscrg JH7110_SYSCLK_TDM_APB>,
+>> +				 <&syscrg JH7110_SYSCLK_TDM_INTERNAL>,
+>> +				 <&syscrg JH7110_SYSCLK_TDM_TDM>,
+>> +				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
+>> +				 <&tdm_ext>;
+>> +			clock-names = "tdm_ahb", "tdm_apb",
+>> +				      "tdm_internal", "tdm",
+>> +				      "mclk_inner", "tdm_ext";
+>> +			resets = <&syscrg JH7110_SYSRST_TDM_AHB>,
+>> +				 <&syscrg JH7110_SYSRST_TDM_APB>,
+>> +				 <&syscrg JH7110_SYSRST_TDM_CORE>;
+>> +			dmas = <&dma 20>, <&dma 21>;
+>> +			dma-names = "rx","tx";
+>> +			#sound-dai-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>>  		stgcrg: clock-controller@10230000 {
+>>  			compatible = "starfive,jh7110-stgcrg";
+>>  			reg = <0x0 0x10230000 0x0 0x10000>;
+>> @@ -601,5 +628,12 @@
+>>  			#reset-cells = <1>;
+>>  			power-domains = <&pwrc JH7110_PD_VOUT>;
+>>  		};
+>> +
+>> +		sound0: snd-card0 {
+> 
+> 1. Why card0?
+
+There are several audio interfaces in JH7110 SoC, each as an independent sound card.
+TDM is for snd-card0, latter i2s will be for snd-card1, spdif will be for snd-card2, etc.
+
+> 2. Where is this node located? In MMIO bus? Run some basic checks on
+> your DTS before submitting upstream.
+> dtbs_check
+> dtbs W=1
+> 
+> 3. Why this is even in the DTSI? This really looks wrong.
+
+It seems that the sound node should be located in DTS file more appropriately.
 
 Best regards,
-Krzysztof
-
+Walker
