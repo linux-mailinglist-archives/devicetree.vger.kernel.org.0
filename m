@@ -2,172 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98D076D4491
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8166D449B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:43:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232116AbjDCMiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:38:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
+        id S232095AbjDCMno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:43:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231448AbjDCMiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:38:12 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81FCC3588
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:38:11 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id i5so116948289eda.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:38:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680525490;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qpyLniNan8kXaWmdK0bPB2p3FPHPkCqFQCXNF67g44w=;
-        b=FpBaA6xbw0CpGMMiVJLqnlfsDevhHDaVIP+Bzng9cI/bE40CyZJI+ZxU882eMNS/b8
-         9R/wd+LV9AJsUzDKy228ECHJJ0GT8Gvy7X5kAvttYpYtyad5FVR/EwMf4fJeiD9ZJow4
-         vOP5DGfnfZrIcazDpDH08u//HXiaMU70H5tY+rfqwOCTkVJnXXTjwYugUTNztf4PHi2l
-         85dPDwlyU7us7eYNoFtfogUlFAnlICMQo+e0PGrgHQUb7A8V9ziHgPvK/q+2np+lhJDR
-         BPFRWT5Cb9jlFQ9kkejwJTgttSRbUfOyd9FDgW4/GVyUz9HOCAX28xuyWTUKuK+LSVKy
-         VxSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680525490;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qpyLniNan8kXaWmdK0bPB2p3FPHPkCqFQCXNF67g44w=;
-        b=0tqK3pFzYdSncNldpkEV7vEdmMjCBY0zumbvd7BM0HprQCL3XeT5keKi28BAO4nQue
-         cCUDwZxF5y1zNSvU5h4h6PrBdmx8HRVz62vU3nA4eLiMkgO0pnd3OnKjtiRcHhYeh1+G
-         BaEj7bCnG//5cZKJdplgRtZAawg2CCLQv2sNWs4Qz+nuxThIOlVrTqwbRJi2c69tmEmw
-         k+bOzzYLljJYjVRQaOyjmSsiNumOsUyS01X9vYZF9zNvVua0xq/NUkbTsMQ/7KOT7aVu
-         RICdoM9ZUdiXPuJbbiYdZL2vEX9Ab0/TXbFP/8xTduK4X5e+JQHoDsPAesZ1b7TXVmNS
-         j/qQ==
-X-Gm-Message-State: AAQBX9enNdPOZNb7f9CemjwIochI1Q31F9J7nuzV0KHZCjwVC2pMKnqx
-        LhCTJO7IBxgDrPe8LK2JghzcGQ==
-X-Google-Smtp-Source: AKy350aPJ9GmzIXqmf5TkKiPoxebAeXc8qJaZQ0yylyUqd1bbN2VZH0uOeImlJ0Sy0ZPjkyWPYBRTg==
-X-Received: by 2002:a17:906:d1cf:b0:8b1:7aaa:4c25 with SMTP id bs15-20020a170906d1cf00b008b17aaa4c25mr37745413ejb.29.1680525489952;
-        Mon, 03 Apr 2023 05:38:09 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id 15-20020a170906328f00b0093e6f40d124sm4487670ejw.139.2023.04.03.05.38.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 05:38:09 -0700 (PDT)
-Message-ID: <2beba334-1c5e-0f68-1d32-57006b4a3321@linaro.org>
-Date:   Mon, 3 Apr 2023 14:38:08 +0200
+        with ESMTP id S232297AbjDCMnm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:43:42 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF0B9767;
+        Mon,  3 Apr 2023 05:43:41 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 107476603105;
+        Mon,  3 Apr 2023 13:43:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680525820;
+        bh=pfKKC24shtvA/rXAR9B/Z1hLIkyt7OJi4x4sgnOzJ4w=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=E+aRNVEux5sMeLcJ+vqHmQ5aDu98LjC4Bo2QRef0rixMvao06HXBb+qFWc+tSis7K
+         Liy8m21xm8aQetY1koAG4OJFoStg9e/TQCy4NSEN7UqfGpjxNcebUI2Di5pdEQSIWE
+         82falL+mlPGFsCKcrEPSEqiDARZ33Ks0IFi8YixFnxRaN9P7jLwBgPpcGAyM04KAcy
+         Of85MiIOq4BkW/IqSim9YFPMf0vJTJB8/r+4nIvR7WzYs6GoTZMxYQ3XnhfKAvu/RB
+         RBIZQt3gXzvDoQ3XAOZESH5at6jdwGmx0B6jflGyeTfaYKdJqZ+U9w2HsxzqPv3ncm
+         DsrKSa9YYwyOg==
+Message-ID: <601a8435-8e2a-2c25-5fe3-40be62269469@collabora.com>
+Date:   Mon, 3 Apr 2023 14:43:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: max7317: add spi gpio extender
- documentation
+ Thunderbird/102.9.1
+Subject: Re: [RFC] arm64: dts: use size of reserved partition for bl2
 Content-Language: en-US
-To:     Edmund Berenson <edmund.berenson@emlix.com>
-Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230403114033.8336-1-edmund.berenson@emlix.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403114033.8336-1-edmund.berenson@emlix.com>
-Content-Type: text/plain; charset=UTF-8
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230403105818.29624-1-linux@fw-web.de>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230403105818.29624-1-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 13:40, Edmund Berenson wrote:
-> Add driver documentation for the maxim max7317 spi
-> gpio expander.
-
-Subject: drop second/last, redundant "documentation". The "dt-bindings"
-prefix is already stating that these are bindings and documentation.
-
+Il 03/04/23 12:58, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Co-developed-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-> Signed-off-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+> To store uncompressed bl2 more space is required than partition is
+> actually defined.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+
+If this doesn't get changed anymore, I'm fine with it... but a question arises:
+did you send patches to add your BPI-r3 board(s) to upstream u-boot?
+
+
 > ---
-
-This is v2, so where is the changelog? No cover letter, either.
-
->  .../bindings/gpio/gpio-max7317.yaml           | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-max7317.yaml
-
-Filename must be like compatible. "gpio" is not a vendor prefix.
-maxim,max7317.yaml
-
-
+> I used the definition i got from mtk used in their SDK uboot.
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-max7317.yaml b/Documentation/devicetree/bindings/gpio/gpio-max7317.yaml
-> new file mode 100644
-> index 000000000000..ad5a796c704e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-max7317.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-max7317.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX7317 SPI-Interfaced I/O Expander
-> +
-> +maintainers:
-> +  - Edmund Berenson <edmund.berenson@emlix.com>
-> +
-> +description:
-> +  Bindings for 10-Port Maxim MAX7317 SPI GPIO expanders.
+> Openwrt uses also the first reserved partition to give bl2 more
+> space:
+> 
+> https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/mediatek/dts/mt7986a-bananapi-bpi-r3-nor.dts;h=f597b869abc80d1a73f44ebb85ad4da17376bb52;hb=HEAD#l22
+> 
+> so imho it should be same in mainline to not require complex bl2
+> compression.
 
-Describe the hardware, not the "bindings". Drop "Bindings for".
-
-> +
-> +properties:
-> +  compatible:
-> +    const: maxim,max7317
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-
-Use consistent quotes, either ' or ".
-
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-
-Fix ordering. allOf goes either before properties or before
-unevaluatedProps. See for example example-schema.
-
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-
-Use 4 spaces for example indentation.
-
-> +
-
-
-Best regards,
-Krzysztof
+Regards,
+Angelo
 
