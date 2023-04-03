@@ -2,143 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 835036D52CA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 22:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA876D52FB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 23:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbjDCUpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 16:45:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36528 "EHLO
+        id S231655AbjDCVB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 17:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233495AbjDCUpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 16:45:14 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E063C3AB3;
-        Mon,  3 Apr 2023 13:45:12 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 333IQF4D019177;
-        Mon, 3 Apr 2023 20:45:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=kKc+yK5bWzVEGmx6JnZYaj30iKE7spko3/F4IKf9Vsw=;
- b=hFDbilA6pTxckQcHf1HiaSKtYvw0ta0q7wPYpm7umptBfDsZ8Q70xGwQ5snxMwBGbi+T
- sac//30lY8ab7eFFOsoTvvEOmkuZ84xnzQ5+T7BtKXsxDEXqEw7sUdWhkv3OyQw1jbgC
- 0ZDTySr0VaeSFXkMeCB+n4bdf2oihWETRA62ojIdlhUaIrISO+tLMow0Awa/RQiHHPuE
- ZI8QHYlBwHleXCI7/dmvhpe56bUaW0e/YCSKhh4UipdIM8ir2x9B896W/1DNm/raxMwc
- G+vrP3tRqo15rYNMYDPCEelIVcpGnUStEZXL4fvE7eoc9hb9rM0XL6+SS0RKM4SjJRk4 iw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pquwwskfp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Apr 2023 20:45:08 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 333Kj7wk026309
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 3 Apr 2023 20:45:07 GMT
-Received: from hu-gokukris-sd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 3 Apr 2023 13:45:07 -0700
-From:   Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Satya Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        "Guru Das Srinagesh" <quic_gurus@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
-Subject: [PATCH v3 1/1] dt-bindings: firmware: qcom: scm: Updating VMID list
-Date:   Mon, 3 Apr 2023 13:44:55 -0700
-Message-ID: <20230403204455.6758-1-quic_gokukris@quicinc.com>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S231530AbjDCVBZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 17:01:25 -0400
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA45272C;
+        Mon,  3 Apr 2023 14:01:20 -0700 (PDT)
+Received: by mail-oo1-f54.google.com with SMTP id w13-20020a4aca0d000000b0053b8aa32089so4856917ooq.5;
+        Mon, 03 Apr 2023 14:01:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680555679;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JCDaBQRSXHLW/mJme9G/ZIzduYV5CrqCyRVX3szS1jY=;
+        b=XVoSfenSBoMUPGkiSUbl8cwaDQ9uWIK1ytqdwUkqo7A7rxewNuM5WrjhvM6pjHE/ue
+         pGmOreagqS+6n64sFIXnIzKYibUq2kdBVQAwD9Weu/+NS7VHC93rl5n66syhWZ6ymIHe
+         BdBxlIOkfBX7Ghg2nX3koaT7U/QbdCuI9ezYJnZTU/ATz+47QM7qiDTCwGN/up0HElkc
+         /L/e6PMqRtwX4cBEjlYli3fyUCxH+orec4Pr9kcVxD4V3Dizlphmf4mcrbIJEoROzx0Z
+         uwckWXghXl58JVqhFmhG/5uAuLdzYm0rFwyA8Y2Lka8jUa2Clxbilu7Mu1Knby2k3/cP
+         lCJg==
+X-Gm-Message-State: AAQBX9dv9yd4P2f2wK776wE3+8k9hjGjEZZAJmuNkb5UDKNY28a3JyES
+        xuIxbSUceYhYMzlqpkwWWg==
+X-Google-Smtp-Source: AKy350ackiyEDTt+D1XtvQPTabYuwW3Y/IJA7Dqu3JjJI6vR/mCOOFCCAUCt1uCycV6wRI9n15xdnw==
+X-Received: by 2002:a4a:370b:0:b0:53b:700e:378c with SMTP id r11-20020a4a370b000000b0053b700e378cmr400482oor.9.1680555679352;
+        Mon, 03 Apr 2023 14:01:19 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y70-20020a4a4549000000b0053e56135a1esm4510087ooa.45.2023.04.03.14.01.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 14:01:18 -0700 (PDT)
+Received: (nullmailer pid 1739713 invoked by uid 1000);
+        Mon, 03 Apr 2023 21:01:17 -0000
+Date:   Mon, 3 Apr 2023 16:01:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/6] dt-bindings: display: bridge: toshiba,tc358768:
+ add parallel input mode
+Message-ID: <20230403210117.GA1722054-robh@kernel.org>
+References: <20230330095941.428122-1-francesco@dolcini.it>
+ <20230330095941.428122-4-francesco@dolcini.it>
+ <a924186c-31d3-b7f0-085f-97b849a4d751@linaro.org>
+ <ZCaqcaq02VDsqCPJ@francesco-nb.int.toradex.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vX7GDrKuvXcSi_o5XBSoiouS0MS1Es9S
-X-Proofpoint-GUID: vX7GDrKuvXcSi_o5XBSoiouS0MS1Es9S
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-03_15,2023-04-03_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
- mlxscore=0 suspectscore=0 bulkscore=0 adultscore=0 mlxlogscore=729
- priorityscore=1501 malwarescore=0 phishscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304030161
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <ZCaqcaq02VDsqCPJ@francesco-nb.int.toradex.com>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding the full list of VMID's, which are used by different clients to
-pass to the secure world.
+On Fri, Mar 31, 2023 at 11:40:01AM +0200, Francesco Dolcini wrote:
+> On Fri, Mar 31, 2023 at 10:48:15AM +0200, Krzysztof Kozlowski wrote:
+> > On 30/03/2023 11:59, Francesco Dolcini wrote:
+> > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > 
+> > > Add new toshiba,input-rgb-mode property to describe the actual signal
+> > > connection on the parallel RGB input interface.
+> > > 
+> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > ---
+> > >  .../bindings/display/bridge/toshiba,tc358768.yaml | 15 +++++++++++++++
+> > >  1 file changed, 15 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > > index 8f22093b61ae..2638121a2223 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > > @@ -42,6 +42,21 @@ properties:
+> > >    clock-names:
+> > >      const: refclk
+> > >  
+> > > +  toshiba,input-rgb-mode:
+> > > +    description: |
+> > > +      Parallel Input (RGB) Mode.
+> > > +
+> > > +      RGB inputs (PD[23:0]) color arrangement as documented in the datasheet
+> > > +      and in the table below.
+> > > +
+> > > +      0 = R[7:0], G[7:0], B[7:0]
+> > 
+> > RGB888?
+> 
+> Or anything else - like a RGB666 - just connecting to GND the unused
+> pins.
 
-Signed-off-by: Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
----
-V3 Fixed comments from V2
+If the bridge is configured for RGB666, then that's fine. If not, the 
+unused pins should be driven with either the MSB of each component. 
+Otherwise, you'd can't fully saturate the colors.
 
-V2 Fixed allignment issues in [1]
+> > > +      1 = R[1:0], G[1:0], B[1:0], R[7:2], G[7:2], B[7:2]
+> > > +      2 = 8’b0, R[4:0], G[5:0], B[4:0]
+> > 
+> > Isn't this RGB565?
+> > 
+> > Don't we have already properties like this? e.g. colorspace?
+> 
+> It's not really the colorspace this property.
+> 
+> tc358768 is a parallel RGB to DSI bridge, it has 24 bit parallel input
+> line.
+> 
+> The way this lines are connected is configurable with this parameter, if you
+> look at mode 0 and 1 they all allow to have a RGB888 or a RGB666 or a
+> RGB565 mapping. This just configure some internal mux, it's not strictly
+> about the RGB mode.
 
-[1] https://lore.kernel.org/lkml/20230328214703.12093-1-quic_gokukris@quicinc.com/
+This is the same as other cases. There's a need for describing the 
+interface. It keeps coming up and I keep saying to go create something 
+common.
 
----
- include/dt-bindings/firmware/qcom,scm.h | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/include/dt-bindings/firmware/qcom,scm.h b/include/dt-bindings/firmware/qcom,scm.h
-index 1a4e68fa0744..301005b7a02d 100644
---- a/include/dt-bindings/firmware/qcom,scm.h
-+++ b/include/dt-bindings/firmware/qcom,scm.h
-@@ -2,15 +2,36 @@
- /*
-  * Copyright (c) 2010-2015, 2018-2019 The Linux Foundation. All rights reserved.
-  * Copyright (C) 2015 Linaro Ltd.
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef _DT_BINDINGS_FIRMWARE_QCOM_SCM_H
- #define _DT_BINDINGS_FIRMWARE_QCOM_SCM_H
- 
-+#define QCOM_SCM_VMID_TZ		0x1
- #define QCOM_SCM_VMID_HLOS		0x3
-+#define QCOM_SCM_VMID_CP_TOUCH		0x8
-+#define QCOM_SCM_VMID_CP_BITSTREAM	0x9
-+#define QCOM_SCM_VMID_CP_PIXEL		0xA
-+#define QCOM_SCM_VMID_CP_NON_PIXEL	0xB
-+#define QCOM_SCM_VMID_CP_CAMERA	0xD
-+#define QCOM_SCM_VMID_HLOS_FREE	0xE
- #define QCOM_SCM_VMID_MSS_MSA		0xF
-+#define QCOM_SCM_VMID_MSS_NONMSA	0x10
-+#define QCOM_SCM_VMID_CP_SEC_DISPLAY	0x11
-+#define QCOM_SCM_VMID_CP_APP		0x12
-+#define QCOM_SCM_VMID_LPASS		0x16
- #define QCOM_SCM_VMID_WLAN		0x18
- #define QCOM_SCM_VMID_WLAN_CE		0x19
-+#define QCOM_SCM_VMID_CP_SPSS_SP	0x1A
-+#define QCOM_SCM_VMID_CP_CAMERA_PREVIEW 0x1D
-+#define QCOM_SCM_VMID_CDSP		0x1E
-+#define QCOM_SCM_VMID_CP_SPSS_SP_SHARED 0x22
-+#define QCOM_SCM_VMID_CP_SPSS_HLOS_SHARED 0x24
-+#define QCOM_SCM_VMID_ADSP_HEAP	0x25
-+#define QCOM_SCM_VMID_CP_CDSP		0x2A
- #define QCOM_SCM_VMID_NAV		0x2B
-+#define QCOM_SCM_VMID_TVM		0x2D
-+#define QCOM_SCM_VMID_OEMVM		0x31
- 
- #endif
--- 
-2.39.2
-
+Rob
