@@ -2,104 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B596D48E5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 16:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E6A6D48F7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 16:33:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233518AbjDCOcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 10:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
+        id S233556AbjDCOdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 10:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233513AbjDCOcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 10:32:46 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B6CE55;
-        Mon,  3 Apr 2023 07:32:40 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S233557AbjDCOd1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 10:33:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A65D17656;
+        Mon,  3 Apr 2023 07:33:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BBD9B6603105;
-        Mon,  3 Apr 2023 15:32:38 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680532359;
-        bh=1+OmtAU+X5ofND6+HKtIRQa4thdWvYXhzR1UpKwsmAw=;
-        h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-        b=liYpJVhXmyjhlDv/Y1XYxp/UX64teQeHTO9Gd0cJEY9Nz4Tk6L3tqoH6NBrb1O+nf
-         CYTgCZrj+BtbzkcMEYCzgQKnDQebi2aZH2FwJkQav9PxmpP8KqMU9ruKrY41pQHpIw
-         M23vaSHAzGEMxkhSeDmMtIaKwua4OFctdCVQtP3gPoMhAOcymu3arJVDiCMCMfPmQZ
-         nGCZO1E2v2TSQRFpGOSjucwF11JCKGaqoxmOKGu5m1VTi/eI55ySNpOdNNGlgLFt6p
-         hoerbHx+M7r1x9WziipAcedknNvKxPOdiVvbM7yRyeM3plnQrBWQLzpU9jmZxFSRh4
-         waWBQk8nFWUmA==
-Message-ID: <dcd79e14-d9df-39c1-5465-4e9d71221659@collabora.com>
-Date:   Mon, 3 Apr 2023 17:32:35 +0300
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D4A1161E42;
+        Mon,  3 Apr 2023 14:33:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42787C4339C;
+        Mon,  3 Apr 2023 14:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680532396;
+        bh=kfn1EOIZo69ToCP+cFyo7QW+1x61rS6btJxVOG/V9Lk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Jr4jAVQ0jwPkQu++/JISnCXSgnYz6H3f4v+xGXevlOQyL52kWnztxcRXnHJXHzr5b
+         iYddsDYTXI1YxaNQSdjqho+z9rCVI2f5qXpD1qd184S/9RiloOJ1P9u6eIqW2BkrvE
+         Dpd9ixUBzFzSiI3pqVz9C+hteeWwYI5VOv8TujkS8QuYtVQcqLed3nHrdETCnJTvsf
+         DEjl++uNNhXMR6u0NHv+JyhTD9aZzoYuZn8TVRVRrJJcHK15itc5/S1Zn3DQdlGHfE
+         ticz5L+A+/D9KADHyeCOWLssx4DqzlmlsLWmuMKjck1jcp5gUFRUVsTGICMR2qq+V7
+         rsGLJxL0ZSpdw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pjLFb-00053s-VS; Mon, 03 Apr 2023 16:33:40 +0200
+Date:   Mon, 3 Apr 2023 16:33:39 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
+ registers
+Message-ID: <ZCrjw7SiUq0iNM0A@hovoldconsulting.com>
+References: <20230327122948.4323-1-johan+linaro@kernel.org>
+ <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
+ <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
+ <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
+ <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
+ <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
+ <fac15b28-ef4a-dd7d-f0ac-51518d9dc1be@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Convert to DT schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
- <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
- <168052514639.463695.9544022277060710805.robh@kernel.org>
-Content-Language: en-US
-In-Reply-To: <168052514639.463695.9544022277060710805.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fac15b28-ef4a-dd7d-f0ac-51518d9dc1be@linaro.org>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/3/23 16:10, Rob Herring wrote:
+On Mon, Apr 03, 2023 at 03:47:28PM +0200, Krzysztof Kozlowski wrote:
+> On 03/04/2023 15:11, Johan Hovold wrote:
+> > On Mon, Apr 03, 2023 at 02:46:41PM +0200, Krzysztof Kozlowski wrote:
+> >> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
+> >>> On 03/04/2023 12:54, Johan Hovold wrote:
+> > 
+> >>>> The problem is that the driver was updated before the binding was so the
+> >>>> above mentioned probe error has been there since this file was merged.
+> >>>
+> >>> I grepped and that commit did not have such compatible. Are you saying
+> >>> that the kernel which was released with this commit already had that
+> >>> compatible in driver (through different merge/tree)?
+> >>
+> >> So I double checked, the commit ccd3517faf18 (which is being "fixed")
+> >> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
+> >> compatible, thus it could not be fixed that way. Therefore this cannot
+> >> be logically fix for that commit from that release.
+> > 
+> > Now you're just making shit up. A fix is a fix for mainline, period. If
 > 
-> On Mon, 03 Apr 2023 13:50:51 +0300, Cristian Ciocaltea wrote:
->> Convert the PWM fan bindings to DT schema format.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>   .../devicetree/bindings/hwmon/pwm-fan.txt     |  68 +----------
->>   .../devicetree/bindings/hwmon/pwm-fan.yaml    | 109 ++++++++++++++++++
->>   2 files changed, 110 insertions(+), 67 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230403105052.426135-2-cristian.ciocaltea@collabora.com
-> 
-> 
-> pwm-fan: 'cooling-max-state', 'cooling-min-state' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dtb
-> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
-> 
+> Since this is your second mail in such tone and such phrases, I am not
+> going to keep discussing this. Regardless of differences in opinion, you
+> should keep the tone appropriate.
 
-The only references to the offending cooling-{min|max}-state are located 
-in a few DTS files. Assuming they are obsolete, may I simply drop them?
+Yeah, sorry about that. But please do consider how your own choice of
+words come across at times.
 
-$ git grep "cooling-.*-state"
+I agree that in the end it wasn't that clear cut as the state of the
+binding and driver was inconsistent in 5.19 (and 6.0), and if this had
+been an important fix that should be backported to trees where this
+mattered then that may have had to be taken into account.
 
-arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi: cooling-min-state = <0>;
-arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi: cooling-max-state = <3>;
-arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts: cooling-min-state = <0>;
-arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts: cooling-max-state = <3>;
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts:        cooling-min-state = <0>;
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts:        cooling-max-state = <3>;
-arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi:        cooling-min-state = <0>;
-arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi:        cooling-max-state = <9>;
+Johan
