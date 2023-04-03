@@ -2,79 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A84366D414B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A64E66D4150
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:53:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231859AbjDCJwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:52:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
+        id S231649AbjDCJxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:53:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231871AbjDCJwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:52:10 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B8212BCF
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:51:16 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id y20so37313427lfj.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:51:16 -0700 (PDT)
+        with ESMTP id S232178AbjDCJwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:52:47 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A98A527F
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:52:03 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id y4so114957702edo.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:52:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680515452;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1680515512;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zQBY05AOjaIMaj3OfW7f9Js5C948ogr/TmDq8HawSXE=;
-        b=PR85roNO69i75rd5vzOUAO8QRkmNr4yEYMnXfaNYOEtvanhiTeK+NYERofuybvqpAt
-         DL/8yNL34tpgkab+5WASTBrmbcugQs+b8JEXghhZnXpqUK/HVKRGtu5aup2+aY9PPuMq
-         mfEmgQcuOW4VBeGhbu5ANqoAEHT7n8kwHkSheWuJXWCXyyTVzOfvuytQXyBHNXRhOxrJ
-         thk+bVwNsMvYueaXxgUS5dTytirMfZsc6JZm9aOr6ekMBVj3PgonA8ry32qGpSnMmArw
-         vrMYNs7A+0rY4ZiYY9tJOxE7McxlptWKpDYWhk3HFnAQLTk1cAKQXrDxtvAaCa5pd/Ul
-         UTgA==
+        bh=9nr+uA+ZP2tbdI/0kq6sL0Hql+LVt1wSnJCPSdLceG0=;
+        b=Cht9Y2vM9TnL6su8oK8fsrE+NlCl07kvCeH1Ss3sQEfVIz+3oASpya8J2AUWrJpxgM
+         SCco5IOUvSki5XMqFCC4gafwpE/N2km04ZRJsINqM4MoK61Z0KdpyV7ITRhLu65xJutg
+         BktbY7DuUBSmVmAV1DiTyvagSErGI7E1jJkNyHch88mu8hG5+LmfWFS7W0wDU6iX8Xd7
+         jjoiZ2Mz9fTYaT4UfPLDTG2x0ZfE6p3iZJzIkx9/oqavMrZ21qiPc7GkYID+SHdq81lL
+         jm0UAAvOfhbRjfUD/kgK0iiBMMKWc2qEJw7CNQuj2S4JYsZ6z0aZ69ArQqmr274p3o54
+         lcAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680515452;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680515512;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zQBY05AOjaIMaj3OfW7f9Js5C948ogr/TmDq8HawSXE=;
-        b=xPke0Iun9aluGxJOfDSYFF90Bp5Jdckq8lIgf3mVeHdwZhBEyPEuJbiZ40WDMLj+Ir
-         Dg79upgA3vWM6kAPIPwHNk0qMpN8XfHCBT3XjOPMRwH1zkBzoXS0rHqODmtvavylB/cU
-         jvJ4iLOCpWdpHvATYIWdPabxVjUXKq0tfqTN5NlZnTKGA4YIMNPy+9SLYsa8qPPX7iyJ
-         tyJTEjA9PYRNmW7weEAt3f8NWX02jCGmjXYHLZmqVYtzi7atr08ILw38vxCtx+4J2zwl
-         JV5Kd6I3EEI2KGg/EAE/RyShc1CA+aS2guliPv1IEijhNAsQK17Sc28tpQGfKiJjOOHW
-         QLeg==
-X-Gm-Message-State: AAQBX9cUysWOs4J6+nihYcIITXp8NcT94bl6zxfM7KH69HnW9oifzxdX
-        8SzL5N6XosKATdcM9SApLn4alA==
-X-Google-Smtp-Source: AKy350Zmy+TIvkUh34TNtpGTgMU5rLvc+FQOvXpVfUFOF8O+EO+a+uf2iWQrDMC3B4ZOxj7rUQ8W2Q==
-X-Received: by 2002:ac2:52af:0:b0:4dd:b766:37ae with SMTP id r15-20020ac252af000000b004ddb76637aemr9290270lfm.13.1680515452057;
-        Mon, 03 Apr 2023 02:50:52 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id g3-20020ac25383000000b004e849f6836csm1665810lfh.167.2023.04.03.02.50.51
+        bh=9nr+uA+ZP2tbdI/0kq6sL0Hql+LVt1wSnJCPSdLceG0=;
+        b=GrvOVJhjuomvi7goSIAYuzPTtQXG+4nQJEk+incqCNECR5SeZrTUYFrte7ZN6G+0Q9
+         Nt+kHiKtxBUNSWo6N41u4NI+CLfZJ+UAeZSXD35PwivaQ3d1VAbNWPdvG8HNZyNsgnmd
+         88q+I7C+jBZ1L/N25wT+BGKm7P4xwSjV3f9eqaOwe7jymGFFwOsUY2RyjnvTvofgJK3d
+         3CwH6OMZVQdNTKUkDBaUG6qDYWUs0k6zeBkZ2yLjphYoFmepLh/YNeEKO6PAe2s0w1/A
+         YBWRwANr8hEXRwX0HOVIb2lutOeykupSB1gaPZlfE8ob0ix1aif1kIBAtroTXU3EbYaK
+         Mh/w==
+X-Gm-Message-State: AAQBX9fSofVoHPZskTK1uUHMUHefm7zs4/WEJiKu0ydfmF/9TTY2gO/O
+        afg+/wfQHkoh8q9RjpSGdE1TsA==
+X-Google-Smtp-Source: AKy350Z7S5nIBg15xObBEMjnFcgoXpWwPfgC871POYyYAMKORNyzeGXP8WOT94M+1eeV1eh2TBj2wA==
+X-Received: by 2002:aa7:c587:0:b0:502:9296:a456 with SMTP id g7-20020aa7c587000000b005029296a456mr6634276edq.4.1680515512470;
+        Mon, 03 Apr 2023 02:51:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
+        by smtp.gmail.com with ESMTPSA id o1-20020a50c281000000b00502b0b0d75csm314317edf.46.2023.04.03.02.51.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:50:51 -0700 (PDT)
-Message-ID: <4c4450b5-28a3-0a4d-ccd0-5ec96c2ded82@linaro.org>
-Date:   Mon, 3 Apr 2023 12:50:51 +0300
+        Mon, 03 Apr 2023 02:51:51 -0700 (PDT)
+Message-ID: <6c9c74ee-b9ed-815f-dd92-37eb4c8f802a@linaro.org>
+Date:   Mon, 3 Apr 2023 11:51:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: pm8350b: fix thermal zone node
- name
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+Subject: Re: [PATCH 2/2] phy: mtk-mipi-csi: add driver for CSI phy
+Content-Language: en-US
+To:     Julien Stephan <jstephan@baylibre.com>
+Cc:     Phi-bang Nguyen <pnguyen@baylibre.com>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-3-dmitry.baryshkov@linaro.org>
- <47efb05a-d1e7-a3c5-c423-4eb53fe86386@linaro.org>
- <33430a31-b9da-5f1c-bae0-9ec6f24fda99@linaro.org>
- <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVERS FOR MEDIATEK" 
+        <dri-devel@lists.freedesktop.org>
+References: <20230403071929.360911-1-jstephan@baylibre.com>
+ <20230403071929.360911-3-jstephan@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230403071929.360911-3-jstephan@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -86,33 +96,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 12:09, Krzysztof Kozlowski wrote:
-> On 02/04/2023 13:02, Dmitry Baryshkov wrote:
->> On 02/04/2023 13:34, Krzysztof Kozlowski wrote:
->>> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
->>>> Correct the thermal zone node name to remove the clash with
->>>> pm8350c.dtsi. Remove unused labels.
->>>>
->>>> Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
->>>
->>> Please describe the observable bug from that commit being fixed here.
->>> Any future clash, which did not exist that time, is not a bug. It's future.
->>>
->>> Naming changes here are more a matter of style, because the old names
->>> were correct according to our coding guidelines, just not precise (c
->>> instead of b). But node names anyway are not important from the point of
->>> view fixes and adding such tag will cause a needless backport.
->>
->> It is needed. Including both pm8350c.dtsi and pm8350b.dtsi will result
->> in one thermal zone overriding another one.
+On 03/04/2023 09:19, Julien Stephan wrote:
+> From: Phi-bang Nguyen <pnguyen@baylibre.com>
 > 
-> I don't understand. You used future tense "will", but we talk about
-> past. So where is the bug in commit 5c1399299d9d?
+> This is a new driver that supports the MIPI CSI CD-PHY for mediatek
+> mt8365 soc
+> 
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> [Julien Stephan: use regmap]
+> [Julien Stephan: use GENMASK]
+> Co-developed-by: Julien Stephan <jstephan@baylibre.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  .../bindings/phy/mediatek,csi-phy.yaml        |   9 +-
+>  MAINTAINERS                                   |   1 +
+>  drivers/phy/mediatek/Kconfig                  |   8 +
+>  drivers/phy/mediatek/Makefile                 |   2 +
+>  .../phy/mediatek/phy-mtk-mipi-csi-rx-reg.h    | 435 ++++++++++++++++++
+>  drivers/phy/mediatek/phy-mtk-mipi-csi.c       | 392 ++++++++++++++++
+>  6 files changed, 845 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-csi-rx-reg.h
+>  create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-csi.c
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml
+> index c026e43f35fd..ad4ba1d93a68 100644
+> --- a/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml
 
-At that time there already existed sm8350-mtp which included both of 
-dtsi files.
+NAK, bindings are always separate patches. It also does not make any
+sense - you just added it.
 
--- 
-With best wishes
-Dmitry
+> @@ -33,9 +33,14 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -    phy@10011800 {
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      phy@11c10000 {
+>          compatible = "mediatek,mt8365-mipi-csi";
+> -        reg = <0 0x10011800 0 0x60>;
+> +        reg = <0 0x11c10000 0 0x4000>;
+>          #phy-cells = <1>;
+> +      };
+>      };
+
+
+
+k_mipi_dphy_of_match[] = {
+> +	{.compatible = "mediatek,mt8365-mipi-csi"},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_mipi_dphy_of_match);
+> +
+> +static struct platform_driver mipi_dphy_pdrv = {
+> +	.probe = mtk_mipi_dphy_probe,
+> +	.remove = mtk_mipi_dphy_remove,
+> +	.driver	= {
+> +		.name	= "mtk-mipi-csi",
+> +		.of_match_table = of_match_ptr(mtk_mipi_dphy_of_match),
+
+Drop of_match_ptr(). You should see W=1 warnings when compile testing.
+
+
+Best regards,
+Krzysztof
 
