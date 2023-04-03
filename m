@@ -2,153 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2ED26D3A59
-	for <lists+devicetree@lfdr.de>; Sun,  2 Apr 2023 22:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBE5B6D3B29
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 02:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbjDBU5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 16:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56570 "EHLO
+        id S230325AbjDCAnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 20:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjDBU5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 16:57:31 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A507AAF;
-        Sun,  2 Apr 2023 13:57:30 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id l7so25365768pjg.5;
-        Sun, 02 Apr 2023 13:57:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680469050;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AqjVyxFjsHfYI8wNbHm0tgaoQeMUAZNmLeUD+5ilnBM=;
-        b=nUuCdSjR5ZVXYyusrAi/cdvM1ZxvzHXEfDx/sQ4rsjAc8TSL6NtT2/r0sdbc1zfnYA
-         4YdISZYg+jJG27MCiCNMCPA1kVfoIub8jmscr0MpeuWgVv8L9LzFulvNm4uD7uyaTnoz
-         Za91rqOEP8dH0A9EGYgguuXqloNAjmZMO4raBsUUDDOE7k3AH1jx/DIYNDk6x+tmtAxh
-         /teBWAMbaM0wAT6sLVE+m7eM9ihToR184VYYCrExvSgbGZNpaHrxqN1OHiTRase998Ox
-         q87JVx2hSyRC1VshOwYIynfDJTh+W5SnQObiEmVEhzDiy/19a8WRyBTtwJgZfyg+HzrT
-         P3Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680469050;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AqjVyxFjsHfYI8wNbHm0tgaoQeMUAZNmLeUD+5ilnBM=;
-        b=mcElJ2hbiL5QcfFPv2kOmd0nbPqbf1EuCJG9UohEfkkkhVYBAGl8qBK9lGHRW2NagP
-         FSE/DlbMojEo1zDgNLqnP3VrHkFqMJ1fWQJnkPwpsfsFhx76La8wESQVrNr6aMWvbLnW
-         I5XRXItiXC/QhWKcyOyzHhTFzsf7PoPiKOmPHNf7LAehFBL9JeDD9o/97hzE85hh2yCK
-         EOSLYPp7wF3P2MZ2FneS3zMXS7tMI6sXcAHsWxdlf8uqLpxPFKc3qf12qtdqjtnEXeKf
-         G/GCwrmofLaxriZSohXV8S25C3lWzT9XMh4u8QWUPjvhw4rLOfolf77tsoQ069ezUA0T
-         jxJQ==
-X-Gm-Message-State: AAQBX9cXoJ+fmZS8wLLSCIR6KMybr2k8q/bo9Stat51P60ZzSf3g7Tta
-        tSizoFP2LuXF8+CH5ulc+KVRoookRGo/WuFo
-X-Google-Smtp-Source: AKy350bHzLEUzxJyYl9lAgeYSOG3MiqiONzGRNTHZrmd6b2nP4rVyl4TN4Fwb0HU7ELRNis5ZGGBig==
-X-Received: by 2002:a17:90b:4d83:b0:23f:9445:318e with SMTP id oj3-20020a17090b4d8300b0023f9445318emr16740564pjb.3.1680469049715;
-        Sun, 02 Apr 2023 13:57:29 -0700 (PDT)
-Received: from pavilion.. ([2409:40f2:100f:dc7:7586:11f6:6763:e4a6])
-        by smtp.gmail.com with ESMTPSA id f11-20020a17090274cb00b001a065d3bb0esm5135611plt.211.2023.04.02.13.57.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Apr 2023 13:57:29 -0700 (PDT)
-From:   Saalim Quadri <danascape@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Saalim Quadri <danascape@gmail.com>
-Subject: [PATCH] ASoC: dt-bindings: wm8510: Convert to dtschema
-Date:   Mon,  3 Apr 2023 02:27:19 +0530
-Message-Id: <20230402205719.6728-1-danascape@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229379AbjDCAnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 20:43:04 -0400
+Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02335BBB;
+        Sun,  2 Apr 2023 17:43:01 -0700 (PDT)
+Date:   Mon, 03 Apr 2023 00:42:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+        s=protonmail; t=1680482576; x=1680741776;
+        bh=GrH4LNncTeaHJC9oMAUJWv4wtKVY6Ir+P33KCx8nHxo=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=eGOi9cvjkJlbWuY7XyTzX+u/CatWgG+3NuxKGBy2Ko2+Mz/O0sPl/gg3mn2wF5t4V
+         xt1+s/+in+vsyxyCSiUp8ot8eu5EU+QXZI+1y+jqvkPlg9Q3nNpZU8AbHbKKRfKhWs
+         d76Tc/xcBL0l5OsYG0l/mf/6Z+/e3JSgBoByxrW/rqee3BAMI0uCmk6RLTN3e8Sf54
+         LiTMaYnQUtVzkE9Z8izqEuLTyuizTNECUoYZqMTlxvKDgR+GAB1pJeiHRsgTGWYN2v
+         1cU2g6WGUJ1d1I024EwUmt+BO+CAkwZ82JKY7stPA4+rpebgCbAWKjX5G5HKULsTMR
+         Nvnd3OWBIcwBQ==
+To:     daniel.baluta@nxp.com
+From:   Om Parikh <hack3r-0m@proton.me>
+Cc:     hack3r-0m@proton.me, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Olof Johansson <olof@lixom.net>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: alphascale-asm9260: convert to DT schema
+Message-ID: <20230403004138.326482-1-hack3r-0m@proton.me>
+Feedback-ID: 58440162:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the WM8510 audio CODEC bindings to DT schema
+this patch replaces the txt file and adds YAML bindings file
+adhering to the json-schema for alphascale-asm9260. It is a
+demo patch for potential further contributions to the GSOC
+project.
 
-Signed-off-by: Saalim Quadri <danascape@gmail.com>
+(see: https://wiki.linuxfoundation.org/gsoc/2023-gsoc-device-tree-bindings)
+
+Signed-off-by: Om Parikh <hack3r-0m@proton.me>
 ---
- .../devicetree/bindings/sound/wlf,wm8510.yaml | 39 +++++++++++++++++++
- .../devicetree/bindings/sound/wm8510.txt      | 18 ---------
- 2 files changed, 39 insertions(+), 18 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/wm8510.txt
+ .../watchdog/alphascale,asm9260-wdt.yaml      | 76 +++++++++++++++++++
+ .../bindings/watchdog/alphascale-asm9260.txt  | 35 ---------
+ 2 files changed, 76 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/alphascale,a=
+sm9260-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/alphascale-a=
+sm9260.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8510.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
+diff --git a/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-=
+wdt.yaml b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wd=
+t.yaml
 new file mode 100644
-index 000000000000..f45dad0fbef3
+index 000000000000..1f7baaf6b0f3
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
-@@ -0,0 +1,39 @@
++++ b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yam=
+l
+@@ -0,0 +1,76 @@
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/wlf,wm8510.yaml#
++$id: http://devicetree.org/schemas/watchdog/alphascale,asm9260-wdt.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: WM8510 audio CODEC
++title: Alphascale asm9260 Watchdog timer
 +
-+description: |
-+  These devices support both I2C and SPI (configured with pin strapping
-+  on the board).
++allOf:
++  - $ref: "watchdog.yaml#"
 +
 +maintainers:
-+  - Mark Brown <broonie@kernel.org>
++  - Oleksij Rempel <linux@rempel-privat.de>
++  - Olof Johansson <olof@lixom.net>
 +
 +properties:
 +  compatible:
-+    const: wlf,wm8510
++    enum:
++      - alphascale,asm9260
++      - alphascale,asm9260devkit
 +
 +  reg:
-+    description:
-+      The I2C address of the device for I2C, the chip select number for SPI
 +    maxItems: 1
 +
-+additionalProperties: false
++  clocks:
++    items:
++      - description: source clock, used for tick counter
++      - description: ahb gate
++
++  clock-names:
++    items:
++      - const: mod
++      - const: ahb
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    items:
++      - description: phandle pointing to the system reset controller with =
+line
++                     index for the watchdog.
++
++  reset-names:
++    items:
++      - const: wdt_rst
++
++  timeout-sec: true
++
++  alphascale,mode:
++    description: to specify the reset mode of operation
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [hw, sw, debug]
 +
 +required:
++  - compatible
 +  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@1a {
-+            compatible = "wlf,wm8510";
-+            reg = <0x1a>;
-+        };
++    #include <dt-bindings/clock/alphascale,asm9260.h>
++    watchdog0: watchdog@80048000 {
++      compatible =3D "alphascale,asm9260-wdt";
++      reg =3D <0x80048000 0x10>;
++      clocks =3D <&acc CLKID_SYS_WDT>, <&acc CLKID_AHB_WDT>;
++      clock-names =3D "mod", "ahb";
++      interrupts =3D <55>;
++      timeout-sec =3D <30>;
++      alphascale,mode =3D "hw";
 +    };
-diff --git a/Documentation/devicetree/bindings/sound/wm8510.txt b/Documentation/devicetree/bindings/sound/wm8510.txt
+diff --git a/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.=
+txt b/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
 deleted file mode 100644
-index e6b6cc041f89..000000000000
---- a/Documentation/devicetree/bindings/sound/wm8510.txt
+index 75b265a04047..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
 +++ /dev/null
-@@ -1,18 +0,0 @@
--WM8510 audio CODEC
--
--This device supports both I2C and SPI (configured with pin strapping
--on the board).
+@@ -1,35 +0,0 @@
+-Alphascale asm9260 Watchdog timer
 -
 -Required properties:
 -
--  - compatible : "wlf,wm8510"
+-- compatible : should be "alphascale,asm9260-wdt".
+-- reg : Specifies base physical address and size of the registers.
+-- clocks : the clocks feeding the watchdog timer. See clock-bindings.txt
+-- clock-names : should be set to
+-=09"mod" - source for tick counter.
+-=09"ahb" - ahb gate.
+-- resets : phandle pointing to the system reset controller with
+-=09line index for the watchdog.
+-- reset-names : should be set to "wdt_rst".
 -
--  - reg : the I2C address of the device for I2C, the chip select
--          number for SPI.
+-Optional properties:
+-- timeout-sec : shall contain the default watchdog timeout in seconds,
+-=09if unset, the default timeout is 30 seconds.
+-- alphascale,mode : three modes are supported
+-=09"hw" - hw reset (default).
+-=09"sw" - sw reset.
+-=09"debug" - no action is taken.
 -
 -Example:
 -
--wm8510: codec@1a {
--	compatible = "wlf,wm8510";
--	reg = <0x1a>;
+-watchdog0: watchdog@80048000 {
+-=09compatible =3D "alphascale,asm9260-wdt";
+-=09reg =3D <0x80048000 0x10>;
+-=09clocks =3D <&acc CLKID_SYS_WDT>, <&acc CLKID_AHB_WDT>;
+-=09clock-names =3D "mod", "ahb";
+-=09interrupts =3D <55>;
+-=09resets =3D <&rst WDT_RESET>;
+-=09reset-names =3D "wdt_rst";
+-=09timeout-sec =3D <30>;
+-=09alphascale,mode =3D "hw";
 -};
--- 
-2.34.1
+--=20
+2.40.0
+
 
