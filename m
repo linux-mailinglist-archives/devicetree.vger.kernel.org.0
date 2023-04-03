@@ -2,121 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F67A6D3E2C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 09:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EE506D3E32
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 09:42:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjDCHhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 03:37:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S231637AbjDCHm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 03:42:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbjDCHhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 03:37:53 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 442DA903C;
-        Mon,  3 Apr 2023 00:37:51 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Axu5dOgipkRPUVAA--.33911S3;
-        Mon, 03 Apr 2023 15:37:50 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx671MgipkokkUAA--.17573S3;
-        Mon, 03 Apr 2023 15:37:49 +0800 (CST)
-Subject: Re: [PATCH v6 1/2] dt-bindings: spi: add loongson spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230401095652.17364-1-zhuyinbo@loongson.cn>
- <20230401095652.17364-2-zhuyinbo@loongson.cn>
- <c0199067-4dab-651b-bf88-8cc5c035f79e@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <71e1b994-6b8d-8e00-4e4a-2f7b4af1fdf7@loongson.cn>
-Date:   Mon, 3 Apr 2023 15:37:48 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229698AbjDCHm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 03:42:26 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 064EBBBA6
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 00:42:25 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id r11so28243222wrr.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 00:42:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680507743;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4FKs9G1qfziPxaUbbaWncDXvhRRlRA5Ou7da0j8TnEE=;
+        b=dm7n+gszII6Swd6jfKciMWqz1hlk/6NfMd4h/9lY9t5jOPqkpAbF23Bz/dj6XuofS1
+         /XzHvCHDFBLMluxVu9o0vRZHLJEyWGxXY20qOn7WPsp6R4EpS5p9Fjxb9AtDaLO2E8zx
+         xLN9ZKrkJGq3/SHqdCOFUhdVyKT19PLJPtEgEudDUtgxwjmr3OTdiOz1480KzsKfqPm6
+         aDVGv1/6V1u1jH53bHDsvjNLsDp8e99VUtrgjFBuCA5aLcMfZ7nxpJkUtlEMK6HTA1rS
+         ESNn3ZwibSquQxwwaJyFD9mtAhM3qE/a35bkjIp7kDsoQtJYVUKg4J/uOnWh2EyP4U+M
+         59dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680507743;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4FKs9G1qfziPxaUbbaWncDXvhRRlRA5Ou7da0j8TnEE=;
+        b=g9miG7on3cvxLjF6iFqA59yXyjmciTpZ5cw8Ub/wl4guOfAyFNictSDW2z2KESO/jf
+         zT9LfqCXeBJf/eGBKnNpS5B5sY1VqS20TrcQHQ4ejqYHr5J+9IpYh+Ygqv39jY8XGYLg
+         7WOlYO9o3bdBjCbZqS9hv9WFOwg9QQhkwv67DFazpLdqwwI6WhI2agezxpdwrX7vhz0X
+         K2OCE5CIdrWc8gY8A4mzkmvIa+MxUMWMm6naxrNxUBBbXg0RcIV1pkBLm3LdqdgQXeA4
+         nNPtiGsnS3cCjsAcoXNfG97aqJ5tPY7GCtNrdmtgGUCulQ0bVp6SmaUXxLqnggwOCgmk
+         Cgkw==
+X-Gm-Message-State: AAQBX9egCgbn3uC6iiXOyCQEWlDBamnemdDb7l9XW3ey0TyJ6dSwo+18
+        FrhChg4tnJWK4eSBE6mJJLDTvtqra2NmKZZ/i+zxCw==
+X-Google-Smtp-Source: AKy350Y2SmJ+IW9vBUcivgJfKUmWg0WDTKG2/7r/sec9GgkoKMkY1oon4b+qU67Bf3lJCYfPVdSGIw==
+X-Received: by 2002:adf:f18c:0:b0:2c5:5687:5ed5 with SMTP id h12-20020adff18c000000b002c556875ed5mr25697439wro.18.1680507743417;
+        Mon, 03 Apr 2023 00:42:23 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id q14-20020adff94e000000b002e62384d17dsm8180482wrr.21.2023.04.03.00.42.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 00:42:23 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH RFC v2 0/4] ARM: oxnas support removal
+Date:   Mon, 03 Apr 2023 09:42:17 +0200
+Message-Id: <20230331-topic-oxnas-upstream-remove-v2-0-e51078376f08@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <c0199067-4dab-651b-bf88-8cc5c035f79e@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bx671MgipkokkUAA--.17573S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7Ar1UXr1rKry3JFyrKF1Dtrb_yoW8XF4rpF
-        1xCFs3KF4jqF17C393Ka48Gw43Ar95A3W7JF47t347CF98Ka4YqF47Kr1DZw43CF18WFW7
-        ZFW0gr45KF4UJFJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bxxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
-        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
-        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
-        Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x
-        8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-        x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrw
-        CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI
-        42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
-        80aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUzgAwDUUUU
-X-Spam-Status: No, score=-2.4 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFmDKmQC/42OQQqDMBBFryKz7hQTUWpXhUIP0G1xEc1EA5rIR
+ INFvHuDJ+jy/Q///R0CsaUA92wHpmiD9S6BvGTQDcr1hFYnBpnLIi8KgYufbYd+cyrgOoeFSU3
+ INPlIqCpJta4rQ0SQFloVCFtWrhvShlvHMYUzk7HbqfzA+/WEJoWDDYvn73kjirP6yxgF5li2u
+ rwZLbQW5jFap9hfPffQHMfxA9FgyG3hAAAA
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-oxnas@groups.io,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.1
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+associated with a clear lack of maintainance, development and migration to
+dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
 
+In addition, the OX810 hasn't been booted for years and isn't even present
+in an ARM config file.
 
-在 2023/4/2 下午5:58, Krzysztof Kozlowski 写道:
-> On 01/04/2023 11:56, Yinbo Zhu wrote:
->> Add the Loongson platform spi binding with DT schema format using
->> json-schema.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../bindings/spi/loongson,ls-spi.yaml         | 42 +++++++++++++++++++
->>   MAINTAINERS                                   |  6 +++
->>   2 files changed, 48 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->> new file mode 100644
->> index 000000000000..ef113296529b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/spi/loongson,ls-spi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson SPI controller
->> +
->> +maintainers:
->> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->> +
->> +allOf:
->> +  - $ref: /schemas/spi/spi-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - loongson,ls2k-spi
->> +      - loongson,ls7a-spi
-> 
-> You don't use this compatible?
-The 7a spi was pci device and I added this by mistake and I will remove
-  "loongson,ls7a-spi" and change yaml name as loongson,ls2k-spi.yaml.
+For the OX820, lack of USB and SATA support makes the platform not usable
+in the current Linux support and relies on off-tree drivers hacked from the
+vendor (defunct for years) sources.
 
-Thanks.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+The last users are in the OpenWRT distribution, and today's removal means
+support will still be in stable 6.1 LTS kernel until end of 2026.
+
+If someone wants to take over the development even with lack of SMP, I'll
+be happy to hand off maintainance.
+
+The plan is to apply the first 4 patches first, then the drivers
+followed by bindings. Finally the MAINTAINANCE entry can be removed.
+
+I'm not sure about the process of bindings removal, but perhaps the bindings
+should be marked as deprecated first then removed later on ?
+
+It has been a fun time adding support for this architecture, but it's time
+to get over!
+
+[1] https://lore.kernel.org/all/20230327121317.4081816-1-arnd@kernel.org/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Only keep first 4 patches for v6.4, the rest will be done later split per subsystem
+- Link to v1: https://lore.kernel.org/r/20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org
+
+---
+Neil Armstrong (4):
+      ARM: dts: oxnas: remove obsolete device tree files
+      ARM: oxnas: remove OXNAS support
+      ARM: configs: remove oxnas_v6_defconfig
+      dt-bindings: arm: oxnas: remove obsolete bindings
+
+ Documentation/devicetree/bindings/arm/oxnas.txt    |  14 -
+ arch/arm/Kconfig                                   |   2 -
+ arch/arm/Makefile                                  |   1 -
+ arch/arm/boot/dts/Makefile                         |   3 -
+ arch/arm/boot/dts/ox810se-wd-mbwe.dts              | 115 -------
+ arch/arm/boot/dts/ox810se.dtsi                     | 357 ---------------------
+ .../dts/ox820-cloudengines-pogoplug-series-3.dts   |  93 ------
+ arch/arm/boot/dts/ox820.dtsi                       | 299 -----------------
+ arch/arm/configs/oxnas_v6_defconfig                |  92 ------
+ arch/arm/mach-oxnas/Kconfig                        |  38 ---
+ arch/arm/mach-oxnas/Makefile                       |   2 -
+ arch/arm/mach-oxnas/headsmp.S                      |  23 --
+ arch/arm/mach-oxnas/platsmp.c                      |  96 ------
+ 13 files changed, 1135 deletions(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230331-topic-oxnas-upstream-remove-a62e9d96feee
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
