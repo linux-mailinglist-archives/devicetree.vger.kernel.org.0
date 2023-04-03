@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41B776D4C5B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF426D4CB0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbjDCPsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 11:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55280 "EHLO
+        id S232776AbjDCPyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 11:54:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231546AbjDCPr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:47:59 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD44C3AA0
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 08:47:20 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id t10so118978383edd.12
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 08:47:20 -0700 (PDT)
+        with ESMTP id S232004AbjDCPyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:54:07 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 072D235A4;
+        Mon,  3 Apr 2023 08:53:37 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id kc4so28439729plb.10;
+        Mon, 03 Apr 2023 08:53:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680536827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3msoM9z3RclTRd+eHQKtiv2M7gCA/4iFqXhqJTbcCvI=;
-        b=v0+x2EZy3qjDuUVIrhkwAooxOofocWnH75XU1LyTABMzV0iuoerniGu8hYjl7SeOGC
-         wAH/mUChSngKFjrlfrJZjMhD4GHgdeN57wwk0wV8OWdtD7cky8jwkZqZeOP+uXVuKJJX
-         HG1qB6Zpf4gWjSG+iJyHSHKnE39UxoqWWHS5cON58+4CcbUEAD1T92/avrnmxfUduCk8
-         IODwe2YCy7Qac1NgWrzNh/c9rraM8QhDONqzYnzQTghprOtm9BSJ3VktQweXTOsvKZE8
-         dVcdUPk+Jxs4UgE4vIXj9Qr2QskDjkmT7bfZLPCzPDI8jViA3QmcSnCe6QndqLDmibP2
-         8Sqw==
+        d=gmail.com; s=20210112; t=1680537215;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cKTF0BmFIUa1JLXsVVVzhQGo7yEP1rvtiF0Y9gWPb8E=;
+        b=L4VxjwPUo8WCU577qZCEQZ7pu6p8oNyJGyxXFOTQp5zmHJ40pDDjUEWoZvAFMWr3iX
+         IXhsmBYVV4AdZ1cCtSkSWqJbLDs0AYskwC+ekhf21MUBcTOHuyPYrHcUXA2uXYDB5VLI
+         trNo/Qfe4l+xU8uJgND9oZ3yEEMd2JspaHiZOhBGkcsi9V/KmMJ1CmtZMpBAIUkrq+iU
+         BpkttpS2Olw6pBXHactkL2p/xlyok4F6o1qBgQSB1Ti89oxE60tG9NIKtO66/As7KtUU
+         a/9x63J7LoTUlrOlRWk8UnWqN0ukskoztPWhRVb3NA+K1l5PphKlLWGGrGHrSrQIxCya
+         UspA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680536827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3msoM9z3RclTRd+eHQKtiv2M7gCA/4iFqXhqJTbcCvI=;
-        b=fBqOJtWWQUQwJcvvAT0G8ejl4Y5u1TMc8ECkEMADgs6nofTVCZ0xjXOmab7S4HFzlD
-         Lr8b4vSxtK5yWesKEPbrvFi/MJ3zRkRBxhkE19T64/b0mctC4c9U5qNbPp8bcfzix0yg
-         fMtac76P7E/x2VApvDRwOjIJXvMHCpCXnuY64hb6papm4KKIPa0RE5jbJ2IH+DnK/qbZ
-         gmEJLbYw9DIXc4Ov2y1ovjFpQsruw6ph73ykGOH/64tdi7LktBtx9Vlh8MTA5XQct8gc
-         bDAuSUWV/u508Pl3F2DUieBIIGnhHSFYACkXREg/XIE7RXrnyoMox/x898HUWFvz05UR
-         BQ1g==
-X-Gm-Message-State: AAQBX9eAn743TO2OyAduGbipW6XJwOu8tYafrx4HeC7ss+8V7onWE0yy
-        /UAg1SquNnwpqQE67TXe3mdWyg==
-X-Google-Smtp-Source: AKy350Z09E9t8/lLHZEsbdT5wvlMV+SEiS4YsUcnXn+I5zCfuY0rRM0+hymgL8S7tpDUY4pqkj/utg==
-X-Received: by 2002:a17:906:738a:b0:933:4ca3:9678 with SMTP id f10-20020a170906738a00b009334ca39678mr35816062ejl.24.1680536826851;
-        Mon, 03 Apr 2023 08:47:06 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id gv19-20020a1709072bd300b00931db712768sm4707227ejc.4.2023.04.03.08.47.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 08:47:06 -0700 (PDT)
-Message-ID: <bf7b5218-56ba-5525-fcb8-7be71b114a79@linaro.org>
-Date:   Mon, 3 Apr 2023 17:47:05 +0200
+        d=1e100.net; s=20210112; t=1680537215;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cKTF0BmFIUa1JLXsVVVzhQGo7yEP1rvtiF0Y9gWPb8E=;
+        b=J3P3qB7ohRLmawSncEfxzCwt8iCpdpRrgyQdLL1bYmo0sbu5UO/ICjES76z0zz/YV/
+         wC0aEYaaBmFpbbBjkoGTRfPSf2tALkRDN89s2nDK66092n41LSTD7NBEYYw4kmG2AxIX
+         VbL0EZbYXbVS0lKkLlRfZbcR6NKp/L5FQt5U/R48E7E0ChrxHsMLKFDVPQs/CaW/ESMS
+         D8iW2jq02S9TCDNUJY/Jt8W5+puuhQJ85sfRj3NV0SE/6pcdWS4ng67cUL+RUM7k9jtF
+         ZcYN+CCp4LfCOZyNHPvOhcLgIRgsOd0t8+PN/KGikC/1ApuW544OT9Yq/fKa/JEUn/fc
+         ROdw==
+X-Gm-Message-State: AAQBX9dsiAowxw26dnwoALquq2g+j8k9nMj66KYPShPGYhUBJK6QbuaL
+        iwWVuJU8a/I/OFPLemHIX8E=
+X-Google-Smtp-Source: AKy350YjCnyh/uk3o/BCfLEHu1k2UKAWFfWt3QXQRhRponKchCMwhVMVZSp02642w72S69hcs1tUig==
+X-Received: by 2002:a17:903:24d:b0:19e:ecaf:c4b4 with SMTP id j13-20020a170903024d00b0019eecafc4b4mr44639769plh.4.1680537215464;
+        Mon, 03 Apr 2023 08:53:35 -0700 (PDT)
+Received: from pavilion.. ([2409:40f2:100f:dc7:d959:f34f:79da:6535])
+        by smtp.gmail.com with ESMTPSA id jj21-20020a170903049500b001a19196af48sm6777186plb.64.2023.04.03.08.53.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 08:53:35 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        danascape@gmail.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        patches@opensource.cirrus.com, robh+dt@kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: wm8510: Convert to dtschema
+Date:   Mon,  3 Apr 2023 21:23:25 +0530
+Message-Id: <20230403155325.5797-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <d6b4df41-02cb-b900-5e8b-8ad08d3d36f1@linaro.org>
+References: <d6b4df41-02cb-b900-5e8b-8ad08d3d36f1@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 4/6] dts: qcom: arm64: qcom: sdm845: use defines for
- VMIDs
-Content-Language: en-US
-To:     Dylan Van Assche <me@dylanvanassche.be>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230401173523.15244-1-me@dylanvanassche.be>
- <20230401173523.15244-5-me@dylanvanassche.be>
- <ea03bfb6-34c4-45e2-c179-74ecafad559f@linaro.org>
- <2d9d001f14036caf4f6d47448d4d2fdb0b188101.camel@dylanvanassche.be>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2d9d001f14036caf4f6d47448d4d2fdb0b188101.camel@dylanvanassche.be>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,53 +74,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 17:32, Dylan Van Assche wrote:
-> Hi Krzysztof,
-> 
-> On Mon, 2023-04-03 at 11:20 +0200, Krzysztof Kozlowski wrote:
->> On 01/04/2023 19:35, Dylan Van Assche wrote:
->>> Use VMID defines for SLPI's FastRPC node in the Qualcomm SDM845 DTS
->>> instead of hardcoded magic values.
->>>
->>> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 +++-
->>>  1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> index 1f25a7f4e02b..dc4b553cbe2e 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> @@ -13,6 +13,7 @@
->>>  #include <dt-bindings/clock/qcom,rpmh.h>
->>>  #include <dt-bindings/clock/qcom,videocc-sdm845.h>
->>>  #include <dt-bindings/dma/qcom-gpi.h>
->>> +#include <dt-bindings/firmware/qcom,scm.h>
->>>  #include <dt-bindings/gpio/gpio.h>
->>>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
->>>  #include <dt-bindings/interconnect/qcom,sdm845.h>
->>> @@ -3372,7 +3373,8 @@ fastrpc {
->>>                                         qcom,glink-channels =
->>> "fastrpcglink-apps-dsp";
->>>                                         label = "sdsp";
->>>                                         qcom,non-secure-domain;
->>> -                                       qcom,vmids = <0x3 0xF 0x5
->>> 0x6>;
->>
->> Didn't you just add it in previous patch? Don't add incorrect code
->> which
->> you immediately change.
->>
-> 
-> Both are similar, the code is in fact the same. I followed what Konrad
-> suggested in v3 to make a patch on top:
+Changes from V1 -> V2:
+    > Added cirrus opensource as the maintainer
+    > Added missing $ref to dai-common.yaml
+    > Dropped I2C and SPI description
+    > Added sound-dai-cells property
+    > Added 'compatible' as the required property
+    > additionalProperties: false -> unevaluatedProperties: false after adding $ref
+    > Added SPI example
 
-I don't understand. Device nodes are similar, but they are different? If
-you add a line in patch X and change it in patch X+1, then something is
-wrong. Isn't this the case here or these are different device nodes?
+Kind Regards,
 
-
-Best regards,
-Krzysztof
-
+Saalim
