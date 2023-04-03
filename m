@@ -2,196 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 657BD6D5046
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB646D504D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232468AbjDCS1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:27:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52646 "EHLO
+        id S231411AbjDCS20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:28:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232805AbjDCS1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:27:33 -0400
-Received: from sender3-op-o19.zoho.com (sender3-op-o19.zoho.com [136.143.184.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F242122;
-        Mon,  3 Apr 2023 11:27:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1680546405; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=amFYB6/8kFu+/YBDW6rCTEjJgABW/rHXOC8eJnq+PvIBx/W0/lLNWfwRmuY2pz7ulM9zQAAwpOxA2VV4S/3nQ16UWNUaAqB2I8u/f6Gzkxz1YBi8AgnAFYNU/+Qe2gW5rr6BQL9PPa5KLVC+rTfCyQwV5mNOp0bkfQfSwlk15p0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1680546405; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=yjadkvpHaI84b2mrZAym00QmfOP3XKu1mCYPopoQH7g=; 
-        b=JAiQ8O04DL2ze4heXj2ea9wnQStPf81gWjNJY7RLdemUsqlWkWdvdbvFTgZg8grQ3m1rRyr4tJ2txYcHYOmujGZFnjFRz9YEIYyTLUajT3lvETP+lDVs5YrTIzDDgtbvu1Nb07YrhPMdefYc9jUx6oEnCBWVgeBVH3GxbOh9NGw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680546405;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=yjadkvpHaI84b2mrZAym00QmfOP3XKu1mCYPopoQH7g=;
-        b=VdEhOC0KKnP16srLGg4XsK8m8c3Cyt8O+DvnYgtnnKecCuz7ehsuUsJYmYPhAyw7
-        rsejEBvnLAfGSzIwvCv/IFktrLzkzXNPCjabkkarIGMYcqwocMz+bFnOJZbY1gva28z
-        vYbq4O1hPcORtXH/L0II+h8k6s6ZkOUqydodGpRc=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1680546404035403.7134331614941; Mon, 3 Apr 2023 11:26:44 -0700 (PDT)
-Message-ID: <5b68a0c5-b7b1-9507-b095-60c773d24ade@arinc9.com>
-Date:   Mon, 3 Apr 2023 21:26:35 +0300
+        with ESMTP id S232952AbjDCS2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:28:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E59261AD;
+        Mon,  3 Apr 2023 11:28:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8181B61849;
+        Mon,  3 Apr 2023 18:28:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 828C4C433D2;
+        Mon,  3 Apr 2023 18:28:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680546504;
+        bh=lXVuRDL3OOhM/7oo7YuhjrICNT7KyEsvlL2vir4NKoE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RoTi57o9UoUkogq8ICPwNO4zH+5q8or3+UFEpbEhbu16062MsHxnOdQ2x8b1JxICb
+         4Kz7264DwAaWTX3yyP399WaCG8PGcuZjgMpqbIdFOdQ9FRmQFL1XzB+KkptLCMo+mK
+         2RY3nkzZO6rT1X9EN48iavRDb3kjAlRMZRgUyMSvawJSDsgA604x0VxAzkgxpK1uab
+         WQN14Fdtrzyi7Rdxcb3e0IKiw6UsWks6M/BJounEsmW8KJHeStwfhuk726CcV/ixzG
+         WXqwKeX2580FT1HB3b21nVHq+fZ4J+Jiue9g/YY6wSETD00UwA2nBk6i1TAB2TdN1b
+         L+n8kSTEWMpGA==
+Date:   Mon, 3 Apr 2023 19:28:17 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
+ bootup voltage
+Message-ID: <a657284f-a408-48a8-b294-0add65b3e2a2@sirena.org.uk>
+References: <a54d4e1b-d62d-559d-1882-e460e696c056@quicinc.com>
+ <ca12735e-d6c8-997e-036f-693cd8a9870f@linaro.org>
+ <e19393e3-5898-bff2-cc00-d88c9194c7c2@quicinc.com>
+ <6e1f6466-7f2e-7bd5-f6a2-5691a30c4e1f@linaro.org>
+ <9989c92c-9949-5531-c7d2-e54882795a68@quicinc.com>
+ <69df153d-bdc6-9008-39d6-72f66bab2e38@linaro.org>
+ <5914a8db-3644-1c94-00ba-460ba2c26a5d@quicinc.com>
+ <3c5a9608-ecd2-a3c0-e866-7d0070e49b89@linaro.org>
+ <8c513ddc-435e-40ce-b1f8-84eaf8241ed4@sirena.org.uk>
+ <fe4dd395-cd1d-55e8-1be9-f588f69a8b13@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH net-next v2 00/14] net: dsa: add support for MT7988
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Sam Shih <Sam.Shih@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
-References: <cover.1680483895.git.daniel@makrotopia.org>
- <53d89480-936d-25b1-6422-cda7769de369@arinc9.com>
- <ZCsQIylAgh-rxjfu@makrotopia.org>
- <73ce771f-3a13-b1c7-659d-7e1c236fdd0b@arinc9.com>
- <ZCsXV7MkcUJldQbf@makrotopia.org>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <ZCsXV7MkcUJldQbf@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eJO3awvhoD6CB9ap"
+Content-Disposition: inline
+In-Reply-To: <fe4dd395-cd1d-55e8-1be9-f588f69a8b13@linaro.org>
+X-Cookie: Membership dues are not refundable.
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3.04.2023 21:13, Daniel Golle wrote:
-> On Mon, Apr 03, 2023 at 08:50:11PM +0300, Arınç ÜNAL wrote:
->> On 3.04.2023 20:42, Daniel Golle wrote:
->>> Hi Arınç,
->>>
->>> On Mon, Apr 03, 2023 at 08:08:19PM +0300, Arınç ÜNAL wrote:
->>>> On 3.04.2023 04:16, Daniel Golle wrote:
->>>>> The MediaTek MT7988 SoC comes with a built-in switch very similar to
->>>>> previous MT7530 and MT7531. However, the switch address space is mapped
->>>>> into the SoCs memory space rather than being connected via MDIO.
->>>>> Using MMIO simplifies register access and also removes the need for a bus
->>>>> lock, and for that reason also makes interrupt handling more light-weight.
->>>>>
->>>>> Note that this is different from previous SoCs like MT7621 and MT7623N
->>>>> which also came with an integrated MT7530-like switch which yet had to be
->>>>> accessed via MDIO.
->>>>>
->>>>> Split-off the part of the driver registering an MDIO driver, then add
->>>>> another module acting as MMIO/platform driver.
->>>>>
->>>>> The whole series has been tested on various MediaTek boards:
->>>>>     * MT7623A + MT7530 (BPi-R2)
->>>>>     * MT7986A + MT7531 (BPi-R3)
->>>>>     * MT7988A reference board
->>>>
->>>> You did not address the incorrect information I pointed out here. Now that
->>>
->>> I'm sorry, that was certainly not intentional and I may have missed
->>> your comments. Actually it doesn't look like they have made it to the
->>> netdev list archive or patchwork either.
->>>
->>>> the patch series is applied, people reading this on the merge branch commit
->>>> will be misled by the misinformation.
->>>
->>> I've changed Kconfig stuff according to your recommendation and also
->>> addressed possible misleading USXGMII and 10GBase-KR support by
->>> introducing MT7988-specific functions and using 'internal' PHY mode.
->>> So which of your comments have not been addressed?
->>
->> https://lore.kernel.org/netdev/c11c86e4-5f8e-5b9b-1db5-e3861b2bade6@arinc9.com/
-> 
-> Strange that both emails didn't make it into patchwork.
 
-I don't understand how how patchwork handles the conversation on the 
-cover letter. I was never able to see them on patchwork but lore.kernel.org.
+--eJO3awvhoD6CB9ap
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My review for patch 15 was received on patchworks as it should. It was 
-missing "net-next" on the subject so perhaps that's why you missed it.
+On Mon, Apr 03, 2023 at 08:21:25PM +0200, Konrad Dybcio wrote:
+> On 3.04.2023 20:14, Mark Brown wrote:
 
-https://patchwork.kernel.org/project/netdevbpf/patch/80a853f182eac24735338f3c1f505e5f580053ca.1680180959.git.daniel@makrotopia.org/#25278482
+> > than up to the minimum.  The driver could also look at the constraints
+> > when guessing at the hardware configuration rather than claiming an out
+> > of spec voltage, this would mean we wouldn't need to correct anything.
 
-Why don't you just check your inbox? We're emailing each other in the end.
+> Hm, all of what you said sounds like a valid concern.. And then we
+> probably shouldn't shoot up to max by default, as going too low is
+> not going to cause as much potential irreversible damage as going
+> too high.. Especially with programmer error..
 
-> 
->>
->>>
->>>>
->>>>>
->>>>> Changes since v1:
->>>>>     * use 'internal' PHY mode where appropriate
->>>>>     * use regmap_update_bits in mt7530_rmw
->>>>>     * improve dt-bindings
->>>>
->>>> As a maintainer of the said dt-bindings, I pointed out almost 7 things for
->>>> you to change. Of those 7 points, you only did one, a trivial grammar
->>>> change. The patch series is applied now so one of us maintainers (you are
->>>> one too now) need to fix it with additional patches.
->>>
->>> I was also surprised the series made it to net-next so quickly, but it
->>> wasn't me applying it, I merly posted v2 with all comments I received
->>> addressed.
->>>
->>> Me and supposedly also netdevbpf maintainers use patchwork to track
->>> patches and whether comments have been addressed. Can you point me to
->>> emails with the comments which haven't been addressed there? Looking in
->>> patchwork for the dt-bindings patch [1] I don't see any comments there.
->>
->> https://lore.kernel.org/netdev/a7ab2828-dc03-4847-c947-c7685841f884@arinc9.com/
->>
->>>
->>>
->>> Thank you for reviewing!
->>>
->>>
->>> Daniel
->>>
->>>
->>> [1]: See patchwork tracking for RFCv3, v1 and v2. Prior to RFCv3 the series
->>> didn't have the dt-bindings addition, I introduced it with RFCv3 when splitting
->>> the series into many small changes:
->>> https://patchwork.kernel.org/project/netdevbpf/patch/9b504e3e88807bfb62022c0877451933d30abeb5.1680105013.git.daniel@makrotopia.org/
->>> https://patchwork.kernel.org/project/netdevbpf/patch/fef2cb2fe3d2b70fa46e93107a0c862f53bb3bfa.1680180959.git.daniel@makrotopia.org/
->>> https://patchwork.kernel.org/project/netdevbpf/patch/dffacdb59aea462c9f7d4242cf9563a04cf79807.1680483896.git.daniel@makrotopia.org/
->>
->> Although I've been a maintainer for the dt-bindings schema for quite some
->> time, I was somehow missed as a recipient on RFC v3.
-> 
-> Yeah, that was my mistake. get_maintainers.pl comes up with unreadable
-> unicode garbage, probably something is wrong in my local Perl setup.
-> So I always manually replace your name with readable UTF-8, but I missed
-> that for RFC v3.
+It sounds like the driver should just be reporting a value which is at
+least within the constraints.
 
-Did you try writing the output of get_maintainers.pl to a file, then 
-feed the file directly to git send-email as recipients?
+> Too bad Qualcomm's firmware architecture doesn't allow for reading
+> back the voltage..
 
-That may bypass that issue. It's also currently how I send my patches.
+Right, their interfaces here have some serious drawbacks.
 
-https://arinc9.notion.site/get_maintainers-and-git-send-email-e8edd99d962041eca874966021acefe6
+--eJO3awvhoD6CB9ap
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Arınç
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQrGsAACgkQJNaLcl1U
+h9Brzgf/fHXT5Kvi+p/X1tFyM8ue/cFz1bfRsZhhHC3QWHYVy42iBGd89Om++a18
+sXyeCOE007CEnQ/sf4VmRsHd3kqJngCeBFep6aEhN6A63epUDXCZVjN/WQtJwNzH
+8oM3mmYdndld/BdpG4A61FOlUInvxD3Dq7/I+RyUm6CFF8VFowhzw19UU6zfKwNF
+7a65sQqgdXurpz9hDBZ0r5sB6gLb810Y9E2D/RcyvmrmwvFbv/ZlbbTUjqDf8Trc
+N8znzhC+ZfBRiDt/9YBx2wxLrV7UhCt2NP7RS9KP5hKfedc1e3dBomXE8rArDM0F
+HpJ4JUhGggNDNkTFs2gjAGJcJdtrhA==
+=RhOj
+-----END PGP SIGNATURE-----
+
+--eJO3awvhoD6CB9ap--
