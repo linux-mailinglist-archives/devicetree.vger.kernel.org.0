@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4786D401C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B384E6D4020
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbjDCJTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43680 "EHLO
+        id S231954AbjDCJUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231655AbjDCJTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:19:39 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE3510A96
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:19:18 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id eg48so114455975edb.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:19:18 -0700 (PDT)
+        with ESMTP id S231734AbjDCJUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:20:45 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DF593FA
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:20:23 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id h8so114577841ede.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:20:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680513556;
+        d=linaro.org; s=google; t=1680513618;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xtjX09frN0K29pRxgf6hACPfNtdl31/D5yVk7FHaNzM=;
-        b=AcngGAsNnhlAdsWvDJbbweHBhYpK2WLDIX0lIsSNoQoqTBpzO7gU2tby5FG89yglvj
-         jwalHAdHKzk3Ul7phzxP6THvFKSCRBHj+8ezkKuP+9x485GCH5QHXR9+Uv2PckqJfgng
-         We12sfM1IafZfmT01Wgma9fvtA/b4QMfkIbvTy/gCHvVKULaSteg7elA3+8Ahgssjs1A
-         xlEJTQm2cIT2g3chnw7CfTpwNQYlUjT4A+u7LuPLp7jCSg+MzcTHp3QTsEb6N++lOxin
-         rPlNhJofl8P4kO3gcCNTEayjjofywoi1fmiE1FZfKbMjaMI9nQJZrITou8k6BNUcsygm
-         RpeA==
+        bh=TmSyxcm8BJSoYWuOuSBcSo8zV/M9qb7hhSq19YND1UY=;
+        b=xJebsaKdcz+6FXuLTQL4cNTwcf9BqrdATMXAVznxn3dS2rZvbkicpPhLO2I6a3U4jy
+         1oq9eiT3inXdEjJ67eMfWWL2hRBRg44FG2L2dUbCzy4z+u14y5tZPVtmtemO9uQ6GCXJ
+         kgTbDKTlr7djkkBFxjH2ZAbtppi02p8LFONRDaAEPppWRhLVL805Bopmz86k44BpDUI+
+         fpC+xDJk7otRslhj5i9RfBe/bfHvGyCz/Z6rX9K9ocbGQ059CE7Hu0/ElgGTvRvOCxKz
+         vd/YNRIKTvIyksyvaKvFQBAvQZ3QmosmZpXE21wOaLINgMRJE2bBaCvCEBvWOwcvUL/n
+         XM5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680513556;
+        d=1e100.net; s=20210112; t=1680513618;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xtjX09frN0K29pRxgf6hACPfNtdl31/D5yVk7FHaNzM=;
-        b=MoAWBxwzMvbNffuL2nhtptxrJf84Tjhnmd5JyHgULiFxAet1xu0WyavU46t3hrHaCC
-         InKYCY0Yn+XCgaX4hzhk6o4gFlxk3fSwP4dSYQ3dgBPWhrSfUDXBpj0vbWUr+7dCEMAY
-         uDbYCEGSBS1URrNZj/m3fLfGHSdoPQ7LHuyKA9qQhpgETNdHdzAmke0pozICeA+bt2Z7
-         dW+etiSscsWomBqbORUFLNbqWfxFQ85EI+dpAY3GGjvQPUXYku/cqhkyn6cjSJjDH72W
-         8VPwlUD61oCmUt0CS3dm8o6wOhQta66miOwHj5cFVct4vy4vKX3k7Iz9IB7lBwVucvRA
-         i84A==
-X-Gm-Message-State: AAQBX9dI0yaGhmALxiNh3zRqPDXnhiLFdzaF+Pz+USx5uCD6fpf9qQP5
-        azJWyj4pPzivYSgoJfgtKHdA2Q==
-X-Google-Smtp-Source: AKy350b9Mnm1wx7mnQYX/WsjT5FVGKxITPprQ1LuJWlIRLGronH4vRCLv2HbU4jDnRWyRbvCXKTQmQ==
-X-Received: by 2002:aa7:cacd:0:b0:4fc:7201:6e4 with SMTP id l13-20020aa7cacd000000b004fc720106e4mr32928442edt.20.1680513556539;
-        Mon, 03 Apr 2023 02:19:16 -0700 (PDT)
+        bh=TmSyxcm8BJSoYWuOuSBcSo8zV/M9qb7hhSq19YND1UY=;
+        b=pM3NgxG+UgyyWFEIcjdGj4ewQaTpjIRro8CL0KaJbGej1pzOt4YfrwFg/3f6p0HcR4
+         SFonx0zaXJSlAVmyQzQGZidcTSOjAEXZnqJOPShca5apmpy9hEIS9zhbYr/K6APV4OtO
+         BtLPqULrTdHrBnJ4mJzs2hQK76QbXj5vQYjdDxh1RM1cyHXBVa9iXrJGzPb6egFF0IPA
+         FVVFKR4GnX2Rb4g0M0jQ9a5rX+YR4qmXgBd/2vY0jgZg8DYARth5DFHVIHx7brNoO7kN
+         v8x47NBA9rEXtEW0sdCmoQsbpuODRe/z1b54dUF3mrqAhmm2kmP2bhRKqzCoyPejYVPs
+         3ggg==
+X-Gm-Message-State: AAQBX9czJ/aGta7MiFKlSD3/VvcgQ4Y8TvZ4gydMkjHRjIfJ7NRV4fer
+        T5s57BzfWjC3UNE0JjKYPE4oVg==
+X-Google-Smtp-Source: AKy350Z7UeDN3d513QyXyVVdtex7nqmjclKXJK4+cizpiT6KXI/PnQhltSjZ4t/EL9+4vzq5ib3EEw==
+X-Received: by 2002:a17:907:9c08:b0:93f:9b4a:12f3 with SMTP id ld8-20020a1709079c0800b0093f9b4a12f3mr33288504ejc.10.1680513617877;
+        Mon, 03 Apr 2023 02:20:17 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id x3-20020a50d603000000b004c06f786602sm4270132edi.85.2023.04.03.02.19.15
+        by smtp.gmail.com with ESMTPSA id j18-20020a17090623f200b00947a749fc3esm4040880ejg.33.2023.04.03.02.20.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:19:16 -0700 (PDT)
-Message-ID: <a585fb29-e960-46e3-f768-01e7d104b204@linaro.org>
-Date:   Mon, 3 Apr 2023 11:19:15 +0200
+        Mon, 03 Apr 2023 02:20:17 -0700 (PDT)
+Message-ID: <ea03bfb6-34c4-45e2-c179-74ecafad559f@linaro.org>
+Date:   Mon, 3 Apr 2023 11:20:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 3/6] dt-bindings: firmware: qcom: scm: add SSC_Q6 and
- ADSP_Q6 VMIDs
+Subject: Re: [PATCH v4 4/6] dts: qcom: arm64: qcom: sdm845: use defines for
+ VMIDs
 Content-Language: en-US
 To:     Dylan Van Assche <me@dylanvanassche.be>,
         Andy Gross <agross@kernel.org>,
@@ -67,9 +67,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-kernel@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
 References: <20230401173523.15244-1-me@dylanvanassche.be>
- <20230401173523.15244-4-me@dylanvanassche.be>
+ <20230401173523.15244-5-me@dylanvanassche.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230401173523.15244-4-me@dylanvanassche.be>
+In-Reply-To: <20230401173523.15244-5-me@dylanvanassche.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,15 +83,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/04/2023 19:35, Dylan Van Assche wrote:
-> SSC_Q6 and ADSP_Q6 are used in the FastRPC driver for accessing
-> the secure world.
+> Use VMID defines for SLPI's FastRPC node in the Qualcomm SDM845 DTS
+> instead of hardcoded magic values.
 > 
 > Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
 > ---
->  include/dt-bindings/firmware/qcom,scm.h | 2 ++
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 1f25a7f4e02b..dc4b553cbe2e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -13,6 +13,7 @@
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/clock/qcom,videocc-sdm845.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>  #include <dt-bindings/interconnect/qcom,sdm845.h>
+> @@ -3372,7 +3373,8 @@ fastrpc {
+>  					qcom,glink-channels = "fastrpcglink-apps-dsp";
+>  					label = "sdsp";
+>  					qcom,non-secure-domain;
+> -					qcom,vmids = <0x3 0xF 0x5 0x6>;
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Didn't you just add it in previous patch? Don't add incorrect code which
+you immediately change.
 
 Best regards,
 Krzysztof
