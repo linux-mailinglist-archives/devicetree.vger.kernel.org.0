@@ -2,111 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05D6A6D3D29
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 08:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6A26D3D46
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 08:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbjDCGPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 02:15:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59110 "EHLO
+        id S231526AbjDCGYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 02:24:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbjDCGPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 02:15:30 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEDB729C
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 23:15:28 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id r11so28033364wrr.12
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 23:15:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680502526;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OYr1/KuS7kMHwn46ltI5HEmCt5k4aJgWKClGbWF133s=;
-        b=NTT03Lm8sZsH76eTG3jdAAaurDzfPUGB/iUpyvrJJCgS/iHAOeP0mrd1UJgq2TUEf4
-         PHikextz4mHfKRXGZ4176flEtQA/gWpe9qSMGNQywQtYGkfXzsQxACYuZL2EPyY1WuLH
-         zfgdDB7IP0Cq5JaR/05zHCo8WFZZANccGr8a3VV3/ATQhd2bPMp2PGSd3VuyW3TytX/9
-         SsoAXEjVr4cLrtTZfufguHJhwRPZxbI4dOyUo11D3Sp2U35r1NGH4GBoT5loZVl4ey+j
-         QwbzVdgsaj55u3lJQXWm+Nlm9GErX/1dT51kDE6G5ziC++k4jRAkazihgt5lJheHXYgP
-         H1Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680502526;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OYr1/KuS7kMHwn46ltI5HEmCt5k4aJgWKClGbWF133s=;
-        b=YsjUvsUsypAWyvDD70uvBnTQk+x/5pTMU+fzQXt0qUIglAT3X79lAzmtRVNJfA2+i/
-         5APv/bsl3oPC6Igex7zZPZtRcaFVT883DRo6AhOH1lKq/gFYL1OrYOuDSiUcTN9Z7zX+
-         PruwjaJ/kcQnnPtGvdP4oG+WSsKFoNmCiBIkt01QLDfWEJpmaPmpvvN87pe5M64NvJ/l
-         k8XlShcOiYTdRshTk4PjERsLXqECP8yrMZV0jliGGNc4kKlAILWPGn7JEwcfGS9lUuY+
-         nR3TYvBYSE/c3Gk2KCBpZRTPaka9yoNC8zEU8+q8NyCrJGCoaPXRRlto/nMsChUNmqsb
-         /UmA==
-X-Gm-Message-State: AAQBX9c9XBbAGrhLCk+UwkuaOYFEOr+jc0OxdZAoaSB75gXMHaC4EEDQ
-        a86D23M+viuUaa8UaJJLIfAvkEfdLnDbP4HDtSZekA==
-X-Google-Smtp-Source: AKy350acf1mfzrEPgp1c2mLaWyYaPeg8MW/g55MD0k5rk9VLpt+743GauRSVo2/m6TW4qS0GzGWVj+lSeid5yNUguIM=
-X-Received: by 2002:a05:6000:5c1:b0:2d7:9771:fc4b with SMTP id
- bh1-20020a05600005c100b002d79771fc4bmr4955083wrb.5.1680502526512; Sun, 02 Apr
- 2023 23:15:26 -0700 (PDT)
+        with ESMTP id S231533AbjDCGYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 02:24:40 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9389ED7;
+        Sun,  2 Apr 2023 23:24:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680503064; x=1712039064;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SXF9ql1O4QqCDwpUFCx0XjbvGZ7VdcC3B9xFy+3JRBY=;
+  b=IsV+zfbmgs4DKvkRa0YTOE8MaQ5e1bCQYNTgUNaKDMF2QOHWgo6Z6MRZ
+   cMHxQ4lSh78T57+keyZNhFPk/Lc0bUcRnApjCvbUL6wABazCVuo5dIpnd
+   OUkqqBMn16K0kbiTmXz/HuXClQ5iVJpVEVXhpd5WCPSvaAqxPmGF7KBGQ
+   rxknVWCJxLztRj6zdWZ+28miv4N6gYFuqGz8fmnOxXa+RWkAvfcw+y7NN
+   Hqks8RgvvUO/qwgdFSl32Hgzf6OGDQ6ZdI/GdpkR9SKwmpnLMSqngDH+E
+   y+95kdSe9o7F6KpJlO92w5uIw+1DYz9qDQR2HjYIwi2YdaL87VDQ0cWg+
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,314,1673938800"; 
+   d="asc'?scan'208";a="145160516"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Apr 2023 23:24:23 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Sun, 2 Apr 2023 23:24:23 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Sun, 2 Apr 2023 23:24:20 -0700
+Date:   Mon, 3 Apr 2023 07:24:06 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 2/3] phy: starfive: Add mipi dphy rx support
+Message-ID: <0dd5e35b-512e-41ed-af33-f94b7e2868c1@spud>
+References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+ <20230223015952.201841-3-changhuang.liang@starfivetech.com>
+ <ZBhTmTEcrV59oaw3@matsya>
+ <2aa1bdbd-e37e-941a-9422-0908545c14f7@starfivetech.com>
+ <ZCbloBdeffocT3Os@matsya>
+ <d48ab612-213a-8d20-4b36-3f64f3d24721@starfivetech.com>
 MIME-Version: 1.0
-References: <20230402100509.1154220-1-bhupesh.sharma@linaro.org>
- <20230402100509.1154220-6-bhupesh.sharma@linaro.org> <21eaeea4-4f2e-5ce5-c75b-d74ded8e6e4c@linaro.org>
-In-Reply-To: <21eaeea4-4f2e-5ce5-c75b-d74ded8e6e4c@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 3 Apr 2023 11:45:05 +0530
-Message-ID: <CAH=2NtzKGxzmCq2JTajxWoeRFR+mPnFY3YF5mn0tGt30T7SJoQ@mail.gmail.com>
-Subject: Re: [PATCH v5 05/11] dt-bindings: qcom-qce: Fix compatible
- combinations for SM8150 and IPQ4019 SoCs
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, konrad.dybcio@linaro.org, rfoss@kernel.org,
-        neil.armstrong@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="H+2gs+RwcKc2bDgt"
+Content-Disposition: inline
+In-Reply-To: <d48ab612-213a-8d20-4b36-3f64f3d24721@starfivetech.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Apr 2023 at 11:06, Vladimir Zapolskiy
-<vladimir.zapolskiy@linaro.org> wrote:
->
-> On 4/2/23 13:05, Bhupesh Sharma wrote:
-> > Currently the compatible list available in 'qce' dt-bindings does not
-> > support SM8150 and IPQ4019 SoCs directly which may lead to potential
-> > 'dtbs_check' error(s).
-> >
-> > Fix the same.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >   Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
-> >   1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > index e375bd981300..90ddf98a6df9 100644
-> > --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > @@ -24,6 +24,12 @@ properties:
-> >           deprecated: true
-> >           description: Kept only for ABI backward compatibility
-> >
-> > +      - items:
-> > +          - enum:
-> > +              - qcom,ipq4019-qce
-> > +              - qcom,sm8150-qce
-> > +          - const: qcom,qce
-> > +
-> >         - items:
-> >             - enum:
-> >                 - qcom,ipq6018-qce
->
-> Two commit tags given for v2 are missing.
+--H+2gs+RwcKc2bDgt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Cannot get your comment. Please be more descriptive.
+On Mon, Apr 03, 2023 at 09:39:00AM +0800, Changhuang Liang wrote:
+> On 2023/3/31 21:52, Vinod Koul wrote:
+> > On 21-03-23, 14:08, Changhuang Liang wrote:
+> >> On 2023/3/20 20:37, Vinod Koul wrote:
+> >>> On 22-02-23, 17:59, Changhuang Liang wrote:
+> >>>> [...]
+> >>>> +static const struct regval_t stf_dphy_init_list[] =3D {
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(4), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(8), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(12), 0x0000fff0 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(16), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(20), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(24), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(28), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(32), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(36), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(40), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(40), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(48), 0x24000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(52), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(56), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(60), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(64), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(68), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(72), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(76), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(80), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(84), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(88), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(92), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(96), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(100), 0x02000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(104), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(108), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(112), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(116), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(120), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(124), 0x0000000c },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(128), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(132), 0xcc500000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(136), 0x000000cc },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(140), 0x00000000 },
+> >>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(144), 0x00000000 },
+> >>>> +};
+> >>>> +
+> >>>> +static int stf_dphy_configure(struct phy *phy, union phy_configure_=
+opts *opts)
+> >>>> +{
+> >>>> +	struct stf_dphy *dphy =3D phy_get_drvdata(phy);
+> >>>> +	int map[6] =3D {4, 0, 1, 2, 3, 5};
+> >>>
+> >>> what does this mean?
+> >>
+> >> This is the physical lane and logical lane mapping table, should I add=
+ a note for it?
+> >=20
+> > Yes please. Also will the mapping be always static or ever change?
+> > =20
+>=20
+> The mapping is always static on the visionfive2 single board computer.
+> Thanks for your comments.
 
-Thanks,
-Bhupesh
+What about other boards featuring a JH7110?
+
+--H+2gs+RwcKc2bDgt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCpw9gAKCRB4tDGHoIJi
+0j48AP93KM8qo+2qFu0Q08mVxv8JhhX9LTXYPZrZ5Cr2SB5nbwEAwF35RRfom50o
+FPXKuMztozN4Mw3e3uMacj/9cRNOlAo=
+=1C53
+-----END PGP SIGNATURE-----
+
+--H+2gs+RwcKc2bDgt--
