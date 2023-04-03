@@ -2,123 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F79A6D5143
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B1C26D514D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbjDCTYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 15:24:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45818 "EHLO
+        id S231593AbjDCT1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 15:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231411AbjDCTYt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:24:49 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178A5E7C;
-        Mon,  3 Apr 2023 12:24:47 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkzcv-3yyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4505:1fdc::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S230044AbjDCT1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:27:23 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E773119B6
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 12:27:21 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Pr16v6hS3z49Q0d;
-        Mon,  3 Apr 2023 22:24:39 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1680549885;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Tp5qcqPaxivMIuFMRKaAe5HT8V/qPK5f6UKZnTDqXZs=;
-        b=wj8iMdaB6O5svgBz97QcbFfxl9pOUa1PNhWR6/nMI8DJ/TlBNBIzxaoXQ4xFtAVcllZBGn
-        1h11XWEmzs+t+7S8wZmoH14Ni8IZIiAbMuwhBvBpaZQSxGqHI3PBS4/eRQdeOwpNSUUZ4Q
-        9oD4KR5OR/7ixTFuQJjiBae6kKroRXjgsr1oQ1YHFdRtSRUWdkyXT6ydrbBKs2fI2Nf6at
-        KgPm5BT3ib2zzo+p3tbEYZMZCdzbPUGlXdxIKRq6Wl3LoBqS5w7Tcdh9ze+jq4BX8ZDee1
-        E31/c03A+3U1KSnRAQJPWWdm9O+j4FuxlElRkzejBkCFdfXldIoFoa2cL7+rAQ==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1680549885; a=rsa-sha256;
-        cv=none;
-        b=pTLkgQTxUMn8kAT5W3Z+ogFont60P6E8KePKCXivg0tBgmGITjjXMVNgPLPZmGVszTwkb9
-        8xmV8K+JZuzm7F5CFJy//1r6ial5+VTAqVELsLbmuuAMfOY1FbI3yDkl8ZCGK0ToM5mF6F
-        iXE23DARwHLsLEzlUBnPniLP4sabKK6I8VHkzWvPos67ec7cBwbNsoN6VKbLTay13Lx0Te
-        srYyEk9eLJ72MlypaetY0e3iRJp+oyVh9XtQdLwdV+Gk7bvcCtArTcbo8tYuuL7peYlIWK
-        3MAa6H4E+TVhwLzsPEbZwvIuhCayXj1Up3OmaEuUmeKIlKMxGrnJHjS1tylKqw==
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1680549885;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Tp5qcqPaxivMIuFMRKaAe5HT8V/qPK5f6UKZnTDqXZs=;
-        b=nDY5LUXsU7qY8CejlN+YlEuCBrJE/yaOwuV73ThTDfxvd8Q/gVoeJnKw2jhXh4fy8A7SPX
-        04/1VA27KvucaNF6obkcJs2PPrdTE0lqb28f0pJOkLQXoIeseCKj3IvDUyXnBCVMbpl03s
-        yasLIby0zyRIhZg4rK6kfJ04rUVkkEFvNGm5TZYXULNkyhoQREHpmP/LL8JdsOm0Nmc2LH
-        0bmnev2mHgSMrVvTzXkiub2kKx9ZZcsn7/QC6F+28qWZ7KKjWBErPDIXmgXOy47iBBRRO6
-        0ZiawUTptzsFdcFQ0UPZ510Z4RUtHySIcAMki/r3tFx2/Ka+zwbnh9UJRyw49Q==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 4C2E2634C91;
-        Mon,  3 Apr 2023 22:22:09 +0300 (EEST)
-Date:   Mon, 3 Apr 2023 22:22:08 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Stanimir Varbanov <stanimir.k.varbanov@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Joe Tessler <jrt@google.com>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 58CFF856D2;
+        Mon,  3 Apr 2023 21:27:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1680550040;
+        bh=PgOjEN34AUWQeLPMfF8y27di9zaxQgzsaVAZ74CM1vw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=N9ubjTv6cyyhKuMK8VVluNs58p0uhua6dijCYvom4rXwKAOrNDHgw265merfvGkU2
+         AzgKm6BONJtndqALIW7ob4dtq92JlRZwqRzLNdCzqNBaF7Fpf5Ezythp254vz/q+ux
+         M+GZminYZuT0UntLVpQ8vBTtFsE0I6OabUl8X90Bn9jZymzYrwTEuW89EvJJeTGtgo
+         K6erjr/Fu4C9BTc4E3NPPAQNnAIx2vDKCb8sYttc/c8AWdThtslHv4XfsHjJbHQSxN
+         ak+4fSVTwMtYMJ6yXtT2p6ilqDnV0vh7JZ/qBUhD0H4nqSoaiMHDn3Mzb5hicJ30E/
+         N8VJxmQm1y/Ag==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abel.vesa@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Benoit Parrot <bparrot@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] media: dt-bindings: Drop unneeded quotes
-Message-ID: <ZCsnYGMkV2Zrw3fJ@valkosipuli.retiisi.eu>
-References: <20230320233944.2920964-1-robh@kernel.org>
- <ZCaoVwRuxVOTZdI4@valkosipuli.retiisi.eu>
- <36febd82-85b2-aa4d-c7e0-6343b119e0cc@gmail.com>
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mn: Add display pipeline components
+Date:   Mon,  3 Apr 2023 21:27:03 +0200
+Message-Id: <20230403192703.243929-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <36febd82-85b2-aa4d-c7e0-6343b119e0cc@gmail.com>
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -126,43 +62,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stan,
+Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Nano.
+This makes the DSI display pipeline available on this SoC.
 
-How are you doing?
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Abel Vesa <abel.vesa@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Guido Günther <agx@sigxcpu.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Richard Cochran <richardcochran@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 57 +++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-On Mon, Apr 03, 2023 at 08:26:28PM +0300, Stanimir Varbanov wrote:
-> Hei Sakari,
-> 
-> On 31.03.23 г. 12:31 ч., Sakari Ailus wrote:
-> > Hi Rob,
-> > 
-> > On Mon, Mar 20, 2023 at 06:39:42PM -0500, Rob Herring wrote:
-> > > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> > > checking for this can be enabled in yamllint.
-> > > 
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > 
-> > This patch contains changes to Qualcomm bindings that have been already
-> > made by other patches by Krzysztof. I think these took some time to get
-> > merged to the media tree.
-> > 
-> > I've dropped those, the result is here:
-> > 
-> > <URL:https://git.linuxtv.org/sailus/media_tree.git/commit/?id=d75cae0884e80bba486f85e82b33a1dae3c9c976>
-> > 
-> 
-> Do you think it will fix this pull request failure?
-> 
-> https://lore.kernel.org/all/20230329214310.2503484-1-jenkins@linuxtv.org/
-
-Ah, it seems to be the same issue here.
-
-The patch has been merged via my tree, whereas the rest of the patchset was
-apparently merged by Hans earlier on.
-
-<URL:https://patchwork.linuxtv.org/project/linux-media/list/?series=9531&submitter=&state=*&q=&archive=&delegate=>
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index 7b58660d9ef49..6426f04bfb101 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -1062,6 +1062,63 @@ aips4: bus@32c00000 {
+ 			#size-cells = <1>;
+ 			ranges;
+ 
++			lcdif: lcdif@32e00000 {
++				compatible = "fsl,imx8mn-lcdif", "fsl,imx6sx-lcdif";
++				reg = <0x32e00000 0x10000>;
++				clocks = <&clk IMX8MN_CLK_DISP_PIXEL_ROOT>,
++					 <&clk IMX8MN_CLK_DISP_APB_ROOT>,
++					 <&clk IMX8MN_CLK_DISP_AXI_ROOT>;
++				clock-names = "pix", "axi", "disp_axi";
++				assigned-clocks = <&clk IMX8MN_CLK_DISP_PIXEL_ROOT>,
++						  <&clk IMX8MN_CLK_DISP_AXI>,
++						  <&clk IMX8MN_CLK_DISP_APB>;
++				assigned-clock-parents = <&clk IMX8MN_CLK_DISP_PIXEL>,
++							 <&clk IMX8MN_SYS_PLL2_1000M>,
++							 <&clk IMX8MN_SYS_PLL1_800M>;
++				assigned-clock-rates = <594000000>, <500000000>, <200000000>;
++				interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&disp_blk_ctrl IMX8MN_DISPBLK_PD_LCDIF>;
++				status = "disabled";
++
++				port {
++					lcdif_to_dsim: endpoint {
++						remote-endpoint = <&dsim_from_lcdif>;
++					};
++				};
++			};
++
++			mipi_dsi: dsi@32e10000 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "fsl,imx8mn-mipi-dsim", "fsl,imx8mm-mipi-dsim";
++				reg = <0x32e10000 0x400>;
++				clocks = <&clk IMX8MN_CLK_DSI_CORE>,
++					 <&clk IMX8MN_CLK_DSI_PHY_REF>;
++				clock-names = "bus_clk", "sclk_mipi";
++				assigned-clocks = <&clk IMX8MN_CLK_DSI_CORE>,
++						  <&clk IMX8MN_CLK_DSI_PHY_REF>;
++				assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_266M>,
++							 <&clk IMX8MN_CLK_24M>;
++				assigned-clock-rates = <266000000>, <24000000>;
++				samsung,pll-clock-frequency = <24000000>;
++				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&disp_blk_ctrl IMX8MN_DISPBLK_PD_MIPI_DSI>;
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						dsim_from_lcdif: endpoint {
++							remote-endpoint = <&lcdif_to_dsim>;
++						};
++					};
++				};
++			};
++
+ 			disp_blk_ctrl: blk-ctrl@32e28000 {
+ 				compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
+ 				reg = <0x32e28000 0x100>;
 -- 
-Kind regards,
+2.39.2
 
-Sakari Ailus
