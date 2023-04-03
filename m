@@ -2,80 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BA806D41A6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6586D41AE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbjDCKQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33490 "EHLO
+        id S232102AbjDCKQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230269AbjDCKQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:16:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D0765BC;
-        Mon,  3 Apr 2023 03:16:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FB526179B;
-        Mon,  3 Apr 2023 10:16:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76DF2C433AA;
-        Mon,  3 Apr 2023 10:16:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680516967;
-        bh=5HFO1/RS3+GfhEvCCUbP0dlLKdHoh/rzuLr+Hm1DWRc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tMVrA1iW3mfBUp6m3x9ahp3O1uvEXmZ9qoCzeBdhKRrSuSckrkcHK7B/1I1PkoGVD
-         +E3Sws/4kGXbZ538hkiZNnOotQCG+6anbV9ddH9+t/M6NxcpqqaI4d223UEi0SbMlh
-         AWTRy4fd6QbC3U57sc7+Z6GNt55f6+x0N9lm+rqiEAyyOLXW5YF2XeHdXdfDppoYwi
-         RV2+6qyixo0Kda0KRZhWzoTc08QMwCetagk3Uc549pMPEBlzr62nyO3LpnFVvOmFD7
-         y3eFCiFPP+hyo8pSgorw8RLLaSX5wWH+W7HkIyGqat9JQTpzSj8iVRw59ih/IyO4Q0
-         7i29cV5h5HBCA==
-Received: by mail-lf1-f45.google.com with SMTP id q16so37331653lfe.10;
-        Mon, 03 Apr 2023 03:16:07 -0700 (PDT)
-X-Gm-Message-State: AAQBX9eMohcz1ONMzRQIOu9IfboZ3YNMfsTjw6MSPag+/Q7ylKI9ksiL
-        H1qY/blQDUv3Q9mxitdRHm8YEl0g9Zbqz2Rh6w==
-X-Google-Smtp-Source: AKy350a6AWS0wXlKuF5pe+AmTsaAEGr6dp/NJrmnFPufQQTE7JlMBuNWDF4zk2dhoeM1A4qjskgjTlKotAgPQvIU9cg=
-X-Received: by 2002:ac2:43ce:0:b0:4eb:2643:d5cf with SMTP id
- u14-20020ac243ce000000b004eb2643d5cfmr4522340lfl.7.1680516965357; Mon, 03 Apr
- 2023 03:16:05 -0700 (PDT)
+        with ESMTP id S232122AbjDCKQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:16:37 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32B076B3
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:16:35 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id y15so37350326lfa.7
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680516994;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RNLlgEsfn6bQxY+FQHh506Gu9381zJcSolbDY70x5ZU=;
+        b=HrudlRnK7SNQOf2sHLFFavkTomnUN1UBwsBinOR/UheKUEb44qEiNCZB7hU6SMrkfZ
+         HBeARig6CpbXKz/rkoO2bHqjGdZS5nDI2COoVoeEtSaxJ8w8kdgtmoQB40ExRGwPTyND
+         oua1G6m9pUgQiOA3HUX1XngQtwGMrCbg0IXI2rEYjNllhXpRAr3bS/Apl4MhWRrhOk5x
+         w81Z5KHA/STMxQUAycPnz5iC+kDrnoYZNKWWAZlGDxGSz/E2f1hLREtTCXgQ1D6ZYrcp
+         UDZZtQYdo6PuWjcU/hmgQXHd6lRJjy7W3i0Jes+rrTO2bS8PvJVWoq+FkJRD5MbhDI44
+         Spfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680516994;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RNLlgEsfn6bQxY+FQHh506Gu9381zJcSolbDY70x5ZU=;
+        b=giqlIJ5qBoTss9qEt7KszIg2kBOEvmibRw6N87/c0zu3E3zK2R7hOeEe7bDb7JOe7B
+         uB5GWw+ZW5G3J6pAWWVeQnO6JvSEsbhzgz/kCDWB5sr9rujt9/dcN+iXvlSF7seRRp1k
+         ycEqalCVGpyT0pv5Br3g/wZhg2PnLIhgnC0W85VK2YeWdJkCRKB4T2IGf5de65Fllbdh
+         Zoul4Z492cAlqXF0srvXIebdSKMu8bLB2vJJH9uub27noVPVmGdWsocLTSunRlqwTPkJ
+         S+f53bZcGqf9/PdigMRvGPDxsauevM7tSBn3WVIsPmwbj+V+8ikJBXqM+LpdnFowCZ32
+         LdRw==
+X-Gm-Message-State: AAQBX9eEogvQRboQT+OrO51akwAtO4SUNxGscFtf6tEr6Xjsry6gfgjM
+        fJ+Oe0g3BSkMWUPn8nervBtm/g==
+X-Google-Smtp-Source: AKy350bKMrP5L/JGUjCvfiupcP57MKCco3MyphtZr/XCS0WLP0GXZyf8CySWYjdHvITft2ZJksIASQ==
+X-Received: by 2002:ac2:5322:0:b0:4e9:5e28:f1c9 with SMTP id f2-20020ac25322000000b004e95e28f1c9mr9601564lfh.36.1680516994203;
+        Mon, 03 Apr 2023 03:16:34 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id y2-20020ac24462000000b004db48ae69cbsm1685425lfl.206.2023.04.03.03.16.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 03:16:33 -0700 (PDT)
+Message-ID: <f9b64593-0138-0fc6-6e05-2310531c19c9@linaro.org>
+Date:   Mon, 3 Apr 2023 12:16:32 +0200
 MIME-Version: 1.0
-References: <20230403071929.360911-1-jstephan@baylibre.com> <20230403071929.360911-3-jstephan@baylibre.com>
-In-Reply-To: <20230403071929.360911-3-jstephan@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 3 Apr 2023 18:15:53 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8h0gROVKOVNrTpJGKgZhJbQ1A6EaZT+vpb5bJaYqYaFg@mail.gmail.com>
-Message-ID: <CAAOTY_8h0gROVKOVNrTpJGKgZhJbQ1A6EaZT+vpb5bJaYqYaFg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] phy: mtk-mipi-csi: add driver for CSI phy
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     Phi-bang Nguyen <pnguyen@baylibre.com>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 10/22] arm64: dts: qcom: pmk8350: use
+ interrupts-extended for IRQ specification
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVERS FOR MEDIATEK" 
-        <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS,UPPERCASE_50_75 autolearn=unavailable autolearn_force=no
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-11-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230401220810.3563708-11-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,232 +82,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Julien:
 
-Julien Stephan <jstephan@baylibre.com> =E6=96=BC 2023=E5=B9=B44=E6=9C=883=
-=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:20=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> From: Phi-bang Nguyen <pnguyen@baylibre.com>
->
-> This is a new driver that supports the MIPI CSI CD-PHY for mediatek
-> mt8365 soc
->
-> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
-> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> [Julien Stephan: use regmap]
-> [Julien Stephan: use GENMASK]
-> Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+
+On 2.04.2023 00:07, Dmitry Baryshkov wrote:
+> As stated in the commit 2d5cab9232ba ("arm64: dts: qcom: sc8280xp-pmics:
+> Specify interrupt parent explicitly"), we should not use bare interrupts
+> for our PMIC devices. Instead interrupts-extended should be used. Change
+> pmk8350.dtsi to use interrupts-extended propery.
+propery/property
+
+It's not about using the interrupts-extended itself, as it's functionally
+identical if it points to the same interrupt parent. The main point of this
+is to designate the SPMI host as the interrupt provider for these nodes,
+as that's what the DT spec expects.
+
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/phy/mediatek,csi-phy.yaml        |   9 +-
->  MAINTAINERS                                   |   1 +
->  drivers/phy/mediatek/Kconfig                  |   8 +
->  drivers/phy/mediatek/Makefile                 |   2 +
->  .../phy/mediatek/phy-mtk-mipi-csi-rx-reg.h    | 435 ++++++++++++++++++
->  drivers/phy/mediatek/phy-mtk-mipi-csi.c       | 392 ++++++++++++++++
->  6 files changed, 845 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-csi-rx-reg.h
->  create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-csi.c
->
+For the change:
 
-[snip]
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> +static int mtk_mipi_phy_power_on(struct phy *phy)
-> +{
-> +       struct mtk_mipi_dphy_port *port =3D phy_get_drvdata(phy);
-> +       struct mtk_mipi_dphy *priv =3D port->dev;
-> +       struct regmap *regmap_base =3D port->regmap_base;
-> +       struct regmap *regmap_4d1c =3D port->regmap_4d1c;
-> +       int ret =3D 0;
-> +
-> +       mutex_lock(&priv->lock);
-> +
-> +       switch (port->id) {
-> +       case MTK_MIPI_PHY_PORT_0:
-> +               if (priv->ports[MTK_MIPI_PHY_PORT_0A].active ||
-> +                   priv->ports[MTK_MIPI_PHY_PORT_0B].active)
-> +                       ret =3D -EBUSY;
-> +               break;
-> +
-> +       case MTK_MIPI_PHY_PORT_0A:
-> +       case MTK_MIPI_PHY_PORT_0B:
-> +               if (priv->ports[MTK_MIPI_PHY_PORT_0].active)
-> +                       ret =3D -EBUSY;
-> +               break;
-> +       }
-> +
-> +       if (!ret)
-> +               port->active =3D true;
-> +
-> +       mutex_unlock(&priv->lock);
-> +
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       /* Set analog phy mode to DPHY */
-> +       if (port->is_cdphy)
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSI0A_CPHY_EN, 0);
-> +
-> +       if (port->is_4d1c) {
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L0_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L0_CKSEL, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_CKSEL, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L2_CKMODE_EN, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L2_CKSEL, 1);
-> +       } else {
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L0_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L0_CKSEL, 0);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_CKMODE_EN, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_CKSEL, 0);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L2_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L2_CKSEL, 0);
-> +       }
-> +
-> +       if (port->is_4d1c) {
-> +               if (port->is_cdphy)
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                                  RG_CSI0A_CPHY_EN, 0);
-> +
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L0_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L0_CKSEL, 1);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_CKSEL, 1);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L2_CKMODE_EN, 0);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_DPHY_L2_CKSEL, 1);
-> +       }
-> +
-> +       /* Byte clock invert */
-> +       REGMAP_BIT(regmap_base, MIPI_RX_ANAA8_CSIxA,
-> +                  RG_CSIxA_CDPHY_L0_T0_BYTECK_INVERT, 1);
-> +       REGMAP_BIT(regmap_base, MIPI_RX_ANAA8_CSIxA,
-> +                  RG_CSIxA_DPHY_L1_BYTECK_INVERT, 1);
-> +       REGMAP_BIT(regmap_base, MIPI_RX_ANAA8_CSIxA,
-> +                  RG_CSIxA_CDPHY_L2_T1_BYTECK_INVERT, 1);
-> +
-> +       if (port->is_4d1c) {
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANAA8_CSIxA,
-> +                          RG_CSIxA_CDPHY_L0_T0_BYTECK_INVERT, 1);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANAA8_CSIxA,
-> +                          RG_CSIxA_DPHY_L1_BYTECK_INVERT, 1);
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANAA8_CSIxA,
-> +                          RG_CSIxA_CDPHY_L2_T1_BYTECK_INVERT, 1);
-> +       }
-> +
-> +       /* Start ANA EQ tuning */
-> +       if (port->is_cdphy) {
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA18_CSIxA,
-> +                          RG_CSI0A_L0_T0AB_EQ_IS, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA18_CSIxA,
-> +                          RG_CSI0A_L0_T0AB_EQ_BW, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA1C_CSIxA,
-> +                          RG_CSI0A_L1_T1AB_EQ_IS, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA1C_CSIxA,
-> +                          RG_CSI0A_L1_T1AB_EQ_BW, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA20_CSI0A,
-> +                          RG_CSI0A_L2_T1BC_EQ_IS, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA20_CSI0A,
-> +                          RG_CSI0A_L2_T1BC_EQ_BW, 1);
-> +
-> +               if (port->is_4d1c) {
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA18_CSIxA,
-> +                                  RG_CSI0A_L0_T0AB_EQ_IS, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA18_CSIxA,
-> +                                  RG_CSI0A_L0_T0AB_EQ_BW, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA1C_CSIxA,
-> +                                  RG_CSI0A_L1_T1AB_EQ_IS, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA1C_CSIxA,
-> +                                  RG_CSI0A_L1_T1AB_EQ_BW, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA20_CSI0A,
-> +                                  RG_CSI0A_L2_T1BC_EQ_IS, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA20_CSI0A,
-> +                                  RG_CSI0A_L2_T1BC_EQ_BW, 1);
-> +               }
-> +       } else {
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA18_CSIxA,
-> +                          RG_CSI1A_L0_EQ_IS, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA18_CSIxA,
-> +                          RG_CSI1A_L0_EQ_BW, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA18_CSIxA,
-> +                          RG_CSI1A_L1_EQ_IS, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA18_CSIxA,
-> +                          RG_CSI1A_L1_EQ_BW, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA1C_CSIxA,
-> +                          RG_CSI1A_L2_EQ_IS, 1);
-> +               REGMAP_BIT(regmap_base, MIPI_RX_ANA1C_CSIxA,
-> +                          RG_CSI1A_L2_EQ_BW, 1);
-> +
-> +               if (port->is_4d1c) {
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA18_CSIxA,
-> +                                  RG_CSI1A_L0_EQ_IS, 1);
-
-RG_CSI1A_L0_EQ_IS is identical to RG_CSI0A_L0_T0AB_EQ_IS, and ditto
-for below register. I think the function of each bitwise register is
-the same. Define only one copy of the these register, don't duplicate
-the same thing.
-
-Regards,
-Chun-Kuang.
-
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA18_CSIxA,
-> +                                  RG_CSI1A_L0_EQ_BW, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA18_CSIxA,
-> +                                  RG_CSI1A_L1_EQ_IS, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA18_CSIxA,
-> +                                  RG_CSI1A_L1_EQ_BW, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA1C_CSIxA,
-> +                                  RG_CSI1A_L2_EQ_IS, 1);
-> +                       REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA1C_CSIxA,
-> +                                  RG_CSI1A_L2_EQ_BW, 1);
-> +               }
-> +       }
-> +
-> +       /* End ANA EQ tuning */
-> +       regmap_write(regmap_base, MIPI_RX_ANA40_CSIxA, 0x90);
-> +
-> +       REGMAP_BIT(regmap_base, MIPI_RX_ANA24_CSIxA,
-> +                  RG_CSIxA_RESERVE, 0x40);
-> +       if (port->is_4d1c)
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA24_CSIxA,
-> +                          RG_CSIxA_RESERVE, 0x40);
-> +       REGMAP_BIT(regmap_base, MIPI_RX_WRAPPER80_CSIxA,
-> +                  CSR_CSI_RST_MODE, 0);
-> +       if (port->is_4d1c)
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_WRAPPER80_CSIxA,
-> +                          CSR_CSI_RST_MODE, 0);
-> +       /* ANA power on */
-> +       REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                  RG_CSIxA_BG_CORE_EN, 1);
-> +       if (port->is_4d1c)
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_BG_CORE_EN, 1);
-> +       usleep_range(20, 40);
-> +       REGMAP_BIT(regmap_base, MIPI_RX_ANA00_CSIxA,
-> +                  RG_CSIxA_BG_LPF_EN, 1);
-> +       if (port->is_4d1c)
-> +               REGMAP_BIT(regmap_4d1c, MIPI_RX_ANA00_CSIxA,
-> +                          RG_CSIxA_BG_LPF_EN, 1);
-> +
-> +       return 0;
-> +}
-> +
+Konrad
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> index f26ff3daf119..87b8e4269c60 100644
+> --- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> @@ -33,14 +33,14 @@ LABEL(pon): pon@1300 {
+>  
+>  			LABEL(pon_pwrkey): pwrkey {
+>  				compatible = "qcom,pmk8350-pwrkey";
+> -				interrupts = <PMIC_SID 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
+> +				interrupts-extended = <&spmi_bus PMIC_SID 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
+>  				linux,code = <KEY_POWER>;
+>  				status = "disabled";
+>  			};
+>  
+>  			LABEL(pon_resin): resin {
+>  				compatible = "qcom,pmk8350-resin";
+> -				interrupts = <PMIC_SID 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
+> +				interrupts-extended = <&spmi_bus PMIC_SID 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
+>  				status = "disabled";
+>  			};
+>  		};
+> @@ -50,14 +50,14 @@ LABEL(vadc): adc@3100 {
+>  			reg = <0x3100>;
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+> -			interrupts = <PMIC_SID 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts-extended = <&spmi_bus PMIC_SID 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+>  			#io-channel-cells = <1>;
+>  		};
+>  
+>  		LABEL(adc_tm): adc-tm@3400 {
+>  			compatible = "qcom,adc-tm7";
+>  			reg = <0x3400>;
+> -			interrupts = <PMIC_SID 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts-extended = <&spmi_bus PMIC_SID 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			#thermal-sensor-cells = <1>;
+> @@ -68,7 +68,7 @@ LABEL(rtc): rtc@6100 {
+>  			compatible = "qcom,pmk8350-rtc";
+>  			reg = <0x6100>, <0x6200>;
+>  			reg-names = "rtc", "alarm";
+> -			interrupts = <PMIC_SID 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts-extended = <&spmi_bus PMIC_SID 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+>  			status = "disabled";
+>  		};
+>  
