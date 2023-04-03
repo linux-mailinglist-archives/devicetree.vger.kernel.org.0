@@ -2,149 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A316D4FE9
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A786D5014
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232908AbjDCSFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S232990AbjDCSN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232993AbjDCSFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:05:44 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4371D2683
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:05:43 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id bx10so12934447ljb.8
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:05:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680545141;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=R2HkI4cTUCP2cGZwi+QRGyuqlnwQLBxlin1+ogWHLy0=;
-        b=n+uZs52IEvopHGjLJv5ixfblvCWQcA1693SNNBJWwcON5Q1A+UQmyoann/sytlgRV3
-         h22PLDHHsK1oHhUdDvOmWtT7qRxVuP1jhyX+fA8/SNbCmNuN50YJ18azzbuePwHm9ttq
-         x/d+cKjz5bkKlH5LHF2SLD0/JBSAXmCrW2rxhdl/tkF/UgGOvO4rdtKFzaGm8DkeJT6R
-         j5xX1nBp4irYyyPOkiHeKRt68tKidcB+4mY9zNwfefcG2X8MbtDy2RbLxq3uecq3DWNg
-         PzV89xuM9gx2e6rIUwj3ecj6KGM6UxPMlLIdLh9hKhocdWyrJ9pgA+s4Xj9iukX4kt9e
-         NjBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680545141;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R2HkI4cTUCP2cGZwi+QRGyuqlnwQLBxlin1+ogWHLy0=;
-        b=1P4cTzfIeH62ZpC81/XvNruFfMILJmzaIUWvZexn/cDrLfJB+G50pfyR7psr9bth7G
-         nnl3uN8rPC9b998FLRlZw3rll88dxWht2ZO5UDTnxSjXSQT1NhdWqE0Eex+2Q1ST8khA
-         9sVG1+1vmEJvbixUSaBOC7YklkuJ3ZsskFXOehmkRRxJbJnOPy+D19BGBDjMpcTXVkY1
-         +gTOT3CXvL1dXPdcHxwaWwDLtqYZmoL1VftBlP4DeWowOv4a17yz6Jdg97+j3kp5JGX6
-         W5hmlN+LcVs96dP1wn/5/XSvnKYV+xaOJ0MXR9H3ZvxHCmhiGEb8oPmMOQ99xIXYPTPW
-         pOeQ==
-X-Gm-Message-State: AAQBX9eAaCCvBsYsnlw0f3l8p5qYwzpOdU2vYTobWiFfxBUYx3fO+Qv4
-        VZy8ctneNWdf7+/RmUGYgLH/1Q==
-X-Google-Smtp-Source: AKy350Y/q2Hrwz8PlPoUGUnxQyh1S12S5N9FBlDdGljkYL+7RNeVy94u6bcoheHGJs6zsQ4+3FJ51Q==
-X-Received: by 2002:a2e:80c5:0:b0:293:1565:4353 with SMTP id r5-20020a2e80c5000000b0029315654353mr125952ljg.10.1680545141478;
-        Mon, 03 Apr 2023 11:05:41 -0700 (PDT)
-Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
-        by smtp.gmail.com with ESMTPSA id u22-20020a2e2e16000000b002a260e3a5bdsm1860320lju.27.2023.04.03.11.05.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 11:05:41 -0700 (PDT)
-Message-ID: <8b8540a9-505a-2b68-c246-fabba0f5fc37@linaro.org>
-Date:   Mon, 3 Apr 2023 20:05:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 1/5] dt-bindings: clock: qcom,gpucc: Fix SM6350 clock
- names
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S232433AbjDCSN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:13:56 -0400
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28961BC1;
+        Mon,  3 Apr 2023 11:13:54 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pjOgd-0001gS-2R;
+        Mon, 03 Apr 2023 20:13:47 +0200
+Date:   Mon, 3 Apr 2023 19:13:43 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230315-topic-lagoon_gpu-v1-0-a74cbec4ecfc@linaro.org>
- <20230315-topic-lagoon_gpu-v1-1-a74cbec4ecfc@linaro.org>
- <1d0c894b-ccd4-348f-0c48-c6a5c89df27d@linaro.org>
- <63037930-8ce4-532c-2e1a-0711005bdd77@linaro.org>
-In-Reply-To: <63037930-8ce4-532c-2e1a-0711005bdd77@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <angelogioacchino.delregno@collabora.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Sam Shih <Sam.Shih@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
+Subject: Re: [PATCH net-next v2 00/14] net: dsa: add support for MT7988
+Message-ID: <ZCsXV7MkcUJldQbf@makrotopia.org>
+References: <cover.1680483895.git.daniel@makrotopia.org>
+ <53d89480-936d-25b1-6422-cda7769de369@arinc9.com>
+ <ZCsQIylAgh-rxjfu@makrotopia.org>
+ <73ce771f-3a13-b1c7-659d-7e1c236fdd0b@arinc9.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <73ce771f-3a13-b1c7-659d-7e1c236fdd0b@arinc9.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17.03.2023 13:11, Konrad Dybcio wrote:
+On Mon, Apr 03, 2023 at 08:50:11PM +0300, Arınç ÜNAL wrote:
+> On 3.04.2023 20:42, Daniel Golle wrote:
+> > Hi Arınç,
+> > 
+> > On Mon, Apr 03, 2023 at 08:08:19PM +0300, Arınç ÜNAL wrote:
+> > > On 3.04.2023 04:16, Daniel Golle wrote:
+> > > > The MediaTek MT7988 SoC comes with a built-in switch very similar to
+> > > > previous MT7530 and MT7531. However, the switch address space is mapped
+> > > > into the SoCs memory space rather than being connected via MDIO.
+> > > > Using MMIO simplifies register access and also removes the need for a bus
+> > > > lock, and for that reason also makes interrupt handling more light-weight.
+> > > > 
+> > > > Note that this is different from previous SoCs like MT7621 and MT7623N
+> > > > which also came with an integrated MT7530-like switch which yet had to be
+> > > > accessed via MDIO.
+> > > > 
+> > > > Split-off the part of the driver registering an MDIO driver, then add
+> > > > another module acting as MMIO/platform driver.
+> > > > 
+> > > > The whole series has been tested on various MediaTek boards:
+> > > >    * MT7623A + MT7530 (BPi-R2)
+> > > >    * MT7986A + MT7531 (BPi-R3)
+> > > >    * MT7988A reference board
+> > > 
+> > > You did not address the incorrect information I pointed out here. Now that
+> > 
+> > I'm sorry, that was certainly not intentional and I may have missed
+> > your comments. Actually it doesn't look like they have made it to the
+> > netdev list archive or patchwork either.
+> > 
+> > > the patch series is applied, people reading this on the merge branch commit
+> > > will be misled by the misinformation.
+> > 
+> > I've changed Kconfig stuff according to your recommendation and also
+> > addressed possible misleading USXGMII and 10GBase-KR support by
+> > introducing MT7988-specific functions and using 'internal' PHY mode.
+> > So which of your comments have not been addressed?
 > 
-> 
-> On 17.03.2023 09:37, Krzysztof Kozlowski wrote:
->> On 16/03/2023 12:16, Konrad Dybcio wrote:
->>> SM6350 GPUCC uses the same clock names as the rest of the gang, except
->>> without a _src suffix. Account for that.
->>
->> Why not fixing the names instead (to use the same)? If the clocks are
->> the same, why using different names for the inputs? To remind - these
->> are not names of clocks in GCC, but names of clock inputs to the device.
-> Considering SM6350 is the only used of SM6350_GPUCC and it's not yet
-> in next and I don't think any other project using devicetree has
-> Adreno up on any platform, let alone this one, I suppose the ABI could
-> be broken and the driver could be made to expect the more common set
-> of names? Or I could transition it to index-based lookup?
-Comments, please?
+> https://lore.kernel.org/netdev/c11c86e4-5f8e-5b9b-1db5-e3861b2bade6@arinc9.com/
 
-Konrad
+Strange that both emails didn't make it into patchwork.
+
 > 
-> Konrad
->>
->>>
->>> Fixes: 7b91b9d8cc6c ("dt-bindings: clock: add SM6350 QCOM Graphics clock bindings")
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>>  .../devicetree/bindings/clock/qcom,gpucc.yaml      | 29 +++++++++++++++++++---
->>>  1 file changed, 25 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
->>> index db53eb288995..d209060a619d 100644
->>> --- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
->>> @@ -43,10 +43,8 @@ properties:
->>>        - description: GPLL0 div branch source
->>>  
->>>    clock-names:
->>> -    items:
->>> -      - const: bi_tcxo
->>> -      - const: gcc_gpu_gpll0_clk_src
->>> -      - const: gcc_gpu_gpll0_div_clk_src
->>> +    minItems: 3
->>
->> Drop minItems, not needed as it is implied by maxItems.
->>
->>> +    maxItems: 3
->>>  
->>>    '#clock-cells':
->>>      const: 1
->>> @@ -71,6 +69,29 @@ required:
->>>  
->>>  additionalProperties: false
->>>
->>>
->>
->> Best regards,
->> Krzysztof
->>
+> > 
+> > > 
+> > > > 
+> > > > Changes since v1:
+> > > >    * use 'internal' PHY mode where appropriate
+> > > >    * use regmap_update_bits in mt7530_rmw
+> > > >    * improve dt-bindings
+> > > 
+> > > As a maintainer of the said dt-bindings, I pointed out almost 7 things for
+> > > you to change. Of those 7 points, you only did one, a trivial grammar
+> > > change. The patch series is applied now so one of us maintainers (you are
+> > > one too now) need to fix it with additional patches.
+> > 
+> > I was also surprised the series made it to net-next so quickly, but it
+> > wasn't me applying it, I merly posted v2 with all comments I received
+> > addressed.
+> > 
+> > Me and supposedly also netdevbpf maintainers use patchwork to track
+> > patches and whether comments have been addressed. Can you point me to
+> > emails with the comments which haven't been addressed there? Looking in
+> > patchwork for the dt-bindings patch [1] I don't see any comments there.
+> 
+> https://lore.kernel.org/netdev/a7ab2828-dc03-4847-c947-c7685841f884@arinc9.com/
+> 
+> > 
+> > 
+> > Thank you for reviewing!
+> > 
+> > 
+> > Daniel
+> > 
+> > 
+> > [1]: See patchwork tracking for RFCv3, v1 and v2. Prior to RFCv3 the series
+> > didn't have the dt-bindings addition, I introduced it with RFCv3 when splitting
+> > the series into many small changes:
+> > https://patchwork.kernel.org/project/netdevbpf/patch/9b504e3e88807bfb62022c0877451933d30abeb5.1680105013.git.daniel@makrotopia.org/
+> > https://patchwork.kernel.org/project/netdevbpf/patch/fef2cb2fe3d2b70fa46e93107a0c862f53bb3bfa.1680180959.git.daniel@makrotopia.org/
+> > https://patchwork.kernel.org/project/netdevbpf/patch/dffacdb59aea462c9f7d4242cf9563a04cf79807.1680483896.git.daniel@makrotopia.org/
+> 
+> Although I've been a maintainer for the dt-bindings schema for quite some
+> time, I was somehow missed as a recipient on RFC v3.
+
+Yeah, that was my mistake. get_maintainers.pl comes up with unreadable
+unicode garbage, probably something is wrong in my local Perl setup.
+So I always manually replace your name with readable UTF-8, but I missed
+that for RFC v3.
