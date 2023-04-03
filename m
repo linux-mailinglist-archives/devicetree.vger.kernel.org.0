@@ -2,116 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 312566D3EA3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 10:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F5C6D3ECC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 10:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231804AbjDCIIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 04:08:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59726 "EHLO
+        id S231448AbjDCIVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 04:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230299AbjDCIIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 04:08:15 -0400
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2041.outbound.protection.outlook.com [40.107.13.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AC449F3;
-        Mon,  3 Apr 2023 01:08:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MPTuZdZB87ClcIAi84ppJOqzG8vs6agsJ0i/SHrFSeSUzdqY20wE4LU37hQjgGyFoEzZaUK7SF/B9thYAHHN1unBaa90p+JFKSQQTSyvOPBFuyr1orYsG2ueIYDtOeR0T1Tw/r9Ri1PsJhjZ07EMI8BzFc5FMD7Po+6z0HnXr1yeEZFdP7/QVlsPeHChLsNrvr3JY/fOwpid+uQD44jIwwYUVleAH39acy7geP/e8uSTq6eTN7Z0d99bl0RvQeNpx88wPB1zVzUTLGKi1QUT8A2Kc5Rk00NvCUebvgNkVyaicXtiDmGbMZx9Tsjt37vw3/lygO7iFfSLFGPGmJlDGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bin0E3s1mjmaXfsfOxO2a8iuvirnuPMBAYhb9uYz1Oo=;
- b=GFB+vxw+OkMSNBjygW5CUEdFxUO1rLeKBkY2zIhOIxourfJwEGHHsP/6rLoCwHfjNGir0GI5xtRbSl12ZdwU/WN+Plg9ApdjOQK2kYWx/tQ4PtjYZgb6t93HmTJkoG8VExhV6pK5kFauJ5nXtjCHMlfuh4gug1nOeRTtO+1ZDjrIo94FDG7rZH0uksEGzs+W2bMb6BFU3j5l+r5UOQUQrpG+3BsajkgXWA6rdK64A3vvwitNDrDui+hScYsLBtGXvBwHI+w0l+w5AWUB2RjOPbWTUa3oxrDbRgPzpycQT4AcGu6cRNXlkMchQQa+2JeyhR0D7hf976WujBoS9TJnrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bin0E3s1mjmaXfsfOxO2a8iuvirnuPMBAYhb9uYz1Oo=;
- b=OxQwXi0LWOsRBAK6rxFq/WY/kVo48KyeAbCRrGLviUAsvoQVbg47ECM3knLou3ehTt0pYSd/8F7SWlVz7urDzE+IyH+xCsi6UK6IF7TxjcwiydQIANwTy+XISO77agt67eclpTTYLQ2nWX44tU1Qo9/Xczz2sVq8PiZID+NkIrs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB9PR04MB8090.eurprd04.prod.outlook.com (2603:10a6:10:240::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Mon, 3 Apr
- 2023 08:08:00 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::b999:f2c6:a8cc:7b4]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::b999:f2c6:a8cc:7b4%4]) with mapi id 15.20.6254.033; Mon, 3 Apr 2023
- 08:08:00 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Haibo Chen <haibo.chen@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V2 4/4] clk: imx: imx8mp: change the 'nand_usdhc_bus' clock to non-critical
-Date:   Mon,  3 Apr 2023 16:12:46 +0800
-Message-Id: <20230403081246.3194230-4-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230403081246.3194230-1-peng.fan@oss.nxp.com>
-References: <20230403081246.3194230-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0197.apcprd04.prod.outlook.com
- (2603:1096:4:14::35) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S231444AbjDCIVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 04:21:08 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 746B1CC1D;
+        Mon,  3 Apr 2023 01:21:02 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3338Cknt009821;
+        Mon, 3 Apr 2023 10:20:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=XfKJ4SP0q3Vew9pXOdqeZ9jxwSNU33PvIQahCWw37Ac=;
+ b=bXh5/HXgXU6a69YrRERFLTo/38ln2NWs+HrkRwGEYbKMvDsgMUkgQvdoZ8fv71qFTRH3
+ ++2iz8662ZgL0bJcuZAIxDcHG6xbWdUnsw21YSEkRX9gFQXvf85M6G2SqAikAytcuo0v
+ txjZ6/zzkeHL3uu/7xxpmG4Aak5Szk36FEoZrQ6UcsnxQUQmucGuhtfeeFgYh152y3py
+ DYZjENdmHnc18rO5uG7XUTL+7qi9MMG8oNC3lWqH3ATj10FC4Xe4+ftZB6MlUhmxJ7cO
+ hN/h9O3mJugeF2O91PhJaQFL2W+eysjpGYitR/0UWHDq+tR6KKTWDtJhWQVOWXwyqOqv AQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pqu38r1w3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Apr 2023 10:20:52 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DCB53100034;
+        Mon,  3 Apr 2023 10:20:51 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D30CB212FA9;
+        Mon,  3 Apr 2023 10:20:51 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 3 Apr
+ 2023 10:20:51 +0200
+Message-ID: <fa36c2bc-c617-014e-fb11-d7621be866a0@foss.st.com>
+Date:   Mon, 3 Apr 2023 10:20:50 +0200
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB9PR04MB8090:EE_
-X-MS-Office365-Filtering-Correlation-Id: cfa5df57-e985-4fa3-850c-08db341a8a95
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /zMCVv3Yprj4U227hgKhsgORqWDBAft47niMfJZiiBszjhCOP+ujKzxDtHzFQwB63CCEETotqEPahePtV2AJkZ1k1wPVH6OjfQC2BRaVevx3/qTDFj/wZebnkOihzkvMdoSfDNjAaxQMldJ3CsiYGJ6DsC8VrR5mz2CBIr9WRuyetgl12DWQ/l+FCKxHJmcHtwalZdeGJGBMy5APHA60qWWsBVmz+CHNT/ruaPVBilmYmQ5okezEZk3S6pkeHr5xZurKnP/gcmIKVVShV7C3bp+0sHNjDa82gNL29vJO2aHXcJhDzgWxWMv7eZ/GJlRUZnnXuznSCUlMcOSRdrAV3GfxSn4WfKZ+MWVHLcdSsE7zrILy6L21MknrURA2WctXxviV0ewRwAbUZ5Fidc0q6RApaxF1RKgrEpMyTI0PtUgBFBFLQ1dJ+RIaK+PWUy0nhtH4y/+p4OjalTIR5qSzExHYp+GeHScGiPLhFNaOrj/j+ZbyudepOyVGRSEINhdXq6NEpwvXSbTcSFEF/OvgJSEBD85PuBd/qR9kojv58Dn1NL5bxBjbbR/L9ZSjpcNGNS198hMhsfj7fmS6dnbYvSTzELqk+l0FPb6ch9T1qVrCPvCIgSJdXXISAfRuFQ7MoNONvP2Z+FzMjpCjISh9VQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(451199021)(316002)(8676002)(66476007)(66556008)(41300700001)(4326008)(66946007)(5660300002)(7416002)(54906003)(38100700002)(8936002)(38350700002)(478600001)(86362001)(2906002)(6486002)(52116002)(6506007)(6512007)(26005)(6666004)(1076003)(186003)(83380400001)(2616005)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ABoy84zTl1ALjO3QNUcoP+LHRRI2MYjUBr89DzxYfsk7wp79UEvYnJ6Wf7uD?=
- =?us-ascii?Q?9uF7F0X59FxvTIhajOX3HBV5Fh0UKvUuOSQpOwxNxRd4BCTI4fVvk8oALZK7?=
- =?us-ascii?Q?x84vECvBzNXj8jtubO26+tlquYI/DsC1LMUfVQHLjFFve+X5LwzqI4jlTZSG?=
- =?us-ascii?Q?yKPB4XCNEglDRxt6UJbbUnMWwOVOe8kS+/l18e5gNuQOIA5W/MQcJB2QS050?=
- =?us-ascii?Q?UQnzJdowXqpZbnxX0myu1rJySU1DcDv5y2dfoc+NGwH/CtCElZFFmW6Mpa93?=
- =?us-ascii?Q?pokhc4jmYglcgN+t9KVjO1Ykh704BO1eB4XX0/+EhjQ6MMRkWLRube1URAbp?=
- =?us-ascii?Q?eiSln74LRCaF41FFVSeslEpnSvIxgbDsxqi46fiDiy6Y6VTNR/DmdGU2EGIW?=
- =?us-ascii?Q?duNHSc5YrG0KhCJVFRXKjiLQFMJBF/nvsgmIejLcsl5+JFwjmx7SiLUuIcva?=
- =?us-ascii?Q?eoCUc/ESUMXYQV9gwg9IbGPXydSTZNky4FXsURK5ADxSxJx7TZZoSFDiPxfO?=
- =?us-ascii?Q?2YTzc6ZeV7wukxVB654fil7PNrkG9rVKhdF3GoyUxED65Hj8ysfsFmU9HzOh?=
- =?us-ascii?Q?1VnUIq/+NmJkC6+e8wGnClEIBNBaoUqWhMwwsvEye9gWdTqFkptU8iI+xRlI?=
- =?us-ascii?Q?szlbwCzQQN7xveNoDgJtYrEKo/7LswN064cioPJwmA6SklFJBaawF8J/Gbeh?=
- =?us-ascii?Q?UUc/dR8SEaQUJ7QR8j6EdO+/+F0F+jMWvDjV7jqSNfSmQL+Vh6AI8k11f3Oh?=
- =?us-ascii?Q?a1Gt12pKmvHHjtsp7/iPqFipiLHhbIFBgYIynZg0ZEo94oq9/oAsiXIAYiig?=
- =?us-ascii?Q?oUnG4//gCkdOTCurM6uWTF+Sy8Su8XinonkGkOIIMlB40V7f3KFc3YMzGU15?=
- =?us-ascii?Q?mmUlEo5A6hPZ+SWhu39BoGbr95WDNTB/xY84kdAnJW6qnV3m+H1i0IzRgysU?=
- =?us-ascii?Q?Ce7L48G3zs8gHwL+jSRppHLwaOxMnWLZ1skj14vUVm0BdJ//TFSfNG1iaQaS?=
- =?us-ascii?Q?SlF/Aay31xqvz5HkgW10O+ZlL4PCS2/doWRtERofY6EzfejgeNvhuWdWG2Nl?=
- =?us-ascii?Q?04on1oIfNsekzeSSLq1esMiYZeWp0X0rASLD22TRxjGyo/vInNQ3sVI7sPUn?=
- =?us-ascii?Q?Hwfpbon1YOeUJNt/kJATGkC6sKBdHPhYLK3QD3MgeKdLV0DFXahQZfGxyV73?=
- =?us-ascii?Q?vayW77uxfLGIWnjtuLVi0FFpG8aZIS9yIqwLTG7gDGiTdnBdyuMVGIvtOx5Y?=
- =?us-ascii?Q?Lo6qmk/90Njh5ps/i0XLdARrPyTrV/bKAOIv9PZOjr5cYzc3NtdCGxXESdza?=
- =?us-ascii?Q?Laf3odih3ueZzj5BSL90Kw0dcgjsL5JI0wReuq1pJGx+a/5IRJ+FobYnUw+0?=
- =?us-ascii?Q?+A5Mw0gsqH3s51/TvIfHX+1ZtmEdLtQg0BjHwQ3buCBLh4sIuirLBSuUrq4q?=
- =?us-ascii?Q?/Y/1mw2F602xAe3PeyB/WzJirRzaMZGH6R4R4fj97te4PgpF1lBezJue1dyw?=
- =?us-ascii?Q?ZL7/zp7c08r5RseP3wgBL6/JkmPmJ0H3KZcK/qqCao5yvIGWf/0RYgaUOE6+?=
- =?us-ascii?Q?IqB0+wFK7AybwDawDmiYieOLFZcDtq6ETkERn5ov?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfa5df57-e985-4fa3-850c-08db341a8a95
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2023 08:08:00.4369
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2sN2KAjz0fJxCilnKhGp+l375V2EulCy0YA7dEFL+JIeqBnPbefIECOX2VDD1CKtX89zcxenHoo7QYBEhUUcCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8090
-X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2] ARM: dts: stm32: add FMC support on STM32MP13x SoC
+ family
+Content-Language: en-US
+To:     Christophe Kerello <christophe.kerello@foss.st.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230328170711.247745-1-christophe.kerello@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230328170711.247745-1-christophe.kerello@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-03_05,2023-03-31_01,2023-02-09_01
+X-Spam-Status: No, score=-3.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -119,34 +74,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+Hi christophe
 
-The 'nand_usdhc_bus' clock is only need to be enabled when usdhc
-or nand module is active, so change it to non-critical clock type.
+On 3/28/23 19:07, Christophe Kerello wrote:
+> Add FMC support on STM32MP13x SoC family.
+> 
+> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+> ---
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
 
-V2:
- None
+Applied on stm32-next.
 
- drivers/clk/imx/clk-imx8mp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks.
+Alex
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index 8dcaeb213277..f26ae8de4cc6 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -538,7 +538,7 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 
- 	hws[IMX8MP_CLK_MAIN_AXI] = imx8m_clk_hw_composite_bus_critical("main_axi", imx8mp_main_axi_sels, ccm_base + 0x8800);
- 	hws[IMX8MP_CLK_ENET_AXI] = imx8m_clk_hw_composite_bus("enet_axi", imx8mp_enet_axi_sels, ccm_base + 0x8880);
--	hws[IMX8MP_CLK_NAND_USDHC_BUS] = imx8m_clk_hw_composite_bus_critical("nand_usdhc_bus", imx8mp_nand_usdhc_sels, ccm_base + 0x8900);
-+	hws[IMX8MP_CLK_NAND_USDHC_BUS] = imx8m_clk_hw_composite("nand_usdhc_bus", imx8mp_nand_usdhc_sels, ccm_base + 0x8900);
- 	hws[IMX8MP_CLK_VPU_BUS] = imx8m_clk_hw_composite_bus("vpu_bus", imx8mp_vpu_bus_sels, ccm_base + 0x8980);
- 	hws[IMX8MP_CLK_MEDIA_AXI] = imx8m_clk_hw_composite_bus("media_axi", imx8mp_media_axi_sels, ccm_base + 0x8a00);
- 	hws[IMX8MP_CLK_MEDIA_APB] = imx8m_clk_hw_composite_bus("media_apb", imx8mp_media_apb_sels, ccm_base + 0x8a80);
--- 
-2.37.1
+> Changes in v2:
+>   - compatible, reg and ranges properties have been moved at the top of each node
+> 
+>   arch/arm/boot/dts/stm32mp131.dtsi | 33 +++++++++++++++++++++++++++++++
+>   1 file changed, 33 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+> index 9ea61687f023..7ea1fe0cd070 100644
+> --- a/arch/arm/boot/dts/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
+> @@ -1232,6 +1232,39 @@ mdma: dma-controller@58000000 {
+>   			dma-requests = <48>;
+>   		};
+>   
+> +		fmc: memory-controller@58002000 {
+> +			compatible = "st,stm32mp1-fmc2-ebi";
+> +			reg = <0x58002000 0x1000>;
+> +			ranges = <0 0 0x60000000 0x04000000>, /* EBI CS 1 */
+> +				 <1 0 0x64000000 0x04000000>, /* EBI CS 2 */
+> +				 <2 0 0x68000000 0x04000000>, /* EBI CS 3 */
+> +				 <3 0 0x6c000000 0x04000000>, /* EBI CS 4 */
+> +				 <4 0 0x80000000 0x10000000>; /* NAND */
+> +			#address-cells = <2>;
+> +			#size-cells = <1>;
+> +			clocks = <&rcc FMC_K>;
+> +			resets = <&rcc FMC_R>;
+> +			status = "disabled";
+> +
+> +			nand-controller@4,0 {
+> +				compatible = "st,stm32mp1-fmc2-nfc";
+> +				reg = <4 0x00000000 0x1000>,
+> +				      <4 0x08010000 0x1000>,
+> +				      <4 0x08020000 0x1000>,
+> +				      <4 0x01000000 0x1000>,
+> +				      <4 0x09010000 0x1000>,
+> +				      <4 0x09020000 0x1000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+> +				dmas = <&mdma 24 0x2 0x12000a02 0x0 0x0>,
+> +				       <&mdma 24 0x2 0x12000a08 0x0 0x0>,
+> +				       <&mdma 25 0x2 0x12000a0a 0x0 0x0>;
+> +				dma-names = "tx", "rx", "ecc";
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+>   		sdmmc1: mmc@58005000 {
+>   			compatible = "st,stm32-sdmmc2", "arm,pl18x", "arm,primecell";
+>   			arm,primecell-periphid = <0x20253180>;
+
 
