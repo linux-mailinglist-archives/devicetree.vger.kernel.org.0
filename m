@@ -2,87 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 573956D5027
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38CC56D5031
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:24:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232520AbjDCSVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45780 "EHLO
+        id S231538AbjDCSYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232597AbjDCSVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:21:34 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B60026B6
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:21:29 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id h11so32269388lfu.8
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:21:29 -0700 (PDT)
+        with ESMTP id S231484AbjDCSYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:24:06 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB7C170A;
+        Mon,  3 Apr 2023 11:24:05 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id h14so14414678ilj.0;
+        Mon, 03 Apr 2023 11:24:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680546088;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zUo/oPqYc/Bc1B1hrXFD8BK+EMrCo5Xw8lmzoaSnqjk=;
-        b=ZqcEOdKCBvN7yzIvm6oEUYBTPHyaOjWK/jtPHI+JLNYbn8y1ssRSHtCejkgqSChCVP
-         yOx+ibhAripYm7IxfeRzVpkfXFDokE9KnQ+sQZhJxnnVHtMk63IGJO5i7sYyN63So+DE
-         h4BP79BJO0itjdG/mrQXDxRLLjnStU210nLgSh6oEJKSIJeXbqoDsdWGqhGWqBYt4oxU
-         Avmir1m0XbVZiQ/SCst9WhPWlMZgYCF1vDpPDV4CdP4cnCHw76PmfDWXqYkcrPJr4Ozn
-         g+XtTYpmq+53zfW2s2l2VvaMHgLlozJ80xicZUjnZ/4Hmi2h33ML+uL4ArpoSJeNPiu9
-         YpHA==
+        d=gmail.com; s=20210112; t=1680546244; x=1683138244;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BLcYkBQ6zlbiLXorhcUGXvnBxQ6eez111cDSr+vpQ3I=;
+        b=S7qbEl+v2sdnA3rkEm1vOAgL+NUKHBQIEk9qzKAGVoQa+3K7EuSN9AHp+srdKkmEWY
+         VfPDndddKuQTO3cVQx6pZ9aFR6zglYxPNy2r9V267lAm1SASscLaSwVz+mIsExlLFOhh
+         dSk4vdL/xGaaUOtJBTyj9S0aYGSsqRz2wdN86xJf0pbv5ZrJoARtDR6qbSA43TMG9OXc
+         yZVBJL72UEx14eJ1/bMOiglImMp1IlsbjddqH6lvvYLS20/ZRH0Hufc0yCE9Ev/eJf0A
+         qVWaxc1liDA2FN2tC06bC8Q4rQFezWqFNBlTiWRdAcK+yUGxOGMDQOWpaIT+WDdSzNMo
+         Q2DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680546088;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zUo/oPqYc/Bc1B1hrXFD8BK+EMrCo5Xw8lmzoaSnqjk=;
-        b=bbHWXBPYtobcJmKjMC/ptW17Xnveyj4A8DmIhCQtipns6UieF95hZwy+tyXHb/Uv3s
-         FZH158cVDXNt/p6p8NujDlbhJSoRh5t2UZU4/U9TLS8K93NkwWPh1OWrwx1cJfLjhrOX
-         cL2tcihHox2fPaWDzkHpIAnhzv4RKIUyppRRQq0Zzi8Ukw/sP715gRScGyC0x3zIW/LH
-         39wxFsmU6BIsiHNZode4vJZcpAbzhhvYcqa1O6DN5D2KLHQ6Q3dBPkxNkTUuCyVAmmn4
-         oVqlwPFl+uioZ6ALYbwglKLJTl9eDLOxWQW6QfHywvYrRHiS7ojlkjHwc7ANdPjq/ZYk
-         /cBw==
-X-Gm-Message-State: AAQBX9dmDB3RLPpNsVrniHpjNvXo16Z5qaY+A42RzOTGckVcvj+V1wAA
-        cRai9Sf+tVPxU8mSf5drbUNwhQ==
-X-Google-Smtp-Source: AKy350asl33c6Hs41beIy8oeQZJfZs4hHMVNNOclSJ2c8B+Pas/icvJpH9/OOokIUoOFNwgnG12LWg==
-X-Received: by 2002:ac2:59cf:0:b0:4eb:43f3:9610 with SMTP id x15-20020ac259cf000000b004eb43f39610mr653183lfn.20.1680546087764;
-        Mon, 03 Apr 2023 11:21:27 -0700 (PDT)
-Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
-        by smtp.gmail.com with ESMTPSA id b18-20020ac25632000000b0049ad2619becsm1868902lff.131.2023.04.03.11.21.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 11:21:27 -0700 (PDT)
-Message-ID: <fe4dd395-cd1d-55e8-1be9-f588f69a8b13@linaro.org>
-Date:   Mon, 3 Apr 2023 20:21:25 +0200
+        d=1e100.net; s=20210112; t=1680546244; x=1683138244;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BLcYkBQ6zlbiLXorhcUGXvnBxQ6eez111cDSr+vpQ3I=;
+        b=4rQDRiM4N39RbR2Y6dlTijHRsRWzfSP7e06eSolGl0XCe4LMP6jEklDIolJcnMjcmS
+         jW7zioEMcKZKIT8FEOBr4qQrq8n1KQXfoCS5K1NGKYgUbVxyP+yM9FTtDl14cHwVZYtd
+         i1T4ux22giqy8GUxn/+ohXpqp4U8XhHJ/4SqUKBaiypaKyvX53UxULppCqj3fBpN9kvu
+         lwpxM4SfsEWpniDmTVTzuNBOge3Sz/W2jiufVB1ALHGjqbZrek8bo4vJsK5NAPsCk3nP
+         vZgLhgnC4iW3Cu8mavG7o1cgq79M0tqHnD14MvGqRxTf55eMpuG9H6ULdAR1sOxAUs18
+         /IrA==
+X-Gm-Message-State: AAQBX9c4r5UVNOJ2suKF3rxkhmMUprpFIPKoYe79C/C4eGtqe3IwcVCJ
+        wdKC7Et8pVQ1ZJXqeP2d9akh4ui+nIWcH0oLPY0=
+X-Google-Smtp-Source: AKy350b3ENLXo3KDjAtD/3eyk+24aIZQL1Zpoc6eQj6JAT14NdrcAFxaQCuw6vmBHfaUgEQ/Ocn/t7Yp80NS7aFVttw=
+X-Received: by 2002:a92:ac03:0:b0:316:fa49:3705 with SMTP id
+ r3-20020a92ac03000000b00316fa493705mr14897ilh.1.1680546244503; Mon, 03 Apr
+ 2023 11:24:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
- bootup voltage
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-References: <751e5129-3c11-0156-719e-3fe996a149be@quicinc.com>
- <3f434777-c4b6-272f-1971-f9adf3faefe4@linaro.org>
- <a54d4e1b-d62d-559d-1882-e460e696c056@quicinc.com>
- <ca12735e-d6c8-997e-036f-693cd8a9870f@linaro.org>
- <e19393e3-5898-bff2-cc00-d88c9194c7c2@quicinc.com>
- <6e1f6466-7f2e-7bd5-f6a2-5691a30c4e1f@linaro.org>
- <9989c92c-9949-5531-c7d2-e54882795a68@quicinc.com>
- <69df153d-bdc6-9008-39d6-72f66bab2e38@linaro.org>
- <5914a8db-3644-1c94-00ba-460ba2c26a5d@quicinc.com>
- <3c5a9608-ecd2-a3c0-e866-7d0070e49b89@linaro.org>
- <8c513ddc-435e-40ce-b1f8-84eaf8241ed4@sirena.org.uk>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <8c513ddc-435e-40ce-b1f8-84eaf8241ed4@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <f12f9773-77b5-4ba6-9e9e-adbc67ca0110@spud>
+In-Reply-To: <f12f9773-77b5-4ba6-9e9e-adbc67ca0110@spud>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 3 Apr 2023 19:23:37 +0100
+Message-ID: <CA+V-a8s0UViJ0tBSyiL0ZG8iVT3QSW77=VujJJOfiuM8T=9ntg@mail.gmail.com>
+Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,36 +82,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Conor,
 
+Thank you for the review.
 
-On 3.04.2023 20:14, Mark Brown wrote:
-> On Mon, Apr 03, 2023 at 07:53:48PM +0200, Konrad Dybcio wrote:
->> On 3.04.2023 16:07, Devi Priya wrote:
-> 
->>> But, when the regulator driver comes up, it tries to bring up the
->>> regulators to the minimum supported voltage provided with the
->>> regulator-min-microvolt property in the DT.
-> 
->> Right, that exists.. 
-> 
->> Mark, do you think it should be updated such that the requests are
->> aggregated before assuming min_uV is "just fine"?
-> 
-> We can't tell if any consumers are ever going to appear, and the
-> regulator having a voltage outside of the constraints is an urgent
-> problem we need to fix quickly.  Since we try to bring the voltage to
-> the nearest end of the constraint the driver could always change the
-> bogus voltage it reports to one that is excessively high, this would
-> mean the core will try to bring the voltage down to the maximum rather
-> than up to the minimum.  The driver could also look at the constraints
-> when guessing at the hardware configuration rather than claiming an out
-> of spec voltage, this would mean we wouldn't need to correct anything.
-Hm, all of what you said sounds like a valid concern.. And then we
-probably shouldn't shoot up to max by default, as going too low is
-not going to cause as much potential irreversible damage as going
-too high.. Especially with programmer error..
+On Fri, Mar 31, 2023 at 1:24=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> Hey,
+>
+> I think most of what I wanted to talk about has been raised by Arnd or
+> Geert, so I kinda only have a couple of small comments for you here.
+>
+> On Thu, Mar 30, 2023 at 09:42:12PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Currently, selecting which CMOs to use on a given platform is done usin=
+g
+> > and ALTERNATIVE_X() macro. This was manageable when there were just two
+> > CMO implementations, but now that there are more and more platforms com=
+ing
+> > needing custom CMOs, the use of the ALTERNATIVE_X() macro is unmanageab=
+le.
+> >
+> > To avoid such issues this patch switches to use of function pointers
+> > instead of ALTERNATIVE_X() macro for cache management (the only drawbac=
+k
+> > being performance over the previous approach).
+> >
+> > void (*clean_range)(unsigned long addr, unsigned long size);
+> > void (*inv_range)(unsigned long addr, unsigned long size);
+> > void (*flush_range)(unsigned long addr, unsigned long size);
+>
+> So, given Arnd has renamed the generic helpers, should we use the
+> writeback/invalidate/writeback & invalidate terminology here too?
+> I think it'd be nice to make the "driver" functions match the generic
+> implementations's names (even though that means not making the
+> instruction naming).
+>
+> > The above function pointers are provided to be overridden for platforms
+> > needing CMO.
+> >
+> > Convert ZICBOM and T-HEAD CMO to use function pointers.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v6->v7
+> > * Updated commit description
+> > * Fixed build issues when CONFIG_ERRATA_THEAD_CMO=3Dn
+> > * Used static const struct ptr to register CMO ops
+> > * Dropped riscv_dma_noncoherent_cmo_ops
+>
+> > * Moved ZICBOM CMO setup to setup.c
+>
+> Why'd you do that?
+> What is the reason that the Zicbom stuff cannot live in
+> dma-noncoherent.[ch] and only expose, say:
+> void riscv_cbom_register_cmo_ops(void)
+> {
+>         riscv_noncoherent_register_cache_ops(&zicbom_cmo_ops);
+> }
+> which you then call from setup.c?
+>
+Commit abcc445acd ("riscv: move riscv_noncoherent_supported() out of
+ZICBOM probe) moved the zicbom the setup to setup.c hence I moved the
+CMO stuff here. Said that, now I am defaulting to zicbom ops so I have
+mode the functions to dma-noncoherent.c  .
 
-Too bad Qualcomm's firmware architecture doesn't allow for reading
-back the voltage..
+> > v5->v6
+> > * New patch
+> > ---
+> >  arch/riscv/errata/thead/errata.c         | 76 ++++++++++++++++++++++++
+> >  arch/riscv/include/asm/dma-noncoherent.h | 73 +++++++++++++++++++++++
+> >  arch/riscv/include/asm/errata_list.h     | 53 -----------------
+> >  arch/riscv/kernel/setup.c                | 49 ++++++++++++++-
+> >  arch/riscv/mm/dma-noncoherent.c          | 25 ++++++--
+> >  arch/riscv/mm/pmem.c                     |  6 +-
+> >  6 files changed, 221 insertions(+), 61 deletions(-)
+> >  create mode 100644 arch/riscv/include/asm/dma-noncoherent.h
+>
+> > +#ifdef CONFIG_RISCV_ISA_ZICBOM
+> > +
+> > +#define ZICBOM_CMO_OP(_op, _start, _size, _cachesize)                 =
+               \
+> > +     asm volatile("mv a0, %1\n\t"                                     =
+       \
+> > +                  "j 2f\n\t"                                          =
+       \
+> > +                  "3:\n\t"                                            =
+       \
+> > +                  CBO_##_op(a0)                                       =
+       \
+> > +                  "add a0, a0, %0\n\t"                                =
+       \
+> > +                  "2:\n\t"                                            =
+       \
+> > +                  "bltu a0, %2, 3b\n\t"                               =
+       \
+> > +                  : : "r"(_cachesize),                                =
+       \
+> > +                      "r"((unsigned long)(_start) & ~((_cachesize) - 1=
+UL)),  \
+> > +                      "r"((unsigned long)(_start) + (_size))          =
+       \
+> > +                  : "a0")
+> > +
+> > +static void zicbom_cmo_clean_range(unsigned long addr, unsigned long s=
+ize)
+> > +{
+> > +     ZICBOM_CMO_OP(clean, addr, size, riscv_cbom_block_size);
+> > +}
+> > +
+> > +static void zicbom_cmo_flush_range(unsigned long addr, unsigned long s=
+ize)
+> > +{
+> > +     ZICBOM_CMO_OP(flush, addr, size, riscv_cbom_block_size);
+> > +}
+> > +
+> > +static void zicbom_cmo_inval_range(unsigned long addr, unsigned long s=
+ize)
+> > +{
+> > +     ZICBOM_CMO_OP(inval, addr, size, riscv_cbom_block_size);
+> > +}
+> > +
+> > +const struct riscv_cache_ops zicbom_cmo_ops =3D {
+> > +     .clean_range =3D &zicbom_cmo_clean_range,
+> > +     .inv_range =3D &zicbom_cmo_inval_range,
+> > +     .flush_range =3D &zicbom_cmo_flush_range,
+> > +};
+> > +
+> > +static void zicbom_register_cmo_ops(void)
+> > +{
+> > +     riscv_noncoherent_register_cache_ops(&zicbom_cmo_ops);
+> > +}
+> > +#else
+> > +static void zicbom_register_cmo_ops(void) {}
+> > +#endif
+>
+> I think all of the above should be prefixed with riscv_cbom to match the
+> other riscv_cbom stuff we already have.
+Just to clarify, the riscv_cbom prefix should just be applied to the
+ZICOM functions and not to T-HEAD?
 
-Konrad
+Cheers,
+Prabhakar
