@@ -2,116 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C9A6D3CED
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 07:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62A966D3D11
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 08:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231564AbjDCFgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 01:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47102 "EHLO
+        id S230218AbjDCGCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 02:02:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231459AbjDCFgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 01:36:43 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 344101987
-        for <devicetree@vger.kernel.org>; Sun,  2 Apr 2023 22:36:42 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id y15so36462338lfa.7
-        for <devicetree@vger.kernel.org>; Sun, 02 Apr 2023 22:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680500200;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zNisbyazzEuiDoc493Vd97NOzyQn4Z3XdTw9SUjbEVs=;
-        b=FKMn4FIKmR76VOUgJbP6Az952xGQ89BUZaCITbwcATVHFfCmKI50/fFP0aTiU12xYX
-         TlvL3BpFrG1DNVu7tESCh+WqKUXjFtQVDJSQZpiuWs6NxzLY3dtNH/hRfJbe7EjyAJh2
-         A2NAKH+2+v0QQgeNbY2miGvOYSQ36I1t5Wx82wtx6DhaHGYnwCZicqCm3tOqRG6Ph7tU
-         bFPfzYuiJnZPX1c9piXYoe6dbBWr/NJ3/4mJOnqWKmqxufvLYOpSwTo0lFuuHhXeCjfE
-         4xsS0KNngHWT9SNIAx+5CwI4d2onCCkFiVtgJE3HrDO0SSWQxWuqMrpKDN88fcHmwI3U
-         /UDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680500200;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zNisbyazzEuiDoc493Vd97NOzyQn4Z3XdTw9SUjbEVs=;
-        b=cmZrCX81z8Dx2Umfns5lFxBaHt8oZiGwOPVDYn05zX9aqzV1tm5AvN8YnocuF92gnj
-         M9tGnReDVASWBXM5+oFbKPWsCdL7OfdfgX4M94z07YWaEgdHh8wcQ0ADIs+KF4dmDZmW
-         aTd1kR0p3ZVKsYT7H5+St8ukB3jnSaiEPVdozBoickIjZv+eTs0Ub/jGGN2kr3ZYlz03
-         UaV7SiPh8CjO2hfrlfIcPoginmJuMcqW5k58TfnNebxe1hFzdJ7Xt8ZiyvJ/+qGj7iQL
-         QITPXb926btGjmBFQKSnLFWUSN8A/RGDoRMndKlyFQZDm9hn9Y25nPO9VIK8fadefP8u
-         fqZw==
-X-Gm-Message-State: AAQBX9fYSm//xY3WJvRsAuXFUENA2DcM8/Z2sOkIMwWHBTaEnzQbJhLe
-        y6fM+lxRKIXMOLOvLFYL6zaqLw==
-X-Google-Smtp-Source: AKy350bvhQIqIFG6nLBH4pVgxB/u6kZnVKvq8YYr6y6Rrl71vml3LsIIAr3DDcYH6vn+My/tNbY7qQ==
-X-Received: by 2002:ac2:5311:0:b0:4d2:c70a:fe0a with SMTP id c17-20020ac25311000000b004d2c70afe0amr2797282lfh.2.1680500200412;
-        Sun, 02 Apr 2023 22:36:40 -0700 (PDT)
-Received: from [10.8.0.2] (mleia.com. [178.79.152.223])
-        by smtp.gmail.com with ESMTPSA id z19-20020ac25df3000000b004eb274b3a43sm1593811lfq.134.2023.04.02.22.36.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Apr 2023 22:36:39 -0700 (PDT)
-Message-ID: <21eaeea4-4f2e-5ce5-c75b-d74ded8e6e4c@linaro.org>
-Date:   Mon, 3 Apr 2023 08:36:21 +0300
+        with ESMTP id S229509AbjDCGCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 02:02:50 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7264F83F0;
+        Sun,  2 Apr 2023 23:02:45 -0700 (PDT)
+X-UUID: 21f23cccd1e511edb6b9f13eb10bd0fe-20230403
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=+VbaGeWufVSeXUc7A9jDhCCNoQflqg5YvZaU8E25zmo=;
+        b=eOGfgghhuCKVUXD5YHUKnCQjiPDrTfVMXQUM9EPMUSGtrXY26UhgJQzD1yvIiMcQHmAF+GXyOSwp2M7vBXXsi3OtPuwZV+aw5px3yMv3NbV1HisbbLy1l5yM97GdixoSULWAHOQ3whjYbq/OWz3vyKcjhuCn+FfDDW3gsYhTABY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:6e907aa9-bb10-42b9-9ead-1a1ba6582dff,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:120426c,CLOUDID:bd27aef7-ddba-41c3-91d9-10eeade8eac7,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: 21f23cccd1e511edb6b9f13eb10bd0fe-20230403
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 486885679; Mon, 03 Apr 2023 14:02:36 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Mon, 3 Apr 2023 14:02:35 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Mon, 3 Apr 2023 14:02:34 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tianping Fang <tianping.fang@mediatek.com>
+Subject: [PATCH 1/2] dt-bindings: usb: mtk-xhci: add an optional frame count clock
+Date:   Mon, 3 Apr 2023 14:02:31 +0800
+Message-ID: <20230403060232.25699-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH v5 05/11] dt-bindings: qcom-qce: Fix compatible
- combinations for SM8150 and IPQ4019 SoCs
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, konrad.dybcio@linaro.org, rfoss@kernel.org,
-        neil.armstrong@linaro.org
-References: <20230402100509.1154220-1-bhupesh.sharma@linaro.org>
- <20230402100509.1154220-6-bhupesh.sharma@linaro.org>
-Content-Language: en-US
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20230402100509.1154220-6-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=1.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
         version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/2/23 13:05, Bhupesh Sharma wrote:
-> Currently the compatible list available in 'qce' dt-bindings does not
-> support SM8150 and IPQ4019 SoCs directly which may lead to potential
-> 'dtbs_check' error(s).
-> 
-> Fix the same.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->   Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> index e375bd981300..90ddf98a6df9 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> @@ -24,6 +24,12 @@ properties:
->           deprecated: true
->           description: Kept only for ABI backward compatibility
->   
-> +      - items:
-> +          - enum:
-> +              - qcom,ipq4019-qce
-> +              - qcom,sm8150-qce
-> +          - const: qcom,qce
-> +
->         - items:
->             - enum:
->                 - qcom,ipq6018-qce
+Add optional clock 'frmcnt_ck' used on 4nm or advanced process SoC
 
-Two commit tags given for v2 are missing.
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+ .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml          | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
---
-Best wishes,
-Vladimir
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index c119caa9ad16..ee8167fbc541 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -77,6 +77,7 @@ properties:
+       - description: Mcu bus clock for register access
+       - description: DMA bus clock for data transfer
+       - description: controller clock
++      - description: frame count clock
+ 
+   clock-names:
+     minItems: 1
+@@ -86,14 +87,15 @@ properties:
+       - const: mcu_ck
+       - const: dma_ck
+       - const: xhci_ck
++      - const: frmcnt_ck
+ 
+   assigned-clocks:
+     minItems: 1
+-    maxItems: 5
++    maxItems: 6
+ 
+   assigned-clock-parents:
+     minItems: 1
+-    maxItems: 5
++    maxItems: 6
+ 
+   phys:
+     description:
+-- 
+2.18.0
+
