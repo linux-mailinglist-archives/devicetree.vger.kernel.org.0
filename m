@@ -2,229 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F09416D4215
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 340426D4219
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:34:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231744AbjDCKdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:33:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50724 "EHLO
+        id S231411AbjDCKeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232043AbjDCKdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:33:15 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3E1597ED8;
-        Mon,  3 Apr 2023 03:33:13 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.98,314,1673881200"; 
-   d="scan'208";a="158117613"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 03 Apr 2023 19:33:12 +0900
-Received: from localhost.localdomain (unknown [10.226.92.243])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 3924C42050D5;
-        Mon,  3 Apr 2023 19:33:09 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/3] arm64: dts: renesas: rzg2l-smarc: Use versa3 clk for audio mclk
-Date:   Mon,  3 Apr 2023 11:32:57 +0100
-Message-Id: <20230403103257.328954-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230403103257.328954-1-biju.das.jz@bp.renesas.com>
-References: <20230403103257.328954-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S231626AbjDCKd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:33:58 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 164DFB75A
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:33:50 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id bx10so11483977ljb.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:33:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680518028;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KfUo0fru+wd28kIFWm+j4w66y5teANTbx3Vvk6eQF5U=;
+        b=yoohv5e/xezbYEWRo56wL/ynszQm5bdS5XLo/KUPuBZOPPsla64IfOl2RN6zVhz+RD
+         En1LMcOxAHTu1RQQdNTSNJp7033t1mdrIqTpvNpADI0shTH6gxJ1ebhEuSpSZXKR1ckh
+         pHFvS06oMVmn+QME7LzEjj82B1cAhYRG12xhifmaAe4yXWyak6a817f7RYCiCsror9AE
+         T0ipA5YYjeLVA1oS1k5YULHCFEYv9I8hTTKezcFIz7Pb/0VdwJ7CLueSZ7on8ohX8GWR
+         QCCGvRJXzsESHdHI+93UQf82ejaZsgXF988e8LxU5D6m6sMnlVO3sl6dmyI4P7MvySiD
+         SR8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680518028;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KfUo0fru+wd28kIFWm+j4w66y5teANTbx3Vvk6eQF5U=;
+        b=GQ5BnIi2t0HuLQfqkGD1fuwwOULQg8cspPeIHzDV8B6ab4aYIA7lPE3SLBApAPvSF6
+         qYSO5ookcU95kieH8j+ztwHVTtst8F5eNxdo3Gj0Mi15GIa6SxjNSsIQgie9slLwB8VA
+         xDDhlndLBAhr0oICz+OUXhnt8W/bZX/vd+QtECf6oevpRDr8j5FDXRZ0xwMNKD7259nG
+         rqLxV5o+BCxCNBHPNg2zMaw62MSwV1+AeLrTpsdQn7RA1gvbTW8nyxlW94tD9pnTK6QH
+         dFhQYCRSlfk+m/wcSHU7Vc8ZMWLCGX/V3droG4D0mOxhD0ZFpMgytKkQkyK5q4MlaSq+
+         cLxA==
+X-Gm-Message-State: AAQBX9dFTXWqC/P6ca9Nzxl7VngA2hPUu8NuXQWByCigAnIzoatUx5mA
+        8tbIbeFuynbnH/ymZXRszqkSXA==
+X-Google-Smtp-Source: AKy350ar/Ubc0zKI9OpT54QLs4a1MwS2rycinNgMruZXM0+oic2ZCkjMi1NRCACCyCzC8UXkvYz3uQ==
+X-Received: by 2002:a2e:95d4:0:b0:29c:9207:d0a7 with SMTP id y20-20020a2e95d4000000b0029c9207d0a7mr10881352ljh.43.1680518028244;
+        Mon, 03 Apr 2023 03:33:48 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id m14-20020a2e910e000000b002959d2cc975sm1684870ljg.37.2023.04.03.03.33.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 03:33:47 -0700 (PDT)
+Message-ID: <9e059c75-2854-45ba-9e0b-df69dd355bbf@linaro.org>
+Date:   Mon, 3 Apr 2023 12:33:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [RESEND PATCH v2 1/1] arm64: dts: qcom: sm6115: Add CPU
+ idle-states
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org
+References: <20230330193303.612475-1-bhupesh.sharma@linaro.org>
+ <0ff99bb5-4792-270d-b03e-2638939f160f@linaro.org>
+ <CAH=2NtzPReiUHuEAW8PsQJvNzOYvb71pZ7SWRbThWdLT7_a0ug@mail.gmail.com>
+ <e5b758ed-f279-ecc3-3be4-039c5a19b212@linaro.org>
+ <CAH=2NtzXjgQEaTDVZip6GEHhterker2B3c+w_4A5J4W_LDTctA@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAH=2NtzXjgQEaTDVZip6GEHhterker2B3c+w_4A5J4W_LDTctA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently audio mclk uses a fixed clk 11.2896MHz(multiple of 44.1KHz).
-Replace this fixed clk to programmable versa3 clk that can provide
-2 rates 11.2896MHz and 12.2880(multiple of 48KHz) based on audio
-sampling rate for the playback/record.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Updated the changes for RZ/G2LC and RZ/G2{UL, Five}.
-RFC->v2:
- * No change
-RFC:
- * New patch
----
- .../boot/dts/renesas/rz-smarc-common.dtsi     | 13 +++++-----
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 23 +++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 23 +++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 25 +++++++++++++++++++
- 4 files changed, 77 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index 3962d47b3e59..ca868af2db38 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -32,12 +32,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	audio_mclock: audio_mclock {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <11289600>;
--	};
--
- 	snd_rzg2l: sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,format = "i2s";
-@@ -55,7 +49,6 @@ cpu_dai: simple-audio-card,cpu {
- 		};
- 
- 		codec_dai: simple-audio-card,codec {
--			clocks = <&audio_mclock>;
- 			sound-dai = <&wm8978>;
- 		};
- 	};
-@@ -76,6 +69,12 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
- 		gpios-states = <1>;
- 		states = <3300000 1>, <1800000 0>;
- 	};
-+
-+	x1_x2: xtal {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
- };
- 
- &audio_clk1{
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index eba315bddc21..0695eb5f6cdc 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -18,6 +18,10 @@ aliases {
- 	};
- };
- 
-+&codec_dai {
-+	clocks = <&versa3 3>;
-+};
-+
- &cpu_dai {
- 	sound-dai = <&ssi0>;
- };
-@@ -29,6 +33,25 @@ &i2c3 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1_x2>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <12288000>, <25000000>,
-+				       <12000000>, <11289600>,
-+				       <11289600>, <24000000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index b6bd27196d88..ba91b2e653bc 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -32,6 +32,10 @@ &canfd {
- };
- #endif
- 
-+&codec_dai {
-+	clocks = <&versa3 3>;
-+};
-+
- &cpu_dai {
- 	sound-dai = <&ssi0>;
- };
-@@ -43,6 +47,25 @@ &i2c2 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1_x2>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <12288000>, <25000000>,
-+				       <12000000>, <11289600>,
-+				       <11289600>, <24000000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-index 2a1331ed1a5c..85383f86cf2e 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-@@ -16,10 +16,35 @@ &canfd {
- };
- #endif
- 
-+&codec_dai {
-+	clocks = <&versa3 3>;
-+};
-+
- &cpu_dai {
- 	sound-dai = <&ssi1>;
- };
- 
-+&i2c0 {
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1_x2>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <12288000>, <25000000>,
-+				       <12000000>, <11289600>,
-+				       <11289600>, <24000000>;
-+	};
-+};
-+
- &i2c1 {
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
--- 
-2.25.1
+On 2.04.2023 07:35, Bhupesh Sharma wrote:
+> On Sun, 2 Apr 2023 at 01:28, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+>>
+>> On 01/04/2023 21:26, Bhupesh Sharma wrote:
+>>> Hi Konrad,
+>>>
+>>> On Sat, 1 Apr 2023 at 17:51, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 30.03.2023 21:33, Bhupesh Sharma wrote:
+>>>>> Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
+>>>>>
+>>>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>>>> ---
+>>>>> Changes since v1:
+>>>>> - v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
+>>>>> - Addressed Konrad's comments on v1 and added GDHS and Power Collapse
+>>>>>    cluster power states.
+>>>>>
+>>>>>   arch/arm64/boot/dts/qcom/sm6115.dtsi | 136 +++++++++++++++++++++++++++
+>>>>>   1 file changed, 136 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+>>>>> index 2a51c938bbcb..b63395d476ed 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+>>>>> @@ -45,6 +45,8 @@ CPU0: cpu@0 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_0>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+>>>>> +                     power-domains = <&CPU_PD0>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                        L2_0: l2-cache {
+>>>>>                                compatible = "cache";
+>>>>>                                cache-level = <2>;
+>>>>> @@ -61,6 +63,8 @@ CPU1: cpu@1 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_0>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+>>>>> +                     power-domains = <&CPU_PD1>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                };
+>>>>>
+>>>>>                CPU2: cpu@2 {
+>>>>> @@ -73,6 +77,8 @@ CPU2: cpu@2 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_0>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+>>>>> +                     power-domains = <&CPU_PD2>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                };
+>>>>>
+>>>>>                CPU3: cpu@3 {
+>>>>> @@ -85,6 +91,8 @@ CPU3: cpu@3 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_0>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 0>;
+>>>>> +                     power-domains = <&CPU_PD3>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                };
+>>>>>
+>>>>>                CPU4: cpu@100 {
+>>>>> @@ -97,6 +105,8 @@ CPU4: cpu@100 {
+>>>>>                        dynamic-power-coefficient = <282>;
+>>>>>                        next-level-cache = <&L2_1>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+>>>>> +                     power-domains = <&CPU_PD4>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                        L2_1: l2-cache {
+>>>>>                                compatible = "cache";
+>>>>>                                cache-level = <2>;
+>>>>> @@ -113,6 +123,8 @@ CPU5: cpu@101 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_1>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+>>>>> +                     power-domains = <&CPU_PD5>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                };
+>>>>>
+>>>>>                CPU6: cpu@102 {
+>>>>> @@ -125,6 +137,8 @@ CPU6: cpu@102 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_1>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+>>>>> +                     power-domains = <&CPU_PD6>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                };
+>>>>>
+>>>>>                CPU7: cpu@103 {
+>>>>> @@ -137,6 +151,8 @@ CPU7: cpu@103 {
+>>>>>                        enable-method = "psci";
+>>>>>                        next-level-cache = <&L2_1>;
+>>>>>                        qcom,freq-domain = <&cpufreq_hw 1>;
+>>>>> +                     power-domains = <&CPU_PD7>;
+>>>>> +                     power-domain-names = "psci";
+>>>>>                };
+>>>>>
+>>>>>                cpu-map {
+>>>>> @@ -176,6 +192,68 @@ core3 {
+>>>>>                                };
+>>>>>                        };
+>>>>>                };
+>>>>> +
+>>>>> +             idle-states {
+>>>>> +                     entry-method = "psci";
+>>>>> +
+>>>>> +                     LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+>>>>> +                             compatible = "arm,idle-state";
+>>>>> +                             idle-state-name = "silver-rail-power-collapse";
+>>>>> +                             arm,psci-suspend-param = <0x40000003>;
+>>>>> +                             entry-latency-us = <290>;
+>>>>> +                             exit-latency-us = <376>;
+>>>>> +                             min-residency-us = <1182>;
+>>>>> +                             local-timer-stop;
+>>>>> +                     };
+>>>>> +
+>>>>> +                     BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+>>>>> +                             compatible = "arm,idle-state";
+>>>>> +                             idle-state-name = "gold-rail-power-collapse";
+>>>>> +                             arm,psci-suspend-param = <0x40000003>;
+>>>>> +                             entry-latency-us = <297>;
+>>>>> +                             exit-latency-us = <324>;
+>>>>> +                             min-residency-us = <1110>;
+>>>>> +                             local-timer-stop;
+>>>>> +                     };
+>>>>> +             };
+>>>>> +
+>>>>> +             domain-idle-states {
+>>>>> +                     CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
+>>>>> +                             /* GDHS */
+>>>>> +                             compatible = "domain-idle-state";
+>>>>> +                             arm,psci-suspend-param = <0x40000022>;
+>>>> This 0x22 ending seems very sus.
+>>>>
+>>>> The last nibble represents the core-level power state and the
+>>>> penultimate one represents the same at cluster level. A value
+>>>> of 2 in that cluster nibble is actually undefined by the PSCI spec,
+>>>> whereas the value of 4 (as you have in all of the other idle
+>>>> states, including D3G for the perf cluster) corresponds to
+>>>> "Retention", so unless there's a very weird nuance in the
+>>>> TZ for this SoC, it should probably end in 0x42.
+>>>>
+>>>> Otherwise I think this LGTM now!
+>>>
+>>> I am also learning by experiment about the exact values to use here,
+>>> as the only ready reckoner of how these values are calculated, seems
+>>> to be available via [1].
+>>>
+>>> Also it seems the downstream code uses the following approach to
+>>> calculate the LPM state suspend-param, which for example for
+>>> CLUSTER_0_SLEEP_1 states turns out to be:
+>>>
+>>>      state_id = get_cluster_id(cpu->parent, &affinity_level, from_idle); = 0x40
+>>>      power_state = (is-reset << 30) = 0x40000000
+>>>      affinity_level = (affinity level & 0x3) << 24 = 0x1000000
+>>>      state_id += power_state + affinity_level + psci_id;
+>>>
+>>>      = 0x40000000 + 0x1000000 + 0x40 + 0x4 = 0x41000044
+>>>
+>>> For the D3G cases as well, I just used the 'qcom,psci-mode = <2>'
+>>> value as provided in downstream code (see [2]), for the overall
+>>> calculations.>>>
+>>> Also, the only usage of D3G state I could find upstream (in qcom dtsi
+>>> files0 is for 'msm8916' (see [3]), which also uses the value with
+>>> ending 0x2 -> 'arm,psci-suspend-param = <0x41000032>'
+Yes, the lowest '2' must be correct. I am concerned about the one above
+it (val & 0xf0).
 
+>>
+>> D3G has min-child-idx = 1, so the end PSCI param should be 0x41000023
+>> D3 is 0x41000043
+Not sure what that has to do with it. Looking at ancient kernel doc:
+
+qcom,min-child-idx: The minimum level that a child CPU should be in
+	before this level can be chosen. This property is required for all
+        non-default level.
+
+And it looks like the downstream code ensures that we don't just jump
+from "CPU running" to "CPU [some stage of] power collapse".
+
+
+So it looks like this patch may be good after all.. Can you verify with
+sysfs/debugfs that this idle state is being entered correctly?
+
+Konrad
+> 
+> Ok, let me recheck at my end as well.
+> 
+> Thanks
+> Bhupesh
