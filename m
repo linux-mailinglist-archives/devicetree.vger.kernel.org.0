@@ -2,133 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7DF6D3B6D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 03:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06CA6D3B8B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 03:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbjDCBUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 21:20:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47630 "EHLO
+        id S231150AbjDCBjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 21:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231378AbjDCBU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 21:20:28 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77190BDDB;
-        Sun,  2 Apr 2023 18:19:59 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pj8rT-0004p3-1d;
-        Mon, 03 Apr 2023 03:19:55 +0200
-Date:   Mon, 3 Apr 2023 02:19:51 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S231421AbjDCBjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 21:39:21 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624FA7EE6;
+        Sun,  2 Apr 2023 18:39:10 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id F1D2E24E39B;
+        Mon,  3 Apr 2023 09:39:02 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
+ 2023 09:39:02 +0800
+Received: from [192.168.125.82] (183.27.97.179) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
+ 2023 09:39:02 +0800
+Message-ID: <d48ab612-213a-8d20-4b36-3f64f3d24721@starfivetech.com>
+Date:   Mon, 3 Apr 2023 09:39:00 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/3] phy: starfive: Add mipi dphy rx support
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        =?utf-8?B?QXLEsW7DpyDDnG5hbA==?= <arinc.unal@arinc9.com>
-Cc:     Sam Shih <Sam.Shih@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
-Subject: [PATCH net-next v2 14/14] dt-bindings: net: dsa: mediatek,mt7530:
- add mediatek,mt7988-switch
-Message-ID: <dffacdb59aea462c9f7d4242cf9563a04cf79807.1680483896.git.daniel@makrotopia.org>
-References: <cover.1680483895.git.daniel@makrotopia.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1680483895.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+ <20230223015952.201841-3-changhuang.liang@starfivetech.com>
+ <ZBhTmTEcrV59oaw3@matsya>
+ <2aa1bdbd-e37e-941a-9422-0908545c14f7@starfivetech.com>
+ <ZCbloBdeffocT3Os@matsya>
+Content-Language: en-US
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <ZCbloBdeffocT3Os@matsya>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.179]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.4 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the built-in switch which can be found in the
-MediaTek MT7988 SoC.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../bindings/net/dsa/mediatek,mt7530.yaml     | 26 +++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-index 5ae9cd8f99a24..8d6dfed11d8d6 100644
---- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-@@ -11,16 +11,23 @@ maintainers:
-   - Landen Chao <Landen.Chao@mediatek.com>
-   - DENG Qingfang <dqfext@gmail.com>
-   - Sean Wang <sean.wang@mediatek.com>
-+  - Daniel Golle <daniel@makrotopia.org>
- 
- description: |
--  There are two versions of MT7530, standalone and in a multi-chip module.
-+  There are three versions of MT7530, standalone, in a multi-chip module and
-+  built-into a SoC.
- 
-   MT7530 is a part of the multi-chip module in MT7620AN, MT7620DA, MT7620DAN,
-   MT7620NN, MT7621AT, MT7621DAT, MT7621ST and MT7623AI SoCs.
- 
-+  The MT7988 SoC comes with a built-in switch similar to MT7531 as well as four
-+  Gigabit Ethernet PHYs. The switch registers are directly mapped into the SoC's
-+  memory map rather than using MDIO. The switch got an internally connected 10G
-+  CPU port and 4 user ports connected to the built-in Gigabit Ethernet PHYs.
-+
-   MT7530 in MT7620AN, MT7620DA, MT7620DAN and MT7620NN SoCs has got 10/100 PHYs
-   and the switch registers are directly mapped into SoC's memory map rather than
--  using MDIO. The DSA driver currently doesn't support this.
-+  using MDIO. The DSA driver currently doesn't support MT7620 variants.
- 
-   There is only the standalone version of MT7531.
- 
-@@ -81,6 +88,10 @@ properties:
-           Multi-chip module MT7530 in MT7621AT, MT7621DAT and MT7621ST SoCs
-         const: mediatek,mt7621
- 
-+      - description:
-+          Built-in switch of the MT7988 SoC
-+        const: mediatek,mt7988-switch
-+
-   reg:
-     maxItems: 1
- 
-@@ -268,6 +279,17 @@ allOf:
-       required:
-         - mediatek,mcm
- 
-+  - if:
-+      properties:
-+        compatible:
-+          const: mediatek,mt7988-switch
-+    then:
-+      $ref: "#/$defs/mt7530-dsa-port"
-+      properties:
-+        gpio-controller: false
-+        mediatek,mcm: false
-+        reset-names: false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.40.0
+On 2023/3/31 21:52, Vinod Koul wrote:
+> On 21-03-23, 14:08, Changhuang Liang wrote:
+>>
+>>
+>> On 2023/3/20 20:37, Vinod Koul wrote:
+>>> On 22-02-23, 17:59, Changhuang Liang wrote:
+>>>> [...]
+>>>> +static const struct regval_t stf_dphy_init_list[] = {
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(4), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(8), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(12), 0x0000fff0 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(16), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(20), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(24), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(28), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(32), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(36), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(40), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(40), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(48), 0x24000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(52), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(56), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(60), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(64), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(68), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(72), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(76), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(80), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(84), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(88), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(92), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(96), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(100), 0x02000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(104), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(108), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(112), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(116), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(120), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(124), 0x0000000c },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(128), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(132), 0xcc500000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(136), 0x000000cc },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(140), 0x00000000 },
+>>>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(144), 0x00000000 },
+>>>> +};
+>>>> +
+>>>> +static int stf_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
+>>>> +{
+>>>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+>>>> +	int map[6] = {4, 0, 1, 2, 3, 5};
+>>>
+>>> what does this mean?
+>>
+>> This is the physical lane and logical lane mapping table, should I add a note for it?
+> 
+> Yes please. Also will the mapping be always static or ever change?
+>  
 
+The mapping is always static on the visionfive2 single board computer.
+Thanks for your comments.
+
+>>
+>>>> +	int i;
+>>>> +
+>>>> +	for (i = 0; i < ARRAY_SIZE(stf_dphy_init_list); i++)
+>>>> +		writel(stf_dphy_init_list[i].val,
+>>>> +		       dphy->regs + stf_dphy_init_list[i].addr);
+>>>> +
+>>>> +	writel(FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_EN, 1) |
+>>>> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_IN, 0x1b) |
+>>>> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_EN, 1) |
+>>>> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_IN, 0x1b),
+>>>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(0));
+>>>> +
+>>>> +	writel(FIELD_PREP(STF_DPHY_DATA_BUS16_8, 0) |
+>>>> +	       FIELD_PREP(STF_DPHY_DEBUG_MODE_SEL, 0x5a),
+>>>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(184));
+>>>> [...]
+>>>> +module_platform_driver(stf_dphy_driver);
+>>>> +
+>>>> +MODULE_AUTHOR("Jack Zhu <jack.zhu@starfivetech.com>");
+>>>> +MODULE_AUTHOR("Changhuang Liang <changhuang.liang@starfivetech.com>");
+>>>> +MODULE_DESCRIPTION("Starfive DPHY RX driver");
+>>>> +MODULE_LICENSE("GPL");
+>>>> -- 
+>>>> 2.25.1
+>>>
+> 
