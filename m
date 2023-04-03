@@ -2,116 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD6746D4EA3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 19:09:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04D1D6D4ECA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 19:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232138AbjDCRJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 13:09:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
+        id S232506AbjDCRSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 13:18:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230044AbjDCRJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 13:09:20 -0400
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B017272D;
-        Mon,  3 Apr 2023 10:09:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1680541709; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=S1zMyZnweAolB2TRy/fP+L3GoUKCkvVZHdVc9eafHVqDpoRmVhjI/VHjnOjyciaish4Ize5Dl2CiC1nFdNahUiSp22SMGP0xUJ9jXQWo7EU4eklYaFMdnJ+1dphdY3hiZWEZgL8cCiLAkN8ykyBzYoOafG34P1qya2bxA3g54HQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1680541709; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=8RPtHnYiqxYR7jMQ96ruVj9dgpgnpsFINClEHWBWfDc=; 
-        b=dJIzMnjYVm0p39GDp4QtNSPtLNmu3l+Puwq+CQbdFTz4zy/1nQoW+Ow1wALzynZuKiOmlv689pFOhb7Eb0YjTRHj2zO2oFFKHcWtehx9dYed3no478LIHZ9Lo0RFAs2DfNPFD24I9Megu5vRWWQYS7CFYy9eq60aVxl65hjDnBE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680541709;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=8RPtHnYiqxYR7jMQ96ruVj9dgpgnpsFINClEHWBWfDc=;
-        b=WfLMyM7fcWryl6sOIZfA7AJMwtQUH5gTOwN/iIIu2z/dXmyKv6SIQTv6E+aGorjI
-        2+b3YuBV0G1rRO51OsduMhcG5El91IXBFAQsRFBxBA8hmuZ6d+LuHaDRHbhhCNYWjXc
-        y8+ZfhJfx4ckUsO1CNx1D+6bxmEnXiBRsit2dGHM=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1680541707516945.4680684306775; Mon, 3 Apr 2023 10:08:27 -0700 (PDT)
-Message-ID: <53d89480-936d-25b1-6422-cda7769de369@arinc9.com>
-Date:   Mon, 3 Apr 2023 20:08:19 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH net-next v2 00/14] net: dsa: add support for MT7988
-To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S232796AbjDCRSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 13:18:50 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 295472D56
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 10:18:46 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id lr16-20020a17090b4b9000b0023f187954acso31304691pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 10:18:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680542325;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3rW3em2VILxt0UnmLbwVBQSzkZ1Aze3c4iqs/OGaKgQ=;
+        b=guWPpHelsN8D4CzukM+p9HwO+O0+t1EOvCaPqycmbYFVAXF5fCh073bwn6x3o4QTJ8
+         nvtkG5glJFtW3S4SL/2DK7YRgBwk+QqDy3xPs4Kw6rNem+i65ZzqrnUrsjTndKoYZf59
+         v4WwjYEg9iWwRy7SfoA6rNCTKPhWCa7iCNioJU2SCeYlNuZKbJSFkcVUAYhjUHoz2x0J
+         AnVSZqfWtCrh0lphbxJh8bkGSrQTSw1DO0J5msp2Y4wJQjCsOBgFqh+MDN4w2+0wcb/w
+         C/syvLGgPDe5gWG8EIACnyPSGNljH20EWGsAcw6+LaYSx+3o93zE2tnQXHcvuEZX+lWm
+         xn+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680542325;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3rW3em2VILxt0UnmLbwVBQSzkZ1Aze3c4iqs/OGaKgQ=;
+        b=GHM9hF7ed9qYnr7mU3Zvvq4GCj6LlHSgi6EV712V/e4Lw+xC24cMYD9HuVwYTtYYJ3
+         BCeQfye/RGc6q4XY0gggrbZxLxsTQpCMi1g4LckYYGTILCe/fzTEAHAnwBWkY1rwz/g1
+         zgqIIyLAuaE1TDkoXZOmdNB14O9CjIWwbI+AGlZdxZ/8iHB+FdmDONCPHX/L5YfgYk4T
+         6wBjzzE+/HVkq7iw2tBEPHdkqpAgjQxc7wHe541OrjyDifdfGzNpaTVw1AcHIcqi07jU
+         wJMtds6hXEcxjaU+YT6wSONuxbAnuQ0O+3sTk904cM1RJQGmje+YI7u7Ni9g547+yDmN
+         Sj3A==
+X-Gm-Message-State: AAQBX9f7GbPv42wXTY+sRDjz7lYG5cbwyqxcwujLDgUZh6q0dyPRPmpY
+        WSv/xI0mRBdryFHulZMNYq0DzQ==
+X-Google-Smtp-Source: AKy350bMB5zNEq0ZE1UFYbMQNdutHQBU+wTgTdP/JcPYscsdxGvNCxZ7pEDBeiPHb5YKMtqVT/ZR9Q==
+X-Received: by 2002:a17:90b:1b09:b0:23f:b609:e707 with SMTP id nu9-20020a17090b1b0900b0023fb609e707mr43389916pjb.2.1680542325652;
+        Mon, 03 Apr 2023 10:18:45 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:2a9e:349f:4c3:53c7])
+        by smtp.gmail.com with ESMTPSA id 3-20020a17090a174300b0023f545c055bsm9837249pjm.33.2023.04.03.10.18.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 10:18:45 -0700 (PDT)
+Date:   Mon, 3 Apr 2023 11:18:42 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     Sam Shih <Sam.Shih@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
-References: <cover.1680483895.git.daniel@makrotopia.org>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <cover.1680483895.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: remoteproc: st,stm32-rproc: Typo fix
+Message-ID: <20230403171842.GB3679607@p14s>
+References: <20230403162423.3325968-1-arnaud.pouliquen@foss.st.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230403162423.3325968-1-arnaud.pouliquen@foss.st.com>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3.04.2023 04:16, Daniel Golle wrote:
-> The MediaTek MT7988 SoC comes with a built-in switch very similar to
-> previous MT7530 and MT7531. However, the switch address space is mapped
-> into the SoCs memory space rather than being connected via MDIO.
-> Using MMIO simplifies register access and also removes the need for a bus
-> lock, and for that reason also makes interrupt handling more light-weight.
+On Mon, Apr 03, 2023 at 06:24:23PM +0200, Arnaud Pouliquen wrote:
+> Fix "communnication" typo error.
 > 
-> Note that this is different from previous SoCs like MT7621 and MT7623N
-> which also came with an integrated MT7530-like switch which yet had to be
-> accessed via MDIO.
-> 
-> Split-off the part of the driver registering an MDIO driver, then add
-> another module acting as MMIO/platform driver.
-> 
-> The whole series has been tested on various MediaTek boards:
->   * MT7623A + MT7530 (BPi-R2)
->   * MT7986A + MT7531 (BPi-R3)
->   * MT7988A reference board
+> Fixes: aca8f94e5b69 ("dt-bindings: remoteproc: stm32-rproc: add new mailbox channel for detach")
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> updates vs V1: address Krzysztof comments
+> - Add missing "st,stm32-rproc" device prefix in subject
+> - Drop line break between "Fixes" and "Signed-off-by"
+> - Add Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/remoteproc/st,stm32-rproc.yaml        | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-You did not address the incorrect information I pointed out here. Now 
-that the patch series is applied, people reading this on the merge 
-branch commit will be misled by the misinformation.
+And this one as well.
+
+Thanks,
+Mathieu
 
 > 
-> Changes since v1:
->   * use 'internal' PHY mode where appropriate
->   * use regmap_update_bits in mt7530_rmw
->   * improve dt-bindings
-
-As a maintainer of the said dt-bindings, I pointed out almost 7 things 
-for you to change. Of those 7 points, you only did one, a trivial 
-grammar change. The patch series is applied now so one of us maintainers 
-(you are one too now) need to fix it with additional patches.
-
-Arınç
+> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> index 66b1e3efdaa3..ff95648f4967 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> @@ -72,9 +72,9 @@ properties:
+>                ready for shutdown
+>        - description: |
+>            A channel (d) used by the local proc to notify the remote proc that it
+> -          has to stop interprocessor communnication.
+> +          has to stop interprocessor communication.
+>            Unidirectional channel:
+> -            - from local to remote, where ACK from the remote means that communnication
+> +            - from local to remote, where ACK from the remote means that communication
+>                as been stopped on the remote side.
+>      minItems: 1
+>  
+> -- 
+> 2.25.1
+> 
