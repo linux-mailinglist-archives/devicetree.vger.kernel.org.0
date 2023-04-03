@@ -2,121 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 024C36D45BB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84F4E6D45CA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232628AbjDCN0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:26:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55314 "EHLO
+        id S232526AbjDCN2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232664AbjDCN0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:26:04 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606942B0CF
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:25:49 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E3D3585EC6;
-        Mon,  3 Apr 2023 15:25:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1680528346;
-        bh=9wR4rXBy2GZz4SV64ZRGC59tcnUwDYhUwqWJI2C8ok0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VpoN4iT8Cix3nLFGddFDNQnA+wFREz74LA9xWxIPBmPHdv1XWHKIgnABNDm8zafAP
-         O9MD3CAxBauL2l11cQCemKBoSQOxaKT9ciT5n8WgUtF98HczgvllQngE6kh6Bipjtv
-         zPYWvrdFP4n8kkE5aJQyvd7bmTo0uf3nPBrKS91Vm0/K1ktXQjEIb0yt2UzfJzFOQA
-         bV+rL9UK4A3tgm5XU8i8Yt4UPyUQ4EohJBj8AGu2okJIoLIVN+wPMVUeVP4izpXJYk
-         dWWXNWYhvw5N/WZQuLXoq8J/oaXEXAY6iXwl/msg70S5MCsBmh1xEE8zggHoC2rV+B
-         gOmurdbyLcjxw==
+        with ESMTP id S232401AbjDCN2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:28:38 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACD64C0A
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:28:35 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id bx10so12018725ljb.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:28:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680528513;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NTBu3T1hJbXzcrjoGIJunNPzVFd+efBZWIx71bT93xk=;
+        b=wQ0g8/V8tDhuICVtLAptLwNJswGIpGOW6dhlyRB3fdbSiFnwK8HpSJuArQuskuSsfH
+         LvY7E6Ne5GR+Tjqmbt23wr9RqB5q4kgeXKguw8SwA+MFnlEgbEzOjvtCQVYj5aoaVqNO
+         lwpevotRMsU9eRkylFiVH+0Jn4LkvPT4JggfOHZoJc/bbYcBXQnI6hfEOaXSbLPH+vsn
+         IixYvcaQ/cVHgIdFDtJAy9wCq8pN/U1lNJSPdihtHJSLckoI0LDZzRHFAh2lrBQY1IZp
+         CD4pjmRNTeaEnaUX/NI4xmOtBZbDGaxJV6cFMel0u9oeknXft25TIYWkNmCqYMIoQhyn
+         HCCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680528513;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NTBu3T1hJbXzcrjoGIJunNPzVFd+efBZWIx71bT93xk=;
+        b=xzZNhikAb84r99EuFMnyJfSTvZGsE0TcmOasatkVp80j9dj7skiI+HLHtq/y6qzFmc
+         xGphcFfbdHAX0wxds/URmew8ZQdqALHFRX+eTfAau5zZv/hTuIh5kfqFo+9BCEwk23p5
+         Vn8EP2wUfCSkgsvcoqbtcEZdzyjoa2t3R9N63wUIXHYCv6DYyDVEhaCBVMzRZfe8gdMa
+         oR9C15KupU1S2CdBqhqKcHWT32JX99sUGfpOyebVyXUpoi7nnAYZLw0DvJvpbm3ZF34k
+         x9e/G6LBP9/YZ9uyT0UPPWEklw5RgpeSxXZyXtASX07eqHzXEQotLeoJ4amcGq5dVLSb
+         rklg==
+X-Gm-Message-State: AAQBX9eQZChQyhpA5oHv/5jN1p14K7YwmZMtjmdT5k4i/oeQ1Irp7umQ
+        A0OVMvIsFqfGz9yORGjpdNtbjQ==
+X-Google-Smtp-Source: AKy350bltB/j+7gkyzcUfPeXeSlKDE+w+ZmetH3bB5XqsR5v53b4LkVVARBVVF8mPwYthu4p/dOhxw==
+X-Received: by 2002:a2e:b0c4:0:b0:288:7a51:3882 with SMTP id g4-20020a2eb0c4000000b002887a513882mr10477487ljl.10.1680528513306;
+        Mon, 03 Apr 2023 06:28:33 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id t15-20020a2e9c4f000000b0029ab1f2b196sm373133ljj.24.2023.04.03.06.28.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 06:28:32 -0700 (PDT)
+Message-ID: <1db568b2-4f1d-736a-1987-6c2b8359a26d@linaro.org>
+Date:   Mon, 3 Apr 2023 15:28:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: correct Soundwire wakeup
+ interrupt name
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230403132328.61414-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230403132328.61414-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 03 Apr 2023 10:25:45 -0300
-From:   Fabio Estevam <festevam@denx.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org,
-        marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, jagan@amarulasolutions.com,
-        inki.dae@samsung.com
-Subject: Re: [PATCH v2] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge
- to yaml
-In-Reply-To: <8f7f925f-638d-737c-bf47-2a66ce0eec59@linaro.org>
-References: <20230403124458.198631-1-festevam@gmail.com>
- <8f7f925f-638d-737c-bf47-2a66ce0eec59@linaro.org>
-Message-ID: <074183d480cf18948aacd98be60308f8@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 03/04/2023 09:49, Krzysztof Kozlowski wrote:
 
->> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
->> Signed-off-by: Fabio Estevam <festevam@denx.de>
->> ---
->> Changes since v1:
->> - Added samsung,mipi-dsim.yaml entry to MAINTAINERS file (Jagan)
->> - Added Marek Szyprowski entry to the samsung,mipi-dsim.yaml 
->> maintainers section (Jagan)
->> - Mention that i.MX8M Plus is also supported (Marek)
->> - Remove endpoint@0 description as it only has one endpoint (Marek)
+On 3.04.2023 15:23, Krzysztof Kozlowski wrote:
+> The bindings expect second Soundwire interrupt to be "wakeup" (Linux
+> driver takes by index):
+Seems to be a common occurence with drivers that were written a long
+time ago but have been updated for new hw since.. Perhaps something
+like of_irq_get_by_name_idx(..., "name", idx_if_not_found) could
+be useful..
+
+
 > 
-> Where is the changelog from original submission? How your v1 differs
-> form it? Or did you just ignore all the feedback?
-
-I'm sorry, but it was not my intention to ignore any feedback.
-
-Which feedback are you referring to specifically?
-
-Some more context: last week I sent a patch adding a new property
-for exynos_dsim.txt and you asked me to convert it to yaml first:
-
-https://lore.kernel.org/all/ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org/#t
-
-Jagan pointed out an earlier submission he did in 2021:
-
-https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutions.com/
-
-That was my starting point.
-
->> +  phys:
->> +    maxItems: 1
->> +    description: phandle to the phy module representing the DPHY
+>   sc8280xp-crd.dtb: soundwire-controller@3330000: interrupt-names:1: 'wakeup' was expected
 > 
-> OK, so you did ignore the feedback.
+> Fixes: c18773d162a6 ("arm64: dts: qcom: sc8280xp: add SoundWire and LPASS")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Not intentionally.
-
-> NAK, go through the feedback and implement it.
-
-Just found this feedback from Rob about Jagan's initial submission:
-
-https://lore.kernel.org/all/20210712151322.GA1931925@robh.at.kernel.org/
-
-I can send a new version that takes Rob's feedback into account.
-
-Were there any further versions/feedback that were submitted? Can't find 
-them on lore.
-
-In another reply, you mention that this should be v13. I could not find 
-previous versions of the yaml submission.
-
-Please advise.
-
-Thanks,
-
-Fabio Estevam
+Konrad
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index af7bee14fa06..cd38320dafda 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -2606,7 +2606,7 @@ swr2: soundwire-controller@3330000 {
+>  			reg = <0 0x03330000 0 0x2000>;
+>  			interrupts-extended = <&intc GIC_SPI 959 IRQ_TYPE_LEVEL_HIGH>,
+>  					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "core", "wake";
+> +			interrupt-names = "core", "wakeup";
+>  
+>  			clocks = <&txmacro>;
+>  			clock-names = "iface";
