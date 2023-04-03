@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A9E26D54A6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 00:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBB9E6D54D2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 00:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbjDCWTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 18:19:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39958 "EHLO
+        id S233482AbjDCWiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 18:38:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230501AbjDCWTa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 18:19:30 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B12273E;
-        Mon,  3 Apr 2023 15:19:29 -0700 (PDT)
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5631766030F1;
-        Mon,  3 Apr 2023 23:19:26 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680560368;
-        bh=MfmeAyMP4kZnUtbedObZ5J3MvrkjTUU/2hwYA1Mdx6w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eBDhs8F64dEDL9yF4U+vgr0Qx7wzZGhhYKMmrBTgpyflQKR+FKgXbpmO2QUH8zLMA
-         ve/hZuMzhviSVvmZQU+kwgqk9e5zC2CWTUjAJpIyuNV9wZC2XP50X7nTakcK9KuNhl
-         ijrk+HItTJtFXltBIUHqFsfxyQQY18X0JN26j95u7VKSdoBxNlNxjTE655MSrgyqES
-         dav8ToW4kZeyaWNNjEQYeOcT9tdkpFaVXLhDPPNlhJc6Pi8WeTFNRSwRqvtYA8NUI6
-         nrTqdIAyh5rOusfsagIrdCFoDcChchq+COk5gwBb4SF61y4BKFXzQm+ZA/7LozXiF4
-         nahUY/UinXnVA==
-Date:   Mon, 3 Apr 2023 18:19:21 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, yunfei.dong@mediatek.com,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: Re: [RESEND 0/6] media: mediatek: Update video decoder nodes for
- MT8195 and MT8192
-Message-ID: <4ebd1c9f-0460-4436-8e17-0e46e88f4828@notapiano>
-References: <20230303013842.23259-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S233456AbjDCWiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 18:38:20 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB4D1984
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 15:38:18 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id j11so39962976lfg.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 15:38:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680561497;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FtsOWrQW7hkNYFADGqbjwZ60d4zvSefDrCxExKDl8Ps=;
+        b=hwuZ8XieWgBLN5adU41i6xX2s4eNlMpyUG883h6xHBqIp68TLP0PISWCmEmBxbOFNp
+         La0z50tJWUVSnxmQGKjzd2D0TI3d8OdvzjbH9uwZNYgcJWNoG92y7hvf5wRLkIcNnJkT
+         9xaak/ZDCbwD9kqTd2ISNgfEwhja79Z07uNJPnxcGhHgeZ9/vQGpDOoJeWvRtPZ/2Gxc
+         TvPZiYYuhXrmLzm7gBiYz6zwetuFr+2zYf3U5JHJIDUNZM1JFosfH9/7+5HX0jn7xUye
+         RlhlegeuGZo1+3qU3CEAaNzaV47X5Q9mtT55migZtfvsp6ZvbmSskgy9parZdncdzPQx
+         BKWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680561497;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FtsOWrQW7hkNYFADGqbjwZ60d4zvSefDrCxExKDl8Ps=;
+        b=CljcRZ107qdKUxvoBBzmkk/AfcCFlGN9fsOXDxAA97rGc21ZN321Q/j4ilUUcZk0Os
+         ES4ojM78AWdEmBg2MTzG/gs8+8Ly0+WdKrW02i5Wz1EMmel0tmY8jjxfAf2V1/UBvPmp
+         +ITICULmTeD9aO8s6r/SfCR+uFzfD3hIcHimkNyeFmsvXRgOUnckqSy0fbJP50xWu7nG
+         TDRaHpfIRo/wjW47CQBNHciS9oyubyFbsbxDiw7J6l9+0PpraIbsgU+XD5wSEE+71jO4
+         AOCaKgqMiUBxcF1Ung4ARNxs/LUJu2vHP5WuZha0qE37ekkMMrDXbKrHLeLBT3HpZks8
+         dgRQ==
+X-Gm-Message-State: AAQBX9cURgHL07QtV44wLzCkgbuzlwlaQN9TW8SjcC8sacA9qvKIv2SY
+        vZrHuYlyaqbYQAuDfInQunjaZA==
+X-Google-Smtp-Source: AKy350YZO6iPPjj1sua6F66RRClLCkmeKk/nQmT2y4PKC2eroOuYFkNzuee/Tto92qVvDnzdKwZi/Q==
+X-Received: by 2002:a05:6512:2192:b0:4e8:3da6:485a with SMTP id b18-20020a056512219200b004e83da6485amr56645lft.68.1680561496989;
+        Mon, 03 Apr 2023 15:38:16 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id u5-20020ac248a5000000b004e9cad1cd7csm1985379lfg.229.2023.04.03.15.38.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 15:38:16 -0700 (PDT)
+Message-ID: <b2e81e6c-a9fa-0cc1-01ed-1d82297454c4@linaro.org>
+Date:   Tue, 4 Apr 2023 00:38:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230303013842.23259-1-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 4/7] dt-bindings: iommu: arm,smmu: enable clocks for
+ sa8775p
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
+References: <20230328193632.226095-1-brgl@bgdev.pl>
+ <20230328193632.226095-5-brgl@bgdev.pl>
+ <20230403204127.GA1708388-robh@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230403204127.GA1708388-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 03, 2023 at 09:38:36AM +0800, Allen-KH Cheng wrote:
-> This series is based on matthias github v6.3-tmp. Since there is a
-> dependence in the following series, I resend a series for them.
-> 
-> patchwork.kernel.org/project/linux-mediatek/list/?series=702423
-> patchwork.kernel.org/project/linux-mediatek/list/?series=702078
 
-Hi Matthias,
 
-this series has been completely reviewed and tested for a while, and the
-bindings patches were already picked up by Hans and are on their way to 6.4 [1].
-So could you please pick the devicetree patches?
+On 3.04.2023 22:41, Rob Herring wrote:
+> On Tue, Mar 28, 2023 at 09:36:29PM +0200, Bartosz Golaszewski wrote:
+>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>
+>> The KGSL iommu will require the clocks property to be set. Enable it for
+> 
+> Isn't KGSL the name for QCom's adreno vendor driver? What does that have 
+> to do with bindings?
+It's called "KGSL SMMU" (as opposed to the other "APPS SMMU" (Application
+Processor SubSystem) in some places in Qualcommland
 
-Thanks,
-Nícolas
-
-[1] https://lore.kernel.org/all/98c48690-631d-1086-9b7c-004c61cc8dbb@xs4all.nl/
-
+Konrad
 > 
-> Allen-KH Cheng (3):
->   media: dt-bindings: media: mediatek: Rename child node names for
->     decoder
->   media: dt-bindings: media: mediatek: Remove "dma-ranges" property for
->     decoder
->   arm64: dts: mt8192: Add video-codec nodes
-> 
-> Yunfei Dong (3):
->   media: dt-bindings: media: mediatek: vcodec: adapt to the
->     'clock-names' of different platforms
->   media: dt-bindings: media: mediatek: vcodec: Change the max reg value
->     to 2
->   arm64: dts: mt8195: Add video decoder node
-> 
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 113 +++++++-----------
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  59 +++++++++
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  70 +++++++++++
->  3 files changed, 173 insertions(+), 69 deletions(-)
-> 
-> -- 
-> 2.18.0
-> 
+>> sa8775p in the bindings.
+>>
+>> Cc: Will Deacon <will@kernel.org>
+>> Cc: Robin Murphy <robin.murphy@arm.com>
+>> Cc: Joerg Roedel <joro@8bytes.org>
+>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> index 807cb511fe18..74d5164ed1e8 100644
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -375,7 +375,6 @@ allOf:
+>>                - nvidia,smmu-500
+>>                - qcom,qcm2290-smmu-500
+>>                - qcom,qdu1000-smmu-500
+>> -              - qcom,sa8775p-smmu-500
+>>                - qcom,sc7180-smmu-500
+>>                - qcom,sc8180x-smmu-500
+>>                - qcom,sc8280xp-smmu-500
+>> -- 
+>> 2.37.2
+>>
