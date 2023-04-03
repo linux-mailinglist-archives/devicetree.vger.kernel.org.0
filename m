@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E806D426A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 521A56D4277
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:48:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231564AbjDCKpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:45:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37012 "EHLO
+        id S231736AbjDCKsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:48:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231395AbjDCKpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:45:01 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6515E30F5
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:44:59 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id bi9so37433320lfb.12
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:44:59 -0700 (PDT)
+        with ESMTP id S229752AbjDCKsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:48:32 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE50883C1
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:48:30 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q14so29851283ljm.11
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:48:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680518697;
+        d=linaro.org; s=google; t=1680518909;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cfF51ju6g2Vk9QLZ3M4JMJygNq7FzMSheocePpRa5mU=;
-        b=FdX9gItFGUIXNc7xqH9k/2prUSCKixY9o8bWHzjX7jmZTKxnrGTWaJ50BjiUxutQZI
-         tbn5a8QNppxvgldSJG0zBsvkbB5f4qy4AzzvnuIPKapS/Duc9dIMjsp1EtX936SnVipf
-         GurwSz7MBChqbHMj6p2gvA3ejZXh6HYcsubW0JqEhNm3GVltfbVUZsYtFU3HwARvrJVm
-         Q7vcPriF8y+pPwZd3p9+LsQpKa6gSfsZ7G/cwMxChwh/LU5AUZfLaPKt31YYZW3AD/ol
-         F3GUhmwoMx9xiFKHkBglItsjcgywqdvezwuuk7FMrPRUbWKmv1zHMnJtZscSA2w2x0Hy
-         L7Rg==
+        bh=4n9yhzm1Rmk8D25FTiH0wOJ+GO4nCT0aVo2ehKd/0bI=;
+        b=c0uJzu1LiPBut0N7W8zNzlAV9wmMrZZZpbLe/3ycBlOFIuMn0P5nX3QLN31VNxOVps
+         ppMd6IWf3/FQ99ALwIPjufG53hlW0NOaO9kfCdzuagDp3o5/4+wANyp0vWasLbujmCmA
+         PUvisxJBeLuctt5Y/FnhZ1VbuudXDFYUEwRKj0D1wkz/T09+BkHogFOcvQ7ErrrcDrY2
+         v4SjUKlP9XTkcXhdPM1OlC6kXUqiP4jNSbb+TP4rZOeqN9z12ks8VP3Wa80F83Hbe3zC
+         cTXQhrN5dRWJ7ox445WJftUWLlFDLHPraL+HlIrf9bVUvCGKNGbsMqUOPa6fhkHCjLSM
+         f3uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680518697;
+        d=1e100.net; s=20210112; t=1680518909;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cfF51ju6g2Vk9QLZ3M4JMJygNq7FzMSheocePpRa5mU=;
-        b=jBHWiCmN+6wXFgdFZP1ekvLp34qtZuuHk4FvbEVIELW/tNPUtgdyHA3dveEodjclTg
-         76uecREGaG1UUB8PRMWjM0w5Pm+r+r3dfMLBC3da7b03zQg/ZfEkSejSNmdt+mHM56RI
-         mVA8gWTMz9vgd8JF+m3CXwYrA3JD/z7BT9H01uiDrUFJC3XM1k7anJ4odFnMuiBcts3+
-         oyzFQD+4BOlshFPXm5l8B7IZ+SIC7481s9bDH/48rh5REZTKOB95dND5BtBninbij9hV
-         Di6Ow5t/0bwbYbdK0Ff44mBw6Wd2CDD/TA98MZjdjoRjOmNtwDRTwxT+kcdvvRi7vndx
-         L0Dw==
-X-Gm-Message-State: AAQBX9fw42RJnXEqXhllCNv+noeX7bEV0WlCF4H79RMWWyXxbOPgHrES
-        UQP+R2A+FgDN42qpVYMxXpwDhA==
-X-Google-Smtp-Source: AKy350atmcdEqJQEBqDMyp+PVkd88PhNCs3kqcnM53Ri7ILtS5OQRoIS/jcyF64ER3LogOZqEeVFFg==
-X-Received: by 2002:ac2:41c4:0:b0:4eb:1606:48db with SMTP id d4-20020ac241c4000000b004eb160648dbmr5900409lfi.22.1680518697663;
-        Mon, 03 Apr 2023 03:44:57 -0700 (PDT)
+        bh=4n9yhzm1Rmk8D25FTiH0wOJ+GO4nCT0aVo2ehKd/0bI=;
+        b=s530JLLRs597sZE/gZDwZEd1obk1B7Mwteewx1LFshOgMpq68+3WwGvPMRS4fi1VDB
+         hYK7LqbCjTgRdAE2LJkBri/MDixoUsBU/igpok2aGaSWluI289kHtNcUKp3fOWAMid6X
+         Th7sFEn6bkBQiNIhglDNv6Dpev7TFxYrqb6byPYWZppfPlKfpZL92vLu11Eu1nqYMn7V
+         ccLa5uPAkQTLX0EyXhCfhmXHK2KDuxYkRojqXD+DZpcdfJ4IxtgEQH9M6RuQZ53WqxXL
+         wX+zxnBGEYJwqzf17JeKMRseuTse86XnujPjV+MCV0WgqLRT2XIsBL03Dv0u7DanRAuW
+         Eskw==
+X-Gm-Message-State: AAQBX9fmTi9nJpQo7dDPxjWGjmvO8uG4k+v5iD1O3soT950If/Y0rsXF
+        XlKwTt69+RPzEOv7vOLqPS+pvw==
+X-Google-Smtp-Source: AKy350b9py/sij6PkWPceiL0IU5yAJ5hg6zA+et/1jOZ9VZhnEZINtiQQwxVTa7ptGeT1rQVEva9GQ==
+X-Received: by 2002:a2e:b043:0:b0:295:c491:3b16 with SMTP id d3-20020a2eb043000000b00295c4913b16mr4737035ljl.7.1680518909142;
+        Mon, 03 Apr 2023 03:48:29 -0700 (PDT)
 Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
-        by smtp.gmail.com with ESMTPSA id e8-20020a2e8ec8000000b00293534d9757sm1690555ljl.81.2023.04.03.03.44.56
+        by smtp.gmail.com with ESMTPSA id g25-20020a2e9cd9000000b00298a8527806sm1688302ljj.93.2023.04.03.03.48.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 03:44:57 -0700 (PDT)
-Message-ID: <c6f20137-299a-afb1-c42d-35f7386b1e27@linaro.org>
-Date:   Mon, 3 Apr 2023 12:44:55 +0200
+        Mon, 03 Apr 2023 03:48:28 -0700 (PDT)
+Message-ID: <463a9885-741e-a44a-c6c2-7cf5b0560d2d@linaro.org>
+Date:   Mon, 3 Apr 2023 12:48:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 00/22] arm64: dts: qcom: remove duplication in PMIC
- declarations
+Subject: Re: [PATCH v5 05/11] dt-bindings: qcom-qce: Fix compatible
+ combinations for SM8150 and IPQ4019 SoCs
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <10626c79-46da-3f66-0327-66576b3e5f2c@linaro.org>
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, rfoss@kernel.org, neil.armstrong@linaro.org
+References: <20230402100509.1154220-1-bhupesh.sharma@linaro.org>
+ <20230402100509.1154220-6-bhupesh.sharma@linaro.org>
+ <21eaeea4-4f2e-5ce5-c75b-d74ded8e6e4c@linaro.org>
+ <CAH=2NtzKGxzmCq2JTajxWoeRFR+mPnFY3YF5mn0tGt30T7SJoQ@mail.gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <10626c79-46da-3f66-0327-66576b3e5f2c@linaro.org>
+In-Reply-To: <CAH=2NtzKGxzmCq2JTajxWoeRFR+mPnFY3YF5mn0tGt30T7SJoQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -85,47 +84,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2.04.2023 11:55, Krzysztof Kozlowski wrote:
-> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
->> The sc8280xp platform uses its own copy of PMIC declarations. This can
->> easily end up with the issues that are fixed in the main PMIC include
->> file, but are not fixed for sc8280xp (and vice versa). For example
->> commit c0ee8e0ba5cc ("arm64: dts: qcom: pmk8350: Use the correct PON
->> compatible") changed pmk8350 to use "qcom,pmk8350-pon" compat for the
->> PON device, while sc8280xp-pmic.dtsi still has the incorrect
->> "qcom,pm8998-pon".
+On 3.04.2023 08:15, Bhupesh Sharma wrote:
+> On Mon, 3 Apr 2023 at 11:06, Vladimir Zapolskiy
+> <vladimir.zapolskiy@linaro.org> wrote:
 >>
->> Another example is pm8280_2_temp_alarm device, which uses interrupts
->> tied to SID 2, while having SID 3. This can be easily left unnoticed.
+>> On 4/2/23 13:05, Bhupesh Sharma wrote:
+>>> Currently the compatible list available in 'qce' dt-bindings does not
+>>> support SM8150 and IPQ4019 SoCs directly which may lead to potential
+>>> 'dtbs_check' error(s).
+>>>
+>>> Fix the same.
+>>>
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> ---
+>>>   Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>>> index e375bd981300..90ddf98a6df9 100644
+>>> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>>> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>>> @@ -24,6 +24,12 @@ properties:
+>>>           deprecated: true
+>>>           description: Kept only for ABI backward compatibility
+>>>
+>>> +      - items:
+>>> +          - enum:
+>>> +              - qcom,ipq4019-qce
+>>> +              - qcom,sm8150-qce
+>>> +          - const: qcom,qce
+>>> +
+>>>         - items:
+>>>             - enum:
+>>>                 - qcom,ipq6018-qce
 >>
->> Employ a small amount of C preprocessor magic to make
->> sc8280xp-pmics.dtsi use standard PMIC include files
+>> Two commit tags given for v2 are missing.
 > 
-> Preprocessor magic is disliked in DTS. We allow only simple defines, no
-> undefs. Sometimes some nodes or strings could be concatenated, but in
-> obvious way. You should not parametrize it and have different, generated
-> labels in DTS based on something coming external to that DTS.
-This again begs the question, is it time we start moving parts of the
-dts code to be autogenerated?
+> Cannot get your comment. Please be more descriptive.
 
-Should we keep a separate file for each SID?
-
-Or should we consider the SPMI 'interrupts' implementation flawed and
-work towards one that does not require a SID to be specified within?
-
-Currently it's:
-
-interrupts = <USID PERIPH_ADDR>>8 IRQ_WITHIN_PERIPH IRQ_TYPE>;
-
-So the first two cells are effectively useless and can be retrieved
-from the parent node and the reg property.
-
-Getting rid of that would solve a decent chunk of problems that this
-patchset concerns.
+https://lore.kernel.org/linux-arm-msm/333081a2-6b31-3fca-1a95-4273b5a46fb7@linaro.org/
 
 Konrad
-
 > 
-> Best regards,
-> Krzysztof
-> 
+> Thanks,
+> Bhupesh
