@@ -2,88 +2,487 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8166D449B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9533F6D44A1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:45:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232095AbjDCMno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:43:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35806 "EHLO
+        id S229379AbjDCMpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:45:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232297AbjDCMnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:43:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF0B9767;
-        Mon,  3 Apr 2023 05:43:41 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 107476603105;
-        Mon,  3 Apr 2023 13:43:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680525820;
-        bh=pfKKC24shtvA/rXAR9B/Z1hLIkyt7OJi4x4sgnOzJ4w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=E+aRNVEux5sMeLcJ+vqHmQ5aDu98LjC4Bo2QRef0rixMvao06HXBb+qFWc+tSis7K
-         Liy8m21xm8aQetY1koAG4OJFoStg9e/TQCy4NSEN7UqfGpjxNcebUI2Di5pdEQSIWE
-         82falL+mlPGFsCKcrEPSEqiDARZ33Ks0IFi8YixFnxRaN9P7jLwBgPpcGAyM04KAcy
-         Of85MiIOq4BkW/IqSim9YFPMf0vJTJB8/r+4nIvR7WzYs6GoTZMxYQ3XnhfKAvu/RB
-         RBIZQt3gXzvDoQ3XAOZESH5at6jdwGmx0B6jflGyeTfaYKdJqZ+U9w2HsxzqPv3ncm
-         DsrKSa9YYwyOg==
-Message-ID: <601a8435-8e2a-2c25-5fe3-40be62269469@collabora.com>
-Date:   Mon, 3 Apr 2023 14:43:37 +0200
+        with ESMTP id S230269AbjDCMpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:45:09 -0400
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A89665BC
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:45:07 -0700 (PDT)
+Received: by mail-oo1-xc30.google.com with SMTP id g21-20020a4ad855000000b0053e563c2f72so3377362oov.6
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:45:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680525907; x=1683117907;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EEiwmU/bK6nXvyr4GVL1g8PaLiBm1e8+Qx3WwljddG0=;
+        b=F0wrxL2tsxiheL2oG1RX0QFXLFNUyr1exY6jhbBSdWZ3uKKw2RRic9emRxySeXxws5
+         sfJq8JwSIG0AYcTS0/rntS4Zo4QQ1xP3znEk4VShdr1mQodp1YEx+Zozj7D3N7IMY2zN
+         pR01UX3cgtEzL94ZTQtiDcbMeNZIOUubJDJx08nKMBgxQkzWvaod50z3RZn6r77RvkpP
+         Bhhs096xwBDKXQQrRzSHAxGEhadLZSHTr8htSCe4RbqcFizxpVfn6ibhok8iclF3qNkU
+         zg6jLLCylcddqJYVho4wwjw4kp9Tn7S7NhEHLx5TnK+piJQyOuSzJYYEeFI9jkwf8Mvz
+         AuHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680525907; x=1683117907;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EEiwmU/bK6nXvyr4GVL1g8PaLiBm1e8+Qx3WwljddG0=;
+        b=zBMvrlolqQGle5vAUvn9ByXf0Qc09YFlhKuPpwtO9YTBABNoIMSup28W+1jYD927kl
+         DNTb+KaM0Oir4kyHx917YtnGPqpDOau20KrP80lB7GxZcCDEHWU/VG9+KNkzbIDkYPDT
+         vRGVFOUG++J8Ur61vy6lPinckfI2RMmDCEL2YqcbE+X6KPSa8TdQqesR26PYAAOCiUD/
+         VH0lrHTRJbmBndM2io41t1FVxuqCzAMiyXHooi1it5bPymthcQkUpHJDdPp1XDiW3igU
+         KpoRUHC72jTkmfN+VSTgzCru3+iqlSGsn30vpL3MLh+qZ0yiN6CHFwxQcjHMPGo9JnL2
+         e5dA==
+X-Gm-Message-State: AAQBX9cdmYF0XOvTht3KzBnv5Nw/N/qSNAp6BEXFegwJ8EaZwlz5XLYh
+        liuzcTwg9wKmBifCbWv9tp2neau7QiEDNw==
+X-Google-Smtp-Source: AKy350YFtWu0YJtjMsDIFCBRdXGtVluGsavafCbCo3f1CVAHDEK9xMbQA4lDWAwyhLWx7n1iMf0P0g==
+X-Received: by 2002:a05:6820:1b05:b0:53f:f8b:f8f2 with SMTP id bv5-20020a0568201b0500b0053f0f8bf8f2mr4770200oob.1.1680525906728;
+        Mon, 03 Apr 2023 05:45:06 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:791a:66eb:9101:534])
+        by smtp.gmail.com with ESMTPSA id h38-20020a4a9429000000b0051a6cb524b6sm3952136ooi.2.2023.04.03.05.45.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 05:45:06 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     neil.armstrong@linaro.org
+Cc:     marex@denx.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, jagan@amarulasolutions.com,
+        inki.dae@samsung.com, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge to yaml
+Date:   Mon,  3 Apr 2023 09:44:58 -0300
+Message-Id: <20230403124458.198631-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [RFC] arm64: dts: use size of reserved partition for bl2
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230403105818.29624-1-linux@fw-web.de>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230403105818.29624-1-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/04/23 12:58, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> To store uncompressed bl2 more space is required than partition is
-> actually defined.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+From: Jagan Teki <jagan@amarulasolutions.com>
 
-If this doesn't get changed anymore, I'm fine with it... but a question arises:
-did you send patches to add your BPI-r3 board(s) to upstream u-boot?
+Samsung MIPI DSIM bridge can be found on Exynos and NXP's 
+i.MX8M Mini/Nano/Plus SoCs.
 
+Convert exynos_dsim.txt to yaml.
 
-> ---
-> I used the definition i got from mtk used in their SDK uboot.
-> 
-> Openwrt uses also the first reserved partition to give bl2 more
-> space:
-> 
-> https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/mediatek/dts/mt7986a-bananapi-bpi-r3-nor.dts;h=f597b869abc80d1a73f44ebb85ad4da17376bb52;hb=HEAD#l22
-> 
-> so imho it should be same in mainline to not require complex bl2
-> compression.
+Used the example node from latest Exynos SoC instead of
+the one used in legacy exynos_dsim.txt.
 
-Regards,
-Angelo
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Added samsung,mipi-dsim.yaml entry to MAINTAINERS file (Jagan)
+- Added Marek Szyprowski entry to the samsung,mipi-dsim.yaml maintainers section (Jagan)
+- Mention that i.MX8M Plus is also supported (Marek)
+- Remove endpoint@0 description as it only has one endpoint (Marek)
+
+ .../display/bridge/samsung,mipi-dsim.yaml     | 271 ++++++++++++++++++
+ .../bindings/display/exynos/exynos_dsim.txt   |  92 ------
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 272 insertions(+), 92 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+new file mode 100644
+index 000000000000..2698752dc6ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+@@ -0,0 +1,271 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/samsung,mipi-dsim.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung MIPI DSIM bridge controller
++
++maintainers:
++  - Inki Dae <inki.dae@samsung.com>
++  - Jagan Teki <jagan@amarulasolutions.com>
++
++description: |
++  Samsung MIPI DSIM bridge controller can be found it on Exynos
++  and i.MX8M Mini/Nano/Plus SoC's.
++
++properties:
++  compatible:
++    enum:
++      - samsung,exynos3250-mipi-dsi
++      - samsung,exynos4210-mipi-dsi
++      - samsung,exynos5410-mipi-dsi
++      - samsung,exynos5422-mipi-dsi
++      - samsung,exynos5433-mipi-dsi
++      - fsl,imx8mm-mipi-dsim
++      - fsl,imx8mp-mipi-dsim
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  clocks:
++    minItems: 2
++    maxItems: 5
++
++  clock-names:
++    minItems: 2
++    maxItems: 5
++
++  phys:
++    maxItems: 1
++    description: phandle to the phy module representing the DPHY
++
++  phy-names:
++    items:
++      - const: dsim
++
++  samsung,phy-type:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: phandle to the samsung phy-type
++
++  power-domains:
++    description: phandle to the associated power domain
++    maxItems: 1
++
++  samsung,power-domain:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle to the associated samsung power domain
++
++  vddcore-supply:
++    description: MIPI DSIM Core voltage supply (e.g. 1.1V)
++
++  vddio-supply:
++    description: MIPI DSIM I/O and PLL voltage supply (e.g. 1.8V)
++
++  samsung,burst-clock-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      DSIM high speed burst mode frequency.
++
++  samsung,esc-clock-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      DSIM escape mode frequency.
++
++  samsung,pll-clock-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      DSIM oscillator clock frequency.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        description:
++          Input port node to receive pixel data from the
++          display controller. Exactly one endpoint must be
++          specified.
++
++        unevaluatedProperties: false
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          DSI output port node to the panel or the next bridge
++          in the chain
++
++required:
++  - '#address-cells'
++  - '#size-cells'
++  - clock-names
++  - clocks
++  - compatible
++  - interrupts
++  - phy-names
++  - phys
++  - reg
++  - samsung,burst-clock-frequency
++  - samsung,esc-clock-frequency
++  - samsung,pll-clock-frequency
++
++allOf:
++  - $ref: ../dsi-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos5433-mipi-dsi
++
++    then:
++      properties:
++        clocks:
++          minItems: 5
++
++        clock-names:
++          items:
++            - const: bus_clk
++            - const: phyclk_mipidphy0_bitclkdiv8
++            - const: phyclk_mipidphy0_rxclkesc0
++            - const: sclk_rgb_vclk_to_dsim0
++            - const: sclk_mipi
++
++        ports:
++          required:
++            - port@0
++
++      required:
++        - ports
++        - vddcore-supply
++        - vddio-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos5410-mipi-dsi
++
++    then:
++      properties:
++        clocks:
++          minItems: 2
++
++        clock-names:
++          items:
++            - const: bus_clk
++            - const: pll_clk
++
++      required:
++        - vddcore-supply
++        - vddio-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos4210-mipi-dsi
++
++    then:
++      properties:
++        clocks:
++          minItems: 2
++
++        clock-names:
++          items:
++            - const: bus_clk
++            - const: sclk_mipi
++
++      required:
++        - vddcore-supply
++        - vddio-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos3250-mipi-dsi
++
++    then:
++      properties:
++        clocks:
++          minItems: 2
++
++        clock-names:
++          items:
++            - const: bus_clk
++            - const: pll_clk
++
++      required:
++        - vddcore-supply
++        - vddio-supply
++        - samsung,phy-type
++
++additionalProperties:
++  type: object
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos5433.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    dsi@13900000 {
++       compatible = "samsung,exynos5433-mipi-dsi";
++       reg = <0x13900000 0xC0>;
++       interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
++       phys = <&mipi_phy 1>;
++       phy-names = "dsim";
++       clocks = <&cmu_disp CLK_PCLK_DSIM0>,
++                <&cmu_disp CLK_PHYCLK_MIPIDPHY0_BITCLKDIV8>,
++                <&cmu_disp CLK_PHYCLK_MIPIDPHY0_RXCLKESC0>,
++                <&cmu_disp CLK_SCLK_RGB_VCLK_TO_DSIM0>,
++                <&cmu_disp CLK_SCLK_DSIM0>;
++       clock-names = "bus_clk",
++                     "phyclk_mipidphy0_bitclkdiv8",
++                     "phyclk_mipidphy0_rxclkesc0",
++                     "sclk_rgb_vclk_to_dsim0",
++                     "sclk_mipi";
++       power-domains = <&pd_disp>;
++       vddcore-supply = <&ldo6_reg>;
++       vddio-supply = <&ldo7_reg>;
++       samsung,burst-clock-frequency = <512000000>;
++       samsung,esc-clock-frequency = <16000000>;
++       samsung,pll-clock-frequency = <24000000>;
++       pinctrl-names = "default";
++       pinctrl-0 = <&te_irq>;
++       status = "disabled";
++       #address-cells = <1>;
++       #size-cells = <0>;
++
++       panel@0 {
++          compatible = "samsung,s6e3ha2";
++          reg = <0>;
++          vdd3-supply = <&ldo27_reg>;
++          vci-supply = <&ldo28_reg>;
++          reset-gpios = <&gpg0 0 GPIO_ACTIVE_LOW>;
++          enable-gpios = <&gpf1 5 GPIO_ACTIVE_HIGH>;
++       };
++
++       ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++             reg = <0>;
++
++             dsi_to_mic: endpoint {
++                remote-endpoint = <&mic_to_dsi>;
++             };
++          };
++       };
++    };
+diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+deleted file mode 100644
+index 2a5f0889ec32..000000000000
+--- a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
++++ /dev/null
+@@ -1,92 +0,0 @@
+-Exynos MIPI DSI Master
+-
+-Required properties:
+-  - compatible: value should be one of the following
+-		"samsung,exynos3250-mipi-dsi" /* for Exynos3250/3472 SoCs */
+-		"samsung,exynos4210-mipi-dsi" /* for Exynos4 SoCs */
+-		"samsung,exynos5410-mipi-dsi" /* for Exynos5410/5420/5440 SoCs */
+-		"samsung,exynos5422-mipi-dsi" /* for Exynos5422/5800 SoCs */
+-		"samsung,exynos5433-mipi-dsi" /* for Exynos5433 SoCs */
+-		"fsl,imx8mm-mipi-dsim" /* for i.MX8M Mini/Nano SoCs */
+-		"fsl,imx8mp-mipi-dsim" /* for i.MX8M Plus SoCs */
+-  - reg: physical base address and length of the registers set for the device
+-  - interrupts: should contain DSI interrupt
+-  - clocks: list of clock specifiers, must contain an entry for each required
+-    entry in clock-names
+-  - clock-names: should include "bus_clk"and "sclk_mipi" entries
+-		 the use of "pll_clk" is deprecated
+-  - phys: list of phy specifiers, must contain an entry for each required
+-    entry in phy-names
+-  - phy-names: should include "dsim" entry
+-  - vddcore-supply: MIPI DSIM Core voltage supply (e.g. 1.1V)
+-  - vddio-supply: MIPI DSIM I/O and PLL voltage supply (e.g. 1.8V)
+-  - samsung,pll-clock-frequency: specifies frequency of the oscillator clock
+-  - #address-cells, #size-cells: should be set respectively to <1> and <0>
+-    according to DSI host bindings (see MIPI DSI bindings [1])
+-  - samsung,burst-clock-frequency: specifies DSI frequency in high-speed burst
+-    mode
+-  - samsung,esc-clock-frequency: specifies DSI frequency in escape mode
+-
+-Optional properties:
+-  - power-domains: a phandle to DSIM power domain node
+-
+-Child nodes:
+-  Should contain DSI peripheral nodes (see MIPI DSI bindings [1]).
+-
+-Video interfaces:
+-  Device node can contain following video interface port nodes according to [2]:
+-  0: RGB input,
+-  1: DSI output
+-
+-[1]: Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
+-[2]: Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-Example:
+-
+-	dsi@11c80000 {
+-		compatible = "samsung,exynos4210-mipi-dsi";
+-		reg = <0x11C80000 0x10000>;
+-		interrupts = <0 79 0>;
+-		clocks = <&clock 286>, <&clock 143>;
+-		clock-names = "bus_clk", "sclk_mipi";
+-		phys = <&mipi_phy 1>;
+-		phy-names = "dsim";
+-		vddcore-supply = <&vusb_reg>;
+-		vddio-supply = <&vmipi_reg>;
+-		power-domains = <&pd_lcd0>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		samsung,pll-clock-frequency = <24000000>;
+-
+-		panel@1 {
+-			reg = <0>;
+-			...
+-			port {
+-				panel_ep: endpoint {
+-					remote-endpoint = <&dsi_ep>;
+-				};
+-			};
+-		};
+-
+-		ports {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			port@0 {
+-				reg = <0>;
+-				decon_to_mic: endpoint {
+-					remote-endpoint = <&mic_to_decon>;
+-				};
+-			};
+-
+-			port@1 {
+-				reg = <1>;
+-				dsi_ep: endpoint {
+-					reg = <0>;
+-					samsung,burst-clock-frequency = <500000000>;
+-					samsung,esc-clock-frequency = <20000000>;
+-					remote-endpoint = <&panel_ep>;
+-				};
+-			};
+-		};
+-	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4f57deee1a08..aca7027dc464 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6640,6 +6640,7 @@ M:	Jagan Teki <jagan@amarulasolutions.com>
+ M:	Marek Szyprowski <m.szyprowski@samsung.com>
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
++F:	Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+ F:	drivers/gpu/drm/bridge/samsung-dsim.c
+ F:	include/drm/bridge/samsung-dsim.h
+ 
+-- 
+2.34.1
 
