@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2EB6D418A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:07:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51A176D418E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232088AbjDCKHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:07:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57876 "EHLO
+        id S231928AbjDCKHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232249AbjDCKGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:06:49 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B673B113FC
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:06:46 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id ew6so114985440edb.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:06:46 -0700 (PDT)
+        with ESMTP id S231285AbjDCKHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:07:23 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD5C4C1E
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:07:21 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id h25so37332868lfv.6
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:07:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680516405;
+        d=linaro.org; s=google; t=1680516439;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vxf+j7nwp38oMPxfUAn6vX6VpUdYcFQH7ABonjYa1h0=;
-        b=jayDUas/Z/vecvYgBcuWnjQjOAKb/6d5i2DO3mu7xBYQsPyyNxTs3gNtmT0RrxZP9u
-         LK3hDLKZBqZKKCzwHCQ8yqLWaVraY9FUlScUZWcuE5SdjfrSjwqyyrjpLjCmrHuKU8+L
-         99OMbrBOJ8OLKBbp7DNB1caNOEe62rvgtLILPeqJEKcDYCnSeB3ligsI0MU5sibr8rn7
-         ZckRRmj6fcLERGTsoaz9VZfbEkLbweX5nHYnR5tSJpjjCSltAl/ssDp4sNlOOk+3CCDc
-         rvkcvKizPMvBk9qFcU35hTOVdYOyp7mPrqGQsL87GTyEqLq755fhRwJzT3gY+fSYotPt
-         tOCw==
+        bh=okbVzjpphuSURTBwLwWsz3d/UlpOfVGoKqvP11/IIQU=;
+        b=kzHcRw145Tq/JE+dEAFtzVZmKjjSoP2eaaYfw0szz1lZettc8oUTufHAVffNbF7PxO
+         QXbPvRwQeHbEa1d47xqMmXh4eTncbQ1Ljt4GkFUrnG1dfeWv7t8U54qhtRzNQHyJ0vcr
+         LDWZ/ghGyygFkA+MrOG70NLEKjSFfOWyAuwWvOnCyAFt4516VzHT4Aq4/J9YWYtpg/uo
+         ctp4kMxlYAxEqTS7w8z/sPX9x8Y5tssOEo/XJ5UeaMqPHSmS42VKOiz3QWYq1DFr51qu
+         aGlpwFPiAwJ2f02XoKG3AaKXvfNw5FopUdjIw01UNtLhhIJGlDXPU5HDzDJp/dZ0a21L
+         DCew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680516405;
+        d=1e100.net; s=20210112; t=1680516439;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vxf+j7nwp38oMPxfUAn6vX6VpUdYcFQH7ABonjYa1h0=;
-        b=xZlOtkB7TxExmaxoiMmaNzwjYGQ8M1EuBrNUIWRAu56LyB9Pf64jbsv8dNfvso9FC5
-         TruFNi54K1yNBSo4AvhkZHVWaMM/Y+748T3ei5mFnWhK8OL7tr4/lVRnr9ySeW1eLXaJ
-         aD4V09fGaV/QogHaDUXGSUCRVagIATWeMcDIdVJ2e1Pq+cI2kr+RRBN4ObfNZvpipYyZ
-         E+THxbM4MVEaSoFUUYBPvH8cXwocnK9xzIJPZzzc4Upz8srG9PpAU0yjWkmZa+f56I7/
-         MB5xotgHmX/AQsUVdvKM9mi9s5szBzf34zxcObqHeTphHJP3KxJwxEFzAUBjCn3dsneR
-         Ahgg==
-X-Gm-Message-State: AAQBX9dF/tyVg1sB4XvGjk/lWhYi4bQbtthnP8RaDdEUwO/7WO7a3TC6
-        JJAEc9AJHmk0t17g0NT/mhuTBw==
-X-Google-Smtp-Source: AKy350bcBVTyphXmxrUGT1mKHubBEY4YTGKeKza+kmtP4dQZThvRP+prbPBPAIHl038dezT4p9SMmw==
-X-Received: by 2002:a17:906:6849:b0:930:e3a0:8636 with SMTP id a9-20020a170906684900b00930e3a08636mr34538060ejs.57.1680516405039;
-        Mon, 03 Apr 2023 03:06:45 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id z12-20020a1709064e0c00b00882f9130eafsm4257902eju.26.2023.04.03.03.06.44
+        bh=okbVzjpphuSURTBwLwWsz3d/UlpOfVGoKqvP11/IIQU=;
+        b=FYPjLGT6kbm5B6nRuFxRTLmJgjhveIWXVpndTNGGGmdtGIDC2MxRCxq0wBuo4qjLWe
+         wZ2q/gLntb1yC1pVwWfMQ+38NVvZTSRURm31kjwxr7BwnotJEwXnW62ca7f1SeHXJkgP
+         IMOoibDQ3kqqyuss1E2zvKmkBxD8kgO3lpR1Y0RCZyR1UGJjwa3keCSMAHs5VlIUkmul
+         9Ezb2Ev1kXCnJKjbXCJGbhGVYh3pa0EYoNIithEz2PoO52Cr0KLTUQ9VMOltUrUJ5cvS
+         LGy0lIqAMcPxCtCr+DoRYiUSU+dRhCClqpquOva5a27VZtaXLDi684wvZEtE+ZjDv/CO
+         Dkxg==
+X-Gm-Message-State: AAQBX9dQ6D3CsGH0Tx/KDTJZvBcvVlviaInK16NzI8kSU6MPiQXSKhSR
+        FnWtDXQmwlwdzTaM1SPvhwPFWw==
+X-Google-Smtp-Source: AKy350bEVPXVYmqwfOkf81gG9dW9SP4lc7NBMKw+Vwl7C+AeAKsHhRRe4JaSoZR6Vqo8JL9DsE/ToA==
+X-Received: by 2002:ac2:522c:0:b0:4dd:ad88:ba65 with SMTP id i12-20020ac2522c000000b004ddad88ba65mr8747235lfl.67.1680516439665;
+        Mon, 03 Apr 2023 03:07:19 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id p13-20020a05651238cd00b004e84b79de9bsm1678722lft.254.2023.04.03.03.07.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 03:06:44 -0700 (PDT)
-Message-ID: <d1a9d857-4a2a-f767-fb27-dd368b27c848@linaro.org>
-Date:   Mon, 3 Apr 2023 12:06:43 +0200
+        Mon, 03 Apr 2023 03:07:19 -0700 (PDT)
+Message-ID: <e95b347a-83dc-b530-b242-8f335996b7ce@linaro.org>
+Date:   Mon, 3 Apr 2023 12:07:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: pm8350b: fix thermal zone node
- name
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 04/22] arm64: dts: qcom: sc8280xp-pmics: correct
+ interrupt routing for pm8280_2_temp_alarm
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -68,14 +67,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
 References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-3-dmitry.baryshkov@linaro.org>
- <47efb05a-d1e7-a3c5-c423-4eb53fe86386@linaro.org>
- <33430a31-b9da-5f1c-bae0-9ec6f24fda99@linaro.org>
- <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
- <4c4450b5-28a3-0a4d-ccd0-5ec96c2ded82@linaro.org>
- <cdba9174-6de1-137f-e902-3ae2f4a78ee9@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cdba9174-6de1-137f-e902-3ae2f4a78ee9@linaro.org>
+ <20230401220810.3563708-5-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230401220810.3563708-5-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -88,43 +82,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 12:00, Konrad Dybcio wrote:
+
+
+On 2.04.2023 00:07, Dmitry Baryshkov wrote:
+> The PMIC pm8280_2 has SID equal to 3, thus it interrupts-extended should
+> use 3 as the first argument value. Fix the interrupts-extended value for
+> pm8280_2_temp_alarm device node.
 > 
+> Fixes: 6c82f40ec94e ("arm64: dts: qcom: sc8280xp-pmics: Add temp alarm for PM8280_{1/2} PMICs")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> On 3.04.2023 11:50, Dmitry Baryshkov wrote:
->> On 03/04/2023 12:09, Krzysztof Kozlowski wrote:
->>> On 02/04/2023 13:02, Dmitry Baryshkov wrote:
->>>> On 02/04/2023 13:34, Krzysztof Kozlowski wrote:
->>>>> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
->>>>>> Correct the thermal zone node name to remove the clash with
->>>>>> pm8350c.dtsi. Remove unused labels.
->>>>>>
->>>>>> Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
->>>>>
->>>>> Please describe the observable bug from that commit being fixed here.
->>>>> Any future clash, which did not exist that time, is not a bug. It's future.
->>>>>
->>>>> Naming changes here are more a matter of style, because the old names
->>>>> were correct according to our coding guidelines, just not precise (c
->>>>> instead of b). But node names anyway are not important from the point of
->>>>> view fixes and adding such tag will cause a needless backport.
->>>>
->>>> It is needed. Including both pm8350c.dtsi and pm8350b.dtsi will result
->>>> in one thermal zone overriding another one.
->>>
->>> I don't understand. You used future tense "will", but we talk about
->>> past. So where is the bug in commit 5c1399299d9d?
->>
->> At that time there already existed sm8350-mtp which included both of dtsi files.
->>
-> pm8350[bc] both have a node named /pm8350c-thermal, which means one will
-> get overriden with the other. Since we sort the includes alphabetically,
-> the one in pm8350b.dtsi will never be taken into account and hence the
-> temp alarm will never be associated to any thermal zone.
-
-OK, if I understand correctly, this overwrite of thermal node was
-already happening at commit 5c1399299d9d. It looks good then.
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> index a3c7369f9594..254337345e45 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> @@ -176,7 +176,7 @@ pmc8280_2: pmic@3 {
+>  		pm8280_2_temp_alarm: temp-alarm@a00 {
+>  			compatible = "qcom,spmi-temp-alarm";
+>  			reg = <0xa00>;
+> -			interrupts-extended = <&spmi_bus 0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			interrupts-extended = <&spmi_bus 0x3 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>  			#thermal-sensor-cells = <0>;
+>  		};
+>  
