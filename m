@@ -2,141 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00DC56D4134
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A878B6D4140
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:51:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232350AbjDCJu3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Apr 2023 05:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59570 "EHLO
+        id S231863AbjDCJvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:51:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232455AbjDCJt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:49:59 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A47125;
-        Mon,  3 Apr 2023 02:49:10 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 1268F24E36E;
-        Mon,  3 Apr 2023 17:48:58 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
- 2023 17:48:57 +0800
-Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
- 2023 17:48:57 +0800
-Message-ID: <9c132e62-7830-90bf-2c3e-1568a54eb6ec@starfivetech.com>
-Date:   Mon, 3 Apr 2023 17:48:56 +0800
+        with ESMTP id S231743AbjDCJu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:50:59 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F59F1880B
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:50:01 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id r11so114884149edd.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:50:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680515399;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=njOb8FD8MR7p9DAF345Hq+aO222nfpoaV4wgzEQORsE=;
+        b=WSssOdY3Y7QQMxZhOv5ODIMftu2oa1cARN3R7zrYwN6qDd6mcfPp0HUo/WyzzybZlN
+         3qwP+204tyHqCd89ElO0Un0gBC2UIThCIsdF8Wh/CBy8virxgKXDJtFh1XborA+iWUVN
+         N+k+CKu0zYPFcAkS+mnT2g9RVJMtq7eNyt79cJLa8P4RS1PxHLGb/b7N1pBhEeKbG1Qm
+         LGpaI5X9aSyIR2xYFIwwx9XQ4Gj6fpkg2+cHarWPeBftyNzNpFft3vIc7cCjppZFNv/p
+         3/6LW4Lb4OWiTvgVMYFxPbkeOohPQ5OSTAM32IKGLEYhEID6mAHSm4CilJTNYK3Svc6b
+         RrnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680515399;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=njOb8FD8MR7p9DAF345Hq+aO222nfpoaV4wgzEQORsE=;
+        b=4HvEDf4A0MtZgQuhE+EO1cMa99ZUyl43Lc0II5eWoKr/M/1qxHlfd1Xl8YY71Jt6HD
+         RRG4r3CV/mvNIwYceUeedioFCGPV5kjeGSW+fW4ZgUPs1ezPGE6xNE5c6grOBDbUF3kt
+         LXQxbphlzurnzb8iwTG3EYEhFqVoepcXxQtZvqnpBeey+jePgMGHe4a0d5QvfdQPNF/d
+         hYI021b4Fr/8pIldpOBVes1rSh/2WNwVUi2OeqYc1uECA0RJL0/N57/QlwIeHU+CQvEh
+         jn3s+U8ASQrILINtiUNFUhENI5uwFe/WZXQS8W5GNM4v59XwHh0pyJl38fkOrZ/EEdl1
+         gT4w==
+X-Gm-Message-State: AAQBX9cXc/uNOHI8nJCKgldQAgV/BMesGDp6h2POAXkJS1gCkQV8wvUH
+        I/gVvewZeCfs6MRGOc3KhmIxkA==
+X-Google-Smtp-Source: AKy350axDXzqltQsMGrbEq+s6HAPPXokx38cO/zKLAuZvJShm+5OuEGsdQduEWPjjJl9tW5ESCenGg==
+X-Received: by 2002:a17:907:7f0d:b0:946:fa88:5901 with SMTP id qf13-20020a1709077f0d00b00946fa885901mr19111746ejc.63.1680515399082;
+        Mon, 03 Apr 2023 02:49:59 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
+        by smtp.gmail.com with ESMTPSA id hz15-20020a1709072cef00b0093ebc654f78sm4290447ejc.25.2023.04.03.02.49.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 02:49:58 -0700 (PDT)
+Message-ID: <4837c3e0-60ed-601b-8512-30fda2176619@linaro.org>
+Date:   Mon, 3 Apr 2023 11:49:57 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v3 3/9] media: dt-bindings: cadence-csi2rx: Convert to DT
- schema
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: phy: add mtk-mipi-csi driver
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+To:     Julien Stephan <jstephan@baylibre.com>
+Cc:     Florian Sylvestre <fsylvestre@baylibre.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        "Todor Tomov" <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230331121826.96973-1-jack.zhu@starfivetech.com>
- <20230331121826.96973-4-jack.zhu@starfivetech.com>
- <0aa3a039-daf3-7e05-6da9-258335a5ca20@linaro.org>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <0aa3a039-daf3-7e05-6da9-258335a5ca20@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.3 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20230403071929.360911-1-jstephan@baylibre.com>
+ <20230403071929.360911-2-jstephan@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230403071929.360911-2-jstephan@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/04/2023 09:19, Julien Stephan wrote:
+> From: Florian Sylvestre <fsylvestre@baylibre.com>
+> 
+
+There is no commit msg.
+
+> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  .../bindings/phy/mediatek,csi-phy.yaml        | 41 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml
+> new file mode 100644
+> index 000000000000..c026e43f35fd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,csi-phy.yaml
+
+Filename like compatible.
+
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-Only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/mediatek,csi-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Sensor Interface MIPI CSI CD-PHY
+> +
+> +maintainers:
+> +  - Julien Stephan <jstephan@baylibre.com>
+> +  - Andy Hsieh <andy.hsieh@mediatek.com>
+> +
+> +description: |
+
+Do not need '|'.
+
+> +  The SENINF CD-PHY is a set of CD-PHY connected to the SENINF CSI-2
+> +  receivers. The number of PHYs depends on the SoC model.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-mipi-csi
+> +
+> +  reg:
+> +    minItems: 1
+
+maxItems instead
+(from where did you get such example?)
+
+> +
+> +  '#phy-cells':
+> +    const: 1
+> +
 
 
-On 2023/4/1 4:12, Krzysztof Kozlowski wrote:
-> On 31/03/2023 14:18, Jack Zhu wrote:
->> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
->> to DT schema format.
->> 
->> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
->> ---
->>  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 ----------
->>  .../bindings/media/cdns,csi2rx.yaml           | 174 ++++++++++++++++++
->>  MAINTAINERS                                   |   1 +
->>  3 files changed, 175 insertions(+), 100 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->>  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->> deleted file mode 100644
->> index 6b02a0657ad9..000000000000
->> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->> +++ /dev/null
->> @@ -1,100 +0,0 @@
->> -Cadence MIPI-CSI2 RX controller
->> -===============================
->> -
->> -The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
->> -lanes in input, and 4 different pixel streams in output.
->> -
->> -Required properties:
->> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
-> 
-> 
-> ...
-> 
->> +$id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Cadence MIPI-CSI2 RX controller
->> +
->> +maintainers:
->> +  - Maxime Ripard <mripard@kernel.org>
->> +
->> +description:
->> +  The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
->> +  lanes in input, and 4 different pixel streams in output.
->> +
->> +properties:
->> +  compatible:
->> +    const: cdns,csi2rx
-> 
-> That's not equivalent conversion and your commit msg does no mention any
-> drops in compatibles.
-> 
-The equivalent conversion refers to 'an SoC-specific compatible'?
-I'm not sure that, is it enough to add a description (drop an 'SoC-specific compatible')
-to my next version commit message?
+Best regards,
+Krzysztof
 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: CSI2Rx system clock
->> +      - description: Gated Register bank clock for APB interface
->> +      - description: pixel Clock for Stream interface 0
->> +      - description: pixel Clock for Stream interface 1
->> +      - description: pixel Clock for Stream interface 2
->> +      - description: pixel Clock for Stream interface 3
->> +
-> 
-> Best regards,
-> Krzysztof
-> 
