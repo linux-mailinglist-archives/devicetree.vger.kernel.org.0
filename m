@@ -2,119 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 750E36D50D1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012496D50EA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231571AbjDCSib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:38:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45058 "EHLO
+        id S232460AbjDCSqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:46:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbjDCSia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:38:30 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC5C1FF5
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:38:12 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id ek18so121146630edb.6
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:38:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680547092;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CySdEehWspubmXAcFc/gUkZ6ALWiIO8Dims2v4pC7cI=;
-        b=XxNS02hVI+u4D2pE7UGlx7ntA7oWIlCwkuRm3Gyu0E+L6ULQyC+6ShlqR4ekLzDFlT
-         pRslLrKcSR/9KsmwaW7cNkZ4sBLMBrrx13XQF615coXajYG/D2tRgvu66pGLfEkrm/C8
-         2A12Wh9pO54frQbFLcjovLAct7UkfQ9S1TjuUtOPvPyfN9wP6JUhxmt2lMVWqNnXPliV
-         rx/sm1EdhuYRfJXOSQ0ApUnyqwfYJXx+sqa2wWwvgay1iMPZZRXTCENV4sZ6NYwUwRpY
-         /YoYeDYiuIdE9FWPQg9xmmoXwmNDiV7gsagK762uIJSgjXuFP8gohz0DLGqClEWw0WV8
-         4NmA==
+        with ESMTP id S233358AbjDCSqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:46:18 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FDD2106;
+        Mon,  3 Apr 2023 11:46:14 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id r40-20020a05683044a800b006a14270bc7eso12812494otv.6;
+        Mon, 03 Apr 2023 11:46:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680547092;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CySdEehWspubmXAcFc/gUkZ6ALWiIO8Dims2v4pC7cI=;
-        b=v6UePWNdtfVO0HLpCttD6cKkZaxNRkDjqx+xhyISvKBWt89Yr3DU4c9jAOIvAuz2Ft
-         AAlGWj4sH2l5gqHQw7Y/lBR+AU9CDfOdNJTAM3jd27EuPBCLq1avZkGbWOp1HTfiULAU
-         guLPQp2/66qS5N5qkP7Ia/lrNxNSOjvoiXSDYdCEoJ/+Cjmi9UC/0sJ4AJ0kAUriKNE8
-         GDTvShDwnSzx3cd1XnON5zh49ppMB/oxOW/ZDoCts+QBIJIQkNqwXwNQGGAxrVFeLHBz
-         FtGI015UcOvSuqG4UMRYF2PhmIEcXQMMDFwRM0HTN1mqOB/J1iutsVZxzFwsrnvahGnh
-         va3Q==
-X-Gm-Message-State: AAQBX9fhIQY0qK7j8C67CTUIyABc4C4D+aM/g4oOv9HL7TOeg9Gb+/OF
-        D0SVO3kgLwMWkgzJr78AQfAiKw==
-X-Google-Smtp-Source: AKy350a21SUvVW8zkI0jUgi5Fki72Pdn7B89a65yFrUkCNuucXQuzP/aqKcsR7vvEISiRfXbpBAEfA==
-X-Received: by 2002:a17:907:8c83:b0:939:a610:fc32 with SMTP id td3-20020a1709078c8300b00939a610fc32mr38202123ejc.53.1680547092335;
-        Mon, 03 Apr 2023 11:38:12 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id t17-20020a1709060c5100b00927341bf69dsm4868907ejf.88.2023.04.03.11.38.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 11:38:11 -0700 (PDT)
-Message-ID: <ac0a61cc-942e-191a-76f2-855b482247ff@linaro.org>
-Date:   Mon, 3 Apr 2023 20:38:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH RFC 14/20] dt-bindings: pinctrl: oxnas,pinctrl: remove
- obsolete bindings
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20210112; t=1680547573;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wy0NcaxMPjAd0Cjp8anGLQ+ZJvJT6IQ/gKneu1y1dn4=;
+        b=RUCI2YU5l1jF7/0EiY/CpchLdFe4V2JlDTdyH59Sywc1uALECZtS33AanlTXUM+o3E
+         N9waLui/RWD+714E8VEhDhk5jk3E87vyZ6ugc73voPrl4NTc3OMQPuchV6mZR2rt3L51
+         /dd1UzKPY/eonld+UEtLwC16eSM3MCGmWFgGppGCc+2/99H1MiiLdHh75/sdMZgPS75z
+         kYKioG2vNdB3nAE0fSIHY0v2yuq8dY/Q6XZTFNEeBwU2iqvA6njGQuKpQbH+SGs1X6f3
+         pRXAUAcBYJJkr5+zVXKo2t/A0KrrEhNMWltdPU0k8ESPYLB1yvc3s748pPjhAw5O0cpS
+         cbRw==
+X-Gm-Message-State: AAQBX9fq+NJtKn9TmUXsZdjMoRsyZhFV/k5mecYE7hZ0unglXMpiFpd6
+        PbrgfDW5M9fHsUVihczeJA==
+X-Google-Smtp-Source: AKy350YjgozHOEC2dvNCQI9uebQk/eVsGBSXpTw8cGc1ZFM5R8OSBSr2dBzvQAQoRblbFeGR9A8sDg==
+X-Received: by 2002:a9d:77d3:0:b0:69a:5407:e563 with SMTP id w19-20020a9d77d3000000b0069a5407e563mr10154194otl.16.1680547573599;
+        Mon, 03 Apr 2023 11:46:13 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b11-20020a056830104b00b006a1287ccce6sm4540387otp.31.2023.04.03.11.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 11:46:12 -0700 (PDT)
+Received: (nullmailer pid 1356073 invoked by uid 1000);
+        Mon, 03 Apr 2023 18:46:11 -0000
+Date:   Mon, 3 Apr 2023 13:46:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
- <20230331-topic-oxnas-upstream-remove-v1-14-5bd58fd1dd1f@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230331-topic-oxnas-upstream-remove-v1-14-5bd58fd1dd1f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [net-next PATCH v6 16/16] arm: mvebu: dt: Add PHY LED support
+ for 370-rd WAN port
+Message-ID: <20230403184611.GA1352384-robh@kernel.org>
+References: <20230327141031.11904-1-ansuelsmth@gmail.com>
+ <20230327141031.11904-17-ansuelsmth@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327141031.11904-17-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2023 10:34, Neil Armstrong wrote:
-> Due to lack of maintainance and stall of development for a few years now,
-> and since no new features will ever be added upstream, remove the
-> OX810 and OX820 pinctrl bindings.
+On Mon, Mar 27, 2023 at 04:10:31PM +0200, Christian Marangi wrote:
+> From: Andrew Lunn <andrew@lunn.ch>
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> The WAN port of the 370-RD has a Marvell PHY, with one LED on
+> the front panel. List this LED in the device tree.
+> 
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  .../devicetree/bindings/pinctrl/oxnas,pinctrl.txt  | 56 -------------
+>  arch/arm/boot/dts/armada-370-rd.dts | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/armada-370-rd.dts b/arch/arm/boot/dts/armada-370-rd.dts
+> index be005c9f42ef..15b36aa34ef4 100644
+> --- a/arch/arm/boot/dts/armada-370-rd.dts
+> +++ b/arch/arm/boot/dts/armada-370-rd.dts
+> @@ -20,6 +20,7 @@
+>  /dts-v1/;
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include "armada-370.dtsi"
+>  
+> @@ -135,6 +136,19 @@ &mdio {
+>  	pinctrl-names = "default";
+>  	phy0: ethernet-phy@0 {
+>  		reg = <0>;
+> +		leds {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			led@0 {
+> +				reg = <0>;
+> +				label = "WAN";
 
+WAN or
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +				color = <LED_COLOR_ID_WHITE>;
+> +				function = LED_FUNCTION_LAN;
 
-Best regards,
-Krzysztof
+LAN?
 
+> +				function-enumerator = <1>;
+> +				linux,default-trigger = "netdev";
+> +			};
+> +		};
+>  	};
+>  
+>  	switch: switch@10 {
+> -- 
+> 2.39.2
+> 
