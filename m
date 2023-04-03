@@ -2,113 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 387A86D4520
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E67A66D452E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232355AbjDCNCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:02:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53286 "EHLO
+        id S232204AbjDCNDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232201AbjDCNCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:02:09 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9E5191F0
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:01:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1680526879;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qp8jb1qENX7rVnqrJSaV9tv+NNohtm3BMtsMs+alKp0=;
-        b=b4TZLRpsMM0e6x5tBFt4XybyPywv1OS+fgWzua+byFw0z7sCPCB+gw0dXJokHDeKaFXoAm
-        AQ02U18WqbpoxibtDon8VwRJnc97xraJ2FUwmtEW98JZ8VTNCkleGfCx4ZWRGduTlSUF0Z
-        or257CVusWNSj/YpEFaPtSVK7ltWxDU=
-Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com
- [209.85.160.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-581-vRTkrrTkPXWw7vzFlJBY3A-1; Mon, 03 Apr 2023 09:01:18 -0400
-X-MC-Unique: vRTkrrTkPXWw7vzFlJBY3A-1
-Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-17e3d37b3e6so15861793fac.22
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:01:17 -0700 (PDT)
+        with ESMTP id S232395AbjDCNDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:03:43 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5EF1D864;
+        Mon,  3 Apr 2023 06:03:08 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id 72-20020a9d064e000000b006a2f108924cso4085628otn.1;
+        Mon, 03 Apr 2023 06:03:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680526987;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Gdit34yJQcy1eg+Fj4fh5GPEiQrMUeLrxLZa8sMa+M=;
+        b=Ecs4+hj3b55o0lLfR81erixSbxqrVStTLim7x2gps4tzMczni/9SCliEOaOy1Fu/Ew
+         5yPg22mEK8i/Zxeh57BS66hJ1Ds97WVIQLQ5LSLpWEeuMSWiQm9WUJmKeifeN6X1YLaj
+         wc25vZrUQdZ55h8rhg2LBFppd4i91XnhrOAgi///Mmcz0b8SAl4uBs0mBicVB4lDZvp2
+         3nKF0T8jd+wTn6HMDagWew6cyKKZD1pco9EeWOuip8x0k1SoS0eYQwBj8L2mO2SjFy1p
+         z5BPUWydkHOmXnRAlC0M+p1YJr8s7mTamJWX2zCRSJPstLn0/+fT3QjDes1EKgdqTdzq
+         zzOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680526877;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qp8jb1qENX7rVnqrJSaV9tv+NNohtm3BMtsMs+alKp0=;
-        b=6lOciYIBslR39yfgTZHgs89I7z9+iMYF5W6zfQFUUiD8CzAs7VJ+oZGDIQYWJw0HJ0
-         QfpbApUABUp1GhVybm8s9s4MxEStZRMJzI3f4LdjiS3nhdeXp3vSH7VUr2xap5ZeKifP
-         CeWV8oGzadxP3ZvY/yYc3nuoFnwsOOwQV1gGnry44NxUkEaHVbOdTqgBQuIPY84CqoWu
-         /zONiSbibV3Yc3cJw8+kj98ThUHiysgMgAmu0xYEtQdiI01/AOqrA4a/Am0+yy6QAoU2
-         RCY4Hk7RDXPk2GoF4umXl3yPJ5myZKXKUCsQleo2LdksbRGq2mz10nndoyagpV31cEYy
-         xY0A==
-X-Gm-Message-State: AAQBX9fy8suZfuav97b24C/tiqr3Wye+ROB9pK/N2+kBKsYTuzqZ2r2q
-        s1Jb1dGK4fH2Q95hWZG+f8gADKJpakpm7pUZZbUtk3glSvDym/uhegHMAIGqRPXPbyYfIUQu9av
-        J/WLcsrk6ZLpNeGi65WZ1Lg==
-X-Received: by 2002:a05:6870:a10a:b0:169:cbcc:25c0 with SMTP id m10-20020a056870a10a00b00169cbcc25c0mr9340399oae.14.1680526877277;
-        Mon, 03 Apr 2023 06:01:17 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bVyA1HaKN+sFnH2QwAuA0pQ0vlOfQSri1+XfKwdC7nAbRh3YgkVYvmAZP3E261XxLXanhZsg==
-X-Received: by 2002:a05:6870:a10a:b0:169:cbcc:25c0 with SMTP id m10-20020a056870a10a00b00169cbcc25c0mr9340341oae.14.1680526876532;
-        Mon, 03 Apr 2023 06:01:16 -0700 (PDT)
-Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id l11-20020a056870218b00b001777244e3f9sm3521228oae.8.2023.04.03.06.01.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 06:01:16 -0700 (PDT)
-Date:   Mon, 3 Apr 2023 08:01:12 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, bhupesh.sharma@linaro.org, wens@csie.org,
-        jernej.skrabec@gmail.com, samuel@sholland.org,
-        mturquette@baylibre.com, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
-Subject: Re: [PATCH net-next v3 00/12] Add EMAC3 support for sa8540p-ride
-Message-ID: <20230403130112.53z6m2lmm5lnjsm2@halaney-x13s>
-References: <20230331214549.756660-1-ahalaney@redhat.com>
- <20230331220613.2cr2r5mcf2wwse4j@halaney-x13s>
- <20230331215504.0169293a@kernel.org>
+        d=1e100.net; s=20210112; t=1680526987;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Gdit34yJQcy1eg+Fj4fh5GPEiQrMUeLrxLZa8sMa+M=;
+        b=EIKnOOO+nCd9dG+wMuOm8+xCsD8JBc6n3HlW0lbUQzzkvnn8JtrY4esJoytF294jNj
+         ULARERhhXJRuEvW79pPrXEZ0qbL0nPiJ++GRI/VHQ+wZZuTbRZKHFfCzccgJhatub1aw
+         j1Hj3Om6oBZwKzcscf5vRjhoiGCZ+YZDV26IYXDNQw5EVn9tWLcEL1aC53xL2JfJ9Irs
+         5I4fS3sDlMG46R9Yf9h3Yg7xf0MFh+tQWO0dU7Nd4BfnnjRGPSdG18osXLccF5zzkKuw
+         EMZf5nyt6O5ECFDtOK4quc+lOGIsu8VjGYwqd/oKJuS3hlRJIVGlYV4Fdj6JGYqU5w4w
+         EEqw==
+X-Gm-Message-State: AAQBX9d4pEmlbdbXVQUpiGcB0d9GoXSzoXHi9Vp+y10cHkiKJOljdsIY
+        ep/rK3h/ihyEawGYMBYiI2v1yEAi0VlkUH7+mEs1JHsqh9U=
+X-Google-Smtp-Source: AKy350aMNAvhZfzNhfPBjzMtuKuxt7Yferv0TB5CfYNoGd5il+hxXP809UlOPVg+ggfNoAlSjzKBquv4SspYghzR8q0=
+X-Received: by 2002:a05:6830:1be4:b0:6a1:1b5c:c6db with SMTP id
+ k4-20020a0568301be400b006a11b5cc6dbmr10357940otb.7.1680526987086; Mon, 03 Apr
+ 2023 06:03:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230331215504.0169293a@kernel.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230120003051.9100-1-bb@ti.com> <20230120003051.9100-2-bb@ti.com>
+In-Reply-To: <20230120003051.9100-2-bb@ti.com>
+From:   Christian Gmeiner <christian.gmeiner@gmail.com>
+Date:   Mon, 3 Apr 2023 15:02:55 +0200
+Message-ID: <CAH9NwWfDpF5L=pXfOY8_9Fv3QWo5pNgz-GXmnuV432=9uT=Fmw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] arm64: dts: ti: k3-am64-main: add VTM node
+To:     Bryan Brattlof <bb@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Keerthy <j-keerthy@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 09:55:04PM -0700, Jakub Kicinski wrote:
-> On Fri, 31 Mar 2023 17:06:13 -0500 Andrew Halaney wrote:
-> > As promised: https://lore.kernel.org/netdev/20230331215804.783439-1-ahalaney@redhat.com/T/#t
-> 
-> Patch 12 never made it to netdev or lore :(
-> 
+Hi
 
-Well, that's no good as I definitely want some eyes on that one :(
+> The am64x supports a single VTM module which is located in the main
+> domain with two associated temperature monitors located at different hot
+> spots on the die.
+>
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
 
-I've already gotten _some_ reviews on the earlier patches in v3,
-I am going to absorb anything super quick into a v4 today, then send that out,
-maybe copy pasting larger questions I have yet to respond to? Seems like
-an ok approach.. not having the full solution in hand is crummy for
-review. Let me know if you think that's a bad call and just a resend is
-better.
+Tested-by: Christian Gmeiner <christian.gmeiner@gmail.com>
 
-Sorry, not sure where I messed that up Friday evening when writing
-changelogs etc.
+-- 
+greets
+--
+Christian Gmeiner, MSc
 
+https://christian-gmeiner.info/privacypolicy
