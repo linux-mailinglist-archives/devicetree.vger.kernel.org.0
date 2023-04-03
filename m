@@ -2,155 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF7CF6D44F7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00EC86D44FD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:57:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232453AbjDCMzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47224 "EHLO
+        id S231778AbjDCM5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232363AbjDCMzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:55:00 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674C546B8
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:54:58 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id j7so34613732ybg.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:54:58 -0700 (PDT)
+        with ESMTP id S230269AbjDCM5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:57:03 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D1B46B8
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:57:02 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id b20so116968540edd.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:57:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680526497;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=V9m/sUPReBRVUTZn9B6dP2tPNUqQXZVWHqpNk1XjAmM=;
-        b=DCTWXstAsJF9drUfucdicjCtceJE12ZpiVkcQoOxbhPun5kiW4Mw25qh0KoPCnzwnf
-         3g2+3/FNxsHjRfZYycfdJ8Nzl0erlbxVw7jtOYCmTNY3/+FtapC5R4cVnmTzwMOysyTa
-         7ApcT1Bc7fpQfFKzMwLNeiwmE7OPRHfvCOvE4L+QA/eBdnVPz/1nRS6ZUvze2xANNUKf
-         y/yxnxy51eN8FvvWeiPudkN5qY03ZTBQNDeWWhpX7ZUmXc3sJ65SOT6HTfkMAvFG24/a
-         R4D9PmE96ItEHLDwbhKbTkdlUnKPWeQDEjhAzJm7hJ4LZ7LwhL0rye2Lru6jlN/hMYS4
-         /t4A==
+        d=linaro.org; s=google; t=1680526621;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N9PXbgDl7LeRBeujLG4sJDCnMB4TWVsRHSKuyMeCJLc=;
+        b=Ovu9SuSRZuBTPFeZVLE4CtW9jF4sSj8AI99HjwWXOch+RnqponLdZXviwvIFo8d4Ga
+         HfKie88WuwpL10J+WMmIdyb+nryWYi+Hvynb3tEJGxaWVSf7hfCKvhbRB1BFaACgNIuT
+         mMAmeKPdSvtSMD+YFDtLMNj/ntAGWzz30l4eS9uURoBevGJ4dz0nTIniwp6/YjCkB6Az
+         eBqe+OqNnQtOsA+1ue5FcRb5vmY5WZY9QAqO7hWETr5A1YD/56nARDy2GQoTE7KizoYd
+         PajbNil5N8AygAcMFA5zN7tNgARwt/KEI1Zak6kSjn54GE8HWFIhEUVytADY33h6omCn
+         fJWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680526497;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V9m/sUPReBRVUTZn9B6dP2tPNUqQXZVWHqpNk1XjAmM=;
-        b=wuRP9WQWxgV2v7YQkb/p+rYeDCQk8OO9XIIWNUGR9tCpCk2wr8g1M3reXOCPcfHDAQ
-         lE9+iH4/ZR7zE/N8w6TC7JTs8t/MkpbGEe6p3U63yuzJVpypNrVJ4LnIUF4kfrxNh/f9
-         F71Git2N5savk1eyYOeI8Rpct2mWXQVIxgsqnxZ98/y3LHFyWHZBSuA9jCVT1PSeotB2
-         PXrI8kMKs/iMxWLT0jmAnDWROX2cbjiZAnYspBQjJO+/a6MHbNB60OhvsUzsrol7EW5M
-         0QJg07panhgEkaKkClC0zrLefhj7AJhrRMO3yCjWdwCM08rSyd8h25aixWJO8rQO45e2
-         TkUA==
-X-Gm-Message-State: AAQBX9eky6NlRnyF2wXusu/u3cJc55SzPjENmeWG/SW7Zf0BzqC7yzYy
-        7KKiSw3FKIwZ9o9dL7eTbfxdfcMKSczdK57Ehp10FQ==
-X-Google-Smtp-Source: AKy350agaOWrDkEB7GhGzwT2bJspFd1n9g4T/aiBveguKOmpT39VaFfXxC01sTr6yL9/6KPZgVuUrjlz8cfJQn8FbxA=
-X-Received: by 2002:a05:6902:102b:b0:b46:4a5e:3651 with SMTP id
- x11-20020a056902102b00b00b464a5e3651mr23230818ybt.9.1680526497588; Mon, 03
- Apr 2023 05:54:57 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680526621;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N9PXbgDl7LeRBeujLG4sJDCnMB4TWVsRHSKuyMeCJLc=;
+        b=efLNJ4eDbEsKz98+PLhmFmS8q4K1okBu9wLTKdIt1PpJeaKFt4zBgmkTiAFIhlyqeg
+         10XXWubOhV3JmbrQT9XLaMhX97PErGCRaA7B9xgFLJna0r1qBqGkK3+ltgsdppgYqSHv
+         ZY77W0aVQ15BafhycYsK9d4YR7Siglx7NwUtMEw+qsG7g/Ypo2cHCmSKK/mpGPuaFPM4
+         KxiPFssISZrWigJUrv6W7+0jmL4+W1gqkaW0GgZ20VM6ixh4eY5AmPutpDXXU/ZSUM0+
+         DmeFntOZwrKpKnnrISeLAUCiAsNtnHcvBS3J83Rx9JMxyDuG1g/+n8RHliGQB4eLo3wm
+         BH2g==
+X-Gm-Message-State: AAQBX9ddzLH8yGnRQdMvWQylbAutm6vI9imxjScg4+gtwrEcUKPYBnwF
+        GBkvk+lmAJM8xbT8xWeYdJMt5g==
+X-Google-Smtp-Source: AKy350abfZ6sIteFU0M7hfXJkWONPCgcKYoCCqznwTV3GlqPHt5XHyN3ybOGekoNoWZk7JDL60xBlg==
+X-Received: by 2002:aa7:d806:0:b0:4fc:3777:f630 with SMTP id v6-20020aa7d806000000b004fc3777f630mr33601867edq.0.1680526620839;
+        Mon, 03 Apr 2023 05:57:00 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
+        by smtp.gmail.com with ESMTPSA id d12-20020a50f68c000000b004af73333d6esm4605441edn.53.2023.04.03.05.56.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 05:57:00 -0700 (PDT)
+Message-ID: <46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org>
+Date:   Mon, 3 Apr 2023 14:56:59 +0200
 MIME-Version: 1.0
-References: <20230327122948.4323-1-johan+linaro@kernel.org>
- <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org> <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
- <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org> <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
-In-Reply-To: <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 3 Apr 2023 15:54:46 +0300
-Message-ID: <CAA8EJpqfFhRXTrC8osdXbwJ8k1PUMYN1PtJp3ZZJhm4VuyO2tw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and registers
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 21/22] arch: arm64: dts: qcom: pm8150: support SID
+ greater that 9
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-22-dmitry.baryshkov@linaro.org>
+ <af18b9a3-2960-8fbb-0d19-ee7d3b3f89ab@linaro.org>
+ <b33337de-1a09-aa72-7f1f-fabf85ddcd9d@linaro.org>
+ <CAA8EJprnv0uqEq=uJ8z+Az-izwk-kscXiELVqrP9BPBFQpJE4A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJprnv0uqEq=uJ8z+Az-izwk-kscXiELVqrP9BPBFQpJE4A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Apr 2023 at 15:46, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
-> > On 03/04/2023 12:54, Johan Hovold wrote:
-> >> On Mon, Apr 03, 2023 at 11:18:07AM +0200, Krzysztof Kozlowski wrote:
-> >>> On 27/03/2023 14:29, Johan Hovold wrote:
-> >>>> The pmk8280 PMIC PON peripheral is gen3 and uses two sets of registers;
-> >>>> hlos and pbs.
-> >>>>
-> >>>> This specifically fixes the following error message during boot when the
-> >>>> pbs registers are not defined:
-> >>>>
-> >>>>    PON_PBS address missing, can't read HW debounce time
-> >>>>
-> >>>> Note that this also enables the spurious interrupt workaround introduced
-> >>>> by commit 0b65118e6ba3 ("Input: pm8941-pwrkey - add software key press
-> >>>> debouncing support") (which may or may not be needed).
-> >>>>
-> >>>> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
-> >>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 5 +++--
-> >>>>  1 file changed, 3 insertions(+), 2 deletions(-)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> >>>> index c35e7f6bd657..a0ba535bb6c9 100644
-> >>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> >>>> @@ -59,8 +59,9 @@ pmk8280: pmic@0 {
-> >>>>            #size-cells = <0>;
-> >>>>
-> >>>>            pmk8280_pon: pon@1300 {
-> >>>> -                  compatible = "qcom,pm8998-pon";
-> >>>> -                  reg = <0x1300>;
-> >>>> +                  compatible = "qcom,pmk8350-pon";
-> >>>
-> >>> Same comment as Dmitry's. There is no compatible "qcom,pmk8350-pon"
-> >>> ccd3517faf18, therefore indicated backport (through AUTOSEL) will lead
-> >>> to invalid stable kernel.
-> >>>
-> >>> You must drop the Fixes tag, because this cannot be backported.
-> >>
-> >> That's bullshit. Do you see a stable tag? Is 5.19-stable still active?
-> >
-> > Why do you refer to activeness of v5.19? This will go also to v6.0 and v6.1.
-> >
-> >>
-> >> The problem is that the driver was updated before the binding was so the
-> >> above mentioned probe error has been there since this file was merged.
-> >
-> > I grepped and that commit did not have such compatible. Are you saying
-> > that the kernel which was released with this commit already had that
-> > compatible in driver (through different merge/tree)?
->
-> So I double checked, the commit ccd3517faf18 (which is being "fixed")
-> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
-> compatible, thus it could not be fixed that way. Therefore this cannot
-> be logically fix for that commit from that release.
->
-> "Fixes" means that commit has a bug and this is how it should be fixed.
-> So v6.0 kernel should be fixed to use "qcom,pmk8350-pon" compatible,
-> which is obviously wrong. v6.0 does not support it and the "fix" would
-> actually break it (which might be worse or better than original problem,
-> but that's independent thing).
+On 03/04/2023 13:45, Dmitry Baryshkov wrote:
+>> Konrad
+>>>> +
+>>>>  #undef PMIC_SID
+>>>>  #undef PMIC_SID1
+>>>>  #undef PMIC_LABEL
+>>>
+>>> Same comment as for previous patches - all undefs must be gone.
+> 
+> This means that we can not include two copies of the same PMIC (which
+> do have on both platforms).
 
-This patch fixes the issue in the commit ccd3517faf18. In the end, the
-schema is describing the hardware, not just what the driver needs.
-However, backporting this fix would also require one to cherry-pick
-two other patches (one for the schema, one or two for the driver).
+Consider spi15 and spi16:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sm8250.dtsi?h=v6.3-rc5&id=7e364e56293bb98cae1b55fd835f5991c4e96e7d#n1045
 
-I think we should mention 0b65118e6ba3 ("Input: pm8941-pwrkey - add
-software key press debouncing support") in the commit message (and
-optionally 03fccdc76dce ("dt-bindings: power: reset: qcom-pon: Add new
-compatible "qcom,pmk8350-pon"")). Using Cc:stable should probably be
-left to patch authors (and I myself would not use them here).
+Do you see it written as #include "qcom-sm8250-spi.dtsi" with
+parametrizing the reg/unit address, interrupts etc?
 
--- 
-With best wishes
-Dmitry
+No. Neither PMIC should be. It is not a special device.
+
+Best regards,
+Krzysztof
+
