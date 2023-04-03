@@ -2,170 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7326D41C3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4B8E6D41EB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232224AbjDCKTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35944 "EHLO
+        id S231925AbjDCK0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232193AbjDCKTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:19:11 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAB3113D1;
-        Mon,  3 Apr 2023 03:18:58 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id 383F41FD68;
-        Mon,  3 Apr 2023 10:18:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1680517137; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=a4MoXhe1RG60yL55LAJJODjxOGik5d8SFY4UggIUu04=;
-        b=f3reNnGyU64PHa5HNUCrDzAbyKc0nC6m7ILE6UJTMTjHxkElPrk4lgSIqv7oS3Q9xgY/Hg
-        /VLrUeBAlu9b5NDr4LMcDfNld4Xb149VSq55RLcflhBtwMCJmuHvrN81AYVDRygS4QQW72
-        FO40CbIW+81IA5MAmWtsjVsYWLwADM8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1680517137;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=a4MoXhe1RG60yL55LAJJODjxOGik5d8SFY4UggIUu04=;
-        b=0j++IB0zvsDolT331j6Xki/sJRKexThn9M0PtBAqAqWQMgBfj6f+XjhvIKrb32XwASwr06
-        xT1cWwJyenOtBJCQ==
-Received: from suse.de (unknown [10.163.43.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 077E02C161;
-        Mon,  3 Apr 2023 10:18:51 +0000 (UTC)
-Date:   Mon, 3 Apr 2023 11:18:49 +0100
-From:   Mel Gorman <mgorman@suse.de>
-To:     Matthew Wilcox <willy@infradead.org>
-Cc:     David Dai <davidai@google.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        with ESMTP id S231852AbjDCK0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:26:16 -0400
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2051.outbound.protection.outlook.com [40.107.96.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39C13A9B;
+        Mon,  3 Apr 2023 03:26:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gF/EdSnv3ol4bHb5mQITHPA5h8Lsq2msd+5s+jrEwgNZLx5ZiG/pCPkU/D7dA1JbtFaFEtcVO39uvNDVcUReqRtw9S+3NmWlfh4trFj7oi95xhm6h1UMWl4wirxnt9nh4esg16EyrQhtkO7gA8PvBJJkLz+qpwgSYOcjwvp0XcSmW7qcEjf1VcBduJKJlJp+sOJKK8O910Q7L5qfH+iGjaCnm/RFze2rx1ePIayvwg9/Xcufwf7z41379y+tJNN3MAUianP9EpthvsoUnqY+FGq7GGibaL4bu1kOcsRCgUySdkPrAvLOErUYet4T83MFCfFMzdufxKhwmDiIqsXtaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zvOXNWN7AAAJOOgeO+vNMaPNg7eFCr1Y16DGsXzCR0c=;
+ b=c2tF2OaYGL8/H0G9KFaFYn6g07qYdgWCk3U32SkP6lwpOZQZG7pS+nEIRsH0Vc+zK6L03O2LnAN/dm+HxAIcRBgQwX8N3uWRl1W1lAW/O5b5lK1Je1nxGKQ3w6R6QDPJaY+FjeAp/J1iA7ZFemYY/lHl2iUk9wVMsJs2slby4GF+A7eK5CLrpMVpQzCU7jAbC+mSK9kJbLRPgFeJJJ5RrN9AEbfx06P/fWcZJlSiTmIZyrz9EK0VfoARKfk2ZmDh1KlRVQvfA1lwU0UZobtCfMxMQFihfHj3wUAPH/WL7uF59bWV+qZ7+bP59hqJsYYSOXiQ1r4eqL8l4IoTjG4OZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zvOXNWN7AAAJOOgeO+vNMaPNg7eFCr1Y16DGsXzCR0c=;
+ b=AQweKgB4ZTb35Uoi2BAzqxLWdC+vUh1kOy10G5NY2jwq+9wNDSkaRREfX3UDguaxN/YXCjm7UH4pLEe4Z5FMYr3TJcvUjTqiibKx6Q3wrzW4vWe0HoyMvOrKqumVp/HGH/XMrJmi4PyZwAK7zoRg8xIoPW+fe2iyIETTU3SR5Bk=
+Received: from BN9PR03CA0197.namprd03.prod.outlook.com (2603:10b6:408:f9::22)
+ by CH0PR12MB5316.namprd12.prod.outlook.com (2603:10b6:610:d7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Mon, 3 Apr
+ 2023 10:26:09 +0000
+Received: from BN8NAM11FT094.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f9:cafe::21) by BN9PR03CA0197.outlook.office365.com
+ (2603:10b6:408:f9::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
+ Transport; Mon, 3 Apr 2023 10:26:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT094.mail.protection.outlook.com (10.13.176.131) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6277.17 via Frontend Transport; Mon, 3 Apr 2023 10:26:09 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 3 Apr
+ 2023 05:26:08 -0500
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Mon, 3 Apr 2023 05:26:05 -0500
+From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Bonzini <pbonzini@redhat.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        James Morse <james.morse@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Juri Lelli <juri.lelli@redhat.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Ben Segall <bsegall@google.com>,
-        Daniel Bristot de Oliveira <bristot@redhat.com>,
-        Valentin Schneider <vschneid@redhat.com>,
-        kernel-team@android.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kvm@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
-Subject: Re: [RFC PATCH 0/6] Improve VM DVFS and task placement behavior
-Message-ID: <20230403101849.z6wengqxkchvpf75@suse.de>
-References: <20230330224348.1006691-1-davidai@google.com>
- <ZCYuLPlEFUnxPm4A@casper.infradead.org>
+        Michal Simek <michal.simek@xilinx.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <git@amd.com>,
+        <saikrishna12468@gmail.com>,
+        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH v3 0/3] mmc: sdhci-of-arasan: Add eMMC5.1 support for Xilinx Versal Net
+Date:   Mon, 3 Apr 2023 15:55:48 +0530
+Message-ID: <20230403102551.3763054-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-In-Reply-To: <ZCYuLPlEFUnxPm4A@casper.infradead.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT094:EE_|CH0PR12MB5316:EE_
+X-MS-Office365-Filtering-Correlation-Id: 664bef3e-e380-49db-0d82-08db342dd765
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xDlCgGdkkDpTGjIZ2VDUdmubg8Ij5HBDl8JFuSlMWJGDWpC12lV5e6rYNdNOgujqE8Y54h0RoSmdNI6z4COQTJ+Lkd+RPvczADyJ6FOQAKaom9WaumuuUEkDLVc38S7LRqasYpGz4ql8Gs/FjA+DSXS5jR8u0qwo6y7ZVvR8rkCyZfspXEb0hCEobmrMxW94ISR6JuVafy4Rm6MToEJpJXM6pfCJUdi4EZDh86tv9iL8yDN2TiKho7OEBNvoYnTswKV5BBOfBYIY8eafEJR4CvWDTtLA148C88nomLWnAZVshoO4Fdjf8g+NASKPFX9yCt1/R+HVoS2qvXh3wF55MdPMJwFxloPFToEhQ66wumkCxj714I3/UNmsItJQ0GWZWe8MkVLgPlxWMnIa6Jstdfzf9zEbWrMNpAZJzkDgCm1YH9jolpOVkhvm4PDpMq+SCxWwbVDr64WZJmyhLs7XtjPQ374ZHRJshtqJInw68gUwaqQcY2LagNkoAWLem+iu4InKiW4Wr9ve86UZeUe6CyFcZoswKjJlNAqzLbl9a2eZvX64Qoc8d7XESHKBc/W5jJJxLnWCrznh09o41LsPrF8ioUVHR5h+CAqRTqrynuyCO3RO8YCH4m8H4q5KZ6PLPoA89dx6SB8cAH7cdH37KRje2piV3VmKSUZiDMz90Ag5KLNRQ4UhPuTUHdyyC3N1/ne4S/Kwp0sR714PpiQzNwt+4T5YFGfaSs0nd/jdcgw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(346002)(39860400002)(396003)(451199021)(36840700001)(46966006)(40470700004)(82310400005)(86362001)(103116003)(82740400003)(356005)(81166007)(40460700003)(478600001)(7416002)(54906003)(316002)(6666004)(110136005)(70206006)(70586007)(4326008)(4744005)(41300700001)(2906002)(40480700001)(36756003)(186003)(1076003)(26005)(47076005)(8676002)(8936002)(426003)(2616005)(5660300002)(336012)(36860700001)(83380400001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2023 10:26:09.4485
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 664bef3e-e380-49db-0d82-08db342dd765
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT094.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5316
+X-Spam-Status: No, score=3.8 required=5.0 tests=AC_FROM_MANY_DOTS,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 01:49:48AM +0100, Matthew Wilcox wrote:
-> On Thu, Mar 30, 2023 at 03:43:35PM -0700, David Dai wrote:
-> > Hi,
-> > 
-> > This patch series is a continuation of the talk Saravana gave at LPC 2022
-> > titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
-> > of the talk is that workloads running in a guest VM get terrible task
-> > placement and DVFS behavior when compared to running the same workload in
-> 
-> DVFS?  Some new filesystem, perhaps?
-> 
+Add eMMC5.1 support for Xilinx Versal Net platform which has PHY within
+the Host Controller space.
+Also, add Xilinx Versal Net compatible for eMMC5.1 in DT binding.
 
-Dynamic Voltage and Frequency Scaling (DVFS) -- it's a well known term in
-cpufreq/cpuidle/schedutil land.
+changes in v3:
+-> Split the 2/2 patch into two, created separate patch(3/3) to skip the
+clock delay setting for 400KHz as suggested by Adrian Hunter.
 
-> > the host. Effectively, no EAS for threads inside VMs. This would make power
-> 
-> EAS?
-> 
+changes in v2:
+-> 1/2 - Removed v5.1 from compatible string as suggested by Krzysztof.
 
-Energy Aware Scheduling (EAS) is mostly a kernel/sched thing that has
-an impact on cpufreq and my recollection is that it was discussed at
-conferences long before kernel/sched had any EAS awareness. I don't have
-the full series in my inbox and didn't dig further but patch 1 at least is
-providing additional information to schedutil which impacts CPU frequency
-selection on systems to varying degrees. The full impact would depend on
-what cpufreq driver is in use and the specific hardware so even if the
-series benefits one set of hardware, it's not necessarily a guaranteed win.
+Sai Krishna Potthuri (2):
+  dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net compatible
+  mmc: sdhci-of-arasan: Skip setting clock delay for 400KHz
 
-> Two unfamiliar and undefined acronyms in your opening paragraph.
-> You're not making me want to read the rest of your opus.
+Swati Agarwal (1):
+  mmc: sdhci-of-arasan: Add support for eMMC5.1 on Xilinx Versal Net
+    platform
 
-It depends on the audience and mm/ is not the audience.  VM in the title
-refers to Virtual Machine, not Virtual Memory although I confess I originally
-read it as mm/ and wondered initially how mm/ affects DVFS to the extent it
-triggered a "wtf happened in mm/ recently that I completely missed?". This
-series is mostly of concern to scheduler, cpufreq or KVM depending on your
-perspective. For example, on KVM, I'd immediately wonder if the hypercall
-overhead exceeds any benefit from better task placement although the leader
-suggests the answer is "no".  However, it didn't comment (or I didn't read
-carefully enough) on whether MMIO overhead or alternative communication
-methods have constant cost across different hardware or, much more likely,
-depend on the hardware that could potentially opt-in. Various cpufreq
-hardware has very different costs when measuring or alterating CPU frequency
-stuff, even within different generations of chips from the same vendor.
-While the data also shows performance improvements, it doesn't indicate how
-close to bare metal the improvement is. Even if it's 50% faster within a
-VM, how much slower than bare metal is it? In terms of data presentation,
-it might be better to assign bare metal a score of 1 at the best possible
-score and show the VM performance as a relative ratio (1.00 for bare metal,
-0.5 for VM with a vanilla kernel, 0.75 using improved task placement).
-It would also be preferred to have x86-64 data as the hazards the series
-details with impacts arm64 and x86-64 has the additional challenge that
-cpufreq is often managed by the hardware so it should be demonstrated the
-the series "does no harm" on x86-64 for recent generation Intel and AMD
-chips if possible.  The lack of that data doesn't kill the series as a large
-improvement is still very interesting even if it's not perfect and possible
-specific to arm64. If this *was* my area or I happened to be paying close
-attention to it at the time, I would likely favour using hypercalls only at
-the start because it can be used universally and suggest adding alternative
-communication methods later using the same metric "is an alternative method
-of Guest<->Host communication worse, neutral or better at getting close to
-bare metal performance?" I'd also push for the ratio tables as it's easier
-to see at a glance how close to bare metal performance the series achieves.
-Finally, I would look for x86-64 data just in case it causes harm due to
-hypercall overhead on chips that management frequency in firmware.
-
-So while I haven't read the series and only patches 2+6 reached by inbox,
-I understand the point in principle. The scheduler on wakeup paths for bare
-metal also tries to favour recently used CPUs and spurious CPU migration
-even though it is only tangentially related to EAS.  For example, a recently
-used CPUs may still be polling (drivers/cpuidle/poll_state.c:poll_idle)
-or at least not entered a deep C-state so the wakeup penalty is lower.
-
-So whatever critism the series deserves, it's not due to using obscure
-terms that no one in kernel/sched/, drivers/cpuidle of drivers/cpufreq
-would recognise.
+ .../devicetree/bindings/mmc/arasan,sdhci.yaml |   5 +
+ drivers/mmc/host/sdhci-of-arasan.c            | 237 +++++++++++++++++-
+ 2 files changed, 241 insertions(+), 1 deletion(-)
 
 -- 
-Mel Gorman
-SUSE Labs
+2.25.1
+
