@@ -2,82 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB9E6D54D2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 00:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B4D6D551E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 01:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233482AbjDCWiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 18:38:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51672 "EHLO
+        id S233233AbjDCXMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 19:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233456AbjDCWiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 18:38:20 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB4D1984
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 15:38:18 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id j11so39962976lfg.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 15:38:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680561497;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FtsOWrQW7hkNYFADGqbjwZ60d4zvSefDrCxExKDl8Ps=;
-        b=hwuZ8XieWgBLN5adU41i6xX2s4eNlMpyUG883h6xHBqIp68TLP0PISWCmEmBxbOFNp
-         La0z50tJWUVSnxmQGKjzd2D0TI3d8OdvzjbH9uwZNYgcJWNoG92y7hvf5wRLkIcNnJkT
-         9xaak/ZDCbwD9kqTd2ISNgfEwhja79Z07uNJPnxcGhHgeZ9/vQGpDOoJeWvRtPZ/2Gxc
-         TvPZiYYuhXrmLzm7gBiYz6zwetuFr+2zYf3U5JHJIDUNZM1JFosfH9/7+5HX0jn7xUye
-         RlhlegeuGZo1+3qU3CEAaNzaV47X5Q9mtT55migZtfvsp6ZvbmSskgy9parZdncdzPQx
-         BKWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680561497;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FtsOWrQW7hkNYFADGqbjwZ60d4zvSefDrCxExKDl8Ps=;
-        b=CljcRZ107qdKUxvoBBzmkk/AfcCFlGN9fsOXDxAA97rGc21ZN321Q/j4ilUUcZk0Os
-         ES4ojM78AWdEmBg2MTzG/gs8+8Ly0+WdKrW02i5Wz1EMmel0tmY8jjxfAf2V1/UBvPmp
-         +ITICULmTeD9aO8s6r/SfCR+uFzfD3hIcHimkNyeFmsvXRgOUnckqSy0fbJP50xWu7nG
-         TDRaHpfIRo/wjW47CQBNHciS9oyubyFbsbxDiw7J6l9+0PpraIbsgU+XD5wSEE+71jO4
-         AOCaKgqMiUBxcF1Ung4ARNxs/LUJu2vHP5WuZha0qE37ekkMMrDXbKrHLeLBT3HpZks8
-         dgRQ==
-X-Gm-Message-State: AAQBX9cURgHL07QtV44wLzCkgbuzlwlaQN9TW8SjcC8sacA9qvKIv2SY
-        vZrHuYlyaqbYQAuDfInQunjaZA==
-X-Google-Smtp-Source: AKy350YZO6iPPjj1sua6F66RRClLCkmeKk/nQmT2y4PKC2eroOuYFkNzuee/Tto92qVvDnzdKwZi/Q==
-X-Received: by 2002:a05:6512:2192:b0:4e8:3da6:485a with SMTP id b18-20020a056512219200b004e83da6485amr56645lft.68.1680561496989;
-        Mon, 03 Apr 2023 15:38:16 -0700 (PDT)
-Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
-        by smtp.gmail.com with ESMTPSA id u5-20020ac248a5000000b004e9cad1cd7csm1985379lfg.229.2023.04.03.15.38.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 15:38:16 -0700 (PDT)
-Message-ID: <b2e81e6c-a9fa-0cc1-01ed-1d82297454c4@linaro.org>
-Date:   Tue, 4 Apr 2023 00:38:14 +0200
+        with ESMTP id S233160AbjDCXMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 19:12:53 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4871BFC;
+        Mon,  3 Apr 2023 16:12:52 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 471A185C54;
+        Tue,  4 Apr 2023 01:12:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1680563570;
+        bh=ZUetAbCZ5vMdVE5GC+DuXDKD9WMm0kE2HOWJEVcf8cY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=pg4jY0CUZUCCXwCPABFCmkrSCPlu4hqHZivTsP6g+CR8k74IUC9oFwkz0xG6p9JFB
+         IcWhUah+k9P9OK25G17LrxvsmwvDNUJ82NU5k3Ip1bfBYK67fz9zHTuTG5GRosiXZF
+         riQpQR46aEdlmuM2UIS9/ksz3ANXtvLE7dS7BdE8brDJ8r/RSq3gHZP4L8mHOOoK6G
+         EpiBZLd5z0MLPiYot3jCzPpQtTFh5K7dZhSXMGPti4jsbsF9Ho4h2JV68INnzyFhL2
+         +fs74wls1JdbbaUHixon8HfNSg35fRK5AZ72ImlJ3J2qjCDcl4lK5AOqX51opyMl+8
+         eoss+WSv6dDeQ==
+Message-ID: <e2b5efc4-1b2d-191f-e4ee-5ad7a64c63cd@denx.de>
+Date:   Tue, 4 Apr 2023 01:12:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 4/7] dt-bindings: iommu: arm,smmu: enable clocks for
- sa8775p
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: bridge: sn65dsi83: Add DSI
+ video mode
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Rob Herring <robh@kernel.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>
-References: <20230328193632.226095-1-brgl@bgdev.pl>
- <20230328193632.226095-5-brgl@bgdev.pl>
- <20230403204127.GA1708388-robh@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230403204127.GA1708388-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
+References: <20230330101752.429804-1-francesco@dolcini.it>
+ <20230330101752.429804-2-francesco@dolcini.it>
+ <20230403210622.GA1740065-robh@kernel.org>
+ <ZCtB8Vu4Brm3G639@francesco-nb.int.toradex.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <ZCtB8Vu4Brm3G639@francesco-nb.int.toradex.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-3.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,43 +72,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3.04.2023 22:41, Rob Herring wrote:
-> On Tue, Mar 28, 2023 at 09:36:29PM +0200, Bartosz Golaszewski wrote:
->> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 4/3/23 23:15, Francesco Dolcini wrote:
+> On Mon, Apr 03, 2023 at 04:06:22PM -0500, Rob Herring wrote:
+>> On Thu, Mar 30, 2023 at 12:17:51PM +0200, Francesco Dolcini wrote:
+>>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>>
+>>> SN65DSI8[34] device supports burst video mode and non-burst video mode
+>>> with sync events or with sync pulses packet transmission as described in
+>>> the DSI specification.
+>>>
+>>> Add property to select the expected mode, this allows for example to
+>>> select a mode that is compatible with the DSI host interface.
 >>
->> The KGSL iommu will require the clocks property to be set. Enable it for
+>> Why does this need to be in DT?
 > 
-> Isn't KGSL the name for QCom's adreno vendor driver? What does that have 
-> to do with bindings?
-It's called "KGSL SMMU" (as opposed to the other "APPS SMMU" (Application
-Processor SubSystem) in some places in Qualcommland
-
-Konrad
+>> The source and sink drivers should know what their capabilities are
+>> and pick the best common one.
 > 
->> sa8775p in the bindings.
->>
->> Cc: Will Deacon <will@kernel.org>
->> Cc: Robin Murphy <robin.murphy@arm.com>
->> Cc: Joerg Roedel <joro@8bytes.org>
->> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 -
->>  1 file changed, 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index 807cb511fe18..74d5164ed1e8 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -375,7 +375,6 @@ allOf:
->>                - nvidia,smmu-500
->>                - qcom,qcm2290-smmu-500
->>                - qcom,qdu1000-smmu-500
->> -              - qcom,sa8775p-smmu-500
->>                - qcom,sc7180-smmu-500
->>                - qcom,sc8180x-smmu-500
->>                - qcom,sc8280xp-smmu-500
->> -- 
->> 2.37.2
->>
+> Is there a best mode?
+
+I think yes:
+Burst (is better than) Sync Events (is better than) Sync Pulses
+
+Burst is most energy efficient, Sync-Pulses is the simplest and least 
+energy efficient and with most constraints.
+
+> Isn't this a decision how do we want the 2 peers
+> to communicate?
+
+I don't think so, I believe the Host and nearest bridge should be able 
+to negotiate their capabilities (mode, link rate, etc.) within the DRM 
+subsystem.
+
+> For the MIPI-DSI Linux/DRM experts: am I missing something? Is there
+> another way to have a DSI video sink to ask for a specific mode?
+
+I'm afraid this is not implemented yet, so ... plumbing needed.
+
+[...]
