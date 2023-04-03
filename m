@@ -2,94 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2275D6D4553
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA5B6D455D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbjDCNKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
+        id S232524AbjDCNLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:11:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232499AbjDCNKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:10:36 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EA32D45;
-        Mon,  3 Apr 2023 06:10:35 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id x8-20020a9d3788000000b0069f922cd5ceso15567113otb.12;
-        Mon, 03 Apr 2023 06:10:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680527434;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0c6y0klJZIlR38JQvtzWomooCiiJ+Ub0Wtb8gTfWb6E=;
-        b=7OJ28S0ZttxpZ3nnFb/b2mMrrL95kH4W2T6149quOHu5ymCn94Q7aUHY6YQJ/ebczk
-         5edsHPC0nchaqC9IsFJYIKELB8X7Rkg9MbArW69aX7ElrwftIfKbOkIPIpG1vccthC4s
-         cypro/9//8Vpz6iSkvEgRJ7H37ykBm8LOR2fQgrVnm9k38sterJmo0VeZlQoRQ7FpfT5
-         te7fXoTXOE0fiFKNZpr2D0OEnx+wX8HKt4R1q5epH3aqzjECtaURHsL67+PBi4mOB6/u
-         aHIqDjrfF4ginLMzSAGsEISVJUlX50LQfT6QwhB2BlrYIJSTdtBwIBDVgl14N61gphOg
-         iVoQ==
-X-Gm-Message-State: AO0yUKVZKcDi49kOC22tEJa4CQ5CxG5mbiiHaqM+NrCHkdrdYuVsqhNs
-        Y9DLwNida47U4EMaEJzm5vxM+h7kqA==
-X-Google-Smtp-Source: AK7set9uze4lqSyJ3xkKEcHa56jWK0pv1GNxAJixs2X/EkgOgvxyRgyidMAPmlj6kHkuggnQE4xfMw==
-X-Received: by 2002:a05:6830:1bcf:b0:69b:7f5b:c657 with SMTP id v15-20020a0568301bcf00b0069b7f5bc657mr17464458ota.14.1680527434129;
-        Mon, 03 Apr 2023 06:10:34 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x5-20020a056830114500b006a2fd720f82sm3067379otq.7.2023.04.03.06.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 06:10:33 -0700 (PDT)
-Received: (nullmailer pid 522012 invoked by uid 1000);
-        Mon, 03 Apr 2023 13:10:30 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S232208AbjDCNL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:11:29 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E122A27820;
+        Mon,  3 Apr 2023 06:11:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 926F5B81A13;
+        Mon,  3 Apr 2023 13:11:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57A7CC433D2;
+        Mon,  3 Apr 2023 13:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680527459;
+        bh=iKjPhaUvm8e0DQeVxhOygNRHt8W/m4pm4zaFQW3ZNZY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YBTuTfJPb0CevFxn/NzI7BhlWWaPb2YgrQ/SWz9vEnPfU0uE2H732/cOpURfxBL7o
+         RJe2A2KUNv2RLuHZ3XUvPVK5jy+gQX+T8fdeyAS6DVR0TFSqruX8qe6YCDncSvQ9V6
+         3uaxdyyWruGpGp/dMuhIiox/MMl3yhMwHacdRaTVYya+o5TXEPTyrmYUziainJYXf4
+         gpPF+8VNvwaItIrZOGIfnvhpf3q1XZP/N2jxXLwF9iajlhbBR3pd+OkS6QRBfN5ejF
+         t/pn/HoExFDd4BQBVTMua1VlH4FY6PNBdIK/FL3JfJv4+hk1nryyCZOKHZ1artdI6z
+         EANn+C2UuzdPg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pjJxz-0004LN-Rw; Mon, 03 Apr 2023 15:11:23 +0200
+Date:   Mon, 3 Apr 2023 15:11:23 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
+ registers
+Message-ID: <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
+References: <20230327122948.4323-1-johan+linaro@kernel.org>
+ <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
+ <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
+ <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
+ <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
-References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
- <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
-Message-Id: <168052514639.463695.9544022277060710805.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Convert to DT schema
-Date:   Mon, 03 Apr 2023 08:10:30 -0500
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Apr 03, 2023 at 02:46:41PM +0200, Krzysztof Kozlowski wrote:
+> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
+> > On 03/04/2023 12:54, Johan Hovold wrote:
 
-On Mon, 03 Apr 2023 13:50:51 +0300, Cristian Ciocaltea wrote:
-> Convert the PWM fan bindings to DT schema format.
+> >> The problem is that the driver was updated before the binding was so the
+> >> above mentioned probe error has been there since this file was merged.
+> > 
+> > I grepped and that commit did not have such compatible. Are you saying
+> > that the kernel which was released with this commit already had that
+> > compatible in driver (through different merge/tree)?
 > 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  .../devicetree/bindings/hwmon/pwm-fan.txt     |  68 +----------
->  .../devicetree/bindings/hwmon/pwm-fan.yaml    | 109 ++++++++++++++++++
->  2 files changed, 110 insertions(+), 67 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> 
+> So I double checked, the commit ccd3517faf18 (which is being "fixed")
+> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
+> compatible, thus it could not be fixed that way. Therefore this cannot
+> be logically fix for that commit from that release.
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Now you're just making shit up. A fix is a fix for mainline, period. If
+someone decides to backport a fix from mainline then that fix may need
+to be adapted.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+That said, sometimes some of us do take the state of previous versions
+of the kernel into account when developing patches in order to
+facilitate backports. That's a different thing and certainly not
+something that is required to fix an issue in mainline.
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230403105052.426135-2-cristian.ciocaltea@collabora.com
-
-
-pwm-fan: 'cooling-max-state', 'cooling-min-state' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
-
+Johan
