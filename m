@@ -2,159 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D056D44DF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF7CF6D44F7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232363AbjDCMvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:51:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43318 "EHLO
+        id S232453AbjDCMzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjDCMvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:51:22 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABC11287B
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:51:21 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id ew6so116815142edb.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:51:21 -0700 (PDT)
+        with ESMTP id S232363AbjDCMzA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:55:00 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674C546B8
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:54:58 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id j7so34613732ybg.4
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:54:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680526280;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hBlBY9aCp2fwzyEA3oA1ESp/NxFfdWBUjHz7ismdq/M=;
-        b=ZgDUT7kABXnlv7ZQy4O22yoBe5x0gdxIJSPzzUUMzlIO5weoHEy2JCOq5RW2GY5rbq
-         5asiMAUFK8koBo2l1hA312FmopSKyS7g5ZyXWL6olYKt9ZhyzYRvUsMFwKcNWkfQuSHv
-         8z2k+U3SIQiKC4viWXe1fDRNbOkwQMpew12eeiUQh944BJlypM6VsggRjGZERoQg2mUo
-         AdxZf/G1WNImdAEtsy4nPnkVH4j+eOaLhR5km+LMMoeSABMjdKxt8x85oAAVq08zGJZL
-         v4NmXtYZiJIQMrTP3jrj28JF/FfH+xWjZDgMDeLtBVbcO8W0p20iylXL2ru3Ry3/hC1k
-         CxeA==
+        d=linaro.org; s=google; t=1680526497;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=V9m/sUPReBRVUTZn9B6dP2tPNUqQXZVWHqpNk1XjAmM=;
+        b=DCTWXstAsJF9drUfucdicjCtceJE12ZpiVkcQoOxbhPun5kiW4Mw25qh0KoPCnzwnf
+         3g2+3/FNxsHjRfZYycfdJ8Nzl0erlbxVw7jtOYCmTNY3/+FtapC5R4cVnmTzwMOysyTa
+         7ApcT1Bc7fpQfFKzMwLNeiwmE7OPRHfvCOvE4L+QA/eBdnVPz/1nRS6ZUvze2xANNUKf
+         y/yxnxy51eN8FvvWeiPudkN5qY03ZTBQNDeWWhpX7ZUmXc3sJ65SOT6HTfkMAvFG24/a
+         R4D9PmE96ItEHLDwbhKbTkdlUnKPWeQDEjhAzJm7hJ4LZ7LwhL0rye2Lru6jlN/hMYS4
+         /t4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680526280;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hBlBY9aCp2fwzyEA3oA1ESp/NxFfdWBUjHz7ismdq/M=;
-        b=c3gcj8OjZ6S/d6JdgutpA+/ECAunDCozZCqsANtxswLebL95bOj2/98+meMBZn0GzO
-         eigExTwf5vwNNEBr7DwQqhouKlhKpISdDkMbVtZ3dDXvFb8BPWGpWsNx0pvlu7OhD/3M
-         FGjtclXX5AR32aH/pz9pBjqdm+FH0uRQ1aheW31zS2yZun21QE1XbiRD0Up+mqv3kLN5
-         wvHeGeeQ39CPfWYTr1tfcSh4GUCIYW3VFY5NSwn27UK/P1rU6huG71XNfvGzDrykq9ui
-         WH6aKy1ULBc4IUAO89jGo4K6mxy0d1l6d1pr0f2DU8MOSlIl5e6+zWqIkp7fsh1WKdxZ
-         E9EA==
-X-Gm-Message-State: AAQBX9fI2Yb+YDqee1xOgFYxlO5G3S0oLApnhYKQhyiky4Qe/sZtRV21
-        CFB3Fk8AX1WKBkKRdpjwQnae4A==
-X-Google-Smtp-Source: AKy350bf4uQa4MoKau0zxjWPD5Tb7xiBU+NP/AwFSxCBzCP0E607DlXYpS/wBX3Q3Wt3HJlCE2oxtg==
-X-Received: by 2002:aa7:c98b:0:b0:4cd:e84d:1e74 with SMTP id c11-20020aa7c98b000000b004cde84d1e74mr39732285edt.0.1680526279821;
-        Mon, 03 Apr 2023 05:51:19 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id n19-20020a509353000000b004c09527d62dsm4621217eda.30.2023.04.03.05.51.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 05:51:19 -0700 (PDT)
-Message-ID: <d6b4df41-02cb-b900-5e8b-8ad08d3d36f1@linaro.org>
-Date:   Mon, 3 Apr 2023 14:51:18 +0200
+        d=1e100.net; s=20210112; t=1680526497;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=V9m/sUPReBRVUTZn9B6dP2tPNUqQXZVWHqpNk1XjAmM=;
+        b=wuRP9WQWxgV2v7YQkb/p+rYeDCQk8OO9XIIWNUGR9tCpCk2wr8g1M3reXOCPcfHDAQ
+         lE9+iH4/ZR7zE/N8w6TC7JTs8t/MkpbGEe6p3U63yuzJVpypNrVJ4LnIUF4kfrxNh/f9
+         F71Git2N5savk1eyYOeI8Rpct2mWXQVIxgsqnxZ98/y3LHFyWHZBSuA9jCVT1PSeotB2
+         PXrI8kMKs/iMxWLT0jmAnDWROX2cbjiZAnYspBQjJO+/a6MHbNB60OhvsUzsrol7EW5M
+         0QJg07panhgEkaKkClC0zrLefhj7AJhrRMO3yCjWdwCM08rSyd8h25aixWJO8rQO45e2
+         TkUA==
+X-Gm-Message-State: AAQBX9eky6NlRnyF2wXusu/u3cJc55SzPjENmeWG/SW7Zf0BzqC7yzYy
+        7KKiSw3FKIwZ9o9dL7eTbfxdfcMKSczdK57Ehp10FQ==
+X-Google-Smtp-Source: AKy350agaOWrDkEB7GhGzwT2bJspFd1n9g4T/aiBveguKOmpT39VaFfXxC01sTr6yL9/6KPZgVuUrjlz8cfJQn8FbxA=
+X-Received: by 2002:a05:6902:102b:b0:b46:4a5e:3651 with SMTP id
+ x11-20020a056902102b00b00b464a5e3651mr23230818ybt.9.1680526497588; Mon, 03
+ Apr 2023 05:54:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2] ASoC: dt-bindings: wm8510: Convert to dtschema
-Content-Language: en-US
-To:     Saalim Quadri <danascape@gmail.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
-Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230403105237.3854-1-danascape@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403105237.3854-1-danascape@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230327122948.4323-1-johan+linaro@kernel.org>
+ <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org> <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
+ <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org> <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
+In-Reply-To: <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 3 Apr 2023 15:54:46 +0300
+Message-ID: <CAA8EJpqfFhRXTrC8osdXbwJ8k1PUMYN1PtJp3ZZJhm4VuyO2tw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and registers
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 12:52, Saalim Quadri wrote:
-> Convert the WM8510 audio CODEC bindings to DT schema
-> 
-> Signed-off-by: Saalim Quadri <danascape@gmail.com>
-> ---
-> Changes:
-> V1 - V2: Fixup issues mentioned by Krzysztof
+On Mon, 3 Apr 2023 at 15:46, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
+> > On 03/04/2023 12:54, Johan Hovold wrote:
+> >> On Mon, Apr 03, 2023 at 11:18:07AM +0200, Krzysztof Kozlowski wrote:
+> >>> On 27/03/2023 14:29, Johan Hovold wrote:
+> >>>> The pmk8280 PMIC PON peripheral is gen3 and uses two sets of registers;
+> >>>> hlos and pbs.
+> >>>>
+> >>>> This specifically fixes the following error message during boot when the
+> >>>> pbs registers are not defined:
+> >>>>
+> >>>>    PON_PBS address missing, can't read HW debounce time
+> >>>>
+> >>>> Note that this also enables the spurious interrupt workaround introduced
+> >>>> by commit 0b65118e6ba3 ("Input: pm8941-pwrkey - add software key press
+> >>>> debouncing support") (which may or may not be needed).
+> >>>>
+> >>>> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
+> >>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 5 +++--
+> >>>>  1 file changed, 3 insertions(+), 2 deletions(-)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> >>>> index c35e7f6bd657..a0ba535bb6c9 100644
+> >>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> >>>> @@ -59,8 +59,9 @@ pmk8280: pmic@0 {
+> >>>>            #size-cells = <0>;
+> >>>>
+> >>>>            pmk8280_pon: pon@1300 {
+> >>>> -                  compatible = "qcom,pm8998-pon";
+> >>>> -                  reg = <0x1300>;
+> >>>> +                  compatible = "qcom,pmk8350-pon";
+> >>>
+> >>> Same comment as Dmitry's. There is no compatible "qcom,pmk8350-pon"
+> >>> ccd3517faf18, therefore indicated backport (through AUTOSEL) will lead
+> >>> to invalid stable kernel.
+> >>>
+> >>> You must drop the Fixes tag, because this cannot be backported.
+> >>
+> >> That's bullshit. Do you see a stable tag? Is 5.19-stable still active?
+> >
+> > Why do you refer to activeness of v5.19? This will go also to v6.0 and v6.1.
+> >
+> >>
+> >> The problem is that the driver was updated before the binding was so the
+> >> above mentioned probe error has been there since this file was merged.
+> >
+> > I grepped and that commit did not have such compatible. Are you saying
+> > that the kernel which was released with this commit already had that
+> > compatible in driver (through different merge/tree)?
+>
+> So I double checked, the commit ccd3517faf18 (which is being "fixed")
+> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
+> compatible, thus it could not be fixed that way. Therefore this cannot
+> be logically fix for that commit from that release.
+>
+> "Fixes" means that commit has a bug and this is how it should be fixed.
+> So v6.0 kernel should be fixed to use "qcom,pmk8350-pon" compatible,
+> which is obviously wrong. v6.0 does not support it and the "fix" would
+> actually break it (which might be worse or better than original problem,
+> but that's independent thing).
 
-So what changed?
+This patch fixes the issue in the commit ccd3517faf18. In the end, the
+schema is describing the hardware, not just what the driver needs.
+However, backporting this fix would also require one to cherry-pick
+two other patches (one for the schema, one or two for the driver).
 
->          Add SPI and I2C examples
+I think we should mention 0b65118e6ba3 ("Input: pm8941-pwrkey - add
+software key press debouncing support") in the commit message (and
+optionally 03fccdc76dce ("dt-bindings: power: reset: qcom-pon: Add new
+compatible "qcom,pmk8350-pon"")). Using Cc:stable should probably be
+left to patch authors (and I myself would not use them here).
 
-Why?
-
-> 
->  .../devicetree/bindings/sound/wlf,wm8510.yaml | 52 +++++++++++++++++++
->  .../devicetree/bindings/sound/wm8510.txt      | 18 -------
->  2 files changed, 52 insertions(+), 18 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wm8510.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8510.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
-> new file mode 100644
-> index 000000000000..418a82f65531
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/wlf,wm8510.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: WM8510 audio CODEC
-> +
-> +maintainers:
-> +  - patches@opensource.cirrus.com
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: wlf,wm8510
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        
-> +        codec@0 {
-> +            compatible = "wlf,wm8510";
-> +            reg = <0>;
-> +        };
-> +    };
-> +
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        codec@1a {
-
-Drop second example. It is the same.
-
-
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
