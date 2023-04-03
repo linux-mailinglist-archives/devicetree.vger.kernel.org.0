@@ -2,140 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E0E6D5018
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 573956D5027
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232876AbjDCSOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:14:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
+        id S232520AbjDCSVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:21:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233038AbjDCSOO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:14:14 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD271FEF
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:14:08 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id f19-20020a9d5f13000000b00693ce5a2f3eso16101274oti.8
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:14:08 -0700 (PDT)
+        with ESMTP id S232597AbjDCSVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:21:34 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B60026B6
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:21:29 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id h11so32269388lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:21:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680546088;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zUo/oPqYc/Bc1B1hrXFD8BK+EMrCo5Xw8lmzoaSnqjk=;
+        b=ZqcEOdKCBvN7yzIvm6oEUYBTPHyaOjWK/jtPHI+JLNYbn8y1ssRSHtCejkgqSChCVP
+         yOx+ibhAripYm7IxfeRzVpkfXFDokE9KnQ+sQZhJxnnVHtMk63IGJO5i7sYyN63So+DE
+         h4BP79BJO0itjdG/mrQXDxRLLjnStU210nLgSh6oEJKSIJeXbqoDsdWGqhGWqBYt4oxU
+         Avmir1m0XbVZiQ/SCst9WhPWlMZgYCF1vDpPDV4CdP4cnCHw76PmfDWXqYkcrPJr4Ozn
+         g+XtTYpmq+53zfW2s2l2VvaMHgLlozJ80xicZUjnZ/4Hmi2h33ML+uL4ArpoSJeNPiu9
+         YpHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680545648;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=diAU2gDNpfvEkf0KkvkJMk9DSdJLB8pM+UR1PjlRd1Q=;
-        b=zhki2uT1JRuo8QiHzRmqPRFJWrqr14txdB/uaip5d42RTnSQmT25PcXI8JHvvsf6Ej
-         +q+EHJx8mDPXMh9KY7fS1bHi+UiBP8Ex+DF2F9Wh/kfdZ7CqzsKTz6vQqrjkUl/yz9EX
-         9vgGXqDL5KBwsatiRR7V8gT4K6kt0Jzt1nVBvOyrJAfkhF9u/+3nytfuOu9G6ySYku+w
-         QEfe/ySRClIhRkjEMCc6CDji5esoU6ueUBQqFgPPsPNmN6hek+SF0UGzaIp7lAphU9rS
-         admamaogB0gmItcOv1bXtvpzM6WYM2Eue53oJp7bsgyVFATMv+8b5M1xFEIJ+1ugkyNZ
-         3DGw==
-X-Gm-Message-State: AAQBX9cAhDa3h08+rv9ftVKtJ7N65xn6R7d/JYLtzT8aaiazU2IlDQjq
-        4k+bynnmlUFzP1KaQjVEmA==
-X-Google-Smtp-Source: AKy350YIttDvDJ7Vo5p8cx/PBF4e+AWAEha5v/UWeHolpwFR8Usk5pByB0bDAyqoZKGl66OTAz+Yfw==
-X-Received: by 2002:a9d:6f8f:0:b0:6a1:7eaa:3836 with SMTP id h15-20020a9d6f8f000000b006a17eaa3836mr56953otq.5.1680545648143;
-        Mon, 03 Apr 2023 11:14:08 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i26-20020a9d68da000000b0069dd3d98ec6sm4635107oto.44.2023.04.03.11.14.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 11:14:07 -0700 (PDT)
-Received: (nullmailer pid 1277282 invoked by uid 1000);
-        Mon, 03 Apr 2023 18:14:07 -0000
-Date:   Mon, 3 Apr 2023 13:14:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@chargebyte.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com
-Subject: Re: [PATCH V4 2/6] dt-bindings: w1: Add DS2482/DS2484 I2C to 1-W
- bridges
-Message-ID: <20230403181407.GA1242137-robh@kernel.org>
-References: <20230331210840.4061-1-stefan.wahren@chargebyte.com>
- <20230331210840.4061-3-stefan.wahren@chargebyte.com>
+        d=1e100.net; s=20210112; t=1680546088;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zUo/oPqYc/Bc1B1hrXFD8BK+EMrCo5Xw8lmzoaSnqjk=;
+        b=bbHWXBPYtobcJmKjMC/ptW17Xnveyj4A8DmIhCQtipns6UieF95hZwy+tyXHb/Uv3s
+         FZH158cVDXNt/p6p8NujDlbhJSoRh5t2UZU4/U9TLS8K93NkwWPh1OWrwx1cJfLjhrOX
+         cL2tcihHox2fPaWDzkHpIAnhzv4RKIUyppRRQq0Zzi8Ukw/sP715gRScGyC0x3zIW/LH
+         39wxFsmU6BIsiHNZode4vJZcpAbzhhvYcqa1O6DN5D2KLHQ6Q3dBPkxNkTUuCyVAmmn4
+         oVqlwPFl+uioZ6ALYbwglKLJTl9eDLOxWQW6QfHywvYrRHiS7ojlkjHwc7ANdPjq/ZYk
+         /cBw==
+X-Gm-Message-State: AAQBX9dmDB3RLPpNsVrniHpjNvXo16Z5qaY+A42RzOTGckVcvj+V1wAA
+        cRai9Sf+tVPxU8mSf5drbUNwhQ==
+X-Google-Smtp-Source: AKy350asl33c6Hs41beIy8oeQZJfZs4hHMVNNOclSJ2c8B+Pas/icvJpH9/OOokIUoOFNwgnG12LWg==
+X-Received: by 2002:ac2:59cf:0:b0:4eb:43f3:9610 with SMTP id x15-20020ac259cf000000b004eb43f39610mr653183lfn.20.1680546087764;
+        Mon, 03 Apr 2023 11:21:27 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id b18-20020ac25632000000b0049ad2619becsm1868902lff.131.2023.04.03.11.21.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 11:21:27 -0700 (PDT)
+Message-ID: <fe4dd395-cd1d-55e8-1be9-f588f69a8b13@linaro.org>
+Date:   Mon, 3 Apr 2023 20:21:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230331210840.4061-3-stefan.wahren@chargebyte.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
+ bootup voltage
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+References: <751e5129-3c11-0156-719e-3fe996a149be@quicinc.com>
+ <3f434777-c4b6-272f-1971-f9adf3faefe4@linaro.org>
+ <a54d4e1b-d62d-559d-1882-e460e696c056@quicinc.com>
+ <ca12735e-d6c8-997e-036f-693cd8a9870f@linaro.org>
+ <e19393e3-5898-bff2-cc00-d88c9194c7c2@quicinc.com>
+ <6e1f6466-7f2e-7bd5-f6a2-5691a30c4e1f@linaro.org>
+ <9989c92c-9949-5531-c7d2-e54882795a68@quicinc.com>
+ <69df153d-bdc6-9008-39d6-72f66bab2e38@linaro.org>
+ <5914a8db-3644-1c94-00ba-460ba2c26a5d@quicinc.com>
+ <3c5a9608-ecd2-a3c0-e866-7d0070e49b89@linaro.org>
+ <8c513ddc-435e-40ce-b1f8-84eaf8241ed4@sirena.org.uk>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <8c513ddc-435e-40ce-b1f8-84eaf8241ed4@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 11:08:36PM +0200, Stefan Wahren wrote:
-> Even this binding look trivial, the actual hardware supports more
-> features (e.g. sleep mode control GPIO). So add this as a dedicated
-> devicetree binding for the Maxim DS2482/DS2484 I2C to 1-W bridges,
-> which can be extended later.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
-> ---
->  .../devicetree/bindings/w1/maxim,ds2482.yaml  | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
-> new file mode 100644
-> index 000000000000..fd692a3a7400
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/w1/maxim,ds2482.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim One wire bus master controller
-> +
-> +maintainers:
-> +  - Stefan Wahren <stefan.wahren@chargebyte.com>
-> +
-> +description: |
-> +  I2C to 1-wire bridges
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ds2482-100.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/DS2482-800.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/DS2484.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,ds2482
-> +      - maxim,ds2484
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
 
-To allow children, all that's needed for 1-wire is:
 
-additionalProperties:
-  type: object
-
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      onewire@18 {
-> +        compatible = "maxim,ds2484";
-> +        reg = <0x18>;
-> +      };
-> +    };
-> -- 
-> 2.17.1
+On 3.04.2023 20:14, Mark Brown wrote:
+> On Mon, Apr 03, 2023 at 07:53:48PM +0200, Konrad Dybcio wrote:
+>> On 3.04.2023 16:07, Devi Priya wrote:
 > 
+>>> But, when the regulator driver comes up, it tries to bring up the
+>>> regulators to the minimum supported voltage provided with the
+>>> regulator-min-microvolt property in the DT.
+> 
+>> Right, that exists.. 
+> 
+>> Mark, do you think it should be updated such that the requests are
+>> aggregated before assuming min_uV is "just fine"?
+> 
+> We can't tell if any consumers are ever going to appear, and the
+> regulator having a voltage outside of the constraints is an urgent
+> problem we need to fix quickly.  Since we try to bring the voltage to
+> the nearest end of the constraint the driver could always change the
+> bogus voltage it reports to one that is excessively high, this would
+> mean the core will try to bring the voltage down to the maximum rather
+> than up to the minimum.  The driver could also look at the constraints
+> when guessing at the hardware configuration rather than claiming an out
+> of spec voltage, this would mean we wouldn't need to correct anything.
+Hm, all of what you said sounds like a valid concern.. And then we
+probably shouldn't shoot up to max by default, as going too low is
+not going to cause as much potential irreversible damage as going
+too high.. Especially with programmer error..
+
+Too bad Qualcomm's firmware architecture doesn't allow for reading
+back the voltage..
+
+Konrad
