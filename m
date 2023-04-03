@@ -2,218 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81ADC6D4C59
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41B776D4C5B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229981AbjDCPrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 11:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
+        id S231310AbjDCPsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 11:48:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbjDCPrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:47:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C83730F3
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 08:46:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C73B36204D
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 15:46:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B87C433A0
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 15:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680536764;
-        bh=Ao6yqX2D24tODjY1sgaRHBZtdeO24CKhFuqaKE+w5KQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MecFDCNG7dUxxAXlqRz9UITlSqHI6zo5IMzRNSIF7+h8aJYd4zw+iOrMsCMkAa/EA
-         MEl3ndj2DBwvR9Nxd1ESh+/zl/HktFH4z0QpuX0rlqhJZ3daVSFHoJzHQa/lL0CQut
-         HQzwS4tUQTNoF+hFRNI/q8IuZTBw9eJ798RH4axaWP5h1APiamV6kvWdeCqE2cC2jp
-         z8dqY8BsQANu4LGUBTF+mMY9c598zKMmE/dhCuAaqjmpoXaksDEttWplEvBNLsGqFo
-         1BPUIlGJaFLNe3LsOXmrOBOyUyRzJ6n4mEI57h8QKUUBxLRSVmznhTybdNt7Fksamh
-         k9az+eAIu7NPQ==
-Received: by mail-yb1-f178.google.com with SMTP id f188so16852123ybb.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 08:46:04 -0700 (PDT)
-X-Gm-Message-State: AAQBX9cQ4NjVj62BzongouPGcKzqvOkuArG6ZY+99ztP9zZ5jvgIbpaJ
-        EPfz3msZmO4+/KsZSCMn0OKWkxlXLS8I81BxCQ==
-X-Google-Smtp-Source: AKy350anwlulsK5LEzTfX0T5sklBZ8cg43osZnSDtvAJDHy8QcOtLFlNaH2qyqZ1P4TkaBnunsOaA4TiJYNost71PAo=
-X-Received: by 2002:a25:cf8e:0:b0:b6a:2590:6c63 with SMTP id
- f136-20020a25cf8e000000b00b6a25906c63mr11310396ybg.2.1680536763154; Mon, 03
- Apr 2023 08:46:03 -0700 (PDT)
+        with ESMTP id S231546AbjDCPr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:47:59 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD44C3AA0
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 08:47:20 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id t10so118978383edd.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 08:47:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680536827;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3msoM9z3RclTRd+eHQKtiv2M7gCA/4iFqXhqJTbcCvI=;
+        b=v0+x2EZy3qjDuUVIrhkwAooxOofocWnH75XU1LyTABMzV0iuoerniGu8hYjl7SeOGC
+         wAH/mUChSngKFjrlfrJZjMhD4GHgdeN57wwk0wV8OWdtD7cky8jwkZqZeOP+uXVuKJJX
+         HG1qB6Zpf4gWjSG+iJyHSHKnE39UxoqWWHS5cON58+4CcbUEAD1T92/avrnmxfUduCk8
+         IODwe2YCy7Qac1NgWrzNh/c9rraM8QhDONqzYnzQTghprOtm9BSJ3VktQweXTOsvKZE8
+         dVcdUPk+Jxs4UgE4vIXj9Qr2QskDjkmT7bfZLPCzPDI8jViA3QmcSnCe6QndqLDmibP2
+         8Sqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680536827;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3msoM9z3RclTRd+eHQKtiv2M7gCA/4iFqXhqJTbcCvI=;
+        b=fBqOJtWWQUQwJcvvAT0G8ejl4Y5u1TMc8ECkEMADgs6nofTVCZ0xjXOmab7S4HFzlD
+         Lr8b4vSxtK5yWesKEPbrvFi/MJ3zRkRBxhkE19T64/b0mctC4c9U5qNbPp8bcfzix0yg
+         fMtac76P7E/x2VApvDRwOjIJXvMHCpCXnuY64hb6papm4KKIPa0RE5jbJ2IH+DnK/qbZ
+         gmEJLbYw9DIXc4Ov2y1ovjFpQsruw6ph73ykGOH/64tdi7LktBtx9Vlh8MTA5XQct8gc
+         bDAuSUWV/u508Pl3F2DUieBIIGnhHSFYACkXREg/XIE7RXrnyoMox/x898HUWFvz05UR
+         BQ1g==
+X-Gm-Message-State: AAQBX9eAn743TO2OyAduGbipW6XJwOu8tYafrx4HeC7ss+8V7onWE0yy
+        /UAg1SquNnwpqQE67TXe3mdWyg==
+X-Google-Smtp-Source: AKy350Z09E9t8/lLHZEsbdT5wvlMV+SEiS4YsUcnXn+I5zCfuY0rRM0+hymgL8S7tpDUY4pqkj/utg==
+X-Received: by 2002:a17:906:738a:b0:933:4ca3:9678 with SMTP id f10-20020a170906738a00b009334ca39678mr35816062ejl.24.1680536826851;
+        Mon, 03 Apr 2023 08:47:06 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
+        by smtp.gmail.com with ESMTPSA id gv19-20020a1709072bd300b00931db712768sm4707227ejc.4.2023.04.03.08.47.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 08:47:06 -0700 (PDT)
+Message-ID: <bf7b5218-56ba-5525-fcb8-7be71b114a79@linaro.org>
+Date:   Mon, 3 Apr 2023 17:47:05 +0200
 MIME-Version: 1.0
-References: <20230330165128.3237939-1-james.morse@arm.com> <20230330165128.3237939-2-james.morse@arm.com>
- <CAL_Jsq+kejKAY6+kVQ1xL9z0vR=dxneTHKvufW2MUSy3mzgj-A@mail.gmail.com> <cbbcd0e3-7269-315f-af13-208a3282f17b@arm.com>
-In-Reply-To: <cbbcd0e3-7269-315f-af13-208a3282f17b@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 3 Apr 2023 10:45:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKQRNmJkSTio+h6C92dEUoSimoGbmJQ4dMVW_ZAeRku7A@mail.gmail.com>
-Message-ID: <CAL_JsqKQRNmJkSTio+h6C92dEUoSimoGbmJQ4dMVW_ZAeRku7A@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: firmware: Add arm,errata-management
-To:     James Morse <james.morse@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 4/6] dts: qcom: arm64: qcom: sdm845: use defines for
+ VMIDs
+Content-Language: en-US
+To:     Dylan Van Assche <me@dylanvanassche.be>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230401173523.15244-1-me@dylanvanassche.be>
+ <20230401173523.15244-5-me@dylanvanassche.be>
+ <ea03bfb6-34c4-45e2-c179-74ecafad559f@linaro.org>
+ <2d9d001f14036caf4f6d47448d4d2fdb0b188101.camel@dylanvanassche.be>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2d9d001f14036caf4f6d47448d4d2fdb0b188101.camel@dylanvanassche.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 11:59=E2=80=AFAM James Morse <james.morse@arm.com> =
-wrote:
->
-> Hi Rob,
->
-> On 31/03/2023 14:46, Rob Herring wrote:
-> > On Thu, Mar 30, 2023 at 11:52=E2=80=AFAM James Morse <james.morse@arm.c=
-om> wrote:
-> >> The Errata Management SMCCC interface allows firmware to advertise whe=
-ther
-> >> the OS is affected by an erratum, or if a higher exception level has
-> >> mitigated the issue. This allows properties of the device that are not
-> >> discoverable by the OS to be described. e.g. some errata depend on the
-> >> behaviour of the interconnect, which is not visible to the OS.
-> >>
-> >> Deployed devices may find it significantly harder to update EL3
-> >> firmware than the device tree. Erratum workarounds typically have to
-> >> fail safe, and assume the platform is affected putting correctness
-> >> above performance.
-> >
-> > Updating the DT is still harder than updating the kernel. A well
-> > designed binding allows for errata fixes without DT changes. That
-> > generally means specific compatibles up front rather than adding
-> > properties to turn things on/off.
->
-> I started with a per-erratum identifier, but there are 8 of them, and its=
- hard to know
-> where to put it.
+On 03/04/2023 17:32, Dylan Van Assche wrote:
+> Hi Krzysztof,
+> 
+> On Mon, 2023-04-03 at 11:20 +0200, Krzysztof Kozlowski wrote:
+>> On 01/04/2023 19:35, Dylan Van Assche wrote:
+>>> Use VMID defines for SLPI's FastRPC node in the Qualcomm SDM845 DTS
+>>> instead of hardcoded magic values.
+>>>
+>>> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 +++-
+>>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> index 1f25a7f4e02b..dc4b553cbe2e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> @@ -13,6 +13,7 @@
+>>>  #include <dt-bindings/clock/qcom,rpmh.h>
+>>>  #include <dt-bindings/clock/qcom,videocc-sdm845.h>
+>>>  #include <dt-bindings/dma/qcom-gpi.h>
+>>> +#include <dt-bindings/firmware/qcom,scm.h>
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>>>  #include <dt-bindings/interconnect/qcom,sdm845.h>
+>>> @@ -3372,7 +3373,8 @@ fastrpc {
+>>>                                         qcom,glink-channels =
+>>> "fastrpcglink-apps-dsp";
+>>>                                         label = "sdsp";
+>>>                                         qcom,non-secure-domain;
+>>> -                                       qcom,vmids = <0x3 0xF 0x5
+>>> 0x6>;
+>>
+>> Didn't you just add it in previous patch? Don't add incorrect code
+>> which
+>> you immediately change.
+>>
+> 
+> Both are similar, the code is in fact the same. I followed what Konrad
+> suggested in v3 to make a patch on top:
 
-That's still requiring updating the DT to fix things.
+I don't understand. Device nodes are similar, but they are different? If
+you add a line in patch X and change it in patch X+1, then something is
+wrong. Isn't this the case here or these are different device nodes?
 
-> The CPU side is detectable from the MIDR,its an interconnect property
-> that we need to know ... but the interconnect isn't described in the DT. =
-(but the obvious
-> compatible string identifies the PMU)
 
-But the interconnect could be described. In fact, there's a binding
-for such things already. Surprisingly, it's called 'interconnects'...
-Of course, there are lots of interconnects in SoCs and the one you
-need may not be described ('cause it is invisible to s/w (until it's
-not)). There's a binding going back to the CCI-400 in fact. So it
-isn't really that interconnects aren't described, it's that they
-aren't consistently described.
+Best regards,
+Krzysztof
 
-If you can add this errata table to the DT, then why not add
-describing the interconnect? Then it will be there for the next thing
-we need the interconnect for. I imagine some of the interconnects are
-already described if not explicitly in bits and pieces (i.e. clocks or
-power domains for the interconnect get tossed into some other node).
-
-> > Do we really want to encourage/endorse/support non-updatable firmware?
-> > We've rejected plenty of things with 'fix your firmware'.
->
-> A DT property was explicitly requested by Marc Z on the RFC:
-> https://lore.kernel.org/linux-arm-kernel/86mt5dxxbc.wl-maz@kernel.org/
->
-> The concern is that platforms where the CPU is affected, but the issue is=
- masked by the
-> interconnect will never bother with a firmware interface. The kernel can'=
-t know this, so
-> has to enable the workaround at the cost of performance.
-
-Sure it can. Worst case, the kernel knows the exact SoC and board it
-is running on because we have root level compatibles for those. It's
-just a question of whether using those would scale or not. Whether
-that scales or not depends on both how long the lists are and how
-distributed the implementation is (e.g. PCI quirks). More on that
-below.
-
-> Adding a DT property to describe the hardware state of the erratum avoids=
- the need for
-> separate kernel builds to work around the missing firmware.
-
-DT is not the kernel's runtime configuration mechanism. That assumes a
-tight coupling of the DT and kernel. That may work for some cases like
-Android with kernel and DT updated together, but for upstream we can't
-assume that coupling and must treat it as an ABI (not an issue for
-this case).
-
-The kernel command line is a runtime config mechanism for the kernel.
-So why not use only that? There's certainly some room for improvement
-with handling it. For example, it's not well defined with what happens
-with 'bootargs' as you go from a dtb to bootloader to kernel in terms
-of overriding/prepending/appending, but that could be addressed.
-
-> >> Instead of adding a device-tree entry for any CPU errata that is
-> >> relevant (or not) to the platform, allow the device-tree to describe
-> >> firmware's responses for the SMCCC interface. This could be used as
-> >> the data source for the firmware interface, or be parsed by the OS if
-> >> the firmware interface is missing.
->
-> > What's to prevent vendors from only using the DT mechanism and never
-> > supporting the SMCCC interface? I'm sure some will love to not have to
-> > make a firmware update when they can just fix it in DT.
->
-> The firmware interface has to exist for ACPI systems where EL3 can't infl=
-uence the ACPI
-> tables, which typically get replaced if the part is OEM'd.
->
-> Ultimately all the interface is describing is a non-discoverable hardware=
- property
-> relevant to an erratum. These are often configurations the silicon manufa=
-cturer chooses.
-> In this case its the behaviour of the interconnect.
->
-> If we didn't have to support ACPI systems, this stuff would only have bee=
-n in the DT. With
-
-With...?
-
-I fail to see what ACPI has to do with DT platforms adopting the SMCCC
-interface or not.
-
-> > The downside to this extendable binding compared to simple properties
-> > is parsing a flat tree is slow and more complicated. So it may be
-> > difficult to support if you need this early in boot.
->
-> I do need this early in the boot, but I'm not worried about the delay as =
-these tables
-> should be small.
->
->
-> >> Most errata can be detected from CPU id registers. These mechanisms
-> >> are only needed for the rare cases that external knowledge is needed.
-> >
-> > And also have significant performance impact. In the end, how many
-> > platforms are there that can't fix these in firmware and need a
-> > mainline/distro kernel optimized to avoid the work-around. I suspect
-> > the number is small enough it could be a list in the kernel.
->
-> At a guess, its all mobile phones produced in the last 2 years that want =
-to run a version
-> of Android that uses virtualisation. Cortex-A78 is affected, but I don't =
-know when the
-> first products were shipped.
-
-How many run mainline and run it well enough to even care about the
-optimization yet?
-
-Even if we went with the above list, that's 2 years x 4 vendors (QCom,
-Mediatek, Samsung, Google) x 1-2 Soc (high and mid tier). Subtract out
-any vendors capable of updating their firmware. So a worst case list
-of potentially 8-16 SoCs? It shouldn't grow because anything newer is
-going to implement the SMCCC interface, right? That's not unmanageable
-in my book.
-
-Rob
