@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6F56D3D5B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 08:31:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C56926D3D68
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 08:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231462AbjDCGbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 02:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43714 "EHLO
+        id S230367AbjDCGfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 02:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230053AbjDCGbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 02:31:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EF1D52B;
-        Sun,  2 Apr 2023 23:31:44 -0700 (PDT)
+        with ESMTP id S229670AbjDCGfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 02:35:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3BD65BC;
+        Sun,  2 Apr 2023 23:34:58 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5058614F5;
-        Mon,  3 Apr 2023 06:31:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 243EAC433EF;
-        Mon,  3 Apr 2023 06:31:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D0EE4614E2;
+        Mon,  3 Apr 2023 06:34:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54299C433EF;
+        Mon,  3 Apr 2023 06:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680503503;
-        bh=i8cq8H4Yhw1CAAarD0GVgGxvxr3tNkVZXqgsXfxngYk=;
+        s=k20201202; t=1680503697;
+        bh=wzluEvR07/Iehrheek73HbOQNPlcwZDSwVVMhYpLF/s=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u4cYoVxSOhOfhTpWPKpbOBVRgTIJqWOhnbnVJl9YmnirdokLMeggLXfs9zcBoPeC/
-         NU0V4hF+sufLI1eU9Az7+F+EiH5PEbuC/ZXg9YinnX2Hng2VyAc0R98yq3KYnvjmKt
-         o6839xRuPf13GmSk2W+YLAfKzOXywqtuxVRLvwlk5JESfop0foME+5G/4TKdcujnJ0
-         UxNDt1zAYokIkrAVT3zO1CF7sAV2IT8VozWY8TSgurBZ8ltCgVsxC90I23OwbFYxdP
-         2/39ptU+iuKnpBjjzkNXSLV6juY9f+vfAkfCb+1rtEbPkk5DM5jyN95lcc/Mohqc9C
-         WZ6IQGWIFKUwg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pjDjZ-0004o9-NJ; Mon, 03 Apr 2023 08:32:06 +0200
-Date:   Mon, 3 Apr 2023 08:32:05 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        b=c+MzaLjuuylILtjgw54TNYfLhl5hpYOjQUiwdSE3anYeloxGna46S5TtmcRBpu12+
+         qxlU3s/6y/Hx/TqGBrGHafn3P0J7fev2i7kHsxCfBoOKClAO8259xknPzkZnKW6vXC
+         Jd4wIPzbtuL8bbRWuukNnsSLy73C8DcuL4vYDGCj1m2WEUOZaElpaPS3U2MWBbSqKj
+         5k9xuOujB5jYyI73LHF/CC6GcTO6w0t3PFuuhmUywRY1gX+bccudEn09QYd9GkDaYm
+         sOUY0L9G89XWvH9dbCt9R0mZjzyZN2d6rGz72fPCVWB6uDzJ85vlCQoDZovTddqwcI
+         VOboOEm215leA==
+Date:   Mon, 3 Apr 2023 12:04:52 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 03/22] arm64: dts: qcom: sc8280xp-pmics: use pmk8350
- specifics for pon device
-Message-ID: <ZCpy5TUWacjtVo05@hovoldconsulting.com>
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-4-dmitry.baryshkov@linaro.org>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] phy: starfive: Add mipi dphy rx support
+Message-ID: <ZCpzjIrcKt4t93gn@matsya>
+References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+ <20230223015952.201841-3-changhuang.liang@starfivetech.com>
+ <ZBhTmTEcrV59oaw3@matsya>
+ <2aa1bdbd-e37e-941a-9422-0908545c14f7@starfivetech.com>
+ <ZCbloBdeffocT3Os@matsya>
+ <d48ab612-213a-8d20-4b36-3f64f3d24721@starfivetech.com>
+ <0dd5e35b-512e-41ed-af33-f94b7e2868c1@spud>
+ <b07842e4-54cc-873e-3140-4a933e054802@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230401220810.3563708-4-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+In-Reply-To: <b07842e4-54cc-873e-3140-4a933e054802@starfivetech.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,40 +70,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 02, 2023 at 01:07:51AM +0300, Dmitry Baryshkov wrote:
-> Following the commit c0ee8e0ba5cc ("arm64: dts: qcom: pmk8350: Use the
-> correct PON compatible") and commit f46ef374e0dc ("arm64: dts: qcom:
-> pmk8350: Specify PBS register for PON") use "qcom,pmk8350-pon" compat
-> string and add RBS region to the PON device.
+On 03-04-23, 14:31, Changhuang Liang wrote:
 > 
-> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-I already sent a fix for this last Monday:
-
-	https://lore.kernel.org/all/20230327122948.4323-1-johan+linaro@kernel.org/
-
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> index c35e7f6bd657..a3c7369f9594 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> @@ -59,8 +59,8 @@ pmk8280: pmic@0 {
->  		#size-cells = <0>;
->  
->  		pmk8280_pon: pon@1300 {
-> -			compatible = "qcom,pm8998-pon";
-> -			reg = <0x1300>;
-> +			compatible = "qcom,pmk8350-pon";
-> +			reg = <0x1300>, <0x800>;
+> On 2023/4/3 14:24, Conor Dooley wrote:
+> > On Mon, Apr 03, 2023 at 09:39:00AM +0800, Changhuang Liang wrote:
+> >> On 2023/3/31 21:52, Vinod Koul wrote:
+> >>> On 21-03-23, 14:08, Changhuang Liang wrote:
+> >>>> On 2023/3/20 20:37, Vinod Koul wrote:
+> >>>>> On 22-02-23, 17:59, Changhuang Liang wrote:
 
-This is missing 'reg-names'.
+> >>>>>> +static int stf_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
+> >>>>>> +{
+> >>>>>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+> >>>>>> +	int map[6] = {4, 0, 1, 2, 3, 5};
+> >>>>>
+> >>>>> what does this mean?
+> >>>>
+> >>>> This is the physical lane and logical lane mapping table, should I add a note for it?
+> >>>
+> >>> Yes please. Also will the mapping be always static or ever change?
+> >>>  
+> >>
+> >> The mapping is always static on the visionfive2 single board computer.
+> >> Thanks for your comments.
+> > 
+> > What about other boards featuring a JH7110?
+> 
+> maybe add this mapping in the device tree, we just need to parse the device tree is better.
 
->  
->  			pmk8280_pon_pwrkey: pwrkey {
->  				compatible = "qcom,pmk8350-pwrkey";
+If the mapping is hw description then yes it makes sense
 
-Johan
+-- 
+~Vinod
