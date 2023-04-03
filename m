@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F7866D4160
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B0976D4163
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbjDCJ4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:56:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42554 "EHLO
+        id S232031AbjDCJ4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:56:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231824AbjDCJzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:55:42 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2BE76B3
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:55:21 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id t14so29719279ljd.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:55:21 -0700 (PDT)
+        with ESMTP id S232080AbjDCJzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:55:46 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A336D213E;
+        Mon,  3 Apr 2023 02:55:29 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id fy10-20020a17090b020a00b0023b4bcf0727so29948554pjb.0;
+        Mon, 03 Apr 2023 02:55:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680515715;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XE1GC8bNsZjh91M2uvZ6GJDekN3UycynkCAMIfYoBuU=;
-        b=rtXx2LnasUzfGMdHPJhXjl18xhcNTvKvsCn+K9hiyWahs3KWHn+C82uykFyV8jHjgR
-         p871ozxTl13KN2NUgxCetr/S9VORwsLlCq7Wkfq2kqiKY5a3N/IdpxdWN7dLDvyLBepg
-         JWbSUI+Ww5BnzkCo053+IcLl08XZF4l1kCEszOTCwZVfAUSGboj+TALWuyO8arSBeEjh
-         YLNeg0wpNcynFmOKguyM81NjfBnit1vEZa+fNey+1pCEGHqAjCeahV/nmQv7ns5+l5yI
-         ca5C4s8eKX9A4g76Ct19EnVDt9kEmFyeqGenVop3ObJv5lqYaqYLMHH1Lks2VNSlgBG2
-         tf/Q==
+        d=gmail.com; s=20210112; t=1680515729;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=01YW6j9QbsBH60bpsALo7q/4eL9AmWqz/jdrOcUPAps=;
+        b=NIUhHe6NfhPqX4cy71+HFM2TVzxSeaWJarnlnPOjmtZb/lle4mr7/aMYuQJhv6L4g1
+         j7orGjNNt2CPsu/Vtm8w/LJURydxnJNfVYw8x2iu5LMRIn+rftKkICWjPvhAE7T4Pxte
+         HuxHILEfCLuFJR67dTl3t5QzZ6Xwj78P1WH30QfXecjmOPGmIzFjsrA0SySwWWlXseyu
+         6ZcvaMcSB/Qde+jiEw/7XRL+18EZZ+HZLgQzV8L+7vqpoginpfoXo3TmUdT6alkgJrKT
+         JV07C+MQofuqUVRk+KlRw49ArXhm417uRCCq1EmZVMITu3pqBiWgp3vOU5c8vbadlmZy
+         XzXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680515715;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XE1GC8bNsZjh91M2uvZ6GJDekN3UycynkCAMIfYoBuU=;
-        b=EhD6pokLDQhWkarVzQdtSUH673UvckZ1Cbw/BWLRgU3rXQBYF45ddd6ONH2VRA7HHs
-         QE45OA+Fw/K5b7NR3IdX3eJ/SxB2DCybsaM+66SnJ06fTI4JqmiOLQ9f8XkDYuGoQ+wK
-         wtZacsiNEwA7qKvOZrvQfMJ9b8dFU36sdpamGx68Z6pYpuA2dR4OnjX3F0g2XL52tSCh
-         763IMyqkcr4Ewbc8ai3zUhZpAPKoVJHqaDKYNEQi/lmWIGgOo1x8j1BgXlStqXySZot9
-         G9IF50CxywKwNzEswmI8iZ386+y3ae+bfCByA8ul7Vp9Fhapp471nDk6v4x+N1148c3D
-         uvPA==
-X-Gm-Message-State: AAQBX9dvV05w5vx6lRL0cSCag/avAXjnfQ12wC0+nrzL9GLiiLttWQSR
-        5sWHhBylKkQ6Acgb/8Cw5AB2dg==
-X-Google-Smtp-Source: AKy350ZL/zOJDep07oVQ1KtvNKU/eySDxYXdtkGk81hwLJblc1drCHXJNLF8P5B2guL8xgr04LVLVA==
-X-Received: by 2002:a2e:9450:0:b0:29f:1e4f:a71d with SMTP id o16-20020a2e9450000000b0029f1e4fa71dmr10645231ljh.44.1680515714691;
-        Mon, 03 Apr 2023 02:55:14 -0700 (PDT)
-Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
-        by smtp.gmail.com with ESMTPSA id y26-20020a05651c021a00b002a2b9d9429esm1650733ljn.117.2023.04.03.02.55.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:55:14 -0700 (PDT)
-Message-ID: <d42c59fd-f1f6-eb31-49ad-f3eda31f021b@linaro.org>
-Date:   Mon, 3 Apr 2023 11:55:12 +0200
+        d=1e100.net; s=20210112; t=1680515729;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=01YW6j9QbsBH60bpsALo7q/4eL9AmWqz/jdrOcUPAps=;
+        b=J1G2vP5O3tZvACva98+VkjYJhBHKl4PauoDYYwGo+HwZEXH2RteHad7xfS1MOfEdP5
+         XpPQKH7UOoJ2mlRD9HEzspd588FmUASDdC70kwbtGAKBy5wdEaMrO5iBGpCQhmSTFnC2
+         HyAX2NUQzMfO8yqHQfq+AHhL3nuis8LHW+jeJqYre6U0KdAGuI5J6bpShWJzb/pwBwF2
+         9FIcGd5cD0yF9eGsIGpw4N+0Kcjwg7JYsffZmXJ02NX17iO2pCSlwTr1y6+e0FF7Adp/
+         kx3RHcMWfUEZsTswyouMwquIfUAimBBHFNrz/xg/OqW7FqnyBB1TIF6fkGcwqtbPZ6pt
+         rp/g==
+X-Gm-Message-State: AO0yUKWu6rpz8HrXvducfGFfx0Em7M857LbIyyf+S/ILrNR6FoTzTA8A
+        /PeZWYtM7nb6nPQM9SV3cAw=
+X-Google-Smtp-Source: AK7set8Ttkwf/6RsLkHaQufq9oMn7ZWpapgHzwfOcKUajDBBaul5M+vpZ/Erll/wVWd9sDqik3wl+g==
+X-Received: by 2002:a05:6a20:e13:b0:d6:7d3a:c6e with SMTP id ej19-20020a056a200e1300b000d67d3a0c6emr30476305pzb.44.1680515728864;
+        Mon, 03 Apr 2023 02:55:28 -0700 (PDT)
+Received: from pavilion.. ([2409:40f2:100f:dc7:7de5:f2e3:4932:541])
+        by smtp.gmail.com with ESMTPSA id p11-20020a62ab0b000000b0059085684b54sm6729798pff.140.2023.04.03.02.55.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 02:55:28 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        danascape@gmail.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+        robh+dt@kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: wm8510: Convert to dtschema
+Date:   Mon,  3 Apr 2023 15:25:20 +0530
+Message-Id: <20230403095520.3046-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <9acb38db-bdef-bfc0-5de0-c248d45714ae@linaro.org>
+References: <9acb38db-bdef-bfc0-5de0-c248d45714ae@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 01/22] arm64: dts: qcom: pm8350: fix thermal zone node
- name
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-2-dmitry.baryshkov@linaro.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230401220810.3563708-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,45 +74,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> This should be rather someone from Cirrus or their regular contact -
+> patches@opensource.cirrus.com.
 
+Alright I will do so.
 
-On 2.04.2023 00:07, Dmitry Baryshkov wrote:
-> Correct the thermal zone node names to remove the clash with
-> pm8350c.dtsi. Remove unused labels.
-> 
-> Fixes: 7a79b95f4288 ("arm64: dts: qcom: pm8350: add temp sensor and thermal zone config")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+For I2C and SPI description, is it required to add it only once? or just not required at all?
 
-Konrad
->  arch/arm64/boot/dts/qcom/pm8350.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8350.dtsi b/arch/arm64/boot/dts/qcom/pm8350.dtsi
-> index 2dfeb99300d7..9fb963df4b41 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8350.dtsi
-> @@ -8,19 +8,19 @@
->  
->  / {
->  	thermal-zones {
-> -		pm8350_thermal: pm8350c-thermal {
-> +		pm8350-thermal {
->  			polling-delay-passive = <100>;
->  			polling-delay = <0>;
->  			thermal-sensors = <&pm8350_temp_alarm>;
->  
->  			trips {
-> -				pm8350_trip0: trip0 {
-> +				trip0 {
->  					temperature = <95000>;
->  					hysteresis = <0>;
->  					type = "passive";
->  				};
->  
-> -				pm8350_crit: pm8350c-crit {
-> +				crit {
->  					temperature = <115000>;
->  					hysteresis = <0>;
->  					type = "critical";
+Kind Regards,
+
+Saalim
