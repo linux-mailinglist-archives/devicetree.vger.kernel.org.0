@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B4E6D44C5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 550A46D44D1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:49:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232297AbjDCMqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:46:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
+        id S229945AbjDCMtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:49:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232405AbjDCMqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:46:50 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E6512BE3
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:46:43 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id t10so116670418edd.12
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:46:43 -0700 (PDT)
+        with ESMTP id S232283AbjDCMtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:49:06 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0170510ABF
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 05:49:03 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id t10so116695766edd.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 05:49:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680526002;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1680526142;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=neR03f3r/PRhjAxKrg/Uky+bO4+qgi4bjtbZrSyz90E=;
-        b=EVf6w8kopeQc5qosEWtBUokCa1r/js/Uos9oLbIUHBl7ks4jjsstI7+flc/COTL7Ha
-         Gkcu5ZQ/QuLXaEE/GKyxNh5PxaUrgnehTafoxe1prUQuiFAL7CgADqWdszPIfPNBF1RH
-         3DN1PUtvGoR8M6bBnPGKTmGXoWLHbGA82jX2dlDjrNuMYLWZDM4TZfd/O2odptXBdZcZ
-         cGtzemu26UNrQ7jGPQjMT/Pz582Bleiq/v3nfWI/767OQinZoMj/yjnba9LncQ1o827p
-         JhoTNa6VbwXiIjw4blmxx01Yo0KG4qFFfNq6fwRdNV9mxFhgI5uBuV2YyE0FM8GELMaO
-         t/kA==
+        bh=ISwLn6XAWbSbFdzIWp9X/wiJEWCN8LzXJ/dbGkmRRJs=;
+        b=yM2ATucKwHouvbBvYy74RuU4wpRCipfUwo/ghlxpmpFt3ifZugisB+EF/PNTYaiZ72
+         UpN2gstGW/kT9ZW9UxKT5hC3s6whGfFbr5XpIjuZ0+BM/TM1ADVLmiNRSqPv3byL7edh
+         N54Y/Sc4XnMlyXRqr9ZFUvdKMsGK3ugQMN/kV4KhsVDd3GWKP7EBKlLmXS4wjUByc8vy
+         nTtCATcSFe1Kjy7zQxhtvQKWqkg+tzlvNyuSoMqsoBlvd4Ij2ixdoPlbSB3Tsj/IcsiE
+         KCfN9HjdGqnZBAMupBgR4C8MALuol3gFL47LL9wxw3NzB7F2YFoNBsC2f5BS3slJjVjc
+         epDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680526002;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20210112; t=1680526142;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=neR03f3r/PRhjAxKrg/Uky+bO4+qgi4bjtbZrSyz90E=;
-        b=JwXcLpl+FsxUJ/zdXLTYEDJIqVsTD4XpxP/qrB0AbYLDCsV7f20Hky4l0D0W03R1O7
-         Uk5kXYfL6mDP1Hxhb3cqoMkobgTpJqjRLdJ3utgahay3tva7W2dlpK+EOB4N1H62bkF7
-         320tOJ81SSLgIeHcJMeNSi8gA50RA+6QM48BZzIndORulh2URztSqMBENuLNqtwP4co+
-         tnL8qotGfGegTYNYCAgBK3qGmOQB0z/UXrSvF4KKkY+wEmOttSGnfEhV4TYPbAT+QAA8
-         4vuhheuWWeNc5PJurHRS0J9E8zkuwldR/QSgYmlefVot/QWlhMy2x61rAnfaHQRc8XZD
-         Z2kg==
-X-Gm-Message-State: AAQBX9eY+Ki1h7YjH/7hqDzJrd9Kft+csLFnenF1cRmeMEQZwTJp3Ofq
-        zJTI4DpCAXwaHyLDlLm6j+R+dw==
-X-Google-Smtp-Source: AKy350aM+WlVOHnlCeNVQ6/mZEeUvJbST8Uv9+hSJYqmAjs6DsIwLFoDwV9YdRcHTJhsJ1wP9roCtA==
-X-Received: by 2002:a17:906:4d0f:b0:8b2:8876:6a3c with SMTP id r15-20020a1709064d0f00b008b288766a3cmr34083927eju.29.1680526002502;
-        Mon, 03 Apr 2023 05:46:42 -0700 (PDT)
+        bh=ISwLn6XAWbSbFdzIWp9X/wiJEWCN8LzXJ/dbGkmRRJs=;
+        b=eM2a5WYp5ZQdyh88ej9dHwgdFN2GuWK/w7u7jJOaNUaf+u5eJoyPwehsYiGX75Lg6R
+         MpcAarvp4ExZ70YeHNzp3qBvaRNg4N3FIlQ+qOrosi5WO28p14yaFWMN+0tMlN5bvv2B
+         USNFqxvjymlZcmV45CXFecMDxWU9CMWo6O2VB+z6STcZ65Tr85lSeRUyHqPV+ALYbVu+
+         /LEIfVORre5+sPdtghcBBIGT6z9N5dhoe23/EEcGk2QU55N/oDoUAGQEOlTM4pqhnz7q
+         ucoB8MB91mMlmKJEb3qVb/gfSQSKKjTjCzvHmMR4K7MtWqdEunz4nfDjckLIRxXs+GLv
+         pm1g==
+X-Gm-Message-State: AAQBX9cPvjMD9t8l+JDlZAfL1zuEZC8IuQXERgIgojFEyS1cAPikW+xp
+        J3VoamXa7NURRA58/X9Q92axrg==
+X-Google-Smtp-Source: AKy350aVsRdZ8lMJe5Twrh8KULuIFmwXUK3d/d6hD2HYM/7d3yDUed96iV2DI3Wtb3VFyJvzSf82lA==
+X-Received: by 2002:a17:906:e0c6:b0:93b:a133:f7e6 with SMTP id gl6-20020a170906e0c600b0093ba133f7e6mr32628143ejb.46.1680526142326;
+        Mon, 03 Apr 2023 05:49:02 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id o18-20020a17090608d200b0092973e209f2sm4535108eje.109.2023.04.03.05.46.41
+        by smtp.gmail.com with ESMTPSA id v1-20020a170906564100b0092b86d41dbasm4518263ejr.114.2023.04.03.05.49.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 05:46:42 -0700 (PDT)
-Message-ID: <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
-Date:   Mon, 3 Apr 2023 14:46:41 +0200
+        Mon, 03 Apr 2023 05:49:02 -0700 (PDT)
+Message-ID: <8f7f925f-638d-737c-bf47-2a66ce0eec59@linaro.org>
+Date:   Mon, 3 Apr 2023 14:49:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
- registers
+Subject: Re: [PATCH v2] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge
+ to yaml
 Content-Language: en-US
+To:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
+Cc:     marex@denx.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, jagan@amarulasolutions.com,
+        inki.dae@samsung.com, Fabio Estevam <festevam@denx.de>
+References: <20230403124458.198631-1-festevam@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230327122948.4323-1-johan+linaro@kernel.org>
- <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
- <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
- <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
-In-Reply-To: <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
+In-Reply-To: <20230403124458.198631-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,69 +77,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
-> On 03/04/2023 12:54, Johan Hovold wrote:
->> On Mon, Apr 03, 2023 at 11:18:07AM +0200, Krzysztof Kozlowski wrote:
->>> On 27/03/2023 14:29, Johan Hovold wrote:
->>>> The pmk8280 PMIC PON peripheral is gen3 and uses two sets of registers;
->>>> hlos and pbs.
->>>>
->>>> This specifically fixes the following error message during boot when the
->>>> pbs registers are not defined:
->>>>
->>>> 	PON_PBS address missing, can't read HW debounce time
->>>>
->>>> Note that this also enables the spurious interrupt workaround introduced
->>>> by commit 0b65118e6ba3 ("Input: pm8941-pwrkey - add software key press
->>>> debouncing support") (which may or may not be needed).
->>>>
->>>> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
->>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 5 +++--
->>>>  1 file changed, 3 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->>>> index c35e7f6bd657..a0ba535bb6c9 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->>>> @@ -59,8 +59,9 @@ pmk8280: pmic@0 {
->>>>  		#size-cells = <0>;
->>>>  
->>>>  		pmk8280_pon: pon@1300 {
->>>> -			compatible = "qcom,pm8998-pon";
->>>> -			reg = <0x1300>;
->>>> +			compatible = "qcom,pmk8350-pon";
->>>
->>> Same comment as Dmitry's. There is no compatible "qcom,pmk8350-pon"
->>> ccd3517faf18, therefore indicated backport (through AUTOSEL) will lead
->>> to invalid stable kernel.
->>>
->>> You must drop the Fixes tag, because this cannot be backported.
->>
->> That's bullshit. Do you see a stable tag? Is 5.19-stable still active?
+On 03/04/2023 14:44, Fabio Estevam wrote:
+> From: Jagan Teki <jagan@amarulasolutions.com>
 > 
-> Why do you refer to activeness of v5.19? This will go also to v6.0 and v6.1.
+> Samsung MIPI DSIM bridge can be found on Exynos and NXP's 
+> i.MX8M Mini/Nano/Plus SoCs.
 > 
->>
->> The problem is that the driver was updated before the binding was so the
->> above mentioned probe error has been there since this file was merged.
+> Convert exynos_dsim.txt to yaml.
 > 
-> I grepped and that commit did not have such compatible. Are you saying
-> that the kernel which was released with this commit already had that
-> compatible in driver (through different merge/tree)?
+> Used the example node from latest Exynos SoC instead of
+> the one used in legacy exynos_dsim.txt.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v1:
+> - Added samsung,mipi-dsim.yaml entry to MAINTAINERS file (Jagan)
+> - Added Marek Szyprowski entry to the samsung,mipi-dsim.yaml maintainers section (Jagan)
+> - Mention that i.MX8M Plus is also supported (Marek)
+> - Remove endpoint@0 description as it only has one endpoint (Marek)
 
-So I double checked, the commit ccd3517faf18 (which is being "fixed")
-was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
-compatible, thus it could not be fixed that way. Therefore this cannot
-be logically fix for that commit from that release.
+Where is the changelog from original submission? How your v1 differs
+form it? Or did you just ignore all the feedback?
 
-"Fixes" means that commit has a bug and this is how it should be fixed.
-So v6.0 kernel should be fixed to use "qcom,pmk8350-pon" compatible,
-which is obviously wrong. v6.0 does not support it and the "fix" would
-actually break it (which might be worse or better than original problem,
-but that's independent thing).
+> 
+>  .../display/bridge/samsung,mipi-dsim.yaml     | 271 ++++++++++++++++++
+>  .../bindings/display/exynos/exynos_dsim.txt   |  92 ------
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 272 insertions(+), 92 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> new file mode 100644
+> index 000000000000..2698752dc6ed
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> @@ -0,0 +1,271 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/samsung,mipi-dsim.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung MIPI DSIM bridge controller
+> +
+> +maintainers:
+> +  - Inki Dae <inki.dae@samsung.com>
+> +  - Jagan Teki <jagan@amarulasolutions.com>
+> +
+> +description: |
+> +  Samsung MIPI DSIM bridge controller can be found it on Exynos
+> +  and i.MX8M Mini/Nano/Plus SoC's.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos3250-mipi-dsi
+> +      - samsung,exynos4210-mipi-dsi
+> +      - samsung,exynos5410-mipi-dsi
+> +      - samsung,exynos5422-mipi-dsi
+> +      - samsung,exynos5433-mipi-dsi
+> +      - fsl,imx8mm-mipi-dsim
+> +      - fsl,imx8mp-mipi-dsim
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 5
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: phandle to the phy module representing the DPHY
 
+OK, so you did ignore the feedback.
+
+NAK, go through the feedback and implement it.
 
 Best regards,
 Krzysztof
