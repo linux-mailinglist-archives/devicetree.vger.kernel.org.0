@@ -2,149 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BD756D4148
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A84366D414B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231548AbjDCJwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:52:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60796 "EHLO
+        id S231859AbjDCJwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjDCJvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:51:54 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on20625.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe13::625])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B981512041;
-        Mon,  3 Apr 2023 02:51:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nLjQFj2XnHOu8RZOk7MOYpo7ixvksMMw+IxJWd1j8WdoYsSA2QYQYDTp7azH9Kfc/7HYaUgVV8X8ShjZ0A7RxTLGKfonlMWgJCZxHkS49urMDscsPpavvWZblVO5PyIkOvCa0H9osdQCKoxwwVaal+vbpcbvUovyVtIKx13YFd8PwWSsv9bLJxIu7RC888YwqiBOpp3McismFmZAX/CWj9zl+hNt9yRV8YMkbb03POAHQHLyhEaLZt1goE+MzveUBp0G9O+umwDUZlRY/F0RnyVbXY+sLl5u9glW7parsYYHWWVDgpLTSromqsvGmN9VPADkKOIN7yx70EknhnfOgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/R4mUyeMwZMcAEMyUYp0mDC6q1e99ogOPSNzMY8U4sQ=;
- b=XPxVmojLeUwAGZ955TOopSXzjFWWyZdpe9NxmGZ4pKFP8FefvMUrbZBVzxjgcO3FyoL3NjT0lS6zMV46XNLP9c5jV2Sp0v4HR1Mras41/PcpU6P5OCTcmVGtFC0gD5j0QDEK2hnuyIX0rKIs6a5QedtfUFRGHxISUTZtiS4lQ1nfI5JPJHvixWxN2y+WVzhZLh3XG8d0CeCtQ2QSE6im8wAzKiPgBT/6ymcxjeoCjFP5U2BaUF2DSZyQt+RTakwDJ14baYrssH4s14haRfic0/iGBG1yeP4CqX59dV6WySF74Yat473SFDcR38ABQhJCa55fQ4hMfe2SSQMlVhcJoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/R4mUyeMwZMcAEMyUYp0mDC6q1e99ogOPSNzMY8U4sQ=;
- b=UxILv6z0UDa8kK8lCghUljJd8IFalkl9YpYF6nSkBrj7ftx3fVQCU8T/woMcn5hn5awjLKjuXxktdVaknQKO5qqLkPya4l0jg5uOL6USsCD8l1/zpkIESXxGpI9nLLrIVvqO1gx4eiL5wSr+VFGKm079UTXr586Mh0WjD8eZaXk=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PAXPR04MB8877.eurprd04.prod.outlook.com (2603:10a6:102:20c::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Mon, 3 Apr
- 2023 09:50:23 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::b999:f2c6:a8cc:7b4]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::b999:f2c6:a8cc:7b4%4]) with mapi id 15.20.6254.033; Mon, 3 Apr 2023
- 09:50:23 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH V2 6/7] dt-binding: clock: imx93: add NIC, A55 and ARM PLL
- CLK
-Thread-Topic: [PATCH V2 6/7] dt-binding: clock: imx93: add NIC, A55 and ARM
- PLL CLK
-Thread-Index: AQHZZfsbXTNf5q63tEi1ZKgXG4oYXa8ZVYmAgAABslA=
-Date:   Mon, 3 Apr 2023 09:50:23 +0000
-Message-ID: <DU0PR04MB94177F4910F7C47B2CCE867588929@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20230403071309.3113513-1-peng.fan@oss.nxp.com>
- <20230403071309.3113513-7-peng.fan@oss.nxp.com>
- <14d7b3ab-5ac6-61dc-a538-62993edadae6@linaro.org>
-In-Reply-To: <14d7b3ab-5ac6-61dc-a538-62993edadae6@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|PAXPR04MB8877:EE_
-x-ms-office365-filtering-correlation-id: 7c1ceff8-7ccf-4708-3976-08db3428d873
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sfR5mizKV3xMfCC+OIOxh+nwP7C7DRZ50pPUV4zFvrsGQsbLI8BJhXw2G1gjrhl2Liy93mlK2fnOdd0fJehsYbo2p5G8dDEwgY3GtvwjxwJWyubuCbIn5ZALUbhsVaJnaUxpIqfqoR/fZsXvznd5KcE6ofJY+s9tRVgmp+FWNj3HvM/AZtcpSY7jWZxldcx0z5IyFyyHgaCJmNeVOhd0+q2RDlF0KEhovgBZF+zJ2gPX4Yoc7wonIkB+OW4qeZtWSUf40d3w4bBY7iqDLb5pF3ke+gCGazqVqcQtIDRcYeSlQSbQJ2OXNF8hsD3VpdO/81ZJqO0Pa5bx+yGpFTr0LbFBqcbSNSzwRncSXG7I7XoVt+RzCpPB3tLlWJS10FafkJ0KuRIDXNu1Egna1ki3W6OFpbhyknK7r9SpbF8rItkXcd8YLU6IpmXnFetWvnz7IZjOXTiujaWNgpl/chbPwv7Klwhwg1nD0dvXyHs3BwhgHCcWExL6ecZ2xv33C9MEDqys+Al0rvVWAzkxBWoHkkC/Go+7la/IiZtK821l/yRExnhu2ZYr1zMwqkS/zMqt7oV47w66/vDe+v5SX0IcXTSlDst0lUYhPLpgPojKAQiM4JQxnuf7G15uft/F4Q0Xpj74wCbgcmKpZqU9QhnlCg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(451199021)(55016003)(8676002)(4326008)(66476007)(66556008)(64756008)(66446008)(66946007)(76116006)(478600001)(316002)(110136005)(54906003)(52536014)(8936002)(4744005)(44832011)(921005)(7416002)(41300700001)(38100700002)(122000001)(5660300002)(53546011)(186003)(83380400001)(7696005)(71200400001)(6506007)(26005)(9686003)(86362001)(33656002)(2906002)(38070700005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NWs1c3Z2N3I3ZzYzcHRkMEFkdHdndUlBOUErQlNzR2c2dURMKzMzWWZ2ZTBv?=
- =?utf-8?B?d2J0bkdnVlBRWDZtMEIxYTFmWXhRSjlWTmZtYlh2TmVoM281N3F0VmVEOU52?=
- =?utf-8?B?WkZCWEVsTHg2UnFudjFyTUs1My9hWlVNY1YwQkpQVDRmQjJianl3SlVqd3ZJ?=
- =?utf-8?B?b2FMNVNSWHZZT0ppVDU5R3JERFRtbXlKUk5ZVGY3SGZhQlhrU3lBSktHelNM?=
- =?utf-8?B?UXZKaFNSSHRPR1RsY1V3aVFzTWovc3ZvN1hYWnVVS1pIdGZMMFY5Q0xKZUlS?=
- =?utf-8?B?eUQrV05tVmZITEtCRSs5SmZ6cWhOSHp2MUtsSlhDOGxVNWttQS9LZ1p3aHZH?=
- =?utf-8?B?TmxWbW1sVlh0QloyL2J1NG82NFBLVEZJemNHbkE5dmQ0Y1pxN2puc20rdTVV?=
- =?utf-8?B?SmQySG04M2hPVXUyaW9XOTZmcHBydFhTU2ZLOWoyZ3RyOHp6SllhamsxTVFO?=
- =?utf-8?B?bjBRM28vKzdISTJHTCtyZWp1QkhqSzRRWkJubEczVHFoM21uRHJJTENNbEtC?=
- =?utf-8?B?Nk5sSzQvcS9qWldnbEhUTGZ0WG9EZHM1b2J1QmhzQmg3SE4rTm9HOCtpcTB1?=
- =?utf-8?B?OFN3UXN0NkZXeVdDekdyK2lNZFdtbHRCc3FVQlhMZnZTbVJrVUwwb1JsWWMz?=
- =?utf-8?B?UTBDZkdzeTg0Z0hSUnpOOUcvajFHd29Eai9rOWpwSGxSamFtVE5pVHhKb294?=
- =?utf-8?B?YjN1Q01pK1c1aGlBZFhDVkpob3V0YnB4a3JQNkt1djlJak1ET2s0RjhiVEox?=
- =?utf-8?B?NExGNW56SGw1N21KWE9nVldMeEN5dTRTSHFwamxabzhER1hUaVBRbVZIYk1G?=
- =?utf-8?B?SVJJZC9wMFZaSEVXRXVsWmJnVGQ1dk5NY1B2M1dOdUxpbUl2Z1VBT2tyMWdD?=
- =?utf-8?B?TXJVVXBOTmNNM2srYlIvZW92VVF2MTk5SXVFNDF1WTZwQVBSeDZKaVVSaVhy?=
- =?utf-8?B?NU9HK252dWVwR01ENEZhck5OOTZxNXpYSnJYOWJkRmRWbVJkNnJQY2k5Sjkv?=
- =?utf-8?B?Y1hna0ZwV0xraDk0VDFEVFBnUFlJTndacXB1TUE2Q21mY1NBU1QxZHB4NHNp?=
- =?utf-8?B?WjJDL0pKQmU2TVY3bEpiN3RkK3R0dmJtM21EeG1jMGVSSVNmb0pOWXpnSHVx?=
- =?utf-8?B?SnFhSXBCWFZ1a093YVh0QTdvSDVEdERHMXJCcHREd2YzS2hpeDQzUHVVelMw?=
- =?utf-8?B?WHhKSFljYVR5bWU4S3BDdGRhVnpjSEFLTFFlakhhanZxV0h4MXdRMkd0NVlx?=
- =?utf-8?B?c2ErL2xmTXVkUUZ1SUxHTkRvbFZEVC9acWZsYWtpTDVpbUxUb0Y4L1RJeXlB?=
- =?utf-8?B?U205YVJ6UWJrZjhneFhGYzVyOEh3aTdlRFpnbHFCTmkvSE5LSnQ5ZjFINXUz?=
- =?utf-8?B?ZE9KaUhBc1g3ci9UcG9XN0ZGaHFZU0VqZFF1MUsreEYrMlA2TmkvR0pVSkRu?=
- =?utf-8?B?c0hjNkJYcEsvMUdCKy9CTU9lWUN2TmordE1ublg4ZnNMZFVWWkZqRWpzUVNn?=
- =?utf-8?B?OTZRZzFnWExhbEhJWXFzWjZ6bkdBa3k5cFRIUlJaOGluUEpuWllZWXFJQTh1?=
- =?utf-8?B?ZnBEaVMweGlvczVnYWlsdDZsZzg2RlJ0dGFncnVuWVorcEJ0ZjBVbTFmWWpt?=
- =?utf-8?B?aE5RSGdVa3lzMXE5cU1VZFNmL2xad0dOd1FVcFk3UXpEMWQ1a2cyZmFVZllW?=
- =?utf-8?B?eklUR0RrV01haitrV3NaWEMxdG90c2lnWVp6a3lLcXpMK0F1dFNlaXUvSW5X?=
- =?utf-8?B?d0lNVzhhVnlYVmpTVHhTblAwZ1paZWYvQnhieGlTYmFnZ29xVXp1aHlUQlA0?=
- =?utf-8?B?dUFESjl3UnVTaGJoOFlQb3JnZUZrL2xOcFBoRUFYVzdIb1gzTjlDQVlqZUlO?=
- =?utf-8?B?a0JkSFZQK2FqUlcyZkNxbUZWRlN1WFNiblUxNitmRS8wdldqOTdCK1E5b0Rz?=
- =?utf-8?B?R1hKTFg1ME85UzVmMTdBRFIycDc1bVAxWUVvc091TzRxRGI5QlVCWkVrOE9w?=
- =?utf-8?B?S0hNK0cvQVlsK0xXbFk1QisxUW1wYzV2UTEvT1RyUlRDd0lhUzNwRlM1UDRp?=
- =?utf-8?B?Z0pJK1FocWFQWTJTemJhU1NpbU5TeWNBNWdLWE9zTHZqVjNVWGJJVFMvY0JR?=
- =?utf-8?Q?eN/I=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231871AbjDCJwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:52:10 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B8212BCF
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:51:16 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y20so37313427lfj.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:51:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680515452;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zQBY05AOjaIMaj3OfW7f9Js5C948ogr/TmDq8HawSXE=;
+        b=PR85roNO69i75rd5vzOUAO8QRkmNr4yEYMnXfaNYOEtvanhiTeK+NYERofuybvqpAt
+         DL/8yNL34tpgkab+5WASTBrmbcugQs+b8JEXghhZnXpqUK/HVKRGtu5aup2+aY9PPuMq
+         mfEmgQcuOW4VBeGhbu5ANqoAEHT7n8kwHkSheWuJXWCXyyTVzOfvuytQXyBHNXRhOxrJ
+         thk+bVwNsMvYueaXxgUS5dTytirMfZsc6JZm9aOr6ekMBVj3PgonA8ry32qGpSnMmArw
+         vrMYNs7A+0rY4ZiYY9tJOxE7McxlptWKpDYWhk3HFnAQLTk1cAKQXrDxtvAaCa5pd/Ul
+         UTgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680515452;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zQBY05AOjaIMaj3OfW7f9Js5C948ogr/TmDq8HawSXE=;
+        b=xPke0Iun9aluGxJOfDSYFF90Bp5Jdckq8lIgf3mVeHdwZhBEyPEuJbiZ40WDMLj+Ir
+         Dg79upgA3vWM6kAPIPwHNk0qMpN8XfHCBT3XjOPMRwH1zkBzoXS0rHqODmtvavylB/cU
+         jvJ4iLOCpWdpHvATYIWdPabxVjUXKq0tfqTN5NlZnTKGA4YIMNPy+9SLYsa8qPPX7iyJ
+         tyJTEjA9PYRNmW7weEAt3f8NWX02jCGmjXYHLZmqVYtzi7atr08ILw38vxCtx+4J2zwl
+         JV5Kd6I3EEI2KGg/EAE/RyShc1CA+aS2guliPv1IEijhNAsQK17Sc28tpQGfKiJjOOHW
+         QLeg==
+X-Gm-Message-State: AAQBX9cUysWOs4J6+nihYcIITXp8NcT94bl6zxfM7KH69HnW9oifzxdX
+        8SzL5N6XosKATdcM9SApLn4alA==
+X-Google-Smtp-Source: AKy350Zmy+TIvkUh34TNtpGTgMU5rLvc+FQOvXpVfUFOF8O+EO+a+uf2iWQrDMC3B4ZOxj7rUQ8W2Q==
+X-Received: by 2002:ac2:52af:0:b0:4dd:b766:37ae with SMTP id r15-20020ac252af000000b004ddb76637aemr9290270lfm.13.1680515452057;
+        Mon, 03 Apr 2023 02:50:52 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id g3-20020ac25383000000b004e849f6836csm1665810lfh.167.2023.04.03.02.50.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 02:50:51 -0700 (PDT)
+Message-ID: <4c4450b5-28a3-0a4d-ccd0-5ec96c2ded82@linaro.org>
+Date:   Mon, 3 Apr 2023 12:50:51 +0300
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c1ceff8-7ccf-4708-3976-08db3428d873
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2023 09:50:23.7784
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zTBkAqQshxAFqZCTq00fmfSWHRECsQaugMYzdiTWqsSNKPd5uHHZ89LZmmBTdTsY/2O2n0ar3M3/fmuUHigr+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8877
-X-Spam-Status: No, score=0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
-        T_SPF_PERMERROR autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: pm8350b: fix thermal zone node
+ name
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-3-dmitry.baryshkov@linaro.org>
+ <47efb05a-d1e7-a3c5-c423-4eb53fe86386@linaro.org>
+ <33430a31-b9da-5f1c-bae0-9ec6f24fda99@linaro.org>
+ <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIFYyIDYvN10gZHQtYmluZGluZzogY2xvY2s6IGlteDkzOiBh
-ZGQgTklDLCBBNTUgYW5kIEFSTQ0KPiBQTEwgQ0xLDQo+IA0KPiBPbiAwMy8wNC8yMDIzIDA5OjEz
-LCBQZW5nIEZhbiAoT1NTKSB3cm90ZToNCj4gPiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5Abnhw
-LmNvbT4NCj4gPg0KPiA+IEFkZCBpLk1YOTMgTklDLCBBNTUgYW5kIEFSTSBQTEwgQ0xLLg0KPiA+
-DQo+IA0KPiBGaXggc3ViamVjdCBpbiBhbGwgeW91ciBwYXRjaHNldHMuDQoNCk15IGJhZCwgYWxy
-ZWFkeSBmaXhlZCBhbmQgcG9zdGVkIG5ldyB2ZXJzaW9uIHBhdGNoZXMuDQoNClRoYW5rcywNClBl
-bmcuDQoNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
+On 03/04/2023 12:09, Krzysztof Kozlowski wrote:
+> On 02/04/2023 13:02, Dmitry Baryshkov wrote:
+>> On 02/04/2023 13:34, Krzysztof Kozlowski wrote:
+>>> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
+>>>> Correct the thermal zone node name to remove the clash with
+>>>> pm8350c.dtsi. Remove unused labels.
+>>>>
+>>>> Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
+>>>
+>>> Please describe the observable bug from that commit being fixed here.
+>>> Any future clash, which did not exist that time, is not a bug. It's future.
+>>>
+>>> Naming changes here are more a matter of style, because the old names
+>>> were correct according to our coding guidelines, just not precise (c
+>>> instead of b). But node names anyway are not important from the point of
+>>> view fixes and adding such tag will cause a needless backport.
+>>
+>> It is needed. Including both pm8350c.dtsi and pm8350b.dtsi will result
+>> in one thermal zone overriding another one.
+> 
+> I don't understand. You used future tense "will", but we talk about
+> past. So where is the bug in commit 5c1399299d9d?
+
+At that time there already existed sm8350-mtp which included both of 
+dtsi files.
+
+-- 
+With best wishes
+Dmitry
+
