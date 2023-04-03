@@ -2,131 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E83B46D464A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD78A6D464D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbjDCN4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:56:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
+        id S232734AbjDCN5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:57:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232299AbjDCN4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:56:44 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61427195;
-        Mon,  3 Apr 2023 06:56:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1680530175; i=frank-w@public-files.de;
-        bh=Xb/Aqcr8/6tCqOXQhpDwDqrXqkHQUMERdzS8z5C5aaE=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=WVgWtMLNJip3AWjjsW3c2NEI8/oR0kJHkFcWc8LIzEOS5noCTYVSWlKivGM7TXk1c
-         sK3FeMkjgroYVQ3pq9/jXOA/krprjV0Bo5aBA+WYVI5C6LTCvEImrFpQchEzyDb1yx
-         a3aBhQKOsaZCzFlOuvmHSkvCx8qwAPPxF7E0pFZcRRjCz/QjfXqOQd2YxVPo7YM0kq
-         KEhaRcLyaEOp80/+npwZJ3jiasFpzsOFHWlvY/uy92PCK7FaLBVkQkdDvwNyalxwfo
-         DvWZQIHjFOzeCwyadhDttGjYi1HXl4etdfE3/DRigXd5yjn/hCt8DDvIyFpOcSScDQ
-         qzxZURiAEGDMQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.152.94] ([217.61.152.94]) by web-mail.gmx.net
- (3c-app-gmx-bap35.server.lan [172.19.172.105]) (via HTTP); Mon, 3 Apr 2023
- 15:56:15 +0200
+        with ESMTP id S232002AbjDCN5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:57:08 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975144486
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:57:00 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id p204so34828422ybc.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:57:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680530219;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kODDV0eo3KG9JXNPcuqS6MOsNNtWM4OP9fbwHqcpwiQ=;
+        b=xHUjq7ju37k6tq0qw/NJnEhO/E0QYa4VXV7FpPEvNXjrW6cFMfFxcxvNo/PyZ7/lyH
+         8ezNFxusnuEhdlyfG7gSaAs7fnih9cOr+oykAdwJizv3gr+oz7QvquI01cF6MV31EHtm
+         pbsIypIYfeUTpRUCTEI5aldkZXJBsO0Hw8qvvye8H5IyEFFWGRgO7aDIuZ3UeiSoD5Uk
+         b/kQwkZ8Bz3WT2+7gBcapCpzQh5WH2NpaS9u4bb4B1rUpdwgBCPORp9ZWueW5TCzUhSC
+         XvTLsfy/OJAEDkRndDEd5ehqBMyNW9UAYbAsTbJKAf2mkrnduhxq9q3CRpiPvLt5T0Jp
+         nyFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680530219;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kODDV0eo3KG9JXNPcuqS6MOsNNtWM4OP9fbwHqcpwiQ=;
+        b=aEXaNZ4LdgXwuuKVwPD7qY9/dqNEl0Glsfvx7mLzVUk3yuNNc0T/vZkH+TdCy4xn1y
+         t7NrYBL/DdBeQxDmMlKH82gcAgMeudCuj8c71jc7CBcGOdMurDlQCLquIB1/bxQkKdec
+         gM/LBSbeDmqjk2RYHmjK60QtnLgbWjj/WBPDN5tDp24TftWG4BRO5wkTPdiNyAOjadwI
+         WdgtamFQlmWlQ/qjzpM9X9UFyjzJinha3UtjgYC4R7N1Nx+D+CzPDJwfQLrL9p5YynMQ
+         24S0OXKlRBUKmGJClQgyDgXI9ps5T0HK2WLKiY7aCf2i7wtcvoPLhndls8IMIY8V2Xjv
+         /8OA==
+X-Gm-Message-State: AAQBX9eMb3Mnk5iFLIe63l55j003nXWD2sMOamS3ACjFMWB31UgHF4vS
+        0GznJALZwqqbvEQkph/xm16waL01KJiVXOdmJfj9Gw==
+X-Google-Smtp-Source: AKy350a+6yKOvU2Vx0VJFi9PvEVqKu2yKBdZt9WnARJ7DiP1tc2RnQX+840XSZBpIbNH93jnzswOJLu2PkbS20/tOYw=
+X-Received: by 2002:a25:3104:0:b0:b86:92c0:6433 with SMTP id
+ x4-20020a253104000000b00b8692c06433mr3281190ybx.9.1680530219692; Mon, 03 Apr
+ 2023 06:56:59 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-f48dda5c-6787-4732-978a-a409bbb0a74d-1680530175673@3c-app-gmx-bap35>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-22-dmitry.baryshkov@linaro.org> <af18b9a3-2960-8fbb-0d19-ee7d3b3f89ab@linaro.org>
+ <b33337de-1a09-aa72-7f1f-fabf85ddcd9d@linaro.org> <CAA8EJprnv0uqEq=uJ8z+Az-izwk-kscXiELVqrP9BPBFQpJE4A@mail.gmail.com>
+ <46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org>
+In-Reply-To: <46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 3 Apr 2023 16:56:48 +0300
+Message-ID: <CAA8EJpp+YP8aHzm33qXp=cb0iaFGuKgnrUo27dOKuBU0R1GSYg@mail.gmail.com>
+Subject: Re: [PATCH v2 21/22] arch: arm64: dts: qcom: pm8150: support SID
+ greater that 9
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Aw: Re: [RFC] arm64: dts: use size of reserved partition for bl2
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 3 Apr 2023 15:56:15 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <601a8435-8e2a-2c25-5fe3-40be62269469@collabora.com>
-References: <20230403105818.29624-1-linux@fw-web.de>
- <601a8435-8e2a-2c25-5fe3-40be62269469@collabora.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:1JUsxUleXcKrPCYwE3ay4MIocxMSb4QWHITw42EQ/QR0OVKQS9PGhbSC81u83cP4k1dMp
- S1et19Ypg4uLyI/QckCamlb8kcfn1bY4ymdZGUt3Ph7J38bdfIThEnQiirBQ6gDDvAfpskDhC+P6
- iAaYJxwyc3Ig+PTlA5twYw1xpSilLarg7i3GTbuHqFpqyBgCdnHX6WwQ+lK3PVIU4Auvh9i7MFsR
- 8HzZea3gQDUcfZU9yxOEsCuh6ks7UdS2t6Umh1jTB9ziiDqmfpdBfdAzSirOnHnF8S1u0fg2yuGG
- Vw=
-UI-OutboundReport: notjunk:1;M01:P0:jg4AmhsdSds=;mWrtOAomhXxgFe3ThMYoz+s7nVN
- UuwqaM8J8aThcXwF6VoXk7wWF86T5cbejRDTAscqE70dN6DVg8E/hbaOApM9Js/Fj06u7OPBg
- 6RvF+zfTf7ndIiqqJVngOJMK01wmtK/ks5CPPuihiK0qKKIQo4L5BkxCefcCfoggy8VzL8vz5
- jUnILjCxNfiAlQLRxG4z8c2xaKZYrGwfyEdLs0Kn+fCf505U5h8WHRamHwgbjAZPPMfWv37kD
- r7J6OXsLD4QF9lmQZgIAzUISCBc1KpG0H3M1sl9mlUx9mW4rm25w6J9bsYL4c5S1r9sb9dRSr
- +wUoLpj0DFhK1ulSPiZ9abTnlBSV1M0fI1odhYuaaP+ULGffm1/8e3qR7VjCnNhSWarH4rd/a
- oItMUBls4M4r+zQWlMEmM5dQVzKWjknmYCVSh4OkdocNRZmsbeFNlUN6vBvWqdATlvVAKowIa
- 5VZ5FpSJpn9dgxzWNmew5FStWODYHIM8UbrB31WAGL7J7SaSKy1kngfjYvoTiOc8ZIXNG2VLa
- DZA6YIdkOL8SrpOvtyeYa/wSwLq0QtAhq3JARS/F5YarnjRsd6IJcTW7FV+T4kWx1W9uLz010
- 1camxgAhtwkgpCHT1qSS6rxcapHJymGBOG0AeVQISr6GrSjHxcqbJOLoWW+8il8Qs5QekwQOG
- lW0xPUBY16DQyG51Il7TTjUOeAbhM9Z/F4m6AJAZxLgkmHs18Ab6VsqZn43rZhZ02/vA81yHr
- aor2OlljU+S+V+JvVwc5/aPNxYey30TGMD+tW1TQE+efQoMwB3aag4VqhFhKq2zQTkLcWe/0f
- WawLAgD/5bBkNVgGvh48HFEwGo+Cz69aBk6LjPV0ryBqjQdgm3Ehw+FCuzQl7U4BpRRLv6Qqk
- 6XB0KjI07hnPTIA==
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Montag, 03. April 2023 um 14:43 Uhr
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
-om>
-> Il 03/04/23 12:58, Frank Wunderlich ha scritto:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > To store uncompressed bl2 more space is required than partition is
-> > actually defined.
-> >
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+On Mon, 3 Apr 2023 at 15:57, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> If this doesn't get changed anymore, I'm fine with it... but a question =
-arises:
-> did you send patches to add your BPI-r3 board(s) to upstream u-boot?
-
-currently i use the rfb dts for r3 in uboot: arch/arm/dts/mt7986a-sd-rfb.d=
-ts
-
-this file in upstream uboot has no partitions defined
-
-https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/mt7986a-sd=
--rfb.dts#L144
-
-but i added them there too and i wrote content by offsets to main device (=
-not to partitions).
-
-https://github.com/frank-w/u-boot/blob/2023-04-bpi/arch/arm/dts/mt7986a-sd=
--rfb.dts#L154
-
-so yes basicly it needs to be send there too, maybe as additional dts.
-
-regards Frank
-
-> > ---
-> > I used the definition i got from mtk used in their SDK uboot.
+> On 03/04/2023 13:45, Dmitry Baryshkov wrote:
+> >> Konrad
+> >>>> +
+> >>>>  #undef PMIC_SID
+> >>>>  #undef PMIC_SID1
+> >>>>  #undef PMIC_LABEL
+> >>>
+> >>> Same comment as for previous patches - all undefs must be gone.
 > >
-> > Openwrt uses also the first reserved partition to give bl2 more
-> > space:
-> >
-> > https://git.openwrt.org/?p=3Dopenwrt/openwrt.git;a=3Dblob;f=3Dtarget/l=
-inux/mediatek/dts/mt7986a-bananapi-bpi-r3-nor.dts;h=3Df597b869abc80d1a73f4=
-4ebb85ad4da17376bb52;hb=3DHEAD#l22
-> >
-> > so imho it should be same in mainline to not require complex bl2
-> > compression.
+> > This means that we can not include two copies of the same PMIC (which
+> > do have on both platforms).
 >
-> Regards,
-> Angelo
+> Consider spi15 and spi16:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sm8250.dtsi?h=v6.3-rc5&id=7e364e56293bb98cae1b55fd835f5991c4e96e7d#n1045
 >
+> Do you see it written as #include "qcom-sm8250-spi.dtsi" with
+> parametrizing the reg/unit address, interrupts etc?
 >
+> No. Neither PMIC should be. It is not a special device.
+
+I think there should be balance. PMICs are complex structures.
+Possibly schema will help here once it is in a more enforced mode.
+
+
+-- 
+With best wishes
+Dmitry
