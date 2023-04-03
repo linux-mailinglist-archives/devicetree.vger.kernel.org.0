@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C22DA6D4158
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F7866D4160
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231444AbjDCJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
+        id S232209AbjDCJ4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231665AbjDCJyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:54:19 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D252D59
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:53:53 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id h8so114935860ede.8
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:53:53 -0700 (PDT)
+        with ESMTP id S231824AbjDCJzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:55:42 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2BE76B3
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:55:21 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id t14so29719279ljd.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680515630;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1680515715;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LJlrdDbF9+4E4VB54zkQelJria6H4TDQP9yMZcAgHLg=;
-        b=oCGbWw21DqLjWGRThvdqExQX1aM36eMkLTFG0IRkiJSHh1Ifh6zq0c7Lm1E5lEXkrd
-         GjMSeirGrQkQi6Wl/ykRryRlCeIKTf7xt4v5rSlDW6+rRANWCpNLE1hUcqSuGMk+QNz2
-         cFhTbrssxOzG/pM9oLemV/vjGoxTb6Lu4axMMrbuMNaBOLb4sh5qRBPMUcEtaQ19SgAJ
-         XDXM2P2B0MnRQhtlZF6Nu2uJ8/IdPtNKuXXZ8SnI3Rk3FENQGGVx6cG5te3EfKXp/daG
-         nWFgfZSlZUK7/k3mtT5rrpQ8mdFR8sL88d+7WkjW5hj2IYLfWrfIzmTNErOfYDgheEOr
-         s3BA==
+        bh=XE1GC8bNsZjh91M2uvZ6GJDekN3UycynkCAMIfYoBuU=;
+        b=rtXx2LnasUzfGMdHPJhXjl18xhcNTvKvsCn+K9hiyWahs3KWHn+C82uykFyV8jHjgR
+         p871ozxTl13KN2NUgxCetr/S9VORwsLlCq7Wkfq2kqiKY5a3N/IdpxdWN7dLDvyLBepg
+         JWbSUI+Ww5BnzkCo053+IcLl08XZF4l1kCEszOTCwZVfAUSGboj+TALWuyO8arSBeEjh
+         YLNeg0wpNcynFmOKguyM81NjfBnit1vEZa+fNey+1pCEGHqAjCeahV/nmQv7ns5+l5yI
+         ca5C4s8eKX9A4g76Ct19EnVDt9kEmFyeqGenVop3ObJv5lqYaqYLMHH1Lks2VNSlgBG2
+         tf/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680515630;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680515715;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJlrdDbF9+4E4VB54zkQelJria6H4TDQP9yMZcAgHLg=;
-        b=J0aHxB2/LtuSE/k5XKo4y0aMrxztfZGLhUlgS9BJvS/3DM5pmQnsU02Iqxu7NadiCf
-         WYpszPbj7aDNN+A9cypHR80hgnC+isMXN63MoS9t6Vq5H6kL40fvVj+e1UfHOspH/vuc
-         JDHAXzo/0Jn2/HclZjZTAeubSZduH5dA4Mf/YXTzGcvy46ONDGE7zRIX3CtV7JdpyFBY
-         2faO9grAbkvz/c5wNyuFVafqChiuP4okEIrwSx/W8DbWjr6S+D79PWnVwiI5l52I8nyj
-         K3lfk4XtW5XoVel0vLmbRJSGTq84wH63FmCnew7xQrATHOcKGYblMVsiyAQgLduVld4z
-         ox+g==
-X-Gm-Message-State: AAQBX9fAXqUydMH0DkQMB2U7dKzeZGYP3ASPZR8GiD4Nbt39TTkjRtk2
-        EtqsiarjMwH8o6F9rohu4t5Ong==
-X-Google-Smtp-Source: AKy350a0a1bWE0yN8qnslUgf71yktHZaBm3SnfLl9tiApjHozALcTanZo2RJWIL/xhh3Ze7qTXYG6Q==
-X-Received: by 2002:a17:907:d10:b0:925:6bcb:4796 with SMTP id gn16-20020a1709070d1000b009256bcb4796mr20077828ejc.38.1680515630517;
-        Mon, 03 Apr 2023 02:53:50 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id u13-20020a1709063b8d00b0093e261cc8bcsm4337535ejf.58.2023.04.03.02.53.49
+        bh=XE1GC8bNsZjh91M2uvZ6GJDekN3UycynkCAMIfYoBuU=;
+        b=EhD6pokLDQhWkarVzQdtSUH673UvckZ1Cbw/BWLRgU3rXQBYF45ddd6ONH2VRA7HHs
+         QE45OA+Fw/K5b7NR3IdX3eJ/SxB2DCybsaM+66SnJ06fTI4JqmiOLQ9f8XkDYuGoQ+wK
+         wtZacsiNEwA7qKvOZrvQfMJ9b8dFU36sdpamGx68Z6pYpuA2dR4OnjX3F0g2XL52tSCh
+         763IMyqkcr4Ewbc8ai3zUhZpAPKoVJHqaDKYNEQi/lmWIGgOo1x8j1BgXlStqXySZot9
+         G9IF50CxywKwNzEswmI8iZ386+y3ae+bfCByA8ul7Vp9Fhapp471nDk6v4x+N1148c3D
+         uvPA==
+X-Gm-Message-State: AAQBX9dvV05w5vx6lRL0cSCag/avAXjnfQ12wC0+nrzL9GLiiLttWQSR
+        5sWHhBylKkQ6Acgb/8Cw5AB2dg==
+X-Google-Smtp-Source: AKy350ZL/zOJDep07oVQ1KtvNKU/eySDxYXdtkGk81hwLJblc1drCHXJNLF8P5B2guL8xgr04LVLVA==
+X-Received: by 2002:a2e:9450:0:b0:29f:1e4f:a71d with SMTP id o16-20020a2e9450000000b0029f1e4fa71dmr10645231ljh.44.1680515714691;
+        Mon, 03 Apr 2023 02:55:14 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id y26-20020a05651c021a00b002a2b9d9429esm1650733ljn.117.2023.04.03.02.55.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:53:50 -0700 (PDT)
-Message-ID: <c86d2388-609c-528e-b250-90bd85b97264@linaro.org>
-Date:   Mon, 3 Apr 2023 11:53:49 +0200
+        Mon, 03 Apr 2023 02:55:14 -0700 (PDT)
+Message-ID: <d42c59fd-f1f6-eb31-49ad-f3eda31f021b@linaro.org>
+Date:   Mon, 3 Apr 2023 11:55:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 3/9] media: dt-bindings: cadence-csi2rx: Convert to DT
- schema
-Content-Language: en-US
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 01/22] arm64: dts: qcom: pm8350: fix thermal zone node
+ name
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
-References: <20230331121826.96973-1-jack.zhu@starfivetech.com>
- <20230331121826.96973-4-jack.zhu@starfivetech.com>
- <0aa3a039-daf3-7e05-6da9-258335a5ca20@linaro.org>
- <9c132e62-7830-90bf-2c3e-1568a54eb6ec@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9c132e62-7830-90bf-2c3e-1568a54eb6ec@starfivetech.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-2-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230401220810.3563708-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -89,76 +82,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 11:48, Jack Zhu wrote:
+
+
+On 2.04.2023 00:07, Dmitry Baryshkov wrote:
+> Correct the thermal zone node names to remove the clash with
+> pm8350c.dtsi. Remove unused labels.
 > 
+> Fixes: 7a79b95f4288 ("arm64: dts: qcom: pm8350: add temp sensor and thermal zone config")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/pm8350.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> On 2023/4/1 4:12, Krzysztof Kozlowski wrote:
->> On 31/03/2023 14:18, Jack Zhu wrote:
->>> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
->>> to DT schema format.
->>>
->>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 ----------
->>>  .../bindings/media/cdns,csi2rx.yaml           | 174 ++++++++++++++++++
->>>  MAINTAINERS                                   |   1 +
->>>  3 files changed, 175 insertions(+), 100 deletions(-)
->>>  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->>>  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->>> deleted file mode 100644
->>> index 6b02a0657ad9..000000000000
->>> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->>> +++ /dev/null
->>> @@ -1,100 +0,0 @@
->>> -Cadence MIPI-CSI2 RX controller
->>> -===============================
->>> -
->>> -The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
->>> -lanes in input, and 4 different pixel streams in output.
->>> -
->>> -Required properties:
->>> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
->>
->>
->> ...
->>
->>> +$id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Cadence MIPI-CSI2 RX controller
->>> +
->>> +maintainers:
->>> +  - Maxime Ripard <mripard@kernel.org>
->>> +
->>> +description:
->>> +  The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
->>> +  lanes in input, and 4 different pixel streams in output.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: cdns,csi2rx
->>
->> That's not equivalent conversion and your commit msg does no mention any
->> drops in compatibles.
->>
-> The equivalent conversion refers to 'an SoC-specific compatible'?
-
-Yes.
-
-> I'm not sure that, is it enough to add a description (drop an 'SoC-specific compatible')
-> to my next version commit message?
-
-Original binding did not allow csi2rx compatible alone. Your binding
-here allows it, thus it is not simple conversion.
-
-I think patch 5 should be squashed here - with proper explanation.
-Usually new compatibles should not be messed with conversion, but this
-conversion on its own does not make much sense.
-
-
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/qcom/pm8350.dtsi b/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> index 2dfeb99300d7..9fb963df4b41 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> @@ -8,19 +8,19 @@
+>  
+>  / {
+>  	thermal-zones {
+> -		pm8350_thermal: pm8350c-thermal {
+> +		pm8350-thermal {
+>  			polling-delay-passive = <100>;
+>  			polling-delay = <0>;
+>  			thermal-sensors = <&pm8350_temp_alarm>;
+>  
+>  			trips {
+> -				pm8350_trip0: trip0 {
+> +				trip0 {
+>  					temperature = <95000>;
+>  					hysteresis = <0>;
+>  					type = "passive";
+>  				};
+>  
+> -				pm8350_crit: pm8350c-crit {
+> +				crit {
+>  					temperature = <115000>;
+>  					hysteresis = <0>;
+>  					type = "critical";
