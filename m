@@ -2,56 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D13936D4240
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9E806D426A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231977AbjDCKiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
+        id S231564AbjDCKpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:45:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232011AbjDCKhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:37:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EB3112CC6;
-        Mon,  3 Apr 2023 03:36:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B78B61892;
-        Mon,  3 Apr 2023 10:35:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8271C433EF;
-        Mon,  3 Apr 2023 10:35:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680518150;
-        bh=85MRH2+l503eK5l0LF+Zu620qHQWK59g5PiItRKZf7o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=vQ1L4qyC2EwczDh0CP3gVr5E26DwJseI8Wn/kWS+bfPXVaW3rObDtc5Ef8GiXJJBo
-         7vuO9iaicULZ2EFMvk+3ynLlSamu1js7Pq4d7eMZs7Jy12Wv7vVquwIo8/bdZL0nWb
-         faJClZhI3osujKIPXQ/uyOphCjelrme90RUdomY4x0t3cT33DpMn21HpTArKD8h3jT
-         CipKiblzKuq6EdJLKQ+E5uy5Qyfdrr5ks3Yu2mhLmOaG3XM0SV2o+QPwAsu/aRFuks
-         P03SYFS0gscfaNbV1KCGjo0pgy0xAVXqG1BUZPfR1aqQKCN+QUeoJffegbjP6k1U0K
-         L7+wahKfknzhw==
-Message-ID: <11d12eea-e70f-8bf8-ed1e-f82cf95a20ee@kernel.org>
-Date:   Mon, 3 Apr 2023 12:35:45 +0200
+        with ESMTP id S231395AbjDCKpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:45:01 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6515E30F5
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:44:59 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bi9so37433320lfb.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:44:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680518697;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cfF51ju6g2Vk9QLZ3M4JMJygNq7FzMSheocePpRa5mU=;
+        b=FdX9gItFGUIXNc7xqH9k/2prUSCKixY9o8bWHzjX7jmZTKxnrGTWaJ50BjiUxutQZI
+         tbn5a8QNppxvgldSJG0zBsvkbB5f4qy4AzzvnuIPKapS/Duc9dIMjsp1EtX936SnVipf
+         GurwSz7MBChqbHMj6p2gvA3ejZXh6HYcsubW0JqEhNm3GVltfbVUZsYtFU3HwARvrJVm
+         Q7vcPriF8y+pPwZd3p9+LsQpKa6gSfsZ7G/cwMxChwh/LU5AUZfLaPKt31YYZW3AD/ol
+         F3GUhmwoMx9xiFKHkBglItsjcgywqdvezwuuk7FMrPRUbWKmv1zHMnJtZscSA2w2x0Hy
+         L7Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680518697;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cfF51ju6g2Vk9QLZ3M4JMJygNq7FzMSheocePpRa5mU=;
+        b=jBHWiCmN+6wXFgdFZP1ekvLp34qtZuuHk4FvbEVIELW/tNPUtgdyHA3dveEodjclTg
+         76uecREGaG1UUB8PRMWjM0w5Pm+r+r3dfMLBC3da7b03zQg/ZfEkSejSNmdt+mHM56RI
+         mVA8gWTMz9vgd8JF+m3CXwYrA3JD/z7BT9H01uiDrUFJC3XM1k7anJ4odFnMuiBcts3+
+         oyzFQD+4BOlshFPXm5l8B7IZ+SIC7481s9bDH/48rh5REZTKOB95dND5BtBninbij9hV
+         Di6Ow5t/0bwbYbdK0Ff44mBw6Wd2CDD/TA98MZjdjoRjOmNtwDRTwxT+kcdvvRi7vndx
+         L0Dw==
+X-Gm-Message-State: AAQBX9fw42RJnXEqXhllCNv+noeX7bEV0WlCF4H79RMWWyXxbOPgHrES
+        UQP+R2A+FgDN42qpVYMxXpwDhA==
+X-Google-Smtp-Source: AKy350atmcdEqJQEBqDMyp+PVkd88PhNCs3kqcnM53Ri7ILtS5OQRoIS/jcyF64ER3LogOZqEeVFFg==
+X-Received: by 2002:ac2:41c4:0:b0:4eb:1606:48db with SMTP id d4-20020ac241c4000000b004eb160648dbmr5900409lfi.22.1680518697663;
+        Mon, 03 Apr 2023 03:44:57 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id e8-20020a2e8ec8000000b00293534d9757sm1690555ljl.81.2023.04.03.03.44.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 03:44:57 -0700 (PDT)
+Message-ID: <c6f20137-299a-afb1-c42d-35f7386b1e27@linaro.org>
+Date:   Mon, 3 Apr 2023 12:44:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: omap: Convert omap.txt to yaml
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 00/22] arm64: dts: qcom: remove duplication in PMIC
+ declarations
 Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-        Andrew Davis <afd@ti.com>
-References: <20230401140248.3363674-1-andreas@kemnade.info>
- <20230401140248.3363674-2-andreas@kemnade.info>
- <3865a750-2cd1-c92f-8bd2-22dfeea43769@kernel.org>
- <20230403121813.55c8aa2a@aktux>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230403121813.55c8aa2a@aktux>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <10626c79-46da-3f66-0327-66576b3e5f2c@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <10626c79-46da-3f66-0327-66576b3e5f2c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,56 +83,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 12:18, Andreas Kemnade wrote:
-> Hi,
+
+
+On 2.04.2023 11:55, Krzysztof Kozlowski wrote:
+> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
+>> The sc8280xp platform uses its own copy of PMIC declarations. This can
+>> easily end up with the issues that are fixed in the main PMIC include
+>> file, but are not fixed for sc8280xp (and vice versa). For example
+>> commit c0ee8e0ba5cc ("arm64: dts: qcom: pmk8350: Use the correct PON
+>> compatible") changed pmk8350 to use "qcom,pmk8350-pon" compat for the
+>> PON device, while sc8280xp-pmic.dtsi still has the incorrect
+>> "qcom,pm8998-pon".
+>>
+>> Another example is pm8280_2_temp_alarm device, which uses interrupts
+>> tied to SID 2, while having SID 3. This can be easily left unnoticed.
+>>
+>> Employ a small amount of C preprocessor magic to make
+>> sc8280xp-pmics.dtsi use standard PMIC include files
 > 
-> On Sun, 2 Apr 2023 13:26:46 +0200
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> Preprocessor magic is disliked in DTS. We allow only simple defines, no
+> undefs. Sometimes some nodes or strings could be concatenated, but in
+> obvious way. You should not parametrize it and have different, generated
+> labels in DTS based on something coming external to that DTS.
+This again begs the question, is it time we start moving parts of the
+dts code to be autogenerated?
+
+Should we keep a separate file for each SID?
+
+Or should we consider the SPMI 'interrupts' implementation flawed and
+work towards one that does not require a SID to be specified within?
+
+Currently it's:
+
+interrupts = <USID PERIPH_ADDR>>8 IRQ_WITHIN_PERIPH IRQ_TYPE>;
+
+So the first two cells are effectively useless and can be retrieved
+from the parent node and the reg property.
+
+Getting rid of that would solve a decent chunk of problems that this
+patchset concerns.
+
+Konrad
+
 > 
->> On 01/04/2023 16:02, Andreas Kemnade wrote:
->>> From: Andrew Davis <afd@ti.com>
->>>
->>> Convert omap.txt to yaml.
->>>
->>> Signed-off-by: Andrew Davis <afd@ti.com>
->>> [various cleanup, adding Epson Moverio BT-200]
->>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>  
->>
->> Please use scripts/get_maintainers.pl to get a list of necessary people
->> and lists to CC.  It might happen, that command when run on an older
->> kernel, gives you outdated entries.  Therefore please be sure you base
->> your patches on recent Linux kernel.
->>
->> Your CC list is broken in few ways. Just use the script, don't re-invent
->> the addresses.
->>
-> well, I am using the script and added a few adresses obviously missing.
-
-And one of them (omap@kernel) was invalid which made it impossible to
-reply to you...
-
-
-> But maybe I have used the script from an older kernel. The patch was against
-> linux-next.
+> Best regards,
+> Krzysztof
 > 
-> [...]
->>> +      - description: TI DRA7 SoC based platforms
->>> +        items:
->>> +          - enum:
->>> +              - ti,dra718-evm  
->>
->> This is not correct. Maybe you forgot to fix DTS, but anyway it's
->> confusing to have dra718-evm with dra768 SoC. Is this really proper
->> combination?
->>
-> dra718-evm has a lot of compatibles, no idea if that is sane.
-> And to better discuss such things I added the omap mailinglist (with a typo,
-> sorry). To avoid that trouble in the future, I added a patch to MAINTAINERS.
-> 
-> But I think it is better to not convert dra7 stuff for now, then
-> it can be discussed by the right people. 
-
-
-Best regards,
-Krzysztof
-
