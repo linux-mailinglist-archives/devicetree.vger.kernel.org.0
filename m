@@ -2,97 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF376D5409
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 23:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D5F6D5484
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 00:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233671AbjDCVzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 17:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51692 "EHLO
+        id S233615AbjDCWGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 18:06:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233594AbjDCVzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 17:55:37 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7B2FF;
-        Mon,  3 Apr 2023 14:55:36 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id f14so9333847oiw.10;
-        Mon, 03 Apr 2023 14:55:36 -0700 (PDT)
+        with ESMTP id S233494AbjDCWGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 18:06:48 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4E726AD;
+        Mon,  3 Apr 2023 15:06:48 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id s19so18486859pgi.0;
+        Mon, 03 Apr 2023 15:06:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680559607; x=1683151607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oJCa9oZ04Ks8sMazcFO/VKQNTdXem14KycuV76f0rrc=;
+        b=FHX/VJiKxcQNIunXX6dEEzh3e6W+9GpDmGjmr7CIxo0y1LST4Tzaoih3CiVSXBTJn5
+         HBbbIK8BCCN0pK0okxMRS3OFyVfjlFo8BpqPTLva+NvrpfMYfM8X5zOPRmyZ4xhnu9VQ
+         i3jSLwr/1vhkcA6aXT66mAHIbnro4FiRw/8N9C+gQn5xwsM2EvNjPpXatQdPMK9BYcrK
+         wgwgJq6r6ULGp5rZ7YAKtaqlYxp8n3P2Un+12bC0BlusxY5ljFkaQP4JirRfHMU29ezS
+         jRuz2+ouLT58Dy2repjboyQuKAa+k+Ujj/Rd3eTvc35JhJHhziwjIln9zKiY0HbI4fnc
+         e92A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680558935;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qjq0KqO+ZCTucOoyX+5QFTzN2oQuHf/UKMiz/wqweFU=;
-        b=cPQf1ejk1t0uIUttyKCvHbbkoFto2YATC2JCSbt99rXBJ1EwdEWwI1KTTo4kiZ82wW
-         992FNJ8pbLEaNIzUSwOln1Fz2AS63hD6LYFbmM2C98Zg3tL0IlsXkSvpvCCZ7Du8ByAp
-         SfdvownnaCZ/R6DB31e9g1EqD6tFZlZWSlj5l8pEEngUcqCM6TDTAVQiB2TRlJQoM9Go
-         jHyvWgt+kVa2e3TL4dQCuAveQbLPxaPg8+uOk06zOoBE0Yc/j18Cn1O/4bM+kp1nFamm
-         kThzjmUqxkXQ7vuy2yCx8kbFm6nYCwHwwqSE1T/cWNwxiLto5XmCizNWTYJsYh45HN6E
-         iNdw==
-X-Gm-Message-State: AAQBX9eCTaZLD+Qg9U4ACO5LjaylI/oUsOjgmVOlJpDbLULq7S4B5NBl
-        SyKxJ9r68IExf8TPqk0bIw==
-X-Google-Smtp-Source: AKy350Z6oL4IFhGhzxX75BQl6RphNE8W4vpP8gNjQhZyac0ZEhG5/XlfipS5XUEhJa/yh2SASWnk9A==
-X-Received: by 2002:a05:6808:4247:b0:387:3a60:be06 with SMTP id dp7-20020a056808424700b003873a60be06mr346449oib.21.1680558935526;
-        Mon, 03 Apr 2023 14:55:35 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o14-20020a54478e000000b0037832f60518sm4327025oic.14.2023.04.03.14.55.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 14:55:35 -0700 (PDT)
-Received: (nullmailer pid 1942293 invoked by uid 1000);
-        Mon, 03 Apr 2023 21:55:34 -0000
-Date:   Mon, 3 Apr 2023 16:55:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv1 1/2] dt-bindings: usb: generic-ohci: increase allowed
- clocks
-Message-ID: <20230403215534.GA1935153-robh@kernel.org>
-References: <20230331163148.5863-1-sebastian.reichel@collabora.com>
- <20230331163148.5863-2-sebastian.reichel@collabora.com>
+        d=1e100.net; s=20210112; t=1680559607; x=1683151607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJCa9oZ04Ks8sMazcFO/VKQNTdXem14KycuV76f0rrc=;
+        b=1u1qo3NH+FtzyOe2KmGEy/ul8f4NeaXY6lYhimWIELi1u/Y8VFQHuPYrz6tWlM5K4h
+         Fo0wMshunFfdYpMBKReo7tEcATNj9TwNlge1ywBCTpi714sLQXYXvj15rKhu2LzpcY6w
+         ubTBdWD96wIBGB7IrnrtWCczzEK5vzY9Z1K9Vwb+bVfZZGbeZUZm3GoDBpN3l/+fIgx4
+         EW7MfhTnb4SUaobOgVbMOmg2ojr47nfqbGfhVAg2bmsK8zM5U1cB52lKmaS5Gygd+CLD
+         TYhgz4WTbfAQph6cVTfSjRYicqo4Zn8qEQgB7Wb1PPRBM3NUTy/xVfW5HNLCPyMWiavU
+         XZ4Q==
+X-Gm-Message-State: AAQBX9fcVE1VgaBOWn4gqr+zeVxQef5OSriawRc3dDA5fUlWcyBWVZVN
+        dvyzhG1A5MMRzlWBhdEPeM1VhKWcNxvHsQ==
+X-Google-Smtp-Source: AKy350ZdXGE6cpbpmVZYo9Rg3/ffEZdfUGFP72Tgn4WpghMdGFVbRqHiowBWfPTd0tPVnKF/cGUnsQ==
+X-Received: by 2002:a62:7bc4:0:b0:5e2:da34:4aaf with SMTP id w187-20020a627bc4000000b005e2da344aafmr172473pfc.4.1680559606801;
+        Mon, 03 Apr 2023 15:06:46 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id 9-20020aa79149000000b0062dd28aaca6sm7341178pfi.212.2023.04.03.15.06.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 15:06:46 -0700 (PDT)
+Message-ID: <4cea1e91-f0d4-291f-813d-353f8b9d2a5e@gmail.com>
+Date:   Mon, 3 Apr 2023 15:06:44 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230331163148.5863-2-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 0/2] Correct gpio-ir-recv wakeup capability
+Content-Language: en-US
+To:     linux-kernel@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Young <sean@mess.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Ravi Kumar V <kumarrav@codeaurora.org>,
+        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Matthew Lear <matthew.lear@broadcom.com>
+References: <20230324203833.3540187-1-f.fainelli@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230324203833.3540187-1-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 06:31:47PM +0200, Sebastian Reichel wrote:
-> Increase number of allowed clocks to 4, which is the number
-> required on Rockchip RK3588.
+On 3/24/23 13:38, Florian Fainelli wrote:
+> This small patch series fixes the gpio-ir-recv binding and driver to
+> first indicate that it can be a wake-up source for the system, and
+> second actually make that happen.
+> 
+> Changes in v2:
+> - corrected the indentation of the description for "wakeup-source"
+> 
+> Florian Fainelli (2):
+>    dt-bindings: media: gpio-ir-receiver: Document wakeup-souce property
+>    media: rc: gpio-ir-recv: Fix support for wake-up
 
-It was 3 because that's what crept in until we made a schema. Additions 
-should really have a specific compatible and a conditional schema 
-limiting that 4 clocks to that compatible.
+Ping? Someone maintaining this driver?
+-- 
+Florian
 
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> index a9ba7257b884..c0880d0664f1 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> @@ -69,7 +69,7 @@ properties:
->  
->    clocks:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 4
->      description: |
->        In case the Renesas R-Car Gen3 SoCs:
->          - if a host only channel: first clock should be host.
-> -- 
-> 2.39.2
-> 
