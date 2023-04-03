@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8CD56D4E8A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 19:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD6746D4EA3
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 19:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbjDCRAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 13:00:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42080 "EHLO
+        id S232138AbjDCRJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 13:09:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbjDCRAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 13:00:33 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F192B19B7;
-        Mon,  3 Apr 2023 10:00:31 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id bl9so13127298iob.8;
-        Mon, 03 Apr 2023 10:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680541231; x=1683133231;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2nf1Z/1629BSjtPERMC0xegxmYOylmoUX4r5kQI3Zb4=;
-        b=afZSs2OWGE0NO12jOYZZiTTElaK97bfx4375BKXFjikdA8n0hir3GyRGXNuXs1UnzL
-         5lg2tgzlu/ihguK+7ws1V4VP+Ka/6E+KU4xzIGpJmSb3wVON495DEAv0vWks7ObDMy0B
-         QeN2khJBAeNmAYfBLjn/xfcGpDlC+jhTxnD3qH+o8D4xdkBt2Tt8tws9PK3V3TU7DoYg
-         Ub7icz4RPADSd1ONMIXOz3/ZZoK9OBeDmv8mJhSioQmNb3a47+nWiZsG8DR3zS1X4IoF
-         wz3YoMCBH6X9N2Sm8lpmJnI8G0EwYsYAf7foI5TI7Ph7SQ3uZHPejgFzF9MMjC+4xI/V
-         pwhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680541231; x=1683133231;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2nf1Z/1629BSjtPERMC0xegxmYOylmoUX4r5kQI3Zb4=;
-        b=l6g67eDjttfCXbZEzvh4Z2yNPmnkZ3V6nWhcbuiLe0UIpGX9uJwLPBn+o3LE7tzHy7
-         K0jmY6rOIJwLq3zWHQSmYN7TTAIaeObAoNq/lTFdntPa+NW7fO4pLxvOfw2bTq3IrY7f
-         +YbIVMQNYxJsaIBJzv4czrnKvmVjwZ+Lf6dg/33cs2faRKjeTXdXbT2BlRj67h0abcsu
-         /L1BNWj0GsvVb7FihKwlv42N+dGWE+wHMYdN1NNqLDWOlBYhOMmFC+c8h6zmU7YWeaJA
-         X3PJ3ss5Q+S351CfkrmycHzznNJV73JazDcydxvsSmtshzmRTOIH5zi8oStylKbth8S8
-         0Krw==
-X-Gm-Message-State: AAQBX9cVPpaS+oC1VCfgp06+aMd85/2jmwCkrvI3EMCpn4R/8ULiZDd2
-        mHcZwZukb1B7s8+OIoONKZh2+m0+30nsm9OQBQw=
-X-Google-Smtp-Source: AKy350Y/yLdfzY2ZvtkWGRk2SOZ/N5p31WZSenKJhc7loZKG0LwU+ujjt2tYneg/fN/rDMA3AWrQzzlpaYBPirIuotA=
-X-Received: by 2002:a02:7359:0:b0:3a7:e46e:ab64 with SMTP id
- a25-20020a027359000000b003a7e46eab64mr17031jae.1.1680541231305; Mon, 03 Apr
- 2023 10:00:31 -0700 (PDT)
+        with ESMTP id S230044AbjDCRJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 13:09:20 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B017272D;
+        Mon,  3 Apr 2023 10:09:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1680541709; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=S1zMyZnweAolB2TRy/fP+L3GoUKCkvVZHdVc9eafHVqDpoRmVhjI/VHjnOjyciaish4Ize5Dl2CiC1nFdNahUiSp22SMGP0xUJ9jXQWo7EU4eklYaFMdnJ+1dphdY3hiZWEZgL8cCiLAkN8ykyBzYoOafG34P1qya2bxA3g54HQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1680541709; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=8RPtHnYiqxYR7jMQ96ruVj9dgpgnpsFINClEHWBWfDc=; 
+        b=dJIzMnjYVm0p39GDp4QtNSPtLNmu3l+Puwq+CQbdFTz4zy/1nQoW+Ow1wALzynZuKiOmlv689pFOhb7Eb0YjTRHj2zO2oFFKHcWtehx9dYed3no478LIHZ9Lo0RFAs2DfNPFD24I9Megu5vRWWQYS7CFYy9eq60aVxl65hjDnBE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680541709;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=8RPtHnYiqxYR7jMQ96ruVj9dgpgnpsFINClEHWBWfDc=;
+        b=WfLMyM7fcWryl6sOIZfA7AJMwtQUH5gTOwN/iIIu2z/dXmyKv6SIQTv6E+aGorjI
+        2+b3YuBV0G1rRO51OsduMhcG5El91IXBFAQsRFBxBA8hmuZ6d+LuHaDRHbhhCNYWjXc
+        y8+ZfhJfx4ckUsO1CNx1D+6bxmEnXiBRsit2dGHM=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1680541707516945.4680684306775; Mon, 3 Apr 2023 10:08:27 -0700 (PDT)
+Message-ID: <53d89480-936d-25b1-6422-cda7769de369@arinc9.com>
+Date:   Mon, 3 Apr 2023 20:08:19 +0300
 MIME-Version: 1.0
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <6ca5941a-8803-477d-8b40-17292decc5af@app.fastmail.com> <CA+V-a8tkiDXG37YjFKPxrGoXVQMVBemMdBcfb+uUDzBofOWH_A@mail.gmail.com>
- <1c441d20-951d-407b-90ba-4cda3b0505b2@app.fastmail.com>
-In-Reply-To: <1c441d20-951d-407b-90ba-4cda3b0505b2@app.fastmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 3 Apr 2023 18:00:04 +0100
-Message-ID: <CA+V-a8t-j6DRpcv5oGREHVUaQpafcHiW8M_mRWAK4dC6PAsbcg@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
- pointers for cache management
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     "Conor.Dooley" <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH net-next v2 00/14] net: dsa: add support for MT7988
+To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     Sam Shih <Sam.Shih@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
+References: <cover.1680483895.git.daniel@makrotopia.org>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <cover.1680483895.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,60 +80,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+On 3.04.2023 04:16, Daniel Golle wrote:
+> The MediaTek MT7988 SoC comes with a built-in switch very similar to
+> previous MT7530 and MT7531. However, the switch address space is mapped
+> into the SoCs memory space rather than being connected via MDIO.
+> Using MMIO simplifies register access and also removes the need for a bus
+> lock, and for that reason also makes interrupt handling more light-weight.
+> 
+> Note that this is different from previous SoCs like MT7621 and MT7623N
+> which also came with an integrated MT7530-like switch which yet had to be
+> accessed via MDIO.
+> 
+> Split-off the part of the driver registering an MDIO driver, then add
+> another module acting as MMIO/platform driver.
+> 
+> The whole series has been tested on various MediaTek boards:
+>   * MT7623A + MT7530 (BPi-R2)
+>   * MT7986A + MT7531 (BPi-R3)
+>   * MT7988A reference board
 
-On Fri, Mar 31, 2023 at 11:45=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrot=
-e:
->
-> On Fri, Mar 31, 2023, at 12:37, Lad, Prabhakar wrote:
-> > On Thu, Mar 30, 2023 at 10:34=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> =
-wrote:
-> >
-> >> It also seems wrong to have the fallback be to do nothing
-> >> when the pointer is NULL, since that cannot actually work
-> >> when a device is not cache coherent.
-> >>
-> > If the device is non cache coherent and if it doesn't support ZICBOM
-> > ISA extension the device won't work anyway. So non-cache coherent
-> > devices until they have their CMO config enabled won't work anyway. So
-> > I didn't see any benefit in enabling ZICBOM by default. Please let me
-> > know if I am misunderstanding.
->
-> Two things:
->
-> - Having a broken machine crash with in invalid instruction
->   exception is better than having it run into silent data
->   corruption.
->
-> - a correctly predicted branch is typically faster than an
->   indirect function call, so the fallback to zicbom makes the
->   expected (at least in the future) case the fast one.
->
-> > @@ -465,7 +466,6 @@ config RISCV_ISA_ZICBOM
-> >         depends on MMU
-> >         depends on RISCV_ALTERNATIVE
-> >         default y
-> > -       select RISCV_DMA_NONCOHERENT
-> >         help
-> >            Adds support to dynamically detect the presence of the ZICBO=
-M
-> >            extension (Cache Block Management Operations) and enable its
-> >
-> > But what if the platform doesn't have the ZICBOM ISA extension?
->
-> Then it needs to register its cache operations before the first
-> DMA, which is something that it should do anyway. With your
-> current code, it may work by accident depending on the state of
-> the cache, but with the version I suggested, it will either work
-> correctly all the time or crash in an obvious way when misconfigured.
->
-You were right, defaulting to ZICBOM is giving me a crash. So I need
-to switch to something else rather than using arch_initcall().
+You did not address the incorrect information I pointed out here. Now 
+that the patch series is applied, people reading this on the merge 
+branch commit will be misled by the misinformation.
 
-I tried early_initcall() but this doesn't let me register a platform
-driver. I should be able to access the resources and DT from init
-callback and then register CMO callbacks (I havent tried this yet) but
-it wont be a platform driver. Should this be OK?
+> 
+> Changes since v1:
+>   * use 'internal' PHY mode where appropriate
+>   * use regmap_update_bits in mt7530_rmw
+>   * improve dt-bindings
 
-Cheers,
-Prabhakar
+As a maintainer of the said dt-bindings, I pointed out almost 7 things 
+for you to change. Of those 7 points, you only did one, a trivial 
+grammar change. The patch series is applied now so one of us maintainers 
+(you are one too now) need to fix it with additional patches.
+
+Arınç
