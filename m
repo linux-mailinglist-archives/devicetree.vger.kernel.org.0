@@ -2,111 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB5766D3FBA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 090046D3FC1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:11:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231734AbjDCJJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57424 "EHLO
+        id S231585AbjDCJLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:11:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbjDCJJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:09:26 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 905D9EF82
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:09:23 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id r11so114444260edd.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:09:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680512962;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r1Pie9vLpSoU3Q5Det2G8XSc6g11vynQ88xBxnFyU1o=;
-        b=lLaZshO//K2mzRsps+ik6PQi8aCsNNpx5qVHs0MyrsqixikW2NaPhTg3VbY/xqph4G
-         jdtFy02/fSrwtCLykKrzdqwFXHJ0+15krQDuoIk56LNiZWCmggffxgAsLJwS8mspz0mU
-         QQD2vns8/DeVLSd0vdTQ4DMoQF5wc5xxeQpeDGAjdkiLY1cKb7H5Lp/gr7irePE67PEK
-         VSOFkPtItTB0xAjpCBwY3AIdvOIIvNqcG1yg4KpxpRrqiNkqBCnqNdadNej0glatAjR+
-         foP+CEk3JWMH8rkH24YLB1q2to1sPJCeFwhUTciYuW1RO0F18Ky1zmSSvxzJ2rohROB8
-         SIxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680512962;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r1Pie9vLpSoU3Q5Det2G8XSc6g11vynQ88xBxnFyU1o=;
-        b=NSGn4wcIbUVQ1Bno8meSOjrcs9PMpl1Ntho0n+5aRqKlJyvRdTwcjTa8uDdlrnX9lB
-         VsPOfmZNCwUYjXDndIR+QGknlB0Fy+9cA0jiBmbXG+GEy96QboFCZhYLSuAQVMMpbs73
-         Cn3bdL0GOGBlPjYyz1M+UhTdaM07DzqQnc1TRGiZXI785HCCJ/ykUeEO9e72vMTp1owu
-         4QpG+AzsR4qK1oPoV8NZDZcVHZIDhGZ5abf69lStMEWZJa5xZmTdpeI4ViYqp3UE8DqT
-         ESFReRUnl5sdxL94mFtDxI+TqvgXy6GCQYs1/UVYIm1F5ysdAFlAi+JOID0UuKqjfqNP
-         lFng==
-X-Gm-Message-State: AAQBX9cM/RooaDVl99iFJrVM4DoG3o2sezLw4z0W2lMBy2MoNBbpODpF
-        sgqU3rsSNAFMetYT6L+J4Axh+w==
-X-Google-Smtp-Source: AKy350aBG8Lw3tiTi4uyEzvdUWZZ8/wJbCudRE48u/GHRB7fv3HG8fwgC+JXiU5egzSazrIqYWAfCg==
-X-Received: by 2002:a17:907:c248:b0:931:ce20:db8e with SMTP id tj8-20020a170907c24800b00931ce20db8emr36625621ejc.51.1680512962044;
-        Mon, 03 Apr 2023 02:09:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id c10-20020a170906d18a00b00923f05b2931sm4245192ejz.118.2023.04.03.02.09.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:09:21 -0700 (PDT)
-Message-ID: <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
-Date:   Mon, 3 Apr 2023 11:09:20 +0200
+        with ESMTP id S231285AbjDCJLC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:11:02 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEA97692
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:10:59 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33392php004488;
+        Mon, 3 Apr 2023 11:10:49 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=E6EGVKst8D+0Gk/EJvcw0vEtNpKhnEpfCWUrxagkj3I=;
+ b=tjcYCKEyQqCHeAviFBthWAZgf9+bXppYmgj72WgkOFd0YjTUlb3kZeQCvMmhkcZW1kA8
+ me2zsaCDOFVezcIUZXp3Yjjt4c9cFn4BL78x44ixwy8VqP2X5RHF8PyTGDKTlQp/Eq2x
+ Er41s1RxEfz1Tu7sBH6cJp5R8WKxBRlnkdI9vv91rxHR21PiqJkewPhETPBY3R3wTmpk
+ rpFLgbASbSuyu7rjsD0REjemfZg+0pY5oDQidz5/7rNRkRDE/t9KYMq/yMeV3j6tvJhn
+ lbowmA85pvRDwESdV2eX0uFXyfUalP/cZsUM5iuV8f7wE5akkVx7RkJFMscJMnxHpvQT Yg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ppa1m9d13-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Apr 2023 11:10:49 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0854E10002A;
+        Mon,  3 Apr 2023 11:10:49 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F37332138D9;
+        Mon,  3 Apr 2023 11:10:48 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 3 Apr
+ 2023 11:10:48 +0200
+Message-ID: <dda2a928-dbdd-e8e7-fb5e-2bb062a3b2b9@foss.st.com>
+Date:   Mon, 3 Apr 2023 11:10:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: pm8350b: fix thermal zone node
- name
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v7 09/10] ARM: dts: stm32: add STM32MP1-based Phytec SoM
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-3-dmitry.baryshkov@linaro.org>
- <47efb05a-d1e7-a3c5-c423-4eb53fe86386@linaro.org>
- <33430a31-b9da-5f1c-bae0-9ec6f24fda99@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <33430a31-b9da-5f1c-bae0-9ec6f24fda99@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230330050408.3806093-1-s.trumtrar@pengutronix.de>
+ <20230330050408.3806093-10-s.trumtrar@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230330050408.3806093-10-s.trumtrar@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-03_06,2023-03-31_01,2023-02-09_01
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2023 13:02, Dmitry Baryshkov wrote:
-> On 02/04/2023 13:34, Krzysztof Kozlowski wrote:
->> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
->>> Correct the thermal zone node name to remove the clash with
->>> pm8350c.dtsi. Remove unused labels.
->>>
->>> Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
->>
->> Please describe the observable bug from that commit being fixed here.
->> Any future clash, which did not exist that time, is not a bug. It's future.
->>
->> Naming changes here are more a matter of style, because the old names
->> were correct according to our coding guidelines, just not precise (c
->> instead of b). But node names anyway are not important from the point of
->> view fixes and adding such tag will cause a needless backport.
+Hi Steffen
+
+On 3/30/23 07:04, Steffen Trumtrar wrote:
+> The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to 1 GB
+> eMMC, up to 16 MB QSPI and up to 128 GB NAND flash.
 > 
-> It is needed. Including both pm8350c.dtsi and pm8350b.dtsi will result 
-> in one thermal zone overriding another one.
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
 
-I don't understand. You used future tense "will", but we talk about
-past. So where is the bug in commit 5c1399299d9d?
+I'm not so far to merge your series but I still have questions.
 
-Best regards,
-Krzysztof
+> Notes:
+>      checkpatch warns about un-documented binding
+>      
+>      According to checkpatch the binding for "winbond,w25q128"
+>      used in this dtsi is un-documented.
+>      However, 'jedec,spi-nor.yaml' defines the pattern
+>      
+>          (winbond,)?w25q(16|32(w|dw)?|64(dw)?|80bl|128(fw)?|256))$"
+>      
+>      so, this should be good!?
+>      
+>      Changes since v6:
+>        - rename mdio0->mdio
+>      
+>      Changes since v5:
+>        - cleanup dt_bindings_check warnings
+>      
+>      Changes since v4:
+>        - cleanup usage of "status = okay|disabled"
+>        - fix remaining non-generic node names
+>        - rework sai nodes to not duplicate the existing settings in stm32mp151.dtsi
+>      
+>      Changes since v3:
+>        - cleanup board-compatible
+>        - cleanup aliases
+>        - rename nodes according to schema
+>        - use interrupt flag
+> 
+>   .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 594 ++++++++++++++++++
+>   1 file changed, 594 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
+> new file mode 100644
+> index 0000000000000..f612daa4c66a7
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
+> @@ -0,0 +1,594 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) 2022-2023 Steffen Trumtrar <kernel@pengutronix.de>
+> + * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
+> + * Author: Dom VOVARD <dom.vovard@linrt.com>.
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/leds/leds-pca9532.h>
+> +#include <dt-bindings/mfd/st,stpmic1.h>
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +#include "stm32mp15-pinctrl.dtsi"
+> +
+> +/ {
+> +	model = "PHYTEC phyCORE-STM32MP15 SOM";
+> +	compatible = "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
+> +
+> +	aliases {
+> +		ethernet0 = &ethernet0;
+> +		rtc0 = &i2c4_rtc;
+> +		rtc1 = &rtc;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		key-home {
+> +			label = "Home";
+> +			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_HOME>;
+> +		};
+> +
+> +		key-enter {
+> +			label = "Enter";
+> +			gpios = <&gpioa 14 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_ENTER>;
+> +		};
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		retram: retram@38000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x38000000 0x10000>;
+> +			no-map;
+> +		};
+> +
+> +		mcuram: mcuram@30000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x30000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		mcuram2: mcuram2@10000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring0: vdev0vring0@10040000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10040000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring1: vdev0vring1@10041000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10041000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0buffer: vdev0buffer@10042000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10042000 0x4000>;
+> +			no-map;
+> +		};
+> +
+> +		gpu_reserved: gpu@f8000000 {
+> +			reg = <0xf8000000 0x8000000>;
+> +			no-map;
+> +		};
+
+It seems that this region is not used. Furthermore if you plan to use it 
+to GPU note that it doesn't respect YAMl verification. So please remove it.
+
+> +	};
+> +
+> +	sound {
+> +		compatible = "audio-graph-card";
+> +		label = "STM32MP1-PHYCORE";
+> +		routing =
+> +			"Playback", "MCLK", /* Set a route between "MCLK" and "playback" widgets */
+> +			"Capture", "MCLK";
+> +		dais = <&sai2b_port>,
+> +		       <&sai2a_port>;
+> +	};
+> +
+> +	regulator_vin: regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vin";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +};
+> +
+> +&ethernet0 {
+> +	pinctrl-0 = <&ethernet0_rgmii_pins_d>;
+> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_d>;
+> +	pinctrl-names = "default", "sleep";
+> +	phy-mode = "rgmii-id";
+> +	max-speed = <1000>;
+> +	phy-handle = <&phy0>;
+> +	st,eth-clk-sel;
+> +	clock-names = "stmmaceth",
+> +		      "mac-clk-tx",
+> +		      "mac-clk-rx",
+> +		      "eth-ck",
+> +		      "syscfg-clk",
+> +		      "ethstp";
+> +	clocks = <&rcc ETHMAC>,
+> +		 <&rcc ETHTX>,
+> +		 <&rcc ETHRX>,
+> +		 <&rcc ETHCK_K>,
+> +		 <&rcc SYSCFG>,
+> +		 <&rcc ETHSTP>;
+
+Why do you re define those clocks ? They are all already defined in 
+stm32mp151.dtsi
+
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +
+> +		phy0: ethernet-phy@1 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			reg = <1>;
+> +			interrupt-parent = <&gpiog>;
+> +			interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+> +			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +			ti,min-output-impedance;
+> +			enet-phy-lane-no-swap;
+> +			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +		};
+> +	};
+> +};
+> +
+
+...
 
