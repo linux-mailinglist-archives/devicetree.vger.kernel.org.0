@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A776D4421
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AED286D4430
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 14:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232299AbjDCMHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 08:07:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36314 "EHLO
+        id S231707AbjDCMQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 08:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231897AbjDCMHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:07:35 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB7FA9;
-        Mon,  3 Apr 2023 05:07:31 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 1625724E38D;
-        Mon,  3 Apr 2023 20:07:22 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
- 2023 20:07:22 +0800
-Received: from [192.168.125.145] (183.27.97.179) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Apr
- 2023 20:07:21 +0800
-Message-ID: <8128d57b-17cd-8307-ed8c-2611a5658e18@starfivetech.com>
-Date:   Mon, 3 Apr 2023 20:07:20 +0800
+        with ESMTP id S230105AbjDCMQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 08:16:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78AC5113F2;
+        Mon,  3 Apr 2023 05:16:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D890C61888;
+        Mon,  3 Apr 2023 12:16:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B61C433EF;
+        Mon,  3 Apr 2023 12:16:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680524165;
+        bh=t8WBdW45+1Hqn/jcQvHAdYy51f3JmJMvVFmk48M7AiU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ivU9ezAkyEv2NnkR6ifcx9U961kKK2Qpk/PEiUrNlg5AWDDk7AzT3pIA88+jP5vAx
+         wozi35njaonVEe+ZTVPEBIqGqS046LxdsPAUc1jP4wiS7a6t3lDzjwG2btjx2Syi+7
+         +Ec5sBYZZ2DLlXUUKeU8Z04sL3FFCbXYK8M+5KtAT4Sj8REUcxY6o8vdJaCc4lVhcJ
+         RN7yWhvbqezyDzivNJOwHfnKHfNlhHwvUPJfh9H+57FOA+gLj/NEB/jOAaPrp+jX+P
+         cMmwsxbwCMYE6YULuOAKLekMvCap7SUsuiKw+id9m8hyeHdBNcVzMNWMJh5m+8BuEq
+         A3qtr8eDVzpiw==
+Message-ID: <9ecab48e-e828-0a03-2bc7-678e555bc80d@kernel.org>
+Date:   Mon, 3 Apr 2023 15:15:59 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v6 2/4] dmaengine: dw-axi-dmac: Add support for StarFive
- JH7110 DMA
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230322094820.24738-1-walker.chen@starfivetech.com>
- <20230322094820.24738-3-walker.chen@starfivetech.com>
- <ZCbMRdSCf5vKUk/c@matsya>
+Subject: Re: [PATCH v5 10/11] arm64: dts: qcom: sm8350: Add Crypto Engine
+ support
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org,
+        vladimir.zapolskiy@linaro.org, rfoss@kernel.org,
+        neil.armstrong@linaro.org
+References: <20230402100509.1154220-1-bhupesh.sharma@linaro.org>
+ <20230402100509.1154220-11-bhupesh.sharma@linaro.org>
 Content-Language: en-US
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <ZCbMRdSCf5vKUk/c@matsya>
-Content-Type: text/plain; charset="UTF-8"
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20230402100509.1154220-11-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.179]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.3 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,68 +60,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Bhupesh,
 
-
-On 2023/3/31 20:04, Vinod Koul wrote:
-> On 22-03-23, 17:48, Walker Chen wrote:
->> Add DMA reset operation in device probe and use different configuration
->> on CH_CFG registers according to match data. Update all uses of
->> of_device_is_compatible with of_device_get_match_data.
->> 
->> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
->> ---
->>  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 38 ++++++++++++++++---
->>  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
->>  2 files changed, 34 insertions(+), 5 deletions(-)
->> 
->> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
->> index 4169e1d7d5ca..6cfcb541d8c3 100644
->> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
->> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
->> @@ -21,10 +21,12 @@
->>  #include <linux/kernel.h>
->>  #include <linux/module.h>
->>  #include <linux/of.h>
->> +#include <linux/of_device.h>
->>  #include <linux/of_dma.h>
->>  #include <linux/platform_device.h>
->>  #include <linux/pm_runtime.h>
->>  #include <linux/property.h>
->> +#include <linux/reset.h>
->>  #include <linux/slab.h>
->>  #include <linux/types.h>
->>  
->> @@ -46,6 +48,10 @@
->>  	DMA_SLAVE_BUSWIDTH_32_BYTES	| \
->>  	DMA_SLAVE_BUSWIDTH_64_BYTES)
->>  
->> +#define AXI_DMA_FLAG_HAS_APB_REGS	BIT(0)
->> +#define AXI_DMA_FLAG_HAS_RESETS		BIT(1)
->> +#define AXI_DMA_FLAG_USE_CFG2		BIT(2)
->> +
->>  static inline void
->>  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
->>  {
->> @@ -86,7 +92,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
->>  
->>  	cfg_lo = (config->dst_multblk_type << CH_CFG_L_DST_MULTBLK_TYPE_POS |
->>  		  config->src_multblk_type << CH_CFG_L_SRC_MULTBLK_TYPE_POS);
->> -	if (chan->chip->dw->hdata->reg_map_8_channels) {
->> +	if (chan->chip->dw->hdata->reg_map_8_channels &&
->> +	    !chan->chip->dw->hdata->use_cfg2) {
+On 2.04.23 13:05, Bhupesh Sharma wrote:
+> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> 'sm8350.dtsi'.
 > 
-> I think this will break existing users.. 
+> Co-developed-by and Signed-off-by: Robert Foss <rfoss@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
 > 
-> This is set for reg_map_8_channels && use_cfg2, latter being set only
-> for new controller, so what about existing users of these bits?
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index 7fbc288eca58..090ee07d1800 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -1730,6 +1730,28 @@ ufs_mem_phy_lanes: phy@1d87400 {
+>   			};
+>   		};
+>   
+> +		cryptobam: dma-controller@1dc4000 {
+> +			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+> +			reg = <0 0x01dc4000 0 0x24000>;
+> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			iommus = <&apps_smmu 0x594 0x0011>,
+> +				 <&apps_smmu 0x596 0x0011>;
+> +		};
+> +
+> +		crypto: crypto@1dfa000 {
+> +			compatible = "qcom,sm8350-qce", "qcom,sm8150-qce", "qcom,qce";
+> +			reg = <0 0x01dfa000 0 0x6000>;
+> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
+> +			dma-names = "rx", "tx";
+> +			iommus = <&apps_smmu 0x594 0x0011>,
+> +				 <&apps_smmu 0x596 0x0011>;
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+> +			interconnect-names = "memory";
 
-Firstly thank you for your comments!
-There is a statement 'use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);' to be added in dw_probe function.
-Assuming older/existing platform run this code block, e.g. when compatible is "snps,axi-dma-1.01a", 
-the value of variable 'use_cfg2' is still false, the original logic will not be broken. So other existing
-users are not affected by this.
-Looking forward to your more comments. Thanks!
+We switched to #interconnect-cells = <2> (since commit 4f287e31ff5f), so maybe #include
+dt-bindings/interconnect/qcom,icc.h and add the tags.
 
-Best regards,
-Walker
+BR,
+Georgi
+
+> +		};
+> +
+>   		ipa: ipa@1e40000 {
+>   			compatible = "qcom,sm8350-ipa";
+>   
 
