@@ -2,92 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B9A06D40FC
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:44:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E156D410B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232313AbjDCJoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
+        id S232296AbjDCJq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:46:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231425AbjDCJoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:44:17 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F321205D
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:43:40 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id t10so114639710edd.12
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:43:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680515013;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=emdytwm6Vo64J5QWp59UQMgTkiLCnS1+d3jrELtdiyg=;
-        b=EYD2yhSSmiqu3ePf7ZuJWZvqACeLurOIT3MSjtzJ7Tn0FlzKzxvp34CSYLW3X8ewjN
-         u/aQEAP6RaN5ny4/uKWoR0tAOE71l34KFBZp6tIVhsb4IwHtMxiXyPP306LcGPHnBwdj
-         WyMVRwkrf1a5JKtZ2vURm3GlmgE2aMl96MWDiZLK2JtZCqQ0PueDiAzHrJjYO+HrQN7e
-         G9xqedq0uhJS3hUz5BD+HLjJPeGvxZdjBoOc4SkVw2daYAVZqnYz6rsR5vyKiTeBM2ne
-         YQnBqddmY80C2zNqtbRdcd0N1LjHIyV5Fcd8WZq8UzeerNzItqvLrVk6ssl6/ScMtn+x
-         0dBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680515013;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=emdytwm6Vo64J5QWp59UQMgTkiLCnS1+d3jrELtdiyg=;
-        b=onlC/zE50+WhHwUqaSXBPkGYZ7PnzgaelnNt7hGkrWSeZg1DDJYXzx33dfS9N1m/Z3
-         dEPovn6qBb6yvR7SoLPJ0XLU1be4/yxxMnxcYwdp+LsNRPN/ZCzGG0wcTcuAdCRsu7mA
-         Tp1etDTEYFlKEApHXQBMewn4aL+br7L5Cd6rkcXTF6Ufm/gDDHl2LVNy9wHYO2routEq
-         te1ni44+PAsubP2jgDcPLZl5t6128IGDdTtGOQb48EGB9PuSuLmASMKaGwcj0cLcNk7k
-         hHPNJL41kfthQQJXUESkuzpoL3uGA81BQegJkkEBSzBDcqUM2q3evJJgmFXXT4yn2MPR
-         hVIw==
-X-Gm-Message-State: AAQBX9cqJe3+LEFepLARV+ksPHlq80jaoQ6OX/qnMOr0D99r11/xOAC9
-        RwKCtG1CM5ETU7MxY73IQD7G7A==
-X-Google-Smtp-Source: AKy350Y0hl/RzYdB7dN+wNKEqctheVFdh+D4QlJV8y5dEO3YNu3a8xD1aDOYFuiSABD5iNu2w/XIJw==
-X-Received: by 2002:a05:6402:653:b0:4fb:e9b8:ca56 with SMTP id u19-20020a056402065300b004fbe9b8ca56mr29259113edx.41.1680515013182;
-        Mon, 03 Apr 2023 02:43:33 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id a24-20020a509b58000000b005027d356613sm3974212edj.63.2023.04.03.02.43.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 02:43:32 -0700 (PDT)
-Message-ID: <14d7b3ab-5ac6-61dc-a538-62993edadae6@linaro.org>
-Date:   Mon, 3 Apr 2023 11:43:31 +0200
+        with ESMTP id S232241AbjDCJqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:46:16 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8B0170A
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:45:39 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3336pBnM028235;
+        Mon, 3 Apr 2023 11:45:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=e4XR1GM3WaqqSzL3e4Hqmkz/4rQgM7STgd78EwWbfmc=;
+ b=s9mrgNMBH3FtPn07pXDwKq3eC2O2G5CiDgnvmGnXUeApqn7zSNBITbaA7RmpOuo1gngz
+ yYpkI4Km+RzdEfgeZ7tg/Nkw0OIYaBnauJQ6fJd+KFC/xZWbbwNiCl/ORPPQjKywM0Pt
+ DMv6rupJvvlKegphVTzTXj2pum9Nqu6V98mmiMU+0fKAfarcFOAr2UtCB33ALd282ohK
+ oLQUkWw7Nu0m5bQB2B+r3rhhTRLhypW0mhnFXNSoqWucFctkP9mFgQaVhMOF32ODHMrW
+ FLKiqCVKKmG2lgub0sbsKLNYWZxXxmLrV19Rqk6RuhYTWZNF2v1LDzye2n7eMCthiuvK nQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ppa1m9pqt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Apr 2023 11:45:23 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 42C4010002A;
+        Mon,  3 Apr 2023 11:45:23 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3B60E215134;
+        Mon,  3 Apr 2023 11:45:23 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 3 Apr
+ 2023 11:45:22 +0200
+Message-ID: <9ac37755-1800-3a18-c2bb-43fb06449ceb@foss.st.com>
+Date:   Mon, 3 Apr 2023 11:45:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V2 6/7] dt-binding: clock: imx93: add NIC, A55 and ARM PLL
- CLK
+Subject: Re: [Linux-stm32] [PATCH v7 10/10] ARM: dts: stm32: add
+ STM32MP1-based Phytec board
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20230403071309.3113513-1-peng.fan@oss.nxp.com>
- <20230403071309.3113513-7-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403071309.3113513-7-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230330050408.3806093-1-s.trumtrar@pengutronix.de>
+ <20230330050408.3806093-11-s.trumtrar@pengutronix.de>
+ <31b1300b-7dd9-9bdf-be01-a79b1ac6e8cd@foss.st.com>
+ <a8cedf08-7b7d-712c-1c35-4da8d0542e72@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <a8cedf08-7b7d-712c-1c35-4da8d0542e72@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-03_06,2023-04-03_01,2023-02-09_01
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 09:13, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX93 NIC, A55 and ARM PLL CLK.
-> 
+Hello Ahmad
 
-Fix subject in all your patchsets.
+On 4/3/23 11:28, Ahmad Fatoum wrote:
+> Hello Alexandre,
+> 
+> On 03.04.23 11:15, Alexandre TORGUE wrote:
+>> On 3/30/23 07:04, Steffen Trumtrar wrote:
+>>> Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec
+>>> stm32m157c-som.
+>>>
+>>> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+>>> ---
+> 
+> [snip]
+> 
+>>> +/ {
+>>> +    model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
+>>> +    compatible = "phytec,phycore-stm32mp1-3",
+>>> +             "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
+>>> +
+>>> +    aliases {
+>>> +        mmc0 = &sdmmc1;
+>>> +        mmc1 = &sdmmc2;
+>>> +        mmc2 = &sdmmc3;
+>>
+>> mmc aliases are still used in linux?
+> 
+> Since kernel commit fa2d0aa96941 ("mmc: core: Allow setting slot
+> index via device tree alias") added with v5.10-rc1, aliases
+> dictate kernel numbering of /dev/mmcblk devices, so it's good
+> to have these aliases for consistency as the alternative of
+> using PARTUUID breaks down once the same image is flashed to
+> both SD and eMMC and use of an initrd is not always practical.
 
-Best regards,
-Krzysztof
+Oh ok. I thought the opposite. Sorry for this mistake.
+
+Cheers
+Alex
+
+>>> +&sdmmc1 {
+>>> +    secure-status = "disabled";
+>>> +};
+>>> +
+>>> +&sdmmc2 {
+>>> +    status = "okay";
+>>> +    secure-status = "disabled";
+>>> +};
+>>
+>> What is the need to put the secure status disabled for SDMMC nodes ?
+> 
+> TF-A parses them, but for SDMMC, it should have no effect, so I agree
+> they can be removed.
+> 
+> Cheers,
+> Ahmad
+> 
+> 
 
