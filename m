@@ -2,102 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9E6A6D48F7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 16:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C060B6D495A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 16:37:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233556AbjDCOdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 10:33:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38946 "EHLO
+        id S233682AbjDCOha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 10:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233557AbjDCOd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 10:33:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A65D17656;
-        Mon,  3 Apr 2023 07:33:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D4A1161E42;
-        Mon,  3 Apr 2023 14:33:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42787C4339C;
-        Mon,  3 Apr 2023 14:33:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680532396;
-        bh=kfn1EOIZo69ToCP+cFyo7QW+1x61rS6btJxVOG/V9Lk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jr4jAVQ0jwPkQu++/JISnCXSgnYz6H3f4v+xGXevlOQyL52kWnztxcRXnHJXHzr5b
-         iYddsDYTXI1YxaNQSdjqho+z9rCVI2f5qXpD1qd184S/9RiloOJ1P9u6eIqW2BkrvE
-         Dpd9ixUBzFzSiI3pqVz9C+hteeWwYI5VOv8TujkS8QuYtVQcqLed3nHrdETCnJTvsf
-         DEjl++uNNhXMR6u0NHv+JyhTD9aZzoYuZn8TVRVRrJJcHK15itc5/S1Zn3DQdlGHfE
-         ticz5L+A+/D9KADHyeCOWLssx4DqzlmlsLWmuMKjck1jcp5gUFRUVsTGICMR2qq+V7
-         rsGLJxL0ZSpdw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pjLFb-00053s-VS; Mon, 03 Apr 2023 16:33:40 +0200
-Date:   Mon, 3 Apr 2023 16:33:39 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
- registers
-Message-ID: <ZCrjw7SiUq0iNM0A@hovoldconsulting.com>
-References: <20230327122948.4323-1-johan+linaro@kernel.org>
- <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
- <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
- <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
- <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
- <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
- <fac15b28-ef4a-dd7d-f0ac-51518d9dc1be@linaro.org>
+        with ESMTP id S233677AbjDCOh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 10:37:29 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5591767B
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 07:37:01 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-5416698e889so555830667b3.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 07:37:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1680532620;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=opY0CnpCl2TUFSQwRkx2YgWWlRNGdg8wXm3hOTsdndA=;
+        b=mucEXEm7Z0gG1+z8vtgoSN1UvxLmgwQUPa4Ef9yzRBaCKoP83Sc42BnrJv3A/EZ8p4
+         yhxB6VVXZipyGm/anOLC8oOheTLMRHL4o8W/qI69nHCk8s5iZzHZKa8fUH0a5k0n2Jp2
+         COZOC3FzyKTE+etbPDy6Qn6MLWrULMvecpcwQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680532620;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=opY0CnpCl2TUFSQwRkx2YgWWlRNGdg8wXm3hOTsdndA=;
+        b=CPVj/Wn/La1xutzgYX7/6tW2hovq9DKhW2Qwxtj21PH4PWPldsgfl1jqFYlsKlHBeN
+         Vs9kKf+aN+X8CbO6e5F1jgupmvHO74IGdUGLvJWcyckKavUClQjZ0cYR9LEyM2sIVANO
+         mRorcda0H6+UrBantxdKCv6DCZ05yWW3a6IHjqO6qcSo3QazOvXigbdstzpcel4SdzOL
+         3f1kqzarefvKdlcua6RNuUxu9d+hTdEktUyPEta93OhymSiWaoZajMtztobpK++QaCqO
+         2+zHBDBSCC2qewMOoiz/TW63d0M0PO9+qgGfognRLQ+eZYxeOHgS7TIBBstqW7796WIr
+         N3yw==
+X-Gm-Message-State: AAQBX9e+SnVmgaJHlzYlBmO1K+q31XOnj9NXYlk0+jkfv6hu6GoN3Nv4
+        rSJ7p2JFO2X81alZBpxqPoHXgwWxz2wnJ9h2H8T0lw==
+X-Google-Smtp-Source: AKy350YndvfOE5H1g0lwwP52fPFaE7plvCDKzpKwLibQV9vvaySn0o5cIbhpFAA6zhyu23MQPfggf1c1fC72Kc9jqJI=
+X-Received: by 2002:a81:a789:0:b0:549:143f:3d3 with SMTP id
+ e131-20020a81a789000000b00549143f03d3mr2606494ywh.0.1680532619988; Mon, 03
+ Apr 2023 07:36:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fac15b28-ef4a-dd7d-f0ac-51518d9dc1be@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230403124458.198631-1-festevam@gmail.com> <8f7f925f-638d-737c-bf47-2a66ce0eec59@linaro.org>
+ <074183d480cf18948aacd98be60308f8@denx.de> <2ed6078f-7982-a5aa-863b-e61f8e9f846a@linaro.org>
+In-Reply-To: <2ed6078f-7982-a5aa-863b-e61f8e9f846a@linaro.org>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 3 Apr 2023 20:06:48 +0530
+Message-ID: <CAMty3ZDKTpTAHxqt6320NRVoABwUMOJjBPpUmPpZeP264wLeFg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge
+ to yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Fabio Estevam <festevam@denx.de>,
+        Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org,
+        marex@denx.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, inki.dae@samsung.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 03, 2023 at 03:47:28PM +0200, Krzysztof Kozlowski wrote:
-> On 03/04/2023 15:11, Johan Hovold wrote:
-> > On Mon, Apr 03, 2023 at 02:46:41PM +0200, Krzysztof Kozlowski wrote:
-> >> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
-> >>> On 03/04/2023 12:54, Johan Hovold wrote:
-> > 
-> >>>> The problem is that the driver was updated before the binding was so the
-> >>>> above mentioned probe error has been there since this file was merged.
-> >>>
-> >>> I grepped and that commit did not have such compatible. Are you saying
-> >>> that the kernel which was released with this commit already had that
-> >>> compatible in driver (through different merge/tree)?
+On Mon, Apr 3, 2023 at 7:13=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 03/04/2023 15:25, Fabio Estevam wrote:
+> > Hi Krzysztof,
+> >
+> > On 03/04/2023 09:49, Krzysztof Kozlowski wrote:
+> >
+> >>> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> >>> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> >>> ---
+> >>> Changes since v1:
+> >>> - Added samsung,mipi-dsim.yaml entry to MAINTAINERS file (Jagan)
+> >>> - Added Marek Szyprowski entry to the samsung,mipi-dsim.yaml
+> >>> maintainers section (Jagan)
+> >>> - Mention that i.MX8M Plus is also supported (Marek)
+> >>> - Remove endpoint@0 description as it only has one endpoint (Marek)
 > >>
-> >> So I double checked, the commit ccd3517faf18 (which is being "fixed")
-> >> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
-> >> compatible, thus it could not be fixed that way. Therefore this cannot
-> >> be logically fix for that commit from that release.
-> > 
-> > Now you're just making shit up. A fix is a fix for mainline, period. If
-> 
-> Since this is your second mail in such tone and such phrases, I am not
-> going to keep discussing this. Regardless of differences in opinion, you
-> should keep the tone appropriate.
+> >> Where is the changelog from original submission? How your v1 differs
+> >> form it? Or did you just ignore all the feedback?
+> >
+> > I'm sorry, but it was not my intention to ignore any feedback.
+> >
+> > Which feedback are you referring to specifically?
+> >
+> > Some more context: last week I sent a patch adding a new property
+> > for exynos_dsim.txt and you asked me to convert it to yaml first:
+> >
+> > https://lore.kernel.org/all/ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro=
+.org/#t
+> >
+> > Jagan pointed out an earlier submission he did in 2021:
+> >
+> > https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutio=
+ns.com/
+> >
+> > That was my starting point.
+>
+> I think I saw v11 but maybe not. I cannot find it now. But anyway if
+> this was the newest submission, it already got feedback which we do not
+> need to repeat...
 
-Yeah, sorry about that. But please do consider how your own choice of
-words come across at times.
+Are you referring to v11 based on DSIM series versioning? If so, the
+DSIM series from v1 onwards never had this patch of converting .txt to
+.yaml that series instead added the new dt-bindings on top of existing
+.txt. The actual conversion patch from .txt to .yaml was initially
+sent as RFC, so Fabio's versioning seems correct to me.
 
-I agree that in the end it wasn't that clear cut as the state of the
-binding and driver was inconsistent in 5.19 (and 6.0), and if this had
-been an important fix that should be backported to trees where this
-mattered then that may have had to be taken into account.
-
-Johan
+Thanks,
+Jagan.
