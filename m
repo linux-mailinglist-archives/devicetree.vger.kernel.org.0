@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BB826D5126
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 701226D5128
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 21:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232193AbjDCTS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 15:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38896 "EHLO
+        id S232537AbjDCTS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 15:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231828AbjDCTS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:18:56 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD391FCB
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 12:18:54 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id t10so121381123edd.12
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 12:18:54 -0700 (PDT)
+        with ESMTP id S232093AbjDCTS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 15:18:57 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BE12120
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 12:18:55 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id i5so121734352eda.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 12:18:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680549533;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bZSGEHV1wcF9QDw9X095419CyG9Yv6xnJ2egeD+2O1o=;
-        b=LklJQBi7hsnfQA5KrRPllFlnLE/+fwiO4CR61oHAc7N1n+GjhMt19kI7yYcf4mWKZx
-         ovEN6BtGWxjdFpBTVrtJERecaOcriMZlEVboCoqEcFaPJZ/zNoLKhUFzTivWRryVmRbJ
-         lDIvn0kBqh0e3DEm7TOz072Dbc1B0T+QHLxzK4XbQhEnRKhO/cLQ2zcEt/NIhF0t3cdl
-         kZRuzyaZTTZuCkkgMqF8j1htHmUKHhIEsWULDQD/v2fLBab0geReln5011mAJxQ+Vcn3
-         RRBfWrEM8GN/dVPpxskCHBrhlmBWyZmjbKR9MPCCN4Hv0ZHDwfhKlZr5cYWFvNdm7CLs
-         /+1w==
+        d=linaro.org; s=google; t=1680549534;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T50vLVbG2ABwfUlTpSJpYxSsSe8WTt2ADzn7FKCrPrc=;
+        b=lxDkaT0emfLY1s6ASwAH+xPT1yl1OINFW3kEQzy5PxOvrSnFuNt0wX1voX3n3/V1hV
+         y5/N6ZhPpWV/HQUrOoSd8uL+DsVe2441goDeqN0ehD5Qq0HNdmeOsasBHYYkWsqDVh3s
+         HKElw/fVzdmX/RGxoJGn4K6m8O6oMhhfapJidAkBiwvi3QxmpcvuqYesrqm6zYT9FQaY
+         YCDW1zbhf5HW0OAWy5POQIxYpw4SmrZ4ksgpqTZdFYPLmQ43dI9A98gNENk5uPF3GtdP
+         zSs0FcMGyJ9t/AQnQ0sCuZGxmCyyG8DNgnjzRXvD9CRZHhmps86zfFIgrOjUYR1rHlux
+         jeNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680549533;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bZSGEHV1wcF9QDw9X095419CyG9Yv6xnJ2egeD+2O1o=;
-        b=QgfjdYtXQ8QPJFNyyBOAzpp88Vp0hdHSOQ2KCnPCHvLXDs/8vuGJFfo2hNhQUH+Ogd
-         IqzcPBRdQ59zOKpluzfIQo0wab2Ow1LCYkZDsMO2NhhZAeueVwCv5QzaqbsLXbHXAKq9
-         D4TqByUQp+eAODbrrqlbBmWGljQEY8Q53WW/Js2xsbNLzEXSKPGfUuzZUDF+aGGM1L3U
-         RB6cgzbFjrmijyL4ry8+k1QEoiuzBaO1875ammFiCbZE1DVYkOxNu6BKPDerBXaN84F/
-         T/XpbFv+nDkjuFUFUZoT6dDYcfTxAFtgwP2sooEEUY9Or2V0fsXUSFT4eR0HSGb2okwB
-         4YQQ==
-X-Gm-Message-State: AAQBX9czxEtC1AmUIkRwRI7TDmQalCU48WMhT30nh7hqRhbw8Y/6WJpp
-        6RWgh/AdIVtVBidmFZKrP14yMA==
-X-Google-Smtp-Source: AKy350ZQ8gkFRQMSmLb2vCdVeG/SCcQL8iLCV2k8kwWTOf+zZkhnJeiPAPfb4yy7X5429anR4EH5TA==
-X-Received: by 2002:a05:6402:4403:b0:4af:6e08:319 with SMTP id y3-20020a056402440300b004af6e080319mr18475608eda.15.1680549533217;
-        Mon, 03 Apr 2023 12:18:53 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680549534;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=T50vLVbG2ABwfUlTpSJpYxSsSe8WTt2ADzn7FKCrPrc=;
+        b=t6wotiS1D4GNsaFxPRSQ5Af7h3JXwy2dWH+BuyP/Qsr4X+ot52IRLcE7c4sLLNqwr+
+         LnfCw3WmlSKzyUh7BI/wPgIMBbUNvzi1sUTuktJzWDsChhwyltAmrcIV6yziN4w5kCJu
+         gWFDMPchY3FZo5IStwOsM4TPRtVbQ0I3h7ZT5iU2x7TpOkyQJB+lCRvZ1hHeV7s7DwUL
+         sGCaW9aYLO1EoeIpFsZBt64TTr0x85w5/kk3nwPuOL+FxtPXFHkVt9Sc8Uvg/CP7oXVK
+         he2L67xwCvbDkj0qubvPj5uDnXM2dV7uNdOpTIXUZL08QCTna4jetx7JftwtyD3GtTuu
+         VE4Q==
+X-Gm-Message-State: AAQBX9exO3s9cKeWI7lzVK4A/iqtDj4iIVOrvSmdmA4WJrhieMcq4ZU6
+        svN20MR/rFvYOlZAwsYirv7c1g==
+X-Google-Smtp-Source: AKy350YBucBFpI7LWLV8I9pfg1VQ8D2Lt2FtPllMkqHAraFUGDE/STpHjDWLQK4w/9H5f/INQk23Lw==
+X-Received: by 2002:a05:6402:604:b0:502:45e7:4139 with SMTP id n4-20020a056402060400b0050245e74139mr207649edv.37.1680549534219;
+        Mon, 03 Apr 2023 12:18:54 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id n19-20020a509353000000b004c09527d62dsm5022999eda.30.2023.04.03.12.18.52
+        by smtp.gmail.com with ESMTPSA id n19-20020a509353000000b004c09527d62dsm5022999eda.30.2023.04.03.12.18.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 12:18:52 -0700 (PDT)
+        Mon, 03 Apr 2023 12:18:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -61,10 +62,12 @@ To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] dt-bindings: usb: mediatek,mtk-xhci: drop assigned-clocks
-Date:   Mon,  3 Apr 2023 21:18:48 +0200
-Message-Id: <20230403191850.374839-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] dt-bindings: usb: ti,j721e-usb: drop assigned-clocks
+Date:   Mon,  3 Apr 2023 21:18:49 +0200
+Message-Id: <20230403191850.374839-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230403191850.374839-1-krzysztof.kozlowski@linaro.org>
+References: <20230403191850.374839-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,28 +85,26 @@ benefits of having it here.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml        | 8 --------
- 1 file changed, 8 deletions(-)
+ Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-index 556bedb96165..72639c6b4e1c 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-@@ -87,14 +87,6 @@ properties:
-       - const: dma_ck
-       - const: xhci_ck
+diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+index fd36dd02fe74..95ff9791baea 100644
+--- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+@@ -53,12 +53,6 @@ properties:
+       VBUS pin of the SoC via a 1/3 voltage divider.
+     type: boolean
  
 -  assigned-clocks:
--    minItems: 1
--    maxItems: 5
+-    maxItems: 1
 -
 -  assigned-clock-parents:
--    minItems: 1
--    maxItems: 5
+-    maxItems: 1
 -
-   phys:
-     description:
-       List of all PHYs used on this HCD, it's better to keep PHYs in order
+   '#address-cells':
+     const: 2
+ 
 -- 
 2.34.1
 
