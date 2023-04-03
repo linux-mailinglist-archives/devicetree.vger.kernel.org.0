@@ -2,178 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF6616D3FF3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58AA76D4014
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:18:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbjDCJQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:16:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36648 "EHLO
+        id S231555AbjDCJSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:18:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231909AbjDCJP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:15:59 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE9710416
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:15:41 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3338pSWn019650;
-        Mon, 3 Apr 2023 11:15:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=spwrFBo+qHU/x6krGOVwcplnL41CRP9M0W6mgkfr7WI=;
- b=gii5gW8n2Yx2dHVLHRbJ1ogwFoUF3kE2T8Yolfe9UqeCXcTc8ahR0V0EqfNlmvilflXo
- Xqkll7XZWCr482wtJUXk5BKnvf5O8CAKpykvb8EEeoBnYywv525B9Fy9Lc55GgPv4IzG
- g89L2fK8kg1dVWrWR3vRkh0wpymOLN23UKevdlvIp5llcQTjjqBNygiFit+lLfNkQNZs
- HLDjsdFitK4TwlKSChhVlHwSYWKmT80zDOIBqrpU0+Fblo9+kQZzTTgAawWFpRx75x+N
- jY+HBCW9gq6c9Jh4epBf0kvvivezZYfQgKERqf5Q1hpmIvOV7xQm5YbS3ZBSQ3RqdDUQ 2Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pqunhg6r5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Apr 2023 11:15:30 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 806B410002A;
-        Mon,  3 Apr 2023 11:15:29 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7981F2138E0;
-        Mon,  3 Apr 2023 11:15:29 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 3 Apr
- 2023 11:15:28 +0200
-Message-ID: <31b1300b-7dd9-9bdf-be01-a79b1ac6e8cd@foss.st.com>
-Date:   Mon, 3 Apr 2023 11:15:28 +0200
+        with ESMTP id S231783AbjDCJSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:18:40 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EF6EC6E
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:18:15 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id ek18so114562107edb.6
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 02:18:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680513488;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fh11/vZEUZKLkOBCVhKAajLq2amko3vePl8fRjQBQK8=;
+        b=jO+hd1ty05tIA5V7nI2eOUnHRMS+EPf51CpabQa3jghAv5h2DbI4FHNcAs2gFGGZaA
+         jEWi/nZYYw6H8IhfXPWl6dnPoke5NJNxHPEq5kYFyI8gEXTi/qLs9LqaQiJprRQrjfQA
+         jxyKrjQD2aqybCq83pV7hTa4viHZNnRjPQq9RIhUuS1pQABBwjh1bPnk9gs93evCTtNn
+         ejIMYbXLJbzDdw9DSXmbVPpHV8YPoc91tePG374S8KeE4THZtaQMla1Nz6xOxX2tFL3E
+         LNRd4+xyeZ8Y5M49fnL4DNADVt+L94e9KqZJoMBs1cHKxqvm0OJ4xQL1aiZhBlpBqIhB
+         FQVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680513488;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fh11/vZEUZKLkOBCVhKAajLq2amko3vePl8fRjQBQK8=;
+        b=i1212tXq2Wq3wU+ORrgVIkmnBIGDGx/V3NcgkLpoSH6Ts7QCGTvWUT03jsCu2h1i8u
+         uPEaCKBHlljiq9bOKrZzxgZEucH7nlFvW/Z89QkRN16PBFwJsg5G5K+ygMVn4jXkA271
+         NzB1t+bdI0anOgUZwoCetaX7TZaaLJPfALY03wNwmssFdMKfWwUqTWRZsH3LMXKJqy/o
+         ZGeIxReNY7/irNub1kuI3XfJW2fJYhhsFzGSZiVW9mmxr8amaKbbgWFn1Z/gsdifMQgk
+         fgqv/DX67hP1kmC9uGmeeM31bZYc43qqEhCAlCeDIUSURwod9m8mTlusgNPrOjIa3Cyg
+         Sn+Q==
+X-Gm-Message-State: AAQBX9dshDPiL9brpQqazATP+EhYViUbC5qdkUhqIfIgC+HtOiZiG/T0
+        KLECs4DXgT+Cgi9QTFx6aVqSYQ==
+X-Google-Smtp-Source: AKy350af6ubpegssC3X+D9m3NP0v8LJfwv/yCXR+6WKWlEvRrxHGTUrdIWLbpsbQggiTg/ceZTFrmQ==
+X-Received: by 2002:a05:6402:6d1:b0:502:24a4:b0ae with SMTP id n17-20020a05640206d100b0050224a4b0aemr34472116edy.14.1680513488612;
+        Mon, 03 Apr 2023 02:18:08 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
+        by smtp.gmail.com with ESMTPSA id b17-20020a50b411000000b004bf7905559asm4341659edh.44.2023.04.03.02.18.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 02:18:08 -0700 (PDT)
+Message-ID: <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
+Date:   Mon, 3 Apr 2023 11:18:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
+ registers
 Content-Language: en-US
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230330050408.3806093-1-s.trumtrar@pengutronix.de>
- <20230330050408.3806093-11-s.trumtrar@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230330050408.3806093-11-s.trumtrar@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230327122948.4323-1-johan+linaro@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230327122948.4323-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-03_06,2023-03-31_01,2023-02-09_01
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/30/23 07:04, Steffen Trumtrar wrote:
-> Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec
-> stm32m157c-som.
+On 27/03/2023 14:29, Johan Hovold wrote:
+> The pmk8280 PMIC PON peripheral is gen3 and uses two sets of registers;
+> hlos and pbs.
 > 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> This specifically fixes the following error message during boot when the
+> pbs registers are not defined:
+> 
+> 	PON_PBS address missing, can't read HW debounce time
+> 
+> Note that this also enables the spurious interrupt workaround introduced
+> by commit 0b65118e6ba3 ("Input: pm8941-pwrkey - add software key press
+> debouncing support") (which may or may not be needed).
+> 
+> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->   arch/arm/boot/dts/Makefile                    |  3 +-
->   .../dts/stm32mp157c-phycore-stm32mp1-3.dts    | 65 +++++++++++++++++++
->   2 files changed, 67 insertions(+), 1 deletion(-)
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index efe4152e5846d..dfa9a7477c825 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1252,7 +1252,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
->   	stm32mp157c-ev1.dtb \
->   	stm32mp157c-ev1-scmi.dtb \
->   	stm32mp157c-lxa-mc1.dtb \
-> -	stm32mp157c-odyssey.dtb
-> +	stm32mp157c-odyssey.dtb \
-> +	stm32mp157c-phycore-stm32mp1-3.dtb
->   dtb-$(CONFIG_MACH_SUN4I) += \
->   	sun4i-a10-a1000.dtb \
->   	sun4i-a10-ba10-tvbox.dtb \
-> diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-> new file mode 100644
-> index 0000000000000..b433adc728710
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-> @@ -0,0 +1,65 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
-> + * Author: Dom VOVARD <dom.vovard@linrt.com>.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-> +#include "stm32mp157.dtsi"
-> +#include "stm32mp15xc.dtsi"
-> +#include "stm32mp15xxac-pinctrl.dtsi"
-> +#include "stm32mp157c-phycore-stm32mp15-som.dtsi"
-> +
-> +/ {
-> +	model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
-> +	compatible = "phytec,phycore-stm32mp1-3",
-> +		     "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
-> +
-> +	aliases {
-> +		mmc0 = &sdmmc1;
-> +		mmc1 = &sdmmc2;
-> +		mmc2 = &sdmmc3;
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> index c35e7f6bd657..a0ba535bb6c9 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> @@ -59,8 +59,9 @@ pmk8280: pmic@0 {
+>  		#size-cells = <0>;
+>  
+>  		pmk8280_pon: pon@1300 {
+> -			compatible = "qcom,pm8998-pon";
+> -			reg = <0x1300>;
+> +			compatible = "qcom,pmk8350-pon";
 
-mmc aliases are still used in linux?
+Same comment as Dmitry's. There is no compatible "qcom,pmk8350-pon"
+ccd3517faf18, therefore indicated backport (through AUTOSEL) will lead
+to invalid stable kernel.
 
-> +		serial0 = &uart4;
-> +		serial1 = &usart3;
-> +		serial2 = &usart1;
-> +	};
-> +};
-> +
-> +&cryp1 {
-> +	status = "okay";
-> +};
-> +
-> +&dts {
-> +	status = "okay";
-> +};
-> +
-> +&fmc {
-> +	status = "disabled";
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +};
-> +
-> +&i2c4_eeprom {
-> +	status = "okay";
-> +};
-> +
-> +&i2c4_rtc {
-> +	status = "okay";
-> +};
-> +
-> +&qspi {
-> +	status = "okay";
-> +};
-> +
-> +&sdmmc1 {
-> +	secure-status = "disabled";
-> +};
-> +
-> +&sdmmc2 {
-> +	status = "okay";
-> +	secure-status = "disabled";
-> +};
+You must drop the Fixes tag, because this cannot be backported.
 
-What is the need to put the secure status disabled for SDMMC nodes ?
-
+Best regards,
+Krzysztof
 
