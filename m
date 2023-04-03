@@ -2,290 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 090046D3FC1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 725556D3FCA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231585AbjDCJLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:11:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59126 "EHLO
+        id S231655AbjDCJOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 05:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231285AbjDCJLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:11:02 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEA97692
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 02:10:59 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33392php004488;
-        Mon, 3 Apr 2023 11:10:49 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=E6EGVKst8D+0Gk/EJvcw0vEtNpKhnEpfCWUrxagkj3I=;
- b=tjcYCKEyQqCHeAviFBthWAZgf9+bXppYmgj72WgkOFd0YjTUlb3kZeQCvMmhkcZW1kA8
- me2zsaCDOFVezcIUZXp3Yjjt4c9cFn4BL78x44ixwy8VqP2X5RHF8PyTGDKTlQp/Eq2x
- Er41s1RxEfz1Tu7sBH6cJp5R8WKxBRlnkdI9vv91rxHR21PiqJkewPhETPBY3R3wTmpk
- rpFLgbASbSuyu7rjsD0REjemfZg+0pY5oDQidz5/7rNRkRDE/t9KYMq/yMeV3j6tvJhn
- lbowmA85pvRDwESdV2eX0uFXyfUalP/cZsUM5iuV8f7wE5akkVx7RkJFMscJMnxHpvQT Yg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ppa1m9d13-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Apr 2023 11:10:49 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0854E10002A;
-        Mon,  3 Apr 2023 11:10:49 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F37332138D9;
-        Mon,  3 Apr 2023 11:10:48 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 3 Apr
- 2023 11:10:48 +0200
-Message-ID: <dda2a928-dbdd-e8e7-fb5e-2bb062a3b2b9@foss.st.com>
-Date:   Mon, 3 Apr 2023 11:10:47 +0200
+        with ESMTP id S231401AbjDCJOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:14:01 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CF44EC5;
+        Mon,  3 Apr 2023 02:13:54 -0700 (PDT)
+X-UUID: d5148bbad1ff11edb6b9f13eb10bd0fe-20230403
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=YO7m4iZSxuMCZDbG0DFv2mMLjjrs2tfy545wzpqEnAA=;
+        b=j1jlJ9aKbJ0SmeyRIBSz1UWbDBwoSodvUSmG++bPC89Aj97nxtT1h8TcwCqO9BvJSe4EDLS+FtC4J1vf0mmaMBoG8zwwJ/F71kxOtLTELTnDSh1cW6DrowPf+S7MFWps2v3ehlhadr+6EZfP7bfbBaa08R098X2UKe2zouO7Y3I=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:08fc4d27-9bb6-4141-af31-f0d17847a0d1,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:120426c,CLOUDID:3894b1f7-ddba-41c3-91d9-10eeade8eac7,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-UUID: d5148bbad1ff11edb6b9f13eb10bd0fe-20230403
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1745957318; Mon, 03 Apr 2023 17:13:44 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Mon, 3 Apr 2023 17:13:42 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Mon, 3 Apr 2023 17:13:41 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, <nfraprado@collabora.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
+        <jianjiao.zeng@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        <chengci.xu@mediatek.com>, <youlin.pei@mediatek.com>,
+        <anan.sun@mediatek.com>
+Subject: [PATCH v6 00/14] Adjust the dma-ranges for MTK IOMMU
+Date:   Mon, 3 Apr 2023 17:13:23 +0800
+Message-ID: <20230403091337.26745-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 09/10] ARM: dts: stm32: add STM32MP1-based Phytec SoM
-Content-Language: en-US
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230330050408.3806093-1-s.trumtrar@pengutronix.de>
- <20230330050408.3806093-10-s.trumtrar@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230330050408.3806093-10-s.trumtrar@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-03_06,2023-03-31_01,2023-02-09_01
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=1.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Steffen
+After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
+controllers"), the dma-ranges is not allowed for dts leaf node.
+but we still would like to separate the different masters into
+different iova regions. Thus we adjust the internal flow, separate
+the 16GB iova range by the master HW larbid/portid and add the
+dma-ranges property in the parent "soc" node. This also could avoid
+the users forget/abuse the iova regions.
 
-On 3/30/23 07:04, Steffen Trumtrar wrote:
-> The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to 1 GB
-> eMMC, up to 16 MB QSPI and up to 128 GB NAND flash.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
+The commit f1ad5338a4d5 did affect the mt8195 venc, But it is not
+a fatal issue, it could also work well at 0-4GB iova. thus I don't
+add "Fixes:" tag.
 
-I'm not so far to merge your series but I still have questions.
+In this series, I add functions for mt8192/mt8195/mt8186, mt8188 will
+be in its special patchset. and the previous mt8173/mt8183...support
+0-4GB only, no need this function.
 
-> Notes:
->      checkpatch warns about un-documented binding
->      
->      According to checkpatch the binding for "winbond,w25q128"
->      used in this dtsi is un-documented.
->      However, 'jedec,spi-nor.yaml' defines the pattern
->      
->          (winbond,)?w25q(16|32(w|dw)?|64(dw)?|80bl|128(fw)?|256))$"
->      
->      so, this should be good!?
->      
->      Changes since v6:
->        - rename mdio0->mdio
->      
->      Changes since v5:
->        - cleanup dt_bindings_check warnings
->      
->      Changes since v4:
->        - cleanup usage of "status = okay|disabled"
->        - fix remaining non-generic node names
->        - rework sai nodes to not duplicate the existing settings in stm32mp151.dtsi
->      
->      Changes since v3:
->        - cleanup board-compatible
->        - cleanup aliases
->        - rename nodes according to schema
->        - use interrupt flag
-> 
->   .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 594 ++++++++++++++++++
->   1 file changed, 594 insertions(+)
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
-> new file mode 100644
-> index 0000000000000..f612daa4c66a7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
-> @@ -0,0 +1,594 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) 2022-2023 Steffen Trumtrar <kernel@pengutronix.de>
-> + * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
-> + * Author: Dom VOVARD <dom.vovard@linrt.com>.
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/leds/leds-pca9532.h>
-> +#include <dt-bindings/mfd/st,stpmic1.h>
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include "stm32mp15-pinctrl.dtsi"
-> +
-> +/ {
-> +	model = "PHYTEC phyCORE-STM32MP15 SOM";
-> +	compatible = "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
-> +
-> +	aliases {
-> +		ethernet0 = &ethernet0;
-> +		rtc0 = &i2c4_rtc;
-> +		rtc1 = &rtc;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-home {
-> +			label = "Home";
-> +			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_HOME>;
-> +		};
-> +
-> +		key-enter {
-> +			label = "Enter";
-> +			gpios = <&gpioa 14 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_ENTER>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		retram: retram@38000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x38000000 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		mcuram: mcuram@30000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x30000000 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		mcuram2: mcuram2@10000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x10000000 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		vdev0vring0: vdev0vring0@10040000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x10040000 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		vdev0vring1: vdev0vring1@10041000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x10041000 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		vdev0buffer: vdev0buffer@10042000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x10042000 0x4000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu_reserved: gpu@f8000000 {
-> +			reg = <0xf8000000 0x8000000>;
-> +			no-map;
-> +		};
+Change note:
+v6: Add three patches[9/10/11] for set dma-mask for iommu master devices.
 
-It seems that this region is not used. Furthermore if you plan to use it 
-to GPU note that it doesn't respect YAMl verification. So please remove it.
+v5: Nothing change. Just rebase on v6.3-rc1.
 
-> +	};
-> +
-> +	sound {
-> +		compatible = "audio-graph-card";
-> +		label = "STM32MP1-PHYCORE";
-> +		routing =
-> +			"Playback", "MCLK", /* Set a route between "MCLK" and "playback" widgets */
-> +			"Capture", "MCLK";
-> +		dais = <&sai2b_port>,
-> +		       <&sai2a_port>;
-> +	};
-> +
-> +	regulator_vin: regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vin";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&ethernet0 {
-> +	pinctrl-0 = <&ethernet0_rgmii_pins_d>;
-> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_d>;
-> +	pinctrl-names = "default", "sleep";
-> +	phy-mode = "rgmii-id";
-> +	max-speed = <1000>;
-> +	phy-handle = <&phy0>;
-> +	st,eth-clk-sel;
-> +	clock-names = "stmmaceth",
-> +		      "mac-clk-tx",
-> +		      "mac-clk-rx",
-> +		      "eth-ck",
-> +		      "syscfg-clk",
-> +		      "ethstp";
-> +	clocks = <&rcc ETHMAC>,
-> +		 <&rcc ETHTX>,
-> +		 <&rcc ETHRX>,
-> +		 <&rcc ETHCK_K>,
-> +		 <&rcc SYSCFG>,
-> +		 <&rcc ETHSTP>;
+v4: https://lore.kernel.org/linux-mediatek/20230215062544.8677-1-yong.wu@mediatek.com/
+    Improve the comment in the code from AngeloGioacchino.
 
-Why do you re define those clocks ? They are all already defined in 
-stm32mp151.dtsi
+v3: https://lore.kernel.org/linux-mediatek/20230214031114.926-1-yong.wu@mediatek.com/
+   Add a new patch only for comment more in the code.
 
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
-> +
-> +		phy0: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			interrupt-parent = <&gpiog>;
-> +			interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-> +			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +			ti,min-output-impedance;
-> +			enet-phy-lane-no-swap;
-> +			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-> +		};
-> +	};
-> +};
-> +
+v2: https://lore.kernel.org/linux-mediatek/20230208053643.28249-1-yong.wu@mediatek.com/
+   a) Base on next-20230206 since mt8195 jpeg node is applied which affect
+      this patch.
+   b) Reword the commit message [1/10][2/10] to explain effect.
 
-...
+v1: https://lore.kernel.org/linux-mediatek/20230113060133.9394-1-yong.wu@mediatek.com/
+   Base on v6.2-rc3.
+
+Yong Wu (14):
+  dt-bindings: media: mediatek,vcodec: Remove dma-ranges property
+  dt-bindings: media: mediatek,jpeg: Remove dma-ranges property
+  iommu/mediatek: Improve comment for the current region/bank
+  iommu/mediatek: Get regionid from larb/port id
+  iommu/mediatek: mt8192: Add iova_region_larb_msk
+  iommu/mediatek: mt8195: Add iova_region_larb_msk
+  iommu/mediatek: mt8186: Add iova_region_larb_msk
+  iommu/mediatek: Add a gap for the iova regions
+  iommu/mediatek: Set dma_mask for the master devices
+  media: mtk-jpegdec: Remove the setting for dma_mask
+  media: mediatek: vcodec: Remove the setting for dma_mask
+  arm64: dts: mt8195: Remove the unnecessary dma-ranges
+  arm64: dts: mt8195: Add dma-ranges for the parent "soc" node
+  arm64: dts: mt8186: Add dma-ranges for the parent "soc" node
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   7 -
+ .../media/mediatek,mt8195-jpegenc.yaml        |   7 -
+ .../media/mediatek,vcodec-decoder.yaml        |   5 -
+ .../media/mediatek,vcodec-encoder.yaml        |   5 -
+ .../media/mediatek,vcodec-subdev-decoder.yaml |   7 -
+ .../bindings/media/mediatek-jpeg-encoder.yaml |   5 -
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |   1 +
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |   4 +-
+ drivers/iommu/mtk_iommu.c                     | 145 ++++++++++++++----
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    |   3 -
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   8 -
+ .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |   3 -
+ 12 files changed, 117 insertions(+), 83 deletions(-)
+
+-- 
+2.18.0
+
 
