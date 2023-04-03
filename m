@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A6586D41AE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D966D41B6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232102AbjDCKQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 06:16:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33942 "EHLO
+        id S232040AbjDCKRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:17:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232122AbjDCKQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:16:37 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32B076B3
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:16:35 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y15so37350326lfa.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:16:35 -0700 (PDT)
+        with ESMTP id S231862AbjDCKRo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:17:44 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B6E6E85
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:17:41 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id c29so37390240lfv.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:17:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680516994;
+        d=linaro.org; s=google; t=1680517060;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RNLlgEsfn6bQxY+FQHh506Gu9381zJcSolbDY70x5ZU=;
-        b=HrudlRnK7SNQOf2sHLFFavkTomnUN1UBwsBinOR/UheKUEb44qEiNCZB7hU6SMrkfZ
-         HBeARig6CpbXKz/rkoO2bHqjGdZS5nDI2COoVoeEtSaxJ8w8kdgtmoQB40ExRGwPTyND
-         oua1G6m9pUgQiOA3HUX1XngQtwGMrCbg0IXI2rEYjNllhXpRAr3bS/Apl4MhWRrhOk5x
-         w81Z5KHA/STMxQUAycPnz5iC+kDrnoYZNKWWAZlGDxGSz/E2f1hLREtTCXgQ1D6ZYrcp
-         UDZZtQYdo6PuWjcU/hmgQXHd6lRJjy7W3i0Jes+rrTO2bS8PvJVWoq+FkJRD5MbhDI44
-         Spfw==
+        bh=CYWunT6ljLivd4wOmJltu2pTDnUfXFoW1kvmT3KC1QE=;
+        b=CJvXvyFr0yjtxSqivXbkpCcvc0H/CT5Eonky3l6Mk2azf7riTYbT0oGepNmOI5QSO2
+         tvM80d2CMcceuNCXKmGgPLz8IRukbwQe1e31W0LUXMvs6giQbKJvWRqO5BtHwA+Np/uq
+         grWXum+E2Enovwah7JyDoAn5cKkG6x5kMNLSXezWYvF8p2fewdS1idyv1c9h8ssYOo5e
+         hysZIAcY33b8LZMGAmwNsEOz81sxCq0IRvoKX3XcgA9/4uIv8l85EeX7Xrk07v3qY2Fg
+         t4kM9anM315HOmrHtSAifarscYiTw2qNpyLUzZ+GNMLLB7q/QyFrJYyfAFL3D2kxWlts
+         kx3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680516994;
+        d=1e100.net; s=20210112; t=1680517060;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RNLlgEsfn6bQxY+FQHh506Gu9381zJcSolbDY70x5ZU=;
-        b=giqlIJ5qBoTss9qEt7KszIg2kBOEvmibRw6N87/c0zu3E3zK2R7hOeEe7bDb7JOe7B
-         uB5GWw+ZW5G3J6pAWWVeQnO6JvSEsbhzgz/kCDWB5sr9rujt9/dcN+iXvlSF7seRRp1k
-         ycEqalCVGpyT0pv5Br3g/wZhg2PnLIhgnC0W85VK2YeWdJkCRKB4T2IGf5de65Fllbdh
-         Zoul4Z492cAlqXF0srvXIebdSKMu8bLB2vJJH9uub27noVPVmGdWsocLTSunRlqwTPkJ
-         S+f53bZcGqf9/PdigMRvGPDxsauevM7tSBn3WVIsPmwbj+V+8ikJBXqM+LpdnFowCZ32
-         LdRw==
-X-Gm-Message-State: AAQBX9eEogvQRboQT+OrO51akwAtO4SUNxGscFtf6tEr6Xjsry6gfgjM
-        fJ+Oe0g3BSkMWUPn8nervBtm/g==
-X-Google-Smtp-Source: AKy350bKMrP5L/JGUjCvfiupcP57MKCco3MyphtZr/XCS0WLP0GXZyf8CySWYjdHvITft2ZJksIASQ==
-X-Received: by 2002:ac2:5322:0:b0:4e9:5e28:f1c9 with SMTP id f2-20020ac25322000000b004e95e28f1c9mr9601564lfh.36.1680516994203;
-        Mon, 03 Apr 2023 03:16:34 -0700 (PDT)
+        bh=CYWunT6ljLivd4wOmJltu2pTDnUfXFoW1kvmT3KC1QE=;
+        b=roRVymbwqrckON59FYQmDw7gbUcr8nIPozDral/Goj6H/4WtnywqOXXXU6wECroaWm
+         OrNBQ1IJZmu3/h5O+EXKmmgkFOxzGDMrmwaflQALALzqa8zEoDwXdJylMBMhOgDeyHpY
+         YAZqeuvDXPSdedwOT75pkfYMOsTPxWif8gtyRuiD2FlLESHOiV3E4Z7+A7sJdqz+PfWZ
+         9w4EHubZKY4WmgGY8gT33OzEqQQzWt0PyeyAFzkDvKkkh4+PQzLkoJQtObvZDz8ZEuqV
+         BOF+bivo+SA4TWa6jxG9domM0E8D+yV6rTWr+tq+DIv+LUXqRe8Y2pLzfZiGBkuAuS6V
+         4eeA==
+X-Gm-Message-State: AAQBX9ewSui9eKZ2iuFKqdH9JF8ecWk18NkdmuZh3UGUDwe/JZvqjLm8
+        NNGMAwdpitJbAKHIeaqKhrfgtw==
+X-Google-Smtp-Source: AKy350YJmY7LxwUOQLiwMFFgX8lclMVAm4rfogfN3uFeeeJtrG3sPerJemo+C2+/Lq4iTju333wZBw==
+X-Received: by 2002:a05:6512:4dd:b0:4eb:c24:2066 with SMTP id w29-20020a05651204dd00b004eb0c242066mr7869572lfq.68.1680517060196;
+        Mon, 03 Apr 2023 03:17:40 -0700 (PDT)
 Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
-        by smtp.gmail.com with ESMTPSA id y2-20020ac24462000000b004db48ae69cbsm1685425lfl.206.2023.04.03.03.16.33
+        by smtp.gmail.com with ESMTPSA id u26-20020ac2519a000000b004e8483bff82sm1709319lfi.271.2023.04.03.03.17.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 03:16:33 -0700 (PDT)
-Message-ID: <f9b64593-0138-0fc6-6e05-2310531c19c9@linaro.org>
-Date:   Mon, 3 Apr 2023 12:16:32 +0200
+        Mon, 03 Apr 2023 03:17:39 -0700 (PDT)
+Message-ID: <97316d33-29b9-700f-8766-df538b133f35@linaro.org>
+Date:   Mon, 3 Apr 2023 12:17:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 10/22] arm64: dts: qcom: pmk8350: use
- interrupts-extended for IRQ specification
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8350-nagara: Unify status
+ property placement
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-11-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230321-topic-sagami_dp-v1-0-340c8bce4276@linaro.org>
+ <20230321-topic-sagami_dp-v1-4-340c8bce4276@linaro.org>
+ <i5tsdvn45peivo7tegmg3q4mhsz2ly2kfs64kezeykn2bbosd5@ugfqrjqumljd>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230401220810.3563708-11-dmitry.baryshkov@linaro.org>
+In-Reply-To: <i5tsdvn45peivo7tegmg3q4mhsz2ly2kfs64kezeykn2bbosd5@ugfqrjqumljd>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,73 +84,157 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2.04.2023 00:07, Dmitry Baryshkov wrote:
-> As stated in the commit 2d5cab9232ba ("arm64: dts: qcom: sc8280xp-pmics:
-> Specify interrupt parent explicitly"), we should not use bare interrupts
-> for our PMIC devices. Instead interrupts-extended should be used. Change
-> pmk8350.dtsi to use interrupts-extended propery.
-propery/property
-
-It's not about using the interrupts-extended itself, as it's functionally
-identical if it points to the same interrupt parent. The main point of this
-is to designate the SPMI host as the interrupt provider for these nodes,
-as that's what the DT spec expects.
-
+On 2.04.2023 17:19, Marijn Suijten wrote:
+> On 2023-03-21 23:12:31, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-For the change:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> When you get to resending this, change sm8350-nagara in the title to
+> sm8350-sagami :)
+Even I confuse them, they just look too alike! ;)
 
 Konrad
->  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> index f26ff3daf119..87b8e4269c60 100644
-> --- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> @@ -33,14 +33,14 @@ LABEL(pon): pon@1300 {
->  
->  			LABEL(pon_pwrkey): pwrkey {
->  				compatible = "qcom,pmk8350-pwrkey";
-> -				interrupts = <PMIC_SID 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-> +				interrupts-extended = <&spmi_bus PMIC_SID 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
->  				linux,code = <KEY_POWER>;
->  				status = "disabled";
->  			};
->  
->  			LABEL(pon_resin): resin {
->  				compatible = "qcom,pmk8350-resin";
-> -				interrupts = <PMIC_SID 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
-> +				interrupts-extended = <&spmi_bus PMIC_SID 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
->  				status = "disabled";
->  			};
->  		};
-> @@ -50,14 +50,14 @@ LABEL(vadc): adc@3100 {
->  			reg = <0x3100>;
->  			#address-cells = <1>;
->  			#size-cells = <0>;
-> -			interrupts = <PMIC_SID 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts-extended = <&spmi_bus PMIC_SID 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
->  			#io-channel-cells = <1>;
->  		};
->  
->  		LABEL(adc_tm): adc-tm@3400 {
->  			compatible = "qcom,adc-tm7";
->  			reg = <0x3400>;
-> -			interrupts = <PMIC_SID 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts-extended = <&spmi_bus PMIC_SID 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
->  			#address-cells = <1>;
->  			#size-cells = <0>;
->  			#thermal-sensor-cells = <1>;
-> @@ -68,7 +68,7 @@ LABEL(rtc): rtc@6100 {
->  			compatible = "qcom,pmk8350-rtc";
->  			reg = <0x6100>, <0x6200>;
->  			reg-names = "rtc", "alarm";
-> -			interrupts = <PMIC_SID 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts-extended = <&spmi_bus PMIC_SID 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
->  			status = "disabled";
->  		};
->  
+> - Marijn
+> 
+>> As we're heading towards getting the status property last everywhere,
+>> take care of it for SM8350 SONY Sagami.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  .../boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 30 ++++++++++------------
+>>  1 file changed, 14 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+>> index b2baa81baf5e..95b1ba4ce470 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+>> @@ -189,8 +189,8 @@ vph_pwr: vph-pwr-regulator {
+>>  };
+>>  
+>>  &adsp {
+>> -	status = "okay";
+>>  	firmware-name = "qcom/sm8350/Sony/sagami/adsp.mbn";
+>> +	status = "okay";
+>>  };
+>>  
+>>  &apps_rsc {
+>> @@ -542,27 +542,27 @@ pmr735a_l7: ldo7 {
+>>  };
+>>  
+>>  &cdsp {
+>> -	status = "okay";
+>>  	firmware-name = "qcom/sm8350/Sony/sagami/cdsp.mbn";
+>> +	status = "okay";
+>>  };
+>>  
+>>  &i2c1 {
+>> -	status = "okay";
+>>  	clock-frequency = <1000000>;
+>> +	status = "okay";
+>>  
+>>  	/* Some subset of SONY IMX663 camera sensor @ 38 */
+>>  };
+>>  
+>>  &i2c4 {
+>> -	status = "okay";
+>>  	clock-frequency = <400000>;
+>> +	status = "okay";
+>>  
+>>  	/* Samsung Touchscreen (needs I2C GPI DMA) @ 48 */
+>>  };
+>>  
+>>  &i2c11 {
+>> -	status = "okay";
+>>  	clock-frequency = <1000000>;
+>> +	status = "okay";
+>>  
+>>  	cs35l41_l: speaker-amp@40 {
+>>  		compatible = "cirrus,cs35l41";
+>> @@ -596,31 +596,31 @@ cs35l41_r: speaker-amp@41 {
+>>  };
+>>  
+>>  &i2c12 {
+>> -	status = "okay";
+>>  	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
+>>  	clock-frequency = <100000>;
+>> +	status = "okay";
+>>  
+>>  	/* AMS TCS3490 RGB+IR color sensor @ 72 */
+>>  };
+>>  
+>>  &i2c13 {
+>> -	status = "okay";
+>>  	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
+>>  	clock-frequency = <100000>;
+>> +	status = "okay";
+>>  
+>>  	/* Qualcomm PM8008i/PM8008j (?) @ 8, 9, c, d */
+>>  };
+>>  
+>>  &i2c15 {
+>> -	status = "okay";
+>>  	clock-frequency = <400000>;
+>> +	status = "okay";
+>>  
+>>  	/* NXP SN1X0 NFC @ 28 */
+>>  };
+>>  
+>>  &i2c17 {
+>> -	status = "okay";
+>>  	clock-frequency = <1000000>;
+>> +	status = "okay";
+>>  
+>>  	/* Cirrus Logic CS40L25A boosted haptics driver @ 40 */
+>>  };
+>> @@ -652,8 +652,8 @@ mdss_dp_altmode: endpoint {
+>>  };
+>>  
+>>  &mpss {
+>> -	status = "okay";
+>>  	firmware-name = "qcom/sm8350/Sony/sagami/modem.mbn";
+>> +	status = "okay";
+>>  };
+>>  
+>>  &pm8350_gpios {
+>> @@ -719,8 +719,8 @@ &pon_pwrkey {
+>>  };
+>>  
+>>  &pon_resin {
+>> -	status = "okay";
+>>  	linux,code = <KEY_VOLUMEUP>;
+>> +	status = "okay";
+>>  };
+>>  
+>>  &qupv3_id_0 {
+>> @@ -748,8 +748,8 @@ &sdhc_2 {
+>>  };
+>>  
+>>  &slpi {
+>> -	status = "okay";
+>>  	firmware-name = "qcom/sm8350/Sony/sagami/slpi.mbn";
+>> +	status = "okay";
+>>  };
+>>  
+>>  &spi14 {
+>> @@ -1038,16 +1038,14 @@ usb_1_dwc3_ss: endpoint {
+>>  };
+>>  
+>>  &usb_1_hsphy {
+>> -	status = "okay";
+>> -
+>>  	vdda-pll-supply = <&pm8350_l5>;
+>>  	vdda18-supply = <&pm8350c_l1>;
+>>  	vdda33-supply = <&pm8350_l2>;
+>> +	status = "okay";
+>>  };
+>>  
+>>  &usb_1_qmpphy {
+>> -	status = "okay";
+>> -
+>>  	vdda-phy-supply = <&pm8350_l6>;
+>>  	vdda-pll-supply = <&pm8350_l1>;
+>> +	status = "okay";
+>>  };
+>>
+>> -- 
+>> 2.40.0
+>>
