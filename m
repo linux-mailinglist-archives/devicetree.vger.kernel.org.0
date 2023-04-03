@@ -2,115 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4F76D5019
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E0E6D5018
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232506AbjDCSO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:14:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41688 "EHLO
+        id S232876AbjDCSOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:14:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbjDCSO0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:14:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C922D40;
-        Mon,  3 Apr 2023 11:14:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9D1DA62474;
-        Mon,  3 Apr 2023 18:14:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A47EC4339B;
-        Mon,  3 Apr 2023 18:14:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680545653;
-        bh=dZxhtfWNZthe6C4xSPneZtKMKl2XLrfONcmPfYXK2jc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NZstyKQH0+x8/mU9b3+M59+yT3SblfTJS/FVkhjxHos8YUryMzPUtFsi8nSJ4T3Zv
-         +ep2vLyEI98IrmpcyD6Eru2ott753MJDrXx5qtq2b2gP40+2H4LHrSAiI2sxs0DqfN
-         ZEIMgcYQR65Xrs0LocD744pzfk+sIq6ymQyM6OBOIGaZ/z9Z4y4edcGAiDeMumbE/i
-         Ox1QX+bx7l7WJlhGqnvJC+WIxAw8indMjTb3w4tbW70snSUM0sG2MKccdlfvRmJ8po
-         OpiWE1hgFtBNmQ00BcRSyyu5w9c6zB8eoKuCa54h5I0uc5XtEMLRPKQVtQeeAgHwlk
-         O4POQ7nF5cm5g==
-Date:   Mon, 3 Apr 2023 19:14:04 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
- bootup voltage
-Message-ID: <8c513ddc-435e-40ce-b1f8-84eaf8241ed4@sirena.org.uk>
-References: <751e5129-3c11-0156-719e-3fe996a149be@quicinc.com>
- <3f434777-c4b6-272f-1971-f9adf3faefe4@linaro.org>
- <a54d4e1b-d62d-559d-1882-e460e696c056@quicinc.com>
- <ca12735e-d6c8-997e-036f-693cd8a9870f@linaro.org>
- <e19393e3-5898-bff2-cc00-d88c9194c7c2@quicinc.com>
- <6e1f6466-7f2e-7bd5-f6a2-5691a30c4e1f@linaro.org>
- <9989c92c-9949-5531-c7d2-e54882795a68@quicinc.com>
- <69df153d-bdc6-9008-39d6-72f66bab2e38@linaro.org>
- <5914a8db-3644-1c94-00ba-460ba2c26a5d@quicinc.com>
- <3c5a9608-ecd2-a3c0-e866-7d0070e49b89@linaro.org>
+        with ESMTP id S233038AbjDCSOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:14:14 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD271FEF
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:14:08 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id f19-20020a9d5f13000000b00693ce5a2f3eso16101274oti.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:14:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680545648;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=diAU2gDNpfvEkf0KkvkJMk9DSdJLB8pM+UR1PjlRd1Q=;
+        b=zhki2uT1JRuo8QiHzRmqPRFJWrqr14txdB/uaip5d42RTnSQmT25PcXI8JHvvsf6Ej
+         +q+EHJx8mDPXMh9KY7fS1bHi+UiBP8Ex+DF2F9Wh/kfdZ7CqzsKTz6vQqrjkUl/yz9EX
+         9vgGXqDL5KBwsatiRR7V8gT4K6kt0Jzt1nVBvOyrJAfkhF9u/+3nytfuOu9G6ySYku+w
+         QEfe/ySRClIhRkjEMCc6CDji5esoU6ueUBQqFgPPsPNmN6hek+SF0UGzaIp7lAphU9rS
+         admamaogB0gmItcOv1bXtvpzM6WYM2Eue53oJp7bsgyVFATMv+8b5M1xFEIJ+1ugkyNZ
+         3DGw==
+X-Gm-Message-State: AAQBX9cAhDa3h08+rv9ftVKtJ7N65xn6R7d/JYLtzT8aaiazU2IlDQjq
+        4k+bynnmlUFzP1KaQjVEmA==
+X-Google-Smtp-Source: AKy350YIttDvDJ7Vo5p8cx/PBF4e+AWAEha5v/UWeHolpwFR8Usk5pByB0bDAyqoZKGl66OTAz+Yfw==
+X-Received: by 2002:a9d:6f8f:0:b0:6a1:7eaa:3836 with SMTP id h15-20020a9d6f8f000000b006a17eaa3836mr56953otq.5.1680545648143;
+        Mon, 03 Apr 2023 11:14:08 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i26-20020a9d68da000000b0069dd3d98ec6sm4635107oto.44.2023.04.03.11.14.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 11:14:07 -0700 (PDT)
+Received: (nullmailer pid 1277282 invoked by uid 1000);
+        Mon, 03 Apr 2023 18:14:07 -0000
+Date:   Mon, 3 Apr 2023 13:14:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stefan Wahren <stefan.wahren@chargebyte.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com
+Subject: Re: [PATCH V4 2/6] dt-bindings: w1: Add DS2482/DS2484 I2C to 1-W
+ bridges
+Message-ID: <20230403181407.GA1242137-robh@kernel.org>
+References: <20230331210840.4061-1-stefan.wahren@chargebyte.com>
+ <20230331210840.4061-3-stefan.wahren@chargebyte.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+3527FmE72Bif88B"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3c5a9608-ecd2-a3c0-e866-7d0070e49b89@linaro.org>
-X-Cookie: Membership dues are not refundable.
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230331210840.4061-3-stefan.wahren@chargebyte.com>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Mar 31, 2023 at 11:08:36PM +0200, Stefan Wahren wrote:
+> Even this binding look trivial, the actual hardware supports more
+> features (e.g. sleep mode control GPIO). So add this as a dedicated
+> devicetree binding for the Maxim DS2482/DS2484 I2C to 1-W bridges,
+> which can be extended later.
+> 
+> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
+> ---
+>  .../devicetree/bindings/w1/maxim,ds2482.yaml  | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
+> new file mode 100644
+> index 000000000000..fd692a3a7400
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/w1/maxim,ds2482.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim One wire bus master controller
+> +
+> +maintainers:
+> +  - Stefan Wahren <stefan.wahren@chargebyte.com>
+> +
+> +description: |
+> +  I2C to 1-wire bridges
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ds2482-100.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/DS2482-800.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/DS2484.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,ds2482
+> +      - maxim,ds2484
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
 
---+3527FmE72Bif88B
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+To allow children, all that's needed for 1-wire is:
 
-On Mon, Apr 03, 2023 at 07:53:48PM +0200, Konrad Dybcio wrote:
-> On 3.04.2023 16:07, Devi Priya wrote:
+additionalProperties:
+  type: object
 
-> > But, when the regulator driver comes up, it tries to bring up the
-> > regulators to the minimum supported voltage provided with the
-> > regulator-min-microvolt property in the DT.
-
-> Right, that exists..=20
-
-> Mark, do you think it should be updated such that the requests are
-> aggregated before assuming min_uV is "just fine"?
-
-We can't tell if any consumers are ever going to appear, and the
-regulator having a voltage outside of the constraints is an urgent
-problem we need to fix quickly.  Since we try to bring the voltage to
-the nearest end of the constraint the driver could always change the
-bogus voltage it reports to one that is excessively high, this would
-mean the core will try to bring the voltage down to the maximum rather
-than up to the minimum.  The driver could also look at the constraints
-when guessing at the hardware configuration rather than claiming an out
-of spec voltage, this would mean we wouldn't need to correct anything.
-
---+3527FmE72Bif88B
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQrF2wACgkQJNaLcl1U
-h9DUkgf5AeX2hkEfb36b/p7jPZcbfRZXttviLT2LkmjynPWAK8PRiewZ0XNVv4An
-E51IGruDP7nB2ArHnrhCwICAU0r4r6TRSaY3S6xgxhdCZqi+1VHIKhLTYDNHD9/d
-TmCnsqxzC0c3cj9OB8couC3BgfGXOp0pGMuZLzeYlCG+trEbwBu2HnqBGx5L6zBV
-n6jUvhhazcyrVfYaxdDBzxHUM/CPiIY5ez7jEcD4PLXEvlSZFDmE5AZTs28HAZTx
-b5qtdfIrV4D5JYNfU90pg5JB2kcN3Uc1iYuFX7Y40hD778/gG+9xHi3jsGt2L06/
-Vn3MCOS4ssu5v19tKmFquxaxpVcZSA==
-=0SE9
------END PGP SIGNATURE-----
-
---+3527FmE72Bif88B--
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      onewire@18 {
+> +        compatible = "maxim,ds2484";
+> +        reg = <0x18>;
+> +      };
+> +    };
+> -- 
+> 2.17.1
+> 
