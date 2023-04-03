@@ -2,132 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 370BC6D4BF7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40DFB6D4C46
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232806AbjDCPc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 11:32:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
+        id S232950AbjDCPpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 11:45:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231958AbjDCPc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:32:26 -0400
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63AB1BE1;
-        Mon,  3 Apr 2023 08:32:24 -0700 (PDT)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4Pqvys1Crfz9sQh;
-        Mon,  3 Apr 2023 17:32:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
-        s=MBO0001; t=1680535941;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=R40Rix/QmgERLDCtcuTTsrzPbEXoZNeuV8Sj3dITv3w=;
-        b=SnMfsaQYEjQGTtwHiyel9wE0jWJzPmcxF/fEGDoRKO1szaY9G+b+13CZFKQUVkQVOcBUpY
-        T1uQjzQDYn8nviqlduXWdkPJVUYu8ZUqKjt4TXsUPBtjlQqfcZp2mLyK4Nqpv3CaKridb4
-        g5wPgNpJl5M5tUez+fiOMDaP3dhhA4IUfmFu5+17EaJu3HqiFQzB9I5wznFvSnW0w6pTZJ
-        82aZU0F4+zUxI6WfohmmiMm9IoJjmmy7nLDG6MIH5u9qvl3Nw/so8IVzYpaZMEhVaOnTbQ
-        AHZclSCpKsxrPOhLIvjPEdaDCa6DdsRyCu8Vy8MoJIMAvPQ+tGdjJas5NnWzVw==
-Message-ID: <2d9d001f14036caf4f6d47448d4d2fdb0b188101.camel@dylanvanassche.be>
-Subject: Re: [PATCH v4 4/6] dts: qcom: arm64: qcom: sdm845: use defines for
- VMIDs
-From:   Dylan Van Assche <me@dylanvanassche.be>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Date:   Mon, 03 Apr 2023 17:32:17 +0200
-In-Reply-To: <ea03bfb6-34c4-45e2-c179-74ecafad559f@linaro.org>
-References: <20230401173523.15244-1-me@dylanvanassche.be>
-         <20230401173523.15244-5-me@dylanvanassche.be>
-         <ea03bfb6-34c4-45e2-c179-74ecafad559f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S232837AbjDCPpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:45:08 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7514930E2;
+        Mon,  3 Apr 2023 08:45:03 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 333F1Aiu029177;
+        Mon, 3 Apr 2023 11:44:34 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3pphh8abk1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Apr 2023 11:44:33 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 333FiWaw052626
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 3 Apr 2023 11:44:32 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 3 Apr 2023
+ 11:44:31 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 3 Apr 2023 11:44:30 -0400
+Received: from IST-LT-39247.ad.analog.com (IST-LT-39247.ad.analog.com [10.25.16.17])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 333Fi2OP024018;
+        Mon, 3 Apr 2023 11:44:09 -0400
+From:   Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        <linux-rtc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v5 0/2] drivers: rtc: add max313xx series rtc driver
+Date:   Mon, 3 Apr 2023 18:43:40 +0300
+Message-ID: <20230403154342.3108-1-Ibrahim.Tilki@analog.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 4Pqvys1Crfz9sQh
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: Mwd0nkCv0IeITyhyo_cMXgwVbK952C8i
+X-Proofpoint-ORIG-GUID: Mwd0nkCv0IeITyhyo_cMXgwVbK952C8i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-03_12,2023-04-03_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ suspectscore=0 clxscore=1011 priorityscore=1501 mlxlogscore=535
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304030114
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+changelog:
+since v5:
+  - dt-binding: add enum value "2" to aux-voltage-chargable
+  - dt-binding: remove adi,trickle-diode-enable
+  - dt-binding: change description of trickle-resistor-ohms
+  - dt-binding: reorder as in example schema
+  - parse "wakeup-source" when irq not requested
+  - remove limitation on max31328 irq and clokout
+  - remove error and warning messages during trickle charger setup
 
-On Mon, 2023-04-03 at 11:20 +0200, Krzysztof Kozlowski wrote:
-> On 01/04/2023 19:35, Dylan Van Assche wrote:
-> > Use VMID defines for SLPI's FastRPC node in the Qualcomm SDM845 DTS
-> > instead of hardcoded magic values.
-> >=20
-> > Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
-> > ---
-> > =C2=A0arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 +++-
-> > =C2=A01 file changed, 3 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > index 1f25a7f4e02b..dc4b553cbe2e 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > @@ -13,6 +13,7 @@
-> > =C2=A0#include <dt-bindings/clock/qcom,rpmh.h>
-> > =C2=A0#include <dt-bindings/clock/qcom,videocc-sdm845.h>
-> > =C2=A0#include <dt-bindings/dma/qcom-gpi.h>
-> > +#include <dt-bindings/firmware/qcom,scm.h>
-> > =C2=A0#include <dt-bindings/gpio/gpio.h>
-> > =C2=A0#include <dt-bindings/interconnect/qcom,osm-l3.h>
-> > =C2=A0#include <dt-bindings/interconnect/qcom,sdm845.h>
-> > @@ -3372,7 +3373,8 @@ fastrpc {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0qcom,glink-channels =3D
-> > "fastrpcglink-apps-dsp";
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0label =3D "sdsp";
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0qcom,non-secure-domain;
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0qcom,vmids =3D <0x3 0xF 0x5
-> > 0x6>;
->=20
-> Didn't you just add it in previous patch? Don't add incorrect code
-> which
-> you immediately change.
->=20
+since v4:
+  - dt-binding: remove interrupt names.
+  - dt-binding: add description for "interrupts" property
+  - dt-binding: replace deprecated property "trickle-diode-disable"
+      by "aux-voltage-chargeable"
+  - dt-binding: add new property "adi,trickle-diode-enable"
+  - dt-binding: remove "wakeup-source"
+  - use clear_bit instead of __clear_bit
+  - use devm_of_clk_add_hw_provider instead of of_clk_add_provider
+  - use chip_desc pointer as driver data instead of enum.
 
-Both are similar, the code is in fact the same. I followed what Konrad
-suggested in v3 to make a patch on top:
+since v3:
+  - add "break" to fix warning: unannotated fall-through 
+    Reported-by: kernel test robot <lkp@intel.com>
 
-> Please use the recently-introduced header and depend on (and
-make a patch atop)
+since v2:
+  - dt-binding: update title and description
+  - dt-binding: remove last example
+  - drop watchdog support
+  - support reading 12Hr format instead of forcing 24hr at probe time
+  - use "tm_year % 100" instead of range check
+  - refactor max313xx_init for readability
 
-https://lore.kernel.org/linux-devicetree/20230330165322.118279-1-me@dylanva=
-nassche.be/T/#mab3c3421157acb0a4811dad5bb62d7349a9d4008
+Ibrahim Tilki (2):
+  drivers: rtc: add max313xx series rtc driver
+  dt-bindings: rtc: add max313xx RTCs
 
-I can squash this patch in the FastRPC node one, that would make it
-disappear. Let me know what you prefer and I will do it in v5 :)
+ .../devicetree/bindings/rtc/adi,max313xx.yaml |  144 +++
+ drivers/rtc/Kconfig                           |   11 +
+ drivers/rtc/Makefile                          |    1 +
+ drivers/rtc/rtc-max313xx.c                    | 1053 +++++++++++++++++
+ 4 files changed, 1209 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+ create mode 100644 drivers/rtc/rtc-max313xx.c
 
-> Best regards,
-> Krzysztof
->=20
+-- 
+2.25.1
 
-Kind regards,
-Dylan Van Assche
