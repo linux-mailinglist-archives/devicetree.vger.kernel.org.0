@@ -2,264 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE136D4BB1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D91B56D4BE0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 17:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbjDCPV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 11:21:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54122 "EHLO
+        id S232815AbjDCP3B convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Apr 2023 11:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjDCPV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:21:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2DE10D5;
-        Mon,  3 Apr 2023 08:21:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BB9161C12;
-        Mon,  3 Apr 2023 15:21:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81B54C4339C;
-        Mon,  3 Apr 2023 15:21:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680535312;
-        bh=LKyj2hwPi42lkcaWN3TMXoQR+q6WYCbdhvtoyLpvRzk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=efq5ine+EsMFH+WcS5cjeha3Dry9tfLq3C8DRkJhnQrIpYlm7DOfWmNv2Bjun+nlF
-         skJ5Xix2JZ8m02L27GMmQkrcTi4Ste4xFWP4VUnkHql7+fM2PYYvX1Pv4ZDs2wa+Zx
-         FVcJ1epYo1ITKpgy0wkdRAjAmjK+j6r4ZmwEIHWvz0cDbjWc+tnz4lprVhBIIctxgR
-         YZMv+njBtzNhqMzBfGS+FZEmseYz1lj5CK0bw1SM5zo0Xz4nV3de8nZRmdWJW235hq
-         hE5ckzXtq5Cht0yWYrMK9JoeaLwClA2lCXlybofbFFBONxBOuJ/sluhGFc07EFRYYn
-         rOexfBdNBnLxw==
-Received: by mail-lj1-f170.google.com with SMTP id o20so27810655ljp.3;
-        Mon, 03 Apr 2023 08:21:52 -0700 (PDT)
-X-Gm-Message-State: AAQBX9f0O/ncEeTaOp5Xjd7x+f9DNFpgjSMgpWUuEQBqQ+DWUa2e2ogs
-        vPw3rDMtoBCDlZlOBdQLfiHe4EEzVjQJYbm1gw==
-X-Google-Smtp-Source: AKy350aTiBCcmkf5yaiSw9a/oh0FWNKIycpSVHuTeBKMLpgJoW35W0t7pwb2F74OQGePnsI1l2Satrcxa386y3dUOtA=
-X-Received: by 2002:a2e:9792:0:b0:2a3:fc8:711b with SMTP id
- y18-20020a2e9792000000b002a30fc8711bmr10925454lji.10.1680535310524; Mon, 03
- Apr 2023 08:21:50 -0700 (PDT)
+        with ESMTP id S232561AbjDCP27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 11:28:59 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C95AE1BFE;
+        Mon,  3 Apr 2023 08:28:58 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id b19so21999377oib.7;
+        Mon, 03 Apr 2023 08:28:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680535738;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AfXSjA7q7dvjRoKzxnHZQeB6zpJL1qkef91cGmYxqmc=;
+        b=f1UaoKIKwcBv6AwsvlXnAGNxT3frMblLoQQk5EF3GvUod3VB/kt/2EdtPDN4aZVb1d
+         3uccwbc0rlmwbQ4IVCFoqIGIu4UtuwDlq3oMi1QSULtjbXikLr+MztcgtL3GIpeOtdow
+         PTD67N5YA0wk/pTefrNiWzL3+EOOZdWpIGNIpo72z20iKzxuArPoJfXUJ89t38kKXcJM
+         aFY5baIIeBMMH+qUEr3tj4qRjYTdpDZlfJB74s4Ur4z8igCMNyDyz6CvFGv3kyPPJO0n
+         tibxX0kJYIlLCEHTvJU49pHvZ/UO2GnUMAm8WpiFDd/ROgCHDeYGda4pC/OThNxKuSr/
+         nhsw==
+X-Gm-Message-State: AAQBX9fBAet4hiVSsWs4EANmc1BE9yKZkVdE40dACErwW01BdbjTqULd
+        EaNt7RlGMAgrlYfkS+WAcVu/11QyqyJ9JWzh
+X-Google-Smtp-Source: AKy350aFcm37uD3w61HtiCbn+3VdoSRvi6NEHRdGmLV8j5g3bjiKj+o5mn3qKDhLlKXGmE/YEIcePw==
+X-Received: by 2002:a05:6808:3941:b0:389:5135:68d8 with SMTP id en1-20020a056808394100b00389513568d8mr10394004oib.5.1680535737811;
+        Mon, 03 Apr 2023 08:28:57 -0700 (PDT)
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com. [209.85.210.43])
+        by smtp.gmail.com with ESMTPSA id o184-20020acabec1000000b003646062e83bsm3961970oif.29.2023.04.03.08.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 08:28:54 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id f19-20020a9d5f13000000b00693ce5a2f3eso15812590oti.8;
+        Mon, 03 Apr 2023 08:28:53 -0700 (PDT)
+X-Received: by 2002:a9d:65d1:0:b0:69f:1418:7a8f with SMTP id
+ z17-20020a9d65d1000000b0069f14187a8fmr11995072oth.3.1680535733526; Mon, 03
+ Apr 2023 08:28:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230403071929.360911-1-jstephan@baylibre.com> <20230403071929.360911-3-jstephan@baylibre.com>
-In-Reply-To: <20230403071929.360911-3-jstephan@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 3 Apr 2023 23:21:38 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-SJKPkq+saOrQHKYDpZ3cr0350bYNTSpTMwdoApV+Jvw@mail.gmail.com>
-Message-ID: <CAAOTY_-SJKPkq+saOrQHKYDpZ3cr0350bYNTSpTMwdoApV+Jvw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] phy: mtk-mipi-csi: add driver for CSI phy
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     Phi-bang Nguyen <pnguyen@baylibre.com>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+References: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
+ <ZCl7NFN5igCkIaLz@debian.me> <CAJX_Q+2fqAzURWrXWKnsMH6wEE8w2o=YSk62gNmDZFcr1Yit3g@mail.gmail.com>
+In-Reply-To: <CAJX_Q+2fqAzURWrXWKnsMH6wEE8w2o=YSk62gNmDZFcr1Yit3g@mail.gmail.com>
+Reply-To: tanure@linux.com
+From:   Lucas Tanure <tanure@linux.com>
+Date:   Mon, 3 Apr 2023 16:28:42 +0100
+X-Gmail-Original-Message-ID: <CAJX_Q+2uSBaudKrA6hcRhGP-7j__V5bTpRwGPLUoBaMjuwO+CQ@mail.gmail.com>
+Message-ID: <CAJX_Q+2uSBaudKrA6hcRhGP-7j__V5bTpRwGPLUoBaMjuwO+CQ@mail.gmail.com>
+Subject: Re: Kernel Panic - V6.2 - Reseved memory issue
+To:     Bagas Sanjaya <bagasdotme@gmail.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org
+Cc:     kernelnewbies <kernelnewbies@kernelnewbies.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVERS FOR MEDIATEK" 
-        <dri-devel@lists.freedesktop.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.7 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,UPPERCASE_50_75 autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Julien:
-
-Julien Stephan <jstephan@baylibre.com> =E6=96=BC 2023=E5=B9=B44=E6=9C=883=
-=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:20=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+On Mon, Apr 3, 2023 at 12:29 PM Lucas Tanure <tanure@linux.com> wrote:
 >
-> From: Phi-bang Nguyen <pnguyen@baylibre.com>
+> On Sun, Apr 2, 2023 at 1:55 PM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
+> >
+> > On Sun, Apr 02, 2023 at 09:10:36AM +0100, Lucas Tanure wrote:
+> > > Log:
+> > >
+> > > [ 9.792966] SError Interrupt on CPU3, code 0x00000000bf000000 -- SError
+> > > [ 9.792980] CPU: 3 PID: 3471 Comm: kded5 Tainted: G C 6.2.0 #1
+> > > [ 9.792985] Hardware name: Khadas VIM3 (DT)
+> > > [ 9.792987] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> > > [ 9.792991] pc : kmem_cache_free_bulk.part.98+0x1f0/0x528
+> > > [ 9.793004] lr : kmem_cache_free_bulk.part.98+0x2f8/0x528
+> > > [ 9.793008] sp : ffff80000a2eb7f0
+> > > [ 9.793009] x29: ffff80000a2eb7f0 x28: ffff00001f358518 x27: ffff000000008800
+> > > [ 9.793016] x26: ffff00000262b300 x25: ffff00000262b300 x24: 0000000000000001
+> > > [ 9.793019] x23: ffff00000262b000 x22: 0000000000000000 x21: ffff00001f358538
+> > > [ 9.793022] x20: fffffc0000098ac0 x19: 0000000000000004 x18: 0000000000000040
+> > > [ 9.793025] x17: 0000000000000018 x16: 00000000000007f8 x15: 0000000000000003
+> > > [ 9.793028] x14: 0000000000000006 x13: ffff800008e48550 x12: 0000ffff9dc91fff
+> > > [ 9.793031] x11: 0000000000000004 x10: 0000000000000001 x9 : ffff000007e93680
+> > > [ 9.793035] x8 : 0000000000000020 x7 : ffff000001d2b100 x6 : 0000000000000007
+> > > [ 9.793037] x5 : 0000000000000020 x4 : ffff000000008800 x3 : 0000000000000001
+> > > [ 9.793040] x2 : 0000000000000007 x1 : 0000000000000000 x0 : ffff00001f358540
+> > > [ 9.793045] Kernel panic - not syncing: Asynchronous SError Interrupt
+> > >
+> > > This doesn't happen with downstream Khadas 6.2 kernel, and that's
+> > > because the downstream kernel removed this from
+> > > early_init_dt_reserve_memory (drivers/of/fdt.c):
+> > >
+> > > /*
+> > > * If the memory is already reserved (by another region), we
+> > > * should not allow it to be marked nomap, but don't worry
+> > > * if the region isn't memory as it won't be mapped.
+> > > */
+> > > if (memblock_overlaps_region(&memblock.memory, base, size) &&
+> > >     memblock_is_region_reserved(base, size))
+> > >           return -EBUSY;
+> > >
+> >
+> > What commit on downstream kernel that fix the issue?
+> Here:
+> https://github.com/khadas/linux/commit/2cb57b1071bf69f615fedc999b7ecacf2cde7228
 >
-> This is a new driver that supports the MIPI CSI CD-PHY for mediatek
-> mt8365 soc
+>  Can you reproduce
+> > on mainline with above conditional removed?
+> No, without that code mainline works fine.
 >
-> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
-> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> [Julien Stephan: use regmap]
-> [Julien Stephan: use GENMASK]
-> Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> ---
->  .../bindings/phy/mediatek,csi-phy.yaml        |   9 +-
->  MAINTAINERS                                   |   1 +
->  drivers/phy/mediatek/Kconfig                  |   8 +
->  drivers/phy/mediatek/Makefile                 |   2 +
->  .../phy/mediatek/phy-mtk-mipi-csi-rx-reg.h    | 435 ++++++++++++++++++
->  drivers/phy/mediatek/phy-mtk-mipi-csi.c       | 392 ++++++++++++++++
->  6 files changed, 845 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-csi-rx-reg.h
->  create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-csi.c
 >
+> Alternatively, can
+> > you post the downstream fix here?
+> Same https://github.com/khadas/linux/commit/2cb57b1071bf69f615fedc999b7ecacf2cde7228
+>
+> >
+> > Also, can you find last working commit on mainline? If so, this is
+> > regression.
+> That is difficult as 5.13.0 has the line:
+> OF: fdt: Reserved memory: failed to reserve memory for node
+> 'secmon@5000000': base 0x0000000005000000, size 3 MiB
+> But doesn't crash. It could be that no process used that address so no crash.
+>
+> >
+> > Thanks.
+> >
+> > --
+> > An old man doll... just what I always wanted! - Clara
 
-[snip]
+Hi,
+I git bisect point it out commit that even reverting it would trigger the panic.
+So this is a memory corruption problem that a simple git bisect will
+not find the correct offending commit.
 
-> +
-> +#define MIPI_RX_ANA04_CSIxA                                             =
-       0x0004
+I managed to understand a little more about the issue:
+1 ) early_init_fdt_scan_reserved_mem is executed first, reserves
+[0x0000000005000000-0x00000000052fffff] but doesn't mark as no-map.
+2 ) early_init_dt_reserve_memory tries to mark that region as nomap,
+but it is already reserved and memblock_overlaps_region and
+memblock_is_region_reserved return true, so it fails to mark as nomap.
+3 ) kernel uses that memory and crashes
 
-Useless, so drop this.
+I think we have two options here:
+1) Allow early_init_dt_reserve_memory mark nomap memory that is already reserved
+2) Make early_init_fdt_scan_reserved_mem reserve with the flag nomap
+if necessary. I don't know if that's possible.
 
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_LPRX_VTH_SEL_SHIFT              =
-       0
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_LPRX_VTH_SEL_MASK               =
-       GENMASK(2, 0)
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_LPRX_VTL_SEL_SHIFT              =
-       4
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_LPRX_VTL_SEL_MASK               =
-       GENMASK(6, 4)
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_HSDET_VTH_SEL_SHIFT             =
-       8
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_HSDET_VTH_SEL_MASK              =
-       GENMASK(10, 8)
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_HSDET_VTL_SEL_SHIFT             =
-       12
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_HSDET_VTL_SEL_MASK              =
-       GENMASK(14, 12)
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_VREF_SEL_SHIFT                  =
-       16
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_VREF_SEL_MASK                   =
-       GENMASK(19, 16)
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_MON_VREF_SEL_SHIFT              =
-       24
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_BG_MON_VREF_SEL_MASK               =
-       GENMASK(27, 24)
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_FORCE_HSRT_EN_SHIFT                =
-       28
-> +#define MIPI_RX_ANA04_CSIxA_RG_CSIxA_FORCE_HSRT_EN_MASK                 =
-               BIT(28)
-> +
-> +#define MIPI_RX_ANA08_CSIxA                                             =
-       0x0008
+Question MM guys, Mike Rapoport and Andrew Morton:
+- Is it possible to make early_init_fdt_scan_reserved_mem reserve
+memory with flags?
+- It ok for early_init_fdt_scan_reserved_mem to mark regions already
+reserved as nomap?
 
-Ditto.
-
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L0P_T0A_HSRT_CODE_SHIFT            =
-       0
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L0P_T0A_HSRT_CODE_MASK             =
-       GENMASK(4, 0)
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L0N_T0B_HSRT_CODE_SHIFT            =
-       8
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L0N_T0B_HSRT_CODE_MASK             =
-       GENMASK(12, 8)
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L1P_T0C_HSRT_CODE_SHIFT            =
-       16
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L1P_T0C_HSRT_CODE_MASK             =
-       GENMASK(20, 16)
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L1N_T1A_HSRT_CODE_SHIFT            =
-       24
-> +#define MIPI_RX_ANA08_CSIxA_RG_CSIxA_L1N_T1A_HSRT_CODE_MASK             =
-       GENMASK(28, 24)
-> +
-> +#define MIPI_RX_ANA0C_CSIxA                                             =
-       0x000c
-
-Ditto.
-
-> +#define MIPI_RX_ANA0C_CSIxA_RG_CSIxA_L2P_T1B_HSRT_CODE_SHIFT            =
-       0
-> +#define MIPI_RX_ANA0C_CSIxA_RG_CSIxA_L2P_T1B_HSRT_CODE_MASK             =
-       GENMASK(4, 0)
-> +#define MIPI_RX_ANA0C_CSIxA_RG_CSIxA_L2N_T1C_HSRT_CODE_SHIFT            =
-       8
-> +#define MIPI_RX_ANA0C_CSIxA_RG_CSIxA_L2N_T1C_HSRT_CODE_MASK             =
-       GENMASK(12, 8)
-> +
-> +#define MIPI_RX_ANA10_CSIxA                                             =
-       0x0010
-
-Ditto.
-
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L0_DELAYCAL_EN_SHIFT          =
-       0
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L0_DELAYCAL_EN_MASK           =
-       BIT(0)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L0_DELAYCAL_RSTB_SHIFT        =
-       1
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L0_DELAYCAL_RSTB_MASK         =
-               BIT(1)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L0_VREF_SEL_SHIFT             =
-       2
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L0_VREF_SEL_MASK              =
-       GENMASK(7, 2)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L1_DELAYCAL_EN_SHIFT          =
-       8
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L1_DELAYCAL_EN_MASK           =
-       BIT(8)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L1_DELAYCAL_RSTB_SHIFT        =
-       9
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L1_DELAYCAL_RSTB_MASK         =
-               BIT(9)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L1_VREF_SEL_SHIFT             =
-       10
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L1_VREF_SEL_MASK              =
-       GENMASK(15, 10)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L2_DELAYCAL_EN_SHIFT          =
-       16
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L2_DELAYCAL_EN_MASK           =
-       BIT(16)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L2_DELAYCAL_RSTB_SHIFT        =
-       17
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L2_DELAYCAL_RSTB_MASK         =
-               BIT(17)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L2_VREF_SEL_SHIFT             =
-       18
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSIxA_DPHY_L2_VREF_SEL_MASK              =
-       GENMASK(23, 18)
-> +/* C-PHY fields are only available in CSIx. */
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSI0A_CPHY_T0_CDR_DELAYCAL_EN_SHIFT      =
-       24
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSI0A_CPHY_T0_CDR_DELAYCAL_EN_MASK       =
-       BIT(24)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSI0A_CPHY_T0_CDR_DELAYCAL_RSTB_SHIFT    =
-       25
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSI0A_CPHY_T0_CDR_DELAYCAL_RSTB_MASK     =
-       BIT(25)
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSI0A_CPHY_T0_VREF_SEL_SHIFT             =
-       26
-> +#define MIPI_RX_ANA10_CSIxA_RG_CSI0A_CPHY_T0_VREF_SEL_MASK              =
-       GENMASK(31, 26)
-> +
-> +#define MIPI_RX_ANA14_CSIxA                                             =
-       0x0014
-
-Ditto.
-
-Regards,
-Chun-Kuang.
-
-
-> +/* C-PHY fields are only available in CSIx. */
-> +#define MIPI_RX_ANA14_CSIxA_RG_CSI0A_CPHY_T1_CDR_DELAYCAL_EN_SHIFT      =
-       0
-> +#define MIPI_RX_ANA14_CSIxA_RG_CSI0A_CPHY_T1_CDR_DELAYCAL_EN_MASK       =
-       BIT(0)
-> +#define MIPI_RX_ANA14_CSIxA_RG_CSI0A_CPHY_T1_CDR_DELAYCAL_RSTB_SHIFT    =
-       1
-> +#define MIPI_RX_ANA14_CSIxA_RG_CSI0A_CPHY_T1_CDR_DELAYCAL_RSTB_MASK     =
-       BIT(1)
-> +#define MIPI_RX_ANA14_CSIxA_RG_CSI0A_CPHY_T1_VREF_SEL_SHIFT             =
-       2
-> +#define MIPI_RX_ANA14_CSIxA_RG_CSI0A_CPHY_T1_VREF_SEL_MASK              =
-       GENMASK(7, 2)
-> +
+Thanks
+Lucas
