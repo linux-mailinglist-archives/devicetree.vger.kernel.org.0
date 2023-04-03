@@ -2,277 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABBBA6D5100
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB6536D5108
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:51:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233400AbjDCSuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56556 "EHLO
+        id S232069AbjDCSvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:51:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233385AbjDCSuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:50:15 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34CED180
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 11:50:13 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id z42so31363393ljq.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 11:50:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680547811;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=34OsiV+HcR1Gi97aMPkJXnZL+SR4sm/mvS50rqlBF+Q=;
-        b=amoM9RmfbP94Mds/R+ONKjXWMll2NfsHiIZvQ4QegviMRyQS9S6DWUP9+1jgfrPibR
-         BPjT1XTaXj45lw0IKtexiqjMtrsszNEMDDpTb+Xwf+VJaNz/ccbcPuCyIqrmrIiq4ExU
-         oFFPog8fInWwgYWCOUyQmcUu1+tfn4g/nw3qEL4wOf6yMYv3TVfPkKU6nrn0VE5G6mWo
-         +HBUBk7b79AJBcmbpmNCqMZm0px3GvOOWfUsh47SUSxkI5kuqywvbTRpCB/FyB6Plds0
-         DLln4iU/5mpejBwGuuHJMMS5squwgv2VQIvYo2zhIe3153hVQEDL9kp4flna9NfBPkt/
-         VDWw==
+        with ESMTP id S233417AbjDCSvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:51:19 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E2E30D6;
+        Mon,  3 Apr 2023 11:51:19 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id x8-20020a9d3788000000b0069f922cd5ceso16160908otb.12;
+        Mon, 03 Apr 2023 11:51:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680547811;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680547878;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=34OsiV+HcR1Gi97aMPkJXnZL+SR4sm/mvS50rqlBF+Q=;
-        b=nLZNbF/YV6ZcwZKWKTVQ2bq4GCgrOjbMQtdeQsm7VvPcptSMCn6TnBmOnz0JkT1qU2
-         aOdo/w595+WaXW3WIhTMQTWKb/utOsO2GXQYu+W9AiPHoOUWyYQ8JBeu5I27+rfp7wqn
-         24Og2DiJSnpQ0t2NcGmYElGSPkmbu26UzppDcQ9K2dNMgpPutyYrsOkIyNWXVGDPWdnW
-         P3Y5maLvL4aPQFT/4yFSPgJZwRcmtBGdKXHWMlUSIxofJSt0DugXhxtyuRI0euuWqDhQ
-         8fFGHMf+vwsxs0gxJOe4gTr5T2Mh+Ic9HcNw+6Wj4LkDHO3lmQG+CKdDfy31NQ5UH4gq
-         zgcA==
-X-Gm-Message-State: AAQBX9euDbhTMCfAbPVQsDsiD0tl77nJzauIsrMoFQEnR5vCkA2znv4T
-        VKs3hDhPYQCTdB2XAVkk9Kxd3w==
-X-Google-Smtp-Source: AKy350ali/QWGVvd1aGDfLcj89eKxHreHPi0Fm4xFgPrFBNVg6Mf1FVOeMpojAXfWL7BkeZLCQ/sVg==
-X-Received: by 2002:a2e:9ad9:0:b0:29c:9617:842c with SMTP id p25-20020a2e9ad9000000b0029c9617842cmr168893ljj.7.1680547811276;
-        Mon, 03 Apr 2023 11:50:11 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id l16-20020a2e9090000000b0029bd5a0f4a8sm1828099ljg.61.2023.04.03.11.50.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 11:50:10 -0700 (PDT)
-Message-ID: <d279d2fa-e255-1e43-780c-6bdac437469d@linaro.org>
-Date:   Mon, 3 Apr 2023 21:50:10 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sm6350: Add GPU nodes
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=/VMz6yQ2bZF7BlHMDiB3FYTfbUexueivojNLXyF5+Ac=;
+        b=4PnQOKY25zoL+0Ra8VvuMLikpu4OBPLo2yu6+xSRYAdW9w1DAHLP3WUwQDpcff9309
+         d2pqoNA8gGrh6YtlmAZTOGS/cUZY8gKwMiewT6/kM/5VjRL5vSdUY+NlSFVXQ8B6N2Gn
+         2Qd9gP1Gga7B5OYDWnuLEF6cOFY66rGHmgRxwuj3lVbSq9g+8gHFRL24zIb9zgoscrS7
+         HS28vQY3ZZXakrBRITq7LleCIufSf5Zqf6d2GwD6fSlzhmPmTQ+8sW9t7lg3Gvri6vRU
+         1PK0WSmvUGvzdCQwJ6DSmhJiSaVZ3kETwAtx5xKgr5dPZr55ZzXqF7h5x4A09JARdw5D
+         iNFA==
+X-Gm-Message-State: AAQBX9f+CQ5Cny7FL+tv2VqO2w6KPMZuXOSFimbfu6hVg5Q3D4HaU66q
+        ODRMHNOPeJIpi8tBvmw3+A==
+X-Google-Smtp-Source: AKy350ZBdrGhyaEOnP99b9h+HMjQ3GXqoGKlrzWLuKi4myNNe6IM8Nd+vePR4Ch0XRiM5BoczT4F6A==
+X-Received: by 2002:a9d:6949:0:b0:6a2:e9f3:6e9e with SMTP id p9-20020a9d6949000000b006a2e9f36e9emr103317oto.13.1680547878276;
+        Mon, 03 Apr 2023 11:51:18 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q16-20020a056830019000b0069fb87285fdsm4539451ota.59.2023.04.03.11.51.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 11:51:17 -0700 (PDT)
+Received: (nullmailer pid 1362747 invoked by uid 1000);
+        Mon, 03 Apr 2023 18:51:17 -0000
+Date:   Mon, 3 Apr 2023 13:51:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Walle <michael@walle.cc>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20230315-topic-lagoon_gpu-v1-0-a74cbec4ecfc@linaro.org>
- <20230315-topic-lagoon_gpu-v1-4-a74cbec4ecfc@linaro.org>
- <CR8J7A4RGCHZ.293RWUBS367M2@otso>
- <22cfb674-eb2b-ff77-da87-cf6b520e592d@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <22cfb674-eb2b-ff77-da87-cf6b520e592d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH V6 1/3] dt-bindings: nvmem: layouts: add fixed-layout
+Message-ID: <168054787680.1362688.9993524807419287721.robh@kernel.org>
+References: <20230327141611.25131-1-zajec5@gmail.com>
+ <20230327141611.25131-2-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230327141611.25131-2-zajec5@gmail.com>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 15:45, Konrad Dybcio wrote:
-> 
-> 
-> On 17.03.2023 09:56, Luca Weiss wrote:
->> On Thu Mar 16, 2023 at 12:16 PM CET, Konrad Dybcio wrote:
->>> From: Konrad Dybcio <konrad.dybcio@somainline.org>
->>>
->>> Add Adreno, GPU SMMU and GMU nodes to hook up everything that
->>> the A619 needs to function properly.
->>>
->>> Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
-> [...]
-> 
->> What about adding interconnect already? I also have opp-peak-kBps
->> additions in the opp table for that. I'll attach the diff I have at the
->> end of the email.
-> I believe the GMU takes care of it internally (or at least should)
-> with the bandwidth tables we send in a6xx_hfi.c : a6xx_hfi_send_bw_table()
 
-We should still declare the interconnects. If at some point we attempt 
-to fill these tables in a proper way, the interconnects will be required 
-to get addresses of the nodes.
+On Mon, 27 Mar 2023 16:16:09 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> With the introduction of NVMEM layouts, new NVMEM content structures
+> should be defined as such. We should also try to convert / migrate
+> existing NVMEM content bindings to layouts.
+> 
+> This commit handles fixed NVMEM cells. So far they had to be defined
+> directly - as device subnodes. With this change it's allowed to put them
+> in the DT node named "nvmem-layout".
+> 
+> Having NVMEM cells in separated node is preferred as it draws a nice
+> line between NVMEM device and its content. It results in cleaner
+> bindings.
+> 
+> FWIW a very similar situation has happened to MTD devices and their
+> partitions: see commit 5d96ea42eb63 ("dt-bindings: mtd: Clarify all
+> partition subnodes").
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> V6: Add unevaluatedProperties: false
+> ---
+>  .../bindings/nvmem/layouts/fixed-cell.yaml    | 31 ++++++++++++
+>  .../bindings/nvmem/layouts/fixed-layout.yaml  | 50 +++++++++++++++++++
+>  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  5 +-
+>  .../devicetree/bindings/nvmem/nvmem.yaml      | 19 +------
+>  4 files changed, 84 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+> 
 
-> 
-> 
-> [...]
-> 
->>>   
->>> +		adreno_smmu: iommu@3d40000 {
->>
->> This and gmu should be above gpucc @3d90000?
-> Absolutely.
-> 
-> Konrad
->>
->>> +			compatible = "qcom,sm6350-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
->>> +			reg = <0 0x03d40000 0 0x10000>;
->>> +			#iommu-cells = <1>;
->>> +			#global-interrupts = <2>;
->>> +			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
->>> +
->>> +			clocks = <&gpucc GPU_CC_AHB_CLK>,
->>> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->>> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
->>> +			clock-names = "ahb",
->>> +				      "bus",
->>> +				      "iface";
->>> +
->>> +			power-domains = <&gpucc GPU_CX_GDSC>;
->>> +		};
->>> +
->>> +		gmu: gmu@3d6a000 {
->>> +			compatible = "qcom,adreno-gmu-619.0", "qcom,adreno-gmu";
->>> +			reg = <0 0x03d6a000 0 0x31000>,
->>> +			      <0 0x0b290000 0 0x10000>,
->>> +			      <0 0x0b490000 0 0x10000>;
->>> +			reg-names = "gmu",
->>> +				    "gmu_pdc",
->>> +				    "gmu_pdc_seq";
->>> +
->>> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
->>> +			interrupt-names = "hfi",
->>> +					  "gmu";
->>> +
->>> +			clocks = <&gpucc GPU_CC_AHB_CLK>,
->>> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
->>> +				 <&gpucc GPU_CC_CXO_CLK>,
->>> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
->>> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>;
->>> +			clock-names = "ahb",
->>> +				      "gmu",
->>> +				      "cxo",
->>> +				      "axi",
->>> +				      "memnoc";
->>> +
->>> +			power-domains = <&gpucc GPU_CX_GDSC>,
->>> +					<&gpucc GPU_GX_GDSC>;
->>> +			power-domain-names = "cx",
->>> +					     "gx";
->>> +
->>> +			iommus = <&adreno_smmu 5>;
->>> +
->>> +			operating-points-v2 = <&gmu_opp_table>;
->>> +
->>> +			status = "disabled";
->>> +
->>> +			gmu_opp_table: opp-table {
->>> +				compatible = "operating-points-v2";
->>> +
->>> +				opp-200000000 {
->>> +					opp-hz = /bits/ 64 <200000000>;
->>> +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->>> +				};
->>> +			};
->>> +		};
->>> +
->>>   		mpss: remoteproc@4080000 {
->>>   			compatible = "qcom,sm6350-mpss-pas";
->>>   			reg = <0x0 0x04080000 0x0 0x4040>;
->>>
->>> -- 
->>> 2.39.2
->>
->> Here's the diff I have for interconnect on top of this:
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
->> index 4954cbc2c0fc..51c5ac679a32 100644
->> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
->> @@ -1142,6 +1142,8 @@ gpu: gpu@3d00000 {
->>   			iommus = <&adreno_smmu 0>;
->>   			operating-points-v2 = <&gpu_opp_table>;
->>   			qcom,gmu = <&gmu>;
->> +			interconnects = <&gem_noc MASTER_GRAPHICS_3D 0 &clk_virt SLAVE_EBI_CH0 0>;
->> +			interconnect-names = "gfx-mem";
->>   			nvmem-cells = <&gpu_speed_bin>;
->>   			nvmem-cell-names = "speed_bin";
->>   
->> @@ -1157,42 +1159,49 @@ gpu_opp_table: opp-table {
->>   				opp-850000000 {
->>   					opp-hz = /bits/ 64 <850000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
->> +					opp-peak-kBps = <8371200>;
->>   					opp-supported-hw = <0x02>;
->>   				};
->>   
->>   				opp-800000000 {
->>   					opp-hz = /bits/ 64 <800000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
->> +					opp-peak-kBps = <8371200>;
->>   					opp-supported-hw = <0x04>;
->>   				};
->>   
->>   				opp-650000000 {
->>   					opp-hz = /bits/ 64 <650000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
->> +					opp-peak-kBps = <6220000>;
->>   					opp-supported-hw = <0x08>;
->>   				};
->>   
->>   				opp-565000000 {
->>   					opp-hz = /bits/ 64 <565000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
->> +					opp-peak-kBps = <5412000>;
->>   					opp-supported-hw = <0x10>;
->>   				};
->>   
->>   				opp-430000000 {
->>   					opp-hz = /bits/ 64 <430000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->> +					opp-peak-kBps = <4068000>;
->>   					opp-supported-hw = <0xff>;
->>   				};
->>   
->>   				opp-355000000 {
->>   					opp-hz = /bits/ 64 <355000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
->> +					opp-peak-kBps = <3072000>;
->>   					opp-supported-hw = <0xff>;
->>   				};
->>   
->>   				opp-253000000 {
->>   					opp-hz = /bits/ 64 <253000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->> +					opp-peak-kBps = <2188000>;
->>   					opp-supported-hw = <0xff>;
->>   				};
->>   			};
->>
-
--- 
-With best wishes
-Dmitry
+Reviewed-by: Rob Herring <robh@kernel.org>
 
