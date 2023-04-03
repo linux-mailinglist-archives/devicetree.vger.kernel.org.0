@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A02F6D4618
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E83B46D464A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:56:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232604AbjDCNrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:47:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50346 "EHLO
+        id S232683AbjDCN4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:56:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232276AbjDCNrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:47:32 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42DF930CF
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:47:31 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id y4so117647477edo.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:47:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680529650;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pvt16joZ5xG45COfnzqBt6KieWi0E35IQbDyvI0Q3U0=;
-        b=bdX6ABQ/ntd69OXo+fwQWvZ7bJ6AjKgp9EU0eD7F+As5cOUgjRpJvnjz3PdTssp14y
-         djRKJZ1Ivksql07WgFGsowhZJR8Wqu/FYr3jZHdDCjoet9+giBEo9U/7Orw+EpUWsgAW
-         Jl64ouzB6OFwPnWYwJeAy3Wpx4GB0uMBPyosxxxI0YrC1eBe8dIX/0pSCAPT+49hdBVv
-         jnrmWdJQ+kWgy+xZx8v8IbXppbsUue/70Aeafku6vzSuQZo6o8GFUEyMaTHb1sa4PMF8
-         Wuu9qs5QIOZ8Ek39//rkECZVc/0xRCM2Atr8rAhe3PZTBa/9UKPt0dbDbh5Fg+3HbVfH
-         QQPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680529650;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pvt16joZ5xG45COfnzqBt6KieWi0E35IQbDyvI0Q3U0=;
-        b=zP21TCQcfywjKsyACbdRpbh7wgHApcxNXvqJtFlQbWDczCVcHCXwatWvMWdFZ1ABVi
-         4SWHEc0YLLJuFZJWeUjKmOxpAD1QwkHIFzt+80sgPfCBDUyYTP3J+FRXH63t/FtTBAwP
-         qtEht/5Cc9JTHqEDWhf6JO+s48cijpKvREZF/TSALErnYYcrKbCLPGqm9UxxAYDgy3AZ
-         FJw7/MwsgEH0jYdcn3HwWtz6WfVr8iTfWGQrCXDREnDk4uxEpRIqTavZ1KsQKlE4fkAu
-         4Al93qVuO4J42xJgCHDEVDxPnQ4zgnrtrXKdcSaPaFwtF0uVkjjQuB56GSaTdf2eVl54
-         QxNg==
-X-Gm-Message-State: AAQBX9cKfF/sIWd9ang9EzmIczQ8msxDTsrl1rI91YiQqpywfetJZqK6
-        Ujw5FNpqVCEVVaI+L6ndcMDe7w==
-X-Google-Smtp-Source: AKy350Z4u2eEo7nsmptLf0ouaXqizmrSmMOHKwtrutSQboFNnJA9Kqh8Bg73ZV/KPK8fo9PiJc9wrA==
-X-Received: by 2002:a17:906:6946:b0:92f:8324:e3b7 with SMTP id c6-20020a170906694600b0092f8324e3b7mr31585587ejs.37.1680529649775;
-        Mon, 03 Apr 2023 06:47:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id f24-20020a50a6d8000000b004acbda55f6bsm4655027edc.27.2023.04.03.06.47.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 06:47:29 -0700 (PDT)
-Message-ID: <fac15b28-ef4a-dd7d-f0ac-51518d9dc1be@linaro.org>
-Date:   Mon, 3 Apr 2023 15:47:28 +0200
+        with ESMTP id S232299AbjDCN4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:56:44 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61427195;
+        Mon,  3 Apr 2023 06:56:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1680530175; i=frank-w@public-files.de;
+        bh=Xb/Aqcr8/6tCqOXQhpDwDqrXqkHQUMERdzS8z5C5aaE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=WVgWtMLNJip3AWjjsW3c2NEI8/oR0kJHkFcWc8LIzEOS5noCTYVSWlKivGM7TXk1c
+         sK3FeMkjgroYVQ3pq9/jXOA/krprjV0Bo5aBA+WYVI5C6LTCvEImrFpQchEzyDb1yx
+         a3aBhQKOsaZCzFlOuvmHSkvCx8qwAPPxF7E0pFZcRRjCz/QjfXqOQd2YxVPo7YM0kq
+         KEhaRcLyaEOp80/+npwZJ3jiasFpzsOFHWlvY/uy92PCK7FaLBVkQkdDvwNyalxwfo
+         DvWZQIHjFOzeCwyadhDttGjYi1HXl4etdfE3/DRigXd5yjn/hCt8DDvIyFpOcSScDQ
+         qzxZURiAEGDMQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.152.94] ([217.61.152.94]) by web-mail.gmx.net
+ (3c-app-gmx-bap35.server.lan [172.19.172.105]) (via HTTP); Mon, 3 Apr 2023
+ 15:56:15 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
- registers
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+Message-ID: <trinity-f48dda5c-6787-4732-978a-a409bbb0a74d-1680530175673@3c-app-gmx-bap35>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230327122948.4323-1-johan+linaro@kernel.org>
- <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
- <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
- <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
- <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
- <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Aw: Re: [RFC] arm64: dts: use size of reserved partition for bl2
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Date:   Mon, 3 Apr 2023 15:56:15 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <601a8435-8e2a-2c25-5fe3-40be62269469@collabora.com>
+References: <20230403105818.29624-1-linux@fw-web.de>
+ <601a8435-8e2a-2c25-5fe3-40be62269469@collabora.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:1JUsxUleXcKrPCYwE3ay4MIocxMSb4QWHITw42EQ/QR0OVKQS9PGhbSC81u83cP4k1dMp
+ S1et19Ypg4uLyI/QckCamlb8kcfn1bY4ymdZGUt3Ph7J38bdfIThEnQiirBQ6gDDvAfpskDhC+P6
+ iAaYJxwyc3Ig+PTlA5twYw1xpSilLarg7i3GTbuHqFpqyBgCdnHX6WwQ+lK3PVIU4Auvh9i7MFsR
+ 8HzZea3gQDUcfZU9yxOEsCuh6ks7UdS2t6Umh1jTB9ziiDqmfpdBfdAzSirOnHnF8S1u0fg2yuGG
+ Vw=
+UI-OutboundReport: notjunk:1;M01:P0:jg4AmhsdSds=;mWrtOAomhXxgFe3ThMYoz+s7nVN
+ UuwqaM8J8aThcXwF6VoXk7wWF86T5cbejRDTAscqE70dN6DVg8E/hbaOApM9Js/Fj06u7OPBg
+ 6RvF+zfTf7ndIiqqJVngOJMK01wmtK/ks5CPPuihiK0qKKIQo4L5BkxCefcCfoggy8VzL8vz5
+ jUnILjCxNfiAlQLRxG4z8c2xaKZYrGwfyEdLs0Kn+fCf505U5h8WHRamHwgbjAZPPMfWv37kD
+ r7J6OXsLD4QF9lmQZgIAzUISCBc1KpG0H3M1sl9mlUx9mW4rm25w6J9bsYL4c5S1r9sb9dRSr
+ +wUoLpj0DFhK1ulSPiZ9abTnlBSV1M0fI1odhYuaaP+ULGffm1/8e3qR7VjCnNhSWarH4rd/a
+ oItMUBls4M4r+zQWlMEmM5dQVzKWjknmYCVSh4OkdocNRZmsbeFNlUN6vBvWqdATlvVAKowIa
+ 5VZ5FpSJpn9dgxzWNmew5FStWODYHIM8UbrB31WAGL7J7SaSKy1kngfjYvoTiOc8ZIXNG2VLa
+ DZA6YIdkOL8SrpOvtyeYa/wSwLq0QtAhq3JARS/F5YarnjRsd6IJcTW7FV+T4kWx1W9uLz010
+ 1camxgAhtwkgpCHT1qSS6rxcapHJymGBOG0AeVQISr6GrSjHxcqbJOLoWW+8il8Qs5QekwQOG
+ lW0xPUBY16DQyG51Il7TTjUOeAbhM9Z/F4m6AJAZxLgkmHs18Ab6VsqZn43rZhZ02/vA81yHr
+ aor2OlljU+S+V+JvVwc5/aPNxYey30TGMD+tW1TQE+efQoMwB3aag4VqhFhKq2zQTkLcWe/0f
+ WawLAgD/5bBkNVgGvh48HFEwGo+Cz69aBk6LjPV0ryBqjQdgm3Ehw+FCuzQl7U4BpRRLv6Qqk
+ 6XB0KjI07hnPTIA==
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,29 +80,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 15:11, Johan Hovold wrote:
-> On Mon, Apr 03, 2023 at 02:46:41PM +0200, Krzysztof Kozlowski wrote:
->> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
->>> On 03/04/2023 12:54, Johan Hovold wrote:
-> 
->>>> The problem is that the driver was updated before the binding was so the
->>>> above mentioned probe error has been there since this file was merged.
->>>
->>> I grepped and that commit did not have such compatible. Are you saying
->>> that the kernel which was released with this commit already had that
->>> compatible in driver (through different merge/tree)?
->>
->> So I double checked, the commit ccd3517faf18 (which is being "fixed")
->> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
->> compatible, thus it could not be fixed that way. Therefore this cannot
->> be logically fix for that commit from that release.
-> 
-> Now you're just making shit up. A fix is a fix for mainline, period. If
+> Gesendet: Montag, 03. April 2023 um 14:43 Uhr
+> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
+om>
+> Il 03/04/23 12:58, Frank Wunderlich ha scritto:
+> > From: Frank Wunderlich <frank-w@public-files.de>
+> >
+> > To store uncompressed bl2 more space is required than partition is
+> > actually defined.
+> >
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>
+> If this doesn't get changed anymore, I'm fine with it... but a question =
+arises:
+> did you send patches to add your BPI-r3 board(s) to upstream u-boot?
 
-Since this is your second mail in such tone and such phrases, I am not
-going to keep discussing this. Regardless of differences in opinion, you
-should keep the tone appropriate.
+currently i use the rfb dts for r3 in uboot: arch/arm/dts/mt7986a-sd-rfb.d=
+ts
 
-Best regards,
-Krzysztof
+this file in upstream uboot has no partitions defined
 
+https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/mt7986a-sd=
+-rfb.dts#L144
+
+but i added them there too and i wrote content by offsets to main device (=
+not to partitions).
+
+https://github.com/frank-w/u-boot/blob/2023-04-bpi/arch/arm/dts/mt7986a-sd=
+-rfb.dts#L154
+
+so yes basicly it needs to be send there too, maybe as additional dts.
+
+regards Frank
+
+> > ---
+> > I used the definition i got from mtk used in their SDK uboot.
+> >
+> > Openwrt uses also the first reserved partition to give bl2 more
+> > space:
+> >
+> > https://git.openwrt.org/?p=3Dopenwrt/openwrt.git;a=3Dblob;f=3Dtarget/l=
+inux/mediatek/dts/mt7986a-bananapi-bpi-r3-nor.dts;h=3Df597b869abc80d1a73f4=
+4ebb85ad4da17376bb52;hb=3DHEAD#l22
+> >
+> > so imho it should be same in mainline to not require complex bl2
+> > compression.
+>
+> Regards,
+> Angelo
+>
+>
