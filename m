@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0976D4163
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 11:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0EA66D416E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 12:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232031AbjDCJ4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 05:56:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45180 "EHLO
+        id S231626AbjDCKA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 06:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232080AbjDCJzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 05:55:46 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A336D213E;
-        Mon,  3 Apr 2023 02:55:29 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id fy10-20020a17090b020a00b0023b4bcf0727so29948554pjb.0;
-        Mon, 03 Apr 2023 02:55:29 -0700 (PDT)
+        with ESMTP id S231553AbjDCKA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 06:00:26 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472102D52
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 03:00:24 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id g17so37316148lfv.4
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 03:00:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680515729;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=01YW6j9QbsBH60bpsALo7q/4eL9AmWqz/jdrOcUPAps=;
-        b=NIUhHe6NfhPqX4cy71+HFM2TVzxSeaWJarnlnPOjmtZb/lle4mr7/aMYuQJhv6L4g1
-         j7orGjNNt2CPsu/Vtm8w/LJURydxnJNfVYw8x2iu5LMRIn+rftKkICWjPvhAE7T4Pxte
-         HuxHILEfCLuFJR67dTl3t5QzZ6Xwj78P1WH30QfXecjmOPGmIzFjsrA0SySwWWlXseyu
-         6ZcvaMcSB/Qde+jiEw/7XRL+18EZZ+HZLgQzV8L+7vqpoginpfoXo3TmUdT6alkgJrKT
-         JV07C+MQofuqUVRk+KlRw49ArXhm417uRCCq1EmZVMITu3pqBiWgp3vOU5c8vbadlmZy
-         XzXA==
+        d=linaro.org; s=google; t=1680516022;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C/b2mr9DLso7O/8pyyRJ750O0L69iF5ANfkU0tX/dSQ=;
+        b=iT1VHtKCiabIWlreiIH2DfjuKbygI/FWVo0g9b2/AeO1URR0BUTJf65c6WbCYG3i8i
+         yQ+tjKqnwHz78oslJFBauSzTNg3/Ozm6AyBpnnz9wEUE4UubhwjTKHaevF12F+AR+VRb
+         mE8DaubFU0h0a/Ne4TrRxMPFI3ctgBgZJoODSVFfmigOqndKtPTIbJYK6unf6XlZ7P6H
+         FXfpbSFAEQqA2sSyqtNkbzQPFVyh4/tFP6H3l/zRXrSMgLJs/Qt9KsXDDWGgdPpk6ySN
+         8h3m2C7y1TI0edRyhlnaEoScdOA0uTIm8a1cfh1r2BamA1mZbahq5SreTCfoVy7LSWCf
+         TI1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680515729;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=01YW6j9QbsBH60bpsALo7q/4eL9AmWqz/jdrOcUPAps=;
-        b=J1G2vP5O3tZvACva98+VkjYJhBHKl4PauoDYYwGo+HwZEXH2RteHad7xfS1MOfEdP5
-         XpPQKH7UOoJ2mlRD9HEzspd588FmUASDdC70kwbtGAKBy5wdEaMrO5iBGpCQhmSTFnC2
-         HyAX2NUQzMfO8yqHQfq+AHhL3nuis8LHW+jeJqYre6U0KdAGuI5J6bpShWJzb/pwBwF2
-         9FIcGd5cD0yF9eGsIGpw4N+0Kcjwg7JYsffZmXJ02NX17iO2pCSlwTr1y6+e0FF7Adp/
-         kx3RHcMWfUEZsTswyouMwquIfUAimBBHFNrz/xg/OqW7FqnyBB1TIF6fkGcwqtbPZ6pt
-         rp/g==
-X-Gm-Message-State: AO0yUKWu6rpz8HrXvducfGFfx0Em7M857LbIyyf+S/ILrNR6FoTzTA8A
-        /PeZWYtM7nb6nPQM9SV3cAw=
-X-Google-Smtp-Source: AK7set8Ttkwf/6RsLkHaQufq9oMn7ZWpapgHzwfOcKUajDBBaul5M+vpZ/Erll/wVWd9sDqik3wl+g==
-X-Received: by 2002:a05:6a20:e13:b0:d6:7d3a:c6e with SMTP id ej19-20020a056a200e1300b000d67d3a0c6emr30476305pzb.44.1680515728864;
-        Mon, 03 Apr 2023 02:55:28 -0700 (PDT)
-Received: from pavilion.. ([2409:40f2:100f:dc7:7de5:f2e3:4932:541])
-        by smtp.gmail.com with ESMTPSA id p11-20020a62ab0b000000b0059085684b54sm6729798pff.140.2023.04.03.02.55.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 02:55:28 -0700 (PDT)
-From:   Saalim Quadri <danascape@gmail.com>
-To:     krzysztof.kozlowski@linaro.org
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        danascape@gmail.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
-        robh+dt@kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8510: Convert to dtschema
-Date:   Mon,  3 Apr 2023 15:25:20 +0530
-Message-Id: <20230403095520.3046-1-danascape@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <9acb38db-bdef-bfc0-5de0-c248d45714ae@linaro.org>
-References: <9acb38db-bdef-bfc0-5de0-c248d45714ae@linaro.org>
+        d=1e100.net; s=20210112; t=1680516022;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C/b2mr9DLso7O/8pyyRJ750O0L69iF5ANfkU0tX/dSQ=;
+        b=pQN8kbHLOdtWw6ONL0AKR/qDOmIvFv3Dsi1vI8R2WFYGEe+RZRN8PsmU9Q8ZMiS31J
+         64eiYZ2TXrduqpTWhzbaB8yzQ6XzK2Njtq7zGKiSvRrBSvrrtfZ7PZpbEXGvoBwF+XZc
+         UOWwX6ZMq5MbGVrQ2cDtW0Bi+FOpyotYYRKzG9aRFnc/rtTtIZzSHXnYEFihl07q/LTA
+         u/V4bxaY8p0zAZuv/PaqmH+yUv8oceYRBeezZLYeLilpSupQKNPKS2XSsn3XBEriX4LX
+         U2s2r3oJK4OuGBGwZzI+3imXU0L3flvMuCgc2FEFszHradsKf++bmt1yQURwEDeBn4b0
+         Qp3g==
+X-Gm-Message-State: AAQBX9dcfzK5zlqZ2VH0kPQgNxb/vkLKIJcQ1u8cKV+kbsyiJg4KvBqI
+        Rxt21hIa3HBumkw6XuOMLFIqwg==
+X-Google-Smtp-Source: AKy350YWnIoPvTFt270RYeOrqtzdDXhIogEQC45yPWL4NczHLVM0MLWLFUUeRkCR9QqpAvzk430ywg==
+X-Received: by 2002:ac2:5607:0:b0:4c0:91d0:e7ab with SMTP id v7-20020ac25607000000b004c091d0e7abmr8492911lfd.28.1680516022540;
+        Mon, 03 Apr 2023 03:00:22 -0700 (PDT)
+Received: from [192.168.1.101] (abxj135.neoplus.adsl.tpnet.pl. [83.9.3.135])
+        by smtp.gmail.com with ESMTPSA id f21-20020ac25335000000b004b40c1f1c70sm1693279lfh.212.2023.04.03.03.00.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 03:00:22 -0700 (PDT)
+Message-ID: <cdba9174-6de1-137f-e902-3ae2f4a78ee9@linaro.org>
+Date:   Mon, 3 Apr 2023 12:00:20 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: pm8350b: fix thermal zone node
+ name
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
+ <20230401220810.3563708-3-dmitry.baryshkov@linaro.org>
+ <47efb05a-d1e7-a3c5-c423-4eb53fe86386@linaro.org>
+ <33430a31-b9da-5f1c-bae0-9ec6f24fda99@linaro.org>
+ <f31cfa7d-08cf-efc1-322f-a8e4bbe76476@linaro.org>
+ <4c4450b5-28a3-0a4d-ccd0-5ec96c2ded82@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <4c4450b5-28a3-0a4d-ccd0-5ec96c2ded82@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,13 +87,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> This should be rather someone from Cirrus or their regular contact -
-> patches@opensource.cirrus.com.
 
-Alright I will do so.
 
-For I2C and SPI description, is it required to add it only once? or just not required at all?
+On 3.04.2023 11:50, Dmitry Baryshkov wrote:
+> On 03/04/2023 12:09, Krzysztof Kozlowski wrote:
+>> On 02/04/2023 13:02, Dmitry Baryshkov wrote:
+>>> On 02/04/2023 13:34, Krzysztof Kozlowski wrote:
+>>>> On 02/04/2023 00:07, Dmitry Baryshkov wrote:
+>>>>> Correct the thermal zone node name to remove the clash with
+>>>>> pm8350c.dtsi. Remove unused labels.
+>>>>>
+>>>>> Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
+>>>>
+>>>> Please describe the observable bug from that commit being fixed here.
+>>>> Any future clash, which did not exist that time, is not a bug. It's future.
+>>>>
+>>>> Naming changes here are more a matter of style, because the old names
+>>>> were correct according to our coding guidelines, just not precise (c
+>>>> instead of b). But node names anyway are not important from the point of
+>>>> view fixes and adding such tag will cause a needless backport.
+>>>
+>>> It is needed. Including both pm8350c.dtsi and pm8350b.dtsi will result
+>>> in one thermal zone overriding another one.
+>>
+>> I don't understand. You used future tense "will", but we talk about
+>> past. So where is the bug in commit 5c1399299d9d?
+> 
+> At that time there already existed sm8350-mtp which included both of dtsi files.
+> 
+pm8350[bc] both have a node named /pm8350c-thermal, which means one will
+get overriden with the other. Since we sort the includes alphabetically,
+the one in pm8350b.dtsi will never be taken into account and hence the
+temp alarm will never be associated to any thermal zone.
 
-Kind Regards,
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Saalim
+Konrad
