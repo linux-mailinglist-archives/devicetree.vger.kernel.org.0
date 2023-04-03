@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 461BA6D4606
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A02F6D4618
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231357AbjDCNnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45984 "EHLO
+        id S232604AbjDCNrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbjDCNnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:43:32 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2049919A8
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:43:31 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id cn12so117561575edb.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:43:31 -0700 (PDT)
+        with ESMTP id S232276AbjDCNrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:47:32 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42DF930CF
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:47:31 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id y4so117647477edo.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:47:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680529409;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1680529650;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rbiGTBgSL+cadoCFySFdgFBXw6dSu7G6/MJY0IpDWig=;
-        b=oaHIPb4tJv8houjIb0HmIYMCW3mgUToFIp1l0ujEdnku1QJ3g/b30vGa1oZSsWlZRw
-         etnzQjj4PzJ8kfGyGA98IqtdwsyZWwt9GQvMKPhWwb21J6KOR9av5zX71tC06NW2CVeL
-         YEGqoAgUO/Oz7oKNZfEOuVTnDADDL+AEfrrCn05J7TXtkUyiaRJhb1UgSmk1J/O6id11
-         qZj7l+Y1xOBJD/55M6ZuR/sjulmuemaa1xeFHDDyjbgYfbBHlR6xETHVrW/FkrYRUgEO
-         fvx/VFySeriwmc+2GvJP6lUfiQwmyhTr5PRA0J7vNBiCTKHh9y7Tj8NSmfZzwb2o7Y3k
-         RsJQ==
+        bh=Pvt16joZ5xG45COfnzqBt6KieWi0E35IQbDyvI0Q3U0=;
+        b=bdX6ABQ/ntd69OXo+fwQWvZ7bJ6AjKgp9EU0eD7F+As5cOUgjRpJvnjz3PdTssp14y
+         djRKJZ1Ivksql07WgFGsowhZJR8Wqu/FYr3jZHdDCjoet9+giBEo9U/7Orw+EpUWsgAW
+         Jl64ouzB6OFwPnWYwJeAy3Wpx4GB0uMBPyosxxxI0YrC1eBe8dIX/0pSCAPT+49hdBVv
+         jnrmWdJQ+kWgy+xZx8v8IbXppbsUue/70Aeafku6vzSuQZo6o8GFUEyMaTHb1sa4PMF8
+         Wuu9qs5QIOZ8Ek39//rkECZVc/0xRCM2Atr8rAhe3PZTBa/9UKPt0dbDbh5Fg+3HbVfH
+         QQPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680529409;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680529650;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rbiGTBgSL+cadoCFySFdgFBXw6dSu7G6/MJY0IpDWig=;
-        b=N4NzzkOrW2Ct/MTuo8V989DaIZ68Mj0casRCMGnwKkdR+P2xKaT7WeyUwt9xX1EfyR
-         f8IKgSsILapEm+xKmsqlIpyzLTuGmEtCv923wTT1Bt1jdwUt2FDfLDd0INJSCuE1ZzSC
-         zBteRG7kYd7sDm/UZdoYeHmhIY2mKO4lfXCR5p6gpOorzpzRj4oxjr3+cjYbz/FIhws5
-         NBOtt/fhH98iEZXwjFJ5meSM6jGIb4UZYhsqsUhlwfXnvmp07iND59swyHEIm4LdgEWQ
-         SHKaBRtYwPG13iVo9BYXFyF9V75EpgSI6rklks9FbArOjeNP5QA1Za1C8aXg7kF7QxU+
-         9lZg==
-X-Gm-Message-State: AAQBX9eMUu+X0dvleByFBYKL70zouBhOgfyACJLY6yjDdVLa7jFCHihn
-        wFHjwSTcDQkzZf6BUB2Y7RgRLQ==
-X-Google-Smtp-Source: AKy350b11IAAJTTgtO8p5MHzwoAPE850keTE162TGsc9O4prf+1YVAxVwIOgFVuOz5EqnrgBaWZScQ==
-X-Received: by 2002:a17:907:a50d:b0:878:481c:c49b with SMTP id vr13-20020a170907a50d00b00878481cc49bmr41251066ejc.1.1680529409644;
-        Mon, 03 Apr 2023 06:43:29 -0700 (PDT)
+        bh=Pvt16joZ5xG45COfnzqBt6KieWi0E35IQbDyvI0Q3U0=;
+        b=zP21TCQcfywjKsyACbdRpbh7wgHApcxNXvqJtFlQbWDczCVcHCXwatWvMWdFZ1ABVi
+         4SWHEc0YLLJuFZJWeUjKmOxpAD1QwkHIFzt+80sgPfCBDUyYTP3J+FRXH63t/FtTBAwP
+         qtEht/5Cc9JTHqEDWhf6JO+s48cijpKvREZF/TSALErnYYcrKbCLPGqm9UxxAYDgy3AZ
+         FJw7/MwsgEH0jYdcn3HwWtz6WfVr8iTfWGQrCXDREnDk4uxEpRIqTavZ1KsQKlE4fkAu
+         4Al93qVuO4J42xJgCHDEVDxPnQ4zgnrtrXKdcSaPaFwtF0uVkjjQuB56GSaTdf2eVl54
+         QxNg==
+X-Gm-Message-State: AAQBX9cKfF/sIWd9ang9EzmIczQ8msxDTsrl1rI91YiQqpywfetJZqK6
+        Ujw5FNpqVCEVVaI+L6ndcMDe7w==
+X-Google-Smtp-Source: AKy350Z4u2eEo7nsmptLf0ouaXqizmrSmMOHKwtrutSQboFNnJA9Kqh8Bg73ZV/KPK8fo9PiJc9wrA==
+X-Received: by 2002:a17:906:6946:b0:92f:8324:e3b7 with SMTP id c6-20020a170906694600b0092f8324e3b7mr31585587ejs.37.1680529649775;
+        Mon, 03 Apr 2023 06:47:29 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ae90:d80:1069:4805? ([2a02:810d:15c0:828:ae90:d80:1069:4805])
-        by smtp.gmail.com with ESMTPSA id cd9-20020a170906b34900b009353066595csm4579164ejb.136.2023.04.03.06.43.28
+        by smtp.gmail.com with ESMTPSA id f24-20020a50a6d8000000b004acbda55f6bsm4655027edc.27.2023.04.03.06.47.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 06:43:29 -0700 (PDT)
-Message-ID: <2ed6078f-7982-a5aa-863b-e61f8e9f846a@linaro.org>
-Date:   Mon, 3 Apr 2023 15:43:28 +0200
+        Mon, 03 Apr 2023 06:47:29 -0700 (PDT)
+Message-ID: <fac15b28-ef4a-dd7d-f0ac-51518d9dc1be@linaro.org>
+Date:   Mon, 3 Apr 2023 15:47:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge
- to yaml
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org,
-        marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, jagan@amarulasolutions.com,
-        inki.dae@samsung.com
-References: <20230403124458.198631-1-festevam@gmail.com>
- <8f7f925f-638d-737c-bf47-2a66ce0eec59@linaro.org>
- <074183d480cf18948aacd98be60308f8@denx.de>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
+ registers
 Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230327122948.4323-1-johan+linaro@kernel.org>
+ <48f71f9a-0d00-16df-fff8-5aa455918378@linaro.org>
+ <ZCqwWwdhhJdOK+5Y@hovoldconsulting.com>
+ <5dfb81df-8ae2-eb62-01a2-b26c6b8d2597@linaro.org>
+ <a04ca2bd-72f9-c89a-3fcb-36dd710b107f@linaro.org>
+ <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <074183d480cf18948aacd98be60308f8@denx.de>
+In-Reply-To: <ZCrQe2ASeQXQJKS0@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -80,42 +86,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 15:25, Fabio Estevam wrote:
-> Hi Krzysztof,
+On 03/04/2023 15:11, Johan Hovold wrote:
+> On Mon, Apr 03, 2023 at 02:46:41PM +0200, Krzysztof Kozlowski wrote:
+>> On 03/04/2023 14:33, Krzysztof Kozlowski wrote:
+>>> On 03/04/2023 12:54, Johan Hovold wrote:
 > 
-> On 03/04/2023 09:49, Krzysztof Kozlowski wrote:
-> 
->>> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
->>> Signed-off-by: Fabio Estevam <festevam@denx.de>
->>> ---
->>> Changes since v1:
->>> - Added samsung,mipi-dsim.yaml entry to MAINTAINERS file (Jagan)
->>> - Added Marek Szyprowski entry to the samsung,mipi-dsim.yaml 
->>> maintainers section (Jagan)
->>> - Mention that i.MX8M Plus is also supported (Marek)
->>> - Remove endpoint@0 description as it only has one endpoint (Marek)
+>>>> The problem is that the driver was updated before the binding was so the
+>>>> above mentioned probe error has been there since this file was merged.
+>>>
+>>> I grepped and that commit did not have such compatible. Are you saying
+>>> that the kernel which was released with this commit already had that
+>>> compatible in driver (through different merge/tree)?
 >>
->> Where is the changelog from original submission? How your v1 differs
->> form it? Or did you just ignore all the feedback?
+>> So I double checked, the commit ccd3517faf18 (which is being "fixed")
+>> was introduced in v6.0-rc1. v6.0-rc1 did not have "qcom,pmk8350-pon"
+>> compatible, thus it could not be fixed that way. Therefore this cannot
+>> be logically fix for that commit from that release.
 > 
-> I'm sorry, but it was not my intention to ignore any feedback.
-> 
-> Which feedback are you referring to specifically?
-> 
-> Some more context: last week I sent a patch adding a new property
-> for exynos_dsim.txt and you asked me to convert it to yaml first:
-> 
-> https://lore.kernel.org/all/ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org/#t
-> 
-> Jagan pointed out an earlier submission he did in 2021:
-> 
-> https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutions.com/
-> 
-> That was my starting point.
+> Now you're just making shit up. A fix is a fix for mainline, period. If
 
-I think I saw v11 but maybe not. I cannot find it now. But anyway if
-this was the newest submission, it already got feedback which we do not
-need to repeat...
+Since this is your second mail in such tone and such phrases, I am not
+going to keep discussing this. Regardless of differences in opinion, you
+should keep the tone appropriate.
 
 Best regards,
 Krzysztof
