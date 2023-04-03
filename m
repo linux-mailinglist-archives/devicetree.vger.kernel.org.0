@@ -2,198 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D56D56D49E3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 16:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BB8D6D4A15
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 16:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233829AbjDCOmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 10:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55970 "EHLO
+        id S233953AbjDCOoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 10:44:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233827AbjDCOmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 10:42:05 -0400
-Received: from smtp.outgoing.loopia.se (smtp.outgoing.loopia.se [93.188.3.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91B6D4F93
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 07:42:01 -0700 (PDT)
-Received: from s807.loopia.se (localhost [127.0.0.1])
-        by s807.loopia.se (Postfix) with ESMTP id 483642F82D9D
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 16:41:59 +0200 (CEST)
-Received: from s980.loopia.se (unknown [172.22.191.6])
-        by s807.loopia.se (Postfix) with ESMTP id 3963A2E28FC5;
-        Mon,  3 Apr 2023 16:41:59 +0200 (CEST)
-Received: from s476.loopia.se (unknown [172.22.191.5])
-        by s980.loopia.se (Postfix) with ESMTP id 351E12201610;
-        Mon,  3 Apr 2023 16:41:59 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at amavis.loopia.se
-X-Spam-Score: -1
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
-Received: from s979.loopia.se ([172.22.191.5])
-        by s476.loopia.se (s476.loopia.se [172.22.190.16]) (amavisd-new, port 10024)
-        with LMTP id fpRCGni4Rc-2; Mon,  3 Apr 2023 16:41:58 +0200 (CEST)
-X-Loopia-Auth: user
-X-Loopia-User: richard@bit42.se
-X-Loopia-Originating-IP: 178.174.130.84
-Received: from hypercube.. (h-178-174-130-84.A444.priv.bahnhof.se [178.174.130.84])
-        (Authenticated sender: richard@bit42.se)
-        by s979.loopia.se (Postfix) with ESMTPSA id 8A68710BC462;
-        Mon,  3 Apr 2023 16:41:58 +0200 (CEST)
-From:   Richard Alpe <richard@bit42.se>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        niklas.soderlund+renesas@ragnatech.se,
-        Richard Alpe <richard@bit42.se>
-Subject: [PATCH v4 2/2] nvmem: add new NXP QorIQ eFuse driver
-Date:   Mon,  3 Apr 2023 16:41:06 +0200
-Message-Id: <20230403144106.2776249-2-richard@bit42.se>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230403144106.2776249-1-richard@bit42.se>
-References: <20230403144106.2776249-1-richard@bit42.se>
+        with ESMTP id S233887AbjDCOn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 10:43:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE68D18277;
+        Mon,  3 Apr 2023 07:43:41 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 276986600013;
+        Mon,  3 Apr 2023 15:43:39 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680533019;
+        bh=FMW2V0QhNr9KmmQQvwTNbvMyfuMlgFqGmHE5d/N4Q98=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gvZ0iH18UpaYkWDUm3rMoLDTk6C2iseTXbrfMpzuDazu1l5+y/6Aj+lK9K3BxosNo
+         hkBYhgAhz1vDI+UTMblPVB4QvsKwc7+jqAC0s7aAnXk6gLxl5ckVlvnZh8XwzQCqEQ
+         joqaus5x7tph+fe2sVIQLZRzhwe773G8LHxyDCWm6MYtO53H53dl9WZpKDtSxHjPJz
+         u1Cq+0V8EGIYkpiM9T8lXSstdmVOf8wiqhgzbYk4ooPYtQzYRjxEmOldei/q0DvSUR
+         RHXLJYgjEt/aYA0dVW48GsmJmWNyIPpmhzu5cBF/WyduOD1MaEg+M/rbjhc6R4hb8s
+         vRZzYwx85LhsA==
+Message-ID: <79396eed-18ab-bcee-5c7e-c3e5e61f32c3@collabora.com>
+Date:   Mon, 3 Apr 2023 16:43:36 +0200
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4139; h=from:subject; bh=CnPb57O3jpvYeraURf9gBeb36ExbwH7nAjgOLhbPMS4=; b=owEBbQKS/ZANAwAKAaR4ncy5pstaAcsmYgBkKuWB1ZYCBw+P+xA59MXkNcNYp/BNUiJHFjKO4gsq gEeC8cyJAjMEAAEKAB0WIQQsEvAKF4GLpV03omKkeJ3MuabLWgUCZCrlgQAKCRCkeJ3MuabLWronEA CZB7XMGK0jJq0RYFpG3oAzmYKoplJaaXYMx6tPT5/9kFSrDxbTeDc4zeK4yaMsFWVaw7pjYrkArYoJ rB9QhIcuKc1L56TlHchlN/jZNNi/zm/sG2v+Xh+xxYIBhkhY2Vcmsk3HRYLfzNMxZ7vhAWtvIs4fdy am5KJGJociQQs8uVjXWHS2rfLTQai9EHZL3q92dVfAhxLP8L+ZBv6+xEljjEW9qjI0vLTP9Uh6Y7TB GevCVbgDKTBm6+fwF+8eSaBBFH616c/585VXzFlRD7TBj2o/Cy8kCuzTPBQyqDKW8GVXudE/UXy3Ds mUL/eWsgn7usIA+VZM4U5MNOidUnFOero5ueFJjuB7Poi5BpJfahHJp8dPmyM5mO0/aV532b8LZYG7 UG+k9nMPAqFFXkLcOprcdJdx72hrAVakru+NM82KEbp+nqAfVtLEauKjkWIgwbSM67daCLofh35GZ8 wdcdwTj04FvLHcxoDMbCclM3pBm0tNW2upRVyDqFhYuuaXXRgflsVJKHD/V6TGWPZo4Ata6Sxoimme O0Ab/pu85yi7K3siy+BYvpgPcTqhf1n5563pzdwrmGLZp/B1QP99uaFrV0GfIW9q6xWqEikB3pJ2xU 1q2rkp8wmO+TQMMydDnAsiSsn0gIdo0G9Vl8xKR/OU67IBHocI5a8xppJpWQ==
-X-Developer-Key: i=richard@bit42.se; a=openpgp; fpr=B1C705C6B1BF719CA5CD67398BEE8379084BC511
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Convert to DT schema
+Content-Language: en-US
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
+ <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
+ <168052514639.463695.9544022277060710805.robh@kernel.org>
+ <dcd79e14-d9df-39c1-5465-4e9d71221659@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <dcd79e14-d9df-39c1-5465-4e9d71221659@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SFP (Security Fuse Processor) read support for NXP (Freescale)
-QorIQ series SOC's.
+Il 03/04/23 16:32, Cristian Ciocaltea ha scritto:
+> On 4/3/23 16:10, Rob Herring wrote:
+>>
+>> On Mon, 03 Apr 2023 13:50:51 +0300, Cristian Ciocaltea wrote:
+>>> Convert the PWM fan bindings to DT schema format.
+>>>
+>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>> ---
+>>>    .../devicetree/bindings/hwmon/pwm-fan.txt     |  68 +----------
+>>>    .../devicetree/bindings/hwmon/pwm-fan.yaml    | 109 ++++++++++++++++++
+>>>    2 files changed, 110 insertions(+), 67 deletions(-)
+>>>    create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>>
+>>
+>> Running 'make dtbs_check' with the schema in this patch gives the
+>> following warnings. Consider if they are expected or the schema is
+>> incorrect. These may not be new warnings.
+>>
+>> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+>> This will change in the future.
+>>
+>> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230403105052.426135-2-cristian.ciocaltea@collabora.com
+>>
+>>
+>> pwm-fan: 'cooling-max-state', 'cooling-min-state' do not match any of the regexes: 'pinctrl-[0-9]+'
+>> 	arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dtb
+>> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+>>
+> 
+> The only references to the offending cooling-{min|max}-state are located
+> in a few DTS files. Assuming they are obsolete, may I simply drop them?
+> 
 
-This patch adds support for the T1023 SOC using the SFP offset from
-the existing T1023 device tree. In theory this should also work for
-T1024, T1014 and T1013 which uses the same SFP base offset.
+If they're obsolete, you can mark them as `deprecated: true` in the binding, but
+dropping them entirely would be an ABI breakage, so no, you can't.
 
-Signed-off-by: Richard Alpe <richard@bit42.se>
----
-v2: Updates according to feedback from Srinivas.
-v3: No changes to this patch.
+Regards,
+Angelo
 
- drivers/nvmem/Kconfig       | 12 ++++++
- drivers/nvmem/Makefile      |  2 +
- drivers/nvmem/qoriq-efuse.c | 78 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 92 insertions(+)
- create mode 100644 drivers/nvmem/qoriq-efuse.c
+> $ git grep "cooling-.*-state"
+> 
+> arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi: cooling-min-state = <0>;
+> arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi: cooling-max-state = <3>;
+> arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts: cooling-min-state = <0>;
+> arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts: cooling-max-state = <3>;
+> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts:        cooling-min-state = <0>;
+> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts:        cooling-max-state = <3>;
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi:        cooling-min-state = <0>;
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi:        cooling-max-state = <9>;
+> 
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 6dec38805041..43446e5f7d9b 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -377,4 +377,16 @@ config NVMEM_ZYNQMP
- 
- 	  If sure, say yes. If unsure, say no.
- 
-+config NVMEM_QORIQ_EFUSE
-+	tristate "NXP QorIQ eFuse support"
-+	depends on PPC_85xx || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	help
-+	  This driver provides read support for the eFuses (SFP) on NXP QorIQ
-+	  series SoC's. This includes secure boot settings, the globally unique
-+	  NXP ID 'FUIDR' and the OEM unique ID 'OUIDR'.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nvmem_qoriq_efuse.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 6a1efffa88f0..b8fdf9b51953 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -74,3 +74,5 @@ obj-$(CONFIG_NVMEM_VF610_OCOTP)		+= nvmem-vf610-ocotp.o
- nvmem-vf610-ocotp-y			:= vf610-ocotp.o
- obj-$(CONFIG_NVMEM_ZYNQMP)		+= nvmem_zynqmp_nvmem.o
- nvmem_zynqmp_nvmem-y			:= zynqmp_nvmem.o
-+obj-$(CONFIG_NVMEM_QORIQ_EFUSE)		+= nvmem-qoriq-efuse.o
-+nvmem-qoriq-efuse-y			:= qoriq-efuse.o
-diff --git a/drivers/nvmem/qoriq-efuse.c b/drivers/nvmem/qoriq-efuse.c
-new file mode 100644
-index 000000000000..e7fd04d6dd94
---- /dev/null
-+++ b/drivers/nvmem/qoriq-efuse.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *  Copyright (C) 2023  Westermo Network Technologies AB
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+
-+struct qoriq_efuse_priv {
-+	void __iomem *base;
-+};
-+
-+static int qoriq_efuse_read(void *context, unsigned int offset, void *val,
-+			    size_t bytes)
-+{
-+	struct qoriq_efuse_priv *priv = context;
-+
-+	/* .stride = 4 so offset is guaranteed to be aligned */
-+	__ioread32_copy(val, priv->base + offset, bytes / 4);
-+
-+	/* Ignore trailing bytes (there shouldn't be any) */
-+
-+	return 0;
-+}
-+
-+static int qoriq_efuse_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.dev = &pdev->dev,
-+		.read_only = true,
-+		.reg_read = qoriq_efuse_read,
-+		.stride = sizeof(u32),
-+		.word_size = sizeof(u32),
-+		.name = "qoriq_efuse_read",
-+		.id = NVMEM_DEVID_AUTO,
-+		.root_only = true,
-+	};
-+	struct qoriq_efuse_priv *priv;
-+	struct nvmem_device *nvmem;
-+	struct resource *res;
-+
-+	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	config.size = resource_size(res);
-+	config.priv = priv;
-+	nvmem = devm_nvmem_register(config.dev, &config);
-+
-+	return PTR_ERR_OR_ZERO(nvmem);
-+}
-+
-+static const struct of_device_id qoriq_efuse_of_match[] = {
-+	{ .compatible = "fsl,t1023-sfp", },
-+	{/* sentinel */},
-+};
-+MODULE_DEVICE_TABLE(of, qoriq_efuse_of_match);
-+
-+static struct platform_driver qoriq_efuse_driver = {
-+	.probe = qoriq_efuse_probe,
-+	.driver = {
-+		.name = "qoriq-efuse",
-+		.of_match_table = qoriq_efuse_of_match,
-+	},
-+};
-+module_platform_driver(qoriq_efuse_driver);
-+
-+MODULE_AUTHOR("Richard Alpe <richard.alpe@bit42.se>");
-+MODULE_DESCRIPTION("NXP QorIQ Security Fuse Processor (SFP) Reader");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
 
