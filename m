@@ -2,99 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02CA16D507D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6F596D5082
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 20:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233159AbjDCScG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 14:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60434 "EHLO
+        id S233199AbjDCScp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 14:32:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231701AbjDCScD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:32:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583DF30D3;
-        Mon,  3 Apr 2023 11:31:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DBBD16269A;
-        Mon,  3 Apr 2023 18:31:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 955B1C433EF;
-        Mon,  3 Apr 2023 18:31:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680546704;
-        bh=o3RwlIhCEYrO4ntJi9qqgqGqIZpIGhhKYmBaW6wiPB4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Nl2aNxeK+tyv2h7Xtc3R6vMLqTxpdf26KonLrTUAaO0lMgylMBpw/EejnDB1bCQgF
-         T1BABIWDQ44VCTNscPgGmtkkpm0ziUM0AqLkc4LhAZ9Mvg1clKGkjUVoeW/ema3zPq
-         Zx96UQcBfLyh1DRKuWoFXh2T4Vk/RdUx6+HXapepur1qdNIy6FUoLqhLOsrqZF2lEY
-         +U2q4NJ0EQw1WVoCKeyeJfk2+EGgjtJm/UKVdLKmfSRHQlXBa9jlKX0b0I+xQY69iU
-         7Eu4/M1Y+vis85ilDZWwOOm8VVIy5FwgxkkBmSt/STmzzh4ENycyzpPy63n5kmqd0E
-         Ad7VG/PjG5vbg==
-Date:   Mon, 3 Apr 2023 19:31:38 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233161AbjDCScg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 14:32:36 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD2F2D4C;
+        Mon,  3 Apr 2023 11:32:33 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 9EFA35FD33;
+        Mon,  3 Apr 2023 21:32:31 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1680546751;
+        bh=skrvDahl5pDvwUwgatlspWiBA9wa5+vS0uE3UumKX9A=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=cqI6aPrNn5mtnhaVCbAtirVNzjeBzR1SEKqrbWHxEFvqNdiy5uS2bl+mGyCMo1kpC
+         qbic7dxZuXwZvNtjHjr7xmZAUB1qWUesntKZoLItRDdwnsx8qyGc6JQnEzxrRXX8ye
+         VJsYZWa6yQSM/eg+SuIgdfOESl0RFqLAJhcVVlfS3czuZp/rK51VZOwy9oi8fMOuvW
+         AnjaCxGZECwoCgwAkevP0F+K6F+Cc+ZoEOi5pdxOpMyUwF1ckHsop5lafBMhOPPCkQ
+         kng+5hNd3d/IJ7GR/VDPXokSM4AlD75/wqXsaZJb9QGfDMYOfKiPLBkHsxLXaUpNej
+         OUCtHv7kdPsag==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon,  3 Apr 2023 21:32:30 +0300 (MSK)
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
- pointers for cache management
-Message-ID: <20230403-peroxide-retail-d7046cb806fe@spud>
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <f12f9773-77b5-4ba6-9e9e-adbc67ca0110@spud>
- <CA+V-a8s0UViJ0tBSyiL0ZG8iVT3QSW77=VujJJOfiuM8T=9ntg@mail.gmail.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>,
+        Martin Kurbanov <mmkurbanov@sberdevices.ru>
+Subject: [PATCH v3 0/2] add support for Amlogic A1 SPI Flash Controller
+Date:   Mon, 3 Apr 2023 21:32:15 +0300
+Message-ID: <20230403183217.13280-1-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="b/tLN+10ke3HU7wD"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8s0UViJ0tBSyiL0ZG8iVT3QSW77=VujJJOfiuM8T=9ntg@mail.gmail.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/03 14:17:00 #21028104
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset introduces DT bindings and driver for the Amlogic A1 SPI
+flash controller (A113L SoC).
 
---b/tLN+10ke3HU7wD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The existing spi-meson-spifc driver is incompatible with the A1 SPIFC
+at all.
 
-On Mon, Apr 03, 2023 at 07:23:37PM +0100, Lad, Prabhakar wrote:
-> > I think all of the above should be prefixed with riscv_cbom to match the
-> > other riscv_cbom stuff we already have.
-> Just to clarify, the riscv_cbom prefix should just be applied to the
-> ZICOM functions and not to T-HEAD?
+The implementation has been tested on the Amlogic A113L SoC based device
+connected with ESMT F50L1G41LB spinand flash.
 
-Yah, can leave the T-HEAD stuff as is IMO.
+This patchset has dependencies on the A1 clock series which is still
+under review [1].
 
-Cheers,
-Conor.
+Changelog:
+  v3 since v2 at [2]:
+    - Drop the 'meson' name as Neil suggested
+    - Make cosmetic changes
 
---b/tLN+10ke3HU7wD
-Content-Type: application/pgp-signature; name="signature.asc"
+  v2 since v1 at [3]:
+    - Make cosmetic changes
 
------BEGIN PGP SIGNATURE-----
+Links:
+  [1] https://lore.kernel.org/all/20230321193014.26349-1-ddrokosov@sberdevices.ru/
+  [2] https://lore.kernel.org/all/20230327211351.686831-1-mmkurbanov@sberdevices.ru/
+  [2] https://lore.kernel.org/all/20230322150458.783901-1-mmkurbanov@sberdevices.ru/
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCsbigAKCRB4tDGHoIJi
-0p60AQCszeJEQpmXWuGiboXB8Hchy8tk2SJUYIcxRG/FXjMr1QEAxg/uIZdyzwLe
-3Zibwoth4VJ2MTUzPgfVuRO6IPUtswE=
-=S+Sw
------END PGP SIGNATURE-----
+Martin Kurbanov (2):
+  dt-bindings: spi: add Amlogic A1 SPI controller
+  spi: add support for Amlogic A1 SPI Flash Controller
 
---b/tLN+10ke3HU7wD--
+ .../bindings/spi/amlogic,a1-spifc.yaml        |  41 ++
+ drivers/spi/Kconfig                           |   7 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-amlogic-spifc-a1.c            | 456 ++++++++++++++++++
+ 4 files changed, 505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,a1-spifc.yaml
+ create mode 100644 drivers/spi/spi-amlogic-spifc-a1.c
+
+--
+2.37.2
+
