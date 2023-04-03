@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD78A6D464D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DBA96D4654
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 15:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232734AbjDCN5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 09:57:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34398 "EHLO
+        id S232390AbjDCN6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 09:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232002AbjDCN5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:57:08 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975144486
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 06:57:00 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id p204so34828422ybc.12
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 06:57:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680530219;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kODDV0eo3KG9JXNPcuqS6MOsNNtWM4OP9fbwHqcpwiQ=;
-        b=xHUjq7ju37k6tq0qw/NJnEhO/E0QYa4VXV7FpPEvNXjrW6cFMfFxcxvNo/PyZ7/lyH
-         8ezNFxusnuEhdlyfG7gSaAs7fnih9cOr+oykAdwJizv3gr+oz7QvquI01cF6MV31EHtm
-         pbsIypIYfeUTpRUCTEI5aldkZXJBsO0Hw8qvvye8H5IyEFFWGRgO7aDIuZ3UeiSoD5Uk
-         b/kQwkZ8Bz3WT2+7gBcapCpzQh5WH2NpaS9u4bb4B1rUpdwgBCPORp9ZWueW5TCzUhSC
-         XvTLsfy/OJAEDkRndDEd5ehqBMyNW9UAYbAsTbJKAf2mkrnduhxq9q3CRpiPvLt5T0Jp
-         nyFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680530219;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kODDV0eo3KG9JXNPcuqS6MOsNNtWM4OP9fbwHqcpwiQ=;
-        b=aEXaNZ4LdgXwuuKVwPD7qY9/dqNEl0Glsfvx7mLzVUk3yuNNc0T/vZkH+TdCy4xn1y
-         t7NrYBL/DdBeQxDmMlKH82gcAgMeudCuj8c71jc7CBcGOdMurDlQCLquIB1/bxQkKdec
-         gM/LBSbeDmqjk2RYHmjK60QtnLgbWjj/WBPDN5tDp24TftWG4BRO5wkTPdiNyAOjadwI
-         WdgtamFQlmWlQ/qjzpM9X9UFyjzJinha3UtjgYC4R7N1Nx+D+CzPDJwfQLrL9p5YynMQ
-         24S0OXKlRBUKmGJClQgyDgXI9ps5T0HK2WLKiY7aCf2i7wtcvoPLhndls8IMIY8V2Xjv
-         /8OA==
-X-Gm-Message-State: AAQBX9eMb3Mnk5iFLIe63l55j003nXWD2sMOamS3ACjFMWB31UgHF4vS
-        0GznJALZwqqbvEQkph/xm16waL01KJiVXOdmJfj9Gw==
-X-Google-Smtp-Source: AKy350a+6yKOvU2Vx0VJFi9PvEVqKu2yKBdZt9WnARJ7DiP1tc2RnQX+840XSZBpIbNH93jnzswOJLu2PkbS20/tOYw=
-X-Received: by 2002:a25:3104:0:b0:b86:92c0:6433 with SMTP id
- x4-20020a253104000000b00b8692c06433mr3281190ybx.9.1680530219692; Mon, 03 Apr
- 2023 06:56:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230401220810.3563708-1-dmitry.baryshkov@linaro.org>
- <20230401220810.3563708-22-dmitry.baryshkov@linaro.org> <af18b9a3-2960-8fbb-0d19-ee7d3b3f89ab@linaro.org>
- <b33337de-1a09-aa72-7f1f-fabf85ddcd9d@linaro.org> <CAA8EJprnv0uqEq=uJ8z+Az-izwk-kscXiELVqrP9BPBFQpJE4A@mail.gmail.com>
- <46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org>
-In-Reply-To: <46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 3 Apr 2023 16:56:48 +0300
-Message-ID: <CAA8EJpp+YP8aHzm33qXp=cb0iaFGuKgnrUo27dOKuBU0R1GSYg@mail.gmail.com>
-Subject: Re: [PATCH v2 21/22] arch: arm64: dts: qcom: pm8150: support SID
- greater that 9
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S232069AbjDCN6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 09:58:37 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E35FF06;
+        Mon,  3 Apr 2023 06:58:34 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C1E0B6601F5E;
+        Mon,  3 Apr 2023 14:58:27 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680530313;
+        bh=ixIV9Kz+uewOLYiqqFhy82v54fEkXWHbGspKjRC248k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SaNTiyCxtsTBxZ/2tp3PafuYNJ2CoPgEdX+/EHgjOoY29DuraoeQcFjLkv4BZPRx7
+         B2K+3KWVoalzw5XZsD/DEL329RB1eKD8bKAMVcqdK5mVcINSysDQUlpD1menV6YwEj
+         VdBTQMAyx1oxQBGCZKe4i8FBmi7QejeIviWrQBRYA2Q7YcnFHsmxQrqkYaHJ2wke34
+         UQz1Es76KbbwB54FLQGmsNT+fqeuiL0Hoc1LPnwPhlYs1q5pMCcgaGMbQlmhDgjzFU
+         +hjK23Pi37+dRqn+waQ/LfIDKcpardjweIM003mSfJpEPEiOkGpfdePryjwzixnotU
+         DAPR0TDlkRQwA==
+Date:   Mon, 3 Apr 2023 09:58:23 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        jianjiao.zeng@mediatek.com, Yunfei Dong <yunfei.dong@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Rob Herring <robh@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Subject: Re: [PATCH v6 01/14] dt-bindings: media: mediatek,vcodec: Remove
+ dma-ranges property
+Message-ID: <3a73c940-d97b-4d5c-a546-b5ee257a12f9@notapiano>
+References: <20230403091337.26745-1-yong.wu@mediatek.com>
+ <20230403091337.26745-2-yong.wu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230403091337.26745-2-yong.wu@mediatek.com>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,33 +75,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Apr 2023 at 15:57, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/04/2023 13:45, Dmitry Baryshkov wrote:
-> >> Konrad
-> >>>> +
-> >>>>  #undef PMIC_SID
-> >>>>  #undef PMIC_SID1
-> >>>>  #undef PMIC_LABEL
-> >>>
-> >>> Same comment as for previous patches - all undefs must be gone.
-> >
-> > This means that we can not include two copies of the same PMIC (which
-> > do have on both platforms).
->
-> Consider spi15 and spi16:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sm8250.dtsi?h=v6.3-rc5&id=7e364e56293bb98cae1b55fd835f5991c4e96e7d#n1045
->
-> Do you see it written as #include "qcom-sm8250-spi.dtsi" with
-> parametrizing the reg/unit address, interrupts etc?
->
-> No. Neither PMIC should be. It is not a special device.
+On Mon, Apr 03, 2023 at 05:13:24PM +0800, Yong Wu wrote:
+[..]
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> @@ -76,11 +76,6 @@ properties:
+>        The node of system control processor (SCP), using
+>        the remoteproc & rpmsg framework.
+>  
+> -  dma-ranges:
+> -    maxItems: 1
+> -    description: |
+> -      Describes the physical address space of IOMMU maps to memory.
+> -
+>    "#address-cells":
+>      const: 2
+>  
+> @@ -203,7 +198,6 @@ required:
+>    - reg
+>    - iommus
+>    - mediatek,scp
+> -  - dma-ranges
+>    - ranges
+>  
+>  if:
+> @@ -236,7 +230,6 @@ examples:
+>              compatible = "mediatek,mt8192-vcodec-dec";
+>              mediatek,scp = <&scp>;
+>              iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> -            dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+>              #address-cells = <2>;
+>              #size-cells = <2>;
+>              ranges = <0 0 0 0x16000000 0 0x40000>;
 
-I think there should be balance. PMICs are complex structures.
-Possibly schema will help here once it is in a more enforced mode.
+Hi,
 
+this change was also done in another patch [1], and it is already queued for the
+media tree [2], so you'll need to remove this part of your patch in order to
+avoid conflicts.
 
--- 
-With best wishes
-Dmitry
+[1] https://lore.kernel.org/all/20230303013842.23259-3-allen-kh.cheng@mediatek.com/
+[2] https://lore.kernel.org/all/98c48690-631d-1086-9b7c-004c61cc8dbb@xs4all.nl/#t
+
+Thanks,
+Nícolas
