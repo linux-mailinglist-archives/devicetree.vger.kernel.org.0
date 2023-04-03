@@ -2,119 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1F666D3BF5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 04:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D960D6D3C1C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 05:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231288AbjDCCw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Apr 2023 22:52:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59288 "EHLO
+        id S230454AbjDCD0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Apr 2023 23:26:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230484AbjDCCwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 22:52:53 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D542CAF32;
-        Sun,  2 Apr 2023 19:52:44 -0700 (PDT)
-X-UUID: 97aa67a2d1ca11edb6b9f13eb10bd0fe-20230403
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=MuwQPblAEH8HWHgYOf1U7H9BiMIVFtXI2z+R/2HKH/U=;
-        b=RmmV2IXwH5jADzDqPF6IpCiMIvGnooMFL7T7h//93Kkspw5T80CX/3/+ew38V7Tw8yjk+oERocvvhVayDWNo8Bpl/PAIoj7++nu4m82GsQqmYMxnFhNlPKTjQL0BrLMq2YAwXoTfZjmBsLKGCScQih5+qbE9u4YPdHp/GZrTKpc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:85c43b04-5b9a-403d-9878-f055717d366c,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.22,REQID:85c43b04-5b9a-403d-9878-f055717d366c,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:120426c,CLOUDID:c74eabf7-ddba-41c3-91d9-10eeade8eac7,B
-        ulkID:230403105238RFWOSDA6,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,CO
-        L:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 97aa67a2d1ca11edb6b9f13eb10bd0fe-20230403
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 731793214; Mon, 03 Apr 2023 10:52:37 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Mon, 3 Apr 2023 10:52:36 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Mon, 3 Apr 2023 10:52:36 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Tianping Fang <tianping.fang@mediatek.com>
-Subject: [PATCH 7/7] usb: mtu3: add optional clock xhci_ck and frmcnt_ck
-Date:   Mon, 3 Apr 2023 10:52:30 +0800
-Message-ID: <20230403025230.25035-7-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230403025230.25035-1-chunfeng.yun@mediatek.com>
-References: <20230403025230.25035-1-chunfeng.yun@mediatek.com>
+        with ESMTP id S229492AbjDCD0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Apr 2023 23:26:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BD56EB7;
+        Sun,  2 Apr 2023 20:26:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EF423611E4;
+        Mon,  3 Apr 2023 03:26:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57913C433A4;
+        Mon,  3 Apr 2023 03:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680492373;
+        bh=hrX4wjuNXtUa4it9dS1gD+x/opOelCsgKzVa5rmkya8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lNZ2cNh5LZpMSXs0x/GvA01FLXnCCZrRUi8x0zt9XdLbswQFhwKt1GrMX6DdqCKrV
+         +XIeXxupFEE3HyaVh2Uv9dqBn2fEooSbgytsHRqpxQ557IYsvYpAc1vqR8whoL6iDY
+         179fpo8Q1SlLLItRyriF6rwe+bFJ6BgokR/EvdNeDhMDCoLuunJ5CyTN8xdCDBjIpI
+         fWyn4lUm9XJWSYwnn0eowVtdsr2Nm9CKQ7k+Mosa301wJSbOG3hNwEjAnZXkPfbyDy
+         5YmtOs6xWfmvr5qr50umrnSvWNJ9LnmeowmgVHghW+7yKc55frTA+kLUhP3AJWty7i
+         dXMuJIQC5TbVA==
+Received: by mail-lf1-f53.google.com with SMTP id q16so36199496lfe.10;
+        Sun, 02 Apr 2023 20:26:13 -0700 (PDT)
+X-Gm-Message-State: AAQBX9fBO0Lnjejao9Q6HfXWW371IAFDPwwYTR9qAEe+Dk2qEnYktgnw
+        5iKnd+stkTV5zf4wEeBxwAOmGrugdRlQHuF3Wg==
+X-Google-Smtp-Source: AKy350YF5//fW3gKfi6NnVQPdCCMScWgB0PgA7jqaFFkilLrWcB2n9ijboh/wvLC2SKCsSxOdK5aX4P6/95BuMo1yus=
+X-Received: by 2002:ac2:596a:0:b0:4e8:6261:58c2 with SMTP id
+ h10-20020ac2596a000000b004e8626158c2mr9881249lfp.7.1680492371303; Sun, 02 Apr
+ 2023 20:26:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=1.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
+ <20230220-display-v1-1-45cbc68e188b@baylibre.com> <CAAOTY_8G03TpY88hMmUgbq5E6P2Y8h5a4DB5T72qfNG6CA+NQA@mail.gmail.com>
+ <c8861fda-63c6-7951-29a7-9d29a73e8f3e@gmail.com>
+In-Reply-To: <c8861fda-63c6-7951-29a7-9d29a73e8f3e@gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 3 Apr 2023 11:25:59 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-2eba2JYZdLPutCkLEWgEgOBrXQ4pqpasxu=d1QMWvUg@mail.gmail.com>
+Message-ID: <CAAOTY_-2eba2JYZdLPutCkLEWgEgOBrXQ4pqpasxu=d1QMWvUg@mail.gmail.com>
+Subject: Re: [PATCH 01/21] dt-bindings: display: mediatek: aal: add binding
+ for MT8365 SoC
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Xinlei Lee <xinlei.lee@mediatek.com>,
+        Guillaume La Roque <glaroque@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add optional clock 'xhci_ck' which is usually the same as sys_ck, but
-some SoC use two separated clocks when the controller supports dual
-role mode;
-Add optional clock 'frmcnt_ck' used on 4nm or advanced process SoC.
+Hi, Matthias:
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
- drivers/usb/mtu3/mtu3.h      | 2 +-
- drivers/usb/mtu3/mtu3_plat.c | 2 ++
- 2 files changed, 3 insertions(+), 1 deletion(-)
+Matthias Brugger <matthias.bgg@gmail.com> =E6=96=BC 2023=E5=B9=B43=E6=9C=88=
+31=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:55=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Hi Chun-Kuang Hu,
+>
+> On 13/03/2023 16:02, Chun-Kuang Hu wrote:
+> > Hi, Alexandre:
+> >
+> > Alexandre Mergnat <amergnat@baylibre.com> =E6=96=BC 2023=E5=B9=B43=E6=
+=9C=889=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8810:23=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+> >>
+> >> Display Adaptive Ambient Light for MT8365 is compatible with another S=
+oC.
+> >> Then, add MT8365 binding along with MT8183 SoC.
+> >
+> > Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> >
+>
+> I'm a bit puzzled that you give your reviewed by while I would have expec=
+ted
+> that you will take the display binding patches. Will you take these or do=
+ you
+> want someone else to take them?
 
-diff --git a/drivers/usb/mtu3/mtu3.h b/drivers/usb/mtu3/mtu3.h
-index 2d7b57e07eee..b4a7662dded5 100644
---- a/drivers/usb/mtu3/mtu3.h
-+++ b/drivers/usb/mtu3/mtu3.h
-@@ -90,7 +90,7 @@ struct mtu3_request;
-  */
- #define EP0_RESPONSE_BUF  6
- 
--#define BULK_CLKS_CNT	4
-+#define BULK_CLKS_CNT	6
- 
- /* device operated link and speed got from DEVICE_CONF register */
- enum mtu3_speed {
-diff --git a/drivers/usb/mtu3/mtu3_plat.c b/drivers/usb/mtu3/mtu3_plat.c
-index d78ae52b4e26..6f264b129243 100644
---- a/drivers/usb/mtu3/mtu3_plat.c
-+++ b/drivers/usb/mtu3/mtu3_plat.c
-@@ -234,6 +234,8 @@ static int get_ssusb_rscs(struct platform_device *pdev, struct ssusb_mtk *ssusb)
- 	clks[1].id = "ref_ck";
- 	clks[2].id = "mcu_ck";
- 	clks[3].id = "dma_ck";
-+	clks[4].id = "xhci_ck";
-+	clks[5].id = "frmcnt_ck";
- 	ret = devm_clk_bulk_get_optional(dev, BULK_CLKS_CNT, clks);
- 	if (ret)
- 		return ret;
--- 
-2.18.0
+I usually apply whole series together, and I've question about
+"[07/21] dt-bindings: display: mediatek: dpi: add binding for MT8365"
+in this series. This is just the first version, so maybe I would apply
+partial patches in later version.
 
+Regards,
+Chun-Kuang.
+
+
+>
+> Regards,
+> Matthias
+>
+> >>
+> >> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml=
+ | 1 +
+> >>   1 file changed, 1 insertion(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediat=
+ek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,a=
+al.yaml
+> >> index d4d585485e7b..d47bc72f09c0 100644
+> >> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.=
+yaml
+> >> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.=
+yaml
+> >> @@ -33,6 +33,7 @@ properties:
+> >>                 - mediatek,mt8186-disp-aal
+> >>                 - mediatek,mt8192-disp-aal
+> >>                 - mediatek,mt8195-disp-aal
+> >> +              - mediatek,mt8365-disp-aal
+> >>             - const: mediatek,mt8183-disp-aal
+> >>
+> >>     reg:
+> >>
+> >> --
+> >> b4 0.10.1
