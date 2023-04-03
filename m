@@ -2,235 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B44436D53F1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 23:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0DBE6D540B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Apr 2023 23:55:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233727AbjDCVtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 17:49:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45148 "EHLO
+        id S233689AbjDCVzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 17:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233558AbjDCVsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 17:48:52 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD2541FDC;
-        Mon,  3 Apr 2023 14:48:39 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id m6-20020a4ae846000000b0053b9059edd5so4864604oom.3;
-        Mon, 03 Apr 2023 14:48:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680558519;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wrphn2RbQxhqb4KnvKWMrPJ8i5lbLoF9mCmsVowmwkg=;
-        b=dQ5nS698k9OhHk0Tvx2SpY/D+cCpd5/J3pfIF7O9NliTzHuk6sbG25fYnjyM5bgVIi
-         oiZ58+OyR+UIc/AWdsQSDVxN6nXjZtlN7AMk4f5O41Hr9GMjCwTJ2zvc0/hEV9fe3sKf
-         Zc7gulW+WJyxhqkk0W6XflCvtaUN3gs3ohJ9q4WJ3/EfIhn9po8R0AT092k9STaVfoHj
-         4gLoNTn5r5wts6YQaCrjM6molAbyIT/OhW2MtnG1xfk/ZjIn9V8/ngUMAajvQm2UBVh3
-         hanaSAat6cwxKGRkeHs1ljPyKt0B7iX0tpnTpI5G5YoTWH3DtHPDJeDoObj51PY2Dt9x
-         pGIQ==
-X-Gm-Message-State: AAQBX9euhph1sCwHpyToYrHoqmdeQogtWrZXrb9caBD/v8Zi39TKJXyI
-        Jqs/KZJEkE4QDRy825hi4g==
-X-Google-Smtp-Source: AKy350bjK0iTokfHBX3EJX8gHNogmylb/8/qT4XjwPfgChu7PTa1Yi9Ja5tOQ1XLB74XQSBBBWF+Mw==
-X-Received: by 2002:a4a:2c0e:0:b0:537:f9d4:a44c with SMTP id o14-20020a4a2c0e000000b00537f9d4a44cmr420692ooo.5.1680558518842;
-        Mon, 03 Apr 2023 14:48:38 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w129-20020a4a5d87000000b005414543377asm1113130ooa.20.2023.04.03.14.48.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 14:48:38 -0700 (PDT)
-Received: (nullmailer pid 1932535 invoked by uid 1000);
-        Mon, 03 Apr 2023 21:48:37 -0000
-Date:   Mon, 3 Apr 2023 16:48:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jack Zhu <jack.zhu@starfivetech.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S233650AbjDCVzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 17:55:37 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98425E0;
+        Mon,  3 Apr 2023 14:55:34 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pjS8z-00025Z-W2; Mon, 03 Apr 2023 23:55:18 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Chris Morgan <macroalpha82@gmail.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v3 1/9] media: dt-bindings: Add bindings for JH7110
- Camera Subsystem
-Message-ID: <20230403214837.GA1925690-robh@kernel.org>
-References: <20230331121826.96973-1-jack.zhu@starfivetech.com>
- <20230331121826.96973-2-jack.zhu@starfivetech.com>
- <91874e63-553f-ced5-ce32-309ac2ebf6e5@linaro.org>
- <b8d25a66-6464-78fe-b39b-ebb8a7f1a99c@starfivetech.com>
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3588-rock-5b: Add pwm-fan
+Date:   Mon, 03 Apr 2023 23:55:17 +0200
+Message-ID: <4981873.LvFx2qVVIh@diego>
+In-Reply-To: <642b134c.4a0a0220.1d01a.5990@mx.google.com>
+References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
+ <20230403105052.426135-3-cristian.ciocaltea@collabora.com>
+ <642b134c.4a0a0220.1d01a.5990@mx.google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b8d25a66-6464-78fe-b39b-ebb8a7f1a99c@starfivetech.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_PASS,T_SPF_HELO_TEMPERROR
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 03, 2023 at 05:14:25PM +0800, Jack Zhu wrote:
+Am Montag, 3. April 2023, 19:56:26 CEST schrieb Chris Morgan:
+> On Mon, Apr 03, 2023 at 01:50:52PM +0300, Cristian Ciocaltea wrote:
+> > Add the necessary DT changes for the Rock 5B board to enable support for
+> > the PWM controlled heat sink fan.
 > 
-> 
-> On 2023/4/1 4:09, Krzysztof Kozlowski wrote:
-> > On 31/03/2023 14:18, Jack Zhu wrote:
-> >> Add the bindings documentation for Starfive JH7110 Camera Subsystem
-> >> which is used for handing image sensor data.
-> >> 
-> >> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
-> >> ---
-> >>  .../bindings/media/starfive,jh7110-camss.yaml | 159 ++++++++++++++++++
-> >>  MAINTAINERS                                   |   7 +
-> >>  2 files changed, 166 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> >> 
-> >> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> >> new file mode 100644
-> >> index 000000000000..0235c70e7793
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> >> @@ -0,0 +1,159 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Starfive SoC CAMSS ISP
-> >> +
-> >> +maintainers:
-> >> +  - Jack Zhu <jack.zhu@starfivetech.com>
-> >> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
-> >> +
-> >> +description:
-> >> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
-> >> +  consists of a VIN controller (Video In Controller, a top-level control until)
-> >> +  and an ISP.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: starfive,jh7110-camss
-> >> +
-> >> +  reg:
-> >> +    maxItems: 2
-> >> +
-> >> +  reg-names:
-> >> +    items:
-> >> +      - const: syscon
-> >> +      - const: isp
-> >> +
-> >> +  clocks:
-> >> +    maxItems: 7
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: apb_func
-> >> +      - const: wrapper_clk_c
-> >> +      - const: dvp_inv
-> >> +      - const: axiwr
-> >> +      - const: mipi_rx0_pxl
-> >> +      - const: ispcore_2x
-> >> +      - const: isp_axi
-> >> +
-> >> +  resets:
-> >> +    maxItems: 6
-> >> +
-> >> +  reset-names:
-> >> +    items:
-> >> +      - const: wrapper_p
-> >> +      - const: wrapper_c
-> >> +      - const: axird
-> >> +      - const: axiwr
-> >> +      - const: isp_top_n
-> >> +      - const: isp_top_axi
-> >> +
-> >> +  power-domains:
-> >> +    items:
-> >> +      - description: JH7110 ISP Power Domain Switch Controller.
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 4
-> >> +
-> >> +  ports:
-> >> +    $ref: /schemas/graph.yaml#/properties/ports
-> >> +
-> >> +    properties:
-> >> +      port@0:
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +        unevaluatedProperties: false
-> >> +        description:
-> >> +          Input port for receiving DVP data.
-> >> +
-> >> +        properties:
-> >> +          endpoint:
-> >> +            $ref: video-interfaces.yaml#
-> > 
-> > I don't think we use video-interfaces with port. Are you sure this works
-> > fine? Please extend the example with appropriate properties to check...
-> > 
-> Thank you for your review.
-> the following change, is it OK?
+> Honest question, but should we be adding this to the board file if not
+> every device has a PWM fan (they all have the socket for the fan, but
+> not the fan)? For example I have a passively cooled case that doesn't
+> include a fan.
 
-What Krzysztof meant is port@0 needs to $ref '$defs/port-base' rather 
-then 'properties/port' to work with video-interfaces.yaml. If you made 
-that change, then this is fine.
+We also set up the sdmmc host without knowing if the user will plug in
+an sd-card ;-) .
 
-> 
-> endpoint:
->             $ref: video-interfaces.yaml#
->             unevaluatedProperties: false
->             
->             properties:
->               bus-width:
->                 const: 8
-> 
->               data-shift:
->                 const: 2
-> 
-> in example:
-> 	port@0 {
->                 reg = <0>;
->                 vin_from_sc2235: endpoint {
->                     remote-endpoint = <&sc2235_to_vin>;
->                     bus-width = <8>;
->                     data-shift = <2>;
->                     hsync-active = <1>;
->                     vsync-active = <0>;
->                     pclk-sample = <1>;
->                 };
-> 	};
-> 
-> 
-> >> +            unevaluatedProperties: false
-> >> +
-> >> +      port@1:
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +        unevaluatedProperties: false
-> >> +        description:
-> >> +          Input port for receiving CSI data.
-> >> +
-> >> +        properties:
-> >> +          endpoint:
-> >> +            $ref: video-interfaces.yaml#
-> >> +            unevaluatedProperties: false
-> > 
-> > Same concerns here.
-> > 
-> for port@1, We don't use any properties as the allwinner,sun6i-a31-isp.yaml file.
-> Use the following modification, I don't know if it is ok?
+So especially in the case where there is a dedicated socket for it,
+as you write, we should definitly add it for the board.
 
-Yes.
- 
-> port@1:
->         $ref: /schemas/graph.yaml#/properties/port
->         description: Input port for receiving CSI data.
+By the way, am I correct in thinking that patch 1 and 2 are actually
+independent of each other? So I'd just pick patch2 for the Rockchip tree
+(as we do have a text-binding) and you can handle the yaml conversion
+in a followup or whatever?
 
-Rob
+Thanks
+Heiko
+
+
