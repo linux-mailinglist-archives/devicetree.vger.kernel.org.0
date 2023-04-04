@@ -2,113 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7EB6D60E7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6216D618E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:48:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235016AbjDDMiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 08:38:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54220 "EHLO
+        id S234686AbjDDMs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 08:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234964AbjDDMh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:37:59 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6584DE65;
-        Tue,  4 Apr 2023 05:37:30 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-17aceccdcf6so34302320fac.9;
-        Tue, 04 Apr 2023 05:37:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680611796;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0jw5cqutZbx/QW7WKjOQs2owiMOWHGW+suiwBs6SJ38=;
-        b=gp0iFRlZFIZk4vkje2zkclsavRf7hw6jlUvRF1UAHKjNfbDKCN3fXdJ/WYBDYk5TDf
-         +pxb2zZcR6/N0+Y4wk5RigcT2EilQL6hUbmilBy7KbJ4Tp/lY6aqsZWMkhEuSXe4zJf+
-         5YnTHMXW1t1iP7LXXMs+7LNfVskMEuV03gUqpsJEUScjVsYCvxnk3I1j5O4qHdW1bTRM
-         oO39Q6E/LCNkf3b9/nn7oDO5NzduRecwUUx6+yYHSe2GEjFaiNUeY+w76IChgko5aLUe
-         K72wn0B0RDmWaYrD30/mHmzRuTkK32hXXY/OmQfO+51p57qtaOoq7DW/DOvsKl6k5qgP
-         sKIw==
-X-Gm-Message-State: AAQBX9cU+jlbW4tmu0Kc/CMpC3wS+MPvhtYNuHRveq4QXbH7HokjBHMy
-        flKvclt20Xh0dw2Kg1T9HA==
-X-Google-Smtp-Source: AKy350bhRqX4FAch/8GEKSjtpqleOc3Q0BdTRsPuYpRjYCW4EMYiAFL7XmR8fMG3R30XCkec0VxWAA==
-X-Received: by 2002:a05:6870:d1c8:b0:17a:a7af:6cee with SMTP id b8-20020a056870d1c800b0017aa7af6ceemr1512478oac.51.1680611796368;
-        Tue, 04 Apr 2023 05:36:36 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y206-20020aca32d7000000b0038b0dd1c040sm3353259oiy.3.2023.04.04.05.36.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 05:36:35 -0700 (PDT)
-Received: (nullmailer pid 3710629 invoked by uid 1000);
-        Tue, 04 Apr 2023 12:36:32 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        devicetree@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S234997AbjDDMs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:48:28 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E91A3586;
+        Tue,  4 Apr 2023 05:48:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1680611806; bh=5FjolS6OmiyNi3Dzbu2WcgmbPn9JvTWmxSdnDWKiKWQ=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=ekYLNbm4eIMpAS/2QpV2eXW1eLcINLpi0sYHFXrqmJpHL9JDeStckypjFhusNmFjO
+         dNaOyaUhPx5+HAEjMbueIreyWQd0chPLZtqnu2+pn0143cXUOJBiqKUo4HiG72zq1L
+         +VS4wNkcANEH1vpPfgM82qM9M91Qb1ThqqEn5oYI=
+Date:   Tue, 4 Apr 2023 14:36:46 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
+Cc:     linux-kernel@vger.kernel.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-watchdog@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Martijn Braam <martijn@brixit.nl>,
         Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230404054642.5691-1-otabeknazrullaev1998@gmail.com>
-References: <20230404054642.5691-1-otabeknazrullaev1998@gmail.com>
-Message-Id: <168061169045.3708460.6798007287517476603.robh@kernel.org>
-Subject: Re: [PATCH] watchdog: dt-bindings: atmel-at91rm9200-wdt convert to
- json-schema
-Date:   Tue, 04 Apr 2023 07:36:32 -0500
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
+ Pinephone Pro to 1.5 MB
+Message-ID: <20230404123646.5iiznbhnyoama5pp@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        linux-kernel@vger.kernel.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martijn Braam <martijn@brixit.nl>, Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20230403175937.2842085-1-javierm@redhat.com>
+ <3738011.44csPzL39Z@diego>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3738011.44csPzL39Z@diego>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 04 Apr 2023 14:46:40 +0900, Otabek Nazrullaev wrote:
-> Convert atmel AT91RM9200 system timer watchdog from text bindings
-> to YAML format
+On Tue, Apr 04, 2023 at 09:51:11AM +0200, Heiko Stübner wrote:
+> Hi,
 > 
-> Signed-off-by: Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
-> ---
->  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 ------
->  .../watchdog/atmel-at91rm9200-wdt.yaml        | 28 +++++++++++++++++++
->  2 files changed, 28 insertions(+), 9 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.yaml
+> Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
+> > This baud rate is set for the device by mainline u-boot and is also what
+> > is set in the Pinebook Pro Device Tree, which is a device similar to the
+> > PinePhone Pro but with a different form factor.
+> > 
+> > Otherwise, the baud rate of the firmware and Linux don't match by default
+> > and a 'console=ttyS2,1500000n8' kernel command line parameter is required
+> > to have proper output for both.
 > 
+> The interesting question is always if this will break someone else's setup.
+> I've never really understood the strange setting of 1.5MBps, but on the
+> other hand it _is_ a reality on most boards.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Normal users of the phone probably run with UART console disabled, because
+UART is muxed with audio jack output and to enable it they have to add
+console=ttyS2 to the kernel command line and flip a physical switch inside
+the phone.
 
-yamllint warnings/errors:
+Fortunately, not sepcifying stdout-path baud rate in the options part
+of the string, will make the serial driver probe for the baud rate from
+the previous boot stage and make the user happy by keeping whatever was
+already set in the bootloader.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.example.dts:18.27-20.11: Warning (unit_address_vs_reg): /example-0/watchdog@fffffd00: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.example.dtb: /example-0/watchdog@fffffd00: failed to match any schema with compatible: ['atmel,at91rm9200-wdt']
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/atmel,at91sam9-wdt.example.dtb: watchdog@fffffd40: Unevaluated properties are not allowed ('atmel,dbg-halt', 'atmel,idle-halt', 'atmel,max-heartbeat-sec', 'atmel,min-heartbeat-sec', 'atmel,reset-type', 'atmel,watchdog-type', 'clocks', 'interrupts', 'reg' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.yaml
+  https://elixir.bootlin.com/linux/latest/source/drivers/tty/serial/8250/8250_port.c#L3496
 
-doc reference errors (make refcheckdocs):
+So we can make the kernel just keep the baudrate setup from the previous
+boot stage by:
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230404054642.5691-1-otabeknazrullaev1998@gmail.com
+	stdout-path = "serial2";
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+regards,
+	o.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> Personally I don't care that much either way, but would like a comment
+> from the other people working on that device - if possible.
+> 
+> I guess if we don't hear anything, I'll apply it nevertheless at some point
+> 
+> 
+> Heiko
+> 
+> 
+> > Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> > ---
+> > 
+> > I tried to instead get rid of the baud rate altogether, as suggested by
+> > Peter Robinson. AFAIU that should just pick whatever bad rate has been
+> > using by the early console.
+> > 
+> > But neither using 'stdout-path = "serial2" nor 'stdout-path = &uart2'
+> > worked for me.
+> > 
+> > In both cases I didn't have any output unless setting a baud rate using
+> > the 'console='param.
+> > 
+> >  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> > index a0795a2b1cb1..6bbe65bd5bd4 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> > @@ -26,7 +26,7 @@ aliases {
+> >  	};
+> >  
+> >  	chosen {
+> > -		stdout-path = "serial2:115200n8";
+> > +		stdout-path = "serial2:1500000n8";
+> >  	};
+> >  
+> >  	gpio-keys {
+> > 
+> > base-commit: 3adf89324a2b2a9dbc2c12d8895021e7e34e3346
+> > 
+> 
+> 
+> 
+> 
