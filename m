@@ -2,146 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C3216D5E9B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476D76D5EA9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:08:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234941AbjDDLGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34132 "EHLO
+        id S234545AbjDDLIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:08:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234713AbjDDLGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:06:10 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD175269;
-        Tue,  4 Apr 2023 04:04:13 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id ew6so128842487edb.7;
-        Tue, 04 Apr 2023 04:04:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680606238;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fna98BOXaPalQtbny6015p5IIFjUBKyffzvMmpdaxto=;
-        b=fs59/D5ouTu64eyM86CdFM3P+CGzngI5xTh6/WPM9C0AsjaF2rSxH9G/1DLE/B9Xrk
-         /gnOMtKYYdLqAAli9t0sXQRW8SzWgheyRpn0Son+BPrIUFdjthyZusXKJ/LiBG9U25Tg
-         AcwNd+4ar1K90HsL9fMuSiCZ+SlLnKrAtcydT9xaN0yrfNolpR9v5rkWlmE4BCynT2+x
-         Rq3P5JkjsOjgiN0xgXZ6jDPkR5N9rJbvFk0c9zGCtb74GiyBur8gFGznoVDsLtKelXPu
-         xOy70vEdVvQL9chEcO1mF8wAoPsDMl9l/IizYcQTPlaW4tMu+XHWLMZ/FcG4+vk8TLp1
-         uGFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680606238;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fna98BOXaPalQtbny6015p5IIFjUBKyffzvMmpdaxto=;
-        b=BE3KgWxifTHo6WiBxsT4lDcM4EFSyRTVYwLaeapoMYkwRYvXwQ4uU8yNouiOg1dAW0
-         z3T58pHfNITGr6sfalWBPl0dgnPaA1e7tjgSepAgFYDTzrIOmCWtWPahq5LpyTmNtiXz
-         s/Yw0cmpuvIn6uvfhxvIus1TrjCdUQJzWTgZ8ADt32zD5BtNTA+HqcC630jW3cm/BiXU
-         U9b30Z/4lgCPC8xVBP3RDpufy8TVKeLUxq5d1vI2s5JrU7N86xzL9Qays7QZPf/KuTAd
-         B8zNYMdzyVihu5YlqNk0tzT3jEOq6VDFLPaPBisDMo2EQHykVRZG0Emx+a0WHruwUM/Y
-         4wJQ==
-X-Gm-Message-State: AAQBX9cz1VnR8WWSXtNJ28s2pce3NgR52oA66YFwpFGcCj67Mf+cgTvb
-        dYzYxyQXISNZI2zUMV7R7KCycu5DAbI=
-X-Google-Smtp-Source: AKy350ao5TOqOSsKpv54TlBSUzVQIMTj7FyQSMApYVFUiEeRb5OUW3rOmEFeTU/uxFEmQq7VeSOCnQ==
-X-Received: by 2002:a05:6402:1a2c:b0:4fd:2b04:6e8b with SMTP id be12-20020a0564021a2c00b004fd2b046e8bmr2222804edb.29.1680606238642;
-        Tue, 04 Apr 2023 04:03:58 -0700 (PDT)
-Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ee55-20020a056402293700b004aef147add6sm5668875edb.47.2023.04.04.04.03.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 04:03:58 -0700 (PDT)
-Date:   Tue, 4 Apr 2023 13:03:56 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: tegra: Document Jetson Orin Nano
-Message-ID: <ZCwEHNeZEhvzclX6@orome>
-References: <20230331163159.17145-1-thierry.reding@gmail.com>
- <20230331163159.17145-2-thierry.reding@gmail.com>
- <944bc557-7090-4b5a-e1bc-31b99fad06e5@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tIuhWl8EGbu/wjct"
-Content-Disposition: inline
-In-Reply-To: <944bc557-7090-4b5a-e1bc-31b99fad06e5@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S234611AbjDDLI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:08:26 -0400
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094F23A8C;
+        Tue,  4 Apr 2023 04:06:53 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 59BA2581F56;
+        Tue,  4 Apr 2023 07:06:52 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 04 Apr 2023 07:06:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1680606412; x=1680613612; bh=z7
+        EzKZ0L03Vqajs+ogmzIxsIatsg8LuRD8oJ+p9J0SQ=; b=GnAWMe7LYftE+EzS5W
+        WOMzwLNVzjI9xjmYSaYEiCwtAe6jPlylQa2Fd7r1D5jPNZOSUEQqhmxRnPFOgU8W
+        WC8mNfm26+rhBxaI1sYbNO8IbAG39tY2USQliLK5MBMvnth1cB/aVdCJSTL++Q0M
+        jp2GKbTRpfCbLaWyWul7GZrhK9+qLkfi87LntytmpP/XDUfOHmCetOcPa1bWz2qP
+        ryiE694F8xPZ+vshZJEMJE/xHnO7MC2tEyvDSbl6guIotbD5G19VSWoCae7UJKSR
+        lNHHMA+lGjR1WXud18FhlMTjCmNpBKQuEMPOWf1WMzqEA0YM7kb4w94yiB9H2/nl
+        IleA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1680606412; x=1680613612; bh=z7EzKZ0L03Vqa
+        js+ogmzIxsIatsg8LuRD8oJ+p9J0SQ=; b=J2cm9zBGE9SXJJkI9w4MbSdW+Z90K
+        ed6R7RdlRFhcHMea2g0jA+rjsbKmdhQUMALfnfjNFAf0o7OWMabxP4c/Vs0CSJpN
+        /9g0Qw1CvJm/OfZ1ld9BoV3Pt1fpbhftfmLfj+XCgm0KjJEbZfOAoTbtOzGQ/Zug
+        F/0LPJY0zxpyuN4ouYvGSLUz0HQBXfrPVq1vu4grqah9ADA0/oapLfWU0KC+eD0E
+        rlcl90w4cJuc+syN32E4Z9g9J5ICptvO/1XeivZPirxkJjR+Pf1iSsiziToIqU0V
+        BkuucE9ib7K163aCDV9ytieu4JyKOQFnXa6fUmwNHDYjdDbSr/HDw/SLQ==
+X-ME-Sender: <xms:ygQsZEnCgUPZ8JbS-8VP0OAvdijeGFmJD7fQ3AFWHL4BCnLt3_rogA>
+    <xme:ygQsZD1rDwS86pHr9alTivTRygqat2h53eXMMFp0xNNFeIjc1UQDvQctQszXcCob7
+    ls-8q4ZRVfNIRZZc6o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeiledgfeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:ywQsZCrPhU64C5rSp1CXgBls8Hx_6__QDPdtx6NDedRHnxx7ChZFiw>
+    <xmx:ywQsZAldtFKVm1jZCPEu-uIQsatmNC7dbMd5g8ausQ8rijBjWUiJpg>
+    <xmx:ywQsZC138RABmk_OW4ckpB4mYsBiazH8XUmdAnuVd49yxjhj7tnbIg>
+    <xmx:zAQsZF_8VYUsO5M4ZN0lxPtlAquo8dT-hp6azBitrfy9Uhgr6uJ3pw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id E507AB60092; Tue,  4 Apr 2023 07:06:50 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-238-g746678b8b6-fm-20230329.001-g746678b8
+Mime-Version: 1.0
+Message-Id: <2a627c49-e0a3-4a7f-8c0a-37b1d3cb85dd@app.fastmail.com>
+In-Reply-To: <20230404082401.1087835-1-arnd@kernel.org>
+References: <20230404082401.1087835-1-arnd@kernel.org>
+Date:   Tue, 04 Apr 2023 13:06:30 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Arnd Bergmann" <arnd@kernel.org>,
+        "Tony Lindgren" <tony@atomide.com>
+Cc:     soc@kernel.org, "Aaro Koskinen" <aaro.koskinen@iki.fi>,
+        "Bartosz Golaszewski" <brgl@bgdev.pl>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        "Christian Lamparter" <chunkeey@googlemail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Felipe Balbi" <balbi@kernel.org>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Johannes Berg" <johannes@sipsolutions.net>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Rob Herring" <robh+dt@kernel.org>, linux-wireless@vger.kernel.org,
+        Netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] p54spi devicetree conversion
+Content-Type: text/plain
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Apr 4, 2023, at 10:23, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> I now revisited the earlier submission, hopefully addressing
+> all of the feedback correctly. This is still untested, but if
+> everyone is happy, it could still make it into v6.4.
+>
+> Patch 3 touches both driver and platform parts, and can't
+> easily be split up without breaking bisectability, so I think
+> it's easiest to merge it through the soc tree, with Christian's
+> Ack.
+>
+> Tony, I see you already sent a set of pull requests, let me know
+> if you want to pick up these patches for a future round (6.4
+> or 6.5), or if I should just apply them on top.
 
---tIuhWl8EGbu/wjct
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I just spotted two mistakes myself, so there will have to be a v3:
+Patch 1 is missing a changelog text, and patch 3 contains a typo
+that only now triggered in my randconfig builds.
 
-On Fri, Mar 31, 2023 at 10:20:16PM +0200, Krzysztof Kozlowski wrote:
-> On 31/03/2023 18:31, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > The Jetson Orin Nano is the little sibling of the Jetson Orin NX.
-> > Document the corresponding compatible strings for these devices.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/tegra.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documen=
-tation/devicetree/bindings/arm/tegra.yaml
-> > index 61e638c9cad7..60c151da5e06 100644
-> > --- a/Documentation/devicetree/bindings/arm/tegra.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-> > @@ -220,6 +220,13 @@ properties:
-> >                - nvidia,p3767-0001
-> >                - nvidia,p3767-0002
-> >            - const: nvidia,tegra234
-> > +      - description: Jetson Orin Nano
-> > +        items:
-> > +          - enum:
-> > +              - nvidia,p3767-0003
-> > +              - nvidia,p3767-0004
-> > +              - nvidia,p3767-0005
->=20
-> Similar questions as for patch #1. Where are the DTSes? Where are the
-> differences? If we keep documenting every SKU which is the same from
-> user/OS perspective, this list would grow crazy.
-
-As for the concern of this list growing crazy: as far as I know it's
-complete after this. I'm not aware of any other SKUs being planned for
-the future. Obviously that could always change, but again, I think there
-is some advantage in being as complete as possible when documenting
-these, otherwise someone will eventually come across a SKU that's not
-documented and be easily confused.
-
-Thierry
-
---tIuhWl8EGbu/wjct
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQsBBwACgkQ3SOs138+
-s6EbZg/9FD4w/ntB8fSVDEIKKyhtSt8sgxLcjuz1KK2ZrwKvevU7LgqmuAAJ29yT
-QyTehky+UMhGdCcWied+DhtwTNtt3kfosYStr0HFKZOFv0Cm1wBpgMz7PytjkA5U
-QmoOvhILWsm152Z8PqNK999nJktGDmJRCTFh99yvyLrCXG5XG/HKyfsJDg++GP6w
-btMJUHKCVsyd399gyMElvlUcjRK+DvN7lQpkjTQm3ebldt6KMB2WdTYLsTc8J2SR
-qfwxfGo7dA+F74vxOs6iqq6hw0wRSpzLSh0fAxRPs//8PwR512jwhr5GFsoxi4wJ
-RLQSIW8OkvFv0o2uCI7UNUXv3/HbcxMs74XCRaU5hFkad1x6kr436QW+qnhT9pLq
-ShVuoxsoPfo0orl91eK6/8LusWv/OrIoovq2UAJ/MwSnpcwQLcWi278G4ailoP6N
-3QlBkKP5mc/TrIU0LTR0he3jSOzJD2M4YviecE8DqLT74XBHDRWo8eEiUNAyyI0w
-5eGOvLKIT+JGMzxlVwkue1LXBvuGiI+Lo2apqXZdaTK+NyNCfMZuIiHnzYEsU7Fn
-EDz7Y6Lw5mW8MbKcrz6oS9bkNitwRG4aE5YgodVGp3d4NMk5r+Fpm4dLkEhJ8jdV
-U8OJJz79YxJl3sIau099EENakAcZUvpy8tKUqep/5r6vb7dDDn4=
-=Lukh
------END PGP SIGNATURE-----
-
---tIuhWl8EGbu/wjct--
+      Arnd
