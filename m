@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87FDC6D64BF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 16:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 019226D64F2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 16:13:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235837AbjDDOGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 10:06:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51642 "EHLO
+        id S235488AbjDDONp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 10:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235620AbjDDOGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 10:06:11 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7775255
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 07:05:50 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id r187so38791938ybr.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 07:05:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680617150;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P/rAq+ST3GBb2vUM4m8DtvtohGPy7+QO7yjCXRomrhI=;
-        b=scZVfz5ryQtum9HOUhBLd6U+SRbeQdOY7ntr1sB1wL39EsWMyp1eZ+TaDyCAFdHS74
-         PT2H8y57Rr7zYQxewXQBb1W3tjx+PPa55CaLQTJOJMhuyG+tkXp9qDw7KpGY5eeiEu9z
-         5eSg2E8PQQ/1Y5bVnrhXuCfex9m0tQmdQ6Nv5KP4/HuIfuEVEBz11HxjQBB8u7sb5LHV
-         98Mx/nGGYptIGjvPTzQWiOfDLUuZ3kn+mNBXQcS0uB2YP3LAR1NHggsVDBrLK6Q/3A0q
-         r/TKMO0hl4dMiJRTnd3s5TuGoiSGwuvIl/XR04mdRPG011jVIQHesVGJVbBlmPBFwRmT
-         StUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680617150;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P/rAq+ST3GBb2vUM4m8DtvtohGPy7+QO7yjCXRomrhI=;
-        b=L0b5UDGZGvPgy3Si24/MMT7iHeaNPXZ3rUaGqLMXS6LRcbEb9N8aOORhBnBpqj3o4d
-         +f/lTviAp7LcVLeUFOIMGXU3bD8TqlsOWUxKg/GwFRSBdIY4BwR3q9hMONiBzEmDnYpo
-         ahYZLR35PMi4VWtPKiFOuQabch2tE+NiXPN+Zz2XvT7adaMxvhOl5X+LoTri0fSmRufc
-         LAAYiD7I+RCAb44ItJf+h2lF+IvOkI8ytJtpFaU9CDhzJq+CxG3WcCw24RTPEG4+OKhZ
-         tJH6TK1s2IZnxLOGeBLy9kKVKyK4A52XF8f3UB1QvJq9P1fsoaf5z8Z6oM65QE2ZQYRX
-         lSrw==
-X-Gm-Message-State: AAQBX9dRFefUglLXJItzau6iYdIbwJqxxJljJaUdHJtiVcZMMBXW3XY9
-        sSIT05T/ot5O+Uimtl3bKgFkYjrvEag72xDCd2f5yw==
-X-Google-Smtp-Source: AKy350axZePoyx4o9rTILxAsbYkfqxgivSY+UY0/KR4iEdDvk1UQSC2TmZR7wYJl6Qpynoa1bHyUBL3hoWmZg2/iTT8=
-X-Received: by 2002:a25:c383:0:b0:b09:6f3d:ea1f with SMTP id
- t125-20020a25c383000000b00b096f3dea1fmr1966432ybf.4.1680617150033; Tue, 04
- Apr 2023 07:05:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230403114033.8336-1-edmund.berenson@emlix.com> <20230403114033.8336-2-edmund.berenson@emlix.com>
-In-Reply-To: <20230403114033.8336-2-edmund.berenson@emlix.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Apr 2023 16:05:39 +0200
-Message-ID: <CACRpkdbnj-BiA8D0e4nza-za-E8g_AEBNjR4b3gWUZpw70U33g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: max7317: Add gpio expander driver
-To:     Edmund Berenson <edmund.berenson@emlix.com>,
-        Michael Walle <michael@walle.cc>
-Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S235737AbjDDONl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 10:13:41 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03ACB558F;
+        Tue,  4 Apr 2023 07:13:08 -0700 (PDT)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3D7E6100005;
+        Tue,  4 Apr 2023 14:12:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1680617587;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Zl7MLykOKA8UlNhyqu3tWD/vjZRODEGN3E9wOmRfmr8=;
+        b=HERL1THee0w4ARcbmdqBbW9M2FrPt7M+4Zaeh/18I2OVyQ3MM0Usdk7NaPHFHD9vHrkI+I
+        e6Rw2Qo8DqxzMLNRPH7tdMTM4sXVOKb3byVmNQw1hU9hyte98VxCkOevjiFKXUjndP7l0o
+        fQXdMmYky22zAt7WMMTqJNETXimQFN7kaXSK2gu+vzkgvcXwnoMVA+S4byJsnO9o0TyEdL
+        NTpBE/7o4qGE7Tm1KSr5epsIsp2X3gs1bhxOKwvfmoWs1fJ9uXdwMxKdp72zRd/W2yJ+BC
+        2f5+NrOZt/WcDePLlFvQ+Cr+DbQfAOEuR513WeF4ixVoJRbe1FkVNLOkeaT62Q==
+Date:   Tue, 4 Apr 2023 16:12:51 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [RESEND PATCH v4 03/21] staging: media: tegra-video: fix
+ .vidioc_enum_fmt_vid_cap to return all formats
+Message-ID: <20230404161251.272cc78b@booty>
+In-Reply-To: <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
+References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
+        <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
+        <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,22 +71,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 3, 2023 at 1:41=E2=80=AFPM Edmund Berenson
-<edmund.berenson@emlix.com> wrote:
+Hello Hans,
 
-> Add driver for maxim MAX7317 SPI-Interfaced 10 Port
-> GPIO Expander.
->
-> v2: adjust driver to use regmap
->
-> Co-developed-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-> Signed-off-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+On Wed, 29 Mar 2023 13:16:22 +0200
+Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
 
-Notwithstanding the other comments from Bartosz, this seems like
-a driver that should be using the regmap GPIO helper library.
-git grep GPIO_REGMAP will show you examples of other drivers
-that use this and how it is used.
+> Hi Luca,
+> 
+> I finally found the time to test this series. It looks OK, except for this patch.
 
-Yours,
-Linus Walleij
+Thank you very much for taking the time!
+
+> The list of supported formats really has to be the intersection of what the tegra
+> supports and what the sensor supports.
+> 
+> Otherwise you would advertise pixelformats that cannot be used, and the application
+> would have no way of knowing that.
+
+As far as I understand, I think we should rather make this driver fully
+behave as an MC-centric device. It is already using MC quite
+successfully after all.
+
+Do you think this is correct?
+
+If you do, then I think the plan would be:
+
+ - Add the V4L2_CAP_IO_MC flag
+ - As the mbus_code in get_format appropriately
+ - Leave the changes in this patch unmodified otherwise
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
