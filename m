@@ -2,218 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1DA6D683A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D156D6887
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235292AbjDDQEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 12:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40152 "EHLO
+        id S235520AbjDDQMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 12:12:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235241AbjDDQEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:04:23 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 097063AB5;
-        Tue,  4 Apr 2023 09:04:22 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 75E1D5C006A;
-        Tue,  4 Apr 2023 12:04:21 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Tue, 04 Apr 2023 12:04:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1680624261; x=1680710661; bh=B7
-        /5AIBnfIH/2s6wMTpXdZQPThBIIGqSpAmW70gcxJ8=; b=SUYHFB99wp5EVSYI4A
-        gEXfk4DR2sIW53SKv/sK8mQ40h9uHeZar2fOLogWctRXeyONjcRP5mkOyj43e20q
-        44m/5PqF9aAGQ0H6jYWa0EMDMo1k0AEYvZSylvUEiEJO0KL5m24acn6OocLRekEw
-        My46wpqs4Ug+IxaK7MtBwRQFiKV5afdHzg95mVg6idRaOaSZ2EhS4N5w2ywV6oM8
-        SVEpKF67XSH/o8uayDtAZZb7mrm0CKULLwYjV5S4fIWgTCC2otNNEA3wPcyeGr2l
-        QDqPst680TbS1zQz8M3lz8O2jfjC2txXhLwHcGEIx6ahePX1hRuAdZ7noQzjJDQQ
-        0Ebg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1680624261; x=1680710661; bh=B7/5AIBnfIH/2
-        s6wMTpXdZQPThBIIGqSpAmW70gcxJ8=; b=vZBInLoRUKTwFqkSv7Om1qQpT0X9Q
-        NcFP90yaX0kv2V8raXfljaw0C0qKHuB+wmZQ2A74HefTdA+0wJvziBERC/2gwlD2
-        K+adDuhmGi25+PR/UJ05w+Q/D7qsVueSsn0TLpV3dH4guPg8lSJaEEJBcuDiM8Oi
-        hksBILaaknSQ4z8MqV6fNeO8lj9m1Dpu3acfAcCLRPvy1fsmMeW3cJL8WwdfSank
-        l7hr4UX4wL0O1gsomnV3KQNDy1eprXCxHoj3tPYZVMKB9RZpMp8HcSiRc+ygcKpY
-        613ebUUXdtNV5QE+8VkZ8Hp5EkZ/zUSq7rMQoBrLEfYZ+QeRetARqZB4A==
-X-ME-Sender: <xms:hUosZKD9yIXHX1ngbO9PMdL2NNmrCIaLr69DgD70Oa2J0kPmzBOY1g>
-    <xme:hUosZEjZ52G6SYecvog42CHGvsTJE-JFJ0Xi4Y2VILzNAeO8JWIS8c5CH-rr52dJi
-    vFzP_l8NBSr4mB2A-g>
-X-ME-Received: <xmr:hUosZNmLrrIX4CNFcSdwpp4ANTIgzs2je6h05rrUhipLQlDAsLEALASX3cd5SfRlajEbicpv8sBOBPavSp1mzxRKtvEIDrk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeiledgleeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpedtleekjeeiudefvdfhieffteelhfeivdeliefgieeugffhvdelieffjeei
-    geetjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
-    hh
-X-ME-Proxy: <xmx:hUosZIzt5USDVNgBRVjmO02gVpu3Mh1sgxkyKJkdzez4VQo55eUUKg>
-    <xmx:hUosZPSwpYpkmyfhNFJE_ufFjg0Vs-SYc4NmMJhxeQWQN6iuXpHbwQ>
-    <xmx:hUosZDYsXh9UMf1r5abS4VR4xyngz_VmqAI7dt31IYU3P8c4cyxxfw>
-    <xmx:hUosZOBnLbfNxdFy2qK1moPd_tGUDaNOL5kxABGqVGYWyZywAj3Ukw>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 4 Apr 2023 12:04:20 -0400 (EDT)
-Date:   Tue, 4 Apr 2023 18:04:19 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH 7/7] dt-bindings: display: add panel-timing property to
- sitronix,st7789v
-Message-ID: <20230404160419.xlnlxq7sbsqopfwo@houat>
-References: <20230314115644.3775169-1-gerald.loacker@wolfvision.net>
- <20230314115644.3775169-8-gerald.loacker@wolfvision.net>
- <20230316215735.GA3940832-robh@kernel.org>
- <dd26836f-d54c-65d1-0acc-8a09745bb066@wolfvision.net>
- <20230329091636.mu6ml3gvw5mvkhm4@penduick>
- <d5a31f75-eb93-0ff2-cd5b-19cdec58e103@wolfvision.net>
- <20230330145811.asot2cvux4ebbeqy@penduick>
- <5f1f90e2-eee8-d941-e4b0-7f2411a9d415@wolfvision.net>
+        with ESMTP id S235707AbjDDQMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:12:34 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AD51708;
+        Tue,  4 Apr 2023 09:12:33 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id w9so132787078edc.3;
+        Tue, 04 Apr 2023 09:12:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680624751;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CEde4dazqs8JsdpTq9e976ZMwIeqbEXbVwUyENJtDV0=;
+        b=Z/iFB9SXOwMEOpCmleolmC6l2LhvyD3XMh7WKOQsjMrvrxUfm8ennXwNohnigYv577
+         B0hcxCfK9O73k2WCkdVlygKAlqYEEo72A8k1oNl+MsgsyTJGhgafCec/5kegRzRVLQXT
+         OCOfvy9H+0BPY68owun4pHVK1Y2z87oAUDjbO42Onc2uTvHyqB3Pk9lYHWCIitiB3L+W
+         6O1IIhVrJUlTQOnrp6Z+7/NZyyt//bCrMkRfulIemxRMeROJ6K/RYHwuMY84B7/V8FIH
+         Esd2Q2uWSlAzo36yuNwBvSFHrCTIQzFqztfrFUU82/mwACajVe92PJiD1PZ2RvDi8R/9
+         F1Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680624751;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CEde4dazqs8JsdpTq9e976ZMwIeqbEXbVwUyENJtDV0=;
+        b=iUBMRAh5T6utDDl3ynVEUZS5TlACSz+LAp/hUUQOY1NdPj3zDYd7Tl4pitG0RVdmbb
+         odyytsm6k/AIscy3PZw+IqHlI4wgqZ6G+x/QHH7ez8isjXr2bZLoe3a4Lv9Z8weCoDXN
+         T8dBjNK0i1UcxfJJr+fm46cTCFV4ENzTLkJAVbKYaYbrA7OnbEoiOoh2N3TBzLZh5foS
+         fzlrY0evkpyacz44ssRNQ+ODR4WxEYZmkcDvDK2tT2eUdnnI7GzKKG9KaFNvRlXmVNti
+         3juFPztn2M48Ej/kVdhEjT9C2G8aLPudKYUeWmmGevG3Up+l14Tdr6nBVkz7rigs2AOZ
+         VVqQ==
+X-Gm-Message-State: AAQBX9dfd8BN4MN2pI84OYq7OJhZQWlZEuBPlQI6zogVbAVh0jYOgFbu
+        aC2nMpFBhiM/foUcUbXy5Dc=
+X-Google-Smtp-Source: AKy350Y7Q1EvlaIMvcDZzEKWbHr8fByK3cVf/k9Wwlk6Un7sG8GyowpBQ8MoX8kuqDf1J9EYnHhtUg==
+X-Received: by 2002:a17:906:c217:b0:92d:9767:8e0a with SMTP id d23-20020a170906c21700b0092d97678e0amr102818ejz.13.1680624751436;
+        Tue, 04 Apr 2023 09:12:31 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id jo25-20020a170906f6d900b0093408d33875sm6126508ejb.49.2023.04.04.09.12.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 09:12:31 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     oder_chiou@realtek.com, thierry.reding@gmail.com,
+        Sameer Pujar <spujar@nvidia.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        broonie@kernel.org, jonathanh@nvidia.com
+Cc:     kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, tiwai@suse.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: tegra: Audio codec support on Jetson AGX Orin
+Date:   Tue,  4 Apr 2023 18:12:30 +0200
+Message-Id: <168062474005.2644933.17495662209402914912.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <1676263474-13346-1-git-send-email-spujar@nvidia.com>
+References: <1676263474-13346-1-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="v7utqc2px55llm33"
-Content-Disposition: inline
-In-Reply-To: <5f1f90e2-eee8-d941-e4b0-7f2411a9d415@wolfvision.net>
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
---v7utqc2px55llm33
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 13 Feb 2023 10:14:34 +0530, Sameer Pujar wrote:
+> Jetson AGX Orin has onboard RT5640 audio codec. This patch adds the
+> codec device node and the bindings to I2S1 interface.
+> 
+> 
 
-On Fri, Mar 31, 2023 at 11:36:43AM +0200, Michael Riesch wrote:
-> On 3/30/23 16:58, Maxime Ripard wrote:
-> > On Wed, Mar 29, 2023 at 12:08:50PM +0200, Michael Riesch wrote:
-> >> On 3/29/23 11:16, Maxime Ripard wrote:
-> >>> On Thu, Mar 16, 2023 at 11:29:53PM +0100, Michael Riesch wrote:
-> >>>> Hi Rob,
-> >>>>
-> >>>> On 3/16/23 22:57, Rob Herring wrote:
-> >>>>> On Tue, Mar 14, 2023 at 12:56:44PM +0100, Gerald Loacker wrote:
-> >>>>>> The sitronix-st7789v driver now considers the panel-timing propert=
-y.
-> >>>>>
-> >>>>> I read the patch for that and still don't know 'why'. Commit messag=
-es=20
-> >>>>> should answer why.
-> >>>>>
-> >>>>>> Add the property to the documentation.
-> >>>>>
-> >>>>> We generally don't put timings in DT for panels. Why is this one=20
-> >>>>> special?
-> >>>>
-> >>>> For now, having the timings in the device tree allows for setting the
-> >>>> hsync/vsync/de polarity.
-> >>>>
-> >>>> As a next step, we aim to implement the partial mode feature of this
-> >>>> panel. It is possible to use only a certain region of the panel, whi=
-ch
-> >>>> is helpful e.g., when a part of the panel is occluded and should not=
- be
-> >>>> considered by DRM. We thought that this could be specified as timing=
- in DT.
-> >>>>
-> >>>> (The hactive and vactive properties serve as dimensions of this cert=
-ain
-> >>>> region, of course. We still need to specify somehow the position of =
-the
-> >>>> region. Maybe with additional properties hactive-start and vactive-s=
-tart?)
-> >>>>
-> >>>> What do you think about that?
-> >>>
-> >>> I don't see why we would need the device tree to support that. What y=
-ou
-> >>> described is essentially what overscan is for HDMI/analog output, and=
- we
-> >>> already have everything to deal with overscan properly in KMS.
-> >>
-> >> Thanks for your response, but I am afraid I don't quite follow.
-> >>
-> >> How are we supposed to expose control over the hsync/vsync/data enable
-> >> polarity? I only know that the display controller and the panel need to
-> >> agree on a setting that works for both. What is the canonical way to do
-> >> this?
-> >=20
-> > So typically, it would come from the panel datasheet and would thus be
-> > exposed by the panel driver. st7789v is not a panel itself but a (pretty
-> > flexible) panel controller so it's not fixed and I don't think we have a
-> > good answer to that (yet).
->=20
-> Then it seems to me that creating a panel driver (=3D st8879v panel
-> controller driver with a new compatible) would make sense.
+Applied, thanks!
 
-I don't see why? The entire controller is the same except (maybe) for
-some initialization data. Doing a new driver for it seems like taking
-the easy way out?
+[1/1] arm64: tegra: Audio codec support on Jetson AGX Orin
+      commit: b903a6c5aaa862f8b88f4be4431ccca3b6fbc187
 
-> By coincidence Sebastian Reichel has come up with this approach
-> recently, see
-> https://lore.kernel.org/dri-devel/20230317232355.1554980-1-sre@kernel.org/
-> We just need a way to resolve the conflicts between the two series.
->=20
-> Cc: Sebastian
-
-That's not a new driver though? That approach looks sane to me.
-
-> >> A different question is the partial mode, for which (IIUC) you suggest
-> >> the overscan feature. As I have never heard of this before, it would be
-> >> very nice if you could point me to some examples. Where would the
-> >> effective resolution be set in this case?
-> >=20
-> > So, back when CRT were a thing the edges of the tube were masked by the
-> > plastic case. HDMI inherited from that and that's why you still have
-> > some UI on some devices (like consoles) to setup the active area of the
-> > display.
-> >=20
-> > The underlying issue is exactly what you describe: the active area is
-> > larger than what the plastic case allows to see. I don't think anyone
-> > ever had the usecase you have, but it would be the right solution to me
-> > to solve essentially the same issue the same way we do on other output
-> > types.
->=20
-> OK, we'll look into the overscan feature. But still the information
-> about the active area should come from the driver, right?
-
-No, the userspace is in charge there.
-
-Maxime
-
---v7utqc2px55llm33
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZCxKgwAKCRDj7w1vZxhR
-xVipAP9Iuopj25k9qKGAx0RxPd382YqPkKlLJHe75NBMZWCIEgEA+Yk5S6h0cLuD
-lqjyBNtPVjpd1r1ePFYCbs/04ufdNwQ=
-=tyEC
------END PGP SIGNATURE-----
-
---v7utqc2px55llm33--
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
