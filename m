@@ -2,120 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029B46D5CF6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 12:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F81B6D5D68
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 12:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234441AbjDDKSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 06:18:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
+        id S234401AbjDDKYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 06:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234448AbjDDKSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 06:18:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E46662D6D;
-        Tue,  4 Apr 2023 03:17:56 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 334A8uoE006539;
-        Tue, 4 Apr 2023 10:17:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=UygHRW+XeXRLDobQrXhjKYj5INVdFOoWpX9KDos1R9k=;
- b=DOo7P7g+N0mePU8yf/R+VSwjXf0462XdMnlLmq13FIgPonuUuvqdp5mX9rzejL/pRp+S
- IC7gsZNB2HyteNvhqKaiwSuP4g02JA6uEGnAcYYJrpD28vcPBoO3r0bsdJ8BkXVEx7fP
- dERDItjBEfSTPJMA0bixWQI+F+bX8Luv/u4gbZXDBExSr4GIoS4/lK74gSJxYyfaPS+z
- GsYqBX7yetBk3n7dmGMlqUmlKXQQjTjDGkGcEw/aoTS6mmNCkUobpHve/rd48mN1axCT
- Vt3cDFbADZ7tzawikkJW8FD3I5BNXS6i4p44uVTkGIRqDN3GuxSIyME4g8jloTE8vq3D ig== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3prg8wr7ty-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 04 Apr 2023 10:17:28 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 334AHRu7002497
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 4 Apr 2023 10:17:27 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 4 Apr 2023 03:17:17 -0700
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <geert+renesas@glider.be>, <rafal@milecki.pl>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-Subject: [PATCH V11 4/4] arm64: defconfig: Enable IPQ9574 SoC base configs
-Date:   Tue, 4 Apr 2023 15:46:22 +0530
-Message-ID: <20230404101622.5394-5-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230404101622.5394-1-quic_devipriy@quicinc.com>
-References: <20230404101622.5394-1-quic_devipriy@quicinc.com>
+        with ESMTP id S234367AbjDDKY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 06:24:29 -0400
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2542E3C0F;
+        Tue,  4 Apr 2023 03:23:40 -0700 (PDT)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        id 1pjdoS-0000Kc-Kp; Tue, 04 Apr 2023 12:22:52 +0200
+Message-ID: <8dc2a1b9-fa4f-417b-4faf-2a3a7872f503@leemhuis.info>
+Date:   Tue, 4 Apr 2023 12:22:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jrINZPVCYN5UwMFqxWtl6R4UbjFsrPcy
-X-Proofpoint-ORIG-GUID: jrINZPVCYN5UwMFqxWtl6R4UbjFsrPcy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-04_03,2023-04-04_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 phishscore=0 mlxscore=0 mlxlogscore=723
- adultscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304040094
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Subject: Re: Kernel Panic - V6.2 - Reseved memory issue
+Content-Language: en-US, de-DE
+To:     tanure@linux.com, kernelnewbies <kernelnewbies@kernelnewbies.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+References: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
+From:   "Linux regression tracking #adding (Thorsten Leemhuis)" 
+        <regressions@leemhuis.info>
+Cc:     Linux kernel regressions list <regressions@lists.linux.dev>
+In-Reply-To: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1680603821;9767cb8e;
+X-HE-SMSGID: 1pjdoS-0000Kc-Kp
+X-Spam-Status: No, score=-1.9 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs for Qualcomm IPQ9574 SoC
+[CCing the regression list, as it should be in the loop for regressions:
+https://docs.kernel.org/admin-guide/reporting-regressions.html]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+[TLDR: I'm adding this report to the list of tracked Linux kernel
+regressions; the text you find below is based on a few templates
+paragraphs you might have encountered already in similar form.
+See link in footer if these mails annoy you.]
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 29c79a6a85eb..8f24c280dec2 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -557,6 +557,7 @@ CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
- CONFIG_PINCTRL_IPQ5332=y
- CONFIG_PINCTRL_IPQ6018=y
-+CONFIG_PINCTRL_IPQ9574=y
- CONFIG_PINCTRL_MSM8916=y
- CONFIG_PINCTRL_MSM8953=y
- CONFIG_PINCTRL_MSM8976=y
-@@ -1155,6 +1156,7 @@ CONFIG_QCOM_CLK_RPMH=y
- CONFIG_IPQ_GCC_5332=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
-+CONFIG_IPQ_GCC_9574=y
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_GCC_8994=y
- CONFIG_MSM_MMCC_8994=m
--- 
-2.17.1
+On 02.04.23 10:10, Lucas Tanure wrote:
+> 
+> I am trying to fix a kernel panic I am seeing on my vim3 board (Amlogic A311D).
+> I don't have enough knowledge about this area, but my current guess is
+> the kernel is using a piece of memory belonging to ARM-trusted
+> firmware that I shouldn't.
+> 
+
+Thanks for the report. To be sure the issue doesn't fall through the
+cracks unnoticed, I'm adding it to regzbot, the Linux kernel regression
+tracking bot (note: the version specified below here might not be fully
+accurate):
+
+#regzbot ^introduced v5.9..v5.15
+#regzbot title amlogic boards: random kernel panics (memory corruption)
+#regzbot monitor:
+https://lore.kernel.org/linux-arm-kernel/40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch/
+#regzbot ignore-activity
+
+This isn't a regression? This issue or a fix for it are already
+discussed somewhere else? It was fixed already? You want to clarify when
+the regression started to happen? Or point out I got the title or
+something else totally wrong? Then just reply and tell me -- ideally
+while also telling regzbot about it, as explained by the page listed in
+the footer of this mail.
+
+Developers: When fixing the issue, remember to add 'Link:' tags pointing
+to the report (the parent of this mail). See page linked in footer for
+details.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+That page also explains what to do if mails like this annoy you.
 
