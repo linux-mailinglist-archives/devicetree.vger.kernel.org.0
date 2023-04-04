@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22E416D5871
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 08:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD4F36D589E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 08:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233652AbjDDGJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 02:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
+        id S233397AbjDDGSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 02:18:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233618AbjDDGJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 02:09:02 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FD51BCD
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 23:09:00 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id eg48so125968858edb.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 23:09:00 -0700 (PDT)
+        with ESMTP id S233413AbjDDGSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 02:18:13 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534F530FD
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 23:17:44 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id i5so126341990eda.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 23:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680588538;
+        d=linaro.org; s=google; t=1680589062;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xckjHRqAlVFqSSMovCWlCEaEkbe+U6hDZsaBMakZfUw=;
-        b=gFgwpbl0BxgP8SYTBqiWNf2YY9d3jy7QlcfGKO/CRBGqx43V6Cwypg8ziYR/58dhIR
-         1Whdkl1X7pMXJp5wm6mvVgpG02B3dEkS8nzgCnwATfmWu26uWVtSxbedfw02/3lCO/kl
-         QDah2AyLolNEgifPwqCzCArs2DnGXqFYJ1FLyxAH+57XL+y/P4GcaNyKTgCwWjY3rm5Q
-         niIbVE1ULhpI9TRCxko1lbfM+i3E1+u3uq77dzjv7/Gb4PBtPzunBBIzR1ziQ5EJQZ0/
-         c0iBSOASALb9TyjLJGdGaTloNVaV7ZRDjIh3Vs4oRYkStEBxg+vMKYCylwdWvPHkrZGD
-         XtNQ==
+        bh=iDjaU2rar9tWF1A9zRNafmNtWp0F/aW8MT9UYDo8+8s=;
+        b=ER/Gjr8X3DKa1om2wxA8O4xQ/E+zMFEI/9rl+Lx047ZntTFt4fEiUvmpOwEs6vQWTD
+         3P9RIpT0v1Od8EmCfSbASaXuWCKTWn0m6XN/nGaABvumC0ywdZn6Bj0PAfh3tL+cDCz2
+         RXMnBE7s2gbQF9r+89T4JsG/JO2b9SIoQBdwFsIotIaa+ArG7i2+07TLJ9aN6Wcn10e+
+         BwP07mCUULfB7dJEH3o2Nu6WdrXboJE/vtJxSOYt41cXSaRU5yd6WAAIdZiH5h/mo2Ow
+         P2YU7V/EVlsY4xzOjcYhXMyymt1t1hngBK+2K1dZwylyAxa6xH7TqhihGUx4841mXHiv
+         /FRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680588538;
+        d=1e100.net; s=20210112; t=1680589062;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xckjHRqAlVFqSSMovCWlCEaEkbe+U6hDZsaBMakZfUw=;
-        b=sGx301wkpVJBf9kpXnIblZOvoETOHOEnbUBhC7xejybPQPcp/9NrkixkwaPw59Tc3L
-         /+D1LUpcy1I5vXn/5PUDM0Mxpya8uW0Shdpwz2i8uldYFJaauxsv61njOk0ASKTG+qbS
-         crso/53Mwq29HY+GhqYNSj7Tr8Y9EgOOaR5Yjn70NnzvvkuzDRNzwOiqIbqzrUtjUuop
-         uaT2Q3dt9zPmhc4p6qKtlgt8LKN9cRjtVNrZRGNUg5oGsiTZCxpYRwH0sc9KV58SLWj2
-         Ip7oTBDF0mFTGFrEeE6RtFPmSRLmXlpdoiEJBSj1U/vCuvU+dgNHpPmrKsE2n5fiRFVb
-         v+7Q==
-X-Gm-Message-State: AAQBX9ewrQiUiesgW7b3aQVfHS08BPxPYKySp4c3nCO+LVdeloBAw92r
-        c72FTXedRnJ1HS7lkHPBS/dANA==
-X-Google-Smtp-Source: AKy350YGab/IBm5Uh9cFgleOLNHy7MnDU4Xj92g56W32VU95LNOGjOX54YB+TQ+uEJGtIXVV8ljZTA==
-X-Received: by 2002:a17:907:a07b:b0:932:ba53:83ba with SMTP id ia27-20020a170907a07b00b00932ba5383bamr1380544ejc.34.1680588538620;
-        Mon, 03 Apr 2023 23:08:58 -0700 (PDT)
+        bh=iDjaU2rar9tWF1A9zRNafmNtWp0F/aW8MT9UYDo8+8s=;
+        b=TLadZMac9LHM2dTplMEmPKnbetVrta2mqvmBV6DZJE++/ylogpwwdO7IMKoAJyw+Tk
+         G7eszIdJeqmAVb/oUHmaevz/isQztw9dfp2jjXARw3Eelyu6RHGXoVDlHv3qLV2I7VNz
+         ufLGtRDoOX9LoxSUVWja47MOZzwd6EvdI/KNNFBXXJY7eiBrZohhNqtJlFQ5uF2F+eJC
+         +WH1VCPUJsGFXLrLbJaxgDMTqGQkPnS9fFTaGycIkobgHP8RHaqQh5sWF2zia4vDF+EC
+         6N4kLB9Rl7Dpnp/UyTyndenUEg0dmeWVr5IuujWaw6Vm1Tv+lyuuyfwoO9uFJZOh21Cn
+         RxVg==
+X-Gm-Message-State: AAQBX9fWOunZTPYkndbQhwn9q0sPcs0GR/2d6kTGmtQhnl+Bc3l9+lGw
+        RzWNwTW95U8z+XmRQYbxrsQ5Hg==
+X-Google-Smtp-Source: AKy350acMPUvg8FQaSMcxpUkt8euvDaA6UhTGNL2AIK9rmdVQWP6apDq0xztamPFlkojeWn2icK9vQ==
+X-Received: by 2002:a17:906:668c:b0:924:7f98:7c55 with SMTP id z12-20020a170906668c00b009247f987c55mr1131637ejo.48.1680589062126;
+        Mon, 03 Apr 2023 23:17:42 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id f24-20020a170906825800b008bc8ad41646sm5453187ejx.157.2023.04.03.23.08.57
+        by smtp.gmail.com with ESMTPSA id i12-20020a170906a28c00b00946e6dd887csm5414775ejz.126.2023.04.03.23.17.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 23:08:58 -0700 (PDT)
-Message-ID: <4816461e-38b7-ba79-dd64-859fa0ee808e@linaro.org>
-Date:   Tue, 4 Apr 2023 08:08:57 +0200
+        Mon, 03 Apr 2023 23:17:41 -0700 (PDT)
+Message-ID: <dd6f0842-519f-1bc9-f7f5-459863dc3dcd@linaro.org>
+Date:   Tue, 4 Apr 2023 08:17:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 8/9] arm64: dts: qcom: qcm2290: Add WCN3990 Wi-Fi node
+Subject: Re: [PATCH v5 2/2] dt-bindings: rtc: add max313xx RTCs
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230403-topic-rb1_qcm-v1-0-ca849b62ba07@linaro.org>
- <20230403-topic-rb1_qcm-v1-8-ca849b62ba07@linaro.org>
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+References: <20230403154342.3108-1-Ibrahim.Tilki@analog.com>
+ <20230403154342.3108-3-Ibrahim.Tilki@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403-topic-rb1_qcm-v1-8-ca849b62ba07@linaro.org>
+In-Reply-To: <20230403154342.3108-3-Ibrahim.Tilki@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,23 +79,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 19:36, Konrad Dybcio wrote:
-> Add a node for the ATH10K SNoC-managed WCN3990 Wi-Fi.
+On 03/04/2023 17:43, Ibrahim Tilki wrote:
+> Devicetree binding documentation for Analog Devices MAX313XX RTCs
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
 > ---
+>  .../devicetree/bindings/rtc/adi,max313xx.yaml | 144 ++++++++++++++++++
+>  1 file changed, 144 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> new file mode 100644
+> index 000000000..0c17a395e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2022 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/adi,max313xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices MAX313XX series I2C RTCs
+> +
+> +maintainers:
+> +  - Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> +  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> +
+> +description: Analog Devices MAX313XX series I2C RTCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max31328
+> +      - adi,max31329
+> +      - adi,max31331
+> +      - adi,max31334
+> +      - adi,max31341
+> +      - adi,max31342
+> +      - adi,max31343
+> +
+> +  reg:
+> +    description: I2C address of the RTC
+> +    items:
+> +      - enum: [0x68, 0x69]
+> +
+> +  interrupts:
+> +    description: |
 
-We had these talks a lot... All these 3-8 patches should be two patches:
-1. SoC DTSI
-2. Board DTS.
+Do not need '|'.
 
-Splitting superficially patchset on initial submission does not make
-sense. If you sent it in separate patchsets during development - release
-early, release often - then of course it would be fine. But hoarding
-patches till everything is ready is not the approach we want (and we
-made it clear that SM8550 should be the last such platform) and does not
-justify later fake-splitting.
+> +      Alarm1 interrupt line of the RTC. Some of the RTCs have two interrupt
+> +      lines and alarm1 interrupt muxing depends on the clockin/clockout
+> +      configuration.
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    description: |
 
+Do not need '|'.
+
+> +      RTC can be used as a clock source through its clock output pin when
+> +      supplied.
+> +    const: 0
+> +
+> +  clocks:
+> +    description: |
+
+Do not need '|'.
+
+> +      RTC uses this clock for clock input when supplied. Clock has to provide
+> +      one of these four frequencies: 1Hz, 50Hz, 60Hz or 32.768kHz.
+> +    maxItems: 1
+> +
+> +  aux-voltage-chargeable:
+> +    enum: [0, 1, 2]
+> +    description: |
+> +      Enables trickle charger.
+> +      0: Charger is disabled (default)
+> +      1: Charger is enabled
+> +      2: Charger is enabled with a diode
+
+2 is not an allowed value. I asked to drop this property. It is coming
+from rtc.yaml. I also do not understand "with a diode". So otherwise it
+is charging with, I don't know, FET?
+
+> +
+> +  trickle-resistor-ohms:
+> +    description: Selected resistor for trickle charger.
+> +    enum: [3000, 6000, 11000]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
 Best regards,
 Krzysztof
 
