@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E417C6D6B5E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 20:18:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BF76D6B65
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 20:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236006AbjDDSSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 14:18:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35074 "EHLO
+        id S235350AbjDDSTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 14:19:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235395AbjDDSSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 14:18:13 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8CA3AAF
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 11:18:11 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id cn12so134240045edb.4
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 11:18:11 -0700 (PDT)
+        with ESMTP id S234726AbjDDSTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 14:19:43 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC49A3AAF
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 11:19:41 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id r11so134252931edd.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 11:19:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680632290;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1680632380;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ir8YBxidmyDjL43kqs3HcIAsaJ4PKAEaZFGmGkOZQXg=;
-        b=RQDpIhiUlw2Y9lmNTIPdcM7xe4l9Dps6+qTrp/9ViFNP8QnQo2FijSxlG1hENEX5Xs
-         acL5CSJjeXPn67PV37G3MBVbxTIgf8Gs8cz1jlbMgNLLeGDfR5BoWHDcVMtsGXlL2ERx
-         C71+sOz9RqE7YXUfDZ8VoHFQa5IcV8YsxlHbQ0Y+sdLCoDGKebETZl1gWiwllaF77z3J
-         k05+fAr7959COxq5K20OpDlOI1/vR/cnxqxO3TQldUiAhSwwUQIAdXRTp3XgGgKaB8Bb
-         hZejIAMAFjAXZ2ZtdYNMyjLxHG7xJoghF+50qfAvawxz5xvZ5Q1W+jKCyoGlav35iOjD
-         bUPQ==
+        bh=pmY4so7rL1IiXlLyFmtrvmRaD9meAoYe9sOd/P8wK54=;
+        b=BXukX23v003pUHm3aq8Ayky+2Mbagq1WAvtyffxYP38ByUqVJsKtMwSFkInJTncPMe
+         SOdNpKsb20smj2v8o16qRY+jkvbNv52vVZgXnjpOHjF2uZlOH9sM1apRDYKmjTZ3OejA
+         +57Yc5OSUf2GOPezF6E/sRlxC0TD1q60GX3O0Lx8e2JcOT3UWZWK0if8h69+U9ydyeyG
+         YhKyAq7xFMKFLFUGIxSVzBH8tsArP4vIvPeaZ9u5Vj+JQ7IZX/uK1t77ZyYs5tEAKCRj
+         Lbaz9Jw9KmOLEmR8KdcFT6lQRV1gTFcjUY0tGSIPqzFOvqk5RlHkGf5jeBs4mGYX33zk
+         u1xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680632290;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680632380;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ir8YBxidmyDjL43kqs3HcIAsaJ4PKAEaZFGmGkOZQXg=;
-        b=dCZAc2DUqgPVlmw0MZVZ9Hr6iDi8REuRxJPofWW9fLsikvEj3hX1A8GdiavRFWRQu2
-         A4fKAk5PFZWdGldvIwjFrFGpEe5mkRx3fU/92pwvgxBEZyNwkpAAEqfXbeGG1I2YfXZz
-         Ro1YTxmwC9owQItxgkx7aEnmJRyWnOV+BEie8TEerYHaH7KnncCWMQuMCgMJZbke8jiI
-         Ol+ME1FrmBXrWn9v7JsLzsAaRD3m+fmxGSBcPRqMx6reto2BtBUmx+nYQTazerlfcgao
-         c4LKvwp1QzTuYIyyS+vNXBVQG4WOcdBcgWHDDrP9GoGG9Mb4FiSLC8z0ATuSWXre+9ez
-         ZmNQ==
-X-Gm-Message-State: AAQBX9e4/hUEVGx7mHrxUV7akky/cmUbSrjqeQjxrX67We6vSxfhDriN
-        CEW2Dl6k8rLNqfuhx6TCXzh8vw==
-X-Google-Smtp-Source: AKy350bkUvS0cmR9W0/1DcwvNmjXy5ym8hk9TIiBhGi2hxcvCv/oMpUcbFc1uyOzsvXDN8o+6zOVQg==
-X-Received: by 2002:aa7:cb47:0:b0:4fc:c7c8:e78d with SMTP id w7-20020aa7cb47000000b004fcc7c8e78dmr333454edt.31.1680632290425;
-        Tue, 04 Apr 2023 11:18:10 -0700 (PDT)
+        bh=pmY4so7rL1IiXlLyFmtrvmRaD9meAoYe9sOd/P8wK54=;
+        b=VdbsF7uNJW9oNwtXXKLzWcK+/Xav9LbdtQh4MvJz95YlEwaCgGs5O8Q9pUJ+64nbQU
+         +qbiKkNCObWERpNL2F/fP2gwqZ1BM5M9VeRaD4CeEm9JrliPn7niaexzIM9NX6isDCyO
+         PmtzV8CUIg5ESBfEh3f0LmXxroGq0tPX3hXneBYAfPIdxXiZ3M6VlpiyQb3X4Zyv/fpq
+         i5zJAZJvxwClS7GVPFQW02dbJRPhi9vGZM76smJqfeWVAA5KJA6UL/MCKt0l0Y25ZV4b
+         zdXkhlr7y/bTLDrCrJ7lqBedvi0XNfJZMkQLl+4teK0uWK0shb+K3W+x4GAtnzuNB8+/
+         lkZA==
+X-Gm-Message-State: AAQBX9ciBP/irxaoDKOY+SukyWIfkPNgd0zXB9uDxYl7It5+uKX/ia34
+        AybCzYk+Yft/XUA2k4rfHZHyx1WwuKRke0nAkJI=
+X-Google-Smtp-Source: AKy350YSv4hgO2n82VC7/9PaYtH4FxfGW1LzXmWBN5mtNsi1jCuWBGB7+CJ8mCMoLoeaqinIVeNbAw==
+X-Received: by 2002:a17:906:3c4d:b0:8af:2107:6ce5 with SMTP id i13-20020a1709063c4d00b008af21076ce5mr498016ejg.35.1680632380419;
+        Tue, 04 Apr 2023 11:19:40 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7467:56f4:40b7:cba8? ([2a02:810d:15c0:828:7467:56f4:40b7:cba8])
-        by smtp.gmail.com with ESMTPSA id o1-20020a50c281000000b00502b0b0d75csm2190606edf.46.2023.04.04.11.18.09
+        by smtp.gmail.com with ESMTPSA id q15-20020a17090676cf00b00947c0cecceasm5659288ejn.206.2023.04.04.11.19.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 11:18:10 -0700 (PDT)
-Message-ID: <76a524a8-f87a-0147-32cd-5ef6cc55d2bc@linaro.org>
-Date:   Tue, 4 Apr 2023 20:18:08 +0200
+        Tue, 04 Apr 2023 11:19:40 -0700 (PDT)
+Message-ID: <86449ddc-1eeb-5af0-dfaf-0b80e7d8d992@linaro.org>
+Date:   Tue, 4 Apr 2023 20:19:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/7] dt-bindings: soundwire: qcom: add 16-bit sample
- interval
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Patrick Lai <quic_plai@quicinc.com>
-References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
- <20230403132503.62090-3-krzysztof.kozlowski@linaro.org>
- <20230404142159.GA3827653-robh@kernel.org>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280: Add stream-id of qspi to
+ iommus
 Content-Language: en-US
+To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        broonie@kernel.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
+Cc:     quic_msavaliy@quicinc.com, dianders@chromium.org, mka@chromium.org,
+        swboyd@chromium.org, quic_vtanuku@quicinc.com
+References: <1680631400-28865-1-git-send-email-quic_vnivarth@quicinc.com>
+ <1680631400-28865-2-git-send-email-quic_vnivarth@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230404142159.GA3827653-robh@kernel.org>
+In-Reply-To: <1680631400-28865-2-git-send-email-quic_vnivarth@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -88,43 +81,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 16:21, Rob Herring wrote:
->> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
->> index c283c594fb5c..883b8be9be1b 100644
->> --- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
->> +++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
->> @@ -86,7 +86,7 @@ properties:
->>    qcom,ports-sinterval-low:
->>      $ref: /schemas/types.yaml#/definitions/uint8-array
->>      description:
->> -      Sample interval low of each data port.
->> +      Sample interval (only lowest byte) of each data port.
->>        Out ports followed by In ports. Used for Sample Interval calculation.
->>        Value of 0xff indicates that this option is not implemented
->>        or applicable for the respective data port.
->> @@ -94,6 +94,19 @@ properties:
->>      minItems: 3
->>      maxItems: 16
->>  
->> +  qcom,ports-sinterval:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description:
->> +      Sample interval of each data port.
->> +      Out ports followed by In ports. Used for Sample Interval calculation.
->> +      Value of 0xffff indicates that this option is not implemented
->> +      or applicable for the respective data port.
->> +      More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 16
->> +    items:
->> +      maximum: 0xffff
+On 04/04/2023 20:03, Vijaya Krishna Nivarthi wrote:
+> This is done as part of adding DMA support to qspi driver.
 > 
-> Why not use uint16-array?
+> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 5e6f9f4..9e05285 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3434,6 +3434,7 @@
+>  		qspi: spi@88dc000 {
+>  			compatible = "qcom,sc7280-qspi", "qcom,qspi-v1";
+>  			reg = <0 0x088dc000 0 0x1000>;
+> +			iommus = <&apps_smmu 0x20 0x0>
 
-Because I am afraid it will grow in next version to 24 or 32 bits. I can
-change easily maximum, but if I put here uint16-array, all DTS will have
-/bytes 16/ annotation.
-
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
 
 Best regards,
 Krzysztof
