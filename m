@@ -2,99 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0F6B6D555D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 02:05:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D913F6D558D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 02:30:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231497AbjDDAFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 20:05:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37056 "EHLO
+        id S229637AbjDDAaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 20:30:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbjDDAFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 20:05:34 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA2C3AB3
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 17:05:33 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id ml21so6875742pjb.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 17:05:33 -0700 (PDT)
+        with ESMTP id S231933AbjDDA3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 20:29:53 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9058D3C26
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 17:29:50 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id s20so11820497ljp.7
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 17:29:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680566733;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=M8biJ1aBbukeLfwN+w/+0iRNiLUjgXR0WEnlqTCaXvw=;
-        b=cJ8T/bJ/DOKAf5nPWS/rWDTVm5GpHso3ZRrEV+vv/Y9tK1iJ1LvxG/PjhLoWc2X7v0
-         xfAPyqZiCwKAbYX0+uehzDGsNpUcQ6rg1OoGarzIZlCwpeY5w9m2WdijxQ7izEpECs4M
-         TAXm+/kJS5p1rWZPMcIKgC6G8GsyGTQuf1eeN42nzoTeo4qlwHaYExuqTohl+5AeWpp3
-         mA5+2sEw9ojFwihpo5wYxtr7G6YPDyweOcVKSWCjRx1AG8oXLPg3+7f3Vowy+0ND0dZj
-         QvDtcQu8r7V7irKHgcvR7wVNDghGRfzHu9PHGXcdX8o7ky+hObMDXdkvKI4ai1ST/csE
-         y4mA==
+        d=linaro.org; s=google; t=1680568189;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8l7Gpf1kgcSkfhhcQOq0OfQlssCiSnegEYzShnT6EBg=;
+        b=kqthJisN2OKwyvqbEfBce7GgQ8XsLKGUfGK2OjczkAOijlM5glAmrB2ICuYKi/c3Aj
+         2uqd5MLRrYRzmIP/5EJsb8xJ3nwtFJ6K6KWxphGilG0FinIJE5UViewmMQcuDUG9I+tZ
+         hlEas8dXikMIpBSFCEEZoHTJ6KgJS6PE2+xlbZN0kmn47y7UJzN8cU3CrrD5Mks3iewA
+         c0Ga4ZrGhA0mGieqC+pf5+IVEf6gtok8HZuGLDuEPfrWbx6aqozJCO3SCzVRF8XulaUf
+         QkEl2BiLz2Vs1niHTRitHpLd+2dcgf8EGUnaaoVjcPE+zz+WDzsffHNX9sdgtipmEx6Z
+         m98Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680566733;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M8biJ1aBbukeLfwN+w/+0iRNiLUjgXR0WEnlqTCaXvw=;
-        b=RpHSSpuKsTKvSNaOJlLl97euiOc+cQjYiOqxgPcKJpe6TnGNQf8vM0ukvBOh8j96n4
-         Bk+DKXd6VNUPhzwo4eaE1iNA4opRhdHaRY1Moc165jmtx/XEVdxpnCHKc3UEUK7MU8yy
-         ZJ3jeAMtF4KH38RXO9qkhxhHNZKmX7qJS+MdANpmg1vWYsHMgYMa6y90veHml0iu+XBq
-         Kujlc90TnUy+SPVYB621sBATEhbDRDbuKALCJuZxuzKFU5tCMDISB5Zjgz86xAze12Wm
-         L9xyW4QmiM6+CGYPnh/TZ76wdThz9kOqvwbuBGfwfGTT1aD+BGaORZlOpOD9H68Tc46X
-         ljDQ==
-X-Gm-Message-State: AAQBX9eKrgJYdbLbWCpXqx9oiDBgO/SS1aIspP28ilZERednYjn3erng
-        k1coGKJFZGgF+RoaKBOHYf8Xrw==
-X-Google-Smtp-Source: AKy350a8EOWlE6/ey6qlDm4l3M/bElNRWs6BENfSo8Yhhz4VqjfFZVoicQqCKM9Tl+bt2b6qzQPHBw==
-X-Received: by 2002:a17:902:f545:b0:1a1:a996:feb3 with SMTP id h5-20020a170902f54500b001a1a996feb3mr1094215plf.26.1680566733293;
-        Mon, 03 Apr 2023 17:05:33 -0700 (PDT)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id y1-20020a170902864100b0019c61616f82sm7098625plt.230.2023.04.03.17.05.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Apr 2023 17:05:32 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Bernhard =?utf-8?Q?Rosenkr=C3=A4n?= =?utf-8?Q?zer?= 
-        <bero@baylibre.com>, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 00/11] Improve the MT8365 SoC and EVK board support
-In-Reply-To: <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
-References: <20230203-evk-board-support-v4-0-5cffe66a38c0@baylibre.com>
- <7hy1ncydtc.fsf@baylibre.com>
- <CAFGrd9rKy9a4bUf1dkUtTogtWPFr5eu3jcsdaixi3hs_dWMwrg@mail.gmail.com>
- <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
-Date:   Mon, 03 Apr 2023 17:05:32 -0700
-Message-ID: <7h1ql0y0j7.fsf@baylibre.com>
+        d=1e100.net; s=20210112; t=1680568189;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8l7Gpf1kgcSkfhhcQOq0OfQlssCiSnegEYzShnT6EBg=;
+        b=ImZBytn9o1/R3jceA/aYV5RwW9Nz/TiUByv/vEefVNDUL8vVhnJLUuhue1UDH0Gxjn
+         t4TkVI/uzZD9kiF5HrYm/e8HihC05Ga0ZdZWwrxV1gHW12UjKozBSaZAZXAIluR6NqAU
+         whGctU4FiZbncxh2R1fVcg89OWpql2PsZc7A5+mi7t2WGu55OJUMFhu8iTymr4Qzpwvg
+         Tsvy/oRmHxZqezOdP02kjCHE3Ocp/NOexWlE2Y6kTK1Vo7gUGb8oQpe5E9Wp/ykhP8K9
+         ezCsl7lzSkD13MbuCuZbVMPIrsaZHshLznyRRqGc0HC8hNnP9kCzkHTOfHVvW+68Vq5u
+         25RA==
+X-Gm-Message-State: AAQBX9cIRjE1Um2ANisS/HtlgMXB86pRk1tSgEfdlsRh/8chQ6NtvBVx
+        TuGkAzv6RJLcEvqSOp3f3z+bsA==
+X-Google-Smtp-Source: AKy350ZqpBnO5Q5YG2OTNyDexq4JYCBSFdDejsEH2v8+s7eFJpon/I0IIVTXYVfXFjqwgODSwA8AGg==
+X-Received: by 2002:a2e:88d0:0:b0:298:b335:de49 with SMTP id a16-20020a2e88d0000000b00298b335de49mr313259ljk.25.1680568188799;
+        Mon, 03 Apr 2023 17:29:48 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id u19-20020a2e9f13000000b0029a1ccdc560sm1998162ljk.118.2023.04.03.17.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 17:29:48 -0700 (PDT)
+Message-ID: <e346ebf6-6760-ed0c-392d-6956a14ce592@linaro.org>
+Date:   Tue, 4 Apr 2023 03:29:47 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 1/1] dt-bindings: firmware: qcom: scm: Updating VMID
+ list
+Content-Language: en-GB
+To:     Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>
+References: <20230403204455.6758-1-quic_gokukris@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230403204455.6758-1-quic_gokukris@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Alexandre Mergnat <amergnat@baylibre.com> writes:
+On 03/04/2023 23:44, Gokul krishna Krishnakumar wrote:
+> Adding the full list of VMID's, which are used by different clients to
+> pass to the secure world.
+> 
+> Signed-off-by: Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
+> ---
+> V3 Fixed comments from V2
+> 
+> V2 Fixed allignment issues in [1]
+> 
+> [1] https://lore.kernel.org/lkml/20230328214703.12093-1-quic_gokukris@quicinc.com/
+> 
+> ---
+>   include/dt-bindings/firmware/qcom,scm.h | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+> 
 
-> Here a build-able & working branch with dependencies:
-> https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/amergnat/i350-evk-board-support
 
-This branch doesn't compile.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Kevin
+-- 
+With best wishes
+Dmitry
+
