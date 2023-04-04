@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D99806D62C9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 15:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38CD06D62F4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 15:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234908AbjDDNaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 09:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        id S235092AbjDDNdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 09:33:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234723AbjDDNaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 09:30:07 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC7430EB;
-        Tue,  4 Apr 2023 06:30:05 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id b20so130654745edd.1;
-        Tue, 04 Apr 2023 06:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680615004;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/1xSHxE1EltnFe4rBdKCgr4L21D3en11swmxi78/QJo=;
-        b=bLUcssMAVwFowKXOWPM1CwtxkNm422B0OcXpOWrHzgiGiJzsm6/YgLo/UMlBhuHBfd
-         Il9Oub1F/7X1iOg7r6YTlpSlY5pMAb5yJBU/14P/SxIWfsolcFdiHb3eu9TFo0D4nf+7
-         0cRj8CXV4afLv6SYPyOCupXLLBgWxT1d5qK5Y8APW0BjP5o+Q/LnEFIx7EwX5A+BT/l5
-         Jdk5xQuBjZUFRWjUkibnrSXLy4Gso3NnY4WsLIZcnoCWd/gCHGoWyUhHlC6ldSiZ6XHu
-         Z4n218T3YQ470eRTFZQH6aZ79HV7K1M9dHjNEZCKCwwXJqWkTUmYvajFjE3BSKOnhHvH
-         x07g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680615004;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/1xSHxE1EltnFe4rBdKCgr4L21D3en11swmxi78/QJo=;
-        b=PooJPclRtDRFiHjhik2CQv3HqooQecZ7+g0h5miC2KZJthJcjVQV89jIEk/AStJJKa
-         xS7GUN+lbLIJ1lT3KmBfs1/5B3TyYBqpqnU1MIEJw6H7ec+f9uqXgZefXm/WDszZPVzU
-         N2OQd/CegzifPbK4iWY3XiRheaN6OgyYLcrAvyn9bn1Db2BmIZp6SrOkX0UnbTcsU1jC
-         P7GgaKMe07FcrDS+d4aJH8oP7dE8FDxoKA1Sw2viyN6Gy7yV3aFIq5MX+9X0gmVK4Fu+
-         ll9ZfEAx4FLrMWJWI2R+vZyCkbDOCqGxdNskZ0hyhsewWwLaqjDimvXewjfTj7NTutr0
-         Hfag==
-X-Gm-Message-State: AAQBX9fYwPybccujwYbdp3s2bl4saeJEb5r1HoMeFt7GmgEvryaUj5CW
-        anl59O8tFC28Ual8b7FfsKU=
-X-Google-Smtp-Source: AKy350ZY7QhVY8loZEZFHvtjndpc4b0Kz415JBuObSnrseK7HdloY+pOgaUekGIUv0tm7DhIanNa8A==
-X-Received: by 2002:a17:906:c04f:b0:92e:e9c2:7b9c with SMTP id bm15-20020a170906c04f00b0092ee9c27b9cmr2486126ejb.77.1680615004393;
-        Tue, 04 Apr 2023 06:30:04 -0700 (PDT)
-Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id e7-20020a170906c00700b0093f83562f09sm5981780ejz.87.2023.04.04.06.30.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 06:30:04 -0700 (PDT)
-Date:   Tue, 4 Apr 2023 15:30:02 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] firmware: Use of_property_present() for testing DT
- property presence
-Message-ID: <ZCwmWoZhMOlHnnzf@orome>
-References: <20230310144704.1542045-1-robh@kernel.org>
- <20230323120030.7mk62xk7tco32zw2@bogus>
+        with ESMTP id S234481AbjDDNdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 09:33:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FECB1710;
+        Tue,  4 Apr 2023 06:33:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 760C8632ED;
+        Tue,  4 Apr 2023 13:33:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ACFAC433D2;
+        Tue,  4 Apr 2023 13:33:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680615192;
+        bh=mNbOU7xuGoBEYIuAeOXwalRr9mQiImjiyHioFrwCpbY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PYad8Y09zS90YAGfHjTQhF8eKoJ0nHdxAH3WsOrzCCyE0reSxAqiChIAxmT6Qa7kB
+         D5Hj0M42gAqibHziun3b7XW5k6nQFMosRsp6ZVPWTC7QSLMuyAZB2wu0deFLUyqRBD
+         NOrlJPP8ZYYu6n9dfkMDI6trZzD8GzTeJ8GVYe+zqZl8tnmU0MYUuXFwWHF+TqJPno
+         Q5ASqbtdl5EM8d+xHCxLjGxf9njmPQLNbTCcF35sx+VBNANzezQltrP/Yh5BT0wl27
+         v4y8r19N+ll9xxR6fACn9kR70+Pgm3n690sOC0iHTw/VXytC5zsAIxwl5tduShLyks
+         145M24X0DJCaA==
+Date:   Tue, 4 Apr 2023 14:33:06 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jaewon Kim <jaewon02.kim@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andi Shyti <andi@etezian.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: Re: [PATCH 3/3] spi: s3c64xx: support interrupt based pio mode
+Message-ID: <49b335e6-78a7-4f80-a844-bacef804849e@sirena.org.uk>
+References: <20230404060011.108561-1-jaewon02.kim@samsung.com>
+ <CGME20230404061409epcas2p2b12a9cac014907e3930795cb67cb6040@epcas2p2.samsung.com>
+ <20230404060011.108561-4-jaewon02.kim@samsung.com>
+ <61a67466-3467-4f71-bc27-d660e37c08ac@sirena.org.uk>
+ <e01900f0-e5ac-d2f9-9e1b-c5cc35d21713@samsung.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="iUHciihrTalbzd5s"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8I2SOfqEj79ZOI8K"
 Content-Disposition: inline
-In-Reply-To: <20230323120030.7mk62xk7tco32zw2@bogus>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <e01900f0-e5ac-d2f9-9e1b-c5cc35d21713@samsung.com>
+X-Cookie: Being ugly isn't illegal.  Yet.
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,53 +64,47 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---iUHciihrTalbzd5s
+--8I2SOfqEj79ZOI8K
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 23, 2023 at 12:00:30PM +0000, Sudeep Holla wrote:
-> On Fri, Mar 10, 2023 at 08:47:04AM -0600, Rob Herring wrote:
-> > It is preferred to use typed property access functions (i.e.
-> > of_property_read_<type> functions) rather than low-level
-> > of_get_property/of_find_property functions for reading properties. As
-> > part of this, convert of_get_property/of_find_property calls to the
-> > recently added of_property_present() helper when we just want to test
-> > for presence of a property and nothing more.
-> >=20
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  drivers/firmware/arm_scmi/optee.c | 2 +-
->=20
-> Acked-by: Sudeep Holla <sudeep.holla@arm.com>(for the SCMI part)
->=20
-> I am assuming you will route this as it has other changes as well in the
-> patch.
+On Tue, Apr 04, 2023 at 10:15:05PM +0900, Jaewon Kim wrote:
+> On 23. 4. 4. 21:58, Mark Brown wrote:
 
-I can also pick this up along with the Tegra changes if Rob doesn't
-want to take it. But also feel free to take this through whatever tree
-works best, for the Tegra parts:
+> > Is there some lower limit where it's still worth using polling, for
+> > example for just one or two bytes like a register address?  Taking an
+> > interrupt isn't free...
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+> I did not considers lower limit.
+> According to your review, interrupt seems to be called too often.
+> However, It can't prevent the CPU utilization going to 100% during spi=20
+> transmission.
 
---iUHciihrTalbzd5s
+It's not so much that the interrupt could be called too often as that
+the time taken to take the interrupt (including all the overhead the CPU
+has) might be large compared to what busy waiting would take if the
+transfer is very small.  If the FIFO is deep enough and the transfer is
+long enough to use that then you start to see a win from interrupts.
+
+> We will give more consideration and deliver a better solution to the=20
+> next patch version.
+
+Great.
+
+--8I2SOfqEj79ZOI8K
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQsJlcACgkQ3SOs138+
-s6HDEhAAiyZv2IDatqnjFzcpro55n2pEFFzSq+wC+Rmf0uZ2n7/irrlJRwrx0+II
-v1b6UP0dd7STZ+6vpKZ44WCXgrv58iushgVhqAD4W/tr8Q0uwUYc4vWzvv5UbN8S
-vD2uizF0UuHLbKb9r/SttWElOD9U/iyZrP7IHlngTdznWyb1g5xV9hg0Eu351+qb
-7DDNvlErcR3XmYeUcUTCd/SPjjJw2ZWxrJ01StWJand9145/UXyazJxVZ6j+i8I+
-OUjx81H8ctLG3TAwfv4zWnR5ZlGndViv/hjVSQasEMe5b84ScQNBnDZB+xmtZAMp
-Qn87+8fQcJgTP+UDR/YjjaHRegNGMu9fNqHS14+J2KFvn8nYS0xRPj3aDM8V7CS6
-YDflkqK9r2je2dON9/UOKINRgqERHYIY1u9DTlaym97wUtE9a5uOelcsrAR3FScU
-SG35J16O95HSXGzoxhwpqbMS0N/Tm5IQruT2ih2D3WNTZQqsjk+7KFSJ8JWabXY1
-UYig/IrGLf8dnLoD1KtzxQAwdDslHmvdofvWBY9IBI+GodYQzCZVtyDTKilHi9i3
-dW0/eO5knVsW6yWRrgtUEK0X3gIIvSeGr4NF02uuNSmyY94U+Um8e/LXZvc3lckI
-+7VHpuvCR7jO4ORq18T2Yoq35yRvqrikIEonW3Oz5NHkAiXo+Iw=
-=Qivr
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQsJxEACgkQJNaLcl1U
+h9Bicwf+IGoOzSXyZBgGXE8HPLU++uPBbikKvcSeB0Q/xa38kvp7mbL/FPKQv6Ih
+r1ci/kFUzUZZEHxjZfJOe7uVaV2bZMCo1UZphoP22Zb+zH6yomfVlDZT65Lo0NeL
+eW3D1MEa+ZbJObdsFYBzMMni1PENOTNQIhhqXJdWjBvt+4gGd3j71oDO33RChyw2
+0jqVlVnLHDtXM1YLFS8pod3jlNJv1M1UtqdJ8IzFWSenjVBMIfpRm+OIYNsMS2bu
+MrEyykoqB9OJVuIlb27pCv9I4z+9yznCSw2WvCAYB8pVSuXxdlA7DIv2DiHUUFKy
+iLrdAfhscaa/x+nc1bVr7MAL++68Kw==
+=OzOm
 -----END PGP SIGNATURE-----
 
---iUHciihrTalbzd5s--
+--8I2SOfqEj79ZOI8K--
