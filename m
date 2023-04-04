@@ -2,96 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 070056D5FE5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 903EE6D6018
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234717AbjDDMJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 08:09:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44318 "EHLO
+        id S234118AbjDDMU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 08:20:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234734AbjDDMHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:07:02 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22DB03AB5;
-        Tue,  4 Apr 2023 05:03:10 -0700 (PDT)
-Received: from [IPv6:2a00:23c7:6883:e501:e15b:407b:49da:d40e] (unknown [IPv6:2a00:23c7:6883:e501:e15b:407b:49da:d40e])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: obbardc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9E6A26603158;
-        Tue,  4 Apr 2023 13:03:09 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680609789;
-        bh=EqCuUIa26dLCJIvyIcfxXwu2vSGTNNCWYPJnB/cNK2Y=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=Tz0SoriJge1fjbnmAt9vwvUlwVBBreEh0NihySKYb4y97SmwkCYB2pIBWJvFPYQgg
-         6T3XOohm875kZRmwGTDLmR/Giq81x/IEiLDxZhX5DgPoMZBRJGa6GQdKO7ORiy4xix
-         FVf/yMEGnROX3NVpT52V+6ClFpYWgDjMfVMVprOU3oU8Q6umoM+sYMkZI93rsmKTCo
-         zM3o+ocwH4hS/U7vi5fCKEACeMXUoUOWr+IdLLOs4LK7QLYd4ISW0OV3uOLUgUi5P4
-         DeEo6HfFlZg8DawlvwposK3DhNv+R/yopCYWzGIJNPsWapqVRa6OD//jUs/io9ISff
-         9RgQMqsJCK3cQ==
-Message-ID: <b1c27c7499660d0601927e8fdc5e9b1f6c691e57.camel@collabora.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Add RTC support for RK3588
-From:   Christopher Obbard <chris.obbard@collabora.com>
-To:     Shreeya Patel <shreeya.patel@collabora.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Date:   Tue, 04 Apr 2023 13:03:07 +0100
-In-Reply-To: <20230404115802.33693-1-shreeya.patel@collabora.com>
-References: <20230404115802.33693-1-shreeya.patel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4-1 
+        with ESMTP id S234837AbjDDMT1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:19:27 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3274A40E0;
+        Tue,  4 Apr 2023 05:15:23 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id i5so129916225eda.0;
+        Tue, 04 Apr 2023 05:15:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680610521;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TNeLO/yfrx5qZBUcRPTS1m46W0sJKNmgtcjlVQfqLK0=;
+        b=MX1GkM/k7Wvv4kVwPD5iJTZypvDu1JvY7Br3/Lx9HxZylVr1cdixaKy7MpHGbtJl68
+         oueFBklE/kvlMwon1iZdQBFezLnc0xc4gZ8cPRAH2FY+HertVLVg4N8mj4RDL09bDWwo
+         JNAeA74R31LQ1hcpJRbFW6cI/rHB6EswvmmJhJKO+59GHnDVuZhzMy1j5lWDv4wpAlhy
+         bjqnGqkVFwRV+pEPjBVhE1x+0AO5SiSo/p68IHQRs6fkqElP6NBBrhdIF19tOkiqzyT8
+         WXUsInRs3BZ42NgZOz05MV3EfMBEXGdF8C4ewdjsJixVJztB5ePxwUCjgXzU+9L87gtS
+         D4rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680610521;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TNeLO/yfrx5qZBUcRPTS1m46W0sJKNmgtcjlVQfqLK0=;
+        b=HFpmlr75rh15rNHhORvKSwDGm4MRd3v//L1lDxxaElMUTlgSwuRm09LBmD6KZvphRR
+         TsGaVF/epWAwGYKkdvAtDNXYqQFlD7sX9+3YXK951/cGAPiEEroddldHvVHFl6PjBK9f
+         ZZE/O5BScS6lOsHtZNLHIfAwyTC2VJF5mgZ+AQtyQUx09Hz4HK9ULz8BX5ooKMjHTYV2
+         Nn/ImOvwYU/AxOcUiIqjgag2rqrkNN1KZEPVpTOoHCOWHQotelbV/5hFwwJ6oTOXNmkj
+         gXkmKu1vY/B+xvpEgf2hJhD0us9mJZU/uw5qMeizVCbV/l1pLZ05uAgHZjZdKEl2eYCl
+         NxYw==
+X-Gm-Message-State: AAQBX9cnGDeo+W0YtwwhaKtaSLB8YmHW/Tjcs8tuy9LuJpXLQZr2bzfB
+        jlucVQYZXiAHiknQldFUwek=
+X-Google-Smtp-Source: AKy350bQ71nVxPcoRSh43ab4cRnZtZe6Ur+WJgNdzEfCmeG2QbKWF6iZ7ySINe5NarE8PgKOKCIgVQ==
+X-Received: by 2002:a05:6402:1204:b0:4ac:b528:5727 with SMTP id c4-20020a056402120400b004acb5285727mr2477500edw.1.1680610521704;
+        Tue, 04 Apr 2023 05:15:21 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id i24-20020a508718000000b005024aff3bb5sm5809772edb.80.2023.04.04.05.15.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 05:15:21 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc:     dri-devel@lists.freedesktop.org, airlied@linux.ie,
+        linux-tegra@vger.kernel.org, jonathanh@nvidia.com,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        thierry.reding@gmail.com, robh+dt@kernel.org, arnd@arndb.de,
+        sam@ravnborg.org, daniel@ffwll.ch
+Subject: Re: (subset) [PATCH v2 RESEND 2/4] drm/tegra: dsi: Clear enable register if powered by bootloader
+Date:   Tue,  4 Apr 2023 14:15:20 +0200
+Message-Id: <168061050774.2055282.2696750809957075732.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20221128162851.110611-2-diogo.ivo@tecnico.ulisboa.pt>
+References: <20221128162851.110611-1-diogo.ivo@tecnico.ulisboa.pt> <20221128162851.110611-2-diogo.ivo@tecnico.ulisboa.pt>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU2hyZWV5YSwKCk9uIFR1ZSwgMjAyMy0wNC0wNCBhdCAxNzoyOCArMDUzMCwgU2hyZWV5YSBQ
-YXRlbCB3cm90ZToKPiBBZGQgRFQgbm9kZSB0byBlbmFibGUgUlRDIHN1cHBvcnQgb24gUkszNTg4
-IGJvYXJkLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFNocmVleWEgUGF0ZWwgPHNocmVleWEucGF0ZWxA
-Y29sbGFib3JhLmNvbT4KCm5pdDogSXQnZCBiZSBncmVhdCB0byBtYWtlIHRoZSBzdWJqZWN0IHNv
-bWV0aGluZyBtb3JlIGRlc2NyaXB0aXZlIGFib3V0IHRoZSBzdXBwb3J0ZWQgaGFyZHdhcmUsIHNp
-bmNlIHRoaXMgcGF0Y2ggZG9lc24ndCBlbmFibGUgdGhlIFJUQyBmb3IgX2FsbF8gUkszNTg4IGJv
-YXJkcyB5b3VyIHN1YmplY3QgY291bGQgYmUgYSBiaXQgbWlzbGVhZGluZy4KU29tZXRoaW5nIGxp
-a2UgImFybTY0OiBkdHM6IHJvY2tjaGlwOiBFbmFibGUgUlRDIHN1cHBvcnQgZm9yIFJvY2sgNUIi
-IGNvdWxkIGJlIGJldHRlci4KClJldmlld2VkLWJ5OiBDaHJpc3RvcGhlciBPYmJhcmQgPGNocmlz
-Lm9iYmFyZEBjb2xsYWJvcmEuY29tPgoKPiAtLS0KPiDCoC4uLi9ib290L2R0cy9yb2NrY2hpcC9y
-azM1ODgtcm9jay01Yi5kdHPCoMKgwqDCoMKgIHwgMjcgKysrKysrKysrKysrKysrKysrKwo+IMKg
-MSBmaWxlIGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvYXJjaC9h
-cm02NC9ib290L2R0cy9yb2NrY2hpcC9yazM1ODgtcm9jay01Yi5kdHMgYi9hcmNoL2FybTY0L2Jv
-b3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1yb2NrLTViLmR0cwo+IGluZGV4IDk1ODA1Y2IwYWRmYS4u
-YTMyYmZhOGQ5MTRhIDEwMDY0NAo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2NoaXAv
-cmszNTg4LXJvY2stNWIuZHRzCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9yb2NrY2hpcC9y
-azM1ODgtcm9jay01Yi5kdHMKPiBAQCAtMjcsNiArMjcsMzEgQEAgdmNjNXYwX3N5czogdmNjNXYw
-LXN5cy1yZWd1bGF0b3Igewo+IMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgfTsKPiDCoAo+ICsmaTJj
-NiB7Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICsKPiArwqDCoMKgwqDCoMKg
-wqBoeW04NTYzOiBoeW04NTYzQDUxIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-Y29tcGF0aWJsZSA9ICJoYW95dSxoeW04NTYzIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgcmVnID0gPDB4NTE+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjY2xv
-Y2stY2VsbHMgPSA8MD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2NrLWZy
-ZXF1ZW5jeSA9IDwzMjc2OD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2Nr
-LW91dHB1dC1uYW1lcyA9ICJoeW04NTYzIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgcGluY3RybC0wID0gPCZoeW04NTYzX2ludD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8wPjsKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0cyA9IDxSS19QQjAgSVJRX1RZUEVfTEVWRUxfTE9XPjsK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgd2FrZXVwLXNvdXJjZTsKPiArwqDCoMKg
-wqDCoMKgwqB9Owo+ICt9Owo+ICsKPiArJnBpbmN0cmwgewo+ICvCoMKgwqDCoMKgwqDCoGh5bTg1
-NjMgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBoeW04NTYzX2ludDogaHltODU2
-My1pbnQgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-cm9ja2NoaXAscGlucyA9IDwwIFJLX1BCMCBSS19GVU5DX0dQSU8gJnBjZmdfcHVsbF9ub25lPjsK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArwqDCoMKgwqDCoMKgwqB9Owo+
-ICt9Owo+ICsKPiDCoCZzZGhjaSB7Cj4gwqDCoMKgwqDCoMKgwqDCoGJ1cy13aWR0aCA9IDw4PjsK
-PiDCoMKgwqDCoMKgwqDCoMKgbm8tc2RpbzsKPiBAQCAtNDIsMyArNjcsNSBAQCAmdWFydDIgewo+
-IMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8JnVhcnQybTBfeGZlcj47Cj4gwqDCoMKgwqDC
-oMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiDCoH07Cj4gKwo+ICsKPiAtLSAKPiAyLjMwLjIK
+From: Thierry Reding <treding@nvidia.com>
 
+On Mon, 28 Nov 2022 16:28:49 +0000, Diogo Ivo wrote:
+> In cases where the DSI module is left on by the bootloader
+> some panels may fail to initialize if the enable register is not cleared
+> before the panel's initialization sequence is sent, so clear it if that
+> is the case.
+> 
+> 
+
+Applied, thanks!
+
+[2/4] drm/tegra: dsi: Clear enable register if powered by bootloader
+      commit: 588ed52d31ab37c5ac86816911f6428d2de265a6
+
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
