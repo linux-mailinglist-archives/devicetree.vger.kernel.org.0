@@ -2,97 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B2C6D6D7B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 21:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EB196D6DA6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236247AbjDDTxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 15:53:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47136 "EHLO
+        id S235403AbjDDULu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 16:11:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236245AbjDDTx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 15:53:27 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7775B421A;
-        Tue,  4 Apr 2023 12:53:26 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id i5so135435753eda.0;
-        Tue, 04 Apr 2023 12:53:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680638006;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RCyr7MBPtK/Bu7eE4+1NwdPPqfOycNURZYPDWp9fUT4=;
-        b=Op3jIBgiM7MQM4kKugT8I7cpcDJMTTQ0tmflfhFFUnVdq1SucA13bVRXmiglor5/GA
-         AaBezNFYXn/VsdCHkT68xOFifTGnIJFHkyvtsx+tXGcG1AxyxJX8O8FyvwQzqhIkSnUb
-         kaMNRc36cqZ303F433YY19tU+4V+JCINhCRhFWf7qnylFQvMpYI6Hs+leozvFykGfEKb
-         lBKNI00dPj5Vz89JysxhR/ujA+2nzsi1vZVeG+fSBqptLKVELAC/yWCICwaTIFxxHaDW
-         7uk3kCtRSl6V2Xqs3ZGm0BCH7jnqvtIJYf61gsq06yBKGrBLHyvqIS0yUdxKiE372dB0
-         DoEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680638006;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RCyr7MBPtK/Bu7eE4+1NwdPPqfOycNURZYPDWp9fUT4=;
-        b=NVLDUVhHgFZ2ClkTIq6y+cuvVF2Z2T4zZ1ij0f/ejuqYaBMzXsGN8+URFqRATsM+Q/
-         BqcG26diSLR+Dp0+YvEPp6KsRdQ9WtdUASlZwEPsa2GSFGK3jDPgR9EWI424+VySowdl
-         pK+NDJlHGVtRvoH5QtilubkW1hfXUdisGrWyaxBvzNMEeAMgLInOU3KHrKUI06HjZ25r
-         breCFDqcDTLiOasM1y+qCs8YDSs8N6ee/qfwUQOlUZ5pkndN/QVpf3o1F1b5GQ43JeKD
-         /OxVDMYeI5uqVG+wJr9kgeLYR1TTN7qpt+PIiaViQ7r3V4kyV1p7FGwngYCPjFMtp4Gx
-         LK9g==
-X-Gm-Message-State: AAQBX9dZ67uY2aBAFYJPj+atN2E1v8YsAROaVrztNennRCgjDefHdgtG
-        q2pzUnoza8L7TlQ3fA0Qoxc=
-X-Google-Smtp-Source: AKy350YsvnE8U3Qhq6zoeIUKLpfciqe8Km8qBE1voq/ELBxpy1Vh9nMHdKRQ8mm2I+TR+hTTzZH4nw==
-X-Received: by 2002:aa7:ccc9:0:b0:4fb:9372:f837 with SMTP id y9-20020aa7ccc9000000b004fb9372f837mr253558edt.4.1680638005803;
-        Tue, 04 Apr 2023 12:53:25 -0700 (PDT)
-Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id f24-20020a50a6d8000000b004acbda55f6bsm6346090edc.27.2023.04.04.12.53.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 12:53:25 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] firmware: Use of_property_present() for testing DT property presence
-Date:   Tue,  4 Apr 2023 21:53:25 +0200
-Message-Id: <168063798453.4019835.233964862275533619.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230310144704.1542045-1-robh@kernel.org>
-References: <20230310144704.1542045-1-robh@kernel.org>
-MIME-Version: 1.0
+        with ESMTP id S229608AbjDDULu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:11:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC85B1FE8;
+        Tue,  4 Apr 2023 13:11:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 664916381D;
+        Tue,  4 Apr 2023 20:11:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEF5CC433D2;
+        Tue,  4 Apr 2023 20:11:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680639104;
+        bh=6ehy8G3pD6IYMdwCFbrMYKYPGv4TXuD5wVAph2mLKS0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=iuZEXUqZ9ZwxZvj7eZoUbOiQ+cu047t6Quefhy5dMvtSvhC4S3YsPk/e4pyh6c7+M
+         3aUtAv+50FpMovtZZrgulMWV2Yq1OK2iYyyzkoOrk7ROs/WfcJAuhFXko71PpAWv5q
+         bx0/FghLYgahH5Sq44vFjONX+Rg8HWcrWOmkKX4HFhiYJLzgjW0HKGzqwfJvuH5wnS
+         BEbPTPeUhyu7l+VUz96pQRRukOekbAGkDZxkPbpnOTEyhtsBqgVSIHV3EZuMG0YXk8
+         etzNmtUNHXDuWlcnwfHBRKmu/ZjISwbK4xM+LaIGdY9C77ZXQYnpqpuRK5KoX70kRe
+         ifU3lGCiLKm5A==
+Message-ID: <2f8d6e564d8f0b8ea90b5c1046152efa.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230404164828.8031-2-quic_devipriy@quicinc.com>
+References: <20230404164828.8031-1-quic_devipriy@quicinc.com> <20230404164828.8031-2-quic_devipriy@quicinc.com>
+Subject: Re: [PATCH V2 1/9] dt-bindings: clock: Add PCIe pipe clock definitions
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, bhelgaas@google.com,
+        devicetree@vger.kernel.org, kishon@kernel.org,
+        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        kw@linux.com, linus.walleij@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        lpieralisi@kernel.org, mani@kernel.org, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, robh@kernel.org, vkoul@kernel.org
+Date:   Tue, 04 Apr 2023 13:11:42 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+Quoting Devi Priya (2023-04-04 09:48:20)
+> Add PCIe pipe clock definitions for IPQ9574 SoC
+>=20
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
 
-On Fri, 10 Mar 2023 08:47:04 -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
-> 
-> [...]
-
-Applied, thanks!
-
-[1/1] firmware: Use of_property_present() for testing DT property presence
-      commit: 8c47b8253f4cfd8b4dbda8c9adc1d0b1d7f3009d
-
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+Acked-by: Stephen Boyd <sboyd@kernel.org>
