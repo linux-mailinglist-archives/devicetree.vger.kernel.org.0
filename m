@@ -2,83 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBF7E6D637B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 15:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F4296D637E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 15:41:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235221AbjDDNlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 09:41:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57974 "EHLO
+        id S235237AbjDDNls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 09:41:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234493AbjDDNlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 09:41:09 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B914C07
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 06:40:42 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id bx42so8664125oib.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 06:40:42 -0700 (PDT)
+        with ESMTP id S235174AbjDDNli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 09:41:38 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23B8D468E;
+        Tue,  4 Apr 2023 06:41:32 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-17aa62d0a4aso34564106fac.4;
+        Tue, 04 Apr 2023 06:41:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680615580;
+        d=1e100.net; s=20210112; t=1680615684;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=G7+FIfysDlK27mvbP/FDHvEU65AaGIQG/L0oVJUh4mo=;
-        b=0bVJhJ0XthKvZObriWk8i0Bw5V3rAmBJJ91jmcCUSbAmjPX/0wNDxCnNeqpHgBhwmL
-         nl2dW0z/Z3q2Gn0swSZi6z7o1iMgQx93DnmKw9YQOplLQ4XrCR+bSM8ZSdHAP6eCJ+Qv
-         6Sb5VgWtJQaEPdCFp7ePm+z25anNX02cVEOXq6QU6OvgEYh63Dx8Nl5FWpAWMjVYCpUv
-         YXFYa+gNf+2b5NE8ygVErokKVnsahlTAAB+0y1CmwSC4oB66c/34/Djc9W5GAYYOYopi
-         914VBdZI4mhHIBpvDruHSq5Mo/kh39BvobMXaQ2CWeeqt0yVK+f7/z6BVzoa8FkrGWNS
-         paiw==
-X-Gm-Message-State: AAQBX9e+nrLM3ilWquZ4jwiBUpLieGHNMRJfJGwZuch7gr9vixOnu/11
-        KAc75K7G4XdcGnDxRVk0uA==
-X-Google-Smtp-Source: AKy350ZG2E1bESg38EVUvibwE63R0y7UVrNSPheX+M1dv7iyiVYcICOC9II7m/W276xxd/QZflsMrA==
-X-Received: by 2002:a05:6808:220b:b0:387:24c1:bab2 with SMTP id bd11-20020a056808220b00b0038724c1bab2mr1559876oib.54.1680615578903;
-        Tue, 04 Apr 2023 06:39:38 -0700 (PDT)
+        bh=3I6cThnoomrgNOtBCTblrlL1is2L6H9KiAc6aOP6ctc=;
+        b=xVqeStmZjPHwAEwZCaIKGogun0lfGY4J48d04yaJHsL1Yt2uHUfqvJ5Hk2fsyVYUW3
+         p+AXyRL3cxA/wzIUa5faBAXmTeFRHNxwJ5Jnqlg4P6q4WcsbfaED04sYVBnFrv7pS2ZJ
+         fVqFCPTXemsxGofpUm3nKMQC5rxNRKw/Ji7GX6dWav1MMD3gpjjmjoBX0Nxh8eAR596u
+         ZxZxWmcUAPtyt6ykvAFDsAAQHbE5Hp8FU6/bIdP7BqrdGrP6BjJEP4E46nv846mQZdQP
+         NqlanCv2+sJjej1szpuK/FH172R1G0gxxUAjAlz/M3IwuMC428HUzRpq6RQoxx9WPrDi
+         8YJw==
+X-Gm-Message-State: AAQBX9fvWEGs+Rtmf7zEMqdxYDpsABHzsJXz7UIX9TlGFLDnLO3Ce3R9
+        GNN4eSFO1oPxbtyqQeY45A==
+X-Google-Smtp-Source: AKy350bKGsx+/Tt/VIIG128S9NPudARV02KnL1yfh2vnqwtnyPDoIkASjDjLF9wtWnumEJBdxTf7Ew==
+X-Received: by 2002:a05:6870:309:b0:177:9040:d236 with SMTP id m9-20020a056870030900b001779040d236mr1371463oaf.28.1680615683906;
+        Tue, 04 Apr 2023 06:41:23 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 2-20020a4a0302000000b005251f71250dsm5392573ooi.37.2023.04.04.06.39.38
+        by smtp.gmail.com with ESMTPSA id j19-20020a9d7f13000000b006a13dd5c8a2sm5554659otq.5.2023.04.04.06.41.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 06:39:38 -0700 (PDT)
-Received: (nullmailer pid 3779371 invoked by uid 1000);
-        Tue, 04 Apr 2023 13:39:37 -0000
-Date:   Tue, 4 Apr 2023 08:39:37 -0500
+        Tue, 04 Apr 2023 06:41:23 -0700 (PDT)
+Received: (nullmailer pid 3782488 invoked by uid 1000);
+        Tue, 04 Apr 2023 13:41:22 -0000
+Date:   Tue, 4 Apr 2023 08:41:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@chargebyte.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com
-Subject: Re: [PATCH V5 2/6] dt-bindings: w1: Add DS2482/DS2484 I2C to 1-W
- bridges
-Message-ID: <20230404133937.GA3778861-robh@kernel.org>
-References: <20230404080243.9613-1-stefan.wahren@chargebyte.com>
- <20230404080243.9613-3-stefan.wahren@chargebyte.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     rfoss@kernel.org, andersson@kernel.org, agross@kernel.org,
+        linux-crypto@vger.kernel.org, konrad.dybcio@linaro.org,
+        vladimir.zapolskiy@linaro.org, bhupesh.linux@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        neil.armstrong@linaro.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 01/11] dt-bindings: dma: Add support for SM6115 and
+ QCM2290 SoCs
+Message-ID: <168061568226.3782433.11290866098182220844.robh@kernel.org>
+References: <20230402100509.1154220-1-bhupesh.sharma@linaro.org>
+ <20230402100509.1154220-2-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230404080243.9613-3-stefan.wahren@chargebyte.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+In-Reply-To: <20230402100509.1154220-2-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 04, 2023 at 10:02:39AM +0200, Stefan Wahren wrote:
-> This adds a dedicated devicetree binding for the Maxim DS2482/DS2484
-> I2C to 1-W bridges, which can be extended later for further features
-> (e.g. sleep mode control GPIO). Since one wire is a bus, child nodes
-> needs to be allowed here.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
-> ---
->  .../devicetree/bindings/w1/maxim,ds2482.yaml  | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Sun, 02 Apr 2023 15:34:59 +0530, Bhupesh Sharma wrote:
+> Add new compatible for BAM DMA engine version v1.7.4 which is
+> found on Qualcomm SM6115 and QCM2290 SoCs. Since its very similar
+> to v1.7.0 used on SM8150 like SoCs, mark the comptible scheme
+> accordingly.
+> 
+> While at it, also update qcom,bam-dma bindings to add comments
+> which describe the BAM DMA versions used in SM8150 and SM8250 SoCs.
+> This provides an easy reference for identifying the actual BAM DMA
+> version available on Qualcomm SoCs.
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../devicetree/bindings/dma/qcom,bam-dma.yaml | 20 ++++++++++++-------
+>  1 file changed, 13 insertions(+), 7 deletions(-)
+> 
+
+Acked-by: Rob Herring <robh@kernel.org>
+
