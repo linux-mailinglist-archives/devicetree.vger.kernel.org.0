@@ -2,53 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4459D6D57D9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:07:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 812786D57F9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232916AbjDDFHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 01:07:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47736 "EHLO
+        id S232566AbjDDF3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 01:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbjDDFG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:06:59 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3C4B1BE1;
-        Mon,  3 Apr 2023 22:06:57 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (fp76f193f3.tkyc206.ap.nuro.jp [118.241.147.243])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A0B74DD;
-        Tue,  4 Apr 2023 07:06:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1680584816;
-        bh=BM4y5PjB7Ht/ou9MwaKxwHoLKvy3DMIrcmMHl5T7fqw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ceYbo2KWKKOwyoEKbR33mOzI1oQqktBtd9nAq58r974UdcFk+rt29bLcrQk63+9Jt
-         5iWeG7pzDlru2wXrx+nKmh5R+PYAiQSRe9dabsKyglg3PVMl2nnw+zafbGaFQpSjZm
-         NMG/ElLIaNZ6AJAxueQLv0B3obsEATfE9iJCnqvM=
-Date:   Tue, 4 Apr 2023 08:07:03 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jack Zhu <jack.zhu@starfivetech.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231552AbjDDF3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:29:37 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF9F10E3;
+        Mon,  3 Apr 2023 22:29:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=kvrrME49HSEm3e3PUjpTJ/N0A8XCBPZx1NZzV7RUN7w=; b=iN5/NV0ZdBH39LOKFmDddySJn4
+        O8mRnqfW7uoArL0ggKDA8qmMZkql25oVue3G1bnyKR95wYDE5Xj5/sBYAR9rSUTV8LrMfb3ULeAj+
+        A1XWRnk6HRLVvh6bXS+XLtRMmLE2n1j1F59DIl7LdJYL8DPKhaM9+YbOZGL4nJ7uNObjjkRVtK3FA
+        8DgDOOaRQ2delNCqK/zhhDYdT9Ff1ve6yB/jQONvKAx9MTbEtbZp/qbsuRnGeDVwPeTG0Y6VI8Pk4
+        FfnDXcjZbOhulsVGbgxe34wfNSs+C1Jka3G3f6RXWPgQjJM4+4TNlG2jysYEjtt/yJ94aqENfIDTf
+        blymWRPQ==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat Linux))
+        id 1pjZES-00060U-2V;
+        Tue, 04 Apr 2023 05:29:24 +0000
+Date:   Mon, 3 Apr 2023 22:29:24 -0700
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v3 8/9] media: cadence: Add support for JH7110 SoC
-Message-ID: <20230404050703.GO16648@pendragon.ideasonboard.com>
-References: <20230331121826.96973-1-jack.zhu@starfivetech.com>
- <20230331121826.96973-9-jack.zhu@starfivetech.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+Message-ID: <ZCu1tFrQCVe2sgNz@infradead.org>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230331121826.96973-9-jack.zhu@starfivetech.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+In-Reply-To: <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,40 +64,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
-
-Thank you for the patch.
-
-On Fri, Mar 31, 2023 at 08:18:25PM +0800, Jack Zhu wrote:
-> Add support for Starfive JH7110 SoC which
-> has the cadence csi2 receiver.
-
-This fits on one line:
-
-Add support for Starfive JH7110 SoC which has the cadence csi2 receiver.
-
-> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  drivers/media/platform/cadence/cdns-csi2rx.c | 1 +
->  1 file changed, 1 insertion(+)
+On Thu, Mar 30, 2023 at 09:42:12PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index add982edce64..5e36b994b8d5 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -560,6 +560,7 @@ static int csi2rx_remove(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id csi2rx_of_table[] = {
-> +	{ .compatible = "starfive,jh7110-csi2rx" },
->  	{ .compatible = "cdns,csi2rx" },
->  	{ },
->  };
+> Currently, selecting which CMOs to use on a given platform is done using
+> and ALTERNATIVE_X() macro. This was manageable when there were just two
+> CMO implementations, but now that there are more and more platforms coming
+> needing custom CMOs, the use of the ALTERNATIVE_X() macro is unmanageable.
+> 
+> To avoid such issues this patch switches to use of function pointers
+> instead of ALTERNATIVE_X() macro for cache management (the only drawback
+> being performance over the previous approach).
+> 
+> void (*clean_range)(unsigned long addr, unsigned long size);
+> void (*inv_range)(unsigned long addr, unsigned long size);
+> void (*flush_range)(unsigned long addr, unsigned long size);
+> 
 
--- 
-Regards,
+NAK.  Function pointers for somthing high performance as cache
+maintainance is a complete no-go.
 
-Laurent Pinchart
