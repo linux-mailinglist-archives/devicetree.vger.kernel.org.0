@@ -2,99 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D5DC6D56A4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 04:19:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6076D56AC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 04:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbjDDCTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Apr 2023 22:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60052 "EHLO
+        id S232321AbjDDCVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Apr 2023 22:21:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbjDDCTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 22:19:17 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A021BEA;
-        Mon,  3 Apr 2023 19:19:11 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0494C24E251;
-        Tue,  4 Apr 2023 10:19:08 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Apr
- 2023 10:19:08 +0800
-Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Apr
- 2023 10:19:06 +0800
-Message-ID: <d7f698cb-5371-25a7-2f44-0132b4d3f63a@starfivetech.com>
-Date:   Tue, 4 Apr 2023 10:19:04 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [-net-next v10 5/6] net: stmmac: Add glue layer for StarFive
- JH7110 SoC
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231894AbjDDCVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Apr 2023 22:21:52 -0400
+X-Greylist: delayed 92329 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 03 Apr 2023 19:21:48 PDT
+Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66911BEA
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 19:21:48 -0700 (PDT)
+Date:   Tue, 04 Apr 2023 02:21:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+        s=protonmail; t=1680574906; x=1680834106;
+        bh=Qz/nY1nVK+mYxZEsq/SpNw5eBg+A/ANSmY1kTqZoS4M=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=Ta+OCzSmaZVOhWvRpFwYnfh/qF1s5peeue0eCyOb8ZS/Vt1c5mWag1LUb8k/0FlCi
+         v/l2BvzCuNMOyQ9wFBq8d2x2szSxCaHY5HlnCIS+VPpnEN+8X29k5slz4x8fDMqaKB
+         4y/hZ/0ku4b9v2rG5sTRT0XP7b1yFUgUOR34t8yqeoh+dj2NbtGEw3RILMstrhq/bR
+         SWzHyIylRC/X2ESCKDoiaUQe0/K7RRBCU0y04hgiiyQLe382Ww1xyRtx2kr1pUDJhh
+         tSaptBKcucNkn5T54VujgcifvhF984Vp9RvEHZWzX7G2vtkTYi8aBSwZ0jQpSxEJ8g
+         knEMFfzPX4Y0A==
+To:     Om Parikh <hack3r-0m@proton.me>
+From:   Om Parikh <hack3r-0m@proton.me>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        "Tommaso Merciai" <tomm.merciai@gmail.com>
-References: <20230403065932.7187-1-samin.guo@starfivetech.com>
- <20230403065932.7187-6-samin.guo@starfivetech.com>
- <20230403-data-dawdler-afaaaf6fa87c@spud>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <20230403-data-dawdler-afaaaf6fa87c@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.3 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Olof Johansson <olof@lixom.net>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: alphascale-asm9260: convert to DT schema
+Message-ID: <20230404022015.754177-1-hack3r-0m@proton.me>
+In-Reply-To: <20230403004138.326482-1-hack3r-0m@proton.me>
+References: <20230403004138.326482-1-hack3r-0m@proton.me>
+Feedback-ID: 58440162:user:proton
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,TO_EQ_FM_DIRECT_MX
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Makes alphascale-asm9260 dt bindings adhere to the dt json-schema
+by replacing txt file with yaml file.
 
-Re: [-net-next v10 5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
-From: Conor Dooley <conor@kernel.org>
-to: Samin Guo <samin.guo@starfivetech.com>
-data: 2023/4/4
+Signed-off-by: Om Parikh <hack3r-0m@proton.me>
+---
+ .../watchdog/alphascale,asm9260-wdt.yaml      | 73 +++++++++++++++++++
+ .../bindings/watchdog/alphascale-asm9260.txt  | 35 ---------
+ 2 files changed, 73 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/alphascale,a=
+sm9260-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/alphascale-a=
+sm9260.txt
 
-> On Mon, Apr 03, 2023 at 02:59:31PM +0800, Samin Guo wrote:
-> 
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 6b6b67468b8f..a9684b3c24f9 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19909,6 +19909,7 @@ STARFIVE DWMAC GLUE LAYER
->>  M:	Emil Renner Berthing <kernel@esmil.dk>
->>  M:	Samin Guo <samin.guo@starfivetech.com>
->>  S:	Maintained
-> 
->> +F:	Documentation/devicetree/bindings/net/dwmac-starfive.c
-> 
-> Funny name you got for a binding there mate!
+diff --git a/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-=
+wdt.yaml b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wd=
+t.yaml
+new file mode 100644
+index 000000000000..ceee5f086e4a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yam=
+l
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/alphascale,asm9260-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Alphascale asm9260 Watchdog timer
++
++allOf:
++  - $ref: watchdog.yaml#
++
++maintainers:
++  - Oleksij Rempel <linux@rempel-privat.de>
++  - Olof Johansson <olof@lixom.net>
++
++properties:
++  compatible:
++    enum:
++      - alphascale,asm9260-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: source clock, used for tick counter
++      - description: ahb gate
++
++  clock-names:
++    items:
++      - const: mod
++      - const: ahb
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    items:
++      - description: phandle pointing to the system reset controller with =
+line
++                     index for the watchdog.
++
++  reset-names:
++    items:
++      - const: wdt_rst
++
++  timeout-sec: true
++
++  alphascale,mode:
++    description: to specify the reset mode of operation
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [hw, sw, debug]
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/alphascale,asm9260.h>
++    watchdog0: watchdog@80048000 {
++      compatible =3D "alphascale,asm9260-wdt";
++      reg =3D <0x80048000 0x10>;
++      clocks =3D <&acc CLKID_SYS_WDT>, <&acc CLKID_AHB_WDT>;
++      clock-names =3D "mod", "ahb";
++      interrupts =3D <55>;
++      timeout-sec =3D <30>;
++      alphascale,mode =3D "hw";
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.=
+txt b/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
+deleted file mode 100644
+index 75b265a04047..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
++++ /dev/null
+@@ -1,35 +0,0 @@
+-Alphascale asm9260 Watchdog timer
+-
+-Required properties:
+-
+-- compatible : should be "alphascale,asm9260-wdt".
+-- reg : Specifies base physical address and size of the registers.
+-- clocks : the clocks feeding the watchdog timer. See clock-bindings.txt
+-- clock-names : should be set to
+-=09"mod" - source for tick counter.
+-=09"ahb" - ahb gate.
+-- resets : phandle pointing to the system reset controller with
+-=09line index for the watchdog.
+-- reset-names : should be set to "wdt_rst".
+-
+-Optional properties:
+-- timeout-sec : shall contain the default watchdog timeout in seconds,
+-=09if unset, the default timeout is 30 seconds.
+-- alphascale,mode : three modes are supported
+-=09"hw" - hw reset (default).
+-=09"sw" - sw reset.
+-=09"debug" - no action is taken.
+-
+-Example:
+-
+-watchdog0: watchdog@80048000 {
+-=09compatible =3D "alphascale,asm9260-wdt";
+-=09reg =3D <0x80048000 0x10>;
+-=09clocks =3D <&acc CLKID_SYS_WDT>, <&acc CLKID_AHB_WDT>;
+-=09clock-names =3D "mod", "ahb";
+-=09interrupts =3D <55>;
+-=09resets =3D <&rst WDT_RESET>;
+-=09reset-names =3D "wdt_rst";
+-=09timeout-sec =3D <30>;
+-=09alphascale,mode =3D "hw";
+-};
+--=20
+2.40.0
 
-Oh, can't believe I made this mistake, will Fix  :)
-Also, are there any other comments?
 
-Best regards,
-Samin
