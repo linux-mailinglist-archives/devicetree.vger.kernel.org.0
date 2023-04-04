@@ -2,51 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0396D6AC6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 19:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 985186D6AD4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 19:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236004AbjDDRii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 13:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55406 "EHLO
+        id S232696AbjDDRmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 13:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235968AbjDDRie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 13:38:34 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87288170F;
-        Tue,  4 Apr 2023 10:38:18 -0700 (PDT)
-Received: from localhost (unknown [188.27.34.213])
+        with ESMTP id S231348AbjDDRl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 13:41:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54552B4;
+        Tue,  4 Apr 2023 10:41:58 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2405:201:0:21ea:73f6:2283:f432:3936])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A41E066031A5;
-        Tue,  4 Apr 2023 18:38:16 +0100 (BST)
+        (Authenticated sender: shreeya)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D8B84660316F;
+        Tue,  4 Apr 2023 18:41:54 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680629896;
-        bh=cdstoqxPWhvdMsWzWtAKva88nlEDFRiEFVi8qwXMjAU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nYFqgjzbtVADmMDipQDLIWdBpljOVNzX7Fk98T1+e8lpapf8vF8wgOiigtzGypbV+
-         SlM2wdOdpVb8aMPc9oZJns3JnBAHe3ZCSSnawHxALbmqOq3mkzadja0aPv0mknHq++
-         YXSie0py3d+cawXuTN1FONSHJ9/ltew/qNAkIyOSl5mReTuM7h1dawamDx2l01Ssj9
-         wD8UPnjraiSuud/1diImJTIamTnnViCHsCriBoFxWZrJ/JdOv9hJYXUPpTZ2jRIDB9
-         /ppbe6PYMYJXe7uY0WEiSgFzVBQf7+ze5vEHDnUFzvqbOf8bMH1UZqlE2jfs5bHWM0
-         i7HLrgnj27xyA==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, kernel@collabora.com,
+        s=mail; t=1680630117;
+        bh=eFM2DUmpK4asUDysohdMR8TB/pdKK8LNKe1onXMI9bA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dF06nkY6DUIwqs6bK/i6huSbsWUJnRAQzdGsSgZ9Lij0bIyX/5pJuOnBfoATxes1f
+         0V6qIt/tE42Owec+9MZN4pypNXcazIegoFDsDa/W25Tyga2aK1IUphv5uHSF2MyUdA
+         2k/e3M7BaMgesqF3luOqyCPH7bXb0y5zoizPYw852OJf12iUy1IhillZzBUbx9sWAr
+         D66skznvlg8tzGansrW8ZNE7JLZ5I9d+4c/PFP5sxVZ58vXYWNdpaTjsJPwj/dE2TH
+         IXQ8Uf18ys/RC9WpyPerbfmjcrcnnmollE4cz890q7Bm/Qmn33Uir76Gd9+wPqVINR
+         MbXxrKloJfchw==
+From:   Shreeya Patel <shreeya.patel@collabora.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Shreeya Patel <shreeya.patel@collabora.com>,
         Christopher Obbard <chris.obbard@collabora.com>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: rk3588-rock-5b: Add pwm-fan
-Date:   Tue,  4 Apr 2023 20:38:07 +0300
-Message-Id: <20230404173807.490520-3-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
-References: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Enable RTC support for Rock 5B
+Date:   Tue,  4 Apr 2023 23:11:21 +0530
+Message-Id: <20230404174121.38727-1-shreeya.patel@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -58,45 +53,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary DT changes for the Rock 5B board to enable support for
-the PWM controlled heat sink fan.
+Add DT node to enable RTC support for Rock 5B board.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
 Reviewed-by: Christopher Obbard <chris.obbard@collabora.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 95805cb0adfa..bd74d9da2c17 100644
+index 95805cb0adfa..fcb5af09e49b 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -17,6 +17,14 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-levels = <0 95 145 195 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm1 0 50000 0>;
-+		#cooling-cells = <2>;
-+	};
-+
- 	vcc5v0_sys: vcc5v0-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
-@@ -27,6 +35,10 @@ vcc5v0_sys: vcc5v0-sys-regulator {
+@@ -27,6 +27,31 @@ vcc5v0_sys: vcc5v0-sys-regulator {
  	};
  };
  
-+&pwm1 {
++&i2c6 {
 +	status = "okay";
++
++	hym8563: hym8563@51 {
++		compatible = "haoyu,hym8563";
++		reg = <0x51>;
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		clock-output-names = "hym8563";
++		pinctrl-names = "default";
++		pinctrl-0 = <&hym8563_int>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
++		wakeup-source;
++	};
++};
++
++&pinctrl {
++	hym8563 {
++		hym8563_int: hym8563-int {
++			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
 +};
 +
  &sdhci {
  	bus-width = <8>;
  	no-sdio;
 -- 
-2.40.0
+2.30.2
 
