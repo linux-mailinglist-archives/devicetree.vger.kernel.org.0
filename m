@@ -2,86 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B83436D6675
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 16:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84AAE6D66E9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 17:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233419AbjDDO7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 10:59:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59816 "EHLO
+        id S235535AbjDDPN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 11:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233158AbjDDO6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 10:58:55 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3CC659DE
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 07:58:03 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id iw3so31528481plb.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 07:58:03 -0700 (PDT)
+        with ESMTP id S235165AbjDDPNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 11:13:23 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC38E44BE
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 08:13:21 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id ew6so131928026edb.7
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 08:13:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680620283;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=H9uYwVcXo7cBUUBOTLZ2J2lrgVJ/xfkFZclj3HBehK8=;
-        b=UAETlx+9wQOEYw9NkD5esQ22zJR9CYzlPJFuuru/zG8A7bcoHUo5CXJ9VMeQYHfVj4
-         a6KAda1lEkoabUz13lUVXFC0HOTYZxNrY28ZtkJwknBw2NpS4RPwtznfSXXUrdnZI0T7
-         QmwkjqpQrUKWOZC3HtGUeObmFnSzFFtkmfJSqhp40MV8d2URnW6nb/8H83pnqsLUpNCo
-         9E4Ebl0P7KOXfKbvh46S7fB2ewb8ceCDSz600lMgQ4Jr1IKVVBcoP4jovOaIi2xfINbo
-         ZiZlIOrHGJNGygni7UnfXlF+ipe0cAdJEAT54EvufshEYUUh8gD6sHYaV/jSusLemeot
-         wXHw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680621200;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1O026JM7eSnBPLdKfSjDDMSv0KRDXdafHprAvA88P84=;
+        b=a7XqBTQ0njpuHJTWVmYyEC0Lv+fIrzGPXujd5UcPSChN6qIDSY9Jqt4zRb8rev/rXC
+         Xez0vM/KcaUGauqdeEAFCAr96+GdSTuEPVqUTCE8fm7RElbd1umLDEIipv1bvHHxcX1L
+         w44Gumgw2WN+z9tIa926gMWQhN1bLpqXeNcME5O+dZpeC9RvsDL4O+Vb7jP3uSBjhQsS
+         7CCERz6rXrnuLEp+krtmYlzeNA2oOidFFmqf38BK6e2FKyWuyKwzHXJNQ3C56iZzptbq
+         XfIEv5ZzhrnS4UtBLJTsvYMe+2jzyUROAuq7W6QRJXZ8Ga5aAwYb7RToh7l9FRRbzhkY
+         mJTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680620283;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H9uYwVcXo7cBUUBOTLZ2J2lrgVJ/xfkFZclj3HBehK8=;
-        b=ZJH0Itzxh5M2hzArmEVSC69veLn2cATCBs0/tVjBkl2s86MJYHkFbmgvxgBkVQXhKJ
-         TDINp5p33GwuChHXBpt3IqC9tNzMnWdITJN13W9ZDyU6IuVUBk/zJ/16Hcs8SF+sBcBe
-         j29qmpf8cH7FRJm1LkrKDqrXp/+b6QnQ/jgRYMJk4WRHUxrmKPWVPOTO40KVMFgwS8lE
-         mqXYBUT8Jjgtf9GhGuLmRSLa1Hpxb5w3QzjQipXrwRPsfjFca3NLINdlXGLzdmVSh/Qo
-         STlT9Iu26Ug2RYdX0c2tbTvNya7RBAtpftAxDUsJSyRWc4QpDPGHMVvAsWqk+/GySpQM
-         CKhw==
-X-Gm-Message-State: AAQBX9d0rRQUCjJiNpzHTxE/6thHLzHNB2yVu/ZWIMzagUipjnuikweK
-        JdV6cQo/scawwVIHx91PQpBdAQ==
-X-Google-Smtp-Source: AKy350YdY2blg+WDMTITRqonrmBC853Tqawrwror3LCdLvv5uZ3X8E8eImt5a/UgDnCMC9oeW3hnfg==
-X-Received: by 2002:a17:902:ec92:b0:1a2:87a2:c91a with SMTP id x18-20020a170902ec9200b001a287a2c91amr3262702plg.34.1680620283196;
-        Tue, 04 Apr 2023 07:58:03 -0700 (PDT)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id k17-20020a170902761100b0019ef86c2574sm8381272pll.270.2023.04.04.07.58.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 07:58:02 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Bernhard =?utf-8?Q?Rosenkr=C3=A4n?= =?utf-8?Q?zer?= 
-        <bero@baylibre.com>, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 00/11] Improve the MT8365 SoC and EVK board support
-In-Reply-To: <7h1ql0y0j7.fsf@baylibre.com>
-References: <20230203-evk-board-support-v4-0-5cffe66a38c0@baylibre.com>
- <7hy1ncydtc.fsf@baylibre.com>
- <CAFGrd9rKy9a4bUf1dkUtTogtWPFr5eu3jcsdaixi3hs_dWMwrg@mail.gmail.com>
- <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
- <7h1ql0y0j7.fsf@baylibre.com>
-Date:   Tue, 04 Apr 2023 07:58:01 -0700
-Message-ID: <7hy1n7wv7q.fsf@baylibre.com>
+        d=1e100.net; s=20210112; t=1680621200;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1O026JM7eSnBPLdKfSjDDMSv0KRDXdafHprAvA88P84=;
+        b=PLaRRv7hH/kPuB7D/DTse16BDpES0Ud3YyqLBBE6IoNoRUrjeDGw4Chzm4KlBQbmyL
+         y3C830wbU2Mr1cCEI043dv0HzZOmQhv2DSNJlZK3D2hklg+ujUDY+N3EzHt8YjIaSd/S
+         RzmLi1vxVfIvFFlZ1VzhXZFeph9Sw5Y8XmwYMTneZscvAfobjvFXuqTV/LoAsgXK+9Nw
+         XTEd60m5ZHByO8DZajVko6ZIZ1sQKNgkmzOlWaBy8PAOUzrg6n58WNZdU78Km0TaO2Aa
+         I4Z1Mqznk5yGmvfAKRPX4fP6MNeecj6YSKvfSl/8/lZIOmbzq11lPOSJvKsoVR9h38Oi
+         lzKQ==
+X-Gm-Message-State: AAQBX9dGfYQnc7PHhdyA7S1mFj61Xs293C2lJHLp5LHNjTkWI4vNFohY
+        ILysybkdquj/5Icc2RztKgwO2pf/IuDFjhHRdd+9ZQ==
+X-Google-Smtp-Source: AKy350Z9lA8DgGqhAjKhVYJznsekz+CaWqLxDEEDb8hlazRI26y2fGS7u7PE8AETVfvb5fn8k4nKYSUUTLHi9KvEap4=
+X-Received: by 2002:a17:906:a5a:b0:946:a095:b314 with SMTP id
+ x26-20020a1709060a5a00b00946a095b314mr1387289ejf.2.1680621200196; Tue, 04 Apr
+ 2023 08:13:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20230307154524.118541-1-bchihi@baylibre.com> <20230307154524.118541-3-bchihi@baylibre.com>
+ <0a86d734-000e-560b-8f47-1c0a113c01ee@linaro.org>
+In-Reply-To: <0a86d734-000e-560b-8f47-1c0a113c01ee@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Tue, 4 Apr 2023 17:12:44 +0200
+Message-ID: <CAGuA+ooYbHn-4BYzaTkdagc2FimkenE0z2Zt4AqDbXQ++GThvQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] thermal/drivers/mediatek/lvts_thermal: Add AP domain
+ for mt8195
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
@@ -91,17 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
-
-> Alexandre Mergnat <amergnat@baylibre.com> writes:
+On Sat, Apr 1, 2023 at 10:51=E2=80=AFPM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
 >
->> Here a build-able & working branch with dependencies:
->> https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/amergnat/i350-evk-board-support
+> On 07/03/2023 16:45, bchihi@baylibre.com wrote:
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> >
+> > Add MT8195 AP Domain support to LVTS Driver.
+> >
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
 >
-> This branch doesn't compile.
+> Applied, thanks
+>
+> Changed the commit log to reflect the comments change
 
-I'm wrong, it compiles fine.  I was on the wrong branch.
+Thank you Daniel!
 
-Sorry for the noise,
-
-Kevin
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
+>
