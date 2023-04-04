@@ -2,85 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 812786D57F9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83DAA6D5807
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:33:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232566AbjDDF3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 01:29:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56104 "EHLO
+        id S233041AbjDDFdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 01:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231552AbjDDF3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:29:37 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF9F10E3;
-        Mon,  3 Apr 2023 22:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=kvrrME49HSEm3e3PUjpTJ/N0A8XCBPZx1NZzV7RUN7w=; b=iN5/NV0ZdBH39LOKFmDddySJn4
-        O8mRnqfW7uoArL0ggKDA8qmMZkql25oVue3G1bnyKR95wYDE5Xj5/sBYAR9rSUTV8LrMfb3ULeAj+
-        A1XWRnk6HRLVvh6bXS+XLtRMmLE2n1j1F59DIl7LdJYL8DPKhaM9+YbOZGL4nJ7uNObjjkRVtK3FA
-        8DgDOOaRQ2delNCqK/zhhDYdT9Ff1ve6yB/jQONvKAx9MTbEtbZp/qbsuRnGeDVwPeTG0Y6VI8Pk4
-        FfnDXcjZbOhulsVGbgxe34wfNSs+C1Jka3G3f6RXWPgQjJM4+4TNlG2jysYEjtt/yJ94aqENfIDTf
-        blymWRPQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat Linux))
-        id 1pjZES-00060U-2V;
-        Tue, 04 Apr 2023 05:29:24 +0000
-Date:   Mon, 3 Apr 2023 22:29:24 -0700
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
- pointers for cache management
-Message-ID: <ZCu1tFrQCVe2sgNz@infradead.org>
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S232578AbjDDFdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:33:54 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C31619A6
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 22:33:52 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id eg48so125735201edb.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 22:33:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680586431;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LSfvMCOrdSCg0KsTlmNTzh+wJyyn32F7jBR5XEIQXfs=;
+        b=SZwSkMwcEttyesUKzaZlZS4UGLFXMY126tr9woNXYKUhFfJvL2DW/VmdxbXEZVKhq4
+         Q8Pq5qlwwDErfIgKXJUIy0niHLAaBewg0qiRIG2Ea3WpDIcEC3HIHc1IACXyEIQcUvyO
+         c2Zr8YwvcOOX6aVTroi7AImN1zOILzZ4YqJrVM/HXHIeJqxbaLqixzQTiaPy3uI4KW8z
+         fWMLNaSOfu++mTiApTEXBctIvp/0ILa/2KaPKUr3ZGCLFKd7tQabv28XBN7YezNEXm6w
+         dx/m0ehD2NIiIW7DwzPLa2F+gqKklDNfN+rcYmZAnyu7BNPoZGwWJLn+fvo1lxCE/umF
+         vHMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680586431;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LSfvMCOrdSCg0KsTlmNTzh+wJyyn32F7jBR5XEIQXfs=;
+        b=zfq0NVXs8eamXZtH4xdqOOFlbXbXeZl1d+lZtMfGxg++Npz1BXJFyrIWheZ62yyYd+
+         sOJKQL+AS0WcRu8+22UDZkN/P1W2yV6ltXGj+Gji0He3lnM8uLb+jfX7zY/3QK9BVin7
+         8vFs1174hLDpqlAjfFkE8Cq81HbAGdmTkHer0gwE/gr3GQnVf471T2ecic4WFEHa1WUD
+         U++6j73wD/i7iUz5+FADRlwG6nTrCFQys5njS3C3EfiEvXQ0ElSSWtO3VUjSJd+OfTkW
+         ABondXHCjpy+gSi0aRtLqJTaMj6fppNiLvf8+6ePJpjfuQkwA9blOIL2exyI1uNx1aya
+         OD/Q==
+X-Gm-Message-State: AAQBX9f5gFvn7S20C3LO4bGBJv9L9SqFh5Fx0NzmaDGSAJBNmfcHJBAd
+        heBBfluphWLlwA6qHH1333jZvA==
+X-Google-Smtp-Source: AKy350a40YXsaP1RgtMOL5a6WR77TS6ARlPJXWLmm7+/lgqUoQ15z5r6n8YquYLchK+7NxQM/Zfl/Q==
+X-Received: by 2002:aa7:cad9:0:b0:502:4875:721 with SMTP id l25-20020aa7cad9000000b0050248750721mr1233965edt.15.1680586430958;
+        Mon, 03 Apr 2023 22:33:50 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
+        by smtp.gmail.com with ESMTPSA id 28-20020a508e5c000000b004c13fe8fabfsm5387403edx.84.2023.04.03.22.33.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Apr 2023 22:33:50 -0700 (PDT)
+Message-ID: <9c49e4a9-0792-bcae-506f-77b5874d4d19@linaro.org>
+Date:   Tue, 4 Apr 2023 07:33:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V4 04/10] dt-bindings: timestamp: Add
+ nvidia,gpio-controller
+Content-Language: en-US
+To:     Dipen Patel <dipenp@nvidia.com>, Rob Herring <robh@kernel.org>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230323012929.10815-1-dipenp@nvidia.com>
+ <20230323012929.10815-5-dipenp@nvidia.com>
+ <20230324171329.GA2062332-robh@kernel.org>
+ <7f2dc5cf-78b5-81c6-0012-26b1adce1c86@nvidia.com>
+ <19b71fef-614a-d678-2e73-95db8f226e61@linaro.org>
+ <df00404e-96a8-bf33-cbc7-25dbb09c89c7@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <df00404e-96a8-bf33-cbc7-25dbb09c89c7@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 09:42:12PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 04/04/2023 06:24, Dipen Patel wrote:
+> On 3/25/23 4:09 AM, Krzysztof Kozlowski wrote:
+>> On 24/03/2023 19:51, Dipen Patel wrote:
+>>> On 3/24/23 10:13 AM, Rob Herring wrote:
+>>>> On Wed, Mar 22, 2023 at 06:29:23PM -0700, Dipen Patel wrote:
+>>>>> Introducing nvidia,gpio-controller property from Tegra234 SoCs onwards.
+>>>>> This is done to help below case.
+>>>>>
+>>>>> Without this property code would look like:
+>>>>> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
+>>>>> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
+>>>>> 				   tegra_get_gpiochip_from_name);
+>>>>> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
+>>>>> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
+>>>>> 				   tegra_get_gpiochip_from_name);
+>>>>> else
+>>>>> 	return -ENODEV;
+>>>>
+>>>> Or you just put the name in match data.
+>>>
+>>> Not sure I have understood this comment, but "name" the first argument is
+>>> already there to supply to callback to match data. Also, this if else is
+>>> needed to know which "name" to provide.
+>>
+>> The point is that of_device_is_compatible() do not really scale and make
+>> code more difficult to read. Your variant-customization should in
+>> general entirely come from match/driver data.
 > 
-> Currently, selecting which CMOs to use on a given platform is done using
-> and ALTERNATIVE_X() macro. This was manageable when there were just two
-> CMO implementations, but now that there are more and more platforms coming
-> needing custom CMOs, the use of the ALTERNATIVE_X() macro is unmanageable.
-> 
-> To avoid such issues this patch switches to use of function pointers
-> instead of ALTERNATIVE_X() macro for cache management (the only drawback
-> being performance over the previous approach).
-> 
-> void (*clean_range)(unsigned long addr, unsigned long size);
-> void (*inv_range)(unsigned long addr, unsigned long size);
-> void (*flush_range)(unsigned long addr, unsigned long size);
-> 
+> Perhaps I should not have mentioned driver related details here about how
+> this property will help, that detail will go in driver patch. In the next
+> patch series I will remove this commit and just focus on what this property
+> is.
 
-NAK.  Function pointers for somthing high performance as cache
-maintainance is a complete no-go.
+Regardless of this commit, driver match data is the way to go, not
+of_device_is_compatible().
+
+
+
+Best regards,
+Krzysztof
 
