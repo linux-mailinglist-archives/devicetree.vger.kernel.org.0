@@ -2,96 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 476D76D5EA9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D86BF6D5ED4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:19:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234545AbjDDLIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35484 "EHLO
+        id S234786AbjDDLTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234611AbjDDLI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:08:26 -0400
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094F23A8C;
-        Tue,  4 Apr 2023 04:06:53 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 59BA2581F56;
-        Tue,  4 Apr 2023 07:06:52 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Tue, 04 Apr 2023 07:06:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1680606412; x=1680613612; bh=z7
-        EzKZ0L03Vqajs+ogmzIxsIatsg8LuRD8oJ+p9J0SQ=; b=GnAWMe7LYftE+EzS5W
-        WOMzwLNVzjI9xjmYSaYEiCwtAe6jPlylQa2Fd7r1D5jPNZOSUEQqhmxRnPFOgU8W
-        WC8mNfm26+rhBxaI1sYbNO8IbAG39tY2USQliLK5MBMvnth1cB/aVdCJSTL++Q0M
-        jp2GKbTRpfCbLaWyWul7GZrhK9+qLkfi87LntytmpP/XDUfOHmCetOcPa1bWz2qP
-        ryiE694F8xPZ+vshZJEMJE/xHnO7MC2tEyvDSbl6guIotbD5G19VSWoCae7UJKSR
-        lNHHMA+lGjR1WXud18FhlMTjCmNpBKQuEMPOWf1WMzqEA0YM7kb4w94yiB9H2/nl
-        IleA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1680606412; x=1680613612; bh=z7EzKZ0L03Vqa
-        js+ogmzIxsIatsg8LuRD8oJ+p9J0SQ=; b=J2cm9zBGE9SXJJkI9w4MbSdW+Z90K
-        ed6R7RdlRFhcHMea2g0jA+rjsbKmdhQUMALfnfjNFAf0o7OWMabxP4c/Vs0CSJpN
-        /9g0Qw1CvJm/OfZ1ld9BoV3Pt1fpbhftfmLfj+XCgm0KjJEbZfOAoTbtOzGQ/Zug
-        F/0LPJY0zxpyuN4ouYvGSLUz0HQBXfrPVq1vu4grqah9ADA0/oapLfWU0KC+eD0E
-        rlcl90w4cJuc+syN32E4Z9g9J5ICptvO/1XeivZPirxkJjR+Pf1iSsiziToIqU0V
-        BkuucE9ib7K163aCDV9ytieu4JyKOQFnXa6fUmwNHDYjdDbSr/HDw/SLQ==
-X-ME-Sender: <xms:ygQsZEnCgUPZ8JbS-8VP0OAvdijeGFmJD7fQ3AFWHL4BCnLt3_rogA>
-    <xme:ygQsZD1rDwS86pHr9alTivTRygqat2h53eXMMFp0xNNFeIjc1UQDvQctQszXcCob7
-    ls-8q4ZRVfNIRZZc6o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeiledgfeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:ywQsZCrPhU64C5rSp1CXgBls8Hx_6__QDPdtx6NDedRHnxx7ChZFiw>
-    <xmx:ywQsZAldtFKVm1jZCPEu-uIQsatmNC7dbMd5g8ausQ8rijBjWUiJpg>
-    <xmx:ywQsZC138RABmk_OW4ckpB4mYsBiazH8XUmdAnuVd49yxjhj7tnbIg>
-    <xmx:zAQsZF_8VYUsO5M4ZN0lxPtlAquo8dT-hp6azBitrfy9Uhgr6uJ3pw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E507AB60092; Tue,  4 Apr 2023 07:06:50 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-238-g746678b8b6-fm-20230329.001-g746678b8
-Mime-Version: 1.0
-Message-Id: <2a627c49-e0a3-4a7f-8c0a-37b1d3cb85dd@app.fastmail.com>
-In-Reply-To: <20230404082401.1087835-1-arnd@kernel.org>
-References: <20230404082401.1087835-1-arnd@kernel.org>
-Date:   Tue, 04 Apr 2023 13:06:30 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Arnd Bergmann" <arnd@kernel.org>,
-        "Tony Lindgren" <tony@atomide.com>
-Cc:     soc@kernel.org, "Aaro Koskinen" <aaro.koskinen@iki.fi>,
-        "Bartosz Golaszewski" <brgl@bgdev.pl>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        "Christian Lamparter" <chunkeey@googlemail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Eric Dumazet" <edumazet@google.com>,
-        "Felipe Balbi" <balbi@kernel.org>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Johannes Berg" <johannes@sipsolutions.net>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        "Rob Herring" <robh+dt@kernel.org>, linux-wireless@vger.kernel.org,
-        Netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        with ESMTP id S234733AbjDDLTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:19:47 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71DBC1BF3
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 04:19:43 -0700 (PDT)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230404111939epoutp042877b3abd123f64fe036e6520bd538c5~St1NHbTCK0422804228epoutp04P
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 11:19:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230404111939epoutp042877b3abd123f64fe036e6520bd538c5~St1NHbTCK0422804228epoutp04P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1680607179;
+        bh=oGGO2Uu0KUQiuSoOtyNCqRDLlKQVmo49N5hywPvTeGc=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=qpibsN420B/9LrxXZuokukGmWbgfXSEsAGvgCbJwpvriVqzCMPOGsdHiTdcWiMt4S
+         ebRxegvrRdKW0+eKkEbr00AhlglzxqsSLorl2b3qL5BxrPrqcikleLVG33Mh+VL3Wc
+         udTA3yqiHg9bUyDfdWdWAtS5YH999dipx367PXQo=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20230404111938epcas2p207da7c4271046773bc437e2a67e9e174~St1Mhc_bt2672326723epcas2p25;
+        Tue,  4 Apr 2023 11:19:38 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.88]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4PrQJp0spcz4x9Px; Tue,  4 Apr
+        2023 11:19:38 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E3.92.35469.AC70C246; Tue,  4 Apr 2023 20:19:38 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20230404111937epcas2p25ae33c66401ba055e7d0478b945e9ffd~St1LrbHuY2672326723epcas2p23;
+        Tue,  4 Apr 2023 11:19:37 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230404111937epsmtrp2997708b2390d2ede606223a41d70035f~St1LqjuNE0731007310epsmtrp2R;
+        Tue,  4 Apr 2023 11:19:37 +0000 (GMT)
+X-AuditID: b6c32a48-9e7f970000008a8d-34-642c07c996f1
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2E.FE.18071.9C70C246; Tue,  4 Apr 2023 20:19:37 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230404111937epsmtip1127c42fff3119cac28d1077e8f2cf915~St1LZ7KO00428904289epsmtip1k;
+        Tue,  4 Apr 2023 11:19:37 +0000 (GMT)
+Message-ID: <4b652b3c-20e1-1d87-1ee3-3aab43507100@samsung.com>
+Date:   Tue, 4 Apr 2023 20:17:13 +0900
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+        Thunderbird/102.9.0
+Subject: Re: [PATCH 1/3] spi: s3c64xx: support spi polling mode using
+ devicetree
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andi Shyti <andi@etezian.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v2 0/3] p54spi devicetree conversion
-Content-Type: text/plain
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        Chanho Park <chanho61.park@samsung.com>
+From:   Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <a4a9d1d1-c5cd-460e-96e0-6db8048518c6@sirena.org.uk>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLJsWRmVeSWpSXmKPExsWy7bCmhe4pdp0Ug1/PmC0ezNvGZrH4x3Mm
+        i6kPn7BZXN6vbTH/yDlWi72vt7JbbHp8jdXi8q45bBYzzu9jsmj8eJPdonXvEXYHbo/rSz4x
+        e2xa1cnmcefaHjaPzUvqPfq2rGL0+LxJLoAtKtsmIzUxJbVIITUvOT8lMy/dVsk7ON453tTM
+        wFDX0NLCXEkhLzE31VbJxSdA1y0zB+g6JYWyxJxSoFBAYnGxkr6dTVF+aUmqQkZ+cYmtUmpB
+        Sk6BeYFecWJucWleul5eaomVoYGBkSlQYUJ2xqkdexgLergq5j49w9TA+JO9i5GTQ0LAROLH
+        pPusXYxcHEICOxglvu3byAbhfGKUOHv8PhOE841Rouf7XCaYlrtLj7JAJPYySjy+eYsNJCEk
+        8JpRYtkEWxCbV8BO4t+nrSwgNouAisSsAxeYIOKCEidnPgGLiwpESfTd3sQKYgsLBEmsPHgf
+        zGYWEJe49WQ+WL2IgLLE1e97wZYxC3xkkrg1cxJYgk1AW+L7+sVADRwcnAKOEn1rOCB65SW2
+        v53DDFIvIbCSQ2LB1MlsEFe7SDw/NpMFwhaWeHV8CzQApCQ+v9sLVZMt0T79DyuEXSFxccNs
+        qLixxKxn7Ywgu5gFNCXW79IHMSWAbjtyiwViLZ9Ex+G/7BBhXomONiGIRjWJ+1PPQQ2RkZh0
+        ZCU0CD0kjv7cxjSBUXEWUqDMQvL8LCTPzELYu4CRZRWjWGpBcW56arFRgQk8rpPzczcxgtOt
+        lscOxtlvP+gdYmTiYDzEKMHBrCTCq9qllSLEm5JYWZValB9fVJqTWnyI0RQYNROZpUST84EJ
+        P68k3tDE0sDEzMzQ3MjUwFxJnPdjh3KKkEB6YklqdmpqQWoRTB8TB6dUA9OUSb9crI4IbV+8
+        T9lg9lkVU6M9W70nt2d7b2ubJ/Dm6vyE6XWn/jFkzFNel2h0QqZsTsYBaanr6seKzdZYZP04
+        /XveQpH7LtfO52R8Tp/TVj9dNSe3+E3728/LlDOfX4yMyjs753xdURrTdKGo24ZPfLfM9jjy
+        eunCdbdL3jFdnLRiXl1ep8Hm5bX5RvL/HU2mTdO9xpzZox/du3vyPPZlvtxr+eYt2pNSoilb
+        e+/i5QR36+lfur/J2J74qbJ+6STfLe17+eoyZirPS98bID/95dmNqklC/5j2f09/qu66mv+G
+        TA1nS8o92f0nji2Sf/66QyyC9c3xg7PNSyfo9G4IY23Zq/mnrDX4kZ0cU1WiEktxRqKhFnNR
+        cSIAkSYmwkAEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjkeLIzCtJLcpLzFFi42LZdlhJTvcku06KQcNeJYsH87axWSz+8ZzJ
+        YurDJ2wWl/drW8w/co7VYu/rrewWmx5fY7W4vGsOm8WM8/uYLBo/3mS3aN17hN2B2+P6kk/M
+        HptWdbJ53Lm2h81j85J6j74tqxg9Pm+SC2CL4rJJSc3JLEst0rdL4Mo4tWMPY0EPV8Xcp2eY
+        Ghh/sncxcnJICJhI3F16lKWLkYtDSGA3o8Tkl6vYIBIyEsuf9UHZwhL3W46wQhS9ZJQ4eWY1
+        I0iCV8BO4t+nrSwgNouAisSsAxeYIOKCEidnPgGLiwpESXw+0AK2TVggSGLlwfusIDazgLjE
+        rSfzwepFBJQlrn7fywIR/8gkMWmCOMSyf4wS05YsAytiE9CW+L5+MVAzBwengKNE3xoOiHoz
+        ia6tXYwQtrzE9rdzmCcwCs1CcsYsJOtmIWmZhaRlASPLKkbJ1ILi3PTcYsMCw7zUcr3ixNzi
+        0rx0veT83E2M4CjT0tzBuH3VB71DjEwcjIcYJTiYlUR4Vbu0UoR4UxIrq1KL8uOLSnNSiw8x
+        SnOwKInzXug6GS8kkJ5YkpqdmlqQWgSTZeLglGpgOr85pdlW933srugz9p81V1jdWKUs2VcY
+        rXXLzqXmsthMw66FX52mcL0tCP16ROByy6qzIs17/7gG8G46a+lySTXqj6TUfV+eRP0b3sYC
+        LmcPvNrv+vxymaJn49LCi4zX1gk27zeeMjGrxv67gZnkIYcDms8vMq570iYzReHvYpslDL5m
+        /PsNtXp/RX8t+VjhmPY6es78ZackpczueWpfTGePePGK6WSlQm/4ljf7zrEddr9ZKBu7uGK3
+        ScynIGGjl2dFBZ9P33bw7t+7Abdapj3JMy7ZPkvv5wZN7rzq224dRe5ZmoKJTo036t8r3MtL
+        bj70S1+e+xRvmrlc8bUz+qxVChkX4qee3fx6+brJSizFGYmGWsxFxYkAdCGC9CEDAAA=
+X-CMS-MailID: 20230404111937epcas2p25ae33c66401ba055e7d0478b945e9ffd
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230404061409epcas2p15750d5844aa8d3655d1bfd094fac14a9
+References: <20230404060011.108561-1-jaewon02.kim@samsung.com>
+        <CGME20230404061409epcas2p15750d5844aa8d3655d1bfd094fac14a9@epcas2p1.samsung.com>
+        <20230404060011.108561-2-jaewon02.kim@samsung.com>
+        <a4a9d1d1-c5cd-460e-96e0-6db8048518c6@sirena.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -99,24 +125,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 4, 2023, at 10:23, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> I now revisited the earlier submission, hopefully addressing
-> all of the feedback correctly. This is still untested, but if
-> everyone is happy, it could still make it into v6.4.
->
-> Patch 3 touches both driver and platform parts, and can't
-> easily be split up without breaking bisectability, so I think
-> it's easiest to merge it through the soc tree, with Christian's
-> Ack.
->
-> Tony, I see you already sent a set of pull requests, let me know
-> if you want to pick up these patches for a future round (6.4
-> or 6.5), or if I should just apply them on top.
+Hello Mark,
 
-I just spotted two mistakes myself, so there will have to be a v3:
-Patch 1 is missing a changelog text, and patch 3 contains a typo
-that only now triggered in my randconfig builds.
 
-      Arnd
+On 23. 4. 4. 19:54, Mark Brown wrote:
+> On Tue, Apr 04, 2023 at 03:00:09PM +0900, Jaewon Kim wrote:
+>> This patch adds new 'samsung,spi-polling' property to support polling mode.
+>> In some environments, polling mode is required even if DMA is supported.
+>> Changed it to support not only with quick but also optinally with
+>> devicetree.
+> Why would this be required if we can use DMA?  If this is a performance
+> optimisation for small messages the driver should just work out when to
+> choose PIO over DMA like other drivers do.  It is hard to see this as a
+> hardware property which should be configured via DT.
+
+
+We are providing a VM environment in which several Guest OSs are running.
+If Host OS has DMA, GuestOS should use SPI as polling mode.
+
+In order to support s3c64xx in a DMA-less environment, it must be 
+separated with a quirk.
+However, there is DMA in the Host OS and no DMA in the Guest OS,
+it is not correct to separate them with quirk.
+
+I'm considering supporting this systems with DeviceTree rather than qurik.
+If 'samsung,spi-polling' looks to be a SW configuration, how about 
+'samsung,no-dma'.
+
+This is not to simply change the mode using DeviceTree, but to support 
+an environment without DMA.
+
+
+
+Thanks
+
+Jaewon Kim
+
