@@ -2,84 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94BFE6D5A52
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2588E6D5A5C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:11:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232063AbjDDIJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 04:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42048 "EHLO
+        id S234033AbjDDILU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 04:11:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233345AbjDDIJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:09:15 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D951B1BD4
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1680595710;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Mtn5RoXP7HXa+BOr8vc5/QnnSmZkKMTt0vR1h1F5mXI=;
-        b=dWCvp1dn/cS7oRYxmodU9DNYaZmlDa48mfqa45z2YzC65PvKfrQJNUUUpYsJtxRwmk7mEg
-        qj2q2nRlN1kii4Phx0j23dB1FBVNhIopfwT6KcUBrl0FIIdKtXpwY4BcZobsBdG9IKYaZf
-        aDntYmi53mjPqE4s8AANz+YVUXijFSc=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-522-dThpyimRMouoLHJucdlONw-1; Tue, 04 Apr 2023 04:08:28 -0400
-X-MC-Unique: dThpyimRMouoLHJucdlONw-1
-Received: by mail-wr1-f70.google.com with SMTP id i25-20020adfaad9000000b002cff37de14fso3535099wrc.16
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 01:08:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680595707;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Mtn5RoXP7HXa+BOr8vc5/QnnSmZkKMTt0vR1h1F5mXI=;
-        b=VEdFNtngg2iBBQewmtaETH7MfHvbcCo99xNgWKfMd7wh8dM1vu3VH5Ym7WjNIRkQ5I
-         bMc5742lsa6lrgjcACmpVnshbdVIvvD35bsTcvPaWfs0dFdu4yoby0uJ8wgH4F4o8pJm
-         lhLS+VMjIkQxhRVq5/0nJKvPhBNNbD43KMMKdwziAUXRIqDLEBPcUP3d47wYa4Swv/0X
-         X3JNFFhMtz2uoZ4XRp4Bja2E3QQ0WJ7wa45hk1z7+53nn4gOySI7EAMnkHaHk8tIlFMH
-         zf/9+OQNcZ/56QMHOYm3ca0dlWrN8LDVpizDKUAfDRj1cyj0vFRQupZAH1LdU8sDnqdq
-         1Icg==
-X-Gm-Message-State: AAQBX9ei6sATRFhN3AXcVurvwnnpb+3QcfiSCzOIPERlJAbJQSVU5Oul
-        NqOg014Qe9hEaVwG6aRBTHB1M8RPEoFMdEZ4OxyPYeIgvJBoN0c4uBkJMTQS7HxVaIQt29ZWNOi
-        R7dycVHImVtelG8kZ/mL+4Q==
-X-Received: by 2002:a5d:4847:0:b0:2cf:e956:9740 with SMTP id n7-20020a5d4847000000b002cfe9569740mr15090860wrs.6.1680595707737;
-        Tue, 04 Apr 2023 01:08:27 -0700 (PDT)
-X-Google-Smtp-Source: AKy350a6DZsF9Oxz2qiQs8bPQTVCKprYDZAyS4oPgFEDW46CEfH2BaASGaZqnn1vnIayoOh1lJQS6w==
-X-Received: by 2002:a5d:4847:0:b0:2cf:e956:9740 with SMTP id n7-20020a5d4847000000b002cfe9569740mr15090833wrs.6.1680595707386;
-        Tue, 04 Apr 2023 01:08:27 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id l18-20020adfe592000000b002c5534db60bsm11647529wrm.71.2023.04.04.01.08.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 01:08:27 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
- Pinephone Pro to 1.5 MB
-In-Reply-To: <3738011.44csPzL39Z@diego>
-References: <20230403175937.2842085-1-javierm@redhat.com>
- <3738011.44csPzL39Z@diego>
-Date:   Tue, 04 Apr 2023 10:08:25 +0200
-Message-ID: <87jzysdq86.fsf@minerva.mail-host-address-is-not-set>
+        with ESMTP id S230169AbjDDILT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:11:19 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 618931BE2;
+        Tue,  4 Apr 2023 01:11:12 -0700 (PDT)
+X-UUID: 3ebad14ed2c011edb6b9f13eb10bd0fe-20230404
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Mn5TQ4GC1j4Q+gyyX94Y4Gogj2cY2+pp64zDevcfeXI=;
+        b=kB1c9yCfTuOzCnW3gB1977tGIdq1f9WF0AxTksr82YeJsaF89IXM0Kf4RqxdTcKhDI1DNXPi9M8LmNu/Ps378N3XXjZIz1oIQ3UV3JUBmRnwWoFaBhC0TyAEe8EdmUV3Q4c0jYLMsiH0ULdPLeeezDpk+VUqSmt/qLnhb50GCAs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:d5cb6333-97fc-47ad-9653-b772a4a7bb62,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:70
+X-CID-INFO: VERSION:1.1.22,REQID:d5cb6333-97fc-47ad-9653-b772a4a7bb62,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:70
+X-CID-META: VersionHash:120426c,CLOUDID:c070c4f7-ddba-41c3-91d9-10eeade8eac7,B
+        ulkID:230404161106F0S52OW1,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: 3ebad14ed2c011edb6b9f13eb10bd0fe-20230404
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 176784093; Tue, 04 Apr 2023 16:11:04 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Tue, 4 Apr 2023 16:11:03 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Tue, 4 Apr 2023 16:11:02 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4,0/8] media: mediatek: vcodec: Add debugfs file for decode and encode
+Date:   Tue, 4 Apr 2023 16:10:54 +0800
+Message-ID: <20230404081102.30713-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,59 +81,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Heiko St=C3=BCbner <heiko@sntech.de> writes:
+Need to change kernel driver to open decode and encode debug log at current period,
+it's very unreasonable. Adding debugfs common interface to support decode and encode,
+using echo command to control debug log level and getting useful information for each
+instance.
 
-Hello Heiko,
+patch 1 add dbgfs common interface.
+patch 2~5 support decode.
+patch 6~7 support encode
+patch 8 add help function
+---
+changed with v3:
+- add help function for patch 8
+- remove append '\0' and enlarge buffer size for patch 4
+changed with v2:
+- using pr_debug and dev_dbg instead of pr_info for patch 2.
+- fix word fail: informatiaoin -> information for patch 3.
+- used to print each instance format information for patch 5.
+changed with v1:
+- add new patch 4 and 5.
+- using cmd 'cat vdec' to show debug information instead of pr_info directly.
+---
+Yunfei Dong (8):
+  media: mediatek: vcodec: Add debugfs interface to get debug
+    information
+  media: mediatek: vcodec: Add debug params to control different log
+    level
+  media: mediatek: vcodec: Add a debugfs file to get different useful
+    information
+  media: mediatek: vcodec: Get each context resolution information
+  media: mediatek: vcodec: Get each instance format type
+  media: mediatek: vcodec: Change dbgfs interface to support encode
+  media: mediatek: vcodec: Add encode to support dbgfs
+  media: mediatek: vcodec: Add dbgfs help function
 
-Thanks for your feedback.
+ .../media/platform/mediatek/vcodec/Makefile   |   6 +
+ .../mediatek/vcodec/mtk_vcodec_dbgfs.c        | 216 ++++++++++++++++++
+ .../mediatek/vcodec/mtk_vcodec_dbgfs.h        |  72 ++++++
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   4 +
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |   4 +
+ .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |   2 +
+ .../mediatek/vcodec/mtk_vcodec_util.c         |   8 +
+ .../mediatek/vcodec/mtk_vcodec_util.h         |  26 ++-
+ 8 files changed, 335 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.h
 
-> Hi,
->
-> Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
->> This baud rate is set for the device by mainline u-boot and is also what
->> is set in the Pinebook Pro Device Tree, which is a device similar to the
->> PinePhone Pro but with a different form factor.
->>=20
->> Otherwise, the baud rate of the firmware and Linux don't match by default
->> and a 'console=3DttyS2,1500000n8' kernel command line parameter is requi=
-red
->> to have proper output for both.
->
-> The interesting question is always if this will break someone else's setu=
-p.
-
-Indeed.
-
-> I've never really understood the strange setting of 1.5MBps, but on the
-> other hand it _is_ a reality on most boards.
->
-
-As far as I understand, it is just to get a faster data transmission but I
-have my doubts that it is worth to divert from the more common 115200 rate
-just for this.
-
-As you said though, it is a reality and also what mainline u-boot uses for
-this device.
-
-> Personally I don't care that much either way, but would like a comment
-> from the other people working on that device - if possible.
->
-
-Same, I don't care either but just that would be good to make Linux and
-u-boot to match. If this change will break other people setups, maybe I
-can convince u-boot to sync with Linux and also use 115200 for the phone.
-
-> I guess if we don't hear anything, I'll apply it nevertheless at some poi=
-nt
->
->
-> Heiko
->
-
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+-- 
+2.18.0
 
