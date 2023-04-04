@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3FA96D6E12
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69F0B6D6E17
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:31:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234979AbjDDUbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 16:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43972 "EHLO
+        id S236159AbjDDUbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 16:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235605AbjDDUbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:31:13 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30AFF4499
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 13:31:12 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id r187so40252897ybr.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 13:31:12 -0700 (PDT)
+        with ESMTP id S236161AbjDDUbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:31:37 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE7EC4C22
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 13:31:35 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id r7-20020a17090b050700b002404be7920aso33366499pjz.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 13:31:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680640271;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BdTsXK258IzXLXAvc6XiWI2mr2HmNvT/kYOEMCnlRUo=;
-        b=nlYpHgIzmOXyMkBiUcEYWqFtVt4Zne0J5jKrBvGogT+bBiyiaLin/caXkB9yr92tM3
-         2ZS+9a4KD8mt/5k4DU22GSU0mXS+jh6kX3/kl7rcnGeJslXp7+y/20wv7o5psjWRQBM4
-         XqzGixTDBMnr6txgGi4lsol69DZQFYWjvjLWHv9fUFEgrii+L/YGaneGdmTa3CHOCnju
-         cd46eTAqrD8yUSxTBIMhqc7cgw+uNCsdrM3mZ8DLvNma8aRUAkViYFXkyVJO/ZNcTYrJ
-         qp64WDTHxFmUv8YT4QO7G9uJ7dX+prSWjVexeiHRXsNGxpmAIIEZZelU+yfpvXCl8Lly
-         IBoQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680640295;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EOVeDn8sGMiyUFHnj/niym7+yJLePku8ZuvCvpjBjFA=;
+        b=d2PfSMqYfgsZroD2KnzQMRj0RMGsWfZOj8Pbma82DQC/fdoAL7fp4u3QRYiYy0KsxD
+         7J2e/+s31Z1QQnI/qyqshLlDgu+gpXILHPK0Jdtbp3wfz5cn4ytd1IDNsyWG6Zs1qD9b
+         WATap2+gj3/N62oIZ6s5sB34NSYCjItBlYteXFqgR861/Fh/7zmJzj7RjnwFpMvGYD+s
+         TwK/P/yR8kLl7NVvE9VrRC860srGxgFh4X0TVV1Q2pUt3Ikfyq1u1wpY/jIXj2TyS7JN
+         gNzlm+DEd4jK9eCkoSfSMTV0tHcgHYjdqxZik2z7GkUwOBDBEZeyDropDBoOwbivkXiD
+         tIIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680640271;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BdTsXK258IzXLXAvc6XiWI2mr2HmNvT/kYOEMCnlRUo=;
-        b=wyFeK46nvFNrV0hlrDjQCdWYt5vslWN66YLm8Cnob052BcdaB385vWpLd6Mz/PsYAm
-         fkKJumLKRuKkpml3mAMQviGIthhQKCG5reIucfXO3Nl5R04UIX2NrN7STG9TJUo+Lspi
-         ic5WgFpJn+SyI+q2jdOGkPlhzLNYntXKskN230b73auJUNlrbfFbmjpUxgVsIcvi/+wo
-         xjkZJOePByqsEl4o9JBUl2tcOyv/d4Gr83blrPFkvDJ/2s5J/+ep3riMTD39a8N582cU
-         0evFUJtFC8Eki+WyggofewTQeleMMydH00Il6by/+Sb+FyWU3uqjEIqg6dOaCyPJW/Jk
-         t2fw==
-X-Gm-Message-State: AAQBX9d6AdB+mH4GM+ivl1kZbIC/YvZeUA+XzUe5dY5sHN6jGIcxUawH
-        fuZ/vI5+srlQyxJWgOCEaxYlh9Pe9cxa+jo//an/iQ==
-X-Google-Smtp-Source: AKy350ZR4rq6mOtDfI46MVLmJmXiK+zn7TbwS88R47X330p26M7ez1pEy0wOOkmjRPNo3gQd948iyxlJSMMtNRqksYU=
-X-Received: by 2002:a25:3083:0:b0:b23:4649:7ef3 with SMTP id
- w125-20020a253083000000b00b2346497ef3mr2716867ybw.4.1680640271402; Tue, 04
- Apr 2023 13:31:11 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680640295;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EOVeDn8sGMiyUFHnj/niym7+yJLePku8ZuvCvpjBjFA=;
+        b=CwzQnwl/xsfexg1GnJOZe8cco9myZxbY7omuRT5kcVmlmACM4dL0FLXKpENs2AGFZU
+         IB9MpVkmphZ9vE9FYxxgXAUp8P7ejG98EsnXfUcXguESSuaZDLF3xJ6StTGh+pVROGJK
+         hHhqDnEJ18OZyAyPsL3jF9e3rrjVXzKnE4BstGrdmMPF7xaHF7qr3RpopuT31D8htKa5
+         /1wF23+l8k1SE2YKplvz/DPuplTZep3Mtid6arpBuDMnCRuxcB5GIVGdtZDtCd4myVTa
+         umqLMx/nU0wCO3Z1ZzlwO0HGV00ElytwGF70ct1PYcfFnpDP5ilvJGrpsRCUOhfxg4ew
+         u9lA==
+X-Gm-Message-State: AAQBX9cTA8GUwkeyO5mX5kpY5MMjH84fKnN5DlYYEI2JKVgDZemlWbJ6
+        qYZQtFlV8T3bbueRspNvDhke4w==
+X-Google-Smtp-Source: AKy350YCpPag6hyvNnZwcBiqsXWIy1NnNsjRyvNEOMoKbr9kgeRuFVAQ98Nq/oUQ25+hXB9CQPoU3Q==
+X-Received: by 2002:a17:90b:3ece:b0:22c:6d7c:c521 with SMTP id rm14-20020a17090b3ece00b0022c6d7cc521mr4045682pjb.45.1680640294866;
+        Tue, 04 Apr 2023 13:31:34 -0700 (PDT)
+Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
+        by smtp.gmail.com with ESMTPSA id jm21-20020a17090304d500b001a1fe42a141sm8706184plb.115.2023.04.04.13.31.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 13:31:34 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Bernhard =?utf-8?Q?Rosenkr=C3=A4n?= =?utf-8?Q?zer?= 
+        <bero@baylibre.com>, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 00/11] Improve the MT8365 SoC and EVK board support
+In-Reply-To: <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
+References: <20230203-evk-board-support-v4-0-5cffe66a38c0@baylibre.com>
+ <7hy1ncydtc.fsf@baylibre.com>
+ <CAFGrd9rKy9a4bUf1dkUtTogtWPFr5eu3jcsdaixi3hs_dWMwrg@mail.gmail.com>
+ <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
+Date:   Tue, 04 Apr 2023 13:31:33 -0700
+Message-ID: <7hr0szwfru.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20230301142835.19614-1-m.zatovic1@gmail.com> <20230301142835.19614-3-m.zatovic1@gmail.com>
- <Y/98GqIPgMyPLRi3@smile.fi.intel.com> <ZCwifu6yxUikt42i@fedora>
-In-Reply-To: <ZCwifu6yxUikt42i@fedora>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Apr 2023 22:30:59 +0200
-Message-ID: <CACRpkdYyGjTMCJvAHWa=GE7i1qb98+7zDeK-28-Ko+1B2U8-mw@mail.gmail.com>
-Subject: Re: [PATCHv3 2/4] wiegand: add Wiegand bus driver
-To:     =?UTF-8?B?TWFydGluIFphxaVvdmnEjQ==?= <m.zatovic1@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        airlied@redhat.com, dipenp@nvidia.com, treding@nvidia.com,
-        mwen@igalia.com, fmdefrancesco@gmail.com, arnd@arndb.de,
-        bvanassche@acm.org, ogabbay@kernel.org, axboe@kernel.dk,
-        mathieu.poirier@linaro.org, linux@zary.sk, masahiroy@kernel.org,
-        yangyicong@hisilicon.com, dan.j.williams@intel.com,
-        jacek.lawrynowicz@linux.intel.com, benjamin.tissoires@redhat.com,
-        devicetree@vger.kernel.org, furong.zhou@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 4, 2023 at 3:13=E2=80=AFPM Martin Za=C5=A5ovi=C4=8D <m.zatovic1=
-@gmail.com> wrote:
-> On Wed, Mar 01, 2023 at 06:23:54PM +0200, Andy Shevchenko wrote:
+Alexandre Mergnat <amergnat@baylibre.com> writes:
 
-> > > +/**
-> > > + * of_register_wiegand_device - allocates and registers a new Wiegan=
-d device based on devicetree
-> >
-> > NAK for OF only code. New, esp. bus, code must be agnostic. We have all=
- means
-> > for that.
->
-> In one of the previous versions of this patch series, there was also the =
-possibility to instantiate
-> the device from another driver. I have been told, that this is not the wa=
-y to go anymore, unless
-> there is a very specific reason for that. I did not find such reason, so =
-I have removed this suport.
+> Here a build-able & working branch with dependencies:
+> https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/amergnat/i350-evk-board-support
 
-I don't know for sure but I think Andy simply means that you should take a =
-look
-in include/linux/property.h and replace every function named of_* with
-the corresponding fwnode_* or device_* function from that file, and it
-should all just magically work the same, but abstracted away from device
-tree. It's not much more than a search/replace and rename operation
-(unless there is a "hole" in the fwnode implementations... I hope not.)
+Thanks for a branch with all the dependencies.
 
-In the end you can keep just <linux/property.h> and drop <linux/of.h>
-and <linux/of_device.h> if this works.
+This branch builds & boots, but crashes because in the upstream default
+defconfig, the CPUfreq driver is built-in and the regulator that it
+depends on is not enabled.
 
-Yours,
-Linus Walleij
+Changing CPUfreq to be modular with CONFIG_ARM_MEDIATEK_CPUFREQ=m
+allowed me to boot to a shell on mt8365-evk.
+
+This suggests that this series needs some defconfig patches to enable
+the new features, preferably as modules.
+
+It's probably OK that the defconfig patch(es) come as a separate series,
+but not sure what Matthias' preferences are here.
+
+Kevin
+
