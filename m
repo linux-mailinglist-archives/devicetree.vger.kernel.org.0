@@ -2,117 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2896D605C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B39BC6D60EA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:38:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234198AbjDDM3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 08:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S234944AbjDDMiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 08:38:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234878AbjDDM31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:29:27 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38A610A;
-        Tue,  4 Apr 2023 05:29:14 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id EFBDA100003;
-        Tue,  4 Apr 2023 12:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1680611353;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1s8oWqXZyH3J7vnCQRYvzoMuk5JY0jzBHnJpra4pFT4=;
-        b=LEkYgQFJZRrGQY7HJb36jYtHL0Cs9mApMZhHebK3mUTfeinteLbMlDsHL3KSPbOlVgZoku
-        EAe3a+QvGcBW1OSutA/vaI8wainzIOjfXEfdNBaFgDaOluu0PpQ7dtQzNWMq96pmCLyTye
-        3DWfvAQXLIvvvtTauUovUmg5iNQ1k5eOgcWz6aGlSRe38adX2n3ZzRTqTIFsG+m4FqaNMv
-        5oX7D8X+DELGEAknSKMXGaIx9c9yNGzWHHLhHLWv5Rx8t1Zp5ilrFQkacnLaJi6xfDgMw7
-        UwVfaaAD9O56Sm2YSGKC7UKAT1is7oeV6jxFOLi49o+UBx5L3MQhHfbJFu/w6g==
-Date:   Tue, 4 Apr 2023 14:29:11 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
-Subject: Re: [PATCH v5 2/2] dt-bindings: rtc: add max313xx RTCs
-Message-ID: <2023040412291166c04438@mail.local>
-References: <20230403154342.3108-1-Ibrahim.Tilki@analog.com>
- <20230403154342.3108-3-Ibrahim.Tilki@analog.com>
- <dd6f0842-519f-1bc9-f7f5-459863dc3dcd@linaro.org>
- <202304040710049c9cc01a@mail.local>
- <CY4PR03MB2488DFC99C23ADE16FF40E2F96939@CY4PR03MB2488.namprd03.prod.outlook.com>
- <1efdb870-cac2-f6ed-72b5-d0550dbb5257@linaro.org>
- <CY4PR03MB24883E0406C2A16E566DB39196939@CY4PR03MB2488.namprd03.prod.outlook.com>
- <202304041226162e231e78@mail.local>
+        with ESMTP id S234923AbjDDMiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:38:00 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCA840D7;
+        Tue,  4 Apr 2023 05:37:36 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id w15-20020a056830410f00b006a386a0568dso1960586ott.4;
+        Tue, 04 Apr 2023 05:37:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680611794;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zjG68dibK9/cWxjvku/lAc6j3Rz6IJnfcIxgAADMEtA=;
+        b=HSwTdP9vZGFBn85pt0qo11fS6+xcXhsGdl9FSatpcLkzmlTg/b6Nafy+KAs6TqqHB9
+         v8V2k7NOCYOPKitCvhgBjjI3X59AmmVNR4r+Nw3N9ivinBu4DmazSY570nengCY6R3zj
+         gXVAUZa5Iw9nZkzKY7uD+VQKlZg0Wgys5Kw2yHQlLzQ2bQcMqD64rlD58P+1YRnMHGUs
+         LpP8aG/YShurJcUsITc51hNIKaWniRlHit0/mcbzjO8111qb/Udc9gYmsm1+UiP8xnKh
+         Kx6E4nLII61k2jE7RyGmzBbTPlHQSW+cOdttkowG2mG3zsZEnwot9w/ihxEK4AVfEcuT
+         RLPg==
+X-Gm-Message-State: AAQBX9cfC5k6P8D1KypLKpedBCZOHOfQ/UKGnXK+jQQ2vgoa3SaTJVnj
+        geU9sVBmUTayqGe8yELmVNs3Y0vf3w==
+X-Google-Smtp-Source: AKy350Y/UGYizDkd9w8AuBHG7Ho7zL2RA+5L2HIPoQs9B4tzgKhk490HQ1Uhx9IoP13r4X7M44oWYQ==
+X-Received: by 2002:a9d:6a93:0:b0:6a1:7d40:f862 with SMTP id l19-20020a9d6a93000000b006a17d40f862mr1108755otq.35.1680611793988;
+        Tue, 04 Apr 2023 05:36:33 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x5-20020a056830114500b006a2fd720f82sm4352384otq.7.2023.04.04.05.36.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 05:36:33 -0700 (PDT)
+Received: (nullmailer pid 3710626 invoked by uid 1000);
+        Tue, 04 Apr 2023 12:36:32 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202304041226162e231e78@mail.local>
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230404054449.5665-1-otabeknazrullaev1998@gmail.com>
+References: <20230404054449.5665-1-otabeknazrullaev1998@gmail.com>
+Message-Id: <168061168969.3708419.4281966310027889475.robh@kernel.org>
+Subject: Re: [PATCH] watchdog: dt-bindings: armada-37xx-wdt: convert text
+ binding
+Date:   Tue, 04 Apr 2023 07:36:32 -0500
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 14:26:18+0200, Alexandre Belloni wrote:
-> On 04/04/2023 10:35:53+0000, Tilki, Ibrahim wrote:
-> > >>>>> +  aux-voltage-chargeable:
-> > >>>>> +    enum: [0, 1, 2]
-> > >>>>> +    description: |
-> > >>>>> +      Enables trickle charger.
-> > >>>>> +      0: Charger is disabled (default)
-> > >>>>> +      1: Charger is enabled
-> > >>>>> +      2: Charger is enabled with a diode
-> > >>>>
-> > >>>> 2 is not an allowed value. I asked to drop this property. It is coming
-> > >>>> from rtc.yaml. I also do not understand "with a diode". So otherwise it
-> > >>>> is charging with, I don't know, FET?
-> > >>>
-> > >>> No, what is not explained here (and maybe not unsterstood by the
-> > >>> submitter) is that the RTC has an extra diode so, charging will always
-> > >>> enable a diode, select a resistor and then have or not an extra diode.
-> > >>> Figure2 of the MAX31329 datasheet is great.
-> > >>>
-> > >> 
-> > >> That is exactly why I had "adi,trickle-diode-enable" property in previous patch.
-> > >> So if I can't have "adi,trickle-diode-enable" and can't add an additional value
-> > >> to "aux-voltage-chargeable", I am not sure how to add support for the extra
-> > >> diode at this point.
-> > >
-> > > Ask the person who asked you to remove adi,trickle-diode-enable...
-> > 
-> > That was the purpose.
-> > 
+
+On Tue, 04 Apr 2023 14:44:08 +0900, Otabek Nazrullaev wrote:
+> Convert Armada 37xx watchdog timer controller to YAML format
 > 
-> If the earlier submission was clearer my answer would have been
-> different but note how I had to dig up the datasheet to understand there
-> were two diodes. All the trickle chargers have a schottky diode so
-> "adi,trickle-diode-enable" nor the commit log were explicit about the
-> second diode (which is a regular diode).
-> 
-> aux-voltage-chargeable is enabling a diode on all the existing RTC
-> drivers so instead of trying to make me look like the bad guy you should
-> rather thank for taking the time trying to get better DT bindings.
+> Signed-off-by: Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
+> ---
+>  .../bindings/watchdog/armada-37xx-wdt.txt     | 23 --------
+>  .../bindings/watchdog/armada-37xx-wdt.yaml    | 54 +++++++++++++++++++
+>  2 files changed, 54 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.yaml
 > 
 
-BTW, Krzysztof, you should focus more on how v5 of the driver is still
-abusing the #clock-cells property to do pinmuxing after I repeatedly
-explain to not do that.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.example.dtb: /example-0/system-controller@d000: failed to match any schema with compatible: ['marvell,armada-3700-cpu-misc', 'syscon']
+
+doc reference errors (make refcheckdocs):
+MAINTAINERS: Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230404054449.5665-1-otabeknazrullaev1998@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
