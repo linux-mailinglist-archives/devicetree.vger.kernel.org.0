@@ -2,138 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9176D6DFC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDB86D6E05
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:29:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236061AbjDDUZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 16:25:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
+        id S235260AbjDDU3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 16:29:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232696AbjDDUZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:25:27 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C1840DA;
-        Tue,  4 Apr 2023 13:25:26 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id y7so2789532ljp.2;
-        Tue, 04 Apr 2023 13:25:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680639924;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xdVOp6TEByE8UdEBDElxuueJryeVxuFj0izGH8bI5FA=;
-        b=n7Q2hcHCwV4xAu2Lcc78aU9/xze2He3D+4lqnC/fW2KzdbtoTLraGZCtIoWoHmvG3t
-         KRVmSnvhQ75kiFk5dzfbp+OxvwNcFDPoiVR06Nt4QYWWSsHouvFO632CawAUWQ+MCOl/
-         Fsxh6OPWhC43BAAwpyEs/RZ52t1iTb8I9cASVKWXHdAMMGoIU+s4xUTT0aYwlEwGo3TH
-         xi09+fl6rAQ60yeaTPpmfSu2b9cRxZ1D/rtEllp84EuBg2/6Vqp40E/2kyJseMpk9/kI
-         +8RgV6l0Fe7LBVNS8f+1Mo9yqzIqzkQUFr1eZDUpXgHZ+dz6Bh+PHmn1MkNKYSzZNEif
-         Jl2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680639924;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xdVOp6TEByE8UdEBDElxuueJryeVxuFj0izGH8bI5FA=;
-        b=QKrMXP5jQwa3gmCdWI4DWf47+f5rYRW5GRUnC542C6tkwIP+Xf/TFnrUKUc0f/IheU
-         OeHGdCpkt8/0T6mguvGpg5pSUj1dF/qL77Aj9CYvNvNoz6LwXOASd3ej6JMh0XQ1yWN9
-         ZE4B9da51A3tGqmICuGUdgTPIVgVm1rNyeKB48UHRhSbzJFKqkwn6GmHRfvj7RWe45TL
-         91isKrWHJnZSDcwir96u/oYsU0XYPnCXJLjVITYiajoghlDuXuiDdt/RMkiv7xL0vbde
-         3hscb4XyPX5fZ99LfrcOOlVETF0qem5cXAI68PmxfVcXxshc2tjzYZcTdJIsjeyWNTa5
-         yffw==
-X-Gm-Message-State: AAQBX9dCGSYvdcL5HOGiVN3FXeutTUctxOaECHQy32e4oYNpb9Lb0Yd0
-        XJCMp4XPU3Kaq2ZcHQ49jKU=
-X-Google-Smtp-Source: AKy350bj97qXyxlY2qv2yQiwmY+JCZKB58aYdzAoiWzCGtsioxV5O3hQ+aoqjKdG5eVSAwJpAZ/jkQ==
-X-Received: by 2002:a2e:240b:0:b0:29a:eee6:f79d with SMTP id k11-20020a2e240b000000b0029aeee6f79dmr1065387ljk.22.1680639924098;
-        Tue, 04 Apr 2023 13:25:24 -0700 (PDT)
-Received: from [10.0.0.100] (host-213-145-197-218.kaisa-laajakaista.fi. [213.145.197.218])
-        by smtp.gmail.com with ESMTPSA id u22-20020a2ea176000000b002935005f782sm1594292ljl.57.2023.04.04.13.25.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 13:25:23 -0700 (PDT)
-Message-ID: <62a281bd-9d75-4a7a-e937-a6669bd570f3@gmail.com>
-Date:   Tue, 4 Apr 2023 23:25:31 +0300
+        with ESMTP id S230331AbjDDU3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:29:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3DFC44A2;
+        Tue,  4 Apr 2023 13:29:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B07B63994;
+        Tue,  4 Apr 2023 20:29:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7958BC433EF;
+        Tue,  4 Apr 2023 20:28:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680640140;
+        bh=Sv6V+OxkQJxB4LzsfgBHOh7ys5w8CWYWUwrmCPb2FKw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PHtWnA/YlKNvUe+WqyIfftkHHTNeCDUOWaGhQ83Vf56wPknoDCYDwF54tEsKanBQT
+         n7zlx/37O2kKw5fmfeJgqnViCBiTbgeXIDTW5WsOre3Q/rOtFopJtWOUyp922JuQZZ
+         Hug/8o8ltAlYeYUmoFTyfVZq0Bnixok6Br6MUd8ZuCbsSnUeh8eFNVmhlDJdrccGQ6
+         v9m3YR/38Kgj08DIB9PYJE8qFQLqApyJUu5lUujA6bJspIPfiOg2fKJY+L8slnAg8c
+         OctBUWAsO1FOAZUExVHKm0aTEGrJsPKZKozWuQqE7mwzEq2hBPhaqorX+BV6Nb5gmS
+         9PFrIt/xFMQCg==
+Message-ID: <fb7fb63c-69e3-5c99-0858-3e88071a282e@kernel.org>
+Date:   Tue, 4 Apr 2023 23:28:54 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH] dt-bindings: dma: Drop unneeded quotes
+Subject: Re: [PATCH v3 1/7] dt-bindings: interconnect: qcom,msm8998-bwmon:
+ Resolve MSM8998 support
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230331182141.1900348-1-robh@kernel.org>
-From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20230331182141.1900348-1-robh@kernel.org>
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20230304-topic-ddr_bwmon-v3-0-77a050c2fbda@linaro.org>
+ <20230304-topic-ddr_bwmon-v3-1-77a050c2fbda@linaro.org>
+ <20230404193533.5dnjjr4ilhhqd4t5@ripper>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20230404193533.5dnjjr4ilhhqd4t5@ripper>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 31/03/2023 21:21, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 4.04.23 22:35, Bjorn Andersson wrote:
+> On Wed, Mar 15, 2023 at 03:11:19PM +0100, Konrad Dybcio wrote:
+>> BWMONv4 has two sets of registers: one for handling the monitor itself
+>> and one called "global" which hosts some sort of a headswitch and an
+>> interrupt control register. We did not handle that one before, as on
+>> SoCs starting with SDM845 they have been merged into a single contiguous
+>> range.
+>>
+>> To make the qcom,msm8998-bwmon less confusing and in preparation for
+>> actual MSM8998 support, describe the global register space and introduce
+>> new "qcom,sdm845-cpu-bwmon" compatible while keeping the
+>> "qcom,sdm845-bwmon" as a fallback for SoCs with this merged register space
+>> scheme.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   Documentation/devicetree/bindings/dma/ti/k3-udma.yaml           | 2 +-
+> Georgi, can you please pick this patch through your tree?
 
-for the k3-udma:
-Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+Yes, sure!
 
->   .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml     | 2 +-
->   .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml       | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
+BR,
+Georgi
+
+> Regards,
+> Bjorn
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> index 97f6ae9b1236..22f6c5e2f7f4 100644
-> --- a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> @@ -43,7 +43,7 @@ description: |
->     configuration of the legacy peripheral.
->   
->   allOf:
-> -  - $ref: "../dma-controller.yaml#"
-> +  - $ref: ../dma-controller.yaml#
->     - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
->   
->   properties:
-> diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> index c0a1408b12ec..23ada8f87526 100644
-> --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> @@ -15,7 +15,7 @@ maintainers:
->     - Michael Tretter <m.tretter@pengutronix.de>
->   
->   allOf:
-> -  - $ref: "../dma-controller.yaml#"
-> +  - $ref: ../dma-controller.yaml#
->   
->   properties:
->     "#dma-cells":
-> diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-> index 825294e3f0e8..d6cbd95ec26d 100644
-> --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-> @@ -16,7 +16,7 @@ maintainers:
->     - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->   
->   allOf:
-> -  - $ref: "../dma-controller.yaml#"
-> +  - $ref: ../dma-controller.yaml#
->   
->   properties:
->     "#dma-cells":
+>> ---
+>>   .../bindings/interconnect/qcom,msm8998-bwmon.yaml  | 41 ++++++++++++++++++----
+>>   1 file changed, 34 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+>> index 12a0d3ecbabb..5d17bdcfdf70 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+>> @@ -22,14 +22,14 @@ description: |
+>>   properties:
+>>     compatible:
+>>       oneOf:
+>> +      - const: qcom,msm8998-bwmon       # BWMON v4
+>>         - items:
+>>             - enum:
+>>                 - qcom,sc7280-cpu-bwmon
+>>                 - qcom,sc8280xp-cpu-bwmon
+>> -              - qcom,sdm845-bwmon
+>> +              - qcom,sdm845-cpu-bwmon
+>>                 - qcom,sm8550-cpu-bwmon
+>> -          - const: qcom,msm8998-bwmon
+>> -      - const: qcom,msm8998-bwmon       # BWMON v4
+>> +          - const: qcom,sdm845-bwmon    # BWMON v4, unified register space
+>>         - items:
+>>             - enum:
+>>                 - qcom,sc8280xp-llcc-bwmon
+>> @@ -49,9 +49,13 @@ properties:
+>>       type: object
+>>   
+>>     reg:
+>> -    # BWMON v4 (currently described) and BWMON v5 use one register address
+>> -    # space.  BWMON v2 uses two register spaces - not yet described.
+>> -    maxItems: 1
+>> +    # BWMON v5 uses one register address space, v1-v4 use one or two.
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    minItems: 1
+>> +    maxItems: 2
+>>   
+>>   required:
+>>     - compatible
+>> @@ -63,13 +67,36 @@ required:
+>>   
+>>   additionalProperties: false
+>>   
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          const: qcom,msm8998-bwmon
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 2
+>> +
+>> +        reg-names:
+>> +          items:
+>> +            - const: monitor
+>> +            - const: global
+>> +
+>> +    else:
+>> +      properties:
+>> +        reg:
+>> +          maxItems: 1
+>> +
+>> +        reg-names:
+>> +          maxItems: 1
+>> +
+>>   examples:
+>>     - |
+>>       #include <dt-bindings/interconnect/qcom,sdm845.h>
+>>       #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   
+>>       pmu@1436400 {
+>> -        compatible = "qcom,sdm845-bwmon", "qcom,msm8998-bwmon";
+>> +        compatible = "qcom,sdm845-cpu-bwmon", "qcom,sdm845-bwmon";
+>>           reg = <0x01436400 0x600>;
+>>           interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+>>           interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_LLCC 3>;
+>>
+>> -- 
+>> 2.39.2
+>>
 
--- 
-Péter
