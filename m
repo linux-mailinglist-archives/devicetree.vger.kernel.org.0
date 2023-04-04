@@ -2,85 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FA06D5F5F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E2F6D5F7D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234819AbjDDLoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50114 "EHLO
+        id S234901AbjDDLvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:51:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234829AbjDDLog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:44:36 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 433E02D43;
-        Tue,  4 Apr 2023 04:44:35 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id l37so18816694wms.2;
-        Tue, 04 Apr 2023 04:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680608674;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c7kQfcXnw7GUCoA+1zbPCx2uufroYTZoUTjGf+7ErLE=;
-        b=HkVY4bLRuFSwCgIeePRqemIzJl2fv2XsOFJVuUxKVcCIn4cW+wmERO+aeSlHRbqJsn
-         slEH+6RJgAAyTVkFLE4SwNRq4anVXk+GPK7+4KzPZvKSJZDMY3UEhmT5MHm5OUd1sFod
-         4Au0rOhIrsU6Ex5xzk0XyqOprqUtz5UxsGAoKYGaQ2qF33XVGzXhGIkP/bmcaJR4yY/F
-         w1fa5UKHDHvK3eTHxskYF2lljEuGpn7F1bPYpioJU3DKZ/vh771ttNLFBufiVXcRrScG
-         E/+dE5m7xA6RUSoJs02maSqAY3I4+OYORGZjNU4wFu4zrInG0biCyXW9ALJ8bN237cR0
-         vYYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680608674;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c7kQfcXnw7GUCoA+1zbPCx2uufroYTZoUTjGf+7ErLE=;
-        b=b8s7N50DNQz03kJEWY7WuZtn7KOwb/VKLz7w+zZCtgZJFlKDXSARYKyoduM9QyKKE8
-         JEJhrxRbXdypDY0MT9R16Q3sCYTqWbIBkxyGCYVqQoSx4NSqPJzlz9h08TwtqTYxFD8/
-         /ER7Prx66rEGJDo9BNp/lRAdDN2bd4rhQffwXjFS4LMCyPlF+cHCJGgPB72sXOdhCLhK
-         Vt8/s8MZDC9ZEBwokPwLyBzi183qkhhA+eBziZtPV1hFgYK5Yld7KX0F864ziqeF5hH3
-         5crQCuSkovjGyRVPNEiFsr8AhSK311YI4WAsTA/xRj3O/TIiYDDXIdVSe8v/pol4ypt7
-         Mq2Q==
-X-Gm-Message-State: AAQBX9ceATfBB54BHsZz6et3ymUrhRDKzf2R7Yqhjiv1ekKXzz5jjhA2
-        4ysSYiKKolKNcLFte0DFXP4=
-X-Google-Smtp-Source: AKy350YSeFBa7rZpqJbanvqLzzoSMljyJ7LfWiAre2vC7CCl5pSZrTKnAjVLZnX9m0nAscV8KKphbA==
-X-Received: by 2002:a05:600c:2247:b0:3f0:3ce2:1e3d with SMTP id a7-20020a05600c224700b003f03ce21e3dmr1939124wmm.12.1680608673499;
-        Tue, 04 Apr 2023 04:44:33 -0700 (PDT)
-Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id q15-20020a05600c46cf00b003ede2c59a54sm22466552wmo.37.2023.04.04.04.44.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 04:44:33 -0700 (PDT)
-Date:   Tue, 4 Apr 2023 13:44:31 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lpieralisi@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
-        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
-        ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v4 01/10] dt-bindings: memory: tegra: add bpmp ref in
- tegra234-mc node
-Message-ID: <ZCwNn0xaBTKfZJmV@orome>
-References: <20230327161426.32639-1-sumitg@nvidia.com>
- <20230327161426.32639-2-sumitg@nvidia.com>
- <787f656a-223d-5eed-e311-9cc7a6c46452@linaro.org>
- <ZCLF6ZRH528pu/r3@orome>
- <79d8044f-ce68-463e-66f7-8755e253bc99@linaro.org>
- <ZCLiCWRYbO98qwCn@orome>
- <0b393600-3f08-c2e8-9b02-664c6a984de1@nvidia.com>
- <8a22aea9-5027-e8a4-db80-ce79f3830e10@linaro.org>
+        with ESMTP id S234998AbjDDLvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:51:00 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4E7E02D79;
+        Tue,  4 Apr 2023 04:50:51 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 665C0D75;
+        Tue,  4 Apr 2023 04:51:35 -0700 (PDT)
+Received: from e120937-lin.. (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A92573F762;
+        Tue,  4 Apr 2023 04:50:49 -0700 (PDT)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     sudeep.holla@arm.com, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
+        Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v3 0/2] Add SCMI support for mailbox unidirectional channels
+Date:   Tue,  4 Apr 2023 12:50:24 +0100
+Message-Id: <20230404115026.2828149-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="csCqp3FIJlXiL6kB"
-Content-Disposition: inline
-In-Reply-To: <8a22aea9-5027-e8a4-db80-ce79f3830e10@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,127 +41,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---csCqp3FIJlXiL6kB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+this series aims to extend SCMI mailbox transport layer to support mailbox
+controllers that expose unidirectional channels.
 
-On Sun, Apr 02, 2023 at 12:47:01PM +0200, Krzysztof Kozlowski wrote:
-> On 29/03/2023 19:12, Sumit Gupta wrote:
-> >=20
-> >=20
-> > On 28/03/23 18:18, Thierry Reding wrote:
-> >> On Tue, Mar 28, 2023 at 01:22:26PM +0200, Krzysztof Kozlowski wrote:
-> >>> On 28/03/2023 12:48, Thierry Reding wrote:
-> >>>> On Tue, Mar 28, 2023 at 09:23:04AM +0200, Krzysztof Kozlowski wrote:
-> >>>>> On 27/03/2023 18:14, Sumit Gupta wrote:
-> >>>>>> For Tegra234, add the "nvidia,bpmp" property within the Memory
-> >>>>>> Controller (MC) node to reference BPMP node. This is needed in
-> >>>>>> the MC driver to pass the client info to the BPMP-FW when memory
-> >>>>>> interconnect support is available.
-> >>>>>>
-> >>>>>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> >>>>>> ---
-> >>>>>>   .../bindings/memory-controllers/nvidia,tegra186-mc.yaml    | 7 +=
-++++++
-> >>>>>>   1 file changed, 7 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/=
-nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controll=
-ers/nvidia,tegra186-mc.yaml
-> >>>>>> index 935d63d181d9..398d27bb2373 100644
-> >>>>>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,=
-tegra186-mc.yaml
-> >>>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,=
-tegra186-mc.yaml
-> >>>>>> @@ -58,6 +58,10 @@ properties:
-> >>>>>>     "#interconnect-cells":
-> >>>>>>       const: 1
-> >>>>>>  =20
-> >>>>>> +  nvidia,bpmp:
-> >>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>>>>> +    description: phandle of the node representing the BPMP
-> >>>>>
-> >>>>> Why do you need this multiple times? Both in parent and all externa=
-l-mc
-> >>>>> children?
-> >>>>
-> >>>> We've had nvidia,bpmp in the external memory controller node since
-> >>>> basically the beginning because we've always needed it there. For ne=
-wer
-> >>>> chips we now also need it for the memory controller.
-> >>>>
-> >>>> Ideally I think we would only have this in the MC and have the EMC
-> >>>> driver reference it via the EMC's parent (i.e. MC), but that would b=
-reak
-> >>>> backwards-compatibility. Reaching into the EMC's DT node from the MC=
- was
-> >>>> another option that we discussed internally, but it didn't look right
-> >>>> given how this is also needed by the MC.
-> >>>>
-> >>>> One thing we could potentially do is deprecate the nvidia,bpmp phand=
-le
-> >>>> in the EMC and only keep it as a fallback in the drivers in case the
-> >>>> parent MC doesn't find it's own in the DT.
-> >>>
-> >>> Yes, deprecation would answer to my question.
-> >>
-> >> Okay, great. Sumit, you can resolve this by adding a "deprecated: true"
-> >> to the EMC's nvidia,bpmp property schema. In the driver we can then try
-> >> to look at the MC's ->bpmp and if it exists reuse that. If it doesn't
-> >> exist, we can keep the existing lookup as a fallback for device trees
-> >> that haven't been updated yet.
-> >=20
-> > We can't use MC's->bpmp in the EMC driver's probe as it will be NULL.=
-=20
-> > This is because MC driver uses "arch_initcall" and gets probed earlier=
-=20
-> > than BPMP. We can do this in another way as below change. This way we=
-=20
-> > can use the existing "nvidia,bpmp" property from EMC node and don't nee=
-d=20
-> > to move it to the MC node. Please share if this change sounds OK.
->=20
-> Then rather it sounds like time to fix these
-> orderings/arch_initcall/missing defer.
+SCMI communications between an agent like Linux and the platform fw server
+happens through 2 main communication channels: an 'a2p' bidirectional
+channel (called TX in SCMI parlance) used to send synchronous commands
+and receive related replies and an optional 'p2a' unidirectional channel
+(called RX) used to convey notfications or delayed responses to
+asynchronous commands possibly emitted by the platform toward the agent.
 
-We can't fix this because there's a circular dependency between MC and
-BPMP. Essentially BPMP requires the IOMMU for mappings and the IOMMU
-needs the MC to do some register programming in order for the mappings
-to take effect.
+The current SCMI mailbox transport support was modelled around mailboxes
+that were bidirectional by nature, and, as such, fit well in the above
+SCMI communication scheme, allowing us to currently describe the mailbox
+transport channels as in the following examples:
 
-The MC programming isn't required for BPMP, but it is required for other
-devices that are hooked up to an IOMMU. The dependency from MC on BPMP
-is also a different area of functionality, so we know that there's no
-actual problem.
+ 1.  system with a single TX 'a2p' defined over a mailbox bidirectional
+     channel:
 
-If there was something like a "transitive" dependency we might be able
-to resolve this (i.e. if creating the IOMMU mapping itself would trigger
-the probe deferral chain, rather than the driver binding). However, all
-dependencies are modelled between devices, so not much we can do in this
-case other than try to work around it.
+	mboxes = <&mb 0 0>;
+	shmem = <&a2p_mem>;
 
-Thierry
+ 2. system with a TX 'a2p' defined over a bidirectional mailbox channel
+    AND an optional RX 'p2a' defined over a unidirectional channel:
 
---csCqp3FIJlXiL6kB
-Content-Type: application/pgp-signature; name="signature.asc"
+	mboxes = <&mb 0 0>, <&mb 0 1>,
+	shmem = <&a2p_shmem>, <&p2a_shmem>;
 
------BEGIN PGP SIGNATURE-----
+This binding, as it is now, does NOT support the usage of mailbox
+controllers exposing channels that are unidirectional by nature, like
+it is the case with ARM MHUv2 mailboxes as an example, since 2 distinct
+unidirectional mailbox channels would be needed to represent just the
+SCMI TX bidirectional communication path.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQsDZ0ACgkQ3SOs138+
-s6EGFA//TqfQs2jpFYVw+fgLrm1D2nktfHkrjQqbwtjRla2jw7rOifjpq/ved0Dh
-dcaGyN1P0mi0dfZ8iMR51P8APYHIxY7MRNuk+C/zTm9vZ8cfE3sEVQ3PW7WZnWRY
-e6uZ19sRVK7bG9V7NOtBOAVRJB3pMvbw7vjL9n2fpnK3Y+p46pxz5fiHKSzU0m0M
-JD94leqOK/yAkfjvzbpaAiPL1qrZbyGA6sUPnCEBtBUOCEzwnCDgh3hG5KPhQlWJ
-5cFke/g/DCXLp0E5BPCJCldmuH37EOGq6xdAgijQlqmv6AkwQy9IEUDmE0IMw9yS
-L2a1pqhnBVGKBacPnmDyZBSEanTRrlk3NDXaM0OrMyboczBbgWMJoELnRgHMaodC
-U94vRO0OuyPHRNBbb9mgSQ0RGjUNSpdOiIm0Orgd0MXWj0khNU5/d8ohu0AelHO0
-CWwaoppXdQXIMQkh/OyZ7lPnO7vndS+2X4BYLNepM6WzBQvhA5wyvgdncU27l1ul
-U+EJUs8qqxaZEIVleblykZppvKd7MJujoxS0Hrfx5ScjRnsG+SHo+Z14xB2lnkcz
-yC1gNZLNAYTEyyo0MI+Luat9AGjilV3KBdHN8deRtTQzCoCH4RZNHaku9nQhL+4O
-rjqdMconJuojbISPr0oqodggbHHiQ0/fQFA0BMeofc7j9puw5Cs=
-=K80k
------END PGP SIGNATURE-----
+Note that the mboxes property referred in the SCMI nodes to configure the
+transport is compliant with (and parsed by) the mailbox common subsystem,
+which is the entity that exposes and finally handles the mailbox
+controller: as a consequence playing creatively (or dirty :P) with the
+syntax of the mboxes property to fit our needs is not an option.
 
---csCqp3FIJlXiL6kB--
+This series extends the SCMI mailbox-related bindings, which defines how
+mboxes and shmem properties are interpreted, and the logic inside the
+SCMI mailbox transport subsystem to support the usage of these type of
+unidirectional mailbox channels, while aiming to maintain backward
+compatibility with the original scheme based on bidirectional channels.
+
+With these proposed DT extensions, in addition to the above definitions,
+the following descriptions can be crafted for a system using a mailbox
+controller exposing unidirectional channels:
+
+ 2. system with a single TX 'a2p' defined over a pair of unidirectional
+    mailbox channels (similar to 1):
+
+	mboxes = <&mb_tx 0 0>, <&mb_rx 0 0>;
+	shmem = <&a2p_mem>;
+
+ 3. system with a TX 'a2p' defined over a pair of unidirectional channels
+    AND an RX 'p2a' defined over a unidirectional channel (similar to 2):
+
+	mboxes = <&mb_tx 0 0>, <&mb_rx 0 0>, <&mb_rx 0 1>;
+	shmem = <&a2p_shmem>, <&p2a_shmem>;
+
+The SCMI mailbox transport logic has been modified to select and make a
+proper use of the needed channels depending on the combination of found
+mboxes/shmem descriptors:
+
+  a) 1 mbox / 1 shmem => SCMI TX over 1 mailbox bidirectional channel
+  b) 2 mbox / 2 shmem => SCMI TX and RX over 2 mailbox bidirectional chans
+
+  c) 2 mbox / 1 shmem => SCMI TX over 2 mailbox unidirectional chans
+  d) 3 mbox / 2 shmem => SCMI TX and RX over 3 mailbox unidirectional chans
+
+with any other combination considered invalid.
+
+Note that, up until the changes in this series, the only valid configs
+accepted by the SCMI mailbox transport are a) and b): this ensures backward
+compatibility even in the case in which a DT sporting the new format (c,d)
+is, wrongly, deployed with an old kernel still not supporting this new
+logic: in such a case c) and d) configs will be simply rejected. (wrongly
+deployed because installing a c) or d) styled-DT would be required only if
+the underlying mailbox HW had effectively changed and used unidir chans)
+
+I have tested this on a JUNO board (MHUv1 bidirectional) and TotalCompute
+TC2 reference design (MHUv2 unidirectional). [1]
+
+The series is based on v6.3-rc4.
+
+Having said that, I am not completely sure if all of the above constraints
+should (and/or could) be expressed in a more formal way also in the YAML
+binding itself.
+
+Any feedback or suggestion in these regards is highly appreciated.
+
+Thanks,
+Cristian
+
+[1]: https://gitlab.arm.com/arm-reference-solutions/arm-reference-solutions-docs/-/blob/master/docs/totalcompute/tc2/tc2_sw_stack.rst
+
+----
+v2 --> v3
+ - coalesced oneOf mbox-names entries using minItems
+ - removed unidirectional channel DT example
+v1 --> v2
+ - added mbox-names unidirectional definitions and example
+
+Cristian Marussi (2):
+  dt-bindings: firmware: arm,scmi: Support mailboxes unidirectional
+    channels
+  firmware: arm_scmi: Add support for unidirectional mailbox channels
+
+ .../bindings/firmware/arm,scmi.yaml           | 48 ++++++++--
+ drivers/firmware/arm_scmi/mailbox.c           | 95 ++++++++++++++++---
+ 2 files changed, 122 insertions(+), 21 deletions(-)
+
+-- 
+2.34.1
+
