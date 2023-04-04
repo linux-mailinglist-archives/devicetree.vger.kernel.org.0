@@ -2,147 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D67066D6C6D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 20:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD0866D6CC9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 21:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236147AbjDDSjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 14:39:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39626 "EHLO
+        id S236000AbjDDTBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 15:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236132AbjDDSjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 14:39:15 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73DC54EFE
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 11:38:32 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id y20so43583954lfj.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 11:38:32 -0700 (PDT)
+        with ESMTP id S232952AbjDDTBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 15:01:22 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE05170F
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 12:01:21 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id fi11so11178786edb.10
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 12:01:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680633511;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=P2zoliSShtGMXIRHrPAfEi4BT+9ugNs+lckUNg852jU=;
-        b=vDemHso1O2NSLhxzarWRb+ghDX3K6v58ohwizFiONiCGKWXoGhvNEArGC3duNw0q68
-         HM+tLKcgThcNKUAh92+QQm1/zJDdPFr1L/MhZ6ljcSJau8uyRKHsvG83LJHUZA7wfMWF
-         X2UHhbjkO0MT/KQY6JlAXZYDlKbFt0TYnrsYYRZGDgDjv6+wolyDQA3n5B4966zIjyE9
-         Ynp1zYJvrE9XjY09qrfd+8GChvLuNPat/gCnxoLKCtQaJJSzRw58TvSVA1iNghaHiuAP
-         VnoRk7+L8Na2yM4IVOi1KgVG7PduBOZS0k18qVb2n2P0BU39PnnYj/VJymzTcOXj/uQE
-         R+oQ==
+        d=linaro.org; s=google; t=1680634879;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xdmeU1LWxBpvWwDDQiFchlMca3RtpapWdUf3ChV5Tv4=;
+        b=Xm+aZzF4PoD6L8vXoGfT6+59/BgtaxEiUSF+MZRATCfE7PHQphjbbBA0pQJH6a+6UZ
+         Lql9f8x3xRNBtKLk52YXwj7tIKSKZRqAc3j8XQozv+4a9FvhVRogi46E2HtZZFv/oO02
+         NmBv2ifbigXafZCbmZ5IAzRqWzCSE67/VgCoLtsjUIQHb+JgoBfPZG53JMlwB4s2KVHT
+         7R76U+ZpF98zpoTzZgSiEYF4KMsGY1vTxa8j7JkyIMVUZ0pbrcGuEUkm/xdhQ/2ATlmT
+         cIbBAq7tw+ggBE9iM2fBaGF0sgwUftx1o5Ge35A8KBqxAveKdNtQMG5WjdwR2snCUY3E
+         7YUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680633511;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P2zoliSShtGMXIRHrPAfEi4BT+9ugNs+lckUNg852jU=;
-        b=GxTwMcNr/X9BMF5Yu3Pl5/a7azsp5NpbgW9UFhD/EYriaCIlZ9q4AO1eJnWYBtmtna
-         NcDY3UuJxINJNCElKrJPGn4fLLtkRknpoLwyLD74aqv92Dy2peLYZxbbkL1xA79WYOMa
-         VYl6EXXA7SV11NZqAOAqLbrbmmvsH8vRMBbfjCmcUNdpum74+cAL+faeXxPYlkOy8/UK
-         EGZ89izr1Yw6amTmJAGZB1vBTT7C8WwuecsZlhmCu+/r9J+BqkgV2giXOznB/VCFCy6W
-         fkSX1U5SABxb92JxyiWLJjwW+6hcqcbsfOhYPAuYWkfTOzjNpE8hPUCrAIsP6E7WIhPD
-         qxwg==
-X-Gm-Message-State: AAQBX9e8zJ7PitO/64Up5kcLuoryCMqVksZ6Lf7GKEjuJ7lLfwzMFEU2
-        /OkviQUlJ+/a5Hs366RdLVVeGw==
-X-Google-Smtp-Source: AKy350YjZCZii7ybiLwTbgy/zyyVocMqbzVcRl/iekuFVpcB8tWo5nhJ96zCqtU2PWckOMfnt29m1g==
-X-Received: by 2002:ac2:596b:0:b0:4e9:609c:e901 with SMTP id h11-20020ac2596b000000b004e9609ce901mr853735lfp.21.1680633510678;
-        Tue, 04 Apr 2023 11:38:30 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id t26-20020ac24c1a000000b004b5480edf67sm2466044lfq.36.2023.04.04.11.38.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 11:38:30 -0700 (PDT)
-Message-ID: <11b87394-610b-f6e3-8e55-4b5cc6121396@linaro.org>
-Date:   Tue, 4 Apr 2023 20:38:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sa8775p-ride: enable UFS
-Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        d=1e100.net; s=20210112; t=1680634879;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xdmeU1LWxBpvWwDDQiFchlMca3RtpapWdUf3ChV5Tv4=;
+        b=pq3ijvWFbASUg9QqXxaxlmZfggJRUJxjWylhOxAiWANO8OBHNvgdUJDbHJhoPc6141
+         TLsdwmbW46Ef9oDGHje70rwFh02yoo0HiugLPfpnT+oUZVuIhiIDToNY/oiN8UjdYmRy
+         VnG4yLphU9IvmtyvLjeGUHr/UUxyeQKEoqMMHF0pApGxW2BSptqS65C2QBnqzEIVYyq5
+         1p3QJQqCgFfuBz7x/C3rkHjqD2OB8w2ulFN7gOCaNiTBX1T1SFPjrWabgcp+Nd5cdPiO
+         nLfEpTx2sMdz0oTUhtNfqOfkbcwOHfUn9X6NSmhvvaH0/DKjnKRocdRNfEvbGN8A871c
+         ylVg==
+X-Gm-Message-State: AAQBX9c22FZHRXlRfVlE1f7kp3vU+llhHLNCbANRfW+NCOkPMGjhcPm1
+        T+Ognjv4RwhR5f7AyfUVZJTz7w==
+X-Google-Smtp-Source: AKy350Z9nhHQkGwfXXAmu9CDd/l+fSb9QwcPUqGPeKtnTr9ak7kVjuSZ14j5pV/JdmEBP0Rbu/ulIA==
+X-Received: by 2002:a17:906:2319:b0:932:b790:932c with SMTP id l25-20020a170906231900b00932b790932cmr597111eja.44.1680634879631;
+        Tue, 04 Apr 2023 12:01:19 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:7467:56f4:40b7:cba8])
+        by smtp.gmail.com with ESMTPSA id dx21-20020a170906a85500b008d044ede804sm6257079ejb.163.2023.04.04.12.01.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 12:01:19 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230331195920.582620-1-brgl@bgdev.pl>
- <20230331195920.582620-6-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230331195920.582620-6-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Yuti Amonkar <yamonkar@cadence.com>, Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/5] dt-bindings: phy: cadence-sierra: drop assigned-clocks
+Date:   Tue,  4 Apr 2023 21:01:11 +0200
+Message-Id: <20230404190115.546973-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The meta schema from DT schema already defines assigned-clocks, so there
+is no need for device schema to mention it at all.  There are also no
+benefits of having it here and a board could actually need more of clock
+assignments than the schema allows.
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/phy/phy-cadence-sierra.yaml       | 8 --------
+ 1 file changed, 8 deletions(-)
 
-On 31.03.2023 21:59, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Enable the UFS and its PHY on sa8775p-ride.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
+index 6a09472740ed..1de699fe5306 100644
+--- a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
++++ b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
+@@ -61,14 +61,6 @@ properties:
+       - const: pll0_refclk
+       - const: pll1_refclk
+ 
+-  assigned-clocks:
+-    minItems: 1
+-    maxItems: 2
+-
+-  assigned-clock-parents:
+-    minItems: 1
+-    maxItems: 2
+-
+   cdns,autoconf:
+     type: boolean
+     description:
+-- 
+2.34.1
 
-Konrad
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> index fdd229d232d1..e921093a9f08 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> @@ -5,6 +5,7 @@
->  
->  /dts-v1/;
->  
-> +#include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  
->  #include "sa8775p.dtsi"
-> @@ -20,6 +21,7 @@ aliases {
->  		serial2 = &uart17;
->  		i2c18 = &i2c18;
->  		spi16 = &spi16;
-> +		ufshc1 = &ufs_mem_hc;
->  	};
->  
->  	chosen {
-> @@ -426,6 +428,23 @@ &uart17 {
->  	status = "okay";
->  };
->  
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-> +	vcc-supply = <&vreg_l8a>;
-> +	vcc-max-microamp = <1100000>;
-> +	vccq-supply = <&vreg_l4c>;
-> +	vccq-max-microamp = <1200000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l1c>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &xo_board_clk {
->  	clock-frequency = <38400000>;
->  };
