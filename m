@@ -2,76 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83DAA6D5807
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F7E6D5818
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:42:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233041AbjDDFdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 01:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58704 "EHLO
+        id S233365AbjDDFmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 01:42:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232578AbjDDFdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:33:54 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C31619A6
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 22:33:52 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id eg48so125735201edb.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 22:33:52 -0700 (PDT)
+        with ESMTP id S233301AbjDDFmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:42:00 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9418A1FD9
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 22:41:58 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id fi11so2403879edb.10
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 22:41:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680586431;
+        d=linaro.org; s=google; t=1680586917;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LSfvMCOrdSCg0KsTlmNTzh+wJyyn32F7jBR5XEIQXfs=;
-        b=SZwSkMwcEttyesUKzaZlZS4UGLFXMY126tr9woNXYKUhFfJvL2DW/VmdxbXEZVKhq4
-         Q8Pq5qlwwDErfIgKXJUIy0niHLAaBewg0qiRIG2Ea3WpDIcEC3HIHc1IACXyEIQcUvyO
-         c2Zr8YwvcOOX6aVTroi7AImN1zOILzZ4YqJrVM/HXHIeJqxbaLqixzQTiaPy3uI4KW8z
-         fWMLNaSOfu++mTiApTEXBctIvp/0ILa/2KaPKUr3ZGCLFKd7tQabv28XBN7YezNEXm6w
-         dx/m0ehD2NIiIW7DwzPLa2F+gqKklDNfN+rcYmZAnyu7BNPoZGwWJLn+fvo1lxCE/umF
-         vHMQ==
+        bh=vkLggO8KDDtQGSO4O++zqyqlroGLRt9bsTLK9+jSmi4=;
+        b=PeMTuTOEu4F6ccICdsCs1oZoXTmsSvgH4YGAk/wgwuHsIb6xd112MpRWI2IvOINQ28
+         zqVwSxy2xnNtWBZ8mhTaSe8fsSWVm8g2tnDCY1PAsgCHj15PSiCx/9iu+ssXAhpm9aXq
+         KBgsTq/OQARkYgvmvMn9P9xol46hFYOkJgjzqfusG3L6Atztgmhqw0fzxQQtX+3wIm4g
+         bkvaFkzgNQGpjUs5Z2UPeKQVzpPrB476NmKvVmpLK2k3vvJ5VcgOCc57RqyX+jIxhKTF
+         4N0+a+5P/aDUNB1c9y7FANMFybV/7xw8QTZvM2STYwxluSKFXZP8OU4ju7PdFoz8n5U5
+         ZsSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680586431;
+        d=1e100.net; s=20210112; t=1680586917;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LSfvMCOrdSCg0KsTlmNTzh+wJyyn32F7jBR5XEIQXfs=;
-        b=zfq0NVXs8eamXZtH4xdqOOFlbXbXeZl1d+lZtMfGxg++Npz1BXJFyrIWheZ62yyYd+
-         sOJKQL+AS0WcRu8+22UDZkN/P1W2yV6ltXGj+Gji0He3lnM8uLb+jfX7zY/3QK9BVin7
-         8vFs1174hLDpqlAjfFkE8Cq81HbAGdmTkHer0gwE/gr3GQnVf471T2ecic4WFEHa1WUD
-         U++6j73wD/i7iUz5+FADRlwG6nTrCFQys5njS3C3EfiEvXQ0ElSSWtO3VUjSJd+OfTkW
-         ABondXHCjpy+gSi0aRtLqJTaMj6fppNiLvf8+6ePJpjfuQkwA9blOIL2exyI1uNx1aya
-         OD/Q==
-X-Gm-Message-State: AAQBX9f5gFvn7S20C3LO4bGBJv9L9SqFh5Fx0NzmaDGSAJBNmfcHJBAd
-        heBBfluphWLlwA6qHH1333jZvA==
-X-Google-Smtp-Source: AKy350a40YXsaP1RgtMOL5a6WR77TS6ARlPJXWLmm7+/lgqUoQ15z5r6n8YquYLchK+7NxQM/Zfl/Q==
-X-Received: by 2002:aa7:cad9:0:b0:502:4875:721 with SMTP id l25-20020aa7cad9000000b0050248750721mr1233965edt.15.1680586430958;
-        Mon, 03 Apr 2023 22:33:50 -0700 (PDT)
+        bh=vkLggO8KDDtQGSO4O++zqyqlroGLRt9bsTLK9+jSmi4=;
+        b=aMK2WITq0Ciagonb+G5szObO9DykByfjtAATueqbv3qEI6IbKeeFbJc4XhxlmmXG9E
+         f6pbFEr40YG7leLsT3OU+fnNRjFnc9/BwUgzWLwHV9gLKUPuk4FZD2isZSr9ipyCOx1D
+         zaB7K7hTrViy9+BLe4CRausIml1LXy8Hred+oa1qQKxaenzuiWhmF0gjcFVh2Ms6ddSW
+         ddNOvlxU6QoCp4LwmJdUwgc5F1hblcLO0O7DFe2d5lh4auxOpZAI7amVOUo9VxeooChA
+         SliJ/XuJcMk8DiVBxGoxNNdLs+oCfcSfkDZJKXq/ubaQzRq61fQRlnhwfKn5Y0eXeak0
+         83OA==
+X-Gm-Message-State: AAQBX9c+1ki3u065ITpQi8+0BeeJuh8VuUKoF16CSDzyg0zBlJ/Wpsp6
+        N8Pu5mm9bf0uI7wVymUylq/RIw==
+X-Google-Smtp-Source: AKy350alQEuK+jaEwiAUarG9JUGGPd9TSw6AtgvsRBzfuLEAJRvSOasjLJIY0F94lySGnxGRn2gWtg==
+X-Received: by 2002:a17:906:33c9:b0:92b:f118:ef32 with SMTP id w9-20020a17090633c900b0092bf118ef32mr1177803eja.48.1680586917048;
+        Mon, 03 Apr 2023 22:41:57 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id 28-20020a508e5c000000b004c13fe8fabfsm5387403edx.84.2023.04.03.22.33.49
+        by smtp.gmail.com with ESMTPSA id ga3-20020a170906b84300b0092595899cfcsm5442421ejb.53.2023.04.03.22.41.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 22:33:50 -0700 (PDT)
-Message-ID: <9c49e4a9-0792-bcae-506f-77b5874d4d19@linaro.org>
-Date:   Tue, 4 Apr 2023 07:33:49 +0200
+        Mon, 03 Apr 2023 22:41:56 -0700 (PDT)
+Message-ID: <9fc90c8b-9234-84fa-7dab-fee9de2b9813@linaro.org>
+Date:   Tue, 4 Apr 2023 07:41:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V4 04/10] dt-bindings: timestamp: Add
- nvidia,gpio-controller
+Subject: Re: [PATCH v5 2/6] dt-bindings: ufs: qcom: Add ICE phandle
 Content-Language: en-US
-To:     Dipen Patel <dipenp@nvidia.com>, Rob Herring <robh@kernel.org>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-References: <20230323012929.10815-1-dipenp@nvidia.com>
- <20230323012929.10815-5-dipenp@nvidia.com>
- <20230324171329.GA2062332-robh@kernel.org>
- <7f2dc5cf-78b5-81c6-0012-26b1adce1c86@nvidia.com>
- <19b71fef-614a-d678-2e73-95db8f226e61@linaro.org>
- <df00404e-96a8-bf33-cbc7-25dbb09c89c7@nvidia.com>
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20230403200530.2103099-1-abel.vesa@linaro.org>
+ <20230403200530.2103099-3-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <df00404e-96a8-bf33-cbc7-25dbb09c89c7@nvidia.com>
+In-Reply-To: <20230403200530.2103099-3-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,43 +93,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 06:24, Dipen Patel wrote:
-> On 3/25/23 4:09 AM, Krzysztof Kozlowski wrote:
->> On 24/03/2023 19:51, Dipen Patel wrote:
->>> On 3/24/23 10:13 AM, Rob Herring wrote:
->>>> On Wed, Mar 22, 2023 at 06:29:23PM -0700, Dipen Patel wrote:
->>>>> Introducing nvidia,gpio-controller property from Tegra234 SoCs onwards.
->>>>> This is done to help below case.
->>>>>
->>>>> Without this property code would look like:
->>>>> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
->>>>> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
->>>>> 				   tegra_get_gpiochip_from_name);
->>>>> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
->>>>> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
->>>>> 				   tegra_get_gpiochip_from_name);
->>>>> else
->>>>> 	return -ENODEV;
->>>>
->>>> Or you just put the name in match data.
->>>
->>> Not sure I have understood this comment, but "name" the first argument is
->>> already there to supply to callback to match data. Also, this if else is
->>> needed to know which "name" to provide.
->>
->> The point is that of_device_is_compatible() do not really scale and make
->> code more difficult to read. Your variant-customization should in
->> general entirely come from match/driver data.
+On 03/04/2023 22:05, Abel Vesa wrote:
+> Starting with SM8550, the ICE will have its own devicetree node
+> so add the qcom,ice property to reference it.
 > 
-> Perhaps I should not have mentioned driver related details here about how
-> this property will help, that detail will go in driver patch. In the next
-> patch series I will remove this commit and just focus on what this property
-> is.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> 
+> The v4 is here:
+> https://lore.kernel.org/all/20230327134734.3256974-4-abel.vesa@linaro.org/
+> 
+> Changes since v4:
+>  * Added check for sm8550 compatible w.r.t. qcom,ice in order to enforce
+>    it while making sure none of the other platforms are allowed to use it
 
-Regardless of this commit, driver match data is the way to go, not
-of_device_is_compatible().
+Why?
 
-
+Also, this does not solve my previous question still.
 
 Best regards,
 Krzysztof
