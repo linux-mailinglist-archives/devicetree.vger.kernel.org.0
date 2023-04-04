@@ -2,96 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCAEC6D69AD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA266D69D6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 19:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235640AbjDDQ6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 12:58:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46074 "EHLO
+        id S235754AbjDDRIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 13:08:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232964AbjDDQ6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:58:53 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6262B3ABC;
-        Tue,  4 Apr 2023 09:58:48 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-17997ccf711so35354917fac.0;
-        Tue, 04 Apr 2023 09:58:48 -0700 (PDT)
+        with ESMTP id S235757AbjDDRIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 13:08:05 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 305974C32;
+        Tue,  4 Apr 2023 10:07:56 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-177ca271cb8so35369203fac.2;
+        Tue, 04 Apr 2023 10:07:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680627527;
+        d=1e100.net; s=20210112; t=1680628075;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DiNu1ACRu56K9bloHouaXrNZa/JCLgtThvUYRqbnw58=;
-        b=lBHrmI4hrpjrBIiwUvV4fdcb0NK+SWBAm8vKjpdq1GzZ8tu73w0QQt501Ewa9gSRDM
-         T4KCeGLojE4znvigwgn7TOjTODpJ/vAFeYkOe2muYymoCaKJAJzaMmUszCc20mKyqLMv
-         vJ26nzOTsEfZoWJPVuqevMQOsbCzqHVBnDItRGJNwEGIn9lm/KwvZG1zFXi7SF4/xq2f
-         NMh4GOgEv3pGFCa6wffFoajlua1NK0/AUUN07B1tsREpiG+eCMLCy2i/InliCxeVfTyS
-         t1XVui8jggLUksoCs1/XgE++IpzhaG7lrWjcWEJGfD4nHILkbCdR3XIObSIIF053hxK3
-         QrbA==
-X-Gm-Message-State: AAQBX9fmaJXq2/u/EG4YXZ7PEaZu6H+bRtObFD2pvK/C75OBUSTBRczD
-        u3wZrg+JzfEcvagJo0anJQ==
-X-Google-Smtp-Source: AKy350ZCXusNb0GY54vqNjcB+19rcJ0QVPtVsjXBfRiKkGVSG03QFymysoMWHm6BrxE9RNOeVe2vOA==
-X-Received: by 2002:a05:6870:638a:b0:17d:1f3:3016 with SMTP id t10-20020a056870638a00b0017d01f33016mr52065oap.5.1680627527584;
-        Tue, 04 Apr 2023 09:58:47 -0700 (PDT)
+        bh=M6gkago0IX2qDsFTPoqyaI/Smb2BtWMPqkzjbhBxBBY=;
+        b=FkYsKIZev2ARCd+d8x7DGbTUXQE7ICeoR7LMIGZ+Dk6L22/T7NUcfCLLm47jUC+ilE
+         Wy06gEJAIGJBAwe/sGWkQnv5V5yBv3vpcKEVxNR+IP1zYJ8cel+ehWIS+n6T9KTBR35q
+         K0C51bkf6iXptaxo1ppfvz/gndiSWrhCLy5Khjx4IopLVkHf/wRX6dpd/dMBKP9QA3eJ
+         8gL2Gwfdi/THnKzIQcslUX1XHr97XMNqJm1rsDnj6u98qa4NsNvGYeGo0qL57uHcz3gG
+         IuA1SFERKR/1mBZISqzpaJQVMiFpd0YJ3MYLa6WHWONC6UJ6txVUiWQAqGY+GQHZ9I5M
+         W7nQ==
+X-Gm-Message-State: AAQBX9cpPKCGy0DuDXJMymdNTn9WGtOA4oG6/6nTJnk834Dd/zsrIcnl
+        0vR3jHnYxT5cW9fY1Pwtng==
+X-Google-Smtp-Source: AKy350boa65dpRdsMFN94tJSdJniDAXV5Su1VkGjuBPDPH1ry4H904Fa2qgHRI+R97gDaNx5b+aQyQ==
+X-Received: by 2002:a05:6870:d599:b0:17f:d229:bc54 with SMTP id u25-20020a056870d59900b0017fd229bc54mr58236oao.12.1680628075017;
+        Tue, 04 Apr 2023 10:07:55 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id vc12-20020a0568708f4c00b00172426ebe58sm4883176oab.27.2023.04.04.09.58.46
+        by smtp.gmail.com with ESMTPSA id kw17-20020a056870ac1100b001802d3e181fsm4961509oab.14.2023.04.04.10.07.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 09:58:47 -0700 (PDT)
-Received: (nullmailer pid 56057 invoked by uid 1000);
-        Tue, 04 Apr 2023 16:58:46 -0000
-Date:   Tue, 4 Apr 2023 11:58:46 -0500
+        Tue, 04 Apr 2023 10:07:54 -0700 (PDT)
+Received: (nullmailer pid 111440 invoked by uid 1000);
+        Tue, 04 Apr 2023 17:07:53 -0000
+Date:   Tue, 4 Apr 2023 12:07:53 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] firmware: Use of_property_present() for testing DT
- property presence
-Message-ID: <20230404165846.GA49361-robh@kernel.org>
-References: <20230310144704.1542045-1-robh@kernel.org>
- <20230323120030.7mk62xk7tco32zw2@bogus>
- <ZCwmWoZhMOlHnnzf@orome>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: input: Drop unneeded quotes
+Message-ID: <20230404170753.GB49361-robh@kernel.org>
+References: <20230320234718.2930154-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZCwmWoZhMOlHnnzf@orome>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+In-Reply-To: <20230320234718.2930154-1-robh@kernel.org>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 04, 2023 at 03:30:02PM +0200, Thierry Reding wrote:
-> On Thu, Mar 23, 2023 at 12:00:30PM +0000, Sudeep Holla wrote:
-> > On Fri, Mar 10, 2023 at 08:47:04AM -0600, Rob Herring wrote:
-> > > It is preferred to use typed property access functions (i.e.
-> > > of_property_read_<type> functions) rather than low-level
-> > > of_get_property/of_find_property functions for reading properties. As
-> > > part of this, convert of_get_property/of_find_property calls to the
-> > > recently added of_property_present() helper when we just want to test
-> > > for presence of a property and nothing more.
-> > > 
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  drivers/firmware/arm_scmi/optee.c | 2 +-
-> > 
-> > Acked-by: Sudeep Holla <sudeep.holla@arm.com>(for the SCMI part)
-> > 
-> > I am assuming you will route this as it has other changes as well in the
-> > patch.
+On Mon, Mar 20, 2023 at 06:47:18PM -0500, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> I can also pick this up along with the Tegra changes if Rob doesn't
-> want to take it. But also feel free to take this through whatever tree
-> works best, for the Tegra parts:
-> 
-> Acked-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/input/adc-joystick.yaml     | 4 ++--
+>  .../devicetree/bindings/input/google,cros-ec-keyb.yaml        | 2 +-
+>  Documentation/devicetree/bindings/input/imx-keypad.yaml       | 2 +-
+>  Documentation/devicetree/bindings/input/matrix-keymap.yaml    | 2 +-
+>  .../devicetree/bindings/input/mediatek,mt6779-keypad.yaml     | 2 +-
+>  .../devicetree/bindings/input/microchip,cap11xx.yaml          | 4 ++--
+>  Documentation/devicetree/bindings/input/pwm-vibrator.yaml     | 4 ++--
+>  Documentation/devicetree/bindings/input/regulator-haptic.yaml | 4 ++--
+>  .../bindings/input/touchscreen/elan,elants_i2c.yaml           | 4 ++--
+>  9 files changed, 14 insertions(+), 14 deletions(-)
 
-You can take it. Thanks.
+Applied, thanks.
 
-Rob
