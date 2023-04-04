@@ -2,150 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A46EF6D5B2A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D516D5B2F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:47:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234112AbjDDIpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 04:45:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S234097AbjDDIrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 04:47:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233923AbjDDIpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:45:18 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC2A197
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:45:15 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id r11so127506020edd.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 01:45:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680597914;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qFniWraH9Zx9AU/nIcDS2ZhpqD+XkT7RdXcaMNk7s1Q=;
-        b=NDZD77ERGU54AP9UX0o03dGSoBhWlpLKC1F1q4/spgOo6ufcp1HxDNMlcs9ACQsg5g
-         if12rdV9irOBZhnU32KKzvVzlnakoLV2M8HJFMZHycBL2tyxRRJglIdqhzJi0BeKuBr7
-         3o5j7aFQsVplZuwdxXisbDR4gD8sGyzUJfXM1xJV0bqsYok3UsukvOyR6pS9U0VG2alJ
-         +k7+G5jtRkwQL2dWwZ8ukA/TvGors5PwA8qn0S5gLvnl0yNHMz2HzvH8l84W+ZF0t2Id
-         1PjxnFzuMk48SnEshbFf5lEHfBUCmrcXWupGnPVpbAT25YbnSx1jCkcArKyqhZn12kj1
-         zsig==
+        with ESMTP id S233594AbjDDIrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:47:48 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDD810DD
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:46:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1680598017;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=G99E3diY62ZpH4JZ1b4pZ2Ts787AInV4dhcYUQ8Vmz8=;
+        b=AJb6H1Y63PWX5b4IVqjFG07GIH83/swVhQjLknWUuiCSKvkvikIqzBX0i0lseRgNBBf/sK
+        DZtgdePYj9xTOSfWVj6Ubybz842gmdMM4by9Cguq6iXl0UOVPcHXrDUdPnO6jKk9q5Unwv
+        5rSLm//X2vl3Gt5R1pxfcWWal6Mm788=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-147-FCs-z28rNGGBPKKNXC-VbA-1; Tue, 04 Apr 2023 04:46:56 -0400
+X-MC-Unique: FCs-z28rNGGBPKKNXC-VbA-1
+Received: by mail-wr1-f72.google.com with SMTP id k16-20020adfd230000000b002cfe7555486so3556157wrh.13
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 01:46:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680597914;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qFniWraH9Zx9AU/nIcDS2ZhpqD+XkT7RdXcaMNk7s1Q=;
-        b=6Ejt0L37mQYkCNGXwJ59bLxuDsKVU3remzr85/IGNdnq2tjogEuSSY5y+11y9Yy/uz
-         D7rhvqWeZxFmXqKGwgd3M6H+QrxH/aJ6V6Pmt2oQ44hA4x4GhqttzarXy/169yOk3wWV
-         9jx7Q7YmUv14BncRUgEvP8Tqcil5G7KzFG5su3XDFseBZEX1R1pqZLrvySxF+a1Gtwe+
-         xtI5YCFDGCppc0+rY361lTBYjABx8W+QqWSCh1cepCo6TIvYbdzy6DcxRv4Kg7iAJtbQ
-         xk9scL/bIj6lsFumkEH3B8folITyZv7EGhls6VZyWmwzrnYWQhh29fpVc4Lh5GCMDfVc
-         s6DA==
-X-Gm-Message-State: AAQBX9d+sCqo2cBbAea6oUfZA5wBAhnzFXHmIIUN+EbS74FI7b8kTKxu
-        3igLBPM+fxV1dZYSJQxCoEWr8g==
-X-Google-Smtp-Source: AKy350Ys/jY0eQu2PLhBd/9LlS3jfRprWxeYmK085EYvR7AsZb+OPy/s/HlCkHQWIcfQXOxPTxsZ0A==
-X-Received: by 2002:aa7:d618:0:b0:4af:6c5e:225c with SMTP id c24-20020aa7d618000000b004af6c5e225cmr1829126edr.33.1680597914216;
-        Tue, 04 Apr 2023 01:45:14 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id r19-20020a50c013000000b004fd29e87535sm5561237edb.14.2023.04.04.01.45.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 01:45:13 -0700 (PDT)
-Message-ID: <d9afc07f-0346-1fe7-907c-261e4c6f92cd@linaro.org>
-Date:   Tue, 4 Apr 2023 10:45:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 06/11] dt-bindings: PCI: Update the RK3399 example to a
- valid one
-Content-Language: en-US
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-        alberto.dassatti@heig-vd.ch
-Cc:     damien.lemoal@opensource.wdc.com, xxm@rock-chips.com,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        d=1e100.net; s=20210112; t=1680598015;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G99E3diY62ZpH4JZ1b4pZ2Ts787AInV4dhcYUQ8Vmz8=;
+        b=0Rsm0McShnhTLWA4nSKZa2w/Q/FBeN2sa/VberUBOWC44PpP56MHKiQfoSdfcLJ0WK
+         qXgzgas93xNn5OMGkJfBRa+EF7uCTxT9+EVDXgFE9KiMhGg8gYgcIy+5bcR+KdJIvvWR
+         kUIm+XCEqlgrEED/2F8/kza5yLMIgNQ2xCHZJU9C4i3dkgnyhfW4zJZjLzfZ777URqd8
+         O3o5yRq9qKm2QJ4Sr6Rb5DxcpPh6g6MKudnCCzEkzuoOI9rCXc/xF+5pAhdgVBiRrfoK
+         0SUdMRA4kN+CZyPHcvTcLdQb5+BVp4YsA0vz/1GYqHdROT+fEeq2PWtj9LMAhpYfs6Xv
+         FjmQ==
+X-Gm-Message-State: AAQBX9e9UL6wztgu0kjK/XwAJCC7EwoWV85K7VoFQml8LohbCt0UVZzO
+        7w04W99sXUUAS1jE+vyMnVyZq2DVZJCKMHnst6pLP9e0F3hVzlby4wFcVllF1YQebtOyrezDE4j
+        1Cf3C+nqtEmBiA2FTwcqUmg==
+X-Received: by 2002:adf:f005:0:b0:2d6:cc82:3c49 with SMTP id j5-20020adff005000000b002d6cc823c49mr931473wro.13.1680598015276;
+        Tue, 04 Apr 2023 01:46:55 -0700 (PDT)
+X-Google-Smtp-Source: AKy350Z8i51Ygry+zzbcD2bOKjp+1nQQ1biyfzppPWMmvxDvdWIJCYlOOMGrJyFI4cevmr2NBMZoWw==
+X-Received: by 2002:adf:f005:0:b0:2d6:cc82:3c49 with SMTP id j5-20020adff005000000b002d6cc823c49mr931458wro.13.1680598014942;
+        Tue, 04 Apr 2023 01:46:54 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id g6-20020adfe406000000b002d743eeab39sm11753376wrm.58.2023.04.04.01.46.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 01:46:54 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     Peter Robinson <pbrobinson@gmail.com>
+Cc:     Jarrah <kernel@undef.tools>,
+        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        linux-kernel@vger.kernel.org, Caleb Connolly <kc@postmarketos.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Lin Huang <hl@rock-chips.com>,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230404082426.3880812-1-rick.wertenbroek@gmail.com>
- <20230404082426.3880812-7-rick.wertenbroek@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230404082426.3880812-7-rick.wertenbroek@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
+ Pinephone Pro to 1.5 MB
+In-Reply-To: <CALeDE9M4eNq1sfQ-UcNZr8naYThmLFxDpt=zj8WkCSzHPUY8ug@mail.gmail.com>
+References: <20230403175937.2842085-1-javierm@redhat.com>
+ <3738011.44csPzL39Z@diego>
+ <d7efebcc-5b5b-185e-bec8-b6b9d5d27d93@undef.tools>
+ <87h6twdpi7.fsf@minerva.mail-host-address-is-not-set>
+ <CALeDE9M4eNq1sfQ-UcNZr8naYThmLFxDpt=zj8WkCSzHPUY8ug@mail.gmail.com>
+Date:   Tue, 04 Apr 2023 10:46:53 +0200
+Message-ID: <87bkk4dog2.fsf@minerva.mail-host-address-is-not-set>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 10:24, Rick Wertenbroek wrote:
-> Update the example in the documentation a valid example.
-> The default max-outbound-regions is 32 but the example showed 16.
+Peter Robinson <pbrobinson@gmail.com> writes:
 
-This is not reason to be invalid. It is perfectly fine to change default
-values to desired ones. What is not actually obvious is to change some
-value to a default one, instead of removing it...
+> On Tue, Apr 4, 2023 at 9:24=E2=80=AFAM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
 
-> Address for mem-base was invalid. Added pinctrl.
-> 
-> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-> ---
->  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml  | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
-> index 88386a6d7011..0c67e96096eb 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
-> @@ -47,14 +47,15 @@ examples:
->  
->          pcie-ep@f8000000 {
->              compatible = "rockchip,rk3399-pcie-ep";
-> -            reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0x80000000 0x0 0x20000>;
-> -            reg-names = "apb-base", "mem-base";
+[...]
 
-Reg (and reg-names) is usually second property, why moving it? What is
-incorrect in the placement?
+>> > At least for me it's been convenient to have both the PP and PPP use t=
+he
+>> > same settings while debugging.
+>> >
+>>
+>> Agreed, all my other boards use 115200 as well, the only exceptions are
+>> the Rockpro64 and PinePhone Pro for me.
+>
+> All Rockchips devices use 1.5m except a chromebook and the Puma, and
+> this device.
+>
 
-> +            rockchip,max-outbound-regions = <32>;
->              clocks = <&cru ACLK_PCIE>, <&cru ACLK_PERF_PCIE>,
->                <&cru PCLK_PCIE>, <&cru SCLK_PCIE_PM>;
->              clock-names = "aclk", "aclk-perf",
->                      "hclk", "pm";
->              max-functions = /bits/ 8 <8>;
->              num-lanes = <4>;
-> +            reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0xfa000000 0x0 0x2000000>;
-> +            reg-names = "apb-base", "mem-base";
->              resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
->                <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE> ,
->                <&cru SRST_PCIE_PM>, <&cru SRST_P_PCIE>, <&cru SRST_A_PCIE>;
-> @@ -62,7 +63,8 @@ examples:
->                      "pm", "pclk", "aclk";
->              phys = <&pcie_phy 0>, <&pcie_phy 1>, <&pcie_phy 2>, <&pcie_phy 3>;
->              phy-names = "pcie-phy-0", "pcie-phy-1", "pcie-phy-2", "pcie-phy-3";
-> -            rockchip,max-outbound-regions = <16>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&pcie_clkreqnb_cpm>;
->          };
->      };
->  ...
+Yes, I meant all the other non-rockchip boards I have. So I understood the
+appeal of what Jarrah mentioned about using 115200 for everything.
 
+Having said that, my vote would be to change the PinePhone Pro to 1.5 MB
+given that it is what all the rockchip (but two) boards use in mainline.
+
+--=20
 Best regards,
-Krzysztof
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
