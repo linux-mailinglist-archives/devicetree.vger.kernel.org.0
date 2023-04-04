@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 171566D5959
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 09:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D378F6D5970
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 09:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233838AbjDDHWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 03:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50224 "EHLO
+        id S233944AbjDDHYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 03:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233659AbjDDHWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 03:22:02 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75943E5C
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 00:21:59 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id eh3so126621959edb.11
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 00:21:59 -0700 (PDT)
+        with ESMTP id S233971AbjDDHYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 03:24:01 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F932704
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 00:23:39 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id y4so126747316edo.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 00:23:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680592918;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1680593018;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kkOGx3GMkgo2fuHiMkHQxVBiCwFud00/oKdxH1oDBEc=;
-        b=O9f6zymkXyi78dz6MnZvNgpiLT6OqNN2IcSZBe55KTxR7DY4OBqLPSOdBntZ8GiKCg
-         b29KHZyiQRIgV50y5qkEhVDQ84NXO+qjgdnpaCG8T50xT1bXUsmGW9wu+T95KiP7zmic
-         xoK+fg9nnVCOeBL4/KWUTwALfGyr0voeLteEoQlDVnunpSHSbV1T3cwpYNAxIYP3FJCS
-         5VbXSrHRMESzEo2/576L8sk7BN4J2HeGgu6MU6xLe+J9Nmb4fu7/dLdnxd2dm/SD/WC5
-         c53piKeosyWxb3biPPlT+S1+XS2FOZTGHMFcfiO9NZ4t9ZSK6YTW9j17Iw1h4GNSjqgp
-         yHSg==
+        bh=IUK8JD+uRunCT3us0+K96/PDNUuY5k90r+of18dK1CI=;
+        b=KCPZ9WIUFrgOLZZoO18bDAzfQXIE31N4UEwLOBJqtVyBmVZ5IhG9R2K94tYRAiBGpp
+         IdSKoXkP62cwmTIhro2iU98BxSyvrPehTjyKg13FZBIjpIW/UyA42tXQ0+fcT9c2cuKf
+         ihEJH/e/nWljXyt5aEdBX5ZaMPgm/NH9/MyctEHEgLlg2T0jv2ePuiPoNzhU92pVU5tE
+         WIDOu3WhuHCk3hXS/8KcHxBLwQjs6ngC7QcfwNOodqu3gXae0SDMSnQaUckyAb3f7bKE
+         CKtLlle/F0UmWjBa1qIzjgRX8UmZhEk78al2zA/q0CH0CWTqa0koDAH48Zt+wjjYaure
+         73Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680592918;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680593018;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kkOGx3GMkgo2fuHiMkHQxVBiCwFud00/oKdxH1oDBEc=;
-        b=02vhye7Oll6rGnNvgACUD6qqKYwPCarpFgv/GvsRTxwM5vKWtOAazvnGIgWF+A9DI3
-         LhYyaROxMfe0YJxzvq6fY0jWatK2Fxz0D4r78dqbOADIrfXgpknohYScXHvhaI6NJbkb
-         erMg1o2vYewPh0qLrA8dljUsSro7KCK/3FiciLRgsU9fy7MJN4MoLW4u/FqL+9rSvKNG
-         j59XMKO9lrrMT8kHVFj9m50x92mB4Dz3VKSLJrqqh059d5zOMX15zfRi0PjzfCOzrCjG
-         I0vWW1xswcduF9bvRgWAAdGZO5zE1zjDUfCbGifn4HtF5NSlIZLXmZWngXCE5ANupngx
-         p7nw==
-X-Gm-Message-State: AAQBX9f1Qnf70SwoUs7926FHExpvooSZsPqnp6JvHy2onJotBP4MucQO
-        YqiiqL+km/W7RGb9uK+/PunWpw==
-X-Google-Smtp-Source: AKy350apWFIq0ibEzi1DfVtXMxjGQ4ZHptStYJF0jd8bhwTpI2kqfvkHB0M7oc++tJ58JctJxwy/wg==
-X-Received: by 2002:aa7:c78a:0:b0:502:9d16:fcb2 with SMTP id n10-20020aa7c78a000000b005029d16fcb2mr1432594eds.22.1680592918017;
-        Tue, 04 Apr 2023 00:21:58 -0700 (PDT)
+        bh=IUK8JD+uRunCT3us0+K96/PDNUuY5k90r+of18dK1CI=;
+        b=rquOMBZg2Nw1AxtvEbvgp/+RKT+4TDzAMm6EMxbiQfki3nQIAEjRg9R/x10qHd5m06
+         UvB2sl+xVACTAImhhL0QOqLGblp/wSkWhrgQXOmKEhZFO2iF1OSDEmav65xzPjoxrULT
+         rxEbrVJ8JLBkdOZAZ/ER8HWVepCWWLA7pv6fXv/HgkrDQYz/kisykQ7SXGX8B4QIfrY6
+         fwUnOg58dePdOav/FQlg6pB0j8+2QgztoSqKLkX7IE8CoOYut+RCo72cJdqQtO44kgIP
+         T5y4hGsbHxNvw8mstDMnPEy8Is2n3PzYgCIpXO3blGYGnAbzCIMv/MIDONj6+FvHtXRP
+         xB8A==
+X-Gm-Message-State: AAQBX9d57mJguyzLGg6ToM1aHZCN1HUpQs0xRNtBDkA05xDuNkwJNaDy
+        OqTT2UGZb4txD7ECpnEa/aRwHw==
+X-Google-Smtp-Source: AKy350bQiKhSapVjYuj1KeJAFbzScHjNUhn44Hy1bYd9SIbkCHzCikODwygDV7z7aWdHWVFHFKuvcQ==
+X-Received: by 2002:a17:906:f284:b0:878:7189:a457 with SMTP id gu4-20020a170906f28400b008787189a457mr1212000ejb.51.1680593017797;
+        Tue, 04 Apr 2023 00:23:37 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id cw23-20020a056402229700b005028e87068fsm4126624edb.73.2023.04.04.00.21.57
+        by smtp.gmail.com with ESMTPSA id tp24-20020a170907c49800b00948c320fcfdsm1664413ejc.202.2023.04.04.00.23.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 00:21:57 -0700 (PDT)
-Message-ID: <996b49ab-5e2e-76bc-efb1-38c6384871f6@linaro.org>
-Date:   Tue, 4 Apr 2023 09:21:56 +0200
+        Tue, 04 Apr 2023 00:23:37 -0700 (PDT)
+Message-ID: <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
+Date:   Tue, 4 Apr 2023 09:23:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v5 2/2] dt-bindings: rtc: add max313xx RTCs
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, a.zummo@towertech.it,
-        jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-References: <20230403154342.3108-1-Ibrahim.Tilki@analog.com>
- <20230403154342.3108-3-Ibrahim.Tilki@analog.com>
- <dd6f0842-519f-1bc9-f7f5-459863dc3dcd@linaro.org>
- <202304040710049c9cc01a@mail.local>
+Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
 Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>, Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230328092645.634375-1-herve.codina@bootlin.com>
+ <20230328092645.634375-3-herve.codina@bootlin.com>
+ <20230330160510.GB489249@google.com> <20230331094208.41ab4420@bootlin.com>
+ <6d39e9c3-fb6a-4b2a-9889-8fe8d86716d5@linaro.org>
+ <20230331141104.42445da9@bootlin.com>
+ <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
+ <20230331165904.4e7f46a1@bootlin.com> <20230403142822.GA8371@google.com>
+ <20230404092036.2d1cd5d9@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <202304040710049c9cc01a@mail.local>
+In-Reply-To: <20230404092036.2d1cd5d9@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -81,48 +88,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 09:10, Alexandre Belloni wrote:
+On 04/04/2023 09:20, Herve Codina wrote:
+>> I suggest that none of this (besides the child registration, which is
+>> achieved by a simple OF API call in this case) has anything to do with
+>> MFD.  We are not requesting and initialising shared resources and we are
+>> not using the MFD API to register children.  The pin control
+>> functionality clearly needs moving to Pinctrl and the rest, if you
+>> cannot find a suitable home for it *may be* suitable for Misc.
 >>
->>> +      RTC can be used as a clock source through its clock output pin when
->>> +      supplied.
->>> +    const: 0
->>> +
->>> +  clocks:
->>> +    description: |
->>
->> Do not need '|'.
->>
->>> +      RTC uses this clock for clock input when supplied. Clock has to provide
->>> +      one of these four frequencies: 1Hz, 50Hz, 60Hz or 32.768kHz.
->>> +    maxItems: 1
->>> +
->>> +  aux-voltage-chargeable:
->>> +    enum: [0, 1, 2]
->>> +    description: |
->>> +      Enables trickle charger.
->>> +      0: Charger is disabled (default)
->>> +      1: Charger is enabled
->>> +      2: Charger is enabled with a diode
->>
->> 2 is not an allowed value. I asked to drop this property. It is coming
->> from rtc.yaml. I also do not understand "with a diode". So otherwise it
->> is charging with, I don't know, FET?
 > 
-> No, what is not explained here (and maybe not unsterstood by the
-> submitter) is that the RTC has an extra diode so, 
+> I am confused and I am not really sure to understand where to put my driver.
+> 
+> The core pef2256.c needs to:
+> 1) setup the pef2256
+> 2) add the children
+> 
+> To add the children it calls  devm_of_platform_populate() to add the audio
+> parts as several audio children can be available with the same compatible
+> string.
+> 
+> I plan to move the pinctrl part to the pinctrl subsystem. With this done,
+> the core pef2256.c will probably add the children using:
+> - a mfd_cell for the pinctrl part
+> - devm_of_platform_populate() for the audio children
+> 
+> The setup (E1 lines and TDM configuration) still needs to be done by the
+> core pef2256.c. Moving this part only to Misc will break the hierarchy.
+> The audio children depends on the core pef2256.c as this one do the setup.
+> Having in the audio children and the part that do the setup in same hierarchy
+> level is not correct. Audio children should be children of the part that do
+> the setup.
+> 
+> So, the structure I have in mind:
+> - pef2256.c (MFD)
+>   implement and do the setup at probe()
+>   Add the children at probe():
+>     - pef2256-pinctrl (pinctrl) added using mfd_add_devices()
+>     - pef2256-codec (ASoC codec) added using devm_of_platform_populate()
+> 
+> Lee, with this in mind, can the core pef2256.c be a MFD driver ?
 
-Value of 2 is still not allowed and if the patch was tested, it would be
-clearly visible. Unfortunately patch was not tested...
-
-> charging will always
-> enable a diode, select a resistor and then have or not an extra diode.
-> Figure2 of the MAX31329 datasheet is great.
-
-So the diode is in the max313xx? Then why enabling it is a property of
-DT? Either this should be inferred from compatible or is even a policy,
-not a DT property. Just because device has a register for something, is
-not an argument that "something" should be in DT.
-
+You do not use MFD here, so why do you want to keep it in MFD? If you
+disagree, please tell me where is the MFD code in your patch?
 
 Best regards,
 Krzysztof
