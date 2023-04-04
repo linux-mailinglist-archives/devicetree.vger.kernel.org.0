@@ -2,113 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F0B6D6E17
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201806D6E32
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236159AbjDDUbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 16:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44594 "EHLO
+        id S229743AbjDDUmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 16:42:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236161AbjDDUbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:31:37 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE7EC4C22
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 13:31:35 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id r7-20020a17090b050700b002404be7920aso33366499pjz.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 13:31:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680640295;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EOVeDn8sGMiyUFHnj/niym7+yJLePku8ZuvCvpjBjFA=;
-        b=d2PfSMqYfgsZroD2KnzQMRj0RMGsWfZOj8Pbma82DQC/fdoAL7fp4u3QRYiYy0KsxD
-         7J2e/+s31Z1QQnI/qyqshLlDgu+gpXILHPK0Jdtbp3wfz5cn4ytd1IDNsyWG6Zs1qD9b
-         WATap2+gj3/N62oIZ6s5sB34NSYCjItBlYteXFqgR861/Fh/7zmJzj7RjnwFpMvGYD+s
-         TwK/P/yR8kLl7NVvE9VrRC860srGxgFh4X0TVV1Q2pUt3Ikfyq1u1wpY/jIXj2TyS7JN
-         gNzlm+DEd4jK9eCkoSfSMTV0tHcgHYjdqxZik2z7GkUwOBDBEZeyDropDBoOwbivkXiD
-         tIIA==
+        with ESMTP id S229731AbjDDUmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:42:10 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E35DD44A3;
+        Tue,  4 Apr 2023 13:42:09 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-17ebba88c60so36072426fac.3;
+        Tue, 04 Apr 2023 13:42:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680640295;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EOVeDn8sGMiyUFHnj/niym7+yJLePku8ZuvCvpjBjFA=;
-        b=CwzQnwl/xsfexg1GnJOZe8cco9myZxbY7omuRT5kcVmlmACM4dL0FLXKpENs2AGFZU
-         IB9MpVkmphZ9vE9FYxxgXAUp8P7ejG98EsnXfUcXguESSuaZDLF3xJ6StTGh+pVROGJK
-         hHhqDnEJ18OZyAyPsL3jF9e3rrjVXzKnE4BstGrdmMPF7xaHF7qr3RpopuT31D8htKa5
-         /1wF23+l8k1SE2YKplvz/DPuplTZep3Mtid6arpBuDMnCRuxcB5GIVGdtZDtCd4myVTa
-         umqLMx/nU0wCO3Z1ZzlwO0HGV00ElytwGF70ct1PYcfFnpDP5ilvJGrpsRCUOhfxg4ew
-         u9lA==
-X-Gm-Message-State: AAQBX9cTA8GUwkeyO5mX5kpY5MMjH84fKnN5DlYYEI2JKVgDZemlWbJ6
-        qYZQtFlV8T3bbueRspNvDhke4w==
-X-Google-Smtp-Source: AKy350YCpPag6hyvNnZwcBiqsXWIy1NnNsjRyvNEOMoKbr9kgeRuFVAQ98Nq/oUQ25+hXB9CQPoU3Q==
-X-Received: by 2002:a17:90b:3ece:b0:22c:6d7c:c521 with SMTP id rm14-20020a17090b3ece00b0022c6d7cc521mr4045682pjb.45.1680640294866;
-        Tue, 04 Apr 2023 13:31:34 -0700 (PDT)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id jm21-20020a17090304d500b001a1fe42a141sm8706184plb.115.2023.04.04.13.31.33
+        d=1e100.net; s=20210112; t=1680640929;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HiD5Cz7lLNBfVW+arHQFNCec/cgbJ4PqJxRsUE2otgU=;
+        b=aCBoHaqlOJiKQG1Rrb0QiWFyQBKZGjSxd2n1x5QQdsimtWMCiVG4lihM//wYWwz8t4
+         o2aMBLxaDdTp3Kmhdu9dkU6odeweZHB66obsa2NP3sk7H0gEZUQYM78f9hylJu8hFoWa
+         iJoOzPSBXDaeGzLYYJGDpcB+ugY2b4Lt5XrtuzY6Vk1BGiPYtvWNd4cXx79ZxKxOj7o6
+         b3tGRMV/NxvybWds3SshWNnwultiUSj6Exy9k1dEkvk1fUyu8O4LpblnPV7cIdFIJMMa
+         Qg6wAkMEAHcXKaZCn22ce5BvgF6Sbtl9gtuzWN1PIKeU7i7RTDFTNsm0bZiq03F8u3W7
+         PCAg==
+X-Gm-Message-State: AAQBX9e7LuxWCMqLQQ1a/2gxc9juns25UPrCg2Gst4vr2vjmeRaOPzeQ
+        MAzGuRBMiJkO4NkyZxnWmQ==
+X-Google-Smtp-Source: AKy350YPM4VV7XInRDiZ8ff49y6l0Un3uu4Vhz7nWAjq9QUnzD5kyzMt5aIKd8u1myFRpipHvig7eA==
+X-Received: by 2002:a05:6870:b28a:b0:177:c8b4:5c45 with SMTP id c10-20020a056870b28a00b00177c8b45c45mr2328981oao.2.1680640929084;
+        Tue, 04 Apr 2023 13:42:09 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y5-20020a9d6345000000b006a249e69aebsm4021405otk.81.2023.04.04.13.42.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 13:31:34 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Bernhard =?utf-8?Q?Rosenkr=C3=A4n?= =?utf-8?Q?zer?= 
-        <bero@baylibre.com>, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 00/11] Improve the MT8365 SoC and EVK board support
-In-Reply-To: <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
-References: <20230203-evk-board-support-v4-0-5cffe66a38c0@baylibre.com>
- <7hy1ncydtc.fsf@baylibre.com>
- <CAFGrd9rKy9a4bUf1dkUtTogtWPFr5eu3jcsdaixi3hs_dWMwrg@mail.gmail.com>
- <CAFGrd9qLzcDJO_Fk_-B6XYuuxQzQoYLXmdp0Qj1Tszr0-sqNgw@mail.gmail.com>
-Date:   Tue, 04 Apr 2023 13:31:33 -0700
-Message-ID: <7hr0szwfru.fsf@baylibre.com>
+        Tue, 04 Apr 2023 13:42:08 -0700 (PDT)
+Received: (nullmailer pid 635685 invoked by uid 1000);
+        Tue, 04 Apr 2023 20:42:07 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: dsa: brcm,sf2: Drop unneeded "#address-cells/#size-cells"
+Date:   Tue,  4 Apr 2023 15:41:52 -0500
+Message-Id: <20230404204152.635400-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Alexandre Mergnat <amergnat@baylibre.com> writes:
+There's no need for "#address-cells/#size-cells" in the brcm,sf2 node as
+no immediate child nodes have an address. What was probably intended was
+to put them in the 'ports' node, but that's not necessary as that is
+covered by ethernet-switch.yaml via dsa.yaml.
 
-> Here a build-able & working branch with dependencies:
-> https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/amergnat/i350-evk-board-support
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/net/dsa/brcm,sf2.yaml          | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-Thanks for a branch with all the dependencies.
-
-This branch builds & boots, but crashes because in the upstream default
-defconfig, the CPUfreq driver is built-in and the regulator that it
-depends on is not enabled.
-
-Changing CPUfreq to be modular with CONFIG_ARM_MEDIATEK_CPUFREQ=m
-allowed me to boot to a shell on mt8365-evk.
-
-This suggests that this series needs some defconfig patches to enable
-the new features, preferably as modules.
-
-It's probably OK that the defconfig patch(es) come as a separate series,
-but not sure what Matthias' preferences are here.
-
-Kevin
+diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
+index eed16e216fb6..72623cfc8c2d 100644
+--- a/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
+@@ -76,12 +76,6 @@ properties:
+       supports reporting the number of packets in-flight in a switch queue
+     type: boolean
+ 
+-  "#address-cells":
+-    const: 1
+-
+-  "#size-cells":
+-    const: 0
+-
+   ports:
+     type: object
+ 
+@@ -99,8 +93,6 @@ properties:
+ required:
+   - reg
+   - interrupts
+-  - "#address-cells"
+-  - "#size-cells"
+ 
+ allOf:
+   - $ref: "dsa.yaml#"
+@@ -145,8 +137,6 @@ examples:
+   - |
+     switch@f0b00000 {
+             compatible = "brcm,bcm7445-switch-v4.0";
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+             reg = <0xf0b00000 0x40000>,
+                   <0xf0b40000 0x110>,
+                   <0xf0b40340 0x30>,
+-- 
+2.39.2
 
