@@ -2,296 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B085E6D6504
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 16:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1544D6D6511
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 16:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235081AbjDDORx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 10:17:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44898 "EHLO
+        id S230072AbjDDOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 10:20:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235314AbjDDORx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 10:17:53 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC5FC12D;
-        Tue,  4 Apr 2023 07:17:51 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id k14-20020a9d700e000000b0069faa923e7eso17384609otj.10;
-        Tue, 04 Apr 2023 07:17:51 -0700 (PDT)
+        with ESMTP id S235174AbjDDOU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 10:20:26 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E211EC;
+        Tue,  4 Apr 2023 07:20:19 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id bl22so10313965oib.11;
+        Tue, 04 Apr 2023 07:20:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680617871;
+        d=1e100.net; s=20210112; t=1680618018;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DOEr2FRMEJDIcIVaiqrL4wvmGuw4tgVUj9P4taVN6p0=;
-        b=dHFgv/ZxLlhmVu31L58A6iX1oAaROhvaScv2FiGIaFb70th6CnjqyqnfjDw0VA188O
-         6pypUsnSy7CHKQwiSR9aY4pEIlCz/BeA6UGHr0ejyYXWaCp4ZNlzmgdvvoQFcRnsm0tS
-         fszUa1lqlrPiAYPa49kxwj9+GdgrpaEpyRAQWEO04FrlT3pdfT3WjpKMj7ZCs5TEfjy/
-         UeH+eFdSwuDg/A1vtpcOUijzq+mimr+WRu1/LQc4bH1dyH+mDZvZfP/Eeir59OBjsYzM
-         WxXNgv9TPuBdZknxjpWWi3yzAn0BjddRhbhToPog4HcVHthUO6/46JKrgXBDAUdqK4GN
-         lyEQ==
-X-Gm-Message-State: AAQBX9cwxdrCtOLfv9EOXBgQ5EQTzwxGDBumUci3sL3NRoTIu/So/vSQ
-        WKXNmpXw6fG+mQoUdbXWZg==
-X-Google-Smtp-Source: AKy350Z/4gJSmyDUUAdCoeKmLMeui7C5qh7SE2KQHAsJHQNlgvDDTup3xYyfg3dlRNRtJcarP2VRaA==
-X-Received: by 2002:a05:6830:1be4:b0:69f:91db:51f1 with SMTP id k4-20020a0568301be400b0069f91db51f1mr1462046otb.29.1680617870999;
-        Tue, 04 Apr 2023 07:17:50 -0700 (PDT)
+        bh=tcAGXMBU45kFzxoxh7X3M9oW7jjf/HL66IWJZzW7mH4=;
+        b=12GJFSK/cifEZwmxl5wuAemSvAv9lqBJi8bWL7UkathxA82EOp75axlHnSxbySD5TF
+         4bHgblsFKtFPngAUi5SH8nqc3/DZCnQs2m/2SrWFWA2j/NtfE7S2gO1Oi2tkDqLv5B3s
+         Kjp4Iubd+rdQAdy8EYJruYry2Xhzby+g1Q0Ou5TLuQ0oR/C9Mq/Kz/7VduDThkIDViU2
+         2aHK4Fwq9Y79nqWbrsZSMEtp6Zmlzz+KNwdM1ft5lcM/zIC1dqx+u3iihxncDkFZ6LCg
+         qAV9xamKnh2pmocG1m5faYnDRu9ArhnWATjsI4UTuR7shJrW6ihhuJmBqwDe5pRd4xj2
+         1ubg==
+X-Gm-Message-State: AAQBX9fbsngdcwZpvVEPNJ0GzIveespy6fnooTF3HTNgfICrQ9hmYSrV
+        XsklpQMGG+gy9iFLVc+ApjU0Qr/yrQ==
+X-Google-Smtp-Source: AKy350YBYmU5p7k1/dLAQw/GIT1ClDRVqyc+yDM4YQ40tYSJ/eShdEmc8skMGTsngHvEGoknfiFrdA==
+X-Received: by 2002:aca:240e:0:b0:386:ee34:afb9 with SMTP id n14-20020aca240e000000b00386ee34afb9mr1334132oic.11.1680618018649;
+        Tue, 04 Apr 2023 07:20:18 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s1-20020a056830124100b0069f02111b11sm5500646otp.75.2023.04.04.07.17.50
+        by smtp.gmail.com with ESMTPSA id u188-20020a4a57c5000000b00541269a2fcesm3318050ooa.25.2023.04.04.07.20.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 07:17:50 -0700 (PDT)
-Received: (nullmailer pid 3824624 invoked by uid 1000);
-        Tue, 04 Apr 2023 14:17:49 -0000
-Date:   Tue, 4 Apr 2023 09:17:49 -0500
+        Tue, 04 Apr 2023 07:20:18 -0700 (PDT)
+Received: (nullmailer pid 3827562 invoked by uid 1000);
+        Tue, 04 Apr 2023 14:20:17 -0000
+Date:   Tue, 4 Apr 2023 09:20:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Convert to DT schema
-Message-ID: <20230404141749.GB3793612-robh@kernel.org>
-References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
- <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, Patrick Lai <quic_plai@quicinc.com>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: soundwire: qcom: add Qualcomm
+ Soundwire v2.0.0
+Message-ID: <168061801694.3827523.18263616021970369926.robh@kernel.org>
+References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
+ <20230403132503.62090-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+In-Reply-To: <20230403132503.62090-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 03, 2023 at 01:50:51PM +0300, Cristian Ciocaltea wrote:
-> Convert the PWM fan bindings to DT schema format.
+
+On Mon, 03 Apr 2023 15:24:57 +0200, Krzysztof Kozlowski wrote:
+> Add compatible for Qualcomm Soundwire v2.0.0 controller, which comes
+> with several differences against v1.7.0 in register layout and more
+> ports (thus increase maxItems of each port-related property to 16).
 > 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  .../devicetree/bindings/hwmon/pwm-fan.txt     |  68 +----------
->  .../devicetree/bindings/hwmon/pwm-fan.yaml    | 109 ++++++++++++++++++
->  2 files changed, 110 insertions(+), 67 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-> index 4509e688623a..48886f0ce415 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-> @@ -1,67 +1 @@
-> -Bindings for a fan connected to the PWM lines
-> -
-> -Required properties:
-> -- compatible	: "pwm-fan"
-> -- pwms		: the PWM that is used to control the PWM fan
-> -- cooling-levels      : PWM duty cycle values in a range from 0 to 255
-> -			which correspond to thermal cooling states
-> -
-> -Optional properties:
-> -- fan-supply		: phandle to the regulator that provides power to the fan
-> -- interrupts		: This contains an interrupt specifier for each fan
-> -			  tachometer output connected to an interrupt source.
-> -			  The output signal must generate a defined number of
-> -			  interrupts per fan revolution, which require that
-> -			  it must be self resetting edge interrupts. See
-> -			  interrupt-controller/interrupts.txt for the format.
-> -- pulses-per-revolution : define the number of pulses per fan revolution for
-> -			  each tachometer input as an integer (default is 2
-> -			  interrupts per revolution). The value must be
-> -			  greater than zero.
-> -
-> -Example:
-> -	fan0: pwm-fan {
-> -		compatible = "pwm-fan";
-> -		#cooling-cells = <2>;
-> -		pwms = <&pwm 0 10000 0>;
-> -		cooling-levels = <0 102 170 230>;
-> -	};
-> -
-> -	thermal-zones {
-> -		cpu_thermal: cpu-thermal {
-> -			     thermal-sensors = <&tmu 0>;
-> -			     polling-delay-passive = <0>;
-> -			     polling-delay = <0>;
-> -			     trips {
-> -					cpu_alert1: cpu-alert1 {
-> -						    temperature = <100000>; /* millicelsius */
-> -						    hysteresis = <2000>; /* millicelsius */
-> -						    type = "passive";
-> -					};
-> -			     };
-> -			     cooling-maps {
-> -					map0 {
-> -						    trip = <&cpu_alert1>;
-> -						    cooling-device = <&fan0 0 1>;
-> -					};
-> -			     };
-> -		};
-> -
-> -Example 2:
-> -	fan0: pwm-fan {
-> -		compatible = "pwm-fan";
-> -		pwms = <&pwm 0 40000 0>;
-> -		fan-supply = <&reg_fan>;
-> -		interrupt-parent = <&gpio5>;
-> -		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> -		pulses-per-revolution = <2>;
-> -	};
-> -
-> -Example 3:
-> -	fan0: pwm-fan {
-> -		compatible = "pwm-fan";
-> -		pwms = <&pwm1 0 25000 0>;
-> -		interrupts-extended = <&gpio1 1 IRQ_TYPE_EDGE_FALLING>,
-> -			<&gpio2 5 IRQ_TYPE_EDGE_FALLING>;
-> -		pulses-per-revolution = <2>, <1>;
-> -	};
-> +This file has moved to pwm-fan.yaml.
-> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> new file mode 100644
-> index 000000000000..448b48ec5d73
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Fan connected to PWM lines
-> +
-> +maintainers:
-> +  - Jean Delvare <jdelvare@suse.com>
-> +  - Guenter Roeck <linux@roeck-us.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: pwm-fan
-> +
-> +  cooling-levels:
-> +    description:
-> +      PWM duty cycle values in a range from 0 to 255 which correspond to
-
-Don't put constraints in plain text:
-
-items:
-  maximum: 255
-
-> +      thermal cooling states.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-Unfortunately, looks like we've wound up with same property with 2 
-differing types. A problem for another day...
-
-> +
-> +  fan-supply:
-> +    description: Phandle to the regulator that provides power to the fan.
-> +
-> +  interrupts:
-> +    description:
-> +      This contains an interrupt specifier for each fan tachometer output
-> +      connected to an interrupt source. The output signal must generate a
-> +      defined number of interrupts per fan revolution, which require that
-> +      it must be self resetting edge interrupts.
-
-How many entries? I'm not sure how more than 1 makes sense.
-
-> +
-> +  pulses-per-revolution:
-> +    description:
-> +      Define the number of pulses per fan revolution for each tachometer
-> +      input as an integer (default is 2 interrupts per revolution).
-
-default: 2
-
-> +      The value must be greater than zero.
-
-minimum: 1
-
-maximum: ??? I assume there's some practical limit here much less than 
-2^32.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-Isn't this a scalar? 
-> +
-> +  pwms:
-> +    description: The PWM that is used to control the fan.
-> +    maxItems: 1
-> +
-> +  pwm-names: true
-> +
-> +  "#cooling-cells":
-> +    description: The PWM fan can be referenced as a cooling-device.
-
-Not that useful. What would be is what's in the 2 cells.
-
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - pwms
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm-fan {
-> +      compatible = "pwm-fan";
-> +      cooling-levels = <0 102 170 230>;
-> +      pwms = <&pwm 0 10000 0>;
-> +      #cooling-cells = <2>;
-> +    };
-> +
-> +    thermal-zones {
-> +      cpu_thermal: cpu-thermal {
-> +        thermal-sensors = <&tmu 0>;
-> +        polling-delay-passive = <0>;
-> +        polling-delay = <0>;
-> +
-> +        trips {
-> +          cpu_alert1: cpu-alert1 {
-> +            temperature = <100000>; /* millicelsius */
-> +            hysteresis = <2000>; /* millicelsius */
-> +            type = "passive";
-> +          };
-> +        };
-> +
-> +        cooling-maps {
-> +          map0 {
-> +            trip = <&cpu_alert1>;
-> +            cooling-device = <&fan0 0 1>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pwm-fan {
-> +      compatible = "pwm-fan";
-> +      pwms = <&pwm 0 40000 0>;
-> +      fan-supply = <&reg_fan>;
-> +      interrupt-parent = <&gpio5>;
-> +      interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +      pulses-per-revolution = <2>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pwm-fan {
-> +      compatible = "pwm-fan";
-> +      pwms = <&pwm1 0 25000 0>;
-> +      interrupts-extended = <&gpio1 1 IRQ_TYPE_EDGE_FALLING>,
-> +                            <&gpio2 5 IRQ_TYPE_EDGE_FALLING>;
-> +      pulses-per-revolution = <2>, <1>;
-> +    };
-> -- 
-> 2.40.0
+> Changes since v1:
+> 1. Increase maxItems to 16 for port-related properties.
+> ---
+>  .../bindings/soundwire/qcom,soundwire.yaml    | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
