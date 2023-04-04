@@ -2,91 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E90B6D6E65
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 22:50:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2FF6D6E7B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 23:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232313AbjDDUuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 16:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58842 "EHLO
+        id S229958AbjDDU7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 16:59:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236326AbjDDUuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:50:20 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C23B7;
-        Tue,  4 Apr 2023 13:50:20 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id l18so25186782oic.13;
-        Tue, 04 Apr 2023 13:50:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680641419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=whW3z4bTfKVvXB+tqmvO6N+K4v/ynODppCdzbzwFkuk=;
-        b=lLs5sBfal3O3O39GTctJ3IwqOea2SgRXL6nSOqVEdNXhCcRcuUcIQE++f4RUlxjIN+
-         QoK1I2EScYjXYucCzDscGHDLhbvTsHqK8BTZCoVzTVWgJWJvBZIm0WwGobiY0+ejlnXW
-         oSv+DFX4/wySX6yk45TlKNTC9U95pP7tXWNza2ts3sqltn85TW4QQjFFqvC9njHPxFaC
-         34a7FCGBZZ8lhaMCql5HSSbUmiNswnHg8NGG/wsHn3N0qxMTG0F4Y47w+zjtOdFDKF2m
-         0+BD1OVMj++dGX5nlduVFB69O4PHHojmA/6XHqvPMLwYSrgUHUKY7hAnta3ryH/VZFhh
-         fdjw==
-X-Gm-Message-State: AAQBX9cHcMNFOTWSmlIjto5Gy4lcrchGx3jCeqVb767YG68Xwo3f6xLl
-        3StJAkjHDzCxp37ncEujUA==
-X-Google-Smtp-Source: AKy350ZGY4Gq8rqUno/qIE5NqYr/8S8BjM2PulPS2I1ezrdDu1OCZ9o51R5T8hMfIboqblERIqzz9Q==
-X-Received: by 2002:a05:6808:1a8a:b0:386:c7b4:461f with SMTP id bm10-20020a0568081a8a00b00386c7b4461fmr1769272oib.59.1680641419214;
-        Tue, 04 Apr 2023 13:50:19 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r204-20020acadad5000000b00383eaf88e75sm5645144oig.39.2023.04.04.13.50.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 13:50:18 -0700 (PDT)
-Received: (nullmailer pid 644432 invoked by uid 1000);
-        Tue, 04 Apr 2023 20:50:17 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: iio: temperature: ltc2983: Make 'adi,custom-thermocouple' signed
-Date:   Tue,  4 Apr 2023 15:50:14 -0500
-Message-Id: <20230404205014.644336-2-robh@kernel.org>
+        with ESMTP id S236381AbjDDU7r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 16:59:47 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E47B44BF;
+        Tue,  4 Apr 2023 13:59:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=lCv1XD+1utX/UgiXxL0j2fq6JESpOlGaFtsH9EqSVZw=; b=jgNolpKvXRypgk90qu6HKHYBgN
+        RZL3+jwdAv+MpPSQZeGkXCde06Z/uCE0IPmFxVvNO6dG6xtO5AkmgAjlqkBh+0jrRFz3ErMTLTSdI
+        6B6wu7qq46sPPzVwhY0+hAaz9ooFe6Z5R9owCqZDtvTVgfOnBGmmgPV/+CGCGGQ5QxkjaSjCslurP
+        5/e6wdSR8cUMSYX0r6N+tTAHH/KVJS+qB9fI06XmTecSOQL5di5I2lfAXs+H3SbLXN4/NlMk4lcG0
+        vCfqjZb6/VTiErYQdLA0T0mt/Da5eOHqds8+JiEesQo9KwlSxorjJFAyG1eECxfTkbY3MZItWfUCF
+        g1L+AbYg==;
+Received: from p200300ccff1e1f001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff1e:1f00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pjnkg-0007tn-9A; Tue, 04 Apr 2023 22:59:38 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pjnkf-00EuLT-2m;
+        Tue, 04 Apr 2023 22:59:37 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tony@atomide.com, afd@ti.com, andreas@kemnade.info,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: [PATCH v4 0/2] dt-bindings: omap: Convert omap.txt to yaml
+Date:   Tue,  4 Apr 2023 22:58:42 +0200
+Message-Id: <20230404205844.3553159-1-andreas@kemnade.info>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230404205014.644336-1-robh@kernel.org>
-References: <20230404205014.644336-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'adi,custom-thermocouple' property is signed based on the example
-and driver, so it's type should be int64-matrix rather than
-uint64-matrix.
+Convert board compatibles to yaml and add the new yaml file to
+MAINTAINERS so that emails are properly distributed
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/iio/temperature/adi,ltc2983.yaml        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in V4:
+ - fix order 
+ - re-add dra7 to .txt to have it sorted out later
 
-diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-index e04f961ab92c..dbb85135fd66 100644
---- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-+++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-@@ -127,7 +127,7 @@ patternProperties:
-         description:
-           Used for digitizing custom thermocouples.
-           See Page 59 of the datasheet.
--        $ref: /schemas/types.yaml#/definitions/uint64-matrix
-+        $ref: /schemas/types.yaml#/definitions/int64-matrix
-         minItems: 3
-         maxItems: 64
-         items:
+Changes in V3:
+ - update MAINTAINERS
+ - remove converted stuff from .txt
+
+Changes in V2:
+- renamed file
+- fixed gta04
+- added Openpandora, Epson Moverio BT-200
+- drop example
+- remove descriptions if just reformatting the name
+
+Andreas Kemnade (1):
+  MAINTAINERS: add board bindings list to OMAP2+ files
+
+Andrew Davis (1):
+  dt-bindings: omap: Convert omap.txt to yaml
+
+ .../devicetree/bindings/arm/omap/omap.txt     | 152 ------------------
+ Documentation/devicetree/bindings/arm/ti.yaml | 147 +++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 148 insertions(+), 152 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/ti.yaml
+
 -- 
 2.39.2
 
