@@ -2,174 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5FD26D5A3B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF3E6D5A4D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:07:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233913AbjDDIDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 04:03:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
+        id S233711AbjDDIHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 04:07:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233857AbjDDIDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:03:14 -0400
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2089.outbound.protection.outlook.com [40.107.241.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E003B185
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:03:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TbnUJTBn+Jb8rIcvsuhs9vl1/MbVxm3oYv0rZqaZwkNpAYCmzwod2odgietbdtW5Z4q96tbMEAmrHH1iGnkZ9Y4oqqmKhgJ8VZtzwWweO2YTI2phzIBw82OClnvLVw2awOvQE4kW4sfNu5XV18H8WHSTO6kDd9rCAa2Szyo0hFK54tGfUzSdSn1JDu6rt0eq1YiyGd/Txs0VjluSjlbX5LiHm5OWAvEKxNR5uJacsUy9zlopOYWz3qqT9Ay7okUeEN2PG8Rp0UAKW0Fpv/FtwMmH4wbyTj1HM1CM41XlajOfwA823tirG9i4khFOS5OVNa0CeyDmBv6xuDY1apaTFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D1JItkrS9l6FbA9WW2YRI/dVqVSuBuUffpJHgHgJDr8=;
- b=Gi2uw/AQkoIN1nFKG5MW9anvZF0E2IYJ8k80SBuWMMcfcDBB+wCvJiZ95CZiDLYuo9EY6S+yqbh38IrBDaEgVi4C4KlTXasXYl9tKb4hPn7U8AdNoTUXf8cSiISH9aExDO2clqkdfV+qK0dSSAuTXbBxP3yAZYAAW3pnOxO/65nbXvoAf9AacIK3kCp7FlUH8VBYH7BYFxHOlQlSpJC15wzBF9/F2/CNxE19NZ0wKc5hX5YtWxvMZvdoi+yJqm7og6N45ufA32YZEvKWVwgCVFXBCsieqCJA19z2GkLeindrsD2FGnIlfM4oYCyvM73RsZr/Fzpdbs3e18mPZcyGUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=chargebyte.com; dmarc=pass action=none
- header.from=chargebyte.com; dkim=pass header.d=chargebyte.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c4c.onmicrosoft.com;
- s=selector2-c4c-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D1JItkrS9l6FbA9WW2YRI/dVqVSuBuUffpJHgHgJDr8=;
- b=IQp1rzWj1H1ouhvy6ov+N7bONAj5wLiwOKTZTRxhkOAbOU5slFSTLWFFrMGsMCXASQOMz5BgZNv9G4jRCsqNWwoRI2RYqpTdVGRsr0gDQ04p7sHyJcAL4k/6TgRixqP15EiH5VOxxdm6DcaW5XM+4w7e3mCi5rI6sHExDaP3Apo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=chargebyte.com;
-Received: from DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:33f::5)
- by AM9PR10MB4039.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1cd::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.28; Tue, 4 Apr
- 2023 08:03:08 +0000
-Received: from DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::bb8d:725e:2ad6:ade7]) by DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::bb8d:725e:2ad6:ade7%9]) with mapi id 15.20.6277.026; Tue, 4 Apr 2023
- 08:03:07 +0000
-From:   Stefan Wahren <stefan.wahren@chargebyte.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-Subject: [PATCH V5 6/6] ARM: imx_v6_v7_defconfig: Enable Tarragon peripheral drivers
-Date:   Tue,  4 Apr 2023 10:02:43 +0200
-Message-Id: <20230404080243.9613-7-stefan.wahren@chargebyte.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230404080243.9613-1-stefan.wahren@chargebyte.com>
-References: <20230404080243.9613-1-stefan.wahren@chargebyte.com>
-Content-Type: text/plain
-X-ClientProxiedBy: FR3P281CA0121.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:94::8) To DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:33f::5)
+        with ESMTP id S233345AbjDDIHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:07:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0711C12C;
+        Tue,  4 Apr 2023 01:07:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 96D1E62FD2;
+        Tue,  4 Apr 2023 08:07:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82385C433D2;
+        Tue,  4 Apr 2023 08:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680595623;
+        bh=5cJzvnfGpQRXqn/hReJhFCeYOI5sN4EzNm/zoSLcsfM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vfw3dBNThRpSX1C+0bO/mc0Lqr5F4rrunUyEsnD5OCiwkoO9mrU9oNSpAMPLHpSsh
+         3EHNEwiF7bwBqOo0w+Eb/5hDHExXRZQBEKx0EHR8WZ/MIlyKOszXxY7ULvGHOfgCp9
+         LGXu+p5laKZ8xcbScaID9040v7o430llp1epdLC3trb9Elq93XY2UgwXeFMwBIL/7N
+         5sL3r5cPKzRN3gFq3xHuUa/5+RXyxE8gUwePOosWqIhQ/Miy8gl9NVorU4ZQNznl/+
+         WqxtD0VL/iv7e25zy9blIwTdiYgArZ/IVseNMqtO12MYZcg17p8UtXIXV3AtQm0ps6
+         MpPaOKO7f/HAA==
+Date:   Tue, 4 Apr 2023 10:06:59 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Paolo Abeni <pabeni@redhat.com>
+Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        lorenzo.bianconi@redhat.com, daniel@makrotopia.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 02/10] net: ethernet: mtk_wed: move cpuboot
+ in a dedicated dts node
+Message-ID: <ZCvao0Me+W56aZpw@lore-desk>
+References: <cover.1680268101.git.lorenzo@kernel.org>
+ <56ed497762b1c031c553210a0e5c7717c6069642.1680268101.git.lorenzo@kernel.org>
+ <10e9e8dd6eadf68eca55c5742adf18dad23661dc.camel@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR10MB5211:EE_|AM9PR10MB4039:EE_
-X-MS-Office365-Filtering-Correlation-Id: 971d8c14-4695-4318-3b24-08db34e30624
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lQLGENSO+0bFVyrC+MmqnQTLLbUVXNEkpIeFrFUgh5zXaZcpnAqHnEsSNA7pD66/djeYcCt80PedySW6di+Y6LK9nTsADr9HNH2gKZTwnadr/vXaaP8natTuS14I0BcRM3tsDz9RVKeyPCX88VcUvVKzFGoc1FRnplXPQ+ILKM313KzNXLID4hv4nhp0DIjRRzEJedS7COsIE2uBoDP7pEHXqFViczKeRMU93m7X5bfExKvUgZ9UpRTpo3UgNzX1HJZfdlB7jyHIUWDGkZaS6fOSp9gAf4MFpkpjm+xaZB/dDbHY7nX5woLhkx+uK9TuvUnIRJF7bnnizsHfuLrA18NS+eKQRe9uNr9u2eAfr6RzlnX/mg8GN4LycClx75BrnbcaPYC+hWwe06RtAb6xgl7Syr4fx5//2D18NRgEf04xvGNaksGZ56IQPwGEEMHS5ajtU89p0aX/lf2UrmmADaxy4HRw5Gp3t68XKimrTDVe7WiWFStfeTYtyMbDIy2p7jIV+XpARhmucbzNLGGpWsI73nLwuxBrBw8YPkLGOZVPk5fojWvXf3twqaJQKUWZ/dRolySlTuQOrzZRLMMA0JNLHly+SCrYGWvY+nwvrILGGZPalHikcQym0Poq1pLf
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(39850400004)(346002)(376002)(136003)(451199021)(110136005)(66476007)(66556008)(66946007)(4326008)(86362001)(41300700001)(6666004)(316002)(6486002)(478600001)(52116002)(7416002)(8936002)(8676002)(38350700002)(38100700002)(5660300002)(44832011)(2906002)(107886003)(2616005)(1076003)(186003)(6512007)(36756003)(26005)(6506007)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PJyum59RPyfyJvOYcQ8fWksdqe+jvOS+WZb4X8lnNJB/4+2nUC+dUoLWQNPP?=
- =?us-ascii?Q?anZurFEwdHcAo2TQYpXL1d+6GtFNsDwA4FjZB+h8ZkWzvzYqyBF5J9Jro/zl?=
- =?us-ascii?Q?kBKBAYHp9UggtdGXYRMttuhKYGFVZMyorEzHpBPbOUutRHFPR5625/uLHDqn?=
- =?us-ascii?Q?6XOK8QsCbz3ZDj7CmlUk/wNcObkTfPDUZZ2MZvVksL6TaXiHjBhyRHu3pqme?=
- =?us-ascii?Q?CIb7i4kasqs5GVtEahTZIBAsqsV/GI2T1x8Y7vH58PjYq4rBPmgEcfJbx7OD?=
- =?us-ascii?Q?Kt6UHDOIGzthCKyDIvkI67yXcNT/ZdIoY8ISiQl++qZUINwcC6kAXqGEGjUG?=
- =?us-ascii?Q?aTAcISmm9T6VneCf4NZJbL74eEmhQEFqZ30IiHq4YYe9ldPtaR7VHpAldhPq?=
- =?us-ascii?Q?RvgMpVpoXXoJMJTQ/eGAqq+UNJryhVzFpo4ZTN1tMTEszPOf1tDLoW0fAoH/?=
- =?us-ascii?Q?OvNzF3Wq2+V6p16cuNYJv8Jmvf3HorveFm5X4ugBruJyDyiOoQA+JsChqw/q?=
- =?us-ascii?Q?bHBw6e1buhXGOkXrdEoQkzKb1ZaWaP+ZUSl7GFXkX81tDITqB9TQezCZzLEY?=
- =?us-ascii?Q?AAxrlESS4D/3G1hFmLUs4F2kPtMeySfgkSw1x8lDhUNHlhmdvhP+gexSVkTa?=
- =?us-ascii?Q?jlz8JTZvojc1/kMN4FJuGSezM/+4+CcKM3MFQUD8tXRiZ1Lyfue49ZMxPQJH?=
- =?us-ascii?Q?OPYbqp1SNUigC1pOeDNLDNDANQAJh7KgbereNwzyQDL/C5MGZVQ/LVsw9qXT?=
- =?us-ascii?Q?TDTQTz+eWA+KAzoxLyLDVKccbUVy653HFj6qWSfKF4euTUoFCGgEXpxKyI4+?=
- =?us-ascii?Q?8uyB7w8qcHFAL10x5eiTKi84FgB6h5ljEhcZV839ecB08a+RgNZdiD/mLcI0?=
- =?us-ascii?Q?ozZHWwS1d7Ob1LmW9V6av89kprXqZMf1BVF2D0fih55SZkdBX074lD4yX7NM?=
- =?us-ascii?Q?/KV6ugF1TRBkl8ai9A/4OUj/+h5RHAS88rbU66B9aAWHpKYaMRkiwe6CkR+h?=
- =?us-ascii?Q?5dETV7VhCnEgmldQ1KdVj33KupL2NhNBA7VUdb4yK58p2610PhcUm2B3aPsR?=
- =?us-ascii?Q?zBcSnPDqLOIHy7F1HQVSkX91A+4MzTPdfJSrif1FczZq/Ll6Xyr22QtycBYr?=
- =?us-ascii?Q?GmeQDTZutJV7m1CAK48/+0EmiQkW7z7Q2rrO3d11iz0SXGAbwL6Zfp+Xp9Ar?=
- =?us-ascii?Q?kmn4Lj5UACdy48KXX1JHyu7+aGoRGXSHzGBKR/LN3yKMrALJfuUxGJ5UVLPL?=
- =?us-ascii?Q?l1klAVa3U3W7Gl+OCfg1AHJSA7ylmOOuwa3wrBx27bUfJFhYK3Lndn78O8Mi?=
- =?us-ascii?Q?wdqqLqNSsPnQx6IDLZHuFcDgZXJEdueI78e9R3PfSnneOnJkthiD+3bnwQcW?=
- =?us-ascii?Q?HF38mqd0r9KniVpZIgir42CAob7BUBbnZhWBamGt/TTPu3XW2+kyzKOg+5Pm?=
- =?us-ascii?Q?YXIMZvz7hXwbRgrOXVdaMYFpVDUVqSnE9GBvKV3P5ayI7g+J4uRty588MRhB?=
- =?us-ascii?Q?XtVd8CB7qXdtwr5kZko5t/HHkLEaVV1MYLlPOGSbG+hAJVQowWymeDjdzg1N?=
- =?us-ascii?Q?NIuIA+ihx/Hjgu1d7yj4lG7s4+xK1dDZNrYR5lVQb5gQVfusbWl/oDkF2Gkr?=
- =?us-ascii?Q?Jw=3D=3D?=
-X-OriginatorOrg: chargebyte.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 971d8c14-4695-4318-3b24-08db34e30624
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2023 08:03:06.9649
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30547194-0d55-4a2f-900d-687893d3bdc0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Bm/7a+IzmKLSeg/ba5/ljLXB0Y13QQ7OuNHJOl6RxrtzqoKxchrHne28n3JWZa9FGAv90SO0EjHFcsFrBYVQtXA+Btoqse458NIIP9XzsOI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4039
-X-Spam-Status: No, score=1.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="DjxG6hRSl/7US9il"
+Content-Disposition: inline
+In-Reply-To: <10e9e8dd6eadf68eca55c5742adf18dad23661dc.camel@redhat.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to enable some drivers in order to use the following peripherals
-of Tarragon:
-  * QCA7000/7005 Powerline chip
-  * One-Wire Master DS2484 with external thermal sensors
-  * external 4 pin PWM fan
-  * ST IIS328DQ I2C accelerometer
 
-Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
----
- arch/arm/configs/imx_v6_v7_defconfig | 6 ++++++
- 1 file changed, 6 insertions(+)
+--DjxG6hRSl/7US9il
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-index 9475839e7fe1..2e2af31eeb4c 100644
---- a/arch/arm/configs/imx_v6_v7_defconfig
-+++ b/arch/arm/configs/imx_v6_v7_defconfig
-@@ -128,6 +128,7 @@ CONFIG_CS89x0_PLATFORM=y
- # CONFIG_NET_VENDOR_MICREL is not set
- # CONFIG_NET_VENDOR_MICROCHIP is not set
- # CONFIG_NET_VENDOR_NATSEMI is not set
-+CONFIG_QCA7000_SPI=m
- # CONFIG_NET_VENDOR_SEEQ is not set
- CONFIG_SMC91X=y
- CONFIG_SMC911X=y
-@@ -216,6 +217,9 @@ CONFIG_GPIO_PCF857X=y
- CONFIG_GPIO_BD71815=y
- CONFIG_GPIO_STMPE=y
- CONFIG_GPIO_74X164=y
-+CONFIG_W1=m
-+CONFIG_W1_MASTER_DS2482=m
-+CONFIG_W1_SLAVE_THERM=m
- CONFIG_POWER_RESET=y
- CONFIG_POWER_RESET_SYSCON=y
- CONFIG_POWER_RESET_SYSCON_POWEROFF=y
-@@ -224,6 +228,7 @@ CONFIG_RN5T618_POWER=m
- CONFIG_SENSORS_MC13783_ADC=y
- CONFIG_SENSORS_GPIO_FAN=y
- CONFIG_SENSORS_IIO_HWMON=y
-+CONFIG_SENSORS_PWM_FAN=y
- CONFIG_SENSORS_SY7636A=y
- CONFIG_THERMAL_STATISTICS=y
- CONFIG_THERMAL_WRITABLE_TRIPS=y
-@@ -409,6 +414,7 @@ CONFIG_CLK_IMX8MQ=y
- CONFIG_SOC_IMX8M=y
- CONFIG_EXTCON_USB_GPIO=y
- CONFIG_IIO=y
-+CONFIG_IIO_ST_ACCEL_3AXIS=m
- CONFIG_MMA8452=y
- CONFIG_IMX7D_ADC=y
- CONFIG_RN5T618_ADC=y
--- 
-2.17.1
+> On Fri, 2023-03-31 at 15:12 +0200, Lorenzo Bianconi wrote:
+> > Since the cpuboot memory region is not part of the RAM MT7986 SoC,
+> > move cpuboot in a deidicated syscon node.
+> > Keep backward-compatibility with older dts version where cpuboot was
+> > defined as reserved-memory child node.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/net/ethernet/mediatek/mtk_wed_mcu.c | 34 +++++++++++++++++----
+> >  drivers/net/ethernet/mediatek/mtk_wed_wo.h  |  3 +-
+> >  2 files changed, 30 insertions(+), 7 deletions(-)
+> >=20
+> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_mcu.c b/drivers/net/=
+ethernet/mediatek/mtk_wed_mcu.c
+> > index 6624f6d6abdd..797c3b412ab6 100644
+> > --- a/drivers/net/ethernet/mediatek/mtk_wed_mcu.c
+> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_mcu.c
+> > @@ -18,12 +18,23 @@
+> > =20
+> >  static u32 wo_r32(struct mtk_wed_wo *wo, u32 reg)
+> >  {
+> > -	return readl(wo->boot.addr + reg);
+> > +	u32 val;
+> > +
+> > +	if (!wo->boot_regmap)
+> > +		return readl(wo->boot.addr + reg);
+> > +
+> > +	if (regmap_read(wo->boot_regmap, reg, &val))
+> > +		val =3D ~0;
+> > +
+> > +	return val;
+> >  }
+> > =20
+> >  static void wo_w32(struct mtk_wed_wo *wo, u32 reg, u32 val)
+> >  {
+> > -	writel(val, wo->boot.addr + reg);
+> > +	if (wo->boot_regmap)
+> > +		regmap_write(wo->boot_regmap, reg, val);
+> > +	else
+> > +		writel(val, wo->boot.addr + reg);
+>=20
+> Very minor nit: it would be more consistent with the read function
+> above if you invert the 2 branches, e.g.:
+>=20
+> 	if (!wo->boot_regmap)
+> 		writel(val, wo->boot.addr + reg);
+> 	else
+> 		regmap_write(wo->boot_regmap, reg, val);
+>=20
+> No need to repost just for the above, just take into consideration if a
+> new version will be needed for other reasons (DT)
 
+ack, will do.
+
+Regards,
+Lorenzo
+
+>=20
+> Cheers,
+>=20
+> Paolo
+>=20
+
+--DjxG6hRSl/7US9il
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZCvaowAKCRA6cBh0uS2t
+rFWSAQCPmw8AG9PY1HwuQ+8YoFiZD7xMPuUISCtYUQDj+b2+EQD/UrRkEAwPhQ9A
+3kwDl6KiG7HSunw03//xLB4ao5uZgQ0=
+=e1qy
+-----END PGP SIGNATURE-----
+
+--DjxG6hRSl/7US9il--
