@@ -2,173 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66CA76D6AF8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 19:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD4E96D6B09
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 20:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234726AbjDDRzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 13:55:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42694 "EHLO
+        id S232948AbjDDSBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 14:01:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235292AbjDDRza (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 13:55:30 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9598A2705
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 10:55:28 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id g19so30272345lfr.9
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 10:55:28 -0700 (PDT)
+        with ESMTP id S232696AbjDDSBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 14:01:05 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE71125
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 11:01:03 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id m16so19402020ybk.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 11:01:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680630927;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ieDfTkWwJhNOesMJOHIhbCjLXQeB+KmYJozBwz8fCoY=;
-        b=SOc3VCi+hCBhuKwZ7HURzl5GkJfwDU/4dm2EIOUg7TrdNhB1vmg4hlhSjsLsHLxQLh
-         glgkRSYW9qcpEJZ4hdaGHXJtnh5FEXq5xsxyKcVAnA+sjij8qsFYKkUrK3c+gDY8qLVU
-         PsPkLb2o6HCKdIxpgq0fDqIdx3vU/c8MWM71fsMs3FU4P3AUppR3RPLUfmdjhmEYXLEr
-         3ASnvsswPgtKAfBDECSmQ1FLz9Tnz4vx11kKXZzUnOBlPw6/gpGDjpE+u6LHqjClhHsg
-         4vJlmRh7TvrWDRvI4IocU4aqVxZGNcyYJKe7MD94fNgJXSIPKOFcQmdmG6lIMPQ1JS5L
-         vyug==
+        d=amarulasolutions.com; s=google; t=1680631263;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vVGjnQzjacxJYEz87CLNCMx+IAs8NBMqV1ppnHwQkAw=;
+        b=XXNM5G/e4+7WGEJMh/0CUXkvl4f4Fmm6ueNyhHj+vvgL8NbCtyA5mCU59kXHBO7mFM
+         ecXc6lnvlZ8x45R1E8NxIquiDE7oEVWgHmWg78aEWFSw9/nlFBf5EWtLlvQuunmnpo+K
+         mOiR7Cz+vQ3Zb1ILAfElpP0siKSu0cSui5JlU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680630927;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ieDfTkWwJhNOesMJOHIhbCjLXQeB+KmYJozBwz8fCoY=;
-        b=pTiM5mgIeExVpfLqEwMxvKmXFQX+yCUrqvna9IFmRLAbocZcCpReOx4AFeN/ug0U2c
-         5iHA/zJTfYOWs9sAIrkURwemejaRcZqr4vgn1PrYkmLqIfcIWA4my7/nM5KDvFRUZP0m
-         QXgfGHVkGYxrG3v6pV5mO1FG6i7i5yqSuIfJHDCobkZtXXfWsWGjXM0SGF3eze/C7AUa
-         gu7NqQBZ+OpynJn79D9AXUBJcVVuiCkeuJsH5Tfl0+XMi4O5BnhyCwO6jj+PTzRkJILQ
-         pCboEBepDMzXSRq3XCirnkwbgp//ECveXFVaz2ZR1xa80Kktmt4HiJ2GGsO94HlNwV2W
-         d7+A==
-X-Gm-Message-State: AAQBX9eoY+enZ6pDMHc0Nv/KR9xQK8IC7G1BeiKF6OQhm3uVcKF7UVVr
-        2a8pMzZFQ+0SxhyXqjoAnZ+uIg==
-X-Google-Smtp-Source: AKy350Z/JoaJOYcGFFhW3xEjCFol9E7hWV3LDlszJKbshcD10pFgJbhRK9f6OjEsUaYBczB1wqDb9A==
-X-Received: by 2002:ac2:5ec6:0:b0:4e1:5d87:330c with SMTP id d6-20020ac25ec6000000b004e15d87330cmr865154lfq.50.1680630926821;
-        Tue, 04 Apr 2023 10:55:26 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id x4-20020ac259c4000000b0048b365176d9sm2430576lfn.286.2023.04.04.10.55.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 10:55:26 -0700 (PDT)
-Message-ID: <305fcdae-84f5-7edb-26e4-588162fed018@linaro.org>
-Date:   Tue, 4 Apr 2023 19:55:24 +0200
+        d=1e100.net; s=20210112; t=1680631263;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vVGjnQzjacxJYEz87CLNCMx+IAs8NBMqV1ppnHwQkAw=;
+        b=vXW17ve8R5kHDsn4ujB5FcLLBmOm9ry67JejMntDyzLaDrGZYMrvGou0T503NNOhxL
+         rRXs+S3sCYyXn7E8pPkysccz0vluoWih8zfjLx/kxT6xwlM3QrPvpBYcC1/SdFCvq7bU
+         J9w51lgCokA6Xbu4Dq+AA3DqZ8nL5j2GJAe1AYhulp2bs/f2GT2dVYIYBT0Q0r/Kemj/
+         ObA+YLxKUS3uoINobY2V4UVh0wU2TxjprgXawcB2b3Me/bS2GfeCX2cK4jTs5l7hivwe
+         8VYWbID4t0tb+w4FkT7H0UQgPg1Fh61EDBBH8FDmSrR+8ngPMFAXeLaS+Xb31nuyynDQ
+         IUBA==
+X-Gm-Message-State: AAQBX9fSuhBhSngK0IbbZ2vlKp8URlPmYxBqVzZwenMA/bOYY9EWcSwk
+        C1AD3EwWFfDGMNN78e7RK4d2vN6LwKZZnEAVKCCiYA==
+X-Google-Smtp-Source: AKy350bQTCB60Rqax5fRgoQLjYERVAEuYc37U6g7A5Bs98TMEm8n6mfyD+v6TiOUuLdhmb53xMGpdkYI60/jeAAbab4=
+X-Received: by 2002:a25:cb83:0:b0:b6a:5594:5936 with SMTP id
+ b125-20020a25cb83000000b00b6a55945936mr2365120ybg.5.1680631262560; Tue, 04
+ Apr 2023 11:01:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: add Soundwire controllers
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
+ <CAPY8ntCJP53uiGNQHUZqma08Vsxfwm7KvAkgMzK=hn4AxJLS3A@mail.gmail.com>
+ <20230329164638.v43la4l7rxut6hk6@penduick> <CAMty3ZCsn6OR1-TvqFXP48iamG-k5sPU1_CH2fNLBQP3Ofb0QA@mail.gmail.com>
+ <CAPY8ntCpmKPzPVjRWS7Pf1Fat9V_JqGD4BaMo8P8_o+74DeDiQ@mail.gmail.com>
+In-Reply-To: <CAPY8ntCpmKPzPVjRWS7Pf1Fat9V_JqGD4BaMo8P8_o+74DeDiQ@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 4 Apr 2023 23:30:50 +0530
+Message-ID: <CAMty3ZCdqwbx0_N7rseZuGOKUz-KgUOwmOpNobKK5jr4q7WK8A@mail.gmail.com>
+Subject: Re: [PATCH v7 10/12] drm/bridge: Implement enable_next_first to alter
+ bridge init order
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230404073915.61779-1-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230404073915.61779-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marek Vasut <marex@denx.de>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dave,
 
+On Thu, Mar 30, 2023 at 3:31=E2=80=AFPM Dave Stevenson
+<dave.stevenson@raspberrypi.com> wrote:
+>
+> Hi Jagan
+>
+> On Thu, 30 Mar 2023 at 07:56, Jagan Teki <jagan@amarulasolutions.com> wro=
+te:
+> >
+> > On Wed, Mar 29, 2023 at 10:16=E2=80=AFPM Maxime Ripard <maxime@cerno.te=
+ch> wrote:
+> > >
+> > > On Wed, Mar 29, 2023 at 05:28:28PM +0100, Dave Stevenson wrote:
+> > > > On Wed, 29 Mar 2023 at 14:19, Jagan Teki <jagan@amarulasolutions.co=
+m> wrote:
+> > > > >
+> > > > > DSI sink devices typically send the MIPI-DCS commands to the DSI =
+host
+> > > > > via general MIPI_DSI_DCS read and write API.
+> > > > >
+> > > > > The classical DSI sequence mentioned that the DSI host receives M=
+IPI-DCS
+> > > > > commands from the DSI sink first in order to switch HS mode prope=
+rly.
+> > > > > Once the DSI host switches to HS mode any MIPI-DCS commands from =
+the
+> > > > > DSI sink are unfunctional.
+> > > >
+> > > > That statement contradicts the spec.
+> > > > The DSI spec section 8.11.1 Transmission Packet Sequences says that
+> > > > during any BLLP (Blanking or Low Power) period the host can do any =
+of:
+> > > > - remain in LP-11
+> > > > - transmit one or more non-video packets from host to peripheral in=
+ escape mode
+> > > > - transmit one or more non-video packets from host to peripheral in
+> > > > using HS mode
+> > > > - receive one or more packets from peripheral to host using escape =
+mode
+> > > > - transmit data on a different virtual channel.
+> > > >
+> > > > Indeed if the sink doesn't set MIPI_DSI_MODE_LPM /
+> > > > MIPI_DSI_MSG_USE_LPM, then the expectation is that any data transfe=
+r
+> > > > will be in HS mode.
+> > > >
+> > > > That makes me confused as to the need for this patch.
+> > >
+> > > Yeah, and it looks like that would break the expectation that, in
+> > > enable, a bridge can expect its controller to be in HS mode.
+> > >
+> > > I think that was Jagan is trying to do is to work around an issue wit=
+h
+> > > the Allwinner DSI driver:
+> > > https://elixir.bootlin.com/linux/v6.3-rc4/source/drivers/gpu/drm/sun4=
+i/sun6i_mipi_dsi.c#L775
+> >
+> > Correct and I can see it seems to be a classic DSI sequence observed
+> > in dw-mipi-dsi as well - based on Neil's comments.
+> > https://lore.kernel.org/all/9aa3d19d-4378-aaf3-6857-c40be5d252c7@baylib=
+re.com/
+>
+> Neil's comments are from 2021, and his response would appear to be
+> with regard the PHY power up sequence issues that
+> pre_enable_prev_first should solve. The DSI host pre_enable can now be
+> called before the sink's pre_enable, therefore allowing the PHY to be
+> configured in pre_enable. Hacking the PHY init into mode_set is
+> therefore not required.
+>
+> I don't see any restriction in dw-mipi-dsi over when transfer can be
+> called (as long as it is between pre_enable and post_disable), and it
+> supports MIPI_DSI_MSG_USE_LPM for requesting the command be sent in
+> either LP or HS mode.
+>
+> > In fact, I did follow and initialize the command-mode mode_set which
+> > set low-speed DCS and switch back to video-mode @enable and switch to
+> > HS but could see the same issue as the host cannot accept DCS as
+> > before (I might implement improper sequence, but not sure due to lack
+> > of documentation). But this sequence has issues with calling
+> > post_disable twice even on dw-mipi-dsi.
+>
+> Calling up/down the bridge chain from within other bridge elements is
+> going to have issues and shouldn't be necessary.
+>
+> The comment in dw-mipi-dsi post_disable[1]
+> * TODO Only way found to call panel-bridge post_disable &
+> * panel unprepare before the dsi "final" disable...
+> * This needs to be fixed in the drm_bridge framework and the API
+> * needs to be updated to manage our own call chains...
+>
+> It has now been fixed up with pre_enable_prev_first.
 
-On 4.04.2023 09:39, Krzysztof Kozlowski wrote:
-> Add nodes for LPASS Soundwire v2.0.0 controllers.  Use labels with
-> indices matching downstream DTS, to make any comparisons easier.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Correct IO range length.
-> 
-> The bindings and driver are here:
-> https://lore.kernel.org/linux-arm-msm/20230403132503.62090-1-krzysztof.kozlowski@linaro.org/T/#t
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 109 +++++++++++++++++++++++++++
->  1 file changed, 109 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index dc6150e97d46..14e4de7a1a0e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -2004,6 +2004,33 @@ lpass_wsa2macro: codec@6aa0000 {
->  			#sound-dai-cells = <1>;
->  		};
->  
-> +		/* WSA2 */
-> +		swr3: soundwire-controller@6ab0000 {
-> +			compatible = "qcom,soundwire-v2.0.0";
-> +			reg = <0 0x06ab0000 0 0x10000>;
-> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&lpass_wsa2macro>;
-> +			clock-names = "iface";
-> +
-Any reason this and swr0 have comments instead of labels?
+This seems not fixed in dw-mipi-dsi and it often still requires the
+forth and back switch of HS mode even if pre_enable_prev_first.
 
-> +			qcom,din-ports = <4>;
-> +			qcom,dout-ports = <9>;
-> +
-> +			qcom,ports-sinterval =		<0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x18f 0xff 0xff 0x0f 0x0f 0xff 0x31f>;
-> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x03 0x05 0x02 0x04 0x15 0x00 0xff 0xff 0x06 0x0d 0xff 0x00>;
-> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x07 0x1f 0xff 0x07 0x1f 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
-> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
-> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x18>;
-> +			qcom,ports-block-pack-mode =	/bits/ 8 <0x00 0x01 0x01 0x00 0x01 0x01 0x00 0x00 0x00 0x01 0x01 0x00 0x00>;
-> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-lane-control =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +			#sound-dai-cells = <1>;
-> +			status = "disabled";
-> +		};
-[...]
-
-
-> +		swr2: soundwire-controller@6d30000 {
-> +			compatible = "qcom,soundwire-v2.0.0";
-> +			reg = <0 0x06d30000 0 0x10000>;
-> +			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
-There's no different interrupt-parent, so -extended seems excessive.
-Unless that was maybe supposed to use some PDC-mapped irq?
-
-Konrad
-> +			interrupt-names = "core", "wakeup";
-> +
-> +			clocks = <&lpass_vamacro>;
-> +			clock-names = "iface";
-> +			label = "TX";
-> +
-> +			qcom,din-ports = <4>;
-> +			qcom,dout-ports = <0>;
-> +			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
-> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x01 0x01>;
-> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00>;
-> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff>;
-> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff>;
-> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff>;
-> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff 0xff>;
-> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
-> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x02 0x00 0x00>;
-> +
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +			#sound-dai-cells = <1>;
-> +			status = "disabled";
-> +		};
-> +
->  		lpass_vamacro: codec@6d44000 {
->  			compatible = "qcom,sm8550-lpass-va-macro";
->  			reg = <0 0x06d44000 0 0x1000>;
+Thanks,
+Jagan.
