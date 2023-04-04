@@ -2,131 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41DE16D5F56
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD6C6D5F51
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:43:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234867AbjDDLnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:43:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47422 "EHLO
+        id S229551AbjDDLnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234606AbjDDLn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:43:26 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300F1D8
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 04:42:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1680608560;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=g43LgwR7XrUP0mLCRkPUDCErg1tewsdsK7C1g51lbMU=;
-        b=VugpXvSz97BafVwLwbKV+1yZXHlSFEs5/5AIKDQVcwopEPszy+AQiI3DA+K0XLy9C9Z1m7
-        qajjaNhv+bNUrsGHSsbhKNr7OTE3ijculYWY95hmuh3w30NFq20voQoc+cwaNhfpEkJE7F
-        FIn7zdze6i7Ollewgj6QhW5ZAKHsyrw=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-98-3v1E0u_-MfCsOMzHPUHj4A-1; Tue, 04 Apr 2023 07:42:39 -0400
-X-MC-Unique: 3v1E0u_-MfCsOMzHPUHj4A-1
-Received: by mail-wr1-f69.google.com with SMTP id k16-20020adfd230000000b002cfe7555486so3656827wrh.13
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 04:42:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680608558;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g43LgwR7XrUP0mLCRkPUDCErg1tewsdsK7C1g51lbMU=;
-        b=mlkMzbuTF96JqqJ2DtnThZGzMnI8MBEbzXxMi1ibq+FrL5aQcdELg8RzBMJOV/TVg5
-         QJMR02rh1SfKmoS3m/7vcjImYnCHJaFGL5ExkBr709eN4nhEbzG4Vu9YJW7SQ7WKQRQN
-         oftYuqTZG+jwbyMgsTPUCTnqQ4BuFEmit/4Y6xTGp83uzA+ZxFv/pmng5uWAZVRdT6Fl
-         Q98/3Z6VBOiQ0/F6j9BEi9P0oKhNjLOUZSGETRS3G0Oyy+q4acR5SAGt3XwGk+p8D3L8
-         HnQMbhG4E7i3n23oQWYe2NFSbAMdvc9xVr15Mx1nukhpPpuZ7xPphYNRejZ3GjOnAM2T
-         1AFQ==
-X-Gm-Message-State: AAQBX9dA2LE/5aeheZmVMt+sx/tbvfdX7naAa5F0IDboCf/HImDhl4a3
-        L6rY0c02NudHfUUH1VTiBvFrjXYXB8+mOuqaSOOtqvVcpHCIJfLrD2n5N5XZRsppbaqmSVGwYXK
-        BRZcYB0MZ+44SHrwHXTU7SA==
-X-Received: by 2002:adf:eace:0:b0:2ce:a098:c6b8 with SMTP id o14-20020adfeace000000b002cea098c6b8mr1553458wrn.55.1680608558085;
-        Tue, 04 Apr 2023 04:42:38 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YFNy2ACkTPYDUy7IvZluDlWudCyXewZR1HLl8dA6ab7O3s3motR/Cir3GQt7z1geCNLF6cnQ==
-X-Received: by 2002:adf:eace:0:b0:2ce:a098:c6b8 with SMTP id o14-20020adfeace000000b002cea098c6b8mr1553441wrn.55.1680608557825;
-        Tue, 04 Apr 2023 04:42:37 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05600c4fc900b003ef6bc71cccsm22744629wmq.27.2023.04.04.04.42.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 04:42:37 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     Martijn Braam <martijn@brixit.nl>,
-        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
- Pinephone Pro to 1.5 MB
-In-Reply-To: <52d83a29-0f16-cd4c-9810-7c6bd497fe85@brixit.nl>
-References: <20230403175937.2842085-1-javierm@redhat.com>
- <3738011.44csPzL39Z@diego>
- <52d83a29-0f16-cd4c-9810-7c6bd497fe85@brixit.nl>
-Date:   Tue, 04 Apr 2023 13:42:36 +0200
-Message-ID: <87ttxvdgb7.fsf@minerva.mail-host-address-is-not-set>
+        with ESMTP id S234430AbjDDLnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:43:13 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5270A199E;
+        Tue,  4 Apr 2023 04:43:11 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F0AD17F8;
+        Tue,  4 Apr 2023 13:43:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1680608589;
+        bh=BU08CCqdOeu/LcxZYn91p63mOw0uMiEjv7Vyull9bio=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JNUDGUqCcv8f8HzS+lS/1m2zv6gYP0td+9UvvUVNxX/SDC77d6YSxdOWqqXzm5ic0
+         mx+p5z3OCbWOF7u64uukvn9kGi1YHb7j+0TD1VPdhcAsxEKcvw9VGHIczHh6GHSv6A
+         YW+SsEC27lT3WHXKN1Brsjx+NkT2BnhFR5unsrhk=
+Message-ID: <781c9273-24c5-8b0d-b810-a5eb9b98679e@ideasonboard.com>
+Date:   Tue, 4 Apr 2023 14:43:05 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v7 10/13] media: ti: Add CSI2RX support for J721E
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        mripard@kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sakari.ailus@linux.intel.com,
+        linux-kernel@vger.kernel.org, bparrot@ti.com,
+        niklas.soderlund+renesas@ragnatech.se, j-luthra@ti.com,
+        devarsht@ti.com, praneeth@ti.com, u-kumar1@ti.com, vigneshr@ti.com,
+        nm@ti.com, martyn.welch@collabora.com
+References: <20230314115516.667-1-vaishnav.a@ti.com>
+ <20230314115516.667-11-vaishnav.a@ti.com>
+ <20230324181425.GM18895@pendragon.ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230324181425.GM18895@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Martijn Braam <martijn@brixit.nl> writes:
+On 24/03/2023 20:14, Laurent Pinchart wrote:
 
-> On 4/4/23 09:51, Heiko St=C3=BCbner wrote:
->> Hi,
->>
->> Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
->>> This baud rate is set for the device by mainline u-boot and is also what
->>> is set in the Pinebook Pro Device Tree, which is a device similar to the
->>> PinePhone Pro but with a different form factor.
->>>
->>> Otherwise, the baud rate of the firmware and Linux don't match by defau=
-lt
->>> and a 'console=3DttyS2,1500000n8' kernel command line parameter is requ=
-ired
->>> to have proper output for both.
->> The interesting question is always if this will break someone else's set=
-up.
->> I've never really understood the strange setting of 1.5MBps, but on the
->> other hand it _is_ a reality on most boards.
->
-> It breaks my device test setup at least. The extra speed isn't worth the=
-=20
-> hassle
+>> +static int ti_csi2rx_link_validate_get_fmt(struct media_pad *pad,
+>> +					   struct v4l2_subdev_format *fmt)
+>> +{
+>> +	if (is_media_entity_v4l2_subdev(pad->entity)) {
+>> +		struct v4l2_subdev *sd =
+>> +			media_entity_to_v4l2_subdev(pad->entity);
+>> +
+>> +		fmt->which = V4L2_SUBDEV_FORMAT_ACTIVE;
+>> +		fmt->pad = pad->index;
+>> +		return v4l2_subdev_call(sd, pad, get_fmt, NULL, fmt);
+> 
+> This will crash with any source that uses the subdev active state. You
+> can't pass NULL for the state here.
+> 
+> How about exporting v4l2_subdev_link_validate_get_format() instead, to
+> replace this function ?
 
-More than the extra speed is to have consistency accross all the rockchip
-devices in upstream and also sync with mainline u-boot.
+I don't think that's a good idea, or needed. 
+v4l2_subdev_link_validate_get_format() is an internal helper. Exporting 
+it would potentially make maintenance more difficult in the future.
 
-> of having a few devices at weird baudrates and the bootloader already
-> starts outputting debug logs at 115200 baud.
->
+Here, you know the source is the cdns csi2rx. It's always a subdev, so 
+is_media_entity_v4l2_subdev() is not needed (I'm not sure why it's used 
+in v4l2_subdev_link_validate_get_format either...).
 
-And mine starts outputting at 1.5MBps :) I guess that there isn't a one
-size fits all, so the question is whether the bikeshed color is what was
-painted in all other rockchip boards or the one that Tow-Boot has chosen.
+You can use v4l2_subdev_call_state_active() to call the get_fmt here.
 
---=20
-Best regards,
+Also, the fmt doesn't seem to be initialized to zero, so it'll contain 
+garbage in, e.g. the stream field.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Moving to another topic, cdns-csi2rx driver is already (before this 
+series) in upstream, but afaics j7 is the only user for it. In other 
+words, it's not in use before this series.
+
+I think it would make sense to convert cdns-csi2rx to use subdev state 
+first, before adding the j7 csi2rx. That shouldn't be much work, and 
+will clean up the driver nicely. With that you could also simplify the 
+ti_csi2rx_link_validate by just locking the cdns csi2rx state, and using 
+it directly, without using get_fmt and getting the copy of the format. 
+It would also help later when adding streams support.
+
+Personally I'd go straight to streams support, as adding it afterwards 
+might have some pain points (based on my CAL experience...). At least 
+WIP streams patches on top would be a very good thing to have, as they 
+will highlight if there are any major changes needed.
+
+  Tomi
 
