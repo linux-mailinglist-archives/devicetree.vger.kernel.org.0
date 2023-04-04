@@ -2,168 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDB06D5EE5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4AD46D5EF2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:28:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234774AbjDDLYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:24:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
+        id S234212AbjDDL2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234378AbjDDLYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:24:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D0831FD3;
-        Tue,  4 Apr 2023 04:24:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 195F963249;
-        Tue,  4 Apr 2023 11:24:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C04EC433D2;
-        Tue,  4 Apr 2023 11:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680607489;
-        bh=45L8OTcH+B0HWF79y0YD7k2NGle3X+Mu1k7dADgiuIg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e2sUn9AHkU/mGqOiQjFSjOTOeeqi+/qO/SD7OuXyJwZ/4+BxHqlo3FP1BMfyuNmLW
-         iLDYGlWqSqQetpuK2MiHk7AyqmAGr+9MXJ9C87yOPiKceKrjYrv6Ay5FyCBbM8cNsk
-         2WkufQbMwmAqAxOCMHiSfXf7uZGZVLbVyMPr4uSGXxc5uObWSK8JxC272F3V8bQaHI
-         tGTZQ6vejtEc+qOEp24vzhtMyqJ3+9l97OvlS/pIokW/AKnDE8aHNNo6kEbqB+VC47
-         OYi5krSn8ueKDBzScVjrSbrNVBCrRR/MIqmQnkEQrLXQmVtqwPwhxzw89LdThSTR41
-         M3ySq6oHzj9Hg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pjemp-0006bj-TV; Tue, 04 Apr 2023 13:25:16 +0200
-Date:   Tue, 4 Apr 2023 13:25:15 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
-        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc8280xp: Add missing dwc3 quirks
-Message-ID: <ZCwJG5SEqmeIzJG1@hovoldconsulting.com>
-References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
- <20230325165217.31069-2-manivannan.sadhasivam@linaro.org>
- <ZCKrXZn7Eu/jvdpG@hovoldconsulting.com>
- <20230328093853.GA5695@thinkpad>
- <20230329052600.GA5575@thinkpad>
- <ZCP4MHe+9M24S4nJ@hovoldconsulting.com>
- <20230329132343.GD5575@thinkpad>
+        with ESMTP id S229551AbjDDL2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:28:39 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE391FD3
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 04:28:37 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1pjepm-00043P-Ln; Tue, 04 Apr 2023 13:28:18 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 42D791A6300;
+        Tue,  4 Apr 2023 11:28:13 +0000 (UTC)
+Date:   Tue, 4 Apr 2023 13:28:12 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+        Rob Herring <robh@kernel.org>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: Re: [PATCH v10 0/5] can: bxcan: add support for ST bxCAN controller
+Message-ID: <20230404-postage-handprint-efdb77646082@pengutronix.de>
+References: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com>
+ <20230328084710.jnrwvydewx3atxti@pengutronix.de>
+ <CABGWkvq0gOMw2J9GpLS=w+qg-3xhAst6KN9kvCuZnV9bSBJ3CA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vrolgxtwhc7crda5"
 Content-Disposition: inline
-In-Reply-To: <20230329132343.GD5575@thinkpad>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <CABGWkvq0gOMw2J9GpLS=w+qg-3xhAst6KN9kvCuZnV9bSBJ3CA@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 06:53:43PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Mar 29, 2023 at 10:34:56AM +0200, Johan Hovold wrote:
-> > On Wed, Mar 29, 2023 at 10:56:00AM +0530, Manivannan Sadhasivam wrote:
-> > > On Tue, Mar 28, 2023 at 03:09:03PM +0530, Manivannan Sadhasivam wrote:
-> > > > On Tue, Mar 28, 2023 at 10:54:53AM +0200, Johan Hovold wrote:
-> > > > > On Sat, Mar 25, 2023 at 10:22:13PM +0530, Manivannan Sadhasivam wrote:
 
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > > > > > index 0d02599d8867..266a94c712aa 100644
-> > > > > > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > > > > > @@ -3040,6 +3040,13 @@ usb_0_dwc3: usb@a600000 {
-> > > > > >  				iommus = <&apps_smmu 0x820 0x0>;
-> > > > > >  				phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
-> > > > > >  				phy-names = "usb2-phy", "usb3-phy";
-> > > > > > +				snps,hird-threshold = /bits/ 8 <0x0>;
-> > > > > > +				snps,usb2-gadget-lpm-disable;
-> > > > > 
-> > > > > Here you are disabling LPM for gadget mode, which makes most of the
-> > > > > other properties entirely pointless.
-> > > 
-> > > Checked with Qcom on these quirks. So this one is just disabling lpm for USB2
-> > > and rest of the quirks below are for SS/SSP modes.
-> > 
-> > No, snps,hird-threshold is for USB2 LPM and so is
-> > snps,is-utmi-l1-suspend and snps,has-lpm-erratum as you'll see if you
-> > look at the implementation.
-> > 
-> 
-> Correct me if I'm wrong. When I look into the code, "snps,is-utmi-l1-suspend"
-> and "snps,hird-threshold" are used independently of the LPM mode atleast in one
-> place:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc3/gadget.c#n2867
-> 
-> But I could be completely wrong here as my understanding of the usb stack is not
-> that great.
+--vrolgxtwhc7crda5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yeah, it's not that obvious from just looking at the code, but L1 (and
-BESL) are USB2 LPM concepts and if you disable LPM then there is no need
-to override these values in the BOS descriptor either (as is done in
-dwc3_gadget_config_params() and bos_desc()).
+On 28.03.2023 11:28:59, Dario Binacchi wrote:
+> > Applied to linux-can-next.
+>=20
+> Just one last question: To test this series, as described in the cover
+> letter, I could not use the iproute2 package since the microcontroller
+> is without MMU. I then extended busybox for the ip link command. I
+> actually also added the rtnl-link-can.c application to the libmnl
+> library. So now I find myself with two applications that have been
+> useful to me for this type of use case.
+>=20
+> Did I do useless work because I could use other tools?
 
-> > > > > > +				snps,is-utmi-l1-suspend;
-> > > > > > +				snps,dis-u1-entry-quirk;
-> > > > > > +				snps,dis-u2-entry-quirk;
-> > > > > 
-> > > > > These appear to be used to optimise certain gadget application and
-> > > > > likely not something that should be set in a dtsi.
-> > > > > 
-> > > > 
-> > > > I will cross check these with Qcom and respin accordingly.
-> > > > 
-> > > 
-> > > These quirks are needed as per the DWC IP integration with this SoC it seems.
-> > > But I got the point that these don't add any values for host only
-> > > configurations. At the same time, these quirks still hold true for the SoC even
-> > > if not exercised.
-> > > 
-> > > So I think we should keep these in the dtsi itself.
-> > 
-> > Please take a closer look at the quirks you're enabling first. Commit
-> > 729dcffd1ed3 ("usb: dwc3: gadget: Add support for disabling U1 and U2
-> > entries") which added 
-> > 
-> > > > > > +				snps,dis-u1-entry-quirk;
-> > > > > > +				snps,dis-u2-entry-quirk;
-> > 
-> > explicitly mentions
-> > 
-> > 	Gadget applications may have a requirement to disable the U1 and U2
-> > 	entry based on the usecase.
-> > 
-> > which sounds like something that needs to be done in a per board dts at
-> > least.
-> > 
-> 
-> Going by this commit message it sounds like it. But...
-> 
-> > Perhaps keeping all of these in in the dtsi is correct, but that's going
-> > to need some more motivation than simply that some vendor does so (as
-> > they often do all sorts of things they should not).
-> > 
-> 
-> If you read my last reply one more time, I didn't reason it based on the vendor
-> code.
+systemd-networkd also supports CAN configuration, but I this will
+probably not work on no-MMU systemd, too.
 
-I was referring to the fact that these properties had been copied from
-the vendor dtsi and seemingly so without further review or
-justification in the commit message (e.g. to explain the
-inconsistencies).
+Then there is:
 
-> But I hear a contradict reply from Qcom saying that these properties are
-> required as a part of the DWC3 IP integration with the SoC. I need to recheck
-> with them again tomorrow.
-> 
-> Also, if these properties are application specific then they shouldn't be in
-> devicetree atleast :/
+| https://git.pengutronix.de/cgit/tools/canutils
+| https://git.pengutronix.de/cgit/tools/libsocketcan
 
-I fully agree with that.
+that contains canconfig, but it lacks CAN-FD support.
 
-Johan
+> If instead the tools for this use case are missing, what do you think
+> is better to do? Submit to their respective repos or add this
+> functionality to another project that I haven't considered ?
+
+Yes, go ahead and upstream your changes!
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--vrolgxtwhc7crda5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQsCckACgkQvlAcSiqK
+BOiwvQf/bknW5120duEvKB4vzq6g1FE4pHri1PUIfK32NY2ZntW/rs/zYYH5KMTC
+A3DRsT4CsHVSXNDvW7JNgHJIxIZ8kFQGiAIfOv/a7OOYXZocvfBMW9yxgRqDlese
+N9BqaRggCBDhP829laPpXYntgW6k8lTMpWI7C6ANyis9tbKJ68Ut0d7bZ4eiYGme
++R4neMSudT1l+tzSobkBpDrXloivl9uXhme25xmFTtQeokwCaXSZ7CFDpNcTV2zw
+3wq4YYs3fnoxUbIauVk4mDGyoJTB0ZzDee5Kp8+ucH1+eukInkeHk37RerOpc4Wv
+Gl61KK/5ijUZNnIHiOJIS9C8Sv6kSQ==
+=L7qt
+-----END PGP SIGNATURE-----
+
+--vrolgxtwhc7crda5--
