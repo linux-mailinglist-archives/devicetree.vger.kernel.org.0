@@ -2,143 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF3E6D5A4D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C41856D5A4F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233711AbjDDIHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 04:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
+        id S233769AbjDDIIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 04:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233345AbjDDIHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:07:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0711C12C;
-        Tue,  4 Apr 2023 01:07:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 96D1E62FD2;
-        Tue,  4 Apr 2023 08:07:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82385C433D2;
-        Tue,  4 Apr 2023 08:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680595623;
-        bh=5cJzvnfGpQRXqn/hReJhFCeYOI5sN4EzNm/zoSLcsfM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vfw3dBNThRpSX1C+0bO/mc0Lqr5F4rrunUyEsnD5OCiwkoO9mrU9oNSpAMPLHpSsh
-         3EHNEwiF7bwBqOo0w+Eb/5hDHExXRZQBEKx0EHR8WZ/MIlyKOszXxY7ULvGHOfgCp9
-         LGXu+p5laKZ8xcbScaID9040v7o430llp1epdLC3trb9Elq93XY2UgwXeFMwBIL/7N
-         5sL3r5cPKzRN3gFq3xHuUa/5+RXyxE8gUwePOosWqIhQ/Miy8gl9NVorU4ZQNznl/+
-         WqxtD0VL/iv7e25zy9blIwTdiYgArZ/IVseNMqtO12MYZcg17p8UtXIXV3AtQm0ps6
-         MpPaOKO7f/HAA==
-Date:   Tue, 4 Apr 2023 10:06:59 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Paolo Abeni <pabeni@redhat.com>
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        lorenzo.bianconi@redhat.com, daniel@makrotopia.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 02/10] net: ethernet: mtk_wed: move cpuboot
- in a dedicated dts node
-Message-ID: <ZCvao0Me+W56aZpw@lore-desk>
-References: <cover.1680268101.git.lorenzo@kernel.org>
- <56ed497762b1c031c553210a0e5c7717c6069642.1680268101.git.lorenzo@kernel.org>
- <10e9e8dd6eadf68eca55c5742adf18dad23661dc.camel@redhat.com>
+        with ESMTP id S233345AbjDDIIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:08:05 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CE1171F;
+        Tue,  4 Apr 2023 01:08:03 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3952C60002;
+        Tue,  4 Apr 2023 08:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1680595682;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=LGPSyPRGkCSLqISaG9m4y+A3ISEmWEMVR123mIB2ghs=;
+        b=XnwLRWHssCeGbpQlTwu4SMUx8FWX7XQrhyGJ/WpLSvGuKTL2V04QWcsEtKJkDaSZ5wdglw
+        EgrcaSA40axA8+BXoaqHn1N4kbdwSJe6V7jDXV8n+c46uhMBGULXudDWlXh/4MmdWfvLCF
+        EAn5Q8loDHe3/L30Ys4FQyWNID3w3NuqGKcvQimlmwNB3STR7ekwchZnYfr8a7bPvSajmK
+        1BAh7ycvJbqnKtarUOBOJOXE1PZM99JLsH6L8kztDtbHcrgp3aCxMwGlu71IChlnvjvoBQ
+        DWvCsEC/WKqBJgZF188wzPg0h6p5xgJcAxSbIOtze41j5/pPni4mRhUT+enINA==
+Date:   Tue, 4 Apr 2023 10:07:59 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <20230404100759.5bc9cd20@bootlin.com>
+In-Reply-To: <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
+References: <20230328092645.634375-1-herve.codina@bootlin.com>
+        <20230328092645.634375-3-herve.codina@bootlin.com>
+        <20230330160510.GB489249@google.com>
+        <20230331094208.41ab4420@bootlin.com>
+        <6d39e9c3-fb6a-4b2a-9889-8fe8d86716d5@linaro.org>
+        <20230331141104.42445da9@bootlin.com>
+        <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
+        <20230331165904.4e7f46a1@bootlin.com>
+        <20230403142822.GA8371@google.com>
+        <20230404092036.2d1cd5d9@bootlin.com>
+        <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DjxG6hRSl/7US9il"
-Content-Disposition: inline
-In-Reply-To: <10e9e8dd6eadf68eca55c5742adf18dad23661dc.camel@redhat.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 4 Apr 2023 09:23:36 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
---DjxG6hRSl/7US9il
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 04/04/2023 09:20, Herve Codina wrote:
+> >> I suggest that none of this (besides the child registration, which is
+> >> achieved by a simple OF API call in this case) has anything to do with
+> >> MFD.  We are not requesting and initialising shared resources and we are
+> >> not using the MFD API to register children.  The pin control
+> >> functionality clearly needs moving to Pinctrl and the rest, if you
+> >> cannot find a suitable home for it *may be* suitable for Misc.
+> >>  
+> > 
+> > I am confused and I am not really sure to understand where to put my driver.
+> > 
+> > The core pef2256.c needs to:
+> > 1) setup the pef2256
+> > 2) add the children
+> > 
+> > To add the children it calls  devm_of_platform_populate() to add the audio
+> > parts as several audio children can be available with the same compatible
+> > string.
+> > 
+> > I plan to move the pinctrl part to the pinctrl subsystem. With this done,
+> > the core pef2256.c will probably add the children using:
+> > - a mfd_cell for the pinctrl part
+> > - devm_of_platform_populate() for the audio children
+> > 
+> > The setup (E1 lines and TDM configuration) still needs to be done by the
+> > core pef2256.c. Moving this part only to Misc will break the hierarchy.
+> > The audio children depends on the core pef2256.c as this one do the setup.
+> > Having in the audio children and the part that do the setup in same hierarchy
+> > level is not correct. Audio children should be children of the part that do
+> > the setup.
+> > 
+> > So, the structure I have in mind:
+> > - pef2256.c (MFD)
+> >   implement and do the setup at probe()
+> >   Add the children at probe():
+> >     - pef2256-pinctrl (pinctrl) added using mfd_add_devices()
+> >     - pef2256-codec (ASoC codec) added using devm_of_platform_populate()
+> > 
+> > Lee, with this in mind, can the core pef2256.c be a MFD driver ?  
+> 
+> You do not use MFD here, so why do you want to keep it in MFD? If you
+> disagree, please tell me where is the MFD code in your patch?
 
-> On Fri, 2023-03-31 at 15:12 +0200, Lorenzo Bianconi wrote:
-> > Since the cpuboot memory region is not part of the RAM MT7986 SoC,
-> > move cpuboot in a deidicated syscon node.
-> > Keep backward-compatibility with older dts version where cpuboot was
-> > defined as reserved-memory child node.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  drivers/net/ethernet/mediatek/mtk_wed_mcu.c | 34 +++++++++++++++++----
-> >  drivers/net/ethernet/mediatek/mtk_wed_wo.h  |  3 +-
-> >  2 files changed, 30 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_mcu.c b/drivers/net/=
-ethernet/mediatek/mtk_wed_mcu.c
-> > index 6624f6d6abdd..797c3b412ab6 100644
-> > --- a/drivers/net/ethernet/mediatek/mtk_wed_mcu.c
-> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_mcu.c
-> > @@ -18,12 +18,23 @@
-> > =20
-> >  static u32 wo_r32(struct mtk_wed_wo *wo, u32 reg)
-> >  {
-> > -	return readl(wo->boot.addr + reg);
-> > +	u32 val;
-> > +
-> > +	if (!wo->boot_regmap)
-> > +		return readl(wo->boot.addr + reg);
-> > +
-> > +	if (regmap_read(wo->boot_regmap, reg, &val))
-> > +		val =3D ~0;
-> > +
-> > +	return val;
-> >  }
-> > =20
-> >  static void wo_w32(struct mtk_wed_wo *wo, u32 reg, u32 val)
-> >  {
-> > -	writel(val, wo->boot.addr + reg);
-> > +	if (wo->boot_regmap)
-> > +		regmap_write(wo->boot_regmap, reg, val);
-> > +	else
-> > +		writel(val, wo->boot.addr + reg);
->=20
-> Very minor nit: it would be more consistent with the read function
-> above if you invert the 2 branches, e.g.:
->=20
-> 	if (!wo->boot_regmap)
-> 		writel(val, wo->boot.addr + reg);
-> 	else
-> 		regmap_write(wo->boot_regmap, reg, val);
->=20
-> No need to repost just for the above, just take into consideration if a
-> new version will be needed for other reasons (DT)
+I don't want to absolutely use MFD.
+I just want to put my driver somewhere and I don't know the right location
+between MFD and Misc.
 
-ack, will do.
+Basically, the driver needs to do (little simplified and error path removed):
 
-Regards,
-Lorenzo
+  static const struct mfd_cell pef2256_devs[] = {
+  	{ .name = "lantiq-pef2256-pinctrl", },
+  };
 
->=20
-> Cheers,
->=20
-> Paolo
->=20
+  static int pef2256_probe(struct platform_device *pdev)
+  {
+	struct pef2256 *pef2256;
+	void __iomem *iomem;
+	int ret;
+	int irq;
 
---DjxG6hRSl/7US9il
-Content-Type: application/pgp-signature; name="signature.asc"
+	pef2256 = devm_kzalloc(&pdev->dev, sizeof(*pef2256), GFP_KERNEL);
+	if (!pef2256)
+		return -ENOMEM;
 
------BEGIN PGP SIGNATURE-----
+	pef2256->dev = &pdev->dev;
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZCvaowAKCRA6cBh0uS2t
-rFWSAQCPmw8AG9PY1HwuQ+8YoFiZD7xMPuUISCtYUQDj+b2+EQD/UrRkEAwPhQ9A
-3kwDl6KiG7HSunw03//xLB4ao5uZgQ0=
-=e1qy
------END PGP SIGNATURE-----
+	iomem = devm_platform_ioremap_resource(pdev, 0);
 
---DjxG6hRSl/7US9il--
+	pef2256->regmap = devm_regmap_init_mmio(&pdev->dev, iomem,
+						&pef2256_regmap_config);
+
+	pef2256->mclk = devm_clk_get_enabled(&pdev->dev, "mclk");
+	pef2256->sclkr = devm_clk_get_enabled(&pdev->dev, "sclkr");
+	pef2256->sclkx = devm_clk_get_enabled(&pdev->dev, "sclkx");
+
+	pef2256->reset_gpio = devm_gpiod_get_optional(&pdev->dev, "reset", GPIOD_OUT_LOW);
+	if (pef2256->reset_gpio) {
+		gpiod_set_value_cansleep(pef2256->reset_gpio, 1);
+		udelay(10);
+		gpiod_set_value_cansleep(pef2256->reset_gpio, 0);
+		udelay(10);
+	}
+
+	pef2556_of_parse(pef2256, np);
+
+	irq = platform_get_irq(pdev, 0);
+	ret = devm_request_irq(pef2256->dev, irq, pef2256_irq_handler, 0, "pef2256", pef2256);
+
+	platform_set_drvdata(pdev, pef2256);
+
+	mfd_add_devices(pef2256->dev, PLATFORM_DEVID_NONE, pef2256_devs,
+	      		ARRAY_SIZE(pef2256_devs), NULL, 0, NULL);
+
+	pef2256_setup(pef2256);
+
+	devm_of_platform_populate(pef2256->dev);
+	
+	return 0;
+  }
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
