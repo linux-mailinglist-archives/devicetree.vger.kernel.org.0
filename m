@@ -2,64 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 851BD6D5FDD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 070056D5FE5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 14:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234152AbjDDMDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 08:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
+        id S234717AbjDDMJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 08:09:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234625AbjDDMC6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:02:58 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 618902D42;
-        Tue,  4 Apr 2023 05:02:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1680609751; bh=uVAMkMqMikWXIauVjMve6Gn4H0bTde07iBs06xjAvnU=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=0V074kW0++4v6ZNG2SqAZq7Z8PMfa8C6VJ8LSKbJWbRmQQNxQYsyRmrn3pqvdlWMR
-         v1U+SBhm+EfQt+sK9kwqvL6ocBi+02SSFW4IVDeQ3GYJtfY3YbYpFVcYA/H50DgSKq
-         jCLK/DFpFXaSuYmoN+lexTBMB8Y8wKNXSrIfFP10=
-Date:   Tue, 4 Apr 2023 14:02:31 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     Martijn Braam <martijn@brixit.nl>,
-        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
- Pinephone Pro to 1.5 MB
-Message-ID: <20230404120231.2enpesad2lhde6sb@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Martijn Braam <martijn@brixit.nl>,
-        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org, Peter Robinson <pbrobinson@gmail.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20230403175937.2842085-1-javierm@redhat.com>
- <3738011.44csPzL39Z@diego>
- <52d83a29-0f16-cd4c-9810-7c6bd497fe85@brixit.nl>
- <87ttxvdgb7.fsf@minerva.mail-host-address-is-not-set>
+        with ESMTP id S234734AbjDDMHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 08:07:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22DB03AB5;
+        Tue,  4 Apr 2023 05:03:10 -0700 (PDT)
+Received: from [IPv6:2a00:23c7:6883:e501:e15b:407b:49da:d40e] (unknown [IPv6:2a00:23c7:6883:e501:e15b:407b:49da:d40e])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: obbardc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9E6A26603158;
+        Tue,  4 Apr 2023 13:03:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680609789;
+        bh=EqCuUIa26dLCJIvyIcfxXwu2vSGTNNCWYPJnB/cNK2Y=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=Tz0SoriJge1fjbnmAt9vwvUlwVBBreEh0NihySKYb4y97SmwkCYB2pIBWJvFPYQgg
+         6T3XOohm875kZRmwGTDLmR/Giq81x/IEiLDxZhX5DgPoMZBRJGa6GQdKO7ORiy4xix
+         FVf/yMEGnROX3NVpT52V+6ClFpYWgDjMfVMVprOU3oU8Q6umoM+sYMkZI93rsmKTCo
+         zM3o+ocwH4hS/U7vi5fCKEACeMXUoUOWr+IdLLOs4LK7QLYd4ISW0OV3uOLUgUi5P4
+         DeEo6HfFlZg8DawlvwposK3DhNv+R/yopCYWzGIJNPsWapqVRa6OD//jUs/io9ISff
+         9RgQMqsJCK3cQ==
+Message-ID: <b1c27c7499660d0601927e8fdc5e9b1f6c691e57.camel@collabora.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add RTC support for RK3588
+From:   Christopher Obbard <chris.obbard@collabora.com>
+To:     Shreeya Patel <shreeya.patel@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Date:   Tue, 04 Apr 2023 13:03:07 +0100
+In-Reply-To: <20230404115802.33693-1-shreeya.patel@collabora.com>
+References: <20230404115802.33693-1-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ttxvdgb7.fsf@minerva.mail-host-address-is-not-set>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -69,55 +55,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+SGkgU2hyZWV5YSwKCk9uIFR1ZSwgMjAyMy0wNC0wNCBhdCAxNzoyOCArMDUzMCwgU2hyZWV5YSBQ
+YXRlbCB3cm90ZToKPiBBZGQgRFQgbm9kZSB0byBlbmFibGUgUlRDIHN1cHBvcnQgb24gUkszNTg4
+IGJvYXJkLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFNocmVleWEgUGF0ZWwgPHNocmVleWEucGF0ZWxA
+Y29sbGFib3JhLmNvbT4KCm5pdDogSXQnZCBiZSBncmVhdCB0byBtYWtlIHRoZSBzdWJqZWN0IHNv
+bWV0aGluZyBtb3JlIGRlc2NyaXB0aXZlIGFib3V0IHRoZSBzdXBwb3J0ZWQgaGFyZHdhcmUsIHNp
+bmNlIHRoaXMgcGF0Y2ggZG9lc24ndCBlbmFibGUgdGhlIFJUQyBmb3IgX2FsbF8gUkszNTg4IGJv
+YXJkcyB5b3VyIHN1YmplY3QgY291bGQgYmUgYSBiaXQgbWlzbGVhZGluZy4KU29tZXRoaW5nIGxp
+a2UgImFybTY0OiBkdHM6IHJvY2tjaGlwOiBFbmFibGUgUlRDIHN1cHBvcnQgZm9yIFJvY2sgNUIi
+IGNvdWxkIGJlIGJldHRlci4KClJldmlld2VkLWJ5OiBDaHJpc3RvcGhlciBPYmJhcmQgPGNocmlz
+Lm9iYmFyZEBjb2xsYWJvcmEuY29tPgoKPiAtLS0KPiDCoC4uLi9ib290L2R0cy9yb2NrY2hpcC9y
+azM1ODgtcm9jay01Yi5kdHPCoMKgwqDCoMKgIHwgMjcgKysrKysrKysrKysrKysrKysrKwo+IMKg
+MSBmaWxlIGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvYXJjaC9h
+cm02NC9ib290L2R0cy9yb2NrY2hpcC9yazM1ODgtcm9jay01Yi5kdHMgYi9hcmNoL2FybTY0L2Jv
+b3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1yb2NrLTViLmR0cwo+IGluZGV4IDk1ODA1Y2IwYWRmYS4u
+YTMyYmZhOGQ5MTRhIDEwMDY0NAo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2NoaXAv
+cmszNTg4LXJvY2stNWIuZHRzCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9yb2NrY2hpcC9y
+azM1ODgtcm9jay01Yi5kdHMKPiBAQCAtMjcsNiArMjcsMzEgQEAgdmNjNXYwX3N5czogdmNjNXYw
+LXN5cy1yZWd1bGF0b3Igewo+IMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgfTsKPiDCoAo+ICsmaTJj
+NiB7Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICsKPiArwqDCoMKgwqDCoMKg
+wqBoeW04NTYzOiBoeW04NTYzQDUxIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+Y29tcGF0aWJsZSA9ICJoYW95dSxoeW04NTYzIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgcmVnID0gPDB4NTE+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjY2xv
+Y2stY2VsbHMgPSA8MD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2NrLWZy
+ZXF1ZW5jeSA9IDwzMjc2OD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2Nr
+LW91dHB1dC1uYW1lcyA9ICJoeW04NTYzIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgcGluY3RybC0wID0gPCZoeW04NTYzX2ludD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoGludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8wPjsKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0cyA9IDxSS19QQjAgSVJRX1RZUEVfTEVWRUxfTE9XPjsK
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgd2FrZXVwLXNvdXJjZTsKPiArwqDCoMKg
+wqDCoMKgwqB9Owo+ICt9Owo+ICsKPiArJnBpbmN0cmwgewo+ICvCoMKgwqDCoMKgwqDCoGh5bTg1
+NjMgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBoeW04NTYzX2ludDogaHltODU2
+My1pbnQgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+cm9ja2NoaXAscGlucyA9IDwwIFJLX1BCMCBSS19GVU5DX0dQSU8gJnBjZmdfcHVsbF9ub25lPjsK
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArwqDCoMKgwqDCoMKgwqB9Owo+
+ICt9Owo+ICsKPiDCoCZzZGhjaSB7Cj4gwqDCoMKgwqDCoMKgwqDCoGJ1cy13aWR0aCA9IDw4PjsK
+PiDCoMKgwqDCoMKgwqDCoMKgbm8tc2RpbzsKPiBAQCAtNDIsMyArNjcsNSBAQCAmdWFydDIgewo+
+IMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8JnVhcnQybTBfeGZlcj47Cj4gwqDCoMKgwqDC
+oMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiDCoH07Cj4gKwo+ICsKPiAtLSAKPiAyLjMwLjIK
 
-On Tue, Apr 04, 2023 at 01:42:36PM +0200, Javier Martinez Canillas wrote:
-> Martijn Braam <martijn@brixit.nl> writes:
-> 
-> > On 4/4/23 09:51, Heiko Stübner wrote:
-> >> Hi,
-> >>
-> >> Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
-> >>> This baud rate is set for the device by mainline u-boot and is also what
-> >>> is set in the Pinebook Pro Device Tree, which is a device similar to the
-> >>> PinePhone Pro but with a different form factor.
-> >>>
-> >>> Otherwise, the baud rate of the firmware and Linux don't match by default
-> >>> and a 'console=ttyS2,1500000n8' kernel command line parameter is required
-> >>> to have proper output for both.
-> >> The interesting question is always if this will break someone else's setup.
-> >> I've never really understood the strange setting of 1.5MBps, but on the
-> >> other hand it _is_ a reality on most boards.
-> >
-> > It breaks my device test setup at least. The extra speed isn't worth the 
-> > hassle
-> 
-> More than the extra speed is to have consistency accross all the rockchip
-> devices in upstream and also sync with mainline u-boot.
-> 
-> > of having a few devices at weird baudrates and the bootloader already
-> > starts outputting debug logs at 115200 baud.
-> >
-> 
-> And mine starts outputting at 1.5MBps :) I guess that there isn't a one
-> size fits all, so the question is whether the bikeshed color is what was
-> painted in all other rockchip boards or the one that Tow-Boot has chosen.
-
-For what it's worth, levinboot also defaults to 1.5 Mbaud.
-
-  https://gitlab.com/DeltaGem/levinboot/-/blob/release/rk3399/entry.S#L65
-  https://gitlab.com/DeltaGem/levinboot/-/blob/release/configure.py#L67
-
-And it's very nice anything above >115200 is not broken by bad HW design,
-like on original Pinephone, so this higher speed actually works. ;)
-
-kind regards,
-	o.
-
-> -- 
-> Best regards,
-> 
-> Javier Martinez Canillas
-> Core Platforms
-> Red Hat
-> 
