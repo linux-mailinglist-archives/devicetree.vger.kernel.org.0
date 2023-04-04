@@ -2,136 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A666D68E1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:30:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA826D68EE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232642AbjDDQaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 12:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34786 "EHLO
+        id S234826AbjDDQcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 12:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235371AbjDDQaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:30:16 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A9049CE
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 09:30:11 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id q19so30379207wrc.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 09:30:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680625809;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RXCUKi5pLgJUBY4+DuTQW+y3V8bEHDXD8BVtVDMZZN0=;
-        b=x83VudRGauAHV1kLMU4VIDKWdiOnacBuhBc9RYi3f4sxfs2XweNKIeNIy7rnpOsOkp
-         gB3Y3PmWwfHJ6+rVwIGkzr+R90zB9f1ScZTmP5pBXTk6OCG+i/WM3YIYubUXwveDkFgW
-         B5qtnSnJPQvaZwQv3DzcllhiYux4yPm/PQG5GKlpQk03mPF8LGkiP4QRSC9SH1D2cZdK
-         RLeCG7AUpLveaizQd/zIfOAIc/9rfUv+HP/7vA6yF9lcjsZ/5466Cr2bE/vulCe91elu
-         nCg+NMOKmLP/ADnn/I4Tp8bb4I9Q9vATZMVc6Mbo/tBYqEVrzBnjBJvWMdbx6FLMpkHe
-         pF6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680625809;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RXCUKi5pLgJUBY4+DuTQW+y3V8bEHDXD8BVtVDMZZN0=;
-        b=riGwbh5QcxooPoeD6FgEmIVgoWHHYrJaKNkTyrX452In0T5Y2ebbsO9eILa2ylTmbB
-         QNeTep8aUrwuXZ1/x8HoH6QHt8eXFBkTt0Dim9+cd3grJGW0zyZa9K50mqTrXASvmfRl
-         RaenytLb5Ma0hcshB6/jjPBD6fYdj7mIR5F4PFppGhhTA389HTZQdyiotQIhOjB41IEr
-         hB0PpZMkFaJcro9FJOtelYVQ78kFeUApLoQqL1Vm3E+FgUwVgv7fZKGoKWvuus16TAEC
-         /Mtl5Pymyz3WT0rdgdkGqJwI8WfnwVu/7c/c/3wCpg/58A0Hm4OqbXdyC9+vmMNSviF2
-         jXpA==
-X-Gm-Message-State: AAQBX9c/EGE+7hxA/SLZ7hGiGrIR+sRqE5CQXIbnj5U63w/LWvtw169h
-        36LORojxvZ1STyCkwMFG7TbZ9v5WwQUXPmRINso=
-X-Google-Smtp-Source: AKy350Zz0PfT3XGOK9Wa8a7yqRYF3C0KlPhlP1JiPHsCEgTyJVh7gGi6gYk/9kkxi1PRWnHtQi3S3w==
-X-Received: by 2002:adf:f0c4:0:b0:2ce:aa2f:55ff with SMTP id x4-20020adff0c4000000b002ceaa2f55ffmr2047020wro.1.1680625809559;
-        Tue, 04 Apr 2023 09:30:09 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id o7-20020adfe807000000b002e4cd2ec5c7sm12694528wrm.86.2023.04.04.09.30.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 09:30:09 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 04 Apr 2023 18:29:51 +0200
-Subject: [PATCH v3 3/3] dt-bindings: pinctrl: mediatek,mt8365-pinctrl: add
- drive strength property
+        with ESMTP id S231668AbjDDQcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:32:20 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA3D172C;
+        Tue,  4 Apr 2023 09:32:17 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2725F6603174;
+        Tue,  4 Apr 2023 17:32:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680625935;
+        bh=KuXltiexUNkpyNJrQkX/ulGpUOXgGazP2UPpdbEwY4A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LkmnNId6+hvIzALLF0eDx8nofhPV1wtsWAyQk9McBRARSAkQVYbcKgiKph3emWI+n
+         Eg/p3YL9ALg5e6DiPMnwfLV/1+7PP+vuoqfrAYFzbyL27PewiJU01at8amx+YbWi5+
+         epJSePU/a0SWvTPNudhSHzJ6kwOQeRrIhxciokKUa4V1I2ULxzXh/12NEi1vRJMD+v
+         +cfE5n9wJQOvq8ehLBeEa5bKVcDRiOMyLP1Itr1q7D1X6oaf+tj9hXhwZBx0iuTzH/
+         1kLEA+CItIKh+bKSuTJwZ4f+GSnp8r+2WQfQjeu+iJCTTr83KTJS5HnXq78SL7la9N
+         IKPvXYIv+hChw==
+Message-ID: <3eba05be-a836-d362-4e06-2d9f102c4113@collabora.com>
+Date:   Tue, 4 Apr 2023 19:32:11 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230327-cleanup-pinctrl-binding-v3-3-6f56d5c7a8de@baylibre.com>
-References: <20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com>
-In-Reply-To: <20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Convert to DT schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1303; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=cYHxBDCQoGJzPsmuJwnAfXpE5ottu0FMlkHkQen22jw=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkLFCNiPnKq5m500FTYjWaFJHdGzwyKvH2iKxU1L0d
- XA/Iqa6JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZCxQjQAKCRArRkmdfjHURdhPD/
- 0X4LhELLZx9sdnK7pRBtxWQYcXNGprCl3/3LUi6CQHqWNoNLRA+F4wQ9LaiPkAbOoz6srmj/44kuoC
- D++ydE0BicfPHO3zA0HgvaZhK89jP5FHWmMNGzM3ruNbpUTxbTdZ/iuyATw/tFot6EZ2y03ezv98XG
- lEhUepZJeT38R8W+zuoNFoyudkAO7gdRNvsXDUks7VylKc2kdgKz2uaj3hBbJQGhw7S7aCMzruKh/+
- H6WqSMJvLI/V7DBBj4TgeIy2ObWmQCBwYHILu1Q/zia470nRoDOdiwGJXntlLIJuL4doGoJIniFU6C
- fuhnG5eCUpurqYRrr1hN2GhyB2pCLcMaTP8iv9cI2NaENkIwSYGY+UvImZplYEVQNezEvYiGi5zrqE
- 2FdxbhcoPyFB+9Nm0bSgED0YIn/fYVlBexqBIThLXyI/jBWbvvus6HDgJaOXXdoNObQCcNRZEgzLuE
- XO+Oo0XIB80Ekijuol85ECWgScXzQqEsHjw1xcRjGRWuXcZCETY8XVVb0LJTgVdMmhh1Z3NkoAF7rh
- 1WG87fxk2rLxzE9hKJR60KEETsFqBJpTMfvQXO0qwD5Zbdzlwjgsm5VQ1AZvyKvvfcA3GfVDvokh/4
- UnSR8FcAam0JL/osQs5ps8fd62s6sifvVVuWrSpYhAEnsKQSz8ER1Savx0Fg==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
+ <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
+ <20230404141749.GB3793612-robh@kernel.org>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230404141749.GB3793612-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This SoC is able to drive the following output current:
-- 2 mA
-- 4 mA
-- 6 mA
-- 8 mA
-- 10 mA
-- 12 mA
-- 14 mA
-- 16 mA
+On 4/4/23 17:17, Rob Herring wrote:
+> On Mon, Apr 03, 2023 at 01:50:51PM +0300, Cristian Ciocaltea wrote:
+>> Convert the PWM fan bindings to DT schema format.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  .../devicetree/bindings/hwmon/pwm-fan.txt     |  68 +----------
+>>  .../devicetree/bindings/hwmon/pwm-fan.yaml    | 109 ++++++++++++++++++
+>>  2 files changed, 110 insertions(+), 67 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>>
 
-Then drive-strength property is set with enum to reflect its HW capability.
+[...]
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> new file mode 100644
+>> index 000000000000..448b48ec5d73
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> @@ -0,0 +1,109 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Fan connected to PWM lines
+>> +
+>> +maintainers:
+>> +  - Jean Delvare <jdelvare@suse.com>
+>> +  - Guenter Roeck <linux@roeck-us.net>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: pwm-fan
+>> +
+>> +  cooling-levels:
+>> +    description:
+>> +      PWM duty cycle values in a range from 0 to 255 which correspond to
+> 
+> Don't put constraints in plain text:
+> 
+> items:
+>   maximum: 255
+> 
+>> +      thermal cooling states.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> 
+> Unfortunately, looks like we've wound up with same property with 2 
+> differing types. A problem for another day...
+> 
+>> +
+>> +  fan-supply:
+>> +    description: Phandle to the regulator that provides power to the fan.
+>> +
+>> +  interrupts:
+>> +    description:
+>> +      This contains an interrupt specifier for each fan tachometer output
+>> +      connected to an interrupt source. The output signal must generate a
+>> +      defined number of interrupts per fan revolution, which require that
+>> +      it must be self resetting edge interrupts.
+> 
+> How many entries? I'm not sure how more than 1 makes sense.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-index 75d74b92c767..61b33b5416f5 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-@@ -99,6 +99,9 @@ patternProperties:
-               102: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-               103: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
- 
-+          drive-strength:
-+            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+
-           input-enable: true
- 
-           input-disable: true
+The 3rd example taken from the original binding uses 2 entries. So far
+it seems there are no use cases requiring more than one, so I'm going to
+limit this to 5 (the driver doesn't enforce a limit).
 
--- 
-2.25.1
+>> +
+>> +  pulses-per-revolution:
+>> +    description:
+>> +      Define the number of pulses per fan revolution for each tachometer
+>> +      input as an integer (default is 2 interrupts per revolution).
+> 
+> default: 2
+> 
+>> +      The value must be greater than zero.
+> 
+> minimum: 1
+> 
+> maximum: ??? I assume there's some practical limit here much less than 
+> 2^32.
 
+Will set it to 4, as suggested by Guenter.
+
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> 
+> Isn't this a scalar? 
+
+As in the case of interrupts, the 3rd example uses 2 entries. Will set
+the same limit (5).
+
+>> +
+>> +  pwms:
+>> +    description: The PWM that is used to control the fan.
+>> +    maxItems: 1
+>> +
+>> +  pwm-names: true
+>> +
+>> +  "#cooling-cells":
+>> +    description: The PWM fan can be referenced as a cooling-device.
+> 
+> Not that useful. What would be is what's in the 2 cells.
+
+Will describe its usage according to thermal-cooling-devices binding.
+
+Thanks for reviewing,
+Cristian
