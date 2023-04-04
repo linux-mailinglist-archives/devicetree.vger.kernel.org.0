@@ -2,105 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88EC56D6B28
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 20:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 735E86D6B25
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 20:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236156AbjDDSEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 14:04:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49188 "EHLO
+        id S236254AbjDDSD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 14:03:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236122AbjDDSE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 14:04:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9FD5251;
-        Tue,  4 Apr 2023 11:04:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 81CD36382B;
-        Tue,  4 Apr 2023 18:03:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FCD6C4339B;
-        Tue,  4 Apr 2023 18:03:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680631438;
-        bh=NEdwIWZOJschJ8QF5b2zp8sC703r6EvbHbPixlx4z38=;
-        h=From:To:Cc:Subject:Date:From;
-        b=O6l53MPt/ujh70GigbHt1SNot+coAvvC28j4hWiJfd2z4pG2T6zpnG5gXx9a6dDoB
-         VbLOFovn3848wzUP++tWeiDndLgR5GtYFdcOB6wDFcPphhzOUnyZPSbz5CKHFMzjCF
-         W6xdY/fBbpvE4gr1c3f53r/d1d8hKAoJ2xp+6Rkx41y+/2yqOrRydZtUD67yAJpOpz
-         gBqTSxIWDorSb01oefoB4Pxoa859nxnTfSu4tK2CFn3ylFjaqEVFpoGslM1kPRINJV
-         lWr7AW+LrGpPV1xCZnQcj34d2lm+fqbdHBxwZHwTF4NcbcWh12ux3duj8hrVmjAArL
-         PHmwQyqQjbGOw==
-From:   Conor Dooley <conor@kernel.org>
-To:     Atish Patra <atishp@rivosinc.com>
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        with ESMTP id S236109AbjDDSDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 14:03:52 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7D346B5
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 11:03:45 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id q16so43397862lfe.10
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 11:03:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680631423;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JR7CqJAwvpJxFbciu3o8qyafjr98DA8/rLAPmXVSUts=;
+        b=pML5XntacJXTSKhU9ODumSKwOTCz0UW7j64E+EAkqVSzDJA3uwsev/umHCI3zIXNtb
+         y+ah7uluB7FDPDQzE4PA8keAWV+bFm/HhfUCnrZzq5mH5XYcwBPTSG8HHOOdQdMMWzXj
+         rE1w0Q/eh8emv05TzEkZyghjzP9GNTXiMQOyH1aR6h8FWB2YenyXda/byB1Ybsm1gqLZ
+         gqWiehuVCnx4tuapSHwGCN1vYMrV8s6ZOj0A9rubNi31sLmuvSeB8ZvglXnqRF0Bs5iY
+         g4REZlDlwrz7bgzKQOAG8bKAs+XtSKga2bwNev58K2Kx7+12zWMIFkqHC3XBlRIuu60P
+         lZTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680631423;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JR7CqJAwvpJxFbciu3o8qyafjr98DA8/rLAPmXVSUts=;
+        b=OOw9EHFMpl6ExAR2wxK+ry5Vhc/cZudsb/2i3P+GTEoKQKBHNe4Opqh7BeyUFgQoIC
+         1l+AEhe2xGDsNHUpa/xCyqF0WfQRClzzpawwbUpY+3SJXlN73plEMvuaQNIA3ojhm9XX
+         vAtuK7u2/x4o8Fja1xVQkMI8GniApJy+4TgZZkltXxPXhZxTZ/umOe41wM1LG0M591oF
+         01CF4GXf41RPvf47FWpT4UHPAHWxqlNk3OIZamv6SH/g89SbnHG103priZF5E3lebhuj
+         x3Z+DLkzcEml7lPv6ZGjOMcJXagtyw4ZAVYd6K1EttkzF4m0NHgQkMBYwPG1ujPhvUgb
+         SsnA==
+X-Gm-Message-State: AAQBX9cqU0vC+IH8fMFJDnzm7OY/phrfVrfI1XlvPEpKQOn+f7rHxrey
+        Safb40S9mt0WpvNam/XdedECGg==
+X-Google-Smtp-Source: AKy350Z3GNst68g7AebZ7jv36PnnaXILoR6V2RC/YE70jV8ohG+yAaUbnTUNB4E6N8gZweE9NRgEMA==
+X-Received: by 2002:a19:5211:0:b0:4ea:c730:aabe with SMTP id m17-20020a195211000000b004eac730aabemr920209lfb.20.1680631423266;
+        Tue, 04 Apr 2023 11:03:43 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id v14-20020ac2560e000000b004e8011cbaa0sm2410412lfd.111.2023.04.04.11.03.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 11:03:42 -0700 (PDT)
+Message-ID: <a4bf52db-21a4-dd92-e7ef-62b9c7d19d26@linaro.org>
+Date:   Tue, 4 Apr 2023 20:03:40 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 3/7] soundwire: qcom: allow 16-bit sample interval for
+ ports
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: perf: riscv,pmu: fix property dependencies
-Date:   Tue,  4 Apr 2023 19:03:22 +0100
-Message-Id: <20230404-tractor-confusing-8852e552539a@spud>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1646; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=2hS1x6j8jxB5WORv7alUwm+GQaMbRtWF7Ns9mZYqnSE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCk6aanvotZJXJBkODU58cYl5fsH1bI/a0W/kD24xkvrk vmmSXuYOkpZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRf5MZ/se6VF4Jvs6T6/xq ueoGk8RFzs/Do3JevPm4fZZZpaH2nAmMDHcdDs6Mm2RsYm394pqo+861Dzf6chc/+/P6yLPtz76 qBLACAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
+ <20230403132503.62090-4-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230403132503.62090-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-Seemingly I mis-implemented the dependencies here. The OpenSBI docs only
-point out that the "riscv,event-to-mhpmcounters property is mandatory if
-riscv,event-to-mhpmevent is present". It never claims that
-riscv,event-to-mhpmcounters requires riscv,event-to-mhpmevent.
 
-Drop the dependency of riscv,event-to-mhpmcounters on
-riscv,event-to-mhpmevent.
+On 3.04.2023 15:24, Krzysztof Kozlowski wrote:
+> The port sample interval was always 16-bit, split into low and high
+> bytes.  This split was unnecessary, although harmless for older devices
+> because all of them used only lower byte (so values < 0xff).  With
+> support for Soundwire controller on Qualcomm SM8550 and its devices,
+> both bytes will be used, thus add a new 'qcom,ports-sinterval' property
+> to allow 16-bit sample intervals.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+I have little insight in this code, but the changes look
+logical, so..
 
-Fixes: 7e38085d9c59 ("dt-bindings: riscv: add SBI PMU event mappings")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Atish, I'm not 100% on this one but I noticed it while doing dt-validate
-on a dump of the qemu virt machine which doesn't use the
-event-to-mhpmevent property.
-
-CC: Rob Herring <robh+dt@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Paul Walmsley <paul.walmsley@sifive.com>
-CC: Palmer Dabbelt <palmer@dabbelt.com>
-CC: Atish Patra <atishp@rivosinc.com>
-CC: Andrew Jones <ajones@ventanamicro.com>
-CC: devicetree@vger.kernel.org
-CC: linux-riscv@lists.infradead.org
-CC: linux-kernel@vger.kernel.org
----
- Documentation/devicetree/bindings/perf/riscv,pmu.yaml | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-index a55a4d047d3f..c8448de2f2a0 100644
---- a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-+++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-@@ -91,7 +91,6 @@ properties:
- 
- dependencies:
-   "riscv,event-to-mhpmevent": [ "riscv,event-to-mhpmcounters" ]
--  "riscv,event-to-mhpmcounters": [ "riscv,event-to-mhpmevent" ]
- 
- required:
-   - compatible
--- 
-2.39.2
-
+Konrad
+> 
+> Changes since v1:
+> 1. Drop unneeded semicolon.
+> ---
+>  drivers/soundwire/qcom.c | 32 +++++++++++++++++++++++++-------
+>  1 file changed, 25 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index c296e0bf897b..faa091e7472a 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -95,6 +95,7 @@
+>  #define SWRM_DP_BLOCK_CTRL2_BANK(n, m)	(0x1130 + 0x100 * (n - 1) + 0x40 * m)
+>  #define SWRM_DP_PORT_HCTRL_BANK(n, m)	(0x1134 + 0x100 * (n - 1) + 0x40 * m)
+>  #define SWRM_DP_BLOCK_CTRL3_BANK(n, m)	(0x1138 + 0x100 * (n - 1) + 0x40 * m)
+> +#define SWRM_DP_SAMPLECTRL2_BANK(n, m)	(0x113C + 0x100 * (n - 1) + 0x40 * m)
+>  #define SWRM_DIN_DPn_PCM_PORT_CTRL(n)	(0x1054 + 0x100 * (n - 1))
+>  #define SWR_MSTR_MAX_REG_ADDR		(0x1740)
+>  
+> @@ -131,7 +132,7 @@ enum {
+>  };
+>  
+>  struct qcom_swrm_port_config {
+> -	u8 si;
+> +	u32 si;
+>  	u8 off1;
+>  	u8 off2;
+>  	u8 bp_mode;
+> @@ -806,12 +807,20 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
+>  
+>  	value = pcfg->off1 << SWRM_DP_PORT_CTRL_OFFSET1_SHFT;
+>  	value |= pcfg->off2 << SWRM_DP_PORT_CTRL_OFFSET2_SHFT;
+> -	value |= pcfg->si;
+> +	value |= pcfg->si & 0xff;
+>  
+>  	ret = ctrl->reg_write(ctrl, reg, value);
+>  	if (ret)
+>  		goto err;
+>  
+> +	if (pcfg->si > 0xff) {
+> +		value = (pcfg->si >> 8) & 0xff;
+> +		reg = SWRM_DP_SAMPLECTRL2_BANK(params->port_num, bank);
+> +		ret = ctrl->reg_write(ctrl, reg, value);
+> +		if (ret)
+> +			goto err;
+> +	}
+> +
+>  	if (pcfg->lane_control != SWR_INVALID_PARAM) {
+>  		reg = SWRM_DP_PORT_CTRL_2_BANK(params->port_num, bank);
+>  		value = pcfg->lane_control;
+> @@ -1185,7 +1194,7 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>  	struct device_node *np = ctrl->dev->of_node;
+>  	u8 off1[QCOM_SDW_MAX_PORTS];
+>  	u8 off2[QCOM_SDW_MAX_PORTS];
+> -	u8 si[QCOM_SDW_MAX_PORTS];
+> +	u32 si[QCOM_SDW_MAX_PORTS];
+>  	u8 bp_mode[QCOM_SDW_MAX_PORTS] = { 0, };
+>  	u8 hstart[QCOM_SDW_MAX_PORTS];
+>  	u8 hstop[QCOM_SDW_MAX_PORTS];
+> @@ -1193,6 +1202,7 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>  	u8 blk_group_count[QCOM_SDW_MAX_PORTS];
+>  	u8 lane_control[QCOM_SDW_MAX_PORTS];
+>  	int i, ret, nports, val;
+> +	bool si_32 = false;
+>  
+>  	ctrl->reg_read(ctrl, SWRM_COMP_PARAMS, &val);
+>  
+> @@ -1236,9 +1246,14 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>  		return ret;
+>  
+>  	ret = of_property_read_u8_array(np, "qcom,ports-sinterval-low",
+> -					si, nports);
+> -	if (ret)
+> -		return ret;
+> +					(u8 *)si, nports);
+> +	if (ret) {
+> +		ret = of_property_read_u32_array(np, "qcom,ports-sinterval",
+> +						 si, nports);
+> +		if (ret)
+> +			return ret;
+> +		si_32 = true;
+> +	}
+>  
+>  	ret = of_property_read_u8_array(np, "qcom,ports-block-pack-mode",
+>  					bp_mode, nports);
+> @@ -1266,7 +1281,10 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>  
+>  	for (i = 0; i < nports; i++) {
+>  		/* Valid port number range is from 1-14 */
+> -		ctrl->pconfig[i + 1].si = si[i];
+> +		if (si_32)
+> +			ctrl->pconfig[i + 1].si = si[i];
+> +		else
+> +			ctrl->pconfig[i + 1].si = ((u8 *)si)[i];
+>  		ctrl->pconfig[i + 1].off1 = off1[i];
+>  		ctrl->pconfig[i + 1].off2 = off2[i];
+>  		ctrl->pconfig[i + 1].bp_mode = bp_mode[i];
