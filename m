@@ -2,93 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8CEE6D5E92
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C3216D5E9B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234667AbjDDLFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:05:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34076 "EHLO
+        id S234941AbjDDLGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234727AbjDDLFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:05:33 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE6135AC
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 04:03:23 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id eh3so128869622edb.11
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 04:03:23 -0700 (PDT)
+        with ESMTP id S234713AbjDDLGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:06:10 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD175269;
+        Tue,  4 Apr 2023 04:04:13 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id ew6so128842487edb.7;
+        Tue, 04 Apr 2023 04:04:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680606197;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=P2X3kREg8ClZqoLFGTfMEQlTm6xCmy/glA1Hk2D1aa0=;
-        b=vj66DxpITdwlhJH75l7RkUQZ6WiakI8+iJL0HkFajARLadSSmedSCC38T3fau0NSAi
-         cuHLk9G6os+2CZPFZVMURrKYJtSV7XCcHUktC2KxBi0JYdJlEn3jIyfrRNS76EsHP+Gc
-         vSP5yuFfS0DKENJu13mSmPMXDHrOXQXyXBYgwI3yB8ukOi9+MFNaQF9blxs+UoTs3Txj
-         P/UnBYcmSIK9qgN4/80r2zy0VyjYl/ggKEoJFNcam6FWF7UWgHng1XycK5KJiIIpCKFx
-         8UCAyfQtf3TLsUcvIFlRm7Fj10RNvbeRR0Jx2rNoMSjsM3v8zioZQ2F1Kxd7kbRj5vr5
-         XELQ==
+        d=gmail.com; s=20210112; t=1680606238;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fna98BOXaPalQtbny6015p5IIFjUBKyffzvMmpdaxto=;
+        b=fs59/D5ouTu64eyM86CdFM3P+CGzngI5xTh6/WPM9C0AsjaF2rSxH9G/1DLE/B9Xrk
+         /gnOMtKYYdLqAAli9t0sXQRW8SzWgheyRpn0Son+BPrIUFdjthyZusXKJ/LiBG9U25Tg
+         AcwNd+4ar1K90HsL9fMuSiCZ+SlLnKrAtcydT9xaN0yrfNolpR9v5rkWlmE4BCynT2+x
+         Rq3P5JkjsOjgiN0xgXZ6jDPkR5N9rJbvFk0c9zGCtb74GiyBur8gFGznoVDsLtKelXPu
+         xOy70vEdVvQL9chEcO1mF8wAoPsDMl9l/IizYcQTPlaW4tMu+XHWLMZ/FcG4+vk8TLp1
+         uGFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680606197;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P2X3kREg8ClZqoLFGTfMEQlTm6xCmy/glA1Hk2D1aa0=;
-        b=LutKtDuFG/wyF1I4frOoKkXGIzgzazwEEa+ZBte8sjHoPp7rajPlqxgHODAtojqspc
-         q3KHJynkly5TOs3SyEryIS0KNI2WKvSX4JuP9YP/FQwj3znZk7s6s2oSDEpUDBbnhzhS
-         Y/ydAaRHpn9yy8LckFcOdnwM6W5fGz7y1L+IvU7yVCUYaV4L8zDnrRoYDw9jV/nAZEnL
-         WUg5Cd0WBjmHzmf+8R8KuutBzytFR6D6a4xFYFzZTUGuPoftuQyyy2WO+khCmOXxaQsY
-         1CtniD8QTZrj57ya6VbvRQiJcX4G2aUaHM4hzFrY2dAMlNi3dhRrcw9S0OP8hUWqHkdA
-         gjRg==
-X-Gm-Message-State: AAQBX9cQ85YDBxyjZ1brYKmr+CthrYXmCy7vliUVKdg6q4cpQgt8D6t9
-        niLn4sqEuxwwTrWBSqd+k3eCWw==
-X-Google-Smtp-Source: AKy350Z6X6wonQ9ndSEeOqk1V1vulMt/+C2VlT2zTtfQjqb1wDbl0iUZQJtUmkPOwDAPJiXlYGDAKA==
-X-Received: by 2002:a17:906:1281:b0:947:405a:955f with SMTP id k1-20020a170906128100b00947405a955fmr1842422ejb.31.1680606197540;
-        Tue, 04 Apr 2023 04:03:17 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:99ed:4575:6001:8bda? ([2a02:810d:15c0:828:99ed:4575:6001:8bda])
-        by smtp.gmail.com with ESMTPSA id c10-20020a170906d18a00b00923f05b2931sm5796213ejz.118.2023.04.04.04.03.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 04:03:17 -0700 (PDT)
-Message-ID: <5f8692af-700a-a47f-d81c-fe9c905958e1@linaro.org>
-Date:   Tue, 4 Apr 2023 13:03:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 2/6] dt-bindings: ufs: qcom: Add ICE phandle
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20210112; t=1680606238;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fna98BOXaPalQtbny6015p5IIFjUBKyffzvMmpdaxto=;
+        b=BE3KgWxifTHo6WiBxsT4lDcM4EFSyRTVYwLaeapoMYkwRYvXwQ4uU8yNouiOg1dAW0
+         z3T58pHfNITGr6sfalWBPl0dgnPaA1e7tjgSepAgFYDTzrIOmCWtWPahq5LpyTmNtiXz
+         s/Yw0cmpuvIn6uvfhxvIus1TrjCdUQJzWTgZ8ADt32zD5BtNTA+HqcC630jW3cm/BiXU
+         U9b30Z/4lgCPC8xVBP3RDpufy8TVKeLUxq5d1vI2s5JrU7N86xzL9Qays7QZPf/KuTAd
+         B8zNYMdzyVihu5YlqNk0tzT3jEOq6VDFLPaPBisDMo2EQHykVRZG0Emx+a0WHruwUM/Y
+         4wJQ==
+X-Gm-Message-State: AAQBX9cz1VnR8WWSXtNJ28s2pce3NgR52oA66YFwpFGcCj67Mf+cgTvb
+        dYzYxyQXISNZI2zUMV7R7KCycu5DAbI=
+X-Google-Smtp-Source: AKy350ao5TOqOSsKpv54TlBSUzVQIMTj7FyQSMApYVFUiEeRb5OUW3rOmEFeTU/uxFEmQq7VeSOCnQ==
+X-Received: by 2002:a05:6402:1a2c:b0:4fd:2b04:6e8b with SMTP id be12-20020a0564021a2c00b004fd2b046e8bmr2222804edb.29.1680606238642;
+        Tue, 04 Apr 2023 04:03:58 -0700 (PDT)
+Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ee55-20020a056402293700b004aef147add6sm5668875edb.47.2023.04.04.04.03.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Apr 2023 04:03:58 -0700 (PDT)
+Date:   Tue, 4 Apr 2023 13:03:56 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Biggers <ebiggers@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-References: <20230403200530.2103099-1-abel.vesa@linaro.org>
- <20230403200530.2103099-3-abel.vesa@linaro.org>
- <9fc90c8b-9234-84fa-7dab-fee9de2b9813@linaro.org>
- <ZCvm3fzSh8owVDdc@linaro.org>
- <c816d432-26b8-2655-adf1-4b72b8645215@linaro.org>
- <ZCv+9WjlkA4n9Dwg@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZCv+9WjlkA4n9Dwg@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: tegra: Document Jetson Orin Nano
+Message-ID: <ZCwEHNeZEhvzclX6@orome>
+References: <20230331163159.17145-1-thierry.reding@gmail.com>
+ <20230331163159.17145-2-thierry.reding@gmail.com>
+ <944bc557-7090-4b5a-e1bc-31b99fad06e5@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tIuhWl8EGbu/wjct"
+Content-Disposition: inline
+In-Reply-To: <944bc557-7090-4b5a-e1bc-31b99fad06e5@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -97,31 +77,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 12:41, Abel Vesa wrote:
->>>>
->>>> Also, this does not solve my previous question still.
->>>
->>> Well, the clocks are not added for the a few platforms (which include
->>> SM8550). Same for 'ice' reg range.. So the only thing left is to
->>> enforce the qcom,ice property availability only for SM8550. I believe
->>> it solves the mutual exclusiveness of the "ice" reg range along with the
->>> clocks versus the qcom,ice property, by enforcing at compatible level.
->>
->> Ah, I think I understand. That would work except I don't understand why
->> enforcing qcom,qce only for specific, new SoCs. Assuming it is a correct
->> hardware representation, we want it for everyone, don't we?
-> 
-> Yes, but they will be added to the subschema (qcom,ice one) when their
-> their ICE support (ICE DT) will be added. This way, we keep the bindings
-> check without failures (for now).
 
-I understand that then you will rework this if:then case, so I think it
-is just easier to make it correct from the first place. If there is
-qcom,qce, then reg is maxItems:1. Otherwise - maxItems can be 2. You
-achieve the same result, all DTS validate, without any need of further
-changes later.
+--tIuhWl8EGbu/wjct
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Mar 31, 2023 at 10:20:16PM +0200, Krzysztof Kozlowski wrote:
+> On 31/03/2023 18:31, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > The Jetson Orin Nano is the little sibling of the Jetson Orin NX.
+> > Document the corresponding compatible strings for these devices.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/tegra.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documen=
+tation/devicetree/bindings/arm/tegra.yaml
+> > index 61e638c9cad7..60c151da5e06 100644
+> > --- a/Documentation/devicetree/bindings/arm/tegra.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+> > @@ -220,6 +220,13 @@ properties:
+> >                - nvidia,p3767-0001
+> >                - nvidia,p3767-0002
+> >            - const: nvidia,tegra234
+> > +      - description: Jetson Orin Nano
+> > +        items:
+> > +          - enum:
+> > +              - nvidia,p3767-0003
+> > +              - nvidia,p3767-0004
+> > +              - nvidia,p3767-0005
+>=20
+> Similar questions as for patch #1. Where are the DTSes? Where are the
+> differences? If we keep documenting every SKU which is the same from
+> user/OS perspective, this list would grow crazy.
 
-Best regards,
-Krzysztof
+As for the concern of this list growing crazy: as far as I know it's
+complete after this. I'm not aware of any other SKUs being planned for
+the future. Obviously that could always change, but again, I think there
+is some advantage in being as complete as possible when documenting
+these, otherwise someone will eventually come across a SKU that's not
+documented and be easily confused.
 
+Thierry
+
+--tIuhWl8EGbu/wjct
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQsBBwACgkQ3SOs138+
+s6EbZg/9FD4w/ntB8fSVDEIKKyhtSt8sgxLcjuz1KK2ZrwKvevU7LgqmuAAJ29yT
+QyTehky+UMhGdCcWied+DhtwTNtt3kfosYStr0HFKZOFv0Cm1wBpgMz7PytjkA5U
+QmoOvhILWsm152Z8PqNK999nJktGDmJRCTFh99yvyLrCXG5XG/HKyfsJDg++GP6w
+btMJUHKCVsyd399gyMElvlUcjRK+DvN7lQpkjTQm3ebldt6KMB2WdTYLsTc8J2SR
+qfwxfGo7dA+F74vxOs6iqq6hw0wRSpzLSh0fAxRPs//8PwR512jwhr5GFsoxi4wJ
+RLQSIW8OkvFv0o2uCI7UNUXv3/HbcxMs74XCRaU5hFkad1x6kr436QW+qnhT9pLq
+ShVuoxsoPfo0orl91eK6/8LusWv/OrIoovq2UAJ/MwSnpcwQLcWi278G4ailoP6N
+3QlBkKP5mc/TrIU0LTR0he3jSOzJD2M4YviecE8DqLT74XBHDRWo8eEiUNAyyI0w
+5eGOvLKIT+JGMzxlVwkue1LXBvuGiI+Lo2apqXZdaTK+NyNCfMZuIiHnzYEsU7Fn
+EDz7Y6Lw5mW8MbKcrz6oS9bkNitwRG4aE5YgodVGp3d4NMk5r+Fpm4dLkEhJ8jdV
+U8OJJz79YxJl3sIau099EENakAcZUvpy8tKUqep/5r6vb7dDDn4=
+=Lukh
+-----END PGP SIGNATURE-----
+
+--tIuhWl8EGbu/wjct--
