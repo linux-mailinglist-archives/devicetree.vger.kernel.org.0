@@ -2,158 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC426D5E7F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D4B6D5E96
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234263AbjDDLCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58582 "EHLO
+        id S234930AbjDDLGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:06:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234129AbjDDLCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:02:25 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2759F420E;
-        Tue,  4 Apr 2023 04:00:05 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id eg48so128760031edb.13;
-        Tue, 04 Apr 2023 04:00:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680605958;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MrKXR35KoHtvUamIb+vHWJmo5x1AYYK0s5Uldd+sEzw=;
-        b=owPklgPZyLNELt55pjGvMeD1gDnqv/wx+ry7Te4RKyrUkJZhClfsiTFkw7i40Zt4fH
-         lbPUl8AkFMlVhYiTzY/OYRunrw4dl7VJGFzY/37HDseaIUnJ0S2BWfbHXRtRagfnV80C
-         GjBbFntScvpQ8I61l0PL2IJ9D2FZ9RKVPSA6uXOsRn/Nd8Tnga6c/pndAEoNSLGqyB/3
-         aRZXC6QICaXhXAajDgfHOZuEXMWrSls+ty4YN4lgmcIj6VNhbd1L1sNJ1JlrG4os274L
-         tmFlue+N9YKjg9epOkDyV+yH7PnUaULUOFgrHRw+WDstY6eqV/nRqUogAvsfmh7zBY7P
-         FKrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680605958;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MrKXR35KoHtvUamIb+vHWJmo5x1AYYK0s5Uldd+sEzw=;
-        b=fBehkvHB4Uj2f4bGkS9v+0Pvc3c6EWOYklXuibIyFhwNT1ELGb9Nh6mJrL/3ZJE24r
-         VCO3X6pk3g95Hxwv/UD7fh4wJcS4AgB3fm83wsaWNarmNhuifj506TV/QLJsEmnoewRE
-         CsFvpYqO7wAhOfeaHWli7d4Fs7H6qe/BvafbUQZKhVJQFQHr/rbIIVmYXasZjIy4Rl6s
-         /adyjp4ro1uhTdscCEn294xo73jkas+v+VQDWQThSTMT6QDESugH6jf8358rnku6YGBY
-         ddhSdyCrar+jQd/6MogNAIdyqYvGH9rNvPd4e6tko8mcvFRs1dTdmBylCHmZVzbWSVt7
-         TplA==
-X-Gm-Message-State: AAQBX9egmQAuOHcUkCVTXp6gdx9PQvqPpv3QOzwkW8Dl4SsrTmiqi97l
-        PxnCVpghJAkDgKCanOMl46A=
-X-Google-Smtp-Source: AKy350ba0gP0wHdbIZiFObFy3sXVGj4Jd8tB0wjRrqmFDiyTT5oAb30/doJAIvSJt4W1wm23Nz62aA==
-X-Received: by 2002:a17:906:6a05:b0:937:9a24:370b with SMTP id qw5-20020a1709066a0500b009379a24370bmr2042773ejc.67.1680605958083;
-        Tue, 04 Apr 2023 03:59:18 -0700 (PDT)
-Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id gh5-20020a170906e08500b009475bf82935sm5781228ejb.31.2023.04.04.03.59.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 03:59:17 -0700 (PDT)
-Date:   Tue, 4 Apr 2023 12:59:16 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: tegra: Document Jetson Orin Nano
-Message-ID: <ZCwDBO6317rGsAD4@orome>
-References: <20230331163159.17145-1-thierry.reding@gmail.com>
- <20230331163159.17145-2-thierry.reding@gmail.com>
- <944bc557-7090-4b5a-e1bc-31b99fad06e5@linaro.org>
+        with ESMTP id S234800AbjDDLF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:05:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D3B735A5;
+        Tue,  4 Apr 2023 04:03:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 03A6563210;
+        Tue,  4 Apr 2023 11:03:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504B2C433EF;
+        Tue,  4 Apr 2023 11:03:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680606192;
+        bh=aJ+ukukh1/o+Hvdqjwyk7hNPpvFV5NVh+CzU1Ihgp6M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=fEn2D/bNRNRPumV4inV0NckbLrNKhZkGg6gSrCIc5i1J1jpI7vpE+MjAF+UL1+f2w
+         vkAG+ToDGyTXS6K20v/5FqON1ToY881e++SawtsQFjKtE7gecfaTFGuI+1XPgS20wy
+         KskGloRvCRRML+BPTEqMEaoKGBVacttxBnbyXOoPdhgvZCWUScNc6h4bf3fjiRGR/g
+         mNDQ2IN0ZI7Fgad2HUsl+2WUPSs3Bc1Q7bqR5zVL1wbjCpoB39toL61/MLG9UgzBk/
+         G0SSqI8VZTVnJPu/YnOFYl9kty+nC6wfXRhjAqDRMf9GeG7eMeq0S6dNmKjwhWeGM2
+         DVW8VrFiZR+yA==
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pjeRR-005atW-MV;
+        Tue, 04 Apr 2023 12:03:09 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="v/qc/BTVE1zVuUpT"
-Content-Disposition: inline
-In-Reply-To: <944bc557-7090-4b5a-e1bc-31b99fad06e5@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Date:   Tue, 04 Apr 2023 12:03:09 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, shawnguo@kernel.org, arnd@arndb.de,
+        marcel.ziswiler@toradex.com, dmitry.baryshkov@linaro.org,
+        geert+renesas@glider.be, rafal@milecki.pl, nfraprado@collabora.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, quic_srichara@quicinc.com,
+        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
+Subject: Re: [PATCH V11 3/4] arm64: dts: qcom: Add support for ipq9574 SoC and
+ RDP433 variant
+In-Reply-To: <20230404101622.5394-4-quic_devipriy@quicinc.com>
+References: <20230404101622.5394-1-quic_devipriy@quicinc.com>
+ <20230404101622.5394-4-quic_devipriy@quicinc.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <d410c51ee4beeb4dfee80e13d54d598b@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: quic_devipriy@quicinc.com, agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de, shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com, dmitry.baryshkov@linaro.org, geert+renesas@glider.be, rafal@milecki.pl, nfraprado@collabora.com, broonie@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, quic_srichara@quicinc.com, quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com, quic_anusha@quicinc.com, quic_poovendh@quicinc.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023-04-04 11:16, Devi Priya wrote:
+> Add initial device tree support for Qualcomm IPQ9574 SoC and
+> Reference Design Platform(RDP) 433 which is based on IPQ9574
+> family of SoCs
+> 
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Co-developed-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  Changes in V11:
+> 	- Dropped the unused backup clock source bias_pll_ubi_nc_clk
+> 
+>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts |  84 +++++++
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 263 ++++++++++++++++++++
+>  3 files changed, 348 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> 
 
---v/qc/BTVE1zVuUpT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-On Fri, Mar 31, 2023 at 10:20:16PM +0200, Krzysztof Kozlowski wrote:
-> On 31/03/2023 18:31, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > The Jetson Orin Nano is the little sibling of the Jetson Orin NX.
-> > Document the corresponding compatible strings for these devices.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/tegra.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documen=
-tation/devicetree/bindings/arm/tegra.yaml
-> > index 61e638c9cad7..60c151da5e06 100644
-> > --- a/Documentation/devicetree/bindings/arm/tegra.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-> > @@ -220,6 +220,13 @@ properties:
-> >                - nvidia,p3767-0001
-> >                - nvidia,p3767-0002
-> >            - const: nvidia,tegra234
-> > +      - description: Jetson Orin Nano
-> > +        items:
-> > +          - enum:
-> > +              - nvidia,p3767-0003
-> > +              - nvidia,p3767-0004
-> > +              - nvidia,p3767-0005
->=20
-> Similar questions as for patch #1. Where are the DTSes? Where are the
-> differences? If we keep documenting every SKU which is the same from
-> user/OS perspective, this list would grow crazy.
+> +		intc: interrupt-controller@b000000 {
+> +			compatible = "qcom,msm-qgic2";
+> +			reg = <0x0b000000 0x1000>,  /* GICD */
+> +			      <0x0b002000 0x1000>,  /* GICC */
 
-Most of the differences will be user-noticeable, even if they can be
-runtime detected. Besides the mentioned differences in DRAM size, things
-like the number of CPUs, GPU compute units or video encoders/decoders
-can vary depending on the SKU. While the OS should certainly be able to
-abstract all of that away as best as possible, on user may still end up
-with SKU 3 and another with SKU 5 and it's important for people to know
-what they have.
+This is definitely wrong. The GICC region cannot be less than
+8kB, as the GICC_DIR register is in the second 4kB region.
 
-So I think we have to find a way to both keep things simple from a DTS
-point of view (as I said, we should be able to make do with one DTS file
-for the Jetson Orin NX and one for the Jetson Orin Nano with UEFI taking
-care of fixing up the DTS per SKU), and not lying to users. If users get
-a SKU 3, then that's what we should report instead of 3 (or whatever
-ends up being the SKU that we use in the DTS).
+I'm pretty sure the kernel shouts at you when booting at EL2.
 
-So I want to be as complete as possible in documenting these so that
-when people go look for the part numbers, they can at least find some
-reference to them.
+> +			      <0x0b001000 0x1000>,  /* GICH */
+> +			      <0x0b004000 0x1000>;  /* GICV */
 
-Thierry
+Same thing here.
 
---v/qc/BTVE1zVuUpT
-Content-Type: application/pgp-signature; name="signature.asc"
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 
------BEGIN PGP SIGNATURE-----
+Missing target CPU encoding.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQsAwEACgkQ3SOs138+
-s6FgwhAAgom4wUL8V3MN6bhA7hBabbB7psKgeqcnxRi5vphiSFZlXQUyBzfTd2sv
-jcida4FO3BA92UYBHI/4UNCdJ4W1kCg7+0lSl+YsxNxQPlBUPcBX0T6BcCbpihFP
-oY7hsNteonwM2yGFSEoV20kFH36AVXf4YdXuTlD3S4C/a/WPxYFFrL6egywGXMy0
-Yf4jDhNxrmRo8mNh5f+1TJ4shpxeRdBFkDzf3oREsR1LgY/y5Q7TT6+Bks6p7PET
-1cxo2JCXC5uPze+afb6chHVES0tgjcexQ6kQuDkpncFp1yoHgLFBjokOWPsuupyT
-FmvHLK7/hcBeI/cweyyjdFpSfFHEBTjZX75P4oJ3O7fUpulMC8qqC+p+2WWwrnm1
-sBUD/N2FV0E5IShC3mCE4f+Ua+AK+BS6Xjcsopb4RRniTbR1yAjXSxTYUcneuUyO
-HMJm1/EMIvh0x00gl5oEwHjv4gL6fhuUPrLdLwfF1B04BirvHWI6dOG1zOhdO0BZ
-VMb8wAyUhwDbYt5YvVwIlNkw3aKwHUt2IseU0Kvt9q2wTN6NEjAEmVVf9P7YF+SE
-plsg4VlSUVDvEN4Ic6nThpuaqLIV0GNKZHiyvYSobviQ/g0hsKVCNJVT9CxYm4In
-p4BnlW5hQuvQKjIy5WxjQNnJYMonMKE4EAGXF/ymacr8Q+ots7U=
-=CDdq
------END PGP SIGNATURE-----
-
---v/qc/BTVE1zVuUpT--
+         M.
+-- 
+Jazz is not dead. It just smells funny...
