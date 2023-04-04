@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98B486D5846
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 816556D584C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 07:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233413AbjDDF4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 01:56:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46754 "EHLO
+        id S233499AbjDDF7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 01:59:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232954AbjDDF4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:56:12 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C202130
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 22:56:11 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id eg48so125875255edb.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 22:56:11 -0700 (PDT)
+        with ESMTP id S231643AbjDDF7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 01:59:20 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F111997
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 22:59:19 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id r11so126040048edd.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 22:59:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680587769;
+        d=linaro.org; s=google; t=1680587958;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CUSbmYm7Thlr3qErxfg3DCYXeLDBbkSf11BtgUpbVOM=;
-        b=LNJXNHOPy4HsV+T7i9vasHRj8Fv5vXgaaP1UpTVCNWDx/hrJYwWD6Zs96kauiMVsu2
-         Re5oNhazexcjC1tiS3YAuon8Hux3eDfEAaYPCTjAd00UkZRE7d4MBD+b07B4L38BwuWR
-         acUr1N1Ut+sl1w0Mrk4jx5R8UQn520Jp5/YeLCKpsxs3b4EwvKmbffXnV567hJbkmQJ2
-         89D2vvssyizB2l6UtYLFAo2PuVu72jF5CSYdRpWr5DzpvDT8KvpmzTNOhrRykeXonkZr
-         gALm1+9yKWw+UY1Drb0hub3X2NVjWE8wCXy5DwMr4xrRagdJVPBE7WQzTn1JFImj3I5a
-         3S4Q==
+        bh=wiB8f+utJ+hMeKGr19vY1AW8IT5CgpavMZTAW8CfDo8=;
+        b=LWTekgtcYnpbuZIaVWv1QyVwvaglD4P2iektNFDuOxM5mrqAwrYKqA+BPIgSOL03eM
+         SJda9KY/tHhzaDB4EwFImm4vXfvNYQWn4mMr8cQEZjXqERYdQOIQ+3XbuDwYSGUKwCNN
+         g8N2JQqo9jifsK6G0Z9PzIiK3DQ9befm5eahQAy7aN0eTE7nUKi7uNsZQuBmFkQPk4ja
+         Jk5iTVHpSMRuL1MguJDv8JXqKEEWLODwyO7q8QnBIUv0UfjR9FqasZRjaJlH8FpOnQ3g
+         R9ftdW5MfW9tW+xFvgbRgOcGaUejyOYeYeFeIGxBnSTaXdjCisMIdE6visvyWyWn4o5v
+         b5sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680587769;
+        d=1e100.net; s=20210112; t=1680587958;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CUSbmYm7Thlr3qErxfg3DCYXeLDBbkSf11BtgUpbVOM=;
-        b=YL21sb3hs+VjDm27imIraBJts9u2aOB/u638q/XLRM+BZCmREslaFk2JghWKUFLQiB
-         M1xelRLJSIwUEG9bkTs1yFXpJOYdNlPx6C52GiSfFkF+AhGmoadYngAcrhF+c9n3jdC5
-         G2loAKICJzc/oT3T6qd0vFWj08oWQ5WM3GPe6eyLjivJVlQPNt8n8YZc/voRON5KVq1p
-         KMwHYfnRNY25TaQKrLX7tgPZXJfKNdkS3Sb5z2Nv0rV/qbIVSgxCJJutvRc6gOVrgZRQ
-         CL77lh4Ic/AosfdJtad/KAY/QqkzjQpVf0DStgtEt7ebvdt81B5zJujRsLGRniTvGu8h
-         8HMQ==
-X-Gm-Message-State: AAQBX9eL+7uX4ChByklgEhqLIGHnuv6sNThNMrzkBqx4pFtvSzfBQvEp
-        ZqRpeqzBHOXFzSwquraYay4i0g==
-X-Google-Smtp-Source: AKy350arsykze/fNQjW+jfzLcLr0fVb7LmmgY683Vvilgy+sGdx4O98hikKaI1+dtBJT8xJLxeuoOQ==
-X-Received: by 2002:a17:906:b741:b0:932:cfbc:7613 with SMTP id fx1-20020a170906b74100b00932cfbc7613mr938443ejb.24.1680587769597;
-        Mon, 03 Apr 2023 22:56:09 -0700 (PDT)
+        bh=wiB8f+utJ+hMeKGr19vY1AW8IT5CgpavMZTAW8CfDo8=;
+        b=COXhEHhhkabaTrq++oJr90cNE2fSgWKgwdSDFDlB9eFQC+h96MQrh1oRIuB34Vm2cU
+         fHmaIErOoJXh667nB67upXFMc2UaEZSXxFYCiwyhXGMC1m1TR3Uan4hcvql1sKYlLCg8
+         Q2dAabg+d3FXRF3wPaOxLAKsDeY3fUkwMu56M/n/GwVA+35MKgMaRNpg5hLZFulsvXqK
+         GpU2/WDBJyX9AyOxD2qVDFtU9vI/qyFxXNhAOd2SQssvuC4TKW6nRTERwpKN0Wjc3voW
+         F67TLIyBrNHX9Be95Rh0X4pZPCmYtAOagHenkH6FoI/lUVYrx1CClU9XLE7/skclh+9I
+         Hh3A==
+X-Gm-Message-State: AAQBX9cSmPqoIfCRf+Jqd+IMFbPeXmpJ60pzrQB/XuQZodvsdRCEkLXg
+        Y+FJzv9YxS+AYK2/ZKD5BFnK/Q==
+X-Google-Smtp-Source: AKy350Zjo5JyIPdPVntAKk8hSDAAoeHUNUAJjySaQFV09xKFNyvBWdycJ19uxRDC8bj0CbRgMxB3QA==
+X-Received: by 2002:a17:907:33cf:b0:93e:9fb9:183b with SMTP id zk15-20020a17090733cf00b0093e9fb9183bmr916720ejb.73.1680587957768;
+        Mon, 03 Apr 2023 22:59:17 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id y20-20020a170906519400b00930569e6910sm5560139ejk.16.2023.04.03.22.56.08
+        by smtp.gmail.com with ESMTPSA id ld10-20020a1709079c0a00b00949173bdad1sm286721ejc.213.2023.04.03.22.59.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 22:56:09 -0700 (PDT)
-Message-ID: <d36da931-28e4-8793-2f0a-8044b59ad236@linaro.org>
-Date:   Tue, 4 Apr 2023 07:56:08 +0200
+        Mon, 03 Apr 2023 22:59:17 -0700 (PDT)
+Message-ID: <9dc60868-b3f2-e30f-f4fe-d2fbd551d948@linaro.org>
+Date:   Tue, 4 Apr 2023 07:59:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] watchdog: dt-bindings: atmel-at91rm9200-wdt convert to
- json-schema
+Subject: Re: [PATCH V2] dt-bindings: input: pwm-beeper: convert to dt schema
 Content-Language: en-US
-To:     Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230404054642.5691-1-otabeknazrullaev1998@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20230403090640.3237060-1-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230404054642.5691-1-otabeknazrullaev1998@gmail.com>
+In-Reply-To: <20230403090640.3237060-1-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,20 +76,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 07:46, Otabek Nazrullaev wrote:
-> Convert atmel AT91RM9200 system timer watchdog from text bindings
-> to YAML format
+On 03/04/2023 11:06, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Convert the binding doc to dt schema, and also fixed the
+> example from fixed-regulator to regulator-fixed.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+> 
+> V2:
+>  License update
+>  Don't need to show providers
+>  Make example complete
+>  Decrease beeper hz
 
+Why?
 
-...
+>  Misc update
+> 
+>  .../devicetree/bindings/input/pwm-beeper.txt  | 24 -----------
+>  .../devicetree/bindings/input/pwm-beeper.yaml | 42 +++++++++++++++++++
+>  2 files changed, 42 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.txt b/Documentation/devicetree/bindings/input/pwm-beeper.txt
+> deleted file mode 100644
+> index 8fc0e48c20db..000000000000
+> --- a/Documentation/devicetree/bindings/input/pwm-beeper.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -* PWM beeper device tree bindings
+> -
+> -Registers a PWM device as beeper.
+> -
+> -Required properties:
+> -- compatible: should be "pwm-beeper"
+> -- pwms: phandle to the physical PWM device
+> -
+> -Optional properties:
+> -- amp-supply: phandle to a regulator that acts as an amplifier for the beeper
+> -- beeper-hz:  bell frequency in Hz
+> -
+> -Example:
+> -
+> -beeper_amp: amplifier {
+> -	compatible = "fixed-regulator";
+> -	gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -beeper {
+> -	compatible = "pwm-beeper";
+> -	pwms = <&pwm0>;
+> -	amp-supply = <&beeper_amp>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> new file mode 100644
+> index 000000000000..a3797f338f46
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/pwm-beeper.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PWM beeper
+> +
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: pwm-beeper
+> +
+> +  pwms:
+> +    description: Phandle to the physical PWM device
+
+Drop description.
+
+> +    maxItems: 1
+> +
+> +  amp-supply:
+> +    description: Phandle to a regulator that acts as an amplifier for the beeper
+
+Drop "Phandle to a regulator that acts as "
 
 > +
-> +examples:
-> +  - |
-> +    watchdog@fffffd00 {
+> +  beeper-hz:
+> +    description: bell frequency in Hz
+> +    minimum: 1
+> +    maximum: 4
 
-Drop unit address. Test your patches before sending, you should see
-clearly warning.
+default is 1000, so how constraints can be lower than default? Also -
+missing default.
 
 Best regards,
 Krzysztof
