@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4AD46D5EF2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975006D5EFF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 13:31:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234212AbjDDL2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 07:28:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58234 "EHLO
+        id S234430AbjDDLbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 07:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjDDL2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:28:39 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE391FD3
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 04:28:37 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pjepm-00043P-Ln; Tue, 04 Apr 2023 13:28:18 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 42D791A6300;
-        Tue,  4 Apr 2023 11:28:13 +0000 (UTC)
-Date:   Tue, 4 Apr 2023 13:28:12 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        Rob Herring <robh@kernel.org>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        michael@amarulasolutions.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [PATCH v10 0/5] can: bxcan: add support for ST bxCAN controller
-Message-ID: <20230404-postage-handprint-efdb77646082@pengutronix.de>
-References: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com>
- <20230328084710.jnrwvydewx3atxti@pengutronix.de>
- <CABGWkvq0gOMw2J9GpLS=w+qg-3xhAst6KN9kvCuZnV9bSBJ3CA@mail.gmail.com>
+        with ESMTP id S229730AbjDDLbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 07:31:11 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E6A26B3
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 04:31:08 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id y4so129276519edo.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 04:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brixit-nl.20210112.gappssmtp.com; s=20210112; t=1680607866;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=isvzfUusXevjlX/m8HLoBojzsla6kKnE2+y1gA32U+s=;
+        b=RWalar01Xmr+HObS0EXf9V6RV3OgW+IwyVxygsMcCo0hEWnEaxZD/UJOsmWuWmUHi0
+         FB7xnIlwANfXSwnSi5UePDNhcKITLcpOODnT2sPNgQezdpq33Qqu2prAABabsMZphQpd
+         wCWU6O1lVr0MPD+ocgVWEES0TxXa2wuCNrr3JdXBoTpaN0YihUYrOH3I6dWZiHwF0AfK
+         kZBvEh8dDHV6zv0kGoLx4KMsEDFxwYX4+WhFDoz//KNk8EStR9Tz0IF497BCO/bRG29c
+         iMUtLEFIjqjmSWuoklQxR6OrvxlyarN8st28ZGH4N8toDscXIURpqu2YKP2e3pASDpvw
+         j4yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680607866;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=isvzfUusXevjlX/m8HLoBojzsla6kKnE2+y1gA32U+s=;
+        b=Z7JtbiQ0QE29di6H/UzcJFVD/wN06gj3le9K+EZBOBuBMUSlu2Fg9J8DHezrbNefmG
+         zNBACE15dH7J0NZvp9KAteqICyAFQiECplOBA9nsmizU/VgELdGCQv8kXpPw5TeL+nMK
+         YQxrch6r3aO3rxmABc4CZk1P1gTwPiwxL4scs1IufvMHRaQ66cxJCEgumpyKzxeDu8o6
+         s3uxnRnEE5smRU3wcF93JF7OV/65OGD4l+H26dNmN8k/BL5Pi6soQJWElsgSKCkG8Rg/
+         Gi788ABZ1S6lPxB47sCQm7hIshFAnTM9plgZDj7saAFwuvvhCjMfKEqPxbv21MaPg09D
+         3XtA==
+X-Gm-Message-State: AAQBX9f8r6gRgyk5kjAdrqC5jS2ep6iNRa/V+Ejh6nJ4iN7gfGw3ZFtI
+        cUSKjOJEurwN4rGWbmdGfeAzRw==
+X-Google-Smtp-Source: AKy350a0zQtZph/zn4aeueNw/Sjo9JuX+ChnqUn8cHiLEoru4plLeDblm/ZGedDP2DOoN1iQnLaSYQ==
+X-Received: by 2002:a17:907:d94:b0:933:4dc8:972d with SMTP id go20-20020a1709070d9400b009334dc8972dmr2039657ejc.20.1680607866502;
+        Tue, 04 Apr 2023 04:31:06 -0700 (PDT)
+Received: from ?IPV6:2a00:bba0:120c:9f02:16cc:d78a:1492:84b3? (2a00-bba0-120c-9f02-16cc-d78a-1492-84b3.static6.cust.trined.nl. [2a00:bba0:120c:9f02:16cc:d78a:1492:84b3])
+        by smtp.gmail.com with ESMTPSA id dv23-20020a170906b81700b008f89953b761sm5848931ejb.3.2023.04.04.04.31.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 04:31:06 -0700 (PDT)
+Message-ID: <52d83a29-0f16-cd4c-9810-7c6bd497fe85@brixit.nl>
+Date:   Tue, 4 Apr 2023 13:31:05 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vrolgxtwhc7crda5"
-Content-Disposition: inline
-In-Reply-To: <CABGWkvq0gOMw2J9GpLS=w+qg-3xhAst6KN9kvCuZnV9bSBJ3CA@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
+ Pinephone Pro to 1.5 MB
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        linux-kernel@vger.kernel.org,
+        Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <20230403175937.2842085-1-javierm@redhat.com>
+ <3738011.44csPzL39Z@diego>
+Content-Language: en-US
+From:   Martijn Braam <martijn@brixit.nl>
+In-Reply-To: <3738011.44csPzL39Z@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,60 +84,68 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---vrolgxtwhc7crda5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 4/4/23 09:51, Heiko Stübner wrote:
+> Hi,
+>
+> Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
+>> This baud rate is set for the device by mainline u-boot and is also what
+>> is set in the Pinebook Pro Device Tree, which is a device similar to the
+>> PinePhone Pro but with a different form factor.
+>>
+>> Otherwise, the baud rate of the firmware and Linux don't match by default
+>> and a 'console=ttyS2,1500000n8' kernel command line parameter is required
+>> to have proper output for both.
+> The interesting question is always if this will break someone else's setup.
+> I've never really understood the strange setting of 1.5MBps, but on the
+> other hand it _is_ a reality on most boards.
 
-On 28.03.2023 11:28:59, Dario Binacchi wrote:
-> > Applied to linux-can-next.
->=20
-> Just one last question: To test this series, as described in the cover
-> letter, I could not use the iproute2 package since the microcontroller
-> is without MMU. I then extended busybox for the ip link command. I
-> actually also added the rtnl-link-can.c application to the libmnl
-> library. So now I find myself with two applications that have been
-> useful to me for this type of use case.
->=20
-> Did I do useless work because I could use other tools?
+It breaks my device test setup at least. The extra speed isn't worth the 
+hassle
+of having a few devices at weird baudrates and the bootloader already
+starts outputting debug logs at 115200 baud.
 
-systemd-networkd also supports CAN configuration, but I this will
-probably not work on no-MMU systemd, too.
-
-Then there is:
-
-| https://git.pengutronix.de/cgit/tools/canutils
-| https://git.pengutronix.de/cgit/tools/libsocketcan
-
-that contains canconfig, but it lacks CAN-FD support.
-
-> If instead the tools for this use case are missing, what do you think
-> is better to do? Submit to their respective repos or add this
-> functionality to another project that I haven't considered ?
-
-Yes, go ahead and upstream your changes!
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---vrolgxtwhc7crda5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQsCckACgkQvlAcSiqK
-BOiwvQf/bknW5120duEvKB4vzq6g1FE4pHri1PUIfK32NY2ZntW/rs/zYYH5KMTC
-A3DRsT4CsHVSXNDvW7JNgHJIxIZ8kFQGiAIfOv/a7OOYXZocvfBMW9yxgRqDlese
-N9BqaRggCBDhP829laPpXYntgW6k8lTMpWI7C6ANyis9tbKJ68Ut0d7bZ4eiYGme
-+R4neMSudT1l+tzSobkBpDrXloivl9uXhme25xmFTtQeokwCaXSZ7CFDpNcTV2zw
-3wq4YYs3fnoxUbIauVk4mDGyoJTB0ZzDee5Kp8+ucH1+eukInkeHk37RerOpc4Wv
-Gl61KK/5ijUZNnIHiOJIS9C8Sv6kSQ==
-=L7qt
------END PGP SIGNATURE-----
-
---vrolgxtwhc7crda5--
+>
+> Personally I don't care that much either way, but would like a comment
+> from the other people working on that device - if possible.
+>
+> I guess if we don't hear anything, I'll apply it nevertheless at some point
+>
+>
+> Heiko
+>
+>
+>> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+>> ---
+>>
+>> I tried to instead get rid of the baud rate altogether, as suggested by
+>> Peter Robinson. AFAIU that should just pick whatever bad rate has been
+>> using by the early console.
+>>
+>> But neither using 'stdout-path = "serial2" nor 'stdout-path = &uart2'
+>> worked for me.
+>>
+>> In both cases I didn't have any output unless setting a baud rate using
+>> the 'console='param.
+>>
+>>   arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> index a0795a2b1cb1..6bbe65bd5bd4 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> @@ -26,7 +26,7 @@ aliases {
+>>   	};
+>>   
+>>   	chosen {
+>> -		stdout-path = "serial2:115200n8";
+>> +		stdout-path = "serial2:1500000n8";
+>>   	};
+>>   
+>>   	gpio-keys {
+>>
+>> base-commit: 3adf89324a2b2a9dbc2c12d8895021e7e34e3346
+>>
+>
+>
+>
