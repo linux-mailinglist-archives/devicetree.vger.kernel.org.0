@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE3646D5A90
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 786E26D5A94
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:17:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234021AbjDDIQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 04:16:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53028 "EHLO
+        id S234081AbjDDIRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 04:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234118AbjDDIQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:16:30 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54D410C0
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:16:28 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id eg48so127061812edb.13
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 01:16:28 -0700 (PDT)
+        with ESMTP id S234063AbjDDIRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:17:49 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C525619B2
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:17:47 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id fi11so3692355edb.10
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 01:17:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680596187;
+        d=linaro.org; s=google; t=1680596266;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=miHUyUNmojfIItEHS1ocDVFcVyQlVzUoZy6LNzCd8iM=;
-        b=j+Z6LlwyGlurTnhoA/v00QGDlGgTS8okFCWMxdIAg8t0gKOJ0+fKDy+zcEZf6v6CO6
-         3VByImao6RBMcgTCCz/uWmeOpxSlpkqEp7PO9pn6muH3GLxkM1E9+geE3iyMXhrV/T/W
-         W+Og4jUJrBQF/zreX0bFL5713QMYfQ5ZNa01iI/3dHEVwAM0VihOw04APgFLTYdP5YeQ
-         CaVfBGGnIl3+nz8c03tWwSDwrN06YgA0FJ3DssmlZ1YCtrbdlLjfBCts0ETJ5sXqNnOA
-         3kLSUXyWEzRkKBSJ6ETyuoElvv4krzIrzbzGsU/SzUZtTe+UOVldPrOrLESsbmt6Ydrh
-         lkjQ==
+        bh=csVvkhT6MaVLbsUjZrgKGXypyh9Z79Wm9AsNuXlC+Tw=;
+        b=u5SW6/j99gN7rv7rKP8viYG+qodyH02DXjGfAhiYbslyDCRpoLBbyuH8EnWYqU4MMY
+         zbLKyHJsoGwkdihBPaqXybBE3ru8Tt9XEsl+WSBynPEJh373ISEoCVrUtvOwlRL3J9ls
+         zyh0+rLYTozYAqDK4Q17QZ527WfWBbWaZrMZJGav6fL4npEME5fZFmHRuCNcqhp1Mx0F
+         ViFlaRSVGh3y5Sk+7QseiU4WkhJw/WpWr21iwRKewnNDrRfK7xPaN3bc2qvjR6xABDxu
+         oxJQm75rlgV2RMQ2n0pAe3JziKRl5KQXZBxH7N6FpCaM7/wQy/BPTOwRNFLvaBdk2Ip/
+         e5UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680596187;
+        d=1e100.net; s=20210112; t=1680596266;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=miHUyUNmojfIItEHS1ocDVFcVyQlVzUoZy6LNzCd8iM=;
-        b=lfRJOYYPYx3umrp5cYhJ4iHi4CLXNGPji8SH4a5dPxj1y3NXxznZKeKanWiZkMP2Kk
-         PEU4bGNhvINth+B1Oxf3J+8EKgmJE4E55PWAURWAFTz+dBDgDO2RZ6paJV5yrdYKDcIj
-         S3atwc+vDBOHKydwd4KKqm/PysFNJs09jUqxXIHaZTSPKsBAAc5LkyqcGRLwIUqkiAug
-         yhRY6bKG6Bhs+dYpH1sWlEOpZ8ts0rqqdIjkbyoik+HhPMegdraGdZZudsXNfl/wMk8O
-         eTw3ZDhI18WtbW6gbZXdxE1NmLiz9qPv2sJfaTPacqUXrTmc0N3dwJglc5GvVBkUS+kF
-         +48g==
-X-Gm-Message-State: AAQBX9dTn3THsm7MCSLi0l8SnfkhiagDlq/tebOrR73GfQWWd/rxxNZh
-        yEJ/TLRJPncqYqvmefxYsIEC3w==
-X-Google-Smtp-Source: AKy350ZwDvqnyIubzzt0HCD26W8pCbMIetSIJ3v9g3Iard2u2TxiyleGqkFBQt1Tu0D3z5Wt2qEQIg==
-X-Received: by 2002:a17:906:20d7:b0:932:d2bb:4fd with SMTP id c23-20020a17090620d700b00932d2bb04fdmr1315066ejc.58.1680596187048;
-        Tue, 04 Apr 2023 01:16:27 -0700 (PDT)
+        bh=csVvkhT6MaVLbsUjZrgKGXypyh9Z79Wm9AsNuXlC+Tw=;
+        b=Z+0f4bERp/xAKOddzj68q+5c93RuAoBm5p+Yz8fQ8CNCQaRjMVFEJ/eXmd+UQrC347
+         9lCQhUghEeDxHMnB4ygWjH4g0sYAYACJsA+Gk2+Zmj6QBWay5GncTLtcGL7JB1txOVxd
+         Or7DJfbhCP9ivpBiYXxEgFz+eZLlq4TFkk2uMpKl/t344PS1LV+okmyKVs1e1cUJf60C
+         aiEEn/067jwv0bLicfu46d1Wn4dGGrjx2uiPaL8Zxbdx2ZT8C+MfGn0JbnE16zhBWZiN
+         SgbWbkM4suoStczu00ADkqAsBOm3iDcGSkoBOLT0A3ppMMviD0R6OAC6FMyva4Kv8s7m
+         B4LA==
+X-Gm-Message-State: AAQBX9c4QfTKpmFmINRc0/X+ZEJfbl1AK6+3FJEK4YWzfNDErzL70ViR
+        Zgv3gkPQ/sKzBXCr0LjOCzZ3pQ==
+X-Google-Smtp-Source: AKy350ZjdQ/ZfKRN5K6cThQ5389TacCmIKnpzI0DFmA1lMsqy03gk8/y0ABgplSsVnnGwi8NBdGkxg==
+X-Received: by 2002:a17:906:7ac9:b0:93d:b767:9fea with SMTP id k9-20020a1709067ac900b0093db7679feamr1473012ejo.31.1680596266294;
+        Tue, 04 Apr 2023 01:17:46 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id gl25-20020a170906e0d900b00929fc8d264dsm5714850ejb.17.2023.04.04.01.16.26
+        by smtp.gmail.com with ESMTPSA id t12-20020a170906608c00b0093d0867a65csm5693940ejj.175.2023.04.04.01.17.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 01:16:26 -0700 (PDT)
-Message-ID: <27076f5c-1693-75bf-2ae9-d0e232b80b02@linaro.org>
-Date:   Tue, 4 Apr 2023 10:16:25 +0200
+        Tue, 04 Apr 2023 01:17:45 -0700 (PDT)
+Message-ID: <9422ab57-8512-0177-76fa-76347626f941@linaro.org>
+Date:   Tue, 4 Apr 2023 10:17:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V5 2/6] dt-bindings: w1: Add DS2482/DS2484 I2C to 1-W
- bridges
+Subject: Re: [PATCH V2] dt-bindings: input: pwm-beeper: convert to dt schema
 Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com
-References: <20230404080243.9613-1-stefan.wahren@chargebyte.com>
- <20230404080243.9613-3-stefan.wahren@chargebyte.com>
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230403090640.3237060-1-peng.fan@oss.nxp.com>
+ <9dc60868-b3f2-e30f-f4fe-d2fbd551d948@linaro.org>
+ <DU0PR04MB9417000982CDDF5B75E309F488939@DU0PR04MB9417.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230404080243.9613-3-stefan.wahren@chargebyte.com>
+In-Reply-To: <DU0PR04MB9417000982CDDF5B75E309F488939@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,16 +83,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 10:02, Stefan Wahren wrote:
-> This adds a dedicated devicetree binding for the Maxim DS2482/DS2484
-> I2C to 1-W bridges, which can be extended later for further features
-> (e.g. sleep mode control GPIO). Since one wire is a bus, child nodes
-> needs to be allowed here.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
-> ---
+On 04/04/2023 08:44, Peng Fan wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+>>
+>>> +
+>>> +  beeper-hz:
+>>> +    description: bell frequency in Hz
+>>> +    minimum: 1
+>>> +    maximum: 4
+>>
+>> default is 1000, so how constraints can be lower than default? Also - missing
+>> default.
+> [Peng Fan] 
+> I am not sure what maximum value should be set. Previously I set 256, Rob
+> questioned it.
+
+Yep, because 256 is power of 2, so really does not look correct. It is
+still lower than default, right?
 
 Best regards,
 Krzysztof
