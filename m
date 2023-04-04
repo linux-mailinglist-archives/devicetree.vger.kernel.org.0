@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3786D586A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 08:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E416D5871
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 08:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233625AbjDDGGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 02:06:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
+        id S233652AbjDDGJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 02:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233610AbjDDGGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 02:06:38 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1661BCD
-        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 23:06:36 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id y4so126129384edo.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 23:06:36 -0700 (PDT)
+        with ESMTP id S233618AbjDDGJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 02:09:02 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FD51BCD
+        for <devicetree@vger.kernel.org>; Mon,  3 Apr 2023 23:09:00 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id eg48so125968858edb.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Apr 2023 23:09:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680588394;
+        d=linaro.org; s=google; t=1680588538;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tEKSJHqtUY3iTrghpmkFQRQ+nNVQQ5R95rmcE96rgEA=;
-        b=ZR0ADA7rJ0HKv6m1qCdnai7+qXGTAD+oYXE8DEFJwq0yUNu3fOnNrCxmG5WA2dcL7P
-         oWT2OcAdLjG4Kf+427tNKA+Gh46EHuLXmNGR9GX6h1HeALfsaJE1JiBvXwHVlMJASIiD
-         qY7sO473GIJQnbZLR03yjMwahA3E6BwqLaCyBvkVYAyf1bOvxI1Bw0t/d/3Y6kWcMPZ8
-         nlbyyPhYQ1PY8N4BuIp4QhTD9JDlnDEPlt24f83buQ14+kAcr1XAIfqwOOl0BNfYTlpA
-         yMUSOb6MZ01r4kYLSVeDb4qquWyA2kA60nVzPXCkxDqREOvjJE2Y5+fsWAz44efie/lU
-         X+Hg==
+        bh=xckjHRqAlVFqSSMovCWlCEaEkbe+U6hDZsaBMakZfUw=;
+        b=gFgwpbl0BxgP8SYTBqiWNf2YY9d3jy7QlcfGKO/CRBGqx43V6Cwypg8ziYR/58dhIR
+         1Whdkl1X7pMXJp5wm6mvVgpG02B3dEkS8nzgCnwATfmWu26uWVtSxbedfw02/3lCO/kl
+         QDah2AyLolNEgifPwqCzCArs2DnGXqFYJ1FLyxAH+57XL+y/P4GcaNyKTgCwWjY3rm5Q
+         niIbVE1ULhpI9TRCxko1lbfM+i3E1+u3uq77dzjv7/Gb4PBtPzunBBIzR1ziQ5EJQZ0/
+         c0iBSOASALb9TyjLJGdGaTloNVaV7ZRDjIh3Vs4oRYkStEBxg+vMKYCylwdWvPHkrZGD
+         XtNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680588394;
+        d=1e100.net; s=20210112; t=1680588538;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tEKSJHqtUY3iTrghpmkFQRQ+nNVQQ5R95rmcE96rgEA=;
-        b=IbhyHvuo4GvDXE1Gil9znF/OP6Q1FioX0eRBxtKGlWrkhMt4juz3F+UreckxerZgeW
-         jGe8o8r9h7wFBSlVv5GeRxd5/uo4JaP1xLGc4Qkp2Mwxt1eEz0jFAHZ3rNbitCUFyser
-         v4rg1Dr1PC66zlI8+zZMPRr1wGCJz02SBm8NUw2sSfpvA3OU16DIa6DiWqKuFWqsBUA8
-         s9VLBnJpbyywHGccB3FiWtH9zR/HO78EyFbrzq8h5QqkyzjtCc+ZRKMI4ndotAkRAOTc
-         U2b5pPFwrhjyzSCxi1I1BjFJRKcx1CHmpHGqH+qdJMMO5UysuBqL0qD/ASIecqZKmd5Q
-         Kslg==
-X-Gm-Message-State: AAQBX9e3W2E3Vua8xiRYcQpV2XUfIO6TgyT86BlZw8RGVIiAAz6Fp1D0
-        wA3PIb+5QHmfT/c1OKlHY3nr9w==
-X-Google-Smtp-Source: AKy350bE05C+aEd2NTBCMVnCtFXvWeQkCm5DZfV4X/6CexXFfWKuI5BcupDvAZp0GFRtqhh5MY2dNQ==
-X-Received: by 2002:a17:906:3448:b0:92d:44ca:1137 with SMTP id d8-20020a170906344800b0092d44ca1137mr1443971ejb.43.1680588394650;
-        Mon, 03 Apr 2023 23:06:34 -0700 (PDT)
+        bh=xckjHRqAlVFqSSMovCWlCEaEkbe+U6hDZsaBMakZfUw=;
+        b=sGx301wkpVJBf9kpXnIblZOvoETOHOEnbUBhC7xejybPQPcp/9NrkixkwaPw59Tc3L
+         /+D1LUpcy1I5vXn/5PUDM0Mxpya8uW0Shdpwz2i8uldYFJaauxsv61njOk0ASKTG+qbS
+         crso/53Mwq29HY+GhqYNSj7Tr8Y9EgOOaR5Yjn70NnzvvkuzDRNzwOiqIbqzrUtjUuop
+         uaT2Q3dt9zPmhc4p6qKtlgt8LKN9cRjtVNrZRGNUg5oGsiTZCxpYRwH0sc9KV58SLWj2
+         Ip7oTBDF0mFTGFrEeE6RtFPmSRLmXlpdoiEJBSj1U/vCuvU+dgNHpPmrKsE2n5fiRFVb
+         v+7Q==
+X-Gm-Message-State: AAQBX9ewrQiUiesgW7b3aQVfHS08BPxPYKySp4c3nCO+LVdeloBAw92r
+        c72FTXedRnJ1HS7lkHPBS/dANA==
+X-Google-Smtp-Source: AKy350YGab/IBm5Uh9cFgleOLNHy7MnDU4Xj92g56W32VU95LNOGjOX54YB+TQ+uEJGtIXVV8ljZTA==
+X-Received: by 2002:a17:907:a07b:b0:932:ba53:83ba with SMTP id ia27-20020a170907a07b00b00932ba5383bamr1380544ejc.34.1680588538620;
+        Mon, 03 Apr 2023 23:08:58 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
-        by smtp.gmail.com with ESMTPSA id hz19-20020a1709072cf300b008f767c69421sm5482106ejc.44.2023.04.03.23.06.33
+        by smtp.gmail.com with ESMTPSA id f24-20020a170906825800b008bc8ad41646sm5453187ejx.157.2023.04.03.23.08.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 23:06:34 -0700 (PDT)
-Message-ID: <e1c2605c-6976-4d3e-25c8-e71145eea518@linaro.org>
-Date:   Tue, 4 Apr 2023 08:06:33 +0200
+        Mon, 03 Apr 2023 23:08:58 -0700 (PDT)
+Message-ID: <4816461e-38b7-ba79-dd64-859fa0ee808e@linaro.org>
+Date:   Tue, 4 Apr 2023 08:08:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 3/9] arm64: dts: qcom: Add initial QCM2290, PM2250 & RB1
- device trees
+Subject: Re: [PATCH 8/9] arm64: dts: qcom: qcm2290: Add WCN3990 Wi-Fi node
 Content-Language: en-US
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -70,9 +69,9 @@ Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230403-topic-rb1_qcm-v1-0-ca849b62ba07@linaro.org>
- <20230403-topic-rb1_qcm-v1-3-ca849b62ba07@linaro.org>
+ <20230403-topic-rb1_qcm-v1-8-ca849b62ba07@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403-topic-rb1_qcm-v1-3-ca849b62ba07@linaro.org>
+In-Reply-To: <20230403-topic-rb1_qcm-v1-8-ca849b62ba07@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -86,151 +85,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/04/2023 19:36, Konrad Dybcio wrote:
-> Add initial device trees for the QCM2290 SoC, QC Robotics RB1 board, as
-> well as the bundled PM2250 PMIC.
-> 
-> On the SoC part, CA53 compatibles were used, as Qualcomm claims that's
-> what has been implemented, despite the cores reporting a Qualcomm Kryo
-> MIDR_EL1[PART_NUM].
-> 
-> To get a successful boot on RB1, run:
-> 
-> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/qrb2210-rb1.dtb >\
-> .Image.gz-dtb
-> 
-> mkbootimg \
->         --kernel .Image.gz-dtb \
->         --ramdisk some_initrd \
->         --output rb1-boot.img \
->         --pagesize 4096 \
->         --base 0x8000 \
->         --cmdline 'some cmdline'
-> 
-> fastboot boot rb1-boot.img
-> 
-> There's no dtbo or other craziness to worry about.
-> For the best dev experience, you can erase boot and use fastboot boot
-> everytime, so that the bootloader doesn't mess with you.
-> 
-> If you have a SoM revision 3 or older (there should be a sticker on it
-> with text like -r00, where r is the revision), you will need to apply
-> this additional diff:
-> 
->         aliases {
-> -               serial0 = &uart0;
-> +               serial0 = &uart4;
-> 
-> /* UART connected to the Micro-USB port via a FTDI chip */
-> -&uart0 {
-> +&uart4 {
-> 
-> That should however only concern preproduction boards.
+> Add a node for the ATH10K SNoC-managed WCN3990 Wi-Fi.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile        |   1 +
->  arch/arm64/boot/dts/qcom/pm2250.dtsi     |  63 +++
->  arch/arm64/boot/dts/qcom/qcm2290.dtsi    | 848 +++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 107 ++++
->  4 files changed, 1019 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 1a29403400b7..6fc8d6664f0c 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -70,6 +70,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-xiaomi-sagit.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5-vision-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qru1000-idp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/pm2250.dtsi b/arch/arm64/boot/dts/qcom/pm2250.dtsi
-> new file mode 100644
-> index 000000000000..c5344d6e47c4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pm2250.dtsi
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
 
-Odd license. Unless you based it on 2.0+, please use standard dual-license.
+We had these talks a lot... All these 3-8 patches should be two patches:
+1. SoC DTSI
+2. Board DTS.
 
-> +/*
-> + * Copyright (c) 2023, Linaro Ltd
-> + */
-> +
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +&spmi_bus {
-> +	pmic@0 {
-> +		compatible = "qcom,pm2250", "qcom,spmi-pmic";
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pon@800 {
-> +			compatible = "qcom,pm8916-pon";
-> +			reg = <0x800>;
-> +
-> +			pm2250_pwrkey: pwrkey {
-> +				compatible = "qcom,pm8941-pwrkey";
-> +				interrupts-extended = <&spmi_bus 0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-> +				linux,code = <KEY_POWER>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			pm2250_resin: resin {
-> +				compatible = "qcom,pm8941-resin";
-> +				interrupts-extended = <&spmi_bus 0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		rtc@6000 {
-> +			compatible = "qcom,pm8941-rtc";
-> +			reg = <0x6000>, <0x6100>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts-extended = <&spmi_bus 0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pm2250_gpios: gpio@c000 {
-> +			compatible = "qcom,pm2250-gpio", "qcom,spmi-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pm2250_gpios 0 0 10>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pmic@1 {
-> +		compatible = "qcom,pm2250", "qcom,spmi-pmic";
-> +		reg = <0x1 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
-> \ No newline at end of file
-
-Patch error to fix.
-
-> diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> new file mode 100644
-> index 000000000000..27d4742cdb19
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> @@ -0,0 +1,848 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-
-Same concern. Also in DTS.
+Splitting superficially patchset on initial submission does not make
+sense. If you sent it in separate patchsets during development - release
+early, release often - then of course it would be fine. But hoarding
+patches till everything is ready is not the approach we want (and we
+made it clear that SM8550 should be the last such platform) and does not
+justify later fake-splitting.
 
 Best regards,
 Krzysztof
