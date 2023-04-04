@@ -2,59 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABA826D68EE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 084736D692C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 18:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234826AbjDDQcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 12:32:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38608 "EHLO
+        id S235099AbjDDQr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 12:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbjDDQcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:32:20 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA3D172C;
-        Tue,  4 Apr 2023 09:32:17 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2725F6603174;
-        Tue,  4 Apr 2023 17:32:15 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680625935;
-        bh=KuXltiexUNkpyNJrQkX/ulGpUOXgGazP2UPpdbEwY4A=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LkmnNId6+hvIzALLF0eDx8nofhPV1wtsWAyQk9McBRARSAkQVYbcKgiKph3emWI+n
-         Eg/p3YL9ALg5e6DiPMnwfLV/1+7PP+vuoqfrAYFzbyL27PewiJU01at8amx+YbWi5+
-         epJSePU/a0SWvTPNudhSHzJ6kwOQeRrIhxciokKUa4V1I2ULxzXh/12NEi1vRJMD+v
-         +cfE5n9wJQOvq8ehLBeEa5bKVcDRiOMyLP1Itr1q7D1X6oaf+tj9hXhwZBx0iuTzH/
-         1kLEA+CItIKh+bKSuTJwZ4f+GSnp8r+2WQfQjeu+iJCTTr83KTJS5HnXq78SL7la9N
-         IKPvXYIv+hChw==
-Message-ID: <3eba05be-a836-d362-4e06-2d9f102c4113@collabora.com>
-Date:   Tue, 4 Apr 2023 19:32:11 +0300
+        with ESMTP id S232964AbjDDQrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 12:47:55 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3191731
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 09:47:53 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id i9so33515390wrp.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 09:47:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680626872;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oaSx5e17w+eQ0F1AcVamtGRazPQo+5R7R3fJynml9qc=;
+        b=tXneM2QAmpdWlmTsBeLyjMu9Q84z6jecvcZAoyME6dDKBB2jydUY+P5ujDvC32T7+/
+         eJY7OEJd2z+JSRf5f6iO8cSUl1fDdciHwnQrOvzfF3ZgE3nOIhSClDIEFRDEsUMq3aXz
+         MuOQ+YXH1xiQk2p7rk2FjgYTJH3QD0Ale7JLzRF+yKdHAp26XgBtpjVFUcQ+yXDhtUBE
+         n8rzQXqd1GqJupYRjonljWsrCRXXS/27vGYF0S4NORJ1HqkJCzoqHRtz6936GlCGLsRe
+         Zrqkzchqxif7b2GAdPJuNzECRJjMXEUjJWC/TujfdJaZUz4IyFztSmBA/nUjJb8VuhRt
+         RJLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680626872;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oaSx5e17w+eQ0F1AcVamtGRazPQo+5R7R3fJynml9qc=;
+        b=Qi0y37klB/JN1z0QjNfIG9ctq9EytNtLkxxAxr650NXDXyHZGOG41UYsaIcCEmypnn
+         86mlu1itQXgT/CCoiJz4wJMU2UpNlyO7KlQG90w95Qlrozrg3FYHtFTlSy3Nqh2CIDjQ
+         RFSbv+mgfEtUTRVuKuQ0k0lwVpxgj6/ZEc+J5wlzM4kzcQLF6+HsHUgziOXazRFhsoIa
+         Za2ZodwnOq4FGAeN041Neom1cp/2cXf6AZykar2nethM7YWqgUzIczsv+8u3ucetyYuo
+         5UlOGdGeny2pBg58yU1JPTiBYr8VchpiyFDagwUjZ6OX06KLxZZyr02sGM50wkwNSqVh
+         31UQ==
+X-Gm-Message-State: AAQBX9dyaVPluccIUwC3tVINvzeBieJBE2FlZ25u/sgB3/Kom75/2Oag
+        jTtGgXA3VT1Tv4RQYlA4Br77Rg==
+X-Google-Smtp-Source: AKy350aJ5L9eW/Z1AJZ2Yf0nBavJ/tgFyF3nmBDpng8tle57odq3CevaTl03dHgs+C2a1jOqYBCw4g==
+X-Received: by 2002:a5d:67cf:0:b0:2e6:3804:5be with SMTP id n15-20020a5d67cf000000b002e6380405bemr2262083wrw.59.1680626871679;
+        Tue, 04 Apr 2023 09:47:51 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id e2-20020a5d5002000000b002cfe0ab1246sm12718073wrt.20.2023.04.04.09.47.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 09:47:51 -0700 (PDT)
+Message-ID: <9f1e06a1-c954-1e20-8649-4f85515f0ece@baylibre.com>
+Date:   Tue, 4 Apr 2023 18:47:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Convert to DT schema
+Subject: Re: [PATCH v2 0/2] Cleanup Mediatek pinctrl device tree binding
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, kernel@collabora.com
-References: <20230403105052.426135-1-cristian.ciocaltea@collabora.com>
- <20230403105052.426135-2-cristian.ciocaltea@collabora.com>
- <20230404141749.GB3793612-robh@kernel.org>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20230404141749.GB3793612-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230327-cleanup-pinctrl-binding-v2-0-f21fbcc3016e@baylibre.com>
+ <CACRpkdYndXqTXrTakwv1mbvJBs-tG+pjOpLLCgS9crE0aBj0jA@mail.gmail.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <CACRpkdYndXqTXrTakwv1mbvJBs-tG+pjOpLLCgS9crE0aBj0jA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,111 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/4/23 17:17, Rob Herring wrote:
-> On Mon, Apr 03, 2023 at 01:50:51PM +0300, Cristian Ciocaltea wrote:
->> Convert the PWM fan bindings to DT schema format.
+Hi Linus,
+
+On 04/04/2023 15:56, Linus Walleij wrote:
+> On Fri, Mar 31, 2023 at 7:39 PM Alexandre Mergnat <amergnat@baylibre.com> wrote:
+>
+>> Deprecate properties which shall not exist, leaked upstream from downstream
+>> kernels, there's no reason to use them. Here the deprecated properties and
+>> the generic properties which will replace them:
 >>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> - mediatek,drive-strength-adv => drive-strength-microamp
+>> - mediatek,pull-up-adv        => bias-pull-up
+>> - mediatek,pull-down-adv      => bias-pull-down
+>>
+>> Thanks AngeloGioacchino Del Regno to reported it. [1]
+>>
+>> [1]: https://lore.kernel.org/all/6e08d78f-ef4c-b228-f7d2-d63767ea87b8@collabora.com/
+>>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 >> ---
->>  .../devicetree/bindings/hwmon/pwm-fan.txt     |  68 +----------
->>  .../devicetree/bindings/hwmon/pwm-fan.yaml    | 109 ++++++++++++++++++
->>  2 files changed, 110 insertions(+), 67 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->>
+>> Changes in v2:
+>> - Change the bias-pull enum values to match with other Mediatek SoC.
+>>    That allows to use MTK generic define and be compliant with the MTK
+>>    common pinctrl driver.
+>> - Link to v1: https://lore.kernel.org/r/20230327-cleanup-pinctrl-binding-v1-0-b695e32e4f2e@baylibre.com
+> These patches does not apply to my devel branch:
+> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
+>
+> Can you please rebase and resend?
+>
+> If you have several conflicting patches that need to be applied to the
+> pinctrl tree, then collect them all in a series so I can apply them all
+> at once. Thanks!
 
-[...]
+It's done here: 
+https://lore.kernel.org/all/20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com/
 
->> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> new file mode 100644
->> index 000000000000..448b48ec5d73
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> @@ -0,0 +1,109 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Fan connected to PWM lines
->> +
->> +maintainers:
->> +  - Jean Delvare <jdelvare@suse.com>
->> +  - Guenter Roeck <linux@roeck-us.net>
->> +
->> +properties:
->> +  compatible:
->> +    const: pwm-fan
->> +
->> +  cooling-levels:
->> +    description:
->> +      PWM duty cycle values in a range from 0 to 255 which correspond to
-> 
-> Don't put constraints in plain text:
-> 
-> items:
->   maximum: 255
-> 
->> +      thermal cooling states.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> 
-> Unfortunately, looks like we've wound up with same property with 2 
-> differing types. A problem for another day...
-> 
->> +
->> +  fan-supply:
->> +    description: Phandle to the regulator that provides power to the fan.
->> +
->> +  interrupts:
->> +    description:
->> +      This contains an interrupt specifier for each fan tachometer output
->> +      connected to an interrupt source. The output signal must generate a
->> +      defined number of interrupts per fan revolution, which require that
->> +      it must be self resetting edge interrupts.
-> 
-> How many entries? I'm not sure how more than 1 makes sense.
+I also added the patch which modify the pinctrl from the other serie:
+https://lore.kernel.org/all/CACRpkdYSpMD-V0QNGwtiKCA4KAedYfmFpvdCHWhjST9uTricTg@mail.gmail.com/
 
-The 3rd example taken from the original binding uses 2 entries. So far
-it seems there are no use cases requiring more than one, so I'm going to
-limit this to 5 (the driver doesn't enforce a limit).
 
->> +
->> +  pulses-per-revolution:
->> +    description:
->> +      Define the number of pulses per fan revolution for each tachometer
->> +      input as an integer (default is 2 interrupts per revolution).
-> 
-> default: 2
-> 
->> +      The value must be greater than zero.
-> 
-> minimum: 1
-> 
-> maximum: ??? I assume there's some practical limit here much less than 
-> 2^32.
+Regards,
+Alex
 
-Will set it to 4, as suggested by Guenter.
 
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> 
-> Isn't this a scalar? 
-
-As in the case of interrupts, the 3rd example uses 2 entries. Will set
-the same limit (5).
-
->> +
->> +  pwms:
->> +    description: The PWM that is used to control the fan.
->> +    maxItems: 1
->> +
->> +  pwm-names: true
->> +
->> +  "#cooling-cells":
->> +    description: The PWM fan can be referenced as a cooling-device.
-> 
-> Not that useful. What would be is what's in the 2 cells.
-
-Will describe its usage according to thermal-cooling-devices binding.
-
-Thanks for reviewing,
-Cristian
