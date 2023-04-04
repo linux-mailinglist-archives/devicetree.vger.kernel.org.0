@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8066D6CCC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 21:01:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C146D6CCD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 21:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231539AbjDDTBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 15:01:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60514 "EHLO
+        id S236180AbjDDTB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 15:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236123AbjDDTBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 15:01:24 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C444170F
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 12:01:23 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id r11so134702845edd.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 12:01:23 -0700 (PDT)
+        with ESMTP id S236158AbjDDTBZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 15:01:25 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 248354205
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 12:01:24 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id b20so134688245edd.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 12:01:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680634881;
+        d=linaro.org; s=google; t=1680634882;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1gN6UktfhGhq/wt9oSUVorCmIWND3+y76zHl2dlJ3nY=;
-        b=cSSpiX9pabelbWFTHnChkccbAVL+A8a8gUJgioolKVE61890gDbv2RljIMauD6hpkY
-         TItoyCmOSXuWlWvaoZa6bcafjb03Q2CJaqlnMW9ytzRLsZaBH7V1PxVjGLwrWqbG/kTd
-         V1JVPgpcHIzRsjhStilF9e2dBXV1tAQaVTcvE6sKAYMnTOOhxwHk5ItTlGgxIrMvzhu2
-         Q3z6S6Bxui50SYu2llGq7FfKCI+Ww5wLAsHy8m12oih8G0lXGNEgyKHF8Q9oEF3llyFv
-         I2HxP8ngwt4HjfmbH+5mE0zyMOnJi9WbUJvYlSJW500Exx0vxKlDnMILwqE88NyIWTt0
-         9bbA==
+        bh=VHE/rBbww83tJZiQz3167wNvDjgskvsYq0IYxB/AOR4=;
+        b=zPYLj9QkXCUFrb232mzqMKckOcIXMdGh67Jxx52nBaKxag/jlB8aJKsduacGDVmoeM
+         MY/WNxq+mj8lGeDWSl5PJHP+YHexcHu5dC+ZtOTJ+oc6mpxEnWuaYgsWsDxrmqlFmjdl
+         GtCWw00Or/ECfxUdr4tKiW7gPtcCNOWC3GFHWp97bA4nRBU4U1ahISB2bxz0etsYgPsy
+         tatSMpfVcapW5/r7mb8tFdaYgJv06NNrTysilysgn+PgGQWfWU341a+Mrliad0pNXwFw
+         IyjCoocRc9MbwtDw99xRdJ6efKZnhP8tHZwHwr6tLbclQFfbpoZrSvlagotRH5rJPi4v
+         ZfWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680634881;
+        d=1e100.net; s=20210112; t=1680634882;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1gN6UktfhGhq/wt9oSUVorCmIWND3+y76zHl2dlJ3nY=;
-        b=vmCNSXn0tCaA01xMAmo8eIwukXVbKQ6i/pYIp/TDdBqdx6JKMwxWquRXeNu3wETKi8
-         BtLW7Wox2iLQ45uE2xn0qBJn3JIxUgAbwOLkh18qaOzRkMQuJuhu0E4TbE47Y/mRY4LC
-         1yoyl5nfE/6W4VaMBINmdwZ+jlIhht2G9r/5O7NGnup9+o1IpyOQ30tiukopthDmZfzw
-         e6JfQfTGdJ84hVkLGkxuP7Ipy0fVmZA8Uc6+rhm6NFvMqPmkXi3guKhPn4NZk4KvM+Dh
-         j106VSFOMcAD+j4XUxEM2Nl1/1XusoMUSSsLc02+F2JlqDyEangOIEltTrKjS5QSABTr
-         Zk/w==
-X-Gm-Message-State: AAQBX9esVv6jiIfy+Ci6ySE9B0JIqkhX+5LCH5G3JPU/nfdyKOuVoqfm
-        goeaEbUiZb22zPWSNPKOUssGQQ==
-X-Google-Smtp-Source: AKy350byDBq4o0sNh1eGFgbkcrFNkrCEYKSrGSAasw/Hf6E+t7r9pGPCdzC3i07Pi4ztIyN2VXCr6Q==
-X-Received: by 2002:a17:906:c00d:b0:921:54da:831c with SMTP id e13-20020a170906c00d00b0092154da831cmr245053ejz.31.1680634881806;
-        Tue, 04 Apr 2023 12:01:21 -0700 (PDT)
+        bh=VHE/rBbww83tJZiQz3167wNvDjgskvsYq0IYxB/AOR4=;
+        b=Z6s98q/WKa6hCIpOptOQFnKjNEQhFAFc1f3TCcFHjzRrGWHTLvXsC7kdqM1uik2WhC
+         cmjMKvTC8ki0CcONS+isOZs1TufRsxXEaW3NYpsdK5jcUf40WSod6O6KIfBcwCkV5l1P
+         3xrbv0/clw2AJQQPGXfK9ZXNx03k5HzStPgiCf7TJvpjCRdBTWt2QjvS662y3t090/FL
+         VX8Ldn/NGbPabYc/TfURddyfnaVGG5xnqvK3XDdk2hqkd9j6N+UMXdNX6c4wqvB+eRlR
+         kIoUoo8mzbjvYdjzMG7CdTS9rOhhDu8UPId+5vdue2B9Frmz8mkznlwgo+kN24reNy1L
+         0q4w==
+X-Gm-Message-State: AAQBX9cPBg3xKG8X1Bd1nSQUypymAiTVehIiZu4bMI924/4EOLJbGC14
+        cXNvktmU+xD7TS3J2WTcsV/JrQ==
+X-Google-Smtp-Source: AKy350b2+sG8vxa+S9kO9UBfoIkxY8Nw5+1joCziMKEUVv4LhML9JMZc9XN4M+q0gTUfxHaykEfTJw==
+X-Received: by 2002:a17:906:3e96:b0:93b:2d0b:b60e with SMTP id a22-20020a1709063e9600b0093b2d0bb60emr466105ejj.74.1680634882724;
+        Tue, 04 Apr 2023 12:01:22 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:7467:56f4:40b7:cba8])
-        by smtp.gmail.com with ESMTPSA id dx21-20020a170906a85500b008d044ede804sm6257079ejb.163.2023.04.04.12.01.20
+        by smtp.gmail.com with ESMTPSA id dx21-20020a170906a85500b008d044ede804sm6257079ejb.163.2023.04.04.12.01.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 12:01:21 -0700 (PDT)
+        Tue, 04 Apr 2023 12:01:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -59,9 +59,9 @@ To:     Vinod Koul <vkoul@kernel.org>,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/5] dt-bindings: phy: ti,phy-am654-serdes: drop assigned-clocks type
-Date:   Tue,  4 Apr 2023 21:01:13 +0200
-Message-Id: <20230404190115.546973-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/5] dt-bindings: phy: ti,phy-j721e-wiz: drop assigned-clocks
+Date:   Tue,  4 Apr 2023 21:01:14 +0200
+Message-Id: <20230404190115.546973-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230404190115.546973-1-krzysztof.kozlowski@linaro.org>
 References: <20230404190115.546973-1-krzysztof.kozlowski@linaro.org>
@@ -77,30 +77,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 The meta schema from DT schema already defines assigned-clocks, so there
-is no need for device schema to mention it at all.  The specific
-parenting of the first input and output clock is apparently important,
-thus keep them as required, but without defining type.
+is no need for device schema to mention it at all.  There are also no
+benefits of having it here and a board could actually need more of clock
+assignments than the schema allows.
+
+Keep however the assigned-clocks in children nodes, as apparently their
+proper parenting is required.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/phy/ti,phy-am654-serdes.yaml         | 5 -----
- 1 file changed, 5 deletions(-)
+ .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml    | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.yaml b/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.yaml
-index 738c92bb7518..854e554eae67 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.yaml
-@@ -34,11 +34,6 @@ properties:
-       Three input clocks referring to left input reference clock, refclk and right input reference
-       clock.
+diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+index c54b36c104ab..4f3841e6a307 100644
+--- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
++++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+@@ -54,18 +54,6 @@ properties:
+ 
+   ranges: true
  
 -  assigned-clocks:
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
--  assigned-clock-parents:
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+-    minItems: 1
+-    maxItems: 2
 -
-   '#phy-cells':
-     const: 2
+-  assigned-clock-parents:
+-    minItems: 1
+-    maxItems: 2
+-
+-  assigned-clock-rates:
+-    minItems: 1
+-    maxItems: 2
+-
+   typec-dir-gpios:
+     maxItems: 1
      description:
 -- 
 2.34.1
