@@ -2,108 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 425076D5B23
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A46EF6D5B2A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 10:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234046AbjDDIol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 04:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
+        id S234112AbjDDIpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 04:45:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjDDIoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:44:39 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A571FDE;
-        Tue,  4 Apr 2023 01:44:24 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6385E7F8;
-        Tue,  4 Apr 2023 10:44:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1680597862;
-        bh=UAYPK5/gF5Yn/7iYTIsOzOrTSuOlbQ9JOwY52h/wB3Y=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Qm9b6ucAqlnEKobBHyn6JP7rNDuY0ZV0BBs4ikgCuFEfVy2A9fmqXEWeFBJgibMTV
-         hctKTrcRQF7HwHkol9IbCGLxmbJnwGRE9BtAj7bT45nVmN8o3miW3Ud2XhxLy+Bzsl
-         bSKIyV+TwssBbMevmus026XRT6qbn7Vq6PHm6mlY=
-Message-ID: <28707378-c4e7-38b6-48f5-63b0834c18c9@ideasonboard.com>
-Date:   Tue, 4 Apr 2023 11:44:18 +0300
+        with ESMTP id S233923AbjDDIpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 04:45:18 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC2A197
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 01:45:15 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id r11so127506020edd.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 01:45:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680597914;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qFniWraH9Zx9AU/nIcDS2ZhpqD+XkT7RdXcaMNk7s1Q=;
+        b=NDZD77ERGU54AP9UX0o03dGSoBhWlpLKC1F1q4/spgOo6ufcp1HxDNMlcs9ACQsg5g
+         if12rdV9irOBZhnU32KKzvVzlnakoLV2M8HJFMZHycBL2tyxRRJglIdqhzJi0BeKuBr7
+         3o5j7aFQsVplZuwdxXisbDR4gD8sGyzUJfXM1xJV0bqsYok3UsukvOyR6pS9U0VG2alJ
+         +k7+G5jtRkwQL2dWwZ8ukA/TvGors5PwA8qn0S5gLvnl0yNHMz2HzvH8l84W+ZF0t2Id
+         1PjxnFzuMk48SnEshbFf5lEHfBUCmrcXWupGnPVpbAT25YbnSx1jCkcArKyqhZn12kj1
+         zsig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680597914;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qFniWraH9Zx9AU/nIcDS2ZhpqD+XkT7RdXcaMNk7s1Q=;
+        b=6Ejt0L37mQYkCNGXwJ59bLxuDsKVU3remzr85/IGNdnq2tjogEuSSY5y+11y9Yy/uz
+         D7rhvqWeZxFmXqKGwgd3M6H+QrxH/aJ6V6Pmt2oQ44hA4x4GhqttzarXy/169yOk3wWV
+         9jx7Q7YmUv14BncRUgEvP8Tqcil5G7KzFG5su3XDFseBZEX1R1pqZLrvySxF+a1Gtwe+
+         xtI5YCFDGCppc0+rY361lTBYjABx8W+QqWSCh1cepCo6TIvYbdzy6DcxRv4Kg7iAJtbQ
+         xk9scL/bIj6lsFumkEH3B8folITyZv7EGhls6VZyWmwzrnYWQhh29fpVc4Lh5GCMDfVc
+         s6DA==
+X-Gm-Message-State: AAQBX9d+sCqo2cBbAea6oUfZA5wBAhnzFXHmIIUN+EbS74FI7b8kTKxu
+        3igLBPM+fxV1dZYSJQxCoEWr8g==
+X-Google-Smtp-Source: AKy350Ys/jY0eQu2PLhBd/9LlS3jfRprWxeYmK085EYvR7AsZb+OPy/s/HlCkHQWIcfQXOxPTxsZ0A==
+X-Received: by 2002:aa7:d618:0:b0:4af:6c5e:225c with SMTP id c24-20020aa7d618000000b004af6c5e225cmr1829126edr.33.1680597914216;
+        Tue, 04 Apr 2023 01:45:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:233a:5c18:b527:381e? ([2a02:810d:15c0:828:233a:5c18:b527:381e])
+        by smtp.gmail.com with ESMTPSA id r19-20020a50c013000000b004fd29e87535sm5561237edb.14.2023.04.04.01.45.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 01:45:13 -0700 (PDT)
+Message-ID: <d9afc07f-0346-1fe7-907c-261e4c6f92cd@linaro.org>
+Date:   Tue, 4 Apr 2023 10:45:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v7 00/13] CSI2RX support on J721E
+Subject: Re: [PATCH v3 06/11] dt-bindings: PCI: Update the RK3399 example to a
+ valid one
 Content-Language: en-US
-To:     Vaishnav Achath <vaishnav.a@ti.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, mripard@kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@linux.intel.com
-Cc:     linux-kernel@vger.kernel.org, bparrot@ti.com,
-        niklas.soderlund+renesas@ragnatech.se, j-luthra@ti.com,
-        devarsht@ti.com, praneeth@ti.com, u-kumar1@ti.com, vigneshr@ti.com,
-        nm@ti.com, martyn.welch@collabora.com
-References: <20230314115516.667-1-vaishnav.a@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230314115516.667-1-vaishnav.a@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+        alberto.dassatti@heig-vd.ch
+Cc:     damien.lemoal@opensource.wdc.com, xxm@rock-chips.com,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Lin Huang <hl@rock-chips.com>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        Hugh Cole-Baker <sigmaris@gmail.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230404082426.3880812-1-rick.wertenbroek@gmail.com>
+ <20230404082426.3880812-7-rick.wertenbroek@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230404082426.3880812-7-rick.wertenbroek@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 13:55, Vaishnav Achath wrote:
-> Hi,
+On 04/04/2023 10:24, Rick Wertenbroek wrote:
+> Update the example in the documentation a valid example.
+> The default max-outbound-regions is 32 but the example showed 16.
+
+This is not reason to be invalid. It is perfectly fine to change default
+values to desired ones. What is not actually obvious is to change some
+value to a default one, instead of removing it...
+
+> Address for mem-base was invalid. Added pinctrl.
 > 
-> This series adds support for CSI2 capture on J721E. It includes some
-> fixes to the Cadence CSI2RX driver, and adds the TI CSI2RX wrapper driver.
+> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+> ---
+>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml  | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+> index 88386a6d7011..0c67e96096eb 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+> @@ -47,14 +47,15 @@ examples:
+>  
+>          pcie-ep@f8000000 {
+>              compatible = "rockchip,rk3399-pcie-ep";
+> -            reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0x80000000 0x0 0x20000>;
+> -            reg-names = "apb-base", "mem-base";
 
-I get some errors with 'v4l2-compliance -m /dev/media0', which also causes:
+Reg (and reg-names) is usually second property, why moving it? What is
+incorrect in the placement?
 
-[   51.185172] ------------[ cut here ]------------
-[   51.189786] WARNING: CPU: 1 PID: 174 at mm/page_alloc.c:5568 __alloc_pages+0x684/0xd24
-[   51.197698] Modules linked in:
-[   51.200743] CPU: 1 PID: 174 Comm: v4l2-compliance Not tainted 6.3.0-rc5+ #12
-[   51.207772] Hardware name: Texas Instruments J721e EVM (DT)
-[   51.213326] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[   51.220269] pc : __alloc_pages+0x684/0xd24
-[   51.224353] lr : __dma_direct_alloc_pages.constprop.0+0x1d4/0x2a0
-[   51.230431] sp : ffff800009fd37b0
-[   51.233732] x29: ffff800009fd37b0 x28: ffff000801ad18e0 x27: 0000000000000001
-[   51.240852] x26: 0000000000000010 x25: ffff800009fd3b18 x24: ffff800008112c60
-[   51.247971] x23: 0000000000000010 x22: 00000000ffffffff x21: 0000000000000cc0
-[   51.255089] x20: 0000000010000000 x19: 0000000000000000 x18: 0000000000000000
-[   51.262208] x17: 0000000000000000 x16: 0000000000000000 x15: 00000000fff7a238
-[   51.269326] x14: 0000000000000000 x13: 0000000000000000 x12: 0000000000000000
-[   51.276444] x11: 0000000000000000 x10: 0000000000000000 x9 : 0000000000000000
-[   51.283562] x8 : ffff000802c4a200 x7 : 0000000000000000 x6 : 0000000000000000
-[   51.290680] x5 : 0000000000000000 x4 : ffff0008022a0000 x3 : 0000000000000000
-[   51.297798] x2 : 0000000000000000 x1 : 0000000000000001 x0 : ffff80000937a000
-[   51.304916] Call trace:
-[   51.307350]  __alloc_pages+0x684/0xd24
-[   51.311086]  __dma_direct_alloc_pages.constprop.0+0x1d4/0x2a0
-[   51.316814]  dma_direct_alloc+0x210/0x33c
-[   51.320809]  dma_alloc_attrs+0x80/0xf4
-[   51.324548]  vb2_dc_alloc+0xa0/0x184
-[   51.328114]  __vb2_queue_alloc+0x19c/0x490
-[   51.332197]  vb2_core_reqbufs+0x250/0x45c
-[   51.336192]  vb2_ioctl_reqbufs+0xb0/0xe8
-[   51.340103]  v4l_reqbufs+0x50/0x64
-[   51.343494]  __video_do_ioctl+0x18c/0x3ec
-[   51.347489]  video_usercopy+0x214/0x6c4
-[   51.351312]  video_ioctl2+0x18/0x24
-[   51.354788]  v4l2_ioctl+0x40/0x60
-[   51.358088]  v4l2_compat_ioctl32+0x90/0xb4
-[   51.362171]  __arm64_compat_sys_ioctl+0x14c/0x170
-[   51.366860]  invoke_syscall+0x48/0x114
-[   51.370599]  el0_svc_common.constprop.0+0x44/0xf4
-[   51.375288]  do_el0_svc_compat+0x20/0x44
-[   51.379198]  el0_svc_compat+0x2c/0x84
-[   51.382848]  el0t_32_sync_handler+0x98/0x148
-[   51.387102]  el0t_32_sync+0x194/0x198
-[   51.390752] ---[ end trace 0000000000000000 ]---
-[   51.395408] ti-udma 31150000.dma-controller: dma alloc of size 268435456 failed
+> +            rockchip,max-outbound-regions = <32>;
+>              clocks = <&cru ACLK_PCIE>, <&cru ACLK_PERF_PCIE>,
+>                <&cru PCLK_PCIE>, <&cru SCLK_PCIE_PM>;
+>              clock-names = "aclk", "aclk-perf",
+>                      "hclk", "pm";
+>              max-functions = /bits/ 8 <8>;
+>              num-lanes = <4>;
+> +            reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0xfa000000 0x0 0x2000000>;
+> +            reg-names = "apb-base", "mem-base";
+>              resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
+>                <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE> ,
+>                <&cru SRST_PCIE_PM>, <&cru SRST_P_PCIE>, <&cru SRST_A_PCIE>;
+> @@ -62,7 +63,8 @@ examples:
+>                      "pm", "pclk", "aclk";
+>              phys = <&pcie_phy 0>, <&pcie_phy 1>, <&pcie_phy 2>, <&pcie_phy 3>;
+>              phy-names = "pcie-phy-0", "pcie-phy-1", "pcie-phy-2", "pcie-phy-3";
+> -            rockchip,max-outbound-regions = <16>;
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&pcie_clkreqnb_cpm>;
+>          };
+>      };
+>  ...
 
-  Tomi
+Best regards,
+Krzysztof
 
