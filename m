@@ -2,124 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 668D46D6CD1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 21:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 015CE6D6CE1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Apr 2023 21:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236248AbjDDTBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 15:01:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60622 "EHLO
+        id S235888AbjDDTDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 15:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236184AbjDDTB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 15:01:26 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C27C46BC
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 12:01:25 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id h8so134712239ede.8
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 12:01:25 -0700 (PDT)
+        with ESMTP id S236412AbjDDTCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 15:02:52 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B92C4C20
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 12:02:41 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id fi11so11194689edb.10
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 12:02:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680634884;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MJfzhfU8C0LMQ39+xZRczmG3MwdDxjd8/cU7F3h/DO0=;
-        b=jYR2XcGOEiEkZeZ07K1e/e/Qf0RznZdzsoqGXWio0xrONB7hm7CO6Tsyfpz3VNooVQ
-         T8PV4pSSMnefFFRXlDbxPEkt1sCBFsyHsRKkbatLPL3K55IqxXx3pGDYwmdL/B4K0I96
-         7F4XgmZOOVsugw0ci+LNfITqtOZ+SylE/x22EB59PNn43ubCun+ceSFWsNvsGMStN6cc
-         GMYAMnv74zEKpvW2jQrGglVIel6pFlz/OjKMdjicd6+IwBY16R1/KXnYykHjgVDj28QW
-         3nTYb6cc1QplLsxheS6Jswy3N2afIIMR/So/455tDqFBZtv9c+ZrPhNI3RFLNMLo9Y65
-         P07w==
+        d=linaro.org; s=google; t=1680634960;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yw5X/z4gzVpoCSKVcfq9MyB5/tYZSDGq7aTy4vsluK8=;
+        b=p81NpqTRiWIYUax0xjnu2q64cUiRW+AXxMLFzyoxCihC3kiw5TZQddcwsme0FjdxNH
+         UGqoafTBxhJ1njM7UhF9jiuqA7rnB2WsStf8p7fxyMwyMxTKurmA3k2STQpZxpefrWI3
+         HA+xYAhn1mA88K35w4iFJaflVLRRdr5dLgNHGIwUikfXkaYxkP9OwXIgSX5UzwksiEa0
+         yoS6XBFIylNNi9OoVba4UAa8+L4d7COOQVRtwAeynPkUDB/MTgv9QwF7VM+rHTbQSqDf
+         Eu+wVXlsUaKBhrOeDcdJgsfFg2owwwtSGGMWfGuJdH7UbAsal8VGpY7Gb+z+Oceriihl
+         /kVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680634884;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MJfzhfU8C0LMQ39+xZRczmG3MwdDxjd8/cU7F3h/DO0=;
-        b=gX21vPLyuusrIGpxOnbMGkd4Fo4P8Nkp8RCDamZ07z0bmA9AbCAgZiqW/AgIyTAadi
-         KwihyapN2iT/gOlEFLhmwiJW6Ima/YojGmEfiXdwsMLONlvXGE1eaXGVDSnao/lNfdyw
-         zMiymtJo+FuX/hnxA3B6D8tM649V9+kyA1XgRrCK+AL8GrIsrLTOW0U30Z4qUximDkmD
-         j2Q4/14v1If8tS+mHo89/4d44LDYThpBU+jPgeUpcFXBCC9pKG/gHt7zryUYoA4e4lPq
-         DsBtqvBdx8NT7jB3DUJScvYvlWer9a9tT/afHAL3IkH0ZagMwHnIgccYTEYMnLPndx9c
-         X70Q==
-X-Gm-Message-State: AAQBX9eiOhrwyV6r+Hv3VFHUHbN/NJFX/7s6shEUY0OjROxLac7/H7lo
-        4C475Dg6vz+ffwWPbVSe6RGXxg==
-X-Google-Smtp-Source: AKy350acHNH4A4LEG3R+ql8VXDXLwRtEb9G1ykKetLMqq9tM4ME2+7+RzIaR442wiKJUZcJlfBlKcw==
-X-Received: by 2002:a17:906:430a:b0:914:4277:f3e1 with SMTP id j10-20020a170906430a00b009144277f3e1mr585067ejm.53.1680634883969;
-        Tue, 04 Apr 2023 12:01:23 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:7467:56f4:40b7:cba8])
-        by smtp.gmail.com with ESMTPSA id dx21-20020a170906a85500b008d044ede804sm6257079ejb.163.2023.04.04.12.01.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 12:01:23 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Yuti Amonkar <yamonkar@cadence.com>, Abraham I <kishon@ti.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/5] dt-bindings: phy: ti,phy-j721e-wiz: document clock-output-names
-Date:   Tue,  4 Apr 2023 21:01:15 +0200
-Message-Id: <20230404190115.546973-5-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230404190115.546973-1-krzysztof.kozlowski@linaro.org>
-References: <20230404190115.546973-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20210112; t=1680634960;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yw5X/z4gzVpoCSKVcfq9MyB5/tYZSDGq7aTy4vsluK8=;
+        b=mFOYWACpK6G+0Y62tFMtD0H6KCg33CR3QpK3GGQvQq2JNoAyGso0twvU+mFFEwJzsb
+         B36zZJY4WWsxOzZNBXCVupRvS2Wghkak0WENJcdkXh4R5zfY7j4eMCs1L6wZfa5tacOI
+         4BFiAfI47BifxtqDcPIOKA+Er17X2WsMhvR9muZ5Kdg4E6ErkAsHfvoAs7RInTO2qQR2
+         LNKPmoGnmY86y0WdWsdNwkm2GG3FC8wTTFGmSq8pfbFFHczFBdKjtKJltOf4s+vjLp8X
+         kJgvzNUTeaSzEKkbzx6jmKfo2gX55tmR4IiRttCknWgbhMBIOw1KqJP7kjaVpxcRK/SQ
+         PwCw==
+X-Gm-Message-State: AAQBX9drR9hKucJjjMcyRDSWWKt0KbgCdK78PVSf9rxdeexbuSSu39Z1
+        M69OjnflGG/4FgQaA6rbrczYyg==
+X-Google-Smtp-Source: AKy350Z2iXkWLR5Nn7m0PeRSz1c5znwSPs8FvKhjoUJ4OsomkYvuZp7mPyk32vQkhEbtFStUEicfIQ==
+X-Received: by 2002:a17:907:c201:b0:8b1:75a0:e5c6 with SMTP id ti1-20020a170907c20100b008b175a0e5c6mr506790ejc.18.1680634959752;
+        Tue, 04 Apr 2023 12:02:39 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7467:56f4:40b7:cba8? ([2a02:810d:15c0:828:7467:56f4:40b7:cba8])
+        by smtp.gmail.com with ESMTPSA id 20-20020a170906101400b00947732c6521sm6355205ejm.79.2023.04.04.12.02.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 12:02:39 -0700 (PDT)
+Message-ID: <baaf63d1-272f-d326-cf6f-b6150afe34e2@linaro.org>
+Date:   Tue, 4 Apr 2023 21:02:38 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Enable RTC support for Rock 5B
+Content-Language: en-US
+To:     Shreeya Patel <shreeya.patel@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com,
+        Christopher Obbard <chris.obbard@collabora.com>
+References: <20230404174121.38727-1-shreeya.patel@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230404174121.38727-1-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the clock-output-names property of clock children, even though
-the nodes are actually deprecated, to fix dtbs_check warnings like:
+On 04/04/2023 19:41, Shreeya Patel wrote:
+> Add DT node to enable RTC support for Rock 5B board.
+> 
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> Reviewed-by: Christopher Obbard <chris.obbard@collabora.com>
+> ---
+>  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> index 95805cb0adfa..fcb5af09e49b 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -27,6 +27,31 @@ vcc5v0_sys: vcc5v0-sys-regulator {
+>  	};
+>  };
+>  
+> +&i2c6 {
+> +	status = "okay";
+> +
+> +	hym8563: hym8563@51 {
 
-  k3-j7200-common-proc-board.dtb: wiz@5060000: refclk-dig: 'clock-output-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml        | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-index 4f3841e6a307..651f23580930 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-@@ -89,6 +89,9 @@ properties:
-       "#clock-cells":
-         const: 0
- 
-+      clock-output-names:
-+        maxItems: 1
-+
-       assigned-clocks:
-         maxItems: 1
- 
-@@ -122,6 +125,9 @@ patternProperties:
-       "#clock-cells":
-         const: 0
- 
-+      clock-output-names:
-+        maxItems: 1
-+
-       assigned-clocks:
-         maxItems: 1
- 
-@@ -150,6 +156,9 @@ patternProperties:
-       "#clock-cells":
-         const: 0
- 
-+      clock-output-names:
-+        maxItems: 1
-+
-     required:
-       - clocks
-       - "#clock-cells"
--- 
-2.34.1
+Best regards,
+Krzysztof
 
