@@ -2,91 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E19726D733A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 06:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 564396D7368
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 06:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236981AbjDEEI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 00:08:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47902 "EHLO
+        id S236534AbjDEEe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 00:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236904AbjDEEHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 00:07:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A954558E;
-        Tue,  4 Apr 2023 21:06:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 760A463AF7;
-        Wed,  5 Apr 2023 04:06:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19089C43324;
-        Wed,  5 Apr 2023 04:06:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680667602;
-        bh=F35Yo8CMdTUZ+xGUntt/U4RBF4z2aepfzc1/ck9Ojxw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JdCshkzEhkUcabh3ygObV5AxGeiLE0Okvfc91ka2CufTi/UjCM8Y4k6kI/R+Hd0Tq
-         M8y+4ujE0Af8VrxBK6upf7RGU+hgRXQRIb2AEyLYdRAZP3uCGWjv/mXOAEcl39rNXK
-         dP2RX6PzQ25bdLHZOnppJ3huYrVZeIY3R4aGIrDdIct76sBXW1FAtnFmPzE7/FTFp4
-         LWUfohWz3JMhkCk2He0rDqoELE8EzADxOogt7uTIeWOBg+5sqIj7eIijLa4LA4xgz3
-         MH37HL3rvP/Qx8+2sZfW80KC0Pwdo5gjrAyb3WHfTspMGO7XmWEVDvt9DeIANL5uuO
-         3eDKFIBUGPTgQ==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     linux-arm-msm@vger.kernel.org,
+        with ESMTP id S229630AbjDEEez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 00:34:55 -0400
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5092E1BDA
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 21:34:54 -0700 (PDT)
+Received: from pecola.lan (unknown [159.196.93.152])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4E08120034;
+        Wed,  5 Apr 2023 12:34:46 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1680669290;
+        bh=/JY2GxUV8U7PZngfK9sN6bkoR5ACX/UvT6PfeNBweuM=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=IXb2wDEdqFp90wdXnhW8iMMEHY8wgKoHLl7EYL59NXC0Wd/Z+LQP9si5bE78O4Hpu
+         jgoyRd1c8MVesV4H8maoFsrFl48WhplmDRpRbTEiF0vQtsdi7SaN+TkN+WYSvm54IX
+         Pi766232ohCgD1zl4lsOIit1FdEjvgI3k3mtTqHTiAhAeSfTRY7X3TsyMgmKCLWhPQ
+         C/spOsDuM3q1MlJ83SW3pYgbQb2BNvEoL5cdZ7WQH83DKxm1MkudoUpKBLbEcuCNzD
+         kpp6y9D2Ld8V42fbjI9bTaZVzI9/Z2r9/txrOrz4GkTnYJJog/Ua6Q2pJRjUStX7rp
+         axgm7LdCgP/Dw==
+Message-ID: <94e941a2895bbb40d7b87acd7de6525b8596b096.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 0/3] i3c dw,ast2600: Add a driver for the AST2600 i3c
+ controller
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        Matt Johnston <matt@codeconstruct.com.au>,
+        Vitor Soares <ivitro@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Avri Altman <avri.altman@wdc.com>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-phy@lists.infradead.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-scsi@vger.kernel.org, Bart Van Assche <bvanassche@acm.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: Re: (subset) [PATCH v2 00/12] Introduce the SC8180x devices
-Date:   Tue,  4 Apr 2023 21:09:11 -0700
-Message-Id: <168066774419.443656.6508694636390869164.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230325122444.249507-1-vkoul@kernel.org>
-References: <20230325122444.249507-1-vkoul@kernel.org>
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jack Chen <zenghuchen@google.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
+Date:   Wed, 05 Apr 2023 12:34:45 +0800
+In-Reply-To: <CACPK8XdLpg2H4a2nHo4PokfBc4r3D8MbK2-62jXkPXAq8Q03Rg@mail.gmail.com>
+References: <20230331091501.3800299-1-jk@codeconstruct.com.au>
+         <CACPK8XdLpg2H4a2nHo4PokfBc4r3D8MbK2-62jXkPXAq8Q03Rg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Mar 2023 17:54:32 +0530, Vinod Koul wrote:
-> This introduces Qualcomm SC8180x SoC which features in Lenovo Flex 5G
-> laptop. This also adds support for Primus platform as well as Lenovo Flex 5G
-> laptop.
-> 
-> I would be great if submaintainers can ack the binding patch so that
-> everything can go thru qcom tree
-> 
-> [...]
+Hi Joel,
 
-Applied, thanks!
+> Given we have acks on the bindings, I think it's safe to send the
+> device tree changes now so we can merge what you have in the upcoming
+> merge window. If there's changes we can modify or revert.
 
-[01/12] dt-bindings: firmware: document Qualcomm SC8180X SCM
-        commit: c78ad8597ed961e822bf86ce7f1916dbfba255ef
+OK, I'll get those into shape.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+There is one dependency on this though, and unfortunately it requires
+solving *two* of the known-hard problems in computer science:
+
+Do we start at i3c0 or i3c1?
+
+[i3c1 would match the schematic...]
+
+Cheers,
+
+
+Jeremy
