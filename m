@@ -2,158 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 442EC6D7400
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 07:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 120FE6D740D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:00:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236914AbjDEFzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 01:55:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
+        id S236791AbjDEGAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 02:00:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236893AbjDEFzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 01:55:04 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44B5212D
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 22:55:02 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id ek18so138356864edb.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 22:55:02 -0700 (PDT)
+        with ESMTP id S236943AbjDEGAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:00:50 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB69273F
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:00:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680674101;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/3QuqF+VUImX1V5KpitdapwWJCPNXUqbEanRNw7dR5I=;
-        b=mGgBLifE2V3m6QfJ3/xgYZp6oJDkrqAEJQhU01ExR+0FTmcJL5AxKvR6LGIu96DeXv
-         9/iI1w6f5DDmpwJPEClgomFqQOwvYaHzWUzjae1itmsulZZ6y9M7A0tZy2FwQAZlrHZw
-         EPkFyTPOHHlf1OZ0Pf6yQiwACv4m6WUdTPJqN1WK756K47vba3oFg74pzaLRiu72xsB/
-         3ODGSzc3o/kPPnypNx3JZQAa4nlv2AxgFfn3KUTQ6CzdJOn9z2nRHS2ZQj8eLX7TfQSO
-         yq46+6ClvuMTigEpSSTJs/v276FbRBYXWQBFg8KdQWwq9m+Wi8zCL6wfGOnlEHWQcQ/+
-         IKqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680674101;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/3QuqF+VUImX1V5KpitdapwWJCPNXUqbEanRNw7dR5I=;
-        b=H30s6770QW+Zl88zRggAihAa3+AaZPc30AEY57i2IGf0pWVtKu4sRh6Iavgf9JSAFR
-         9zmCnBJfPGpDuDFH6NNcSfEAGbLuHmGQertNEgRRhPxBVD0sSkRPRea+zMKe3usTyOHn
-         vsFS4r5oRKVsWe/jX9jSoQ9nObtJrKTFA4MSSV4I1RZEA62gGVaS6hNNQ6eJvROwbO2O
-         4YVenAl8QC9Bpzip8B3qdUNgvIY74Qvhjo+v3iEOTq+3qukOSEYc30Qs/j0FsxaD4pPT
-         IUXwk0vans+DlJjd4ThOpVShXD/x4D6jpbyIDQ1wL8w3Ect3gvLK4j1+sJZAUygAJOGe
-         JhDQ==
-X-Gm-Message-State: AAQBX9ez4t4V8xRkZKGLoZUrzTpBI+UT17Tn+GTsTLv/hZ39rKrMykFH
-        RKRiqZwTNfkB4svUsrRYoE1xrw==
-X-Google-Smtp-Source: AKy350arSlAk4kVthIv++2B8xcUpK5sIrMPiq3sRcfqef32uwJ6Np+4A7B049HjtI6zQ3Wj6ymq+xA==
-X-Received: by 2002:a17:906:d929:b0:92c:8e4a:1a42 with SMTP id rn9-20020a170906d92900b0092c8e4a1a42mr1902655ejb.32.1680674101329;
-        Tue, 04 Apr 2023 22:55:01 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id tq24-20020a170907c51800b00947abb70c93sm6555688ejc.112.2023.04.04.22.55.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 22:55:00 -0700 (PDT)
-Message-ID: <c49a2dbf-ea5a-f70f-1508-47e821942c9d@linaro.org>
-Date:   Wed, 5 Apr 2023 07:54:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: add Soundwire controllers
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1680674448; x=1712210448;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ys1uFjXv5fRa6z8qPXCE5fmO8QSPzujsdE6O9gLP9MY=;
+  b=ZXydnYY5eQyYtVDmOavp0o3aT/y055Zu4K7n947hQ1DBodOf71OM6pYX
+   MKNDNzHwriZh/Ww+0pDG6rG6+ZKMW20UYQbUNgn/kg9YPzVVogciH79Dt
+   1+12U7yNBtE3+Tp+PTjPTJdfea5weGus3otMNO1DlWWik7SCHb9g7w5Z7
+   uU1e4V37xcH5TxSk1FMtxuczow8fAnIeuCv71kYhkQqMMN5Y67Eb/C/c4
+   u8SLRpl81htbXD76tfbSc65kdvVlqIryMToFuaHtIEWqYJERRokQ1WMWD
+   mxI+bxo4pnbpM7ddeCJRNoQhW/nFwpUQHp491o1CJQM9mKq50YRCm2ejq
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,319,1673910000"; 
+   d="scan'208";a="30151568"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 05 Apr 2023 08:00:46 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 05 Apr 2023 08:00:46 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 05 Apr 2023 08:00:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1680674446; x=1712210446;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ys1uFjXv5fRa6z8qPXCE5fmO8QSPzujsdE6O9gLP9MY=;
+  b=h/8phmel813cw7Ggke8++z9CkEfrky8JN19aNwjH64Z40tzCawhfJVED
+   DdEPKgqRxb3VNsj4GquAe7+LVXT2/4JvZyDi3f6WnVB0ixywZaQ0yUcCo
+   cG0z7NWQ3KbJNMiCvRYfa8ygo7NM7/9PIzN56+YXraLin+W/tjiQasdiF
+   kkiGwWyhuTr5bpk8XXrU/TPW7TvnVlyL9HaihHRwjoMeWw0vxPqht/sFg
+   +lPJZRRLac5LW6rSaxSy0MDvsAdxKShuZSuAtvy68ohDyYKLddufWl/XO
+   nwpvXQR2+3jEfIcPA8Jko1EkODB1mCsyfooHnyjab598y9swTLE/Axgul
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,319,1673910000"; 
+   d="scan'208";a="30151566"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 05 Apr 2023 08:00:45 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 23CBF280056;
+        Wed,  5 Apr 2023 08:00:45 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abel.vesa@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230404073915.61779-1-krzysztof.kozlowski@linaro.org>
- <305fcdae-84f5-7edb-26e4-588162fed018@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <305fcdae-84f5-7edb-26e4-588162fed018@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH] arm64: dts: imx8mm: Add display pipeline components
+Date:   Wed, 05 Apr 2023 08:00:42 +0200
+Message-ID: <2790760.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230404000151.534530-1-marex@denx.de>
+References: <20230404000151.534530-1-marex@denx.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 19:55, Konrad Dybcio wrote:
-> 
-> 
-> On 4.04.2023 09:39, Krzysztof Kozlowski wrote:
->> Add nodes for LPASS Soundwire v2.0.0 controllers.  Use labels with
->> indices matching downstream DTS, to make any comparisons easier.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes since v1:
->> 1. Correct IO range length.
->>
->> The bindings and driver are here:
->> https://lore.kernel.org/linux-arm-msm/20230403132503.62090-1-krzysztof.kozlowski@linaro.org/T/#t
->> ---
->>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 109 +++++++++++++++++++++++++++
->>  1 file changed, 109 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> index dc6150e97d46..14e4de7a1a0e 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -2004,6 +2004,33 @@ lpass_wsa2macro: codec@6aa0000 {
->>  			#sound-dai-cells = <1>;
->>  		};
->>  
->> +		/* WSA2 */
->> +		swr3: soundwire-controller@6ab0000 {
->> +			compatible = "qcom,soundwire-v2.0.0";
->> +			reg = <0 0x06ab0000 0 0x10000>;
->> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&lpass_wsa2macro>;
->> +			clock-names = "iface";
->> +
-> Any reason this and swr0 have comments instead of labels?
+Hi Marek,
 
-Actually no, I can go with label consistently. It's not actually used
-for anything...
+Am Dienstag, 4. April 2023, 02:01:51 CEST schrieb Marek Vasut:
+> Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Mini.
+> This makes the DSI display pipeline available on this SoC.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Abel Vesa <abel.vesa@nxp.com>
+> Cc: Dong Aisheng <aisheng.dong@nxp.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Guido G=FCnther <agx@sigxcpu.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 57 +++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi index
+> e311da7e87bdc..06495c225c94b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -1119,6 +1119,63 @@ aips4: bus@32c00000 {
+>  			#size-cells =3D <1>;
+>  			ranges =3D <0x32c00000 0x32c00000 0x400000>;
+>=20
+> +			lcdif: lcdif@32e00000 {
+> +				compatible =3D "fsl,imx8mm-lcdif",=20
+"fsl,imx6sx-lcdif";
+> +				reg =3D <0x32e00000 0x10000>;
+> +				clocks =3D <&clk=20
+IMX8MM_CLK_LCDIF_PIXEL>,
+> +					 <&clk=20
+IMX8MM_CLK_DISP_APB_ROOT>,
+> +					 <&clk=20
+IMX8MM_CLK_DISP_AXI_ROOT>;
+> +				clock-names =3D "pix", "axi",=20
+"disp_axi";
+> +				assigned-clocks =3D <&clk=20
+IMX8MM_CLK_LCDIF_PIXEL>,
+> +						  <&clk=20
+IMX8MM_CLK_DISP_AXI>,
+> +						  <&clk=20
+IMX8MM_CLK_DISP_APB>;
+> +				assigned-clock-parents =3D <&clk=20
+IMX8MM_VIDEO_PLL1_OUT>,
+> +							 <&clk=20
+IMX8MM_SYS_PLL2_1000M>,
+> +							 <&clk=20
+IMX8MM_SYS_PLL1_800M>;
+> +				assigned-clock-rates =3D <594000000>,=20
+<500000000>, <200000000>;
+> +				interrupts =3D <GIC_SPI 5=20
+IRQ_TYPE_LEVEL_HIGH>;
+> +				power-domains =3D <&disp_blk_ctrl=20
+IMX8MM_DISPBLK_PD_LCDIF>;
+> +				status =3D "disabled";
+> +
+> +				port {
+> +					lcdif_to_dsim: endpoint {
+> +						remote-endpoint =3D=20
+<&dsim_from_lcdif>;
+> +					};
+> +				};
+> +			};
+> +
+> +			mipi_dsi: dsi@32e10000 {
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +				compatible =3D "fsl,imx8mm-mipi-dsim";
+> +				reg =3D <0x32e10000 0x400>;
+> +				clocks =3D <&clk IMX8MM_CLK_DSI_CORE>,
+> +					 <&clk=20
+IMX8MM_CLK_DSI_PHY_REF>;
+> +				clock-names =3D "bus_clk", "sclk_mipi";
+> +				assigned-clocks =3D <&clk=20
+IMX8MM_CLK_DSI_CORE>,
+> +						  <&clk=20
+IMX8MM_CLK_DSI_PHY_REF>;
+> +				assigned-clock-parents =3D <&clk=20
+IMX8MM_SYS_PLL1_266M>,
+> +							 <&clk=20
+IMX8MM_CLK_24M>;
+> +				assigned-clock-rates =3D <266000000>,=20
+<24000000>;
+> +				samsung,pll-clock-frequency =3D=20
+<24000000>;
 
-> 
->> +			qcom,din-ports = <4>;
->> +			qcom,dout-ports = <9>;
->> +
->> +			qcom,ports-sinterval =		<0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x18f 0xff 0xff 0x0f 0x0f 0xff 0x31f>;
->> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x03 0x05 0x02 0x04 0x15 0x00 0xff 0xff 0x06 0x0d 0xff 0x00>;
->> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x07 0x1f 0xff 0x07 0x1f 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
->> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
->> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
->> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x18>;
->> +			qcom,ports-block-pack-mode =	/bits/ 8 <0x00 0x01 0x01 0x00 0x01 0x01 0x00 0x00 0x00 0x01 0x01 0x00 0x00>;
->> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
->> +			qcom,ports-lane-control =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
->> +
->> +			#address-cells = <2>;
->> +			#size-cells = <0>;
->> +			#sound-dai-cells = <1>;
->> +			status = "disabled";
->> +		};
-> [...]
-> 
-> 
->> +		swr2: soundwire-controller@6d30000 {
->> +			compatible = "qcom,soundwire-v2.0.0";
->> +			reg = <0 0x06d30000 0 0x10000>;
->> +			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
->> +					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
-> There's no different interrupt-parent, so -extended seems excessive.
-> Unless that was maybe supposed to use some PDC-mapped irq?
-> 
-
-Eh, apparently copy-pasta. Thanks,
-
+What about samsung,burst-clock-frequency and samsung,esc-clock-frequency? I=
+s=20
+there is sane default? Do they need to be provided in the board file?
 
 Best regards,
-Krzysztof
+Alexander
+
+> +				interrupts =3D <GIC_SPI 18=20
+IRQ_TYPE_LEVEL_HIGH>;
+> +				power-domains =3D <&disp_blk_ctrl=20
+IMX8MM_DISPBLK_PD_MIPI_DSI>;
+> +				status =3D "disabled";
+> +
+> +				ports {
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +
+> +					port@0 {
+> +						reg =3D <0>;
+> +
+> +						dsim_from_lcdif:=20
+endpoint {
+> +							remote-
+endpoint =3D <&lcdif_to_dsim>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+>  			csi: csi@32e20000 {
+>  				compatible =3D "fsl,imx8mm-csi",=20
+"fsl,imx7-csi";
+>  				reg =3D <0x32e20000 0x1000>;
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
