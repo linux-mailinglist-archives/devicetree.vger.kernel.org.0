@@ -2,136 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55FC86D884E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA846D88A3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234233AbjDEU1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 16:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
+        id S231346AbjDEUe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 16:34:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233955AbjDEU1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:27:30 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645E176A9;
-        Wed,  5 Apr 2023 13:27:26 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id bx42so12025182oib.6;
-        Wed, 05 Apr 2023 13:27:26 -0700 (PDT)
+        with ESMTP id S231950AbjDEUe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:34:28 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 403D14C1F;
+        Wed,  5 Apr 2023 13:34:27 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id x15so35215797pjk.2;
+        Wed, 05 Apr 2023 13:34:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680726867;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5mBL1QQnDIB+z3BztabybEP4t58oo66sKusUL7l71Y8=;
+        b=elPcmQmDFHSPWnjoT9RNRUFGZ/sLF7ZJrBubJS73mov6OMm0GsE1UVhCuly7fsIVm8
+         tRBnetr1WyeXNIO48vO0lqssIoZO4KBY1QWM7kUtju3kuvI41M0ajNLUdO+nvZaVa13h
+         58+fKsDHQwOAMyECkfLZuju9GxmHYkNyAmWNMGvUn2dOW+ERke85+NEgOtZL0D/H1YQ3
+         bivEuONqfOpNzY58iJQDAijlL/7s14pLFS9gz/SXXFWGV78Wiq9zyyYBJae8EvUog+Zs
+         LcJvLQAfFl790WqHH6ZMkZq/OvhpkDtO1w8I/+5frxZcAsjeHtRFGKVSw3XJhNPIuV0h
+         NsrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680726445;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=amARnlOF1iPOroaq57gvCO3EUIjXtRKKLgV+BAa7GyA=;
-        b=oNWBdf+LJQeupNotyx3roKGHF2oYc0YiILjtkYmJvehMr5/wxkeHGosGb0bTzOweuA
-         4h8IGp9M7u3BekL8X8G4FUjRKMAcSjxzvZ8fIQiSAantTZmAgubAz4pybtH6B0wVT9FQ
-         GBL6s8eNhlYr0Ctr0OHe5BDj0wHD90vKOwsln7BUj7mdxVfAB6pJHrWtftd03uMNox8L
-         31feFQEogsD9Nbs6HRHghcdTc9m3FPT4aTtXCPxo/qNZqXYBLnsFcDVolwAOI+5+0CVT
-         4nT6nzUuGy0558tTyOvbRsE2zw3WbbY7MbQBC2HUr0c7JkiZxn/CVCfH7JzA4Bb+c+Xi
-         O5dw==
-X-Gm-Message-State: AAQBX9eZrNhhLYHSF/kMOFlWdWlq+TwT9Ek0wE0TDpmidHb8oeltfidp
-        dD7qxUlKiG6/Pf0WgcW1ZQ==
-X-Google-Smtp-Source: AKy350ajTaLy0qTbb9yH+lxLfyhHHpsFZm2vXmFygDhy0JelJ9qq76gGsOP0SKY6SaEK7ABF4E+UaA==
-X-Received: by 2002:a05:6808:1a09:b0:389:4f05:5fa8 with SMTP id bk9-20020a0568081a0900b003894f055fa8mr1613117oib.9.1680726445531;
-        Wed, 05 Apr 2023 13:27:25 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r204-20020acadad5000000b00383eaf88e75sm6759620oig.39.2023.04.05.13.27.24
+        d=1e100.net; s=20210112; t=1680726867;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5mBL1QQnDIB+z3BztabybEP4t58oo66sKusUL7l71Y8=;
+        b=A34Nx6K+NVRFcCo5NAotghrvpde0SnQb4B/EIhEIkfoPNS2NwCUJcaW0E9ubVtsrra
+         ufjaU+uwY2xHuEPlw8OuGvi5MPb6/+5qAjyP9aIdtR7CG8MXWW5L5PUqkTv6ypGBmXNh
+         ZgEI3zDi/4N6geAW9QJgGbEGR0ZvwhEmKMwmL0P3LOnEPmLVuFSGOZ5/AGj5psFn3Rl0
+         WQDu+OmH0ehAzs6kFvxoOqpZ8q80r++qby3y0jvWPufSwAOzeZQ86cnVRt6URja8bX+t
+         oXr7Edlz2gg3/32ezUJX+1fvE9yq7djMe2fXPqwE846wNOuZC+6kxyqiivZE7H9Qpixw
+         IFGA==
+X-Gm-Message-State: AAQBX9ci4FFtck1YeXXUwLqGIQAsFqw3TyFsQyLJKTWtSvL3V0aL1rGW
+        9a//lj/PmRxvwf3X8f+dtrA=
+X-Google-Smtp-Source: AKy350bv/hdrI3VH3BZ76HsUrGFyINmMANwgoAFIha+oi0e7kf0Gs26sQEsMYyx1+5svRIP8E9LUWQ==
+X-Received: by 2002:a17:90b:4c0b:b0:234:1a60:a6b0 with SMTP id na11-20020a17090b4c0b00b002341a60a6b0mr7935298pjb.34.1680726866522;
+        Wed, 05 Apr 2023 13:34:26 -0700 (PDT)
+Received: from pavilion.. ([2402:e280:218d:82:616c:b78a:a01f:5113])
+        by smtp.gmail.com with ESMTPSA id c12-20020a17090ab28c00b002340d317f3esm1769231pjr.52.2023.04.05.13.34.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 13:27:25 -0700 (PDT)
-Received: (nullmailer pid 425898 invoked by uid 1000);
-        Wed, 05 Apr 2023 20:27:17 -0000
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 05 Apr 2023 15:27:24 -0500
-Subject: [PATCH v2 10/10] ACPI: Replace irqdomain.h include with struct
- declarations
+        Wed, 05 Apr 2023 13:34:26 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
+Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Saalim Quadri <danascape@gmail.com>
+Subject: [PATCH] ASoC: dt-bindings: wm8523: Convert to dtschema
+Date:   Thu,  6 Apr 2023 02:04:19 +0530
+Message-Id: <20230405203419.5621-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230329-acpi-header-cleanup-v2-10-c902e581923b@kernel.org>
-References: <20230329-acpi-header-cleanup-v2-0-c902e581923b@kernel.org>
-In-Reply-To: <20230329-acpi-header-cleanup-v2-0-c902e581923b@kernel.org>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Jacob Keller <jacob.e.keller@intel.com>
-X-Mailer: b4 0.13-dev
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-linux/acpi.h includes irqdomain.h which includes of.h. Break the include
-chain by replacing the irqdomain include with forward declarations for
-struct irq_domain and irq_domain_ops which is sufficient for acpi.h.
+Convert the WM8523 audio CODEC bindings to DT schema
 
-of.h also includes mod_devicetable.h which many drivers implicitly
-depend on. As acpi.h already includes it, just move it out of the
-'#ifdef CONFIG_ACPI'.
-
-Cc: Marc Zyngier <maz@kernel.org>
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Saalim Quadri <danascape@gmail.com>
 ---
-v2:
- - Move mod_devicetable.h out of #ifdef
----
- include/linux/acpi.h | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/sound/wlf,wm8523.yaml | 40 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8523.txt      | 16 --------
+ 2 files changed, 40 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8523.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8523.txt
 
-diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-index efff750f326d..96bd672dc336 100644
---- a/include/linux/acpi.h
-+++ b/include/linux/acpi.h
-@@ -10,12 +10,15 @@
- 
- #include <linux/errno.h>
- #include <linux/ioport.h>	/* for struct resource */
--#include <linux/irqdomain.h>
- #include <linux/resource_ext.h>
- #include <linux/device.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/property.h>
- #include <linux/uuid.h>
- 
-+struct irq_domain;
-+struct irq_domain_ops;
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8523.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8523.yaml
+new file mode 100644
+index 000000000000..decc395bb873
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8523.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8523.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- #ifndef _LINUX
- #define _LINUX
- #endif
-@@ -24,7 +27,6 @@
- #ifdef	CONFIG_ACPI
- 
- #include <linux/list.h>
--#include <linux/mod_devicetable.h>
- #include <linux/dynamic_debug.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
-
++title: WM8523 audio CODEC
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: wlf,wm8523
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1a {
++            compatible = "wlf,wm8523";
++            reg = <0x1a>;
++        };
++    };        
+diff --git a/Documentation/devicetree/bindings/sound/wm8523.txt b/Documentation/devicetree/bindings/sound/wm8523.txt
+deleted file mode 100644
+index f3a6485f4b8a..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8523.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-WM8523 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-  - compatible : "wlf,wm8523"
+-
+-  - reg : the I2C address of the device.
+-
+-Example:
+-
+-wm8523: codec@1a {
+-	compatible = "wlf,wm8523";
+-	reg = <0x1a>;
+-};
 -- 
-2.39.2
+2.34.1
 
