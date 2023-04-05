@@ -2,69 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 994036D7F56
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0C36D7F74
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238280AbjDEOZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 10:25:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55052 "EHLO
+        id S238085AbjDEO2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 10:28:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238246AbjDEOZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:25:24 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467CE49E6;
-        Wed,  5 Apr 2023 07:25:12 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 335EOjYq018196;
-        Wed, 5 Apr 2023 09:24:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680704685;
-        bh=IIg8Hw2d+AztRioYXlvly6uzmoxjKPtZvpXX4icR5Mk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QEOidwmJUfL0gZvptL6rL2APLDQ9IKaE5fjGSlXaS6Gz5wQNNdtnO3M321mayrH9X
-         Wqqhq/8JsmbXuQv0lri4Xoo03+rD6V3TrJuP9yVjQpldAr85l8lH4m5DMQInODAmYU
-         MjrrI3ZodlIyDdWKvWp3Cl+kTLrtI7RW2ktaP1pc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 335EOjUQ064587
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 5 Apr 2023 09:24:45 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 5
- Apr 2023 09:24:45 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 5 Apr 2023 09:24:45 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 335EOiA3029128;
-        Wed, 5 Apr 2023 09:24:44 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
-CC:     <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>, <airlied@gmail.com>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
-        <jani.nikula@intel.com>, <tzimmermann@suse.de>,
-        <javierm@redhat.com>, <ville.syrjala@linux.intel.com>,
-        <r-ravikumar@ti.com>, <lyude@redhat.com>,
-        <alexander.deucher@amd.com>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>, <a-bhatia1@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>, <j-choudhary@ti.com>
-Subject: [PATCH v2 2/2] drm: bridge: cdns-mhdp8546: Add support for no-hpd
-Date:   Wed, 5 Apr 2023 19:54:40 +0530
-Message-ID: <20230405142440.191939-3-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230405142440.191939-1-j-choudhary@ti.com>
-References: <20230405142440.191939-1-j-choudhary@ti.com>
+        with ESMTP id S237766AbjDEO2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:28:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1924B65B0;
+        Wed,  5 Apr 2023 07:28:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4642A63E44;
+        Wed,  5 Apr 2023 14:27:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEF11C433D2;
+        Wed,  5 Apr 2023 14:27:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680704868;
+        bh=Pzi6zJxJr8ZUgmTZZZ6XD+HYvxPprYklmZaH/0dEtMk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ImRaG3GVvpmqJNe1S1e8k+pepVfUqu3UM9plmOCyikVY8gYB6aJzgjb8sMQg3A2r/
+         KMGDHqlNG+R53It2QnpunzBxNsOlSY/fdAq/bI+9XomAP2dHQNJFEDd6pwf1/lmg7/
+         1oMVTm0Pm+FKilQuUhP7LZQOK+SJOZyfSG4aNFlwJSfYYcZUF50/kFu4e1YoUMr8Jp
+         s3fGRSMkHOmOc6X+IRGhODnKcRLyUN/TZS/SGidTHDH0N3Jqh7CQF2rB6obnqte0Mp
+         nF1ZUTO5v9xP01Un2nOGctkdwjH+SzH2fONJeCWj+3pyxFHGCI5P9B8dNbhjdK/2UD
+         BXWwm5RfeCfrw==
+Date:   Wed, 5 Apr 2023 22:27:37 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] treewide: Fix probing of devices in DT overlays
+Message-ID: <20230405142737.GH11367@dragon>
+References: <e1fa546682ea4c8474ff997ab6244c5e11b6f8bc.1680182615.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e1fa546682ea4c8474ff997ab6244c5e11b6f8bc.1680182615.git.geert+renesas@glider.be>
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,125 +64,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rahul T R <r-ravikumar@ti.com>
+On Thu, Mar 30, 2023 at 03:26:13PM +0200, Geert Uytterhoeven wrote:
+> When loading a DT overlay that creates a device, the device is not
+> probed, unless the DT overlay is unloaded and reloaded again.
+> 
+> After the recent refactoring to improve fw_devlink, it no longer depends
+> on the "compatible" property to identify which device tree nodes will
+> become struct devices.   fw_devlink now picks up dangling consumers
+> (consumers pointing to descendent device tree nodes of a device that
+> aren't converted to child devices) when a device is successfully bound
+> to a driver.  See __fw_devlink_pickup_dangling_consumers().
+> 
+> However, during DT overlay, a device's device tree node can have
+> sub-nodes added/removed without unbinding/rebinding the driver.  This
+> difference in behavior between the normal device instantiation and
+> probing flow vs. the DT overlay flow has a bunch of implications that
+> are pointed out elsewhere[1].  One of them is that the fw_devlink logic
+> to pick up dangling consumers is never exercised.
+> 
+> This patch solves the fw_devlink issue by marking all DT nodes added by
+> DT overlays with FWNODE_FLAG_NOT_DEVICE (fwnode that won't become
+> device), and by clearing the flag when a struct device is actually
+> created for the DT node.  This way, fw_devlink knows not to have
+> consumers waiting on these newly added DT nodes, and to propagate the
+> dependency to an ancestor DT node that has the corresponding struct
+> device.
+> 
+> Based on a patch by Saravana Kannan, which covered only platform and spi
+> devices.
+> 
+> [1] https://lore.kernel.org/r/CAGETcx_bkuFaLCiPrAWCPQz+w79ccDp6=9e881qmK=vx3hBMyg@mail.gmail.com
+> 
+> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
+> Link: https://lore.kernel.org/r/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=rWYnkCZ6z5bGX-wj4w@mail.gmail.com
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Mark Brown <broonie@kernel.org>
+> Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
+> ---
+> v3:
+>   - Add Acked-by,
+>   - s/instantiate/probe/,
+>   - Improve commit description,
+>   - Add comment before clearing FWNODE_FLAG_NOT_DEVICE,
+> 
+> v2:
+>   - Add Acked-by,
+>   - Drop RFC.
+> ---
+>  drivers/bus/imx-weim.c    | 6 ++++++
 
-In J721S2 EVMs DP0 hpd is not connected to correct
-hpd pin on SOC, to handle such cases, Add support for
-"no-hpd" property in the device tree node to disable
-hpd
+Acked-by: Shawn Guo <shawnguo@kernel.org>
 
-Also change the log level for dpcd read failuers to
-debug, since framework retries 32 times for each read
-
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 37 ++++++++++++++++---
- .../drm/bridge/cadence/cdns-mhdp8546-core.h   |  1 +
- 2 files changed, 33 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
-index f6822dfa3805..e177794b069d 100644
---- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
-@@ -54,6 +54,8 @@
- #include "cdns-mhdp8546-hdcp.h"
- #include "cdns-mhdp8546-j721e.h"
- 
-+static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp);
-+
- static int cdns_mhdp_mailbox_read(struct cdns_mhdp_device *mhdp)
- {
- 	int ret, empty;
-@@ -749,7 +751,7 @@ static int cdns_mhdp_fw_activate(const struct firmware *fw,
- 	 * MHDP_HW_STOPPED happens only due to driver removal when
- 	 * bridge should already be detached.
- 	 */
--	if (mhdp->bridge_attached)
-+	if (mhdp->bridge_attached && !mhdp->no_hpd)
- 		writel(~(u32)CDNS_APB_INT_MASK_SW_EVENT_INT,
- 		       mhdp->regs + CDNS_APB_INT_MASK);
- 
-@@ -845,7 +847,7 @@ static ssize_t cdns_mhdp_transfer(struct drm_dp_aux *aux,
- 		ret = cdns_mhdp_dpcd_read(mhdp, msg->address,
- 					  msg->buffer, msg->size);
- 		if (ret) {
--			dev_err(mhdp->dev,
-+			dev_dbg(mhdp->dev,
- 				"Failed to read DPCD addr %u\n",
- 				msg->address);
- 
-@@ -1738,6 +1740,19 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
- 
- 	spin_unlock(&mhdp->start_lock);
- 
-+	if (mhdp->no_hpd) {
-+		ret = wait_event_timeout(mhdp->fw_load_wq,
-+					 mhdp->hw_state == MHDP_HW_READY,
-+					 msecs_to_jiffies(100));
-+		if (ret == 0) {
-+			dev_err(mhdp->dev, "%s: Timeout waiting for fw loading\n",
-+				__func__);
-+			return -ETIMEDOUT;
-+		}
-+
-+		cdns_mhdp_update_link_status(mhdp);
-+		return 0;
-+	}
- 	/* Enable SW event interrupts */
- 	if (hw_ready)
- 		writel(~(u32)CDNS_APB_INT_MASK_SW_EVENT_INT,
-@@ -2256,7 +2271,16 @@ static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp)
- 
- 	mutex_lock(&mhdp->link_mutex);
- 
--	mhdp->plugged = cdns_mhdp_detect_hpd(mhdp, &hpd_pulse);
-+	if (mhdp->no_hpd) {
-+		ret = drm_dp_dpcd_read_link_status(&mhdp->aux, status);
-+		hpd_pulse = false;
-+		if (ret < 0)
-+			mhdp->plugged = false;
-+		else
-+			mhdp->plugged = true;
-+	} else {
-+		mhdp->plugged = cdns_mhdp_detect_hpd(mhdp, &hpd_pulse);
-+	}
- 
- 	if (!mhdp->plugged) {
- 		cdns_mhdp_link_down(mhdp);
-@@ -2451,6 +2475,8 @@ static int cdns_mhdp_probe(struct platform_device *pdev)
- 	mhdp->aux.dev = dev;
- 	mhdp->aux.transfer = cdns_mhdp_transfer;
- 
-+	mhdp->no_hpd = of_property_read_bool(dev->of_node, "cdns,no-hpd");
-+
- 	mhdp->regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(mhdp->regs)) {
- 		dev_err(dev, "Failed to get memory resource\n");
-@@ -2526,8 +2552,9 @@ static int cdns_mhdp_probe(struct platform_device *pdev)
- 
- 	mhdp->bridge.of_node = pdev->dev.of_node;
- 	mhdp->bridge.funcs = &cdns_mhdp_bridge_funcs;
--	mhdp->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID |
--			   DRM_BRIDGE_OP_HPD;
-+	mhdp->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID;
-+	if (!mhdp->no_hpd)
-+		mhdp->bridge.ops |= DRM_BRIDGE_OP_HPD;
- 	mhdp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
- 	if (mhdp->info)
- 		mhdp->bridge.timings = mhdp->info->timings;
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
-index bedddd510d17..6786ccb51387 100644
---- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
-@@ -388,6 +388,7 @@ struct cdns_mhdp_device {
- 
- 	bool link_up;
- 	bool plugged;
-+	bool no_hpd;
- 
- 	/*
- 	 * "start_lock" protects the access to bridge_attached and
--- 
-2.25.1
-
+>  drivers/i2c/i2c-core-of.c | 5 +++++
+>  drivers/of/dynamic.c      | 1 +
+>  drivers/of/platform.c     | 5 +++++
+>  drivers/spi/spi.c         | 5 +++++
+>  5 files changed, 22 insertions(+)
