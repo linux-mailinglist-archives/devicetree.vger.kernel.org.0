@@ -2,107 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1423A6D8A9B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 00:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C116D8AFD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 01:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231655AbjDEWbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 18:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58414 "EHLO
+        id S232271AbjDEXOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 19:14:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230317AbjDEWbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 18:31:36 -0400
-Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BBE192
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 15:31:35 -0700 (PDT)
+        with ESMTP id S230497AbjDEXOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 19:14:36 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E02F46B7;
+        Wed,  5 Apr 2023 16:14:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1370; q=dns/txt; s=iport;
-  t=1680733895; x=1681943495;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=nODPX+s+Q/kJw5P5tL3y79XtWx5aevSrDkBNT3QoGeM=;
-  b=YgP5ATYsHoEKnBWyzVBNrTQbloTLISf+f0D9J3BGd+vDgsqydTfgAoLq
-   PyaA2YudkqbRnzSP8f0Whp6ojL1uAUWxhOVGTlkt2bf2QUkdas+Jl5p5V
-   htvBDlDz/tVO/1ZeW3P3ICMuZaOLMsh1lkgqY3Gt+WCkkIn2w8Y+NtZ0s
-   w=;
-X-IronPort-AV: E=Sophos;i="5.98,322,1673913600"; 
-   d="scan'208";a="96032875"
-Received: from rcdn-core-11.cisco.com ([173.37.93.147])
-  by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 05 Apr 2023 22:30:31 +0000
-Received: from localhost.localdomain ([10.160.65.27])
-        by rcdn-core-11.cisco.com (8.15.2/8.15.2) with ESMTP id 335MUSxJ031603;
-        Wed, 5 Apr 2023 22:30:30 GMT
-From:   Daniel Walker <danielwa@cisco.com>
-To:     - <xe-linux-external@cisco.com>
-Cc:     Marcin Wierzbicki <mawierzb@cisco.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680736475; x=1712272475;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FKhsDwBgWocxbDBm71IX9YxYgh4XGnM3GUQYRhxeNgQ=;
+  b=aH44hVKWcHMGqpaDDNa35ciWwmCvPRrv4RFYby3nVCcBMjRWuDBW6dXH
+   nCY23xzlvqJRSXBqoRt17caMdlc6wXL2BGa75VZNyY7QlMJm/e0hCl/N5
+   moit6dOkft1G4Ve1sVU3RLc1cO2REfBj8MC9iMbdnrsjbKwH/aexI4ztC
+   9lPU2SdhQyp4CM926Fa2rNMOF4rdK4imPN77iwTi+Q8CYzzmXe0odW2wx
+   5hDUKO0lDDyobVPByPXlIFao9lqFd7Z6NBQOvWsyQbK1codTxIeCWmIPF
+   WwbKu46i0gX5+hWKcIH+Xebl9MUcrYOHOD4RT2eCmtNHUoMfyvgODf6Y8
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="341318982"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; 
+   d="scan'208";a="341318982"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 16:14:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="798099746"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; 
+   d="scan'208";a="798099746"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 05 Apr 2023 16:14:30 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pkCKj-000QtT-0M;
+        Wed, 05 Apr 2023 23:14:29 +0000
+Date:   Thu, 6 Apr 2023 07:14:13 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Daniel Walker <dwalker@fifo99.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR compatibles
-Date:   Wed,  5 Apr 2023 15:30:27 -0700
-Message-Id: <20230405223028.1268141-2-danielwa@cisco.com>
-X-Mailer: git-send-email 2.25.1
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com, quic_shazhuss@quicinc.com,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: Re: [PATCH v6 2/8] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+Message-ID: <202304060712.gqBA4oqQ-lkp@intel.com>
+References: <20230405125759.4201-3-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.160.65.27, [10.160.65.27]
-X-Outbound-Node: rcdn-core-11.cisco.com
-X-Spam-Status: No, score=-10.0 required=5.0 tests=DKIMWL_WL_HIGH,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230405125759.4201-3-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the compatible properties for the Cisco CrayAR SoC.
+Hi Krishna,
 
-Cc: xe-linux-external@cisco.com
-Cc: Marcin Wierzbicki <mawierzb@cisco.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Daniel Walker <dwalker@fifo99.com>
----
- .../devicetree/bindings/arm/cisco/crayar.yaml | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/cisco/crayar.yaml
+kernel test robot noticed the following build warnings:
 
-diff --git a/Documentation/devicetree/bindings/arm/cisco/crayar.yaml b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-new file mode 100644
-index 000000000000..0ee4e6313ab0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-@@ -0,0 +1,27 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/cisco/crayar.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cisco CrayAR based Platforms
-+
-+maintainers:
-+  - xe-linux-external@cisco.com
-+
-+description:
-+  Cisco CrayAR boards with CrayAR SOC
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: Cisco CrayAR Argos evaluation board
-+        items:
-+          - const: cisco,crayar-argos
-+          - const: cisco,crayar
-+
-+additionalProperties: true
-+
-+...
+[auto build test WARNING on usb/usb-linus]
+[also build test WARNING on robh/for-next linus/master v6.3-rc5 next-20230405]
+[cannot apply to usb/usb-testing usb/usb-next pza/reset/next pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-Kurapati/dt-bindings-usb-Add-bindings-for-multiport-properties-on-DWC3-controller/20230405-210221
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-linus
+patch link:    https://lore.kernel.org/r/20230405125759.4201-3-quic_kriskura%40quicinc.com
+patch subject: [PATCH v6 2/8] usb: dwc3: core: Access XHCI address space temporarily to read port info
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/a0de434ac81429422ecdf84fe968bd8c3f73445b
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Krishna-Kurapati/dt-bindings-usb-Add-bindings-for-multiport-properties-on-DWC3-controller/20230405-210221
+        git checkout a0de434ac81429422ecdf84fe968bd8c3f73445b
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304060712.gqBA4oqQ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> ./drivers/usb/dwc3/core.h:1666: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+
+vim +1666 ./drivers/usb/dwc3/core.h
+
+  1664	
+  1665	/**
+> 1666	 * Find the offset of the extended capabilities with capability ID id.
+  1667	 *
+  1668	 * @base	PCI MMIO registers base address.
+  1669	 * @start	address at which to start looking, (0 or HCC_PARAMS to start at
+  1670	 *		beginning of list)
+  1671	 * @id		Extended capability ID to search for, or 0 for the next
+  1672	 *		capability
+  1673	 *
+  1674	 * Returns the offset of the next matching extended capability structure.
+  1675	 * Some capabilities can occur several times, e.g., the XHCI_EXT_CAPS_PROTOCOL,
+  1676	 * and this provides a way to find them all.
+  1677	 */
+  1678	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
