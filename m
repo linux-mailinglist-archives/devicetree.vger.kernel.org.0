@@ -2,100 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E60246D727E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 04:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62A86D72EA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 06:06:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235182AbjDECav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 22:30:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50172 "EHLO
+        id S236546AbjDEEGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 00:06:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235178AbjDECau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 22:30:50 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97317BB;
-        Tue,  4 Apr 2023 19:30:45 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (fp76f193f3.tkyc206.ap.nuro.jp [118.241.147.243])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 622C2905;
-        Wed,  5 Apr 2023 04:30:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1680661841;
-        bh=92JxqutkaA7MOBZzEsI8JVLAVvvA2FVlO8U5Q3EjmSo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mWO+SH7/XV27sw9R9Rw+KgqItm8rURI5GQYFV1sl6pR8XqDB6GW41gIU2YwetbYJf
-         AtRC/91JVGQs52YzgrvoES/zkyNKZ3kM/rEVQD8Wdrh/kfYVzeVJvyDFcz5Eo0QXhG
-         Cc25z/I3g+l6D2expqUK61OIFTqhI2ZjYHVrjfc4=
-Date:   Wed, 5 Apr 2023 05:30:48 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229559AbjDEEGU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 00:06:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C921C30ED;
+        Tue,  4 Apr 2023 21:06:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 64F5963965;
+        Wed,  5 Apr 2023 04:06:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F99C433EF;
+        Wed,  5 Apr 2023 04:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680667577;
+        bh=qjrgDVDa5fPmLzogqlbGWIXUX3IHvG/mEgP6jyFc9U4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=VB2ma9b65mcKZzx6vfJffxl2Y4m6rs34Uvvwhr+1uCqV0tvAxrihAzmGzpxFi6gWY
+         LAcAZGmxJ314S/bPCspKDCb6MgKhvCOyGP4r0Cu+7OD33NhnOV1OKtLP4tedneBD/u
+         Kjm2Urynnngii28CKxMtvi8nQtEawo3QQ9ecZ+FyLiR09WI0DH5t14S/DVn02pEUUQ
+         lSdsqchxIS+Fx1a8SBpsxrqv/xW9FUXcm1qBAI7QuZae3g43/mcUcEeePTsFusZuKB
+         AnOqTCOjqcWSE+UKF7X9wkN7AXE6MAtqhXl5YVjBpxCqhkSEREWsiHL3fUscLHMnRe
+         V5+BEjHGG6UxA==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [RESEND PATCH v4 03/21] staging: media: tegra-video: fix
- .vidioc_enum_fmt_vid_cap to return all formats
-Message-ID: <20230405023048.GD9915@pendragon.ideasonboard.com>
-References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
- <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
- <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
- <20230404161251.272cc78b@booty>
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: (subset) [PATCH 1/4] arm64: dts: msm8953: Replace xo_board with rpmcc sourced xo
+Date:   Tue,  4 Apr 2023 21:08:49 -0700
+Message-Id: <168066774416.443656.12283295998891742657.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230325112852.18841-1-a39.skl@gmail.com>
+References: <20230325112852.18841-1-a39.skl@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230404161251.272cc78b@booty>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+On Sat, 25 Mar 2023 12:28:49 +0100, Adam Skladowski wrote:
+> Assign RPM_SMD_XO_CLK_SRC from rpmcc in place
+> of fixed-clock where possible.
+> 
+> 
 
-On Tue, Apr 04, 2023 at 04:12:51PM +0200, Luca Ceresoli wrote:
-> On Wed, 29 Mar 2023 13:16:22 +0200 Hans Verkuil wrote:
-> 
-> > Hi Luca,
-> > 
-> > I finally found the time to test this series. It looks OK, except for this patch.
-> 
-> Thank you very much for taking the time!
-> 
-> > The list of supported formats really has to be the intersection of what the tegra
-> > supports and what the sensor supports.
-> > 
-> > Otherwise you would advertise pixelformats that cannot be used, and the application
-> > would have no way of knowing that.
-> 
-> As far as I understand, I think we should rather make this driver fully
-> behave as an MC-centric device. It is already using MC quite
-> successfully after all.
-> 
-> Do you think this is correct?
+Applied, thanks!
 
-Given the use cases for this driver, I agree.
+[1/4] arm64: dts: msm8953: Replace xo_board with rpmcc sourced xo
+      commit: 3042fb4b61c8a6ce692a4914b1970daa56e6f04e
+[2/4] arm64: dts: msm8953: Provide dsi_phy clocks to gcc
+      commit: 635abd877516f6d5e35343d3c3eb233ab195ebc5
+[3/4] arm64: dts: msm8953: Drop unsupported dwc3 flag
+      commit: c0494df2cdac723f4c7df834c05d548ea3a804e9
+[4/4] arm64: dts: msm8953: Pad regs to 8 digits
+      commit: 26aae2310fd7375a5ca0dd772cd3bc57cf5e02bb
 
-> If you do, then I think the plan would be:
-> 
->  - Add the V4L2_CAP_IO_MC flag
->  - As the mbus_code in get_format appropriately
->  - Leave the changes in this patch unmodified otherwise
-
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Bjorn Andersson <andersson@kernel.org>
