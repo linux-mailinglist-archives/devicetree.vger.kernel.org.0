@@ -2,97 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C9196D8639
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 20:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 508D66D8674
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 21:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231655AbjDESqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 14:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42606 "EHLO
+        id S234259AbjDETB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 15:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233927AbjDESqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 14:46:40 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21156728A;
-        Wed,  5 Apr 2023 11:46:39 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E9A8285D8B;
-        Wed,  5 Apr 2023 20:46:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1680720395;
-        bh=BethWdbii02lOCXjgcipdByPmIeSpA03KMZKeFipjH0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=rcjXNTtjCAOl/pjPBaBw4rkDPtPiIAQMzGYd0xhSDspKIkk8FcxT0qtlEmCUQugiT
-         soazzqtNzq2hBCDnxNAMp15gXj6H3nEkOsG7jqbByg1PAuTu3wHTlGF9jD9XESYFO8
-         u0hKgkD98zmPuUJ5CPKoAW7QQa4i2C08inYxdEzeO4rCz8hOIwTdBPL4X/4cdNZ8h7
-         qlvyNV5HTaC5wX8rae6WLlrp5eJAvSOrjuOhA71EW6YIklEJYKX7IPzoBp11xDy7g4
-         GtU5f+UoS3fLjZ0aAskNharw0BC2WiDXrb54OZZ1AYI+uMQYbC5mnW/44fYBJb5hmy
-         qI1qyfot8aOGw==
-Message-ID: <42737c19-698f-8cc8-45b2-8ff08a274f87@denx.de>
-Date:   Wed, 5 Apr 2023 20:46:34 +0200
+        with ESMTP id S233839AbjDETB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 15:01:26 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A004D132
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 12:01:23 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id l15-20020a05600c4f0f00b003ef6d684102so19025540wmq.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 12:01:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680721282;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TZCl/M+6M2kW8Ub1pKIZDU+nW5n/Es3BgH1yXYToFsk=;
+        b=sVb2QiP1zGGLbv2Bz9y2C/kr0Th5hUXhkWrW3AHha6az0G+AFFzNsotPmY+qjDK5Pb
+         Gj5ABwodld+wB8mTgS9fNXezH6u/mo23FyR0OS8b2WoQKtUMBxpmZBzdZeAJRQHhX+Dk
+         CUF1XfFrYbayVA66+9iDVTBttHmNKCa26aJEGpw34ZuG/cu0CnVkdFj/Gc1Oy7pwMY1m
+         N2GzIiR5VBwiDY6vuYFIDCD3o1l1baAAtlOum7mU5EtLdz3NDMaMuBK3IrzPrEPvurRz
+         9iDiVBYcCHzv5WEK8hSfznnC3WHDTH51bRK0Ftsbv8wDAzMKKJuXnGjanPj4CkMrygHo
+         0PFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680721282;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TZCl/M+6M2kW8Ub1pKIZDU+nW5n/Es3BgH1yXYToFsk=;
+        b=Cf3hmkgx3YxgFfwuDOHEj1IQrT42RYK6Ssc9oP/LFkh10i+X5HfQJHcen2/XKndqzD
+         NV+qOC7BndU+I+N9CgpxMuCSONvBjgkowqgmzlimA5mTBaW1H7Wr/MkKfWe7tOEGS8VO
+         /XD3yZheR2fqXZUUp+L2x9NTzleTRtn8WbMERByvPYOaeyZq3sQjIuLa2dBv9b0HT0Xu
+         IRZjv1Nc9nboJSVMYukTt8yK57h8WbbvrwcfggC0+dJNwZSm3HQhsHtT1gzMMEvHRu79
+         ipIQDGHy7BwT2Imq1CK9nFlU7o/gw4PbFvb/IM6AbENw0ademZZLfAcmqaAeohyyKwXu
+         WW6w==
+X-Gm-Message-State: AAQBX9dkZUZAZ9p6J/K9+aC2zvblQg7DTYT4iFb3krl6XIHKcpDLcLt5
+        kgRK8O3a/eNCcU8O+CS/XHx/xKX/m46MSgvZeydfkPe7/WyH2jBvxBQ=
+X-Google-Smtp-Source: AKy350b+rkmiVJKskwZo+VZ578tarkKZtlE4b7Mp7Z+LnHAYq82AK36CWlWF/8B2IWcF7IFjA8Gzhfl62xzxXi9ets8=
+X-Received: by 2002:a7b:c3ce:0:b0:3ed:526c:25cb with SMTP id
+ t14-20020a7bc3ce000000b003ed526c25cbmr1867090wmj.8.1680721281953; Wed, 05 Apr
+ 2023 12:01:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel <kernel@dh-electronics.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-References: <20230405160258.46998-1-cniedermaier@dh-electronics.com>
- <20230405160258.46998-2-cniedermaier@dh-electronics.com>
- <05fa147c-116b-59b4-d14b-760bbefd7602@denx.de>
- <e7aa3b3220e148ee96f5a1c361721845@dh-electronics.com>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <e7aa3b3220e148ee96f5a1c361721845@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-3.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230401154725.1059563-1-bhupesh.sharma@linaro.org>
+ <20230401154725.1059563-3-bhupesh.sharma@linaro.org> <CAA8EJppTRT+fDp4b6unzn60uJ1CivAEGcxzyVZ5+FE1E073Qzw@mail.gmail.com>
+In-Reply-To: <CAA8EJppTRT+fDp4b6unzn60uJ1CivAEGcxzyVZ5+FE1E073Qzw@mail.gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Thu, 6 Apr 2023 00:31:10 +0530
+Message-ID: <CAH=2Ntxja_fhgPhDpPySLEkyGimGUqQR0zHr3ErJ9-js3dw_nA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/5/23 20:24, Christoph Niedermaier wrote:
-> From: Marek Vasut [mailto:marex@denx.de]
-> Sent: Wednesday, April 5, 2023 6:25 PM
->> On 4/5/23 18:02, Christoph Niedermaier wrote:
->>
->> [...]
->>
->>> +/ {
->>> +     model = "DH electronics i.MX6ULL DHCOR on maveo box";
->>> +     compatible = "dh,imx6ull-dhcor-maveo-box", "dh,imx6ull-dhcor-som",
->>> +                  "fsl,imx6ull";
->>> +
->>> +     aliases {
->>> +             /delete-property/ mmc0; /* Avoid double definitions */
->>> +             /delete-property/ mmc1;
->>> +             mmc2 = &usdhc2; /* eMMC should be mmc2 */
->>
->> Why not mmc0 ?
->>
->> Use root=PARTUUID= when booting to avoid any dependency on
->> root=/dev/mmcblk2pN enumeration.
-> 
-> This is due to software interchangeability with the DHCOM
-> i.MX6ULL, where the eMMC is always mmc2.
+Hi Dmitry,
 
-+CC Ulf , I vaguely recall some discussion about this enumeration and I 
-am not sure one can really depend on that.
+On Sat, 1 Apr 2023 at 22:43, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Sat, 1 Apr 2023 at 18:49, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+> >
+> > Add USB superspeed qmp phy node to dtsi.
+> >
+> > Make sure that the various board dts files (which include sm4250.dtsi file)
+> > continue to work as intended.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 36 +++++++++++++++++--
+> >  .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+> >  3 files changed, 40 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > index a1f0622db5a0..75951fd439df 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > @@ -242,6 +242,9 @@ &usb {
+> >  &usb_dwc3 {
+> >         maximum-speed = "high-speed";
+> >         dr_mode = "peripheral";
+> > +
+> > +       phys = <&usb_hsphy>;
+> > +       phy-names = "usb2-phy";
+> >  };
+> >
+> >  &usb_hsphy {
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index 2a51c938bbcb..b2fa565e4816 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -650,6 +650,38 @@ usb_hsphy: phy@1613000 {
+> >                         status = "disabled";
+> >                 };
+> >
+> > +               usb_qmpphy: phy@1615000 {
+> > +                       compatible = "qcom,sm6115-qmp-usb3-phy";
+> > +                       reg = <0x0 0x01615000 0x0 0x200>;
+> > +                       clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
+> > +                                <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> > +                                <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+> > +                       clock-names = "cfg_ahb",
+> > +                                     "ref",
+> > +                                     "com_aux";
+> > +                       resets = <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>,
+> > +                                <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>;
+> > +                       reset-names = "phy_phy", "phy";
+> > +                       status = "disabled";
+> > +                       #address-cells = <2>;
+> > +                       #size-cells = <2>;
+> > +                       ranges;
+> > +
+> > +                       usb_ssphy: phy@1615200 {
+>
+> Please update this to newer style bindings (see
+> qcom,sc8280xp-qmp-usb3-uni-phy.yaml).
+
+I double checked the downstream driver and the HW documentation and
+can confirm that this is not a UNI PHY i.e. it has 2 lanes (see
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/phy/qualcomm/phy-qcom-qmp-usb.c#n1923>).
+
+Also this is a v3 USB QMP PHY (normally available on other SoCs like
+sdm845) instead of v5 QMP USB UNI PHY available on SC8280XP.
+
+So, I think the original patch is correct.
+
+Thanks,
+Bhupesh
+
+
+
+> > +                               reg = <0x0 0x01615200 0x0 0x200>,
+> > +                                     <0x0 0x01615400 0x0 0x200>,
+> > +                                     <0x0 0x01615c00 0x0 0x400>,
+> > +                                     <0x0 0x01615600 0x0 0x200>,
+> > +                                     <0x0 0x01615800 0x0 0x200>,
+> > +                                     <0x0 0x01615a00 0x0 0x100>;
+> > +                               #clock-cells = <0>;
+> > +                               #phy-cells = <0>;
+> > +                               clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> > +                               clock-names = "pipe0";
+> > +                               clock-output-names = "usb3_phy_pipe_clk_src";
+> > +                       };
+> > +               };
+> > +
+> >                 qfprom@1b40000 {
+> >                         compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
+> >                         reg = <0x0 0x01b40000 0x0 0x7000>;
+> > @@ -1100,8 +1132,8 @@ usb_dwc3: usb@4e00000 {
+> >                                 compatible = "snps,dwc3";
+> >                                 reg = <0x0 0x04e00000 0x0 0xcd00>;
+> >                                 interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
+> > -                               phys = <&usb_hsphy>;
+> > -                               phy-names = "usb2-phy";
+> > +                               phys = <&usb_hsphy>, <&usb_ssphy>;
+> > +                               phy-names = "usb2-phy", "usb3-phy";
+> >                                 iommus = <&apps_smmu 0x120 0x0>;
+> >                                 snps,dis_u2_susphy_quirk;
+> >                                 snps,dis_enblslpm_quirk;
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> > index 10c9d338446c..d60cc024749b 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> > @@ -280,6 +280,9 @@ &usb {
+> >  &usb_dwc3 {
+> >         maximum-speed = "high-speed";
+> >         dr_mode = "peripheral";
+> > +
+> > +       phys = <&usb_hsphy>;
+> > +       phy-names = "usb2-phy";
+> >  };
+> >
+> >  &usb_hsphy {
+> > --
+> > 2.38.1
+> >
+>
+>
+> --
+> With best wishes
+> Dmitry
