@@ -2,188 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE0676D83BC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8466D83D4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjDEQbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 12:31:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39378 "EHLO
+        id S232951AbjDEQiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 12:38:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbjDEQbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:31:34 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7FFE2115;
-        Wed,  5 Apr 2023 09:31:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680712292; x=1712248292;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+wBw0wnzu4XdIkQvANOn4jcZNTmE4P0o1YbVmHEHd38=;
-  b=gdUvBd9W2m6uk9WzbNOm/47LAyvkf9Bs9JvQPedwix/913elttnI87qm
-   PkWWZl8g59v4nJA79hVd8WwY5TDwH8NU+laQv9gQV9B2RAWp9vjhQ/5+5
-   80p2mtDRlMMwBoUgb5NOjy3h6/gbVqJONLjLFyKya/DBYp9dnPp94TNJV
-   RAbBJHdkeR8lEwGl8jxWk6VJeBzpBWzLyncY019T5TtGzvwTOFMq1Ub4K
-   Qt/RQNEGrYEujcYXLz4ijBbq1deZGu9kur6ZXahTtaXPC/BDZIJbjSRWc
-   6lP9tnN3JwIUS266A8kdeFk9v04uPm/8LaU0LK5kcr5C20B+JfaxyQeRU
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="339994355"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; 
-   d="scan'208";a="339994355"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 09:31:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="932890851"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; 
-   d="scan'208";a="932890851"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 05 Apr 2023 09:31:18 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pk62Y-000Qdx-0p;
-        Wed, 05 Apr 2023 16:31:18 +0000
-Date:   Thu, 6 Apr 2023 00:30:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH 2/2] soc: qcom: Introduce RPM master stats driver
-Message-ID: <202304060002.HLUjkH63-lkp@intel.com>
-References: <20230405-topic-master_stats-v1-2-1b1fa2739953@linaro.org>
+        with ESMTP id S232851AbjDEQiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:38:07 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C116F30F3;
+        Wed,  5 Apr 2023 09:38:05 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 335Gbs1Y049305;
+        Wed, 5 Apr 2023 11:37:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680712675;
+        bh=RAzK/9/QguqNrFtBWr4bk5SJVoOVysSW9GzBLB9CjBM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=r69Sk4KfCLPW0Vz62ydNnCjnxaBiTYN2lWYn57zMlWeHjgEp/oh0wG01mCrZGtbjE
+         5jZnRmer18kWDGLrXr1gj9THaGRGAc9lkCDd0LHYkxf0xFKNfUPH9a9w4U90z0r/iZ
+         BhJHOXhTvmcZY9ObkpvT0jBzddtREAsA1aoxIthg=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 335GbsSP021417
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 Apr 2023 11:37:54 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 5
+ Apr 2023 11:37:54 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 5 Apr 2023 11:37:54 -0500
+Received: from [10.250.32.15] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 335Gbqxk089718;
+        Wed, 5 Apr 2023 11:37:52 -0500
+Message-ID: <e38ea0b2-5e51-05d6-50fc-c7ef3d4b8698@ti.com>
+Date:   Wed, 5 Apr 2023 11:37:52 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230405-topic-master_stats-v1-2-1b1fa2739953@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 4/6] arm64: dts: ti: k3-j784s4-*: Add DSS node
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230405111412.151192-1-j-choudhary@ti.com>
+ <20230405111412.151192-5-j-choudhary@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230405111412.151192-5-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.9 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 8417c8f5007bf4567ccffda850a3157c7d905f67]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Konrad-Dybcio/dt-bindings-soc-qcom-Add-RPM-Master-stats/20230405-230341
-base:   8417c8f5007bf4567ccffda850a3157c7d905f67
-patch link:    https://lore.kernel.org/r/20230405-topic-master_stats-v1-2-1b1fa2739953%40linaro.org
-patch subject: [PATCH 2/2] soc: qcom: Introduce RPM master stats driver
-config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20230406/202304060002.HLUjkH63-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/76fec5cd8630399cfdb8612093bfa0a5d0d98ea9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Konrad-Dybcio/dt-bindings-soc-qcom-Add-RPM-Master-stats/20230405-230341
-        git checkout 76fec5cd8630399cfdb8612093bfa0a5d0d98ea9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=loongarch olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=loongarch SHELL=/bin/bash drivers/soc/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304060002.HLUjkH63-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/qcom/rpm_master_stats.c: In function 'master_stats_probe':
->> drivers/soc/qcom/rpm_master_stats.c:92:83: warning: format '%s' expects argument of type 'char *', but argument 4 has type 'int' [-Wformat=]
-      92 |                                              "Couldn't parse MSG RAM phandle idx %s", i);
-         |                                                                                  ~^   ~
-         |                                                                                   |   |
-         |                                                                                   |   int
-         |                                                                                   char *
-         |                                                                                  %d
+On 4/5/23 6:14 AM, Jayesh Choudhary wrote:
+> From: Rahul T R <r-ravikumar@ti.com>
+> 
+> Add DSS node for J784S4 SoC. DSS IP in J784S4
+> is same as DSS IP in J721E, so same compatible is
+> being used.
+> Also add assigned clks for DSS
+> 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 11 +++++
 
 
-vim +92 drivers/soc/qcom/rpm_master_stats.c
+The changes to `k3-j784s4-evm.dts` in this patch and the next all
+need moved to the last patch in this series. All these changes
+needed to enable the display in the EVM work together and so
+should be one atomic step.
 
-    66	
-    67	static int master_stats_probe(struct platform_device *pdev)
-    68	{
-    69		struct device *dev = &pdev->dev;
-    70		struct device_node *msgram_np;
-    71		struct master_stats_data *d;
-    72		struct dentry *dent, *root;
-    73		struct resource res;
-    74		int count, i, ret;
-    75	
-    76		count = of_property_count_strings(dev->of_node, "qcom,master-names");
-    77		if (count < 0)
-    78			return count;
-    79	
-    80		d = devm_kzalloc(dev, count * sizeof(*d), GFP_KERNEL);
-    81		if (!d)
-    82			return -ENOMEM;
-    83	
-    84		root = debugfs_create_dir("rpm_master_stats", NULL);
-    85		platform_set_drvdata(pdev, root);
-    86	
-    87		for (i = 0; i < count; i++) {
-    88			msgram_np = of_parse_phandle(dev->of_node, "qcom,rpm-msg-ram", i);
-    89			if (!msgram_np) {
-    90				debugfs_remove_recursive(root);
-    91				return dev_err_probe(dev, -EINVAL,
-  > 92						     "Couldn't parse MSG RAM phandle idx %s", i);
-    93			}
-    94	
-    95			/*
-    96			 * Purposefully skip devm_platform helpers as we're using a
-    97			 * shared resource.
-    98			 */
-    99			ret = of_address_to_resource(msgram_np, 0, &res);
-   100			if (ret < 0) {
-   101				debugfs_remove_recursive(root);
-   102				return ret;
-   103			}
-   104	
-   105			d[i].base = devm_ioremap(dev, res.start, resource_size(&res));
-   106			if (IS_ERR(d[i].base)) {
-   107				debugfs_remove_recursive(root);
-   108				return dev_err_probe(dev, -EINVAL,
-   109						     "Could not map the MSG RAM slice idx %d!\n", i);
-   110			}
-   111	
-   112			ret = of_property_read_string_index(dev->of_node, "qcom,master-names", i,
-   113							    &d[i].label);
-   114			if (ret < 0) {
-   115				debugfs_remove_recursive(root);
-   116				return dev_err_probe(dev, ret,
-   117						     "Could not read name idx %d!\n", i);
-   118			}
-   119	
-   120			/*
-   121			 * Generally it's not advised to fail on debugfs errors, but this
-   122			 * driver's only job is exposing data therein.
-   123			 */
-   124			dent = debugfs_create_file(d[i].label, 0444, root,
-   125						   &d[i], &master_stats_fops);
-   126			if (!dent) {
-   127				debugfs_remove_recursive(root);
-   128				return -EINVAL;
-   129			}
-   130		}
-   131	
-   132		device_set_pm_not_required(dev);
-   133	
-   134		return 0;
-   135	}
-   136	
+Andrew
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 55 ++++++++++++++++++++++
+>   2 files changed, 66 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index b1445b7c2aa8..ccbfca76e9ae 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -305,3 +305,14 @@ &main_cpsw1_port1 {
+>   &serdes_refclk {
+>   	clock-frequency = <100000000>;
+>   };
+> +
+> +&dss {
+> +	assigned-clocks = <&k3_clks 218 2>,
+> +			  <&k3_clks 218 5>,
+> +			  <&k3_clks 218 14>,
+> +			  <&k3_clks 218 18>;
+> +	assigned-clock-parents = <&k3_clks 218 3>,
+> +				 <&k3_clks 218 7>,
+> +				 <&k3_clks 218 16>,
+> +				 <&k3_clks 218 22>;
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> index 0cd692bc52e6..86ce6f6d4fc2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -1373,4 +1373,59 @@ main_spi7: spi@2170000 {
+>   		clocks = <&k3_clks 383 1>;
+>   		status = "disabled";
+>   	};
+> +
+> +	dss: dss@4a00000 {
+> +		compatible = "ti,j721e-dss";
+> +		reg =
+> +			<0x00 0x04a00000 0x00 0x10000>,
+> +			<0x00 0x04a10000 0x00 0x10000>,
+> +			<0x00 0x04b00000 0x00 0x10000>,
+> +			<0x00 0x04b10000 0x00 0x10000>,
+> +
+> +			<0x00 0x04a20000 0x00 0x10000>,
+> +			<0x00 0x04a30000 0x00 0x10000>,
+> +			<0x00 0x04a50000 0x00 0x10000>,
+> +			<0x00 0x04a60000 0x00 0x10000>,
+> +
+> +			<0x00 0x04a70000 0x00 0x10000>,
+> +			<0x00 0x04a90000 0x00 0x10000>,
+> +			<0x00 0x04ab0000 0x00 0x10000>,
+> +			<0x00 0x04ad0000 0x00 0x10000>,
+> +
+> +			<0x00 0x04a80000 0x00 0x10000>,
+> +			<0x00 0x04aa0000 0x00 0x10000>,
+> +			<0x00 0x04ac0000 0x00 0x10000>,
+> +			<0x00 0x04ae0000 0x00 0x10000>,
+> +			<0x00 0x04af0000 0x00 0x10000>;
+> +
+> +		reg-names = "common_m", "common_s0",
+> +			"common_s1", "common_s2",
+> +			"vidl1", "vidl2","vid1","vid2",
+> +			"ovr1", "ovr2", "ovr3", "ovr4",
+> +			"vp1", "vp2", "vp3", "vp4",
+> +			"wb";
+> +
+> +		clocks =	<&k3_clks 218 0>,
+> +				<&k3_clks 218 2>,
+> +				<&k3_clks 218 5>,
+> +				<&k3_clks 218 14>,
+> +				<&k3_clks 218 18>;
+> +		clock-names = "fck", "vp1", "vp2", "vp3", "vp4";
+> +
+> +		power-domains = <&k3_pds 218 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "common_m",
+> +				  "common_s0",
+> +				  "common_s1",
+> +				  "common_s2";
+> +
+> +		status = "disabled";
+> +
+> +		dss_ports: ports {
+> +		};
+> +	};
+>   };
