@@ -2,78 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E2C6D786E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 11:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0ED6D78A1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 11:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237415AbjDEJde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 05:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
+        id S237450AbjDEJmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 05:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237727AbjDEJdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 05:33:15 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133EE55BB;
-        Wed,  5 Apr 2023 02:32:40 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5020066031AD;
-        Wed,  5 Apr 2023 10:31:51 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680687112;
-        bh=1v+Dt06wXLxLkRrvZe75hH+NO5Dfwp4+k7N71NcKmR4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=L2yMdEwEpr0yHWlEWI2mRKIzoq8oGMxnatgpO1bp2lTCfWlwH02Zx0ltFfzBhgVrP
-         If+ZyiDsKfqjiNZPnlapF9XHexqIAt4Nc6EEztMHYTRlb3M4uUzdcka8Kl6QBnm1p1
-         rvGPgAHuzFBT4vXLzFlt19vx+oigj9E+mwM1hpk2knIKtt4RC+9c3IAlNV7EGaQ/3D
-         JEndJ8Jrw+TXpCnNzzxNL10U2I4OrpVNzkk3GH6FIavv2Upw7A7zSTXok0eBIqQlFJ
-         5bPrd2FGN2nbqrzHmFlPeRHWbngoa4yXgttD4bp6FfVyHyzfPw8WPeMcJ0OoTnT05o
-         dpnbWvSvOJpzw==
-Message-ID: <ee893222-38b9-899a-58c2-71e16fbb963f@collabora.com>
-Date:   Wed, 5 Apr 2023 11:31:49 +0200
+        with ESMTP id S237241AbjDEJl6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 05:41:58 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A29D5258
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 02:41:55 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id i5so139754863eda.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 02:41:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680687713;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0GjPZEs8t5YeiwXNylHqVxhWNUDxoz5iAqxoJIu/8Q0=;
+        b=yLqz41niCnA/4M7/IrxcpnX+Rzo4R6MbgmPCqwq2kgPg/nr+Y/R4zhnDHiboyEfeHZ
+         sgsAvPj4xkfkVHxUQ/U/64JQKOaevc52GhQnSgzkueU/7uAgfWHsItJaAtvGlGEgbue6
+         aZdgY7oKNN8kRfDtsIE/r6thnnk71KDvsVKxmdmM23LdB5nUHJaKh3lRf8h7jBgudKmS
+         O8SaYoHpbZ25XDySw1N0lu4UgF9GS9ntyjnJhSKurB0EznnNBmRB267YvyBmuAhpazrO
+         CnVSvdOpFVZAZ6Rse1DqDZctMuGFLwb1DBbIDUNky4dLha8Z/Qf/o5ctMJcn+pQQGjVa
+         9mnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680687713;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0GjPZEs8t5YeiwXNylHqVxhWNUDxoz5iAqxoJIu/8Q0=;
+        b=k/y7BkHCBl/054gXCoorLNSlmGiIa6xcYJMmnABa6o6tXhLdo/HuUwdB+ncgQOn5N1
+         M3i3CluzFeK1YASYh5fPTUOPtNTQB2RrAaLFt1pmrnNfojKiHZ7PNX7WN080PlQzBEYe
+         u8cXA0ZFl2rTStjlc7ExlEr5agN/oSd8R/0iQ+IO8CUiqb6TjapzUEEepnQaT1Dxa7xV
+         CoR7xFqE1pUH4yiEj828v3+BeLy1GJd8RLFneK/Pjk6eF6o31cPt1kTXAaOZvt/Qo5Ev
+         SLWcIGYf5MIW1/fHRLI3K4pagqyUkyqBRMKa7wsWE+97Doui8S6k31peuH7gFSxFM0df
+         TyDw==
+X-Gm-Message-State: AAQBX9fV8jbIZ5GoWYi802icIxGXH2JqGJpbxLTtr9dziGHe5wExdHma
+        5J+Xc8Mnhak+OaBAvA/nEPKFiQ==
+X-Google-Smtp-Source: AKy350Z+GWU8X5Rfpn9ZSONreiFN8UZk88nM4GBu2VN6MfCfdsudG3SA9Oy22EAYtXBrPqLsB6sqfQ==
+X-Received: by 2002:a17:906:a854:b0:8a6:e075:e364 with SMTP id dx20-20020a170906a85400b008a6e075e364mr2221475ejb.26.1680687713687;
+        Wed, 05 Apr 2023 02:41:53 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
+        by smtp.gmail.com with ESMTPSA id tc27-20020a1709078d1b00b009231714b3d4sm7142175ejc.151.2023.04.05.02.41.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Apr 2023 02:41:53 -0700 (PDT)
+Message-ID: <1403741d-ef51-a9c5-821f-358c8f470dab@linaro.org>
+Date:   Wed, 5 Apr 2023 11:41:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v3 2/3] dt-bindings: pinctrl: mediatek: deprecate custom
- bias pull properties for mt8365
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: qcom,qmp-usb: Fix phy subnode
+ for SM6115 & QCM2290 USB3 PHY
 Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com>
- <20230327-cleanup-pinctrl-binding-v3-2-6f56d5c7a8de@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230327-cleanup-pinctrl-binding-v3-2-6f56d5c7a8de@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org
+References: <20230401154725.1059563-1-bhupesh.sharma@linaro.org>
+ <20230401154725.1059563-2-bhupesh.sharma@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230401154725.1059563-2-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/04/23 18:29, Alexandre Mergnat ha scritto:
-> In order to be more generic, "mediatek,pull-up-adv" and
-> "mediatek,pull-down-adv" should be deprecated. Use "bias-pull-up" and
-> "bias-pull-down" instead.
+On 01/04/2023 17:47, Bhupesh Sharma wrote:
+> The USB3 SS (QMP) PHY found on Qualcomm SM6115 & QCM2290 SoCs is
+> similar to sm8150 QMP PHY in the sense that the phy subnode supports
+> 6 regs, namely TX lane 1, RX lane 1, PCS, TX lane 2, RX lane 2 and
+> PCS_MISC.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> Update the dt-bindings document to reflect the same.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Bhupesh,
+
+Can you use scripts/get_maintainers.pl to get the Cc addresses instead
+of writing them manually or inventing?
+
+Best regards,
+Krzysztof
 
