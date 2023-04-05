@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CE236D7433
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE2896D7435
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237041AbjDEGJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 02:09:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
+        id S237043AbjDEGJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 02:09:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237051AbjDEGJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:09:18 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1B14203
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:09:14 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id w9so138406613edc.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 23:09:14 -0700 (PDT)
+        with ESMTP id S237053AbjDEGJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:09:20 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB80C171B
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:09:15 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id w9so138406729edc.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 23:09:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680674953;
+        d=linaro.org; s=google; t=1680674954;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KTARyjbA9HHZxEptX/YxUmGndRPMKWlLXqPsf7UDIq4=;
-        b=G+1aDLSeN5pHjlD2znOVASlP+jdalJBMt8Qfny2x702+SNEP0XKZO1jx/phwFQZ3xU
-         Umw7JKZ79jGMkS9F3Gcm46tQUTXHb3aE96C1MTikeAsOaHPASswibZS62Oh4pZwiBOUP
-         vknZysTpWl5FO+aD0tiMaGpwF14aYDS2ErHwGoaqyv4xiTdwpjAx56xb4ubdu0dKafTe
-         vttIxA/7JcZeH1/ZbqqNUb7jeX5cD2PDzGJaV3yDCwjUFTJpVnBGd3Pt6eCxzKi82ZK8
-         eNfR94y0aXpDzON9+JUQeAyQ0REPKC/mqqca8E7MjbF0OBNlKQLcbtDTYbadCPTVp6Lr
-         Ci4Q==
+        bh=s457CUJYeulcw9DiSKcWs4kYJ0VBbhBmodKlU+dm0Dw=;
+        b=VHszjhzeAkyOdKPdKprreAYmD17Av0E6PB0RUrmrWMlCBlhqytNrCrR/0fsa2OOdM5
+         z8ueBDZLcqtUTnUNuUfsoZ/P2HfyYV+PXFR/jKythuWKE8gbeYAAufxYGT6ZHpw9uf+c
+         3QF/ODFOJhfphqMCql0HQs1IY69ABOXfuCw4j4onzrRvgSb0bV+dP1fM5Z1bQVwPV+wo
+         Bk9rh0cq9W8wV+A1XuKCqso6qvvvEXsp+kJMOCtodp5s0kz7KBdDidPr5zkqKXdceLp5
+         UqWOkZsGohHNw8koy5DIDzcv3ezd8U0cKarPUK1BOdEuSwDPMA25aD2EStmDRbTy/H42
+         2MzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680674953;
+        d=1e100.net; s=20210112; t=1680674954;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KTARyjbA9HHZxEptX/YxUmGndRPMKWlLXqPsf7UDIq4=;
-        b=TNlFyzJtIqpJnFidVnjBiVR+vP/7vpS0oOkkRk4tvvzZ9MpF/EDfuU1VQjbTSc7RMC
-         rmdHuM9BzBUG6wg69uBtDXn74Lzlz9f3skj+TOoDOt4WcDjqVWxnfuo1Vjn5iA2TWQja
-         9z83WYzguWXjI0c0Vd0GHgFVs0AmkGkqwDG8jiFRBApVpU2PJqW9LiIYhGcDhWv1scmD
-         3ip8bjMzCh5lbhN3aUix6Ub8l7GLXJgnFTBA1B+UywxaWzuD59d7X3Co08wvuPhmkA0C
-         LIm7MQ2Maf82qYhgFXUiqbKam4s1KK/H0iOV0p1RB7MFg4Nuxqrp/3UKgDoy255g4Wfy
-         k2Mg==
-X-Gm-Message-State: AAQBX9cNYfSYMQs+cST2Ew79WFj7QNdSHeb3O9qQzbEeh6591VTBBWJI
-        sAMq45Gi/zkOzKXjHGid4Vu/3bIgzWEjukgsJ3g=
-X-Google-Smtp-Source: AKy350Z7IcLcBX2c/n+pCVziu38BjdVyq57xOIDaaUYKdRNj9m7QUC4GObtR9svnvkBIwwjykHuisQ==
-X-Received: by 2002:a17:906:8244:b0:93d:e141:e958 with SMTP id f4-20020a170906824400b0093de141e958mr1809761ejx.15.1680674953012;
-        Tue, 04 Apr 2023 23:09:13 -0700 (PDT)
+        bh=s457CUJYeulcw9DiSKcWs4kYJ0VBbhBmodKlU+dm0Dw=;
+        b=yxhpr9XvO78ricyssxEVAFkhysBoEaxlumGj736uDvvDfSt8FboWrtP1Y9xraSgkzk
+         Slb1YWf9J6NA9CV0NYVMoIQuBprr0elZxnVTUE0RRf1IbxlNfGFyQftD3iJfkNPSs+du
+         IuNIeCO30dS/zA5NH4xKPQsxdbr4C/iJDGRBWFrJnKuzjWZLbm1AQlvuzEvDP4tw3UaS
+         60e92oAInfpx4xFcgowHVuGtlC9OtYuTlKfubCVV5aqTMZgL/nTeTRk6WXWv/KpExn/M
+         JymihMtjk09ul4cljZB6NSPciVGD58lauhbb6uTnV1gnK2uuI2zLRk40l1Rc7gEMFW+3
+         6FFg==
+X-Gm-Message-State: AAQBX9cHV8mBU9r5uD4O9aw7NYl+XKbSXahHTR72F7YU3x7V6P4hKxYw
+        4A62RZvE611Ryjv/h3jxrlfqrg==
+X-Google-Smtp-Source: AKy350ZNru4UEjGX8NsBR9rOq04ivqA0mNHquECgTls0Si/DlgJS1xXBd3brIA5IO3qia4qMjnRjzQ==
+X-Received: by 2002:a17:906:4bd0:b0:933:c474:420b with SMTP id x16-20020a1709064bd000b00933c474420bmr1766764ejv.19.1680674954217;
+        Tue, 04 Apr 2023 23:09:14 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id z12-20020a1709064e0c00b00882f9130eafsm6784643eju.26.2023.04.04.23.09.12
+        by smtp.gmail.com with ESMTPSA id z12-20020a1709064e0c00b00882f9130eafsm6784643eju.26.2023.04.04.23.09.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 23:09:12 -0700 (PDT)
+        Tue, 04 Apr 2023 23:09:13 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/5] arm64: dts: qcom: sm8250: simplify interrupts-extended
-Date:   Wed,  5 Apr 2023 08:09:05 +0200
-Message-Id: <20230405060906.143058-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/5] arm64: dts: qcom: sm8450: simplify interrupts-extended
+Date:   Wed,  5 Apr 2023 08:09:06 +0200
+Message-Id: <20230405060906.143058-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230405060906.143058-1-krzysztof.kozlowski@linaro.org>
 References: <20230405060906.143058-1-krzysztof.kozlowski@linaro.org>
@@ -75,27 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The parent controller for the interrupt is GIC, so no need for
+The parent controller for both interrupts is GIC, so no need for
 interrupts-extended.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 7b78761f2041..fae30dc58eb5 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2366,7 +2366,7 @@ txmacro: txmacro@3220000 {
- 		swr2: soundwire-controller@3230000 {
- 			reg = <0 0x03230000 0 0x2000>;
- 			compatible = "qcom,soundwire-v1.5.1";
--			interrupts-extended = <&intc GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "core";
- 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 1dd000748f9e..1dc5d2c49aad 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2298,8 +2298,8 @@ swr0: soundwire-controller@3250000 {
+ 		swr2: soundwire-controller@33b0000 {
+ 			compatible = "qcom,soundwire-v1.7.0";
+ 			reg = <0 0x033b0000 0 0x2000>;
+-			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+-					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "core", "wakeup";
  
+ 			clocks = <&vamacro>;
 -- 
 2.34.1
 
