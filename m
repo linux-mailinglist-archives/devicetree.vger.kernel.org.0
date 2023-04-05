@@ -2,129 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 317C76D8405
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48DCC6D840C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbjDEQsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 12:48:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
+        id S233423AbjDEQtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 12:49:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbjDEQsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:48:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A3E830FD;
-        Wed,  5 Apr 2023 09:48:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D0B9462979;
-        Wed,  5 Apr 2023 16:48:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E07CC433EF;
-        Wed,  5 Apr 2023 16:48:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680713288;
-        bh=22ZlOUdVMzmaWyuCliiH+IGS7pPTTM98jyuFQs6JaxU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=As01gsATq0TJyi7JZUFiySulLYX1O6SAhxW8EjpE7ttZQbvsIeAn8QOPjv0D7nJhQ
-         ToYBoEPqVCKPoQUMymCpxRk+n/SXD3MQLOOV1vBZtwzfaadBZnsuaH2M3BRgBXc/KH
-         3hGpYy43n52biSNcpxyrbhQO4YKEZ8U9plksKd+pVCqS39zJqeDB7KVY2xjAJPxNxA
-         R4TUBk+BtQaoWC54IIWSstOu69iWGOI20Op/exPJV7h6ffhNFo8KgLTQe9pmKBR7Zr
-         rpDnFhoTYA3H41JvkGqdGffOr7HJJQ8WNVc792d9pHltZ5J5OEGrGWuHuLIl6k142/
-         /6pI6ZD/6qTlw==
-Received: by mail-yb1-f170.google.com with SMTP id d3so15417180ybu.1;
-        Wed, 05 Apr 2023 09:48:08 -0700 (PDT)
-X-Gm-Message-State: AAQBX9dm92h3aR0ap0F8wuL0r2rISDEhUxtduHzDuhIaMXqBE1csrKBA
-        C1GbjqWk7aHgZLeWy6FF/4e5MviXl1aC2QXNyg==
-X-Google-Smtp-Source: AKy350ZQx0dkPXkdwb3C7yfZngsJ/me3yZn0KqkDJct1jJHk/VdVBxS0W1oMDzSaZEkNczgg8bKEBgL3JEFO7l3y88w=
-X-Received: by 2002:a25:da0a:0:b0:b77:81f:42dc with SMTP id
- n10-20020a25da0a000000b00b77081f42dcmr4682130ybf.1.1680713287294; Wed, 05 Apr
- 2023 09:48:07 -0700 (PDT)
+        with ESMTP id S233485AbjDEQs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:48:59 -0400
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2804D3AAB;
+        Wed,  5 Apr 2023 09:48:59 -0700 (PDT)
+Received: by mail-oo1-f41.google.com with SMTP id h1-20020a4adcc1000000b0053e9796cc7dso2931235oou.4;
+        Wed, 05 Apr 2023 09:48:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680713338;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7txYggN2JwlOgtYe4eHEvjrkY9LG17YWZv5dce4ogFI=;
+        b=GXEJvW3djiNayPMTxsGpFxIlM0lWiVIKINTpF/VTSa4fNP0eRS113FsTd5XNrTmaRG
+         sU0ATEllhVd5fPES/4wnoKzRZCKgEGAQVYDAiiZ/IA5ruFm0hQBJdchAg0+tw34ELM6g
+         roVM63bxiKfs9BLBpG2+m1895ruCP55+ay5Y5ZVBQKaCcV0mkCLdYlPe7m6u3stbMmw2
+         rvtRSiNdH880V7anY0ZypcC+VGqs8IQyqBDRh4ZNhxRj2B6X6jzS2O6vCHx7VoXxTpgP
+         6RY2ZgfI2cw4QJ3pYPDvwOqtqZIMkuxxFLjnevmd5YFaBLQtQowNGvjnNXVag5w8rWmo
+         CCgQ==
+X-Gm-Message-State: AAQBX9fY/XAbRIC1i8xV40nUkbxDEBJtBU5QWVRjoCJdROtt8uYtgG54
+        aqxDEQwxgZNeQwv8F97aey6Zyjn35Q==
+X-Google-Smtp-Source: AKy350ZOWsoXuIh71UIF2+sLLrwOl+BpqIIgKkgejqQBZ32ulm5gvnnvuwY3zC6rOomi+M4QLEKW3A==
+X-Received: by 2002:a4a:418e:0:b0:538:242e:803a with SMTP id x136-20020a4a418e000000b00538242e803amr3420413ooa.0.1680713338369;
+        Wed, 05 Apr 2023 09:48:58 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c5-20020a4aacc5000000b00524f381f681sm6880102oon.27.2023.04.05.09.48.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 09:48:58 -0700 (PDT)
+Received: (nullmailer pid 2821002 invoked by uid 1000);
+        Wed, 05 Apr 2023 16:48:57 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230329-acpi-header-cleanup-v1-0-8dc5cd3c610e@kernel.org>
- <20230329-acpi-header-cleanup-v1-5-8dc5cd3c610e@kernel.org> <CAJZ5v0h8pEq4Tx-Q=VPT-XR73NRk=_XQg6vgr-wA-CFesuuSLg@mail.gmail.com>
-In-Reply-To: <CAJZ5v0h8pEq4Tx-Q=VPT-XR73NRk=_XQg6vgr-wA-CFesuuSLg@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 5 Apr 2023 11:47:55 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKVg_1T2SkMRryDFyYho1Kz+ppNkqozPdyyX_t4EFBJpg@mail.gmail.com>
-Message-ID: <CAL_JsqKVg_1T2SkMRryDFyYho1Kz+ppNkqozPdyyX_t4EFBJpg@mail.gmail.com>
-Subject: Re: [PATCH 5/5] ACPI: Replace irqdomain.h include with struct declarations
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Len Brown <lenb@kernel.org>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>, ahalaney@redhat.com,
+        linux-kernel@vger.kernel.org, quic_harshq@quicinc.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, quic_pkondeti@quicinc.com,
+        Andy Gross <agross@kernel.org>, quic_shazhuss@quicinc.com,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        quic_wcheng@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, quic_jackp@quicinc.com,
+        quic_ppratap@quicinc.com
+In-Reply-To: <20230405125759.4201-2-quic_kriskura@quicinc.com>
+References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
+ <20230405125759.4201-2-quic_kriskura@quicinc.com>
+Message-Id: <168071287318.2812205.17997019926296843813.robh@kernel.org>
+Subject: Re: [PATCH v6 1/8] dt-bindings: usb: Add bindings for multiport
+ properties on DWC3 controller
+Date:   Wed, 05 Apr 2023 11:48:57 -0500
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 5, 2023 at 9:59=E2=80=AFAM Rafael J. Wysocki <rafael@kernel.org=
-> wrote:
->
-> Hi Rob,
->
-> On Wed, Mar 29, 2023 at 11:21=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
-> >
-> > linux/acpi.h includes irqdomain.h which includes of.h. Break the includ=
-e
-> > chain by replacing the irqdomain include with forward declarations for
-> > struct irq_domain and irq_domain_ops which is sufficient for acpi.h.
-> >
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  include/linux/acpi.h | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-> > index efff750f326d..169c17c0b0dc 100644
-> > --- a/include/linux/acpi.h
-> > +++ b/include/linux/acpi.h
-> > @@ -10,12 +10,14 @@
-> >
-> >  #include <linux/errno.h>
-> >  #include <linux/ioport.h>      /* for struct resource */
-> > -#include <linux/irqdomain.h>
-> >  #include <linux/resource_ext.h>
-> >  #include <linux/device.h>
-> >  #include <linux/property.h>
-> >  #include <linux/uuid.h>
-> >
-> > +struct irq_domain;
-> > +struct irq_domain_ops;
-> > +
-> >  #ifndef _LINUX
-> >  #define _LINUX
-> >  #endif
-> >
-> > --
->
-> This causes build issues in linux-next, so I've dropped the series.  I
-> will be happy to pick it up again when the build issues are addressed,
-> though.
 
-Is it just the one in pata_macio.c or are there others you are aware of?
+On Wed, 05 Apr 2023 18:27:52 +0530, Krishna Kurapati wrote:
+> Add bindings to indicate properties required to support multiport
+> on Snps Dwc3 controller.
+> 
+> Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+> Link to v5: https://lore.kernel.org/all/20230310163420.7582-2-quic_kriskura@quicinc.com/
+> 
+>  .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
+> 
 
-Rob
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:90:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230405125759.4201-2-quic_kriskura@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
