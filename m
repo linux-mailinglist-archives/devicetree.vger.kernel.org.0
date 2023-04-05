@@ -2,78 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4666D7F02
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B926D7F1D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbjDEORS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 10:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40916 "EHLO
+        id S238512AbjDEOTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 10:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238076AbjDEORR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:17:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9BC265B9;
-        Wed,  5 Apr 2023 07:16:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E0EC628B0;
-        Wed,  5 Apr 2023 14:16:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BBC0C433D2;
-        Wed,  5 Apr 2023 14:16:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680704217;
-        bh=6sSTihbp7P44lwSAC1Ce0D8/XwRsKhfginKjLZjCkaA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aNBXq3t3mS1/EbFLPR9QUvjjCKMCeP2FnLNgKoi2FeC+nS6FDNt17tLzEX5XAnijU
-         1J6mLVky3QNuFgmSri5kQOxtte+TsR/KcOIsxjSsT+LQemRNYR8UbwuF4EsX+BGI8C
-         ALDODJMX15df4arul+NEkH+jw604ohtieE9iag55Og7xvrpeSdPzMAc9KXT2tyxUbT
-         WJRS8r2q2+eaFg7wourz9i1F8cXGeP3ZpTLEx3sYLiG1lSCQ2oNURAR7NwuSrkjj/p
-         UgjZ7HgEoU+tP9zhT7We+iNSqT8TqwGnI1Gf3Dndki/EgWx+26ZW8/qpACctRSGI/F
-         +nz9J9bBfEX4Q==
-Date:   Wed, 5 Apr 2023 22:16:50 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 0/6] arm64: dts: imx8m: update pinctrl to match
- dtschema
-Message-ID: <20230405141650.GE11367@dragon>
-References: <20230328033640.1930104-1-peng.fan@oss.nxp.com>
+        with ESMTP id S238509AbjDEOSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:18:34 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3067A59D6;
+        Wed,  5 Apr 2023 07:18:02 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id l27so36391948wrb.2;
+        Wed, 05 Apr 2023 07:18:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680704276;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/qTSurywyiFi8YJ1Mq+URH6Inry7VQ8qeInnb5aX3H8=;
+        b=kwq8npzjgNar3wa8bPxkoQH5Tcoj3rquzHsEXc9qX7MNE712UR8GVYpCZCuBdmN/7O
+         Tesu2Wdqs9NaZp5dfj9orjc0PrDdhZMwZPgE5YhA1LfQIEhxkgHi4Pjbd7F/VzAaUJ82
+         iciLCG8NeJlHNgd6tCxLXGwWVqlMxsTFBRedizxxZUv6QFOpa5nayh53DP9mC/evpusP
+         sIOQq/l/WuSOFPhW80jS3nNJdE+sYOaQYXTG/YWfOZpfmnABbAnXriGSCNapv+apTOZ9
+         0RcMQScZo6bFhg5O4D50o66Fn2DFG1ErpqGPwnOHpIfCytwu3mksWimXwXC40+jZ8LN7
+         6MUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680704276;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/qTSurywyiFi8YJ1Mq+URH6Inry7VQ8qeInnb5aX3H8=;
+        b=IBjzINx7dldIJ8rp7vleiIHvL8ql8HVqPw3dtxxUSMyd+Aj+cc8slNVy0GWpAQzkfC
+         vy1T5M5UjaSMbK+AT7Et68XPGL2LjVE3qcg9B2dGG68iS0XBg3exkdEJCQ9PjcWkEBJI
+         n4iOYMaoXL9AgMozHx2Ltlh4E5Cca+tBlvCXlZ/TtmbxHnIq4IAQf6z6ek8w6yduYKv0
+         HQEBzMKuDMjmsUOXl+WfGO3AnFzicPKHTaVRJF6rGgyFxCQJv91K5acsvxY6gF/R/B9p
+         1ReMhD5VG1QWjI97RilMP+sNQrJStUp+bdWSvzmGZI4MwDu3a80W3QBMdiC8XrmNRf1f
+         D1nw==
+X-Gm-Message-State: AAQBX9cDDXy1mlJElPxXABidjIpTR2J11Fas+Tf4oph+HTcUO444gl0G
+        vrwLRajKza2L5JOtZQr/FQ0=
+X-Google-Smtp-Source: AKy350bHGfe0sUG0mZh0J5q2qp9rZhMeNPEJUOccPaQhxv4yWAHEJgMYZuCJTo9mORajhnN8znp3OQ==
+X-Received: by 2002:adf:f492:0:b0:2ce:a7df:c115 with SMTP id l18-20020adff492000000b002cea7dfc115mr4167077wro.41.1680704275852;
+        Wed, 05 Apr 2023 07:17:55 -0700 (PDT)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id k4-20020a5d4284000000b002cefcac0c62sm15300877wrq.9.2023.04.05.07.17.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 07:17:55 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: iio: dac: add mcp4822
+Date:   Wed, 05 Apr 2023 16:17:54 +0200
+Message-ID: <4357039.nDxAD4yF8u@archbook>
+In-Reply-To: <748c4391-1c8c-8fc2-cef9-6091512c77ef@linaro.org>
+References: <20230405140114.99011-1-frattaroli.nicolas@gmail.com>
+ <20230405140114.99011-4-frattaroli.nicolas@gmail.com>
+ <748c4391-1c8c-8fc2-cef9-6091512c77ef@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328033640.1930104-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 11:36:34AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Mittwoch, 5. April 2023 16:10:10 CEST Krzysztof Kozlowski wrote:
+> On 05/04/2023 16:01, Nicolas Frattaroli wrote:
+> > The MCP4801, MCP4802, MCP4811, MCP4812, MCP4821, and MCP4822 are
+> > SPI digital-to-analog converters by Microchip, which have an
+> > internal voltage reference, in contrast to the MCP49xx series
+> > of DACs which use an external voltage reference.
+> > 
+> > Thus, these need a separate binding, as to not overcomplicate
+> > the mcp4922 binding.
 > 
-> During the System-ready IR 2.0 check, there are lots dtbs_check warning.
-> The pinctrl dtschema requires grp in the end, so update pinctrl to address
-> dtbs_check warning.
+> The difference is just one property which is very easy to handle - one
+> allOf:if:then: with
+>     vref-supply: false
 > 
-> V2:
->  Add more update
->  With below script to filter out:
->  grep "pinctrl.*:.*{" ./arch/arm64/boot/dts/freescale/imx* -rn | grep -v "grp {"
+> Are there any other differences?
 > 
-> Peng Fan (6):
->   arm64: dts: imx8mn-evk: update i2c pinctrl to match dtschema
->   arm64: dts: imx8mm-ddr4-evk: update gpmi pinctrl to match dtschema
->   arm64: dts: imx8mq-librem5: update pinctrl to match dtschema
->   arm64: dts: imx8mm-emcon: update pinctrl to match dtschema
->   arm64: dts: imx8mn-bsh-smm: update pinctrl to match dtschema
->   arm64: dts: imx8mm-prt8mm: update pinctrl to match dtschema
+> Best regards,
+> Krzysztof
+> 
+> 
 
-Applied all, thanks!
+In place of the external vref input, the MCP48XX series chips also
+have a "SHDN" input, which is an active-low pin to disable the whole
+chip and put it in a low power state. Future users of the bindings
+may want to model this as being tied to some GPIO, though I haven't
+done it here since I don't care about this feature.
+
+Kind regards,
+Nicolas Frattaroli
+
+
