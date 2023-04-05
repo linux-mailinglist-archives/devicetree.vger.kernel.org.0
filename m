@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122316D722F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDBE56D7220
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbjDEBv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 21:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
+        id S232835AbjDEBn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 21:43:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231589AbjDEBvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:51:54 -0400
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7441423C
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 18:51:53 -0700 (PDT)
-Received: by mail-ua1-x92b.google.com with SMTP id h34so24613385uag.4
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:51:53 -0700 (PDT)
+        with ESMTP id S235182AbjDEBn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:43:57 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8685E3AB5
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 18:43:55 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id h14so16707097ilj.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:43:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1680659512;
+        d=chromium.org; s=google; t=1680659035;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jwpFUC847/YFt/XfpeQoDJ4SxIEry2tnTeuETvaZGB8=;
-        b=EJUuO45LJ91YQhtcVzWPSqoFZ75CO0M41mQJTzx9YpW4AMBtmKfbi5DfMI/A0eT1C/
-         QCaoygDmObVu18+cFW/KFGjNH+wWFIcnjQ5aedUtKgKQsAGxRU510LRt7pK2w/pbTekJ
-         Sirbjg0GLtMyrOmH/+hberUPE8xfQLTSLZs+Q=
+        bh=r8kHzkX9SzRAkXXCj8yo/EKVJUuQ4P1xn/63qVUInQs=;
+        b=i9T1CFuEPq6knTYwkWxspjaVaE3oVJ+xHE8V/HWUGqp4KihyT8cD6A4jXo195Hs1TB
+         3Nlj3keIDe/Kc4XP1YSA+dsQ2AryZqABe6/cdtCGUVwcFnd38a2uBOc5h6ZKIQs6ymfg
+         Ig39Rfj5g4tTuBH3zm/mD0w2GEXNkgrRaaCVk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680659512;
+        d=1e100.net; s=20210112; t=1680659035;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jwpFUC847/YFt/XfpeQoDJ4SxIEry2tnTeuETvaZGB8=;
-        b=Bo9XtC6bfChOcmy1vePiwJrxHLVsQnRuBFqE7pRXl3vEA0s0bZDx0kY6/ebESJTFLt
-         ng2vqYT7xX83Ro4P35vsvPa4BmijyTlud985Oh+WiOBSg1SXZFjdNPJeGAF3c5DYCgdR
-         Nj4MXiCJDqvEhEipaFJJawZSdbNksYEAoOyzfy1l5Jjyk7nU4iJVGX+OZIdYXmOhmcUO
-         Z1fwAyU2bSmyeoyha4RD/D7NoeSH8u1oyIpbAzozU9qKlulCJ1pqIqPHH/1FdkNJSvpn
-         DagvURd0fqb9bgKpHXb+6wMCxm4NypEea64uTPJTI10sZ5Y0DOzt81h8SblK+SiK6Kpo
-         gbhQ==
-X-Gm-Message-State: AAQBX9edUlqx0ivUbX/8fXgnbvM9QU+DZ+oI/RnQE2IdPAh1zbIpWfZu
-        jPf/pOIfqkl2KXj6Zj3suTg4nQwpRKidgN6cjbg=
-X-Google-Smtp-Source: AKy350Y9PtpChuxkOE0D1p+lwdKmnC+1L4yIywptHttv0mKY8gl5Bgk7geotH+R+4+o+3XJ6faz6aQ==
-X-Received: by 2002:a05:6122:c88:b0:432:df9:b1f3 with SMTP id ba8-20020a0561220c8800b004320df9b1f3mr2642342vkb.11.1680659512335;
-        Tue, 04 Apr 2023 18:51:52 -0700 (PDT)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id a143-20020a1f9895000000b004399d3ec5edsm2267600vke.38.2023.04.04.18.51.52
+        bh=r8kHzkX9SzRAkXXCj8yo/EKVJUuQ4P1xn/63qVUInQs=;
+        b=lfBoB/6om1osoW7vimf4u0fMpYjn2wuo+qttUk/kMGnL8vbC+Cox8r/pG6BB170BGq
+         6fuipWQmEeTSoIZb4+CuzFw7tOOC9jL0Fsf/vR0ojppa1QMaw+WdLdhBstLS6kV31Y66
+         YastGVp3tlgPAoQ0TneKqPa7aDtJDjcjeM9FEfNDom7VD1QdL8ut0FmwzynibYrL2SG3
+         nHegRzNSXMPdfyRsQQ0//aeWR/iPq1hjgtMOVwygSP1PjxzKrAj7KqeA2fqv5WaNSgd4
+         PXltiSq8qOAiWV9YmPiq+2bdGqU+g9UPWuh0DmhMeOvMHOsHuBzPtMm/C8PHlUPCy575
+         vdUg==
+X-Gm-Message-State: AAQBX9dP2Dl9qP+TqmagWMkQK43O3LlshBpQWts0tcDm+3WjnOE1t3Dr
+        C2Oi5jAv7wM4fnWSYdgNJF1FiiSczCiv3CQVENE=
+X-Google-Smtp-Source: AKy350aBpf6LnpE5Fw93rka1L2pMMi8fuMdElWfSKI0lePWa6bwMV6EJH4UTpy0mD+Sc91i6hlEZKQ==
+X-Received: by 2002:a92:c9c6:0:b0:316:aa65:c094 with SMTP id k6-20020a92c9c6000000b00316aa65c094mr748521ilq.18.1680659034889;
+        Tue, 04 Apr 2023 18:43:54 -0700 (PDT)
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
+        by smtp.gmail.com with ESMTPSA id h5-20020a056e020d4500b00325f1f8933csm3642708ilj.28.2023.04.04.18.43.54
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 18:51:52 -0700 (PDT)
-Received: by mail-vs1-f51.google.com with SMTP id d2so30165379vso.9
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:51:52 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1d9a:b0:325:dd36:7451 with SMTP id
- h26-20020a056e021d9a00b00325dd367451mr2720800ila.1.1680659013319; Tue, 04 Apr
- 2023 18:43:33 -0700 (PDT)
+        Tue, 04 Apr 2023 18:43:54 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id d20so4478874ioe.4
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:43:54 -0700 (PDT)
+X-Received: by 2002:a6b:d010:0:b0:752:ed8d:d015 with SMTP id
+ x16-20020a6bd010000000b00752ed8dd015mr675791ioa.1.1680659034009; Tue, 04 Apr
+ 2023 18:43:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com> <1680271114-1534-2-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1680271114-1534-2-git-send-email-quic_vpolimer@quicinc.com>
+References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com> <1680271114-1534-3-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1680271114-1534-3-git-send-email-quic_vpolimer@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 4 Apr 2023 18:43:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XV4yjUb2ufQZjOTYsgFXE0Ghnor3f8FCSdpV_pcZd1yg@mail.gmail.com>
-Message-ID: <CAD=FV=XV4yjUb2ufQZjOTYsgFXE0Ghnor3f8FCSdpV_pcZd1yg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] drm/msm/dpu: set dirty_fb flag while in self
- refresh mode
+Date:   Tue, 4 Apr 2023 18:43:42 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VSHmQPtsQfWjviEZeErms-VEOTmfozejASUC9zsMjAbA@mail.gmail.com>
+Message-ID: <CAD=FV=VSHmQPtsQfWjviEZeErms-VEOTmfozejASUC9zsMjAbA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] msm/disp/dpu: allow atomic_check in PSR usecase
 To:     Vinod Polimera <quic_vpolimer@quicinc.com>
 Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
@@ -86,23 +85,17 @@ Hi,
 On Fri, Mar 31, 2023 at 6:59=E2=80=AFAM Vinod Polimera
 <quic_vpolimer@quicinc.com> wrote:
 >
-> While in virtual terminal mode with PSR enabled, there will be
-> no atomic commits triggered without dirty_fb being set. This
-> will create a notion of no screen update. Allow atomic commit
-> when dirty_fb ioctl is issued, so that it can trigger a PSR exit
-> and shows update on the screen.
+> Certain flags like dirty_fb will be updated into the plane state
+> during crtc atomic_check. Allow those updates during PSR commit.
 >
 > Reported-by: Bjorn Andersson <andersson@kernel.org>
 > Link: https://lore.kernel.org/all/20230326162723.3lo6pnsfdwzsvbhj@ripper/
 > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-I can confirm that this patch plus patch #2 fixes the typing problems
+I can confirm that this patch plus patch #1 fixes the typing problems
 seen on VT2 on a Chromebook using PSR.
 
 Tested-by: Douglas Anderson <dianders@chromium.org>
-
-
--Doug
