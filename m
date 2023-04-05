@@ -2,157 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 074186D7F24
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 122616D7F42
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238585AbjDEOTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 10:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43832 "EHLO
+        id S237184AbjDEOXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 10:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238533AbjDEOSx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:18:53 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90F08E7
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 07:18:09 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id y4so141542579edo.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 07:18:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680704285;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uISS19+jToFclMpkmnOdVAy0VsfR3V1lwv1Dgp6A6Qs=;
-        b=KETD9SA21cYXTW3wGTtfIqmkh9EbGlvtBVYEtmrReMYTa7JuDxLz+xNMgArd0rQwQH
-         qeIioRLanv393ffmZn+j0Q8uD4SquXdRia0mWSvwgHAtxBrngocGMrCLK5c1e2TUBY5t
-         aS1N7PWXiMDw16N8Ye4PIcTd/SoQuCyri/ZXhWpooYWsIl3g5Pv6evnSZGqFkdFLWaU5
-         gcEithmdKWBnZUhLq7mqtnY5b6B5vWuf6fb48i6OaUepdYaDmNOpHtVBrKxqJo4Yqr4e
-         IH1Fk+4omZPNJ51OigDbgPo6+DOCcBJ+Y00B70Y/yfJUqRlg5w8xtZWzZWSTg4O69meG
-         EoNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680704285;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uISS19+jToFclMpkmnOdVAy0VsfR3V1lwv1Dgp6A6Qs=;
-        b=dg28Bv9et1TTkmgx+/D1QPj7t+lflcC3sF9QfvzAA7WwiTiVkS3AVJe+bZxsfnEDAe
-         yqahFfqAa3Qt9xrbUPhV4x5xj3tZgMqcLb0NdOqoer7pxFn4axPzqK1NCClsWGW0/qTD
-         1gV6/2eHJFd3xnsIQqMCLnG+8kZ1durZOBCiq4Ua3Way1lmqA7rphpVEjkLLTg+PzWRY
-         5pqvROO46Wv1CUBhYRPXS8/nYPqEdJiZYyO2q9BSDAC8MCxn+1Q7ck/noF9COojkBCdp
-         bOsigCV4vaIGnCmqa8N/66dbWxWVdWYVxeGt+2MzHrhtW5mwZ4KumuenyKIhp1y9G+Y5
-         jtxA==
-X-Gm-Message-State: AAQBX9fBFvX0JqMeO6gZHmjUxnPkHzsPdoRDQKi2UvAzZLdHLV9UV4r4
-        IexNxjwBELa1Jv5qoAf5BTsMXQ==
-X-Google-Smtp-Source: AKy350bX8RcQwC6IbMilofBM5NBcNepluBhbWwjkG4immwGuxPDPAJ+V1iei0t9gdH/bRQLNv3ratA==
-X-Received: by 2002:a17:906:360e:b0:931:ce20:db8e with SMTP id q14-20020a170906360e00b00931ce20db8emr3059867ejb.51.1680704285073;
-        Wed, 05 Apr 2023 07:18:05 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id gv19-20020a1709072bd300b00931db712768sm7430424ejc.4.2023.04.05.07.18.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Apr 2023 07:18:04 -0700 (PDT)
-Message-ID: <551c67b1-8c74-4ed6-7319-b6bfbe44eb2a@linaro.org>
-Date:   Wed, 5 Apr 2023 16:18:03 +0200
+        with ESMTP id S237646AbjDEOXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:23:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E335FD7;
+        Wed,  5 Apr 2023 07:22:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E0AD627AD;
+        Wed,  5 Apr 2023 14:22:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C8F3C433A1;
+        Wed,  5 Apr 2023 14:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680704558;
+        bh=gNMuGtNk55Etp9uwZDsaoJtgOXXUOQtkbkq6y21/0Aw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pu4d+aV8TJKn0a7t9iUnP73HKd8M3sXgzPm1W+BBf8sQ1QnAvTkBwEmmtST5mRwwT
+         S87etsyJZoLV4mnTnz8aJf736x8gfglTGL/4UDiT4ZuPlA78jox8GYaWEG3fi8DF0K
+         Aqp69Dy+F2QkZoSakyrDxpMxzpf99NOBx5RQewrKAQ9BST9WzH/G4BRvBSFfi9pCSf
+         sIlm4kMr7SG+TrVaA9B+tCE/RDHdfPKsoHStBM3CPFfopG6AliB0Pz0K1UeUUEsZdb
+         98nw5orKbPF3v1G52R9YUXIAYZgMbjGijAfRE3PpTLkQJb2e6Be9nAGYcW7IPbg4PY
+         klgmqmSQAdS3w==
+Date:   Wed, 5 Apr 2023 22:22:30 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mq-librem5: add missing #clock-cells
+Message-ID: <20230405142230.GF11367@dragon>
+References: <20230328061123.1984643-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 1/8] dt-bindings: usb: Add bindings for multiport
- properties on DWC3 controller
-Content-Language: en-US
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_wcheng@quicinc.com, quic_jackp@quicinc.com,
-        quic_harshq@quicinc.com, ahalaney@redhat.com,
-        quic_shazhuss@quicinc.com,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
- <20230405125759.4201-2-quic_kriskura@quicinc.com>
- <63bfaa1e-c627-bfe1-0bef-d001dae41014@linaro.org>
- <c18db964-1af7-7bbf-0d0f-cbb037f7500a@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c18db964-1af7-7bbf-0d0f-cbb037f7500a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328061123.1984643-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2023 16:15, Krishna Kurapati PSSNV wrote:
+On Tue, Mar 28, 2023 at 02:11:23PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
+> '#clock-cells' is a dependency of 'clock-output-names', following
+> binding doc, add it.
 > 
-> On 4/5/2023 7:31 PM, Krzysztof Kozlowski wrote:
->> On 05/04/2023 14:57, Krishna Kurapati wrote:
->>> Add bindings to indicate properties required to support multiport
->>> on Snps Dwc3 controller.
->>>
->>> Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>> ---
->>> Link to v5: https://lore.kernel.org/all/20230310163420.7582-2-quic_kriskura@quicinc.com/
->>
->> You did not test it at v4 and you got report for this. Your changelog in
->> commit msg does not mention fixing it.
->>
->> It looks like you did not test it for the second time (or sixth time).
->>
->> Best regards,
->> Krzysztof
->>
-> Hi Krzysztof,
-> 
->    I did do a dt_binding_check and I got the following result:
-> 
-> kriskura@hu-kriskura-hyd:/local/mnt/workspace/krishna/skales2/skales/kernel$ 
-> make DT_CHECKER_FLAGS=-m dt_binding_check 
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->    HOSTCC  scripts/basic/fixdep
->    HOSTCC  scripts/dtc/dtc.o
->    HOSTCC  scripts/dtc/flattree.o
->    HOSTCC  scripts/dtc/fstree.o
->    HOSTCC  scripts/dtc/data.o
->    HOSTCC  scripts/dtc/livetree.o
->    HOSTCC  scripts/dtc/treesource.o
->    HOSTCC  scripts/dtc/srcpos.o
->    HOSTCC  scripts/dtc/checks.o
->    HOSTCC  scripts/dtc/util.o
->    LEX     scripts/dtc/dtc-lexer.lex.c
->    YACC    scripts/dtc/dtc-parser.tab.[ch]
->    HOSTCC  scripts/dtc/dtc-lexer.lex.o
->    HOSTCC  scripts/dtc/dtc-parser.tab.o
->    HOSTLD  scripts/dtc/dtc
->    LINT    Documentation/devicetree/bindings
-> invalid config: unknown option "max-spaces-inside-empty" for rule "brackets"
-> xargs: /usr/bin/yamllint: exited with status 255; aborting
->    CHKDT   Documentation/devicetree/bindings/processed-schema.json
->    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> /local/mnt/workspace/krishna/skales2/skales/kernel/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: 
-> ignoring, error in schema: properties: qcom,pre-emphasis-duration-bp
-> /local/mnt/workspace/krishna/skales2/skales/kernel/Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml: 
-> ignoring, error in schema: properties: gpio-controller
-> /local/mnt/workspace/krishna/skales2/skales/kernel/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: 
-> ignoring, error in schema: patternProperties: ^thermistor@: properties: 
-> adi,excitation-current-nanoamp
-> /local/mnt/workspace/krishna/skales2/skales/kernel/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: 
-> ignoring, error in schema: patternProperties: ^channel@([0-9a-f])$: 
-> properties: adi,excitation-current-0-nanoamp
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-All these are some errors, maybe coming from your schema, maybe from
-next. You can narrow the tests with DT_SCHEMA_FILES (as mentioned in guide).
-
-Best regards,
-Krzysztof
-
+Applied, thanks!
