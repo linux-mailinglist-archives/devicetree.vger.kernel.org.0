@@ -2,89 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7138C6D749B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 799356D74C4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:55:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236998AbjDEGtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 02:49:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50012 "EHLO
+        id S231589AbjDEGz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 02:55:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232924AbjDEGtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:49:45 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6003A8E;
-        Tue,  4 Apr 2023 23:49:44 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3352kRaO027864;
-        Wed, 5 Apr 2023 06:49:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=pMTTUCHHU6j3fjUG90RslcWOMROfMOqXcVOf9G9/XRM=;
- b=BPknAJ7Be8hKELDGzf3Gqaj5HBOSlrMJgbZ5zGSNLyTBTl0L6EOw079LlhPjbj4EWsvb
- GotY0hgj8bxe5/U7hsmvYeNC5PrUZ7QVVqEjlOlZzOewIzFuqb2c5Gt9KZL6dwnUgc7s
- STxFLxOQkKM+EECpZ1dSyZ8WWn70FTdbhTeuJLMHNelHTtJcsPQN28OdbJfbj5INwNl7
- 6CjZ/RNELGUXBgi2ZpOOsIxXRTDJgQeJwi/mhJUxjWuYIxNqpdO7ZRD2M7xBCYcZkaSd
- /S6HhqmmLAHxqg4nV8gNUcSUEE/8xWYb2cxg037T5ynxLahM6Dkx0PreFdUyS5HoCgh3 Jw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3prnusj2qn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Apr 2023 06:49:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3356nTiA021503
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 5 Apr 2023 06:49:29 GMT
-Received: from [10.216.45.139] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 4 Apr 2023
- 23:49:18 -0700
-Message-ID: <bb21ed09-2a05-4499-d544-db5d6d32cb31@quicinc.com>
-Date:   Wed, 5 Apr 2023 12:19:09 +0530
+        with ESMTP id S229943AbjDEGzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:55:55 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59F44224;
+        Tue,  4 Apr 2023 23:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=qp6koKZbJvHqGk/+/U7NopxqNZAhRQM2NSYTzVW2pLo=; b=9Z0cP2t7fPG8QO9VM/ffcC0ea+
+        SngeBGQLCE17dLfCSo8s58naKtkE2B5NpKZXi4IwiRg5F8rcxJHhuOksdUGKuKXryoCwN0kuEagAv
+        Y4E98/8ZYs55SO52rUuOXsB2G93+E6qqbKXHZ5B8BEEb+gwlHg/gygCerL5XX1gZEIw7eIOjalGWO
+        1Hxe0klVe7R7tQXDFViRRPLSbZBPmTYtyuD6FHOZujrlX+krhoNlePec/9KLJgS6DVsXTgL3yCVga
+        EaR7p9gALVsctP8h72ooyJi9ymMs4q0+2IvFu5EzbBC+9B5uLMM34gaGXnd+w2HmD7kZWf8CS6yAM
+        QCu80xgA==;
+Received: from p200300ccff0b98001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0b:9800:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pjx3Y-0000gc-Ty; Wed, 05 Apr 2023 08:55:45 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pjx3Y-00EwVj-1b;
+        Wed, 05 Apr 2023 08:55:44 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tony@atomide.com, afd@ti.com, andreas@kemnade.info,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: [PATCH v5 0/2] dt-bindings: omap: Convert omap.txt to yaml
+Date:   Wed,  5 Apr 2023 08:55:31 +0200
+Message-Id: <20230405065533.3561492-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V2 3/9] dt-bindings: phy: qcom,qmp-pcie: Add ipq9574
- bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lpieralisi@kernel.org>,
-        <kw@linux.com>, <robh@kernel.org>, <bhelgaas@google.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <mani@kernel.org>, <p.zabel@pengutronix.de>,
-        <linus.walleij@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_ipkumar@quicinc.com>
-References: <20230404164828.8031-1-quic_devipriy@quicinc.com>
- <20230404164828.8031-4-quic_devipriy@quicinc.com>
- <26194da1-95ad-ad04-ae14-319d3e309c1c@linaro.org>
-Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <26194da1-95ad-ad04-ae14-319d3e309c1c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UC-dauBy1p-eblLdW3dmnQoNa4NmyKn8
-X-Proofpoint-ORIG-GUID: UC-dauBy1p-eblLdW3dmnQoNa4NmyKn8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-05_02,2023-04-04_05,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 bulkscore=0 mlxscore=0
- clxscore=1015 malwarescore=0 mlxlogscore=775 adultscore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304050062
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,25 +56,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert board compatibles to yaml and add the new yaml file to
+MAINTAINERS so that emails are properly distributed
 
+Changes in V5:
+ - renamed the new file to ti/omap.yaml
 
-On 4/5/2023 12:16 PM, Krzysztof Kozlowski wrote:
-> On 04/04/2023 18:48, Devi Priya wrote:
->> Add bindings for the PCIe QMP PHYs found on IPQ9574
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>   Changes in V2:
->> 	- Added the ipq9574 bindings here as the phy nodes in the DT
->> 	  are modified to follow the latest style (without child node)
->>
-> 
-> The amount of changes and optionality of few properties suggests this
-> should be new binding.
-Sure, got it. Will add a newer binding for ipq9574 in next spin
-> 
-> Best regards,
-> Krzysztof
-> 
-Thanks,
-Devi Priya
+Changes in V4:
+ - fix order 
+ - re-add dra7 to .txt to have it sorted out later
+
+Changes in V3:
+ - update MAINTAINERS
+ - remove converted stuff from .txt
+
+Changes in V2:
+- renamed file
+- fixed gta04
+- added Openpandora, Epson Moverio BT-200
+- drop example
+- remove descriptions if just reformatting the name
+
+Andreas Kemnade (1):
+  MAINTAINERS: add board bindings list to OMAP2+ files
+
+Andrew Davis (1):
+  dt-bindings: omap: Convert omap.txt to yaml
+
+ .../devicetree/bindings/arm/omap/omap.txt     | 152 ------------------
+ .../devicetree/bindings/arm/ti/omap.yaml      | 147 +++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 148 insertions(+), 152 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/ti/omap.yaml
+
+-- 
+2.39.2
+
