@@ -2,112 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E6A6D88A7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:35:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 515E56D88D9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbjDEUfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 16:35:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51910 "EHLO
+        id S232406AbjDEUlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 16:41:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233076AbjDEUeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:34:50 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067455249;
-        Wed,  5 Apr 2023 13:34:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ir96PDQ5DPUpeJhDM1v4BrKeIYiu1Z8SXvc8ylqyxe8=; b=APgRQZvMhXqYui/jKYMbnzPcry
-        LwxJoMiLuXafar1R6r/+lEB3JLt42me4gaqh6MGXxrXsQ6JG3htDZ3ri3it2ZFxJD0F8SqAGkxhGt
-        bfKq52f5ibdbLODUbWeZf3ogeFu8emiFcDv2gGhCOEdfH2DoKuMoP6K0+I0YvK45vtrU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pk9po-009Yke-Nq; Wed, 05 Apr 2023 22:34:24 +0200
-Date:   Wed, 5 Apr 2023 22:34:24 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Radu Pirea <radu-nicolae.pirea@oss.nxp.com>,
-        Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-        Keyur Chudgar <keyur@os.amperecomputing.com>,
-        Quan Nguyen <quan@os.amperecomputing.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 06/12] net: phy: add phy_device_atomic_register helper
-Message-ID: <34e22343-fb11-4a85-bade-492fcbcfb436@lunn.ch>
-References: <20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de>
- <20230405-net-next-topic-net-phy-reset-v1-6-7e5329f08002@pengutronix.de>
- <ad0b0d90-04bf-457c-9bdf-a747d66871b5@lunn.ch>
- <20230405152225.tu3wmbcvchuugs5u@pengutronix.de>
- <a5a4e735-7b24-4933-b431-f36305689a79@lunn.ch>
- <20230405194353.pwuk7e6rxnha3uqi@pengutronix.de>
+        with ESMTP id S234280AbjDEUlZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:41:25 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A95683D3;
+        Wed,  5 Apr 2023 13:40:34 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id bi31so27581270oib.9;
+        Wed, 05 Apr 2023 13:40:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680727195;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bTTlu131iIVKU0jAW/sAwqi/zzN6v7hMGFbCm6sx0Zk=;
+        b=aSFgxAYC1vgH24n9/ZizJqptgSSgm9WtSgh0TzTRrr4BO54yKD3x+hlebwFzWWlKCn
+         l3BbNNO8IMwOJl9Jhmb/mdq53PGibLTgPDHry4f8j2wfC3jdVv2/C+Y4PXWPegfk6lSJ
+         YUfr8oQugZF8xL+bxEhxaOXy1ENTGO0cA8/IqXuebDwwR/0bGCIGf542J2rQINra/lla
+         7hiJIlozEcLrD+hbAXursBuGs/S3ZOUtVUdYk8KC0ix7SpRzGTHuSep6uRpGw7sDYpa7
+         dof9tWy8l96lCm0O3FVbCLBI5yHbcptxEcmmoDGLrWuLRlxVenjJzYGjtEyDBbOYesF3
+         +fEw==
+X-Gm-Message-State: AAQBX9ceyHHSTSygeXpA5FgxeNGiBsOsjUtrsocO8ZUtq+XYvxpVA4k/
+        IQuViDUYBJRZYfQrKJuF6w==
+X-Google-Smtp-Source: AKy350anY8XAUl300crTRGIlMaGnmPL/aZzCFVpb2qa417Z6woPIjy/2yk9QobYjQ8wFYrr1qy99DQ==
+X-Received: by 2002:a05:6808:652:b0:389:7c1e:3b83 with SMTP id z18-20020a056808065200b003897c1e3b83mr3070885oih.32.1680727195592;
+        Wed, 05 Apr 2023 13:39:55 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h4-20020aca1804000000b003896fc34eddsm6617205oih.52.2023.04.05.13.39.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 13:39:55 -0700 (PDT)
+Received: (nullmailer pid 443548 invoked by uid 1000);
+        Wed, 05 Apr 2023 20:39:54 -0000
+Date:   Wed, 5 Apr 2023 15:39:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Liu Peibao <liupeibao@loongson.cn>
+Cc:     wanghongliang <wanghongliang@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongarch: Fix
+ mismathed compatible
+Message-ID: <168072719318.443485.10404612854321369787.robh@kernel.org>
+References: <20230401091304.12633-1-liupeibao@loongson.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230405194353.pwuk7e6rxnha3uqi@pengutronix.de>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230401091304.12633-1-liupeibao@loongson.cn>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Currently we have one API which creates/allocates the 'struct
-> phy_device' and intialize the state which is:
->    - phy_device_create()
-> 
-> This function requests a driver based on the phy_id/c45_ids. The ID have
-> to come from somewhere if autodection is used. For autodetection case
->    - get_phy_device()
-> 
-> is called. This function try to access the phy without taken possible
-> hardware dependencies into account. These dependecies can be reset-lines
-> (in my case), clocks, supplies, ...
-> 
-> For taking fwnode (and possible dependencies) into account fwnode_mdio.c
-> was written which provides two helpers:
->    - fwnode_mdiobus_register_phy()
->    - fwnode_mdiobus_phy_device_register().
-> 
-> The of_mdio.c and of_mdiobus_register_phy() is just a wrapper around
-> fwnode_mdiobus_register_phy().
 
-It seems to me that the real problem is that mdio_device_reset() takes
-an mdio_device. mdiobus_register_gpiod() and mdiobus_register_reset()
-also take an mdio_device. These are the functions you want to call
-before calling of_mdiobus_register_phy() in __of_mdiobus_register() to
-ensure the PHY is out of reset. But you don't have an mdio_device yet.
+On Sat, 01 Apr 2023 17:13:04 +0800, Liu Peibao wrote:
+> The "compatible" doesn't match what the kernel is using. Fix it as
+> kernel using.
+> 
+> Fixes: 6b2748ada244 ("dt-bindings: interrupt-controller: add yaml for LoongArch CPU interrupt controller")
+> Reported-by: Rob Herring <robh@kernel.org>
+> Link: https://lore.kernel.org/all/20221208020954.GA3368836-robh@kernel.org/
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
+> ---
+> V1 -> V2: Correct the commit ID in commit log.
+> 
+>  .../loongarch,cpu-interrupt-controller.yaml                   | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-So i think a better solution is to refactor this code. Move the
-resources into a structure of their own, and make that a member of
-mdio_device. You can create a stack version of this resource structure
-in __of_mdiobus_register(), parse DT to fill it out by calling
-mdiobus_register_gpiod() and mdiobus_register_reset() taking this new
-structure, take it out of reset by calling mdio_device_reset(), and
-then call of_mdiobus_register_phy(). If a PHY is found, copy the
-values in the resulting mdio_device. If not, release the resources.
+Applied, thanks!
 
-Doing it like this means there is no API change.
-
-      Andrew
