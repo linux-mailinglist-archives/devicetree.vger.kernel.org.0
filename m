@@ -2,121 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0C36D7F74
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25AD66D7F82
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:30:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238085AbjDEO2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 10:28:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33720 "EHLO
+        id S238565AbjDEOap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 10:30:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237766AbjDEO2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:28:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1924B65B0;
-        Wed,  5 Apr 2023 07:28:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4642A63E44;
-        Wed,  5 Apr 2023 14:27:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEF11C433D2;
-        Wed,  5 Apr 2023 14:27:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680704868;
-        bh=Pzi6zJxJr8ZUgmTZZZ6XD+HYvxPprYklmZaH/0dEtMk=;
+        with ESMTP id S238586AbjDEOai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:30:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F515FCA;
+        Wed,  5 Apr 2023 07:30:13 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (softbank219059148246.bbtec.net [219.59.148.246])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 80F391718;
+        Wed,  5 Apr 2023 16:30:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1680705010;
+        bh=Qs3POKuzAMl2FAwrRUyvpLBK6qJSzNKEzukle8jld14=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ImRaG3GVvpmqJNe1S1e8k+pepVfUqu3UM9plmOCyikVY8gYB6aJzgjb8sMQg3A2r/
-         KMGDHqlNG+R53It2QnpunzBxNsOlSY/fdAq/bI+9XomAP2dHQNJFEDd6pwf1/lmg7/
-         1oMVTm0Pm+FKilQuUhP7LZQOK+SJOZyfSG4aNFlwJSfYYcZUF50/kFu4e1YoUMr8Jp
-         s3fGRSMkHOmOc6X+IRGhODnKcRLyUN/TZS/SGidTHDH0N3Jqh7CQF2rB6obnqte0Mp
-         nF1ZUTO5v9xP01Un2nOGctkdwjH+SzH2fONJeCWj+3pyxFHGCI5P9B8dNbhjdK/2UD
-         BXWwm5RfeCfrw==
-Date:   Wed, 5 Apr 2023 22:27:37 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
+        b=MURgjpwOIUrJIP2D7Rtkc9A8Kxbv1mzNmPQvR40pLpJ2dTdxJTFhUDRn1ILC3QF/X
+         DTL/lO/prlXUnU/52QubBohKPtzvTssDjp0yYnhPQHFsnYpBlxGwPzSsynDUY/aaiM
+         RtPdJEXy7tJq0vMbsOjDR/FYTYpotdw9i5EwU06c=
+Date:   Wed, 5 Apr 2023 17:30:18 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] treewide: Fix probing of devices in DT overlays
-Message-ID: <20230405142737.GH11367@dragon>
-References: <e1fa546682ea4c8474ff997ab6244c5e11b6f8bc.1680182615.git.geert+renesas@glider.be>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Subject: Re: [RESEND PATCH v4 03/21] staging: media: tegra-video: fix
+ .vidioc_enum_fmt_vid_cap to return all formats
+Message-ID: <20230405143018.GC9915@pendragon.ideasonboard.com>
+References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
+ <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
+ <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
+ <20230404161251.272cc78b@booty>
+ <20230405023048.GD9915@pendragon.ideasonboard.com>
+ <20230405103134.2ae10766@booty>
+ <dddd76a7-f882-f1dd-0781-fcc1f9b4e060@xs4all.nl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e1fa546682ea4c8474ff997ab6244c5e11b6f8bc.1680182615.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <dddd76a7-f882-f1dd-0781-fcc1f9b4e060@xs4all.nl>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 03:26:13PM +0200, Geert Uytterhoeven wrote:
-> When loading a DT overlay that creates a device, the device is not
-> probed, unless the DT overlay is unloaded and reloaded again.
-> 
-> After the recent refactoring to improve fw_devlink, it no longer depends
-> on the "compatible" property to identify which device tree nodes will
-> become struct devices.   fw_devlink now picks up dangling consumers
-> (consumers pointing to descendent device tree nodes of a device that
-> aren't converted to child devices) when a device is successfully bound
-> to a driver.  See __fw_devlink_pickup_dangling_consumers().
-> 
-> However, during DT overlay, a device's device tree node can have
-> sub-nodes added/removed without unbinding/rebinding the driver.  This
-> difference in behavior between the normal device instantiation and
-> probing flow vs. the DT overlay flow has a bunch of implications that
-> are pointed out elsewhere[1].  One of them is that the fw_devlink logic
-> to pick up dangling consumers is never exercised.
-> 
-> This patch solves the fw_devlink issue by marking all DT nodes added by
-> DT overlays with FWNODE_FLAG_NOT_DEVICE (fwnode that won't become
-> device), and by clearing the flag when a struct device is actually
-> created for the DT node.  This way, fw_devlink knows not to have
-> consumers waiting on these newly added DT nodes, and to propagate the
-> dependency to an ancestor DT node that has the corresponding struct
-> device.
-> 
-> Based on a patch by Saravana Kannan, which covered only platform and spi
-> devices.
-> 
-> [1] https://lore.kernel.org/r/CAGETcx_bkuFaLCiPrAWCPQz+w79ccDp6=9e881qmK=vx3hBMyg@mail.gmail.com
-> 
-> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
-> Link: https://lore.kernel.org/r/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=rWYnkCZ6z5bGX-wj4w@mail.gmail.com
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
-> ---
-> v3:
->   - Add Acked-by,
->   - s/instantiate/probe/,
->   - Improve commit description,
->   - Add comment before clearing FWNODE_FLAG_NOT_DEVICE,
-> 
-> v2:
->   - Add Acked-by,
->   - Drop RFC.
-> ---
->  drivers/bus/imx-weim.c    | 6 ++++++
+Hi Hans,
 
-Acked-by: Shawn Guo <shawnguo@kernel.org>
+On Wed, Apr 05, 2023 at 10:50:37AM +0200, Hans Verkuil wrote:
+> On 05/04/2023 10:31, Luca Ceresoli wrote:
+> > On Wed, 5 Apr 2023 05:30:48 +0300 Laurent Pinchart wrote:
+> >> On Tue, Apr 04, 2023 at 04:12:51PM +0200, Luca Ceresoli wrote:
+> >>> On Wed, 29 Mar 2023 13:16:22 +0200 Hans Verkuil wrote:
+> >>>   
+> >>>> Hi Luca,
+> >>>>
+> >>>> I finally found the time to test this series. It looks OK, except for this patch.  
+> >>>
+> >>> Thank you very much for taking the time!
+> >>>   
+> >>>> The list of supported formats really has to be the intersection of what the tegra
+> >>>> supports and what the sensor supports.
+> >>>>
+> >>>> Otherwise you would advertise pixelformats that cannot be used, and the application
+> >>>> would have no way of knowing that.  
+> >>>
+> >>> As far as I understand, I think we should rather make this driver fully
+> >>> behave as an MC-centric device. It is already using MC quite
+> >>> successfully after all.
+> >>>
+> >>> Do you think this is correct?  
+> >>
+> >> Given the use cases for this driver, I agree.
+> 
+> I disagree.
+> 
+> This driver doesn't use the media controller for anything at the moment. The
+> /dev/mediaX device just shows the internal topology (i.e. connected sensors),
+> but otherwise it does nothing.
+> 
+> While it would be great if we could unlock the ISP on the Tegra, the reality
+> is that it is entirely closed source and can't be used in a linux driver, and
+> that's not going to change, sadly.
 
->  drivers/i2c/i2c-core-of.c | 5 +++++
->  drivers/of/dynamic.c      | 1 +
->  drivers/of/platform.c     | 5 +++++
->  drivers/spi/spi.c         | 5 +++++
->  5 files changed, 22 insertions(+)
+Never say never :-)
+
+> That leaves us with just a basic CSI capture driver. Rather than trying to
+> change this driver to a full MC device with no benefits, just drop this change
+> and get your code in.
+
+Can't the hardware support capturing different virtual channels or data
+types from the same CSI-2 source ? That would require MC support, the
+stream API requires subdev device nodes.
+
+> Note that this driver will stay in staging since it still fails when I try to
+> capture from two sensors at the same time: syncpoint errors start appearing
+> in that case. I think there are locking issues. I think I have someone to take
+> a look at that, but first I want your series to get merged.
+> 
+> In the very unlikely event that the ISP can be implemented in a linux driver,
+> it will probably become a new driver.
+> 
+> Regards,
+> 
+> > Ok, thanks for the feedback. I will send a v5 with this change.
+
+-- 
+Regards,
+
+Laurent Pinchart
