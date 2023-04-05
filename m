@@ -2,104 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 536FB6D7968
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 076006D7A34
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236449AbjDEKRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 06:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34556 "EHLO
+        id S237834AbjDEKrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 06:47:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235049AbjDEKRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:17:43 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B84198D;
-        Wed,  5 Apr 2023 03:17:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680689862; x=1712225862;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=EGf9OnEDe3hrZhNghZlA7uytU/26J3PuuPCSwZuV6VU=;
-  b=Q0qSPoXc9eXYvSEWmBpNiGhrHVJZSAqC15dLlMer+/NBgkovDK0e71VQ
-   gmOQd6z2jmUzFwLTHNLhMNd8Ig3BjhofI722ngCZlRhDlI7Ya7VIbmzu/
-   IgNFX4mKJttcoUNVvwB1jRwZCBbdlrHtfJKkWb+HPQSi3xn5GO8+9wY6d
-   DPyr+sWysBCOTpA5kGVUCcKo+EVkE6gprTd2fGwfxRoGC/w2RjWH9QvHf
-   lDtSUap094gKpRunmWjJSj1VOKDOUn+LmtzhmvZEZikeBCU232kpXIuxI
-   o7sn2DwHQePl/5uxRNFplr5VluxBVsfmo41ygYN9JU7CMFYqVxL+/D0Zp
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="344132895"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; 
-   d="scan'208";a="344132895"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 03:17:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="810584030"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; 
-   d="scan'208";a="810584030"
-Received: from wtedesch-mobl1.ger.corp.intel.com ([10.252.53.134])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 03:17:39 -0700
-Date:   Wed, 5 Apr 2023 13:17:36 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Brenda Streiff <brenda.streiff@ni.com>
-cc:     Gratian Crisan <gratian.crisan@ni.com>,
-        Jason Smith <jason.smith@ni.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
-In-Reply-To: <862a78b5-b89a-0b26-e0f8-f910dd3434ba@ni.com>
-Message-ID: <b5736c6e-6b2d-875e-5a81-8f7b66a19d5f@linux.intel.com>
-References: <20230329154235.615349-1-brenda.streiff@ni.com> <20230329154235.615349-3-brenda.streiff@ni.com> <4687fc63-65ad-c717-70b4-731079be38f7@linux.intel.com> <862a78b5-b89a-0b26-e0f8-f910dd3434ba@ni.com>
+        with ESMTP id S237740AbjDEKrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:47:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2011249F9;
+        Wed,  5 Apr 2023 03:47:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD08D63C57;
+        Wed,  5 Apr 2023 10:47:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C55A2C433EF;
+        Wed,  5 Apr 2023 10:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680691623;
+        bh=q4mbSRyaECqXZBaI2chRUC8g7fKSua/OlQr5LOzU8Lc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NYk7GArMLcHuZT6LglhcwfKswPjiUhvpykd6UfUcigFlmjTxk81cdWTM8meuG87OK
+         auDr+rMup6Gh3bPqxaK+PCnitUXnEcraBkw66jONfxwMxKRcJ0aR9cXwA0je2NqU2a
+         SuaAOx/GkY80DSvwBckR1cf/XsDftwTEfg7AN0H7peYfBa1gba7rbOJrs6tgMXDXKm
+         XQ8oLmDqeHfK/qTHu9W+FGatJMx9o8YWlmPrCEP5+hb9JJQI1gRSJ+nqGxZxfBVt+4
+         TebyxdRgWJ3of8pZKvTeVOoEeLzzAf8umVcViGN092/imnB2nDAMnXOUUYGrgP7fXR
+         olLMJGuWAKHZg==
+Date:   Wed, 5 Apr 2023 12:46:54 +0200
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
+        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        helgaas@kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
+        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
+        ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v5 7/8] PCI: tegra194: add interconnect support in
+ Tegra234
+Message-ID: <ZC1Rnrb0MObR5S42@lpieralisi>
+References: <20230330133354.714-1-sumitg@nvidia.com>
+ <20230330133354.714-8-sumitg@nvidia.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-906799157-1680689861=:2159"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230330133354.714-8-sumitg@nvidia.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+You should still capitalize the subject.
 
---8323329-906799157-1680689861=:2159
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+"PCI: tegra194: Add interconnect.."
 
-On Fri, 31 Mar 2023, Brenda Streiff wrote:
-
-> On 3/31/23 06:46, Ilpo Järvinen wrote:
-> > On Wed, 29 Mar 2023, Brenda Streiff wrote:
+On Thu, Mar 30, 2023 at 07:03:53PM +0530, Sumit Gupta wrote:
+> Add support to request DRAM bandwidth with Memory Interconnect
+> in Tegra234 SoC. The DRAM BW required for different modes depends
+> on speed (Gen-1/2/3/4) and width/lanes (x1/x2/x4/x8).
 > 
-> > > +	int irq;
-> > > +	int rs232_property = 0;
-> > > +	unsigned int prescaler;
-> > > +	const char *transceiver;
-> > > +	int txfifosz, rxfifosz;
-> > 
-> > Try to follow reverse xmas-tree order.
+> Suggested-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+
+You should add a Link to the relevant lore archive, I am
+pretty sure Bjorn chimed in too.
+
+This patch does too many things at once; more importantly it
+does *not* explain why we request memory bandwidth and why it
+is required and *safe* given that the current code works so far.
+
+So:
+
+patch 1: fix the array overflow issues with the current code
+patch 2: add memory bandwidth interconnect support
+
+Thanks,
+Lorenzo
+
+> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-tegra194.c | 44 ++++++++++++++++++----
+>  1 file changed, 36 insertions(+), 8 deletions(-)
 > 
-> Is reverse xmas tree also the rule in the tty subsystem? I was aware of
-> it for netdev but I thought that was a netdev-specific rule (since it
-> only shows up in maintainer-netdev.rst and not more broadly)
-
-I'd say that not as strictly as e.g. netdev does so if e.g. due to 
-initialization order it cannot be fully achieved no special trickery is 
-required (in contrast to what you'd get from e.g. netdev telling to put
-them out of line).
-
-It seems generally useful for declarations, especially when they're as 
-many as in the one I picked up above (I think might be due to less eye 
-movement required when looking for a particular variable by its name).
-
-
--- 
- i.
-
---8323329-906799157-1680689861=:2159--
+> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+> index 09825b4a075e..89d829a946ee 100644
+> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/delay.h>
+>  #include <linux/gpio.h>
+>  #include <linux/gpio/consumer.h>
+> +#include <linux/interconnect.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/kernel.h>
+> @@ -223,6 +224,7 @@
+>  #define EP_STATE_ENABLED	1
+>  
+>  static const unsigned int pcie_gen_freq[] = {
+> +	GEN1_CORE_CLK_FREQ,   /* PCI_EXP_LNKSTA_CLS == 0; undefined */
+>  	GEN1_CORE_CLK_FREQ,
+>  	GEN2_CORE_CLK_FREQ,
+>  	GEN3_CORE_CLK_FREQ,
+> @@ -287,6 +289,7 @@ struct tegra_pcie_dw {
+>  	unsigned int pex_rst_irq;
+>  	int ep_state;
+>  	long link_status;
+> +	struct icc_path *icc_path;
+>  };
+>  
+>  static inline struct tegra_pcie_dw *to_tegra_pcie(struct dw_pcie *pci)
+> @@ -309,6 +312,27 @@ struct tegra_pcie_soc {
+>  	enum dw_pcie_device_mode mode;
+>  };
+>  
+> +static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
+> +{
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	u32 val, speed, width;
+> +
+> +	val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
+> +
+> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
+> +
+> +	val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / BITS_PER_BYTE);
+> +
+> +	if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
+> +		dev_err(pcie->dev, "can't set bw[%u]\n", val);
+> +
+> +	if (speed >= ARRAY_SIZE(pcie_gen_freq))
+> +		speed = 0;
+> +
+> +	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed]);
+> +}
+> +
+>  static void apply_bad_link_workaround(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -452,14 +476,12 @@ static irqreturn_t tegra_pcie_ep_irq_thread(int irq, void *arg)
+>  	struct tegra_pcie_dw *pcie = arg;
+>  	struct dw_pcie_ep *ep = &pcie->pci.ep;
+>  	struct dw_pcie *pci = &pcie->pci;
+> -	u32 val, speed;
+> +	u32 val;
+>  
+>  	if (test_and_clear_bit(0, &pcie->link_status))
+>  		dw_pcie_ep_linkup(ep);
+>  
+> -	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
+> -		PCI_EXP_LNKSTA_CLS;
+> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+> +	tegra_pcie_icc_set(pcie);
+>  
+>  	if (pcie->of_data->has_ltr_req_fix)
+>  		return IRQ_HANDLED;
+> @@ -945,9 +967,9 @@ static int tegra_pcie_dw_host_init(struct dw_pcie_rp *pp)
+>  
+>  static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
+>  {
+> -	u32 val, offset, speed, tmp;
+>  	struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
+>  	struct dw_pcie_rp *pp = &pci->pp;
+> +	u32 val, offset, tmp;
+>  	bool retry = true;
+>  
+>  	if (pcie->of_data->mode == DW_PCIE_EP_TYPE) {
+> @@ -1018,9 +1040,7 @@ static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
+>  		goto retry_link;
+>  	}
+>  
+> -	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
+> -		PCI_EXP_LNKSTA_CLS;
+> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+> +	tegra_pcie_icc_set(pcie);
+>  
+>  	tegra_pcie_enable_interrupts(pp);
+>  
+> @@ -2224,6 +2244,14 @@ static int tegra_pcie_dw_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, pcie);
+>  
+> +	pcie->icc_path = devm_of_icc_get(&pdev->dev, "write");
+> +	ret = PTR_ERR_OR_ZERO(pcie->icc_path);
+> +	if (ret) {
+> +		tegra_bpmp_put(pcie->bpmp);
+> +		dev_err_probe(&pdev->dev, ret, "failed to get write interconnect\n");
+> +		return ret;
+> +	}
+> +
+>  	switch (pcie->of_data->mode) {
+>  	case DW_PCIE_RC_TYPE:
+>  		ret = devm_request_irq(dev, pp->irq, tegra_pcie_rp_irq_handler,
+> -- 
+> 2.17.1
+> 
