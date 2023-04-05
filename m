@@ -2,107 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F0A6D7D77
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 687B36D7D7F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:16:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237872AbjDENNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 09:13:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58110 "EHLO
+        id S237892AbjDENQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 09:16:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237704AbjDENNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:13:51 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD990171F
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 06:13:49 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id i5-20020a05600c354500b003edd24054e0so23707932wmq.4
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 06:13:49 -0700 (PDT)
+        with ESMTP id S232719AbjDENQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:16:29 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4097E7A
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 06:16:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680700428;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PHh6zzAce+jaaDv5uLWbvrxiFe4RlqISTI0cdrv8gGw=;
-        b=oC6b60CGc0i+X2eamIm7a4q3wmo0Le1bJgkKz75LJtPkxtGgsS3kIBCEbh+WkZDs0t
-         5HC6ywocBdzZf2mTPaHIRmhcr1rpVxDbrhF0jX+C31QfjhiIJk09071Ft5H49Lb3BROz
-         wExQ7VGxXyddgnTyjJI9jx0slUkJDeB8fELrOc2QlpWn0EbRZDl/ES4e4p8aIEM+2LhD
-         TIaF3IeOPi3QOXrYNeFefemGQZQwdxioJloOIbUu3s1WkaeFfSoOLXrwB+lwRI5mBOsu
-         Zdt760+0KlAUBPxnEreikCGZ8CD5+z4XIiacbtCyZZ7jFZ6k96o/jVecjZg44c8iHrtX
-         BP5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680700428;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PHh6zzAce+jaaDv5uLWbvrxiFe4RlqISTI0cdrv8gGw=;
-        b=HCtMDFPML6xsrRD9H01GxdCMYujbGAoc08DkGGM8IulI5WNXuUKfkaqpE0w189XFa8
-         dSV5we0cryhl4XTgPKxRVJZjaC0gNkTgeKLKCFWhPcE4lZksSznwW/HUWXhrgZ1vnTGM
-         5WzsFQQRvRts1/z5xo5XJPdSPEqUjg5/c1yFVbcr5hGQm/Z0+RFyvK1auntCxl2DOen7
-         PzvU3hPsnd6MkXOBGk5yxsBOEc10qWqdRcXTbLY5ZkEBz6JJK97n9bYrpqa2cMmTpu0N
-         FoYSytzz++usg1cX3IC1E31p+ID1DwAC80xC9dwq8ASx6RBJiKS7H49EDEe2A9SadZyO
-         cdDA==
-X-Gm-Message-State: AAQBX9e6/XyWpQYVivxoPzMyYxLRnOzw3Q9DTbyASTKbN90R7vD5tTi1
-        070oTxQygfysQcTFbdo5/LwsDA==
-X-Google-Smtp-Source: AKy350ZyPGUFGjG9cy0rn/aVbR5i527mmHWJxdldoaXSN0tARqQJmd6qhS1NVW6cU3hiqFGcYnWKMQ==
-X-Received: by 2002:a1c:7309:0:b0:3ed:ec34:f1 with SMTP id d9-20020a1c7309000000b003edec3400f1mr4566693wmb.35.1680700428151;
-        Wed, 05 Apr 2023 06:13:48 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id u13-20020a05600c210d00b003f0373d077csm2144586wml.47.2023.04.05.06.13.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Apr 2023 06:13:47 -0700 (PDT)
-Message-ID: <3c51a5d3-8d76-9d8e-7cbe-6a2a1776b360@baylibre.com>
-Date:   Wed, 5 Apr 2023 15:13:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 00/10] Add IOMMU support to MT8365 SoC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yong Wu <yong.wu@mediatek.com>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1680700588; x=1712236588;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4RVlb8yI3d39rdesnGfgQTzPDTdk41ZCWB+kZCrJpSY=;
+  b=cCKNZmsVa4nEu5bYjNckcplK+q8NL36S3/KfhkRLE7GIQnvRGVKSftdX
+   KSC2LypxkzOjjKL98S7XJiLnkjolFXHHWGlhV8hdvBdH4Gqz99wLc0SVT
+   zf+lZMiJhLIKBBLvTAj4wuKOwA9GK70wTGVv77SLRAQB+fyLTf5JlUo/+
+   zTTfJ2IJ1rD9+2y+5iwP5+ZJvjiwgyvNW1MWFXG/rESiXfDgW/oTthhjP
+   bynxxFhjzvSSRbKMly6tUKz3QC+vXzYB5j/Ijyf3WXCYKwLVFIdwKAG5t
+   hrQQ/BjRsxKWey1OHXpcI9gQM4WqsedG2g29CaN2C79GDR61kqp8xycsf
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,319,1673910000"; 
+   d="scan'208";a="30167092"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 05 Apr 2023 15:16:26 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 05 Apr 2023 15:16:26 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 05 Apr 2023 15:16:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1680700586; x=1712236586;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4RVlb8yI3d39rdesnGfgQTzPDTdk41ZCWB+kZCrJpSY=;
+  b=pQLNM3A4TDGz629L1RdLce1KJeVYKanF4txXLbA1i4jDaJOR1G8eGlUO
+   xxeGb8jOmSarEak2DY6tEH8QLtXer9SHGk2dgZgK7ld69W6rAmu+TcuXv
+   yMj5jjED8zN7qz9MsFba6zzV3+EVHS++LutKePDnu2BaHTiii9FL22zH4
+   +4w0IT58BDWcmBeYty58P22VSyBtK/S587i9KCjvEUsmUT1ktOvVXkoNP
+   jVLBZgoXxQas0M+Uz4ISvpWLPo8aoUagHbGUIjT50OK15L2sKq+ZAkh3V
+   0irp0nVSBpUDb0Ql4KSt4GIAaenztNKbsOcZFcv2MYXYMXu55EEBpWWTf
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,319,1673910000"; 
+   d="scan'208";a="30167091"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 05 Apr 2023 15:16:26 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D20DA280056;
+        Wed,  5 Apr 2023 15:16:25 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
+Cc:     Abel Vesa <abel.vesa@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230207-iommu-support-v2-0-60d5fa00e4e5@baylibre.com>
- <00a0d832-9a0b-6160-31eb-30d2e9c32c79@linaro.org>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <00a0d832-9a0b-6160-31eb-30d2e9c32c79@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm: Add display pipeline components
+Date:   Wed, 05 Apr 2023 15:16:25 +0200
+Message-ID: <4588730.LvFx2qVVIh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <3b6696c1-411c-f382-0da4-67f9272fa306@denx.de>
+References: <20230404000151.534530-1-marex@denx.de> <2790760.mvXUDI8C0e@steina-w> <3b6696c1-411c-f382-0da4-67f9272fa306@denx.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 05/04/2023 13:43, Krzysztof Kozlowski wrote:
-> On 05/04/2023 10:06, Alexandre Mergnat wrote:
->> This commits are based on the Fabien Parent <fparent@baylibre.com> work.
->>
->> The purpose of this series is to add the following HWs / IPs support for
->> the MT8365 SoC:
->> - System Power Manager
->> - MultiMedia Memory Management Unit "M4U" (IOMMU)
->>    - Smart Multimedia Interface "SMI"
->>      - Local arbiter "LARB"
->>
->> This series depends to two others which add power support for MT8365 SoC
->> [1] [2].
-> So does it mean they cannot be merged? On first glance I do not see the
-> dependency, so I wonder if we understand the dependencies the same. And
-> subsystems.
-Exactly, we shouldn't merge it before the dependent series to don't 
-break the build due to
-"#include <dt-bindings/power/mediatek,mt8365-power.h>" in the DTSI file.
-Additionally, LARB will not work properly (or at all) without the power 
-support.
+Am Mittwoch, 5. April 2023, 14:32:35 CEST schrieb Marek Vasut:
+> On 4/5/23 08:00, Alexander Stein wrote:
+> > Hi Marek,
+>=20
+> Hi,
+>=20
+> > Am Dienstag, 4. April 2023, 02:01:51 CEST schrieb Marek Vasut:
+> >> Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Mini.
+> >> This makes the DSI display pipeline available on this SoC.
+> >>=20
+> >> Signed-off-by: Marek Vasut <marex@denx.de>
+> >> ---
+> >> Cc: Abel Vesa <abel.vesa@nxp.com>
+> >> Cc: Dong Aisheng <aisheng.dong@nxp.com>
+> >> Cc: Fabio Estevam <festevam@gmail.com>
+> >> Cc: Guido G=FCnther <agx@sigxcpu.org>
+> >> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> >> Cc: Lucas Stach <l.stach@pengutronix.de>
+> >> Cc: NXP Linux Team <linux-imx@nxp.com>
+> >> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> >> Cc: Richard Cochran <richardcochran@gmail.com>
+> >> Cc: Rob Herring <robh+dt@kernel.org>
+> >> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> >> Cc: Shawn Guo <shawnguo@kernel.org>
+> >> Cc: devicetree@vger.kernel.org
+> >> Cc: linux-arm-kernel@lists.infradead.org
+> >> ---
+> >>=20
+> >>   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 57 +++++++++++++++++++++=
+++
+> >>   1 file changed, 57 insertions(+)
+> >>=20
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> >> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi index
+> >> e311da7e87bdc..06495c225c94b 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> >> @@ -1119,6 +1119,63 @@ aips4: bus@32c00000 {
+> >>=20
+> >>   			#size-cells =3D <1>;
+> >>   			ranges =3D <0x32c00000 0x32c00000 0x400000>;
+> >>=20
+> >> +			lcdif: lcdif@32e00000 {
+> >> +				compatible =3D "fsl,imx8mm-lcdif",
+> >=20
+> > "fsl,imx6sx-lcdif";
+> >=20
+> >> +				reg =3D <0x32e00000 0x10000>;
+> >> +				clocks =3D <&clk
+> >=20
+> > IMX8MM_CLK_LCDIF_PIXEL>,
+> >=20
+> >> +					 <&clk
+> >=20
+> > IMX8MM_CLK_DISP_APB_ROOT>,
+> >=20
+> >> +					 <&clk
+> >=20
+> > IMX8MM_CLK_DISP_AXI_ROOT>;
+> >=20
+> >> +				clock-names =3D "pix", "axi",
+> >=20
+> > "disp_axi";
+> >=20
+> >> +				assigned-clocks =3D <&clk
+> >=20
+> > IMX8MM_CLK_LCDIF_PIXEL>,
+> >=20
+> >> +						  <&clk
+> >=20
+> > IMX8MM_CLK_DISP_AXI>,
+> >=20
+> >> +						  <&clk
+> >=20
+> > IMX8MM_CLK_DISP_APB>;
+> >=20
+> >> +				assigned-clock-parents =3D <&clk
+> >=20
+> > IMX8MM_VIDEO_PLL1_OUT>,
+> >=20
+> >> +							 <&clk
+> >=20
+> > IMX8MM_SYS_PLL2_1000M>,
+> >=20
+> >> +							 <&clk
+> >=20
+> > IMX8MM_SYS_PLL1_800M>;
+> >=20
+> >> +				assigned-clock-rates =3D <594000000>,
+> >=20
+> > <500000000>, <200000000>;
+> >=20
+> >> +				interrupts =3D <GIC_SPI 5
+> >=20
+> > IRQ_TYPE_LEVEL_HIGH>;
+> >=20
+> >> +				power-domains =3D <&disp_blk_ctrl
+> >=20
+> > IMX8MM_DISPBLK_PD_LCDIF>;
+> >=20
+> >> +				status =3D "disabled";
+> >> +
+> >> +				port {
+> >> +					lcdif_to_dsim: endpoint {
+> >> +						remote-endpoint =3D
+> >=20
+> > <&dsim_from_lcdif>;
+> >=20
+> >> +					};
+> >> +				};
+> >> +			};
+> >> +
+> >> +			mipi_dsi: dsi@32e10000 {
+> >> +				#address-cells =3D <1>;
+> >> +				#size-cells =3D <0>;
 
-Regards,
-Alexandre
+I missed that. These are not necessary.
+
+> >> +				compatible =3D "fsl,imx8mm-mipi-dsim";
+> >> +				reg =3D <0x32e10000 0x400>;
+> >> +				clocks =3D <&clk IMX8MM_CLK_DSI_CORE>,
+> >> +					 <&clk
+> >=20
+> > IMX8MM_CLK_DSI_PHY_REF>;
+> >=20
+> >> +				clock-names =3D "bus_clk", "sclk_mipi";
+> >> +				assigned-clocks =3D <&clk
+> >=20
+> > IMX8MM_CLK_DSI_CORE>,
+> >=20
+> >> +						  <&clk
+> >=20
+> > IMX8MM_CLK_DSI_PHY_REF>;
+> >=20
+> >> +				assigned-clock-parents =3D <&clk
+> >=20
+> > IMX8MM_SYS_PLL1_266M>,
+> >=20
+> >> +							 <&clk
+> >=20
+> > IMX8MM_CLK_24M>;
+> >=20
+> >> +				assigned-clock-rates =3D <266000000>,
+> >=20
+> > <24000000>;
+> >=20
+> >> +				samsung,pll-clock-frequency =3D
+> >=20
+> > <24000000>;
+> >=20
+> > What about samsung,burst-clock-frequency and samsung,esc-clock-frequenc=
+y?
+> > Is there is sane default? Do they need to be provided in the board file?
+> Those two (burst and esc) are display or nearest-bridge specific and go
+> into board files.
+
+Thanks for clarification. With the nit from above fixed:
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
