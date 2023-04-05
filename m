@@ -2,106 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 710366D75B9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 09:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9936D75CF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 09:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237043AbjDEHnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 03:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55834 "EHLO
+        id S237168AbjDEHsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 03:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237041AbjDEHnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 03:43:31 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF31A1705;
-        Wed,  5 Apr 2023 00:43:30 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id g17so45495324lfv.4;
-        Wed, 05 Apr 2023 00:43:30 -0700 (PDT)
+        with ESMTP id S237043AbjDEHss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 03:48:48 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947633C06
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 00:48:37 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id eh3so138846556edb.11
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 00:48:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680680609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bMV6Kvqpqf15LLXkZfaS1YQSCgbm+tGgQhSsnurFVJI=;
-        b=UBqZw9jeyp6EbVR0W4Skbu71MdWtyVoRUEyXWsGKg1iZRQEom/kkJ8/jS4wfdZeAAm
-         G+aYozqJiC5ffI5alyIqHj2zV0uOVN6WXIiquVLN2RKvTsZ7n3BaY96fLJCzbshSlaar
-         au8tp/WIfCKQr9QbemytyIJgHiP5mWdyFzHkM/9AfDN/QxjTDaWthVj9tbq99VF4qH6F
-         fO8RN/qeCpFgGvZFNbsSQmNvygo3jVGEqCU2EEwEJekySBfhMlfSyApHdlCHuM43TcII
-         jZgs0cAXScYBdAuXILxzt+/mK7yiAF1Gufd54+UlqFKcwj/u96ZGpnPNSqDsZsqePJF0
-         jbxw==
+        d=google.com; s=20210112; t=1680680916; x=1683272916;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=p8w6UmRm5BD0nU8eoGMSUY3i4YMySq+vccxjuBrdrGk=;
+        b=Er4az+SUwSsypZMrqUPkmi0/nctg+5jtBJGX3n0itJa0VtzZQo1BvCHiFbGupUN3Vj
+         AHZVkrQl62hYk3iS59Pl/ZlCqcg8pMQLr53FnGQhXp5D/YEjkkTZoFMvzOcwIqK3nAYn
+         yyxf/+Pgp2dioV/6Q27rXufr5omEBU+UH3cPX1l3tOSGuNgEj3H1sVv/Irk1bmGD8suF
+         AjqoWpzzNPUHwjPUgPZNI2NewN/ytIQ1LWMZ4lNR2zK+vrnTYNuL+Q+3znkzs3LRj7ia
+         B7EYjfnmcdc80z22X6LKXzpMdjdF7PMtbII66DhdPksnvV3kLxXq5urPDETxKMC2JNKD
+         ussg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680680609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bMV6Kvqpqf15LLXkZfaS1YQSCgbm+tGgQhSsnurFVJI=;
-        b=w0Jc6RmMlC1Vj82rMKxfG/o1yRbQxKRTIqRgSNzZCjSWLO02vxUmFavg9Dx46T7Jg7
-         MuzcNQmwHU1Xrd8A6uVPAKaUv7w7uNWCYlBpcJPd4O7cuEK8VZvIY/jHotRgy0P+JvN3
-         GMatvNL/H5LFNRX7PtBSWkV4KlOMNaDmei95Be+yJXEgWTNGPEPIeM7fjg4/H+9X/xiO
-         CIoq08LhVzR595t2E/BtMf0a9aHnUqYVoM3sypeC80GJFbdN+as7+N/LVz6GltovbmJu
-         M2MGeM5N+fwQwwXtYysIGvpLLrgwUTw62kElPu23pLY4ksV4nCROwRQDK6ES7D/pQMAr
-         xgMQ==
-X-Gm-Message-State: AAQBX9exVb8ZgVR/lJi+jgGW8Q7k2W3EA3e6tZQ1BBy/GYaHQr/FpDAG
-        q/Kv0hymT85YdvQL8hJpixg=
-X-Google-Smtp-Source: AKy350amEsGRR6DFEbEZxGOf0MvUew3ajkt5VXkCvIOw52if6Q5iLjuNnSGzEuYCWTyrytpMSDGUSQ==
-X-Received: by 2002:ac2:54b5:0:b0:4db:3605:9bd3 with SMTP id w21-20020ac254b5000000b004db36059bd3mr1137702lfk.17.1680680608938;
-        Wed, 05 Apr 2023 00:43:28 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id q24-20020ac246f8000000b004db513b0175sm2693866lfo.136.2023.04.05.00.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Apr 2023 00:43:28 -0700 (PDT)
-Message-ID: <615c87ea-a5f9-d339-eedd-39e4f24d539e@gmail.com>
-Date:   Wed, 5 Apr 2023 10:43:27 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 3/3] dt-bindings: mfd: dlg,da9063: document XVP
-Content-Language: en-US, en-GB
-To:     Benjamin Bara <bbara93@gmail.com>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+        d=1e100.net; s=20210112; t=1680680916; x=1683272916;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p8w6UmRm5BD0nU8eoGMSUY3i4YMySq+vccxjuBrdrGk=;
+        b=PpkJ04JD66xIVJXxweMcvLqpL62r/FfzGZP1iTSG9m0gEwBJg1e3UMk0TXUZAmO81r
+         qiFlnbdW4m/Opq6h4qqhqxpMwL7kZapqqWiuwwCDEoaqSScZS8tchTTQBp1D+r7gYI2s
+         C4fdq/ZZJDbVlp8hWo19snc115eZHK9IzI4oT8RyTN2EieLameoTE7SWqyv2T6UoZnrv
+         Yo4hl/gLiRzntyNfdKVswIeG3J0knJ9MPq2+3jl2GHCxKPHQgZ3MmJhasLimnPcEBsPy
+         UdgOCH++p/LunuvvVUnOwT07rGZZJvWIW6YpZchANf6uQ1eqiuZ6w0yzmvmzYhLjkuGK
+         2++w==
+X-Gm-Message-State: AAQBX9chWJEaicG9gWKlPhjIoE9TtPmTAXqaswyxRDJSAml0kkvBneDN
+        wqrPNSI4Yfa0CMK2bSojvSYb4g==
+X-Google-Smtp-Source: AKy350agh4y8u6yqcvybPxa7k4bIoL0RiJQx9kT+gtSHfJM3UtSKuXTj5TsxcO5eYQ19NZXovee1uw==
+X-Received: by 2002:a17:907:6e25:b0:931:b34:4172 with SMTP id sd37-20020a1709076e2500b009310b344172mr2776628ejc.3.1680680915886;
+        Wed, 05 Apr 2023 00:48:35 -0700 (PDT)
+Received: from google.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
+        by smtp.gmail.com with ESMTPSA id l15-20020a17090612cf00b009222a7192b4sm6969397ejb.30.2023.04.05.00.48.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 00:48:35 -0700 (PDT)
+Date:   Wed, 5 Apr 2023 07:48:32 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     David Dai <davidai@google.com>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>
-Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Benjamin Bara <benjamin.bara@skidata.com>
-References: <20230403-da9063-disable-unused-v2-0-2f1bd2a2434a@skidata.com>
- <20230403-da9063-disable-unused-v2-3-2f1bd2a2434a@skidata.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230403-da9063-disable-unused-v2-3-2f1bd2a2434a@skidata.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        James Morse <james.morse@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Juri Lelli <juri.lelli@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+        Daniel Bristot de Oliveira <bristot@redhat.com>,
+        Valentin Schneider <vschneid@redhat.com>,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
+Subject: Re: [RFC PATCH 0/6] Improve VM DVFS and task placement behavior
+Message-ID: <ZC0n0HRsmNJeJZps@google.com>
+References: <20230330224348.1006691-1-davidai@google.com>
+ <ZCx97IKjsBibjdGc@linux.dev>
+ <86sfdfv0e1.wl-maz@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86sfdfv0e1.wl-maz@kernel.org>
+X-Spam-Status: No, score=-15.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/5/23 08:29, Benjamin Bara wrote:
-> From: Benjamin Bara <benjamin.bara@skidata.com>
+On Tuesday 04 Apr 2023 at 21:49:10 (+0100), Marc Zyngier wrote:
+> On Tue, 04 Apr 2023 20:43:40 +0100,
+> Oliver Upton <oliver.upton@linux.dev> wrote:
+> > 
+> > Folks,
+> > 
+> > On Thu, Mar 30, 2023 at 03:43:35PM -0700, David Dai wrote:
+> > 
+> > <snip>
+> > 
+> > > PCMark
+> > > Higher is better
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Test Case (score) | Baseline |  Hypercall | %delta |  MMIO | %delta |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Weighted Total    |     6136 |       7274 |   +19% |  6867 |   +12% |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Web Browsing      |     5558 |       6273 |   +13% |  6035 |    +9% |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Video Editing     |     4921 |       5221 |    +6% |  5167 |    +5% |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Writing           |     6864 |       8825 |   +29% |  8529 |   +24% |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Photo Editing     |     7983 |      11593 |   +45% | 10812 |   +35% |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > | Data Manipulation |     5814 |       6081 |    +5% |  5327 |    -8% |
+> > > +-------------------+----------+------------+--------+-------+--------+
+> > > 
+> > > PCMark Performance/mAh
+> > > Higher is better
+> > > +-----------+----------+-----------+--------+------+--------+
+> > > |           | Baseline | Hypercall | %delta | MMIO | %delta |
+> > > +-----------+----------+-----------+--------+------+--------+
+> > > | Score/mAh |       79 |        88 |   +11% |   83 |    +7% |
+> > > +-----------+----------+-----------+--------+------+--------+
+> > > 
+> > > Roblox
+> > > Higher is better
+> > > +-----+----------+------------+--------+-------+--------+
+> > > |     | Baseline |  Hypercall | %delta |  MMIO | %delta |
+> > > +-----+----------+------------+--------+-------+--------+
+> > > | FPS |    18.25 |      28.66 |   +57% | 24.06 |   +32% |
+> > > +-----+----------+------------+--------+-------+--------+
+> > > 
+> > > Roblox Frames/mAh
+> > > Higher is better
+> > > +------------+----------+------------+--------+--------+--------+
+> > > |            | Baseline |  Hypercall | %delta |   MMIO | %delta |
+> > > +------------+----------+------------+--------+--------+--------+
+> > > | Frames/mAh |    91.25 |     114.64 |   +26% | 103.11 |   +13% |
+> > > +------------+----------+------------+--------+--------+--------+
+> > 
+> > </snip>
+> > 
+> > > Next steps:
+> > > ===========
+> > > We are continuing to look into communication mechanisms other than
+> > > hypercalls that are just as/more efficient and avoid switching into the VMM
+> > > userspace. Any inputs in this regard are greatly appreciated.
+> > 
+> > We're highly unlikely to entertain such an interface in KVM.
+> > 
+> > The entire feature is dependent on pinning vCPUs to physical cores, for which
+> > userspace is in the driver's seat. That is a well established and documented
+> > policy which can be seen in the way we handle heterogeneous systems and
+> > vPMU.
+> > 
+> > Additionally, this bloats the KVM PV ABI with highly VMM-dependent interfaces
+> > that I would not expect to benefit the typical user of KVM.
+> > 
+> > Based on the data above, it would appear that the userspace implementation is
+> > in the same neighborhood as a KVM-based implementation, which only further
+> > weakens the case for moving this into the kernel.
+> > 
+> > I certainly can appreciate the motivation for the series, but this feature
+> > should be in userspace as some form of a virtual device.
 > 
-> Document that the da9063 only provides UVP *and* OVP in one, and
-> therefore requires both configured. Add an example for clarification.
+> +1 on all of the above.
+
+And I concur with all the above as well. Putting this in the kernel is
+not an obvious fit at all as that requires a number of assumptions about
+the VMM.
+
+As Oliver pointed out, the guest topology, and how it maps to the host
+topology (vcpu pinning etc) is very much a VMM policy decision and will
+be particularly important to handle guest frequency requests correctly.
+
+In addition to that, the VMM's software architecture may have an impact.
+Crosvm for example does device emulation in separate processes for
+security reasons, so it is likely that adjusting the scheduling
+parameters ('util_guest', uclamp, or else) only for the vCPU thread that
+issues frequency requests will be sub-optimal for performance, we may
+want to adjust those parameters for all the tasks that are on the
+critical path.
+
+And at an even higher level, assuming in the kernel a certain mapping of
+vCPU threads to host threads feels kinda wrong, this too is a host
+userspace policy decision I believe. Not that anybody in their right
+mind would want to do this, but I _think_ it would technically be
+feasible to serialize the execution of multiple vCPUs on the same host
+thread, at which point the util_guest thingy becomes entirely bogus. (I
+obviously don't want to conflate this use-case, it's just an example
+that shows the proposed abstraction in the series is not a perfect fit
+for the KVM userspace delegation model.)
+
+So +1 from me to move this as a virtual device of some kind. And if the
+extra cost of exiting all the way back to userspace is prohibitive (is
+it btw?), then we can try to work on that. Maybe something a la vhost
+can be done to optimize, I'll have a think.
+
+> The one thing I'd like to understand that the comment seems to imply
+> that there is a significant difference in overhead between a hypercall
+> and an MMIO. In my experience, both are pretty similar in cost for a
+> handling location (both in userspace or both in the kernel). MMIO
+> handling is a tiny bit more expensive due to a guaranteed TLB miss
+> followed by a walk of the in-kernel device ranges, but that's all. It
+> should hardly register.
 > 
-> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
+> And if you really want some super-low latency, low overhead
+> signalling, maybe an exception is the wrong tool for the job. Shared
+> memory communication could be more appropriate.
 
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+I presume some kind of signalling mechanism will be necessary to
+synchronously update host scheduling parameters in response to guest
+frequency requests, but if the volume of data requires it then a shared
+buffer + doorbell type of approach should do.
 
-> ---
->   Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 16 ++++++++++++++--
->   1 file changed, 14 insertions(+), 2 deletions(-)
-> 
+Thinking about it, using SCMI over virtio would implement exactly that.
+Linux-as-a-guest already supports it IIRC, so possibly the problem
+being addressed in this series could be 'simply' solved using an SCMI
+backend in the VMM...
 
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Thanks,
+Quentin
