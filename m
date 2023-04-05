@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C005D6D73BD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 07:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F5E6D73CD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 07:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236874AbjDEF3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 01:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57880 "EHLO
+        id S236886AbjDEFd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 01:33:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236835AbjDEF3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 01:29:48 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65BA40E6;
-        Tue,  4 Apr 2023 22:29:44 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id k12so6638216qvo.13;
-        Tue, 04 Apr 2023 22:29:44 -0700 (PDT)
+        with ESMTP id S236880AbjDEFdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 01:33:55 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172C9199C
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 22:33:53 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-93071f06bd1so19988866b.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 22:33:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680672584;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uqALPLXds7YJmJDFdWxiFjorgCC5NyAqLSL+2g2RE64=;
-        b=XzGACWBc5YuA1DRAPUsiEd0QT4NndSKDDm0N1Lop01QfHj0rpnXSnw1KAP0XU3v4P3
-         kX853XnPPb5VYGq9/zAiXQ8VfMoTvXbamX5UJfhf0rhmhUVKpeaD3FTtJEjVK/oVm2ju
-         5RQsgu7F4d6CoJxrISnXOrgbsywIqfEspzSSQMHdRzmneJfltRQUGmFzE1cTU9UAfmy+
-         9XfVHKJP5iluPOcPnEbHXls8EaV/YhWNQHYZTfqWQpJyxvSnRQE+xbj/NLkJlmTw4NIz
-         AUe0BPmWCL5UaPecOYb5W0arANXsA5GRSBfrvWWMS6fmoINlN5ALhQjsHTmfv+kaFqW4
-         IgpQ==
+        d=linaro.org; s=google; t=1680672831;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v5p7/w7fewOj51IYhvuMJQO0zEkYIY4fxshYNz4tS5Y=;
+        b=vjYYQV1/IV2PXItK+wqdQAt9jWBIA7Ol0nbWL2g5mXvHPI3Ba1Y/H59Ev+4hzAvDvX
+         BCgIK9tZ4QksbVxDRJDnKWLoyQhkvfSHgMpcnKd/Nu4SjmkB0jpK5Ef+H5GaDfVkyWXw
+         luJPQt8EV/BHCntuXYRq/7NBwCXFjdNoDRwyp90YWnJr4dKJzhQyGzZhKjvCGDZhtFvE
+         glNFZqkRQeVuHZYY0EtN/yD6VU1NFfIuB97sXrND4iLsBbC2fYhl48JZAoI6v1DOClAJ
+         GhcHXnb9oVvQsHX+b90ezhVnqhcTstfSQ5tl7Po3KcgSpd8Ut5NWmHmFdRt0jUTcipml
+         6UjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680672584;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uqALPLXds7YJmJDFdWxiFjorgCC5NyAqLSL+2g2RE64=;
-        b=cUOvaui5E4MZruzPeehNPrsCx8+osLR8YlZ81s+H8UMFOhFiaA0bT4f946fN2f8zPC
-         zg7T8I1Mcle/jkNWcWPIrcmVFitBhgeF9j2lrDh31rhQ7blSFTMr+NvpAfVJK+yLLWLx
-         onF41nAYESODVrabBapLS4vPxCuAo0qU3loPH9GUyDhSVt/othSx7ZWxhv8E5zGJj7Vz
-         X0DY3vZX6y7GDkld+FRVKqJ+FXPNwjWKeVkYcyzNckgoj5yU7miaWbFW+iTzyEr28rpF
-         j5EWZoLdSlBGoGk/uBqwbvxFX0dUQ1Ggm6auW5e29hcB89J6eeEIYWYfojN28+uRKi4I
-         1MVA==
-X-Gm-Message-State: AAQBX9cxhLcSU/Ky5rL5PuNWqm1dzq3wsIYc6gES58JqJPByDNyLShgJ
-        Jobk9m7FrKhaBkKCYs3KKVg=
-X-Google-Smtp-Source: AKy350YhBYKekBlB8OGnt+dvshmirBOsMx/2zCS+TXNjoZCDgYVqjdJeFCIptKbzwF7vNKh8M5RR4Q==
-X-Received: by 2002:a05:6214:1313:b0:5ce:7b40:8999 with SMTP id pn19-20020a056214131300b005ce7b408999mr8901304qvb.22.1680672583846;
-        Tue, 04 Apr 2023 22:29:43 -0700 (PDT)
-Received: from [127.0.1.1] ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id f12-20020ad4558c000000b005e16003edc9sm3881454qvx.104.2023.04.04.22.29.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 22:29:43 -0700 (PDT)
-From:   Benjamin Bara <bbara93@gmail.com>
-Date:   Wed, 05 Apr 2023 07:29:09 +0200
-Subject: [PATCH v2 3/3] dt-bindings: mfd: dlg,da9063: document XVP
+        d=1e100.net; s=20210112; t=1680672831;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v5p7/w7fewOj51IYhvuMJQO0zEkYIY4fxshYNz4tS5Y=;
+        b=BaQNnQYwOT5ZZT0ZoEfcR3g18iYKri2gx26ecTXrDyTnPT1yRY/gYc+1gTB3dNnM9S
+         WoqXTEKULbDic15OZoF01/wCBVhPjQV9/PZaQFtgcIsUssKoST9TTKuxHcTHOzh4iEzP
+         itqlQCeQ2JcK68CIipO6r8YcUwbX8xwSPl4CzMUyOrHfoszEltkq1ZYDcuLdXFYckW+F
+         ASgIvFuQBy7Nor0iZYMG9ZK96SUYoO6XOZacfz7GD0/Jq9hDVX0uj2rOoBWxxFWHEGUC
+         jRasJOMRGFFJ6HsXA6SOpZ5iWbX9YCLkp97uGMbt03X0FwLrKXfo4bzl0CDfOlmqNdW6
+         Wn+A==
+X-Gm-Message-State: AAQBX9e7tCLJbvkw5BAyQB++eqbnNsclHdMkKXdv12GUzOwz356lTlv0
+        p9Joq/ozxE/8BDyWS8vmcsMzww==
+X-Google-Smtp-Source: AKy350a1hhobYidWMtmGwHc2cqturh8pPENTzcMZlrZsJplF4cgSqwj5OmgmWwkrOq/D5lBNennaxg==
+X-Received: by 2002:aa7:d350:0:b0:4fb:59bb:ce7c with SMTP id m16-20020aa7d350000000b004fb59bbce7cmr634483edr.32.1680672831526;
+        Tue, 04 Apr 2023 22:33:51 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
+        by smtp.gmail.com with ESMTPSA id a9-20020a509e89000000b005024e725aefsm6762542edf.33.2023.04.04.22.33.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 22:33:50 -0700 (PDT)
+Message-ID: <fa2d5794-5750-0558-e298-bc059937a597@linaro.org>
+Date:   Wed, 5 Apr 2023 07:33:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230403-da9063-disable-unused-v2-3-2f1bd2a2434a@skidata.com>
-References: <20230403-da9063-disable-unused-v2-0-2f1bd2a2434a@skidata.com>
-In-Reply-To: <20230403-da9063-disable-unused-v2-0-2f1bd2a2434a@skidata.com>
-To:     Support Opensource <support.opensource@diasemi.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 3/3] dt-bindings: mfd: dlg,da9063: document XVP
+To:     Benjamin Bara <bbara93@gmail.com>,
+        Support Opensource <support.opensource@diasemi.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -68,65 +66,33 @@ Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Matti Vaittinen <mazziesaccount@gmail.com>,
         Benjamin Bara <benjamin.bara@skidata.com>
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230403-da9063-disable-unused-v2-0-2f1bd2a2434a@skidata.com>
+ <20230403-da9063-disable-unused-v2-3-2f1bd2a2434a@skidata.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230403-da9063-disable-unused-v2-3-2f1bd2a2434a@skidata.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Benjamin Bara <benjamin.bara@skidata.com>
+On 05/04/2023 07:29, Benjamin Bara wrote:
+> From: Benjamin Bara <benjamin.bara@skidata.com>
+> 
+> Document that the da9063 only provides UVP *and* OVP in one, and
+> therefore requires both configured. Add an example for clarification.
+> 
+> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
 
-Document that the da9063 only provides UVP *and* OVP in one, and
-therefore requires both configured. Add an example for clarification.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
----
- Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-index e8e74e91070c..e9d5ab418dd2 100644
---- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-+++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-@@ -12,6 +12,10 @@ maintainers:
- description: |
-   For device-tree bindings of other sub-modules refer to the binding documents
-   under the respective sub-system directories.
-+  Using regulator-uv-X-microvolt and regulator-ov-X-microvolt requires special
-+  handling: First, when GP_FB2 is used, it must be ensured that there is no
-+  moment where all voltage monitors are disabled. Next, as da9063 only supports
-+  UV *and* OV monitoring, both must be set.
- 
- properties:
-   compatible:
-@@ -121,11 +125,19 @@ examples:
-             regulator-max-microamp = <2000000>;
-             regulator-boot-on;
-           };
-+          ldo6 {
-+            /* UNUSED */
-+            regulator-name = "LDO_6";
-+            regulator-uv-protection-microvolt = <0>;
-+            regulator-ov-protection-microvolt = <0>;
-+          };
-           ldo11 {
-             regulator-name = "LDO_11";
-             regulator-min-microvolt = <900000>;
--            regulator-max-microvolt = <3600000>;
--            regulator-boot-on;
-+            regulator-max-microvolt = <900000>;
-+            regulator-uv-protection-microvolt = <1>;
-+            regulator-ov-protection-microvolt = <1>;
-+            regulator-always-on;
-           };
-         };
-       };
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
