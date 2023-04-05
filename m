@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C4DA6D7B20
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0644D6D7B1E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237906AbjDELV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 07:21:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34430 "EHLO
+        id S237871AbjDELVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 07:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237910AbjDELVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:21:54 -0400
+        with ESMTP id S237893AbjDELVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:21:46 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F1259D0
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 04:21:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87C22D43
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 04:21:44 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <jzi@pengutronix.de>)
-        id 1pk1Ce-0004S3-05; Wed, 05 Apr 2023 13:21:24 +0200
+        id 1pk1Ce-0004S4-00; Wed, 05 Apr 2023 13:21:24 +0200
 Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <jzi@pengutronix.de>)
-        id 1pk1Cc-0098SM-52; Wed, 05 Apr 2023 13:21:22 +0200
+        id 1pk1Cc-0098SP-HB; Wed, 05 Apr 2023 13:21:22 +0200
 Received: from jzi by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <jzi@pengutronix.de>)
-        id 1pk1Cb-005Gtk-9W; Wed, 05 Apr 2023 13:21:21 +0200
+        id 1pk1Cb-005Gtp-Ab; Wed, 05 Apr 2023 13:21:21 +0200
 From:   Johannes Zink <j.zink@pengutronix.de>
 To:     vkoul@kernel.org, kishon@kernel.org, shawnguo@kernel.org,
         s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
@@ -35,10 +35,12 @@ To:     vkoul@kernel.org, kishon@kernel.org, shawnguo@kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     j.zink@pengutronix.de
-Subject: [PATCH 0/2] Add phy tuning support for imx8mq-usb
-Date:   Wed,  5 Apr 2023 13:21:16 +0200
-Message-Id: <20230405112118.1256151-1-j.zink@pengutronix.de>
+Subject: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning properties
+Date:   Wed,  5 Apr 2023 13:21:17 +0200
+Message-Id: <20230405112118.1256151-2-j.zink@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230405112118.1256151-1-j.zink@pengutronix.de>
+References: <20230405112118.1256151-1-j.zink@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -54,29 +56,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds support for USB phy tuning parameters, which are
-required for meeting USB certification and EMI qualification.
+Add optional properties for tuning of usb phy.
 
-Patch 1/2 adds the required properties to the fsl,imx8mq-usb-phy
-devicetree binding.
+Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+---
+ .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-Patch 2/2 adds the phy tuning parameters to the phy-fsl-imx8mp driver.
-This patch is ported and cleaned up from the downstream Freescale vendor
-tree.
-
-Best regards,
-Johannes
-
-Johannes Zink (1):
-  dt-bindings: phy: imx8mq-usb: add phy tuning properties
-
-Li Jun (1):
-  phy: fsl-imx8mp-usb: add support for phy tuning
-
- .../bindings/phy/fsl,imx8mq-usb-phy.yaml      |  40 ++++++
- drivers/phy/freescale/phy-fsl-imx8mq-usb.c    | 124 ++++++++++++++++++
- 2 files changed, 164 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+index e6f9f5540cc3..f452a41b4f32 100644
+--- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+@@ -35,6 +35,46 @@ properties:
+     description:
+       A phandle to the regulator for USB VBUS.
+ 
++  fsl,phy-tx-vref-tune:
++    description:
++      HS DC Voltage level adjustment
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
++
++  fsl,phy-tx-rise-tune:
++    description:
++      HS Transmitter Rise/Fall Time Adjustment
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  fsl,phy-tx-preemp-amp-tune:
++    description:
++      HS Transmitter Pre-Emphasis Current Control
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  fsl,phy-tx-vboost-level:
++    description:
++      TX Voltage Boost Level
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 2, 3]
++
++  fsl,phy-comp-dis-tune:
++    description:
++      Disconnect Threshold Adjustment
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3, 4, 5, 6, 7]
++
++  fsl,phy-pcs-tx-deemph-3p5db:
++    description:
++      TX De-Emphasis at 3.5 dB
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  fsl,phy-pcs-tx-swing-full:
++    description:
++      TX Amplitude
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+ required:
+   - compatible
+   - reg
 -- 
 2.39.2
 
