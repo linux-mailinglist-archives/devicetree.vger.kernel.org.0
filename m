@@ -2,109 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BB406D7A5F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC696D7AC9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:11:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbjDEKw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 06:52:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33404 "EHLO
+        id S236928AbjDELL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 07:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231733AbjDEKw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:52:28 -0400
+        with ESMTP id S237314AbjDELLX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:11:23 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95EE14C20;
-        Wed,  5 Apr 2023 03:52:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3311C4EF2;
+        Wed,  5 Apr 2023 04:11:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2A97763CA0;
-        Wed,  5 Apr 2023 10:52:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCE13C433D2;
-        Wed,  5 Apr 2023 10:52:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C097263CB4;
+        Wed,  5 Apr 2023 11:11:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 026CBC433D2;
+        Wed,  5 Apr 2023 11:11:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680691946;
-        bh=NFRpILb73SbXaqiAYsKtilbT82AouxOyjWQbgbTHezs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZnYIJ5Ar3+7sS99S55DFY6IBTnOyKAQxvj8tmXpSFEJ822wruQow62yrmM7Xpkj5m
-         fRq+tYuuarRJh46WQxH4roDT3GYkRtyo5KDmHhoKU0KWBJXK4kMnBT793JQIjnM4yo
-         ZwZTRrOBLoOPkCmrUhaaf8Um6WytBYRszsq/jRjkumMgKN4IiNmrDJgw1Ipi7RfZkX
-         u74vNyWMYYwrjW1k2bNH3jnsiLPaVeABlhyVyrfrdaQqw6hbCs1h66XMH8NNM1ddhb
-         402AqjJ7tq5c9iB59DNpyd1K/Q3Iy2h6WciigcDJS9WnYR1O+sYtQ/8/EW8lxQvovQ
-         b+vAxvqbwncGQ==
-Date:   Wed, 5 Apr 2023 11:52:19 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Benjamin Bara <bbara93@gmail.com>
-Cc:     Support Opensource <support.opensource@diasemi.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        DLG-Adam.Thomson.Opensource@dm.renesas.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Benjamin Bara <benjamin.bara@skidata.com>
-Subject: Re: [PATCH v2 2/3] regulator: da9063: implement basic XVP setter
-Message-ID: <35202b81-abd6-4e0b-b2ad-a385cbb3979d@sirena.org.uk>
-References: <20230403-da9063-disable-unused-v2-0-2f1bd2a2434a@skidata.com>
- <20230403-da9063-disable-unused-v2-2-2f1bd2a2434a@skidata.com>
+        s=k20201202; t=1680693073;
+        bh=XECmjtuqJG7MMdVpMzr8ofA4bkH3gapSSUKkhDgD5PU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=QxjN1rEjNQF5GHOPbgDRLJiLnEu9WLWZ7x+1wx1VdqHwgj8N/IWBgaesYSa9sR3le
+         tv0/sIgQScq6xrinbQP4M84qiOA21xXgNF2GWeL0FEzJXmMdJJU6+Eq/oq5H6yf/Tc
+         tYU5/t6dKPBDN4NLqiQD7h8M7e+kbwjygwFP++ngunqrWKPEBzZauevHOBYUGY1OtU
+         jFgh5fdabkBS4fN/EiP68qi7E06LyIYrKT9bUHWUlFtwQn/WNsJrjAO2cGi36RVbM9
+         CpE5XexFl5g4itKptCcQyvt8CA+4HkkPuwLs3ii0vIs8TItv7l06TEUIMryNAO39Gl
+         0gwaQ8/ZPaejA==
+Message-ID: <29b27566-a300-fa3c-6b37-0df6ee2b2bb3@kernel.org>
+Date:   Wed, 5 Apr 2023 14:11:08 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="RCHnR4IsBmgTcBdi"
-Content-Disposition: inline
-In-Reply-To: <20230403-da9063-disable-unused-v2-2-2f1bd2a2434a@skidata.com>
-X-Cookie: 1 bulls, 3 cows.
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 0/3] arm64: dts: ti: k3-am625: Enable Type-C dual-role
+Content-Language: en-US
+To:     nm@ti.com, vigneshr@ti.com
+Cc:     kristo@kernel.org, srk@ti.com, r-gunasekaran@ti.com,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230330084954.49763-1-rogerq@kernel.org>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230330084954.49763-1-rogerq@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Nishanth,
 
---RCHnR4IsBmgTcBdi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 30/03/2023 11:49, Roger Quadros wrote:
+> Hi,
+> 
+> This series enables Type-C port on USB0 for both am625-sk and am62-lp-sk.
+> Series is based on [1]
+> 
+> cheers,
+> -roger
+> 
+> Changelog:
+> v3:
+> - include Type-C support for am62-lp-sk
+> - split interrupts properties for Type-C chip into am625-sk
+> 
+> v2:
+> - rebase off [1]
+> - add fixes tag to patch 1
+> 
+> [1] - https://lore.kernel.org/all/20230321-am62-lp-sk-v2-0-0a56e1694804@ti.com/
+> 
+> cheers,
+> -roger
+> 
+> Dhruva Gole (1):
+>   arm64: dts: ti: k3-am625-sk: Add ti,vbus-divider property to usbss1
 
-On Wed, Apr 05, 2023 at 07:29:08AM +0200, Benjamin Bara wrote:
-> From: Benjamin Bara <benjamin.bara@skidata.com>
->=20
-> Allow to en- and disable voltage monitoring from the device tree.
-> Consider that the da9063 only monitors UV *and* OV together, so both
-> must be en- or disabled.
+This one was picked from v2 series, so please ignore.
 
-I have no idea what a "basic XVP setter" is and this isn't super
-enlightening.  Is VP supposed to mean voltage protection or something?
+> 
+> Roger Quadros (2):
+>   arm64: dts: ti: k3-am625: Enable Type-C port for USB0
 
-> +	/* make sure that both UV/OV protections are either enabled or disabled=
- */
-> +	if (uv_l->prot !=3D ov_l->prot || uv_l->err !=3D ov_l->err || uv_l->war=
-n !=3D ov_l->warn) {
-> +		dev_err(config->dev, "%s: regulator-uv-X-microvolt !=3D regulator-ov-X=
--microvolt\n",
-> +			regl->desc.name);
-> +		return -EINVAL;
+Could you please queue the above patch? Thanks!
 
-I'm not sure that a user is going to figure out that this refers to the
-protection levels, there's no hint as to what the X might be and the
-error suggests that both the under and over voltage protection limits
-must be have the same value, not just both be provided.
+>   arm64: dts: ti: k3-am625: Use interrupt line for Type-C chip
 
---RCHnR4IsBmgTcBdi
-Content-Type: application/pgp-signature; name="signature.asc"
+This one is up to you/TI if you want to maintain support of
+1.2 Boards or not. Feel free to drop this if Rev1.2 boards
+need to be supported.
 
------BEGIN PGP SIGNATURE-----
+> 
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts        |  8 ++++-
+>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 36 ++++++++++++++++++-
+>  2 files changed, 42 insertions(+), 2 deletions(-)
+> 
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQtUuIACgkQJNaLcl1U
-h9AsoAf+KvtAxc8Zw7X+DUeCMbRgu7dC4di4jW4yUNhLH2DRMEo9/jBLgRh2vO64
-5ySVz2O/jMvoyAKyJarrFtlEpncvCnFeiodAHH/8hNFYNJ8Wi3uiW5CzhEpmxMQ5
-43yLej97NrhwFh381TO3iUjgqWfcvMWUq/Kb8bxHSZJPvT4vUzJXD5kAXs8LxVx9
-0pkXk+GJyVEbKrVLlbryx9NC0NUArxASTq9sKolZuYJvGc6+/UJ8rmVmpdxVdVFV
-vHSkXgiKxPoQ34I+6q+0jgGuKPowL3pxGr+qFU9e7YiEEeQKMPj243h15O2Yy8cO
-qac8PhwJdq+3ZhHoflXF0K7uf6IMhw==
-=tCLj
------END PGP SIGNATURE-----
-
---RCHnR4IsBmgTcBdi--
+cheers,
+-roger
