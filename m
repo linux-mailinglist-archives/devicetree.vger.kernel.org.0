@@ -2,120 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9DC46D8145
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 17:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F5F6D81B2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 17:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238822AbjDEPNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 11:13:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35768 "EHLO
+        id S238435AbjDEPXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 11:23:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238815AbjDEPMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 11:12:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FE0CA;
-        Wed,  5 Apr 2023 08:10:53 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-212-122.ewe-ip-backbone.de [91.248.212.122])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 77EFE6603193;
-        Wed,  5 Apr 2023 16:10:51 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680707451;
-        bh=jRgDSO3v+VKl5PXcXNslYAslMAv3VPkQGjzS7XPnMAc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=osaLU4v0nFMMIg4IDSyBdT3qBWT4X2O8k3ZrjGFMI34Qldf+cjvbHjMxFoTgz7Bvk
-         w97swc1hCobTNouVTULuzJzMgyztKpUTHLucjF3uiHjTaf5KoEZjeiX0LQT9FZB49R
-         OyB0xMBsbOxjKCqG6Pi11HTbRtuyCkZXbXT7mv7CeKgZ7tQ/hT4DGy1i8GeKbB5HEG
-         v8rZxZVwV06Tb9DTN7CXXJUIx5Yxw3NKo1YsIyHILsO754gI91j1Q8e2ckF7XNzUki
-         iILfoWhnlG04i2rRfuAPTXxlwdCtsK2URf+5j34B88VED3fByRqlgvFUnNh3WQ2oIf
-         jHbnHWu6mceKw==
-Received: by mercury (Postfix, from userid 1000)
-        id 203631065C70; Wed,  5 Apr 2023 17:10:49 +0200 (CEST)
-Date:   Wed, 5 Apr 2023 17:10:49 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv1 0/3] generic-ohci/ehci: add RK3588 support
-Message-ID: <20230405151049.qksjk6e3za7fwuz6@mercury.elektranox.org>
-References: <20230404145350.45388-1-sebastian.reichel@collabora.com>
- <2023040524-hazelnut-landfall-7d26@gregkh>
+        with ESMTP id S238844AbjDEPXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 11:23:24 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0571D6584
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 08:23:17 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pk4xx-00073O-O3; Wed, 05 Apr 2023 17:22:29 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pk4xt-00017e-Jm; Wed, 05 Apr 2023 17:22:25 +0200
+Date:   Wed, 5 Apr 2023 17:22:25 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Radu Pirea <radu-nicolae.pirea@oss.nxp.com>,
+        Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
+        Yisen Zhuang <yisen.zhuang@huawei.com>,
+        Salil Mehta <salil.mehta@huawei.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+        Keyur Chudgar <keyur@os.amperecomputing.com>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 06/12] net: phy: add phy_device_atomic_register helper
+Message-ID: <20230405152225.tu3wmbcvchuugs5u@pengutronix.de>
+References: <20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de>
+ <20230405-net-next-topic-net-phy-reset-v1-6-7e5329f08002@pengutronix.de>
+ <ad0b0d90-04bf-457c-9bdf-a747d66871b5@lunn.ch>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rspdxdya3ht4irto"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2023040524-hazelnut-landfall-7d26@gregkh>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <ad0b0d90-04bf-457c-9bdf-a747d66871b5@lunn.ch>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23-04-05, Andrew Lunn wrote:
+> > To bundle the phy firmware parsing step within phx_device.c the commit
+> > copies the required code from fwnode_mdio.c. After we converterd all
+> > callers of fwnode_mdiobus_* to this new API we can remove the support
+> > from fwnode_mdio.c.
+> 
+> Why bundle the code? Why not call it in fwnode_mdio.c?
 
---rspdxdya3ht4irto
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The current fwnode_mdio.c don't provide the proper helper functions yet.
+Instead the parsing is spread between fwnode_mdiobus_register_phy() and
+fwnode_mdiobus_phy_device_register(). Of course these can be extracted
+and exported but I don't see the benefit. IMHO it just cause jumping
+around files and since fwnode is a proper firmware abstraction we could
+use is directly wihin core/lib files.
 
-Hi Greg,
+> The bundling in this patch makes it harder to see the interesting part
+> of this patch, how the reset is handled. That is what this whole
+> patchset is about, so you want the review focus to be on that.
 
-On Wed, Apr 05, 2023 at 04:49:37PM +0200, Greg Kroah-Hartman wrote:
-> On Tue, Apr 04, 2023 at 04:53:47PM +0200, Sebastian Reichel wrote:
-> > Hi,
-> >=20
-> > This increases the max. allowed clocks for generic-ohci from 3 to 4.
-> > On RK3588 a total of 4 clocks is required to access the OHCI registers.
-> > EHCI already supports 4 clocks.
-> >=20
-> > Changes since PATCHv1:
-> >  * https://lore.kernel.org/all/20230331163148.5863-1-sebastian.reichel@=
-collabora.com/
-> >  * Add Alan's Acked-by to the driver patch increasing the clock count
-> >  * Update bindings, adding rockchip,rk3588-ohci and rockchip,rk3588-ehc=
-i compatibles
->=20
-> This is "v1" according to the subject line, right?
+I know and I thought about adding the firmware parsing helpers first but
+than I went this way. I can split this of course to make the patch
+smaller.
 
-Well the previous version was also about adding RK3588 support.
-I did not see anything RK3588 specific and thus used "increase
-allowed clocks" as subject for the cover letter. Rob's review
-effectively asked for RK3588 specific compatibles to be added,
-so this is a v2 of the series with that change included.
+Regards,
+  Marco
 
-Since increasing the maximum number of clocks is no longer the
-dominant content of the series I changed the cover letter's
-subject. Sorry that this confused you.
 
-Greetings,
-
--- Sebastian
-
---rspdxdya3ht4irto
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQtj3UACgkQ2O7X88g7
-+pqcFA//anAG2suOvroCaC8qsNmoHOqpuRSWuMaS+dC1mr39LGBBpnUMqUl0Kx4T
-UvthCvr6jtqBwAuianN+qU0rMTbGdCTvYgmVWXDyO8BkxmI8S3VxmhWbYEuJ3KCF
-BxIaeUde9b08ED00pibR1VeAGqvCoSJZIL7OBfX6ZeRT75P5P+PdWn4hGi622MGX
-zh/Wa3ukrzktinNn8TfjabKqDDrDxwvaKL8eMgLsZ2BqBsEnBc7Y8hN2Wp5JBOTL
-w4ySz+Co/oUSZJurNfflVFZxdw/EPTC8mHKph4ilr6VgyLJEpv/9aqqegIqtUWet
-Y+xZSHaxhBG21VECJ+HcEXCu0sWDNQ3lGdiYR3UCXck3tw8gg5Ego9YerFddHlt+
-TuvA28IsfIIMCE9SHyeRZr6upIyI+pMUYCjkvrB+n0GnMYylL44myeOz5lhqSRDc
-1IBU3aC6W6ukZra8MgO0lqeqU1CUd78Row+SSxCXkSrLwymEQC1ar3BokAFw36K4
-EnjGXq3HqY1ZHrRo2x/j6oekOyQu+9aB/CCyAacplJhtadPF41ETk0u+/SvrICGr
-nzCqkNiSedsV0YL6w4UpWW8WoJrKGgoSRM1EI8JoS3X0FEywdKu2BLyyq8oPz0mS
-lGKOAh9Wivyfct38wMcODDxIOLZrTB7RvJpiUoCO3xuDtHksBmM=
-=i930
------END PGP SIGNATURE-----
-
---rspdxdya3ht4irto--
+> 
+> 	 Andrew
+> 
