@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A946D7E97
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB82E6D7EB2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:10:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238420AbjDEOFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 10:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42568 "EHLO
+        id S237560AbjDEOKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 10:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238402AbjDEOE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:04:27 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3346E8E
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 07:02:02 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id ew6so141242460edb.7
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 07:02:02 -0700 (PDT)
+        with ESMTP id S237950AbjDEOKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:10:30 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1EA961AC;
+        Wed,  5 Apr 2023 07:09:53 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id h3so8313258qtu.1;
+        Wed, 05 Apr 2023 07:09:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680703319;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u6YcgOwTkOYEHTfHh+36jDI0bPjFfgqXenK5KF9BN1M=;
-        b=woR8DJocTeoGjM0ctksEiVKlmKWuFzKBD6nfTHY9BV3mRzezalDDkRf2u/8fDEp3SA
-         UKDqWfarz5kfAzX9AmXvkpS8cFJwENbxtvlP8Z9mcE3BVdaW+cnnOzlqUUUzh8IKcUIe
-         SVGTG1tzJIfi2ftcqyhyBXjlOXEBeZh0CW+aOL18HrU7FxeOlgutMCbL/BC7qzQhVzAK
-         iUCMQ9kW+u0qnMg5GSbLw3PbMBjl300VrldjddgI4mgFppNYlGD7KyFkyEjnUq2issnM
-         Lo1HGJTMCfcIwuDFIAlDz55owkx1UmEtcSlBn3N/0odTyKa0XB53gLXYSbHrdoMUV77P
-         x+eg==
+        d=gmail.com; s=20210112; t=1680703758;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HrUuGPcgbacoPaDZwUjyClDlHEdWcnLP/BwbE2VGngk=;
+        b=eyXfXYkxZIF6WKWjnHGB/7kYrtZYblTpxPNBHoF4z7YaK/SPvpFdGdEftr2WgEeycz
+         LLaFjTCIalR2qcNn16UFiGvgrneXXoezYhLhSsqnsRjZcoZ3lbsQOSR9FDjU9ulgRk5Q
+         HvIkQuFyiEiqV6B8Hq8SuoPwXkAi2y0V2uGe68zArMEnQlxISuuofXPy4dF9oJmKE0iO
+         ivvr8VxlpDxkEsb4oQmSHG+lPmkkr1iY0tQNAA6B1ibBkx9eDjKUvLkQYJCg3SqYA+oL
+         WKjCYv3uWExJsX3MaPA2hHm8TDLFqAZLPjP5GMpKx5Uepe+wZPjRMMPC0Scc2VJND1o3
+         cJMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680703319;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u6YcgOwTkOYEHTfHh+36jDI0bPjFfgqXenK5KF9BN1M=;
-        b=bpJnuTvV1SvTFED7RpB2qWz2AmRpGkbbx0CYT0vMwtuImre1XL4R9J0CpBfmrtyGjQ
-         YBvmLwimKQTJtxVFp6/zKwWknIWRsDjHytvePj60oxyZ4yeplSfC8R+GA3GkyB+TbiAp
-         ywRDl8GauAdFAMPQoApadfFRjSe9yFlANKe9Cyv/fKiUI8GGm3XB9X3xYED5rjPlvwIH
-         GFvrYSvL15refBQ8OG88AXc24rQQ5GHWwDxi+FDvkO8NbpmAYGg/YEnaeEO+ENZEOluP
-         5k9AwzjCUJx1oWHfcTpRcCDENAvBGtNdK9dyYu4Bu9SMgG4XWIYPD48aeyYJSZJG3KPV
-         p+kA==
-X-Gm-Message-State: AAQBX9eWhpxUHmQeeCXzOSL61jZPZDZ2WdiQfkOXUeRuGogSqnZ48O2W
-        hKxMifDxtopqErBpHwbTQvlOoQ==
-X-Google-Smtp-Source: AKy350Z9vKsl9+aosw4V6+XeX7OHHsd0XKQdC3YrbCaIX3n+HmSKQuxFRqpPIkqhUfYyY+dMeRLrFg==
-X-Received: by 2002:a17:906:2e82:b0:925:1d1d:6825 with SMTP id o2-20020a1709062e8200b009251d1d6825mr2720161eji.42.1680703319728;
-        Wed, 05 Apr 2023 07:01:59 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id q23-20020a170906389700b00926b944676esm7321357ejd.131.2023.04.05.07.01.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Apr 2023 07:01:59 -0700 (PDT)
-Message-ID: <63bfaa1e-c627-bfe1-0bef-d001dae41014@linaro.org>
-Date:   Wed, 5 Apr 2023 16:01:58 +0200
+        d=1e100.net; s=20210112; t=1680703758;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HrUuGPcgbacoPaDZwUjyClDlHEdWcnLP/BwbE2VGngk=;
+        b=wyoXQZjCCxg6mzyerCNwPL6wjzxd5oKULL2x0aAfNmcFxtihV3kEJr2mlUVDL8QB/P
+         Jw5YrzeginKMdC8RMbvW+AhwfLviZGH1aL2mgWTudnJfPqFlBqQOx1/phKy5AM5bMYO/
+         PU2VZi/gNBzAxa3Mnhlu4YI5IQRjRRhhPBUuFNwyQNx3FmxGeMF3y7BS8GOw0Y7NKLXF
+         +cogNnvfx6avWb7BlCGeqvBqnIxDCsqmJuW4uhq7OytjYBbLBAnqy5hlgrp8CJ8GemCz
+         rKdLFDy+rr+rcTHQE50zvHcFvElTfxXglJQnBD6BqmQae518cfM9if+1wYtzcZosmjlT
+         1stw==
+X-Gm-Message-State: AAQBX9dsUYl6EQ5DdCFj+i76uPluQS5O9Z+g15vP1pj+xoCK56yt68gw
+        LHbz2S0ailDPeqA2SrXNDZ8=
+X-Google-Smtp-Source: AKy350awZP/g5lomgosNmOrdkY5UjqeeVLeO4HAp2z8KiQlvc+5Uu7MzzzJ0mpKTXEwQ9X/miBikIQ==
+X-Received: by 2002:a05:622a:5cf:b0:3bf:e13e:30d2 with SMTP id d15-20020a05622a05cf00b003bfe13e30d2mr4211910qtb.67.1680703758548;
+        Wed, 05 Apr 2023 07:09:18 -0700 (PDT)
+Received: from PCBABN.skidata.net ([91.230.2.244])
+        by smtp.gmail.com with ESMTPSA id b19-20020ac86bd3000000b003bfc355c3a6sm4023924qtt.80.2023.04.05.07.09.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 07:09:18 -0700 (PDT)
+From:   Benjamin Bara <bbara93@gmail.com>
+To:     broonie@kernel.org
+Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com, bbara93@gmail.com,
+        benjamin.bara@skidata.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        mazziesaccount@gmail.com, robh+dt@kernel.org,
+        stwiss.opensource@diasemi.com, support.opensource@diasemi.com
+Subject: Re: [PATCH v2 2/3] regulator: da9063: implement basic XVP setter
+Date:   Wed,  5 Apr 2023 16:08:29 +0200
+Message-Id: <20230405140829.602413-1-bbara93@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <35202b81-abd6-4e0b-b2ad-a385cbb3979d@sirena.org.uk>
+References: <35202b81-abd6-4e0b-b2ad-a385cbb3979d@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 1/8] dt-bindings: usb: Add bindings for multiport
- properties on DWC3 controller
-Content-Language: en-US
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_wcheng@quicinc.com, quic_jackp@quicinc.com,
-        quic_harshq@quicinc.com, ahalaney@redhat.com,
-        quic_shazhuss@quicinc.com,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
- <20230405125759.4201-2-quic_kriskura@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230405125759.4201-2-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2023 14:57, Krishna Kurapati wrote:
-> Add bindings to indicate properties required to support multiport
-> on Snps Dwc3 controller.
-> 
-> Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
-> Link to v5: https://lore.kernel.org/all/20230310163420.7582-2-quic_kriskura@quicinc.com/
+Thank you for the feedback!
 
-You did not test it at v4 and you got report for this. Your changelog in
-commit msg does not mention fixing it.
+On Wed, 5 Apr 2023 at 12:52, Mark Brown <broonie@kernel.org> wrote:
+> I have no idea what a "basic XVP setter" is and this isn't super
+> enlightening.  Is VP supposed to mean voltage protection or something?
 
-It looks like you did not test it for the second time (or sixth time).
+Yes, but basically this series handles just the monitoring part. The
+"protection part" is happening in hardware (at least on our board). So I will
+reword "XVP" to "voltage monitoring" in the next version.
 
-Best regards,
-Krzysztof
+> I'm not sure that a user is going to figure out that this refers to the
+> protection levels, there's no hint as to what the X might be and the error
+> suggests that both the under and over voltage protection limits must be have
+> the same value, not just both be provided.
 
+I will split up the "catch-all" into an error per severity, like:
+"error-microvolt: value must be equal for uv and ov!"
+
+I will also ensure that there is only one severity set per regulator.
+Additionally, will also adapt the docu: if the voltage monitor should be
+changed, uv and ov must be set to the same severity and value.
