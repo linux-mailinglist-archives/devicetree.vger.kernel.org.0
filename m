@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877BF6D73D6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 07:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 442EC6D7400
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 07:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236885AbjDEFm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 01:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37584 "EHLO
+        id S236914AbjDEFzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 01:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236386AbjDEFm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 01:42:58 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2B540E0
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 22:42:56 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id er13so97266320edb.9
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 22:42:56 -0700 (PDT)
+        with ESMTP id S236893AbjDEFzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 01:55:04 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44B5212D
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 22:55:02 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id ek18so138356864edb.6
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 22:55:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680673375;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1680674101;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2K0AK0sGSq/zsYIcb4gwqrtW+FVk7SlY1SeSzCW9Y78=;
-        b=CDig9UWn2FHcGl7WX8sn9pQBAjqV9zNTwmXcjp3HMFYakZlP5xUex1pjuZnJgFeM+w
-         2AXOwWXxbuRBJdgMMu+iFMW3z4alMw5B8mcF3XQAxIJa0vMuBKV89IKrUVAhmdjLp0lE
-         7qXG6m+9oBn+H5By2QSaCzQqlsggbIrhmrsms9tJeCj0HLz2HtSGaev/GtwMZ90suWNO
-         yqy0GuWoS2QpbSSI9TFi14BLadCr1IBcSmRNQeHWRwtSlC0X0JGURCg9hc9xNK8BOQfX
-         BVci0ZTHFu20BOgUa0DV2VWd6VZpfveSRhtxtkswRI5wBq/bl5tBUFvDj64CgH0fyV7d
-         Y5Aw==
+        bh=/3QuqF+VUImX1V5KpitdapwWJCPNXUqbEanRNw7dR5I=;
+        b=mGgBLifE2V3m6QfJ3/xgYZp6oJDkrqAEJQhU01ExR+0FTmcJL5AxKvR6LGIu96DeXv
+         9/iI1w6f5DDmpwJPEClgomFqQOwvYaHzWUzjae1itmsulZZ6y9M7A0tZy2FwQAZlrHZw
+         EPkFyTPOHHlf1OZ0Pf6yQiwACv4m6WUdTPJqN1WK756K47vba3oFg74pzaLRiu72xsB/
+         3ODGSzc3o/kPPnypNx3JZQAa4nlv2AxgFfn3KUTQ6CzdJOn9z2nRHS2ZQj8eLX7TfQSO
+         yq46+6ClvuMTigEpSSTJs/v276FbRBYXWQBFg8KdQWwq9m+Wi8zCL6wfGOnlEHWQcQ/+
+         IKqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680673375;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1680674101;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2K0AK0sGSq/zsYIcb4gwqrtW+FVk7SlY1SeSzCW9Y78=;
-        b=6CE7OnaSxQTYmUD1oin+gvVBuswayfwbog6vXXvnl8XUZBGZa25rds51n9x+TN+jj2
-         p3XaAXhpFlh3HA4I4r+mde4xxsGH+NtwkP64o93W7MC7eFYTbv5JscutZcTnFDNakXit
-         s/wd7xW0SpukVEQHb7ZJofV/7PAoNs1DO/K5ZGlkN3bfKGbziO6ZsnnvTcqUyHqZ07uV
-         yxH39UgQ6APDu9cCMllWiIbYspnUK1Tox06lMztGAnDnJA6Xb/As5BYbT10O40tgOrv/
-         0nmyA03kzkIzNqgaKWVKPB3Xpl0Ur+z+td/VEoqMwDaLKDWPS9CPQ5RiwIQUH0f9dPGz
-         q0Gg==
-X-Gm-Message-State: AAQBX9cZtWdnda/15nEatCFP/HB6bBDVhkY3H/RBl0tE6JQAyT4KZW7t
-        d717x+fypW1Cc7b4PEexauoLFw==
-X-Google-Smtp-Source: AKy350bNv83HafLK+q09N2ueHnZ3s8USo8+70Ki/AAqyULFwQ6xhlGO2nm29uF0SpDrJYH3DJ8FuEg==
-X-Received: by 2002:a17:906:f853:b0:931:8e8c:2db5 with SMTP id ks19-20020a170906f85300b009318e8c2db5mr1846024ejb.69.1680673374874;
-        Tue, 04 Apr 2023 22:42:54 -0700 (PDT)
+        bh=/3QuqF+VUImX1V5KpitdapwWJCPNXUqbEanRNw7dR5I=;
+        b=H30s6770QW+Zl88zRggAihAa3+AaZPc30AEY57i2IGf0pWVtKu4sRh6Iavgf9JSAFR
+         9zmCnBJfPGpDuDFH6NNcSfEAGbLuHmGQertNEgRRhPxBVD0sSkRPRea+zMKe3usTyOHn
+         vsFS4r5oRKVsWe/jX9jSoQ9nObtJrKTFA4MSSV4I1RZEA62gGVaS6hNNQ6eJvROwbO2O
+         4YVenAl8QC9Bpzip8B3qdUNgvIY74Qvhjo+v3iEOTq+3qukOSEYc30Qs/j0FsxaD4pPT
+         IUXwk0vans+DlJjd4ThOpVShXD/x4D6jpbyIDQ1wL8w3Ect3gvLK4j1+sJZAUygAJOGe
+         JhDQ==
+X-Gm-Message-State: AAQBX9ez4t4V8xRkZKGLoZUrzTpBI+UT17Tn+GTsTLv/hZ39rKrMykFH
+        RKRiqZwTNfkB4svUsrRYoE1xrw==
+X-Google-Smtp-Source: AKy350arSlAk4kVthIv++2B8xcUpK5sIrMPiq3sRcfqef32uwJ6Np+4A7B049HjtI6zQ3Wj6ymq+xA==
+X-Received: by 2002:a17:906:d929:b0:92c:8e4a:1a42 with SMTP id rn9-20020a170906d92900b0092c8e4a1a42mr1902655ejb.32.1680674101329;
+        Tue, 04 Apr 2023 22:55:01 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id jg9-20020a170907970900b00947ae870e78sm6489740ejc.203.2023.04.04.22.42.53
+        by smtp.gmail.com with ESMTPSA id tq24-20020a170907c51800b00947abb70c93sm6555688ejc.112.2023.04.04.22.55.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 22:42:54 -0700 (PDT)
-Message-ID: <c1163417-16ea-63ee-5b8d-47cdff8069b1@linaro.org>
-Date:   Wed, 5 Apr 2023 07:42:53 +0200
+        Tue, 04 Apr 2023 22:55:00 -0700 (PDT)
+Message-ID: <c49a2dbf-ea5a-f70f-1508-47e821942c9d@linaro.org>
+Date:   Wed, 5 Apr 2023 07:54:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] spi: s3c64xx: support spi polling mode using
- devicetree
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: add Soundwire controllers
 Content-Language: en-US
-To:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Andi Shyti <andi@etezian.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-References: <20230404060011.108561-1-jaewon02.kim@samsung.com>
- <CGME20230404061409epcas2p15750d5844aa8d3655d1bfd094fac14a9@epcas2p1.samsung.com>
- <20230404060011.108561-2-jaewon02.kim@samsung.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230404073915.61779-1-krzysztof.kozlowski@linaro.org>
+ <305fcdae-84f5-7edb-26e4-588162fed018@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230404060011.108561-2-jaewon02.kim@samsung.com>
+In-Reply-To: <305fcdae-84f5-7edb-26e4-588162fed018@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,25 +79,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 08:00, Jaewon Kim wrote:
-> This patch adds new 'samsung,spi-polling' property to support polling mode.
-
-Do not use "This commit/patch", but imperative mood. See:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-Also, binding should be before its usage.
-
-> In some environments, polling mode is required even if DMA is supported.
-
-Why? What are these environments? You need to explain all this in commit
-msg.
-
-> Changed it to support not only with quick but also optinally with
-
-typo: optionally
-
-> devicetree.
+On 04/04/2023 19:55, Konrad Dybcio wrote:
 > 
+> 
+> On 4.04.2023 09:39, Krzysztof Kozlowski wrote:
+>> Add nodes for LPASS Soundwire v2.0.0 controllers.  Use labels with
+>> indices matching downstream DTS, to make any comparisons easier.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Changes since v1:
+>> 1. Correct IO range length.
+>>
+>> The bindings and driver are here:
+>> https://lore.kernel.org/linux-arm-msm/20230403132503.62090-1-krzysztof.kozlowski@linaro.org/T/#t
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 109 +++++++++++++++++++++++++++
+>>  1 file changed, 109 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> index dc6150e97d46..14e4de7a1a0e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> @@ -2004,6 +2004,33 @@ lpass_wsa2macro: codec@6aa0000 {
+>>  			#sound-dai-cells = <1>;
+>>  		};
+>>  
+>> +		/* WSA2 */
+>> +		swr3: soundwire-controller@6ab0000 {
+>> +			compatible = "qcom,soundwire-v2.0.0";
+>> +			reg = <0 0x06ab0000 0 0x10000>;
+>> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&lpass_wsa2macro>;
+>> +			clock-names = "iface";
+>> +
+> Any reason this and swr0 have comments instead of labels?
+
+Actually no, I can go with label consistently. It's not actually used
+for anything...
+
+> 
+>> +			qcom,din-ports = <4>;
+>> +			qcom,dout-ports = <9>;
+>> +
+>> +			qcom,ports-sinterval =		<0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x18f 0xff 0xff 0x0f 0x0f 0xff 0x31f>;
+>> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x03 0x05 0x02 0x04 0x15 0x00 0xff 0xff 0x06 0x0d 0xff 0x00>;
+>> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x07 0x1f 0xff 0x07 0x1f 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+>> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
+>> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
+>> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x18>;
+>> +			qcom,ports-block-pack-mode =	/bits/ 8 <0x00 0x01 0x01 0x00 0x01 0x01 0x00 0x00 0x00 0x01 0x01 0x00 0x00>;
+>> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+>> +			qcom,ports-lane-control =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+>> +
+>> +			#address-cells = <2>;
+>> +			#size-cells = <0>;
+>> +			#sound-dai-cells = <1>;
+>> +			status = "disabled";
+>> +		};
+> [...]
+> 
+> 
+>> +		swr2: soundwire-controller@6d30000 {
+>> +			compatible = "qcom,soundwire-v2.0.0";
+>> +			reg = <0 0x06d30000 0 0x10000>;
+>> +			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+>> +					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+> There's no different interrupt-parent, so -extended seems excessive.
+> Unless that was maybe supposed to use some PDC-mapped irq?
+> 
+
+Eh, apparently copy-pasta. Thanks,
+
 
 Best regards,
 Krzysztof
