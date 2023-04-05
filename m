@@ -2,196 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 508D66D8674
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 21:01:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8AD6D867F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 21:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234259AbjDETB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 15:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
+        id S234060AbjDETEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 15:04:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233839AbjDETB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 15:01:26 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A004D132
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 12:01:23 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id l15-20020a05600c4f0f00b003ef6d684102so19025540wmq.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 12:01:23 -0700 (PDT)
+        with ESMTP id S232950AbjDETEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 15:04:12 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B68E06A4B;
+        Wed,  5 Apr 2023 12:04:08 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id bm2so27416982oib.4;
+        Wed, 05 Apr 2023 12:04:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680721282;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TZCl/M+6M2kW8Ub1pKIZDU+nW5n/Es3BgH1yXYToFsk=;
-        b=sVb2QiP1zGGLbv2Bz9y2C/kr0Th5hUXhkWrW3AHha6az0G+AFFzNsotPmY+qjDK5Pb
-         Gj5ABwodld+wB8mTgS9fNXezH6u/mo23FyR0OS8b2WoQKtUMBxpmZBzdZeAJRQHhX+Dk
-         CUF1XfFrYbayVA66+9iDVTBttHmNKCa26aJEGpw34ZuG/cu0CnVkdFj/Gc1Oy7pwMY1m
-         N2GzIiR5VBwiDY6vuYFIDCD3o1l1baAAtlOum7mU5EtLdz3NDMaMuBK3IrzPrEPvurRz
-         9iDiVBYcCHzv5WEK8hSfznnC3WHDTH51bRK0Ftsbv8wDAzMKKJuXnGjanPj4CkMrygHo
-         0PFA==
+        d=gmail.com; s=20210112; t=1680721448;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=f2PHQcp6j+fOB0wOWpZhgTKBcLCw1aqfvMVgCTudii0=;
+        b=Blh1+p9JnizMWNsizP4LG04uOuW/nGAceNKeEqSmP/vmiQkIeZNM45BNgQJzJj623B
+         LEV/mVGUyYh1Smy5SRjfQ8AjWlAMG6n4JqjcdwaPNt6tD3Q5uYn+u94IIauzf3Gn3Ma0
+         rUW2pLwfZApoHB119cRYceb8HKkjHx3BbR9BkJEHCxUMrl8d4lqcPP/xkgI76GXrfC+e
+         BSoHKits0j0Qr659ize08DpQSxIFHqp0H6Q0DnTED9I60X9znJOjaCdD2H2vtANDlBpR
+         bdL+hTkAzm/xufVhyxuuS9KbIJ5J+5Qy41xnzvEsWDW/ByA1nb8hlQAJtlEUVYLK2KHH
+         8mEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680721282;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1680721448;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TZCl/M+6M2kW8Ub1pKIZDU+nW5n/Es3BgH1yXYToFsk=;
-        b=Cf3hmkgx3YxgFfwuDOHEj1IQrT42RYK6Ssc9oP/LFkh10i+X5HfQJHcen2/XKndqzD
-         NV+qOC7BndU+I+N9CgpxMuCSONvBjgkowqgmzlimA5mTBaW1H7Wr/MkKfWe7tOEGS8VO
-         /XD3yZheR2fqXZUUp+L2x9NTzleTRtn8WbMERByvPYOaeyZq3sQjIuLa2dBv9b0HT0Xu
-         IRZjv1Nc9nboJSVMYukTt8yK57h8WbbvrwcfggC0+dJNwZSm3HQhsHtT1gzMMEvHRu79
-         ipIQDGHy7BwT2Imq1CK9nFlU7o/gw4PbFvb/IM6AbENw0ademZZLfAcmqaAeohyyKwXu
-         WW6w==
-X-Gm-Message-State: AAQBX9dkZUZAZ9p6J/K9+aC2zvblQg7DTYT4iFb3krl6XIHKcpDLcLt5
-        kgRK8O3a/eNCcU8O+CS/XHx/xKX/m46MSgvZeydfkPe7/WyH2jBvxBQ=
-X-Google-Smtp-Source: AKy350b+rkmiVJKskwZo+VZ578tarkKZtlE4b7Mp7Z+LnHAYq82AK36CWlWF/8B2IWcF7IFjA8Gzhfl62xzxXi9ets8=
-X-Received: by 2002:a7b:c3ce:0:b0:3ed:526c:25cb with SMTP id
- t14-20020a7bc3ce000000b003ed526c25cbmr1867090wmj.8.1680721281953; Wed, 05 Apr
- 2023 12:01:21 -0700 (PDT)
+        bh=f2PHQcp6j+fOB0wOWpZhgTKBcLCw1aqfvMVgCTudii0=;
+        b=lYKhpR3hcnxxjiuOq05sgjgVWhYISq3SF87IcY712lCkatjavZe/tEYvyhlDbaCBmr
+         seQmKJp+PBECToDRC96HXuCcQssLdJ4s3HTx61bTSKG+erU0a6zX8MsjBArAtIOBWXRF
+         mMpYR9e5zTVpXt9bFIRRCkh2acH0kxz9vpiWTUefqUFJ6b/pSg2GkxKdsedHOC3r637X
+         D8J2PKcIhRrBSSXb1tph6Q69nPdHIuteMtI/FSP/V+vz9k2aHf2d+RgmIar269ZfWaYy
+         3eyphmX+6rLKFIWBHVjW1GTt2SA8Z8eovHsloKMobSp2G5EC2994GDJRKV+42rrhfVpf
+         FKLw==
+X-Gm-Message-State: AAQBX9eG/wtgHuWknoOaDYRjo324vrtkzz0fuVfeOL4XEAfeOlaUZoB0
+        iMNWE79/SeKrbnIKvGBbn5s=
+X-Google-Smtp-Source: AKy350YEv9MdPEl3n9VRLhEeklhy8ACWem+NigjVwgr7lXnx4zWfNnLSr4Kmw1u5p5gZ7I9O1/P/pw==
+X-Received: by 2002:a05:6808:638e:b0:386:bcc9:fe99 with SMTP id ec14-20020a056808638e00b00386bcc9fe99mr2988908oib.5.1680721447212;
+        Wed, 05 Apr 2023 12:04:07 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u13-20020a056808150d00b0038413a012dasm6474916oiw.4.2023.04.05.12.04.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Apr 2023 12:04:06 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <1a914522-8780-febd-7224-121b1f1fc2ba@roeck-us.net>
+Date:   Wed, 5 Apr 2023 12:04:04 -0700
 MIME-Version: 1.0
-References: <20230401154725.1059563-1-bhupesh.sharma@linaro.org>
- <20230401154725.1059563-3-bhupesh.sharma@linaro.org> <CAA8EJppTRT+fDp4b6unzn60uJ1CivAEGcxzyVZ5+FE1E073Qzw@mail.gmail.com>
-In-Reply-To: <CAA8EJppTRT+fDp4b6unzn60uJ1CivAEGcxzyVZ5+FE1E073Qzw@mail.gmail.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 6 Apr 2023 00:31:10 +0530
-Message-ID: <CAH=2Ntxja_fhgPhDpPySLEkyGimGUqQR0zHr3ErJ9-js3dw_nA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: (subset) [PATCH v2 0/2] Add PWM fan support to Rock 5B board
+Content-Language: en-US
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
+ <168071663557.3186456.17606522894011578076.b4-ty@sntech.de>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <168071663557.3186456.17606522894011578076.b4-ty@sntech.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On 4/5/23 10:45, Heiko Stuebner wrote:
+> On Tue, 4 Apr 2023 20:38:05 +0300, Cristian Ciocaltea wrote:
+>> This patch series enables support for the PWM controlled heat sink fan
+>> on the Rock 5B SBC and, additionally, converts the hwmon PWM fan bindings
+>> to DT schema format.
+>>
+>> Changes in v2:
+>>   - Updated PATCH 1/2 according to Rob's review
+>>   - Added Reviewed-by from Christopher to PATCH 2/2
+>>   - v1: https://lore.kernel.org/lkml/20230403105052.426135-1-cristian.ciocaltea@collabora.com/
+>>
+>> [...]
+> 
+> Applied, thanks!
+> 
 
-On Sat, 1 Apr 2023 at 22:43, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Sat, 1 Apr 2023 at 18:49, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >
-> > Add USB superspeed qmp phy node to dtsi.
-> >
-> > Make sure that the various board dts files (which include sm4250.dtsi file)
-> > continue to work as intended.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
-> >  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 36 +++++++++++++++++--
-> >  .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
-> >  3 files changed, 40 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > index a1f0622db5a0..75951fd439df 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > @@ -242,6 +242,9 @@ &usb {
-> >  &usb_dwc3 {
-> >         maximum-speed = "high-speed";
-> >         dr_mode = "peripheral";
-> > +
-> > +       phys = <&usb_hsphy>;
-> > +       phy-names = "usb2-phy";
-> >  };
-> >
-> >  &usb_hsphy {
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > index 2a51c938bbcb..b2fa565e4816 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > @@ -650,6 +650,38 @@ usb_hsphy: phy@1613000 {
-> >                         status = "disabled";
-> >                 };
-> >
-> > +               usb_qmpphy: phy@1615000 {
-> > +                       compatible = "qcom,sm6115-qmp-usb3-phy";
-> > +                       reg = <0x0 0x01615000 0x0 0x200>;
-> > +                       clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
-> > +                                <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> > +                                <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> > +                       clock-names = "cfg_ahb",
-> > +                                     "ref",
-> > +                                     "com_aux";
-> > +                       resets = <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>,
-> > +                                <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>;
-> > +                       reset-names = "phy_phy", "phy";
-> > +                       status = "disabled";
-> > +                       #address-cells = <2>;
-> > +                       #size-cells = <2>;
-> > +                       ranges;
-> > +
-> > +                       usb_ssphy: phy@1615200 {
->
-> Please update this to newer style bindings (see
-> qcom,sc8280xp-qmp-usb3-uni-phy.yaml).
-
-I double checked the downstream driver and the HW documentation and
-can confirm that this is not a UNI PHY i.e. it has 2 lanes (see
-<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/phy/qualcomm/phy-qcom-qmp-usb.c#n1923>).
-
-Also this is a v3 USB QMP PHY (normally available on other SoCs like
-sdm845) instead of v5 QMP USB UNI PHY available on SC8280XP.
-
-So, I think the original patch is correct.
+Both patches or only the second one ?
 
 Thanks,
-Bhupesh
+Guenter
 
-
-
-> > +                               reg = <0x0 0x01615200 0x0 0x200>,
-> > +                                     <0x0 0x01615400 0x0 0x200>,
-> > +                                     <0x0 0x01615c00 0x0 0x400>,
-> > +                                     <0x0 0x01615600 0x0 0x200>,
-> > +                                     <0x0 0x01615800 0x0 0x200>,
-> > +                                     <0x0 0x01615a00 0x0 0x100>;
-> > +                               #clock-cells = <0>;
-> > +                               #phy-cells = <0>;
-> > +                               clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > +                               clock-names = "pipe0";
-> > +                               clock-output-names = "usb3_phy_pipe_clk_src";
-> > +                       };
-> > +               };
-> > +
-> >                 qfprom@1b40000 {
-> >                         compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
-> >                         reg = <0x0 0x01b40000 0x0 0x7000>;
-> > @@ -1100,8 +1132,8 @@ usb_dwc3: usb@4e00000 {
-> >                                 compatible = "snps,dwc3";
-> >                                 reg = <0x0 0x04e00000 0x0 0xcd00>;
-> >                                 interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
-> > -                               phys = <&usb_hsphy>;
-> > -                               phy-names = "usb2-phy";
-> > +                               phys = <&usb_hsphy>, <&usb_ssphy>;
-> > +                               phy-names = "usb2-phy", "usb3-phy";
-> >                                 iommus = <&apps_smmu 0x120 0x0>;
-> >                                 snps,dis_u2_susphy_quirk;
-> >                                 snps,dis_enblslpm_quirk;
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> > index 10c9d338446c..d60cc024749b 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> > @@ -280,6 +280,9 @@ &usb {
-> >  &usb_dwc3 {
-> >         maximum-speed = "high-speed";
-> >         dr_mode = "peripheral";
-> > +
-> > +       phys = <&usb_hsphy>;
-> > +       phy-names = "usb2-phy";
-> >  };
-> >
-> >  &usb_hsphy {
-> > --
-> > 2.38.1
-> >
->
->
-> --
-> With best wishes
-> Dmitry
