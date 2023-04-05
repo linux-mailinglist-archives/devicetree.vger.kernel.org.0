@@ -2,71 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE12B6D7E84
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33A946D7E97
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 16:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238438AbjDEOEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 10:04:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42534 "EHLO
+        id S238420AbjDEOFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 10:05:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238330AbjDEODO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:03:14 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BC372AB;
-        Wed,  5 Apr 2023 07:01:38 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so23473376wmq.2;
-        Wed, 05 Apr 2023 07:01:38 -0700 (PDT)
+        with ESMTP id S238402AbjDEOE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 10:04:27 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3346E8E
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 07:02:02 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id ew6so141242460edb.7
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 07:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680703294;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yJO4cU5jxcnurUOX6f4KDHqm+rWcV3FRe8BNYyMZhTs=;
-        b=GZIpSKio8POp9yFYqcy4tTIeg6G75uXC1rI4ORepXnVW7XpXjwXzkb57sYVxYVXpMq
-         Jbt9w4pHidyxTVQAo2V6U3cG5lU2mQCqoQ9H8yQ0oLfHLpU8o8DV3KIgREQZYyt8JNxY
-         f957Sy1t8LJcEW4ZOI/y+UEu9dTVSmIuSl/kR2U5q0IdfxSFQRMYuCOxmKurAd2+IVWB
-         10i/3KGSrNcA2V2UP3PNTp0kp3atWyo5mfPee9+RSBQ4ZftdBAj0cvUY+flnPifhYiqF
-         RcYiLCQifela1BYE5qH0EeY+ycaxYtay+YabFiUSeVOG/fsizaRHsG7pYiwfgEgexqgJ
-         SOaQ==
+        d=linaro.org; s=google; t=1680703319;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u6YcgOwTkOYEHTfHh+36jDI0bPjFfgqXenK5KF9BN1M=;
+        b=woR8DJocTeoGjM0ctksEiVKlmKWuFzKBD6nfTHY9BV3mRzezalDDkRf2u/8fDEp3SA
+         UKDqWfarz5kfAzX9AmXvkpS8cFJwENbxtvlP8Z9mcE3BVdaW+cnnOzlqUUUzh8IKcUIe
+         SVGTG1tzJIfi2ftcqyhyBXjlOXEBeZh0CW+aOL18HrU7FxeOlgutMCbL/BC7qzQhVzAK
+         iUCMQ9kW+u0qnMg5GSbLw3PbMBjl300VrldjddgI4mgFppNYlGD7KyFkyEjnUq2issnM
+         Lo1HGJTMCfcIwuDFIAlDz55owkx1UmEtcSlBn3N/0odTyKa0XB53gLXYSbHrdoMUV77P
+         x+eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680703294;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yJO4cU5jxcnurUOX6f4KDHqm+rWcV3FRe8BNYyMZhTs=;
-        b=TIgtqibIUf7y+3rtaOnrfSk+c/kVhmGeqKczAyoRCQ9k/mXlGK45K9mzLW/vgZ+iZG
-         tOI+v6CtKEQNrKZwQOjNsc3QAFfwGxew7VtZx22WPZGRG+IY0vaLbofSRHmsrlWUafUU
-         Ic3QvejoDYgDs30NNKXzxaN48UEICtsiLZ7BC2zVZEPVuGK449R95scQmaaWLKCp7Bhc
-         wjDCRXSG1gUf9THoQpgLF2m+g/0T8kb4skSrBXT9nv6Hwgu5cGWYvc5TXF2o/1L4Upb/
-         NS6M1WKSSnb/736oDLOvLOX3LBNqs2A/Vr5wBYmKC7vusj/vcs6M4H/8hAxxNtXXEriU
-         lNLw==
-X-Gm-Message-State: AAQBX9ckE644z6LioMC0IB5/No8ItjG1V2jazPfQKX+TLU4D5MT2wqAJ
-        l1RykzokqnceaQn09gZhDeA=
-X-Google-Smtp-Source: AKy350aatKyrYZdlVWUDF0Q3KqS0G65RpWo8nbCYld43xcVdeJFQb3zoRkj/yKe0PMdV508v2AI4vQ==
-X-Received: by 2002:a7b:c416:0:b0:3ee:6d55:8b73 with SMTP id k22-20020a7bc416000000b003ee6d558b73mr4918297wmi.29.1680703294286;
-        Wed, 05 Apr 2023 07:01:34 -0700 (PDT)
-Received: from archbox.v.cablecom.net (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id g6-20020a05600c4ec600b003edc4788fa0sm2412383wmq.2.2023.04.05.07.01.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 07:01:33 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/4] dt-bindings: iio: dac: add mcp4822
-Date:   Wed,  5 Apr 2023 16:01:13 +0200
-Message-Id: <20230405140114.99011-4-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230405140114.99011-1-frattaroli.nicolas@gmail.com>
-References: <20230405140114.99011-1-frattaroli.nicolas@gmail.com>
+        d=1e100.net; s=20210112; t=1680703319;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u6YcgOwTkOYEHTfHh+36jDI0bPjFfgqXenK5KF9BN1M=;
+        b=bpJnuTvV1SvTFED7RpB2qWz2AmRpGkbbx0CYT0vMwtuImre1XL4R9J0CpBfmrtyGjQ
+         YBvmLwimKQTJtxVFp6/zKwWknIWRsDjHytvePj60oxyZ4yeplSfC8R+GA3GkyB+TbiAp
+         ywRDl8GauAdFAMPQoApadfFRjSe9yFlANKe9Cyv/fKiUI8GGm3XB9X3xYED5rjPlvwIH
+         GFvrYSvL15refBQ8OG88AXc24rQQ5GHWwDxi+FDvkO8NbpmAYGg/YEnaeEO+ENZEOluP
+         5k9AwzjCUJx1oWHfcTpRcCDENAvBGtNdK9dyYu4Bu9SMgG4XWIYPD48aeyYJSZJG3KPV
+         p+kA==
+X-Gm-Message-State: AAQBX9eWhpxUHmQeeCXzOSL61jZPZDZ2WdiQfkOXUeRuGogSqnZ48O2W
+        hKxMifDxtopqErBpHwbTQvlOoQ==
+X-Google-Smtp-Source: AKy350Z9vKsl9+aosw4V6+XeX7OHHsd0XKQdC3YrbCaIX3n+HmSKQuxFRqpPIkqhUfYyY+dMeRLrFg==
+X-Received: by 2002:a17:906:2e82:b0:925:1d1d:6825 with SMTP id o2-20020a1709062e8200b009251d1d6825mr2720161eji.42.1680703319728;
+        Wed, 05 Apr 2023 07:01:59 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
+        by smtp.gmail.com with ESMTPSA id q23-20020a170906389700b00926b944676esm7321357ejd.131.2023.04.05.07.01.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Apr 2023 07:01:59 -0700 (PDT)
+Message-ID: <63bfaa1e-c627-bfe1-0bef-d001dae41014@linaro.org>
+Date:   Wed, 5 Apr 2023 16:01:58 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 1/8] dt-bindings: usb: Add bindings for multiport
+ properties on DWC3 controller
+Content-Language: en-US
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_wcheng@quicinc.com, quic_jackp@quicinc.com,
+        quic_harshq@quicinc.com, ahalaney@redhat.com,
+        quic_shazhuss@quicinc.com,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
+ <20230405125759.4201-2-quic_kriskura@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230405125759.4201-2-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,75 +89,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MCP4801, MCP4802, MCP4811, MCP4812, MCP4821, and MCP4822 are
-SPI digital-to-analog converters by Microchip, which have an
-internal voltage reference, in contrast to the MCP49xx series
-of DACs which use an external voltage reference.
+On 05/04/2023 14:57, Krishna Kurapati wrote:
+> Add bindings to indicate properties required to support multiport
+> on Snps Dwc3 controller.
+> 
+> Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+> Link to v5: https://lore.kernel.org/all/20230310163420.7582-2-quic_kriskura@quicinc.com/
 
-Thus, these need a separate binding, as to not overcomplicate
-the mcp4922 binding.
+You did not test it at v4 and you got report for this. Your changelog in
+commit msg does not mention fixing it.
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
- .../bindings/iio/dac/microchip,mcp4822.yaml   | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4822.yaml
+It looks like you did not test it for the second time (or sixth time).
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4822.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4822.yaml
-new file mode 100644
-index 000000000000..c6eaf0079add
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4822.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4822.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip MCP4801, MCP4802, MCP4811, MCP4812, MCP4821 and MCP4822 SPI DACs
-+
-+maintainers:
-+  - Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mcp4801
-+      - microchip,mcp4802
-+      - microchip,mcp4811
-+      - microchip,mcp4812
-+      - microchip,mcp4821
-+      - microchip,mcp4822
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        dac@0 {
-+            compatible = "microchip,mcp4821";
-+            reg = <0>;
-+            vdd-supply = <&dac_reg>;
-+        };
-+    };
-+...
--- 
-2.40.0
+Best regards,
+Krzysztof
 
