@@ -2,228 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81D206D89DB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 23:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED7156D8A43
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 00:08:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233128AbjDEVyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 17:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34646 "EHLO
+        id S231429AbjDEWIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 18:08:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbjDEVyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 17:54:10 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E132134;
-        Wed,  5 Apr 2023 14:54:08 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 335LrprS109534;
-        Wed, 5 Apr 2023 16:53:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680731631;
-        bh=clqkHsNQNcPVqIpQ6r2HdCEYxIyKH+fSK/iWYtt4KeQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=q4TxB4/wlcDugwc0k4vKpcYY4rQsHB56Oynu5+zLDyKfOypO8FHc0WMKG9YdBNEJZ
-         Iy7caS9x466GAS2MxDqiCtbCZGkBifItQyWGcKSpCb8QAx+DjG3sXQCk4Fn4cIEVSO
-         FjMWdmpahtRPyDa6QmQa07kTCVeAcpx07uj+4M3M=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 335Lrp4Y031351
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 5 Apr 2023 16:53:51 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 5
- Apr 2023 16:53:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 5 Apr 2023 16:53:51 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 335Lrp4g049459;
-        Wed, 5 Apr 2023 16:53:51 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Keerthy <j-keerthy@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Bryan Brattlof <bb@ti.com>
-Subject: [PATCH v3 7/7] arm64: dts: ti: j721s2: Add VTM node
-Date:   Wed, 5 Apr 2023 16:53:28 -0500
-Message-ID: <20230405215328.3755561-8-bb@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230405215328.3755561-1-bb@ti.com>
-References: <20230405215328.3755561-1-bb@ti.com>
+        with ESMTP id S229379AbjDEWIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 18:08:00 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9FB59D0
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 15:07:59 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id s72so6872597pgs.9
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 15:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112; t=1680732479;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6G4NsFlCDV5fs2a2Hk+HPn6BW+TSo8l8fhvL/n7IKto=;
+        b=Co/XH8kheGMcW5639kFQflWIBdRbseeE5Rgi33B4NHAwkIuhJ8cRjGblOk3jTnpe3M
+         r8NDGd4BbIPvGUCTtlIr1C3Zi3M3kVBDoSPBmqFnbVUgJEH+rMm0xic9kbB5F1PS469K
+         v1mqbc0XbrOyTEZFxU0ygPvmf+3dHmAY6CsJ9O7wnH7swCU/AVkriErypZpzAdgN2JX5
+         g7RiLqySQwykhvK9Yp436hJ6RVIMG7NxCvKb3YHlnhCMdin4lAC9yBtRjNUKm8bUitaS
+         sSu9j6TkAiYHkxQxzNBHO0Xb9op6XALV5XasEjMG0VTfxTM7nkVUzYMSqHE97uOdWJz9
+         t2rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680732479;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6G4NsFlCDV5fs2a2Hk+HPn6BW+TSo8l8fhvL/n7IKto=;
+        b=6MZGF15a7WgYXcRwToRbcnptoFNt5j855QHmsdotKBtGnsF7wGObEedCOfWZJZSH4D
+         ZjXdhvQbajlHcB+SNEZzJywsK8tTBMqVBr9lDaJBicIYNA98L89ney0cB9omurJ538bj
+         StpEG44cM4KwWwSdAS9mpi+5vvETeCxrgA1583Dcm+oEWbVMy16bI64fAmiDMf7L1bUh
+         zXRKaOFkGhItwzk9FhlLO8TQbyxTNrRrb63LMZVRVjc1tRSbTM4MBcV9FF31zd8R+5CR
+         xI526MjZO8u7WVUmEymEP7g8ovS4+V3F6XqPp79U+AGXVHpFtn1yCrLUHzpzZ+7QCLpm
+         B1+Q==
+X-Gm-Message-State: AAQBX9e/bQt/37g2x224xhCtO/6Lx1/iG2JVhIOFV9vDVQBMSnjzlfWP
+        VuztTqyUJZSWx2WEoiL7Ew8v2uqatirHZhj9Y9hWow==
+X-Google-Smtp-Source: AKy350YWe0LQY4a1WtMtO9UBAtN8fCXxF/yrfEr5xXDYzw+Sj0JKwU0Q2JALgP82rgc6URVJ5DF6xJk/YwaCPJm10os=
+X-Received: by 2002:a05:6a00:999:b0:625:cda5:c28c with SMTP id
+ u25-20020a056a00099900b00625cda5c28cmr4345578pfg.6.1680732478867; Wed, 05 Apr
+ 2023 15:07:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230331014356.1033759-1-davidai@google.com> <20230331014356.1033759-6-davidai@google.com>
+ <CAL_JsqJErVOZZ==i1HpMABfuVEDC+drboLTntMDB0sUC9ZdQ_Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqJErVOZZ==i1HpMABfuVEDC+drboLTntMDB0sUC9ZdQ_Q@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 5 Apr 2023 15:07:22 -0700
+Message-ID: <CAGETcx_YhXqgyuWwH7BrMV4-z2LVEq5-X-FtPvmi-9tCrjVXVw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 5/6] dt-bindings: cpufreq: add bindings for virtual
+ kvm cpufreq
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     David Dai <davidai@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        James Morse <james.morse@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Juri Lelli <juri.lelli@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+        Daniel Bristot de Oliveira <bristot@redhat.com>,
+        Valentin Schneider <vschneid@redhat.com>,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-15.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Keerthy <j-keerthy@ti.com>
+On Fri, Mar 31, 2023 at 5:47=E2=80=AFAM Rob Herring <robh+dt@kernel.org> wr=
+ote:
+>
+> On Thu, Mar 30, 2023 at 8:45=E2=80=AFPM David Dai <davidai@google.com> wr=
+ote:
+> >
+> > Add devicetree bindings for a virtual kvm cpufreq driver.
+> >
+> > Co-developed-by: Saravana Kannan <saravanak@google.com>
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > Signed-off-by: David Dai <davidai@google.com>
+> > ---
+> >  .../bindings/cpufreq/cpufreq-virtual-kvm.yaml | 39 +++++++++++++++++++
+> >  1 file changed, 39 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-v=
+irtual-kvm.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-=
+kvm.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.ya=
+ml
+> > new file mode 100644
+> > index 000000000000..31e64558a7f1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yam=
+l
+> > @@ -0,0 +1,39 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/cpufreq/cpufreq-virtual-kvm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Virtual KVM CPUFreq
+> > +
+> > +maintainers:
+> > +  - David Dai <davidai@google.com>
+> > +
+> > +description: |
+> > +
+> > +  KVM CPUFreq is a virtualized driver in guest kernels that sends util=
+ization
+> > +  of its vCPUs as a hint to the host. The host uses hint to schedule v=
+CPU
+> > +  threads and select CPU frequency. It enables accurate Per-Entity Loa=
+d
+> > +  Tracking for tasks running in the guest by querying host CPU frequen=
+cy
+> > +  unless a virtualized FIE exists(Like AMUs).
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: virtual,kvm-cpufreq
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +
+> > +      cpufreq {
+> > +            compatible =3D "virtual,kvm-cpufreq";
+> > +      };
+>
+> The same thing was tried on non-virtual h/w too. This is not a device
+> so it doesn't go in DT. It is just an abuse of DT as a kernel driver
+> instantiation mechanism.
 
-VTM stands for Voltage Thermal Management. Add the thermal zones.
-Six sensors mapping to six thermal zones. Main0, Main1, Main2, Main3,
-WKUP1 & WKUP2 domains respectively.
+Because it has no registers it's reading and writing, right? Yeah,
+just went with this for now to make it easy for people to cherry pick
+and test it. Maybe we shouldn't have added documentation and made this
+look too official.
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
-[bb@ti.com: rebased on v6.3-rc1]
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |   9 ++
- arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi | 101 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721s2.dtsi         |   4 +
- 3 files changed, 114 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi
+In the end, I'm expecting this will be a real MMIO device. Until we
+move from RFC to PATCH, feel free to ignore this patch.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index a353705a7463e..a178368224f44 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -379,4 +379,13 @@ adc {
- 			compatible = "ti,am3359-adc";
- 		};
- 	};
-+
-+	wkup_vtm0: temperature-sensor@42040000 {
-+		compatible = "ti,j7200-vtm";
-+		reg = <0x0 0x42040000 0x0 0x350>,
-+		      <0x0 0x42050000 0x0 0x350>,
-+		      <0x0 0x43000300 0x0 0x10>;
-+		power-domains = <&k3_pds 154 TI_SCI_PD_SHARED>;
-+		#thermal-sensor-cells = <1>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi
-new file mode 100644
-index 0000000000000..f7b1a15b8fa0a
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi
-@@ -0,0 +1,101 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <dt-bindings/thermal/thermal.h>
-+
-+wkup0_thermal: wkup0-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 0>;
-+
-+	trips {
-+		wkup0_crit: wkup0-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+wkup1_thermal: wkup1-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 1>;
-+
-+	trips {
-+		wkup1_crit: wkup1-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+main0_thermal: main0-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 2>;
-+
-+	trips {
-+		main0_crit: main0-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+main1_thermal: main1-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 3>;
-+
-+	trips {
-+		main1_crit: main1-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+main2_thermal: main2-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 4>;
-+
-+	trips {
-+		main2_crit: main2-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+main3_thermal: main3-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 5>;
-+
-+	trips {
-+		main3_crit: main3-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+main4_thermal: main4-thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 6>;
-+
-+	trips {
-+		main4_crit: main4-crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2.dtsi
-index 376924726f1f3..4aab2daf85fc7 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2.dtsi
-@@ -163,6 +163,10 @@ cbass_mcu_wakeup: bus@28380000 {
- 		};
- 
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		#include "k3-j721s2-thermal.dtsi"
-+	};
- };
- 
- /* Now include peripherals from each bus segment */
--- 
-2.40.0
-
+-Saravana
