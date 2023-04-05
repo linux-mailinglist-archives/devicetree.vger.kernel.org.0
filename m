@@ -2,113 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9FCF6D771F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:40:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B7B6D7756
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:50:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237546AbjDEIkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 04:40:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34126 "EHLO
+        id S237156AbjDEIus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 04:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237576AbjDEIj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:39:57 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4245255;
-        Wed,  5 Apr 2023 01:39:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680683986; x=1712219986;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ehsUMXYWrybujltGCXXqPomdr6uFX8yL/RylcYCsfck=;
-  b=AG44AaKBNENNoXk2Du/7OJMJ8GXwD+hCl6IMapWxHJrbqH7ddBGF/w37
-   5mUcPthF4SES31fU67pt6PQEpU/4lmhZF4LFy6fmBU9p3NN2EBDjPnkA/
-   asNnLfRjxyCI72iR6BUef881xbDgVdgzyCmJMseZC3p8Pq8dM/nZ3aL0m
-   i6rpHcvXeHvqzLY4T3MmPolqkXDfv9juHTdGkqDkyZbGnyac8Mt0AUfKO
-   H6RdVD0YaMEImWX47JZS3TWhWUye5hSRV9TrrOaEsu7CgWlwPfaiFeHy9
-   pOlZV991fRSXv3dGLcO/dmi5cjGXzsMg20ap/Y3lqMGEy3kfQDOCzxnXd
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="428685896"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; 
-   d="scan'208";a="428685896"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 01:39:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="775969138"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; 
-   d="scan'208";a="775969138"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by FMSMGA003.fm.intel.com with ESMTP; 05 Apr 2023 01:39:39 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1pjyg4-00CkmF-37;
-        Wed, 05 Apr 2023 11:39:36 +0300
-Date:   Wed, 5 Apr 2023 11:39:36 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        airlied@redhat.com, dipenp@nvidia.com, treding@nvidia.com,
-        mwen@igalia.com, fmdefrancesco@gmail.com, arnd@arndb.de,
-        bvanassche@acm.org, ogabbay@kernel.org, axboe@kernel.dk,
-        mathieu.poirier@linaro.org, linux@zary.sk, masahiroy@kernel.org,
-        yangyicong@hisilicon.com, dan.j.williams@intel.com,
-        jacek.lawrynowicz@linux.intel.com, benjamin.tissoires@redhat.com,
-        devicetree@vger.kernel.org, furong.zhou@linux.intel.com
-Subject: Re: [PATCHv3 2/4] wiegand: add Wiegand bus driver
-Message-ID: <ZC0zyM3zEHYG/PLF@smile.fi.intel.com>
-References: <20230301142835.19614-1-m.zatovic1@gmail.com>
- <20230301142835.19614-3-m.zatovic1@gmail.com>
- <Y/98GqIPgMyPLRi3@smile.fi.intel.com>
- <ZCwifu6yxUikt42i@fedora>
- <CACRpkdYyGjTMCJvAHWa=GE7i1qb98+7zDeK-28-Ko+1B2U8-mw@mail.gmail.com>
+        with ESMTP id S237643AbjDEIuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:50:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DA912736;
+        Wed,  5 Apr 2023 01:50:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B58D6238A;
+        Wed,  5 Apr 2023 08:50:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26631C4339B;
+        Wed,  5 Apr 2023 08:50:39 +0000 (UTC)
+Message-ID: <dddd76a7-f882-f1dd-0781-fcc1f9b4e060@xs4all.nl>
+Date:   Wed, 5 Apr 2023 10:50:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdYyGjTMCJvAHWa=GE7i1qb98+7zDeK-28-Ko+1B2U8-mw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [RESEND PATCH v4 03/21] staging: media: tegra-video: fix
+ .vidioc_enum_fmt_vid_cap to return all formats
+Content-Language: en-US
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
+ <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
+ <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
+ <20230404161251.272cc78b@booty>
+ <20230405023048.GD9915@pendragon.ideasonboard.com>
+ <20230405103134.2ae10766@booty>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230405103134.2ae10766@booty>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 04, 2023 at 10:30:59PM +0200, Linus Walleij wrote:
-> On Tue, Apr 4, 2023 at 3:13 PM Martin Zaťovič <m.zatovic1@gmail.com> wrote:
-> > On Wed, Mar 01, 2023 at 06:23:54PM +0200, Andy Shevchenko wrote:
-
-...
-
-> > > > +/**
-> > > > + * of_register_wiegand_device - allocates and registers a new Wiegand device based on devicetree
-> > >
-> > > NAK for OF only code. New, esp. bus, code must be agnostic. We have all means
-> > > for that.
-> >
-> > In one of the previous versions of this patch series, there was also the possibility to instantiate
-> > the device from another driver. I have been told, that this is not the way to go anymore, unless
-> > there is a very specific reason for that. I did not find such reason, so I have removed this suport.
+On 05/04/2023 10:31, Luca Ceresoli wrote:
+> Hi Laurent,
 > 
-> I don't know for sure but I think Andy simply means that you should take a look
-> in include/linux/property.h and replace every function named of_* with
-> the corresponding fwnode_* or device_* function from that file, and it
-> should all just magically work the same, but abstracted away from device
-> tree. It's not much more than a search/replace and rename operation
-> (unless there is a "hole" in the fwnode implementations... I hope not.)
+> On Wed, 5 Apr 2023 05:30:48 +0300
+> Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
 > 
-> In the end you can keep just <linux/property.h> and drop <linux/of.h>
-> and <linux/of_device.h> if this works.
+>> Hi Luca,
+>>
+>> On Tue, Apr 04, 2023 at 04:12:51PM +0200, Luca Ceresoli wrote:
+>>> On Wed, 29 Mar 2023 13:16:22 +0200 Hans Verkuil wrote:
+>>>   
+>>>> Hi Luca,
+>>>>
+>>>> I finally found the time to test this series. It looks OK, except for this patch.  
+>>>
+>>> Thank you very much for taking the time!
+>>>   
+>>>> The list of supported formats really has to be the intersection of what the tegra
+>>>> supports and what the sensor supports.
+>>>>
+>>>> Otherwise you would advertise pixelformats that cannot be used, and the application
+>>>> would have no way of knowing that.  
+>>>
+>>> As far as I understand, I think we should rather make this driver fully
+>>> behave as an MC-centric device. It is already using MC quite
+>>> successfully after all.
+>>>
+>>> Do you think this is correct?  
+>>
+>> Given the use cases for this driver, I agree.
 
-Yes. And the argument for embedded devices it's exactly why the non-OF
-interface is needed as we want to have a possibility to connect devices on
-ACPI (or another, if any) based platform without changing the code.
+I disagree.
 
--- 
-With Best Regards,
-Andy Shevchenko
+This driver doesn't use the media controller for anything at the moment. The
+/dev/mediaX device just shows the internal topology (i.e. connected sensors),
+but otherwise it does nothing.
 
+While it would be great if we could unlock the ISP on the Tegra, the reality
+is that it is entirely closed source and can't be used in a linux driver, and
+that's not going to change, sadly.
+
+That leaves us with just a basic CSI capture driver. Rather than trying to
+change this driver to a full MC device with no benefits, just drop this change
+and get your code in.
+
+Note that this driver will stay in staging since it still fails when I try to
+capture from two sensors at the same time: syncpoint errors start appearing
+in that case. I think there are locking issues. I think I have someone to take
+a look at that, but first I want your series to get merged.
+
+In the very unlikely event that the ISP can be implemented in a linux driver,
+it will probably become a new driver.
+
+Regards,
+
+	Hans
+
+> 
+> Ok, thanks for the feedback. I will send a v5 with this change.
+> 
+> Best regards,
+> Luca
+> 
 
