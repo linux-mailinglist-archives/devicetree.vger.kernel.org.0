@@ -2,57 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 114106D83D7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 317C76D8405
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:48:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233273AbjDEQiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 12:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44348 "EHLO
+        id S229712AbjDEQsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 12:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233235AbjDEQiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:38:14 -0400
+        with ESMTP id S229699AbjDEQsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:48:10 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743AA4C31;
-        Wed,  5 Apr 2023 09:38:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A3E830FD;
+        Wed,  5 Apr 2023 09:48:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C6FDA629BE;
-        Wed,  5 Apr 2023 16:38:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FCB3C43443;
-        Wed,  5 Apr 2023 16:38:10 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D0B9462979;
+        Wed,  5 Apr 2023 16:48:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E07CC433EF;
+        Wed,  5 Apr 2023 16:48:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680712692;
-        bh=syKhDH18sc1NcY1/ySSVPv2qM6XNI1spR3GACAOsNJ0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eBNtu1Pr52mhp899qkiRAQ3jV6O5ZfF7agoRgDSfE2Kov/aUqK7ByJkK10TOdw+0X
-         3WCXsxvRS43Z9Lyz2xY9BnQKKVTRIKzEr0FgrLu2MU8LYBrhazoPa55y5z8bI5WkR+
-         YwSQAMOiAhxm282qCVUe1Y1cNJvZQhpBqkqcEYC/swER81ncPq3WNN1br3XCS9klTf
-         T4F1g/Cab+mZbp1h5rPIys/HbGY0wqQ8feM7ryyu5WBcX0QZsD1r3NV6ay0UWmai08
-         psHGP5jshPyXILDcFR39tHCWgW05oHtBCZvCvRF4cKAun42UDKb6omKeU7L/Mo6QwE
-         IH0DbsmV6DXog==
-Date:   Wed, 5 Apr 2023 17:38:07 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Subject: Re: [RESEND v6 1/2] dt-bindings: soc: starfive: Add StarFive syscon
- doc
-Message-ID: <20230405-bullseye-handsaw-5c2e4dab772f@spud>
-References: <20230315055813.94740-1-william.qiu@starfivetech.com>
- <20230315055813.94740-2-william.qiu@starfivetech.com>
- <850bc37e-c6d1-2381-a851-965a4cbee8a0@linaro.org>
- <e38efd81-9c79-553b-7556-7aff30f6ec50@starfivetech.com>
- <f25cc55e-3405-4b17-fb45-5ae5eb36a404@linaro.org>
- <d0b1d44e-6d6e-536c-046e-be6a53f1d240@starfivetech.com>
+        s=k20201202; t=1680713288;
+        bh=22ZlOUdVMzmaWyuCliiH+IGS7pPTTM98jyuFQs6JaxU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=As01gsATq0TJyi7JZUFiySulLYX1O6SAhxW8EjpE7ttZQbvsIeAn8QOPjv0D7nJhQ
+         ToYBoEPqVCKPoQUMymCpxRk+n/SXD3MQLOOV1vBZtwzfaadBZnsuaH2M3BRgBXc/KH
+         3hGpYy43n52biSNcpxyrbhQO4YKEZ8U9plksKd+pVCqS39zJqeDB7KVY2xjAJPxNxA
+         R4TUBk+BtQaoWC54IIWSstOu69iWGOI20Op/exPJV7h6ffhNFo8KgLTQe9pmKBR7Zr
+         rpDnFhoTYA3H41JvkGqdGffOr7HJJQ8WNVc792d9pHltZ5J5OEGrGWuHuLIl6k142/
+         /6pI6ZD/6qTlw==
+Received: by mail-yb1-f170.google.com with SMTP id d3so15417180ybu.1;
+        Wed, 05 Apr 2023 09:48:08 -0700 (PDT)
+X-Gm-Message-State: AAQBX9dm92h3aR0ap0F8wuL0r2rISDEhUxtduHzDuhIaMXqBE1csrKBA
+        C1GbjqWk7aHgZLeWy6FF/4e5MviXl1aC2QXNyg==
+X-Google-Smtp-Source: AKy350ZQx0dkPXkdwb3C7yfZngsJ/me3yZn0KqkDJct1jJHk/VdVBxS0W1oMDzSaZEkNczgg8bKEBgL3JEFO7l3y88w=
+X-Received: by 2002:a25:da0a:0:b0:b77:81f:42dc with SMTP id
+ n10-20020a25da0a000000b00b77081f42dcmr4682130ybf.1.1680713287294; Wed, 05 Apr
+ 2023 09:48:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="l1+mDrVx6go5Y/WQ"
-Content-Disposition: inline
-In-Reply-To: <d0b1d44e-6d6e-536c-046e-be6a53f1d240@starfivetech.com>
+References: <20230329-acpi-header-cleanup-v1-0-8dc5cd3c610e@kernel.org>
+ <20230329-acpi-header-cleanup-v1-5-8dc5cd3c610e@kernel.org> <CAJZ5v0h8pEq4Tx-Q=VPT-XR73NRk=_XQg6vgr-wA-CFesuuSLg@mail.gmail.com>
+In-Reply-To: <CAJZ5v0h8pEq4Tx-Q=VPT-XR73NRk=_XQg6vgr-wA-CFesuuSLg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 5 Apr 2023 11:47:55 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKVg_1T2SkMRryDFyYho1Kz+ppNkqozPdyyX_t4EFBJpg@mail.gmail.com>
+Message-ID: <CAL_JsqKVg_1T2SkMRryDFyYho1Kz+ppNkqozPdyyX_t4EFBJpg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] ACPI: Replace irqdomain.h include with struct declarations
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Len Brown <lenb@kernel.org>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
@@ -62,54 +79,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Apr 5, 2023 at 9:59=E2=80=AFAM Rafael J. Wysocki <rafael@kernel.org=
+> wrote:
+>
+> Hi Rob,
+>
+> On Wed, Mar 29, 2023 at 11:21=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
+ote:
+> >
+> > linux/acpi.h includes irqdomain.h which includes of.h. Break the includ=
+e
+> > chain by replacing the irqdomain include with forward declarations for
+> > struct irq_domain and irq_domain_ops which is sufficient for acpi.h.
+> >
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  include/linux/acpi.h | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/include/linux/acpi.h b/include/linux/acpi.h
+> > index efff750f326d..169c17c0b0dc 100644
+> > --- a/include/linux/acpi.h
+> > +++ b/include/linux/acpi.h
+> > @@ -10,12 +10,14 @@
+> >
+> >  #include <linux/errno.h>
+> >  #include <linux/ioport.h>      /* for struct resource */
+> > -#include <linux/irqdomain.h>
+> >  #include <linux/resource_ext.h>
+> >  #include <linux/device.h>
+> >  #include <linux/property.h>
+> >  #include <linux/uuid.h>
+> >
+> > +struct irq_domain;
+> > +struct irq_domain_ops;
+> > +
+> >  #ifndef _LINUX
+> >  #define _LINUX
+> >  #endif
+> >
+> > --
+>
+> This causes build issues in linux-next, so I've dropped the series.  I
+> will be happy to pick it up again when the build issues are addressed,
+> though.
 
---l1+mDrVx6go5Y/WQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is it just the one in pata_macio.c or are there others you are aware of?
 
-On Mon, Mar 20, 2023 at 03:32:14PM +0800, William Qiu wrote:
-
-> >>> Does not look like you tested the bindings. Please run `make
-> >>> dt_binding_check` (see
-> >>> Documentation/devicetree/bindings/writing-schema.rst for instructions=
-).
-> >>>
-> >>> ... or your PLL clock controller was not tested.
-> >>>
-> >>> Best regards,
-> >>> Krzysztof
-> >>>
-> >> Hi Krzysztof,
-> >>=20
-> >> I've already done`make dt_binding_check`, and get no error. So maybe P=
-LL clock controller
-> >> was not tested which I didn't add in this patch series. And PLL clock =
-controller belongs
-> >> to Xingyu Wu, I would tell him.
-> >=20
-> > What's confusing you do not allow here clock controller.
-
-> I'll add it then.
-
-What's the plan here William?
-Can you sort something out with Xingyu Wu so that the dt-binding is
-added in a complete manner?
-In the meantime, gonna drop this series as "Changes Requested" from
-patchwork.
-
-Cheers,
-Conor.
-
---l1+mDrVx6go5Y/WQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZC2j7wAKCRB4tDGHoIJi
-0k+4AQCdBamxHmK76N715U1XwXpOgMU26jEqAcw7pKiI/4fH4gD9GXFxFJgrDOfu
-irkLH3kj2KloYVZ/9eNvQHp19BK9NQ4=
-=bLQ4
------END PGP SIGNATURE-----
-
---l1+mDrVx6go5Y/WQ--
+Rob
