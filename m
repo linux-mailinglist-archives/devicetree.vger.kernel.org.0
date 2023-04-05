@@ -2,147 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2271A6D7230
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1097B6D7262
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 04:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231589AbjDEBwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 21:52:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59854 "EHLO
+        id S236548AbjDECYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 22:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232695AbjDEBwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:52:31 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE60D3AA4
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 18:52:28 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id h8so137419439ede.8
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:52:28 -0700 (PDT)
+        with ESMTP id S230455AbjDECYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 22:24:50 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6089E1FDC;
+        Tue,  4 Apr 2023 19:24:40 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id c18so33085061ple.11;
+        Tue, 04 Apr 2023 19:24:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1680659547;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d4lO58vBzScCago2059HBRosOdt96vH3MDCMxFhDpLU=;
-        b=HwSCCqXDMy0m5qpeuL3nho2ae7NGTVlp+favKncFsOEx+buTc7X76zde/6X9FZfRII
-         dV/YFIHSGCBcdRTGl7XqPcAMmnbUas1kvc1hTPh67y9MHgcsTzgv8vup8iENJWoXfOzM
-         NaKoLk9WvGGmezSnFQSkQKVME+kd61lNwBa7s=
+        d=gmail.com; s=20210112; t=1680661480;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9QNbM9lP47YBzDxJmWKWYEJzZC9ZIOjbZpNDsjzB1/E=;
+        b=Xihw6CgZ9/9usz7a8VJsWY8rfqP+LOYjs7G3CCcJY+RprHUpGDw82g//kV+M/lN2eN
+         MCKYQ+HhvY5W1cSsIACkXEtTwItPP3atD7PSnn6CY3edFU7fRlyEpyLbrZYs5XvWXdKy
+         t9elDA+lhxpC06IPynnlGlvRp14mdfczCSvYnTbh9qn3oESdwAnGclujGnTFKq1PvYHe
+         UNDDXArlN2SssUcwAIha7XxGo6wmqlEvq3mMQaulR81DCsd7RPPSH6PKtAexQR7gj6dj
+         3c+zp0QURkwJcGXiXIAuMESlFidSs+6E6PbTvTKTDji9VpvU3LDj2Ttziz8wU064/qwl
+         Zonw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680659547;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d4lO58vBzScCago2059HBRosOdt96vH3MDCMxFhDpLU=;
-        b=wiTLubdM6su64D71oBLyQIr0MUgC0UDiHNcNt7vvuIDO5GkJt6eL59VNCprlsa+LVP
-         gV/v+27d2KCRjugQilI3CSWm7wlTKBDW+J8VZvclRfsWhlsYHbF7IIShkkPLTNeVJehA
-         sAxYRxvQtW/Y94+LWgPf/tUuuhjLSBrRetORQMUKmuaBhGGQrOPi9AQaOE9c1kooERUN
-         kGk0WHpxrhvjxgLCbD/2UyI610Trbdy7R34LIKeqMrAFiCNfN0qxMmXPE8hbnblL7fk1
-         iBA96i5oHnCM17Z4KCFbxDABL5z0PKFgqxyMHZLsv3AO5wBLtutdu+Sv31yb3H/9K1r0
-         fTVw==
-X-Gm-Message-State: AAQBX9d2Ox47xz/dEsOm3Ij3wGf/zO+Q9wNZ8steiA1QRWvUXTLVpQx7
-        6JE91TwP9QNfkBGbs3x7K6huxWRvu/UcwLiNGHw=
-X-Google-Smtp-Source: AKy350Z4GY34/FyJIoHiTzDXPRoet2XYtZIsGqixctsIhgTdsjsUlDCm0ENZtjAH2qUyMbTU2uFhN6f3zFswoiR0zKo=
-X-Received: by 2002:a17:906:e41:b0:933:1967:a984 with SMTP id
- q1-20020a1709060e4100b009331967a984mr726139eji.15.1680659547205; Tue, 04 Apr
- 2023 18:52:27 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680661480;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9QNbM9lP47YBzDxJmWKWYEJzZC9ZIOjbZpNDsjzB1/E=;
+        b=4lHcdDcU+kVkqi3c8yjTzXgbF5KWrrxDG0ZvG+z7Yqq2/nUytX09hE3RcbBmOk1mon
+         mGliFZIbRvM1ifPWww13EcQslHE/dsMtxDlExyOKiQ/N7XtBCDKGB83K9RTJfOZWHmbX
+         BSCJKvTFJ6sdNpsTs0qAOE7s//aAoO7ocQ9qB4GA7gXmnngrIJpEorDv5TRkXyNCXxMS
+         tcJzD0vl5vChBEmNGiuMxHXGgxWau2fIQZOY6JAuE13nFzF4jTwX625OhEF3DYH7wAG9
+         j/sUPbzHv4zCAYbS+v0aX20AfzjK57XirEXRyA3Hu32vsGuLzofrcDOtlsOJ4i8+KIUV
+         dk7g==
+X-Gm-Message-State: AAQBX9dXt7pAKbxR00URXFVSrumboZk0+ORyaV5FpjFsNz52ZfXm3oUB
+        k+/PilDtGY8k9qU/cACcYDg=
+X-Google-Smtp-Source: AKy350YC3ggg9qLvnDzmFothcUSjAQpi7xNqcwvsbbun0pCTYz8A4L5T/wFudH3EGQ7zlYXf1Kpd3g==
+X-Received: by 2002:a05:6a20:659c:b0:da:c40:8dc with SMTP id p28-20020a056a20659c00b000da0c4008dcmr4172153pzh.6.1680661479619;
+        Tue, 04 Apr 2023 19:24:39 -0700 (PDT)
+Received: from [192.168.43.80] (subs02-180-214-232-18.three.co.id. [180.214.232.18])
+        by smtp.gmail.com with ESMTPSA id x9-20020aa793a9000000b005898fcb7c1bsm9679454pff.177.2023.04.04.19.24.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 19:24:39 -0700 (PDT)
+Message-ID: <364610b8-2c40-6a71-513e-4e154b077055@gmail.com>
+Date:   Wed, 5 Apr 2023 09:24:30 +0700
 MIME-Version: 1.0
-References: <20230331091501.3800299-1-jk@codeconstruct.com.au>
-In-Reply-To: <20230331091501.3800299-1-jk@codeconstruct.com.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 5 Apr 2023 01:52:15 +0000
-Message-ID: <CACPK8XdLpg2H4a2nHo4PokfBc4r3D8MbK2-62jXkPXAq8Q03Rg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] i3c dw,ast2600: Add a driver for the AST2600 i3c controller
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        Matt Johnston <matt@codeconstruct.com.au>,
-        Vitor Soares <ivitro@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jack Chen <zenghuchen@google.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V4 06/10] hte: Re-phrase tegra API document
+Content-Language: en-US
+To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230323012929.10815-1-dipenp@nvidia.com>
+ <20230323012929.10815-7-dipenp@nvidia.com>
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <20230323012929.10815-7-dipenp@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 Mar 2023 at 09:15, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
->
-> This series adds a new i3c controller driver, for the ASPEED AST2600 i3c
-> SoC peripheral. This device is very similar to the dw i3c controller, so
-> we implement this by adding a little platform abstraction to the dw
-> driver, and then a platform implementation for ast2600.
+On 3/23/23 08:29, Dipen Patel wrote:
+> Make Tegra194 API document generic to make it applicable for
+> current and future tegra hte providers.
+> 
+> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+> ---
+>  Documentation/driver-api/hte/tegra194-hte.rst | 33 +++++++++----------
+>  1 file changed, 16 insertions(+), 17 deletions(-)
+> 
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+While generalizing the doc, the doc file name should also be renamed
+(i.e. to tegra-hte.rst).
 
-I have also tested it in qemu.
+> diff --git a/Documentation/driver-api/hte/tegra194-hte.rst b/Documentation/driver-api/hte/tegra194-hte.rst
+> index f2d617265546..85e654772782 100644
+> --- a/Documentation/driver-api/hte/tegra194-hte.rst
+> +++ b/Documentation/driver-api/hte/tegra194-hte.rst
+> @@ -5,25 +5,25 @@ HTE Kernel provider driver
+>  
+>  Description
+>  -----------
+> -The Nvidia tegra194 HTE provider driver implements two GTE
+> -(Generic Timestamping Engine) instances: 1) GPIO GTE and 2) LIC
+> -(Legacy Interrupt Controller) IRQ GTE. Both GTE instances get the
+> -timestamp from the system counter TSC which has 31.25MHz clock rate, and the
+> -driver converts clock tick rate to nanoseconds before storing it as timestamp
+> -value.
+> +The Nvidia tegra HTE provider also known as GTE (Generic Timestamping Engine)
+> +driver implements two GTE instances: 1) GPIO GTE and 2) LIC
+> +(Legacy Interrupt Controller) IRQ GTE. Both GTE instances get the timestamp
+> +from the system counter TSC which has 31.25MHz clock rate, and the driver
+> +converts clock tick rate to nanoseconds before storing it as timestamp value.
+>  
+>  GPIO GTE
+>  --------
+>  
+>  This GTE instance timestamps GPIO in real time. For that to happen GPIO
+> -needs to be configured as input. The always on (AON) GPIO controller instance
+> -supports timestamping GPIOs in real time and it has 39 GPIO lines. The GPIO GTE
+> -and AON GPIO controller are tightly coupled as it requires very specific bits
+> -to be set in GPIO config register before GPIO GTE can be used, for that GPIOLIB
+> -adds two optional APIs as below. The GPIO GTE code supports both kernel
+> -and userspace consumers. The kernel space consumers can directly talk to HTE
+> -subsystem while userspace consumers timestamp requests go through GPIOLIB CDEV
+> -framework to HTE subsystem.
+> +needs to be configured as input. Only the always on (AON) GPIO controller
+> +instance supports timestamping GPIOs in real time as it is tightly coupled with
+> +the GPIO GTE. To support this, GPIOLIB adds two optional APIs as mentioned
+> +below. The GPIO GTE code supports both kernel and userspace consumers. The
+> +kernel space consumers can directly talk to HTE subsystem while userspace
+> +consumers timestamp requests go through GPIOLIB CDEV framework to HTE
+> +subsystem. The hte devicetree binding described at
+> +``Documentation/devicetree/bindings/timestamp`` provides an example of how a
+> +consumer can request an GPIO line.
+>  
+>  See gpiod_enable_hw_timestamp_ns() and gpiod_disable_hw_timestamp_ns().
+>  
+> @@ -34,9 +34,8 @@ returns the timestamp in nanoseconds.
+>  LIC (Legacy Interrupt Controller) IRQ GTE
+>  -----------------------------------------
+>  
+> -This GTE instance timestamps LIC IRQ lines in real time. There are 352 IRQ
+> -lines which this instance can add timestamps to in real time. The hte
+> -devicetree binding described at ``Documentation/devicetree/bindings/timestamp``
+> +This GTE instance timestamps LIC IRQ lines in real time. The hte devicetree
+> +binding described at ``Documentation/devicetree/bindings/timestamp``
+>  provides an example of how a consumer can request an IRQ line. Since it is a
+>  one-to-one mapping with IRQ GTE provider, consumers can simply specify the IRQ
+>  number that they are interested in. There is no userspace consumer support for
 
->
-> For those testing at home: there's a couple of prereqs for getting this
-> running: we need the ast2600 i3c clocks in their proper configuration,
-> as implemented in:
->
->   https://lore.kernel.org/all/20230302005834.13171-1-jk@codeconstruct.com.au/
->
-> - this series has been merged to clk-next, but has not hit Linus'
-> upstream yet. The series will still build fine without this.
->
-> You'll also want the dts definitions for the i3c controller and
-> pincontrol setup on the ast2600 platform. I have changes for those in my
-> dev/i3c branch:
->
->   https://github.com/CodeConstruct/linux/commits/dev/i3c
->
-> - and will send those once we have the driver accepted.
+The wording LGTM, thanks!
 
-Given we have acks on the bindings, I think it's safe to send the
-device tree changes now so we can merge what you have in the upcoming
-merge window. If there's changes we can modify or revert.
+Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
 
-Cheers,
+-- 
+An old man doll... just what I always wanted! - Clara
 
-Joel
-
->
-> v3: expand the prereqs & background above, and implement some feedback
-> from review. Mainly: rather that using a platform_data pointer, assume
-> platforms will use an encapsulating struct for their platform-specific
-> data
->
-> v2: This is a rework from an earlier series that implemented this as
-> part of the dw driver; I have adopted Ben Dooks' suggestion to split
-> into a new driver + exported hooks from the dw base.
->
-> As always: comments, queries etc. are most welcome.
->
-> Cheers,
->
->
-> Jeremy
->
-> Jeremy Kerr (3):
->   i3c: dw: Add infrastructure for platform-specific implementations
->   dt-bindings: i3c: Add AST2600 i3c controller
->   i3c: ast2600: Add AST2600 platform-specific driver
->
->  .../bindings/i3c/aspeed,ast2600-i3c.yaml      |  72 ++++++++
->  MAINTAINERS                                   |   6 +
->  drivers/i3c/master/Kconfig                    |  14 ++
->  drivers/i3c/master/Makefile                   |   1 +
->  drivers/i3c/master/ast2600-i3c-master.c       | 168 ++++++++++++++++++
->  drivers/i3c/master/dw-i3c-master.c            |  76 ++++----
->  drivers/i3c/master/dw-i3c-master.h            |  54 ++++++
->  7 files changed, 358 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
->  create mode 100644 drivers/i3c/master/ast2600-i3c-master.c
->  create mode 100644 drivers/i3c/master/dw-i3c-master.h
->
-> --
-> 2.39.1
->
