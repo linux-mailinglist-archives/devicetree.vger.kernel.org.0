@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67C846D7660
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58AA46D7666
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237242AbjDEIIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 04:08:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50496 "EHLO
+        id S237420AbjDEIIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 04:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237342AbjDEIIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:08:00 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4EF199
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 01:07:57 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id l10-20020a05600c1d0a00b003f04bd3691eso6548419wms.5
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
+        with ESMTP id S237365AbjDEIIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:08:04 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196D94EEF
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 01:07:59 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id hg25-20020a05600c539900b003f05a99a841so3517744wmb.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 01:07:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680682077;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680682078;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ty5wIc3Z81+kG82VSRnC8Apz5DxLYwgxvYQ6Q3KABLA=;
-        b=2ZcQ8cMXUT+tCWIFKid8JjEtPLeTZHzhuLk1lgXVnCOJL5Pq9A0rkIz2UOfpxW+cq+
-         haLAYAXlqgvCXrHAjIYZBAO4XEYQVNLkAx7BbF3N7yX2zduhEga7kzLuQhskSuiiJF4G
-         pDFnhNGA8d/sCNsx90s0A/yO7kIPWoF1cPFmn19O9xIgWHh+amnglJ6Yjdev0F9Os2gp
-         OvAzvli60SdLPcVbyLyuuBNxKGfpApuQTpdJjdOrkjBhGDSrABdlWLM9A/ci3BQYwfjk
-         4H381LhK2Jz2QgJcM6V+HdfoLhRW5V8IoFPl+52XFjUYnJZT/7EqegVJufLgP1CCZrSr
-         GNcg==
+        bh=33253isHt4S+J+nSLFy8mmWQtMLkRh8HjGdIrP7lEuQ=;
+        b=Yc0/OBGpl7E8efDzxB5jgr2ofIfukmILIBfP2QyerHUtDy5nkPLJ3RoLd5pgQS9eZP
+         eXgMfqiWxFlb3SGYMfy7+KO33PVHgc5o+iTysoWqWRKVqLAHoUZYn56XnIsnIDxwQspD
+         VPZUEktSxHQVUb5SvQnC82cCQue8ELO5rxTkBGzTqhjeleM6aqQFk3q0jtggEjqYGNog
+         s2exPDJI4a7khjCU3mqDzSM1BWyOYA2LXjlUFbZFbuLsDRvC3VcNywbTmoxBqSAXwlR8
+         uCD7I5dAJNY4TcHBU+MwdrAycwdtxDIypzdNqmiQ8FQaP/ZE5C2/GLT+lc0qVy1rZYHh
+         zMcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680682077;
+        d=1e100.net; s=20210112; t=1680682078;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ty5wIc3Z81+kG82VSRnC8Apz5DxLYwgxvYQ6Q3KABLA=;
-        b=y29Ayx/0MbMf+DtAJLd6AWUIHMaHXzIaFNNWglmgNmxS6jAEnxBkgJ0Dt7mCyPKmjF
-         PremErPkh1XbFsMrymXcIw8fTEpY6ojpAJjSxIvpmm2UmmxDMAdqRnFMXbXg4Bz3bOQb
-         thoXsu7M8R3xmBVaFHub/fXyBIj59+CDNU9s4bGIDows7UenhV6Zze3fA+BYoACrdcTV
-         1mz5hllmWgAn6kMgzM7dPbGKfKhmLhQpoIpyRs5W4+x3/8GEwW0bAKjQZjE2VqC65Idl
-         YfzyUCH4a212Tbpp1Cx9huS2Js/HFv377swgKIok2mu1x8AzMw/fdv+8KFyeHtwksZAj
-         Tf7w==
-X-Gm-Message-State: AAQBX9fzN25c2vmtEUSm/5bczWYNFViawyNSf6VmgppdBExqma7hg9Lt
-        mz5z6QUl1CnzUvu5S2/sm8QBEA==
-X-Google-Smtp-Source: AKy350a+/HP4eT7mepbSgPrh3ZZezmR5cZh/uTdCLsA4vjYdPPommSHW67PUEHi6efoBDBMoS7tOMw==
-X-Received: by 2002:a05:600c:2243:b0:3ee:4dc0:d4f6 with SMTP id a3-20020a05600c224300b003ee4dc0d4f6mr4055873wmm.17.1680682077364;
-        Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
+        bh=33253isHt4S+J+nSLFy8mmWQtMLkRh8HjGdIrP7lEuQ=;
+        b=SpvOFeNXEnGhj/DA28jBttNJjpdTnA+Tvuewo7T3BpuPGY6xioGEZLMpSkU6FEQScB
+         uBoLU8D9AC/hjPSycGY7y9Kr4m2NCQfCu3JNKNct/zVC9QKG2nibRLFYCN9cM1qcl7xY
+         JjbhLbbRB2Sjsul5b+Yx4cYpIEH5QFD2psi80U5ivppUKrcDoItTTFrSpzpwpKx1fEOA
+         LWdcTnG4yuMSib4L+lFhaIQyN5s676p8cdrNujlNJ7qNlCu1ILrs1VKTctupacSqISMu
+         SI2NnfXHmGvpITVjTdZW9Xg9+D1xmkv0/EIcPVyVf/n5uv6wOznn3wcrBW3hxk+I3CQU
+         Wy9A==
+X-Gm-Message-State: AAQBX9eSyJ+In0vfUVORIjY6h3cjcwDeBouX6UhGTFuHiTK0TOo/tzeI
+        93+79Uy7x5Zo6Tl77Vuk3cn1Yw==
+X-Google-Smtp-Source: AKy350a6vYxum9a+B7CUUnBSWwVcA/VkgqgawFsnIiacY7QtYMO9m0nHPcUziXUysydrFPVUfZdi4Q==
+X-Received: by 2002:a7b:c5c1:0:b0:3ef:67fc:ff02 with SMTP id n1-20020a7bc5c1000000b003ef67fcff02mr4088941wmk.7.1680682078427;
+        Wed, 05 Apr 2023 01:07:58 -0700 (PDT)
 Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id d4-20020a05600c3ac400b003ee8a1bc220sm1378395wms.1.2023.04.05.01.07.56
+        by smtp.googlemail.com with ESMTPSA id d4-20020a05600c3ac400b003ee8a1bc220sm1378395wms.1.2023.04.05.01.07.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
+        Wed, 05 Apr 2023 01:07:58 -0700 (PDT)
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Wed, 05 Apr 2023 10:06:51 +0200
-Subject: [PATCH v2 09/10] arm64: dts: mediatek: add iommu support for
- mt8365 SoC
+Date:   Wed, 05 Apr 2023 10:06:52 +0200
+Subject: [PATCH v2 10/10] memory: mtk-smi: mt8365: Add SMI Support
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-iommu-support-v2-9-60d5fa00e4e5@baylibre.com>
+Message-Id: <20230207-iommu-support-v2-10-60d5fa00e4e5@baylibre.com>
 References: <20230207-iommu-support-v2-0-60d5fa00e4e5@baylibre.com>
 In-Reply-To: <20230207-iommu-support-v2-0-60d5fa00e4e5@baylibre.com>
 To:     Yong Wu <yong.wu@mediatek.com>,
@@ -70,19 +69,19 @@ Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Alexandre Mergnat <amergnat@baylibre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1094; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=DnJEBHRsbqHL6qyjSRQDzaDxfH+izMrFh6xvaojG8T4=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkLSxTzSSOyVlKk+pu5ucK5KBC6oSvjigLIQZ1wJEe
- BFoarqKJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZC0sUwAKCRArRkmdfjHUReefEA
- CfZ6XqBVopXdvlrSr7JRl9epjtctr2LktwRUlcWmP666YL+2klZ5biMdhZNpTSKTCwranyUGVnHHnj
- 78LH1as+UKfp0rtoNTws+8LyzHzB2uLZx/DhnCKCVOW5JTwxNA3HId41CcgsrH7C/fT9oRb4wrm9QM
- h/Wy4RrilonigDtaYbWWVOyROij0gCpwB/PusTwS+0L0hjaax+NdsIfla9MebFpK5/jduofNoFQoaZ
- w4RHjH+2nihAqFNO575K9U3t0srSnCfOxtXNU+iCXtusNe3f7x15auC3gc3NWw4qcfXiDjvVbqLHVO
- tgBxpi+OQro/i3m8cK+5GmxdMhG6MtdWHddIZ5zRUIBisLJ9eWhEZm2KbJZxf3YOqm3jzTDHAk66r9
- Vy3QvFXsAphJLFYxYhFNpZm3K4sASMGTsZpHaiis2BAgjszh7QSAL1iNhWgs7/59wKv4SyuWek8QBp
- TAF8h9Z9odOHxYT/cQNWe90YK2K2eo/3WTZ+QpmoSSHBPoAT/nK09l+r0OC+qNT3ZZNRBFlgtRHHrI
- F6NYlqyeWo7YGZBhAg9SkAkP4EEgfd1ZbMYboaLN+F2YuzoBOZH0OzZ3JCGA73LFohbHNhfzqribm+
- o/Ti5VqGbE5NtUXy/aWXjbgpkQipcK8M11/UtFvd3b0uzijxE0TcD/w3g8SQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1318; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=z26cWVr1UM3WDlPLOHdYFNM2IHS6opWfJrlRsd4fTCY=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkLSxTsz6MktT8KmhJmOCte7lvIAMRb5YfYP6mGtBz
+ Tuody/mJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZC0sUwAKCRArRkmdfjHURW48EA
+ CY1vLd79NTra4MIV+COGshV23I/tjs0l86iK561zWyv6IFf6I6eV4l5XJo9t0pM+H35/79rGeCNZw9
+ Ru96C6/1sPUSEK7MccPSyavM/1pMv0VY9DbyFYsoKmcPcNjrAWpiCMTNYhkN/NpMNOPPTRHcBn5Ts9
+ lB2jkZkcwEX+aVYIoJY9Nn3lAUyLFs2G4EX5ut430Q52qgF/6tLgXNg9htaYK3BsL4hJkD/jQ0BJaJ
+ ezvB8rnPno5pS5W90Bi/MM8R/bCKZn5JQsjw2CGPPEmHFBksYCMrg+1eaQSEvqJlgNYSA8LeDQ87V1
+ tKmPavZBUH+5zTRA0boN4bNO6d5e4+CQk8xEoPPQZwFmdtuxyJHhLzad+okWzOyfk7vVd8Rh+oIXQO
+ MC1Dz2eRp/sV1QlHsZqJoPLP3wHgTeQG2w5iY6EIGQE50CXQXQ0JAbk0PaZq7FgTXK+bGwVk6Wk8cc
+ HVxN57HMFJxvd3gZJaFKPak98NrK0jEA4XAZVF9SftZmO/7dCn7t85UsVSBqck4IkVr0ZW8BFm81vB
+ qcgUoLW4uo+NI+9Zfzp059IUV+jdZieNKI1rryphymiuGNSTPH6u9F32VoIjcDVfY8CAX5HvSIrIvH
+ CDxM9Aw0ddm8mRxjyK8nevYIlQcbu9RvAlkTtiwjR23FqNevGEdAtFNb2rGg==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -94,34 +93,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iommu support in the SoC DTS using the 4 local arbiters (LARBs)
+Add MT8365 SMI common support.
 
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/memory/mtk-smi.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index 07a7267f338e..6260744f4be5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -456,6 +456,14 @@ sysirq: interrupt-controller@10200a80 {
- 			reg = <0 0x10200a80 0 0x20>;
- 		};
+diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+index 5a9754442bc7..477b5d1ffd46 100644
+--- a/drivers/memory/mtk-smi.c
++++ b/drivers/memory/mtk-smi.c
+@@ -713,6 +713,12 @@ static const struct mtk_smi_common_plat mtk_smi_sub_common_mt8195 = {
+ 	.has_gals = true,
+ };
  
-+		iommu: iommu@10205000 {
-+			compatible = "mediatek,mt8365-m4u";
-+			reg = <0 0x10205000 0 0x1000>;
-+			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_LOW>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>, <&larb3>;
-+			#iommu-cells = <1>;
-+		};
++static const struct mtk_smi_common_plat mtk_smi_common_mt8365 = {
++	.type     = MTK_SMI_GEN2,
++	.has_gals = true,
++	.bus_sel  = F_MMU1_LARB(2) | F_MMU1_LARB(4),
++};
 +
- 		infracfg_nao: infracfg@1020e000 {
- 			compatible = "mediatek,mt8365-infracfg", "syscon";
- 			reg = <0 0x1020e000 0 0x1000>;
+ static const struct of_device_id mtk_smi_common_of_ids[] = {
+ 	{.compatible = "mediatek,mt2701-smi-common", .data = &mtk_smi_common_gen1},
+ 	{.compatible = "mediatek,mt2712-smi-common", .data = &mtk_smi_common_gen2},
+@@ -728,6 +734,7 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
+ 	{.compatible = "mediatek,mt8195-smi-common-vdo", .data = &mtk_smi_common_mt8195_vdo},
+ 	{.compatible = "mediatek,mt8195-smi-common-vpp", .data = &mtk_smi_common_mt8195_vpp},
+ 	{.compatible = "mediatek,mt8195-smi-sub-common", .data = &mtk_smi_sub_common_mt8195},
++	{.compatible = "mediatek,mt8365-smi-common", .data = &mtk_smi_common_mt8365},
+ 	{}
+ };
+ 
 
 -- 
 2.25.1
