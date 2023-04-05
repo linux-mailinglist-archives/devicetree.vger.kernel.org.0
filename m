@@ -2,82 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 263166D74C6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC72E6D74D2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236911AbjDEGz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 02:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53166 "EHLO
+        id S237014AbjDEG6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 02:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236833AbjDEGz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:55:56 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D03584224;
-        Tue,  4 Apr 2023 23:55:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=YbHus8I5k6Kw59s8tS5l+mzZMN+5KPjsnPShZjTEdZ0=; b=rF3OY4jo522n4TUGHlORM61Oxd
-        FwiMyXEOkj6toTcPpkQsmvkkHi/DNyUdOIo75xsfvm6Xax0kKwVyXrAqLFhml2CNVh+saEeekcFwv
-        gUNsWNKghUbtBaNewEQbMeQ9DFlhpV9jiYy1X4JdDMYtxUkZWz2VCIfUKLVLHLyni5wqlb2yTyMM8
-        9usmG/8iIjz+dTcgZTRzV8B46vBxd0PUVMR94hc21Y079kaNd3+4oX5fQAJjHY/3FsHXGtMXJ2BtQ
-        ZLnl/AVMMKz4LPN3gS/nSyXGNtq314qy9Gt2DWdugsA8sSRyJXlDaRXFGReNz96FX7eNLktgGIdCB
-        pjuW+dLg==;
-Received: from p200300ccff0b98001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0b:9800:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pjx3e-0000gv-6V; Wed, 05 Apr 2023 08:55:50 +0200
-Received: from andi by aktux with local (Exim 4.96)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pjx3d-00EwVt-2z;
-        Wed, 05 Apr 2023 08:55:49 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tony@atomide.com, afd@ti.com, andreas@kemnade.info,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH v5 2/2] MAINTAINERS: add board bindings list to OMAP2+ files
-Date:   Wed,  5 Apr 2023 08:55:33 +0200
-Message-Id: <20230405065533.3561492-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230405065533.3561492-1-andreas@kemnade.info>
-References: <20230405065533.3561492-1-andreas@kemnade.info>
+        with ESMTP id S231589AbjDEG6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:58:09 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA19448C
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:58:08 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id r11so138645031edd.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 23:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680677887;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b0Tz16hU06t/jQvjXVl+O8i4gFgw1SyUWujyjlJaCwE=;
+        b=PpeuMEURank6WUN37V4HZv7lRqZapYIrqDhEh/0MAOF0xAM6iGWHE3p8+TaQbwKqqt
+         SqBNO0Se7fAt0U4SLk+d1uBfYaIB7XEsMdmz+E32OPu/fPKk+ITy79f3ExewF+X66HYx
+         0bjVb1NfXnBvhNXvfOhgltXAl1uRRp3fSKPkxlADVSGEvak1/2cZ4Xfeuw+azyOEegnS
+         Fw0rWnlbSXuycNRHp9YYphMyg6Q7i+IajYa+p6r/9ph+dnezsvf2Ewti+4+CzjcH1u11
+         BcClMQhgyNnYjKsgPxfhLurW/gyHXJRbgb1ncHIgxQ7sGG3oVfU9WX5OLXhFd30i25Cd
+         YyPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680677887;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b0Tz16hU06t/jQvjXVl+O8i4gFgw1SyUWujyjlJaCwE=;
+        b=kw7APyC0nYw/QzwUBPjYl7FWcjBVXckMPJnRiCLZnhaDhLzlma35OyNcwn1WzAVruT
+         y4l7peqtwlU0VJ85qVPMve8esRdWI3vXWcCQHQe5DQZ0mS6oCvFlTyB+Z/U0nYNYQcHy
+         qFT97fs9QOQ+yDPQ+hZ0tvthYRHhlNI0U5e4S89wDrG0ZN4CuXXKynoObkCC2juuiXK2
+         TuUNeUOrR1rtyqditYWXgo0uWN6sJzJa/emQ8HtMOOfYrkC52s485qFwtkwRn+FpptWg
+         JA9C156DPLLZ7LPaWkaZLKFztp4DeCYq0ZaMptw6/vEto7hvOf3H3JHPR+HJEYbHQGRE
+         lopg==
+X-Gm-Message-State: AAQBX9fUJ8IdRT+NoI+3wRLWXWFulf9NVE5o0lvkzwpOqVpXcYknv2uv
+        7Ba5wHRoXfL4CDZTZJpoKpYe1w==
+X-Google-Smtp-Source: AKy350ZE3HG/9IWJXBZKKUuUf6EPSfW9JpqSBUDBkoR1mNRrxXUL7GIWWbjCguslGb4ZJPTIDoA3gg==
+X-Received: by 2002:a17:906:384a:b0:931:6641:9897 with SMTP id w10-20020a170906384a00b0093166419897mr1759666ejc.44.1680677886921;
+        Tue, 04 Apr 2023 23:58:06 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
+        by smtp.gmail.com with ESMTPSA id c10-20020a170906d18a00b00923f05b2931sm6938769ejz.118.2023.04.04.23.58.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 23:58:06 -0700 (PDT)
+Message-ID: <79ddaff0-00a9-36db-2bc0-4c844ffd9528@linaro.org>
+Date:   Wed, 5 Apr 2023 08:58:05 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V2 5/9] dt-bindings: PCI: qcom: Add IPQ9574
+Content-Language: en-US
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, mani@kernel.org, p.zabel@pengutronix.de,
+        linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+References: <20230404164828.8031-1-quic_devipriy@quicinc.com>
+ <20230404164828.8031-6-quic_devipriy@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230404164828.8031-6-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add list of OMAP2+ boards to the corresponding section
+On 04/04/2023 18:48, Devi Priya wrote:
+> Add bindings for PCIe hosts on IPQ9574 platform and allow
+> msi-parent property
 
-CC: linux-omap@vger.kernel.org
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Missing full stop. Also in your other patches.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 40e26624ff24b..5414ca882e031 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15363,6 +15363,7 @@ W:	http://www.muru.com/linux/omap/
- W:	http://linux.omap.com/
- Q:	http://patchwork.kernel.org/project/linux-omap/list/
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap.git
-+F:	Documentation/devicetree/bindings/arm/ti/omap.yaml
- F:	arch/arm/configs/omap2plus_defconfig
- F:	arch/arm/mach-omap2/
- F:	drivers/bus/ti-sysc.c
--- 
-2.39.2
+> 
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  Changes in V2:
+> 	- Updated the commit message and dropped the aggr_noc entries
+> 	  as it will be handled via interconnect driver
+> 
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index fb32c43dd12d..8657ab65008c 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - qcom,pcie-ipq8064-v2
+>            - qcom,pcie-ipq8074
+>            - qcom,pcie-ipq8074-gen3
+> +          - qcom,pcie-ipq9574
+>            - qcom,pcie-msm8996
+>            - qcom,pcie-qcs404
+>            - qcom,pcie-sa8540p
+> @@ -105,6 +106,8 @@ properties:
+>      items:
+>        - const: pciephy
+>  
+> +  msi-parent: true
+
+Isn't this conflicting with Mani's series:
+https://lore.kernel.org/all/20230108203340.GA229573-robh@kernel.org/
+https://lore.kernel.org/all/20230111123004.21048-1-manivannan.sadhasivam@linaro.org/#t
+
+Although for some reason Mani's patch references non-existing commit and
+hunk...
+
+Best regards,
+Krzysztof
 
