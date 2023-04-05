@@ -2,56 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DC896D8747
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 21:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00FDE6D8775
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 21:55:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234129AbjDETsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 15:48:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46972 "EHLO
+        id S231965AbjDETzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 15:55:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233704AbjDETsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 15:48:32 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F115E7DBB;
-        Wed,  5 Apr 2023 12:48:12 -0700 (PDT)
-Received: from localhost (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4E1D966031C5;
-        Wed,  5 Apr 2023 20:48:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680724091;
-        bh=ubsfMb1V7JFXAOo/IUXZ95ghB2VR04uZVFIbnCt86Qo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IF4xNkn9fzTNEp3KgLrqRR/wm+O9b5McizMbrzB8+shRNTt8tPHKxGz0sA4H7cQ+D
-         DfRsxQsmz8bYdBDy2I5XDTsfTOf1COm2hGuSFK1bsR0tCYCn06CckiLkH+/zbB5cdX
-         AZP/t01FQuxrQyXtL26KMb93xZWZJKWrN7BwST1BOsROfB1D8wRCwRRtdi9Q6a36YM
-         h08ewXeLftVMHYBvdr3MaBLTjGekV7DRShLxpt7D6Df7S8qFVl+4/hYWYMp/pKHkvP
-         p2MTENkfRXPuPBX51imJ8N92WvRPwEGlHT2ByDd/CqsdBcsaZ0pcrHWTT2jdnXDD8C
-         2Gr7lttsJdtJw==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Joseph Chen <chenjh@rock-chips.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH 8/8] regulator: fan53555: Add support for RK860X
-Date:   Wed,  5 Apr 2023 22:47:21 +0300
-Message-Id: <20230405194721.821536-9-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230405194721.821536-1-cristian.ciocaltea@collabora.com>
-References: <20230405194721.821536-1-cristian.ciocaltea@collabora.com>
+        with ESMTP id S233855AbjDETzR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 15:55:17 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D8624C15
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 12:55:15 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id r11so37313106wrr.12
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 12:55:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680724513;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ksXkmq2smhHgv1sUdzO5vfRJBokvvn2sm+WWkFQyrM=;
+        b=UuN0IN9aVIlNHBJdqSp0sMuA/m7oRprsHlZii5e5i5mAZtGML0tfoy5gToZi0ixSRO
+         GoGCh50gBOhjkUzt5Ho591h8D36M52O0eJjzocfz9PSLDDKZlaov+FZ45qk4cQeK3A9y
+         vvBJU05qJbMORSQji7RDAsndEvaDj241LAjDO2O/LR37EaJGjpraWZLDpRjrtcpbX+dI
+         UHB86uX0910Ak7YlUm7bIipvBr9zrz0MpvjiCHQNlm4I6gpOHmFijJ5PrT/Ixa1qhROv
+         ltfOWHFK/M95wZ+lCbvogDTyPIUyadT9Jl+ccjXagaHG2RKI+SgiPbYeehRqewVWJ+6z
+         zYaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680724514;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2ksXkmq2smhHgv1sUdzO5vfRJBokvvn2sm+WWkFQyrM=;
+        b=fIAXBMQcGZu6YOhxTvC+2n9XvDMDA/cSlY2dTZbcsavEP5G2K4+hFSnxlDg6wPjyKH
+         qMdaRHYBcsrL87INlc6BMUI0oxqnfn3AQCETB1FULS0pq/NAo+1pQU17h1rsjeEdq6wq
+         ZbZbVJRy2TUbeacz1SQJJsG26y27Mhq/HDFSnz93FlhpOvrvvwI8jVBYS2nLEXdnVfhz
+         g45GSs7yBNkLoEeMg9qg9XNFFK1382Wr42WIDsLrZEx3IovkX3s7A128JYimc44U+tCL
+         XiUQlS9mpAnf0DVhgaGLkbK8gtb6BQ34QRLkN34LiJ5y+S+ITQZ5AsA25IC2Z3wlGrY/
+         sJXg==
+X-Gm-Message-State: AAQBX9eIq3FmwkIwE81T84qgDBop32X7eUetHKiQsTvvh/pvJWIKNVEG
+        myZywtstkg7X/9Ci8aPqBNtPl4JA8ZcEyWlT4hQU6Q==
+X-Google-Smtp-Source: AKy350a+WR5HnIxkBJY1P8g+NaepzvHYZgg9l7RYM1p+GA2Vi83nA1ON10/P6Hr+Qwmmu9YcAGs/mrCa4R7btbO1PGE=
+X-Received: by 2002:a5d:51c7:0:b0:2ce:a8d6:570f with SMTP id
+ n7-20020a5d51c7000000b002cea8d6570fmr1546955wrv.4.1680724513613; Wed, 05 Apr
+ 2023 12:55:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230405191633.1864671-1-bhupesh.sharma@linaro.org>
+ <20230405191633.1864671-3-bhupesh.sharma@linaro.org> <CAA8EJppfRvc7nJ+AeUjrqfmZ8aLWPma-Ecda-tjOwezqWVueuw@mail.gmail.com>
+In-Reply-To: <CAA8EJppfRvc7nJ+AeUjrqfmZ8aLWPma-Ecda-tjOwezqWVueuw@mail.gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Thu, 6 Apr 2023 01:25:02 +0530
+Message-ID: <CAH=2Nty_EAyLVQfKhczJDhurvvTubotm44iitmWPNMQAe-fRLA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,275 +70,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the existing fan53555 driver to support the Rockchip RK860X
-regulators.
+On Thu, 6 Apr 2023 at 01:06, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Wed, 5 Apr 2023 at 22:19, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+> >
+> > Add USB superspeed qmp phy node to dtsi.
+> >
+> > Make sure that the various board dts files (which include sm4250.dtsi file)
+> > continue to work as intended.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 36 +++++++++++++++++--
+> >  .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+> >  3 files changed, 40 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > index a1f0622db5a0..75951fd439df 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > @@ -242,6 +242,9 @@ &usb {
+> >  &usb_dwc3 {
+> >         maximum-speed = "high-speed";
+> >         dr_mode = "peripheral";
+> > +
+> > +       phys = <&usb_hsphy>;
+> > +       phy-names = "usb2-phy";
+> >  };
+> >
+> >  &usb_hsphy {
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index 2a51c938bbcb..b2fa565e4816 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -650,6 +650,38 @@ usb_hsphy: phy@1613000 {
+> >                         status = "disabled";
+> >                 };
+> >
+> > +               usb_qmpphy: phy@1615000 {
+> > +                       compatible = "qcom,sm6115-qmp-usb3-phy";
+> > +                       reg = <0x0 0x01615000 0x0 0x200>;
+> > +                       clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
+> > +                                <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> > +                                <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+> > +                       clock-names = "cfg_ahb",
+> > +                                     "ref",
+> > +                                     "com_aux";
+> > +                       resets = <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>,
+> > +                                <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>;
+> > +                       reset-names = "phy_phy", "phy";
+> > +                       status = "disabled";
+> > +                       #address-cells = <2>;
+> > +                       #size-cells = <2>;
+> > +                       ranges;
+> > +
+> > +                       usb_ssphy: phy@1615200 {
+> > +                               reg = <0x0 0x01615200 0x0 0x200>,
+> > +                                     <0x0 0x01615400 0x0 0x200>,
+> > +                                     <0x0 0x01615c00 0x0 0x400>,
+> > +                                     <0x0 0x01615600 0x0 0x200>,
+> > +                                     <0x0 0x01615800 0x0 0x200>,
+> > +                                     <0x0 0x01615a00 0x0 0x100>;
+> > +                               #clock-cells = <0>;
+> > +                               #phy-cells = <0>;
+> > +                               clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> > +                               clock-names = "pipe0";
+> > +                               clock-output-names = "usb3_phy_pipe_clk_src";
+> > +                       };
+> > +               };
+>
+> I can repeat previous message:
+>
+> Please update this to newer style bindings (see
+> qcom,sc8280xp-qmp-usb3-uni-phy.yaml).
+>
+> We are going to switch all QMP PHYs to use a newer style of bindings.
+> I have started the work to convert existing usecases. As you are
+> adding a new DT node, please add it in a good shape from the
+> beginning.
 
-RK8600/RK8601 are fully compatible with FAN53555 regulators.
+Your earlier message was not clear and I sent out a reply for the
+cover letter query you had, but got no reply. I think a pointer to
+<https://patchwork.kernel.org/project/linux-phy/list/?series=733714>
+would have been more clear.
 
-RK8602/RK8603 are a bit different, having a wider output voltage
-selection range, from 0.5 V to 1.5 V in 6.25 mV steps. They also use
-additional VSEL0/VSEL1 registers for the voltage selector, but the
-enable and mode bits are still located in the original FAN53555 specific
-VSEL0/VSEL1 registers.
+I will rework and send v6 accordingly.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- drivers/regulator/fan53555.c | 133 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 130 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
-index acf14ba7aaa6..1c662d6ea57b 100644
---- a/drivers/regulator/fan53555.c
-+++ b/drivers/regulator/fan53555.c
-@@ -26,6 +26,9 @@
- #define FAN53555_VSEL0		0x00
- #define FAN53555_VSEL1		0x01
- 
-+#define RK8602_VSEL0		0x06
-+#define RK8602_VSEL1		0x07
-+
- #define TCS4525_VSEL0		0x11
- #define TCS4525_VSEL1		0x10
- #define TCS4525_TIME		0x13
-@@ -55,6 +58,7 @@
- 
- #define FAN53555_NVOLTAGES	64	/* Numbers of voltages */
- #define FAN53526_NVOLTAGES	128
-+#define RK8602_NVOLTAGES	160
- 
- #define TCS_VSEL0_MODE		BIT(7)
- #define TCS_VSEL1_MODE		BIT(6)
-@@ -64,6 +68,8 @@
- enum fan53555_vendor {
- 	FAN53526_VENDOR_FAIRCHILD = 0,
- 	FAN53555_VENDOR_FAIRCHILD,
-+	FAN53555_VENDOR_ROCKCHIP,	/* RK8600, RK8601 */
-+	RK8602_VENDOR_ROCKCHIP,		/* RK8602, RK8603 */
- 	FAN53555_VENDOR_SILERGY,
- 	FAN53526_VENDOR_TCS,
- };
-@@ -87,6 +93,14 @@ enum {
- 	FAN53555_CHIP_ID_08 = 8,
- };
- 
-+enum {
-+	RK8600_CHIP_ID_08 = 8,		/* RK8600, RK8601 */
-+};
-+
-+enum {
-+	RK8602_CHIP_ID_10 = 10,		/* RK8602, RK8603 */
-+};
-+
- enum {
- 	TCS4525_CHIP_ID_12 = 12,
- };
-@@ -117,6 +131,8 @@ struct fan53555_device_info {
- 	/* Voltage setting register */
- 	unsigned int vol_reg;
- 	unsigned int sleep_reg;
-+	unsigned int en_reg;
-+	unsigned int sleep_en_reg;
- 	/* Voltage range and step(linear) */
- 	unsigned int vsel_min;
- 	unsigned int vsel_step;
-@@ -159,7 +175,7 @@ static int fan53555_set_suspend_enable(struct regulator_dev *rdev)
- {
- 	struct fan53555_device_info *di = rdev_get_drvdata(rdev);
- 
--	return regmap_update_bits(rdev->regmap, di->sleep_reg,
-+	return regmap_update_bits(rdev->regmap, di->sleep_en_reg,
- 				  VSEL_BUCK_EN, VSEL_BUCK_EN);
- }
- 
-@@ -167,7 +183,7 @@ static int fan53555_set_suspend_disable(struct regulator_dev *rdev)
- {
- 	struct fan53555_device_info *di = rdev_get_drvdata(rdev);
- 
--	return regmap_update_bits(rdev->regmap, di->sleep_reg,
-+	return regmap_update_bits(rdev->regmap, di->sleep_en_reg,
- 				  VSEL_BUCK_EN, 0);
- }
- 
-@@ -317,6 +333,50 @@ static int fan53555_voltages_setup_fairchild(struct fan53555_device_info *di)
- 	return 0;
- }
- 
-+static int fan53555_voltages_setup_rockchip(struct fan53555_device_info *di)
-+{
-+	/* Init voltage range and step */
-+	switch (di->chip_id) {
-+	case RK8600_CHIP_ID_08:
-+		di->vsel_min = 712500;
-+		di->vsel_step = 12500;
-+		break;
-+	default:
-+		dev_err(di->dev,
-+			"Chip ID %d not supported!\n", di->chip_id);
-+		return -EINVAL;
-+	}
-+	di->slew_reg = FAN53555_CONTROL;
-+	di->slew_mask = CTL_SLEW_MASK;
-+	di->ramp_delay_table = slew_rates;
-+	di->n_ramp_values = ARRAY_SIZE(slew_rates);
-+	di->vsel_count = FAN53555_NVOLTAGES;
-+
-+	return 0;
-+}
-+
-+static int rk8602_voltages_setup_rockchip(struct fan53555_device_info *di)
-+{
-+	/* Init voltage range and step */
-+	switch (di->chip_id) {
-+	case RK8602_CHIP_ID_10:
-+		di->vsel_min = 500000;
-+		di->vsel_step = 6250;
-+		break;
-+	default:
-+		dev_err(di->dev,
-+			"Chip ID %d not supported!\n", di->chip_id);
-+		return -EINVAL;
-+	}
-+	di->slew_reg = FAN53555_CONTROL;
-+	di->slew_mask = CTL_SLEW_MASK;
-+	di->ramp_delay_table = slew_rates;
-+	di->n_ramp_values = ARRAY_SIZE(slew_rates);
-+	di->vsel_count = RK8602_NVOLTAGES;
-+
-+	return 0;
-+}
-+
- static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
- {
- 	/* Init voltage range and step */
-@@ -377,6 +437,7 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 	switch (di->vendor) {
- 	case FAN53526_VENDOR_FAIRCHILD:
- 	case FAN53555_VENDOR_FAIRCHILD:
-+	case FAN53555_VENDOR_ROCKCHIP:
- 	case FAN53555_VENDOR_SILERGY:
- 		switch (pdata->sleep_vsel_id) {
- 		case FAN53555_VSEL_ID_0:
-@@ -391,6 +452,27 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 			dev_err(di->dev, "Invalid VSEL ID!\n");
- 			return -EINVAL;
- 		}
-+		di->sleep_en_reg = di->sleep_reg;
-+		di->en_reg = di->vol_reg;
-+		break;
-+	case RK8602_VENDOR_ROCKCHIP:
-+		switch (pdata->sleep_vsel_id) {
-+		case FAN53555_VSEL_ID_0:
-+			di->sleep_reg = RK8602_VSEL0;
-+			di->vol_reg = RK8602_VSEL1;
-+			di->sleep_en_reg = FAN53555_VSEL0;
-+			di->en_reg = FAN53555_VSEL1;
-+			break;
-+		case FAN53555_VSEL_ID_1:
-+			di->sleep_reg = RK8602_VSEL1;
-+			di->vol_reg = RK8602_VSEL0;
-+			di->sleep_en_reg = FAN53555_VSEL1;
-+			di->en_reg = FAN53555_VSEL0;
-+			break;
-+		default:
-+			dev_err(di->dev, "Invalid VSEL ID!\n");
-+			return -EINVAL;
-+		}
- 		break;
- 	case FAN53526_VENDOR_TCS:
- 		switch (pdata->sleep_vsel_id) {
-@@ -406,6 +488,8 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 			dev_err(di->dev, "Invalid VSEL ID!\n");
- 			return -EINVAL;
- 		}
-+		di->sleep_en_reg = di->sleep_reg;
-+		di->en_reg = di->vol_reg;
- 		break;
- 	default:
- 		dev_err(di->dev, "vendor %d not supported!\n", di->vendor);
-@@ -427,10 +511,23 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 		}
- 		break;
- 	case FAN53555_VENDOR_FAIRCHILD:
-+	case FAN53555_VENDOR_ROCKCHIP:
- 	case FAN53555_VENDOR_SILERGY:
- 		di->mode_reg = di->vol_reg;
- 		di->mode_mask = VSEL_MODE;
- 		break;
-+	case RK8602_VENDOR_ROCKCHIP:
-+		di->mode_mask = VSEL_MODE;
-+
-+		switch (pdata->sleep_vsel_id) {
-+		case FAN53555_VSEL_ID_0:
-+			di->mode_reg = FAN53555_VSEL1;
-+			break;
-+		case FAN53555_VSEL_ID_1:
-+			di->mode_reg = FAN53555_VSEL0;
-+			break;
-+		}
-+		break;
- 	case FAN53526_VENDOR_TCS:
- 		di->mode_reg = TCS4525_COMMAND;
- 
-@@ -456,6 +553,12 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 	case FAN53555_VENDOR_FAIRCHILD:
- 		ret = fan53555_voltages_setup_fairchild(di);
- 		break;
-+	case FAN53555_VENDOR_ROCKCHIP:
-+		ret = fan53555_voltages_setup_rockchip(di);
-+		break;
-+	case RK8602_VENDOR_ROCKCHIP:
-+		ret = rk8602_voltages_setup_rockchip(di);
-+		break;
- 	case FAN53555_VENDOR_SILERGY:
- 		ret = fan53555_voltages_setup_silergy(di);
- 		break;
-@@ -481,7 +584,7 @@ static int fan53555_regulator_register(struct fan53555_device_info *di,
- 	rdesc->ops = &fan53555_regulator_ops;
- 	rdesc->type = REGULATOR_VOLTAGE;
- 	rdesc->n_voltages = di->vsel_count;
--	rdesc->enable_reg = di->vol_reg;
-+	rdesc->enable_reg = di->en_reg;
- 	rdesc->enable_mask = VSEL_BUCK_EN;
- 	rdesc->min_uV = di->vsel_min;
- 	rdesc->uV_step = di->vsel_step;
-@@ -531,6 +634,18 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
- 	}, {
- 		.compatible = "fcs,fan53555",
- 		.data = (void *)FAN53555_VENDOR_FAIRCHILD
-+	}, {
-+		.compatible = "rockchip,rk8600",
-+		.data = (void *)FAN53555_VENDOR_ROCKCHIP
-+	}, {
-+		.compatible = "rockchip,rk8601",
-+		.data = (void *)FAN53555_VENDOR_ROCKCHIP
-+	}, {
-+		.compatible = "rockchip,rk8602",
-+		.data = (void *)RK8602_VENDOR_ROCKCHIP
-+	}, {
-+		.compatible = "rockchip,rk8603",
-+		.data = (void *)RK8602_VENDOR_ROCKCHIP
- 	}, {
- 		.compatible = "silergy,syr827",
- 		.data = (void *)FAN53555_VENDOR_SILERGY,
-@@ -637,6 +752,18 @@ static const struct i2c_device_id fan53555_id[] = {
- 	}, {
- 		.name = "fan53555",
- 		.driver_data = FAN53555_VENDOR_FAIRCHILD
-+	}, {
-+		.name = "rk8600",
-+		.driver_data = FAN53555_VENDOR_ROCKCHIP
-+	}, {
-+		.name = "rk8601",
-+		.driver_data = FAN53555_VENDOR_ROCKCHIP
-+	}, {
-+		.name = "rk8602",
-+		.driver_data = RK8602_VENDOR_ROCKCHIP
-+	}, {
-+		.name = "rk8603",
-+		.driver_data = RK8602_VENDOR_ROCKCHIP
- 	}, {
- 		.name = "syr827",
- 		.driver_data = FAN53555_VENDOR_SILERGY
--- 
-2.40.0
-
+Thanks,
+Bhupesh
