@@ -2,271 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 028BD6D7225
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2271A6D7230
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236696AbjDEBph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 21:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57202 "EHLO
+        id S231589AbjDEBwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 21:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236464AbjDEBpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:45:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCB53599;
-        Tue,  4 Apr 2023 18:45:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FB13639E4;
-        Wed,  5 Apr 2023 01:45:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72EADC433EF;
-        Wed,  5 Apr 2023 01:45:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680659134;
-        bh=v5MzJVx3ApNivha6Yi9fk8iwlHw1THAZvhjRL060T3s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SCan6Qh7b4j996wxje4t00ajCOSNlQPGcD1uL/dk2mGthxG4efufdUQ+lzXuoehpB
-         IDDOwlgCcAbqz37uY9UKQvGDUYj/FIMLP0qBbd9MYWhIcLIuuct/KiOjvmcmsnV8Uw
-         1AtxxyJJ1BbtB0xHEh/iPEPBmi9qgSbC70XOWr11XNwq/wwJCun7st2w9yqmcFrHfN
-         Tqi6OM4hADtybHcdrdX1JCL1/soM9B/5XJVEclVuKmuQ6Z2/mVUrIesROszjLGT/t9
-         m2g6xlQOW3fmyijoUCm/Yh1qj4ojbiPfhQpaHX+B0Pq21tlsIYf1zC1dFs8HuPDHt5
-         VqlStL+TVEHXA==
-Received: by mail-yb1-f173.google.com with SMTP id cf7so40950288ybb.5;
-        Tue, 04 Apr 2023 18:45:34 -0700 (PDT)
-X-Gm-Message-State: AAQBX9f2GgKcoT6pK91DJw8kFUnSabpO04QqXHECM8tGWgrg/kc33Txt
-        kphiE/uXfnNluXEq5p3hMlXXJ3/K0tfQY8ijkg==
-X-Google-Smtp-Source: AKy350bCL+6/83jZmfnBumi8qMNba8O04DC79AQSSXaVislWjAL0J3ejnUR0Ob2SRAaECnx3jk6lJaOz9l/KscW25Og=
-X-Received: by 2002:a25:d64e:0:b0:b6c:2224:8a77 with SMTP id
- n75-20020a25d64e000000b00b6c22248a77mr3178587ybg.1.1680659133393; Tue, 04 Apr
- 2023 18:45:33 -0700 (PDT)
+        with ESMTP id S232695AbjDEBwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:52:31 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE60D3AA4
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 18:52:28 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id h8so137419439ede.8
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google; t=1680659547;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=d4lO58vBzScCago2059HBRosOdt96vH3MDCMxFhDpLU=;
+        b=HwSCCqXDMy0m5qpeuL3nho2ae7NGTVlp+favKncFsOEx+buTc7X76zde/6X9FZfRII
+         dV/YFIHSGCBcdRTGl7XqPcAMmnbUas1kvc1hTPh67y9MHgcsTzgv8vup8iENJWoXfOzM
+         NaKoLk9WvGGmezSnFQSkQKVME+kd61lNwBa7s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680659547;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d4lO58vBzScCago2059HBRosOdt96vH3MDCMxFhDpLU=;
+        b=wiTLubdM6su64D71oBLyQIr0MUgC0UDiHNcNt7vvuIDO5GkJt6eL59VNCprlsa+LVP
+         gV/v+27d2KCRjugQilI3CSWm7wlTKBDW+J8VZvclRfsWhlsYHbF7IIShkkPLTNeVJehA
+         sAxYRxvQtW/Y94+LWgPf/tUuuhjLSBrRetORQMUKmuaBhGGQrOPi9AQaOE9c1kooERUN
+         kGk0WHpxrhvjxgLCbD/2UyI610Trbdy7R34LIKeqMrAFiCNfN0qxMmXPE8hbnblL7fk1
+         iBA96i5oHnCM17Z4KCFbxDABL5z0PKFgqxyMHZLsv3AO5wBLtutdu+Sv31yb3H/9K1r0
+         fTVw==
+X-Gm-Message-State: AAQBX9d2Ox47xz/dEsOm3Ij3wGf/zO+Q9wNZ8steiA1QRWvUXTLVpQx7
+        6JE91TwP9QNfkBGbs3x7K6huxWRvu/UcwLiNGHw=
+X-Google-Smtp-Source: AKy350Z4GY34/FyJIoHiTzDXPRoet2XYtZIsGqixctsIhgTdsjsUlDCm0ENZtjAH2qUyMbTU2uFhN6f3zFswoiR0zKo=
+X-Received: by 2002:a17:906:e41:b0:933:1967:a984 with SMTP id
+ q1-20020a1709060e4100b009331967a984mr726139eji.15.1680659547205; Tue, 04 Apr
+ 2023 18:52:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
- <1674183732-5157-2-git-send-email-lizhi.hou@amd.com> <CAL_Jsq+FM9P0n7BQZBY1AGJRtjAWw9F6h5DYmLkdPeXZaiYJwA@mail.gmail.com>
- <a13ba751-9350-47ee-1c4d-77bbfbb8ed72@amd.com> <CAL_Jsq+5LtUcLTRnywdf7XB3HNtO6j2J=qykVeDN1MYZEEx1Cg@mail.gmail.com>
- <0ac96eb0-908c-f0c6-2ec8-23957f5a7941@amd.com>
-In-Reply-To: <0ac96eb0-908c-f0c6-2ec8-23957f5a7941@amd.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 4 Apr 2023 20:45:21 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJEbGRj8dUw-rijLibkcyJEA3PB=98nsJ8e78YokWjkvw@mail.gmail.com>
-Message-ID: <CAL_JsqJEbGRj8dUw-rijLibkcyJEA3PB=98nsJ8e78YokWjkvw@mail.gmail.com>
-Subject: Re: [PATCH V7 1/3] of: dynamic: Add interfaces for creating device
- node dynamically
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, frowand.list@gmail.com,
-        helgaas@kernel.org, clement.leger@bootlin.com, max.zhen@amd.com,
-        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
-        stefano.stabellini@xilinx.com, trix@redhat.com
+References: <20230331091501.3800299-1-jk@codeconstruct.com.au>
+In-Reply-To: <20230331091501.3800299-1-jk@codeconstruct.com.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 5 Apr 2023 01:52:15 +0000
+Message-ID: <CACPK8XdLpg2H4a2nHo4PokfBc4r3D8MbK2-62jXkPXAq8Q03Rg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] i3c dw,ast2600: Add a driver for the AST2600 i3c controller
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        Matt Johnston <matt@codeconstruct.com.au>,
+        Vitor Soares <ivitro@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jack Chen <zenghuchen@google.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 24, 2023 at 4:26=E2=80=AFPM Lizhi Hou <lizhi.hou@amd.com> wrote=
-:
+On Fri, 31 Mar 2023 at 09:15, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
 >
->
-> On 3/24/23 07:14, Rob Herring wrote:
-> > On Thu, Mar 23, 2023 at 9:12=E2=80=AFPM Lizhi Hou <lizhi.hou@amd.com> w=
-rote:
-> >>
-> >> On 3/23/23 15:40, Rob Herring wrote:
-> >>> On Thu, Jan 19, 2023 at 9:02=E2=80=AFPM Lizhi Hou <lizhi.hou@amd.com>=
- wrote:
-> >>>> of_create_node() creates device node dynamically. The parent device =
-node
-> >>>> and full name are required for creating the node. It optionally crea=
-tes
-> >>>> an OF changeset and attaches the newly created node to the changeset=
-. The
-> >>>> device node pointer and the changeset pointer can be used to add
-> >>>> properties to the device node and apply the node to the base tree.
-> >>>>
-> >>>> of_destroy_node() frees the device node created by of_create_node().=
- If
-> >>>> an OF changeset was also created for this node, it will destroy the
-> >>>> changeset before freeing the device node.
-> >>>>
-> >>>> Expand of_changeset APIs to handle specific types of properties.
-> >>>>       of_changeset_add_prop_string()
-> >>>>       of_changeset_add_prop_string_array()
-> >>>>       of_changeset_add_prop_u32_array()
-> >>>>
-> >>>> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
-> >>> Your Sob should be last because you sent this patch. The order of Sob
-> >>> is roughly the order of possession of the patch.
-> >> Got it.
-> >>>> Signed-off-by: Sonal Santan <sonal.santan@amd.com>
-> >>>> Signed-off-by: Max Zhen <max.zhen@amd.com>
-> >>> So Sonal and Max modified this patch?
-> >> They did not directly modify the code. And we discussed the design
-> >> together.  They also reviewed the patch before I sent it out. Please l=
-et
-> >> me know if other keyword should be used in this case.
-> > Reviewed-by or nothing. Some feel that only reviews on public lists
-> > should get that tag and internal, private reviews don't matter.
-> >
-> >>>> Reviewed-by: Brian Xu <brian.xu@amd.com>
-> >>>> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
-> >>> Why does this have Cl=C3=A9ment's Sob?
-> >> I referenced Cl=C3=A9ment 's code and used one portion in my first pat=
-ch
-> >> series. And I re-implemented it later to address the code review
-> >> comments/requests.
-> > Then it goes first or you can use the 'Co-developed-by' tag.
-> >
-> >>>> ---
-> >>>>    drivers/of/dynamic.c | 197 ++++++++++++++++++++++++++++++++++++++=
-+++++
-> >>>>    include/linux/of.h   |  24 ++++++
-> >>>>    2 files changed, 221 insertions(+)
-> >>>>
-> >>>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> >>>> index cd3821a6444f..4e211a1d039f 100644
-> >>>> --- a/drivers/of/dynamic.c
-> >>>> +++ b/drivers/of/dynamic.c
-> >>>> @@ -461,6 +461,71 @@ struct device_node *__of_node_dup(const struct =
-device_node *np,
-> >>>>           return NULL;
-> >>>>    }
-> >>>>
-> >>>> +/**
-> >>>> + * of_create_node - Dynamically create a device node
-> >>> For consistency, I think this should be of_changeset_create_node().
-> >> Sure.
-> >>>> + *
-> >>>> + * @parent: Pointer to parent device node
-> >>>> + * @full_name: Node full name
-> >>>> + * @cset: Pointer to returning changeset
-> >>>> + *
-> >>>> + * Return: Pointer to the created device node or NULL in case of an=
- error.
-> >>>> + */
-> >>>> +struct device_node *of_create_node(struct device_node *parent,
-> >>>> +                                  const char *full_name,
-> >>>> +                                  struct of_changeset **cset)
-> >>>> +{
-> >>>> +       struct of_changeset *ocs;
-> >>>> +       struct device_node *np;
-> >>>> +       int ret;
-> >>>> +
-> >>>> +       np =3D __of_node_dup(NULL, full_name);
-> >>>> +       if (!np)
-> >>>> +               return NULL;
-> >>>> +       np->parent =3D parent;
-> >>>> +
-> >>>> +       if (!cset)
-> >>>> +               return np;
-> >>>> +
-> >>>> +       ocs =3D kmalloc(sizeof(*ocs), GFP_KERNEL);
-> >>>> +       if (!ocs) {
-> >>>> +               of_node_put(np);
-> >>>> +               return NULL;
-> >>>> +       }
-> >>>> +
-> >>>> +       of_changeset_init(ocs);
-> >>>> +       ret =3D of_changeset_attach_node(ocs, np);
-> >>>> +       if (ret) {
-> >>>> +               of_changeset_destroy(ocs);
-> >>>> +               of_node_put(np);
-> >>>> +               kfree(ocs);
-> >>>> +               return NULL;
-> >>>> +       }
-> >>>> +
-> >>>> +       np->data =3D ocs;
-> >>>> +       *cset =3D ocs;
-> >>>> +
-> >>>> +       return np;
-> >>>> +}
-> >>>> +EXPORT_SYMBOL(of_create_node);
-> >>>> +
-> >>>> +/**
-> >>>> + * of_destroy_node - Destroy a dynamically created device node
-> >>>> + *
-> >>>> + * @np: Pointer to dynamically created device node
-> >>>> + *
-> >>>> + */
-> >>>> +void of_destroy_node(struct device_node *np)
-> >>>> +{
-> >>>> +       struct of_changeset *ocs;
-> >>>> +
-> >>>> +       if (np->data) {
-> >>>> +               ocs =3D (struct of_changeset *)np->data;
-> >>>> +               of_changeset_destroy(ocs);
-> >>>> +       }
-> >>>> +       of_node_put(np);
-> >>> A sequence like this would be broken:
-> >>>
-> >>> np  =3D of_create_node()
-> >>> of_node_get(np)
-> >>> of_destroy_node(np)
-> >>>
-> >>> The put here won't free the node because it still has a ref, but we
-> >>> just freed the changeset. For this to work correctly, we would need
-> >>> the release function to handle np->data instead. However, all users o=
-f
-> >>> data aren't a changeset.
-> >>>
-> >>> I'm failing to remember why we're storing the changeset in 'data', bu=
-t
-> >>> there doesn't seem to be a reason now so I think that can just be
-> >>> dropped. Then if you want to free the node, you'd just do an
-> >>> of_node_put(). (And maybe after the node is attached you do a put too=
-,
-> >>> because the attach does a get. Not completely sure.)
-> >> The question is how to save changeset and free it later. I used global
-> >> link list to track the changeset been created.
-> >>
-> >> Storing the changeset in 'data' can avoid using the global link list.
-> >>
-> >> To use of_node_put() to free both node and changeset, I think we can
-> >>
-> >>     1) add a new flag, then in of_node_release() we can know np->data =
-is
-> >> changeset by checking the flag.
-> >>
-> >>     2) When creating node, allocate extra memory for changeset and set
-> >> np->data to a global function of_free_dynamic_node().
-> >>
-> >>         In of_node_release(), check if np->data =3D=3D of_free_dynamic=
-_node,
-> >> call of_free_dynamic_node(np).
-> >>
-> >>         in of_free_dynamic_node(), free changeset by
-> >> of_changeset_destroy(np+1)
-> >>
-> >> Does this make sense to you? If yes, 1) or 2) sounds better?
-> > Neither works. Changesets and nodes are not 1:1 in general though they
-> > are in your use. So you can use the data ptr, but the caller has to
-> > decide that, not the DT core code.
->
-> Ok. In of_pci_make_dev_node(), I can do
->
->       ocs =3D kmalloc(*ocs);
->
->       of_changeset_init(ocs);
->
->       np =3D of_changeset_create_node(ocs, name);
->
->       np->data =3D ocs;
->
-> Then in of_pci_remove_node(), I can do
->
->       if (!np || !of_node_check_flag(np, OF_DYNAMIC)) return;
->
->      of_changeset_destroy(np->data);
->
->      of_node_put(np);
->
->
-> Does this sound reasonable?
+> This series adds a new i3c controller driver, for the ASPEED AST2600 i3c
+> SoC peripheral. This device is very similar to the dw i3c controller, so
+> we implement this by adding a little platform abstraction to the dw
+> driver, and then a platform implementation for ast2600.
 
-Yes, I think that should work.
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-Rob
+I have also tested it in qemu.
+
+>
+> For those testing at home: there's a couple of prereqs for getting this
+> running: we need the ast2600 i3c clocks in their proper configuration,
+> as implemented in:
+>
+>   https://lore.kernel.org/all/20230302005834.13171-1-jk@codeconstruct.com.au/
+>
+> - this series has been merged to clk-next, but has not hit Linus'
+> upstream yet. The series will still build fine without this.
+>
+> You'll also want the dts definitions for the i3c controller and
+> pincontrol setup on the ast2600 platform. I have changes for those in my
+> dev/i3c branch:
+>
+>   https://github.com/CodeConstruct/linux/commits/dev/i3c
+>
+> - and will send those once we have the driver accepted.
+
+Given we have acks on the bindings, I think it's safe to send the
+device tree changes now so we can merge what you have in the upcoming
+merge window. If there's changes we can modify or revert.
+
+Cheers,
+
+Joel
+
+>
+> v3: expand the prereqs & background above, and implement some feedback
+> from review. Mainly: rather that using a platform_data pointer, assume
+> platforms will use an encapsulating struct for their platform-specific
+> data
+>
+> v2: This is a rework from an earlier series that implemented this as
+> part of the dw driver; I have adopted Ben Dooks' suggestion to split
+> into a new driver + exported hooks from the dw base.
+>
+> As always: comments, queries etc. are most welcome.
+>
+> Cheers,
+>
+>
+> Jeremy
+>
+> Jeremy Kerr (3):
+>   i3c: dw: Add infrastructure for platform-specific implementations
+>   dt-bindings: i3c: Add AST2600 i3c controller
+>   i3c: ast2600: Add AST2600 platform-specific driver
+>
+>  .../bindings/i3c/aspeed,ast2600-i3c.yaml      |  72 ++++++++
+>  MAINTAINERS                                   |   6 +
+>  drivers/i3c/master/Kconfig                    |  14 ++
+>  drivers/i3c/master/Makefile                   |   1 +
+>  drivers/i3c/master/ast2600-i3c-master.c       | 168 ++++++++++++++++++
+>  drivers/i3c/master/dw-i3c-master.c            |  76 ++++----
+>  drivers/i3c/master/dw-i3c-master.h            |  54 ++++++
+>  7 files changed, 358 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
+>  create mode 100644 drivers/i3c/master/ast2600-i3c-master.c
+>  create mode 100644 drivers/i3c/master/dw-i3c-master.h
+>
+> --
+> 2.39.1
+>
