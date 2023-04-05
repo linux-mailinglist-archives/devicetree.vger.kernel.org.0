@@ -2,87 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C50306D7638
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C186A6D7645
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237298AbjDEIEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 04:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45336 "EHLO
+        id S237209AbjDEIGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 04:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237290AbjDEIEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:04:41 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712F35258;
-        Wed,  5 Apr 2023 01:04:38 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id nc3so8377923qvb.1;
-        Wed, 05 Apr 2023 01:04:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680681877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/5PlaQL0CwR1homUmLCaXKeBaMRCzkIszzV6MDUmfG4=;
-        b=YNPV6kOcrw8yHuwnYLE+ZH8fv/gPuymuZVnICGCeZbz/+Cy85jGtT3FrkaCy+2qe7n
-         FeMVf5hYCb1UzyVbusTEAv1Qf5c2wborR1NlhnqvE+Xt6FNTgcTnMcW+ODGuBgLAgaJ6
-         vtUlEs5J6ioKRVzrQ5M1VWXkHgBU65FXj5AnvXcAQsn6k+DqSM5+AGcI5YF8y3l1A3Sq
-         zNNVwK1djHbmKfKT+FVlJKNF7FSXanDFg+eRqRYFYvQWtISQVsql6R4rKIYVpjCDWiv9
-         71ZDqMchKYOV2fIcDmhJTeJcb08hH8z+2LEls2dy6bPhdfs0ctBlsq46lJkHSmiKYP8r
-         oV5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680681877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/5PlaQL0CwR1homUmLCaXKeBaMRCzkIszzV6MDUmfG4=;
-        b=BpkbFQwk2Nb71kfTKUEI6o1oLv1hs0hxVm+yehpWKso5yjoz2EM5XY1v3S2oaevB7i
-         q0a2+fY/mtOC4jGnZINynonrfof2OzfZgUnFzGeGqA607cFFdNDZC9hmprJR2za13LHK
-         MXuDFsIzspGXiwaI02DGK5+/5ewkCTtx+K0HLeAXpyhm7uMToZ87ukpNXSxh5Kengnay
-         A3N/xVyJwk+49AMLSzaLofuw18odzCQ71jUv3kLrWf2DbIfUXPsKvmXOKKOkUecKIv52
-         krx6uHOMgW8ykFlAHHS/l+Dl3KYYiXLUqzS0cu92lyG8zXpDZOFQ7VdaXdPEA3yJ39cW
-         QozQ==
-X-Gm-Message-State: AAQBX9fW1wQtpCU0bbgICyiif3KYUaRXgyLb5BKw6euQ881ZLKGVkHr7
-        TbSn2kpySA8gRPXm43qsHUA=
-X-Google-Smtp-Source: AKy350ZGNrcVWqCmJG7MDx3CCggJaOTbtdILZjJWRUgva6hOWEcG/qwscVEjJzWs+5IqLSiAfz0HVA==
-X-Received: by 2002:a05:6214:2342:b0:5c0:51f0:eb45 with SMTP id hu2-20020a056214234200b005c051f0eb45mr7720103qvb.15.1680681877394;
-        Wed, 05 Apr 2023 01:04:37 -0700 (PDT)
-Received: from PCBABN.skidata.net ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id f30-20020ad4559e000000b005e2fc1182besm3340730qvx.4.2023.04.05.01.04.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 01:04:36 -0700 (PDT)
-From:   Benjamin Bara <bbara93@gmail.com>
-To:     mazziesaccount@gmail.com
-Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com, bbara93@gmail.com,
-        benjamin.bara@skidata.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, stwiss.opensource@diasemi.com,
-        support.opensource@diasemi.com
-Subject: Re: [PATCH v2 1/3] regulator: da9063: add voltage monitoring registers
-Date:   Wed,  5 Apr 2023 10:04:22 +0200
-Message-Id: <20230405080422.560239-1-bbara93@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <2652d7df-b208-b88a-026e-5821d3d745ef@gmail.com>
-References: <2652d7df-b208-b88a-026e-5821d3d745ef@gmail.com>
+        with ESMTP id S236950AbjDEIGg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:06:36 -0400
+Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83AF395;
+        Wed,  5 Apr 2023 01:06:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=X4PVQdadl6ZTLGeoTeEp0Dd4gWHDvdr8s3g3jGogpgM=; b=DKg+iwJwTae61N3oz8ZS/lSVqH
+        kXviuaxC6aMQnQA5NKnoAYS+qajbWl5RIS05vx4JjXnA/1uY+a6/soU4CazZazeHQav2ueMfPrrCw
+        EQUtTTogq4y06UUHDaVZhomah8Ld7DY4BLc4PlF02mk+6H6VMn5G2AarBSTEbEfXR7zxMLhc8ipKq
+        fl5YJeELcKAFBG/bLUYgII+mWcmdo/VpMksm9FsNLpasKzi1IS7cA+k2ezf09uaGVGwNlxhm01sFE
+        KDYfuKdYv5cDPGcxNWj9Txx2BEhobQP6E+J5LNv2LY9KNdhtAkeSaFEL95RFldfCXBGTcR+AwDIHi
+        WB1uHuRg==;
+Received: from j130084.upc-j.chello.nl ([24.132.130.84] helo=noisy.programming.kicks-ass.net)
+        by desiato.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+        id 1pjy9S-009pS6-2w;
+        Wed, 05 Apr 2023 08:05:55 +0000
+Received: from hirez.programming.kicks-ass.net (hirez.programming.kicks-ass.net [192.168.1.225])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 9A0B2300274;
+        Wed,  5 Apr 2023 10:05:48 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+        id 6D9C5262312B5; Wed,  5 Apr 2023 10:05:48 +0200 (CEST)
+Date:   Wed, 5 Apr 2023 10:05:48 +0200
+From:   Peter Zijlstra <peterz@infradead.org>
+To:     David Dai <davidai@google.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        James Morse <james.morse@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Juri Lelli <juri.lelli@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+        Daniel Bristot de Oliveira <bristot@redhat.com>,
+        Valentin Schneider <vschneid@redhat.com>,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
+Subject: Re: [RFC PATCH 0/6] Improve VM DVFS and task placement behavior
+Message-ID: <20230405080548.GW4253@hirez.programming.kicks-ass.net>
+References: <20230330224348.1006691-1-davidai@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230330224348.1006691-1-davidai@google.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for the feedback!
+On Thu, Mar 30, 2023 at 03:43:35PM -0700, David Dai wrote:
+> Hi,
+> 
+> This patch series is a continuation of the talk Saravana gave at LPC 2022
+> titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
+> of the talk is that workloads running in a guest VM get terrible task
+> placement and DVFS behavior when compared to running the same workload in
+> the host. Effectively, no EAS for threads inside VMs. This would make power
+> and performance terrible just by running the workload in a VM even if we
+> assume there is zero virtualization overhead.
+> 
+> We have been iterating over different options for communicating between
+> guest and host, ways of applying the information coming from the
+> guest/host, etc to figure out the best performance and power improvements
+> we could get.
+> 
+> The patch series in its current state is NOT meant for landing in the
+> upstream kernel. We are sending this patch series to share the current
+> progress and data we have so far. The patch series is meant to be easy to
+> cherry-pick and test on various devices to see what performance and power
+> benefits this might give for others.
+> 
+> With this series, a workload running in a VM gets the same task placement
+> and DVFS treatment as it would when running in the host.
+> 
+> As expected, we see significant performance improvement and better
+> performance/power ratio. If anyone else wants to try this out for your VM
+> workloads and report findings, that'd be very much appreciated.
+> 
+> The idea is to improve VM CPUfreq/sched behavior by:
+> - Having guest kernel to do accurate load tracking by taking host CPU
+>   arch/type and frequency into account.
+> - Sharing vCPU run queue utilization information with the host so that the
+>   host can do proper frequency scaling and task placement on the host side.
 
-On Wed, 5 Apr 2023 at 09:29, Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> Just a very minor thing - wouldn't this check be better as:
-> if (regl->info->vmon.mask) ?
-> We may have device(s) where 0 is a valid reg. However, mask 0 is
-> probably not making sense - unless I misunderstand something?
+So, not having actually been send many of the patches I've no idea what
+you've done... Please, eradicate this ridiculous idea of sending random
+people a random subset of a patch series. Either send all of it or none,
+this is a bloody nuisance.
 
-This config is specific to the da9063. On this IC, register 0 is used for
-PAGE_CON (control register). The registers relevant for voltage monitoring are
-on 0x115-0x117. So IMHO this should be fine.
+Having said that; my biggest worry is that you're making scheduler
+internals into an ABI. I would hate for this paravirt interface to tie
+us down.
