@@ -2,50 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC4DF6D76CC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D7A6D76F6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 10:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236987AbjDEI1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 04:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48074 "EHLO
+        id S237514AbjDEIbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 04:31:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236804AbjDEI1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:27:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CC841BEA;
-        Wed,  5 Apr 2023 01:27:41 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2405:201:0:21ea:73f6:2283:f432:3936])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: shreeya)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0B3B26603112;
-        Wed,  5 Apr 2023 09:27:36 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680683259;
-        bh=PZ1ID2Zw3PwezwwvcnYi3Nauvrfa7qCQvMEH4PdczCQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=QcVBuLpvczD59XicL2WXQBYFR4gr0aeRvE0uqJVBzmC6RUm5JzFq5QGtHUvCgksFA
-         x+dpafbaEOS7Pt8RmuWS1KAXu9OEedmsLUdDwFDg49DyxUX2VMjD2obIqZ1nKx/s2G
-         eTkpAEzrRHP/UWdRPKIZQDu6FhbsyhniKJXBgZN75sbcRjDajA1H+c72ESWZQu1n4p
-         Tq4fewmEqXuiP6dvXZdDcSSYQsXlf/3YD60CoOHgXPGdFeMbX5s+nSKNeZjFgJxNxt
-         fGHC+qTfeLBo3F5m+T+eOAwvgfh0CGxng4/112U1ScVsrjfPuI8dKhUnpdxfPwaoBg
-         pePa7Jd/bQ0qQ==
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Shreeya Patel <shreeya.patel@collabora.com>,
-        Christopher Obbard <chris.obbard@collabora.com>
-Subject: [PATCH v3] arm64: dts: rockchip: Enable RTC support for Rock 5B
-Date:   Wed,  5 Apr 2023 13:57:11 +0530
-Message-Id: <20230405082711.46303-1-shreeya.patel@collabora.com>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S230163AbjDEIbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 04:31:42 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D731FF6;
+        Wed,  5 Apr 2023 01:31:39 -0700 (PDT)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 5E4551BF20E;
+        Wed,  5 Apr 2023 08:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1680683498;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dfpX8n3KjmDuOMM79pUj2UNu0NextAFw1gDVBnHMLw4=;
+        b=bCcuC7sWRQhfy48p+yKdWbEIRlhTIKVTe01b/RtLxDpwYXkNTNSsthBgWlrM5AyYCFAD9V
+        bPZAeDNTSMUdLU6TH3O9/wHuQedepqeKZFAePw42KIr3UlWGLsObQHIx8FRA/Yzo/Hpwas
+        1oMfM22Ru1auoLd8ys6PHjyeEs1k+RTPAgcCt6EDnt1ohR6x/rMuXDzlORw7UkENAYfwpS
+        Bgqu7CtMjURcHeXgjEMd0FKRfuuPeaa635UVKIvKX9q7NrF+b0gicCAXGtd9tGp3oRRUos
+        YgHaBQkht/RyoSHfYHY0w8lMSHHsAAkY1nM7AiJntPvjMh+FRmG6op0Q0JlDlQ==
+Date:   Wed, 5 Apr 2023 10:31:34 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Subject: Re: [RESEND PATCH v4 03/21] staging: media: tegra-video: fix
+ .vidioc_enum_fmt_vid_cap to return all formats
+Message-ID: <20230405103134.2ae10766@booty>
+In-Reply-To: <20230405023048.GD9915@pendragon.ideasonboard.com>
+References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
+        <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
+        <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
+        <20230404161251.272cc78b@booty>
+        <20230405023048.GD9915@pendragon.ideasonboard.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,58 +73,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT node to enable RTC support for Rock 5B board.
+Hi Laurent,
 
-Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-Reviewed-by: Christopher Obbard <chris.obbard@collabora.com>
----
+On Wed, 5 Apr 2023 05:30:48 +0300
+Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
 
-Changes in v3:
-  - Use a generic node name.
+> Hi Luca,
+> 
+> On Tue, Apr 04, 2023 at 04:12:51PM +0200, Luca Ceresoli wrote:
+> > On Wed, 29 Mar 2023 13:16:22 +0200 Hans Verkuil wrote:
+> >   
+> > > Hi Luca,
+> > > 
+> > > I finally found the time to test this series. It looks OK, except for this patch.  
+> > 
+> > Thank you very much for taking the time!
+> >   
+> > > The list of supported formats really has to be the intersection of what the tegra
+> > > supports and what the sensor supports.
+> > > 
+> > > Otherwise you would advertise pixelformats that cannot be used, and the application
+> > > would have no way of knowing that.  
+> > 
+> > As far as I understand, I think we should rather make this driver fully
+> > behave as an MC-centric device. It is already using MC quite
+> > successfully after all.
+> > 
+> > Do you think this is correct?  
+> 
+> Given the use cases for this driver, I agree.
 
-Changes in v2:
-  - Make the subject and commit message  more descriptive.
-  - Add a Reviewed-by tag.
+Ok, thanks for the feedback. I will send a v5 with this change.
 
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Best regards,
+Luca
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 95805cb0adfa..e63138eb7e8d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -27,6 +27,31 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 	};
- };
- 
-+&i2c6 {
-+	status = "okay";
-+
-+	hym8563: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "hym8563";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hym8563_int>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+		wakeup-source;
-+	};
-+};
-+
-+&pinctrl {
-+	hym8563 {
-+		hym8563_int: hym8563-int {
-+			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
- &sdhci {
- 	bus-width = <8>;
- 	no-sdio;
 -- 
-2.30.2
-
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
