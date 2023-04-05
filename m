@@ -2,62 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7216D7DDD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81BCD6D7DE1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238294AbjDENio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 09:38:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
+        id S238302AbjDENjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 09:39:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237308AbjDENin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:38:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826654C28;
-        Wed,  5 Apr 2023 06:38:42 -0700 (PDT)
+        with ESMTP id S238312AbjDENjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:39:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F4B49F9;
+        Wed,  5 Apr 2023 06:39:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1A2AA62695;
-        Wed,  5 Apr 2023 13:38:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82236C433D2;
-        Wed,  5 Apr 2023 13:38:41 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4263062923;
+        Wed,  5 Apr 2023 13:39:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DB7FC433D2;
+        Wed,  5 Apr 2023 13:39:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680701921;
-        bh=3S8hJcNlwdtjnnJmZPcBN4nKAn1XDM4RXnsVZem6mw4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fCxljYxENLPzhc1/Lw6c9FDo43mCqYk2P55ut19RfpNFEXU7YKQrzQRq7/yVHYOGl
-         WdtuvPZ2jSJChRtOfUc2FDJ6U9XBC/llE8aco+jZ14ATm/y/vdvfYMagQEJ3YKqH+B
-         KYkjNF2y8KZS5oirwegiG8RfcYpo44H1wG9dGdCD674EZq+koymOJejEj+78huvrYW
-         rfcgSoph1tuAZUeFh1zh+nurriXVInZiNuq+uY0kZjLuJz18PnjNI0ooJ5IbxwjoMu
-         UtcQ6j0C85oZjxiKqT7JvMlQVJ/E3Z0lPweDRxzr0fdTkI6BPHNs4nwNMlK80gjTuA
-         qozlBbeHTn8Mw==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-544f7c176easo677115587b3.9;
-        Wed, 05 Apr 2023 06:38:41 -0700 (PDT)
-X-Gm-Message-State: AAQBX9etTOawlWr6dePyqULJv6Evbn4DwgtJz7a1B4+kFaPgmg7G37VN
-        q2DqCl1HCbhbUDzq/msVGVYkWXdntelnQ/pbjA==
-X-Google-Smtp-Source: AKy350bKjxRIG96o/zz24UUG8PRz4O5JalHzsE1G5TGNqK2Wr95r2i+qUgd7DzyR0yWa+P5epjfVgtnxRt+Yo9YmdY8=
-X-Received: by 2002:a81:ac24:0:b0:546:3252:385d with SMTP id
- k36-20020a81ac24000000b005463252385dmr3613702ywh.5.1680701920515; Wed, 05 Apr
- 2023 06:38:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230317112019.9090-1-johan+linaro@kernel.org> <ZC1ZTHeRqtghwVBB@hovoldconsulting.com>
-In-Reply-To: <ZC1ZTHeRqtghwVBB@hovoldconsulting.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 5 Apr 2023 08:38:29 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJrhQA4dbU=bGioonqs6c=mZiGErcT9v9BxiGrNhmY6-w@mail.gmail.com>
-Message-ID: <CAL_JsqJrhQA4dbU=bGioonqs6c=mZiGErcT9v9BxiGrNhmY6-w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: Fix unit address of example root port
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        s=k20201202; t=1680701985;
+        bh=71JyiYjAQDNGrKu+w+/togKyzP+qtWLnOs7G5jvJ0Ew=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gbkdGElrkRBoUGegV3mZmLyZa43DZoWFu3fZhnCs2uzfNnfX/SYZkeyLc3V3tToOE
+         ZPPZvdYBspsu7NmdivFCcCsJ/0kJ0ft/uOsaYeA/tnKHI7HiavjM3fUsJ4D58uvGhC
+         IBYGAfxgDF8TcZesH90UaLMcCpPjxWdIJtL4bhsupW1tJ62t84muKF1/rJXaZZ3rj/
+         pwhYQZd92udtI+X6pJA9Ng74oTnEKOabVyVIz81i+60kogWJW20h6RTGEv8e81TL9c
+         kl0g3cKf+MdCNL+x5P+LPvHP9W5kIle+tRlHVPBcjl2q6IvkN22HXBGfpO6FgaiuIX
+         FVoLaFLa+AQbQ==
+Date:   Wed, 5 Apr 2023 14:39:38 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <20230405133938.GD8371@google.com>
+References: <20230307112835.81886-1-okan.sahin@analog.com>
+ <20230307112835.81886-6-okan.sahin@analog.com>
+ <20230315175223.GI9667@google.com>
+ <20230315175257.GJ9667@google.com>
+ <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230329143615.GS2673958@google.com>
+ <MN2PR03MB51685B1F84AA679FB604E738E7929@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230403140950.GF548901@google.com>
+ <ZC0zA1bVsrg0XEld@smile.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZC0zA1bVsrg0XEld@smile.fi.intel.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,27 +81,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 5, 2023 at 6:19=E2=80=AFAM Johan Hovold <johan@kernel.org> wrot=
-e:
+On Wed, 05 Apr 2023, Andy Shevchenko wrote:
+
+> On Mon, Apr 03, 2023 at 03:09:50PM +0100, Lee Jones wrote:
+> > On Mon, 03 Apr 2023, Sahin, Okan wrote:
 >
-> On Fri, Mar 17, 2023 at 12:20:19PM +0100, Johan Hovold wrote:
-> > Fix the unit address of the example root port which is identical to the
-> > device number (i.e. 1).
+> ...
+>
+>
+> > > In fact, one of the maintainers suggested assigning chip_info to data
+> > > instead of enumeration. Then I added chip_info and put devices into
+> > > sub-structure above. I will replace chip_info with id structure in max77541
+> > > device structure, right? I will use enumeration for data as I will assign
+> > > it to id, and distinguish different devices.
 > >
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
+> > Yes, that's correct.  Please remove chip_info altogether.
 >
-> This one hasn't showed up in linux-next yet. Could you pick it up for
-> 6.4, Lorenzo?
+> Then it will provoke casting in the OF ID table which I believe is not what
+> we want. I would agree on your first suggestion to have a plain number in I²C
+> ID table, but I'm against it in OF and/or ACPI ID table.
 
-On 2nd thought, I think it's time to just remove this file. The schema
-is just missing some descriptions and 1 property (external-facing).
-I've added all that here[1].
+And I'm against passing MFD information through the OF/ACPI APIs.
 
-I didn't add the example to the schema because the example here is
-incomplete and won't validate.
+You can put through raw platform data or a device descriptor.
 
-Rob
+Ref: git grep -A5 "struct of_device_id.*{" -- drivers/mfd
 
-[1] https://github.com/robherring/dt-schema/commit/8445eb010e61496681e2504f=
-af400e9fbc5b1acf
+--
+Lee Jones [李琼斯]
