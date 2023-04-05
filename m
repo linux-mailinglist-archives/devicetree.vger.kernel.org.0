@@ -2,29 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B5D6D85DC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 20:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014DC6D85EB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 20:24:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbjDESUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 14:20:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49316 "EHLO
+        id S233995AbjDESYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 14:24:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjDEST6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 14:19:58 -0400
-X-Greylist: delayed 321 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 05 Apr 2023 11:19:55 PDT
-Received: from mx3.securetransport.de (mx3.securetransport.de [IPv6:2a01:4f8:c0c:92be::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44BCF65BB;
-        Wed,  5 Apr 2023 11:19:55 -0700 (PDT)
+        with ESMTP id S232011AbjDESYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 14:24:49 -0400
+Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226B23A9F;
+        Wed,  5 Apr 2023 11:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1680718425;
-        bh=PrBEdRTWFt2+Tb4vOBv+FXYDihwroSUjl5utTBCfUhU=;
+        s=dhelectronicscom; t=1680719050;
+        bh=7Nl52tGHqcsiPw/xmAb/LjUgiMWKfLo4pbV1xDkMOBY=;
         h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=yXhxsjdwvbXgvRLC0de/B1cIvr//vjm+Rvg3F+4K46WSqRLM2NLI9dqQMbV80k2gE
-         DtG5zHhgrYsgQTebkuXHpeYE17oNFZHT6bSFYpwZJ2alpwUeChZxWqFIMvT7iuflFe
-         wpRng1Tn2Qxp4oj1yjVjD9/kgGkPs9UliAjSt987sqDiJcMEbdF42TDS1V70mPDqPQ
-         6io2V1xb5EnChlDjdn+3QENPYRmNj8DvzFGwT2PHAoxHzEt55aJRPxCpKGax9Kz2Hw
-         UJaUC/RhDc/vv/aGugtJgngIAbt7vpGtPAcJ4rNDwMuD8yibXxh/qaktlhNyz4dctq
-         qivN6C2T2XFYg==
+        b=AV+chS/zAW+VTX6tSwISxGEgwZPAokvLWTKacRk0NwyvRYGSqPV/Ani6gHC0BZXLF
+         qw9VeqKHFVZY/v8uT2CRqS9nQC4WW3wg7zN8G6MPKBLYyEs4g8QQzZtMbekwMswN2B
+         3fr6BE1p/zwZJMU9RtSQiDR3QdptV6wl8gSDVAymnC03hUQaEY5YvHcWaSMiw0ezcR
+         RS8omk7RJKoLiMd4ZJt8h/XeVVA0//aPPUY72msTVgtzj9T1GSmGoqjmTCCIWmQ2Cw
+         SeYZEI7tzUzMwe91L+3gAa71pIwwGotFWEC9OPQhRJxzbCJWdzqcgOdZauYZUi8pSE
+         BR5rcYqgMIs+g==
 X-secureTransport-forwarded: yes
 From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
 Complaints-To: abuse@cubewerk.de
@@ -39,16 +38,15 @@ CC:     Rob Herring <robh+dt@kernel.org>,
         kernel <kernel@dh-electronics.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: arm: fsl: Add Marantec maveo box as a
- DHCOR i.MX6ULL SoM based board
-Thread-Topic: [PATCH 1/2] dt-bindings: arm: fsl: Add Marantec maveo box as a
- DHCOR i.MX6ULL SoM based board
-Thread-Index: AQHZZ9hJZt5Edzs0pE264fqdRW1Q9q8cxYcAgAA/BQA=
-Date:   Wed, 5 Apr 2023 18:13:35 +0000
-Message-ID: <62fb8dfc3254415e945beec67df129fd@dh-electronics.com>
+Subject: RE: [PATCH 2/2] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Thread-Topic: [PATCH 2/2] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Thread-Index: AQHZZ9hJaqalrClMnUSWr1zaggJvEq8cxTeAgAA/z6A=
+Date:   Wed, 5 Apr 2023 18:24:01 +0000
+Message-ID: <e7aa3b3220e148ee96f5a1c361721845@dh-electronics.com>
 References: <20230405160258.46998-1-cniedermaier@dh-electronics.com>
- <842f1d7f-29e5-d1c3-f949-322f3f954b68@denx.de>
-In-Reply-To: <842f1d7f-29e5-d1c3-f949-322f3f954b68@denx.de>
+ <20230405160258.46998-2-cniedermaier@dh-electronics.com>
+ <05fa147c-116b-59b4-d14b-760bbefd7602@denx.de>
+In-Reply-To: <05fa147c-116b-59b4-d14b-760bbefd7602@denx.de>
 Accept-Language: de-DE, en-US
 Content-Language: de-DE
 X-MS-Has-Attach: 
@@ -66,33 +64,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 RnJvbTogTWFyZWsgVmFzdXQgW21haWx0bzptYXJleEBkZW54LmRlXQ0KU2VudDogV2VkbmVzZGF5
-LCBBcHJpbCA1LCAyMDIzIDY6MjYgUE0NCj4gT24gNC81LzIzIDE4OjAyLCBDaHJpc3RvcGggTmll
-ZGVybWFpZXIgd3JvdGU6DQo+PiBBZGQgTWFyYW50ZWMgbWF2ZW8gYm94LiBUaGUgc3lzdGVtIGlz
-IHVzZWQgdG8gZ2V0IGEgc21hcnQgY29ubnRlY3Rpb24NCj4+IHRvIGEgZG9vciBkcml2ZS4gVGhl
-IGNvcmUgb2YgdGhpcyBzeXN0ZW0gaXMgYSBzb2xkZXJlZCBpLk1YNlVMTCBESENPUg0KPj4gU29N
-IGZyb20gREggZWxlY3Ryb25pY3MuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIE5p
-ZWRlcm1haWVyIDxjbmllZGVybWFpZXJAZGgtZWxlY3Ryb25pY3MuY29tPg0KPj4gLS0tDQo+PiBD
-YzogUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCj4+IENjOiBLcnp5c3p0b2YgS296
-bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+DQo+PiBDYzogU2hhd24g
-R3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPj4gQ0M6IExpIFlhbmcgPGxlb3lhbmcubGlAbnhw
-LmNvbT4NCj4+IENjOiBNYXJlayBWYXN1dCA8bWFyZXhAZGVueC5kZT4NCj4+IENjOiBGYWJpbyBF
-c3RldmFtIDxmZXN0ZXZhbUBkZW54LmRlPg0KPj4gQ2M6IE5YUCBMaW51eCBUZWFtIDxsaW51eC1p
-bXhAbnhwLmNvbT4NCj4+IENjOiBrZXJuZWxAZGgtZWxlY3Ryb25pY3MuY29tDQo+PiBDYzogZGV2
-aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4+IENjOiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwu
-b3JnDQo+PiBUbzogbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+PiAtLS0N
-Cj4+ICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbCB8IDYg
-KysrKysrDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKykNCj4+DQo+PiBkaWZm
-IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWwNCj4+IGluZGV4
-IGIxNzVmMmIxYmQzMC4uYzk1MjU0YzU3NTcxIDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPj4gQEAgLTcxNyw2ICs3MTcsMTIg
-QEAgcHJvcGVydGllczoNCj4+ICAgICAgICAgICAgIC0gY29uc3Q6IGRoLGlteDZ1bGwtZGhjb3It
-c29tDQo+PiAgICAgICAgICAgICAtIGNvbnN0OiBmc2wsaW14NnVsbA0KPj4NCj4+ICsgICAgICAt
-IGRlc2NyaXB0aW9uOiBpLk1YNlVMTCBESENPUiBTb00gYmFzZWQgQm9hcmRzDQo+PiArICAgICAg
-ICBpdGVtczoNCj4+ICsgICAgICAgICAgLSBjb25zdDogZGgsaW14NnVsbC1kaGNvci1tYXZlby1i
-b3gNCj4gDQo+IFRoaXMgc2hvdWxkIGJlIHVzaW5nIE1hcmFudGVjIHZlbmRvciBwcmVmaXgsIG5v
-dCAiZGgsIiBwcmVmaXggSSB0aGluayA/DQo+IA0KPiBZb3Ugc2hvdWxkIGFkZCB0aGF0IHRvDQo+
-IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy92ZW5kb3ItcHJlZml4ZXMueWFtbCBm
-aXJzdCwgYW5kIHRoZW4NCj4gdXNlIGl0IGhlcmUuDQoNCkkgd2lsbCBjaGFuZ2UgaXQgaW4gdmVy
-c2lvbiAyLg0K
+LCBBcHJpbCA1LCAyMDIzIDY6MjUgUE0NCj4gT24gNC81LzIzIDE4OjAyLCBDaHJpc3RvcGggTmll
+ZGVybWFpZXIgd3JvdGU6DQo+IA0KPiBbLi4uXQ0KPiANCj4+ICsvIHsNCj4+ICsgICAgIG1vZGVs
+ID0gIkRIIGVsZWN0cm9uaWNzIGkuTVg2VUxMIERIQ09SIG9uIG1hdmVvIGJveCI7DQo+PiArICAg
+ICBjb21wYXRpYmxlID0gImRoLGlteDZ1bGwtZGhjb3ItbWF2ZW8tYm94IiwgImRoLGlteDZ1bGwt
+ZGhjb3Itc29tIiwNCj4+ICsgICAgICAgICAgICAgICAgICAiZnNsLGlteDZ1bGwiOw0KPj4gKw0K
+Pj4gKyAgICAgYWxpYXNlcyB7DQo+PiArICAgICAgICAgICAgIC9kZWxldGUtcHJvcGVydHkvIG1t
+YzA7IC8qIEF2b2lkIGRvdWJsZSBkZWZpbml0aW9ucyAqLw0KPj4gKyAgICAgICAgICAgICAvZGVs
+ZXRlLXByb3BlcnR5LyBtbWMxOw0KPj4gKyAgICAgICAgICAgICBtbWMyID0gJnVzZGhjMjsgLyog
+ZU1NQyBzaG91bGQgYmUgbW1jMiAqLw0KPiANCj4gV2h5IG5vdCBtbWMwID8NCj4gDQo+IFVzZSBy
+b290PVBBUlRVVUlEPSB3aGVuIGJvb3RpbmcgdG8gYXZvaWQgYW55IGRlcGVuZGVuY3kgb24NCj4g
+cm9vdD0vZGV2L21tY2JsazJwTiBlbnVtZXJhdGlvbi4NCg0KVGhpcyBpcyBkdWUgdG8gc29mdHdh
+cmUgaW50ZXJjaGFuZ2VhYmlsaXR5IHdpdGggdGhlIERIQ09NDQppLk1YNlVMTCwgd2hlcmUgdGhl
+IGVNTUMgaXMgYWx3YXlzIG1tYzIuDQoNCj4gDQo+PiArICAgICAgICAgICAgIHNwaTAgPSAmZWNz
+cGk0Ow0KPj4gKyAgICAgICAgICAgICBzcGkzID0gJmVjc3BpMTsNCj4+ICsgICAgIH07DQo+IA0K
+PiBbLi4uXQ0KPiANCj4+ICsmaW9tdXhjIHsNCj4+ICsgICAgIHBpbmN0cmwtMCA9IDwmcGluY3Ry
+bF9ob2dfbWF2ZW9fYm94PjsNCj4+ICsgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+
+PiArDQo+PiArICAgICBwaW5jdHJsX2hvZ19tYXZlb19ib3g6IGhvZy1tYXZlby1ib3gtZ3JwIHsN
+Cj4+ICsgICAgICAgICAgICAgZnNsLHBpbnMgPSA8DQo+PiArICAgICAgICAgICAgICAgICAgICAg
+TVg2VUxfUEFEX0dQSU8xX0lPMDVfX0dQSU8xX0lPMDUgICAgICAgIDB4NDAwMTIwYjAgLyogQlVU
+VE9OX1VTRVIgKi8NCj4+ICsgICAgICAgICAgICAgICAgICAgICBNWDZVTF9QQURfR1BJTzFfSU8w
+OF9fR1BJTzFfSU8wOCAgICAgICAgMHg0MDAxMjBiMCAvKiBCVVRUT05fUkVTRVQgKi8NCj4+ICsg
+ICAgICAgICAgICAgICAgICAgICBNWDZVTF9QQURfQ1NJX1BJWENMS19fR1BJTzRfSU8xOCAgICAg
+ICAgMHg0MDAxMjBiMCAvKiBMRURfRyAqLw0KPj4gKyAgICAgICAgICAgICAgICAgICAgIE1YNlVM
+X1BBRF9DU0lfREFUQTAyX19HUElPNF9JTzIzICAgICAgICAweDQwMDEyMGIwIC8qIExFRF9CICov
+DQo+IA0KPiBTaG91bGQgdGhlICJTSU9OKDEgPDwgMzApOiBTb2Z0d2FyZSBJbnB1dCBPbiBGaWVs
+ZC4iIGJpdCByZWFsbHkgYmUgc2V0DQo+IG9uIEdQSU9zIHdoaWNoIGFyZSBPVVRQVVQgKGxpa2Ug
+TEVEcykgPw0KDQpJIHRoaW5rIGZvciBJTlBVVCBpdCBkb2Vzbid0IG1hdHRlciwgYnV0IGZvciBP
+VVRQVVQgSSB0aGVuIGhhdmUgYSBmZWVkYmFjay4NCg0KUmVnYXJkcw0KQ2hyaXN0b3BoDQo=
