@@ -2,101 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 665B16D7208
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81EDB6D7219
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236587AbjDEBf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Apr 2023 21:35:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51774 "EHLO
+        id S236449AbjDEBki convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 4 Apr 2023 21:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235839AbjDEBfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:35:55 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D032D10DF
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 18:35:54 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id br6so44640276lfb.11
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680658553;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tulV5ogKne61CvTx3N1p8N7DixxtemOMi19lt5kisEM=;
-        b=oBWXa8quJmIhbfFcgTMTnWLgS3FQpza4p/q/HkajSsbK7khXQJTGyyMK2xKzZVlZ2h
-         jbGnMmEuyLGY30SLn4T9dXyGQPiwKbFp6O6vDO3FmGKOqznCbZndNWDVtdmDbI9DwU22
-         FhtTCl0ESlvLOjc+nEnNFe4VwKt1ohLDxvrCzQsNUZaNxghNkflAQEuToZn6vCTOH7eJ
-         giL5JhsJi33xTKsAjkqzB9DspIfFGRrs5A0POHilsD1VfXdKJJtLRRg4+kvv0wQKgCAT
-         +h4weL2I8PN7ieo7z66Rd7cL04IVD54haZZA4AmHrVEvDdsEakL461bkC02cu7rB2oXj
-         WAHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680658553;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tulV5ogKne61CvTx3N1p8N7DixxtemOMi19lt5kisEM=;
-        b=FdtLP5DEqAr7Y5x+6U/GAjfK44N/1ZuLUPPwnOxMjEVspvSDfMnxvDKZG7BXHoAwjV
-         2ORY+YcrzCosVEU7AwrgZfUGGHfZr1ctr1e3WLC7elCOYb43VysyiHI/8rY7OAD3k7W5
-         kiOQtFsMhr6gpb5xRkJjRx0s8yMWHBDvoWBtbsEzZx46L/aq1QAYnpJFr9eyApxD26k9
-         x/YgCiPs/tsJeWuEloZXC1ka7X7VmJLf7odW8FaNRo2cvT4KXXm4WQH8Y8cM9+SgsO4d
-         BEPsfFy2KFTZL2rkGWZovSEy+pWKml3s2Rbm8220qTrY7lBTIeiIYwq7462wbk9H0Fko
-         ishA==
-X-Gm-Message-State: AAQBX9fc3D3gzBaT/kUnriWlGNyx3AC1kzFgUoCCe/YJvhRZb/Tq/4kM
-        Tss3Iy87CyhO+bgkIrOUtIe5aSOquYF6QUjxjX/W9A==
-X-Google-Smtp-Source: AKy350YXg+Yy8O1YhBnYb7hKyKfe7DS5UdKpd65XaMLUwi+nGhiD9izKwxXwL3jLlSo5OQdV8gn3xg==
-X-Received: by 2002:a19:7603:0:b0:4dd:9da1:aa82 with SMTP id c3-20020a197603000000b004dd9da1aa82mr1022262lff.29.1680658553130;
-        Tue, 04 Apr 2023 18:35:53 -0700 (PDT)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v26-20020ac2561a000000b004cb8de497ffsm2572326lfd.154.2023.04.04.18.35.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 18:35:52 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Kalyan Thota <quic_kalyant@quicinc.com>
-Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com,
-        marijn.suijten@somainline.org
-Subject: Re: [PATCH v4 0/4] Reserve DSPPs based on user request
-Date:   Wed,  5 Apr 2023 04:35:49 +0300
-Message-Id: <168065850334.1260361.1390147834885277965.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
-References: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
+        with ESMTP id S230489AbjDEBkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:40:37 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4FB32D6A;
+        Tue,  4 Apr 2023 18:40:34 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id A5D6724DBFD;
+        Wed,  5 Apr 2023 09:40:27 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 5 Apr
+ 2023 09:40:27 +0800
+Received: from [172.16.16.231] (183.27.98.171) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 5 Apr
+ 2023 09:40:26 +0800
+Message-ID: <39a2c174-c7f5-cb0f-5430-87b859a2ea5c@starfivetech.com>
+Date:   Wed, 5 Apr 2023 09:40:27 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v7 21/22] riscv: dts: starfive: Add StarFive JH7110
+ VisionFive 2 board device tree
+To:     Shengyu Qu <wiagn233@outlook.com>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230401111934.130844-1-hal.feng@starfivetech.com>
+ <20230401111934.130844-22-hal.feng@starfivetech.com>
+ <TY3P286MB26110E2983EB074270B7610898939@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <TY3P286MB26110E2983EB074270B7610898939@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.98.171]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 13 Feb 2023 03:11:40 -0800, Kalyan Thota wrote:
-> This series will enable color features on sc7280 target which has
-> primary panel as eDP
+On Wed, 5 Apr 2023 02:38:25 +0800, Shengyu Qu wrote:
+> Hi Hal,
 > 
-> The series removes DSPP allocation based on encoder type and allows
-> the DSPP reservation based on user request via CTM.
+>> +    aliases {
+>> +        i2c0 = &i2c0;
+>> +        i2c2 = &i2c2;
+>> +        i2c5 = &i2c5;
+>> +        i2c6 = &i2c6;
+>> +        serial0 = &uart0;
+>> +    };
+>> +
+>> +    chosen {
+>> +        stdout-path = "serial0:115200n8";
+>> +    };
+>> +
+>> +    cpus {
+>> +        timebase-frequency = <4000000>;
 > 
-> The series will release/reserve the dpu resources whenever there is
-> a CTM enable/disable change so that DSPPs are allocated appropriately.
+> Is mtime frequency on JH7110 could be modified?  If not, I think it's better
 > 
-> [...]
+> to put it into jh7110.dtsi.
 
-Applied, thanks!
-
-[2/4] drm/msm/dpu: add DSPPs into reservation upon a CTM request
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/1a9c3512fbd4
-[3/4] drm/msm/dpu: avoid unnecessary check in DPU reservations
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/8b1ed0088e21
-[4/4] drm/msm/dpu: manage DPU resources if CTM is requested
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/34c74e76a6a5
+This frequency is from (osc / 6). This is based on the frequency
+of the crystal oscillator on the board. So we set it here.
 
 Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Hal
+
+> 
+>> +    };
+>> +
+>> +    memory@40000000 {
+>> +        device_type = "memory";
+>> +        reg = <0x0 0x40000000 0x1 0x0>;
+>> +    };
+>> +
+>> +    gpio-restart {
+>> +        compatible = "gpio-restart";
+>> +        gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
+>> +        priority = <224>;
+>> +    };
+>> +};
+>> +
+> 
+> Best regards,
+> 
+> Shengyu
+> 
+
