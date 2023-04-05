@@ -2,88 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DACFC6D7B03
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C4DA6D7B20
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:21:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237491AbjDELTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 07:19:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58046 "EHLO
+        id S237906AbjDELV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 07:21:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbjDELTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:19:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D78E52736;
-        Wed,  5 Apr 2023 04:19:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6F5506393E;
-        Wed,  5 Apr 2023 11:19:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0C2BC433EF;
-        Wed,  5 Apr 2023 11:19:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680693549;
-        bh=BUqrMf5rugKOvu5i7YMra5i2Meg/d8oi/Wngm9HZQ7U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sbuhl6EJw/SVKi8omiyWSr41YolSgsDeuXiZjJpIzHCnerSej0RciO5pHzzy5e84q
-         8hQK0D0/hPvIdJDJaNt4csp029xip1uOKnaxLfournFZFuXTiw44fFh7xeFarH2Ust
-         i3PL2nw+WQKul4NY9QXpp5eVHGjVZQT/aASf4AGuNV2utltrnyeCAv67TMneJWV6XS
-         0w5acvUiHRzi7atkPH6NaNBQPv5SwiMy0CGWCnTHIeQ3Zt4YtFu9InLfvN2qfQUDeB
-         mp4lQS9bEZh4mlN7s7mTnqm7vF5gpLNoZ9IagOymAQSRG4dR2FjLTEf/m8B+n4unro
-         hE/uZhLykbtxw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pk1Ay-0002dY-9y; Wed, 05 Apr 2023 13:19:40 +0200
-Date:   Wed, 5 Apr 2023 13:19:40 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: Fix unit address of example root port
-Message-ID: <ZC1ZTHeRqtghwVBB@hovoldconsulting.com>
-References: <20230317112019.9090-1-johan+linaro@kernel.org>
+        with ESMTP id S237910AbjDELVy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:21:54 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F1259D0
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 04:21:52 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <jzi@pengutronix.de>)
+        id 1pk1Ce-0004S3-05; Wed, 05 Apr 2023 13:21:24 +0200
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <jzi@pengutronix.de>)
+        id 1pk1Cc-0098SM-52; Wed, 05 Apr 2023 13:21:22 +0200
+Received: from jzi by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <jzi@pengutronix.de>)
+        id 1pk1Cb-005Gtk-9W; Wed, 05 Apr 2023 13:21:21 +0200
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     vkoul@kernel.org, kishon@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jun.li@nxp.com,
+        haibo.chen@nxp.com, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     j.zink@pengutronix.de
+Subject: [PATCH 0/2] Add phy tuning support for imx8mq-usb
+Date:   Wed,  5 Apr 2023 13:21:16 +0200
+Message-Id: <20230405112118.1256151-1-j.zink@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230317112019.9090-1-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: jzi@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 12:20:19PM +0100, Johan Hovold wrote:
-> Fix the unit address of the example root port which is identical to the
-> device number (i.e. 1).
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
+This series adds support for USB phy tuning parameters, which are
+required for meeting USB certification and EMI qualification.
 
-This one hasn't showed up in linux-next yet. Could you pick it up for
-6.4, Lorenzo?
+Patch 1/2 adds the required properties to the fsl,imx8mq-usb-phy
+devicetree binding.
 
->  Documentation/devicetree/bindings/pci/pci.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> index 6a8f2874a24d..8b7c52436558 100644
-> --- a/Documentation/devicetree/bindings/pci/pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> @@ -76,7 +76,7 @@ Example:
->  pcie@10000000 {
->  	compatible = "pci-host-ecam-generic";
->  	...
-> -	pcie@0008 {
-> +	pcie@1 {
->  		/* Root port 00:01.0 is external-facing */
->  		reg = <0x00000800 0 0 0 0>;
->  		external-facing;
+Patch 2/2 adds the phy tuning parameters to the phy-fsl-imx8mp driver.
+This patch is ported and cleaned up from the downstream Freescale vendor
+tree.
 
-Johan
+Best regards,
+Johannes
+
+Johannes Zink (1):
+  dt-bindings: phy: imx8mq-usb: add phy tuning properties
+
+Li Jun (1):
+  phy: fsl-imx8mp-usb: add support for phy tuning
+
+ .../bindings/phy/fsl,imx8mq-usb-phy.yaml      |  40 ++++++
+ drivers/phy/freescale/phy-fsl-imx8mq-usb.c    | 124 ++++++++++++++++++
+ 2 files changed, 164 insertions(+)
+
+-- 
+2.39.2
+
