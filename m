@@ -2,85 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C91FB6D746D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1851E6D7477
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:36:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237080AbjDEGeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 02:34:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
+        id S237099AbjDEGgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 02:36:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237076AbjDEGeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:34:12 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8889930FF
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:34:11 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id r11so138526962edd.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 23:34:11 -0700 (PDT)
+        with ESMTP id S237096AbjDEGga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:36:30 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B2640C8
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:36:28 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-4fd23c30581so217620a12.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 23:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680676450;
+        d=linaro.org; s=google; t=1680676587;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VX8BaURDAmMiXn1X2BAcvGxFigvEA3txrLdW+Fx+IZw=;
-        b=rIPpaehpS5oSvYCoz67/ZyQz6Xbcw80aD8pJkdxX7S9OyExVaWPgYW1gcHrc9Qql8x
-         7NwMpEsrh/wgRye2wvUKhikhv/9XlS2ZMG/5NDiGs0162GrMDG2/ztg/Uvgr746m82R7
-         BY75kP7HRUgH8QcPYB3QLrcE9AaT3F2ePLLEtIgvYG9UQKCztVEMiKo3+yWEjQU0oDAO
-         1oDDFFX02//OkSrSzTvUIohQsonuFPbJV3pVq652hJ7l7DrQhE6ViMOctlEZsdBso/8R
-         16uqGLf+oNf7TCU4a5Yo4nIar70+moeNI5PJAtgGyqez5HD4dzcyyxCotM9sqx5k1sas
-         5RUQ==
+        bh=9yvcVihuH9wEZQZUx/B/kZ5+djU5fILXyRrycwbFq1U=;
+        b=TvQBbCSWXYhS77wmCXyqApj4VkHr2Zt7VkkaLE4c0orGQF+GzuHRlgay5y0SVMhGhA
+         732IXN7OjWQOo7yAqqCoiMawA+DlZr5YRZHkUqmoah2nQB4UzixnQhM3B81Uk0xghNQO
+         nD6IDscAJDPRAnqt2sfn6tzpRUQqTsn5mGsMn+RLt8qllPCsF/PT3rih/fDm+xapzJIF
+         kUoAELCA0O4FukpwiGXOBIFhY6UGTOSd4BSir5UxAsXW9reiJpfF79FszmSAemr3PotU
+         6SKB9DAsDrx79cGo4IdvBAoZXGm5IQBkIwPHIX/scNHyVWxSMVlFSoG1GhQXeY29vhdv
+         zhUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680676450;
+        d=1e100.net; s=20210112; t=1680676587;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VX8BaURDAmMiXn1X2BAcvGxFigvEA3txrLdW+Fx+IZw=;
-        b=A3p9Pc8Xt5E6knY5NzGodstOW0zK+2v26RlDS2Bqs3hoe5rh+CyD+rX1hxTiyVzLgv
-         jVfYOdvEUzYVxGlcbtVHqfuOG2c32ttBl9sGYrwtR7n1calhisU2zVNqiBOR2ezw66hw
-         G6W7VZoFl4KAx0I1lxt3cvrwdlIWG40Bk7MSPMJBGNs/sG+EEsRNlMqrOOrGW/uN/cuT
-         kryEogsnArhU/T3FjK5io75QyD8QvKIbxkoweNvAoPa9XWcoIdxwAYJSune4Lw3DZmt9
-         tX6dlOvMR2+t9H6eUH4lmgdYPVyuiNRnNVT4TRkla8IehKQVEXHjFKIPTrPSawkj7C4h
-         IcMQ==
-X-Gm-Message-State: AAQBX9eajyih1YLe3nEbA6HJGyELJMB3pLP6Rgm0mQjwxirkQQ4rR4Zy
-        2FvC7H28pVgj1UqO2RyK6SNTrg==
-X-Google-Smtp-Source: AKy350a6HrlFnAMQgKd+vCIeoY1a0fFXtmjdYQgCre2Kq5RpcQRJhbuwBnu7NwqDheLpf2xZ72hpHg==
-X-Received: by 2002:a17:906:8602:b0:946:b942:ad6f with SMTP id o2-20020a170906860200b00946b942ad6fmr1441549ejx.8.1680676450041;
-        Tue, 04 Apr 2023 23:34:10 -0700 (PDT)
+        bh=9yvcVihuH9wEZQZUx/B/kZ5+djU5fILXyRrycwbFq1U=;
+        b=xEnbyS1rgL05UUCnGWLjSIWWC4Hk/ZYTd5KLd0JKmgiHwsLg6StauVHkH3jzYRi9di
+         xduQiRID9SWeWUKll7cfdJdgnCURKDb7gS6lCVJ7MveazSX6dXEvhCxEqFdLL3by38yt
+         xNaaWnSgGXtdQtfgaDCnRqI7T5WsA9psVoTKbqePe2vEdB8KDCnwxtXtGxMbYsRIL2K0
+         mtmgPNiKfXQOyS6xH23+TTbGJbF0ZvUetZNGj43sjW0RfrPCIyhJdZXvrJ89JR2f7AF0
+         M256BAs5reBldUO/RlwM2B5Jpqlu0ozMvqme4kgLKqxwFfhXRFxBYggfBBvecfso2Th5
+         VYHw==
+X-Gm-Message-State: AAQBX9eoKkMShh2DvodGM4gwgc0mbw1ge+al1H0NicEilJ11ts9cWdrq
+        yywvDjO70FXSk3Wfw3+UQIXXJw==
+X-Google-Smtp-Source: AKy350aV0VWB0Xp1TErOrOX/pYnT3FuSj6/R0SDUrLH/kFZPjvTo+/Jt8izFFo5rNtrh7uybTcUEkg==
+X-Received: by 2002:a05:6402:496:b0:501:d3a1:9a3a with SMTP id k22-20020a056402049600b00501d3a19a3amr747028edv.25.1680676587457;
+        Tue, 04 Apr 2023 23:36:27 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id a24-20020a509b58000000b005027d356613sm6430185edj.63.2023.04.04.23.34.08
+        by smtp.gmail.com with ESMTPSA id z23-20020a50cd17000000b005021c7f08absm6794887edi.29.2023.04.04.23.36.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 23:34:09 -0700 (PDT)
-Message-ID: <42dea5c9-96a7-9ab7-21ec-b545059659a0@linaro.org>
-Date:   Wed, 5 Apr 2023 08:34:08 +0200
+        Tue, 04 Apr 2023 23:36:27 -0700 (PDT)
+Message-ID: <2b65e60f-6518-6a79-42c0-922d4574d5b2@linaro.org>
+Date:   Wed, 5 Apr 2023 08:36:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [net-next v9 4/6] dt-bindings: net: Add support StarFive dwmac
+Subject: Re: [PATCH v6 02/15] dt-bindings: display/msm: gpu: Document GMU
+ wrapper-equipped A6xx
 Content-Language: en-US
-To:     Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        Tommaso Merciai <tomm.merciai@gmail.com>
-References: <20230328062009.25454-1-samin.guo@starfivetech.com>
- <20230328062009.25454-5-samin.guo@starfivetech.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20230223-topic-gmuwrapper-v6-0-2034115bb60c@linaro.org>
+ <20230223-topic-gmuwrapper-v6-2-2034115bb60c@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328062009.25454-5-samin.guo@starfivetech.com>
+In-Reply-To: <20230223-topic-gmuwrapper-v6-2-2034115bb60c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -93,145 +88,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 08:20, Samin Guo wrote:
-> From: Yanhong Wang <yanhong.wang@starfivetech.com>
+On 01/04/2023 13:54, Konrad Dybcio wrote:
+> The "GMU Wrapper" is Qualcomm's name for "let's treat the GPU blocks
+> we'd normally assign to the GMU as if they were a part of the GMU, even
+> though they are not". It's a (good) software representation of the GMU_CX
+> and GMU_GX register spaces within the GPUSS that helps us programatically
+> treat these de-facto GMU-less parts in a way that's very similar to their
+> GMU-equipped cousins, massively saving up on code duplication.
 > 
-> Add documentation to describe StarFive dwmac driver(GMAC).
+> The "wrapper" register space was specifically designed to mimic the layout
+> of a real GMU, though it rather obviously does not have the M3 core et al.
 > 
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->  .../bindings/net/starfive,jh7110-dwmac.yaml   | 144 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  3 files changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> GMU wrapper-equipped A6xx GPUs require clocks and clock-names to be
+> specified under the GPU node, just like their older cousins. Account
+> for that.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index e4519cf722ab..245f7d713261 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -91,6 +91,7 @@ properties:
->          - snps,dwmac-5.20
->          - snps,dwxgmac
->          - snps,dwxgmac-2.10
-> +        - starfive,jh7110-dwmac
->  
->    reg:
->      minItems: 1
-> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> new file mode 100644
-> index 000000000000..5861426032bd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> @@ -0,0 +1,144 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 StarFive Technology Co., Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 DWMAC glue layer
-> +
-> +maintainers:
-> +  - Emil Renner Berthing <kernel@esmil.dk>
-> +  - Samin Guo <samin.guo@starfivetech.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - starfive,jh7110-dwmac
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - starfive,jh7110-dwmac
-> +      - const: snps,dwmac-5.20
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: GMAC main clock
-> +      - description: GMAC AHB clock
-> +      - description: PTP clock
-> +      - description: TX clock
-> +      - description: GTX clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: stmmaceth
-> +      - const: pclk
-> +      - const: ptp_ref
-> +      - const: tx
-> +      - const: gtx
-> +
-> +  interrupts:
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  resets:
-> +    items:
-> +      - description: MAC Reset signal.
-> +      - description: AHB Reset signal.
-> +
-> +  reset-names:
-> +    items:
-> +      - const: stmmaceth
-> +      - const: ahb
-> +
-> +  starfive,tx-use-rgmii-clk:
-> +    description:
-> +      Tx clock is provided by external rgmii clock.
-> +    type: boolean
-> +
-> +  starfive,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to syscon that configures phy mode
-> +          - description: Offset of phy mode selection
-> +          - description: Shift of phy mode selection
-> +    description:
-> +      A phandle to syscon with two arguments that configure phy mode.
-> +      The argument one is the offset of phy mode selection, the
-> +      argument two is the shift of phy mode selection.
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - resets
-> +  - reset-names
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-This is a friendly reminder during the review process.
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
