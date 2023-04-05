@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 251A26D81FB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 17:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 510B26D8259
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 17:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238624AbjDEPdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 11:33:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
+        id S239039AbjDEPqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 11:46:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238350AbjDEPdC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 11:33:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B65B1990
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 08:32:59 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pk56z-0008CX-OP; Wed, 05 Apr 2023 17:31:49 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pk56y-0001Ro-IB; Wed, 05 Apr 2023 17:31:48 +0200
-Date:   Wed, 5 Apr 2023 17:31:48 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Radu Pirea <radu-nicolae.pirea@oss.nxp.com>,
-        Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-        Keyur Chudgar <keyur@os.amperecomputing.com>,
-        Quan Nguyen <quan@os.amperecomputing.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 00/12] Rework PHY reset handling
-Message-ID: <20230405153148.f2pk2tya67uyweki@pengutronix.de>
-References: <20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de>
- <da635af8-2052-40d5-846f-eda14af8c69b@lunn.ch>
+        with ESMTP id S238993AbjDEPqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 11:46:08 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C7865B6
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 08:46:03 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y20so47267635lfj.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 08:46:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680709561;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2JzMgw/KxIFuJD1bDGN/iTTK0mFIW8/fSipuo0OLvMo=;
+        b=vV5AnKvy7C6OmT0GHc7Wd17jVaT9e4C4dZIiY51QpsN4SrEWfoAt4wj/Vk/ukWS8xs
+         NGKtQBpxYGPbiGlM8ay4QTaSawkPkiWbXLymQmboAlgurqMSK17iixf7pNivZCpLUScy
+         PzQbg1EWOBOZ78Zc7Ij0GUyaRkMrkq4yZdkXbjP9WYIW1fFyd4Cgr1a9p7leXmK8qDtN
+         BysvK4i2lPwC+yR5kRLwH5Wj78TX3VteIToKmNCOMRvPcl5zN1OvhEAlabsX/a1uDnbr
+         1iyGTcY+MBKBTNcE9CU5jrRMHBOQWh6pWsAoGZSxRoH7UrcvBbgyiQwRoeDRIh+AHJ/4
+         xTLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680709561;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2JzMgw/KxIFuJD1bDGN/iTTK0mFIW8/fSipuo0OLvMo=;
+        b=gwT2kn1Slf/KoHJnC+rqB1url/LsQvJhyPJ86HnjgrGdOR2pUW6JusxKGAkju6RPRn
+         h6/1jvfVDomdVv31xeF1u5RyD8HneqAZdvUCWXy1pr6nAcix5F0dQBrNHC/+dS0wKeiB
+         4CDXiecD0MdMqsQtQk4IA1xyr9qyA7BxmKFKf/ncmFhX3y3Drt0VMocI8/kJkQcsPwgk
+         MgwHwRHVA5zaVLzsmIN2V5vW9PThyRRJuAEqGBJMJ/cDOL0lt5cp8SVbjX+vPwLOaVKE
+         7Yy7iByjpxS9TxBc2KN+XtLgnaJXDKyVrPca4+m0cgw72Ud5C4AoCJsIdBQIfxWGQwrh
+         29cg==
+X-Gm-Message-State: AAQBX9dlvY8tUp51wuFinRogpxud867DGepz3MeBpDolUeHcmtasJdrZ
+        SxgexEB8NorpxK/Ch3pWHGwtIBuc6v5W4h52HeA=
+X-Google-Smtp-Source: AKy350bjTYshRZn4kx0HvRnINKUxdPrUxQmyITyx2Bj+QoWEURaWHKvTaLCdaBpNPcpHMbmRaerVaA==
+X-Received: by 2002:ac2:5482:0:b0:4e9:9c76:1b85 with SMTP id t2-20020ac25482000000b004e99c761b85mr1574656lfk.3.1680709561239;
+        Wed, 05 Apr 2023 08:46:01 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id x11-20020a19f60b000000b004eaf2291dcdsm2880736lfe.102.2023.04.05.08.46.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Apr 2023 08:46:00 -0700 (PDT)
+Message-ID: <fcfaccb2-bf93-091d-d3d7-81fed6fb62fe@linaro.org>
+Date:   Wed, 5 Apr 2023 17:45:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <da635af8-2052-40d5-846f-eda14af8c69b@lunn.ch>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3] arm64: dts: qcom: sm8550: add Soundwire controllers
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+References: <20230405061129.143553-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230405061129.143553-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,37 +79,165 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
 
-On 23-04-05, Andrew Lunn wrote:
-> On Wed, Apr 05, 2023 at 11:26:51AM +0200, Marco Felsch wrote:
-> > The current phy reset handling is broken in a way that it needs
-> > pre-running firmware to setup the phy initially. Since the very first
-> > step is to readout the PHYID1/2 registers before doing anything else.
-> > 
-> > The whole dection logic will fall apart if the pre-running firmware
-> > don't setup the phy accordingly or the kernel boot resets GPIOs states
-> > or disables clocks. In such cases the PHYID1/2 read access will fail and
-> > so the whole detection will fail.
-> > 
-> > I fixed this via this series, the fix will include a new kernel API
-> > called phy_device_atomic_register() which will do all necessary things
-> > and return a 'struct phy_device' on success. So setting up a phy and the
-> > phy state machine is more convenient.
+
+On 5.04.2023 08:11, Krzysztof Kozlowski wrote:
+> Add nodes for LPASS Soundwire v2.0.0 controllers.  Use labels with
+> indices matching downstream DTS, to make any comparisons easier.
 > 
-> Please add a section explaining why the current API is broken beyond
-> repair.  You need to justify adding a new call, rather than fixing the
-> existing code to just do what is necessary to allow the PHY to be
-> found.
-
-TIL from Florian that you use the cover-letter information in your merge
-commits. I will adapt the cover-letter accordingly and mention why this
-PR introduces a new API.
-
-Regards,
-  Marco
-
-
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> 	Andrew
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 > 
+> Changes since v2:
+> 1. Use labels instead of comments (Konrad).
+> 2. Use interrupts instead of interupts-extended (Konrad)
+> 
+> Changes since v1:
+> 1. Correct IO range length.
+> 
+> The bindings and driver are here:
+> https://lore.kernel.org/linux-arm-msm/20230403132503.62090-1-krzysztof.kozlowski@linaro.org/T/#t
+> 
+> Cc: Patrick Lai <quic_plai@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 109 +++++++++++++++++++++++++++
+>  1 file changed, 109 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index dc6150e97d46..f9eaede39b5b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -2004,6 +2004,33 @@ lpass_wsa2macro: codec@6aa0000 {
+>  			#sound-dai-cells = <1>;
+>  		};
+>  
+> +		swr3: soundwire-controller@6ab0000 {
+> +			compatible = "qcom,soundwire-v2.0.0";
+> +			reg = <0 0x06ab0000 0 0x10000>;
+> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&lpass_wsa2macro>;
+> +			clock-names = "iface";
+> +			label = "WSA2";
+> +
+> +			qcom,din-ports = <4>;
+> +			qcom,dout-ports = <9>;
+> +
+> +			qcom,ports-sinterval =		<0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x18f 0xff 0xff 0x0f 0x0f 0xff 0x31f>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x03 0x05 0x02 0x04 0x15 0x00 0xff 0xff 0x06 0x0d 0xff 0x00>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x07 0x1f 0xff 0x07 0x1f 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x18>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0x00 0x01 0x01 0x00 0x01 0x01 0x00 0x00 0x00 0x01 0x01 0x00 0x00>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+>  		lpass_rxmacro: codec@6ac0000 {
+>  			compatible = "qcom,sm8550-lpass-rx-macro";
+>  			reg = <0 0x06ac0000 0 0x1000>;
+> @@ -2023,6 +2050,33 @@ lpass_rxmacro: codec@6ac0000 {
+>  			#sound-dai-cells = <1>;
+>  		};
+>  
+> +		swr1: soundwire-controller@6ad0000 {
+> +			compatible = "qcom,soundwire-v2.0.0";
+> +			reg = <0 0x06ad0000 0 0x10000>;
+> +			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&lpass_rxmacro>;
+> +			clock-names = "iface";
+> +			label = "RX";
+> +
+> +			qcom,din-ports = <0>;
+> +			qcom,dout-ports = <10>;
+> +
+> +			qcom,ports-sinterval =		<0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+>  		lpass_txmacro: codec@6ae0000 {
+>  			compatible = "qcom,sm8550-lpass-tx-macro";
+>  			reg = <0 0x06ae0000 0 0x1000>;
+> @@ -2061,6 +2115,61 @@ lpass_wsamacro: codec@6b00000 {
+>  			#sound-dai-cells = <1>;
+>  		};
+>  
+> +		swr0: soundwire-controller@6b10000 {
+> +			compatible = "qcom,soundwire-v2.0.0";
+> +			reg = <0 0x06b10000 0 0x10000>;
+> +			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&lpass_wsamacro>;
+> +			clock-names = "iface";
+> +			label = "WSA";
+> +
+> +			qcom,din-ports = <4>;
+> +			qcom,dout-ports = <9>;
+> +
+> +			qcom,ports-sinterval =		<0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x18f 0xff 0xff 0x0f 0x0f 0xff 0x31f>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x03 0x05 0x02 0x04 0x15 0x00 0xff 0xff 0x06 0x0d 0xff 0x00>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x07 0x1f 0xff 0x07 0x1f 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x0f>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0x18>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0x00 0x01 0x01 0x00 0x01 0x01 0x00 0x00 0x00 0x01 0x01 0x00 0x00>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		swr2: soundwire-controller@6d30000 {
+> +			compatible = "qcom,soundwire-v2.0.0";
+> +			reg = <0 0x06d30000 0 0x10000>;
+> +			interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "core", "wakeup";
+> +			clocks = <&lpass_vamacro>;
+> +			clock-names = "iface";
+> +			label = "TX";
+> +
+> +			qcom,din-ports = <4>;
+> +			qcom,dout-ports = <0>;
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x01 0x01>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x02 0x00 0x00>;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+>  		lpass_vamacro: codec@6d44000 {
+>  			compatible = "qcom,sm8550-lpass-va-macro";
+>  			reg = <0 0x06d44000 0 0x1000>;
