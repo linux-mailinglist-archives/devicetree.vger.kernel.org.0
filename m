@@ -2,206 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 076006D7A34
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FD206D7A46
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237834AbjDEKrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 06:47:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
+        id S237828AbjDEKsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 06:48:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237740AbjDEKrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:47:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2011249F9;
-        Wed,  5 Apr 2023 03:47:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD08D63C57;
-        Wed,  5 Apr 2023 10:47:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C55A2C433EF;
-        Wed,  5 Apr 2023 10:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680691623;
-        bh=q4mbSRyaECqXZBaI2chRUC8g7fKSua/OlQr5LOzU8Lc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NYk7GArMLcHuZT6LglhcwfKswPjiUhvpykd6UfUcigFlmjTxk81cdWTM8meuG87OK
-         auDr+rMup6Gh3bPqxaK+PCnitUXnEcraBkw66jONfxwMxKRcJ0aR9cXwA0je2NqU2a
-         SuaAOx/GkY80DSvwBckR1cf/XsDftwTEfg7AN0H7peYfBa1gba7rbOJrs6tgMXDXKm
-         XQ8oLmDqeHfK/qTHu9W+FGatJMx9o8YWlmPrCEP5+hb9JJQI1gRSJ+nqGxZxfBVt+4
-         TebyxdRgWJ3of8pZKvTeVOoEeLzzAf8umVcViGN092/imnB2nDAMnXOUUYGrgP7fXR
-         olLMJGuWAKHZg==
-Date:   Wed, 5 Apr 2023 12:46:54 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        helgaas@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
-        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
-        ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v5 7/8] PCI: tegra194: add interconnect support in
- Tegra234
-Message-ID: <ZC1Rnrb0MObR5S42@lpieralisi>
-References: <20230330133354.714-1-sumitg@nvidia.com>
- <20230330133354.714-8-sumitg@nvidia.com>
+        with ESMTP id S237810AbjDEKsk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:48:40 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A785593
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 03:48:38 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id b6so16790771ljr.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 03:48:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680691717;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZG2HCtNxlgwN2tmS23WngsoPcjjiHvvoCCuFSy8KcdU=;
+        b=tMb0fkkc8uT0wd4kgaghM5StLPoEDgwCBmUZ70raGVJ3a1NkpO1ZTe6kPry7hLpv5P
+         GFOlCWOi8d/QIzAVUDiDuKvcmmn7ZFz7n4K55wAogNZNred2qCX0Pq2LuaLa4MAuxu4N
+         ogjT5XozqnKc1EXwbOtkvT22DqHbkDjnJDIqfUyYlK018/lQvmN0Hd39aQwI8MWEty6h
+         3CkDaW+6mZqLEDdbodG8ojkKjeQkXe2A09YoshyDeD004VZ+LOlal19utadAqfGp+8r7
+         dnLJhuYeQdUn0iRCzRufvY3cbSHO03lIT7dWQaQ45Qm7WLbhNGHaHedYnXRdLa/EVaiv
+         +PNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680691717;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZG2HCtNxlgwN2tmS23WngsoPcjjiHvvoCCuFSy8KcdU=;
+        b=mCSMkuwmCGj1+pdrCuUP5Gn68tECgeusv3zoD/q+eAHs4wGKDAjB/plRG2eJZwEw2n
+         IZfcM15puZhAOPNItOCweqYQVgbCCurZgQc9y5nWd7F5wXTHJgJHrTlBEQUNWP5SCFKL
+         fxildHW0TwJ59EqCEBw72euCKJYbrLoAjjuE9SgI5Pj0DhvZMvQveDAnl+4Ae+MVyw1g
+         J3jZfUL4soCWrn1BdCAZLESMGk4Y5RUSSKhaaozK3iixlOTnEYc9oawTnFxOV1E+qAU+
+         DQnGsuYQY1ytSDeEf7AYTK/6BCWdXEyQypXyByP/ajdy3DmgAgxuHpNWGwIATggMInh+
+         6k3w==
+X-Gm-Message-State: AAQBX9der/Mhzn+1fsvaCqRfIIqbSbMWrxheel3s2WLDU7Uy20O6If2z
+        f0DzTw7xUyYWYP8AF66isBQpLw==
+X-Google-Smtp-Source: AKy350YKyZEdK7pLHgd5YB2Bd5YC6pZqq+CkwOXKtrhPPd0UKP4XdNNIoXlNEXBxtxBLHqLsj+wEJw==
+X-Received: by 2002:a2e:9d83:0:b0:298:9fb5:9f20 with SMTP id c3-20020a2e9d83000000b002989fb59f20mr1957018ljj.26.1680691716773;
+        Wed, 05 Apr 2023 03:48:36 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id u4-20020a2e9b04000000b00295a3a64816sm2777299lji.2.2023.04.05.03.48.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 03:48:36 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/2] Resolve MPM register space situation
+Date:   Wed, 05 Apr 2023 12:48:33 +0200
+Message-Id: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230330133354.714-8-sumitg@nvidia.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAFSLWQC/32NQQ6CMBAAv0L2bA20opWT/zDEbGuBTWhLtkg0h
+ L9beYDHmWQyKyTH5BI0xQrsFkoUQwZ5KMAOGHon6JkZZClVqaQWc5zICp96Rv/wkxf2rLVxylh
+ 5PUHODCYnDGOwQw7DaxyznNh19N4/9zbzQGmO/Nm3S/Wzfw5LJUpRmYvWWHc1KnUbKSDHY+Qe2
+ m3bviyDJTHGAAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680691715; l=2181;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=PGToSdNHkfoH7oxxoFUu9HnlKuR8i20PGmrHfAvQgnY=;
+ b=5Av9gDhmhgmJn0VA+nRwiin3TUmgFd55mTdHow3w2FRnEPpBNUjRrUGoQ3AZ4JnM6WWhwflaydmZ
+ qa819xQ5BkSWsagI1LVXmxQ1PU1LOBzlgrxI9YNDg2Xd/EUUZIzK
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-You should still capitalize the subject.
+v1 -> v2:
+- deprecate 'reg', make qcom,rpm-msg-ram required [1/2]
+- Use devm_ioremap() [2/2]
 
-"PCI: tegra194: Add interconnect.."
+Link to v1: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org
 
-On Thu, Mar 30, 2023 at 07:03:53PM +0530, Sumit Gupta wrote:
-> Add support to request DRAM bandwidth with Memory Interconnect
-> in Tegra234 SoC. The DRAM BW required for different modes depends
-> on speed (Gen-1/2/3/4) and width/lanes (x1/x2/x4/x8).
-> 
-> Suggested-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Depends on resolution of https://github.com/devicetree-org/dt-schema/issues/104
 
-You should add a Link to the relevant lore archive, I am
-pretty sure Bjorn chimed in too.
+The MPM (and some other things, irrelevant to this patchset) resides
+(as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
+that's a portion of the RPM (low-power management core)'s RAM, known
+as the RPM Message RAM. Representing this relation in the Device Tree
+creates some challenges, as one would either have to treat a memory
+region as a bus, map nodes in a way such that their reg-s would be
+overlapping, or supply the nodes with a slice of that region.
 
-This patch does too many things at once; more importantly it
-does *not* explain why we request memory bandwidth and why it
-is required and *safe* given that the current code works so far.
+This series implements the third option, by adding a qcom,rpm-msg-ram
+property, which has been used for some drivers poking into this region
+before. Bindings ABI compatibility is preserved through keeping the
+"normal" (a.k.a read the reg property and map that region) way of
+passing the register space.
 
-So:
+Example representation with this patchset:
 
-patch 1: fix the array overflow issues with the current code
-patch 2: add memory bandwidth interconnect support
+/ {
+	[...]
 
-Thanks,
-Lorenzo
+	mpm: interrupt-controller {
+		compatible = "qcom,mpm";
+		qcom,rpm-msg-ram = <&apss_mpm>;
+		[...]
+	};
 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> ---
->  drivers/pci/controller/dwc/pcie-tegra194.c | 44 ++++++++++++++++++----
->  1 file changed, 36 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-> index 09825b4a075e..89d829a946ee 100644
-> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
-> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-> @@ -14,6 +14,7 @@
->  #include <linux/delay.h>
->  #include <linux/gpio.h>
->  #include <linux/gpio/consumer.h>
-> +#include <linux/interconnect.h>
->  #include <linux/interrupt.h>
->  #include <linux/iopoll.h>
->  #include <linux/kernel.h>
-> @@ -223,6 +224,7 @@
->  #define EP_STATE_ENABLED	1
->  
->  static const unsigned int pcie_gen_freq[] = {
-> +	GEN1_CORE_CLK_FREQ,   /* PCI_EXP_LNKSTA_CLS == 0; undefined */
->  	GEN1_CORE_CLK_FREQ,
->  	GEN2_CORE_CLK_FREQ,
->  	GEN3_CORE_CLK_FREQ,
-> @@ -287,6 +289,7 @@ struct tegra_pcie_dw {
->  	unsigned int pex_rst_irq;
->  	int ep_state;
->  	long link_status;
-> +	struct icc_path *icc_path;
->  };
->  
->  static inline struct tegra_pcie_dw *to_tegra_pcie(struct dw_pcie *pci)
-> @@ -309,6 +312,27 @@ struct tegra_pcie_soc {
->  	enum dw_pcie_device_mode mode;
->  };
->  
-> +static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
-> +{
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	u32 val, speed, width;
-> +
-> +	val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
-> +
-> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
-> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
-> +
-> +	val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / BITS_PER_BYTE);
-> +
-> +	if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
-> +		dev_err(pcie->dev, "can't set bw[%u]\n", val);
-> +
-> +	if (speed >= ARRAY_SIZE(pcie_gen_freq))
-> +		speed = 0;
-> +
-> +	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed]);
-> +}
-> +
->  static void apply_bad_link_workaround(struct dw_pcie_rp *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -452,14 +476,12 @@ static irqreturn_t tegra_pcie_ep_irq_thread(int irq, void *arg)
->  	struct tegra_pcie_dw *pcie = arg;
->  	struct dw_pcie_ep *ep = &pcie->pci.ep;
->  	struct dw_pcie *pci = &pcie->pci;
-> -	u32 val, speed;
-> +	u32 val;
->  
->  	if (test_and_clear_bit(0, &pcie->link_status))
->  		dw_pcie_ep_linkup(ep);
->  
-> -	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
-> -		PCI_EXP_LNKSTA_CLS;
-> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-> +	tegra_pcie_icc_set(pcie);
->  
->  	if (pcie->of_data->has_ltr_req_fix)
->  		return IRQ_HANDLED;
-> @@ -945,9 +967,9 @@ static int tegra_pcie_dw_host_init(struct dw_pcie_rp *pp)
->  
->  static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
->  {
-> -	u32 val, offset, speed, tmp;
->  	struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
->  	struct dw_pcie_rp *pp = &pci->pp;
-> +	u32 val, offset, tmp;
->  	bool retry = true;
->  
->  	if (pcie->of_data->mode == DW_PCIE_EP_TYPE) {
-> @@ -1018,9 +1040,7 @@ static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
->  		goto retry_link;
->  	}
->  
-> -	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
-> -		PCI_EXP_LNKSTA_CLS;
-> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-> +	tegra_pcie_icc_set(pcie);
->  
->  	tegra_pcie_enable_interrupts(pp);
->  
-> @@ -2224,6 +2244,14 @@ static int tegra_pcie_dw_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, pcie);
->  
-> +	pcie->icc_path = devm_of_icc_get(&pdev->dev, "write");
-> +	ret = PTR_ERR_OR_ZERO(pcie->icc_path);
-> +	if (ret) {
-> +		tegra_bpmp_put(pcie->bpmp);
-> +		dev_err_probe(&pdev->dev, ret, "failed to get write interconnect\n");
-> +		return ret;
-> +	}
-> +
->  	switch (pcie->of_data->mode) {
->  	case DW_PCIE_RC_TYPE:
->  		ret = devm_request_irq(dev, pp->irq, tegra_pcie_rp_irq_handler,
-> -- 
-> 2.17.1
-> 
+	[...]
+
+	soc: soc@0 {
+		[...]
+
+		rpm_msg_ram: sram@45f0000 {
+			compatible = "qcom,rpm-msg-ram", "mmio-sram";
+			reg = <0 0x045f0000 0 0x7000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0 0x0 0x045f0000 0x7000>;
+
+			apss_mpm: sram@1b8 {
+				reg = <0x1b8 0x48>;
+			};
+		};
+	};
+};
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: interrupt-controller: mpm: Pass MSG RAM slice through phandle
+      irqchip: irq-qcom-mpm: Support passing a slice of SRAM as reg space
+
+ .../bindings/interrupt-controller/qcom,mpm.yaml     | 12 +++++++++---
+ drivers/irqchip/irq-qcom-mpm.c                      | 21 ++++++++++++++++++---
+ 2 files changed, 27 insertions(+), 6 deletions(-)
+---
+base-commit: 8417c8f5007bf4567ccffda850a3157c7d905f67
+change-id: 20230328-topic-msgram_mpm-c688be3bc294
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
