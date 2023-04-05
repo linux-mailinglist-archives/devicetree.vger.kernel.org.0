@@ -2,132 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C1C6D88DF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD03D6D8913
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233341AbjDEUnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 16:43:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35144 "EHLO
+        id S229507AbjDEUug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 16:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233117AbjDEUnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:43:33 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8707EDC;
-        Wed,  5 Apr 2023 13:43:14 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17683b570b8so39945290fac.13;
-        Wed, 05 Apr 2023 13:43:14 -0700 (PDT)
+        with ESMTP id S229479AbjDEUuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:50:35 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25C6CD;
+        Wed,  5 Apr 2023 13:50:34 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id e15-20020a17090ac20f00b0023d1b009f52so40781074pjt.2;
+        Wed, 05 Apr 2023 13:50:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680727834;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RKzNCLVl42oXEDNGT8TsESnDpIsZTaCWPqislM2wAtI=;
+        b=hxEM/qI4QHMC2jKXgsn0s21vyMD1Io+s5SE6tOIdKgfNYoPyz2Xkfq8xPJODLi5xt2
+         BNErNUaDdxAPZ7zaWCjJV1ct4ph1C3pfHMugBN0dRKDPlkEB0Xh95ToT5RnzkjaTTrfq
+         KJnlGl7An0mGYZ6fj7cegMLC4wAJjACoK9tUpi+Vxjaa+l8DzOAepCSJHPCNEK3xNLyl
+         JpODtvd79KchlQc160KgNCIB5JZeb/3uylAJnv2W0MMkw9qVM+w4XikbJlFCCJ13DRqI
+         zbdCHhU9Wavbqj/AY4e72OMafn0yixx7FKkjTGNiQh59ruILbzzpleVul6faXEyRCxLh
+         HjGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680727374;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fo4KOndYHjMmbpfxHkmhUzVyW73zzbklAEkQD0vmqLg=;
-        b=qjrl45j14NUyHUdQMEp+Q7CuzKUhRpTPaBLBEf5dyxg24AkwrgTs97Sw8xTV00byrf
-         NBg1TEhd4vIhXojhxeOSQOso+oiRx7xUOfxjIYw6TyU7Vo1DR5zD/AJ3KjISSRzaRKTq
-         dAHmcK81LuKjiIjtEcFjkjWFAGjT/bfxRbOUC8yzc1B8AyRkh2tyY1ZJ5QrAFRfGUXtu
-         Qxh9HTksn/LZ69Aw5qQE8g84l6wUZvGZNK6MAp0aK+mBkKlPI+zuuMv/S8epi10wV3dl
-         /QiOnAZFoUw7wvVU8OiQtTGDxEbyYdogIvrIqpJxcFaXSAan4eD26G1t8MzY89wvxb2f
-         Un1Q==
-X-Gm-Message-State: AAQBX9fQBhtP6IwAIaG7GLfvFJJn1n9KkFE8mY+EPFp9VPUxXXyPvpAX
-        0fhBDQPRPJHTA8n0js6twQ==
-X-Google-Smtp-Source: AKy350YB2Ilkp1Aoa2VvCKvBjmWi9tDKQH08fmFxNM2UVw2G8NAZ3PpJIJOjMXSbsNNwBzdVZHrk4g==
-X-Received: by 2002:a05:6870:6023:b0:177:81bb:1b28 with SMTP id t35-20020a056870602300b0017781bb1b28mr4091960oaa.9.1680727373749;
-        Wed, 05 Apr 2023 13:42:53 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id zj27-20020a0568716c9b00b001723a2e84b6sm6361842oab.6.2023.04.05.13.42.52
+        d=1e100.net; s=20210112; t=1680727834;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RKzNCLVl42oXEDNGT8TsESnDpIsZTaCWPqislM2wAtI=;
+        b=RTQvxhjhZ6SfM0H7TKcPE5IlPC2mw83t9cgH4gLFcdFxGyxJqLMNnnyTZpubjHDdqw
+         h6/NHNksDAnPvUHUVMC5wpiTL7pV91B1z+6NPKTVcSu2qLVIR4D28/JFdnoWPgXla0ke
+         8NiKpJLFEJvfQKBLkSe2zpxo6gSFQ7XcNhsy5YUaXDO9PRFCT9SpNPL4VHqd+QrgGBQK
+         YxzRf2rvqmjux2JCI/V7pI07Ii0fr93K0FJHlZc/xbWjJkqM0g8xkio07pkV+cZWDQwj
+         4mp8bgOj2z7AKY+Lz3Hh95NZuvqkBqXwPtsBiKFWPz39fcabFF80cGE9HD721Ws1/4ip
+         ZhzQ==
+X-Gm-Message-State: AAQBX9cOg+ZI6X5YEXals0ztydxK13DPgyDfSkR41KcwE7qVgQYZcJnV
+        bwPkCthJPAccrxMNKIhwTJI=
+X-Google-Smtp-Source: AKy350ZQjITByRIh6laCMZtN0D4PEu5si/p7iyC3zWOWJmAU0uCqGQIZmlDCQQfFDVIkWo4Gz74rfA==
+X-Received: by 2002:a17:902:d1d5:b0:1a3:d5af:9b6f with SMTP id g21-20020a170902d1d500b001a3d5af9b6fmr5296025plb.19.1680727833997;
+        Wed, 05 Apr 2023 13:50:33 -0700 (PDT)
+Received: from pavilion.. ([2402:e280:218d:82:616c:b78a:a01f:5113])
+        by smtp.gmail.com with ESMTPSA id w9-20020a170902a70900b001a260b5319bsm10577676plq.91.2023.04.05.13.50.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 13:42:53 -0700 (PDT)
-Received: (nullmailer pid 449449 invoked by uid 1000);
-        Wed, 05 Apr 2023 20:42:52 -0000
-Date:   Wed, 5 Apr 2023 15:42:52 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Saravana Kannan <saravanak@google.com>,
-        Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabio Estevam <festevam@gmail.com>, linux-i2c@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Wolfram Sang <wsa@kernel.org>
-Subject: Re: [PATCH v3] treewide: Fix probing of devices in DT overlays
-Message-ID: <168072737082.449372.6122824582508382689.robh@kernel.org>
-References: <e1fa546682ea4c8474ff997ab6244c5e11b6f8bc.1680182615.git.geert+renesas@glider.be>
+        Wed, 05 Apr 2023 13:50:33 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
+Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Saalim Quadri <danascape@gmail.com>
+Subject: [PATCH] ASoC: dt-bindings: wm8580: Convert to dtschema
+Date:   Thu,  6 Apr 2023 02:20:25 +0530
+Message-Id: <20230405205025.6448-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e1fa546682ea4c8474ff997ab6244c5e11b6f8bc.1680182615.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the WM8580 and WM8581 audio CODEC bindings to DT schema
 
-On Thu, 30 Mar 2023 15:26:13 +0200, Geert Uytterhoeven wrote:
-> When loading a DT overlay that creates a device, the device is not
-> probed, unless the DT overlay is unloaded and reloaded again.
-> 
-> After the recent refactoring to improve fw_devlink, it no longer depends
-> on the "compatible" property to identify which device tree nodes will
-> become struct devices.   fw_devlink now picks up dangling consumers
-> (consumers pointing to descendent device tree nodes of a device that
-> aren't converted to child devices) when a device is successfully bound
-> to a driver.  See __fw_devlink_pickup_dangling_consumers().
-> 
-> However, during DT overlay, a device's device tree node can have
-> sub-nodes added/removed without unbinding/rebinding the driver.  This
-> difference in behavior between the normal device instantiation and
-> probing flow vs. the DT overlay flow has a bunch of implications that
-> are pointed out elsewhere[1].  One of them is that the fw_devlink logic
-> to pick up dangling consumers is never exercised.
-> 
-> This patch solves the fw_devlink issue by marking all DT nodes added by
-> DT overlays with FWNODE_FLAG_NOT_DEVICE (fwnode that won't become
-> device), and by clearing the flag when a struct device is actually
-> created for the DT node.  This way, fw_devlink knows not to have
-> consumers waiting on these newly added DT nodes, and to propagate the
-> dependency to an ancestor DT node that has the corresponding struct
-> device.
-> 
-> Based on a patch by Saravana Kannan, which covered only platform and spi
-> devices.
-> 
-> [1] https://lore.kernel.org/r/CAGETcx_bkuFaLCiPrAWCPQz+w79ccDp6=9e881qmK=vx3hBMyg@mail.gmail.com
-> 
-> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
-> Link: https://lore.kernel.org/r/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=rWYnkCZ6z5bGX-wj4w@mail.gmail.com
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
-> ---
-> v3:
->   - Add Acked-by,
->   - s/instantiate/probe/,
->   - Improve commit description,
->   - Add comment before clearing FWNODE_FLAG_NOT_DEVICE,
-> 
-> v2:
->   - Add Acked-by,
->   - Drop RFC.
-> ---
->  drivers/bus/imx-weim.c    | 6 ++++++
->  drivers/i2c/i2c-core-of.c | 5 +++++
->  drivers/of/dynamic.c      | 1 +
->  drivers/of/platform.c     | 5 +++++
->  drivers/spi/spi.c         | 5 +++++
->  5 files changed, 22 insertions(+)
-> 
+Signed-off-by: Saalim Quadri <danascape@gmail.com>
+---
+ .../devicetree/bindings/sound/wlf,wm8580.yaml | 42 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8580.txt      | 16 -------
+ 2 files changed, 42 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8580.txt
 
-Applied, thanks!
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8580.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
+new file mode 100644
+index 000000000000..2f27852cdc20
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8580.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: WM8580 and WM8581 audio CODEC
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - wlf,wm8580
++      - wlf,wm8581
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1a {
++            compatible = "wlf,wm8580";
++            reg = <0x1a>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8580.txt b/Documentation/devicetree/bindings/sound/wm8580.txt
+deleted file mode 100644
+index ff3f9f5f2111..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8580.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-WM8580 and WM8581 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-  - compatible : "wlf,wm8580", "wlf,wm8581"
+-
+-  - reg : the I2C address of the device.
+-
+-Example:
+-
+-wm8580: codec@1a {
+-	compatible = "wlf,wm8580";
+-	reg = <0x1a>;
+-};
+-- 
+2.34.1
 
