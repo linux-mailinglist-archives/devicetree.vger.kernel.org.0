@@ -2,108 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE086D8410
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 724766D841C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 18:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233552AbjDEQtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 12:49:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55686 "EHLO
+        id S232822AbjDEQwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 12:52:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233533AbjDEQtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:49:01 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C4230F9;
-        Wed,  5 Apr 2023 09:49:00 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-177b78067ffso39182381fac.7;
-        Wed, 05 Apr 2023 09:49:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680713339;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YOm7tILvDPZI6czqCDOR13IkcnfefKihrcBUjqz0L8Y=;
-        b=FBHtD7JQejEhsI9wObe4Eogffs+RpO1AYMOSZanKRSZbz6nSvco9Z0VsrVy16Oqgxj
-         IJ6xsUy6EEGKBd7TJ8TVWU5cM76FlZUQgKQ2VAek5W3A7xu/CXJXwrenTYJQ6eyk/NYp
-         b0t+7alzlWeT1OFbFK6TAoVbrg3NpDPr4UGOihwGNT9x2ZEYhBQeIn7cXEqXubvetQcA
-         1SzRpLLJvK6UFqYyV5iLKgi2DN/E5X1kn0tGrqanausEBrLqEKLbHLvEL/CdOTc+40P7
-         yAhrPhJjq/pTLPuwESRAbB0LDId+uOVEIR4yTk099t4gulmBh3tB5MiAGNhXhBUCbmIE
-         ++XA==
-X-Gm-Message-State: AAQBX9fGx+Bom8dVHn/GarV15ZSXMRT6A+HrCP3CUVaFbGx0dTL84ULg
-        zx/JXYcLLGEGmI/GA4bK/g==
-X-Google-Smtp-Source: AKy350bOWFf1ufKwVRHaSJOkmcOubEUaoDXmzwdrxIlRe4vQv0WbM2rbpalQ0GPhRcx5gis4QHzRZA==
-X-Received: by 2002:a05:6871:90:b0:17e:de1c:c557 with SMTP id u16-20020a056871009000b0017ede1cc557mr4517825oaa.12.1680713339438;
-        Wed, 05 Apr 2023 09:48:59 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m16-20020a9d7ad0000000b006a119c75ad8sm6996757otn.55.2023.04.05.09.48.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 09:48:59 -0700 (PDT)
-Received: (nullmailer pid 2821005 invoked by uid 1000);
-        Wed, 05 Apr 2023 16:48:57 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229553AbjDEQwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 12:52:45 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD114C05
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 09:52:43 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 218D08579A;
+        Wed,  5 Apr 2023 18:52:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1680713561;
+        bh=qnVsJNQpgMfCjmE9rLKiLblLxwvxGkwtWG10VD0Lzsg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=AOwZxA2r0EnrpwA21DroFYXa2g0KNsBlJRchKPr+ncEkByWCoZ9Veh8sT09l6mQkM
+         Cw/wyWeWbydoV2IYWYETYZt1M/yBHfpuJwGa4ykltM/rhyZJbvYtwe6pzsd0e+Nqkm
+         4iXESZhfzi2VfEx4ZQowTi1SOjplaVQq/HJ2tIC6blCbUgTZCQnNfnxUvVNpDVet6X
+         meXTjp9qi3J7cpXZYaLpfJoua1CcD0FbMOMFcZPrMCzkow447qbFxW9wqJcAt8aouJ
+         D+XqtX7nwJDP+Y/dE1+7UEPSdHpgBl7OF2Eu/fBUcXqRUli4M3KwmRtqLS0d8pYOAM
+         CgIcEpPLc4eIw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20230405-topic-master_stats-v1-1-1b1fa2739953@linaro.org>
-References: <20230405-topic-master_stats-v1-0-1b1fa2739953@linaro.org>
- <20230405-topic-master_stats-v1-1-1b1fa2739953@linaro.org>
-Message-Id: <168071287381.2812239.11751360706280715268.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: Add RPM Master stats
-Date:   Wed, 05 Apr 2023 11:48:57 -0500
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] arm64: dts: imx8mm: Add display pipeline components
+Date:   Wed,  5 Apr 2023 18:52:12 +0200
+Message-Id: <20230405165214.95574-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Mini.
+This makes the DSI display pipeline available on this SoC.
 
-On Wed, 05 Apr 2023 17:01:35 +0200, Konrad Dybcio wrote:
-> The RPM MSG RAM contains per-RPM-master (e.g. APPS, ADSP etc.) sleep
-> statistics. They let one assess which core is actively preventing the
-> system from entering a true low-power mode.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/soc/qcom/rpm-master-stats.yaml        | 53 ++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Abel Vesa <abel.vesa@nxp.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Guido Günther <agx@sigxcpu.org>
+Cc: Jagan Teki <jagan@amarulasolutions.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Richard Cochran <richardcochran@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+V2: - Drop the address-cells/size-cells from DSIM node
+    - Add RB from Fabio, Alexander
+    - CC Alexander, Jagan
+    - Bundle the MX8MM,N,P patches together in one series
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 55 +++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/rpm-master-stats.yaml: properties:compatible: [{'const': 'qcom,rpm-master-stats'}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/rpm-master-stats.yaml: ignoring, error in schema: properties: compatible
-Documentation/devicetree/bindings/soc/qcom/rpm-master-stats.example.dtb: /example-0/stats: failed to match any schema with compatible: ['qcom,rpm-master-stats']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230405-topic-master_stats-v1-1-1b1fa2739953@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index e311da7e87bdc..d6b36f04f3dc1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -1119,6 +1119,61 @@ aips4: bus@32c00000 {
+ 			#size-cells = <1>;
+ 			ranges = <0x32c00000 0x32c00000 0x400000>;
+ 
++			lcdif: lcdif@32e00000 {
++				compatible = "fsl,imx8mm-lcdif", "fsl,imx6sx-lcdif";
++				reg = <0x32e00000 0x10000>;
++				clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
++					 <&clk IMX8MM_CLK_DISP_APB_ROOT>,
++					 <&clk IMX8MM_CLK_DISP_AXI_ROOT>;
++				clock-names = "pix", "axi", "disp_axi";
++				assigned-clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
++						  <&clk IMX8MM_CLK_DISP_AXI>,
++						  <&clk IMX8MM_CLK_DISP_APB>;
++				assigned-clock-parents = <&clk IMX8MM_VIDEO_PLL1_OUT>,
++							 <&clk IMX8MM_SYS_PLL2_1000M>,
++							 <&clk IMX8MM_SYS_PLL1_800M>;
++				assigned-clock-rates = <594000000>, <500000000>, <200000000>;
++				interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&disp_blk_ctrl IMX8MM_DISPBLK_PD_LCDIF>;
++				status = "disabled";
++
++				port {
++					lcdif_to_dsim: endpoint {
++						remote-endpoint = <&dsim_from_lcdif>;
++					};
++				};
++			};
++
++			mipi_dsi: dsi@32e10000 {
++				compatible = "fsl,imx8mm-mipi-dsim";
++				reg = <0x32e10000 0x400>;
++				clocks = <&clk IMX8MM_CLK_DSI_CORE>,
++					 <&clk IMX8MM_CLK_DSI_PHY_REF>;
++				clock-names = "bus_clk", "sclk_mipi";
++				assigned-clocks = <&clk IMX8MM_CLK_DSI_CORE>,
++						  <&clk IMX8MM_CLK_DSI_PHY_REF>;
++				assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_266M>,
++							 <&clk IMX8MM_CLK_24M>;
++				assigned-clock-rates = <266000000>, <24000000>;
++				samsung,pll-clock-frequency = <24000000>;
++				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&disp_blk_ctrl IMX8MM_DISPBLK_PD_MIPI_DSI>;
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						dsim_from_lcdif: endpoint {
++							remote-endpoint = <&lcdif_to_dsim>;
++						};
++					};
++				};
++			};
++
+ 			csi: csi@32e20000 {
+ 				compatible = "fsl,imx8mm-csi", "fsl,imx7-csi";
+ 				reg = <0x32e20000 0x1000>;
+-- 
+2.39.2
 
