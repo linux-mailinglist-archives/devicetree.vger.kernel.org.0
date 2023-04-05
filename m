@@ -2,103 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A5C6D7D91
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E6CC6D7D9D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237448AbjDENU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 09:20:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35034 "EHLO
+        id S237184AbjDENW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 09:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237833AbjDENU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:20:57 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C1A26AD
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 06:20:55 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id p203so42438708ybb.13
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 06:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680700855;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5m4rtZfAeR6vet4pBc2kbt1ke7sk+dSI8jcqxxSGabg=;
-        b=N3lS4Ak6Hm5UiFMyXreG42rMd1R06vtbPLvlXgKK15No6lROSjJ6chA+gMoALkxBVW
-         5Ro0fhfTddipMFnBoNBrljl27cWdgVBHU7m5ZrJ1BKXaH5H2wXxhZmojKzJyEbLKgwps
-         V438OspT5Qn5OrJK5/cL8db7csqB4u9toLFIHnNyLT+eUOh5Hh2dNZNpTEvMgjwbPJzX
-         yqoTVj1u6tILTYMfZUoD0EP3VeZp8ZXWRXz35vsVQjbnwktkdsBM3uV6mSW1JmM44/JN
-         7J0BQgZXhgiw6iYCVlwus3YYmX/18r5WoQ2M8aZ/NlLhPaokRZkd1iSaJIuZ8x70WAdU
-         fk7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680700855;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5m4rtZfAeR6vet4pBc2kbt1ke7sk+dSI8jcqxxSGabg=;
-        b=WTZu1m1kQWVmX6Zj6jpXrK1M6CZ4CAIrNUHWnwlv+ymNjWB8pGFf7s11X17PKphu0n
-         N1VLyf5scz3Mp0ojam7AY1kcqmkxXP9hgKa1zzIFJNmggEhUWf8b0aAojAIsS1bH8WAH
-         /h4fXb4rttF8jFsGhY40XY3Jmz5rM34slMnavvVjESmVPt8xqfOuNDTlRheIDBQJ5nEz
-         rI7dKdPQKdqxuL7eWqOKMjfRZpbmfA5H5xEhItL3OJWvUqjrTo5kJbeZcDkRPuN+n8Tn
-         uDluxIq6+upSamOgg+bj2ctOq+0D095dv/lt8ngiEve+LfS1TnCmTLyAZOjM8rXMzOaf
-         2wtg==
-X-Gm-Message-State: AAQBX9enm2jCXrWbAZ0MlM7pydS3wcU3UkOUmGw5GZHhESKJfUX/xfa8
-        FLp0g2t3uiEQqnREVLa0XZ43qghJz3Uv6fKnJHI0Fzhya/qaxV9kHKk=
-X-Google-Smtp-Source: AKy350YiuEojPpk0LsekJiZpz7ZmKGHu2ckM5yNZBZFhKfctdMEDTQ66kox+btK9EnfDhwRK9NOmh4mXZnKdoVKyU50=
-X-Received: by 2002:a25:7316:0:b0:b74:3236:2fac with SMTP id
- o22-20020a257316000000b00b7432362facmr4120216ybc.4.1680700854809; Wed, 05 Apr
- 2023 06:20:54 -0700 (PDT)
+        with ESMTP id S237096AbjDENW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:22:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C4426A4;
+        Wed,  5 Apr 2023 06:22:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C20163C85;
+        Wed,  5 Apr 2023 13:22:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 994ECC433EF;
+        Wed,  5 Apr 2023 13:22:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680700946;
+        bh=SzrVJig1uDAsMGbP2sWNBvQA42iXXjERJtwuQUlNJ5I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BkujqyIb6uWTBnMCAlsT0wY3WNMrW0s7cBQe3kQkvCMdtAtdEDIGiyZw2ZwmG9yXh
+         wbV0iNaKU38EvVNtSjCB2vVIJwkSlwludLVRaosPnV/6QfXFbCYGMP4ZayrpkkM0rG
+         YVvIrov41DBOeu7FvVnBp4PLS1EiEcPSCDD/oIh2hqmj+aSa7wGbqMFXbyWZF0vVpP
+         jtIMlgCwBx4Ib2+G2yCoUZelvIO4IQW+42Y//I0I5AXUi4BmtncFpfdnqCH8YBE1cr
+         9aV7RbPbZDZH795tfYZDiZzaKcLaP4BZ43pHE+06gdVEAIXPW8/PBFEWngcO0WxsYh
+         UZGL/3UveyUXw==
+Date:   Wed, 5 Apr 2023 21:22:17 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm-evk: correct pmic clock source
+Message-ID: <20230405132217.GC11367@dragon>
+References: <20230327100321.1682333-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20230327130010.8342-1-okan.sahin@analog.com> <20230327130010.8342-3-okan.sahin@analog.com>
- <CACRpkda5G5b+At5s1WFudpQBQ6LDQxhE3fZj7eBhkZ=thvnQhg@mail.gmail.com> <MN2PR03MB51682210CADA6E33FB99052CE7939@MN2PR03MB5168.namprd03.prod.outlook.com>
-In-Reply-To: <MN2PR03MB51682210CADA6E33FB99052CE7939@MN2PR03MB5168.namprd03.prod.outlook.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 5 Apr 2023 15:20:43 +0200
-Message-ID: <CACRpkdZJA0DyzgLxm9HFeHO03rqNUff=avuV=VrGuJkkOg6wNQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] gpio: ds4520: Add ADI DS4520 Regulator Support
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Michael Walle <michael@walle.cc>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327100321.1682333-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 4, 2023 at 4:36=E2=80=AFPM Sahin, Okan <Okan.Sahin@analog.com> =
-wrote:
+On Mon, Mar 27, 2023 at 06:03:21PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> The osc_32k supports #clock-cells as 0, using an id is wrong, drop it.
+> 
+> Fixes: a6a355ede574 ("arm64: dts: imx8mm-evk: Add 32.768 kHz clock to PMIC")
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-> >The driver is pretty straight-forward, but I think this can use the gene=
-ric
-> >GPIO_REGMAP helpers in drivers/gpio/gpio-regmap.c check other drivers se=
-lecting
-> >this helper library for inspiration.
-(..)
-> Thank you for your contribution. Should I add select GPIO_REGMAP into Kco=
-nfig?
-
-Yes but that is not all, you also need to make use of the library helpers
-provided in include/linux/gpio/regmap.h.
-
-Find examples of other drivers doing this by e.g.:
-git grep gpio_regmap_register
-
-drivers/gpio/gpio-sl28cpld.c:   return
-PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
-drivers/gpio/gpio-tn48m.c:      return
-PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
-drivers/pinctrl/bcm/pinctrl-bcm63xx.c:  return
-PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &grc));
-
-^Look what these are doing
-
-Yours,
-Linus Walleij
+Applied, thanks!
