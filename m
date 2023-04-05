@@ -2,52 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D54F6D7B1C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD15B6D7B4C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:29:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237022AbjDELVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 07:21:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34000 "EHLO
+        id S237607AbjDEL3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 07:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237801AbjDELVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:21:43 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C823F2D43
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 04:21:40 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <jzi@pengutronix.de>)
-        id 1pk1Ce-0004S2-00; Wed, 05 Apr 2023 13:21:24 +0200
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <jzi@pengutronix.de>)
-        id 1pk1Cc-0098SJ-2v; Wed, 05 Apr 2023 13:21:22 +0200
-Received: from jzi by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <jzi@pengutronix.de>)
-        id 1pk1Cb-005Gtt-BZ; Wed, 05 Apr 2023 13:21:21 +0200
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     vkoul@kernel.org, kishon@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jun.li@nxp.com,
-        haibo.chen@nxp.com, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     j.zink@pengutronix.de
-Subject: [PATCH 2/2] phy: fsl-imx8mp-usb: add support for phy tuning
-Date:   Wed,  5 Apr 2023 13:21:18 +0200
-Message-Id: <20230405112118.1256151-3-j.zink@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230405112118.1256151-1-j.zink@pengutronix.de>
-References: <20230405112118.1256151-1-j.zink@pengutronix.de>
+        with ESMTP id S237413AbjDEL3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:29:07 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8AA61FFE;
+        Wed,  5 Apr 2023 04:28:57 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id er13so99216612edb.9;
+        Wed, 05 Apr 2023 04:28:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680694136;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=T5eAJVoqmmI7lTCLbPh2e296K+euo10TqUqJzhersgI=;
+        b=fXyLG972/NY4uXU909bYoiJAUtMYNzJ9moIn5qqM/xeZk6E6LyWg2Rr6f2N0B9cI2p
+         8SlD03RZyRt+G+e1ue+DpuJ9NgKBWCAOVbltb6jAvz8NFKCKepcDFGDKEQ/FCC9Sl7MN
+         ZsbvyeDro1lDU987pPOU+Pm8nuCbF9V52LGK74p4MmjbCF+tP6wvHoy4ad9RVa/ZdeOB
+         CrSiq75+8W7Tc0wMr2fKvY4l49/zqhmdgoeZrokk4g3VAqgrKt3T4fQFhQKldmkNDibN
+         kG2yEuEQruFWTI6+j1FYwF/EXc+w1LxYQuW/qqpLz0n/7QCVg7MYYS4OqoafEVJSTe22
+         8ooA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680694136;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T5eAJVoqmmI7lTCLbPh2e296K+euo10TqUqJzhersgI=;
+        b=uZO1Joot6pv/S5a1DAYnLCXunVknaSHMzEbm42mhXWDmJPbwjyRdrncyLPfdgD7OGj
+         XWxhAwwGuiEqAwfkD1wi+mTxK0e69UoRMpY7tfU3nqt8gIAjzmyPdwQD6RQEshpW0WYh
+         mQbfl+e5N7cBh+cBhgMKgvEP7gvh0bsvDIKcZmsgNf/jE9uLA//eunNxRHV7qIaNPi6N
+         lJP7DJrW06HJ992OnxqZhYGIUNqltLD5MkPIUWV0vl5bnccnYskWmjWhbNHQFA4wzCH1
+         Uwn9ZeO27PW5U8iTH4zLmiEfPqgDQK1KAWSKpsrHB4jg7Hc2QNIzbeYSDVwZWKFk6FQR
+         8rCA==
+X-Gm-Message-State: AAQBX9cTST06JPssgwUjwz9oODf5UApwX3XN/KPab39dkFXxqoSmKkKU
+        mkigXa9nHIPEtCK32ehuYJRbvbQOK8RETA==
+X-Google-Smtp-Source: AKy350aso3okZsidvo7XA1g1M3bGESXKSPp6WNIsrHhdE4t98PuILhLEPrlBukKNoAZwg6HuHqomcQ==
+X-Received: by 2002:a17:906:52c3:b0:944:6d88:206 with SMTP id w3-20020a17090652c300b009446d880206mr2720247ejn.71.1680694136003;
+        Wed, 05 Apr 2023 04:28:56 -0700 (PDT)
+Received: from skbuf ([188.27.184.189])
+        by smtp.gmail.com with ESMTPSA id ss5-20020a170907038500b00933c52c2a0esm7357914ejb.173.2023.04.05.04.28.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 04:28:55 -0700 (PDT)
+Date:   Wed, 5 Apr 2023 14:28:53 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: ethernet-switch: Make
+ "#address-cells/#size-cells" required
+Message-ID: <20230405112853.v7eqmiganvxtn5ge@skbuf>
+References: <20230404204213.635773-1-robh@kernel.org>
+ <20230404204213.635773-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: jzi@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230404204213.635773-1-robh@kernel.org>
+ <20230404204213.635773-1-robh@kernel.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,178 +84,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Li Jun <jun.li@nxp.com>
+On Tue, Apr 04, 2023 at 03:42:13PM -0500, Rob Herring wrote:
+> The schema doesn't allow for a single (unaddressed) ethernet port node
+> nor does a single port switch make much sense. So if there's always
+> multiple child nodes, "#address-cells" and "#size-cells" should be
+> required.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-Add USB PHY parameter tuning for USB certifications.
-
-Reviewed-by: Haibo Chen <haibo.chen@nxp.com>
-Signed-off-by: Li Jun <jun.li@nxp.com>
-[j.zink: ported to v6.3-rc1 from NXP downstream repo + cleanups]
-Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
----
- drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 124 +++++++++++++++++++++
- 1 file changed, 124 insertions(+)
-
-diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-index a29b4a6f7c24..ee1975aaab7e 100644
---- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-@@ -27,17 +27,137 @@
- #define PHY_CTRL2_TXENABLEN0		BIT(8)
- #define PHY_CTRL2_OTG_DISABLE		BIT(9)
- 
-+#define PHY_CTRL3			0xc
-+#define PHY_CTRL3_COMPDISTUNE_MASK	GENMASK(2, 0)
-+#define PHY_CTRL3_TXPREEMP_TUNE_MASK	GENMASK(16, 15)
-+#define PHY_CTRL3_TXRISE_TUNE_MASK	GENMASK(21, 20)
-+#define PHY_CTRL3_TXVREF_TUNE_MASK	GENMASK(25, 22)
-+#define PHY_CTRL3_TX_VBOOST_LEVEL_MASK	GENMASK(31, 29)
-+
-+#define PHY_CTRL4			0x10
-+#define PHY_CTRL4_PCS_TX_DEEMPH_3P5DB_MASK	GENMASK(20, 15)
-+
-+#define PHY_CTRL5			0x14
-+#define PHY_CTRL5_DMPWD_OVERRIDE_SEL	BIT(23)
-+#define PHY_CTRL5_DMPWD_OVERRIDE	BIT(22)
-+#define PHY_CTRL5_DPPWD_OVERRIDE_SEL	BIT(21)
-+#define PHY_CTRL5_DPPWD_OVERRIDE	BIT(20)
-+#define PHY_CTRL5_PCS_TX_SWING_FULL_MASK	GENMASK(6, 0)
-+
- #define PHY_CTRL6			0x18
- #define PHY_CTRL6_ALT_CLK_EN		BIT(1)
- #define PHY_CTRL6_ALT_CLK_SEL		BIT(0)
- 
-+#define PHY_TUNE_DEFAULT		0xffffffff
-+
- struct imx8mq_usb_phy {
- 	struct phy *phy;
- 	struct clk *clk;
- 	void __iomem *base;
- 	struct regulator *vbus;
-+	u32 pcs_tx_swing_full;
-+	u32 pcs_tx_deemph_3p5db;
-+	u32 tx_vref_tune;
-+	u32 tx_rise_tune;
-+	u32 tx_preemp_amp_tune;
-+	u32 tx_vboost_level;
-+	u32 comp_dis_tune;
- };
- 
-+static void imx8m_get_phy_tuning_data(struct imx8mq_usb_phy *imx_phy)
-+{
-+	struct device *dev = imx_phy->phy->dev.parent;
-+
-+	if (device_property_read_u32(dev, "fsl,phy-tx-vref-tune",
-+				     &imx_phy->tx_vref_tune))
-+		imx_phy->tx_vref_tune = PHY_TUNE_DEFAULT;
-+
-+	if (device_property_read_u32(dev, "fsl,phy-tx-rise-tune",
-+				     &imx_phy->tx_rise_tune))
-+		imx_phy->tx_rise_tune = PHY_TUNE_DEFAULT;
-+
-+	if (device_property_read_u32(dev, "fsl,phy-tx-preemp-amp-tune",
-+				     &imx_phy->tx_preemp_amp_tune))
-+		imx_phy->tx_preemp_amp_tune = PHY_TUNE_DEFAULT;
-+
-+	if (device_property_read_u32(dev, "fsl,phy-tx-vboost-level",
-+				     &imx_phy->tx_vboost_level))
-+		imx_phy->tx_vboost_level = PHY_TUNE_DEFAULT;
-+
-+	if (device_property_read_u32(dev, "fsl,phy-comp-dis-tune",
-+				     &imx_phy->comp_dis_tune))
-+		imx_phy->comp_dis_tune = PHY_TUNE_DEFAULT;
-+
-+	if (device_property_read_u32(dev, "fsl,pcs-tx-deemph-3p5db",
-+				     &imx_phy->pcs_tx_deemph_3p5db))
-+		imx_phy->pcs_tx_deemph_3p5db = PHY_TUNE_DEFAULT;
-+
-+	if (device_property_read_u32(dev, "fsl,phy-pcs-tx-swing-full",
-+				     &imx_phy->pcs_tx_swing_full))
-+		imx_phy->pcs_tx_swing_full = PHY_TUNE_DEFAULT;
-+}
-+
-+static void imx8m_phy_tune(struct imx8mq_usb_phy *imx_phy)
-+{
-+	u32 value;
-+
-+	/* PHY tuning */
-+	if (imx_phy->pcs_tx_deemph_3p5db != PHY_TUNE_DEFAULT) {
-+		value = readl(imx_phy->base + PHY_CTRL4);
-+		value &= ~PHY_CTRL4_PCS_TX_DEEMPH_3P5DB_MASK;
-+		value |= FIELD_PREP(PHY_CTRL4_PCS_TX_DEEMPH_3P5DB_MASK,
-+				   imx_phy->pcs_tx_deemph_3p5db);
-+		writel(value, imx_phy->base + PHY_CTRL4);
-+	}
-+
-+	if (imx_phy->pcs_tx_swing_full != PHY_TUNE_DEFAULT) {
-+		value = readl(imx_phy->base + PHY_CTRL5);
-+		value |= FIELD_PREP(PHY_CTRL5_PCS_TX_SWING_FULL_MASK,
-+				   imx_phy->pcs_tx_swing_full);
-+		writel(value, imx_phy->base + PHY_CTRL5);
-+	}
-+
-+	if ((imx_phy->tx_vref_tune & imx_phy->tx_rise_tune &
-+	     imx_phy->tx_preemp_amp_tune & imx_phy->comp_dis_tune &
-+	     imx_phy->tx_vboost_level) == PHY_TUNE_DEFAULT)
-+		/* If all are the default values, no need update. */
-+		return;
-+
-+	value = readl(imx_phy->base + PHY_CTRL3);
-+
-+	if (imx_phy->tx_vref_tune != PHY_TUNE_DEFAULT) {
-+		value &= ~PHY_CTRL3_TXVREF_TUNE_MASK;
-+		value |= FIELD_PREP(PHY_CTRL3_TXVREF_TUNE_MASK,
-+				   imx_phy->tx_vref_tune);
-+	}
-+
-+	if (imx_phy->tx_rise_tune != PHY_TUNE_DEFAULT) {
-+		value &= ~PHY_CTRL3_TXRISE_TUNE_MASK;
-+		value |= FIELD_PREP(PHY_CTRL3_TXRISE_TUNE_MASK,
-+				    imx_phy->tx_rise_tune);
-+	}
-+
-+	if (imx_phy->tx_preemp_amp_tune != PHY_TUNE_DEFAULT) {
-+		value &= ~PHY_CTRL3_TXPREEMP_TUNE_MASK;
-+		value |= FIELD_PREP(PHY_CTRL3_TXPREEMP_TUNE_MASK,
-+				imx_phy->tx_preemp_amp_tune);
-+	}
-+
-+	if (imx_phy->comp_dis_tune != PHY_TUNE_DEFAULT) {
-+		value &= ~PHY_CTRL3_COMPDISTUNE_MASK;
-+		value |= FIELD_PREP(PHY_CTRL3_COMPDISTUNE_MASK,
-+				    imx_phy->comp_dis_tune);
-+	}
-+
-+	if (imx_phy->tx_vboost_level != PHY_TUNE_DEFAULT) {
-+		value &= ~PHY_CTRL3_TX_VBOOST_LEVEL_MASK;
-+		value |= FIELD_PREP(PHY_CTRL3_TX_VBOOST_LEVEL_MASK,
-+				    imx_phy->tx_vboost_level);
-+	}
-+
-+	writel(value, imx_phy->base + PHY_CTRL3);
-+}
-+
- static int imx8mq_usb_phy_init(struct phy *phy)
- {
- 	struct imx8mq_usb_phy *imx_phy = phy_get_drvdata(phy);
-@@ -99,6 +219,8 @@ static int imx8mp_usb_phy_init(struct phy *phy)
- 	value &= ~(PHY_CTRL1_RESET | PHY_CTRL1_ATERESET);
- 	writel(value, imx_phy->base + PHY_CTRL1);
- 
-+	imx8m_phy_tune(imx_phy);
-+
- 	return 0;
- }
- 
-@@ -182,6 +304,8 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
- 
- 	phy_set_drvdata(imx_phy->phy, imx_phy);
- 
-+	imx8m_get_phy_tuning_data(imx_phy);
-+
- 	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
- 
- 	return PTR_ERR_OR_ZERO(phy_provider);
--- 
-2.39.2
-
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
