@@ -2,89 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CFC66D7D43
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:03:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2D66D7D5B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:07:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238128AbjDENDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 09:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46466 "EHLO
+        id S238190AbjDENHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 09:07:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238059AbjDENDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:03:31 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9AE196;
-        Wed,  5 Apr 2023 06:03:29 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S238176AbjDENHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:07:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DE7E55;
+        Wed,  5 Apr 2023 06:06:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1C6456603187;
-        Wed,  5 Apr 2023 14:03:27 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680699808;
-        bh=6sDDJG3Wyb9fV/04iwo5RqumN7KepPjmsLUQacDBkk4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cGo9VoYEm4PuTrXVh5c4xqqenDZH+sGlUefOYdUCBblBW9aCN580bUxhnbwXOGSdw
-         AQV8Ab9cGrHHrydj3LdUuNxqQWX9Pmg/o/rFto15TtHnG0rBOZnIDSE0xOwPYML7Tq
-         vKNWACsnLZSgaS84Po8VUSe6i4/1Nf90D4JPEqtvw5ZOSv80hxZQr63e/c/Dt5lJUW
-         wOIXzhUgMZ/FWkURqKE4i7q6lp92sNOnT2CyD19w3LgevChKUyYU0J7BhvnZpPrdhW
-         6kdLat9wDmTcjZHz/IHYIQlqXXbQ4dqVOl/G+w+KydV7wqA76G7fXeIPGcdGnrGl/O
-         RuBJONBATxPRQ==
-Message-ID: <c8a335d4-b621-8b65-ee77-87870425411c@collabora.com>
-Date:   Wed, 5 Apr 2023 15:03:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [RFC PATCH v8] media: mediatek: vcodec: support stateless AV1
- decoder
-To:     Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 40DF26282F;
+        Wed,  5 Apr 2023 13:06:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 914F0C433D2;
+        Wed,  5 Apr 2023 13:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680700018;
+        bh=PqbrZHDrw5aAy0zgaBM5C8inqRe6LHE86al3loKoR2w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BkXF+cVqsWjAio3Lnye5G2Ql1UmqzujvEeHrn0IZVOWb+Us9vpXCbLikfoVlkVqMo
+         rbNYDCvBvgUga15M/BJKgWPk4YylpoHlquVNI57XOjrjGn5fEoKG0BnMb8zm0RweOD
+         ApOU9KRDM0KQXEhrQtXz02wJohus0HtcB585/UqbeiybeAuJhUG/vxzM1Gz9WpX9e6
+         U8Tc63qE8N+Slamukk9Pv3uZQ1juTMER65Mn3Wc097ODmnGzxtk8BqIRzT7lwxSxL2
+         A6HZPrTw38jT8QT/VDAUeTuLpqKrdIW4YEXMhmuEclfP4m7BCsVFvKgjSmLt6fqxJ6
+         gboL71FJqpwAw==
+Date:   Wed, 5 Apr 2023 21:06:49 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+        xu.yang_2@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-usb@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230130123816.16568-1-xiaoyong.lu@mediatek.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230130123816.16568-1-xiaoyong.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, jun.li@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V7 10/10] ARM64: dts: imx7ulp: update usb compatible
+Message-ID: <20230405130649.GA11367@dragon>
+References: <20230322052504.2629429-1-peng.fan@oss.nxp.com>
+ <20230322052504.2629429-11-peng.fan@oss.nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230322052504.2629429-11-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 30/01/23 13:38, Xiaoyong Lu ha scritto:
-> Add mediatek av1 decoder linux driver which use the stateless API in
-> MT8195.
+On Wed, Mar 22, 2023 at 01:25:04PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Xiaoyong Lu<xiaoyong.lu@mediatek.com>
+> Per binding doc, update the compatible
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+ARM: dts: imx7ulp: ...
 
-On MT8195 Tomato
-Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Fixed it up and applied all DTS patches.
 
+Shawn
