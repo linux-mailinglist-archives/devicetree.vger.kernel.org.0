@@ -2,134 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFCBC6D84B3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 19:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 958D76D8527
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 19:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbjDERPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 13:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
+        id S233282AbjDERqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 13:46:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232849AbjDERPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 13:15:10 -0400
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02A1D5FEA;
-        Wed,  5 Apr 2023 10:15:08 -0700 (PDT)
-Received: by mail-qv1-xf2b.google.com with SMTP id oe8so26618464qvb.6;
-        Wed, 05 Apr 2023 10:15:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680714908;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gamUfoyodxPtqgS+QEeMjD5K0L0HZ7BreqQVvBsNAbU=;
-        b=Tgn3bE/RkoAuugsPHfEFEIbp9Xh97c22wBARynaD9+0nsCtchdlZ9ez5matvPzkgt6
-         fe0iQfR/mnQRE6LE1qeiKIaggzBM1lr5oEyD0SmXXUEe0iXFR9E+W0N/tno//4ievGNz
-         QTQN81oQfxogDQobR8mNfMhTOU4pLoyc2M8fUjDSRM/c3m8HHp69QaGPab5qzQ0TI5Eh
-         oRQDgvYRiBFe4mVokxcaUZUHtCUod3Evk5sgz8V5xe9pxCQq8wbkypIQdA5Hx3Pl6ay0
-         avtwCviZQ14zMPNl7wGpyojOnD8sfYBlW6sqeV7Ew8bpGpAmuSxY6dn2D3r0G/K88UV4
-         W7Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680714908;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gamUfoyodxPtqgS+QEeMjD5K0L0HZ7BreqQVvBsNAbU=;
-        b=jpNGZZVWpAfP+e4KuPXDozFJKgtHRTZ4AA7hrb3d3yHcHekjVQ0MGkeRyrVCGk756X
-         0UewrCl8HwXgFN6bPd8gfiP051/4omOVP9Lono21bfjJBRkS4VIjQ05yYw5ZU+JMZAan
-         boEeqVRfJHNVqW0AxakM3etOM/5vH3W2q+rIxrmb/HPy0gv3SRejCV9xhcaamTQIkvny
-         KEvl3pMuR9yJL9Q1JHBYhdaAb2y4T1Az3pzjBfFbDfFqHz/e2ojqy2XjflOa6frS36oG
-         otsEezw1m/nHgRNkPRo+DvvuGz2YVWzUUCAZqYL0tSdSE+TC1UMbxlbnVV5gnYufuEdX
-         N07w==
-X-Gm-Message-State: AAQBX9ckqR/Cyyy46IbjBX/2gIVFFlRmSv35bQF32R6HZrgV8KlNaRWI
-        AgTMLUEpwvqBI0wrbtQsK+Y=
-X-Google-Smtp-Source: AKy350Y+N+2gOHDAcZpIFMRGUeY30FdWItt9poT0Ac3IlRAvy5o1HvuIrCc52f20InyjGC/iF1QHxA==
-X-Received: by 2002:a05:6214:1315:b0:5aa:6130:7c63 with SMTP id pn21-20020a056214131500b005aa61307c63mr12775504qvb.46.1680714907937;
-        Wed, 05 Apr 2023 10:15:07 -0700 (PDT)
-Received: from [127.0.1.1] ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id ct9-20020a056214178900b005dd8b934571sm4403209qvb.9.2023.04.05.10.15.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 10:15:07 -0700 (PDT)
-From:   Benjamin Bara <bbara93@gmail.com>
-Date:   Wed, 05 Apr 2023 19:14:36 +0200
-Subject: [PATCH v3 3/3] dt-bindings: mfd: dlg,da9063: document voltage
- monitoring
+        with ESMTP id S230163AbjDERqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 13:46:12 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963E840C4;
+        Wed,  5 Apr 2023 10:46:11 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pk7Ct-0000Me-9O; Wed, 05 Apr 2023 19:46:03 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     Heiko Stuebner <heiko@sntech.de>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/2] Add PWM fan support to Rock 5B board
+Date:   Wed,  5 Apr 2023 19:45:57 +0200
+Message-Id: <168071663557.3186456.17606522894011578076.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
+References: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
-References: <20230403-da9063-disable-unused-v3-0-cc4dc698864c@skidata.com>
-In-Reply-To: <20230403-da9063-disable-unused-v3-0-cc4dc698864c@skidata.com>
-To:     Support Opensource <support.opensource@diasemi.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>
-Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Benjamin Bara <benjamin.bara@skidata.com>
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_PASS,T_SPF_HELO_TEMPERROR
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Benjamin Bara <benjamin.bara@skidata.com>
+On Tue, 4 Apr 2023 20:38:05 +0300, Cristian Ciocaltea wrote:
+> This patch series enables support for the PWM controlled heat sink fan
+> on the Rock 5B SBC and, additionally, converts the hwmon PWM fan bindings
+> to DT schema format.
+> 
+> Changes in v2:
+>  - Updated PATCH 1/2 according to Rob's review
+>  - Added Reviewed-by from Christopher to PATCH 2/2
+>  - v1: https://lore.kernel.org/lkml/20230403105052.426135-1-cristian.ciocaltea@collabora.com/
+> 
+> [...]
 
-Document that the da9063 only provides under- *and* over-voltage
-monitoring in one, and therefore requires both to be configured with the
-same severity and value. Add an example for clarification.
+Applied, thanks!
 
-Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
----
- Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+[2/2] arm64: dts: rockchip: rk3588-rock-5b: Add pwm-fan
+      commit: f36bb17653e4b9e26bbdb1224027d20614e77636
 
-diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-index e8e74e91070c..c5a7e10d7d80 100644
---- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-+++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-@@ -12,6 +12,11 @@ maintainers:
- description: |
-   For device-tree bindings of other sub-modules refer to the binding documents
-   under the respective sub-system directories.
-+  Using regulator-{uv,ov}-{warn,error,protection}-microvolt requires special
-+  handling: First, when GP_FB2 is used, it must be ensured that there is no
-+  moment where all voltage monitors are disabled. Next, as da9063 only supports
-+  UV *and* OV monitoring, both must be set to the same severity and value
-+  (0: disable, 1: enable).
- 
- properties:
-   compatible:
-@@ -121,11 +126,19 @@ examples:
-             regulator-max-microamp = <2000000>;
-             regulator-boot-on;
-           };
-+          ldo6 {
-+            /* UNUSED */
-+            regulator-name = "LDO_6";
-+            regulator-uv-protection-microvolt = <0>;
-+            regulator-ov-protection-microvolt = <0>;
-+          };
-           ldo11 {
-             regulator-name = "LDO_11";
-             regulator-min-microvolt = <900000>;
--            regulator-max-microvolt = <3600000>;
--            regulator-boot-on;
-+            regulator-max-microvolt = <900000>;
-+            regulator-uv-protection-microvolt = <1>;
-+            regulator-ov-protection-microvolt = <1>;
-+            regulator-always-on;
-           };
-         };
-       };
-
+Best regards,
 -- 
-2.34.1
-
+Heiko Stuebner <heiko@sntech.de>
