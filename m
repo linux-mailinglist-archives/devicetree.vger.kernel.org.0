@@ -2,150 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C80676D7BFD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D906D7C32
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 14:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238017AbjDELvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 07:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39176 "EHLO
+        id S237481AbjDEMHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 08:07:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237996AbjDELvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:51:12 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE425580
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 04:51:05 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-94771f05e20so35556466b.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 04:51:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680695464;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PEJZogkw2jx65ZdRCOLlWmLoNVIfXowhGDmP2BgB5ww=;
-        b=ICrSx230GHXpweLTGQkQV4pOzvP51d7Az7pKzc5Mhi/NY5kFuWC9TCngRnvgP8NqJ2
-         y1k7uFlV8NiCU+4Lu210gji1TRlScgNzhxkGZIhJv8YLNIOPlX732Z0wMtlNEQ7q8mwz
-         l7dcbqGWdwaZrrQhS1LjIhvOfphvOs7UXmW+SM/JTK0G72c06M3XDDqLbwnVHZKTWBQI
-         I/zBcf3XJuO8tUOgw8xjeTbFy/Xz0BgdhjqKfhQiPKTvadMCUmltkGj2FQ0O16wKMYMj
-         mGRHZ1W4hmCA1pzpvgSs8C6kzsM377rMC5NTKOmE6uDrATFxjaUiqmeuU4GY4e/8HLxy
-         t9uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680695464;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PEJZogkw2jx65ZdRCOLlWmLoNVIfXowhGDmP2BgB5ww=;
-        b=c4bDsbQ0ix4p/7FO8hqI1wtvrTOWLlhH/tnFu7LdUcA8AdSkfVcAJA0XRX6hAONEoJ
-         RS7R2YqRjtPAiU5U8Fc/s347jZZvUDIWEVKjEWuII3m9odTSLlAQsYboSnLAhWU08we/
-         RIdNVvc5+qGg4VGE/czfT3yWjkdGNCzRgOuQFbS5J6JL7RPYi2PbObMtSFScsPxDGxwA
-         4NpBuoXNDn+cBLUztv0RxEJ/4lkdTHG54xQ25so1xOc+wmWq6rF3W9DovUqOR0Qmg7Mp
-         2S+Nnll+MtJKVIoA/hOHOMYfI4SUR9FSqI6oMXmJfG1jlNz4zjAJ0PDvQCfkUKFY02TX
-         8Tiw==
-X-Gm-Message-State: AAQBX9cfHciEYQBvgmeqnGIRf9rErs8ArJcllVXlsGHtobVm3HDNYWTi
-        1k7btrO4npzBMesGHGyc43vr2Q==
-X-Google-Smtp-Source: AKy350bVqHYHaZ9yu1s8YRFR/WPFDOaNrZpD3EVzfo7T8Exbhyd2Z73xyhhF6i/zERdbvo7R04rCyA==
-X-Received: by 2002:a05:6402:216:b0:4fb:ec6a:2357 with SMTP id t22-20020a056402021600b004fbec6a2357mr1607480edv.34.1680695464452;
-        Wed, 05 Apr 2023 04:51:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id a9-20020a509e89000000b005024e725aefsm7189622edf.33.2023.04.05.04.51.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Apr 2023 04:51:04 -0700 (PDT)
-Message-ID: <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
-Date:   Wed, 5 Apr 2023 13:51:02 +0200
+        with ESMTP id S230520AbjDEMHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 08:07:10 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F85423B;
+        Wed,  5 Apr 2023 05:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=qWBuUdDNLTomMrWa17ue40qpTA5SPEfNQkTISsS/20Y=; b=URiP68ONioLF3PEBmrHrpCwU3N
+        MkWdAfLyOLgHVH5SB0rg98qCkHgkTSjumXpkW4Q3Sb9Juv587zbcO10z9vGcNXDeqGK9ezMlgyXLd
+        WjLCUCigqNKA/klnPdrYUNbJHVi4hNttRqKG0ZKr77RNMcmh1edSIhtHJgCeZ/iDfz1w=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pk1uZ-009W6d-3C; Wed, 05 Apr 2023 14:06:47 +0200
+Date:   Wed, 5 Apr 2023 14:06:47 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Radu Pirea <radu-nicolae.pirea@oss.nxp.com>,
+        Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
+        Yisen Zhuang <yisen.zhuang@huawei.com>,
+        Salil Mehta <salil.mehta@huawei.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+        Keyur Chudgar <keyur@os.amperecomputing.com>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 03/12] net: phy: add phy_device_set_miits helper
+Message-ID: <d00dab9f-7678-4ef3-be51-c31cdb9564d1@lunn.ch>
+References: <20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de>
+ <20230405-net-next-topic-net-phy-reset-v1-3-7e5329f08002@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
- properties
-Content-Language: en-US
-To:     Johannes Zink <j.zink@pengutronix.de>, vkoul@kernel.org,
-        kishon@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jun.li@nxp.com, haibo.chen@nxp.com, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230405112118.1256151-1-j.zink@pengutronix.de>
- <20230405112118.1256151-2-j.zink@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230405112118.1256151-2-j.zink@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230405-net-next-topic-net-phy-reset-v1-3-7e5329f08002@pengutronix.de>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2023 13:21, Johannes Zink wrote:
-> Add optional properties for tuning of usb phy.
-> 
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> ---
->  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> index e6f9f5540cc3..f452a41b4f32 100644
-> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> @@ -35,6 +35,46 @@ properties:
->      description:
->        A phandle to the regulator for USB VBUS.
->  
-> +  fsl,phy-tx-vref-tune:
-> +    description:
-> +      HS DC Voltage level adjustment
-
-"Level" in what units?
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+> +void phy_device_set_miits(struct phy_device *phydev,
+> +			  struct mii_timestamper *mii_ts)
+> +{
+> +	if (!phydev)
+> +		return;
 > +
-> +  fsl,phy-tx-rise-tune:
-> +    description:
-> +      HS Transmitter Rise/Fall Time Adjustment
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3]
+> +	if (phydev->mii_ts) {
+> +		phydev_dbg(phydev,
+> +			   "MII timestamper already set -> skip set\n");
+> +		return;
+> +	}
 > +
-> +  fsl,phy-tx-preemp-amp-tune:
-> +    description:
-> +      HS Transmitter Pre-Emphasis Current Control
+> +	phydev->mii_ts = mii_ts;
+> +}
 
-If this is current then use standard unit suffixes.
+We tend to be less paranoid. Few, if any, other functions test that
+phydev is not NULL. And the current code allows overwriting of an
+existing stamper. If you think overwriting should not be allowed
+return -EINVAL, and change all the callers to test for it.
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3]
-> +
-> +  fsl,phy-tx-vboost-level:
-> +    description:
-> +      TX Voltage Boost Level
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 2, 3]
-> +
-> +  fsl,phy-comp-dis-tune:
-> +    description:
-> +      Disconnect Threshold Adjustment
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> +
-> +  fsl,phy-pcs-tx-deemph-3p5db:
-> +    description:
-> +      TX De-Emphasis at 3.5 dB
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  fsl,phy-pcs-tx-swing-full:
-> +    description:
-> +      TX Amplitude
+> +EXPORT_SYMBOL(phy_device_set_miits);
 
-I have feeling you just pasted here short titles from datasheet. They
-are not that helpful.
+_GPL please. The code is a bit inconsistent, but new symbols should be
+EXPORT_SYMBOL_GPL.
 
+I do however like this patch, hiding away the internals of phydev.
 
-
-Best regards,
-Krzysztof
-
+  Andrew
