@@ -2,99 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B67B6D7D59
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C796D7D69
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238159AbjDENG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 09:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50588 "EHLO
+        id S232286AbjDENKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 09:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237126AbjDENG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:06:58 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B9826B5
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 06:06:57 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id e18so36131248wra.9
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 06:06:57 -0700 (PDT)
+        with ESMTP id S238257AbjDENJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:09:57 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9318626B5;
+        Wed,  5 Apr 2023 06:09:55 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id er13so99939484edb.9;
+        Wed, 05 Apr 2023 06:09:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680700015;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WeZ9y9cBWf8D72zPud79w30qw3KXJ+7zJufVpVM/bXA=;
-        b=x9C1l3yN6ebb0k9A9ISZ/SNmRbWnaNsCPmvIRmimgXqS+3KfKLMyqL85N9PzN2LhRg
-         00Cl1uG6z5LFbekfIcB3R9xZKQ+tTZkd56YT0HFh3dbXygkYOQ7Zqg0iEEIRDEdJ+g1S
-         bkfdBm2mafUl3f7rX0ox0fqJpXyzmLE1v43buDEH9OQFDCZbOu7Bz3kPFGjcWCwx3h+G
-         s/zEa3IV6p2PBSuEfcSuD8mOlmIp5/ysvJ6KRi8UcpEnenpCdG5xvfUe3vqSiTE/WSXw
-         slbj2JpS4kPKDqJ6cJN6GQIiFmCnRLkks/YPsdq06So/4s511HNCUwCwUjravbV4NqMs
-         WmuQ==
+        d=gmail.com; s=20210112; t=1680700194;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iXULW1Tg1AvdOyR+817NcoyG6wJR38hO2pnEfsLrzL4=;
+        b=q5oa/vCMhLevDXLGtIpoACoVOPOvmzLMX9o3qnP3wKbXQyOzatgUXfu6V6QBdE1Dsf
+         tMEkU2b4o4yLO24wRWesww5hno7GPFbEzWv6GVGryZArFf8E1r5kae7bSzduSCbAtIs8
+         hcrvr5AfakYeh7BUqpimcK+GUIl68tYdBsPcdXWb6FWLlwnwoCBXa79/2lr8de5Y1p0R
+         /Kbpuqk+eAn7/XobajFP5P5ce4DdDtIxgqndoqbQUXgXtrp+5fHNocsiKgrYXQQp07pm
+         L67ZFx10y/0kbp1eFtGyw012hyVOYhXHIF9ykmGKNLYL+yCLljKzjiKs69bNaD9yHvlG
+         TMjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680700015;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WeZ9y9cBWf8D72zPud79w30qw3KXJ+7zJufVpVM/bXA=;
-        b=bQ6A63DuXKML3wukrsfDzTMU8EHouye4cmPUMVH3mqY5X+jdHXmL4C/dI6yVWZ2TUa
-         AEj/bQq+iXGmKruflCyu4m2fo2Sc7PbzKDSnyUui4p6NumqOir7NEolESCyUP7tE6L4q
-         jTFrLGVoU8dpDSCsG7EoFaB/aYaQiI4IcZcXdElZlmAktuPmJu/1FSt7IyQhLiBge/RQ
-         AbM4/WYaCnLquJ5UJEuh0xrz/MHZMDoyppk3sQRa+CkDgRQLSTl9R9f4ZAOnD1hROoMI
-         rw3ENFZmjkJYVy5xh7kZuTy5VrADeaw/7sSpZvAkLNPEADyAQzyHUCEFp180qA5HOiPM
-         C4BA==
-X-Gm-Message-State: AAQBX9ebTlFXLW1nd1vKAJQ0Yt6H/p4isnrNspfuI/ha8Mv56ZnQoSNU
-        p8A/DKeC4+LduyYDD5OjNvNDXM9mEf63MT2p8KU=
-X-Google-Smtp-Source: AKy350YMENPnv85x0KK3Edc9qCwxaSQhCwtpw07WNjYCbM151PHxdsUy7oVj1ngPfQ6V4vI31lfjTQ==
-X-Received: by 2002:adf:f402:0:b0:2e4:cbbe:cfc2 with SMTP id g2-20020adff402000000b002e4cbbecfc2mr4497441wro.25.1680700015544;
-        Wed, 05 Apr 2023 06:06:55 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id p23-20020a05600c205700b003eb5ce1b734sm2161425wmg.7.2023.04.05.06.06.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Apr 2023 06:06:54 -0700 (PDT)
-Message-ID: <fd24877a-5fae-5434-dc56-61ab35ccd820@baylibre.com>
-Date:   Wed, 5 Apr 2023 15:06:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 10/10] memory: mtk-smi: mt8365: Add SMI Support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+        d=1e100.net; s=20210112; t=1680700194;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iXULW1Tg1AvdOyR+817NcoyG6wJR38hO2pnEfsLrzL4=;
+        b=X7wLvXuJF6Y3lQJzsH4tDxe905B9h+Z8iUcvtYwXfrrFjIfn262cPeXePIfCoXNGYO
+         1gUwBDHYjKKFuBlmU3LfPBxtwQEbu2HeR8DAg9sPgJHg9WamSR75Gm8ao9Krs2vGV7G4
+         bLlcDUkWys3bFQx5JOHiYM1MdWT0TwYlda1nt6lT/6OXV7uVJuFoUw1wxnL1LzUI5vXT
+         JByPF01S3L0zjkJrYig6DTNaN/ckGJPMJjMvNTZAJsyiklyVlKgmXbp8H/UhJ4OClwAi
+         /FM+VT/XsLcG4OI66bz/gdo66vPp3w92jCVmpiavO/BCk8EX5lkWaxoqLRI7UtC2ZxpH
+         H3MQ==
+X-Gm-Message-State: AAQBX9djBKn7pb/FfgUCtO8dh44fXuNQikWwD/E3SSRWuZAY74/5Dn40
+        kzHWoxGHYKecqSnNZ5Qxec4=
+X-Google-Smtp-Source: AKy350Y2m+a9IWIGy84W5fLSXxpY0qaEzQ49JdELMllLsc1czCEAlJXIYXIq7s7xpfJypNaP/7iGoA==
+X-Received: by 2002:a17:906:4714:b0:931:d644:b9d3 with SMTP id y20-20020a170906471400b00931d644b9d3mr2789003ejq.59.1680700194084;
+        Wed, 05 Apr 2023 06:09:54 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 8-20020a170906018800b009306ebc79d3sm7302203ejb.59.2023.04.05.06.09.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 06:09:53 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Ben Dooks <ben.dooks@codethink.co.uk>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230207-iommu-support-v2-0-60d5fa00e4e5@baylibre.com>
- <20230207-iommu-support-v2-10-60d5fa00e4e5@baylibre.com>
- <9847bc48-c96c-3599-e876-bcf9ebf1522e@linaro.org>
- <CAFGrd9pBdaHLGUZHkaz2_XKafyX=dxu9UckQxrphg52EG=A1SQ@mail.gmail.com>
- <8fc3dd22-79df-32cb-c219-896eda8fa986@linaro.org>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <8fc3dd22-79df-32cb-c219-896eda8fa986@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Arnd Bergmann <arnd@arndb.de>, linux-tegra@vger.kernel.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH] arm64: tegra: dts: add vccmq on p3310 TX2 SoM
+Date:   Wed,  5 Apr 2023 15:09:47 +0200
+Message-Id: <168070017409.4044223.8463461096099563249.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230127093910.426233-1-ben.dooks@codethink.co.uk>
+References: <20230127093910.426233-1-ben.dooks@codethink.co.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
-On 05/04/2023 13:45, Krzysztof Kozlowski wrote:
-> On 05/04/2023 11:53, Alexandre Mergnat wrote:
->> Ok, I will move the driver patch before the DTS patches in the next version.
->>
-> Or do not send it together at all, which might solve your dependency
-> problem. According to your cover letter I cannot take the memory
-> controller bits, so I am waiting for dependencies to hit the mainline.
-> Alternatively I will need pull request with stable tag.
->
-Ok, I prefer send the driver patch in another serie. That will solve the 
-dependency with the DTS a least.
+On Fri, 27 Jan 2023 09:39:10 +0000, Ben Dooks wrote:
+> The TX2 SoM's SDIO WiFI card is connected via mmc@3440000 however it does
+> not look like the upstream kernel is even bothering to power this (and
+> the regulator framework shuts down this power rail post kernel init).
+> 
+> The issue seems to be a missing link for vccq from the MAX77620 PMIC's LDO5
+> which is labeled vddio_sdmmc3 (and not used anywhere else) to the mmc@3440000
+> node to ensure there is at leasr bus power.
+> 
+> [...]
 
-Regards,
-Alexandre
+Applied, thanks!
 
+[1/1] arm64: tegra: dts: add vccmq on p3310 TX2 SoM
+      (no commit info)
+
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
