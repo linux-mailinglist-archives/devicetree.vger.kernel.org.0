@@ -2,120 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D83E46D8995
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 23:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AC5E6D899C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 23:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231965AbjDEVcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 17:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
+        id S232997AbjDEVfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 17:35:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231750AbjDEVcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 17:32:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FC93C22;
-        Wed,  5 Apr 2023 14:32:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E9FDF6414C;
-        Wed,  5 Apr 2023 21:32:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F616C4339E;
-        Wed,  5 Apr 2023 21:32:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680730333;
-        bh=ZYZdVwjMqTBVBqbOREzP3WGiwNtKl7X0AW2KpDiF5Ak=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qVFH337fZB65dZthbJjHQjCHT9K0MYnncK7lreCGZYiCg3v6yhy10TSuWvklUzlCe
-         ac2QmZICG3nHF+5P8AE9UfUQNnsNMQdXF2Ih/Ymfy2Wwd9Q/KZPX1+W3pSTRJrCwyJ
-         St0XMmFyV64kAhh1kYAjCG3nyB3Fe/cvozReILboJQ1BgTOlgnid3nS9TVrLpEG9iW
-         z+wZnY8/7fjfp0ngFIEEDfdDAH8y7ed5zzsKUxamD5btKo0bwx7KiVQzg2hyBzKLzY
-         Mmp10FVIjYFbDpubGwWFIJ1P6JzeCMNC2Pe8U2ENGqAH7HyIkr84DR3WdUzN4mCnaj
-         II/nkpsPvWj9Q==
-From:   Conor Dooley <conor@kernel.org>
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Hal Feng <hal.feng@starfivetech.com>
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232829AbjDEVfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 17:35:17 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 399C56E97;
+        Wed,  5 Apr 2023 14:35:14 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pkAmX-0001hG-Ps; Wed, 05 Apr 2023 23:35:05 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 00/22] Basic clock, reset & device tree support for StarFive JH7110 RISC-V SoC
-Date:   Wed,  5 Apr 2023 22:30:45 +0100
-Message-Id: <20230405-wharf-rejoin-5222e5958611@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230401111934.130844-1-hal.feng@starfivetech.com>
-References: <20230401111934.130844-1-hal.feng@starfivetech.com>
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/2] Add PWM fan support to Rock 5B board
+Date:   Wed, 05 Apr 2023 23:35:04 +0200
+Message-ID: <840877554.0ifERbkFSE@diego>
+In-Reply-To: <1a914522-8780-febd-7224-121b1f1fc2ba@roeck-us.net>
+References: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
+ <168071663557.3186456.17606522894011578076.b4-ty@sntech.de>
+ <1a914522-8780-febd-7224-121b1f1fc2ba@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1782; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=4xdzTSoq3uZ4FVpJV9Db9fLME5Mlhkbk3nlXZWw5e0A=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCm6L5o5ZL4EGarNDnjAsS2G/efL0C9fE1ZU3vmjmmf4c Efr5Hf/OkpZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCR5jyGf0ZuRvlXBA6/CdjM FaeX867RpMiBeeKtSw0Zgf6341e8dmf4zZqZ3G1mK/v6feLC+dvlOuO6pDwXmGxPTTZ9zl3zsnY WLwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_PASS,T_SPF_HELO_TEMPERROR
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
-
-On Sat, 01 Apr 2023 19:19:12 +0800, Hal Feng wrote:
-> This patch series adds basic clock, reset & DT support for StarFive
-> JH7110 SoC.
+Am Mittwoch, 5. April 2023, 21:04:04 CEST schrieb Guenter Roeck:
+> On 4/5/23 10:45, Heiko Stuebner wrote:
+> > On Tue, 4 Apr 2023 20:38:05 +0300, Cristian Ciocaltea wrote:
+> >> This patch series enables support for the PWM controlled heat sink fan
+> >> on the Rock 5B SBC and, additionally, converts the hwmon PWM fan bindings
+> >> to DT schema format.
+> >>
+> >> Changes in v2:
+> >>   - Updated PATCH 1/2 according to Rob's review
+> >>   - Added Reviewed-by from Christopher to PATCH 2/2
+> >>   - v1: https://lore.kernel.org/lkml/20230403105052.426135-1-cristian.ciocaltea@collabora.com/
+> >>
+> >> [...]
+> > 
+> > Applied, thanks!
+> > 
 > 
-> @Stephen and @Conor, I have made this series start with the shared
-> dt-bindings, so it will be easier to merge.
-> 
-> @Conor, patch 1, 2, 16~21 were already in your branch. Patch 22 is the
-> same with the patch [1] I submitted before, which you had accepted but
-> not merge it into your branch.
-> 
-> [...]
+> Both patches or only the second one ?
 
-Applied to riscv-dt-for-next, thanks!
+only the second one of course. According to earlier talks the dts patch
+does already follow the text binding, so the yaml conversion is actually
+not a requirement for it.
 
-[01/22] dt-bindings: clock: Add StarFive JH7110 system clock and reset generator
-        https://git.kernel.org/conor/c/7fce1e39f019
-[02/22] dt-bindings: clock: Add StarFive JH7110 always-on clock and reset generator
-        https://git.kernel.org/conor/c/3de0c9103258
+So I picked the dts patch let the binding sort itself when people have
+time for it :-) .
 
-These two are shared with clk.
 
-[16/22] dt-bindings: timer: Add StarFive JH7110 clint
-        https://git.kernel.org/conor/c/1ff5482ab9a5
-[17/22] dt-bindings: interrupt-controller: Add StarFive JH7110 plic
-        https://git.kernel.org/conor/c/8406d19ca049
+Looking at the mail b4 created, I guessed this would also be visible
+with the subject saying (subset) and the listed commits only showing
 
-I took these bindings too, as Palmer has done that in the past for new
-SoC support.
+[2/2] arm64: dts: rockchip: rk3588-rock-5b: Add pwm-fan
+      commit: f36bb17653e4b9e26bbdb1224027d20614e77636
 
-[18/22] dt-bindings: riscv: Add SiFive S7 compatible
-        https://git.kernel.org/conor/c/8868caa2a073
-[19/22] riscv: dts: starfive: Add initial StarFive JH7110 device tree
-        https://git.kernel.org/conor/c/60bf0a39842e
-[20/22] riscv: dts: starfive: Add StarFive JH7110 pin function definitions
-        https://git.kernel.org/conor/c/e22f09e598d1
-[21/22] riscv: dts: starfive: Add StarFive JH7110 VisionFive 2 board device tree
-        https://git.kernel.org/conor/c/54baba33392d
-[22/22] riscv: dts: starfive: jh7110: Correct the properties of S7 core
-        (squashed)
 
-Hal, can you get your folks to resend whatever dts bits that are now
-applicable? IOW, the dt-bindings for the entries are in a for-next
-branch for some subsystem.
+Heiko
 
-Thanks,
-Conor.
+
