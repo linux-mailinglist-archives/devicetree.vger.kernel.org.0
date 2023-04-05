@@ -2,119 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81EDB6D7219
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:40:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 122316D722F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 03:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236449AbjDEBki convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 4 Apr 2023 21:40:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54754 "EHLO
+        id S229973AbjDEBv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Apr 2023 21:51:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230489AbjDEBkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:40:37 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4FB32D6A;
-        Tue,  4 Apr 2023 18:40:34 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id A5D6724DBFD;
-        Wed,  5 Apr 2023 09:40:27 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 5 Apr
- 2023 09:40:27 +0800
-Received: from [172.16.16.231] (183.27.98.171) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 5 Apr
- 2023 09:40:26 +0800
-Message-ID: <39a2c174-c7f5-cb0f-5430-87b859a2ea5c@starfivetech.com>
-Date:   Wed, 5 Apr 2023 09:40:27 +0800
+        with ESMTP id S231589AbjDEBvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Apr 2023 21:51:54 -0400
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7441423C
+        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 18:51:53 -0700 (PDT)
+Received: by mail-ua1-x92b.google.com with SMTP id h34so24613385uag.4
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:51:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1680659512;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jwpFUC847/YFt/XfpeQoDJ4SxIEry2tnTeuETvaZGB8=;
+        b=EJUuO45LJ91YQhtcVzWPSqoFZ75CO0M41mQJTzx9YpW4AMBtmKfbi5DfMI/A0eT1C/
+         QCaoygDmObVu18+cFW/KFGjNH+wWFIcnjQ5aedUtKgKQsAGxRU510LRt7pK2w/pbTekJ
+         Sirbjg0GLtMyrOmH/+hberUPE8xfQLTSLZs+Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680659512;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jwpFUC847/YFt/XfpeQoDJ4SxIEry2tnTeuETvaZGB8=;
+        b=Bo9XtC6bfChOcmy1vePiwJrxHLVsQnRuBFqE7pRXl3vEA0s0bZDx0kY6/ebESJTFLt
+         ng2vqYT7xX83Ro4P35vsvPa4BmijyTlud985Oh+WiOBSg1SXZFjdNPJeGAF3c5DYCgdR
+         Nj4MXiCJDqvEhEipaFJJawZSdbNksYEAoOyzfy1l5Jjyk7nU4iJVGX+OZIdYXmOhmcUO
+         Z1fwAyU2bSmyeoyha4RD/D7NoeSH8u1oyIpbAzozU9qKlulCJ1pqIqPHH/1FdkNJSvpn
+         DagvURd0fqb9bgKpHXb+6wMCxm4NypEea64uTPJTI10sZ5Y0DOzt81h8SblK+SiK6Kpo
+         gbhQ==
+X-Gm-Message-State: AAQBX9edUlqx0ivUbX/8fXgnbvM9QU+DZ+oI/RnQE2IdPAh1zbIpWfZu
+        jPf/pOIfqkl2KXj6Zj3suTg4nQwpRKidgN6cjbg=
+X-Google-Smtp-Source: AKy350Y9PtpChuxkOE0D1p+lwdKmnC+1L4yIywptHttv0mKY8gl5Bgk7geotH+R+4+o+3XJ6faz6aQ==
+X-Received: by 2002:a05:6122:c88:b0:432:df9:b1f3 with SMTP id ba8-20020a0561220c8800b004320df9b1f3mr2642342vkb.11.1680659512335;
+        Tue, 04 Apr 2023 18:51:52 -0700 (PDT)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id a143-20020a1f9895000000b004399d3ec5edsm2267600vke.38.2023.04.04.18.51.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Apr 2023 18:51:52 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id d2so30165379vso.9
+        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 18:51:52 -0700 (PDT)
+X-Received: by 2002:a05:6e02:1d9a:b0:325:dd36:7451 with SMTP id
+ h26-20020a056e021d9a00b00325dd367451mr2720800ila.1.1680659013319; Tue, 04 Apr
+ 2023 18:43:33 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v7 21/22] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-To:     Shengyu Qu <wiagn233@outlook.com>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230401111934.130844-1-hal.feng@starfivetech.com>
- <20230401111934.130844-22-hal.feng@starfivetech.com>
- <TY3P286MB26110E2983EB074270B7610898939@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <TY3P286MB26110E2983EB074270B7610898939@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com> <1680271114-1534-2-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1680271114-1534-2-git-send-email-quic_vpolimer@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 4 Apr 2023 18:43:21 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XV4yjUb2ufQZjOTYsgFXE0Ghnor3f8FCSdpV_pcZd1yg@mail.gmail.com>
+Message-ID: <CAD=FV=XV4yjUb2ufQZjOTYsgFXE0Ghnor3f8FCSdpV_pcZd1yg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] drm/msm/dpu: set dirty_fb flag while in self
+ refresh mode
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        swboyd@chromium.org, quic_kalyant@quicinc.com,
+        dmitry.baryshkov@linaro.org, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [183.27.98.171]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Apr 2023 02:38:25 +0800, Shengyu Qu wrote:
-> Hi Hal,
-> 
->> +    aliases {
->> +        i2c0 = &i2c0;
->> +        i2c2 = &i2c2;
->> +        i2c5 = &i2c5;
->> +        i2c6 = &i2c6;
->> +        serial0 = &uart0;
->> +    };
->> +
->> +    chosen {
->> +        stdout-path = "serial0:115200n8";
->> +    };
->> +
->> +    cpus {
->> +        timebase-frequency = <4000000>;
-> 
-> Is mtime frequency on JH7110 could be modified?  If not, I think it's better
-> 
-> to put it into jh7110.dtsi.
+Hi,
 
-This frequency is from (osc / 6). This is based on the frequency
-of the crystal oscillator on the board. So we set it here.
+On Fri, Mar 31, 2023 at 6:59=E2=80=AFAM Vinod Polimera
+<quic_vpolimer@quicinc.com> wrote:
+>
+> While in virtual terminal mode with PSR enabled, there will be
+> no atomic commits triggered without dirty_fb being set. This
+> will create a notion of no screen update. Allow atomic commit
+> when dirty_fb ioctl is issued, so that it can trigger a PSR exit
+> and shows update on the screen.
+>
+> Reported-by: Bjorn Andersson <andersson@kernel.org>
+> Link: https://lore.kernel.org/all/20230326162723.3lo6pnsfdwzsvbhj@ripper/
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Best regards,
-Hal
+I can confirm that this patch plus patch #2 fixes the typing problems
+seen on VT2 on a Chromebook using PSR.
 
-> 
->> +    };
->> +
->> +    memory@40000000 {
->> +        device_type = "memory";
->> +        reg = <0x0 0x40000000 0x1 0x0>;
->> +    };
->> +
->> +    gpio-restart {
->> +        compatible = "gpio-restart";
->> +        gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
->> +        priority = <224>;
->> +    };
->> +};
->> +
-> 
-> Best regards,
-> 
-> Shengyu
-> 
+Tested-by: Douglas Anderson <dianders@chromium.org>
 
+
+-Doug
