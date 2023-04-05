@@ -2,108 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC696D7AC9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 218496D7AE2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:14:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236928AbjDELL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 07:11:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47864 "EHLO
+        id S237052AbjDELO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 07:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237314AbjDELLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:11:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3311C4EF2;
-        Wed,  5 Apr 2023 04:11:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C097263CB4;
-        Wed,  5 Apr 2023 11:11:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 026CBC433D2;
-        Wed,  5 Apr 2023 11:11:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680693073;
-        bh=XECmjtuqJG7MMdVpMzr8ofA4bkH3gapSSUKkhDgD5PU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=QxjN1rEjNQF5GHOPbgDRLJiLnEu9WLWZ7x+1wx1VdqHwgj8N/IWBgaesYSa9sR3le
-         tv0/sIgQScq6xrinbQP4M84qiOA21xXgNF2GWeL0FEzJXmMdJJU6+Eq/oq5H6yf/Tc
-         tYU5/t6dKPBDN4NLqiQD7h8M7e+kbwjygwFP++ngunqrWKPEBzZauevHOBYUGY1OtU
-         jFgh5fdabkBS4fN/EiP68qi7E06LyIYrKT9bUHWUlFtwQn/WNsJrjAO2cGi36RVbM9
-         CpE5XexFl5g4itKptCcQyvt8CA+4HkkPuwLs3ii0vIs8TItv7l06TEUIMryNAO39Gl
-         0gwaQ8/ZPaejA==
-Message-ID: <29b27566-a300-fa3c-6b37-0df6ee2b2bb3@kernel.org>
-Date:   Wed, 5 Apr 2023 14:11:08 +0300
+        with ESMTP id S230042AbjDELO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:14:27 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F052122;
+        Wed,  5 Apr 2023 04:14:25 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 335BEDf3107831;
+        Wed, 5 Apr 2023 06:14:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680693253;
+        bh=3B3CcRJuA4383XpN40q6vjgRX8xzg5FtIzLr8LsCPTk=;
+        h=From:To:CC:Subject:Date;
+        b=DJ7Q6oMIHlrUY5g8w8pUg5+7oog3CNhgefw4p7bLYTXi0uv0HjuAvJl41UFicerno
+         PEI16/eBMOrNagT5h4BQQ7k/xVQZ1tU/AFNRz/CWP1jjpaT8TS77QLMrmdr8jRPFgU
+         q17WHldeBBReGkuQEMDHvUo34Qy4EhNytOpdKTIM=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 335BED0u004417
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 Apr 2023 06:14:13 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 5
+ Apr 2023 06:14:13 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 5 Apr 2023 06:14:13 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 335BECaM026096;
+        Wed, 5 Apr 2023 06:14:13 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>
+CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <j-choudhary@ti.com>
+Subject: [PATCH 0/6] Add peripherals for J784S4
+Date:   Wed, 5 Apr 2023 16:44:06 +0530
+Message-ID: <20230405111412.151192-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 0/3] arm64: dts: ti: k3-am625: Enable Type-C dual-role
-Content-Language: en-US
-To:     nm@ti.com, vigneshr@ti.com
-Cc:     kristo@kernel.org, srk@ti.com, r-gunasekaran@ti.com,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230330084954.49763-1-rogerq@kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230330084954.49763-1-rogerq@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+This series adds support for:
+- SERDES, WIZ DT nodes, Serdes lane control mux
+- MAIN CPSW2G nodes
+- DSS and DisplayPort-0 nodes
 
-On 30/03/2023 11:49, Roger Quadros wrote:
-> Hi,
-> 
-> This series enables Type-C port on USB0 for both am625-sk and am62-lp-sk.
-> Series is based on [1]
-> 
-> cheers,
-> -roger
-> 
-> Changelog:
-> v3:
-> - include Type-C support for am62-lp-sk
-> - split interrupts properties for Type-C chip into am625-sk
-> 
-> v2:
-> - rebase off [1]
-> - add fixes tag to patch 1
-> 
-> [1] - https://lore.kernel.org/all/20230321-am62-lp-sk-v2-0-0a56e1694804@ti.com/
-> 
-> cheers,
-> -roger
-> 
-> Dhruva Gole (1):
->   arm64: dts: ti: k3-am625-sk: Add ti,vbus-divider property to usbss1
+This series depends on DMA support patches for J784S4[1] which are
+applied to linux-next.
 
-This one was picked from v2 series, so please ignore.
+DisplayPort has been tested on local J784S4 EVM. Test log:
+<https://gist.github.com/Jayesh2000/3cf965bb076968eaf4213f818d0c0541>
 
-> 
-> Roger Quadros (2):
->   arm64: dts: ti: k3-am625: Enable Type-C port for USB0
+[1]:
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=00e34c94987e4fe866f12ad8eac17268c936880c>
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=82e6051a48957a89066d15b17bb85d2f662f2bad>
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=436b288687176bf4d2c1cd25b86173e5a1649a60>
 
-Could you please queue the above patch? Thanks!
 
->   arm64: dts: ti: k3-am625: Use interrupt line for Type-C chip
+Rahul T R (3):
+  arm64: dts: ti: k3-j784s4-*: Add DSS node
+  arm64: dts: ti: k3-j784s4-*: add DP & DP PHY
+  arm64: dts: ti: k3-j784s4-evm: Add DP0
 
-This one is up to you/TI if you want to maintain support of
-1.2 Boards or not. Feel free to drop this if Rev1.2 boards
-need to be supported.
+Siddharth Vadapalli (3):
+  arm64: dts: ti: k3-j784s4-main: Add system controller and SERDES lane
+    mux
+  arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
+  arm64: dts: ti: k3-j784s4: Add WIZ and SERDES PHY nodes
 
-> 
->  arch/arm64/boot/dts/ti/k3-am625-sk.dts        |  8 ++++-
->  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 36 ++++++++++++++++++-
->  2 files changed, 42 insertions(+), 2 deletions(-)
-> 
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 164 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 338 +++++++++++++++++++++
+ 2 files changed, 502 insertions(+)
 
-cheers,
--roger
+-- 
+2.25.1
+
