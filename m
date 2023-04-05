@@ -2,101 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B90B66D7B80
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:38:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CDA86D7B8A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 13:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237295AbjDELie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 07:38:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49350 "EHLO
+        id S237823AbjDELk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 07:40:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236449AbjDELie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:38:34 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A3A01BDB
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 04:38:32 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id s20so16653917ljp.7
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 04:38:32 -0700 (PDT)
+        with ESMTP id S237708AbjDELk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 07:40:28 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E6630FD;
+        Wed,  5 Apr 2023 04:40:27 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id y4so140344724edo.2;
+        Wed, 05 Apr 2023 04:40:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680694711;
+        d=gmail.com; s=20210112; t=1680694826;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=378I/gGZlt8XUX5v0VEtIxxbJng/T1aUDlAEzlMMcMo=;
-        b=K+TH1p9OQZgmI9dQubTs+egT3pRWY+Lpl3EeU1AX7BLJkeIuKwuvuMT2EgjyLdn46r
-         MTssKlRaFBhVvVhW830j/MP4QWs6SiY3mSu+FXq+KA2OXXTdmCE6cIeoFAHmqqgYHOVq
-         Kh+dVIMN2QEmtWiZtqRe17Qr1sjWCyUCsK8n7PusEQ5iBOo35a9SSA76SXWsz9lgopJg
-         M0J6UrwhPs0bm+hMRezXpugxb4c0IcaODV49ZUde3/Ay11jybapgYXfIJo1ceLLLyN5m
-         XbIYWIMhFOKkUroEcaSMRAj+rxcBwPnypjslHTR/V6x9nA0E//q00u+FAemPppbXDzLb
-         rC+g==
+        bh=3DxsPN6AZzv/X2o3ugirBHpwxkcBnWPEpRNGraURAvU=;
+        b=p8i1buOJzPtbXvWClWsIIpxze6tojT5FD7EXPlde+YHaRLg35bZORYCPfj6N+ZO41G
+         8Ete6tzczTVPT4H32Pu6GotmBef91IhssWyKSBIL0xOAq7i8DMdMb9oGsJdJqWe5UfHT
+         y3d7CFQJYvERtCW4PDJFDPIBnV4pTsakDCnztC16rd7p5kT+FXRknjLRkwuxlun3YGOH
+         XQnwcoyvUEiM63P+othLir65RWXht6bUXMlBD4ssG6mBADSDnqklfqiltujXnYyrSZ8+
+         s1woYsjyRFMfJagt7NIFwujR1Q9rmt2lOnJYbCq5fJvnYGien3L+bNvHQPB+b7o8XMBQ
+         RA0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680694711;
+        d=1e100.net; s=20210112; t=1680694826;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=378I/gGZlt8XUX5v0VEtIxxbJng/T1aUDlAEzlMMcMo=;
-        b=RY8eY7bwiMPHN/3Cg8MbND29BWqRDa7Gw38k7e3Dll2LLPu2sYGDDVCKM2O0hIbuCV
-         /IsTZS8bKXsQkBxE+NDtDTVB3kDcMRrazWVb965uoGVFTTvxiyArv19zo4z6FY24tGUc
-         JFrF5C6mU5tx7h+c+pV51iVnh9RujMJED+bpeIWoRZwBKL4ivD260Y0kzHEET99Wx7Wm
-         VmlFUZ+qfbjt0XZ8DJ23Le1nc6/GEG7HGDW092+ToF5FYmtkoUfDRMIyW+LsCyJWr9yS
-         zvm3XidhwdjusttFMzkS4t+8ONZInqiqsmiTZsH54e+1Lp6v+eT+bt5hjfu8Y8L+h9Lz
-         Pe1g==
-X-Gm-Message-State: AAQBX9fVAERqQuPshID+lgqAXYh30JbqSvY3WSJE8UwkvfeMwGCL5OnJ
-        W/8zJmyLct5Wr7ZCodguE3X0Ug==
-X-Google-Smtp-Source: AKy350aShuFWZOnsO9uiMPtmd4KhuD0q/HPao2SXlOdTQ2JBpssmhXtALI05z1DLB358PL1P//dxeg==
-X-Received: by 2002:a2e:3812:0:b0:29c:d6f6:8c4 with SMTP id f18-20020a2e3812000000b0029cd6f608c4mr1680050lja.16.1680694710858;
-        Wed, 05 Apr 2023 04:38:30 -0700 (PDT)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id l15-20020a2e700f000000b002a2d7a460f2sm2806492ljc.116.2023.04.05.04.38.30
+        bh=3DxsPN6AZzv/X2o3ugirBHpwxkcBnWPEpRNGraURAvU=;
+        b=yfzvu37udedrmixm0q6cyW2exLGUWOItrF0j472l8HnipMSa/QETuVhBvez27p3NPm
+         ssH2SydN+cm1Uq3MgDZ5whMaRFik09+9MmYv/aIkjSvcaXLPGVdXa2tHVKEO6Z0k0qWd
+         xO66mKInBJjaPquDqrZqwAzSoEe3xeqkg8vuipiBO8iDHppmTVyh+VHF62YdkbXSGndA
+         thuiEDZbIyansoZsOAjdJZnjrff2u2jR/4IMxv5xYDp+3C890Hmb09kqsH2KOxNBmgWW
+         4albvNneuz770lr3ejgR+xmf5idZkQFS5MU4KCWp/O/WaeUvUyZnWRbx/wuRo0DJ3dbL
+         HO1A==
+X-Gm-Message-State: AAQBX9dOHMS4wBOm1g5C9VscUxKG+aykvEFAqmdT7i0eqbgbaEnLSGUs
+        nOWk5iYKHJDQr8Iy0hsI7uU=
+X-Google-Smtp-Source: AKy350ZcxdQZCdOd9iXyVXN2Sznloq9VwpM0uZ7ZoCRO6zLRZWEV6cD9rzxKvFOuex42d5I7vx9KTg==
+X-Received: by 2002:a17:906:edc5:b0:7e0:eed0:8beb with SMTP id sb5-20020a170906edc500b007e0eed08bebmr2794741ejb.41.1680694825977;
+        Wed, 05 Apr 2023 04:40:25 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id gx20-20020a1709068a5400b00931faf03db0sm7232069ejc.27.2023.04.05.04.40.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 04:38:30 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Vinod Polimera <quic_vpolimer@quicinc.com>
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
-        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
-Subject: Re: [PATCH v1 0/3] Fixes for PSR
-Date:   Wed,  5 Apr 2023 14:38:29 +0300
-Message-Id: <168069464072.1851814.16480389656681286482.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com>
-References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com>
+        Wed, 05 Apr 2023 04:40:25 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Wayne Chang <waynec@nvidia.com>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: (subset) [PATCH V10 5/6] arm64: tegra: Populate USB Type-C Controller for Jetson AGX Orin
+Date:   Wed,  5 Apr 2023 13:40:22 +0200
+Message-Id: <168069480508.4035569.16318003285399611173.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230131175748.256423-6-jonathanh@nvidia.com>
+References: <20230131175748.256423-1-jonathanh@nvidia.com> <20230131175748.256423-6-jonathanh@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
-On Fri, 31 Mar 2023 19:28:31 +0530, Vinod Polimera wrote:
-> while in virtual terminal with PSR enabled, there will be
-> no atomic commits triggered resulting in no screen update.
-> Update the dirtyfb flag into plane state during atomic check
-> to flush the pixel data explicitly.
+On Tue, 31 Jan 2023 17:57:47 +0000, Jon Hunter wrote:
+> Add the USB Type-C controller that is present on the Jetson AGX Orin
+> board. The ports for the Type-C controller are not populated yet, but
+> will be added later once the USB host and device support for Jetson AGX
+> Orin is enabled.
 > 
-> Avoid scheduling PSR commits from different work queues while
-> running in PSR mode already.
+> This is based upon a patch from Wayne Chang <waynec@nvidia.com>.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] drm/msm/dpu: set dirty_fb flag while in self refresh mode
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/ddf5387d1fb7
-[2/3] msm/disp/dpu: allow atomic_check in PSR usecase
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/86c56ba51aec
-
-Note, patch 3, which solves a different issue (and which requires additional changes) was not applied.
+[5/6] arm64: tegra: Populate USB Type-C Controller for Jetson AGX Orin
+      commit: 16744314ee57928c24aca95aa15f1381657edcfe
 
 Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thierry Reding <treding@nvidia.com>
