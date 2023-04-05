@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD03D6D8913
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2986D8924
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 22:58:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbjDEUug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 16:50:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45678 "EHLO
+        id S229461AbjDEU62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 16:58:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjDEUuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:50:35 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25C6CD;
-        Wed,  5 Apr 2023 13:50:34 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id e15-20020a17090ac20f00b0023d1b009f52so40781074pjt.2;
-        Wed, 05 Apr 2023 13:50:34 -0700 (PDT)
+        with ESMTP id S229541AbjDEU61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 16:58:27 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3CD40C4;
+        Wed,  5 Apr 2023 13:58:26 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id iw3so35589433plb.6;
+        Wed, 05 Apr 2023 13:58:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680727834;
+        d=gmail.com; s=20210112; t=1680728306;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RKzNCLVl42oXEDNGT8TsESnDpIsZTaCWPqislM2wAtI=;
-        b=hxEM/qI4QHMC2jKXgsn0s21vyMD1Io+s5SE6tOIdKgfNYoPyz2Xkfq8xPJODLi5xt2
-         BNErNUaDdxAPZ7zaWCjJV1ct4ph1C3pfHMugBN0dRKDPlkEB0Xh95ToT5RnzkjaTTrfq
-         KJnlGl7An0mGYZ6fj7cegMLC4wAJjACoK9tUpi+Vxjaa+l8DzOAepCSJHPCNEK3xNLyl
-         JpODtvd79KchlQc160KgNCIB5JZeb/3uylAJnv2W0MMkw9qVM+w4XikbJlFCCJ13DRqI
-         zbdCHhU9Wavbqj/AY4e72OMafn0yixx7FKkjTGNiQh59ruILbzzpleVul6faXEyRCxLh
-         HjGA==
+        bh=3KJ3KXGfgJ4sZPfoaU/5WSm7YH1plpzja1cFXFVy8AQ=;
+        b=Ox2POTwE6E8YfRjtE83SQvzsttCEDutLPrnoq/iyXi40fkEB8rLTPmhThCDh3+XY5L
+         3vDYVbAU623ZwlR7qt+veiwxSfk1IXV01x7NTWk/se66jKmAh/ule0YUfUBUalWhakNY
+         FUEyznRnuPts/VUim3SVVk7uAndY3x8k8I02x0LSnFY3g2iAwkVslP9m2NSjsGrCXAUP
+         wA2kKFDvA6WIaKiTJgYN0uoYi9L3tELolNrghfGvloC9F0+AH7DvynJk9T2st1SVGFGO
+         U0DJcd1nW3PFivJ509LzSVfJ+jPPVY41HzN4jzKWNxIgsf1nBUzJONyHNhJme8hWc9VD
+         Ijvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680727834;
+        d=1e100.net; s=20210112; t=1680728306;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RKzNCLVl42oXEDNGT8TsESnDpIsZTaCWPqislM2wAtI=;
-        b=RTQvxhjhZ6SfM0H7TKcPE5IlPC2mw83t9cgH4gLFcdFxGyxJqLMNnnyTZpubjHDdqw
-         h6/NHNksDAnPvUHUVMC5wpiTL7pV91B1z+6NPKTVcSu2qLVIR4D28/JFdnoWPgXla0ke
-         8NiKpJLFEJvfQKBLkSe2zpxo6gSFQ7XcNhsy5YUaXDO9PRFCT9SpNPL4VHqd+QrgGBQK
-         YxzRf2rvqmjux2JCI/V7pI07Ii0fr93K0FJHlZc/xbWjJkqM0g8xkio07pkV+cZWDQwj
-         4mp8bgOj2z7AKY+Lz3Hh95NZuvqkBqXwPtsBiKFWPz39fcabFF80cGE9HD721Ws1/4ip
-         ZhzQ==
-X-Gm-Message-State: AAQBX9cOg+ZI6X5YEXals0ztydxK13DPgyDfSkR41KcwE7qVgQYZcJnV
-        bwPkCthJPAccrxMNKIhwTJI=
-X-Google-Smtp-Source: AKy350ZQjITByRIh6laCMZtN0D4PEu5si/p7iyC3zWOWJmAU0uCqGQIZmlDCQQfFDVIkWo4Gz74rfA==
-X-Received: by 2002:a17:902:d1d5:b0:1a3:d5af:9b6f with SMTP id g21-20020a170902d1d500b001a3d5af9b6fmr5296025plb.19.1680727833997;
-        Wed, 05 Apr 2023 13:50:33 -0700 (PDT)
+        bh=3KJ3KXGfgJ4sZPfoaU/5WSm7YH1plpzja1cFXFVy8AQ=;
+        b=XtvSF0tRl+0jpX80Sr87OMKJT90TAiQDxLICKGAas5GQKdXxT7AQW22JDkP/hGpPLo
+         GsYrvNeqyISf6R4R0sovaTPDn55n/WKV7nBi9DWX0RGKPYfjXR15ABQ9ZEALhOvRzOGt
+         FV6yWIhyh5EGyKuSEzcosJn9souOke66knn79Wal1MTUoEUs/Vd3mf+O00TD+8CssebL
+         IKKz6QGMH3jJTbdfwXYVpLGtVpq0y1LEF1/ZGxRWF5SdF1kxsVsyTDJq7eQ9MDiKZeDS
+         40+NGKvo5qaCZ5L+6l1/p6A7iRZ6CiaRZ3j3FbVAot8E/M+4BuXBBPPSg/pLYbnMjtXa
+         CAXQ==
+X-Gm-Message-State: AAQBX9fT2BBzFdOoGz5zkoKLZcNtnW/GDm9P6gTU9Y7fvFHWFkQvFhCs
+        jBNezEr/CTaO2BpBar/ag38=
+X-Google-Smtp-Source: AKy350aFUDEYE/VwNdXenQbCHuZrtNSCabv8bc99zIl5dBsqrPyqPEiiTzSv5hPYdSGT3mhKIJVmPg==
+X-Received: by 2002:a17:90b:1c83:b0:240:3dc7:4939 with SMTP id oo3-20020a17090b1c8300b002403dc74939mr8839876pjb.27.1680728306098;
+        Wed, 05 Apr 2023 13:58:26 -0700 (PDT)
 Received: from pavilion.. ([2402:e280:218d:82:616c:b78a:a01f:5113])
-        by smtp.gmail.com with ESMTPSA id w9-20020a170902a70900b001a260b5319bsm10577676plq.91.2023.04.05.13.50.30
+        by smtp.gmail.com with ESMTPSA id b3-20020a655783000000b0050b026c444fsm9490025pgr.62.2023.04.05.13.58.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 13:50:33 -0700 (PDT)
+        Wed, 05 Apr 2023 13:58:25 -0700 (PDT)
 From:   Saalim Quadri <danascape@gmail.com>
 To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
 Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Saalim Quadri <danascape@gmail.com>
-Subject: [PATCH] ASoC: dt-bindings: wm8580: Convert to dtschema
-Date:   Thu,  6 Apr 2023 02:20:25 +0530
-Message-Id: <20230405205025.6448-1-danascape@gmail.com>
+Subject: [PATCH] ASoC: dt-bindings: wm8711: Convert to dtschema
+Date:   Thu,  6 Apr 2023 02:28:20 +0530
+Message-Id: <20230405205820.6836-1-danascape@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -70,29 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the WM8580 and WM8581 audio CODEC bindings to DT schema
+Convert the WM8711 audio CODEC bindings to DT schema
 
 Signed-off-by: Saalim Quadri <danascape@gmail.com>
 ---
- .../devicetree/bindings/sound/wlf,wm8580.yaml | 42 +++++++++++++++++++
- .../devicetree/bindings/sound/wm8580.txt      | 16 -------
- 2 files changed, 42 insertions(+), 16 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/wm8580.txt
+ .../devicetree/bindings/sound/wlf,wm8711.yaml | 40 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8711.txt      | 18 ---------
+ 2 files changed, 40 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8711.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8711.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8580.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8711.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8711.yaml
 new file mode 100644
-index 000000000000..2f27852cdc20
+index 000000000000..ecaac2818b44
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
-@@ -0,0 +1,42 @@
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8711.yaml
+@@ -0,0 +1,40 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/wlf,wm8580.yaml#
++$id: http://devicetree.org/schemas/sound/wlf,wm8711.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: WM8580 and WM8581 audio CODEC
++title: WM8711 audio CODEC
 +
 +maintainers:
 +  - patches@opensource.cirrus.com
@@ -102,9 +102,7 @@ index 000000000000..2f27852cdc20
 +
 +properties:
 +  compatible:
-+    enum:
-+      - wlf,wm8580
-+      - wlf,wm8581
++    const: wlf,wm8711
 +
 +  reg:
 +    maxItems: 1
@@ -124,30 +122,32 @@ index 000000000000..2f27852cdc20
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +        codec@1a {
-+            compatible = "wlf,wm8580";
++            compatible = "wlf,wm8711";
 +            reg = <0x1a>;
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/sound/wm8580.txt b/Documentation/devicetree/bindings/sound/wm8580.txt
+diff --git a/Documentation/devicetree/bindings/sound/wm8711.txt b/Documentation/devicetree/bindings/sound/wm8711.txt
 deleted file mode 100644
-index ff3f9f5f2111..000000000000
---- a/Documentation/devicetree/bindings/sound/wm8580.txt
+index c30a1387c4bf..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8711.txt
 +++ /dev/null
-@@ -1,16 +0,0 @@
--WM8580 and WM8581 audio CODEC
+@@ -1,18 +0,0 @@
+-WM8711 audio CODEC
 -
--This device supports I2C only.
+-This device supports both I2C and SPI (configured with pin strapping
+-on the board).
 -
 -Required properties:
 -
--  - compatible : "wlf,wm8580", "wlf,wm8581"
+-  - compatible : "wlf,wm8711"
 -
--  - reg : the I2C address of the device.
+-  - reg : the I2C address of the device for I2C, the chip select
+-          number for SPI.
 -
 -Example:
 -
--wm8580: codec@1a {
--	compatible = "wlf,wm8580";
+-wm8711: codec@1a {
+-	compatible = "wlf,wm8711";
 -	reg = <0x1a>;
 -};
 -- 
