@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 565036D7DEA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B296D7DED
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 15:43:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238315AbjDENnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 09:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53118 "EHLO
+        id S237765AbjDENne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 09:43:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237795AbjDENna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:43:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3864699;
-        Wed,  5 Apr 2023 06:43:29 -0700 (PDT)
+        with ESMTP id S238322AbjDENnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 09:43:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F37E44699;
+        Wed,  5 Apr 2023 06:43:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 62D4E627FC;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 923C26260F;
+        Wed,  5 Apr 2023 13:43:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C6B1C433EF;
         Wed,  5 Apr 2023 13:43:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E79C3C433D2;
-        Wed,  5 Apr 2023 13:43:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680702208;
-        bh=9n1hEIpzbcKxhbvQM0j1MI8RHChB+66O0uFRPDpYl60=;
+        s=k20201202; t=1680702211;
+        bh=66WtRJVBgcndw1X53yD7mbIb93NFJaPfjwFfW1Jzaec=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=WC07jQRKNgcoSIm0NgnOqAFywHCc0Qem4pPUVa1QeHf42I2jf2SNb2yf17XX6A5wg
-         lr5eZ1Jb6l1DmGIda4dCUcBw+8ORBZWA0cTMrHJDnhnTj7m7YzDRCKX/SCcXybDeg0
-         43nnoGkXe6bMDq5TMEd4v/rUuhXwuIqTzPU8OuW0v00FYxlqYhZHEN5l9cZpaIoi5/
-         DceX0uDZdp4QYvhMpyi4nQsmwKYWHKp/1lWvbHfZ7gYhg09TUh07sUOK8dXKQiSyLa
-         BVetF8SG9CIu8w6DU0Y+HnfWlGgzOboD8bOWJOa3GhOcb6FSL5anmphgsv8v7/DFER
-         xRd0a21W4GwgA==
+        b=kSrHf+oMNhRpMaRoILocRLSB5DUxRVKpEpsXPbvh2UeeJGbjxUPo0FSaCPZeZjxud
+         L19fNrgfLiBJbkYC5UBNuvxIv/gFA3p0BH5tiud+4Rjw1eq+YYXZhPY71tiFphmvJx
+         dvorwpmXKhk30jMYZimDOhSfSrcboIBA6r7LaH/vbeDkdiOA2gixx+m+hxUF9nUtBx
+         BjpRqolhyRULqgv+PwvKeZY6vsKaCueqz+y4vZfruAL7LgQdCcBWigzrZfb5uYMJcr
+         HOF72wtelKKTVkxax1j6hFiUmbMvJ5avK7shSzcSyF8zy24+OYQFq+MS3pu3jF9B3z
+         upJ7gegSF3P6A==
 From:   Mark Brown <broonie@kernel.org>
 To:     lgirdwood@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com,
         Saalim Quadri <danascape@gmail.com>
 Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230403105237.3854-1-danascape@gmail.com>
-References: <20230403105237.3854-1-danascape@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: wm8510: Convert to dtschema
-Message-Id: <168070220664.64778.8309966966059306320.b4-ty@kernel.org>
-Date:   Wed, 05 Apr 2023 14:43:26 +0100
+In-Reply-To: <20230405111605.5250-1-danascape@gmail.com>
+References: <20230405111605.5250-1-danascape@gmail.com>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: wm8510: Convert to dtschema
+Message-Id: <168070220896.64778.12812091773442756153.b4-ty@kernel.org>
+Date:   Wed, 05 Apr 2023 14:43:28 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13-dev-00303
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,7 +55,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 03 Apr 2023 16:22:37 +0530, Saalim Quadri wrote:
+On Wed, 05 Apr 2023 16:46:05 +0530, Saalim Quadri wrote:
 > Convert the WM8510 audio CODEC bindings to DT schema
 > 
 > 
