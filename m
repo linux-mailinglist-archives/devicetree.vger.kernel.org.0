@@ -2,231 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 120FE6D740D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495B36D7427
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236791AbjDEGAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 02:00:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50218 "EHLO
+        id S236821AbjDEGIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 02:08:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236943AbjDEGAu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:00:50 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB69273F
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:00:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1680674448; x=1712210448;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ys1uFjXv5fRa6z8qPXCE5fmO8QSPzujsdE6O9gLP9MY=;
-  b=ZXydnYY5eQyYtVDmOavp0o3aT/y055Zu4K7n947hQ1DBodOf71OM6pYX
-   MKNDNzHwriZh/Ww+0pDG6rG6+ZKMW20UYQbUNgn/kg9YPzVVogciH79Dt
-   1+12U7yNBtE3+Tp+PTjPTJdfea5weGus3otMNO1DlWWik7SCHb9g7w5Z7
-   uU1e4V37xcH5TxSk1FMtxuczow8fAnIeuCv71kYhkQqMMN5Y67Eb/C/c4
-   u8SLRpl81htbXD76tfbSc65kdvVlqIryMToFuaHtIEWqYJERRokQ1WMWD
-   mxI+bxo4pnbpM7ddeCJRNoQhW/nFwpUQHp491o1CJQM9mKq50YRCm2ejq
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,319,1673910000"; 
-   d="scan'208";a="30151568"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 05 Apr 2023 08:00:46 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 05 Apr 2023 08:00:46 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 05 Apr 2023 08:00:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1680674446; x=1712210446;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ys1uFjXv5fRa6z8qPXCE5fmO8QSPzujsdE6O9gLP9MY=;
-  b=h/8phmel813cw7Ggke8++z9CkEfrky8JN19aNwjH64Z40tzCawhfJVED
-   DdEPKgqRxb3VNsj4GquAe7+LVXT2/4JvZyDi3f6WnVB0ixywZaQ0yUcCo
-   cG0z7NWQ3KbJNMiCvRYfa8ygo7NM7/9PIzN56+YXraLin+W/tjiQasdiF
-   kkiGwWyhuTr5bpk8XXrU/TPW7TvnVlyL9HaihHRwjoMeWw0vxPqht/sFg
-   +lPJZRRLac5LW6rSaxSy0MDvsAdxKShuZSuAtvy68ohDyYKLddufWl/XO
-   nwpvXQR2+3jEfIcPA8Jko1EkODB1mCsyfooHnyjab598y9swTLE/Axgul
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,319,1673910000"; 
-   d="scan'208";a="30151566"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 05 Apr 2023 08:00:45 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 23CBF280056;
-        Wed,  5 Apr 2023 08:00:45 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abel.vesa@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        with ESMTP id S236800AbjDEGIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:08:44 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2135.outbound.protection.outlook.com [40.107.113.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C427E212A;
+        Tue,  4 Apr 2023 23:08:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mWCIqn9FAWvQyh2Xdsa7wPZyE3hzlRsT3Cmq71n2Foplnw3XU9/dgeVw6OMyJ0CRnaS0a8hGBphtglx9IbhBzDZvsN7+QO/ZeSPLpwrI6EePuLOSvnUZ7f/inojoefpIVdNF2gXw4EWH+YCKfqV72AFAiArO0e6FThw2J93/DTQIibQ9VWf8VAjyzKVUbgyHxOZOADD3MsJ2ILWv0YLyl0VERgQR2abVZVaEQiQdwh5Z3DWzToCm6Xb6fb7Jf+2rqwUj4Ks1y/zFzuEPv01Dw7Rj7uhp2qXcmGKS+3tXrXdfUaDHTLt7J8hZG8ckVAn7Jivn4Hs0hbu3GZwzQR15tw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jn1R5+IUfWJh6oiwJsqZlehate+V2x6IliHUGAQrfdY=;
+ b=k32MYBMCf9WgRtvu5IthYQg9pDKz9ZvgQ2cWN79Uz4kS+a0DZMfjfrDh3hrrG0eLgDLHCsun/DHY3LOkPJ/SpFCCVbCcNQZaeZyv5rC04+qU8VACgnmsn+ro4V2yR8coVivixiMPSyAghtS6geRe3Wo8F1FGax9jFwbRakoUnU5ULMpm8gHs0GsQBnsWQ8G/ZQZp5nD6HnHG2nIvd2OmG9pSKpIN9rs+N7zdTnFUxsmTqG22K2jsz6bfnlVCbV8QJbWnk6f3TiwSJnkgNbDlwDnJbW3oFnwgf9BPbDyebbJjlEQWaRfxfspy/HCjkrSA9QtL4PEUYeaULQ5vE98mEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jn1R5+IUfWJh6oiwJsqZlehate+V2x6IliHUGAQrfdY=;
+ b=HW5OxP6pCbxNt4nJqxwXoqMljkdc/IUuK2Slr7d3zw0YeEutju6zIY2FhF5R8QQzC9YwVqKjnx56IFg0nSnL/rQarxWAKJTYt+j0urW1mVuDe961hUB7OYXxNEK7Vciwpw41PUM5dJ0D2ckzU8O7IAk/qBWq4MJ0R038FnJ2UCU=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYCPR01MB8173.jpnprd01.prod.outlook.com (2603:1096:400:102::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.34; Wed, 5 Apr
+ 2023 06:08:27 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::e521:994c:bb0e:9bf6]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::e521:994c:bb0e:9bf6%8]) with mapi id 15.20.6254.035; Wed, 5 Apr 2023
+ 06:08:27 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Christoph Hellwig <hch@infradead.org>
+CC:     Prabhakar <prabhakar.csengg@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Samuel Holland <samuel@sholland.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH] arm64: dts: imx8mm: Add display pipeline components
-Date:   Wed, 05 Apr 2023 08:00:42 +0200
-Message-ID: <2790760.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230404000151.534530-1-marex@denx.de>
-References: <20230404000151.534530-1-marex@denx.de>
-MIME-Version: 1.0
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Andrew Jones <ajones@ventanamicro.com>
+Subject: RE: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+Thread-Topic: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+Thread-Index: AQHZY0gufzzLDccxyUW8wSwyIaAovK8apkQAgAAN0RCAAJ1igIAA8IhA
+Date:   Wed, 5 Apr 2023 06:08:27 +0000
+Message-ID: <OS0PR01MB592238D5F77EC74D1EBFB78E86909@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <ZCu1tFrQCVe2sgNz@infradead.org>
+ <OS0PR01MB59224C99770F84D8CE2D0DBA86939@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <ZCxFUb8+eQPzqBmo@infradead.org>
+In-Reply-To: <ZCxFUb8+eQPzqBmo@infradead.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYCPR01MB8173:EE_
+x-ms-office365-filtering-correlation-id: 9ca00b90-0560-4563-2f00-08db359c2c1f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 3m882kjNpMN8LrCs1leljyD7hYGfzOGoNCtZVUCx1QyLBQ+jWfj8p2drjUiTdT9hgHPWUxLerAOcbxWDhFBCKC9zFsVfuyiPFDd/BlEjjIVPp9oTRw+3KwDLI+JBggHwvEOR7xG0wSCp+pJ/GXSj7Q2aa58RlncruQ6vfUQwPhcUmvpgIRmNuJ9uBuWYaRyDavxpOjcL8IXneQVpO0K7wr46IpSYPQiAIxYI0HqD6l8xUTUVY4Lf8E5sUymhw7K2UkwqsrpqAVvGKjqizo312d1KcOsQyBPJMrD1JqmKrG0Z4zfGDUcbMiQHuxzsI8C+OcDxT7nL0Re1ABGZgqr3zGgVgAbsq9Vrs+u5/4gdTOU+hO5mntC1hoD+5xskZS1gQPlOdCP3KJpOcDroRbICdhHw7OfmYUYc3XL7ntRTqdh6xlm8S4izhwZpqdWVBh+KMC3OLW/P95doiTJac5oMf9eva1mE2zQC8XyiMBLg1S/gOugNGfglT7/WPfXPMdqX2l2MkDPpZ9UuBkPTYkQ+YvgFZLMu89mgW6cJewx4CAuoSqz56C+YeCRZ2tRuqyfArPQTCtToVTKM4KQ3umT3SdCx9VyTzB3XxWDAwDXWOqA=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(346002)(396003)(39860400002)(376002)(451199021)(66556008)(26005)(9686003)(6506007)(122000001)(38100700002)(41300700001)(7696005)(71200400001)(186003)(66476007)(66446008)(54906003)(316002)(66946007)(478600001)(7416002)(2906002)(4326008)(64756008)(4744005)(76116006)(6916009)(55016003)(86362001)(33656002)(8676002)(5660300002)(38070700005)(52536014)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RX8GxbabGbg0SjuDlJclS/BRMmIakfG4MN540VnrJRIILfLZ33nbIfTCYVkS?=
+ =?us-ascii?Q?3hN+8xjrP7MgoSoJ2ScRlDP41NDg799wI9vBsMyZ7NoT0BRsGoS2Z9oap7so?=
+ =?us-ascii?Q?/TgMYZswzj/mvV3TCtorkg1+E83WHopZKIZLPTOZkMypamL9zE+g49XDQ05E?=
+ =?us-ascii?Q?vPdZia7s42Rk3yNzAN1E9Slz5gC3eQ4x2X2Ym1ZjXP1B8g6WFuT0kk/OcN7P?=
+ =?us-ascii?Q?t1fRABO8EFcThe3vgkmIwQYavniO6XWRn/JLQBVjLTimlI9qnomifUgcvh0j?=
+ =?us-ascii?Q?GlPFVvk9ZazpQZD0oHWfGJTohpTGZn4d+z7ZQoXYeSThlJLNeemC27Jp6ZZO?=
+ =?us-ascii?Q?VEs21o0M09JOd9Ua1xffLYVl3u2C7o/43E4R1LMk048JLQQ2e761JT/AaK0k?=
+ =?us-ascii?Q?DzdegWE9A5XsXyi7ECBwrWL7W572O0+1+WLbKwqh+fL5dLNnPQocvVWz8j1U?=
+ =?us-ascii?Q?mDhO1t0oDGB4hcthSOEgJRtdiSTGb8j4VpfwVu/cdFe0a71dCi3mWQOB3RCb?=
+ =?us-ascii?Q?CNjq33+Uup4G8Zn8/7MqzNsXcmNXx2tp4V7ZkYeLh4THIxUxTgAKka7bpVIP?=
+ =?us-ascii?Q?gpr/wR7Gt4kqNaT6loTTmi/WiOsXyNBJrP0rbXX+YQUYH0mBykPjyNUulGBv?=
+ =?us-ascii?Q?Cwtkj36qLGSb7wFc9JG9jmzIiqkmzUv7k9RLlpVfUg5LS3Zp1eWqIOeqg3ii?=
+ =?us-ascii?Q?fFyoPa3TCEPyuSebimeUbe5XmExhu88+D1FK9MYxGUiPMxsVYhB3JdNF0piZ?=
+ =?us-ascii?Q?SXX9YAyeVSVyx1LWo0N6QhZcoak/zq7hmWpWtV4T1frtxA+reZrgZeMZ/dlc?=
+ =?us-ascii?Q?SjJdsJuHoGCB4o85zSwaqBS2NhNhAERhL6jqyXkbLXmhG3fXUpHaXS88OXAp?=
+ =?us-ascii?Q?GDwz8I9p3ox2c8e+StVz2+hFlvtAoaIijreOyLt9iEuNELobItKOzO7Yfb1a?=
+ =?us-ascii?Q?+18v/Q0Kudwyv0QJcxG3nkGITukgwtFqs7D5ibLwHDPfYWWIQjSpDH+uZNOU?=
+ =?us-ascii?Q?1uEoDF8f9hLI8HZEReGR67ne+ZhC2TNEDMX179Wtr7x+aBxASz4nB3oPaXTF?=
+ =?us-ascii?Q?81ZrW7so08sZPc0A93RVlCRPIUi38aCt0FtHwrc46MGw43frXYAkvKnxefZZ?=
+ =?us-ascii?Q?N+MIstmVYd7Fh4cCLnxiAMbImYio7xmxLSE7rqNrbGZCctomOrlPUEr1LIJy?=
+ =?us-ascii?Q?W8PMnCWPj6pwRYS6YGZzjofdVUUrDiuJ8cP3aBKHULChRUfxIa7A3yuNAJUG?=
+ =?us-ascii?Q?i+HwxKF1+VZipmS37dv6DTo5aD+bYs4mFFu4mQUwRJU1K6uUtIz69zmM8qbx?=
+ =?us-ascii?Q?H8HbHMxx4GPhQfIMDlvvnxv2aWWoFzjuR5m0t/aPV1Ws9sLxP6HqO8V7JoiM?=
+ =?us-ascii?Q?GPrsvIdxInnngmV+r9ndh0fFgdYEpZoDGgkSnq0dJ1bxGgH+mrQOFcF+jjHr?=
+ =?us-ascii?Q?mZcHD7PQIWz1utowqD0jbDitTCZko6TSrwvpA/1kp2rF6cDmaC2+WfK6UJXv?=
+ =?us-ascii?Q?XT0D63MR0MGoP3fMAO0CzoH6AK4UCap3NDrC84SJH2fkFtlHQyV3I99AliaW?=
+ =?us-ascii?Q?qw8Oub4E9YF+lBZoYqUbl5O9N4QjM2EL67BTClqe?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ca00b90-0560-4563-2f00-08db359c2c1f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2023 06:08:27.4009
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cH/0lqbHunSKPfykJ12YsVSv/v7wqWevVC8ttxdFIQj+jdHxp2LQf+1cwj2hyAU5kG7UKP+I7yCDdL7xyn2srtdltbGC/yLzEMRC+cL0HmM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8173
 X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Christoph Hellwig,
 
-Am Dienstag, 4. April 2023, 02:01:51 CEST schrieb Marek Vasut:
-> Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Mini.
-> This makes the DSI display pipeline available on this SoC.
+Thanks for the feedback.
+
+> Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using
+> function pointers for cache management
 >=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abel.vesa@nxp.com>
-> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Guido G=FCnther <agx@sigxcpu.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 57 +++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
+> On Tue, Apr 04, 2023 at 06:24:16AM +0000, Biju Das wrote:
+> > Just a question, how does function pointer makes a performance
+> > difference compared to
+> > ALTERNATIVE_X() macros?
+> >
+> > On both cases, we are pushing function parameters to stack, jumping to
+> > the actual routine And then on return pop the variables from stack. Am =
+I
+> missing something here?
 >=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi index
-> e311da7e87bdc..06495c225c94b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -1119,6 +1119,63 @@ aips4: bus@32c00000 {
->  			#size-cells =3D <1>;
->  			ranges =3D <0x32c00000 0x32c00000 0x400000>;
->=20
-> +			lcdif: lcdif@32e00000 {
-> +				compatible =3D "fsl,imx8mm-lcdif",=20
-"fsl,imx6sx-lcdif";
-> +				reg =3D <0x32e00000 0x10000>;
-> +				clocks =3D <&clk=20
-IMX8MM_CLK_LCDIF_PIXEL>,
-> +					 <&clk=20
-IMX8MM_CLK_DISP_APB_ROOT>,
-> +					 <&clk=20
-IMX8MM_CLK_DISP_AXI_ROOT>;
-> +				clock-names =3D "pix", "axi",=20
-"disp_axi";
-> +				assigned-clocks =3D <&clk=20
-IMX8MM_CLK_LCDIF_PIXEL>,
-> +						  <&clk=20
-IMX8MM_CLK_DISP_AXI>,
-> +						  <&clk=20
-IMX8MM_CLK_DISP_APB>;
-> +				assigned-clock-parents =3D <&clk=20
-IMX8MM_VIDEO_PLL1_OUT>,
-> +							 <&clk=20
-IMX8MM_SYS_PLL2_1000M>,
-> +							 <&clk=20
-IMX8MM_SYS_PLL1_800M>;
-> +				assigned-clock-rates =3D <594000000>,=20
-<500000000>, <200000000>;
-> +				interrupts =3D <GIC_SPI 5=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +				power-domains =3D <&disp_blk_ctrl=20
-IMX8MM_DISPBLK_PD_LCDIF>;
-> +				status =3D "disabled";
-> +
-> +				port {
-> +					lcdif_to_dsim: endpoint {
-> +						remote-endpoint =3D=20
-<&dsim_from_lcdif>;
-> +					};
-> +				};
-> +			};
-> +
-> +			mipi_dsi: dsi@32e10000 {
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +				compatible =3D "fsl,imx8mm-mipi-dsim";
-> +				reg =3D <0x32e10000 0x400>;
-> +				clocks =3D <&clk IMX8MM_CLK_DSI_CORE>,
-> +					 <&clk=20
-IMX8MM_CLK_DSI_PHY_REF>;
-> +				clock-names =3D "bus_clk", "sclk_mipi";
-> +				assigned-clocks =3D <&clk=20
-IMX8MM_CLK_DSI_CORE>,
-> +						  <&clk=20
-IMX8MM_CLK_DSI_PHY_REF>;
-> +				assigned-clock-parents =3D <&clk=20
-IMX8MM_SYS_PLL1_266M>,
-> +							 <&clk=20
-IMX8MM_CLK_24M>;
-> +				assigned-clock-rates =3D <266000000>,=20
-<24000000>;
-> +				samsung,pll-clock-frequency =3D=20
-<24000000>;
+> Indirect calls have always been more expensive, and with the hard- and
+> software mitigations for spectre-like attacks they are becoming even more
+> expensive.
 
-What about samsung,burst-clock-frequency and samsung,esc-clock-frequency? I=
-s=20
-there is sane default? Do they need to be provided in the board file?
+Thanks for the info. I agree, it will be more expensive with software mitig=
+ations
+for spectre-like attacks.
 
-Best regards,
-Alexander
-
-> +				interrupts =3D <GIC_SPI 18=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +				power-domains =3D <&disp_blk_ctrl=20
-IMX8MM_DISPBLK_PD_MIPI_DSI>;
-> +				status =3D "disabled";
-> +
-> +				ports {
-> +					#address-cells =3D <1>;
-> +					#size-cells =3D <0>;
-> +
-> +					port@0 {
-> +						reg =3D <0>;
-> +
-> +						dsim_from_lcdif:=20
-endpoint {
-> +							remote-
-endpoint =3D <&lcdif_to_dsim>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +
->  			csi: csi@32e20000 {
->  				compatible =3D "fsl,imx8mm-csi",=20
-"fsl,imx7-csi";
->  				reg =3D <0x32e20000 0x1000>;
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Cheers,
+Biju
 
 
