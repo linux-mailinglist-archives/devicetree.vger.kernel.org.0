@@ -2,106 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2BDD6D74D8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 08:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8FA16D7569
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 09:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237041AbjDEG7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 02:59:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56908 "EHLO
+        id S236779AbjDEHax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 03:30:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236556AbjDEG7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 02:59:01 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73534236
-        for <devicetree@vger.kernel.org>; Tue,  4 Apr 2023 23:58:59 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-93071f06aa7so23786466b.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Apr 2023 23:58:59 -0700 (PDT)
+        with ESMTP id S236867AbjDEHav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 03:30:51 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E8C346B7
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 00:30:50 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id y35so21170402pgl.4
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 00:30:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680677938;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ge5tZ9KDzAcz+JwWlyHU3EWycDUOLBemzfQQA19mRWg=;
-        b=YMIQo8YkmwBb6P+OGjuYO1WXzdBweIi2Y9+BX+C+/kXe5iH+V896NMvfco3//uos7u
-         C0/JpSV7XK5y4nPJ+JxPoukF9kEzF3vdSOimcaYrQp7mUnAqVGq/mt8QK9ThSQ2Ek/3r
-         7PRU3fe4tjLaf3TDqObZ7PIAzNhvyMSaRh12rCGkQVecARcZLyhrDF6lrXUEtVYJZ41f
-         zW+qqYnRd6hC059vdRuhFmClVxvyynzjeOXzagE4JByU8Vn3wG3DP4tsQAlySbTZGKCC
-         TsbSk7neQooFmn/m39OR9NoohtRFaeBPP9uQ19SfNJo5jCwvkUuO13BUDO//8/9wqjkM
-         FPbA==
+        d=linaro.org; s=google; t=1680679850;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vIbgVrcpaNBA8DY35aYw8I18NZLqzjpmqSaIZu+NMMY=;
+        b=pa6uT+dFYoCMpahPH4F38vo7VSpejBOS+001hZ7WxdZdpBres0Gg/GgGdS/Xh3RmY8
+         67NN6pKZOjoIjnIYF3h3qNXa+CMfO3ijPtFWz+ezix1otGsPslBKM1cy09mIfCVpeRRF
+         TLCn9aM9zDBQG2BcIbmGnVwDfhN5XP/N23srUVr6q5NESeDfohU9zysQ58d5q+xMSkoT
+         RECZ+Zcplkr1fKHsScore86BKlyW3v5birQ0pPzdjTtlHB21GXnT42Qd1Sb2CSVAudLJ
+         0f3R39/T4Bxlx5JBV46lVP5OlK/+GOFs99arlt68dpDGykCmCrXNMlqr9hYc4bkBbYVg
+         b3Fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680677938;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ge5tZ9KDzAcz+JwWlyHU3EWycDUOLBemzfQQA19mRWg=;
-        b=63pO8u9ehRN4OILhCK4BL06/+kWIk8zp5kNxv2N9dT6suHTTHnFISKz6RHhx6im73o
-         KKJCANVPQXNmUYxGfatsKFdwR8TGrEXdJ4t4ij9/V532jdIGvdJ6+XS/CB26mI3Im8Ul
-         +7MvSJxCitLLtcGPD2L56Lhy8WGcuBiVhn8fukAbQta8ue+8oBytXevUeFmz7Ra2wA2N
-         SY8xVkebP7UNaczAhKClMyFM50RJRmG8Q0z7PM8NbKNZSeI4CYVsgpdlB+3s1zUQaDZ/
-         ZetoA9FH2GoBhn9qymipE6JZh2YzDJSk6dUVmHRBk2q7PXPKzaTTJ44DxJ1wOryYf8ix
-         k52A==
-X-Gm-Message-State: AAQBX9cu56FikMHAU7RON2zdg598msdMJpDePvIislXvGFwWfpOGh0ba
-        8ekiZC7cD7bUkWW50njkys/YNQ==
-X-Google-Smtp-Source: AKy350Z/ugZFHsOXP6wXHv4FffyN3fDhJJCINwRAzsn82Xp0UViumtoK44fbCd5Nln9hyNPOjd0iUg==
-X-Received: by 2002:aa7:de07:0:b0:4fd:2675:3785 with SMTP id h7-20020aa7de07000000b004fd26753785mr962704edv.22.1680677938487;
-        Tue, 04 Apr 2023 23:58:58 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:3f:6b2:54cd:498e? ([2a02:810d:15c0:828:3f:6b2:54cd:498e])
-        by smtp.gmail.com with ESMTPSA id kd24-20020a17090798d800b00933d64cd447sm6913431ejc.121.2023.04.04.23.58.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Apr 2023 23:58:58 -0700 (PDT)
-Message-ID: <445ed49a-9ea6-0851-b0c5-bdd1d420689e@linaro.org>
-Date:   Wed, 5 Apr 2023 08:58:56 +0200
+        d=1e100.net; s=20210112; t=1680679850;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vIbgVrcpaNBA8DY35aYw8I18NZLqzjpmqSaIZu+NMMY=;
+        b=Oh2vbu13nVWGlE09LuJvJ2LxpJrmvGndJIIl/Dmfx3Eb60eXcoIslF9Q3cjcHT4Z5x
+         HJcpHw3R5L/M25nAdGhY8D93XYB73nh8QRipIAegUbkBsdjZdSsvRCFqNBgxIn+pwVG/
+         IK+DFlGvEvhiXV/jDUWDMwDxif3F2mJAY+VrLl3+KeloZ/RFW1BEtr2SnkORPrkJh9PV
+         LuMJzQXfqivph8VhtIHtC3j2Bm0gyEM9r9sHlsqmZ0mTC59kzWJDJN5VAFY14mTY4t1s
+         1Jn40aG2NJAuIBCiR1uBCawUOwZflI3az4iI8P5vMDPKZjVnvEPzCN1d0ts7mTeh3hF9
+         fXBg==
+X-Gm-Message-State: AAQBX9fva4u5nnGcNPZBn8eK7FMsTJRLkyN899M0B99aUORv8tbCJYDX
+        /disNRsOHMREDg1Zqgz0GBI1/w==
+X-Google-Smtp-Source: AKy350a3mX6noLmdtwDOWkF9QSkssWELfKR/ta0z692FuGbmVURq7Q++Gsp/t3M1iJJjwhII1L3mnw==
+X-Received: by 2002:aa7:9aee:0:b0:628:1638:441f with SMTP id y14-20020aa79aee000000b006281638441fmr3666312pfp.26.1680679849814;
+        Wed, 05 Apr 2023 00:30:49 -0700 (PDT)
+Received: from localhost.localdomain ([223.233.67.41])
+        by smtp.gmail.com with ESMTPSA id l7-20020a635b47000000b004facdf070d6sm8781507pgm.39.2023.04.05.00.30.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 00:30:49 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
+Subject: [PATCH v6 00/11] arm64: qcom: Enable Crypto Engine for a few Qualcomm SoCs
+Date:   Wed,  5 Apr 2023 12:58:25 +0530
+Message-Id: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V2 6/9] dt-bindings: pinctrl: qcom: Add few missing
- functions
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, mani@kernel.org, p.zabel@pengutronix.de,
-        linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-References: <20230404164828.8031-1-quic_devipriy@quicinc.com>
- <20230404164828.8031-7-quic_devipriy@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230404164828.8031-7-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/04/2023 18:48, Devi Priya wrote:
-> Added the missing functions cri_trng2, gpio and removed the
-> duplicate entry qdss_tracedata_b
-> 
-> Fixes: 5b63ccb69ee8 ("dt-bindings: pinctrl: qcom: Add support for IPQ9574")
+Changes since v5:
+-----------------
+- v5 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230402100509.1154220-1-bhupesh.sharma@linaro.org/
+- Collected Ack from Rob for [PATCH 01/11].
+- Addressed Georgi's comment about interconnect cells in [PATCH 10/11].
 
-Fixes are either separate patches or sent as first in the series. This
-is not really related to PCI, so it should be separate patchset.
+Changes since v4:
+-----------------
+- v4 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230331164323.729093-1-bhupesh.sharma@linaro.org/
+- Collected R-Bs from Konrad for a couple of patches sent in v4.
+- Fixed incorrect email IDs for a couple of patches sent in v3, which I used for
+  some patches created on a different work machine.
+- No functional changes since v3.
 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->  Changes in V2:
+Changes since v3:
+-----------------
+- v3 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230328092815.292665-1-bhupesh.sharma@linaro.org/
+- Collected Acks from Krzysztof for a couple of patches sent in v3.
+- Fixed review comments from Krzysztof regarding DMA binding document
+  and also added a couple of new patches which are required to fix the
+  'dtbs_check' errors highlighted after this fix.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes since v2:
+-----------------
+- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230322114519.3412469-1-bhupesh.sharma@linaro.org/
+- No functional change since v2. As the sdm845 patch from v1 was accepted in linux-next,
+  dropped it from this version.
 
-Best regards,
-Krzysztof
+Changes since v1:
+-----------------
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230321190118.3327360-1-bhupesh.sharma@linaro.org/
+- Folded the BAM DMA dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230321184811.3325725-1-bhupesh.sharma@linaro.org/)
+- Folded the QCE dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230320073816.3012198-1-bhupesh.sharma@linaro.org/)
+- Folded Neil's SM8450 dts patch in this series.
+- Addressed review comments from Rob, Stephan and Konrad.
+- Collected Konrad's R-B for [PATCH 5/9].
+
+This patchset enables Crypto Engine support for Qualcomm SoCs like
+SM6115, SM8150, SM8250, SM8350 and SM8450.
+
+Note that:
+- SM8250 crypto engine patch utilizes the work already done by myself and
+  Vladimir.
+- SM8350 crypto engine patch utilizes the work already done by Robert.
+- SM8450 crypto engine patch utilizes the work already done by Neil.
+
+Also this patchset is rebased on linux-next/master.
+
+Bhupesh Sharma (10):
+  dt-bindings: dma: Add support for SM6115 and QCM2290 SoCs
+  dt-bindings: dma: Increase iommu maxItems for BAM DMA
+  arm64: dts: qcom: sdm8550: Fix the BAM DMA engine compatible string
+  arm64: dts: qcom: sdm845: Fix the slimbam DMA engine compatible string
+  dt-bindings: qcom-qce: Fix compatible combinations for SM8150 and
+    IPQ4019 SoCs
+  dt-bindings: qcom-qce: Add compatibles for SM6115 and QCM2290
+  arm64: dts: qcom: sm6115: Add Crypto Engine support
+  arm64: dts: qcom: sm8150: Add Crypto Engine support
+  arm64: dts: qcom: sm8250: Add Crypto Engine support
+  arm64: dts: qcom: sm8350: Add Crypto Engine support
+
+Neil Armstrong (1):
+  arm64: dts: qcom: sm8450: add crypto nodes
+
+ .../devicetree/bindings/crypto/qcom-qce.yaml  |  8 ++++++
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 22 +++++++++------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 22 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          | 28 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  2 +-
+ 9 files changed, 140 insertions(+), 10 deletions(-)
+
+-- 
+2.38.1
 
