@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67BAF6D7CAE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 14:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A84C56D7CC7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 14:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237079AbjDEMcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 08:32:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44080 "EHLO
+        id S237925AbjDEMiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 08:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238040AbjDEMco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 08:32:44 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C9D05586
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 05:32:39 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 7696785DC9;
-        Wed,  5 Apr 2023 14:32:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1680697957;
-        bh=iOf8sCalI7si3N6fBwfzSquN6K7blPt5HjHrZJaxl+0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XQj5si7uPndw1rPqvhFaCDKibCd3oVOGI+wianAI0ibWGqVLdXgcZyWHQedWpSht7
-         NOo7W3b0p/yLQ/k/whcoGWGm6NMjc28DVUH1rRh0JN2x807Ig9w2Ztv7qEthJbyrqO
-         U8hh5cvsN7UyRH6NTf4mpjZRGxv1BnDpstwq+H2akEcicjPhrC/JAqKvkT69XTtw5R
-         LLy8YbiiQJAN1RSiCFBi+13tVq/B6DahlxctCZiS4AmKAegSyD3nB+yboIGrcTX/e7
-         UNTtU5axGpaKFrRKeR3HOnWUqyDVoE0ALmh3z8RF9s08A9gC+k7Pl5sI4BivuXMW9M
-         TfvS5XfngkNPg==
-Message-ID: <3b6696c1-411c-f382-0da4-67f9272fa306@denx.de>
-Date:   Wed, 5 Apr 2023 14:32:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] arm64: dts: imx8mm: Add display pipeline components
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Abel Vesa <abel.vesa@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        with ESMTP id S237233AbjDEMiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 08:38:18 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11CD1FD2
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 05:38:17 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id t4so30812122wra.7
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 05:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680698296;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l2D7J+jiJON7Q9iMerF9wUCEq2MkEeshCjVOJN+IjIU=;
+        b=Zy+7Yp0Go7z6QYKD1XsRLWRBjKocGSpUcbP3ev3NnJVR45oaiEAYkxbDrUKL9kpHha
+         O2gyCjuZybPMqbcwiicgWDgMes43WYcqM1hCXWQy/AL6iQq9JrnSyGu/aNuVfMDq4FZF
+         UJpeWVc1jN63BxsHbT0OjCPFBhWiXEKFvxhX83dG670jyyFkk69dSOViLPQHFsIO/xTw
+         zwNtmydV0Jw83HtOHqbkMD6WG3gMkgCsAn+v9r7NXwtlsA+n9Z9xfWQJCNrwV9UiT6BG
+         maje+hcmHA7VPl3KYJPX4E7ApWdnKRMeTmVqmFbxNyqn1Pg6fISbO0G2jr9ESTVbZmjM
+         YDWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680698296;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l2D7J+jiJON7Q9iMerF9wUCEq2MkEeshCjVOJN+IjIU=;
+        b=Gvc9t0E7T1gEC0frwEMxDU16DqtqRnVf2AmwTdnLyHcp/CJ/BreRjClzB6g3cD3jWO
+         76kmNXlmpUlxMPV3VXd8qagRLJNazcnbZbOZD25uI6CGFI/nLP0zt8RJAjYhYM5W3W36
+         8jmz+LSQdzSMabIl1IvTfTIF/ZNfmM4YnC8b4RgfcdGiymvZlb61nW3Ak4asP9MA3yK1
+         RQKK12mWw6hSJu64s+c5zDHJeRK1XcV8s/HNrUb8YWNgByF1VrFOiaMKSw9g5VPm4qsl
+         BUCEVBF67ddxxOkcRp752y6gKQ1FTCMq33qfsyR784TUv3Vg0dbmNn2w14rKJxWM9qgN
+         6E0A==
+X-Gm-Message-State: AAQBX9f3Dk/duInSBTRfgWlrCNazBDcuS0A7AonG3N4In1x+eEGVDAbD
+        Osy2esIAlwDWjQ0eBDeNIF4=
+X-Google-Smtp-Source: AKy350bDkNl6lpyilJ15fMuDfjsdTwlUYtX9rOugcaON4O5ZwIz5R0EfQbZO0xzZVivOHl9+e0Btfw==
+X-Received: by 2002:adf:cd82:0:b0:2d8:908c:8fa0 with SMTP id q2-20020adfcd82000000b002d8908c8fa0mr4397915wrj.9.1680698296038;
+        Wed, 05 Apr 2023 05:38:16 -0700 (PDT)
+Received: from morpheus.home.roving-it.com (9.f.4.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::4f9])
+        by smtp.googlemail.com with ESMTPSA id j8-20020adfe508000000b002cfe71153b4sm14829623wrm.60.2023.04.05.05.38.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 05:38:15 -0700 (PDT)
+From:   Peter Robinson <pbrobinson@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-References: <20230404000151.534530-1-marex@denx.de>
- <2790760.mvXUDI8C0e@steina-w>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <2790760.mvXUDI8C0e@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Heiko Stuebner <heiko@sntech.de>, Ondrej Jirman <megi@xff.cz>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Cc:     =?UTF-8?q?Kamil=20Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH] arm64: dts: rk3399-pinephone-pro: Add support for volume keys
+Date:   Wed,  5 Apr 2023 13:38:13 +0100
+Message-Id: <20230405123813.2272919-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-3.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,108 +77,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/5/23 08:00, Alexander Stein wrote:
-> Hi Marek,
+From: Ondrej Jirman <megi@xff.cz>
 
-Hi,
+These are implemented via regular ADC, so regular polling is needed,
+for these keys to work.
 
-> Am Dienstag, 4. April 2023, 02:01:51 CEST schrieb Marek Vasut:
->> Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Mini.
->> This makes the DSI display pipeline available on this SoC.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Abel Vesa <abel.vesa@nxp.com>
->> Cc: Dong Aisheng <aisheng.dong@nxp.com>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Guido Günther <agx@sigxcpu.org>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Lucas Stach <l.stach@pengutronix.de>
->> Cc: NXP Linux Team <linux-imx@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Richard Cochran <richardcochran@gmail.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> ---
->>   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 57 +++++++++++++++++++++++
->>   1 file changed, 57 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
->> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi index
->> e311da7e87bdc..06495c225c94b 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
->> @@ -1119,6 +1119,63 @@ aips4: bus@32c00000 {
->>   			#size-cells = <1>;
->>   			ranges = <0x32c00000 0x32c00000 0x400000>;
->>
->> +			lcdif: lcdif@32e00000 {
->> +				compatible = "fsl,imx8mm-lcdif",
-> "fsl,imx6sx-lcdif";
->> +				reg = <0x32e00000 0x10000>;
->> +				clocks = <&clk
-> IMX8MM_CLK_LCDIF_PIXEL>,
->> +					 <&clk
-> IMX8MM_CLK_DISP_APB_ROOT>,
->> +					 <&clk
-> IMX8MM_CLK_DISP_AXI_ROOT>;
->> +				clock-names = "pix", "axi",
-> "disp_axi";
->> +				assigned-clocks = <&clk
-> IMX8MM_CLK_LCDIF_PIXEL>,
->> +						  <&clk
-> IMX8MM_CLK_DISP_AXI>,
->> +						  <&clk
-> IMX8MM_CLK_DISP_APB>;
->> +				assigned-clock-parents = <&clk
-> IMX8MM_VIDEO_PLL1_OUT>,
->> +							 <&clk
-> IMX8MM_SYS_PLL2_1000M>,
->> +							 <&clk
-> IMX8MM_SYS_PLL1_800M>;
->> +				assigned-clock-rates = <594000000>,
-> <500000000>, <200000000>;
->> +				interrupts = <GIC_SPI 5
-> IRQ_TYPE_LEVEL_HIGH>;
->> +				power-domains = <&disp_blk_ctrl
-> IMX8MM_DISPBLK_PD_LCDIF>;
->> +				status = "disabled";
->> +
->> +				port {
->> +					lcdif_to_dsim: endpoint {
->> +						remote-endpoint =
-> <&dsim_from_lcdif>;
->> +					};
->> +				};
->> +			};
->> +
->> +			mipi_dsi: dsi@32e10000 {
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +				compatible = "fsl,imx8mm-mipi-dsim";
->> +				reg = <0x32e10000 0x400>;
->> +				clocks = <&clk IMX8MM_CLK_DSI_CORE>,
->> +					 <&clk
-> IMX8MM_CLK_DSI_PHY_REF>;
->> +				clock-names = "bus_clk", "sclk_mipi";
->> +				assigned-clocks = <&clk
-> IMX8MM_CLK_DSI_CORE>,
->> +						  <&clk
-> IMX8MM_CLK_DSI_PHY_REF>;
->> +				assigned-clock-parents = <&clk
-> IMX8MM_SYS_PLL1_266M>,
->> +							 <&clk
-> IMX8MM_CLK_24M>;
->> +				assigned-clock-rates = <266000000>,
-> <24000000>;
->> +				samsung,pll-clock-frequency =
-> <24000000>;
-> 
-> What about samsung,burst-clock-frequency and samsung,esc-clock-frequency? Is
-> there is sane default? Do they need to be provided in the board file?
+Signed-off-by: Martijn Braam <martijn@brixit.nl>
+Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ .../dts/rockchip/rk3399-pinephone-pro.dts     | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-Those two (burst and esc) are display or nearest-bridge specific and go 
-into board files.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index a0795a2b1cb1..ecd48040eb0c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -10,6 +10,7 @@
+  */
+ 
+ /dts-v1/;
++#include <dt-bindings/input/gpio-keys.h>
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
+@@ -29,6 +30,26 @@ chosen {
+ 		stdout-path = "serial2:115200n8";
+ 	};
+ 
++	adc-keys {
++		compatible = "adc-keys";
++		io-channels = <&saradc 1>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <1600000>;
++		poll-interval = <100>;
++
++		button-up {
++			label = "Volume Up";
++			linux,code = <KEY_VOLUMEUP>;
++			press-threshold-microvolt = <100000>;
++		};
++
++		button-down {
++			label = "Volume Down";
++			linux,code = <KEY_VOLUMEDOWN>;
++			press-threshold-microvolt = <300000>;
++		};
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -429,6 +450,11 @@ &sdio0 {
+ 	status = "okay";
+ };
+ 
++&saradc {
++	vref-supply = <&vcca1v8_s3>;
++	status = "okay";
++};
++
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
+-- 
+2.40.0
+
