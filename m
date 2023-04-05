@@ -2,71 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF946D794F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 536FB6D7968
+	for <lists+devicetree@lfdr.de>; Wed,  5 Apr 2023 12:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237755AbjDEKJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 06:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57352 "EHLO
+        id S236449AbjDEKRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 06:17:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237711AbjDEKJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:09:30 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F2781701
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 03:09:27 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id ek18so139769071edb.6
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 03:09:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680689366;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q6TAMt++7cMkW1BStD+wsT/sNxqsrNSnDjvkmfey6Z4=;
-        b=bEGMctTnM7DiSqO57EaQMKf5vh4yr7cDNlX1EY3Kv4Rwgb9KaAY/hM5KFna8Hffwva
-         8kMd9qGJL5flWJTqF31LQyEVjPsCKAiquJoMgzOQ1f2+2DQypuHgKCa4qCyMLfLDRClF
-         0trquQ6mQGzS7739tEkPSxc3CqbxgbtFlnkFzsLAf6Gd4Cy/G4yaBCvnDgVEvw5sJjhZ
-         G9KyyQhHKgagyaifa8Ty4aCO2up0+O7oKj1QXklUhP4xzgRpIecqZlTI90Yz/BLdHKvd
-         MEJYxlQvF1fUS+DWpsIcDefyffjc1rqgkbomvjmJ9+v8svYomd7No4uuZx+Wahbjns7U
-         P5ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680689366;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q6TAMt++7cMkW1BStD+wsT/sNxqsrNSnDjvkmfey6Z4=;
-        b=DPpg5GOHU98c51EGLCIXSPUh6sYO7tstvb8iF9GkwfpwhGkNexbF+JH3DNknpCoFq9
-         NZtWPdmxuN+Q4k78g1CkRoZgDIkIwh6KrF18maQxn9h4h5tjV69RJ1XUt3pfIfrRghuw
-         Iyrg8CeluW5zdQZSCzs+oHE/VYK3XBP9y3aCxeMqFiTQ9Y+Cnv7ZNE9evptN+U7UNIZz
-         6dvKllnzkcbdow9jteZWH1C5RbZ5GKuJl+9bdGJ1U3ek/x9/KT+eNuePgEZYeaGijAL2
-         QFc2rCf1DDHz7uZSxAeWWRh9ZrrWE6JxFqs5BL5btluw1EM2welY24XgdNhKB5GpD0ju
-         lVMQ==
-X-Gm-Message-State: AAQBX9faKO8f2bIu57pRQ+/IxXLmD+L8YHhIOEvfFCge5YC7tEAVW0OD
-        /YiB+ovrQ7YimrYnSemsi19aTA==
-X-Google-Smtp-Source: AKy350bYmVv6IV6JXDqPc1avMQOvjnTmwfb8v7QF7sgI2XiiWDSjCfdP1dWYjIQjxHFNmhoK053P8Q==
-X-Received: by 2002:a17:906:22d3:b0:878:72f7:bd87 with SMTP id q19-20020a17090622d300b0087872f7bd87mr1948024eja.6.1680689365926;
-        Wed, 05 Apr 2023 03:09:25 -0700 (PDT)
-Received: from t480-bl003.. (2a02-8440-c20e-c930-8ace-7c3c-c02b-cb9a.rev.sfr.net. [2a02:8440:c20e:c930:8ace:7c3c:c02b:cb9a])
-        by smtp.gmail.com with ESMTPSA id u13-20020a1709063b8d00b0093e261cc8bcsm7195962ejf.58.2023.04.05.03.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 03:09:25 -0700 (PDT)
-From:   bchihi@baylibre.com
-To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        wenst@chromium.org, khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Subject: [PATCH] arm64: dts: mediatek: mt8195: Add AP domain thermal zones
-Date:   Wed,  5 Apr 2023 12:09:07 +0200
-Message-Id: <20230405100907.53740-1-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S235049AbjDEKRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 06:17:43 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B84198D;
+        Wed,  5 Apr 2023 03:17:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680689862; x=1712225862;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=EGf9OnEDe3hrZhNghZlA7uytU/26J3PuuPCSwZuV6VU=;
+  b=Q0qSPoXc9eXYvSEWmBpNiGhrHVJZSAqC15dLlMer+/NBgkovDK0e71VQ
+   gmOQd6z2jmUzFwLTHNLhMNd8Ig3BjhofI722ngCZlRhDlI7Ya7VIbmzu/
+   IgNFX4mKJttcoUNVvwB1jRwZCBbdlrHtfJKkWb+HPQSi3xn5GO8+9wY6d
+   DPyr+sWysBCOTpA5kGVUCcKo+EVkE6gprTd2fGwfxRoGC/w2RjWH9QvHf
+   lDtSUap094gKpRunmWjJSj1VOKDOUn+LmtzhmvZEZikeBCU232kpXIuxI
+   o7sn2DwHQePl/5uxRNFplr5VluxBVsfmo41ygYN9JU7CMFYqVxL+/D0Zp
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="344132895"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; 
+   d="scan'208";a="344132895"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 03:17:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="810584030"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; 
+   d="scan'208";a="810584030"
+Received: from wtedesch-mobl1.ger.corp.intel.com ([10.252.53.134])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2023 03:17:39 -0700
+Date:   Wed, 5 Apr 2023 13:17:36 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Brenda Streiff <brenda.streiff@ni.com>
+cc:     Gratian Crisan <gratian.crisan@ni.com>,
+        Jason Smith <jason.smith@ni.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
+In-Reply-To: <862a78b5-b89a-0b26-e0f8-f910dd3434ba@ni.com>
+Message-ID: <b5736c6e-6b2d-875e-5a81-8f7b66a19d5f@linux.intel.com>
+References: <20230329154235.615349-1-brenda.streiff@ni.com> <20230329154235.615349-3-brenda.streiff@ni.com> <4687fc63-65ad-c717-70b4-731079be38f7@linux.intel.com> <862a78b5-b89a-0b26-e0f8-f910dd3434ba@ni.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Type: multipart/mixed; boundary="8323329-906799157-1680689861=:2159"
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,223 +65,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Balsam CHIHI <bchihi@baylibre.com>
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Add AP Domain thermal zones for the mt8195 and
-specify the targeted temperature thresholds.
+--8323329-906799157-1680689861=:2159
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+On Fri, 31 Mar 2023, Brenda Streiff wrote:
 
----
-This patch squashes and replaces
+> On 3/31/23 06:46, Ilpo Järvinen wrote:
+> > On Wed, 29 Mar 2023, Brenda Streiff wrote:
+> 
+> > > +	int irq;
+> > > +	int rs232_property = 0;
+> > > +	unsigned int prescaler;
+> > > +	const char *transceiver;
+> > > +	int txfifosz, rxfifosz;
+> > 
+> > Try to follow reverse xmas-tree order.
+> 
+> Is reverse xmas tree also the rule in the tty subsystem? I was aware of
+> it for netdev but I thought that was a netdev-specific rule (since it
+> only shows up in maintainer-netdev.rst and not more broadly)
 
-[PATCH 3/4] arm64: dts: mediatek: mt8195: Add AP domain thermal zones
-https://lore.kernel.org/all/20230307154524.118541-4-bchihi@baylibre.com/
+I'd say that not as strictly as e.g. netdev does so if e.g. due to 
+initialization order it cannot be fully achieved no special trickery is 
+required (in contrast to what you'd get from e.g. netdev telling to put
+them out of line).
 
-and
+It seems generally useful for declarations, especially when they're as 
+many as in the one I picked up above (I think might be due to less eye 
+movement required when looking for a particular variable by its name).
 
-[PATCH 4/4] arm64: dts: mediatek: mt8195: Add AP domain temperature thresholds
-https://lore.kernel.org/all/20230307154524.118541-5-bchihi@baylibre.com/
 
-of the series
-
-[PATCH 0/4] Add LVTS's AP thermal domain support for mt8195
-https://lore.kernel.org/all/20230307154524.118541-1-bchihi@baylibre.com/
----
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 180 +++++++++++++++++++++++
- 1 file changed, 180 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 972c5b86ddae..75da456c512b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -2909,5 +2909,185 @@ map0 {
- 				};
- 			};
- 		};
-+
-+		vpu0-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_VPU0>;
-+
-+			trips {
-+				vpu0_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				vpu0_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		vpu1-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_VPU1>;
-+
-+			trips {
-+				vpu1_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				vpu1_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		gpu0-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_GPU0>;
-+
-+			trips {
-+				gpu0_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				gpu0_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		gpu1-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_GPU1>;
-+
-+			trips {
-+				gpu1_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				gpu1_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		vdec-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_VDEC>;
-+
-+			trips {
-+				vdec_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				vdec_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		img-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_IMG>;
-+
-+			trips {
-+				img_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				img_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		infra-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_INFRA>;
-+
-+			trips {
-+				infra_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				infra_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cam0-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_CAM0>;
-+
-+			trips {
-+				cam0_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cam0_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cam1-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
-+			thermal-sensors = <&lvts_ap MT8195_AP_CAM1>;
-+
-+			trips {
-+				cam1_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cam1_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
- 	};
- };
 -- 
-2.34.1
+ i.
 
+--8323329-906799157-1680689861=:2159--
