@@ -2,35 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56F826D9F51
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFAA56D9F63
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229918AbjDFRzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 13:55:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48734 "EHLO
+        id S239958AbjDFSAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:00:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbjDFRzC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:55:02 -0400
-Received: from mx3.securetransport.de (mx3.securetransport.de [IPv6:2a01:4f8:c0c:92be::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F21D98;
-        Thu,  6 Apr 2023 10:54:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1680803661;
-        bh=VUtclU05iz+qAtVIYSOzJKrYupq03p43xdcYaL99E5I=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=pe6GL6K5c+OqOnqeCnf021hURFuqS7d5DM0ukzM9sXj+pwWBJmBoN0zfF22MWMGEO
-         3Sr72hdUaGLLuFj+/GOhGrUdWkBU/UL3TLBaHrnbORZj1JETfbwSfQk/gcokcA80wC
-         SIQ9k7rBbjJD7wLDrDY1PrUw3wbAdg2HGkHPaPKYOxYEutjzEfbjijJueCgKwLjk5W
-         OJKxuxpxhC4ZFTXy63t9OFcYMb1ePFLfxva2D3mAyNNuOvCDNymmXePHUAdbv+DenZ
-         MldudkLD0of+N73e8R2wekfydL4tMQQXAvNvFJgDBsLPBRJ7yxeWXyJ7UlyB6bp/d1
-         KnWDVt4H03udg==
-X-secureTransport-forwarded: yes
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229458AbjDFSAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:00:14 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593B25269
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:00:10 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id 18so3369683ejo.13
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:00:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680804009;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9Xne4lIPjlc/fTh61AeKasmY2sOq4ClDJX9BFxZXN+E=;
+        b=IdmDahkrTwo+nifjZPEpz7e5zvlQ7bHgdpvqJC9bYCw9ZujTt2u0BfYuFV862T4CW5
+         SBynKw5uQb5mwQe0JX5lB1Bv6vyWcVzG3OPZf0+yvvKFKDoji1ZM/lN6RIa19QSg3ewj
+         dzW8LBa6T7Iyjs/nlCdaj6ZHgXXROs24+T5WIAj3fT7/eKMYauximglQT1KQU0UOpdhI
+         9JrpJvflV3H3dqxV7PJGPdxrqdJ4KYW07UqJPo/eY8bNKmxuwplGbIk1ZKqFTtLZW0v5
+         wtST7FBCKaUi/KzlCpOItXC2TTAUB1Zq1b24UbxSJ6Udd7Cr0biEWm1xxffjXPwBGubi
+         e5Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680804009;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9Xne4lIPjlc/fTh61AeKasmY2sOq4ClDJX9BFxZXN+E=;
+        b=n324KbQeVSvav/7EXC/0h8ymhwwnv7+5QN+6NHGnDBOdKg5LdDRkXoyc6W39izCSlO
+         ZzaZgYTNVJAEzaDZpcpO9BvpxMYFnPll4dLMEZVOYMZch+pD8VbgwXb1D4Jo5syt6of9
+         lv3VJn6v/38mhzyCKIicWnTQ9Rmyyd3Rt7snjHxoK3f951IXSXcBOKcazW+TBXXGHXw0
+         BOb4b3wzSRDzjjkrU59v1k+ZYTJ9NHIvE16uzvJtppyhr5PXTcREJTrRk044F5J4q2Te
+         83KC3oXc5aYz6KUYvr4crRijJgt2015cegluo7tS9xOO24jVER/zk5Y41LDT9Au6IyZ6
+         55xQ==
+X-Gm-Message-State: AAQBX9ferJ9G0bx1C/Qz/q2EdsPj/oGhJ1YG18n/G+99oR+FfhzrZAv7
+        98V0OrxnzHvBCGNWveM5xt16Tg==
+X-Google-Smtp-Source: AKy350asbxrZB74TExOJyPQOGm7zEWKMo9EeGOdcZrR92f4xLUCHZp4F607ZDh+AjW+gT1VXJSc9rQ==
+X-Received: by 2002:a17:907:6d99:b0:926:8f9:735c with SMTP id sb25-20020a1709076d9900b0092608f9735cmr6678777ejc.32.1680804008791;
+        Thu, 06 Apr 2023 11:00:08 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id hg18-20020a1709072cd200b0092a59ee224csm1082209ejc.185.2023.04.06.11.00.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 11:00:08 -0700 (PDT)
+Message-ID: <f6c8586f-a5d1-875f-b2c0-7871112cf1b1@linaro.org>
+Date:   Thu, 6 Apr 2023 20:00:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Content-Language: en-US
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
@@ -38,87 +67,73 @@ CC:     Rob Herring <robh+dt@kernel.org>,
         kernel <kernel@dh-electronics.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-Thread-Topic: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-Thread-Index: AQHZaJ93At1GnP2el0yoagNBg+3G/K8eWhSAgAAwTiA=
-Date:   Thu, 6 Apr 2023 17:54:10 +0000
-Message-ID: <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
 References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
  <20230406154900.6423-3-cniedermaier@dh-electronics.com>
  <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
-In-Reply-To: <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+ <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSBbbWFpbHRvOmtyenlzenRvZi5rb3psb3dza2lAbGlu
-YXJvLm9yZ10NClNlbnQ6IFRodXJzZGF5LCBBcHJpbCA2LCAyMDIzIDY6NDAgUE0NCj4gT24gMDYv
-MDQvMjAyMyAxNzo0OSwgQ2hyaXN0b3BoIE5pZWRlcm1haWVyIHdyb3RlOg0KPj4gQWRkIHN1cHBv
-cnQgZm9yIE1hcmFudGVjIG1hdmVvIGJveC4gVGhlIHN5c3RlbSBpcyB1c2VkIHRvIGdldCBhDQo+
-PiBzbWFydCBjb25udGVjdGlvbiB0byBhIGRvb3IgZHJpdmUuIEl0IGhhcyBVU0IsIFdpRmksIEJs
-dWV0b290aCwNCj4+IFppZ2JlZSBhbmQgTkZDIGludGVyZmFjZXMuIFRoZSBjb3JlIG9mIHRoaXMg
-c3lzdGVtIGlzIGEgc29sZGVyZWQNCj4+IGkuTVg2VUxMIERIQ09SIFNvTSBmcm9tIERIIGVsZWN0
-cm9uaWNzLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBOaWVkZXJtYWllciA8Y25p
-ZWRlcm1haWVyQGRoLWVsZWN0cm9uaWNzLmNvbT4NCj4+IC0tLQ0KPj4gQ2M6IFJvYiBIZXJyaW5n
-IDxyb2JoK2R0QGtlcm5lbC5vcmc+DQo+PiBDYzogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6
-dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPg0KPj4gQ2M6IFNoYXduIEd1byA8c2hhd25ndW9A
-a2VybmVsLm9yZz4NCj4+IENjOiBMaSBZYW5nIDxsZW95YW5nLmxpQG54cC5jb20+DQo+PiBDYzog
-TWFyZWsgVmFzdXQgPG1hcmV4QGRlbnguZGU+DQo+PiBDYzogRmFiaW8gRXN0ZXZhbSA8ZmVzdGV2
-YW1AZGVueC5kZT4NCj4+IENjOiBOWFAgTGludXggVGVhbSA8bGludXgtaW14QG54cC5jb20+DQo+
-PiBDYzoga2VybmVsQGRoLWVsZWN0cm9uaWNzLmNvbQ0KPj4gQ2M6IGRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnDQo+PiBDYzogbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPj4gVG86IGxp
-bnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPj4gLS0tDQo+PiBWMjogLSBDb3Jy
-ZWN0IHRoZSB2ZW5kb3IgcHJlZml4DQo+PiAgICAgLSBDaGFuZ2UgcGluY29uZmlnIG9mIFVzZXIg
-YW5kIFJlc2V0IGJ1dHRvbg0KPj4gLS0tDQo+PiAgYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUg
-ICAgICAgICAgICAgICAgICAgIHwgICAxICsNCj4+ICBhcmNoL2FybS9ib290L2R0cy9pbXg2dWxs
-LWRoY29yLW1hdmVvLWJveC5kdHMgfCAzNjEgKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4+
-ICAyIGZpbGVzIGNoYW5nZWQsIDM2MiBpbnNlcnRpb25zKCspDQo+PiAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bGwtZGhjb3ItbWF2ZW8tYm94LmR0cw0KPj4NCj4+
-IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZSBiL2FyY2gvYXJtL2Jvb3Qv
-ZHRzL01ha2VmaWxlDQo+PiBpbmRleCBhYThmYjRiN2NkY2MuLjU4ZDMzMzQxNjRlMiAxMDA2NDQN
-Cj4+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlDQo+PiArKysgYi9hcmNoL2FybS9i
-b290L2R0cy9NYWtlZmlsZQ0KPj4gQEAgLTc1MSw2ICs3NTEsNyBAQCBkdGItJChDT05GSUdfU09D
-X0lNWDZVTCkgKz0gXA0KPj4gICAgICAgaW14NnVsbC1kaGNvbS1kcmMwMi5kdGIgXA0KPj4gICAg
-ICAgaW14NnVsbC1kaGNvbS1wZGsyLmR0YiBcDQo+PiAgICAgICBpbXg2dWxsLWRoY29tLXBpY29p
-dHguZHRiIFwNCj4+ICsgICAgIGlteDZ1bGwtZGhjb3ItbWF2ZW8tYm94LmR0YiBcDQo+PiAgICAg
-ICBpbXg2dWxsLWpvemFjcC5kdGIgXA0KPj4gICAgICAgaW14NnVsbC1rb250cm9uLWJsLmR0YiBc
-DQo+PiAgICAgICBpbXg2dWxsLW15aXItbXlzLTZ1bHgtZXZhbC5kdGIgXA0KPj4gZGlmZiAtLWdp
-dCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bGwtZGhjb3ItbWF2ZW8tYm94LmR0cyBiL2FyY2gv
-YXJtL2Jvb3QvZHRzL2lteDZ1bGwtZGhjb3ItbWF2ZW8tYm94LmR0cw0KPj4gbmV3IGZpbGUgbW9k
-ZSAxMDA2NDQNCj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uODNiYWNhYzE5OTMzDQo+PiAtLS0gL2Rl
-di9udWxsDQo+PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLWRoY29yLW1hdmVvLWJv
-eC5kdHMNCj4+IEBAIC0wLDAgKzEsMzYxIEBADQo+PiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZp
-ZXI6IEdQTC0yLjAtb3ItbGF0ZXIgT1IgTUlUDQo+PiArLyoNCj4+ICsgKiBDb3B5cmlnaHQgKEMp
-IDIwMjMgREggZWxlY3Ryb25pY3MgR21iSA0KPj4gKyAqIENvcHlyaWdodCAoQykgMjAyMyBNYXJh
-bnRlYyBlbGVjdHJvbmljcyBHbWJIDQo+PiArICoNCj4+ICsgKiBESENPTSBpTVg2VUxMIHZhcmlh
-bnQ6DQo+PiArICogREhDUi1pTVg2VUxMLUMwODAtUjA1MS1TUEktV0JULUktMDFMRw0KPj4gKyAq
-IERIQ09SIFBDQiBudW1iZXI6IDU3OC0yMDAgb3IgbmV3ZXINCj4+ICsgKiBtYXZlbyBib3ggUENC
-IG51bWJlcjogNTI1LTIwMCBvciBuZXdlcg0KPj4gKyAqLw0KPj4gKw0KPj4gKy9kdHMtdjEvOw0K
-Pj4gKw0KPj4gKyNpbmNsdWRlICJpbXg2dWxsLWRoY29yLXNvbS5kdHNpIg0KPj4gKw0KPj4gKy8g
-ew0KPj4gKyAgICAgbW9kZWwgPSAiREggZWxlY3Ryb25pY3MgaS5NWDZVTEwgREhDT1Igb24gbWF2
-ZW8gYm94IjsNCj4+ICsgICAgIGNvbXBhdGlibGUgPSAibWFyYW50ZWMsaW14NnVsbC1kaGNvci1t
-YXZlby1ib3giLCAiZGgsaW14NnVsbC1kaGNvci1zb20iLA0KPj4gKyAgICAgICAgICAgICAgICAg
-ICJmc2wsaW14NnVsbCI7DQo+PiArDQo+PiArICAgICBhbGlhc2VzIHsNCj4+ICsgICAgICAgICAg
-ICAgL2RlbGV0ZS1wcm9wZXJ0eS8gbW1jMDsgLyogQXZvaWQgZG91YmxlIGRlZmluaXRpb25zICov
-DQo+IA0KPiBJIGRvbid0IHVuZGVyc3RhbmQgaXQuIFdoYXQgaXMgImRvdWJsZSBkZWZpbml0aW9u
-IiBvZiBhbGlhc2VzPw0KDQpPdGhlcndpc2UgSSBlbmQgdXAgbGlrZSB0aGlzOg0KbW1jMCA9ICZ1
-c2RoYzE7DQptbWMxID0gJnVzZGhjMjsNCm1tYzIgPSAmdXNkaGMyOw0KDQpJcyAiRW5zdXJlIHVu
-aXF1ZSBhbGxvY2F0aW9uIiBhIGJldHRlciBjb21tZW50IGhlcmU/DQoNCj4gDQo+PiArICAgICAg
-ICAgICAgIC9kZWxldGUtcHJvcGVydHkvIG1tYzE7DQo+PiArICAgICAgICAgICAgIG1tYzIgPSAm
-dXNkaGMyOyAvKiBlTU1DIHNob3VsZCBiZSBtbWMyICovDQo+IA0KPiBXaHk/IEhvdyBpcyB0aGlz
-IGxhYmVsZWQgb24gdGhlIGJvYXJkIChwaHlzaWNhbGx5IG9yIG9uIHNjaGVtYXRpY3MpPyBJZg0K
-PiB5b3UgYW5zd2VyIGhlcmUgImZvciBib290aW5nIiwgdGhlbiB0aGUgYW5zd2VyIGlzIE5BSy4g
-RG9uJ3QgYWRkDQo+IHNvZnR3YXJlIHBvbGljaWVzIHRvIERldmljZXRyZWUuDQoNClRoZSBuYW1l
-IGluIHRoZSBzY2hlbWF0aWNzIGlzICJTRDIiLg0KDQoNClJlZ2FyZHMNCkNocmlzdG9waA0K
+On 06/04/2023 19:54, Christoph Niedermaier wrote:
+
+>>> +++ b/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
+>>> @@ -0,0 +1,361 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>>> +/*
+>>> + * Copyright (C) 2023 DH electronics GmbH
+>>> + * Copyright (C) 2023 Marantec electronics GmbH
+>>> + *
+>>> + * DHCOM iMX6ULL variant:
+>>> + * DHCR-iMX6ULL-C080-R051-SPI-WBT-I-01LG
+>>> + * DHCOR PCB number: 578-200 or newer
+>>> + * maveo box PCB number: 525-200 or newer
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "imx6ull-dhcor-som.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "DH electronics i.MX6ULL DHCOR on maveo box";
+>>> +     compatible = "marantec,imx6ull-dhcor-maveo-box", "dh,imx6ull-dhcor-som",
+>>> +                  "fsl,imx6ull";
+>>> +
+>>> +     aliases {
+>>> +             /delete-property/ mmc0; /* Avoid double definitions */
+>>
+>> I don't understand it. What is "double definition" of aliases?
+> 
+> Otherwise I end up like this:
+> mmc0 = &usdhc1;
+> mmc1 = &usdhc2;
+> mmc2 = &usdhc2;
+> 
+> Is "Ensure unique allocation" a better comment here?
+> 
+>>
+>>> +             /delete-property/ mmc1;
+>>> +             mmc2 = &usdhc2; /* eMMC should be mmc2 */
+>>
+>> Why? How is this labeled on the board (physically or on schematics)? If
+>> you answer here "for booting", then the answer is NAK. Don't add
+>> software policies to Devicetree.
+> 
+> The name in the schematics is "SD2".
+
+Answering also to above - then likely the aliases should be dropped from
+SoM. I doubt that Som calls it SD1 and your board SD2...
+
+Best regards,
+Krzysztof
+
