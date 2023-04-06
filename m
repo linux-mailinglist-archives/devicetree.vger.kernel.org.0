@@ -2,92 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 955BC6D914D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BD856D919C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233628AbjDFIQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 04:16:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58782 "EHLO
+        id S236226AbjDFIcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 04:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235743AbjDFIQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:16:15 -0400
-Received: from mail.gramblingfirm.com (mail.gramblingfirm.com [89.40.118.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5323B61A5
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:16:14 -0700 (PDT)
-Received: by mail.gramblingfirm.com (Postfix, from userid 1001)
-        id A367482A08; Thu,  6 Apr 2023 09:16:08 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gramblingfirm.com;
-        s=mail; t=1680768973;
-        bh=gqzZsu7MXwZPzlbvSQiKceUrEEFPNw9Lezccrk6Bymo=;
-        h=Date:From:To:Subject:From;
-        b=hyrtiXmm5OyLrQsq+07OMPYxY6gvvck//maw2i3hp9R749wCIwXJ0YB/Nyl/T7nbB
-         4Sl/WW8llpdg78/mHsD5hlSHbZC2bN8sYpbJyIVCMzE4Hwt6gk0xTUYJpHm39FOzpU
-         MvqLz6haoUa4lDTUYCcF8KqNCVVH9YkgFIGFAX3rfGn+7L1Z6+Nj967E+8AYJe8Epa
-         0cVeQxYm2SvGoHmY8UnSJsD9HsAeSCZkPSiHb988Pb0oylsc2fSybfoUP73o/5oXJR
-         aleNXoJAZ4eyLjSdQ9Jg+1YDjU+g1yp7fxei8WhKkwTTk9qyTWJFIu5frIXVeRoqIK
-         IyCuZA7PL4kcQ==
-Received: by mail.gramblingfirm.com for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 08:16:03 GMT
-Message-ID: <20230406074500-0.1.2s.4z2m.0.k456h9i6cu@gramblingfirm.com>
-Date:   Thu,  6 Apr 2023 08:16:03 GMT
-From:   "Daniel Musil" <daniel.musil@gramblingfirm.com>
-To:     <devicetree@vger.kernel.org>
-Subject: Robotisation of production
-X-Mailer: mail.gramblingfirm.com
+        with ESMTP id S235043AbjDFIco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:32:44 -0400
+X-Greylist: delayed 903 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 06 Apr 2023 01:32:03 PDT
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4194C21;
+        Thu,  6 Apr 2023 01:32:03 -0700 (PDT)
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 6 Apr 2023
+ 16:16:46 +0800
+From:   Kelvin Zhang <kelvin.zhang@amlogic.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>
+Subject: [RFC PATCH] dt-bindings: arm: amlogic: add C3 bindings
+Date:   Thu, 6 Apr 2023 16:16:27 +0800
+Message-ID: <20230406081627.4083103-1-kelvin.zhang@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=6.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,RCVD_IN_SORBS_DUL,
-        SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: *  0.0 RCVD_IN_SORBS_DUL RBL: SORBS: sent directly from dynamic IP
-        *      address
-        *      [89.40.118.123 listed in dnsbl.sorbs.net]
-        *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
-        *      blocklist
-        *      [URIs: gramblingfirm.com]
-        *  3.6 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
-        *      [89.40.118.123 listed in zen.spamhaus.org]
-        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
-        *      blocklist
-        *      [URIs: gramblingfirm.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-X-Spam-Level: *****
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.98.11.200]
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Document the new C3 SoC/board device tree bindings.
 
-I am trying to reach the person who manages your machinery and/or is resp=
-onsible for the improvement and automation of production.=20
+C3 is an advanced edge AI processor designed for smart IP camera
+applications, which does not belong to Meson series.
 
-We deal with processes related to broadly defined robotisation and automa=
-tion of production. We support you in the design and implementation of au=
-tomation and control systems, the construction of control cabinets, their=
- servicing and diagnostics of already existing devices.=20
+Therefore, modify the title field accordingly.
 
-Thanks to a large team of specialists in various fields, we are able to i=
-mplement industrial robots, construct electrical installation facilities,=
- provide solutions for monitoring of media consumption, and integrate mac=
-hines and devices into complete assemblies.
+Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-What sets us apart is our versatility, many years of experience and a qua=
-lified team who have developed their knowledge over the years by carrying=
- out projects for various industries and processes.
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 274ee0890312..ade730f35519 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/arm/amlogic.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Amlogic MesonX
++title: Amlogic SoC based Platforms
+ 
+ maintainers:
+   - Kevin Hilman <khilman@baylibre.com>
+@@ -211,6 +211,13 @@ properties:
+               - amlogic,aq222
+           - const: amlogic,s4
+ 
++      - description: Boards with the Amlogic C3 C302X/C308L SoC
++        items:
++          - enum:
++              - amlogic,aw409
++              - amlogic,aw419
++          - const: amlogic,c3
++
+ additionalProperties: true
+ 
+ ...
 
-I think it is worth discussing what this looks like in your company and w=
-hat we could offer. What do you think of my proposal?
+base-commit: e134c93f788fb93fd6a3ec3af9af850a2048c7e6
+-- 
+2.37.1
 
-Best regards
-Daniel Musil
