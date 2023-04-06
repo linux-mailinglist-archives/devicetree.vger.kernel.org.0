@@ -2,135 +2,472 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 768576D9E8F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:20:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C9056D9EA3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240119AbjDFRUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 13:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56800 "EHLO
+        id S239972AbjDFRWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 13:22:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240044AbjDFRTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:19:54 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2066.outbound.protection.outlook.com [40.107.243.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C177A8B;
-        Thu,  6 Apr 2023 10:19:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dwfSOvWBCj2w4FMFdSOEo70iPXKxZC3exAfnH8eBFKVV+5qd/84EOaydA+gzlKI7pLQY7AioCPa2z9wf6sR+rUH1ZJaYSAADSpuGajZTtfQSEK2YQ798fwYV1973zu1+ZuX1qLY0xk1aWfnuojhZXoTgUU48awZtBA97fAKrAEkj3ik/2sHzy0YGS9o1SuHkWRICfzga2B2RVRQ/q6wD3WJMV8iKFxvi4YaQGDl/OL93F+kjqPK35Wq9c6tcwstQKygmGZ5DGG9bwCPzdcQSCqJuAZGGrubJtARgoRxkBXKwbQydno4WkkgqQt+/l56tpvjdu5UbrqYKr60M5mXybg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x0B4e4waDo/8ygYRfAUPi4j/yHBgi9ZU9AnjB6UuD5k=;
- b=PLhyFs/WSC5EBMCCB0NgLRqwBOh2kicTtHF8JNPvATir5ZoERfwUCqc+K9vuVHxqqkbQr9xPLlx81Qe3ywz7lFKZR+VZiZ/jEM0881QzfJWp0/+1C4NVIvqVFA6nO01/CZ/x/UU9xVz8YQcQeebOcVNb3gC7oC8zqtnUN+T5ATJtjkzb82ryZ+HLSTDzS6HCBAcPvelE26FVn/PB0Qa4d+l5nGWvJLURmMB+/M43SpXHliKpjfzqs28Mw4y3sy6LzmyGU1TzAggeCYXYcz9odFuD6xXt5h6kN8uF4kWY3TlUMkNaYd+Mz8PkcEp8Ub6+0R4jWyFggCsh+hFCYQ+dRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x0B4e4waDo/8ygYRfAUPi4j/yHBgi9ZU9AnjB6UuD5k=;
- b=LzzzeNkhlQFVL3io7dM8hdrhrWVErpxYuoMddhTS+ajzHETfZhMzBXxfqAMIQzcGrT7qC2DgVpJe2vpmOuzXmYhVVc6pLbo6btrTUMiZlsbr0x8AJGtQd3wr6k55x9WUgblCu0Zl4HH0TWp229NnDUaY5m9TBWH9ABZ42dIsXlygpQpsRGcVfmQLTDdJj3XNwJrti5F2qZ1BL2VocnKgv8m5Mb8wqO1VUXOL88nY+R8tFsAJGLG5KqBr4jFuJRrxzhObyZTj1v/utWgl4IJS5R4EgxyNdHp6bX8IQ/6pe/T0mxtJfMuxAjMt/QXSefkArh5y1oLoToTzNmeuLFJEIw==
-Received: from BL1PR13CA0347.namprd13.prod.outlook.com (2603:10b6:208:2c6::22)
- by MN2PR12MB4341.namprd12.prod.outlook.com (2603:10b6:208:262::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.31; Thu, 6 Apr
- 2023 17:19:12 +0000
-Received: from BL02EPF000145B8.namprd05.prod.outlook.com
- (2603:10b6:208:2c6:cafe::a3) by BL1PR13CA0347.outlook.office365.com
- (2603:10b6:208:2c6::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.16 via Frontend
- Transport; Thu, 6 Apr 2023 17:19:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL02EPF000145B8.mail.protection.outlook.com (10.167.241.208) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6222.35 via Frontend Transport; Thu, 6 Apr 2023 17:19:12 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 6 Apr 2023
- 10:18:43 -0700
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 6 Apr 2023
- 10:18:43 -0700
-Received: from dipenp.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.986.37 via Frontend
- Transport; Thu, 6 Apr 2023 10:18:43 -0700
-From:   Dipen Patel <dipenp@nvidia.com>
-To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <robh+dt@kernel.org>, <timestamp@lists.linux.dev>,
-        <krzysztof.kozlowski+dt@linaro.org>, <brgl@bgdev.pl>,
-        <corbet@lwn.net>, <gregkh@linuxfoundation.org>
-CC:     Dipen Patel <dipenp@nvidia.com>
-Subject: [V5 10/10] gpio: tegra186: Add Tegra234 hte support
-Date:   Thu, 6 Apr 2023 10:18:37 -0700
-Message-ID: <20230406171837.11206-11-dipenp@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230406171837.11206-1-dipenp@nvidia.com>
-References: <20230406171837.11206-1-dipenp@nvidia.com>
-X-NVConfidentiality: public
+        with ESMTP id S240057AbjDFRWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:22:06 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD92AD02
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 10:21:03 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id by26so3100156ejb.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 10:21:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680801639;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BtlyNDbkagfeJUns7FGsP2EZRlOL+2mbeocrLuqlnbY=;
+        b=AwsWltL/VpHvXdQKf87/oVoC1m2E4uNobtpitdgpwLeje1cNXvts1vHu5kzfojESKn
+         MzjtW5brInubmhLfwD5OB97pIB5nePwyHWy3OeRCL/+hsv3actD6eRwSy5okjuk1cRW+
+         gSz7tBr2LWaZ5K2vsj3CJi6+wC6HDbcDJP6vLb6tmo4BZ8xGmrbmR13XqzNlRnApp7t8
+         UJv+B5rKCsccMbLShiPQ4OASdH02iSYj2gVv2CP9y99ir6GyWoRpfa6pBvauITcPifa9
+         3vaYFRjA5m5Pdz6pcmlqJTyDRIwJEG1aMzjPr/YzVmWg8uztzbaNmUG7Td9LQTCwdG1y
+         SIdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680801639;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BtlyNDbkagfeJUns7FGsP2EZRlOL+2mbeocrLuqlnbY=;
+        b=Gbsb7ejp0vSkmIekJ1I2QGLdirQBVNShdfoSKq+/hr2thhtyBUw6YmkZXXdx7bT5XP
+         AgYdUqAhKmf1/Pbj7QF4KOvKQ1b0ygg7gXM0CQ8v7iQDOEYPHKyTkV8vctyqjJCG5qqA
+         XOHPxp8awHwionhyQmA0zE795tt33iAf+ybQk2zfB3LgVwQG9+km7ibdC+oiLrJIyxWm
+         MhLlQep8PT3Urp1EG/ZmZLZlIzI7jtWkdWmjOLRW/0A/IUSsbfqbnwtvOXlWA5dUzTZQ
+         6qVbnSzElTwBjQVjjyiOPUAYf2o8y/OGYSx1si7oYrWiB6QdlkaPmU7ZT4aeMqDnLLuX
+         uv6A==
+X-Gm-Message-State: AAQBX9cKeDTGaUgTpS87fHQrZYhNPthpH3sUVN4xgSg80OaZtIzkJrYF
+        JsWy+MOsKTwGmGzVMONrly3hkw==
+X-Google-Smtp-Source: AKy350Z5ja8OXv69Q4N861xpWRuNypHMvKQcyy8MNOjI8nJEe5tqHoKvA2WrFUyQOEwh3OGoqVvWpg==
+X-Received: by 2002:a17:906:4b12:b0:93e:2a40:316f with SMTP id y18-20020a1709064b1200b0093e2a40316fmr5786836eju.28.1680801639520;
+        Thu, 06 Apr 2023 10:20:39 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id hb18-20020a170907161200b0093344ef3764sm1050939ejc.57.2023.04.06.10.20.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 10:20:39 -0700 (PDT)
+Message-ID: <4a462b2e-380a-9fd1-2e84-783cc457e8c2@linaro.org>
+Date:   Thu, 6 Apr 2023 19:20:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000145B8:EE_|MN2PR12MB4341:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1c7c271-a2b8-45d4-8a23-08db36c30a7d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3hEEo/R3j5PMuAn36gcbyeVrDUJ3ZJnuOvn9sdRsF9UNlHvESYyJg6qrwVTvpXxjSM6uEeC4Y3UQtpkFPHZhzRcxP+Nxxb73F+U3bnGhPjnr+gMxyx78UEqXOBA8Dq/4FEsJ4P0vSD/dn+bu7jsCzYvWRAG7qeMGaXELt1isCA8PJRHIenaP/yDkrdw0yK4CdsGAvC1XxOon9niCcJCLe2aNzzMpn+j2ef9fx57WsyNACh0T+4V71539fEgrX2Hr81TKDlY2ltN7gdswnxNEXtAkvt+8OXFlwl6p668gtDTAkkS1ZTL6UF9reSTTXFDdbbYVCZvCYFPQbIPmYQxCFk1TVUzbLqhbT9uxroVK09Pmz35wwOsrbt66gAGuYAU67KRXV3KQeISglv89tswyD2UDbcdjYDby2NMMaEppD6wSWME1weKQ7JiG4nKDHyD0z8KqjkUI32/pX89hv2rTkFkIHHMHsRjyUwz73EZ4lR9keqmeHMdRJv1Qvq04bEmhIAnkITuW1wn5tS5phjyi3v9aGKOuLvYo8sV+KaOe2nyVAM2dfOGhKs3OsydAN0Byvi7+OH/6KxU95AroYvqtfT+jBLXIDlLoohaZzT09Y3nxHA3ffGL0DNxMkMswCHRJsjHogd/jdHjBxg3R7Ol417HP5XLfvk/CBnD8AiX375EdAb0fpaigWT2D2BpgNFX0We2NpYd+6IKpIf10DDsZA1QfLMyOil2FtGOA2LyoulaH+WdigGtXXrAa8+U6sG66aFhadgaKv9aha57oI0zHHmUDS6svQMyqJMqDtSpR3fqNPGWWGcadPuESW/Sf+T3K
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(346002)(39860400002)(396003)(451199021)(46966006)(40470700004)(36840700001)(316002)(7416002)(5660300002)(478600001)(83380400001)(7696005)(8936002)(41300700001)(110136005)(4744005)(70206006)(4326008)(8676002)(70586007)(6666004)(107886003)(26005)(1076003)(2906002)(186003)(40460700003)(336012)(426003)(7636003)(921005)(356005)(82740400003)(47076005)(2616005)(40480700001)(82310400005)(86362001)(36756003)(36860700001)(83996005)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2023 17:19:12.3391
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1c7c271-a2b8-45d4-8a23-08db36c30a7d
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000145B8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4341
-X-Spam-Status: No, score=0.8 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: realtek: Add RTD1319 SoC and Realtek
+ Pym Particles EVB
+Content-Language: en-US
+To:     =?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <9aa26a9bfb174940a69e5f4fde2a38d7@realtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9aa26a9bfb174940a69e5f4fde2a38d7@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To enable timestamp support for the Tegra234, has_gte variable needs
-to be set true.
+On 06/04/2023 09:18, CY_Huang[黃鉦晏] wrote:
+> Add Device Trees for Realtek RTD1319 SoC family, RTD1319 SoC and
+> Realtek Pym Particles EVB.
+> 
+> Signed-off-by: cy.huang <cy.huang@realtek.com>
+> ---
+> v1->v2:
+>  * no change
+> v1:
+>  * RTD1319 SoC and Realtek PymParticle EVB
+> 
+>  arch/arm64/boot/dts/realtek/Makefile          |   2 +
+>  .../boot/dts/realtek/rtd1319-pymparticles.dts |  28 ++
+>  arch/arm64/boot/dts/realtek/rtd13xx.dtsi      | 346 ++++++++++++++++++
+>  3 files changed, 376 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/realtek/Makefile b/arch/arm64/boot/dts/realtek/Makefile
+> index ef8d8fcbaa05..ef569b8ebd13 100644
+> --- a/arch/arm64/boot/dts/realtek/Makefile
+> +++ b/arch/arm64/boot/dts/realtek/Makefile
+> @@ -13,3 +13,5 @@ dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-bpi-m4.dtb
+>  dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-lionskin.dtb
+> 
+>  dtb-$(CONFIG_ARCH_REALTEK) += rtd1619-mjolnir.dtb
+> +
+> +dtb-$(CONFIG_ARCH_REALTEK) += rtd1319-pymparticles.dtb
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts b/arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
+> new file mode 100644
+> index 000000000000..6e46bf9ac252
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1319-pymparticles.dts
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: (GPL-3.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Copyright (c) 2019-2020 Realtek Semiconductor Corp.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "rtd13xx.dtsi"
+> +
+> +/ {
+> +       compatible = "realtek,pym-particles", "realtek,rtd1319";
+> +       model = "Realtek Pym Particles EVB";
+> +
+> +       memory@40000 {
+> +               device_type = "memory";
+> +               reg = <0x00040000 0x7ffc0000>; /* boot ROM to 1 GiB or 2 GiB */
+> +       };
+> +
+> +       chosen {
+> +               stdout-path = "serial0:460800n8";
+> +       };
+> +};
+> +
+> +/* debug console (J1) */
+> +&uart0 {
+> +       status = "okay";
+> +};
+> +
 
-Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-Acked-by: Thierry Reding <treding@nvidia.com>
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/gpio/gpio-tegra186.c | 1 +
- 1 file changed, 1 insertion(+)
+Drop stray blank lines. Same in second file.
 
-diff --git a/drivers/gpio/gpio-tegra186.c b/drivers/gpio/gpio-tegra186.c
-index 14c872b6ad05..b904de0b1784 100644
---- a/drivers/gpio/gpio-tegra186.c
-+++ b/drivers/gpio/gpio-tegra186.c
-@@ -1134,6 +1134,7 @@ static const struct tegra_gpio_soc tegra234_aon_soc = {
- 	.name = "tegra234-gpio-aon",
- 	.instance = 1,
- 	.num_irqs_per_bank = 8,
-+	.has_gte = true,
- };
- 
- #define TEGRA241_MAIN_GPIO_PORT(_name, _bank, _port, _pins)	\
--- 
-2.17.1
+> diff --git a/arch/arm64/boot/dts/realtek/rtd13xx.dtsi b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+> new file mode 100644
+> index 000000000000..59af2489e170
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+> @@ -0,0 +1,346 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek RTD13xx SoC family
+> + *
+> + * Copyright (c) 2019-2020 Realtek Semiconductor Corp.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +       interrupt-parent = <&gic>;
+> +       #address-cells = <1>;
+> +       #size-cells = <1>;
+> +
+> +       reserved_memory: reserved-memory {
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +               ranges;
+> +
+> +               protected_mem: protected_mem@40000 {
+
+No underscores in node names.
+
+> +                       reg = <0x00040000 0x1000000>;
+> +                       no-map;
+> +               };
+> +
+> +               rpc_comm: comm@4080000 {
+> +                       reg = <0x04080000 0x1000>;
+> +               };
+> +
+> +               rpc_ringbuf: ringbuf@40ff000 {
+> +                       reg = <0x040ff000 0x4000>;
+> +               };
+> +
+> +               audio_heap: audio_heap@4200000 {
+> +                       reg = <0x04200000 0xc00000>;
+> +               };
+> +
+> +               media_heap: media_heap@4e00000 {
+> +                       reg = <0x04e00000 0x06000000>;
+> +               };
+> +
+> +               audio_fw_mem: audio_fw_mem@10000000 {
+> +                       reg = <0x10000000 0x14000>;
+> +                       no-map;
+> +               };
+> +
+> +               tee: tee@10100000 {
+> +                       reg = <0x10100000 0x04100000>;
+> +                       no-map;
+> +               };
+> +
+> +               cma_resrved_0:linux,default_cma {
+
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
+
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x02000000>;
+> +                       alignment = <0x01000000>;
+> +                       alloc-ranges=<0x00000000 0x80000000>;
+> +                       linux,cma-default;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_1:linux,cma_1 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x02000000>;
+> +                       alloc-ranges=<0x14200000 0x0be00000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +                       status = "disabled";
+> +               };
+> +
+> +               cma_resrved_2:linux,cma_2 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x08000000>;
+> +                       alloc-ranges=<0x00000000 0x60000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_3:linux,cma_3 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x10000000>;
+> +                       alignment = <0x01000000>;
+> +                       alloc-ranges=<0x00000000 0x80000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_4:linux,cma_4 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x02000000>;
+> +                       alignment = <0x01000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_5:linux,cma_5 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x01000000>;
+> +                       alignment = <0x01000000>;
+> +                       alloc-ranges=<0x00000000 0x60000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_6:linux,cma_6 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x02000000>;
+> +                       alignment = <0x01000000>;
+> +                       alloc-ranges=<0x00000000 0x60000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_7:linux,cma_7 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x01000000>;
+> +                       alignment = <0x01000000>;
+> +                       alloc-ranges=<0x00000000 0x60000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_8:linux,cma_8 {
+> +                       compatible = "shared-dma-pool";
+> +                       size = <0x06000000>;
+> +                       alignment = <0x01000000>;
+> +                       alloc-ranges=<0x00000000 0x60000000>;
+> +                       linux,contiguous-region;
+> +                       reusable;
+> +               };
+> +
+> +               cma_resrved_9:linux,cma_9 {
+> +                       compatible = "shared-dma-pool";
+> +                       reusable;
+> +                       size = <0x04000000>;
+> +                       alignment = <0x01000000>;
+> +                       linux,contiguous-region;
+> +                       alloc-ranges=<0x00000000 0x60000000>;
+> +               };
+> +       };
+> +
+> +       clocks {
+> +               osc27m: osc {
+
+Use consistent naming. If other is "-clk" this should be as well.
+
+> +                       compatible = "fixed-clock";
+> +                       clock-frequency = <27000000>;
+
+Isn't this located on the board? Physically on the board?
+
+> +                       clock-output-names = "osc27m";
+> +                       #clock-cells = <0>;
+> +               };
+> +
+> +               baudclk: baudclk {
+
+baud-clk
+
+> +                       compatible = "fixed-clock";
+> +                       #clock-cells = <0>;
+> +                       clock-frequency = <432000000>;
+> +                       clock-output-names = "baudclk";
+> +               };
+> +       };
+> +
+> +       cpus {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               cpu0: cpu@0 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a55";
+> +                       reg = <0x0>;
+> +                       enable-method = "psci";
+> +                       next-level-cache = <&l2>;
+> +               };
+> +
+> +               cpu1: cpu@100 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a55";
+> +                       reg = <0x100>;
+> +                       enable-method = "psci";
+> +                       next-level-cache = <&l2>;
+> +               };
+> +
+> +               cpu2: cpu@200 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a55";
+> +                       reg = <0x200>;
+> +                       enable-method = "psci";
+> +                       next-level-cache = <&l2>;
+> +               };
+> +
+> +               cpu3: cpu@300 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a55";
+> +                       reg = <0x300>;
+> +                       enable-method = "psci";
+> +                       next-level-cache = <&l2>;
+> +               };
+> +
+> +               l2: l2-cache {
+> +                       compatible = "cache";
+> +               };
+> +       };
+> +
+> +       timer {
+> +               compatible = "arm,armv8-timer";
+> +               interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +                            <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +                            <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +                            <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +
+> +       arm_pmu: pmu {
+> +               compatible = "arm,armv8-pmuv3";
+> +               interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +       };
+> +
+> +       psci: psci {
+> +               compatible = "arm,psci-1.0";
+> +               method = "smc";
+> +       };
+> +
+> +       firmware {
+> +               optee {
+> +                       compatible = "linaro,optee-tz";
+> +                       method = "smc";
+> +               };
+> +       };
+> +
+> +       soc@0 {
+> +               compatible = "simple-bus";
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +               ranges = <0x00000000 0x00000000 0x0002e000>, /* boot ROM */
+> +                        <0x00030000 0x00030000 0x00030000>, /* PCIE IO*/
+> +                        <0xff100000 0xff100000 0x00200000>, /* GIC */
+> +                        <0xC0000000 0xC0000000 0x00100000>,
+> +                        <0xC1000000 0xC1000000 0x00100000>,
+> +                        <0x98000000 0x98000000 0x00200000>; /* rbus */
+> +
+> +               rbus: rbus@98000000 {
+> +                       compatible = "simple-bus";
+> +                       reg = <0x98000000 0x200000>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       ranges = <0x00000000 0x98000000 0x200000>,
+> +                                <0xC0000000 0xC0000000 0x00100000>,
+> +                                <0xC1000000 0xC1000000 0x00100000>,
+> +                                <0x10030000 0x00030000 0x00030000>; /* PCIE IO*/
+> +
+> +                       crt: syscon@0 {
+> +                               compatible = "syscon", "simple-mfd";
+
+These are not allowed on their own. Your patchset is really not tested
+against bindings.
+
+> +                               reg = <0x0 0x1000>;
+> +                               reg-io-width = <4>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <1>;
+> +                               ranges = <0x0 0x0 0x1000>;
+> +                       };
+> +
+> +                       pinctrl: pinctrl@4e000 {
+> +                               compatible = "syscon";
+
+syscon as pinctrl? Nope.
+
+> +                               reg = <0x4e000 0x130>;
+> +                               reg-io-width = <4>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <1>;
+
+??
+
+> +                               #gpio-range-cells = <3>;
+> +                               ranges = <0x0 0x4e000 0x130>;
+> +                       };
+> +
+> +                       iso: syscon@7000 {
+> +                               compatible = "syscon", "simple-mfd";
+
+NAK
+
+> +                               reg = <0x7000 0x1000>;
+> +                               reg-io-width = <4>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <1>;
+
+NAK even more, you do not have children.
+
+> +                               ranges = <0x0 0x7000 0x1000>;
+> +                       };
+> +
+> +                       sb2: syscon@1a000 {
+> +                               compatible = "syscon", "simple-mfd";
+
+So your entire SoC is just bunch of syscons and interrupt controller.
+That's not suitable for upstream at all. Define a real hardware and a
+real DTS.
+
+
+Best regards,
+Krzysztof
 
