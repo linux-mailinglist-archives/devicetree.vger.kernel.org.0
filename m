@@ -2,141 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0916D9C46
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 063796D9C8B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:39:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbjDFP2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 11:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60018 "EHLO
+        id S239322AbjDFPj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 11:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbjDFP2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:28:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04099E61;
-        Thu,  6 Apr 2023 08:28:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C545647DF;
-        Thu,  6 Apr 2023 15:28:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72296C433EF;
-        Thu,  6 Apr 2023 15:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680794914;
-        bh=jw9QDNpzIUYXB+9TakAdXq9GVBcm2ix7VND/CemLEy8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KTPLish9joEfAk9+CCA/5O/JHM4jCNpuIpQR1oVHz1ViiLF+KxhBNXU8TNlXSkca1
-         1YrmxjOJ9KTZYQHBAicx8rXHq6CLcwk4KmZphs2ldA0q+02mB1Y9xsi0RWSQwNJRZc
-         P/YDszwqvmO+liPpm1DQrU+1HN5FS4d3i9NLgi6+QD4914OhStpt5EWLRNFXVwn5nT
-         aycLztlLYZHq3NOWdwC8wCxGV0gd3eSISP9GH+ImQps3xQderzBQx7bK9JM9/Pr10t
-         YI+CaYhW9K6T/B/BoRBTxcS1W8KFdEQeKjzZNiWxIlxhJBcv2Oom+8+WyDis8w/7df
-         k/grSMm4nBVEw==
-Date:   Thu, 6 Apr 2023 16:28:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, quic_msavaliy@quicinc.com,
-        dianders@chromium.org, mka@chromium.org, swboyd@chromium.org,
-        quic_vtanuku@quicinc.com
-Subject: Re: [PATCH 2/2] spi: spi-qcom-qspi: Add DMA mode support
-Message-ID: <92690348-21c3-45de-bdb1-d0977b859702@sirena.org.uk>
-References: <1680631400-28865-1-git-send-email-quic_vnivarth@quicinc.com>
- <1680631400-28865-3-git-send-email-quic_vnivarth@quicinc.com>
- <d784dab7-a1a6-4db7-aa13-e39e9904f342@sirena.org.uk>
- <0b182a36-0254-6720-4a35-f9e617c12797@quicinc.com>
+        with ESMTP id S229617AbjDFPj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:39:28 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857631732;
+        Thu,  6 Apr 2023 08:39:26 -0700 (PDT)
+Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1N9MYu-1qVVyt10GS-015JJz; Thu, 06 Apr 2023 17:39:03 +0200
+Message-ID: <d0bf241b-ead4-94b7-3f03-a26227f9eb58@i2se.com>
+Date:   Thu, 6 Apr 2023 17:39:02 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zYcIuw0bOKg30pT2"
-Content-Disposition: inline
-In-Reply-To: <0b182a36-0254-6720-4a35-f9e617c12797@quicinc.com>
-X-Cookie: Man and wife make one fool.
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 1/3] dt-bindings: PCI: brcmstb: Add two optional props
+To:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20230406124625.41325-1-jim2101024@gmail.com>
+ <20230406124625.41325-2-jim2101024@gmail.com>
+Content-Language: en-US
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20230406124625.41325-2-jim2101024@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:nknTnX5dlSCEMuTzZzTH1lzDx7myKdzZXx63p/ALhR5p/l1cSBy
+ /WVL/VeWlNJRfuyPTv3z8OZICfKrmkG8l1dad5ttQkPqrRPTpFW+HjZL8FfkOz39Bx8e6cy
+ vDV+pMAiGfNRtiH0hMZAfvPAbLsy5UAXhIAbE0EwJl3GqM7J5hdrBtwFv80E4+82mzLLblU
+ mnBo88FTMBiQMQJibNy7Q==
+UI-OutboundReport: notjunk:1;M01:P0:1JPu3Fn+QcE=;R2rM/eZ8PosqU/E3uRLSGrLJ8xn
+ tSj49CxxVi1/9bgT6bzPsMFvXzbtk/c3JjjZ4zbTou1QamVn/o6LKCFCZT7p+FQplf4XbnOrM
+ 03IZourgA/SwhPEUg4y5658zCqcUNE//OCMFEiQsy0nYefH4LO6HMfQljXYwpoypaYaHuqV++
+ T7azvAR1Ugr6zap3dH8O9zr7jnCazLDzZ14DKFrLzHQ91tiAqTwVp6T2Kc0MJ0nepSx4L7TpV
+ b+3+LnvBEBq8fF2yYz+15ff6J7p+L/01HRxcEin1Olh4pLRUomWhxMsFnIUL8vN+JIUvnBJJ3
+ pJtMph81OwHIxCantSeZTSds9PE/hjMbb2+QFvW4jTmmvjRmCtvZ/XWnoWtGUtQ45id/Q4r0l
+ fqi2NRjuTBYmF+Fl9CmmrwIBZoTqVb7xEH/cgdrJvkDgKscNeMQ8std+OUy/g24bfJx7YnLBg
+ NkgCcBMd2cjpI4/WLXCti9hDwxXmT9oQcfo1f/cKQiVCNCiw0ar0sQhoCPRXu8K6ymLMRPD9f
+ lJz2qR3dV47nb+yHd+LfboaeADyuChHxTVpT4jA1w+3P/VbYPky894EKQfokJ6cNvIt4gh+cC
+ Tr7qRA53J4IVD2lZbzS6yHuO3UTeD4tFCWntiemCZrY4FPj5yAEeTOcH1Eln8iLCvok5IhXR/
+ BEwyrnuU2Cxs23GCCzeJ5GlpzGUBGf28MckPl2r/FQ==
+X-Spam-Status: No, score=-2.2 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jim,
 
---zYcIuw0bOKg30pT2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Am 06.04.23 um 14:46 schrieb Jim Quinlan:
+> Regarding "brcm,enable-l1ss":
+> 
+>    The Broadcom STB/CM PCIe HW -- which is also used by RPi SOCs -- requires
+>    the driver probe to configure one of three clkreq# modes:
+> 
+>    (a) clkreq# driven by the RC
+>    (b) clkreq# driven by the EP for ASPM L0s, L1
+>    (c) bidirectional clkreq#, as used for L1 Substates (L1SS).
+> 
+>    The HW can tell the difference between (a) and (b), but does not know
+>    when to configure (c).  Further, the HW will cause a CPU abort on boot if
+>    guesses wrong regarding the need for (c).  So we introduce the boolean
+>    "brcm,enable-l1ss" property to indicate that (c) is desired.  This
+>    property is already present in the Raspian version of Linux, but the
+>    driver implementaion that will follow adds more details and discerns
+>    between (a) and (b).
+> 
+> Regarding "brcm,completion-timeout-msecs"
+> 
+>    Our HW will cause a CPU abort if the L1SS exit time is longer than the
+>    completion abort timeout.  We've been asked to make this configurable, so
+>    we are introducing "brcm,completion-abort-msecs".
+> 
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> ---
+>   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index 7e15aae7d69e..ef4ccc05b258 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -64,6 +64,18 @@ properties:
+>   
+>     aspm-no-l0s: true
+>   
+> +  brcm,enable-l1ss:
+> +    description: Indicates that the downstream device is L1SS
+> +      capable and L1SS is desired, e.g. by setting
+> +      CONFIG_PCIEASPM_POWER_SUPERSAVE=y.  Note that CLKREQ#
 
-On Thu, Apr 06, 2023 at 08:23:21PM +0530, Vijaya Krishna Nivarthi wrote:
-> On 4/4/2023 11:47 PM, Mark Brown wrote:
-> > On Tue, Apr 04, 2023 at 11:33:20PM +0530, Vijaya Krishna Nivarthi wrote:
+not sure about this, but maybe we should avoid references to Linux 
+kernel config parameter in a DT binding. Since the driver already gaves 
+warning in case the DT parameter is present, but kernel config doesn't 
+fit, this should be enough.
 
-> > > +	uint32_t reserved2:7;
-> > > +	uint32_t length:16;
-> > > +	//------------------------//
+> +      assertion to clock active must be within 400ns.
+> +    type: boolean
+> +
+> +  brcm,completion-timeout-msecs:
+> +    description: Number of msecs before completion timeout
+> +      abort occurs.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-> > What does this mean?
+According to the driver at least 0 is not allowed, maybe we should 
+define minimum and maximum here and let dtbs_check take care of invalid 
+values?
 
-> That separates the part of cmd_desc that is visible to the HW and the part
-> that is required by the SW after xfer is complete.
-> I can add a comment in v2?
+Best regards
 
-Yes, please.
-
-> > > +	for (ii = 0; ii < sgt->nents; ii++)
-> > > +		sg_total_len += sg_dma_len(sgt->sgl + ii);
-> > Why are we calling the iterator ii here?
-
-> Calling it ii helps in finding iterator more easily in code.
-
-> should I stick to i in v2?
-
-Given that multiple people queried this...
-
-> > > +	if (ctrl->xfer.dir == QSPI_READ)
-> > > +		byte_ptr = (uint8_t *)xfer->rx_buf;
-> > > +	else
-> > > +		byte_ptr = (uint8_t *)xfer->tx_buf;
-
-> > If we need to cast to or from void * there's some sort of problem.
-
-> the tx_buf is a const void*
-
-> in v2 I will cast for tx_buf only?
-
-Or just keep byte_ptr as const - we're not modifying it are we?
-
-> > > +#if NO_TX_DATA_DELAY_FOR_DMA
-> > > +		mstr_cfg &= ~(TX_DATA_OE_DELAY_MSK | TX_DATA_DELAY_MSK);
-> > > +#endif
-
-> > Why would we add extra delays if we don't need them, might someone set
-> > this and if so when?
-
-> I believe its used when some slave devices need a delay between clock and
-> data.
-
-> Its configured as 1 for PIO_MODE(FIFO) right now.
-
-> For DMA_MODE we are not using same, both seem to work for DMA.
-
-If some devices need this to be configured it needs to be configured
-either from the driver for that device or via DT depending on the exact
-requirements.
-
---zYcIuw0bOKg30pT2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQu5RoACgkQJNaLcl1U
-h9A2Wwf7BdgiPpI1nqHATQUbOCXG1wEA33/yRFJIYrDDrS9X/qxM8mjv67vm0aDY
-QKBjEGMftTCIqiZrDffi2CM3F4EW/xcP/JPs28pSAvtyvRUsnV9uu0Y2/SFJGBrc
-XcZTRofs4b7k4pyqYjgYc/HGGskigoHjQzOAqwIEHGET6ijey7Xtek1jhZJbd2X2
-h41M3eoh/zbrq+TPylPgGuDHR0UpsFKeJr3aRho0y2SaDcRDcRX88U9n0ITaPzDK
-SDZr73Z0IxFV06aJF75tkQ7+XnmflXgxnDY374rw7g9WdbOQr/HNOup5VOeBhBAG
-rJ/Ia5knt+Zqdud8qUBikIeVSRN1sQ==
-=R5Mx
------END PGP SIGNATURE-----
-
---zYcIuw0bOKg30pT2--
+> +
+>     brcm,scb-sizes:
+>       description: u64 giving the 64bit PCIe memory
+>         viewport size of a memory controller.  There may be up to
