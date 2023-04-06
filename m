@@ -2,150 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C54806D98C0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BCC76D98CD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238852AbjDFN5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 09:57:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36384 "EHLO
+        id S238909AbjDFN6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 09:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238850AbjDFN5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:57:05 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 969299039
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 06:56:36 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-545e907790fso625077127b3.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 06:56:36 -0700 (PDT)
+        with ESMTP id S238917AbjDFN60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:58:26 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A79FA5C4
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 06:58:06 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id q14so40779408ljm.11
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 06:58:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680789394;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1F0yI3E1CQNmz995sNOdh/ir2YtjdzPAog1Ec7AoykA=;
-        b=nX0GwtTQofUtPCN+McLLwMkSmfBCkm/U3cGZSJVHFiruDVICqE/r1hT1z8/nEJnCN5
-         RCgbVef1BZX/8VG6u6zUQExgJ8SE6mYoM9EKXBE8EULybXR+23JMRQyMIgiYMx8GmZYK
-         4TXHBWXXutdCHd0vwOKsf5ab/+1EGQ1xZnASNhDZANBmnL2aPJFNlNb7s/UuZYRNymL7
-         epKayD6T/0LXXzAUNPYwle2geQpXwGPppPpgJVPwZGbiPyRcMQ2WP/gTYBsSkTAa/15T
-         cOxxw8YNi5Jzbd8jb+g+kfcPeailD+zmAhZgFyh7WKm/aQG4N5mYrtAkACf2oNB/iLMs
-         FjVw==
+        d=linaro.org; s=google; t=1680789483;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=veXi6X8hXncoY1cFpYaYdFHnrA4v/kUv68rWDNLT4iU=;
+        b=BCDQiASBk1BGRzDQ5Wdj7XVOd/o+REpjKRxfUPZoShop7Qd4ebGPZ7QQMJSx0EEBWk
+         qQXryNJ3LDNUF7eX3xTG/A0D2gD1dAGIbs87txMkndOIp3UDtLKQGfYeXCqaHZe3EHM6
+         FX50m+DmwME8g7x2XLpL3c+toFkEeTTc1V4n85r1pfasfJtgYYKk7EDbg0qKg6EbkQ3A
+         1kIIz3x40Gp9+EFAxunCq6RghHzTHX+B1Ly5Mid0VRw+J+xmuMCI/pYWjmpuBcmXOucI
+         I9iqewUwfL//cH/UbH2uj3G6WQ10tEbAMtJLoIgTsEuHRemXHPWed6UXHOV3eRHLUG6I
+         wY7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680789394;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1F0yI3E1CQNmz995sNOdh/ir2YtjdzPAog1Ec7AoykA=;
-        b=QJyMKMzuszdV9kWhPMsgFdMxYWOsJOCVtdpsFB1Ffx/HNjhd17lUMzfqM0BwF7vbQk
-         SbbQwTqKcXLna6MUkOIm9VwdwilM96uqSxyb95kl8dwgaVdj53Ss830W+Z1VDBIsXfs1
-         otKKQrmjxN50sk/y3zRw+1IjNaN/kS9s3MwfQwi1obtpj+VZmUNG9ULpj7fIAJlP7H2T
-         h9C7BRLmQf+XLTvQpmimqkybm6YsJSxVS3UdI+h7ePsPJahvYlXkUo61aH0hI92+1OV/
-         6KVKFLtoZbOCRQsK5/4phDrvNUnnZu2UEPi5EPkG5aUKKsClisT5NTI8+ljXMgrlttSe
-         INaw==
-X-Gm-Message-State: AAQBX9c7slSCNjRf0jHSMx3J/bQ77E2x314vZdZyj3D8yOsMbEZpI/88
-        AXYOpxumOlE+vUx2nJlSF4iXJ8GPa4qk3lWeKnBVtQ==
-X-Google-Smtp-Source: AKy350Z4IW/PHp8g9QPnxFCQ7HxW3nNx4wpRyy6GLid3VsQm6cri1SA2/1Mu692qSIdY03ejAKfL+FQGqTsNYbqPp8c=
-X-Received: by 2002:a81:ca44:0:b0:540:e744:13ae with SMTP id
- y4-20020a81ca44000000b00540e74413aemr5753784ywk.3.1680789394514; Thu, 06 Apr
- 2023 06:56:34 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680789483;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=veXi6X8hXncoY1cFpYaYdFHnrA4v/kUv68rWDNLT4iU=;
+        b=y3Mliu/QSkxGLI2We49G0IgSwWgr5NSJTKeE6zJ0ZOMGnjs8I1zHKaZrtulQ187lJL
+         nHk6LkeJV3T5h7HGSElTzqDDjNhEWAiE3WVHiLYNJyXIqT8qVvsq2LKFEkBclgfrdt8e
+         vi6df+CrFeUHn8s0F3FQ4zcIirGVaSTqGFolA8V4TYgIDM8ED3ctNEfGx06SCLFJVPhT
+         zOxLd6FUo9gnGrFTkZdLLeoaOnjsGIAGqx8JANt/UWqoH14JrpU0MlBzaUW6aqQSla6H
+         udj6Q+8b6xi7prTXXfyGHlS1WNHbj4XZovM6FF2Tg5RjTfxXveZdYYX8yfARLUXQK9L3
+         eVSw==
+X-Gm-Message-State: AAQBX9fishqhjpwXp4ejeatB7d1jlFvGsAC1HoCe41E5GfkDz5JnZ18k
+        KuJnMbz0NhUfY2jKZPj82bUcKRXhmxIRCS5tKs8=
+X-Google-Smtp-Source: AKy350ZE6dBJy6A2aSVdHV4ceMB49ftIHKNRdbW1HDjL4B1qPI8/x0aA/5cnv+OfOHEmjxhjcDt1Ww==
+X-Received: by 2002:a05:651c:113:b0:2a1:17f8:e904 with SMTP id a19-20020a05651c011300b002a117f8e904mr2745961ljb.4.1680789483178;
+        Thu, 06 Apr 2023 06:58:03 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id v11-20020a2e924b000000b00299ab2475ebsm300064ljg.1.2023.04.06.06.58.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 06:58:02 -0700 (PDT)
+Message-ID: <9ecbea6a-d7bd-0f4d-e94f-dd1130e578c7@linaro.org>
+Date:   Thu, 6 Apr 2023 15:58:00 +0200
 MIME-Version: 1.0
-References: <20230207-iommu-support-v2-0-60d5fa00e4e5@baylibre.com>
- <20230207-iommu-support-v2-10-60d5fa00e4e5@baylibre.com> <9847bc48-c96c-3599-e876-bcf9ebf1522e@linaro.org>
- <CAFGrd9pBdaHLGUZHkaz2_XKafyX=dxu9UckQxrphg52EG=A1SQ@mail.gmail.com>
- <8fc3dd22-79df-32cb-c219-896eda8fa986@linaro.org> <fd24877a-5fae-5434-dc56-61ab35ccd820@baylibre.com>
- <e38658be-1a2a-bccb-3f30-18f1b031f71d@linaro.org> <25bcaa84-fb29-4343-d046-26e210fc81f4@baylibre.com>
- <d25081e4-69bc-74db-bdf1-5f1f2d2c794d@linaro.org>
-In-Reply-To: <d25081e4-69bc-74db-bdf1-5f1f2d2c794d@linaro.org>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 6 Apr 2023 15:56:23 +0200
-Message-ID: <CAFGrd9oe5cEbprdT-uLtfchpmbyQ9=g61r55kDQHGb9vdmw4zA@mail.gmail.com>
-Subject: Re: [PATCH v2 10/10] memory: mtk-smi: mt8365: Add SMI Support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v6 08/11] arm64: dts: qcom: sm8150: Add Crypto Engine
+ support
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
+References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
+ <20230405072836.1690248-9-bhupesh.sharma@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230405072836.1690248-9-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeu. 6 avr. 2023 =C3=A0 09:50, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
->
-> On 05/04/2023 16:34, Alexandre Mergnat wrote:
-> >
-> > On 05/04/2023 15:54, Krzysztof Kozlowski wrote:
-> >> On 05/04/2023 15:06, Alexandre Mergnat wrote:
-> >>> On 05/04/2023 13:45, Krzysztof Kozlowski wrote:
-> >>>> On 05/04/2023 11:53, Alexandre Mergnat wrote:
-> >>>>> Ok, I will move the driver patch before the DTS patches in the next=
- version.
-> >>>>>
-> >>>> Or do not send it together at all, which might solve your dependency
-> >>>> problem. According to your cover letter I cannot take the memory
-> >>>> controller bits, so I am waiting for dependencies to hit the mainlin=
-e.
-> >>>> Alternatively I will need pull request with stable tag.
-> >>>>
-> >>> Ok, I prefer send the driver patch in another serie. That will solve =
-the
-> >>> dependency with the DTS a least.
-> >> What dependency? Why do you have dependencies between drivers and DTS?
-> >> That's a no-go.
-> > I probably do something wrong but, that start with this comment [1]:
-> >
-> >> I guess we should add a independent "mediatek,mt8365-smi-common".
-> >
-> > Then I have added the mt8365 compatible support in the driver instead o=
-f using the mt8186 which already supported and used in the v1.
-> > I change the binding and DTS to use "mediatek,mt8365-smi-common" only (=
-no more "mediatek,mt8186-smi-common").
-> > Maybe "dependency isn't the good word to use in that case.
->
-> I do not see patch changing existing compatible. Which one is it?
 
-I was talking between the v1 and v2 of this serie
 
->
-> I don't know what is your meaning of dependency then. For all of us,
-> dependency means one patch must be applied after another patch. So is
-> this the case here? If yes, then why?
+On 5.04.2023 09:28, Bhupesh Sharma wrote:
+> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> 'sm8150.dtsi'.
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index 9491be4a6bf0..c104d0b12dc6 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -2081,6 +2081,28 @@ ufs_mem_phy_lanes: phy@1d87400 {
+>  			};
+>  		};
+>  
+> +		cryptobam: dma-controller@1dc4000 {
+> +			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+> +			reg = <0 0x01dc4000 0 0x24000>;
+> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			iommus = <&apps_smmu 0x514 0x0011>,
+> +				 <&apps_smmu 0x516 0x0011>;
+> +		};
+> +
+> +		crypto: crypto@1dfa000 {
+> +			compatible = "qcom,sm8150-qce", "qcom,qce";
+> +			reg = <0 0x01dfa000 0 0x6000>;
+> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
+> +			dma-names = "rx", "tx";
+> +			iommus = <&apps_smmu 0x514 0x0011>,
+> +				 <&apps_smmu 0x516 0x0011>;
+Downstream uses these (sid, mask) combos:
 
-I don't think so. I think you start talking dependency in your 2nd
-reply about driver/DTS, but this is only related change.
+qcedev:
+0x0506 0x0011 
+0x0516 0x0011 // equal to 0x506 0x11
 
->
-> > Except for the patch order in the serie (or send the driver in another =
-one), everything is fine or there are others wrong things ?
->
-> If this is the question to me, then I am not the maintainer of your
-> platform. I am taking only memory controller bits, which look fine and I
-> would have already apply them if not the dependency trouble. Soon the
-> window for applying will close, BTW. We are almost at RC6.
+qcom_cedev_ns_cb:
+0x512 0
+0x518 0
+0x519 0
+0x51f 0
 
-The dependency is between the power series and the DTS change in this
-series as explained in the cover letter thread (PATCH 00/10).
-IMHO, you can take the bindings without worry. I don't see possible regress=
-ion.
+Shouldn't we use them too?
 
-This series seems pretty simple, one part adds MT8365 SMI common
-support in the bindings, the mt8365-evk DTS and the mtk-smi driver,
-and there are no exotic stuffs.
+Konrad
 
-To conclude: I'm ok to send this driver patch in another series and
-put it as a dependency of the iommu series to answer your first
-comment:
-
-> >>>>>Driver code cannot be mixed with the DTS on branches/repos, so such =
-ordering suggest your patchset is not bisectable.
-
-Regards,
-Alexandre
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "memory";
+> +		};
+> +
+>  		tcsr_mutex: hwlock@1f40000 {
+>  			compatible = "qcom,tcsr-mutex";
+>  			reg = <0x0 0x01f40000 0x0 0x20000>;
