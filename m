@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 981546D9880
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2F76D989B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238767AbjDFNqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 09:46:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50096 "EHLO
+        id S236627AbjDFNwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 09:52:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237927AbjDFNqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:46:06 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09A765B6;
-        Thu,  6 Apr 2023 06:46:01 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-501d3943f8eso1393358a12.1;
-        Thu, 06 Apr 2023 06:46:01 -0700 (PDT)
+        with ESMTP id S229829AbjDFNwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:52:22 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5C4E71
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 06:52:21 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id y7so8349108ljp.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 06:52:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680788760;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PkHFpCD/XQeLxofMjQT3jwfPpJhgnEHgCex2rD4ksk8=;
-        b=lKMqG7lIc47IvaYySaSBUJFH/hA+mln853cL8/jfrpRJEPRmwW4vpmxSTWBVyKIk18
-         HReWO6yNVMsO8DPtbjjD0PjwHr5xKWAv3p0ciM7B1PSuvZbhJ80gT48ce5t2ve6posfM
-         8hp9pp1wToANmgTh5LIwI6suCjGhAZbFfn8TETLcUpXPnseDFgkUzhl2RG+z5kgEBaJN
-         rYnoAs3keLhepHWdqGD5Y50Sbv1R799at6hBKuSNACGwxqiHVOqc+tHpL4fsRIqm5Kfr
-         SkD8e1NgX2/yzMkqHX4+EKa+0c6DEK/HBMIXvny7nkWaOrMZA/ROssHZBeHAIhooC9aZ
-         kOpQ==
+        d=linaro.org; s=google; t=1680789139;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fi3MbKEX3/1oXOmLA6/02HNxunRbR6J+mBMPZLKnID4=;
+        b=T5KOLXwYzh6yxByWV2dKybcPjMqqgH9SwG/TckParRUN/PVAZamZQ1QZ4dSfB4tAMs
+         lCNc1z1xB/sFxIzzJgYc65nNGgV0PaTgdAR7KHR8ecjDY1FdezuAziZKXZM+iv85621I
+         i6ycuNMds3ze0uekYIadsGgk/OLthl6cVWedPqUMdpSzLY/sbRjalFaQbT/HlWXvhGrw
+         kUeyP5x0OWgUjE3sXjHbTUH2OJ6aZQIgQ8irP6f011zLdDG3J1Og6PfzWkIOUGYf7Gni
+         iYMpcvXJ91y+0q0GUS6tiH0uSgIOvSrNKb8IMWVI1r5eCv/9iZNTxJlS/M6c6V+dejBD
+         G7Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680788760;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PkHFpCD/XQeLxofMjQT3jwfPpJhgnEHgCex2rD4ksk8=;
-        b=jVoTBXP2XmPqex4kXMxqoPQhbFbrZfVNVkaVLBX024dvp7Xwb/IvUV4TrKMA+JFXRF
-         JNjufMbvpABz0fv1t/r/tZV2ELGclDNPzRfgOS8auNyAWMOP5wAm7OMJQfDxUuTv7H8e
-         DSBC7k5TyO8R+Yiuj5fsnui8WFJt8LYqxJ4rLCxAdS7OmeRYI/ccCvtx3/05KWZCtxe5
-         3RthXuqvzzPQxt5r7V4wAjomDeXzYcIZkRgFn8DhXjcqxSwIV5SaF3Bi9+TDjdBlKIlK
-         iTqVjg3kkZknIwS/OdwEaznC9mR5DpwTDgrheH3uz4cxZTQq5jzGTkY0HfNC571pmp/C
-         5a/w==
-X-Gm-Message-State: AAQBX9efN5d3hYJjGfHW/WZ/yu+rM/qIPLYgu6WPoJsmixcr+Ye39g5b
-        jaCO2biaCrhw90s7Fw2hWyE=
-X-Google-Smtp-Source: AKy350ZFYf29eCxG6wCnL3JIuIp+ieQKorpdGdk2B232Ai9lNGOwLmUA+hdGHUvuhBjF8/BVi+o5Yw==
-X-Received: by 2002:a05:6402:1804:b0:502:6726:89c3 with SMTP id g4-20020a056402180400b00502672689c3mr5410333edy.23.1680788760431;
-        Thu, 06 Apr 2023 06:46:00 -0700 (PDT)
-Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k6-20020a50cb86000000b00501d73cfc86sm773352edi.9.2023.04.06.06.45.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 06:46:00 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pwm@vger.kernel.org,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RESEND v4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-Date:   Thu,  6 Apr 2023 15:45:59 +0200
-Message-Id: <168078873512.1715717.5725405826072466849.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
-References: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
+        d=1e100.net; s=20210112; t=1680789140;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fi3MbKEX3/1oXOmLA6/02HNxunRbR6J+mBMPZLKnID4=;
+        b=Fju2nS80tbbwKqzbFWs+y0k07hJ6SNHWoGMr46pdOwQrvB9T6aK7RygW6unXAJmFTx
+         nTtM9icf08Fx88jN1hxqeh/W8vI2YISP54mIKYi9VEtBV9c0QdrIBs8htSfCOoMUcf2V
+         xR/yfvxLEJDE+9OHwaCGaufPBzrjlmGX6KVh5O86xpi7q5K8tNIuDKY+sp4EwNc27xKO
+         2nX0rHJaV0XwTsEU5/oqbDd67kvgM8ckRQQVn0OtZa2apKQRFlvWKd05GSNgY61S3wsV
+         S27GOjd7UMTRKKYV4MuRIfkRtf/87I1J96qFEzxk8X9IVusje6Nt1UpCgj1l8uyakxm7
+         H53g==
+X-Gm-Message-State: AAQBX9eE6DuxKm0adWUI/CVmrSgIwR4IXaEC65pRA1waJqmFPsyt7i7r
+        ygy2YPqO3qFbyTHraqsNmZHyNw==
+X-Google-Smtp-Source: AKy350YtOAzeOkwF1HQZlElfqcsFwRMN4c5y60bpJ2y5/F1fIAJg9bOYn481jfAhRCok7/++GyKBXA==
+X-Received: by 2002:a2e:8058:0:b0:29b:aee8:29b3 with SMTP id p24-20020a2e8058000000b0029baee829b3mr3005558ljg.38.1680789139665;
+        Thu, 06 Apr 2023 06:52:19 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id p3-20020a2e9a83000000b0029462e98c07sm295517lji.35.2023.04.06.06.52.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 06:52:19 -0700 (PDT)
+Message-ID: <dfc5797a-784c-0a3e-a290-714fdf356713@linaro.org>
+Date:   Thu, 6 Apr 2023 15:52:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sm6115: Add Crypto Engine
+ support
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
+References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
+ <20230405072836.1690248-8-bhupesh.sharma@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230405072836.1690248-8-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,16 +80,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Feb 2023 22:19:30 +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson PWM binding to yaml.
+
+
+On 5.04.2023 09:28, Bhupesh Sharma wrote:
+> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> 'sm6115.dtsi'.
 > 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 > 
-
-Applied, thanks!
-
-[1/1] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-      commit: 43a1c4ff3977f0ccd1d99e36d74e525aced5bb3a
-
-Best regards,
--- 
-Thierry Reding <thierry.reding@gmail.com>
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> index 2a51c938bbcb..ebac026b4cc7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -650,6 +650,28 @@ usb_hsphy: phy@1613000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		cryptobam: dma-controller@1b04000 {
+> +			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+> +			reg = <0x0 0x01b04000 0x0 0x24000>;
+> +			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			num-channels = <8>;
+> +			qcom,num-ees = <2>;
+> +			iommus = <&apps_smmu 0x94 0x11>,
+> +				 <&apps_smmu 0x96 0x11>;
+> +		};
+> +
+> +		crypto: crypto@1b3a000 {
+> +			compatible = "qcom,sm6115-qce", "qcom,sm8150-qce", "qcom,qce";
+> +			reg = <0x0 0x01b3a000 0x0 0x6000>;
+> +			dmas = <&cryptobam 6>, <&cryptobam 7>;
+> +			dma-names = "rx", "tx";
+> +			iommus = <&apps_smmu 0x94 0x11>,
+> +				 <&apps_smmu 0x96 0x11>;
+> +		};
+> +
+>  		qfprom@1b40000 {
+>  			compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
+>  			reg = <0x0 0x01b40000 0x0 0x7000>;
