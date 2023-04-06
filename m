@@ -2,114 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E9A6D926C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 977616D9287
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbjDFJOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 05:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
+        id S236056AbjDFJSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 05:18:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjDFJOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:14:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63808180;
-        Thu,  6 Apr 2023 02:14:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F225B60ABF;
-        Thu,  6 Apr 2023 09:14:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1288CC433EF;
-        Thu,  6 Apr 2023 09:14:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1680772475;
-        bh=NjIpP1xY2SNxegAx9tZnoAzlAcNwzRxkbAg7qEkA59k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ncxKjv0ibLLebSZ4GPlWy0iL06qNLIa4t0MwEhvqSrmC30yGMU7MLLjTitMdrG7B4
-         AN6toqr5fQl1PqxfbXhCn3wPGaomuwv8Hj728sgrl0z6B2dAshtMlhP1aauIGTemt8
-         BH2nSzN3EXQ2fVtNYthKu4GaXF+j/FRfSa4TYBO4=
-Date:   Thu, 6 Apr 2023 11:14:32 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Thorsten Leemhuis <regressions@leemhuis.info>
-Cc:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Sasha Levin <sashal@kernel.org>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH 1/3] ARM: dts: meson: Fix the UART compatible strings
-Message-ID: <2023040604-washtub-undivided-5763@gregkh>
-References: <20211227180026.4068352-1-martin.blumenstingl@googlemail.com>
- <20211227180026.4068352-2-martin.blumenstingl@googlemail.com>
- <20230405132900.ci35xji3xbb3igar@rcn-XPS-13-9305>
- <fdffc009-47cf-e88d-5b9e-d6301f7f73f2@leemhuis.info>
- <44556911-e56e-6171-07dd-05cc0e30c732@collabora.com>
- <71816e38-f919-11a4-1ac9-71416b54b243@leemhuis.info>
+        with ESMTP id S235372AbjDFJSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:18:36 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADDD61BF;
+        Thu,  6 Apr 2023 02:18:35 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 4A05B1C0AB2; Thu,  6 Apr 2023 11:18:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1680772712;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2LI2f/ixAsF1xEcVqPiJM0HMEuhAr1HeJpruxWNwBHI=;
+        b=p5Nw802cTjRP6Znbb6g1y2PRtV6D7WbcwF9APljpEDb++sMNQ+ZdbAMXvdJQZIqX1L7LgV
+        SNUeI1nJYQR2xDCf9OOlYAId/A7wwL3eFcqRsNJnRHGqpcEpagi7WXxvPeIBYdWWWLiTAv
+        BLOzDz1+E2qS4QzFHDilkLesPhC2sXQ=
+Date:   Thu, 6 Apr 2023 11:18:31 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [net-next PATCH v6 16/16] arm: mvebu: dt: Add PHY LED support
+ for 370-rd WAN port
+Message-ID: <ZC6OZ2f/NLJxZgle@duo.ucw.cz>
+References: <20230327141031.11904-1-ansuelsmth@gmail.com>
+ <20230327141031.11904-17-ansuelsmth@gmail.com>
+ <ZCKl1A9dZOIAdMY8@duo.ucw.cz>
+ <2e5c6dfb-5f55-416f-a934-6fa3997783b7@lunn.ch>
+ <ZCsu4qD8k947kN7v@duo.ucw.cz>
+ <7cadf888-8d6e-4b7d-8f94-7e869fd49ee2@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="lnbJBEJceP2MrxSb"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <71816e38-f919-11a4-1ac9-71416b54b243@leemhuis.info>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <7cadf888-8d6e-4b7d-8f94-7e869fd49ee2@lunn.ch>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 06, 2023 at 11:06:50AM +0200, Thorsten Leemhuis wrote:
-> [CCing the stable list as well as Greg and Sasha so they can correct me
-> if I write something stupid]
-> 
-> On 06.04.23 10:27, Ricardo Cañuelo wrote:
-> > 
-> > On 5/4/23 19:14, Thorsten Leemhuis wrote:
-> >> Wait, what? A patch (5225e1b87432 ("ARM: dts: meson: Fix the UART
-> >> compatible strings")) that was merged for v5.17-rc4 and is not in the
-> >> list of patches that were in 4.14.312-rc1
-> >> (https://lore.kernel.org/all/20230403140351.636471867@linuxfoundation.org/
-> >> ) is meant to suddenly cause this? How is this possible? Am I totally on
-> >> the wrong track here and misunderstanding something, or is this a
-> >> bisection that went horribly sideways?
-> > 
-> > I didn't say this was introduced in 4.14.312-rc1, this has been failing
-> > for a long time and it was merged for 4.14.267:
-> > https://lwn.net/Articles/884977/
-> > 
-> > Sorry I wasn't clear before.
-> 
-> Ahh, no worries and thx for this. But well, in that case let me get back
-> to something from your report:
-> 
-> >>> KernelCI detected that this patch introduced a regression in
-> >>> stable-rc/linux-4.14.y on a meson8b-odroidc1.
-> >>> After this patch was applied the tests running on this platform don't
-> >>> show any serial output.
-> >>> 
-> >>> This doesn't happen in other stable branches nor in mainline, but 4.14
-> >>> hasn't still reached EOL and it'd be good to find a fix.
-> 
-> Well, the stable maintainers may correct me if I'm wrong, but as far as
-> I know in that case it's the duty of the stable team (which was not even
-> CCed on the report afaics) to look into this for two reasons:
-> 
-> * the regression does not happened in mainline (and maybe never has)
-> 
-> * mainline developers never signed up for maintaining their work in
-> longterm kernels; quite a few nevertheless help in situation like this,
-> at least for recent series and if they asked for a backport through a
-> "CC: <stable@" tag – but the latter doesn't seem to be the case here
-> (not totally sure, but it looks like AUTOSEL picked this up) and it's a
-> quite old series.
 
-That is all true.
+--lnbJBEJceP2MrxSb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-So can the original report be sent to stable@vger.kernel.org and we can
-take it from there?
+Hi!
 
-thanks,
+> > Acceptance criteria would be "consistent with documentation and with
+> > other similar users". If the LED is really white, it should be
+> > f1072004.mdio-mii\:white\:WAN, but you probably want
+> > f1072004.mdio-mii\:white\:LAN (or :activity), as discussed elsewhere in=
+ the thread.
+>=20
+> Hi Pavel
+>=20
+> What i ended up with is:
+>=20
+> f1072004.mdio-mii:00:white:wan
+>=20
+> The label on the box is WAN, since it is meant to be a WiFi routers,
+> and this port should connected to your WAN. And this is what the LED
+> code came up with, given my DT description for this device.
 
-greg k-h
+Ok, thanks for explanation.
+
+> > Documentation is in Documentation/leds/well-known-leds.txt , so you
+> > should probably add a new section about networking, and explain naming
+> > scheme for network activity LEDs. When next users appear, I'll point
+> > them to the documentation.
+>=20
+> I added a patch with the following text:
+>=20
+> * Ethernet LEDs
+>=20
+> Currently two types of Network LEDs are support, those controlled by
+> the PHY and those by the MAC. In theory both can be present at the
+> same time for one Linux netdev, hence the names need to differ between
+> MAC and PHY.
+>=20
+> Do not use the netdev name, such as eth0, enp1s0. These are not stable
+> and are not unique. They also don't differentiate between MAC and PHY.
+>=20
+> ** MAC LEDs
+>=20
+> Good: f1070000.ethernet:white:WAN
+> Good: mdio_mux-0.1:00:green:left
+> Good: 0000:02:00.0:yellow:top
+
+> The first part must uniquely name the MAC controller. Then follows the
+> colour.  WAN/LAN should be used for a single LED. If there are
+> multiple LEDs, use left/right, or top/bottom to indicate their
+> position on the RJ45 socket.
+
+I don't think basing stuff on position is reasonable. (And am not sure
+if making difference between MAC and PHY leds is good idea).
+
+Normally, there's ethernet port with two LEDs, one is usually green
+and indicates link, second being yellow and indicates activity,
+correct?
+
+On devices like ADSL modems, there is one LED per port, typically on
+with link and blinking with activity. =20
+
+Could we use that distinction instead? (id):green:link,
+(id):yellow:activity, (id):?:linkact -- for combined LED as it seems.
+
+Are there any other common leds? I seem to remember "100mbps" lights
+=66rom time where 100mbit was fast...?
+
+Best regards,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--lnbJBEJceP2MrxSb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZC6OZwAKCRAw5/Bqldv6
+8h1QAJ9FtbGdRJcGzTml7Avdfr5VrMyV+ACeLDhyEz6nLaH6LXMXyofdCwWoYQ8=
+=9p5m
+-----END PGP SIGNATURE-----
+
+--lnbJBEJceP2MrxSb--
