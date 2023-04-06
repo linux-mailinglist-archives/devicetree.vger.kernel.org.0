@@ -2,88 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C993F6D9C2F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FBD56D9C39
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:26:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238743AbjDFPZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 11:25:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54948 "EHLO
+        id S238983AbjDFP0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 11:26:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237171AbjDFPZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:25:16 -0400
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5949C93C1;
-        Thu,  6 Apr 2023 08:25:13 -0700 (PDT)
-Received: by mail-oo1-f41.google.com with SMTP id o15-20020a4ae58f000000b00538c0ec9567so6226689oov.1;
-        Thu, 06 Apr 2023 08:25:13 -0700 (PDT)
+        with ESMTP id S239411AbjDFPZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:25:59 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FAA93C1
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 08:25:53 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id x17so51360067lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 08:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680794752;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QseBQLy8TtMrmO07Qs/JRVxTi2zIfcjTE6wwfQJ+AhM=;
+        b=DSiKAI7muS+QGLc+t65tx4JSrBvWL3BfU+/YDbCm1QEEq4zH3Xk/g5uO6DRkSmH+TC
+         qWYE00Sr+PUWXzJfM9N6eqyRGmIDnML/QWdKkjpdRiBRSma+tUfvJOT/+Br9lIV9XHIQ
+         nTrL8cOSgmpq2kcrBx9Ein7Udq+LyYwjd3FXq8jvypGuWSknFp9U5fnYwjlTYWurkTim
+         aJFwpR/ZtTLTqaGOVz+b+MjBm573AiqOlziJfemi7TyK4v1DDP9mT54zthZ/wBdjqUYQ
+         MmmbD2r5TSx2ctOafMUZmaczM+dyhSuFY9IopkKnJ/rI65+6xu/j3nGTs5HH5F4pNkIQ
+         BzRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680794712;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RMkMXwMSZEr9FFGtDRkxvrTAlSRKSswIFRpR7VpqIQQ=;
-        b=k3HBo2DBTUnwIvr1Zm4VJho13eiHdId0rZXgQZbQfYH2rRQhgZKyRUSIgEwUhRgYTw
-         +5RhO7VXPeqFdrzTUMCG59ra+eojFNlvCyFcEQ/x/iS5P7RnNbN4PHe104TDVLKQirIu
-         9kguFF1TJtw3qlWW5T33AhWsbJ4A0COFyXsNe2wenQ8EhvbkiCiM1omjpoygQFARtb1V
-         zn62Nsn8hZtPHKr0L61iJXtjhEfiFvPqQhXsj5O7Ikabh4WlNSJ1AXgU4ItfVTDK6RYV
-         d2mYO7ai82meWvuf2muhVLYTZc0u+Kbf3IWUHBMHDP6VUKEJ1xPr/AqDVzlRyI8LcrBx
-         rgng==
-X-Gm-Message-State: AAQBX9eQAsjh/ko3DurjzJb7UZpZluQIm5SaRH89c3waDJgs0x9EEZVv
-        oKpAR3sbB89XXlwUrCntIg==
-X-Google-Smtp-Source: AKy350aD8i61CSEMsXWO+ODXbKKtkeyWipy3Tnvjy0WnRBnCKMJ4XFPRDEIn9gvkDG7hvfRH5ebobg==
-X-Received: by 2002:a4a:e753:0:b0:541:87fe:5b75 with SMTP id n19-20020a4ae753000000b0054187fe5b75mr1415607oov.1.1680794712637;
-        Thu, 06 Apr 2023 08:25:12 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j48-20020a4a9473000000b0053dfd96fa61sm646099ooi.39.2023.04.06.08.25.11
+        d=1e100.net; s=20210112; t=1680794752;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QseBQLy8TtMrmO07Qs/JRVxTi2zIfcjTE6wwfQJ+AhM=;
+        b=p4jFy/2t/Ne+UcawSqFSkGEdg6gbH+nWjopUOI78sG4ZpWrhHtocGrb5DHcHkjNs7m
+         rd5XicSRaz5pXo7MqU2oOmt3fUblmfKBmBwClUN1Me+YuJhTOFESwzLONbKJPYXFS/OO
+         FZHZtHmO5Vu0xhq6euF8Ls9fgPYaIVoFznf3Hgu6v/p8qGNTHjzIVbmHgcjp7fJpf5rt
+         9tCILNa1G2334W4QAi7wEMgWe81WywaeR9017rGwYvJ2P54+U5KhJsuIQjO0mSbocpzp
+         Bxv3PLGwJpwlOfER2OSJ9Y44Ju2MVHNaWrXIfWSoudRnIYYsk8EHOByzn9EknHt/ApxF
+         uIcQ==
+X-Gm-Message-State: AAQBX9ftHOWzGvKhZBars0FJh4eo/w2k0EmpVaNxt8X2IN8tDL2/e4e8
+        ZF6HZDKyvsD7QGUBiH4u1Wo64+8Bze85yIlATs0=
+X-Google-Smtp-Source: AKy350YvcZx8qx/o+0RM0P+WGhn7PuM0G03nngoVhulexm2Tfn3ofwiyNavcDmIM7yeWSHcGxVwCng==
+X-Received: by 2002:a19:ee18:0:b0:4db:3882:8f42 with SMTP id g24-20020a19ee18000000b004db38828f42mr2096473lfb.45.1680794751693;
+        Thu, 06 Apr 2023 08:25:51 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id h4-20020a197004000000b004cc9042c9cfsm300103lfc.158.2023.04.06.08.25.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 08:25:12 -0700 (PDT)
-Received: (nullmailer pid 3124644 invoked by uid 1000);
-        Thu, 06 Apr 2023 15:25:11 -0000
-Date:   Thu, 6 Apr 2023 10:25:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
-        pabeni@redhat.com, kuba@kernel.org, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        lorenzo.bianconi@redhat.com, daniel@makrotopia.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 00/10] mtk: wed: move cpuboot, ilm and dlm in
- dedicated dts nodes
-Message-ID: <20230406152511.GA3117403-robh@kernel.org>
-References: <cover.1680268101.git.lorenzo@kernel.org>
+        Thu, 06 Apr 2023 08:25:51 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/4] Tab P11 features
+Date:   Thu, 06 Apr 2023 17:25:49 +0200
+Message-Id: <20230406-topic-lenovo_features-v1-0-c73a5180e48e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1680268101.git.lorenzo@kernel.org>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH3kLmQC/4WNQQqDMBAAvyI5NyXRVqUn/1GkrMmqCyGRjYYW8
+ e9N/UCPMzDMLiIyYRSPYheMiSIFn0FfCmFm8BNKsplFqcpK3VQt17CQkQ59SOE1IqwbY5S2US3
+ etQFoUOR2gIhyYPBmzrXfnMtyYRzpfc6efeaZ4hr4c76T/tl/m6SlktZWurJQtm1Td448cLgGn
+ kR/HMcXt8UFm9AAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680794750; l=808;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=iHNEEA5Iv3dwjVQpoEQKxZ3jdgKnaMmyVgtYumaQYfI=;
+ b=aN84IwOztKIO+Uo88gKhk7ikVnRwdJy746haXkCpvYhR0dylOkpkika1yziuUvQOQ2AC4fmjGxBa
+ pxA/Xex1CIKFSUoRiDxbXfIgn4aOyCR100xlKLsJ5WXsgYVTNLgH
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 03:12:36PM +0200, Lorenzo Bianconi wrote:
-> Since cpuboot, ilm and dlm memory region are not part of MT7986 SoC RAM,
+This short series brings a couple of "nice" features to the Tab P11:
+- Wi-Fi
+- remoteprocs (+RMTFS)
+- ramoops
 
-That's not really a requirement. Is that the only "problem" here?
+No external dependencies.
 
-Certainly going from a standard binding to a custom phandle reference is 
-not an improvement.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (4):
+      arm64: dts: qcom: sm6115-j606f: Add ramoops node
+      arm64: dts: qcom: sm6115: Add RMTFS
+      arm64: dts: qcom: sm6115p-j606f: Enable remoteprocs
+      arm64: dts: qcom: sm6115p-j606f: Enable ATH10K WiFi
 
-> move them in dedicated mt7986a syscon dts nodes.
+ arch/arm64/boot/dts/qcom/sm6115.dtsi              | 10 +++++++
+ arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 34 +++++++++++++++++++++++
+ 2 files changed, 44 insertions(+)
+---
+base-commit: e134c93f788fb93fd6a3ec3af9af850a2048c7e6
+change-id: 20230406-topic-lenovo_features-d708e51caa7e
 
-What makes them a syscon? Are they memory or h/w registers? Can't be 
-both...
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Perhaps mmio-sram?
-
-> At the same time we keep backward-compatibility with older dts version where
-> cpuboot, ilm and dlm were defined as reserved-memory child nodes.
-
-Doesn't really seem big enough issue to justify carrying this.
-
-Rob
