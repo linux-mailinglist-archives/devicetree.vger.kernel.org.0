@@ -2,149 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83EC96DA024
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 180946DA040
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240084AbjDFSpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36342 "EHLO
+        id S240500AbjDFSrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:47:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjDFSpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:45:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E5B7A83;
-        Thu,  6 Apr 2023 11:45:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B3E0E64B0D;
-        Thu,  6 Apr 2023 18:45:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790D8C433D2;
-        Thu,  6 Apr 2023 18:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680806731;
-        bh=I5+cukk26vnLknbH5Toe4jO9okYIGo7RP4YmHcNkaVI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k9p3nfCRGWjjafHcbkGxdjjfrJ/XwY5BSS1v2JPwbZTBExPM6Ym+NfoUZNCk+mDH1
-         16RHTeUK9Szul8wUxrg+NrTUI0WvC+68BBY3yQr1Ohqy9hEYNtv4dYHkZeBKYvMNjf
-         a97PBeMkS57Li+WuERNAC7RW8wwYqjGaiIKij3APDrmEDhFHqmDjkOVAPAIo6bkixi
-         J6L557T5ieTmTczrqofZisYF4s2Imz4WlS+YzJkVFs9QsSH6vZsliA9E8BH4i6b5kk
-         +gSjAP3R8oR/Kiu4S58wmjqvnoK2wYgm+JY271OU+IzRmhdo4Ph4sob0JRaQDNOQ4o
-         SYnCmyHm1OTvQ==
-Date:   Thu, 6 Apr 2023 19:45:25 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v1 1/3] dt-binding: pci: add JH7110 PCIe dt-binding
- documents.
-Message-ID: <20230406-cinema-profile-1bfed00e4a5f@spud>
-References: <20230406111142.74410-1-minda.chen@starfivetech.com>
- <20230406111142.74410-2-minda.chen@starfivetech.com>
- <38bc48bf-7d8c-8ddd-861f-3b7f3d2edce6@linaro.org>
- <20230406-revisit-patchy-a0063d964070@spud>
+        with ESMTP id S240454AbjDFSqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:46:42 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648A0AD35
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:46:31 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id 11so3666278ejw.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:46:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680806790;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MgXJOn+WAZ47Cl6o8tPQjAABd5Itwae5J4f0B3wQsNo=;
+        b=mpk5TuobYbvWtl+C6R4wLIUF/Hc35fhvJv5TThEYojiqCz6ARENF8am1xXOuZlBYxm
+         V+6OxdoIfOdTAgqPVOUimNaPdocS5O4zRTVeblGEk1pwGG+A5Ll9Z0+GMr4FIQnkrZRu
+         0/PZYhI5ncokLTLlZMZsjgAR83yvo/Cl41eXvIZL8FiFyqSaPwlnZtBVEyP7y4TGSXyD
+         CwQUxZWYrAz/nqcGyNb7arm7sQnHGYylg8XxmOoEQZj5FNrfeGlq/y4pNvgz5po9kVPw
+         lXbiLUi4G3AGzHqsJvBViVK8Q+XZhkHsJKFXr/y9GMlu3eqZ0nyX4cAby5wnHmGAn5CC
+         zTEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680806790;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MgXJOn+WAZ47Cl6o8tPQjAABd5Itwae5J4f0B3wQsNo=;
+        b=sTFnf/yxo6nErLWYfM1GnSSdp5EFz1b5YpNjn14J9i6qSts8nOx6mIPPZVIehJdCxa
+         elPIsiAMUtd8xJkIiV/YJh/f6B/+qD1CZuAw0IiyixzRwLKBHy6tOZ05u/K/1K+/Yju2
+         FnUcSOI7UP0WSqUfPCwkpPJuyHYOXKKZ45qTu6IbGu+5t7jY4bkuABE9x3VMlBpvCPbf
+         i/iLoBKaj8U4vFeqLqndGsSvZ5JBM4MW+OlfKuCuZGcoCGaiE3aW4L+jPVPYNH72eZsl
+         nQeJNfRa9FxjzyYdeoFj60pYff5U447v0gB1B2U5iqa0GEopOjIBg75oXYXinaCfBA1V
+         iBsQ==
+X-Gm-Message-State: AAQBX9d1i+U6ya/NvmkmQcdoUpoHE52mqwBSGEDsTWY4QtHr5pZqK5UK
+        2pDYCI2OvwoY8fQe96YOOj1syg==
+X-Google-Smtp-Source: AKy350ahKqk/eVseprVd25UAxkAp8OgeoVUzsVGX0BSATs/dsK1+2sIuMzxutuwaNHjcCfphm9gnJw==
+X-Received: by 2002:a17:906:c005:b0:947:55ce:1217 with SMTP id e5-20020a170906c00500b0094755ce1217mr6864670ejz.73.1680806789884;
+        Thu, 06 Apr 2023 11:46:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id p14-20020a1709061b4e00b00930a4e5b46bsm1108835ejg.211.2023.04.06.11.46.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 11:46:29 -0700 (PDT)
+Message-ID: <37d04794-d790-fd7c-9f34-901955083874@linaro.org>
+Date:   Thu, 6 Apr 2023 20:46:28 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="FH4TbyZ5TRJ4YHod"
-Content-Disposition: inline
-In-Reply-To: <20230406-revisit-patchy-a0063d964070@spud>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 1/2] dt-bindings: omap: Convert omap.txt to yaml
+Content-Language: en-US
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tony@atomide.com, afd@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20230405161908.4312-1-andreas@kemnade.info>
+ <20230405161908.4312-2-andreas@kemnade.info>
+ <eb4cf82d-f523-d5af-be18-25c37678a95a@linaro.org>
+ <7f43953c-d326-f517-d896-cbb060d8092a@linaro.org>
+ <20230406203548.152ae065@aktux>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230406203548.152ae065@aktux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 06/04/2023 20:35, Andreas Kemnade wrote:
+> On Thu, 6 Apr 2023 10:36:36 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 06/04/2023 10:32, Krzysztof Kozlowski wrote:
+>>> On 05/04/2023 18:19, Andreas Kemnade wrote:  
+>>>> From: Andrew Davis <afd@ti.com>
+>>>>
+>>>> Convert omap.txt to yaml.
+>>>>  
+>>>
+>>>   
+>>>> +      - description: TI AM43 SoC based platforms
+>>>> +        items:
+>>>> +          - enum:
+>>>> +              - compulab,am437x-cm-t43
+>>>> +              - ti,am437x-gp-evm
+>>>> +              - ti,am437x-idk-evm
+>>>> +              - ti,am437x-sk-evm
+>>>> +          - pattern: '^ti,am4372[26789]$'
+>>>> +          - const: ti,am43
+>>>> +
+>>>> +      - description: TI AM57 SoC based platforms
+>>>> +        items:
+>>>> +          - enum:
+>>>> +              - beagle,am5729-beagleboneai
+>>>> +              - compulab,cl-som-am57x
+>>>> +              - ti,am5718-idk
+>>>> +              - ti,am5728-idk
+>>>> +              - ti,am5748-idk
+>>>> +          - pattern: '^ti,am57[0124][689]$'  
+>>>
+>>> I don't think my comments were resolved. I asked if it is possible to
+>>> make a board called "ti,am5718-idk" with "ti,am5749" or with "ti,am5708"?  
+>>
+>> Hm, I cannot find my concern, so maybe it never left my outbox. Anyway,
+>> it looks like you allow here many incorrect patterns and combinations.
+>>
+> You had concerns about the "dra" stuff for the same valid reasons.
 
---FH4TbyZ5TRJ4YHod
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, but also about this. So again:
+is "ti,am5718-idk" with "ti,am5749" correct?
 
-On Thu, Apr 06, 2023 at 07:35:09PM +0100, Conor Dooley wrote:
-> On Thu, Apr 06, 2023 at 08:24:55PM +0200, Krzysztof Kozlowski wrote:
-> > On 06/04/2023 13:11, Minda Chen wrote:
-> > > +
-> > > +  interrupt-controller:
-> > > +    type: object
-> > > +    properties:
-> > > +      '#address-cells':
-> > > +        const: 0
-> > > +
-> > > +      '#interrupt-cells':
-> > > +        const: 1
-> > > +
-> > > +      interrupt-controller: true
-> > > +
-> > > +    required:
-> > > +      - '#address-cells'
-> > > +      - '#interrupt-cells'
-> > > +      - interrupt-controller
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > > +required:
-> > > +  - reg
-> > > +  - reg-names
-> > > +  - "#interrupt-cells"
-> >=20
-> > Keep consistent quotes - either ' or "
-> >=20
-> > Are you sure this is correct? You have interrupt controller as child no=
-de.
->=20
-> I know existing stuff in-tree is far from a guarantee that it'll be
-> right, but this does at least follow what we've got for PolarFire SoC:
-> Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
->=20
-> Both PLDA and both RISC-V w/ a PLIC as the interrupt controller, so in
-> similar waters.
-> This note existed in the original text form binding of the Microchip
-> PCI controller:
-> | +NOTE:
-> | +The core provides a single interrupt for both INTx/MSI messages. So,
-> | +create an interrupt controller node to support 'interrupt-map' DT
-> | +functionality.  The driver will create an IRQ domain for this map, dec=
-ode
-> | +the four INTx interrupts in ISR and route them to this domain.
->=20
-> Given the similarities, I figure the same requirement applies here too.
-> Minda?
+> 
+>>>
+>>> What's more, you dropped several variations and compatibles against
+>>> original binding (all the "dra") and it is not explained in commit msg
+>>> at all.  
+>>
+>> All changes against original bindings should be explained.
+>>
+> ... which I then just decided not to convert but keep as is in the text file
+> because there were no comments hints about it more than a month since the first
+> version was sent so thought that it has to be resolved later.
 
-Further, if, as I currently suspect, there's a lot of commonality here,
-should the binding as well as the driver be split into common pdla bits
-and microchip/starfive specific ones?
+But you partially remove them - see AM5728 IDK.
 
-Suppose that's more one for you Krzysztof.
+Best regards,
+Krzysztof
 
-Cheers,
-Conor.
-
---FH4TbyZ5TRJ4YHod
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZC8TRAAKCRB4tDGHoIJi
-0o4HAP9oLXQVzVevvdCu75mB7hfMBZwV2TEh1L+UnBh9GRsElQD+MKt9L6Sie3wm
-Dso18O653hpA0FUvjJEZeW9HslxzfQI=
-=o1Sq
------END PGP SIGNATURE-----
-
---FH4TbyZ5TRJ4YHod--
