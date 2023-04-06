@@ -2,76 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED116D9821
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956F46D9828
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:28:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235933AbjDFN0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 09:26:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56808 "EHLO
+        id S229916AbjDFN2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 09:28:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234723AbjDFN0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:26:18 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9F9AF;
-        Thu,  6 Apr 2023 06:26:17 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id g18so1381512ejx.7;
-        Thu, 06 Apr 2023 06:26:17 -0700 (PDT)
+        with ESMTP id S229905AbjDFN2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:28:13 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6E65FC8
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 06:28:11 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id br6so50791913lfb.11
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 06:28:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680787576;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s2uCgX6sEmCBNBe9xi6iLO8ZFa4TFh6l4wvqAexbxFE=;
-        b=puXVNVU9EBdRRU51Tp3oaQEXxiY8mlkmJXepMcAeh/JUwxLDWNUB4XVSWBH4pcyQo0
-         Kkr1n2cGfuFoWQn0z3QexCOAjuupo8Bo4UX1RNB28UzJhpND6D5BfiKg0kw2tA90Z0Rn
-         MVrARvHfhExzCrcCSMmLuX/DjA7Nmx+4dC15pqGpLX50bYeORL52T2R3FEuwyQJSPR+6
-         /O/Ki9h0tX4JsYxjcHB5CN8mzIfl8R1KcLq872ng+KG3A+sjP8wpuWD8e7Kqz8RUqVo2
-         oeY5q5nyPxE/Vua8SnKydEMTQoxRJtKf0jV4h+OVAFeG75qWBuotR9+rCMvKaKmWUn6O
-         wweg==
+        d=linaro.org; s=google; t=1680787689;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rwe8zq3GWp8HxEsG48LdWpIG9hFBxQL8zIHC/jZqMAY=;
+        b=IVpF4YXaYz8ce8WuAWOYz6kZx211xb1rjpGaEWC4a2qLrDtKyHXEBXoMr5YJBUvLfp
+         L090G4F+BlSI2ZGLn3wTI/hY2g4gzStC6pDdB63txWzw1Mydkt3FbCkjiHSHh9pm9k0v
+         ozFYiqnKmaw0Qy1YpaCfJzak7Enj8PggnQTszLUuJvoaMSqUjot4YfjuSpoqnrDtQd31
+         uE/mf4SxPY9AX3apKuuEaXymjXjxMqvvZat+MHhApnP/7lKzoQ/fvK6/dzmBxzQQfWfo
+         uWBCOzkUKzxImxkEL1LoXbEoVOM++umWc7cZavl6dX8/iSmXed9/GddgXzSdc5vcmpzH
+         u1qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680787576;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s2uCgX6sEmCBNBe9xi6iLO8ZFa4TFh6l4wvqAexbxFE=;
-        b=GoZORehMpWLwo/VukKUE12SeC1bYh/64RaWucgoJVIDHs5/d9CSmSWHG7udUyT1kzh
-         xP2VZ3EJQu5s+W6Pb8PtRjsSrdKv+YYibf5g+FFdifiAcQ+mvbHqw7iKHnJN8JQkcTVB
-         xgk46/Rw0jeZzVo+hu5bHU+SCpqoVLQeGltb/GnWpN9ZpT//Cglf0OrbNVI+AWm+oeWu
-         AJ8mRbzJMErexjuketGElLBpFIMhZ7HZmU3DQ3XA3G6H7DVU0Nnv9MwV36gOhVUsSc+3
-         QacH5i9VK9ynchNeU4RKQ7jCPzrbLS/YQI+ky5NWXc2gPXUr1Gx8o9ib4R1Pub5U2Pdx
-         UAOA==
-X-Gm-Message-State: AAQBX9cY12o3jNAlhjSDN1mBI+L+XIhDZFeP8CArCbN4JZzMmBjDVL8g
-        wKk9Dwu8X0hZngzl33EVCktDNNEy/R0=
-X-Google-Smtp-Source: AKy350aNioyvp7EHIOBjyxhYQsWZ0lS9rtfZyfNBOrNYZDg3XXXRkfQRb1puc/p3quUBiZA/VseVcQ==
-X-Received: by 2002:a17:906:68c1:b0:947:fb7b:2fb5 with SMTP id y1-20020a17090668c100b00947fb7b2fb5mr6378488ejr.31.1680787575912;
-        Thu, 06 Apr 2023 06:26:15 -0700 (PDT)
-Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id kn3-20020a1709079b0300b008cecb8f374asm840524ejc.0.2023.04.06.06.26.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 06:26:15 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-mediatek@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>,
-        linux-pwm@vger.kernel.org, John Crispin <john@phrozen.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND] dt-bindings: pwm: mediatek: add mediatek,mt7986 compatible
-Date:   Thu,  6 Apr 2023 15:26:14 +0200
-Message-Id: <168078755179.1496271.10390223668553157368.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <Y+zfb2uQyKHng0kS@makrotopia.org>
-References: <Y+zfb2uQyKHng0kS@makrotopia.org>
+        d=1e100.net; s=20210112; t=1680787689;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rwe8zq3GWp8HxEsG48LdWpIG9hFBxQL8zIHC/jZqMAY=;
+        b=0jodnMlesPeo495fluhUCIjsMmcinh0VkeaVIunqckKMgy0vnjaiQfK9b172XihTOX
+         gIpx5O9p0PfYc2t6xXr0PFGeIxo5oV8RwPAp9GaX6gzVf9RtQ18a24JNkttfIOCf5vX/
+         TSh+2iexTAP1agPRcBgvqmzAUEGPq0GB/cVbJkO9Ci0293JsFXMR3/+4XFdXtVcw+7r/
+         6aCSV1nBXsm+Ee8sB08HR1AsNpALoQrrO85FEKjB6MdIv0CdXA2p76fAV0x94+k/zZpw
+         myjHwQJPOFGnjmw2x3cTvgiWg+H578Qs++mxXTqjme0uc6usFbd4Jsd10PmEuFRiS2Xl
+         S+eg==
+X-Gm-Message-State: AAQBX9cAHNwmpMaw0leT451dgiklQqm/4E8JbOhlKVNYvCFp+ic54Ldn
+        jsm2hP2KE/aCKCqp95Cswb4hgA==
+X-Google-Smtp-Source: AKy350Z1yWcAgTwKhZPFNo2cgxIiiStCSVy77wlvwt7GHFbEtJjX6zinDuOgBVr26gQI8UWnkyLnJg==
+X-Received: by 2002:ac2:5de5:0:b0:4d8:51e7:9f23 with SMTP id z5-20020ac25de5000000b004d851e79f23mr1748872lfq.34.1680787689407;
+        Thu, 06 Apr 2023 06:28:09 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id a12-20020a056512020c00b004dc4becfcd6sm262598lfo.54.2023.04.06.06.28.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 06:28:09 -0700 (PDT)
+Message-ID: <dc2dae02-cae8-93c1-3abd-4dd37b565863@linaro.org>
+Date:   Thu, 6 Apr 2023 15:28:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 6/7] soundwire: qcom: add support for v2.0.0 controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
+ <20230403132503.62090-7-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230403132503.62090-7-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,19 +86,186 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Feb 2023 13:34:39 +0000, Daniel Golle wrote:
-> Since commit 241eab76657f ("pwm: mediatek: Add support for MT7986")
-> support for the 2 PWM channels implemented in MediaTek MT7986 SoCs has
-> been added. Also add the compatible string to dt-bindings now that
-> they have been converted to YAML.
+
+
+On 3.04.2023 15:25, Krzysztof Kozlowski wrote:
+> Add support for Qualcomm Soundwire Controller with a bit different
+> register layout.
 > 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  drivers/soundwire/qcom.c | 65 +++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 57 insertions(+), 8 deletions(-)
 > 
-
-Applied, thanks!
-
-[1/1] dt-bindings: pwm: mediatek: add mediatek,mt7986 compatible
-      commit: 90cb764c3fafb80ac6b3efd99f8481226da40f60
-
-Best regards,
--- 
-Thierry Reding <thierry.reding@gmail.com>
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index b6666ffe37ae..f2e1135ef113 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -31,6 +31,7 @@
+>  #define SWRM_VERSION_1_3_0					0x01030000
+>  #define SWRM_VERSION_1_5_1					0x01050001
+>  #define SWRM_VERSION_1_7_0					0x01070000
+> +#define SWRM_VERSION_2_0_0					0x02000000
+>  #define SWRM_COMP_HW_VERSION					0x00
+>  #define SWRM_COMP_CFG_ADDR					0x04
+>  #define SWRM_COMP_CFG_IRQ_LEVEL_OR_PULSE_MSK			BIT(1)
+> @@ -42,6 +43,7 @@
+>  #define SWRM_COMP_PARAMS_DIN_PORTS_MASK				GENMASK(9, 5)
+>  #define SWRM_COMP_MASTER_ID					0x104
+>  #define SWRM_V1_3_INTERRUPT_STATUS				0x200
+> +#define SWRM_V2_0_INTERRUPT_STATUS				0x5000
+>  #define SWRM_INTERRUPT_STATUS_RMSK				GENMASK(16, 0)
+>  #define SWRM_INTERRUPT_STATUS_SLAVE_PEND_IRQ			BIT(0)
+>  #define SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED		BIT(1)
+> @@ -54,24 +56,32 @@
+>  #define SWRM_INTERRUPT_STATUS_DOUT_PORT_COLLISION		BIT(8)
+>  #define SWRM_INTERRUPT_STATUS_READ_EN_RD_VALID_MISMATCH		BIT(9)
+>  #define SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED		BIT(10)
+> +#define SWRM_INTERRUPT_STATUS_AUTO_ENUM_FAILED			BIT(11)
+> +#define SWRM_INTERRUPT_STATUS_AUTO_ENUM_TABLE_IS_FULL		BIT(12)
+>  #define SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2             BIT(13)
+>  #define SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2              BIT(14)
+>  #define SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP               BIT(16)
+>  #define SWRM_INTERRUPT_MAX					17
+>  #define SWRM_V1_3_INTERRUPT_MASK_ADDR				0x204
+>  #define SWRM_V1_3_INTERRUPT_CLEAR				0x208
+> +#define SWRM_V2_0_INTERRUPT_CLEAR				0x5008
+>  #define SWRM_V1_3_INTERRUPT_CPU_EN				0x210
+> +#define SWRM_V2_0_INTERRUPT_CPU_EN				0x5004
+>  #define SWRM_V1_3_CMD_FIFO_WR_CMD				0x300
+> +#define SWRM_V2_0_CMD_FIFO_WR_CMD				0x5020
+>  #define SWRM_V1_3_CMD_FIFO_RD_CMD				0x304
+> +#define SWRM_V2_0_CMD_FIFO_RD_CMD				0x5024
+>  #define SWRM_CMD_FIFO_CMD					0x308
+>  #define SWRM_CMD_FIFO_FLUSH					0x1
+>  #define SWRM_V1_3_CMD_FIFO_STATUS				0x30C
+> +#define SWRM_V2_0_CMD_FIFO_STATUS				0x5050
+>  #define SWRM_RD_CMD_FIFO_CNT_MASK				GENMASK(20, 16)
+>  #define SWRM_WR_CMD_FIFO_CNT_MASK				GENMASK(12, 8)
+>  #define SWRM_CMD_FIFO_CFG_ADDR					0x314
+>  #define SWRM_CONTINUE_EXEC_ON_CMD_IGNORE			BIT(31)
+>  #define SWRM_RD_WR_CMD_RETRIES					0x7
+>  #define SWRM_V1_3_CMD_FIFO_RD_FIFO_ADDR				0x318
+> +#define SWRM_V2_0_CMD_FIFO_RD_FIFO_ADDR				0x5040
+>  #define SWRM_RD_FIFO_CMD_ID_MASK				GENMASK(11, 8)
+>  #define SWRM_ENUMERATOR_CFG_ADDR				0x500
+>  #define SWRM_ENUMERATOR_SLAVE_DEV_ID_1(m)		(0x530 + 0x8 * (m))
+> @@ -98,6 +108,11 @@
+>  #define SWRM_DP_SAMPLECTRL2_BANK(n, m)	(0x113C + 0x100 * (n - 1) + 0x40 * m)
+>  #define SWRM_DIN_DPn_PCM_PORT_CTRL(n)	(0x1054 + 0x100 * (n - 1))
+>  #define SWR_V1_3_MSTR_MAX_REG_ADDR				0x1740
+> +#define SWR_V2_0_MSTR_MAX_REG_ADDR				0x50ac
+> +
+> +#define SWRM_V2_0_CLK_CTRL					0x5060
+> +#define SWRM_V2_0_CLK_CTRL_CLK_START				BIT(0)
+> +#define SWRM_V2_0_LINK_STATUS					0x5064
+>  
+>  #define SWRM_DP_PORT_CTRL_EN_CHAN_SHFT				0x18
+>  #define SWRM_DP_PORT_CTRL_OFFSET2_SHFT				0x10
+> @@ -243,6 +258,26 @@ static const struct qcom_swrm_data swrm_v1_6_data = {
+>  	.reg_layout = swrm_v1_3_reg_layout,
+>  };
+>  
+> +static const unsigned int swrm_v2_0_reg_layout[] = {
+> +	[SWRM_REG_FRAME_GEN_ENABLED] = SWRM_V2_0_LINK_STATUS,
+> +	[SWRM_REG_INTERRUPT_STATUS] = SWRM_V2_0_INTERRUPT_STATUS,
+> +	[SWRM_REG_INTERRUPT_MASK_ADDR] = 0, /* Not present */
+> +	[SWRM_REG_INTERRUPT_CLEAR] = SWRM_V2_0_INTERRUPT_CLEAR,
+> +	[SWRM_REG_INTERRUPT_CPU_EN] = SWRM_V2_0_INTERRUPT_CPU_EN,
+> +	[SWRM_REG_CMD_FIFO_WR_CMD] = SWRM_V2_0_CMD_FIFO_WR_CMD,
+> +	[SWRM_REG_CMD_FIFO_RD_CMD] = SWRM_V2_0_CMD_FIFO_RD_CMD,
+> +	[SWRM_REG_CMD_FIFO_STATUS] = SWRM_V2_0_CMD_FIFO_STATUS,
+> +	[SWRM_REG_CMD_FIFO_RD_FIFO_ADDR] = SWRM_V2_0_CMD_FIFO_RD_FIFO_ADDR,
+> +};
+> +
+> +static const struct qcom_swrm_data swrm_v2_0_data = {
+> +	.default_rows = 50,
+> +	.default_cols = 16,
+> +	.sw_clk_gate_required = true,
+> +	.max_reg = SWR_V2_0_MSTR_MAX_REG_ADDR,
+> +	.reg_layout = swrm_v2_0_reg_layout,
+> +};
+> +
+>  #define to_qcom_sdw(b)	container_of(b, struct qcom_swrm_ctrl, bus)
+>  
+>  static int qcom_swrm_ahb_reg_read(struct qcom_swrm_ctrl *ctrl, int reg,
+> @@ -748,18 +783,23 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
+>  
+>  	ctrl->intr_mask = SWRM_INTERRUPT_STATUS_RMSK;
+>  	/* Mask soundwire interrupts */
+> -	ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_MASK_ADDR],
+> -			SWRM_INTERRUPT_STATUS_RMSK);
+> +	if (ctrl->version < SWRM_VERSION_2_0_0)
+> +		ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_MASK_ADDR],
+> +				SWRM_INTERRUPT_STATUS_RMSK);
+>  
+>  	/* Configure No pings */
+>  	ctrl->reg_read(ctrl, SWRM_MCP_CFG_ADDR, &val);
+>  	u32p_replace_bits(&val, SWRM_DEF_CMD_NO_PINGS, SWRM_MCP_CFG_MAX_NUM_OF_CMD_NO_PINGS_BMSK);
+>  	ctrl->reg_write(ctrl, SWRM_MCP_CFG_ADDR, val);
+>  
+> -	if (ctrl->version >= SWRM_VERSION_1_7_0) {
+> +	if (ctrl->version == SWRM_VERSION_1_7_0) {
+>  		ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
+>  		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL,
+>  				SWRM_MCP_BUS_CLK_START << SWRM_EE_CPU);
+> +	} else if (ctrl->version >= SWRM_VERSION_2_0_0) {
+> +		ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
+> +		ctrl->reg_write(ctrl, SWRM_V2_0_CLK_CTRL,
+> +				SWRM_V2_0_CLK_CTRL_CLK_START);
+>  	} else {
+>  		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
+>  	}
+> @@ -1609,10 +1649,14 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
+>  	} else {
+>  		reset_control_reset(ctrl->audio_cgcr);
+>  
+> -		if (ctrl->version >= SWRM_VERSION_1_7_0) {
+> +		if (ctrl->version == SWRM_VERSION_1_7_0) {
+>  			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
+>  			ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL,
+>  					SWRM_MCP_BUS_CLK_START << SWRM_EE_CPU);
+> +		} else if (ctrl->version >= SWRM_VERSION_2_0_0) {
+> +			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
+> +			ctrl->reg_write(ctrl, SWRM_V2_0_CLK_CTRL,
+> +					SWRM_V2_0_CLK_CTRL_CLK_START);
+>  		} else {
+>  			ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
+>  		}
+> @@ -1620,8 +1664,10 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
+>  			SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET);
+>  
+>  		ctrl->intr_mask |= SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET;
+> -		ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_MASK_ADDR],
+> -				ctrl->intr_mask);
+> +		if (ctrl->version < SWRM_VERSION_2_0_0)
+> +			ctrl->reg_write(ctrl,
+> +					ctrl->reg_layout[SWRM_REG_INTERRUPT_MASK_ADDR],
+> +					ctrl->intr_mask);
+>  		ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_CPU_EN],
+>  				ctrl->intr_mask);
+>  
+> @@ -1645,8 +1691,10 @@ static int __maybe_unused swrm_runtime_suspend(struct device *dev)
+>  	if (!ctrl->clock_stop_not_supported) {
+>  		/* Mask bus clash interrupt */
+>  		ctrl->intr_mask &= ~SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET;
+> -		ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_MASK_ADDR],
+> -				ctrl->intr_mask);
+> +		if (ctrl->version < SWRM_VERSION_2_0_0)
+> +			ctrl->reg_write(ctrl,
+> +					ctrl->reg_layout[SWRM_REG_INTERRUPT_MASK_ADDR],
+> +					ctrl->intr_mask);
+>  		ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_CPU_EN],
+>  				ctrl->intr_mask);
+>  		/* Prepare slaves for clock stop */
+> @@ -1684,6 +1732,7 @@ static const struct of_device_id qcom_swrm_of_match[] = {
+>  	{ .compatible = "qcom,soundwire-v1.5.1", .data = &swrm_v1_5_data },
+>  	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_6_data },
+>  	{ .compatible = "qcom,soundwire-v1.7.0", .data = &swrm_v1_5_data },
+> +	{ .compatible = "qcom,soundwire-v2.0.0", .data = &swrm_v2_0_data },
+>  	{/* sentinel */},
+>  };
+>  
