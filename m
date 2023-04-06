@@ -2,95 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBF46D9139
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 955BC6D914D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:16:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236204AbjDFIKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 04:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54414 "EHLO
+        id S233628AbjDFIQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 04:16:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235907AbjDFIKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:10:16 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71DCE57
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:10:14 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id i5so147517029eda.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 01:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680768613;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5spE+TO8kzFj6ll3TOgzdsKC4/Ei7C5JM7vz+W4Xh/s=;
-        b=hz0lyPmKOXvbz5t+WsVLjNqis1JK48pnGFKDIvbRm+UGRLharEnMhG/+MEl0ITLkN+
-         nMg747sXm51hIc1MCJsmw/UutqbqFrh22uBJCZscPd+Zg+ImdtoMcBJd6S0/i5o+KDBr
-         EnMfMv7QCOJHMzDviYU2LL67OgwaORKkBT8zYQEkNpArSm4CUm8QY5eOY22guFnPp0a0
-         x1/+MCdEzgY3k8OdhlArb3u4oTE95bsrU3S7tMhD0/KnMJILGy0KGiV6M5nASE30T8UW
-         /e5rkEzf6g4GLQdo+uu7YQaASTAd5GbyufAV2Yhc3qJg5ZuHswzW91OhzfvuNzEbdHGr
-         e9JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680768613;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5spE+TO8kzFj6ll3TOgzdsKC4/Ei7C5JM7vz+W4Xh/s=;
-        b=K/Qv2pMYJ3rUwKJZD69koDCldOua2finJamvMHdK5LK+UU5Svf3tFBWdl3kSKeVkkH
-         8FOPV8oJqpobDxgiKgTjGs3LRXVQ8cfYdsyOXNA04FBMHAhFH+FETKjRoI/zeeYei09x
-         RyB4lGB1jgwcPsUoCFBJLdAlwiiNmqwH09udDwqyNmXZWOcYm90LqmW09LzneMdlndqe
-         irAVh2Tu6TkjeCuUD5mdaMN6253Vx83EsrRmjNB6UPfYrHaWoKmRbcF6rOJGmocueT6S
-         jxCSHhqKCRZg99pPX7GtNhrEcRGVQzkXW2gM2RoBpr9Poat4giUnGxo27W8KTRMAzSF9
-         mmBg==
-X-Gm-Message-State: AAQBX9cXUfm23+iiHrm6K5uT/vnpACIxLQTsRJgNqna0bt8R0cTEddpb
-        TJUZAYYqTob1QMfulhmG0PHHIw==
-X-Google-Smtp-Source: AKy350YLZNQIcWIGT3+gVG7/gzwOQQVvDPf7V80JTtlDOvzqFIJ3bIHUh5JpErkXaGQQsPhjJlU50A==
-X-Received: by 2002:a17:906:5e53:b0:946:bd15:b13f with SMTP id b19-20020a1709065e5300b00946bd15b13fmr4972980eju.44.1680768613340;
-        Thu, 06 Apr 2023 01:10:13 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id 24-20020a170906319800b008e9c79ff14csm476308ejy.96.2023.04.06.01.10.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 01:10:12 -0700 (PDT)
-Message-ID: <cc92f734-0c8d-2870-6cda-d768579c29b8@linaro.org>
-Date:   Thu, 6 Apr 2023 10:10:11 +0200
+        with ESMTP id S235743AbjDFIQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:16:15 -0400
+Received: from mail.gramblingfirm.com (mail.gramblingfirm.com [89.40.118.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5323B61A5
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:16:14 -0700 (PDT)
+Received: by mail.gramblingfirm.com (Postfix, from userid 1001)
+        id A367482A08; Thu,  6 Apr 2023 09:16:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gramblingfirm.com;
+        s=mail; t=1680768973;
+        bh=gqzZsu7MXwZPzlbvSQiKceUrEEFPNw9Lezccrk6Bymo=;
+        h=Date:From:To:Subject:From;
+        b=hyrtiXmm5OyLrQsq+07OMPYxY6gvvck//maw2i3hp9R749wCIwXJ0YB/Nyl/T7nbB
+         4Sl/WW8llpdg78/mHsD5hlSHbZC2bN8sYpbJyIVCMzE4Hwt6gk0xTUYJpHm39FOzpU
+         MvqLz6haoUa4lDTUYCcF8KqNCVVH9YkgFIGFAX3rfGn+7L1Z6+Nj967E+8AYJe8Epa
+         0cVeQxYm2SvGoHmY8UnSJsD9HsAeSCZkPSiHb988Pb0oylsc2fSybfoUP73o/5oXJR
+         aleNXoJAZ4eyLjSdQ9Jg+1YDjU+g1yp7fxei8WhKkwTTk9qyTWJFIu5frIXVeRoqIK
+         IyCuZA7PL4kcQ==
+Received: by mail.gramblingfirm.com for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 08:16:03 GMT
+Message-ID: <20230406074500-0.1.2s.4z2m.0.k456h9i6cu@gramblingfirm.com>
+Date:   Thu,  6 Apr 2023 08:16:03 GMT
+From:   "Daniel Musil" <daniel.musil@gramblingfirm.com>
+To:     <devicetree@vger.kernel.org>
+Subject: Robotisation of production
+X-Mailer: mail.gramblingfirm.com
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: iommu: Convert QCOM IOMMU to YAML
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230406-topic-qciommu-v1-1-03f17717a447@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406-topic-qciommu-v1-1-03f17717a447@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=6.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,RCVD_IN_SORBS_DUL,
+        SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: *  0.0 RCVD_IN_SORBS_DUL RBL: SORBS: sent directly from dynamic IP
+        *      address
+        *      [89.40.118.123 listed in dnsbl.sorbs.net]
+        *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
+        *      blocklist
+        *      [URIs: gramblingfirm.com]
+        *  3.6 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *      [89.40.118.123 listed in zen.spamhaus.org]
+        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
+        *      blocklist
+        *      [URIs: gramblingfirm.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 03:31, Konrad Dybcio wrote:
-> Convert the Qualcomm IOMMU bindings to YAML.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+Hello,
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+I am trying to reach the person who manages your machinery and/or is resp=
+onsible for the improvement and automation of production.=20
 
-Best regards,
-Krzysztof
+We deal with processes related to broadly defined robotisation and automa=
+tion of production. We support you in the design and implementation of au=
+tomation and control systems, the construction of control cabinets, their=
+ servicing and diagnostics of already existing devices.=20
 
+Thanks to a large team of specialists in various fields, we are able to i=
+mplement industrial robots, construct electrical installation facilities,=
+ provide solutions for monitoring of media consumption, and integrate mac=
+hines and devices into complete assemblies.
+
+What sets us apart is our versatility, many years of experience and a qua=
+lified team who have developed their knowledge over the years by carrying=
+ out projects for various industries and processes.
+
+I think it is worth discussing what this looks like in your company and w=
+hat we could offer. What do you think of my proposal?
+
+Best regards
+Daniel Musil
