@@ -2,203 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34CE06D8EF0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 07:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55B156D8F11
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 08:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbjDFFtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 01:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42178 "EHLO
+        id S234792AbjDFGI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 02:08:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjDFFtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 01:49:00 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829FA5B84
-        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 22:48:58 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id d18so33510066vsv.11
-        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 22:48:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1680760137;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YZ8PVA/atiia/tjTYHEDk3XUx3h0g9cX9xWoZrnfSaI=;
-        b=VAJUd7AkFuitBCaDn4PDCke2qUypZywbfeYT2Ko80sDqTyivuobWW8FDMdqeUCZDql
-         MoEXSViUMBV7PMMIsLKdnr4H5mWcL98In5TEPR6cYjze1wdNL6Pq4/XHl1q8EYepFsIP
-         6gUGhA52NjbDOp5i4NfyZ7ar2DhgYcgwV3INo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680760137;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YZ8PVA/atiia/tjTYHEDk3XUx3h0g9cX9xWoZrnfSaI=;
-        b=Gy3MjwPQiDKcflgvACuKl2lLgInDTgoZ7cHu68llS6wxoFvgQQKATXq5qxccTkbxY/
-         OOy+hUsG6cAoEEe6zo8VL2SbHVcO3GDF+yd9HKF6Bvddd6uTTbjZfUXxIBamyGCmfM7p
-         kIzzy4aMVKzPiggXIpYX1C2sbCbj0YJtjzouQBdghpXNIltJsSOtVWWosHiLvhcnEIRU
-         WaN6QpSWCXlO11DnrCU9amd56yEa6tGitkEaPAeyQEFfL0gvdjguEfizZnVjx5A6tf/C
-         viw9Pk0x9OaWJiOZ+Q7tS1FDHrLvFcBorOd84r0VJs/eqSSe0Kpwo74buR3Z57Ka/0ik
-         cK9Q==
-X-Gm-Message-State: AAQBX9ex78O6BoOaUZaeXmxF16boc7jEmTqtqCrEOHfN6Ez43dp0DfNz
-        YxYxAcg9vgOb0Mu3hHXWRcN0/HHy+/5yu+cD3ndNNg==
-X-Google-Smtp-Source: AKy350Y2i4qLGhKpJdOSUX/56KNRjC2/+DH+F1JftCexRGQwx88QRzq9YP9OtVd02aeOmfZgXAVDSLfBCAmwYW1igdo=
-X-Received: by 2002:a67:c01c:0:b0:425:f1e7:fecf with SMTP id
- v28-20020a67c01c000000b00425f1e7fecfmr6371648vsi.7.1680760137615; Wed, 05 Apr
- 2023 22:48:57 -0700 (PDT)
+        with ESMTP id S232797AbjDFGIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 02:08:53 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736ED7DB2;
+        Wed,  5 Apr 2023 23:08:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=NNtznzskect+WASX9KWJsUPMsb4GCWve9v8phcfY6EE=; b=NhiFkK7+qKrc3ZFiSZfO5ZFMGk
+        XKHPldEXr6zJYfn+KjGfo2L5t0PFvk5tFE+zMMoTwmeJWvTZAoRd2memCDeECm/kQfLJcyMn166t5
+        fkw8LPk3QIShCNUwkVheNc8G//xCp/M4C3j+PW3o0iKw8CjjrWAtRvrXPhNIUNCm+BfZx5LX/yANa
+        TcZZ5Rix4esq9tlXs3b1zvjH2e5Guet2ZLao2plJXcAYTP0r3rgzhKIyY8k6jBE8hbCGVAI1VMuR5
+        V4m8itU1W4BubGdbD526JCGHMNo82Uh842YXV1+bTg81uFJb/89LULJ2NQnIEX29Mipr1uEoNftiE
+        iE8J6Nyw==;
+Received: from p200300ccff190e001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff19:e00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pkInc-0001dh-DZ; Thu, 06 Apr 2023 08:08:44 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pkInb-000Qqa-3D;
+        Thu, 06 Apr 2023 08:08:44 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andreas@kemnade.info,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mazziesaccount@gmail.com,
+        hns@goldelico.com
+Subject: [PATCH 0/2] leds: Add a driver for the BD2606MVV
+Date:   Thu,  6 Apr 2023 08:08:23 +0200
+Message-Id: <20230406060825.103187-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230321121859.2355-1-nancy.lin@mediatek.com> <17831605-5c9d-9c92-d190-04f91060ace4@collabora.com>
- <CAAOTY_8ZAxVSLnJ1u5snsRgkszV7ixwhjUS2nDimE_Lpj=cUCA@mail.gmail.com>
- <97a5f383-38f5-e8ea-e1d8-489b690e4521@collabora.com> <CAAOTY_9_vn-m2jTaaHkFDV+v2-LeaAxtCLNNnOxZq5Httb-TAQ@mail.gmail.com>
- <CAGXv+5FJCuG_zHnaKZ=baNzKAWKLEe3jZnghNAxuGv7i7L6e7Q@mail.gmail.com>
- <CAAOTY_9Dbtubah3ndj9+FeYDh7D42k6-BtHrYMNc=CP6GL6uFA@mail.gmail.com> <d0b9d8a2-14ae-8c0d-309b-5f5d60d43a1d@linaro.org>
-In-Reply-To: <d0b9d8a2-14ae-8c0d-309b-5f5d60d43a1d@linaro.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 6 Apr 2023 13:48:46 +0800
-Message-ID: <CAGXv+5HGmsfbN7GggASZPXtXCVvKUS4e-xjUFDG-87KvA_0W7w@mail.gmail.com>
-Subject: Re: [PATCH v30 0/7] Add MediaTek SoC DRM (vdosys1) support for mt8195
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, singo.chang@mediatek.com,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        "Nancy.Lin" <nancy.lin@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, krzysztof.kozlowski+dt@linaro.org,
-        clang-built-linux@googlegroups.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 3, 2023 at 5:47=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/04/2023 05:30, Chun-Kuang Hu wrote:
-> > Hi, Chen-yu:
-> >
-> > Chen-Yu Tsai <wenst@chromium.org> =E6=96=BC 2023=E5=B9=B43=E6=9C=8830=
-=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=887:05=E5=AF=AB=E9=81=93=EF=BC=
-=9A
-> >>
-> >> On Mon, Mar 27, 2023 at 11:17=E2=80=AFPM Chun-Kuang Hu <chunkuang.hu@k=
-ernel.org> wrote:
-> >>>
-> >>> Hi, Angelo:
-> >>>
-> >>> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =
-=E6=96=BC
-> >>> 2023=E5=B9=B43=E6=9C=8824=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=
-=884:38=E5=AF=AB=E9=81=93=EF=BC=9A
-> >>>>
-> >>>> Il 24/03/23 00:25, Chun-Kuang Hu ha scritto:
-> >>>>> Hi, Angelo:
-> >>>>>
-> >>>>> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com=
-> =E6=96=BC
-> >>>>> 2023=E5=B9=B43=E6=9C=8823=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=
-=8D=884:58=E5=AF=AB=E9=81=93=EF=BC=9A
-> >>>>>>
-> >>>>>> Il 21/03/23 13:18, Nancy.Lin ha scritto:
-> >>>>>>> The hardware path of vdosys1 with DPTx output need to go through =
-by several modules, such as, OVL_ADAPTOR and MERGE.
-> >>>>>>>
-> >>>>>>> Add DRM and these modules support by the patches below:
-> >>>>>>>
-> >>>>>>
-> >>>>>> I've tested v30 again on MT8173, MT8192 and MT8195 based Chromeboo=
-ks.
-> >>>>>> Green light from me.
-> >>>>>
-> >>>>> I'm curious about how you build code and test on Chromebooks. Do yo=
-u
-> >>>>> build in cros environment or pure linux
-> >>>>> (https://archlinuxarm.org/platforms/armv8/mediatek/acer-chromebook-=
-r13).
-> >>>>> I've a MT8183 based Chromebook (HP 11a) and I've tried to run a
-> >>>>> upstream kernel on it. cros is too heavy for me and I doubt I could
-> >>>>> use it. I've tried the pure linux and could boot up with console, b=
-ut
-> >>>>> display does not work. If you use the pure linux environment, could
-> >>>>> you share how it works?
-> >>>>>
-> >>>>
-> >>>> I haven't tested MT8183 (I don't actually have any 8183 machine in m=
-y hands)... but
-> >>>> yes, I can share my test environment.
-> >>>>
-> >>>> I have one MicroSD that I use either in the MicroSD slot of the targ=
-et machine, or
-> >>>> in a USB reader; this *single* system is what I boot on *all* Chrome=
-books that I
-> >>>> have: one kernel, multiple devicetrees, same Debian-based userspace.
-> >>>>
-> >>>> What we have to prepare this bootable media can be found at [1], but=
- beware that
-> >>>> it currently uses an outdated kernel, so, what I have locally is a s=
-ymlink to my
-> >>>> kernel tree.
-> >>>> You can change/add/remove the devicetree blobs that will get added t=
-o the image
-> >>>> by modifying `chromebook-setup.sh`; before tampering with kernel tre=
-e symlink,
-> >>>> please run that script for the first time, as it will download a cro=
-ss-compiler,
-> >>>> a kernel tree (that you will replace for sure) and the (very old) De=
-bian rootfs
-> >>>> that you can update with `apt-get dist-upgrade` after booting the Ch=
-romebook.
-> >>>>
-> >>>> If you want to check about possible kernel configuration differences=
-, what I use
-> >>>> is at [2], so that you can compare.
-> >>>
-> >>> Thanks for the information, I would try to compare the kernel config =
-first.
-> >>
-> >> Hi CK,
-> >>
-> >> Would you consider adding your repo to linux-next? That would let ever=
-yone
-> >> do integration testing, especially automated ones, earlier, before you=
- send
-> >> your PRs to drm maintainers.
-> >>
-> >> You can do so by sending an email to Stephen Rothwell to do so.
-> >
-> > I don't understand what this process is. Does it means that I directly
-> > upstream patches into linux-next? I prefer that my patches go through
-> > drm maintainers' tree. Does any document introduce this process?
->
-> All maintainers and sub-maintainers trees are supposed to be fed into
-> linux-next.
->
-> https://lore.kernel.org/linux-next/20230327124805.3ca4f3cc@canb.auug.org.=
-au/T/#md226a8e714cc731c2ab4ba5ee7eb43fe21a55009
->
-> Documentation/process/howto.rst
-> Documentation/process/2.Process.rst
+Add the binding description and the corresponding driver for
+the BD2606.
 
-As Krzysztof mentioned, the purpose of linux-next is for integration testin=
-g.
-Your queued up patches still go through the DRM tree for eventually merging
-into Linus's tree. Getting included into linux-next means that your branch
-gets automatically merged together with other branches, gets build and boot
-tested by the various CI platforms and bots out there, and provides a commo=
-n
-base for other developers.
+Andreas Kemnade (2):
+  dt-bindings: leds: ROHM BD2606MVV LED driver
+  leds: bd2606mvv: Driver for the Rohm 6 Channel i2c LED driver
 
-I don't think there is any downside to having your branch integrated into
-linux-next.
+ .../bindings/leds/rohm,bd2606mvv.yaml         |  76 +++++++++
+ drivers/leds/Kconfig                          |  11 ++
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-bd2606mvv.c                 | 145 ++++++++++++++++++
+ 4 files changed, 233 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+ create mode 100644 drivers/leds/leds-bd2606mvv.c
 
-ChenYu
+-- 
+2.39.2
+
