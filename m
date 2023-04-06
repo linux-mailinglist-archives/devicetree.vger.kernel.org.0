@@ -2,80 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E86F86D982D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 981546D9880
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:46:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238543AbjDFN2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 09:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58764 "EHLO
+        id S238767AbjDFNqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 09:46:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238302AbjDFN2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:28:39 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CE58A55
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 06:28:33 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id d7so5815129lfj.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 06:28:33 -0700 (PDT)
+        with ESMTP id S237927AbjDFNqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:46:06 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09A765B6;
+        Thu,  6 Apr 2023 06:46:01 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-501d3943f8eso1393358a12.1;
+        Thu, 06 Apr 2023 06:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680787712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B/EYwiDQhUW4YEmdZOCemB3N2W/Dg9tNc5lKjH1epoQ=;
-        b=cdvVQBzhf2PQsKTcMuHserN+U/aS7ZWtSSQriiN16ak8G83qx8lqqUTxAEk/on4Z3S
-         x/Mb869elBKjnTXLP3IwGiRYxmfeHWkA4fm4hb/YUtM82iqp5loKtGma8JPZkbfiH7nc
-         ShAEwJbxF/rvvh2T5QW4uPwTKcGc5P2O0X0gUk43E5bUO3snNYExbxGApedZrl6TNqqC
-         dDSRmwVlcBP5l4/3eecuDgB1EJZnwJHjysWZ5iyKNIwJDegonGc0WIyeGjBooxx0GNh/
-         hENqXeWmd9SUWK/HNxSdp1IMWZMkO47GGvgNrlHdOLLlwGAD4ml+pSuV/2ZU1F+TSAgt
-         h83w==
+        d=gmail.com; s=20210112; t=1680788760;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PkHFpCD/XQeLxofMjQT3jwfPpJhgnEHgCex2rD4ksk8=;
+        b=lKMqG7lIc47IvaYySaSBUJFH/hA+mln853cL8/jfrpRJEPRmwW4vpmxSTWBVyKIk18
+         HReWO6yNVMsO8DPtbjjD0PjwHr5xKWAv3p0ciM7B1PSuvZbhJ80gT48ce5t2ve6posfM
+         8hp9pp1wToANmgTh5LIwI6suCjGhAZbFfn8TETLcUpXPnseDFgkUzhl2RG+z5kgEBaJN
+         rYnoAs3keLhepHWdqGD5Y50Sbv1R799at6hBKuSNACGwxqiHVOqc+tHpL4fsRIqm5Kfr
+         SkD8e1NgX2/yzMkqHX4+EKa+0c6DEK/HBMIXvny7nkWaOrMZA/ROssHZBeHAIhooC9aZ
+         kOpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680787712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B/EYwiDQhUW4YEmdZOCemB3N2W/Dg9tNc5lKjH1epoQ=;
-        b=knsb5slSWEcX3LqUSmyzqnJfnOmNKjMzi2FWNM1TwiVX95vdNXiW50OmAys4PIr+ab
-         rhd1PvoSarSJ8Lb4J+XQj9NhnWAu4x4lp4Pfsod5XQhImoVf9dnjFmJIUtkQVZkJj+Lo
-         1qp1u0QfPIke8NSqZTfpAiXhwM6MOpaRl9FvX/JdNW+iuL3f7n9k+z0z8fdgMM77WqO/
-         WxR6NoCcr4bHKF1y+ABhiIG804GiI0oPwkXB90Pk9wqXv3+Latc3V7ufs2Wi+VsKDY5O
-         hBuU9PXvVUD1JBOEUb9wlrRjl2yt14F8aQxpzcCAV/7HfSCxZiQU/RDYlrrTPWKkq5uc
-         IMag==
-X-Gm-Message-State: AAQBX9d9tftzydW5eeEoQ9SdGggkgxZdRRb8Gdk0lzr9AD/DkG6Y+wvD
-        djxcDQV4vRBp4ZRJmMi3SpcrJw==
-X-Google-Smtp-Source: AKy350ZaQpuoGr/0Wi4agBDl4nVyoBDk54/kiArKJqfB+wNXdEoQUjZ65D1rLNitTMaS7yiBL9Z3Pw==
-X-Received: by 2002:a05:6512:3983:b0:4d8:86c1:4782 with SMTP id j3-20020a056512398300b004d886c14782mr1547618lfu.23.1680787711665;
-        Thu, 06 Apr 2023 06:28:31 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id d14-20020ac2544e000000b004e844eeb555sm262262lfn.214.2023.04.06.06.28.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 06:28:31 -0700 (PDT)
-Message-ID: <86e3e7b6-710d-6c2d-4f01-22933ab15101@linaro.org>
-Date:   Thu, 6 Apr 2023 16:28:30 +0300
+        d=1e100.net; s=20210112; t=1680788760;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PkHFpCD/XQeLxofMjQT3jwfPpJhgnEHgCex2rD4ksk8=;
+        b=jVoTBXP2XmPqex4kXMxqoPQhbFbrZfVNVkaVLBX024dvp7Xwb/IvUV4TrKMA+JFXRF
+         JNjufMbvpABz0fv1t/r/tZV2ELGclDNPzRfgOS8auNyAWMOP5wAm7OMJQfDxUuTv7H8e
+         DSBC7k5TyO8R+Yiuj5fsnui8WFJt8LYqxJ4rLCxAdS7OmeRYI/ccCvtx3/05KWZCtxe5
+         3RthXuqvzzPQxt5r7V4wAjomDeXzYcIZkRgFn8DhXjcqxSwIV5SaF3Bi9+TDjdBlKIlK
+         iTqVjg3kkZknIwS/OdwEaznC9mR5DpwTDgrheH3uz4cxZTQq5jzGTkY0HfNC571pmp/C
+         5a/w==
+X-Gm-Message-State: AAQBX9efN5d3hYJjGfHW/WZ/yu+rM/qIPLYgu6WPoJsmixcr+Ye39g5b
+        jaCO2biaCrhw90s7Fw2hWyE=
+X-Google-Smtp-Source: AKy350ZFYf29eCxG6wCnL3JIuIp+ieQKorpdGdk2B232Ai9lNGOwLmUA+hdGHUvuhBjF8/BVi+o5Yw==
+X-Received: by 2002:a05:6402:1804:b0:502:6726:89c3 with SMTP id g4-20020a056402180400b00502672689c3mr5410333edy.23.1680788760431;
+        Thu, 06 Apr 2023 06:46:00 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id k6-20020a50cb86000000b00501d73cfc86sm773352edi.9.2023.04.06.06.45.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 06:46:00 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pwm@vger.kernel.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+Date:   Thu,  6 Apr 2023 15:45:59 +0200
+Message-Id: <168078873512.1715717.5725405826072466849.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
+References: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/7] arm64: defconfig: enable the SA8775P GPUCC driver
-Content-Language: en-GB
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>
-References: <20230328193632.226095-1-brgl@bgdev.pl>
- <20230328193632.226095-4-brgl@bgdev.pl>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230328193632.226095-4-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,35 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 22:36, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Mon, 20 Feb 2023 22:19:30 +0100, Heiner Kallweit wrote:
+> Convert Amlogic Meson PWM binding to yaml.
 > 
-> Enable the GPUCC module for SA8775P platforms in the arm64 defconfig.
 > 
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->   arch/arm64/configs/defconfig | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index d206a9120ee4..fa0a145defe2 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1161,6 +1161,7 @@ CONFIG_MSM_MMCC_8998=m
->   CONFIG_MSM_GCC_8998=y
->   CONFIG_QCS_GCC_404=y
->   CONFIG_SA_GCC_8775P=y
-> +CONFIG_SA_GPUCC_8775P=y
 
-=m, please.
+Applied, thanks!
 
->   CONFIG_SC_DISPCC_8280XP=m
->   CONFIG_SC_GCC_7180=y
->   CONFIG_SC_GCC_7280=y
+[1/1] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+      commit: 43a1c4ff3977f0ccd1d99e36d74e525aced5bb3a
 
+Best regards,
 -- 
-With best wishes
-Dmitry
-
+Thierry Reding <thierry.reding@gmail.com>
