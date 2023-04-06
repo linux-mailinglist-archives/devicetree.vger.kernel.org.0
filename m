@@ -2,174 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B65106D9FF0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B6C6D9FF4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240227AbjDFSfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:35:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53966 "EHLO
+        id S240235AbjDFSgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:36:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240224AbjDFSfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:35:41 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678348682
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:35:38 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id n21so3607947ejz.4
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:35:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680806137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LRBfuBs8WR3evGR0Ox5esepb+ZZtacne/dKbCY/+uw0=;
-        b=oUIbr+v90hVa39JXi3mXIgC1TeH9PSzaS7EZXT/F1GC6mYdTj06JgmgH66imoWFs9b
-         d18y6Nz0GlpXkPinB/vaWWr75BD3Dbw+T6NBC1rfd7P7xecONruW6oPoBuPn1GPkNMBN
-         FMYLMF6ApOxOJc1U7MEOJxd+dJuENgTGxY6GIKZxqNiYE+bazeQ4vIPmDf2lCu27q5D+
-         Eghn3E3eKZfjMP7MhlQxjieTSCw729zE88FJLmof2bJflrIv114mm53l5VSXpZ+7lw/V
-         l9tZ+UJQjQa9MPpBGjmm9IJkYtaGxxsdC9RWnpptOikl22clNtqPsHC+lMWP1M10tumL
-         hiFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680806137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LRBfuBs8WR3evGR0Ox5esepb+ZZtacne/dKbCY/+uw0=;
-        b=T9EkRtG6qFP0mFy4GTn5kdU3Yv/h5gs78d+XXiQWcmur2znqnKz0z7XmsrTq6Cv8tf
-         HBm3d4OwzBIUtFNXfJF13AkU+R33IXu3WfszBVLHoDlmg1I7uZ6vLxGDLnJ/tagEqUvw
-         ZDyYTtw5RUqnN6YBc2KH0A3K3HDmPzfGPpMB6cuWlLNVzsSVmldMn4qzl8PmcH4Vr/wj
-         MPq8XsolkZC7+f89kc67LQO1Lre+UOeUhz/tnN5611YtHUvIkP8Guwpt71SiVAQPXBn/
-         p9hDe0V8eiLPNd849JcJuSI2O2YXbXDBzFTsTAyIFOTbzBzZX0um+uFh0NqLqCr0fZLM
-         qM1A==
-X-Gm-Message-State: AAQBX9fJOswis3YB87CEw2UqlxlM7HYDVRkaO0vMZJ2P7pec8Chw2qna
-        3Jb+iOx9dKGZG9/9wMrLd9XBCw==
-X-Google-Smtp-Source: AKy350ZoCWdFCix4jBb7WjrNvH8yt8NUCimMUaMZqKAsERSMCHUu4hVoNIR0fwoKVcHwJ5dXCjsRlg==
-X-Received: by 2002:a17:906:bfc9:b0:93d:b767:9fea with SMTP id us9-20020a170906bfc900b0093db7679feamr7614503ejb.31.1680806136900;
-        Thu, 06 Apr 2023 11:35:36 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id 22-20020a170906319600b00930525d89e2sm1127806ejy.89.2023.04.06.11.35.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 11:35:36 -0700 (PDT)
-Message-ID: <ab1b0161-20c2-83eb-e371-e8363547e758@linaro.org>
-Date:   Thu, 6 Apr 2023 20:35:35 +0200
+        with ESMTP id S240240AbjDFSgD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:36:03 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A24C9004;
+        Thu,  6 Apr 2023 11:35:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=BN8eRYF3Sq4xpM3Dg9tNo1stv4INQ9PaEfyAW6wwvkI=; b=pc7BxjPxLgOmotAEcEcKSQvKJe
+        WenlYuSlqqsMgoed8UuzBBDs6H3i0nka1whGjIn0s8/5IvxmNxV75Q1E3+wBS5FREvDw08leY/fDu
+        cK5vgqQzAtxJlTCKdm9oD7590J4WIMfph3g9iIPv6o2WZtv9K9i5trefv/eqyoXJHCnqWZ2VIXNNh
+        iD5Jo3jzVxOApkgmH2Qssio7XZ50flmifynRppjCZwbootRe2qVmDVzHDoFIlU+UjC6E/814LjJyN
+        +DoKCJoOuAeC87OQMoH5sr4B3aFpqluq2W1CmrD6CVdVn99DvMTrPgv/ZOKYWbKI0Mahjxg/B/ttx
+        CGoZKZBA==;
+Received: from p200300ccff190e001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff19:e00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pkUSb-00030q-K6; Thu, 06 Apr 2023 20:35:50 +0200
+Date:   Thu, 6 Apr 2023 20:35:48 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tony@atomide.com, afd@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: omap: Convert omap.txt to yaml
+Message-ID: <20230406203548.152ae065@aktux>
+In-Reply-To: <7f43953c-d326-f517-d896-cbb060d8092a@linaro.org>
+References: <20230405161908.4312-1-andreas@kemnade.info>
+        <20230405161908.4312-2-andreas@kemnade.info>
+        <eb4cf82d-f523-d5af-be18-25c37678a95a@linaro.org>
+        <7f43953c-d326-f517-d896-cbb060d8092a@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: PCI: brcmstb: Add two optional props
-Content-Language: en-US
-To:     Jim Quinlan <jim2101024@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230406124625.41325-1-jim2101024@gmail.com>
- <20230406124625.41325-2-jim2101024@gmail.com>
- <d0bf241b-ead4-94b7-3f03-a26227f9eb58@i2se.com>
- <CANCKTBsLxkPb1ajACkyhJk6J1aB2iwX0oKifHkADG0fFPUqMhQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CANCKTBsLxkPb1ajACkyhJk6J1aB2iwX0oKifHkADG0fFPUqMhQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 18:58, Jim Quinlan wrote:
-> On Thu, Apr 6, 2023 at 11:39 AM Stefan Wahren <stefan.wahren@i2se.com> wrote:
->>
->> Hi Jim,
->>
->> Am 06.04.23 um 14:46 schrieb Jim Quinlan:
->>> Regarding "brcm,enable-l1ss":
->>>
->>>    The Broadcom STB/CM PCIe HW -- which is also used by RPi SOCs -- requires
->>>    the driver probe to configure one of three clkreq# modes:
->>>
->>>    (a) clkreq# driven by the RC
->>>    (b) clkreq# driven by the EP for ASPM L0s, L1
->>>    (c) bidirectional clkreq#, as used for L1 Substates (L1SS).
->>>
->>>    The HW can tell the difference between (a) and (b), but does not know
->>>    when to configure (c).  Further, the HW will cause a CPU abort on boot if
->>>    guesses wrong regarding the need for (c).  So we introduce the boolean
->>>    "brcm,enable-l1ss" property to indicate that (c) is desired.  This
->>>    property is already present in the Raspian version of Linux, but the
->>>    driver implementaion that will follow adds more details and discerns
->>>    between (a) and (b).
->>>
->>> Regarding "brcm,completion-timeout-msecs"
->>>
->>>    Our HW will cause a CPU abort if the L1SS exit time is longer than the
->>>    completion abort timeout.  We've been asked to make this configurable, so
->>>    we are introducing "brcm,completion-abort-msecs".
->>>
->>> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
->>> ---
->>>   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
->>>   1 file changed, 12 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> index 7e15aae7d69e..ef4ccc05b258 100644
->>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> @@ -64,6 +64,18 @@ properties:
->>>
->>>     aspm-no-l0s: true
->>>
->>> +  brcm,enable-l1ss:
->>> +    description: Indicates that the downstream device is L1SS
->>> +      capable and L1SS is desired, e.g. by setting
->>> +      CONFIG_PCIEASPM_POWER_SUPERSAVE=y.  Note that CLKREQ#
->>
->> not sure about this, but maybe we should avoid references to Linux
->> kernel config parameter in a DT binding. Since the driver already gaves
->> warning in case the DT parameter is present, but kernel config doesn't
->> fit, this should be enough.
+On Thu, 6 Apr 2023 10:36:36 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 06/04/2023 10:32, Krzysztof Kozlowski wrote:
+> > On 05/04/2023 18:19, Andreas Kemnade wrote:  
+> >> From: Andrew Davis <afd@ti.com>
+> >>
+> >> Convert omap.txt to yaml.
+> >>  
+> > 
+> >   
+> >> +      - description: TI AM43 SoC based platforms
+> >> +        items:
+> >> +          - enum:
+> >> +              - compulab,am437x-cm-t43
+> >> +              - ti,am437x-gp-evm
+> >> +              - ti,am437x-idk-evm
+> >> +              - ti,am437x-sk-evm
+> >> +          - pattern: '^ti,am4372[26789]$'
+> >> +          - const: ti,am43
+> >> +
+> >> +      - description: TI AM57 SoC based platforms
+> >> +        items:
+> >> +          - enum:
+> >> +              - beagle,am5729-beagleboneai
+> >> +              - compulab,cl-som-am57x
+> >> +              - ti,am5718-idk
+> >> +              - ti,am5728-idk
+> >> +              - ti,am5748-idk
+> >> +          - pattern: '^ti,am57[0124][689]$'  
+> > 
+> > I don't think my comments were resolved. I asked if it is possible to
+> > make a board called "ti,am5718-idk" with "ti,am5749" or with "ti,am5708"?  
 > 
-> Hello Stefan,
-> I will remove this reference.
->>
->>> +      assertion to clock active must be within 400ns.
->>> +    type: boolean
->>> +
->>> +  brcm,completion-timeout-msecs:
->>> +    description: Number of msecs before completion timeout
->>> +      abort occurs.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>
->> According to the driver at least 0 is not allowed, maybe we should
->> define minimum and maximum here and let dtbs_check take care of invalid
->> values?
-> I'm not sure I follow what you mean about a zero value;  the property
-> may have any value but the driver will clamp it
-> to a minimum of ~30msec.  Regardless, I can add a  "minimum: 30" line
-> to the YAML.
+> Hm, I cannot find my concern, so maybe it never left my outbox. Anyway,
+> it looks like you allow here many incorrect patterns and combinations.
+> 
+You had concerns about the "dra" stuff for the same valid reasons.
 
-If "completion" means Linux completion, then it is not suitable for DT
-and entire property should be removed. If it is something else, then
-explain here and commit msg. So far both refer to some completion...
+> > 
+> > What's more, you dropped several variations and compatibles against
+> > original binding (all the "dra") and it is not explained in commit msg
+> > at all.  
+> 
+> All changes against original bindings should be explained.
+> 
+... which I then just decided not to convert but keep as is in the text file
+because there were no comments hints about it more than a month since the first
+version was sent so thought that it has to be resolved later.
 
-Best regards,
-Krzysztof
-
+Regards,
+Andreas
