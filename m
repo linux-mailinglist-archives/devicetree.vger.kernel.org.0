@@ -2,80 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2001A6DA24A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 060A06DA26D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238761AbjDFUII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 16:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
+        id S237926AbjDFUQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 16:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238813AbjDFUIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:08:04 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF619ECE
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 13:07:56 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id y14so40684939wrq.4
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 13:07:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1680811676;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X/qILjo31dKZRnx2BX/LkX4PumS7avDA/rk4boexQqw=;
-        b=mWXFvaBTMes2+5FGcHrA86JEiUqUUTA8C1NMuHGOQ/4j5VwacWsbgogLhiFPWMNS1U
-         qZHmMk6g1RmkM1MUB073AuluNGMHZSoA9v+FLJ2ZIIU100uQ8XWCHn6quje58KDTIvjk
-         EDfkqbwnZ634sNQEunfyQNJUNH8otZS1hJEgdjQlxlAZv6f5Q9qdk9cZv1yLhjWoTj5C
-         BxzHiqa6Wc1eOb11bJUqHP1HkZ0/7fIFWvhdjILp5xuZ0M5ihwPWcdcQ96+NSx4nU+MH
-         oPZ0W/VhZJSPkp/0L/H36Acg3v2JNzMCFyXbjeLvDjooL3LUZ7lvmfX4g7/3diXHxv+x
-         3Njg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680811676;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X/qILjo31dKZRnx2BX/LkX4PumS7avDA/rk4boexQqw=;
-        b=QznSJzdTXmf1uaGx2OOs8X/OoQxxwjN9I05HthG2I2iMIMpnstVbGi5vvfwrylhSjF
-         c4Y13FQ5XPnn0vizOWOryhVqpn00ALLP636LWPdF4jiCX0HqwV6P/4vdBDJku94ByB3q
-         Bj4lr9IUqJ2/ONExIadNvNOlp+4XpJUgRzeqnoNiOcMM2rHJLhF8S+zGq5QZ5xz+Pii7
-         6YNUf+9thM22JtPR35mqCK4sKyYvHOBK+8Fxl/jSvg0RWniXZqc7mm5Ehe8y9kmObKGs
-         yIQTOuK1ZvymVMf/OxEWluJmbQu02ys29c1aThTFtvHVz0fECURl0c4pE0gt00zR3ucU
-         Rpdw==
-X-Gm-Message-State: AAQBX9fjHrW46IEuqd11KU/TcbALGlqRcttErjD820CBoGv6gTWN38r9
-        a3qUd8swy617shxa+a8LgFnXVA==
-X-Google-Smtp-Source: AKy350beFouznKsGY5cO6VPMl+btQGI5bQmEMBut1bMbkKXE41VbY78i9lJQNg9ULlpIJIn036ehbw==
-X-Received: by 2002:adf:e74d:0:b0:2ce:a85d:5319 with SMTP id c13-20020adfe74d000000b002cea85d5319mr7927093wrn.39.1680811676506;
-        Thu, 06 Apr 2023 13:07:56 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:4793:cb9a:340b:2f72])
-        by smtp.gmail.com with ESMTPSA id c11-20020adfe74b000000b002d89e113691sm2560506wrn.52.2023.04.06.13.07.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 13:07:56 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S237830AbjDFUQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:16:15 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C315555BD;
+        Thu,  6 Apr 2023 13:16:13 -0700 (PDT)
+Received: from localhost ([31.220.116.195]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MWBC8-1pv0e90CYE-00Xf2U; Thu, 06 Apr 2023 22:15:55 +0200
+Date:   Thu, 6 Apr 2023 22:15:54 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v2 7/7] arm64: dts: qcom: sa8775p: add the GPU IOMMU node
-Date:   Thu,  6 Apr 2023 22:07:23 +0200
-Message-Id: <20230406200723.552644-8-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230406200723.552644-1-brgl@bgdev.pl>
-References: <20230406200723.552644-1-brgl@bgdev.pl>
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: pressure: Support Honeywell mpr
+ sensors
+Message-ID: <ZC8oepuINTaMqN9M@arbad>
+References: <20230401185717.1b971617@jic23-huawei>
+ <20230401162701.1d3caebc@jic23-huawei>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230401162701.1d3caebc@jic23-huawei>
+X-Provags-ID: V03:K1:iRs4rZwA59GOGxzEuqb6D5jilhgxNPdfXbRVIshLue07kgRWjNV
+ RckfhXjz7OYFrr5SSyxmBhcl+cpExy/DO3uCe+s8qpB7vu5KVdv4qT8fcIVzmoVZO7FTc6/
+ 7OvQqA3qWKoXtScI+tUJ61bnu/rOszyFhM1UTf/0IsV9Tm4JjvAsy3Gt0/ikSPFoXJE79iV
+ ey/0gNp9QIo6MVqVF2cPg==
+UI-OutboundReport: notjunk:1;M01:P0:Hqse2F2pWKI=;7ULkrfL4+qZpEcRHFzXFG/SPC5U
+ k2KWl6l55mm3TWi2zqZWkW8ZJQ/pe/KyDv2LPiGVvB6zmq35m0+6ZE3TUOaK5Z0nx8z0CT6Oq
+ S7+psb694g4TcERYfdoHJkzdCcmqB561PwvaHwQ7l56JkIk8YkePedH8lmOx8hqdX6QKS2dlX
+ qN7mFCPG1JSJ3XoJlueJ2wDES6HZfX2NR5UEJAXmzgeiczeOpA3cY7yh6va+fxdc5wAJMOzpg
+ T0qOy8PAAg0NUWvaXro/Xyuq8M4oWtFDokKJrTzCQU8oeGyFlOjjTMtfplm2VYfD04B31iOEy
+ jbt6YDJRDgrcxVHEt18QAaTQoMIBOjuDaLbrG6f1vJVvDwUHhZmlDcmTQVstwjtcdTyeumHDs
+ NOWqrMLJ+O25VMXmll1A/wDaubCfg6gMlKZCWryxjsj0yDl8G9kEXlqfdBjJuDNbg6Yh4jk25
+ jtRFBMoY61PqXJqO7W3P038dbTJwXoPpAvmD7NEKxA9uwnCAI+AzHKMhqnM7axSPBkZDv64kb
+ +bVVUI40BmAnZvow68Id+FvY+MtcaLybegTllZV4uBYO6LsrGHyXgtqatFDIWt8Oo4abBLdiX
+ +B2WTgzwAxnNoRuYBinJtFbftDfdpCHcxO76zJ73xEmEl5wYJ0BzV8YWitkHW+cl1h18wi3Y3
+ DLxLshpPsVVsDz1rweCnWN1cfaatT+dfr5GV68E0rA==
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,69 +60,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi,
 
-Add the GPU IOMMU for sa8775p-based platforms.
+thanks to Krzysztof, Lars-Peter and Jonathan for the review and suggestions. I
+have one thing to clarify. See below.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 36 +++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+Jonathan Cameron <jic23@kernel.org> schrieb am Sa, 01. Apr 16:27:
+> On Sat, 1 Apr 2023 11:42:15 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+> > On 01/04/2023 11:09, Andreas Klinger wrote:
+[...]
+> > > +  honeywell,pmin:
+> > > +    description:
+> > > +      Minimum pressure value the sensor can measure in pascal.  
+> > 
+> > Use standard unit suffix:
+> > https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+> > 
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +  honeywell,pmax:
+> > > +    description:
+> > > +      Maximum pressure value the sensor can measure in pascal.
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32  
+> > 
+> > Same.
+> > 
+> > Why these values are suitable for DT? Does it depend on type of sensor
+> > (thus it is implied from compatible) or on system setup?
+> 
+> I think we'll end up with a lot of compatibles, but that's still better
+> than free form description.  May still need these as well though given
+> the datasheet helpfully adds a foot note.
+> 
+> 1. Custom pressure ranges are available.
+> 
+> Might not be worth including all the details though but unhelpfully the
+> bits we care about are after details like is the gel food grade or the port long.
+> Definitely can ignore the encoding of i2c address / spi in the last few bits but
+> may need the transfer function.
+> 
+> 
+> mpr-0025GA-A maybe as a form?
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index f799cb5abb87..f46c1a73abdb 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
- #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-@@ -605,6 +606,41 @@ gpucc: clock-controller@3d90000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		kgsl_smmu: iommu@3da0000 {
-+			compatible = "qcom,sa8775p-smmu-500", "qcom,smmu-500", "arm,mmu-500";
-+			reg = <0x0 0x03da0000 0x0 0x20000>;
-+			#iommu-cells = <2>;
-+			#global-interrupts = <2>;
-+			dma-coherent;
-+			power-domains = <&gpucc GPU_CC_CX_GDSC>;
-+			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
-+				 <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-+				 <&gpucc GPU_CC_CX_GMU_CLK>,
-+				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-+				 <&gpucc GPU_CC_HUB_AON_CLK>;
-+			clock-names = "gcc_gpu_memnoc_gfx_clk",
-+				      "gcc_gpu_snoc_dvm_gfx_clk",
-+				      "gpu_cc_ahb_clk",
-+				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
-+				      "gpu_cc_cx_gmu_clk",
-+				      "gpu_cc_hub_cx_int_clk",
-+				      "gpu_cc_hub_aon_clk";
-+			interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sa8775p-pdc", "qcom,pdc";
- 			reg = <0x0 0x0b220000 0x0 0x30000>,
--- 
-2.37.2
+Just to clarify: There are 32 different pressure ranges and 3 transfer functions
+which means we'll end up with 96 compatibles and 96 I2C ids.
+
+Would it be an option to have only one dt compatible and to add the pressure
+range as dt property?
+e. g.: honeywell,range = "0025PA";
+
+But because of "Custom pressure ranges" we still need the DT properties. In this
+case there's another "mpr-custom" compatible, right?
+
+Andreas
 
