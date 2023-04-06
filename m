@@ -2,79 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84ED56D9F22
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D5166D9F32
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240009AbjDFRpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 13:45:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39108 "EHLO
+        id S239216AbjDFRvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 13:51:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238907AbjDFRpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:45:44 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE07FF
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 10:45:43 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-932277e003cso125976866b.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 10:45:43 -0700 (PDT)
+        with ESMTP id S237769AbjDFRvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:51:24 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 344C8359D
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 10:51:23 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id g19so38732414lfr.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 10:51:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680803141;
+        d=linaro.org; s=google; t=1680803481;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iDtxzvUg1yWLifiB6kB+sDRZj/DJwVq/5cG70JDnEHc=;
-        b=j333mUs9ZlR7d+yes5ED7p4biRa4m4REkB5fiwfVdhMuiEgPauY0zg+0eWFZSGrbia
-         vGeNOn6vkeUpvG9Ky74BCI7+/NUTyTNyJ6CZhmu6CnbNG9377jeTd3sF5Aq+iQZPePgX
-         ftZCAvgGpa1XCoetxNQC6SvfaqvIPecA0Lp/LHoPiAc4iSnQLCPv4OiqCpv/SmeVVtN7
-         Z2+gOVgOlMR2aBRGICgTpu6X3dSiTQ4xSqogum90KvWNiSXoluCiPzQ2YhSFkq0CSvln
-         fniEYI+BsnMrke/X8S+mCUKCm0nfHi6KBPQ/Z30ejf12aMk0dotmgTN/YeWJMZXhJcB9
-         49AQ==
+        bh=844IQeqGqgxY4Tgvv2/QUZfgyMCjy+UzrXZ6klmnSQI=;
+        b=vEcBWhE/ijFTaoraej8Q9L8cYFUcCJmNRyRjPEx/pZiAzNKiT7CbIUs5Tr10t9/jpO
+         yWKBqyyGvwzL/GJW/sc6nCZH6zsBd/Wt/E9DWBkg8t2fKO3O5QEAoHqq8t8zmiY59BYf
+         as6Dw/i/uVhemfXTYdwJJXYYc3St58RA6R52aMdvrMxw474qy+OkEIXu7U31N/Yxsedd
+         AFLhUyxijYyKa5Ray0y7gz+949EWMy4XnnFHensJAMkd+WtBe94og1PCI83ve8OkS+Ks
+         BqlcVkrZdY5CsAop0p1BbZ8Ozz6gBjyycxc6zQXUHSSufBoDl0x2NJOs4pcMJDmFM99j
+         1/GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680803141;
+        d=1e100.net; s=20210112; t=1680803481;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iDtxzvUg1yWLifiB6kB+sDRZj/DJwVq/5cG70JDnEHc=;
-        b=dCZttUmNfDIaBJHKPM0v5VqFJ5GDsZ6tmMJMojciAcMbzogIgiGw+j62Dw36XkBtn2
-         JlLlvI5v31TujipX3D8GIZC+l3xhkD0Isjdz0uYUkvhmKr8PMB3Kc3xXoG5P+89hXHv9
-         mLk678/H7PUwwJWmZ5xw146Vx01YWypNcY3FkiveMl+dZZUsNnSck6OLLiDk6XXIHl/0
-         oQq6Czr1EA+wsjhYm5cLzi45QYhrl3sqIw1oZRH2uU+REgnUyMVic7ikDcYbqFuXl1j3
-         oIl5Bj6AhHQe8w3dMsDu+JuD8gNY2VIef0L1B0sjM94kfV1MUb7OmYAsU9tLCy2J3LJT
-         VbmA==
-X-Gm-Message-State: AAQBX9fwLiAeV6xFlWlBR66UEte0Nz8CUrSIF68wiSOtLTnqULIoWpLE
-        lovaj1XFsYbmlyfZEtgWnHw1ug==
-X-Google-Smtp-Source: AKy350av2omisW9B8G4Q3lstD+cTmNqSjHONZdE8w0j8lPdV10ZP4RupsYnNz/GjneZIWMl944Mnhg==
-X-Received: by 2002:aa7:c0ca:0:b0:4fa:ba60:8188 with SMTP id j10-20020aa7c0ca000000b004faba608188mr304985edp.8.1680803141624;
-        Thu, 06 Apr 2023 10:45:41 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id a29-20020a509b5d000000b004fd204d180dsm994752edj.64.2023.04.06.10.45.40
+        bh=844IQeqGqgxY4Tgvv2/QUZfgyMCjy+UzrXZ6klmnSQI=;
+        b=fBeImBNrgjlmSzYjBBZuLc3KknbSgeLheNmjEtIY0TbVsatn2Uhu7iPiXCp8LuTpIy
+         n1+nVAOtJ9SGny4M94YiZVHa2uc5/fHTvYEeu1iIyLGOlW0tD711of/vaw4p5SIai3rb
+         CAtCTMa1zNZG810ieDU3WBPiXnpcY1iXUHqES9P+gaAPn1AbWQb/OFDlpndIMwNWWM57
+         WFjOpeqnLV++8gqKrOhlzmojSgQM3zC01PCVGayMxabg9dtpqRJiOc/79j2Oqmii7PO2
+         z0Zlcj4FEpNruR+JUG8ndOhF7uypgYey2iaOIOHpoCSVF1tsEILgaqciBwOXmyAxw+z8
+         msvQ==
+X-Gm-Message-State: AAQBX9ep0Rnk4VGL2xuQC4fxTP/qkyJGbvtxwN+/xkLh6LaQIuIJT6Kr
+        GARNv5YIj+y22evpPZwQgT/TIQ==
+X-Google-Smtp-Source: AKy350bTfAWkRunU4OMi7vWzfciPPwM+geDMw1MB1rys+Kd0FuOlNl5vLPCKQxzgocSvF06wf0of1Q==
+X-Received: by 2002:a05:6512:10ca:b0:4eb:1315:eaea with SMTP id k10-20020a05651210ca00b004eb1315eaeamr1846074lfg.3.1680803481477;
+        Thu, 06 Apr 2023 10:51:21 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id v9-20020a056512048900b004e9cad1cd7csm355142lfq.229.2023.04.06.10.51.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 10:45:41 -0700 (PDT)
-Message-ID: <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
-Date:   Thu, 6 Apr 2023 19:45:40 +0200
+        Thu, 06 Apr 2023 10:51:21 -0700 (PDT)
+Message-ID: <7476b5ba-426c-3701-c4aa-d3e2db3de112@linaro.org>
+Date:   Thu, 6 Apr 2023 20:51:20 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
-Content-Language: en-US
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm6115p-j606f: Enable ATH10K WiFi
+Content-Language: en-GB
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
- <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
- <168069726278.2356075.14351594478003012447.robh@kernel.org>
- <20230405134727.GA2461305-robh@kernel.org>
- <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20230406-topic-lenovo_features-v1-0-c73a5180e48e@linaro.org>
+ <20230406-topic-lenovo_features-v1-4-c73a5180e48e@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230406-topic-lenovo_features-v1-4-c73a5180e48e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -86,46 +83,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2023 15:49, Konrad Dybcio wrote:
+On 06/04/2023 18:25, Konrad Dybcio wrote:
+> Enable the onboard QCA Wi-Fi. HW identifiers for reference:
+> qmi chip_id 0x320 chip_family 0x4001 board_id 0xff soc_id 0x400e0000
 > 
+> Firmware sources:
+> /vendor/firmware_mnt/image/wlanmdsp.bin -> qcom/.../wlanmdsp.mbn
+> /vendor/firmware_mnt/image/bdwlan.bXX [1] -> [2] -> ath10k/.../board-2.bin
+> [3] -> ath10k/.../firmware-5.bin
 > 
-> On 5.04.2023 15:47, Rob Herring wrote:
->> On Wed, Apr 05, 2023 at 07:22:40AM -0500, Rob Herring wrote:
->>>
->>> On Wed, 05 Apr 2023 12:48:34 +0200, Konrad Dybcio wrote:
->>>> Due to the wild nature of the Qualcomm RPM Message RAM, we can't really
->>>> use 'reg' to point to the MPM's slice of Message RAM without cutting into
->>>> an already-defined RPM MSG RAM node used for GLINK and SMEM.
->>>>
->>>> Document passing the register space as a slice of SRAM through the
->>>> qcom,rpm-msg-ram property. This also makes 'reg' deprecated.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>  .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml   | 12 +++++++++---
->>>>  1 file changed, 9 insertions(+), 3 deletions(-)
->>>>
->>>
->>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>
->>> yamllint warnings/errors:
->>>
->>> dtschema/dtc warnings/errors:
->>> Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dts:22.35-38.11: Warning (node_name_vs_property_name): /example-0/interrupt-controller: node name and property name conflict
->>
->> Looks like this is colliding with the example template which has to 
->> craft an interrupt provider for 'interrupts' properties. Either adding a 
->> parent node or using interrupts-extended instead should work-around it.
-> Check the devicetree-org issue linked in the cover letter, please!
+> Not sure where 3 comes from on the device itself, gotta investigate that..
 > 
-> I suppose wrapping it in a parent node could work as a temporary
-> measure, but since it belongs outside /soc, I'd have to make up
-> a bogus simple-bus, I think.
+> According to [4], it's called WCN3990_STRAIT.
+> 
+> [1] XX = board_id printed when the file is missing or by your downstream
+> kernel firmware loader in the dmesg; if XX=ff, use bdwlan.bin
 
-I don't think your issue in dtschema is accurate. As Rob suggested, you
-need wrapping node.
+Since the board_id is 0xff, please add qcom,ath10k-calibration-variant
 
-Best regards,
-Krzysztof
+Ideally, could you please send the bdwlan to ath10k for inclusion, see 
+https://wireless.wiki.kernel.org/en/users/drivers/ath10k/boardfiles .
+
+> 
+> [2] https://github.com/jhugo/linux/blob/5.5rc2_wifi/README
+> [3] https://github.com/kvalo/ath10k-firmware/blob/master/WCN3990/hw1.0/HL3.1/WLAN.HL.3.1-01040-QCAHLSWMTPLZ-1/firmware-5.bin
+> [4] https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn/-/blob/LA.VENDOR.1.0.r1-20700-WAIPIO.QSSI13.0/hif/src/hif_hw_version.h#L55
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> index 2aac25171dec..4ba8e59a27d8 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> @@ -315,6 +315,14 @@ &usb_hsphy {
+>   	status = "okay";
+>   };
+>   
+> +&wifi {
+> +	vdd-0.8-cx-mx-supply = <&pm6125_l8>;
+> +	vdd-1.8-xo-supply = <&pm6125_l16>;
+> +	vdd-1.3-rfa-supply = <&pm6125_l17>;
+> +	vdd-3.3-ch0-supply = <&pm6125_l23>;
+> +	status = "okay";
+> +};
+> +
+>   &xo_board {
+>   	clock-frequency = <19200000>;
+>   };
+> 
+
+-- 
+With best wishes
+Dmitry
 
