@@ -2,322 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4761E6DA1BB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 403E46DA1C8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:44:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237969AbjDFTmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 15:42:54 -0400
+        id S237485AbjDFToZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 15:44:25 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238021AbjDFTmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:42:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E889EF8;
-        Thu,  6 Apr 2023 12:42:27 -0700 (PDT)
-Received: from localhost (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 32FA866031D5;
-        Thu,  6 Apr 2023 20:42:26 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680810146;
-        bh=+YdIcETyNfpkQmcW9tbiByQb/VvaW4lYVnY65X/faAA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hSBDoBw4JTBIOsSd+p6eH3UYEvcmvVzlf6IKW4YrDN0TdvIab8Cw6bQVHp0spzBmx
-         VroCDm6aA/W3WnbcoJvpcv+zgRQ2Y95LJJCFWgwPw77aLzkXr13zWEMNtUzRH9FS3X
-         Ezo7hIHnGFUHZjZiIhYtFwYz0OGPY6Vls9YwQZ/oSX5zdvsjtAgF29Eaf/8tDv4btE
-         Fv8cVH63yA0BjA7WxJ0MVGXEKLdG5oHO2wiwsccn/pAQ91ixs0x0pmX+oW80zBCaKb
-         QjjV/Nk1CZxeZSoWMWUHEH7UiGinV0bDDM2B2bNSnSqrGQaSgg4XHfVWAj8uNUQiBI
-         c+fpFeCTpS1jg==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S237372AbjDFToS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:44:18 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B342386B4;
+        Thu,  6 Apr 2023 12:44:15 -0700 (PDT)
+Received: from localhost ([31.220.116.195]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MzR0i-1qfvUj2ofg-00vLXw; Thu, 06 Apr 2023 21:43:57 +0200
+Date:   Thu, 6 Apr 2023 21:43:57 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Joseph Chen <chenjh@rock-chips.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 8/8] regulator: fan53555: Add support for RK860X
-Date:   Thu,  6 Apr 2023 22:41:58 +0300
-Message-Id: <20230406194158.963352-9-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230406194158.963352-1-cristian.ciocaltea@collabora.com>
-References: <20230406194158.963352-1-cristian.ciocaltea@collabora.com>
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: pressure: Honeywell mpr pressure sensor
+Message-ID: <ZC8g/dfMYWZcW4zg@arbad>
+References: <20230401185717.1b971617@jic23-huawei>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230401185717.1b971617@jic23-huawei>
+X-Provags-ID: V03:K1:eSF7yy9nXHf5SFVRJlz/mjUZOLX5Kpo0ju039iOa+ryPGz/lmSr
+ XxpS0TGoqUT/ys9jdA38+uDHQ+GviypepRIftFGiVu/nJA7OUssQWU1l8ZQCSepvNtX5D4j
+ TWOhKOOt00311MgH4hB91ZH6lAafrF7P4nxnTyhWCO4k3+cTknZb6r4FhA06+CI4eBW0QLO
+ fMBNLH8JMVfoObtvi9RWg==
+UI-OutboundReport: notjunk:1;M01:P0:QYJIZEuSZU4=;rtzbL/dL5fcU4v/ErbYUA7oc8Zo
+ 9Fem+P98U7oEvwhh+Xj8CL6HfDP7ocUjH8LgISr2Jcf2UbAwmsZcOD7tfyaLWPqkL8RsgiUDX
+ qYaASNl5B8vvDAGf/BOZCQtlmKvScCiEiRwLZzz+1BW8/nPiEKdk1r9dxBEXtjQHysoUs+l2Y
+ Hymv7oDNWcfIODBz4pc9chg4wpFXK8LNUy0fBFMFpxJWAfU9/5BhumqcSl7Q778kBc4ivlb19
+ XdRgldANPjZL+V7iD2s+tetc0Z79y4BYSiTJl5itzy8B7pY8RJaUp0kON2xL8fV1fFACyjwec
+ EjiKvOryRLhwPgBsTEtoqzpClwLOzJI8bsuG0y8+S0u4x2tr4ufk7z/zwKjWK4ZQ3rpy/JLOK
+ 0RiaNODS1VzqzBoWW+FTCpPShX6VNbhylxi4P8hQtSeb8P9MniBG0Y0PwDgiBPDHICoNGoRnS
+ U5pCU4GyfSIeFYrOfLLbbno7jhm5CAS7etYWYJxinsBbxrMDDkrdNGbrTuL/ZuOEd5/np+WwK
+ RsPnyRMbfXGR//FniJKMg2KQ0EBRikveYMFSPmaGZsq13yf0mbMrUnygPSK9MS1OcTauQinLe
+ +ostEJRhc+jVKi1jfUa6a0xoun4093tRL6nQrDzCGbApJ8mnuOrKY/0DREShe7eobl0Zcxcmv
+ +JULuUgmgLasBVXjAI4KrazSAS9+l+iaWYZkr+lOaQ==
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the existing fan53555 driver to support the Rockchip RK860X
-regulators.
+Hi Jonathan,
 
-RK8600/RK8601 are pretty similar to the FAN53555 regulators.
+thanks for the extensive review. Most of it is clear but one questions remain.
+See below.
 
-RK8602/RK8603 are a bit different, having a wider output voltage
-selection range, from 0.5 V to 1.5 V in 6.25 mV steps. They also use
-additional VSEL0/VSEL1 registers for the voltage selector, but the
-enable and mode bits are still located in the original FAN53555 specific
-VSEL0/VSEL1 registers.
+Jonathan Cameron <jic23@kernel.org> schrieb am Sa, 01. Apr 18:57:
+> > +static void mpr_reset(struct mpr_data *data)
+> > +{
+> > +	if (data->gpiod_reset) {
+> > +		gpiod_set_value(data->gpiod_reset, 0);
+> > +		udelay(10);
+> > +		gpiod_set_value(data->gpiod_reset, 1);
+> > +	}
+> 
+> If there isn't a reset signal, I'd like to see an attempt at least to write
+> all configuration registers to a known value (same as the one you'd
+> get after reset).  
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/regulator/fan53555.c | 121 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 118 insertions(+), 3 deletions(-)
+There is no configuration register in the sensor I could write to. But maybe I
+didn't comprehend your point.
 
-diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
-index acf14ba7aaa6..130f3dbe9840 100644
---- a/drivers/regulator/fan53555.c
-+++ b/drivers/regulator/fan53555.c
-@@ -26,6 +26,9 @@
- #define FAN53555_VSEL0		0x00
- #define FAN53555_VSEL1		0x01
- 
-+#define RK8602_VSEL0		0x06
-+#define RK8602_VSEL1		0x07
-+
- #define TCS4525_VSEL0		0x11
- #define TCS4525_VSEL1		0x10
- #define TCS4525_TIME		0x13
-@@ -55,6 +58,7 @@
- 
- #define FAN53555_NVOLTAGES	64	/* Numbers of voltages */
- #define FAN53526_NVOLTAGES	128
-+#define RK8602_NVOLTAGES	160
- 
- #define TCS_VSEL0_MODE		BIT(7)
- #define TCS_VSEL1_MODE		BIT(6)
-@@ -64,6 +68,8 @@
- enum fan53555_vendor {
- 	FAN53526_VENDOR_FAIRCHILD = 0,
- 	FAN53555_VENDOR_FAIRCHILD,
-+	FAN53555_VENDOR_ROCKCHIP,	/* RK8600, RK8601 */
-+	RK8602_VENDOR_ROCKCHIP,		/* RK8602, RK8603 */
- 	FAN53555_VENDOR_SILERGY,
- 	FAN53526_VENDOR_TCS,
- };
-@@ -87,6 +93,14 @@ enum {
- 	FAN53555_CHIP_ID_08 = 8,
- };
- 
-+enum {
-+	RK8600_CHIP_ID_08 = 8,		/* RK8600, RK8601 */
-+};
-+
-+enum {
-+	RK8602_CHIP_ID_10 = 10,		/* RK8602, RK8603 */
-+};
-+
- enum {
- 	TCS4525_CHIP_ID_12 = 12,
- };
-@@ -117,6 +131,8 @@ struct fan53555_device_info {
- 	/* Voltage setting register */
- 	unsigned int vol_reg;
- 	unsigned int sleep_reg;
-+	unsigned int en_reg;
-+	unsigned int sleep_en_reg;
- 	/* Voltage range and step(linear) */
- 	unsigned int vsel_min;
- 	unsigned int vsel_step;
-@@ -159,7 +175,7 @@ static int fan53555_set_suspend_enable(struct regulator_dev *rdev)
- {
- 	struct fan53555_device_info *di = rdev_get_drvdata(rdev);
- 
--	return regmap_update_bits(rdev->regmap, di->sleep_reg,
-+	return regmap_update_bits(rdev->regmap, di->sleep_en_reg,
- 				  VSEL_BUCK_EN, VSEL_BUCK_EN);
- }
- 
-@@ -167,7 +183,7 @@ static int fan53555_set_suspend_disable(struct regulator_dev *rdev)
- {
- 	struct fan53555_device_info *di = rdev_get_drvdata(rdev);
- 
--	return regmap_update_bits(rdev->regmap, di->sleep_reg,
-+	return regmap_update_bits(rdev->regmap, di->sleep_en_reg,
- 				  VSEL_BUCK_EN, 0);
- }
- 
-@@ -317,6 +333,50 @@ static int fan53555_voltages_setup_fairchild(struct fan53555_device_info *di)
- 	return 0;
- }
- 
-+static int fan53555_voltages_setup_rockchip(struct fan53555_device_info *di)
-+{
-+	/* Init voltage range and step */
-+	switch (di->chip_id) {
-+	case RK8600_CHIP_ID_08:
-+		di->vsel_min = 712500;
-+		di->vsel_step = 12500;
-+		break;
-+	default:
-+		dev_err(di->dev,
-+			"Chip ID %d not supported!\n", di->chip_id);
-+		return -EINVAL;
-+	}
-+	di->slew_reg = FAN53555_CONTROL;
-+	di->slew_mask = CTL_SLEW_MASK;
-+	di->ramp_delay_table = slew_rates;
-+	di->n_ramp_values = ARRAY_SIZE(slew_rates);
-+	di->vsel_count = FAN53555_NVOLTAGES;
-+
-+	return 0;
-+}
-+
-+static int rk8602_voltages_setup_rockchip(struct fan53555_device_info *di)
-+{
-+	/* Init voltage range and step */
-+	switch (di->chip_id) {
-+	case RK8602_CHIP_ID_10:
-+		di->vsel_min = 500000;
-+		di->vsel_step = 6250;
-+		break;
-+	default:
-+		dev_err(di->dev,
-+			"Chip ID %d not supported!\n", di->chip_id);
-+		return -EINVAL;
-+	}
-+	di->slew_reg = FAN53555_CONTROL;
-+	di->slew_mask = CTL_SLEW_MASK;
-+	di->ramp_delay_table = slew_rates;
-+	di->n_ramp_values = ARRAY_SIZE(slew_rates);
-+	di->vsel_count = RK8602_NVOLTAGES;
-+
-+	return 0;
-+}
-+
- static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
- {
- 	/* Init voltage range and step */
-@@ -377,6 +437,7 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 	switch (di->vendor) {
- 	case FAN53526_VENDOR_FAIRCHILD:
- 	case FAN53555_VENDOR_FAIRCHILD:
-+	case FAN53555_VENDOR_ROCKCHIP:
- 	case FAN53555_VENDOR_SILERGY:
- 		switch (pdata->sleep_vsel_id) {
- 		case FAN53555_VSEL_ID_0:
-@@ -391,6 +452,27 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 			dev_err(di->dev, "Invalid VSEL ID!\n");
- 			return -EINVAL;
- 		}
-+		di->sleep_en_reg = di->sleep_reg;
-+		di->en_reg = di->vol_reg;
-+		break;
-+	case RK8602_VENDOR_ROCKCHIP:
-+		switch (pdata->sleep_vsel_id) {
-+		case FAN53555_VSEL_ID_0:
-+			di->sleep_reg = RK8602_VSEL0;
-+			di->vol_reg = RK8602_VSEL1;
-+			di->sleep_en_reg = FAN53555_VSEL0;
-+			di->en_reg = FAN53555_VSEL1;
-+			break;
-+		case FAN53555_VSEL_ID_1:
-+			di->sleep_reg = RK8602_VSEL1;
-+			di->vol_reg = RK8602_VSEL0;
-+			di->sleep_en_reg = FAN53555_VSEL1;
-+			di->en_reg = FAN53555_VSEL0;
-+			break;
-+		default:
-+			dev_err(di->dev, "Invalid VSEL ID!\n");
-+			return -EINVAL;
-+		}
- 		break;
- 	case FAN53526_VENDOR_TCS:
- 		switch (pdata->sleep_vsel_id) {
-@@ -406,6 +488,8 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 			dev_err(di->dev, "Invalid VSEL ID!\n");
- 			return -EINVAL;
- 		}
-+		di->sleep_en_reg = di->sleep_reg;
-+		di->en_reg = di->vol_reg;
- 		break;
- 	default:
- 		dev_err(di->dev, "vendor %d not supported!\n", di->vendor);
-@@ -427,10 +511,23 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 		}
- 		break;
- 	case FAN53555_VENDOR_FAIRCHILD:
-+	case FAN53555_VENDOR_ROCKCHIP:
- 	case FAN53555_VENDOR_SILERGY:
- 		di->mode_reg = di->vol_reg;
- 		di->mode_mask = VSEL_MODE;
- 		break;
-+	case RK8602_VENDOR_ROCKCHIP:
-+		di->mode_mask = VSEL_MODE;
-+
-+		switch (pdata->sleep_vsel_id) {
-+		case FAN53555_VSEL_ID_0:
-+			di->mode_reg = FAN53555_VSEL1;
-+			break;
-+		case FAN53555_VSEL_ID_1:
-+			di->mode_reg = FAN53555_VSEL0;
-+			break;
-+		}
-+		break;
- 	case FAN53526_VENDOR_TCS:
- 		di->mode_reg = TCS4525_COMMAND;
- 
-@@ -456,6 +553,12 @@ static int fan53555_device_setup(struct fan53555_device_info *di,
- 	case FAN53555_VENDOR_FAIRCHILD:
- 		ret = fan53555_voltages_setup_fairchild(di);
- 		break;
-+	case FAN53555_VENDOR_ROCKCHIP:
-+		ret = fan53555_voltages_setup_rockchip(di);
-+		break;
-+	case RK8602_VENDOR_ROCKCHIP:
-+		ret = rk8602_voltages_setup_rockchip(di);
-+		break;
- 	case FAN53555_VENDOR_SILERGY:
- 		ret = fan53555_voltages_setup_silergy(di);
- 		break;
-@@ -481,7 +584,7 @@ static int fan53555_regulator_register(struct fan53555_device_info *di,
- 	rdesc->ops = &fan53555_regulator_ops;
- 	rdesc->type = REGULATOR_VOLTAGE;
- 	rdesc->n_voltages = di->vsel_count;
--	rdesc->enable_reg = di->vol_reg;
-+	rdesc->enable_reg = di->en_reg;
- 	rdesc->enable_mask = VSEL_BUCK_EN;
- 	rdesc->min_uV = di->vsel_min;
- 	rdesc->uV_step = di->vsel_step;
-@@ -531,6 +634,12 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
- 	}, {
- 		.compatible = "fcs,fan53555",
- 		.data = (void *)FAN53555_VENDOR_FAIRCHILD
-+	}, {
-+		.compatible = "rockchip,rk8600",
-+		.data = (void *)FAN53555_VENDOR_ROCKCHIP
-+	}, {
-+		.compatible = "rockchip,rk8602",
-+		.data = (void *)RK8602_VENDOR_ROCKCHIP
- 	}, {
- 		.compatible = "silergy,syr827",
- 		.data = (void *)FAN53555_VENDOR_SILERGY,
-@@ -637,6 +746,12 @@ static const struct i2c_device_id fan53555_id[] = {
- 	}, {
- 		.name = "fan53555",
- 		.driver_data = FAN53555_VENDOR_FAIRCHILD
-+	}, {
-+		.name = "rk8600",
-+		.driver_data = FAN53555_VENDOR_ROCKCHIP
-+	}, {
-+		.name = "rk8602",
-+		.driver_data = RK8602_VENDOR_ROCKCHIP
- 	}, {
- 		.name = "syr827",
- 		.driver_data = FAN53555_VENDOR_SILERGY
--- 
-2.40.0
+Andreas
 
