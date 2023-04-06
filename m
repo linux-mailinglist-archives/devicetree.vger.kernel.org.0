@@ -2,65 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 541EB6DA28F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AEA96DA2A4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:26:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239268AbjDFUXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 16:23:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57342 "EHLO
+        id S238772AbjDFU0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 16:26:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239087AbjDFUW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:22:56 -0400
+        with ESMTP id S230468AbjDFU0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:26:07 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA267976B;
-        Thu,  6 Apr 2023 13:22:33 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 010AC7683;
+        Thu,  6 Apr 2023 13:26:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 72BEA6434E;
-        Thu,  6 Apr 2023 20:22:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EE1BC433D2;
-        Thu,  6 Apr 2023 20:22:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E06B64357;
+        Thu,  6 Apr 2023 20:26:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD85C433EF;
+        Thu,  6 Apr 2023 20:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680812552;
-        bh=QbU1tiiVtHmL+PJo3an08Q0eap2Dp32ICrXVxmaFXMM=;
+        s=k20201202; t=1680812766;
+        bh=z0gnI4xz6i2X3pKzDPyukg2dlEsKFFAw010FtVx1YaQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OTyOeiezNd9LajC1COfog+DUblRjvVWaWdgSE/lh87jYEAg0XWWIlzI44HlLh5Rs5
-         K4Oe+I6TEL7tgVRZbgOEOpWU7nPh/6jRRa9sfhogVV9bsTJIt/Q/ktHis3mhRPBcoj
-         uWdebuQBK+1WHU8qaILAHsncwVGDbE0XNVeYDUAUrlRrrzfJP3r+6cT0Ra+Vj1RVFi
-         jAhfooNC9IAFxgw/7Q4jFMfauJQML0of5074/Yog2DLxSmTd+rzHSlLfdzE5+CWiLo
-         lM3740EvfiGjstKT8J9TOrTXqC3mpibEGeZZUo9OglYfD/bZOvVAYRz9arLNYQXbvG
-         5BLNVFSt02/Pw==
-Date:   Thu, 6 Apr 2023 13:22:30 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v5 5/6] mmc: sdhci-msm: Switch to the new ICE API
-Message-ID: <20230406202230.GB20288@sol.localdomain>
-References: <20230403200530.2103099-1-abel.vesa@linaro.org>
- <20230403200530.2103099-6-abel.vesa@linaro.org>
+        b=cnuNuqJPRT+naE4FT6Idl0PmuyfHxXLrHLCcEGQUNbXjrYXHlfPFBG6Fsl/9ZnLJn
+         m4iaxLa1mQSus8aMS/oe4SthXZMbrymt6vCmo4Th8npTJkz5+Ovybe6gGRqlGebTmQ
+         BqwBOIV92qjJNjEoCJtwiIR2YxtWC3wUbF1cc+5lGca8Af56GT+lGrUFDJQr3oMEs6
+         YpTNUZvwhl3jTn+r6xkabr4QwfECEtZZig+t/26rA6Es9CkrHbWAoyaVs5BJC13yXA
+         OOQopOY3KqIzKRizrz17ghtgN5nAiWjV0+IFqZM6Xr3WG2SQhzUpQ/dK6K+HgOGxVm
+         PCIpXshlSkbig==
+Date:   Thu, 6 Apr 2023 21:26:00 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Saalim Quadri <danascape@gmail.com>, lgirdwood@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        daniel.baluta@nxp.com, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: wm8523: Convert to dtschema
+Message-ID: <2c32b1e0-20f7-4d9f-9dbc-8725562e456e@sirena.org.uk>
+References: <20230405203419.5621-1-danascape@gmail.com>
+ <2dc882b7-d09f-dfa0-67a1-3f9e6f1ac457@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="a/w5QI6652HIyVVV"
 Content-Disposition: inline
-In-Reply-To: <20230403200530.2103099-6-abel.vesa@linaro.org>
+In-Reply-To: <2dc882b7-d09f-dfa0-67a1-3f9e6f1ac457@linaro.org>
+X-Cookie: Man and wife make one fool.
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
@@ -70,80 +58,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 03, 2023 at 11:05:29PM +0300, Abel Vesa wrote:
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 8ac81d57a3df..1a6e63b7af12 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -19,6 +19,8 @@
->  #include <linux/firmware/qcom/qcom_scm.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/interconnect.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/reset.h>
->  
-> +#include <soc/qcom/ice.h>
 
-The include of <linux/firmware/qcom/qcom_scm.h> should be removed.
+--a/w5QI6652HIyVVV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->  static int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
->  			      struct cqhci_host *cq_host)
->  {
->  	struct mmc_host *mmc = msm_host->mmc;
->  	struct device *dev = mmc_dev(mmc);
-> -	struct resource *res;
->  
->  	if (!(cqhci_readl(cq_host, CQHCI_CAP) & CQHCI_CAP_CS))
->  		return 0;
->  
-> -	res = platform_get_resource_byname(msm_host->pdev, IORESOURCE_MEM,
-> -					   "ice");
-> -	if (!res) {
-> -		dev_warn(dev, "ICE registers not found\n");
-> -		goto disable;
-> -	}
-> -
-> -	if (!qcom_scm_ice_available()) {
-> -		dev_warn(dev, "ICE SCM interface not found\n");
-> -		goto disable;
-> +	msm_host->ice = of_qcom_ice_get(dev);
-> +	if (msm_host->ice == ERR_PTR(-EOPNOTSUPP)) {
-> +		dev_warn(dev, "Disabling inline encryption support\n");
-> +		msm_host->ice = NULL;
->  	}
->  
-> -	msm_host->ice_mem = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(msm_host->ice_mem))
-> -		return PTR_ERR(msm_host->ice_mem);
-> -
-> -	if (!sdhci_msm_ice_supported(msm_host))
-> -		goto disable;
-> +	if (IS_ERR(msm_host->ice))
-> +		return PTR_ERR(msm_host->ice);
->  
->  	mmc->caps2 |= MMC_CAP2_CRYPTO;
-> -	return 0;
->  
-> -disable:
-> -	dev_warn(dev, "Disabling inline encryption support\n");
->  	return 0;
->  }
+On Thu, Apr 06, 2023 at 07:38:19PM +0200, Krzysztof Kozlowski wrote:
 
-This is sometimes setting MMC_CAP2_CRYPTO when ICE is unsupported.
+> Please squash all your three WM bindings (wm8711, wm8580 and wm8523)
+> into one binding, if they are the same. Probably other WM from your
+> previous submissions as well. We really do not need binding per each of
+> this simple codecs. If they ever need to grow, then we can split them.
 
-BTW, it would be better to set not msm_host->ice until it's known that it will
-have a valid value:
+At a minimum all of these devices should have separate regulator
+specifications should they ever grow regulator support (and ideally
+would have regulators specified in the binding from the get go).
 
-	ice = of_qcom_ice_get(dev);
-	if (ice == ERR_PTR(-EOPNOTSUPP)) {
-		dev_warn(dev, "Disabling inline encryption support\n");
-		return 0;
-	}
-	if (IS_ERR_OR_NULL(ice))
-		return PTR_ERR_OR_ZERO(ice);
+There's also no reason to restrict simple CODECs to a particular
+manufacturer...
 
-	msm_host->ice = ice;
-	mmc->caps2 |= MMC_CAP2_CRYPTO;
-	return 0;
+--a/w5QI6652HIyVVV
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- Eric
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQvKtcACgkQJNaLcl1U
+h9BkDgf+M8IXpNfB37GzGQfw02E0ENuLc4LrP+u4L8FJk6W3CcGjYDaG/RO0qOGX
+uILrCetFV4EAMNAKv7LLFIDcIJGuTcNZFBm+RYJDvu2INOoAYjZIeGWylN/rdKFD
+pvlbQQX2e2jb4QfsqJT5dPbDYWhd+PcIy3hB698TuRCmZ5s8rbYw8Yap/N89ZgBQ
+cTea2MuRLe61spgM6oelea5GgHRKIhiNPCsUjfH+waM24o6KsgaRNcR/tGzIKRfi
+Mfo1ffujsCvmBrH2csO8eP7xgbiDwDLmGTrZcePl7XSXEa0259JcYR8qfErqmMxn
+JdozSGQDt9qVftBf0Bn14hHTVfjoKQ==
+=F4uO
+-----END PGP SIGNATURE-----
+
+--a/w5QI6652HIyVVV--
