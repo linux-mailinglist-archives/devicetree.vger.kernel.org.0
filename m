@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B6566D9DA3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 474C66D9DAB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238461AbjDFQii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
+        id S239534AbjDFQkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239466AbjDFQih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:38:37 -0400
+        with ESMTP id S239523AbjDFQkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:40:03 -0400
 Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F5D83C1
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:38:35 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id n21so2829356ejz.4
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:38:35 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B21C974D
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:40:02 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id 18so2831917ejo.13
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:40:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680799113;
+        d=linaro.org; s=google; t=1680799201;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OWDcJ97FBFl4hgq5OIfJLSKl2wEKzI1QT0yr2K4Znq0=;
-        b=Fc0NYTJhxNCIycKuaHx871vbDcmCb2OqHdnPGEljFbriQiWpw0JegRVZ5TANfwqjyz
-         sZrhpt1isg5mXafdzTWWjhh/HL2N9+gHUDFBgLbCu6mNxSztgWAQp4TVOJg8WZPEg8nR
-         YUmjjBbZ7CdTDBFKFlUXfw4DYf03HqjY2Pl13dN2f4Oxoe8iciebvDy9LmhsOos/MVrV
-         8vZ4shuaAIfWyJvy5SuPBi3egDIVk7t+FHhVBvLMqZ+L3j1EPqRd2USXDe0M5TGpRJCI
-         qkCUZpXdkBuLmzxhr+tpC3d7ql/BgeI0oEbDBhuQxWLzAkNt8jbp1FJZ5+1eh9bOkcPL
-         5HfQ==
+        bh=Hmuub5XFek/J7yZRXiFvjEFpOewLgR0Tr6Mam0kUoMQ=;
+        b=drMJmyIYsxy1uh3byBCf9+TGbQYwfEa5KyPf1dWWZ8Xfro9/3/ifv5I8Htcd2BuIyA
+         D8FdlbmK0c7ubKLkXfG6DNI5aqaSrq4blwwMszvssap4j0Y0sn8htsufiprFq9vmDIj6
+         NCKFJfjgKNuyPetKR6J4i9MQT2HZQ1KNKzcMmA9yjBUouzSekSBhRmM2LQwCx6qM8cft
+         kuj25spDIuHbsLcLA3WJu6ljlPed9yx6dUdPESHZUQJVXv9Sm4W+sdwgBYdNJdSsEh+T
+         TjPmOsE93oo6SFID1YuVOeJCuANgn6m3XhiMCF8PZp1SmN4dmKyoOPV8HzJT3jntpggP
+         peSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680799113;
+        d=1e100.net; s=20210112; t=1680799201;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OWDcJ97FBFl4hgq5OIfJLSKl2wEKzI1QT0yr2K4Znq0=;
-        b=QxoGG5XgEyzf4LpB0Gu6eW9yL0BEdlzL9014WQqE4OLXPY0pEgmRID8YSic4H6j3xQ
-         Ss5D43VwF7bJkl57g+qFXy2e7gKiIV7jl0lLm0V3UAAuZJZtC3qBcWF66gYSU6jVjkMv
-         54B8wNvZc/RvtwSNhIE4rg/9JexwMrIPv69toPYMk85ctYlXx1rmLy5O8Azt5IEMXtE7
-         u3TZGgpEOTCaIpP+B6gkM4AIhIX/sN4b7xybF71y2BlzFaMg+GzeYXfnMT7n/4/mkdnq
-         QbqtW4HLQND3sTcE9nKmCZqdWi1nbEPHQPTLF01xuuQP9AydUZcdGCsitoTtLn0j5VhI
-         sfZA==
-X-Gm-Message-State: AAQBX9d7PNCUtQthFxRC4L/WmlQPm7h8Js+V6SCZv6LjEC1PGboHRCcO
-        V6LtUQ4Mho2sgnOBZAI+uWMsPg==
-X-Google-Smtp-Source: AKy350aS0NEwtDEBHk40rYZEAEjF2aRpnkTgWNwXWWFdGehYULwO3FfJ2tZdOw08E+5EhCOmWpY/Jg==
-X-Received: by 2002:a17:906:5a73:b0:862:c1d5:ea1b with SMTP id my51-20020a1709065a7300b00862c1d5ea1bmr7110646ejc.8.1680799113564;
-        Thu, 06 Apr 2023 09:38:33 -0700 (PDT)
+        bh=Hmuub5XFek/J7yZRXiFvjEFpOewLgR0Tr6Mam0kUoMQ=;
+        b=y16GcVPRB+PVUF5TzUp0VvKL5EuGbKTV1x3mujAveSxdWvNYZxxfnIFBcjXafsw42T
+         AcuUn44ADanNY7XJMLJh8XR1aWb513dL9ETALUnpAxXgcNm6sLCWAr0p/DlHx4fMe+yO
+         6URmYyecS/wuoDBjqwPgeY5cNi7UiGtP2AghSqNk/42k7gqPvDOQt0nPv+WHDSdq+oor
+         95aKXhvrBnwQJORxFPisDRk0plnjNI5wdZ2P1xhrEpJ5k+Bys8IFtFsUUDNlUGeamxBZ
+         3TyJlnSlvYebC6HY1xeD6dr19U/7lDYM1c89RZVw2e2ek4MWJzaHlMWXxqTZUFsniRxz
+         MR5Q==
+X-Gm-Message-State: AAQBX9ctrROyacZNg1jkG594L8Y8G1sVsObURCdOIw5URMj6K4QaYZua
+        +/0z1zEf319TNLd9ZvIE/NMlgQ==
+X-Google-Smtp-Source: AKy350Z3yzs/hx03BNLuEf7YJao+6JsqUiyCFSpQAmDH3M8D2LwjqjBQxJxdXxZhmwwBH+iGutWkBg==
+X-Received: by 2002:a17:907:c0f:b0:949:87f1:2ca0 with SMTP id ga15-20020a1709070c0f00b0094987f12ca0mr6267574ejc.71.1680799200921;
+        Thu, 06 Apr 2023 09:40:00 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id oz8-20020a1709077d8800b0093120a11a5dsm1019971ejc.92.2023.04.06.09.38.32
+        by smtp.gmail.com with ESMTPSA id fy8-20020a170906b7c800b0093e23d03d72sm1022593ejb.177.2023.04.06.09.40.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 09:38:33 -0700 (PDT)
-Message-ID: <a8234f66-d214-ee46-2455-a1ad8650bd26@linaro.org>
-Date:   Thu, 6 Apr 2023 18:38:32 +0200
+        Thu, 06 Apr 2023 09:40:00 -0700 (PDT)
+Message-ID: <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
+Date:   Thu, 6 Apr 2023 18:39:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V2 2/3] dt-bindings: arm: fsl: Add Marantec maveo box as a
- DHCOR i.MX6ULL SoM based board
+Subject: Re: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
 Content-Language: en-US
 To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         linux-arm-kernel@lists.infradead.org
@@ -67,9 +66,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         kernel@dh-electronics.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
- <20230406154900.6423-2-cniedermaier@dh-electronics.com>
+ <20230406154900.6423-3-cniedermaier@dh-electronics.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406154900.6423-2-cniedermaier@dh-electronics.com>
+In-Reply-To: <20230406154900.6423-3-cniedermaier@dh-electronics.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,17 +81,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 17:48, Christoph Niedermaier wrote:
-> Add Marantec maveo box. The system is used to get a smart conntection
-> to a door drive. The core of this system is a soldered i.MX6ULL DHCOR
-> SoM from DH electronics.
+On 06/04/2023 17:49, Christoph Niedermaier wrote:
+> Add support for Marantec maveo box. The system is used to get a
+> smart conntection to a door drive. It has USB, WiFi, Bluetooth,
+> Zigbee and NFC interfaces. The core of this system is a soldered
+> i.MX6ULL DHCOR SoM from DH electronics.
 > 
 > Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
 > ---
 > Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Li Yang <leoyang.li@nxp.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: kernel@dh-electronics.com
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Correct the vendor prefix
+>     - Change pinconfig of User and Reset button
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts | 361 ++++++++++++++++++++++++++
+>  2 files changed, 362 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index aa8fb4b7cdcc..58d3334164e2 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -751,6 +751,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>  	imx6ull-dhcom-drc02.dtb \
+>  	imx6ull-dhcom-pdk2.dtb \
+>  	imx6ull-dhcom-picoitx.dtb \
+> +	imx6ull-dhcor-maveo-box.dtb \
+>  	imx6ull-jozacp.dtb \
+>  	imx6ull-kontron-bl.dtb \
+>  	imx6ull-myir-mys-6ulx-eval.dtb \
+> diff --git a/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts b/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
+> new file mode 100644
+> index 000000000000..83bacac19933
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
+> @@ -0,0 +1,361 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright (C) 2023 DH electronics GmbH
+> + * Copyright (C) 2023 Marantec electronics GmbH
+> + *
+> + * DHCOM iMX6ULL variant:
+> + * DHCR-iMX6ULL-C080-R051-SPI-WBT-I-01LG
+> + * DHCOR PCB number: 578-200 or newer
+> + * maveo box PCB number: 525-200 or newer
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx6ull-dhcor-som.dtsi"
+> +
+> +/ {
+> +	model = "DH electronics i.MX6ULL DHCOR on maveo box";
+> +	compatible = "marantec,imx6ull-dhcor-maveo-box", "dh,imx6ull-dhcor-som",
+> +		     "fsl,imx6ull";
+> +
+> +	aliases {
+> +		/delete-property/ mmc0; /* Avoid double definitions */
 
+I don't understand it. What is "double definition" of aliases?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +		/delete-property/ mmc1;
+> +		mmc2 = &usdhc2; /* eMMC should be mmc2 */
+
+Why? How is this labeled on the board (physically or on schematics)? If
+you answer here "for booting", then the answer is NAK. Don't add
+software policies to Devicetree.
 
 Best regards,
 Krzysztof
