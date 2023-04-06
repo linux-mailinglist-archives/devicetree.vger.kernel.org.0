@@ -2,96 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E056D9D87
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BAC16D9D9E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239093AbjDFQ1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:27:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42998 "EHLO
+        id S238761AbjDFQg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239144AbjDFQ1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:27:23 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3E7AD3C
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:27:22 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17786581fe1so42891941fac.10
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:27:22 -0700 (PDT)
+        with ESMTP id S229458AbjDFQg6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:36:58 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57EF176A2
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:36:56 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id sg7so2815489ejc.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:36:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680799015;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GiN+bdc9flg9WBnmPGDLiXSY2JIdJVbrctj9Em7/5aI=;
+        b=PDYjE39rDxgqj82gn7sMLrrCgVGKgBcGOWjDiRh1JtpuxeTweyrEs57kA3+qKgsk5F
+         H6RUuRjq8g2toCH4e38ehSYTc5USvaiCYWFNFTJN5cyh2OpRgq32RrHS04t5sO6TddNQ
+         rgYFnfMXnFPDkTdIgnJ/27SnuwvbIbmnd9ESCjimCCX9md+AHA5cjR+Mf2ba//JEQ0r+
+         NK/NMQEmuCw5HcfRNzaliEDuWIJJufm1HfI/I1oc+AN4FZTGFmKO6L53cmSBucpE8oWB
+         GovtLXTLIAglvwGZzGlF74nzdKfGIq2bTyhldA/nv9Bqpe1+2ExqlFFegOPHcClW9fxt
+         YnbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680798442; x=1683390442;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6lHF6wT2R1xBj83krcubHMI3vo+QUUkgHmi0J4qN/9Q=;
-        b=2BEuXa+kc80M2zSwY2YCATX6xkrj6NHzpLsY3ismS5iq3A2rfOWvj3lDFFTS9mBok0
-         7fMP0tg3edox20XDrLkI8FDQCDNgblfkZ8lla34qMp7dd6GK4+yUX4XnH7/F9/0+xf1i
-         dSnNl82PTDoAR5w8Rb4kVVbaXmJ37h4ECwjL2QwmdTjfU8BYS78AxZvhiRPFuPcOiX+/
-         U4fCuRX18SGKNdQUwtYwJ9t34+fRb1QtFDjVy3aLVQWvXUWGMzI8zn6hiFR4Bdm3obsY
-         q02rFxaQrSWMHnyJqYsgyvLGI1zpfHAtfiEF45k3qoHlIANoAnzRJtTwVa2cJpQa1IbM
-         gA/g==
-X-Gm-Message-State: AAQBX9fmu5SyFibMTbThs0BVzMt+LZJ3BSGjfvyw7AqefhjpBEYGlimr
-        M0tJB+sXd7DoBPZPZtK7rA==
-X-Google-Smtp-Source: AKy350Y2gpJwNABtUd8iz0/CtwUpjclbduPBTsTXu612gHBEV/4x+PJKHykUAnTUyhQzlTK2oAhGeQ==
-X-Received: by 2002:a05:6870:339e:b0:180:94ca:f44e with SMTP id w30-20020a056870339e00b0018094caf44emr5968519oae.25.1680798442083;
-        Thu, 06 Apr 2023 09:27:22 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id zg22-20020a0568716b1600b0017197629658sm787912oab.56.2023.04.06.09.27.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 09:27:21 -0700 (PDT)
-Received: (nullmailer pid 3260793 invoked by uid 1000);
-        Thu, 06 Apr 2023 16:27:20 -0000
-Date:   Thu, 6 Apr 2023 11:27:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     neil.armstrong@linaro.org, marex@denx.de,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v3] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge
- to yaml
-Message-ID: <20230406162720.GA3170910-robh@kernel.org>
-References: <20230404023057.510329-1-festevam@gmail.com>
+        d=1e100.net; s=20210112; t=1680799015;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GiN+bdc9flg9WBnmPGDLiXSY2JIdJVbrctj9Em7/5aI=;
+        b=C8Oh3OJNffZuANqbWc5hOyCO25B5c+NdsVMHGVyV4X5wnDY6NiggzEAtGA6AiDGniE
+         967LA0kNFCSrkSJV55N1PBGy4zQC+A8/H/Oj7VuRFpfE35UbY18jEMFmdGtDs4wklmrM
+         FHvJYGdERB3L0RjVi2NIKqmR4/ZqpzoxznKkbOZpQb5tnVsRX5zHCd3wnkqqY7aHJ0C5
+         xtrkEGsmcJeUFYfi4oCMtcvYJI1C0UYzf51hoGI8KG/DXwz5CuXs4WrQ2UWVDbsYmnpp
+         7I7zt3OmEwEdv97wdWhvK6XuDDzE65DRUr/AKM/2bx5rSEar8XauNiQHyN9jZxs7flb8
+         SkIg==
+X-Gm-Message-State: AAQBX9dRkrUEQHwWPpXv9wy3MhCbiE2a6Ac4iCgeeEGWI7JO9pvuxeY+
+        mkgTcMV13hRtLvcflxacCFV6Cg==
+X-Google-Smtp-Source: AKy350a32KTWiAed4A3ybnDeyPP8SUNar1QVwzvKi8g14wgwAULFc0Y6x+79u4XbjZYOQycCMzpYLQ==
+X-Received: by 2002:a17:906:7b50:b0:878:52cd:9006 with SMTP id n16-20020a1709067b5000b0087852cd9006mr7683835ejo.69.1680799014860;
+        Thu, 06 Apr 2023 09:36:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id ww7-20020a170907084700b00947a40ded80sm1012286ejb.104.2023.04.06.09.36.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 09:36:54 -0700 (PDT)
+Message-ID: <aa947a69-a0bf-50e6-9ff2-770f436d58e2@linaro.org>
+Date:   Thu, 6 Apr 2023 18:36:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230404023057.510329-1-festevam@gmail.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/2] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Content-Language: en-US
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Marek Vasut <marex@denx.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kernel <kernel@dh-electronics.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230405160258.46998-1-cniedermaier@dh-electronics.com>
+ <20230405160258.46998-2-cniedermaier@dh-electronics.com>
+ <05fa147c-116b-59b4-d14b-760bbefd7602@denx.de>
+ <e7aa3b3220e148ee96f5a1c361721845@dh-electronics.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e7aa3b3220e148ee96f5a1c361721845@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 03, 2023 at 11:30:57PM -0300, Fabio Estevam wrote:
-> From: Jagan Teki <jagan@amarulasolutions.com>
+On 05/04/2023 20:24, Christoph Niedermaier wrote:
+> From: Marek Vasut [mailto:marex@denx.de]
+> Sent: Wednesday, April 5, 2023 6:25 PM
+>> On 4/5/23 18:02, Christoph Niedermaier wrote:
+>>
+>> [...]
+>>
+>>> +/ {
+>>> +     model = "DH electronics i.MX6ULL DHCOR on maveo box";
+>>> +     compatible = "dh,imx6ull-dhcor-maveo-box", "dh,imx6ull-dhcor-som",
+>>> +                  "fsl,imx6ull";
+>>> +
+>>> +     aliases {
+>>> +             /delete-property/ mmc0; /* Avoid double definitions */
+>>> +             /delete-property/ mmc1;
+>>> +             mmc2 = &usdhc2; /* eMMC should be mmc2 */
+>>
+>> Why not mmc0 ?
+>>
+>> Use root=PARTUUID= when booting to avoid any dependency on
+>> root=/dev/mmcblk2pN enumeration.
 > 
-> Samsung MIPI DSIM bridge can be found on Exynos and NXP's 
-> i.MX8M Mini/Nano/Plus SoCs.
-> 
-> Convert exynos_dsim.txt to yaml.
-> 
-> Used the example node from exynos5433.dtsi instead of the one used in
-> the legacy exynos_dsim.txt.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v2:
-> - Took previous Rob Herring's feedback into account:
-> https://lore.kernel.org/all/20210712151322.GA1931925@robh.at.kernel.org/
-> - Handled imx8mn and imx8mp.
-> - Remove unnecessary #address-cells/size-cells.
-> 
->  .../display/bridge/samsung,mipi-dsim.yaml     | 255 ++++++++++++++++++
->  .../bindings/display/exynos/exynos_dsim.txt   |  92 -------
->  MAINTAINERS                                   |   1 +
->  3 files changed, 256 insertions(+), 92 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> This is due to software interchangeability with the DHCOM
+> i.MX6ULL, where the eMMC is always mmc2.
 
-Applied to drm-misc-next.
+That's not the reason to have aliases. The number should match numbering
+in your datasheet/schematics/user-guide, not what your software wants.
 
-Rob
+Use PARTUUID for SW dependencies.
+
+Best regards,
+Krzysztof
+
