@@ -2,172 +2,453 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0E66DA0A3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 464906DA0A9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjDFTE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 15:04:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57882 "EHLO
+        id S229947AbjDFTGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 15:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbjDFTEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:04:14 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01EFD49F1
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 12:04:11 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-69f7c7cff1fso68721a34.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 12:04:10 -0700 (PDT)
+        with ESMTP id S229840AbjDFTGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:06:17 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE8D11D;
+        Thu,  6 Apr 2023 12:06:15 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-17fcc07d6c4so29354648fac.8;
+        Thu, 06 Apr 2023 12:06:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680807850; x=1683399850;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MkEqUW/wdPs5b4/W/JSh6XQhMQ3aalNHTczsi6c4D04=;
-        b=YYECXQNYlHighZyX+gtI9gNPfVFC+gOy5ImZXx7Uub4egWGs6SVdpEjnVM6Tprjpu6
-         U71fo90ejXBIPzv+vQBYHN9XF8zbRHPQF5BBZ80AYsysTxrocx3gNnHCMEk4txdUsFqJ
-         2CBVffTSnp+7ZfadxKFiWSYtecpABqx6xTmeLd5zeE1FNQvdzZWn5Kji3rztZ51xij1+
-         SLIMV06r1KczjkrtR46i72qpyRWSxiOwcp8IG2hWE153OsJSXwoSHvNFK5LlCjH4mwhN
-         r+u+GatH5wocC+BJg5lGy0I8Lsxsi9If0NkNqUSom6z+Ay23H+FbkuM2merAgS+1DYdt
-         ENbA==
+        d=gmail.com; s=20210112; t=1680807973; x=1683399973;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AJYodcTLPcALK662SKlDIzoKqD7JrUMORbzaOnAztas=;
+        b=cn8qaET7sh9bpTUgGj7ZZy6fmONXx7DyOrZ/D00x+5J6ZbEQLQb3h0xWQkIE25ewIO
+         UEGNcurztVn8k0l9WqDneovPYeuf4pnFrw1ZGM5vtGojuynCrPix3izFtcAzsNvy4Dgp
+         GcswJW206MwAXDf/KH+CFu+Q3jO/z0HG87nuB/Fq9XWtxCZ8STPauQJjCQOi5T6Nb8/b
+         Ok0rkjVgpiWZbhHljlepU9yOev0Y1USP/JDE5ucV8o85C1mZD3D0X5ZWPZuQ/iRvEiSE
+         QGFJo4N89Xkd8yCAbhAOUcKDVOd3C5K5TkxZO9OFpzgdghC+Jo7hrsx1eFNasjDS6p2I
+         hbBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680807850; x=1683399850;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MkEqUW/wdPs5b4/W/JSh6XQhMQ3aalNHTczsi6c4D04=;
-        b=gBSPJtf6gvKowFxhU91I3FwtA1+WQczBuZp9ckuPLK1fd21q+q+jpZ7gv9YDGAd6Es
-         dQXEeBCigo0DnA7f9AGCeSvWZd/KyarXUkwn4irI9qPN/T32cGRzzN75xc3RDoHuLA5C
-         N79wvqpBLWFlW0se/arWxYogMDkLf6Tufo2wj2Mi3DzRU/6HhwEfBM3B/8w8p+NvWRef
-         MGHb3vgiXSe/H7EX3NcCC3bYX9WfvZVQII9RPxU1E8UupvroWjH7ZSEqaP5M0BGeosFb
-         RamngTfBydCfl7Uu8qt1OdU+7Vc59XivjBSZ73ayTYyhL9isSzw9ErIw1bQvDhPJnBEN
-         vcLQ==
-X-Gm-Message-State: AAQBX9cwJ3LfnssepzWMhLUQDCl3Ovdh2zirT+id5rnaYNtZOEVOBthP
-        RRNQF00soM8VSlfk8aTuA7FiNXs+alg=
-X-Google-Smtp-Source: AKy350bSrwVeMUNiwDblDiK34mHS4MzckVyhRtbMqaYV1khvA13XphdOkcRXc+U3j+WVYmKG4jl6jg==
-X-Received: by 2002:aca:b541:0:b0:38a:f7b7:d1b7 with SMTP id e62-20020acab541000000b0038af7b7d1b7mr2816722oif.4.1680807850238;
-        Thu, 06 Apr 2023 12:04:10 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:c4b0:ddac:a031:82c4])
-        by smtp.gmail.com with ESMTPSA id u10-20020a056808150a00b0037832f60518sm986761oiw.14.2023.04.06.12.04.07
+        d=1e100.net; s=20210112; t=1680807973; x=1683399973;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AJYodcTLPcALK662SKlDIzoKqD7JrUMORbzaOnAztas=;
+        b=OZtVxzFpAuuWbPSKGpBIY3yc4YL04CkjgZZWO0LgJyRV6d7YQzkEYAjj45kVMEOJAT
+         tB5JWcXfVMcvWfGX/4dccrhFtntk3NWTaoam1e2bwe6PMnJ7KLpbKdNW5JSkJmykzIhV
+         5kU5phA4g6rsrEdKrIswcDRUvIn9lroRxBJbgI2HzMCIcWQEjVb1Lquni3/j6uv11xLv
+         VfOW92pddt+4VKHMsHdlbISuq43aQZ+DKgWcDeE/Wk5n6sphj0lsUf2VW29rseCgU0Xs
+         1wvcM2R10SVaqnHFqjHQI5dOgDRRNIMB9MBHbj2cb0UWeOh2qvk8AhUPwMVjomqqld2y
+         tNvg==
+X-Gm-Message-State: AAQBX9fHUQljKNyb4hVm8/IgTOg75Zy4WAl48NjoXFj1BQPrmwtHSrf0
+        6V80luTtvllk15nBL1t36U4=
+X-Google-Smtp-Source: AKy350askOlVauI/Pixwj4kEyLed7K1Dqt3pq05UdpkNW/eJhwCDc8vQNyZKEjVlt7cFSwSCTUFCNA==
+X-Received: by 2002:a05:6870:e308:b0:183:e8b2:92f6 with SMTP id z8-20020a056870e30800b00183e8b292f6mr62851oad.27.1680807973378;
+        Thu, 06 Apr 2023 12:06:13 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id an19-20020a056871b19300b00183fbbe8cdfsm477217oac.31.2023.04.06.12.06.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 12:04:09 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     neil.armstrong@linaro.org
-Cc:     marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, jagan@amarulasolutions.com,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 2/2] drm: bridge: samsung-dsim: Implement support for clock/data polarity swap
-Date:   Thu,  6 Apr 2023 16:03:54 -0300
-Message-Id: <20230406190354.1641352-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230406190354.1641352-1-festevam@gmail.com>
-References: <20230406190354.1641352-1-festevam@gmail.com>
+        Thu, 06 Apr 2023 12:06:12 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 6 Apr 2023 12:06:10 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Daniel Matyas <daniel.matyas@analog.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>,
+        Vincent Tremblay <vincent@vtremblay.dev>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Greg.Schwendimann@infineon.com" <Greg.Schwendimann@infineon.com>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] hwmon: max31827: add MAX31827 driver
+Message-ID: <aa5ad0bf-3949-435e-b63d-39db6257c2bf@roeck-us.net>
+References: <20230406164331.6557-1-daniel.matyas@analog.com>
+ <20230406164331.6557-2-daniel.matyas@analog.com>
+ <20230406164331.6557-3-daniel.matyas@analog.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230406164331.6557-3-daniel.matyas@analog.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Vasut <marex@denx.de>
+On Thu, Apr 06, 2023 at 07:43:27PM +0300, Daniel Matyas wrote:
+> MAX31827 is a low-power temperature switch with I2C interface.
+> 
+> The device is a ±1°C accuracy from -40°C to +125°C
+> (12 bits) local temperature switch and sensor with I2C/SM-
+> Bus interface. The combination of small 6-bump wafer-lev-
+> el package (WLP) and high accuracy makes this temper-
+> ature sensor/switch ideal for a wide range of applications.
+> 
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+> ---
+>  MAINTAINERS              |   1 +
+>  drivers/hwmon/Kconfig    |  11 ++
+>  drivers/hwmon/Makefile   |   1 +
+>  drivers/hwmon/max31827.c | 240 +++++++++++++++++++++++++++++++++++++++
 
-Implement support for DSI clock and data lane DN/DP polarity swap by
-means of decoding 'lane-polarities' DT property. The controller does
-support DN/DP swap of clock lane and all data lanes, the controller
-does not support polarity swap of individual data lane bundles, add
-a check which verifies all data lanes have the same polarity.
+Documentation/hwmon/max31727.rst missing.
 
-This has been validated on an imx8mm board that actually has the MIPI DSI
-clock lanes inverted.
+>  4 files changed, 253 insertions(+)
+>  create mode 100644 drivers/hwmon/max31827.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 549cea6bc340..63c17195a99b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12541,6 +12541,7 @@ L:	linux-hwmon@vger.kernel.org
+>  S:	Supported
+>  W:	http://ez.analog.com/community/linux-device-drivers
+>  F:	Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> +F:	drivers/hwmon/max31827.c
+>  
+>  MAX6650 HARDWARE MONITOR AND FAN CONTROLLER DRIVER
+>  L:	linux-hwmon@vger.kernel.org
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 5b3b76477b0e..80c44a787d42 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2401,4 +2401,15 @@ config SENSORS_ASUS_EC
+>  
+>  endif # ACPI
+>  
+> +config MAX31827
+> +	tristate "MAX31827 low-power temperature switch"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for MAX31827
+> +	  low-power temperature switch and sensor connected with I2C.
+> +
+> +	  This driver can also be built as a module.  If so, the module
+> +	  will be called max31827.
+> +
+>  endif # HWMON
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index 88712b5031c8..d00f0a1e73f6 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -224,3 +224,4 @@ obj-$(CONFIG_PMBUS)		+= pmbus/
+>  
+>  ccflags-$(CONFIG_HWMON_DEBUG_CHIP) := -DDEBUG
+>  
+> +obj-$(CONFIG_MAX31827) += max31827.o
+> diff --git a/drivers/hwmon/max31827.c b/drivers/hwmon/max31827.c
+> new file mode 100644
+> index 000000000000..1c79bcf12d78
+> --- /dev/null
+> +++ b/drivers/hwmon/max31827.c
+> @@ -0,0 +1,240 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * max31827.c - Support for Maxim Low-Power Switch
+> + *
+> + * Copyright (c) 2023 Daniel Matyas <daniel.matyas@analog.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/device.h>
+> +#include <linux/of.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/hwmon-sysfs.h>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes since v1:
-- Use 'drm: bridge: samsung-dsim:' as prefix (Jagan).
-- Collected Jagan's Reviewed-by tag.
+Not needed.
 
- drivers/gpu/drm/bridge/samsung-dsim.c | 27 ++++++++++++++++++++++++++-
- include/drm/bridge/samsung-dsim.h     |  2 ++
- 2 files changed, 28 insertions(+), 1 deletion(-)
+> +
+> +#define MAX31827_T_REG				0x0
+> +#define MAX31827_CONFIGURATION_REG              0x2
+> +#define MAX31827_TH_REG                         0x4
+> +#define MAX31827_TL_REG                         0x6
+> +#define MAX31827_TH_HYST_REG                    0x8
+> +#define MAX31827_TL_HYST_REG                    0xA
+> +
+> +#define MAX31827_CONFIGURATION_1SHOT_MASK	BIT(0)
+> +#define MAX31827_CONFIGURATION_CNV_RATE_MASK    GENMASK(3, 1)
+> +#define MAX31827_CONFIGURATION_RESOL_MASK       GENMASK(7, 6)
+> +#define MAX31827_CONFIGURATION_U_TEMP_STAT_MASK BIT(14)
+> +#define MAX31827_CONFIGURATION_O_TEMP_STAT_MASK BIT(15)
+> +
+> +#define MAX31827_CNV_SHUTDOWN			0x0
+> +#define MAX31827_CNV_1_DIV_64_HZ		0x1
+> +#define MAX31827_CNV_1_DIV_32_HZ		0x2
+> +#define MAX31827_CNV_1_DIV_16_HZ		0x3
+> +#define MAX31827_CNV_1_DIV_4_HZ			0x4
+> +#define MAX31827_CNV_1_HZ			0x5
+> +#define MAX31827_CNV_4_HZ			0x6
+> +#define MAX31827_CNV_8_HZ			0x7
+> +
 
-diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-index e0a402a85787..5791148e2da2 100644
---- a/drivers/gpu/drm/bridge/samsung-dsim.c
-+++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-@@ -183,6 +183,8 @@
- #define DSIM_AFC_CTL(x)			(((x) & 0x7) << 5)
- 
- /* DSIM_PLLCTRL */
-+#define DSIM_PLL_DPDNSWAP_CLK		(1 << 25)
-+#define DSIM_PLL_DPDNSWAP_DAT		(1 << 24)
- #define DSIM_FREQ_BAND(x)		((x) << 24)
- #define DSIM_PLL_EN			BIT(23)
- #define DSIM_PLL_P(x, offset)		((x) << (offset))
-@@ -622,6 +624,11 @@ static unsigned long samsung_dsim_set_pll(struct samsung_dsim *dsi,
- 		reg |= DSIM_FREQ_BAND(band);
- 	}
- 
-+	if (dsi->swap_dn_dp_clk)
-+		reg |= DSIM_PLL_DPDNSWAP_CLK;
-+	if (dsi->swap_dn_dp_data)
-+		reg |= DSIM_PLL_DPDNSWAP_DAT;
-+
- 	samsung_dsim_write(dsi, DSIM_PLLCTRL_REG, reg);
- 
- 	timeout = 1000;
-@@ -1696,7 +1703,9 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
- {
- 	struct device *dev = dsi->dev;
- 	struct device_node *node = dev->of_node;
--	int ret;
-+	u32 lane_polarities[5] = { 0 };
-+	struct device_node *endpoint;
-+	int i, nr_lanes, ret;
- 
- 	ret = samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequency",
- 				       &dsi->pll_clk_rate);
-@@ -1713,6 +1722,22 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
- 	if (ret < 0)
- 		return ret;
- 
-+	endpoint = of_graph_get_endpoint_by_regs(node, 1, -1);
-+	nr_lanes = of_property_count_u32_elems(endpoint, "data-lanes");
-+	if (nr_lanes > 0 && nr_lanes <= 4) {
-+		/* Polarity 0 is clock lane, 1..4 are data lanes. */
-+		of_property_read_u32_array(endpoint, "lane-polarities",
-+					   lane_polarities, nr_lanes + 1);
-+		for (i = 1; i <= nr_lanes; i++) {
-+			if (lane_polarities[1] != lane_polarities[i])
-+				DRM_DEV_ERROR(dsi->dev, "Data lanes polarities do not match");
-+		}
-+		if (lane_polarities[0])
-+			dsi->swap_dn_dp_clk = true;
-+		if (lane_polarities[1])
-+			dsi->swap_dn_dp_data = true;
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsung-dsim.h
-index ba5484de2b30..6a37d1e079bf 100644
---- a/include/drm/bridge/samsung-dsim.h
-+++ b/include/drm/bridge/samsung-dsim.h
-@@ -95,6 +95,8 @@ struct samsung_dsim {
- 	u32 mode_flags;
- 	u32 format;
- 
-+	bool swap_dn_dp_clk;
-+	bool swap_dn_dp_data;
- 	int state;
- 	struct drm_property *brightness;
- 	struct completion completed;
--- 
-2.34.1
+Most of the above defines are not used.
 
+> +#define MAX31827_1SHOT_EN(x)			((x) ? BIT(0) : 0)
+
+x is either 0 or 1. This macro does not add any value.
+
+> +
+> +struct max31827_state {
+> +	struct regmap *regmap;
+> +	struct i2c_client *client;
+
+Not used anywhere.
+
+> +};
+> +
+> +static const struct regmap_config max31827_regmap = {
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.max_register = 0xA,
+> +};
+> +
+> +static umode_t max31827_is_visible(const void *state,
+> +				   enum hwmon_sensor_types type,
+> +				   u32 attr, int channel)
+> +{
+> +	if (type == hwmon_temp) {
+> +		switch (attr) {
+> +		case hwmon_temp_enable:
+> +		case hwmon_temp_max:
+> +		case hwmon_temp_min:
+> +		case hwmon_temp_max_hyst:
+> +		case hwmon_temp_min_hyst:
+> +			return 0644;
+> +		case hwmon_temp_input:
+> +			return 0444;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max31827_read(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long *val)
+> +{
+> +	struct max31827_state *st;
+> +	unsigned int uval;
+> +	int ret;
+> +
+> +	st = dev_get_drvdata(dev);
+
+Please be consistent: Either assign in the declaration, or later,
+but don't mix the two.
+
+> +	if (IS_ERR(st))
+> +		return PTR_ERR(st);
+
+Unnecessary check.
+
+> +
+> +	if (type != hwmon_temp)
+> +		return -EOPNOTSUPP;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_enable:
+> +		ret = regmap_read(st->regmap, MAX31827_CONFIGURATION_REG, &uval);
+> +		uval  = FIELD_GET(MAX31827_CONFIGURATION_1SHOT_MASK, uval);
+
+This is an ABI abuse. hwmon_temp_enable is expected to enable / disable the sensor
+(here: set conversion rate to 0), not to set 1-shot mode or to trigger a single
+conversion.
+
+If your application mandates 1-shot mode, do it properly. Implement continuous mode
+by default, have the _enable attribute disable the sensor as per ABI, and, if disabled,
+trigger one-shot mode when reading the temperature and let it wait until a temperature
+measurement is available. I'd strongly suggest to skip that and use a conversion rate
+of 1 / 64 seconds instead to keep the code simple.
+
+You might also want to consider implementing the update_interval attribute
+to let the user configure the conversion rate.
+
+> +		break;
+> +
+> +	case hwmon_temp_input:
+> +		ret = regmap_read(st->regmap, MAX31827_T_REG, &uval);
+> +		break;
+> +
+> +	case hwmon_temp_max:
+> +		ret = regmap_read(st->regmap, MAX31827_TH_REG, &uval);
+> +		break;
+> +
+> +	case hwmon_temp_max_hyst:
+> +		ret = regmap_read(st->regmap, MAX31827_TH_HYST_REG, &uval);
+> +		break;
+> +	case hwmon_temp_min:
+> +		ret = regmap_read(st->regmap, MAX31827_TL_REG, &uval);
+> +		break;
+> +
+> +	case hwmon_temp_min_hyst:
+> +		ret = regmap_read(st->regmap, MAX31827_TL_HYST_REG, &uval);
+> +		break;
+> +
+
+Why no alarm attribute suppport ?
+
+> +	default:
+> +		ret = -EOPNOTSUPP;
+> +	}
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = uval;
+> +
+> +	return 0;
+> +}
+> +
+> +static int max31827_write(struct device *dev, enum hwmon_sensor_types type,
+> +			  u32 attr, int channel, long val)
+> +{
+> +	struct max31827_state *st = dev_get_drvdata(dev);
+> +
+> +	if (IS_ERR(st))
+> +		return PTR_ERR(st);
+
+Unnecessary check.
+
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_enable:
+> +		if (val >> 1)
+> +			return -EOPNOTSUPP;
+> +
+> +		return regmap_update_bits(st->regmap, MAX31827_CONFIGURATION_REG,
+> +					  MAX31827_CONFIGURATION_1SHOT_MASK,
+> +					  MAX31827_1SHOT_EN(val));
+> +
+> +	case hwmon_temp_max:
+> +		return regmap_write(st->regmap, MAX31827_TH_REG, val);
+> +
+> +	case hwmon_temp_max_hyst:
+> +		return regmap_write(st->regmap, MAX31827_TH_HYST_REG, val);
+
+Datasheet:
+
+"
+Before the register values are changed over I2C, the part has to be placed in Shutdown mode. Refer to the Configuration/
+Status Register Conversion Rate field for details. Operation in automatic mode can resume after the register update.
+"
+
+Yes, I understand, the driver currently always operates in shutdown/1-shot
+mode, but as mentioned above that is unacceptable.
+
+> +
+> +	case hwmon_temp_min:
+> +		return regmap_write(st->regmap, MAX31827_TL_REG, val);
+> +
+> +	case hwmon_temp_min_hyst:
+> +		return regmap_write(st->regmap, MAX31827_TL_HYST_REG, val);
+> +	}
+> +
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static int max31827_init_client(struct max31827_state *st)
+> +{
+> +	return regmap_update_bits(st->regmap, MAX31827_CONFIGURATION_REG,
+> +				 MAX31827_CONFIGURATION_CNV_RATE_MASK |
+> +				 MAX31827_CONFIGURATION_1SHOT_MASK,
+> +				 MAX31827_1SHOT_EN(1));
+
+More ABI abuse. This configures the driver (hard) for 1-shot mode,
+and assumes that a conversion is triggered by writing into the _enable
+attribute. Sorry, this is unacceptable.
+
+> +}
+> +
+> +static const struct hwmon_channel_info *max31827_info[] = {
+> +	HWMON_CHANNEL_INFO(temp, HWMON_T_ENABLE | HWMON_T_INPUT | HWMON_T_MIN |
+> +			   HWMON_T_MIN_HYST | HWMON_T_MAX | HWMON_T_MAX_HYST),
+> +	NULL,
+> +};
+> +
+> +static const struct hwmon_ops max31827_hwmon_ops = {
+> +	.is_visible = max31827_is_visible,
+> +	.read = max31827_read,
+> +	.write = max31827_write,
+> +};
+> +
+> +static const struct hwmon_chip_info max31827_chip_info = {
+> +	.ops = &max31827_hwmon_ops,
+> +	.info = max31827_info,
+> +};
+> +
+> +static int max31827_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct device *hwmon_dev;
+> +	struct max31827_state *st;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
+> +		return -EOPNOTSUPP;
+> +
+> +	st = devm_kzalloc(dev, sizeof(struct max31827_state), GFP_KERNEL);
+> +	if (!st)
+> +		return -ENOMEM;
+> +
+> +	st->client = client;
+> +
+> +	st->regmap = devm_regmap_init_i2c(client, &max31827_regmap);
+> +	if (IS_ERR(st->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
+> +				     "Failed to allocate regmap: %ld\n",
+> +				     PTR_ERR(st->regmap));
+
+dev_err_probe() already displays an error text.
+
+> +
+> +	ret = max31827_init_client(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name, st,
+> +							 &max31827_chip_info,
+> +							 NULL);
+> +
+> +	return PTR_ERR_OR_ZERO(hwmon_dev);
+> +}
+> +
+> +static const struct i2c_device_id max31827_i2c_ids[] = {
+> +	{ .name = "max31827" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, max31827_i2c_ids);
+> +
+> +static const struct of_device_id max31827_of_match[] = {
+> +	{ .compatible = "max31827" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, max31827_of_match);
+> +
+> +static struct i2c_driver max31827_driver = {
+> +	.class = I2C_CLASS_HWMON,
+> +	.driver = {
+> +		.name = "max31827",
+> +		.of_match_table = max31827_of_match,
+> +	},
+> +	.probe_new = max31827_probe,
+> +	.id_table = max31827_i2c_ids,
+> +};
+> +module_i2c_driver(max31827_driver);
+> +
+> +MODULE_AUTHOR("Daniel Matyas <daniel.matyas@analog.com>");
+> +MODULE_DESCRIPTION("Maxim MAX31827 low-power temperature switch driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.34.1
+> 
