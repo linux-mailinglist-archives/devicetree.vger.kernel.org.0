@@ -2,163 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 474C66D9DAB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3156D9DBA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239534AbjDFQkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:40:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51416 "EHLO
+        id S239592AbjDFQpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239523AbjDFQkD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:40:03 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B21C974D
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:40:02 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id 18so2831917ejo.13
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:40:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680799201;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hmuub5XFek/J7yZRXiFvjEFpOewLgR0Tr6Mam0kUoMQ=;
-        b=drMJmyIYsxy1uh3byBCf9+TGbQYwfEa5KyPf1dWWZ8Xfro9/3/ifv5I8Htcd2BuIyA
-         D8FdlbmK0c7ubKLkXfG6DNI5aqaSrq4blwwMszvssap4j0Y0sn8htsufiprFq9vmDIj6
-         NCKFJfjgKNuyPetKR6J4i9MQT2HZQ1KNKzcMmA9yjBUouzSekSBhRmM2LQwCx6qM8cft
-         kuj25spDIuHbsLcLA3WJu6ljlPed9yx6dUdPESHZUQJVXv9Sm4W+sdwgBYdNJdSsEh+T
-         TjPmOsE93oo6SFID1YuVOeJCuANgn6m3XhiMCF8PZp1SmN4dmKyoOPV8HzJT3jntpggP
-         peSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680799201;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hmuub5XFek/J7yZRXiFvjEFpOewLgR0Tr6Mam0kUoMQ=;
-        b=y16GcVPRB+PVUF5TzUp0VvKL5EuGbKTV1x3mujAveSxdWvNYZxxfnIFBcjXafsw42T
-         AcuUn44ADanNY7XJMLJh8XR1aWb513dL9ETALUnpAxXgcNm6sLCWAr0p/DlHx4fMe+yO
-         6URmYyecS/wuoDBjqwPgeY5cNi7UiGtP2AghSqNk/42k7gqPvDOQt0nPv+WHDSdq+oor
-         95aKXhvrBnwQJORxFPisDRk0plnjNI5wdZ2P1xhrEpJ5k+Bys8IFtFsUUDNlUGeamxBZ
-         3TyJlnSlvYebC6HY1xeD6dr19U/7lDYM1c89RZVw2e2ek4MWJzaHlMWXxqTZUFsniRxz
-         MR5Q==
-X-Gm-Message-State: AAQBX9ctrROyacZNg1jkG594L8Y8G1sVsObURCdOIw5URMj6K4QaYZua
-        +/0z1zEf319TNLd9ZvIE/NMlgQ==
-X-Google-Smtp-Source: AKy350Z3yzs/hx03BNLuEf7YJao+6JsqUiyCFSpQAmDH3M8D2LwjqjBQxJxdXxZhmwwBH+iGutWkBg==
-X-Received: by 2002:a17:907:c0f:b0:949:87f1:2ca0 with SMTP id ga15-20020a1709070c0f00b0094987f12ca0mr6267574ejc.71.1680799200921;
-        Thu, 06 Apr 2023 09:40:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id fy8-20020a170906b7c800b0093e23d03d72sm1022593ejb.177.2023.04.06.09.40.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 09:40:00 -0700 (PDT)
-Message-ID: <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
-Date:   Thu, 6 Apr 2023 18:39:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-Content-Language: en-US
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239599AbjDFQpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:45:15 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4B1559F;
+        Thu,  6 Apr 2023 09:45:10 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 336GDdVf013755;
+        Thu, 6 Apr 2023 12:44:38 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3pqrh5qbhq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 06 Apr 2023 12:44:37 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 336GiaJ0027386
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 6 Apr 2023 12:44:36 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 6 Apr 2023 12:44:35 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 6 Apr 2023 12:44:35 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 6 Apr 2023 12:44:35 -0400
+Received: from daniel-Precision-5530.ad.analog.com ([10.48.65.214])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 336Gi7JU002852;
+        Thu, 6 Apr 2023 12:44:11 -0400
+From:   Daniel Matyas <daniel.matyas@analog.com>
+CC:     Daniel Matyas <daniel.matyas@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel@dh-electronics.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
- <20230406154900.6423-3-cniedermaier@dh-electronics.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406154900.6423-3-cniedermaier@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Mark Brown <broonie@kernel.org>,
+        "Vincent Tremblay" <vincent@vtremblay.dev>,
+        Marek Vasut <marex@denx.de>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "Greg.Schwendimann@infineon.com" <Greg.Schwendimann@infineon.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Hwmon driver for MAX31827 temperature switch
+Date:   Thu, 6 Apr 2023 19:43:25 +0300
+Message-ID: <20230406164331.6557-1-daniel.matyas@analog.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 7Q9DOdcOvVu9aSn3txoDtWgleruvpAyx
+X-Proofpoint-GUID: 7Q9DOdcOvVu9aSn3txoDtWgleruvpAyx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-06_10,2023-04-06_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=721
+ impostorscore=0 mlxscore=0 malwarescore=0 spamscore=0 phishscore=0
+ clxscore=1011 adultscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2304060149
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 17:49, Christoph Niedermaier wrote:
-> Add support for Marantec maveo box. The system is used to get a
-> smart conntection to a door drive. It has USB, WiFi, Bluetooth,
-> Zigbee and NFC interfaces. The core of this system is a soldered
-> i.MX6ULL DHCOR SoM from DH electronics.
-> 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> ---
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Li Yang <leoyang.li@nxp.com>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Fabio Estevam <festevam@denx.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: kernel@dh-electronics.com
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: - Correct the vendor prefix
->     - Change pinconfig of User and Reset button
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts | 361 ++++++++++++++++++++++++++
->  2 files changed, 362 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index aa8fb4b7cdcc..58d3334164e2 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -751,6 +751,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
->  	imx6ull-dhcom-drc02.dtb \
->  	imx6ull-dhcom-pdk2.dtb \
->  	imx6ull-dhcom-picoitx.dtb \
-> +	imx6ull-dhcor-maveo-box.dtb \
->  	imx6ull-jozacp.dtb \
->  	imx6ull-kontron-bl.dtb \
->  	imx6ull-myir-mys-6ulx-eval.dtb \
-> diff --git a/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts b/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
-> new file mode 100644
-> index 000000000000..83bacac19933
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ull-dhcor-maveo-box.dts
-> @@ -0,0 +1,361 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/*
-> + * Copyright (C) 2023 DH electronics GmbH
-> + * Copyright (C) 2023 Marantec electronics GmbH
-> + *
-> + * DHCOM iMX6ULL variant:
-> + * DHCR-iMX6ULL-C080-R051-SPI-WBT-I-01LG
-> + * DHCOR PCB number: 578-200 or newer
-> + * maveo box PCB number: 525-200 or newer
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx6ull-dhcor-som.dtsi"
-> +
-> +/ {
-> +	model = "DH electronics i.MX6ULL DHCOR on maveo box";
-> +	compatible = "marantec,imx6ull-dhcor-maveo-box", "dh,imx6ull-dhcor-som",
-> +		     "fsl,imx6ull";
-> +
-> +	aliases {
-> +		/delete-property/ mmc0; /* Avoid double definitions */
+The driver was tested on Raspberry Pi 4 Model B.
 
-I don't understand it. What is "double definition" of aliases?
+The implemented functionalities of it are: reading a 1shot input value
+and changing and reading the overtemperature and undertemperature alarm
+and hysteresis values. The read values are raw: signed 16 bit int
+format. To obtain the real value one must multiply the value with 0.0625.
 
-> +		/delete-property/ mmc1;
-> +		mmc2 = &usdhc2; /* eMMC should be mmc2 */
+Daniel Matyas (2):
+  dt-bindings: hwmon: add MAX31827
+  hwmon: max31827: add MAX31827 driver
 
-Why? How is this labeled on the board (physically or on schematics)? If
-you answer here "for booting", then the answer is NAK. Don't add
-software policies to Devicetree.
+ .../bindings/hwmon/adi,max31827.yaml          |  48 ++++
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/max31827.c                      | 240 ++++++++++++++++++
+ 6 files changed, 310 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+ create mode 100644 drivers/hwmon/max31827.c
 
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
