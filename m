@@ -2,126 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D77C6D970E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 14:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A0AD6D9734
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 14:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236859AbjDFMd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 08:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37318 "EHLO
+        id S236814AbjDFMqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 08:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235234AbjDFMd2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 08:33:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC452697;
-        Thu,  6 Apr 2023 05:33:26 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-189-216.ewe-ip-backbone.de [91.248.189.216])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3317766031C4;
-        Thu,  6 Apr 2023 13:33:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680784404;
-        bh=/0LDjXRCwHEymatIRCAZ3ulYIdFCSC40zOqX6BI+96c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HxlFYhs3UcETCWycpd60jL1Fs//b9O6aBZWsuQz0ra7skWQlL9kA7JZktJYrnpc4T
-         uHeRhV0XfxERK8yWcFaqtR5YduWn2sXQ5K3SliVzm2etolqIbqpC3uDUl5Eh3HO+Cc
-         lYkLevP5fHPrkvJMW04sqXTjp7Y2SctlCB4QfpvWpT2GpOBBWpXS8OSMmR4zGGrjQ5
-         XcLj8PAp3O9tI982K0FaUUlo5Sus1xNtgLyCi3lnJEp11HQpGvB5XYIUnXSbfTOZ/u
-         txAa0BpwWp2bwo0tgzNeDefjJGpNWvGPKcjqQOn71CuXWHi/n8CSqmyx5QgbaIrkme
-         GhpzRW3PS1oxg==
-Received: by mercury (Postfix, from userid 1000)
-        id CD85A1062B1F; Thu,  6 Apr 2023 14:33:21 +0200 (CEST)
-Date:   Thu, 6 Apr 2023 14:33:21 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv1 1/3] dt-bindings: usb: Add RK3588 OHCI
-Message-ID: <20230406123321.vs64ff2i7xplovoo@mercury.elektranox.org>
-References: <20230404145350.45388-1-sebastian.reichel@collabora.com>
- <20230404145350.45388-2-sebastian.reichel@collabora.com>
- <15dcd1fa-9adb-6bc2-9f01-454273368002@linaro.org>
- <20230406105129.nuv3jcmwl7ugql3q@mercury.elektranox.org>
- <0f671b8a-fbc4-a7c0-1469-a9e3f180e776@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xawuiqwpi7td5n6n"
-Content-Disposition: inline
-In-Reply-To: <0f671b8a-fbc4-a7c0-1469-a9e3f180e776@linaro.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229733AbjDFMqe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 08:46:34 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B80526C;
+        Thu,  6 Apr 2023 05:46:32 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id j1so67606wrb.0;
+        Thu, 06 Apr 2023 05:46:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680785191; x=1683377191;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VCN29vskBafnakAsgOwL0xAYz0jQ2OQylSDUBlv5Yhk=;
+        b=o2tDiqHMt+Y7SL8lyBWRDhmkqxpuwuHx0FS+cA8EafmtFkPG4SMp+CCmZ54sRtvJNn
+         sEUspDoDaTNDVGdGWhF5+T0ALtYdrkyOHjiYsbUwRZowcSxa9hUMG0y53G4ESiNBY828
+         1c04e0YrlxME/stwFrzB1z/jmoSsSsWx7VMdBuBslmXzwOrun4IfAkQ/PhIj0DJVitWT
+         VPJXSFtS0adVlTnHaQ/48TET5Hwrvxqz+fmeVPam0CUpehoLhVnzT1C/yJTcu/4fYk/H
+         5HbjjVOhk0dzrpkTdIbjgsTpsjGIMgPFCbleEiH9txyeowXd97fXCL4jNNaaKgg8EUv6
+         S8RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680785191; x=1683377191;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VCN29vskBafnakAsgOwL0xAYz0jQ2OQylSDUBlv5Yhk=;
+        b=d6d8mfAcma5tRfUVD0xLS/4Rid5erLxDTDJKYTOUXZhhURwhEEAOX4MdUSteLS2Aye
+         IVw3P9RKh4ukGrpwcnQ7C43uTrL77xY8d2mD/0Rc42k/iFNv6nmuBWaVtzVkUzZJHwKV
+         3jJk2XRrHq7Q7j72+0pwoGWX51Zo7OwsTGoITfBb811IqpB5aCNRIeOl6vMQjzU6IQqc
+         5xlpRRARdxL72QJf1qiX0vocAE/lK/vHaFgrfUJZHQCY/wE/mJd+FrVWUKSwPVjPsWou
+         a6pumKfCwpB0Sg/0FU+mVCEe2IvW/T/jP1yGYyzkjmBRoRjNzABfqVVVhqLOw0DwJvbL
+         xm7Q==
+X-Gm-Message-State: AAQBX9ecAlcLz5sgh163dKmf6V/MKdaVoUeZjVcAQJeVgchKb/J7arDy
+        DUDiKNW9l9fXtHR6T9B9EgBWLUtbPbI=
+X-Google-Smtp-Source: AKy350b11p48GM3ueUjsojMlShKtYoudnB+YW33Ln2hRAV3WSga1fy1K9ep1qrteY36jFqsL5QIWjw==
+X-Received: by 2002:adf:df8b:0:b0:2c9:d91b:a6ff with SMTP id z11-20020adfdf8b000000b002c9d91ba6ffmr6472571wrl.21.1680785191242;
+        Thu, 06 Apr 2023 05:46:31 -0700 (PDT)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id n10-20020adff08a000000b002c5534db60bsm1686714wro.71.2023.04.06.05.46.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 05:46:30 -0700 (PDT)
+From:   Jim Quinlan <jim2101024@gmail.com>
+To:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+        james.quinlan@broadcom.com
+Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-kernel@vger.kernel.org (open list),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE), Rob Herring <robh@kernel.org>
+Subject: [PATCH v1 0/3] PCI: brcmstb: Clkreq# accomodations of downstream device
+Date:   Thu,  6 Apr 2023 08:46:21 -0400
+Message-Id: <20230406124625.41325-1-jim2101024@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The current driver assumes the downstream devices can provide clkreq# for
+ASPM.  These commits accomodate devices w/ or w/o clkreq# and also handle
+L1SS-capable devices.
 
---xawuiqwpi7td5n6n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The Raspian Linux folks have already been using a PCIe RC property
+"brcm,enable-l1ss".  These commits use the same property, in a
+backward-compatible manner, and the implementaion adds more detail and also
+automatically identifies devices w/o a clkreq# signal, i.e. most devices
+plugged into an RPi CM4 IO board.
 
-Hi,
+Jim Quinlan (3):
+  dt-bindings: PCI: brcmstb: Add two optional props
+  PCI: brcmstb: Clkreq# accomodations of downstream device
+  PCI: brcmstb: Allow setting the completion timeout
 
-On Thu, Apr 06, 2023 at 01:02:44PM +0200, Krzysztof Kozlowski wrote:
-> On 06/04/2023 12:51, Sebastian Reichel wrote:
-> >>>    clocks:
-> >>> -    minItems: 1
-> >>> -    maxItems: 3
-> >>
-> >> The constraints here should stay.
-> >=20
-> > dtbs_check complained about the 4 RK3588 clock entries if this
-> > stays. That's why I moved them to the condition down below into
-> > the else branch.
->=20
-> Which is not what we want. We want the constraints here (the widest).
+ .../bindings/pci/brcm,stb-pcie.yaml           | 12 +++
+ drivers/pci/controller/pcie-brcmstb.c         | 93 +++++++++++++++++--
+ 2 files changed, 95 insertions(+), 10 deletions(-)
 
-So it should look like this?
 
-clocks:
-    minItems: 1
-    maxItems: 4
+base-commit: 99ddf2254febae9eab7fb0bcc02c5322243f5c49
+-- 
+2.17.1
 
-=2E..
-
-if rk3588:
-    clocks:
-        minItems: 4
-        maxItems: 4
-else:
-    clocks:
-        minItems: 1
-        maxItems: 3
-
--- Sebastian
-
---xawuiqwpi7td5n6n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQuvAYACgkQ2O7X88g7
-+popzhAAjrro7g4U+NWfFSwlIqXng7QEYRqHPBrtNrmNs+zVozWgVv0/GF29ffIO
-38ZvHrvHrAyRf1RlOWgP7vI0DyKHw8KUL/TKZnkmf5Bu0cxZvjUMavlk85zjmkiH
-OFhLG1LB//gyk5SRU8Cq26Nc4ojhIRJ0wKWb1wO0KfAn50gK5ejErSU/1wktJbUX
-jhNu6V5AX/lIvSm77urfG+m/9a03W7gSw8e5w3rL17thI4lqnDTGBVWnoFACbgQg
-iRskI1NzETp1JfzXHr5MHZRlMkSTFlKcQQEAQeLIhZTGPcCqdu6hhYAN7z9dxQ7Z
-+YmQtCcNSl8qEEcNzKI6wOUJCdBCpGffy9GXTHYITS3f5Z+I6TKYdwMqchO3Lxfy
-Odsf0tmochdULgQU8tZ8kZ7bNv9BDvvAzDr1+YKW1k+x+aQLRWqVWVAsiPE3Wwkk
-EfVmPyqvdWWZBUnlEZrHHjKjWelcrkm6BxRDzWrR7IJh2SiNJ1HZvdRRliRp7S05
-P7p4E0W0hyB7f8INKk5hQFBqzVZ+I1O3DB0BdzIxHcCCL9tqjhEdgHVEOs26sQ7h
-Dpguak+wBIK+HTL4ofrfXX3yeFlmax9SBF9kAoofazpKmQXm4dE+B82rWEI3AVSi
-9ay36m5oqS5nfxOqaOHPL3ji4dSqk7KLgqRypt5XyZ7S8RcpGks=
-=51KG
------END PGP SIGNATURE-----
-
---xawuiqwpi7td5n6n--
