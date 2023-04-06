@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87A926D92DA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0DD06D93AB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 12:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236478AbjDFJfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 05:35:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46600 "EHLO
+        id S237060AbjDFKGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 06:06:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236414AbjDFJe7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:34:59 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE0D171C
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 02:34:58 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id i5so147989785eda.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 02:34:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680773696;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8XWRAt6cA6SWvqbl8+GjMBljD3TzI/XKbSiZBb0m1lg=;
-        b=iUyJ5JxMxjo6Lg1MAgMik0OjXzDVAgWJV7/syYXpP5vTrklva+j9asejul9jhTZhG+
-         ZOPQLyZaeB0HXgKH6On+ZbEY9sh3UVTalQ29xiPIm9XN7v5sQ3Vq2SUCI3J5JSRVk6vY
-         tgPU2AoA7BnY5FjcoliLIu2OHBfnigjBAPyKR21VAljvHZfpZ95vqXcAGyRlnEyDd1gR
-         Fx3dqe5oZ1DRMcOdTr6L3FlHOutZXOzlLDYeCUBqG6Yf9ChKpyF2p8KnESTq/lzgNxJs
-         rGIlao0FsA3ZzU7h/vSpLq1rdcWZJDSL+n1nBCImoCSo93H4vFqwA/dGrtMT9FEN0fwh
-         Qj7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680773696;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8XWRAt6cA6SWvqbl8+GjMBljD3TzI/XKbSiZBb0m1lg=;
-        b=BLVlaKamPJN3llGB7D5bYExvvhrr93WQPBZIssuyJYZYykIZ1igcT77kKff/C6q7wc
-         wTwiyQ2n2YDAeMlusNpUM9c3pw6wdBagF6A3GYiEk4QdHZrPMBCXZGowdvvbroQlJe1f
-         7HcG65bOrBBiUas2pAVWt9ko2m8If0hXETfLp/XCBTg8BGtsrrppGa7rB7s6vYIx2t7J
-         oIUh+9CNvTUP3RK4prljYXG05Id9m0oPiWSLFk6iMyo4jyDRBiIlSmGpwJ+BiWCiCsHg
-         ql2X6EBpHaodTZywiKCwd/RCB5wFwn4A4asPHoQfqQIzg8jECctnsMRb9dpcHIARH4d4
-         Mm5A==
-X-Gm-Message-State: AAQBX9dhW+UAerg+ww+oUgZ59v2/SmV2bieTVTsfVOEVQn2l8avqwW6V
-        zF88AugqNJVm8pptZ0kUO9IKJg==
-X-Google-Smtp-Source: AKy350a5Ns2ydsErA5vNRklEKPlI/iiw2rTSF2gMfY+fveUAraTypP6rpRRTkt51YdO1XzTRBVg0JA==
-X-Received: by 2002:a17:906:3419:b0:93b:5f2:36c with SMTP id c25-20020a170906341900b0093b05f2036cmr5527876ejb.61.1680773696626;
-        Thu, 06 Apr 2023 02:34:56 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id y21-20020a1709063a9500b009321cd80fdfsm566710ejd.158.2023.04.06.02.34.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 02:34:56 -0700 (PDT)
-Message-ID: <f9728472-0dda-2fb2-1753-e9c039afa4c1@linaro.org>
-Date:   Thu, 6 Apr 2023 11:34:54 +0200
+        with ESMTP id S236815AbjDFKG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 06:06:26 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20872D44;
+        Thu,  6 Apr 2023 03:05:43 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3369josj079803;
+        Thu, 6 Apr 2023 04:45:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680774350;
+        bh=t/3ZUQarijZAKO8+8ZuwWq+2OTot5xhmxiGIBn1cxqI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=pLbmpBrGL+wlLRDDzljR38CK8N/xPRwKSrzPTo31dni/5NJ7wm4oTKj1HkX0Ba9Ok
+         SPtgzMZ/72EM1NFQZtweHtYkqSSiyle+TIBF9BzS04qYo2pWdI/1S2S8xORqxvtlLD
+         Z1L/HwqggMsiORamNUkeJ/OlgzzYWRx7C5sCwlaw=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3369jode007315
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 6 Apr 2023 04:45:50 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 6
+ Apr 2023 04:45:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 6 Apr 2023 04:45:49 -0500
+Received: from [172.24.145.182] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3369jl0g018625;
+        Thu, 6 Apr 2023 04:45:47 -0500
+Message-ID: <ccc179f9-1279-9b3a-04ef-0107ad0592d0@ti.com>
+Date:   Thu, 6 Apr 2023 15:15:46 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
- channel DDR in LLCC
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-main: Enable support for SDR104
+ speed mode
+To:     Bhavya Kapoor <b-kapoor@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <d-dhyani@ti.com>
+References: <20230404091245.336732-1-b-kapoor@ti.com>
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Mukesh Ojha <quic_mojha@quicinc.com>
-References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
- <20230313124040.9463-3-quic_kbajaj@quicinc.com>
- <2b3e39b9-ea70-db9b-89f7-09054df363c3@linaro.org>
- <20230315134814.GA98488@thinkpad>
- <c8f3499f-d927-6657-c7c6-732ed2222525@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c8f3499f-d927-6657-c7c6-732ed2222525@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20230404091245.336732-1-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,35 +68,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 11:19, Komal Bajaj wrote:
-> 
->>>>   
->>>>     interrupts:
->>>>       maxItems: 1
->>>>   
->>>> +  multi-ch-bit-off:
->>>> +    items:
->>>> +      - description: Specifies the offset in bits into the multi_channel_register
->>>> +                     and the number of bits used to decide which LLCC configuration
->>>> +                     to use
->>> There are here few issues.
->>> First, I don't fully understand the property. What is an LLCC
->>> configuration? Like some fused values?
-> 
-> There are different configuration for LLCC based on the number of
-> DDR channel it uses. Here, we are basically trying to get information
-> about the same.
-> 
->>>
->>> Second, don't make it a register specific, it will not scale easily to
->>> any new version of this interface. Although how this should look like
->>> depends on what is it.
-> 
-> LLCC driver can only get DDR channel information from the register.
 
-And why would that exactly matter to DT? How does it solve my concern
-that your approach does not scale?
 
-Best regards,
-Krzysztof
+On 04/04/23 14:42, Bhavya Kapoor wrote:
+> Remove sdhci-caps-mask to enable support for SDR104 speed mode for
+> SD card in J721S2 SoC.
+> 
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
 
+Your commit message doesn't explain why?
+Why was this disabled initalially and why is it okay to enable this now?
+
+If disabling SDR104 was a bug, please add Fixes:
+
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index 8915132efcc1..95c6151ed10c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -400,8 +400,6 @@ main_sdhci1: mmc@4fb0000 {
+>  		ti,clkbuf-sel = <0x7>;
+>  		ti,trm-icp = <0x8>;
+>  		dma-coherent;
+> -		/* Masking support for SDR104 capability */
+> -		sdhci-caps-mask = <0x00000003 0x00000000>;
+>  	};
+>  
+>  	main_navss: bus@30000000 {
+
+-- 
+Regards
+Vignesh
