@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6456D9FBD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432E86D9FC5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240131AbjDFS0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42006 "EHLO
+        id S240161AbjDFS0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238918AbjDFSZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:25:59 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA936196
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:25:58 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-93071f06a94so159042366b.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:25:58 -0700 (PDT)
+        with ESMTP id S236914AbjDFS0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:26:36 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDDC48A55
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:26:29 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y20so52011975lfj.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680805556;
+        d=linaro.org; s=google; t=1680805588;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j7Q2Y5PSxjfNuuYETIJE0tc7Nl05PML4hPeE9FZ3t1U=;
-        b=LyZ0MroWIx7yQATTWi7dnR72e4lHzBaxVKcXKV8E0fOBtt5cs33Bxj0rkLYm1qvpjt
-         71iqLmw6M1SjavFuptr1hBspndmbtGClUbMoef355RRW6Kjj64Vfjzch8aDKLvoitFbU
-         2iacdF2BOo8dFbpfDl0fCQgD7CUTVlNKhJ0IGbFt6oeJ/i1t27Dw2UbjcONJ6coEyzYO
-         gDo7HDb1tVCN12jaKk6KhYoL0Jn8wtZsjFhCOh34qTKOwIGIzbHMgFLvenMjg/RvpxV4
-         X6ZxgN4fsN7VPwD5qbKOC47UKOeC4fGrgg+04Pkgm1xqJfUvV6SlB6vTN00qA+YH+n7d
-         3QJw==
+        bh=VrPZiBBEPnTeAG4ijDo3nsObeCJTrwIJDTUCNITg5iI=;
+        b=CqY6xF+cOM6sbxvjz1Ff7fcQTniOYKz25DBG6qwejTmMEtsmz5R30IcQ4sXU09agqz
+         P2PmuH6Zw2bKIlZNN6pfWhu8qqUxSJLAvzstuk0VDd9a90kRfEe2y3Ik22OCGmhp2uHV
+         qModnBJcJBhDhgSwuY5jGg+eLZ4iDFenf1vxh/bGXh9z+V8icUiD9i5qAT/VXwbu7flL
+         0KZIFha7SMukx/q98vET3mn+TYaju71P93US6xA8xhFUfIfhX8gZPoiCqVs9APcBPung
+         hX3ctOJ+/HYMko8xKotKi0hFQXT2S9ekgcGnI/ptduyfF+3ahLqbNXocC5t04IHUe9Me
+         q0nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680805556;
+        d=1e100.net; s=20210112; t=1680805588;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j7Q2Y5PSxjfNuuYETIJE0tc7Nl05PML4hPeE9FZ3t1U=;
-        b=Hd5kIRfyjjs06Fy1ktGvlOl+cj3hzPL0WAonzVrNqBXtNEM6tEZEqSofGWhUGX+1Mx
-         AxxnIMJWQLvDuSh0kiFJiC8dMY1rISiLUe5nphi4MTmVUFuTGlsO5ledO3RUc4K2ovMp
-         f1PvTV0zqKUrXqjm7ULsay0jHhrCKydsYTOC7Q+J8GqNd7jfpmPgXDaaC5ZvDeKsvwlB
-         CaOwOVTQj4W0fxobQ10uKxOoMx/HzOG/Z6ZQXWSVWPzUKE02CwSe++1jEMDGXtf9w34E
-         6Nzp1d9Oi+tnVcTW5PtkutKjUhMSgLTcujysIXA86ktinPREAs9eJ8uQL8qV/RnWZspf
-         OZmQ==
-X-Gm-Message-State: AAQBX9cibXd6IjatgeRUqtH5Kr8/2Qvih3GMBoAeofo4krelj+Spz0AE
-        cz8oDSc9N/t6/tStm39T8tf9mQ==
-X-Google-Smtp-Source: AKy350Z+LY2W1omro8GAJRTq6Ah27eM8V7j5+Ouj215Swxjc9vV2rpYK6UOXULEWcDwfHrTaFnUnhw==
-X-Received: by 2002:aa7:c647:0:b0:4fc:6475:d249 with SMTP id z7-20020aa7c647000000b004fc6475d249mr434834edr.3.1680805556612;
-        Thu, 06 Apr 2023 11:25:56 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id a29-20020a509b5d000000b004fd204d180dsm1029128edj.64.2023.04.06.11.25.55
+        bh=VrPZiBBEPnTeAG4ijDo3nsObeCJTrwIJDTUCNITg5iI=;
+        b=CfJZl/IzxFtROqmGNTFJyBJz6sVJ8aMoXCONAMceZz8oN2RA5TvuULqapLPmhKkwyL
+         J2z6qOhji2mB0ay9w+g/lp8wTfxmQXrY62CHCEtikCWUN/c5yKf0pknCI4hy/gyJ8dAz
+         LlgvZuMwX33XiCQnF7YIyJbySOcHr/9iDI/40qtvVG9+SHg0MH2rsSwveIswj6ItZYZf
+         psjZ/iEU6H2w6V83d4GLNJ5396mlxbr8xnvnShoW8jeD+gHVzabi0mzyO/LSKe55RiGV
+         TsjjQAYqDY5VO+i4h7eDs2jZyhIPtOG7FQ/kIlULXpYWOoeX2OOpWXLn5GHdD93/06eo
+         mrCw==
+X-Gm-Message-State: AAQBX9ciDskz9OJvJ87f5r2yz9ggDoS641cpEZfO+8rMd1NoxBRfnImh
+        KBI03e+khcXYjo6Blrk7ZuxQ4g==
+X-Google-Smtp-Source: AKy350Zoz7gSPFtYZOf28QyZRifSrImimrPXqKp3I11ff3EWM5EclgyEAjZIR1qhjTDNBFSIbmszqQ==
+X-Received: by 2002:ac2:43d7:0:b0:4eb:3b7c:233 with SMTP id u23-20020ac243d7000000b004eb3b7c0233mr18951lfl.16.1680805587873;
+        Thu, 06 Apr 2023 11:26:27 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id w26-20020a05651204da00b004e88a166eb6sm368106lfq.46.2023.04.06.11.26.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 11:25:56 -0700 (PDT)
-Message-ID: <56e47e45-b3c0-4d32-923c-88023faef827@linaro.org>
-Date:   Thu, 6 Apr 2023 20:25:54 +0200
+        Thu, 06 Apr 2023 11:26:27 -0700 (PDT)
+Message-ID: <8c818f95-b4a4-658f-701d-3151afdd5179@linaro.org>
+Date:   Thu, 6 Apr 2023 20:26:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: add PCIe dts configuration
- for JH7110
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: Convert ATH10K to YAML
 Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-References: <20230406111142.74410-1-minda.chen@starfivetech.com>
- <20230406111142.74410-4-minda.chen@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406111142.74410-4-minda.chen@starfivetech.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230406-topic-ath10k_bindings-v3-0-00895afc7764@linaro.org>
+ <20230406-topic-ath10k_bindings-v3-1-00895afc7764@linaro.org>
+ <223892d0-9b1b-9459-dec1-574875f7c1c6@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <223892d0-9b1b-9459-dec1-574875f7c1c6@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -90,85 +87,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 13:11, Minda Chen wrote:
-> The PCIe is a PCIe2, single lane PCIe compliant controller.
+
+
+On 6.04.2023 19:15, Krzysztof Kozlowski wrote:
+> On 06/04/2023 14:55, Konrad Dybcio wrote:
+>> Convert the ATH10K bindings to YAML.
+>>
+>> Dropped properties that are absent at the current state of mainline:
+>> - qcom,msi_addr
+>> - qcom,msi_base
+>>
+>> qcom,coexist-support and qcom,coexist-gpio-pin do very little and should
+>> be reconsidered on the driver side, especially the latter one.
+>>
+>> Somewhat based on the ath11k bindings.
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         | 58 ++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 88 +++++++++++++++++++
->  2 files changed, 146 insertions(+)
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index cf0a66faf5d3..4552919e69b0 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -191,6 +191,50 @@
->  		};
->  	};
->  
-> +	pcie0_wake_default: pcie0_wake_default {
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,ipq4019-wifi
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          minItems: 17
+>> +          maxItems: 17
+>> +
+>> +        interrupt-names:
+>> +          minItems: 17
+> 
+> Drop minItems (the number of items is defined by listing them below, as
+> you did).
+OK
 
-No underscores in node names. Test your patches against bindings before
-sending.
+> 
+>> +          items:
+>> +            - const: msi0
+>> +            - const: msi1
+>> +            - const: msi2
+>> +            - const: msi3
+>> +            - const: msi4
+>> +            - const: msi5
+>> +            - const: msi6
+>> +            - const: msi7
+>> +            - const: msi8
+>> +            - const: msi9
+>> +            - const: msi10
+>> +            - const: msi11
+>> +            - const: msi12
+>> +            - const: msi13
+>> +            - const: msi14
+>> +            - const: msi15
+>> +            - const: legacy
+>> +
+>> +        clocks:
+>> +          items:
+>> +            - description: Wi-Fi command clock
+>> +            - description: Wi-Fi reference clock
+>> +            - description: Wi-Fi RTC clock
+>> +
+>> +        clock-names:
+>> +          items:
+>> +            - const: wifi_wcss_cmd
+>> +            - const: wifi_wcss_ref
+>> +            - const: wifi_wcss_rtc
+>> +
+>> +      required:
+>> +        - clocks
+>> +        - clock-names
+>> +        - interrupts
+>> +        - interrupt-names
+>> +        - resets
+>> +        - reset-names
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,wcn3990-wifi
+>> +
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 1
+>> +          items:
+>> +            - description: XO reference clock
+>> +            - description: Qualcomm Debug Subsystem clock
+>> +
+>> +        clock-names:
+>> +          minItems: 1
+>> +          items:
+>> +            - const: cxo_ref_clk_pin
+>> +            - const: qdss
+>> +
+>> +        interrupts:
+>> +          items:
+>> +            - description: CE0
+>> +            - description: CE1
+>> +            - description: CE2
+>> +            - description: CE3
+>> +            - description: CE4
+>> +            - description: CE5
+>> +            - description: CE6
+>> +            - description: CE7
+>> +            - description: CE8
+>> +            - description: CE9
+>> +            - description: CE10
+>> +            - description: CE11
+> 
+> What about interrupt-names here? If they are not expected, then just
+> interrupt-names: false
+They obviously wouldn't hurt, but they're unused on the driver side:
 
+for (i = 0; i < CE_COUNT; i++) {
+		ret = platform_get_irq(ar_snoc->dev, i);
 
->  	uart0_pins: uart0-0 {
->  		tx-pins {
->  			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
-> @@ -228,3 +272,17 @@
->  	dr_mode = "peripheral";
->  	status = "okay";
->  };
-> +
-> +&pcie0 {
-> +	pinctrl-names = "default";
-> +	reset-gpios = <&sysgpio 26 GPIO_ACTIVE_LOW>;
-> +	phys = <&pciephy0>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie1 {
-> +	pinctrl-names = "default";
-> +	reset-gpios = <&sysgpio 28 GPIO_ACTIVE_LOW>;
-> +	phys = <&pciephy1>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 2f67196ffac0..c309ec550ba7 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -642,5 +642,93 @@
->  			#reset-cells = <1>;
->  			power-domains = <&pwrc JH7110_PD_VOUT>;
->  		};
-> +
-> +		pcie0: pcie@2B000000 {
+So I will forbid them.
 
-Lower case hex.
-
-> +			compatible = "starfive,jh7110-pcie";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			#interrupt-cells = <1>;
-
-Why reg is not second property?
-
-> +			reg = <0x0 0x2B000000 0x0 0x1000000
-> +			       0x9 0x40000000 0x0 0x10000000>;
-> +			reg-names = "reg", "config";
-> +			device_type = "pci";
-> +			starfive,stg-syscon = <&stg_syscon 0xc0 0xc4 0x130 0x1b8>;
-> +			bus-range = <0x0 0xff>;
-> +			ranges = <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0x08000000>,
-> +				 <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x40000000>;
-> +			interrupts = <56>;
-
-Your binding requires cells, so I am pretty sure you did not test what
-you wrote.
-
-
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
