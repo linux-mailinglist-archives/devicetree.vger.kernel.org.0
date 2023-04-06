@@ -2,128 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4935D6D9FCB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCF66D9FD6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:30:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233368AbjDFS1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45290 "EHLO
+        id S240195AbjDFSaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:30:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbjDFS1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:27:41 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF58900C;
-        Thu,  6 Apr 2023 11:27:36 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id o25-20020a9d4119000000b006a11eb19f8eso19953817ote.5;
-        Thu, 06 Apr 2023 11:27:36 -0700 (PDT)
+        with ESMTP id S240190AbjDFSaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:30:02 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5B461A5
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:29:59 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id h25so51994953lfv.6
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:29:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680805655; x=1683397655;
+        d=linaro.org; s=google; t=1680805798;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=Urs0sPmIxKY7EMdaMcVPb88xjrnr7/n5Z/v53+WXKo0=;
-        b=aNBjohhSpNCH5LwvwGucbPyygMc7wmva992tdG/a7wUKHSEJdIWnQpidnRQFyxIcaF
-         D5vuDuu4DzBQ99/UvSAR1oyfEdeGW1N1XOpIlxgpDHtgZc+jrdqz+6mads5i7seB5MbA
-         7WbXP+eJ4EXSrGoWg/ms+felB+/BFISBR78vepSQj02EmC56OI85FMg+zoCGfM7DjL0l
-         OXSwMQqICF/hpyKxfBguULLnvqJzmMPsbd7zy3IZsE4ghBqFHTaSXFisz1Hc5FXlhMgc
-         LxV+6ujBfIlq0Wzh+++RgLdeCzzIH5AZJI6j8t9OlSvnw42+Mh4qN/HvJ8pgTU8doGoR
-         tm3w==
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Neijv2zq96R0GfdQjQwNKcSFKV86CYJRcfc1aaFu1qk=;
+        b=XlOX4iBsYDzB8wgJK6e2EygD58sqmxulgjX5qqPLTfJEt8z15r/HdkriynKKcYX2Bq
+         Msof2eYI5neCNb+upoBnjZHBmUVqRYQHHGYJctHDxezQ4Cb9QfWZzNAq/MetS9UXCAgd
+         AdnCCJmHS/gE6xkAUmP7rR5yETIcYFo5XIMXKbK+khXUj12Jqx5BVIqCi0XL/f+/Wwv6
+         lAbd/OFVk9+4dNyuccCRWlfk48MwAQMQga7khS4+oI1Gq1pvaRyvlMYYRM5Uw+Wr8wa5
+         4FsvJziidvPZmQeAMtyo6xWUS1iLQaI5TSLJ/dGUfel7N/MHZrd95B0d5YoeFnrHlrJk
+         r3uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680805655; x=1683397655;
+        d=1e100.net; s=20210112; t=1680805798;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Urs0sPmIxKY7EMdaMcVPb88xjrnr7/n5Z/v53+WXKo0=;
-        b=IBPc88Aw3KBlhVn2TGohyTS/6jWgdDRCGaVvSnGR7eh1oSvvmN3SwAn8UVAqjc9IXb
-         2ZCxnHXkop8nDGg+QUx1ivWu2HhIAGFPS0tmNVG0ZeaCVZKIvCJnNurNEgXbRB3l2z5O
-         MnWcrAvKab9RLsVo1lvMG58CKbQUWd3uh4PAVrUJPnBpPkYRlM4qCMQFODIGgXhzJNXG
-         uY6lVuPn03Jm6IAO1YyZQQqgaisxtrik/blyo38Vx9vpTSr007WxycvhuuI9jWJKYRji
-         e3peygcMKoO5sr5BlZ384q+pIoeC3HXvD5AWLmHqLcIZAvhWAJXzOihdioFck69VVZ59
-         dtyg==
-X-Gm-Message-State: AAQBX9c2RWwazLGQhgifTaMu9AwdaWqy3t7bCDloBMkULTxCg8c80uJ6
-        rTRqGM9279rMaiD9EugNUPg=
-X-Google-Smtp-Source: AKy350Z9t6tWzzltI8glK73b80eEQJnXz/5+x0SuFtrFkF7BWJRMfu+4DcuHG6U2OVSbqb4D7zQ/0w==
-X-Received: by 2002:a05:6830:334d:b0:69b:1665:8fb3 with SMTP id l13-20020a056830334d00b0069b16658fb3mr3361991ott.15.1680805655572;
-        Thu, 06 Apr 2023 11:27:35 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x17-20020a9d6291000000b006884c42a38asm974512otk.41.2023.04.06.11.27.34
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Neijv2zq96R0GfdQjQwNKcSFKV86CYJRcfc1aaFu1qk=;
+        b=EE2mEjZV8nTG7f1op879nG8zhv1bwQguuI97ZX5jqdVQ/sdE6bEG5T8vaQA26Dz67v
+         b8TeQccxBv++yoksqjSbgC+HBA4D+8ek/mN6MXV4FKEFTlUyWLeZX+D5l+lfEfY4ia1m
+         MMr90rbki+DF4+yCosjp079DsLA+S6NwGQ5VsHaOVsP/bOwLF6NlSm15QKvFcd4ODjQc
+         opfUPy7ducl6xuPGcfc2zgIiGQEzLboULx5HJeID9oc9kFDp1QIQm4aEBc9eX0VEoFTj
+         z4TiSyVPWuaM0vAMr1AT7UBgpR1b4GZfMHylTV7m/WDB+QHgXov25Y0Wc6ie48ty4lTB
+         U8pQ==
+X-Gm-Message-State: AAQBX9eIH23cSAN8YZ9s5TcqvkJFjxABGTKEDQyghJ+hJ+TF8arQynQs
+        ittRl2qNhdFCnKwFLnevXAcTAg==
+X-Google-Smtp-Source: AKy350ZEODeEm9sOvgyuO0IIzT81OsrB7gbD3ClS6luG0xT13OBKwnwD8262UKlr8jcIal295NttLw==
+X-Received: by 2002:a19:f508:0:b0:4db:3a70:e9f3 with SMTP id j8-20020a19f508000000b004db3a70e9f3mr35061lfb.69.1680805797945;
+        Thu, 06 Apr 2023 11:29:57 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id r15-20020ac25a4f000000b004e848782e2esm371641lfn.57.2023.04.06.11.29.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 11:27:35 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <31a5bd88-4121-ac5c-0d8d-eee6b221f1db@roeck-us.net>
-Date:   Thu, 6 Apr 2023 11:27:33 -0700
+        Thu, 06 Apr 2023 11:29:57 -0700 (PDT)
+Message-ID: <eacc380a-aa33-5b1d-0a11-124b584cd1aa@linaro.org>
+Date:   Thu, 6 Apr 2023 20:29:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: (subset) [PATCH v2 0/2] Add PWM fan support to Rock 5B board
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sm6115-j606f: Add ramoops node
 Content-Language: en-US
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@collabora.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20230404173807.490520-1-cristian.ciocaltea@collabora.com>
- <168071663557.3186456.17606522894011578076.b4-ty@sntech.de>
- <1a914522-8780-febd-7224-121b1f1fc2ba@roeck-us.net>
- <840877554.0ifERbkFSE@diego>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <840877554.0ifERbkFSE@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20230406-topic-lenovo_features-v1-0-c73a5180e48e@linaro.org>
+ <20230406-topic-lenovo_features-v1-1-c73a5180e48e@linaro.org>
+ <9554be2b-c80d-8c5b-48e3-2508a7b4ecd1@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <9554be2b-c80d-8c5b-48e3-2508a7b4ecd1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/5/23 14:35, Heiko Stübner wrote:
-> Am Mittwoch, 5. April 2023, 21:04:04 CEST schrieb Guenter Roeck:
->> On 4/5/23 10:45, Heiko Stuebner wrote:
->>> On Tue, 4 Apr 2023 20:38:05 +0300, Cristian Ciocaltea wrote:
->>>> This patch series enables support for the PWM controlled heat sink fan
->>>> on the Rock 5B SBC and, additionally, converts the hwmon PWM fan bindings
->>>> to DT schema format.
->>>>
->>>> Changes in v2:
->>>>    - Updated PATCH 1/2 according to Rob's review
->>>>    - Added Reviewed-by from Christopher to PATCH 2/2
->>>>    - v1: https://lore.kernel.org/lkml/20230403105052.426135-1-cristian.ciocaltea@collabora.com/
->>>>
->>>> [...]
->>>
->>> Applied, thanks!
->>>
+
+
+On 6.04.2023 19:54, Dmitry Baryshkov wrote:
+> On 06/04/2023 18:25, Konrad Dybcio wrote:
+>> Add a ramoops node to enable retrieving crash logs.
 >>
->> Both patches or only the second one ?
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+>> index 10c9d338446c..fd064899791c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+>> @@ -52,6 +52,17 @@ key-volume-up {
+>>               wakeup-source;
+>>           };
+>>       };
+>> +
+>> +    reserved-memory {
+>> +        ramoops@ffc00000 {
+>> +            compatible = "ramoops";
+>> +            reg = <0x0 0xffc00000 0x0 0x100000>;
+>> +            record-size = <0x1000>;
+>> +            console-size = <0x40000>;
 > 
-> only the second one of course. According to earlier talks the dts patch
-> does already follow the text binding, so the yaml conversion is actually
-> not a requirement for it.
-> 
-> So I picked the dts patch let the binding sort itself when people have
-> time for it :-) .
-> 
-> 
-> Looking at the mail b4 created, I guessed this would also be visible
-> with the subject saying (subset) and the listed commits only showing
-> 
-> [2/2] arm64: dts: rockchip: rk3588-rock-5b: Add pwm-fan
->        commit: f36bb17653e4b9e26bbdb1224027d20614e77636
-> 
+> no ftrace-size?
+It could use some!
 
-Kind of, sure, but I figured it doesn't hurt asking to avoid the situation
-(again) where I apply a patch and then get a nice e-mail telling me that
-some other branch also applied the same patch.
+> 
+>> +            ecc-size = <16>;
+>> +            no-map;
+> 
+> I see that other ramoops defines are not marked with no-map. Is there any reason for that?
+Hm, not really. I can get rid of it for v2.
 
-Guenter
-
+Konrad
+> 
+>> +        };
+>> +    };
+>>   };
+>>     &dispcc {
+>>
+> 
