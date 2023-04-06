@@ -2,128 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC63B6D92D5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87A926D92DA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:35:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235883AbjDFJeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 05:34:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45892 "EHLO
+        id S236478AbjDFJfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 05:35:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236398AbjDFJeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:34:16 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810917DB2;
-        Thu,  6 Apr 2023 02:34:09 -0700 (PDT)
+        with ESMTP id S236414AbjDFJe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:34:59 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE0D171C
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 02:34:58 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id i5so147989785eda.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 02:34:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1680773649; x=1712309649;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=6XP91ScDw7bmd9vfpre0zMVL9UyNBhmX4DToTuq72Ho=;
-  b=lIIsPYi3faq8aOgbbZxcHf+p1HzDOVCmiZCOHK13VdItzZJTRX9xccRW
-   nkIiOE5VWx1EzQKlG06OHoEOFnobpqfXuWheVxCS8RkCQu/deCfLa0hF2
-   OClx0oEtAfeueIsiwM8Md3I8LitW6+RoI2oGy/x5EozA83R52CtDnSOck
-   /yFLG9IC01tZplU5ZrUEPJng++T9sRb3zYLBgy4LPmYjZoYzvLu82s1/H
-   htzNr3DxKiOU5KC6AWCDMToXVC6Ec1szaHu1PgYldbFqwI5xB1o+2nFOR
-   XeL3wEBAwF8SSkJ4qKQ05M/TPkrOWx5gUhm2zmW6opZLV8+pZpRmfoLOo
-   w==;
-X-IronPort-AV: E=Sophos;i="5.98,323,1673910000"; 
-   d="scan'208";a="30188775"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 06 Apr 2023 11:33:52 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 06 Apr 2023 11:33:52 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 06 Apr 2023 11:33:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1680773632; x=1712309632;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=6XP91ScDw7bmd9vfpre0zMVL9UyNBhmX4DToTuq72Ho=;
-  b=iEK9GZEprqLHDNNg63Yu0IhSV9Klw+Iu3pr7UC2awjCYUluCeBTHOwwu
-   2huxTvFnsb3M8whvHxxCqRhivHsHqnq4CmzgPURIFtyLL2ixHK6pMjzvQ
-   3lZlCk4DT2kja9y1AJQ5E29RJvCZtjF0HTixJqnaV0DR5F4RSuBAkeSAn
-   d2b5nF/rHeoOyptMK5MscCdaq5yAOFKnXjKDqduDEsnFkfxVVKCSbwHX0
-   EdhzDGj2+aUFoICfjg/auvNB7XPov3NGeZkk953KQt8blHGhdTxzi72Wi
-   yc5LNhfiiFfeMjABphyMsVo+N+/9nFMvOODFleF3OULk9xB1TyJoEIxSr
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,323,1673910000"; 
-   d="scan'208";a="30188773"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 06 Apr 2023 11:33:52 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8C312280072;
-        Thu,  6 Apr 2023 11:33:52 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v1 3/3] [DNI] arm64: dts: mba8mx: Use gpio-delay for LVDS bridge
-Date:   Thu,  6 Apr 2023 11:33:44 +0200
-Message-Id: <20230406093344.917259-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
-References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google; t=1680773696;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8XWRAt6cA6SWvqbl8+GjMBljD3TzI/XKbSiZBb0m1lg=;
+        b=iUyJ5JxMxjo6Lg1MAgMik0OjXzDVAgWJV7/syYXpP5vTrklva+j9asejul9jhTZhG+
+         ZOPQLyZaeB0HXgKH6On+ZbEY9sh3UVTalQ29xiPIm9XN7v5sQ3Vq2SUCI3J5JSRVk6vY
+         tgPU2AoA7BnY5FjcoliLIu2OHBfnigjBAPyKR21VAljvHZfpZ95vqXcAGyRlnEyDd1gR
+         Fx3dqe5oZ1DRMcOdTr6L3FlHOutZXOzlLDYeCUBqG6Yf9ChKpyF2p8KnESTq/lzgNxJs
+         rGIlao0FsA3ZzU7h/vSpLq1rdcWZJDSL+n1nBCImoCSo93H4vFqwA/dGrtMT9FEN0fwh
+         Qj7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680773696;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8XWRAt6cA6SWvqbl8+GjMBljD3TzI/XKbSiZBb0m1lg=;
+        b=BLVlaKamPJN3llGB7D5bYExvvhrr93WQPBZIssuyJYZYykIZ1igcT77kKff/C6q7wc
+         wTwiyQ2n2YDAeMlusNpUM9c3pw6wdBagF6A3GYiEk4QdHZrPMBCXZGowdvvbroQlJe1f
+         7HcG65bOrBBiUas2pAVWt9ko2m8If0hXETfLp/XCBTg8BGtsrrppGa7rB7s6vYIx2t7J
+         oIUh+9CNvTUP3RK4prljYXG05Id9m0oPiWSLFk6iMyo4jyDRBiIlSmGpwJ+BiWCiCsHg
+         ql2X6EBpHaodTZywiKCwd/RCB5wFwn4A4asPHoQfqQIzg8jECctnsMRb9dpcHIARH4d4
+         Mm5A==
+X-Gm-Message-State: AAQBX9dhW+UAerg+ww+oUgZ59v2/SmV2bieTVTsfVOEVQn2l8avqwW6V
+        zF88AugqNJVm8pptZ0kUO9IKJg==
+X-Google-Smtp-Source: AKy350a5Ns2ydsErA5vNRklEKPlI/iiw2rTSF2gMfY+fveUAraTypP6rpRRTkt51YdO1XzTRBVg0JA==
+X-Received: by 2002:a17:906:3419:b0:93b:5f2:36c with SMTP id c25-20020a170906341900b0093b05f2036cmr5527876ejb.61.1680773696626;
+        Thu, 06 Apr 2023 02:34:56 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id y21-20020a1709063a9500b009321cd80fdfsm566710ejd.158.2023.04.06.02.34.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 02:34:56 -0700 (PDT)
+Message-ID: <f9728472-0dda-2fb2-1753-e9c039afa4c1@linaro.org>
+Date:   Thu, 6 Apr 2023 11:34:54 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
+ channel DDR in LLCC
+Content-Language: en-US
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Mukesh Ojha <quic_mojha@quicinc.com>
+References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
+ <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+ <2b3e39b9-ea70-db9b-89f7-09054df363c3@linaro.org>
+ <20230315134814.GA98488@thinkpad>
+ <c8f3499f-d927-6657-c7c6-732ed2222525@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c8f3499f-d927-6657-c7c6-732ed2222525@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a gpio-delay for LVDS_BRIDGE_EN_1V8 which ramp-up time is defined
-by the external RC filter.
+On 06/04/2023 11:19, Komal Bajaj wrote:
+> 
+>>>>   
+>>>>     interrupts:
+>>>>       maxItems: 1
+>>>>   
+>>>> +  multi-ch-bit-off:
+>>>> +    items:
+>>>> +      - description: Specifies the offset in bits into the multi_channel_register
+>>>> +                     and the number of bits used to decide which LLCC configuration
+>>>> +                     to use
+>>> There are here few issues.
+>>> First, I don't fully understand the property. What is an LLCC
+>>> configuration? Like some fused values?
+> 
+> There are different configuration for LLCC based on the number of
+> DDR channel it uses. Here, we are basically trying to get information
+> about the same.
+> 
+>>>
+>>> Second, don't make it a register specific, it will not scale easily to
+>>> any new version of this interface. Although how this should look like
+>>> depends on what is it.
+> 
+> LLCC driver can only get DDR channel information from the register.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes since RFC v2:
-* Removed 'input' prefix
-* Removed 'gpio-line-names' for GPIO controller node
+And why would that exactly matter to DT? How does it solve my concern
+that your approach does not scale?
 
- arch/arm64/boot/dts/freescale/mba8mx.dtsi | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index 691e91e84dec..3bae1c8fb8ed 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -75,6 +75,14 @@ led2: led2 {
- 		};
- 	};
- 
-+	gpio_delays: gpio-delays {
-+		compatible = "gpio-delay";
-+		#gpio-cells = <3>;
-+		gpio-controller;
-+		gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
-+		gpio-line-names = "LVDS_BRIDGE_EN_1V8";
-+	};
-+
- 	panel0: panel_lvds0 {
- 		/*
- 		 * Display is not fixed, so compatible has to be added from
-@@ -269,7 +277,7 @@ &i2c3 {
- 	dsi_lvds_bridge: bridge@2d {
- 		compatible = "ti,sn65dsi83";
- 		reg = <0x2d>;
--		enable-gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio_delays 0 130000 0>;
- 		vcc-supply = <&reg_sn65dsi83_1v8>;
- 		status = "disabled";
- 
--- 
-2.34.1
+Best regards,
+Krzysztof
 
