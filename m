@@ -2,129 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9676D8CB1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 03:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3B876D8CBD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 03:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233678AbjDFBVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 21:21:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
+        id S232271AbjDFBbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 21:31:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234159AbjDFBU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 21:20:58 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FEF47281;
-        Wed,  5 Apr 2023 18:20:57 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id eh3so145544441edb.11;
-        Wed, 05 Apr 2023 18:20:56 -0700 (PDT)
+        with ESMTP id S231828AbjDFBbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 21:31:17 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C2A45FE1
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 18:31:14 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id by14so20020225ljb.12
+        for <devicetree@vger.kernel.org>; Wed, 05 Apr 2023 18:31:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680744055;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yH3Rs9fqZKGlnFqxOfslFshD4wZrOqzKzZhmDdLwBNI=;
-        b=Mkgv6CUTV+rqw8YTj3f6WQAnjgu7NIJkGEqJtQbSqrs5nV1SamdJYDE2QPisCIsewN
-         hFh8P/x9lIToOnkBA/nZKbw7/YmvAiZZH7QkI9HHQhzJ1y4X+s+njm7RHfRJFdDe8/1h
-         UahLLkWFR2W91Tx2lsEPym34HYNnSsr8tWZPIWWZVu1XyHrCXubsNdtDEiNxHlxY0df6
-         h9VweBKXwqVMxFAdD38Y2grgQEi2r9kBNnRU2PUSBSnrtHmHJbkPA1eXtfh/apbZ5CDy
-         mZCIFVp6LWFnzsf0tHruna/Dl8UT0Q8myC347PuviZKXqJfYvnzWHqlaBesT5zOeNeZk
-         ZIig==
+        d=linaro.org; s=google; t=1680744673;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CSrRjCQsmbqj/wv/a1/yZMyMyqp5mxIsDwyF+FffW3g=;
+        b=kFm9KveG/fJDA4W4W2wdeLQxpwWCg/5RNbNE6GIrRqW/iGGSKKCEL1st+FEvAjGk7R
+         8SpWI8n5JIjguFZ2uhq3nvguMe6CzuAKbz9bG+M8HDZ7uguB0PvpDqo26tf8gqD10vr+
+         hI0nYbKjixH+fjudoaME+uytxkHVpAt0LLvO8OigXP3ZgTO3Ij4O9vpHopG5/MNWFFnp
+         aUOG84r+7S6HXKXTMLxg7w7HmTywc+TFLGzon9ZUjI0Feo54b9NHwvM0gif49YTixG9T
+         6W+THaVUF28UUkUYl2jKD4iy6I7NnMfzrnvbLwKuDGZMwjZYurYiI1VYNjAlQlYFVSf7
+         MJDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680744055;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yH3Rs9fqZKGlnFqxOfslFshD4wZrOqzKzZhmDdLwBNI=;
-        b=gnDf1Y/AHwP/a567yTA5P5zV8Kgk7uPNqcqhFbpvC7rzyts+idh9Y5WZhhxgIGp6tL
-         Jsklm46ywT8UFhLkTjmmJ9WtKT2iUAX+i1bsgLyHcL59vLF3n5mPcvjxP4vpHNlDJrno
-         hV7guVA2GaHz/QY6TPXA52rOEgZ1vuDxfntml5LjajJsmjq3crQHkYCi6TEwpeDp02CC
-         KHL7tV9d+Jqh/ZfkBP5fAAqYWL0riuAQ90ZLfR/39UnSqcJkGFD0TjP+YuVfii6p4TjP
-         fkFFojbGnzXxMK7YF7ixSst4Yfjo9y86o/doludaLeAUOX9hrrHHpplFf8vsVrlF7TkC
-         WuZg==
-X-Gm-Message-State: AAQBX9cYZOSJg4hd4mp8r425pag0MI2m8UgGvHp7sr0vfQvrYFrnbqzk
-        rinQj350DblDasQ+FyEuaA9wzjEM/cxdy9PSGMU=
-X-Google-Smtp-Source: AKy350biM468gXNgp+wGWYC9Oa5uV811exUaTO/3HjlgFDhfRzYv9U4zkk80IU7oihDdd/FimHfB35UoxVh0/Fp2I/s=
-X-Received: by 2002:a17:907:2112:b0:8ab:b606:9728 with SMTP id
- qn18-20020a170907211200b008abb6069728mr2567760ejb.5.1680744055323; Wed, 05
- Apr 2023 18:20:55 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680744673;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CSrRjCQsmbqj/wv/a1/yZMyMyqp5mxIsDwyF+FffW3g=;
+        b=lzZZRu02Gd2cn2Gh+mQIGUYjrLq7YJ1xFw2XzmI0s01FTNMnh8sUu8J6KcLFZZcriS
+         yBbO87uZkyHRTdeuZMp8MhCmnQvwjwRaJbZ+p7Xp2G3KLp/dZEUUDLXRicEbWYfyqBJK
+         OkGxbnUUKY6n2aX0XZSQrOuJpKgctkTpvZWsYOPUw6c8go7S0FSAEi0Nlkq+IPaPdudP
+         yvIANEak+DGZH3MyO5ZL9oVClJcyDftJAHN/+EZaQIyRmubUdlAP6BpeamDNHJIToxXD
+         c6SRimW6gvYjr6eDK6sMEEbGn6rE+OGDzmAOL6cBO+2TG/rykHQ8zAxilT0Qkvst/v9Z
+         JoKg==
+X-Gm-Message-State: AAQBX9drWOHMiDR0BhBECJpMuzbOzUB1ZiTcH/Yy/COxbfQ2RwSfzs/Y
+        /j5MS7P6481mNl/m3Mxt6qJVHQ==
+X-Google-Smtp-Source: AKy350Y4TY0FmFDViv5jfvptjRz6lI7gqXueo0pWn90UcUx3RJ3mD/1bBurBI/Agh0gjoD7sv8BZZw==
+X-Received: by 2002:a2e:8507:0:b0:29f:390:6641 with SMTP id j7-20020a2e8507000000b0029f03906641mr2578983lji.11.1680744672711;
+        Wed, 05 Apr 2023 18:31:12 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id z4-20020a2e8404000000b002a483f01d9csm14222ljg.85.2023.04.05.18.31.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Apr 2023 18:31:12 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Thu, 06 Apr 2023 03:31:08 +0200
+Subject: [PATCH] dt-bindings: iommu: Convert QCOM IOMMU to YAML
 MIME-Version: 1.0
-References: <20230330110512.549704-1-keguang.zhang@gmail.com> <20230330132404.GA1865737-robh@kernel.org>
-In-Reply-To: <20230330132404.GA1865737-robh@kernel.org>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Thu, 6 Apr 2023 09:20:39 +0800
-Message-ID: <CAJhJPsXoB3=G8OapM0SwAxGmNC6fb-kG-M4iYR=Pb3UXfcKwEw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Move Loongson1 PWM timer to clocksource framework
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Stephen Boyd <sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230406-topic-qciommu-v1-1-03f17717a447@linaro.org>
+X-B4-Tracking: v=1; b=H4sIANsgLmQC/x2NywqDMBAAf0X23IX4QFt/pXiI60YXNNFERRD/v
+ UuPMzDMDYmjcII2uyHyKUmCV8hfGdBk/cgogzIUpihNZWrcwyqEG0lYlgMbavJy4LdzHwZteps
+ Y+2g9TVr5Y55VrpGdXP/Jt3ueH6F0Bs50AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680744671; l=7256;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=z8HCrPvi1fKv6OJnTFPhKhw+sxnsX3KR5dCrGbmbmoY=;
+ b=fr4XqlN1G29CA4GNNexEwZpf4A4qxp8Elf3nNHjh5xumdpyKPN+bT11jryh6bKZ32gjWcNuSRCc0
+ VtidLQ7UCvidzyC9YveUTjlezUUtFdicPTIt7OfJkuxV3DfUP6kg
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 9:24=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Thu, Mar 30, 2023 at 07:05:09PM +0800, Keguang Zhang wrote:
-> > Move Loongson1 PWM timer to clocksource framework
-> > and update the Kconfig/Makefile options accordingly.
->
-> Why?
->
-Sorry for the late reply.
-The clocksource driver should go to the clocksource framework, right?
-The current implementation is outdated.
+Convert the Qualcomm IOMMU bindings to YAML.
 
-> What does this have to do with the binding? Did the h/w change? No.
->
-No h/w change.
-The clocksource driver needs DT support.
-Maybe my description is not clear enough.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+foobar b4 requires I put some text here
+---
+ .../devicetree/bindings/iommu/qcom,iommu.txt       | 122 ---------------------
+ .../devicetree/bindings/iommu/qcom,iommu.yaml      | 110 +++++++++++++++++++
+ 2 files changed, 110 insertions(+), 122 deletions(-)
 
-> >
-> > Changelog
-> > V2 -> V3: Remove the reference to regs-pwm.h
-> > V1 -> V2: Delete the obsolete header file regs-pwm.h
-> >
-> > Keguang Zhang (3):
-> >   MIPS: Loongson32: Remove deprecated PWM timer clocksource
-> >   dt-bindings: timer: Add Loongson-1 clocksource
-> >   clocksource: loongson1: Move PWM timer to clocksource framework
-> >
-> >  .../timer/loongson,ls1x-pwmtimer.yaml         |  48 ++++
-> >  .../include/asm/mach-loongson32/loongson1.h   |   1 -
-> >  .../include/asm/mach-loongson32/regs-pwm.h    |  25 --
-> >  arch/mips/loongson32/Kconfig                  |  37 ---
-> >  arch/mips/loongson32/common/time.c            | 210 ----------------
-> >  drivers/clocksource/Kconfig                   |   9 +
-> >  drivers/clocksource/Makefile                  |   1 +
-> >  drivers/clocksource/timer-loongson1-pwm.c     | 236 ++++++++++++++++++
-> >  8 files changed, 294 insertions(+), 273 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls=
-1x-pwmtimer.yaml
-> >  delete mode 100644 arch/mips/include/asm/mach-loongson32/regs-pwm.h
-> >  create mode 100644 drivers/clocksource/timer-loongson1-pwm.c
-> >
-> >
-> > base-commit: f7b5a248213f0976c7944925f3f3ab7ff199e581
-> > --
-> > 2.34.1
-> >
+diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt b/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+deleted file mode 100644
+index e6cecfd360eb..000000000000
+--- a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
++++ /dev/null
+@@ -1,122 +0,0 @@
+-* QCOM IOMMU v1 Implementation
+-
+-Qualcomm "B" family devices which are not compatible with arm-smmu have
+-a similar looking IOMMU but without access to the global register space,
+-and optionally requiring additional configuration to route context irqs
+-to non-secure vs secure interrupt line.
+-
+-** Required properties:
+-
+-- compatible       : Should be one of:
+-
+-                        "qcom,msm8916-iommu"
+-                        "qcom,msm8953-iommu"
+-
+-                     Followed by "qcom,msm-iommu-v1".
+-
+-- clock-names      : Should be a pair of "iface" (required for IOMMUs
+-                     register group access) and "bus" (required for
+-                     the IOMMUs underlying bus access).
+-
+-- clocks           : Phandles for respective clocks described by
+-                     clock-names.
+-
+-- #address-cells   : must be 1.
+-
+-- #size-cells      : must be 1.
+-
+-- #iommu-cells     : Must be 1.  Index identifies the context-bank #.
+-
+-- ranges           : Base address and size of the iommu context banks.
+-
+-- qcom,iommu-secure-id  : secure-id.
+-
+-- List of sub-nodes, one per translation context bank.  Each sub-node
+-  has the following required properties:
+-
+-  - compatible     : Should be one of:
+-        - "qcom,msm-iommu-v1-ns"  : non-secure context bank
+-        - "qcom,msm-iommu-v1-sec" : secure context bank
+-  - reg            : Base address and size of context bank within the iommu
+-  - interrupts     : The context fault irq.
+-
+-** Optional properties:
+-
+-- reg              : Base address and size of the SMMU local base, should
+-                     be only specified if the iommu requires configuration
+-                     for routing of context bank irq's to secure vs non-
+-                     secure lines.  (Ie. if the iommu contains secure
+-                     context banks)
+-
+-
+-** Examples:
+-
+-	apps_iommu: iommu@1e20000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		#iommu-cells = <1>;
+-		compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
+-		ranges = <0 0x1e20000 0x40000>;
+-		reg = <0x1ef0000 0x3000>;
+-		clocks = <&gcc GCC_SMMU_CFG_CLK>,
+-			 <&gcc GCC_APSS_TCU_CLK>;
+-		clock-names = "iface", "bus";
+-		qcom,iommu-secure-id = <17>;
+-
+-		// mdp_0:
+-		iommu-ctx@4000 {
+-			compatible = "qcom,msm-iommu-v1-ns";
+-			reg = <0x4000 0x1000>;
+-			interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		// venus_ns:
+-		iommu-ctx@5000 {
+-			compatible = "qcom,msm-iommu-v1-sec";
+-			reg = <0x5000 0x1000>;
+-			interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-	};
+-
+-	gpu_iommu: iommu@1f08000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		#iommu-cells = <1>;
+-		compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
+-		ranges = <0 0x1f08000 0x10000>;
+-		clocks = <&gcc GCC_SMMU_CFG_CLK>,
+-			 <&gcc GCC_GFX_TCU_CLK>;
+-		clock-names = "iface", "bus";
+-		qcom,iommu-secure-id = <18>;
+-
+-		// gfx3d_user:
+-		iommu-ctx@1000 {
+-			compatible = "qcom,msm-iommu-v1-ns";
+-			reg = <0x1000 0x1000>;
+-			interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		// gfx3d_priv:
+-		iommu-ctx@2000 {
+-			compatible = "qcom,msm-iommu-v1-ns";
+-			reg = <0x2000 0x1000>;
+-			interrupts = <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-	};
+-
+-	...
+-
+-	venus: video-codec@1d00000 {
+-		...
+-		iommus = <&apps_iommu 5>;
+-	};
+-
+-	mdp: mdp@1a01000 {
+-		...
+-		iommus = <&apps_iommu 4>;
+-	};
+-
+-	gpu@1c00000 {
+-		...
+-		iommus = <&gpu_iommu 1>, <&gpu_iommu 2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml b/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+new file mode 100644
+index 000000000000..b33236c0f9ef
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+@@ -0,0 +1,110 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies legacy IOMMU implementations
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@linaro.org>
++
++description: |
++  Qualcomm "B" family devices which are not compatible with arm-smmu have
++  a similar looking IOMMU, but without access to the global register space
++  and optionally requiring additional configuration to route context IRQs
++  to non-secure vs secure interrupt line.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,msm8916-iommu
++          - qcom,msm8953-iommu
++      - const: qcom,msm-iommu-v1
++
++  clocks:
++    items:
++      - description: Clock required for IOMMU register group access
++      - description: Clock required for underlying bus access
++
++  clock-names:
++    items:
++      - const: iface
++      - const: bus
++
++  power-domains:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  ranges: true
++
++  qcom,iommu-secure-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The SCM secure ID of the IOMMU instance.
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  '#iommu-cells':
++    const: 1
++
++patternProperties:
++  "^iommu-ctx@[0-9a-f]+$":
++    type: object
++    properties:
++      compatible:
++        enum:
++          - qcom,msm-iommu-v1-ns
++          - qcom,msm-iommu-v1-sec
++
++      interrupts:
++        maxItems: 1
++
++      reg:
++        maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - ranges
++  - '#address-cells'
++  - '#size-cells'
++  - '#iommu-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    apps_iommu: iommu@1e20000 {
++      compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
++      reg = <0x1ef0000 0x3000>;
++      clocks = <&gcc GCC_SMMU_CFG_CLK>,
++               <&gcc GCC_APSS_TCU_CLK>;
++      clock-names = "iface", "bus";
++      qcom,iommu-secure-id = <17>;
++      #address-cells = <1>;
++      #size-cells = <1>;
++      #iommu-cells = <1>;
++      ranges = <0 0x1e20000 0x40000>;
++
++      /* mdp_0: */
++      iommu-ctx@4000 {
++        compatible = "qcom,msm-iommu-v1-ns";
++        reg = <0x4000 0x1000>;
++        interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
++      };
++    };
++
++    mdp: mdp@1a01000 {
++      iommus = <&apps_iommu 4>;
++    };
 
+---
+base-commit: 8417c8f5007bf4567ccffda850a3157c7d905f67
+change-id: 20230406-topic-qciommu-7c713de8ff9e
 
-
---=20
 Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Keguang Zhang
