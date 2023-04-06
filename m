@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 843B86DA3B9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AA0E6DA3F5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:45:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238029AbjDFUmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 16:42:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
+        id S240337AbjDFUpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 16:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232834AbjDFUmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:42:04 -0400
+        with ESMTP id S240614AbjDFUpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:45:36 -0400
 Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD1DC668
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 13:38:58 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id x20so41865755ljq.9
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 13:38:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0A6EFB8
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 13:42:29 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id a11so41902265lji.6
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 13:42:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680813536;
+        d=linaro.org; s=google; t=1680813747;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ev5hN9s8w8JulYzATwh7JsfqAzOtHOwmwJARepKyeMw=;
-        b=uNfdk0aordhm2U+uez5lxiSDLS/E8esBnea+IgMtiNchJog0+I5Qz1K0nQtDN04f0W
-         MvantI/obc5ZeUBW4v0d+LJrObwS/cKin/EJ1uXiRzdu3JcoZ0jYcCPenmIXGDcnEZqA
-         PaI+jIV0JhEsBjb6pI1VHbdnkYx+pcmJjozykULCEc4qwzTWsyI85O+rLgLhIMYaPbt2
-         NDMJxAJ+Hv6+2/LxAhehu5kEL/eae6SskCFlAZK5RI1BGWjd7OE+fqTjqzerPB8D9kuv
-         dF31PDSKQCBGFCpbyQlKkH75wPzmrc7c1bhzng4lxeqDWm4muX6ThgyBmO8tAHi6Le8M
-         d/BA==
+        bh=oB69DSrkZMHLxeLz+MD4z51xSrPE6ffX9rBh1gZABiE=;
+        b=mkFMzH+BEicrut05oGmaOycHLT6ow6xlh9osbF8WZXs/W06vyUTr+ib1EpUiD8ORKv
+         AUBoW3rtpQQYA56EsLC/v/Mq2pW6aCYUWX0w41U1zg88KDmMcOYa6mZzm+2l15TOYhEc
+         Y4wy2R3Ctaok/GkVQRVRI2VmE80vTgv31Ok33BER/p67mCtgqifqhCmo397Ez8ldKn2l
+         Un0xFSuN6FEPbzMfXN3JGeSmR39LJSqPRihUGv9719QDLRyslQBbUNo48Vh2I+XQkTjU
+         RdTfIb+xAy+d+rRZCEwB3PMzoxUf9FnOAc3Wp219Z4zDmLtY7zvd3dobAV0J1w77r5uk
+         BZUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680813536;
+        d=1e100.net; s=20210112; t=1680813747;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ev5hN9s8w8JulYzATwh7JsfqAzOtHOwmwJARepKyeMw=;
-        b=10uEsbJzxLMEQsB1fYtsi0eAJk1mzjlEMsQpW2WfD4HyMR9HzTti64hRTTobzF9bVp
-         0e0udAqj1ZwG5VC3M7vq1PK+K3M2SciB6ohS/LBXkW6QjUKcTDiYt44EsSJwiynMU+ID
-         Iyag8s/uyyFrP8NHA8OmPHCeoifSFb15nB7v7/0Hdjb9bzzK4tYchIIrx4p0AzLs87ce
-         KUro5ufAzdPPL64bJUDIr0jIFfaBF/U6gPGd8U+9MKTUFjk8VaVRAHeIUKwXWE3d8xZo
-         4aA5+uZg2rRs2o9vtagyfYJMouv91+kpX48sEdsZEUp3osaKGo9oAbB8gjCCJ5WOvbIT
-         kUfw==
-X-Gm-Message-State: AAQBX9fXqc1zJNEXcYB2SFwKMM3lJY++eGIGgWBJ+MtFayGb0QbG2BMX
-        vPcZC01GGuwJx1MH4cg8pcH+uw==
-X-Google-Smtp-Source: AKy350aLZqM5dDvzHdfZEM/juTBxRGBJKWn1U+UKEnBo8v9epMrGGWEy59cQT9Ueb/raFbSaz2xtIg==
-X-Received: by 2002:a2e:a408:0:b0:29c:44f1:c1df with SMTP id p8-20020a2ea408000000b0029c44f1c1dfmr2944844ljn.41.1680813536458;
-        Thu, 06 Apr 2023 13:38:56 -0700 (PDT)
+        bh=oB69DSrkZMHLxeLz+MD4z51xSrPE6ffX9rBh1gZABiE=;
+        b=A4GpeRStLsVXD29tONgVbwQTsouxb42hGumKJX+zK5XztqAl9X4oVaNjYHLG+lRu2o
+         g0QyhVAyGAAUnk6JGsPTat5RtdTJ4pKWAI3X/SHrFVI8yhlnwRZPN16dTiwB/s6nQxSd
+         b63s/Zl2i6eWuTU2r3LVrd6H0cbk+DQWwYlL6x8Ln2i0ysMO5cCKjuWCfdJhLbUfmxsP
+         mOsc/FNSkVjJcrRXDVRxuxsl150Xis7moXuwbC1nKIUBWXjvk2Xn3+c7yAqtkUAviJVb
+         zwLzNPgWYQNsZpqnAPUej/EPopCyjN6LIY2xs9zExuZC4SH8dO+7IhTTPTUVYESUmMn4
+         tg5w==
+X-Gm-Message-State: AAQBX9dOd5XvBisvNUCXYBjyLNYfZr070ijtBRQ8PK16gUMYoII8rBlX
+        oXzLyhYibJjNzlGLj7l31r5Tkg==
+X-Google-Smtp-Source: AKy350aNMspDMW30urIo3bqf6HZ2PhRAb/JmXga8ppMJl7ItG7FPMh734ib0vh8JP9kGqYGstrXRUg==
+X-Received: by 2002:a2e:980b:0:b0:2a0:202c:93b3 with SMTP id a11-20020a2e980b000000b002a0202c93b3mr3253362ljj.49.1680813747643;
+        Thu, 06 Apr 2023 13:42:27 -0700 (PDT)
 Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id z4-20020a2e8404000000b002a483f01d9csm428053ljg.85.2023.04.06.13.38.53
+        by smtp.gmail.com with ESMTPSA id a2-20020a2e8602000000b002a6406c610fsm436118lji.34.2023.04.06.13.42.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 13:38:56 -0700 (PDT)
-Message-ID: <ae04df79-10d6-6a38-715b-8f00e8764d85@linaro.org>
-Date:   Thu, 6 Apr 2023 22:38:51 +0200
+        Thu, 06 Apr 2023 13:42:27 -0700 (PDT)
+Message-ID: <b5260847-d766-dd17-99ce-0646fa2f72b2@linaro.org>
+Date:   Thu, 6 Apr 2023 22:42:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH V3 2/5] clk: qcom: apss-ipq-pll: Add support for IPQ9574
+Subject: Re: [PATCH V3 4/5] arm64: dts: qcom: ipq9574: Add support for APSS
+ clock controller
 Content-Language: en-US
 To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
@@ -70,9 +71,9 @@ Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
         quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
         quic_anusha@quicinc.com, quic_ipkumar@quicinc.com
 References: <20230406061314.10916-1-quic_devipriy@quicinc.com>
- <20230406061314.10916-3-quic_devipriy@quicinc.com>
+ <20230406061314.10916-5-quic_devipriy@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230406061314.10916-3-quic_devipriy@quicinc.com>
+In-Reply-To: <20230406061314.10916-5-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -88,63 +89,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 6.04.2023 08:13, Devi Priya wrote:
-> Add the compatible and configuration values for A73 Huayra PLL found
-> on IPQ9574.
+> Add the APCS & A73 PLL nodes to support CPU frequency scaling.
 > 
-> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 >  Changes in V3:
-> 	- Updated the subject and aligned the commit message
+> 	- No change
 > 
->  drivers/clk/qcom/apss-ipq-pll.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
-> index cf4f0d340cbf..ce28d882ee78 100644
-> --- a/drivers/clk/qcom/apss-ipq-pll.c
-> +++ b/drivers/clk/qcom/apss-ipq-pll.c
-> @@ -111,6 +111,18 @@ static const struct alpha_pll_config ipq8074_pll_config = {
->  	.test_ctl_hi_val = 0x4000,
->  };
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 068c3950dcec..7c820463a79d 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -525,6 +525,24 @@
+>  			timeout-sec = <30>;
+>  		};
 >  
-> +static const struct alpha_pll_config ipq9574_pll_config = {
-> +	.l = 0x3b,
-> +	.config_ctl_val = 0x200d4828,
-> +	.config_ctl_hi_val = 0x6,
-> +	.early_output_mask = BIT(3),
-> +	.aux2_output_mask = BIT(2),
-> +	.aux_output_mask = BIT(1),
-> +	.main_output_mask = BIT(0),
-> +	.test_ctl_val = 0x0,
-> +	.test_ctl_hi_val = 0x4000,
-> +};
+> +		apcs_glb: mailbox@b111000 {
+> +			compatible = "qcom,ipq9574-apcs-apps-global",
+> +				     "qcom,ipq6018-apcs-apps-global";
+> +			reg = <0x0b111000 0x1000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&a73pll>, <&xo_board_clk>;
+> +			clock-names = "pll", "xo";
+> +			#mbox-cells = <1>;
+> +		};
 > +
->  struct apss_pll_data {
->  	int pll_type;
->  	struct clk_alpha_pll *pll;
-> @@ -135,6 +147,12 @@ static struct apss_pll_data ipq6018_pll_data = {
->  	.pll_config = &ipq6018_pll_config,
->  };
->  
-> +static struct apss_pll_data ipq9574_pll_data = {
-> +	.pll_type = CLK_ALPHA_PLL_TYPE_HUAYRA,
-> +	.pll = &ipq_pll_huayra,
-> +	.pll_config = &ipq9574_pll_config,
-> +};
+> +		a73pll: clock@b116000 {
+> +			compatible = "qcom,ipq9574-a73pll";
+> +			reg = <0x0b116000 0x40>;
+> +			#clock-cells = <0>;
+> +			clocks = <&xo_board_clk>;
+> +			clock-names = "xo";
+> +		};
 > +
->  static const struct regmap_config ipq_pll_regmap_config = {
->  	.reg_bits		= 32,
->  	.reg_stride		= 4,
-> @@ -180,6 +198,7 @@ static const struct of_device_id apss_ipq_pll_match_table[] = {
->  	{ .compatible = "qcom,ipq5332-a53pll", .data = &ipq5332_pll_data },
->  	{ .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_data },
->  	{ .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_data },
-> +	{ .compatible = "qcom,ipq9574-a73pll", .data = &ipq9574_pll_data },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, apss_ipq_pll_match_table);
+>  		timer@b120000 {
+>  			compatible = "arm,armv7-timer-mem";
+>  			reg = <0x0b120000 0x1000>;
