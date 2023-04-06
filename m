@@ -2,176 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0CC6D9E17
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30C9B6D9E30
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:10:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239819AbjDFQ7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:59:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
+        id S239013AbjDFRKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 13:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239769AbjDFQ7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:59:14 -0400
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F405C86AD;
-        Thu,  6 Apr 2023 09:59:11 -0700 (PDT)
-Received: by mail-ua1-x92d.google.com with SMTP id 89so28344342uao.0;
-        Thu, 06 Apr 2023 09:59:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680800351; x=1683392351;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gzgZMjmyilDK0vxgLwTlV9yeH+l2cEpSp2Bl21notZo=;
-        b=o75whDe28ydpvkPSg6h/vGRc1PGHvKrIZtllG9FsuE0Uw1i9ETcfxIWiY+bbMRHreQ
-         rzj20icFhtnbMRNEiJLHz1dDk1EnM5UXuEWKd7sTvvOIbj5nlZt10ol8nc5FI+7Gue3t
-         zbHmT8VXdkW0AO89t21TH0p6KNqnxkx4Y2rL/+eWcsUuaWHC4Eo47go7cwsE/d8IoCDn
-         7eMMvvhjkhnQRYekTICP2N4K3BykA6GS8ulmj2dAXxUIGzdEF8yN8cNMFqmJZYYUNzIn
-         hi3ckYk/7LdG2Q8LKPo4nIfdiOS0g1R9mL8P2Pufh4smUjTPDIRFMaVOPrk8ahd1Hy3f
-         SOZQ==
+        with ESMTP id S229518AbjDFRKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:10:02 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EAB83F2;
+        Thu,  6 Apr 2023 10:10:00 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id q27so28811513oiw.0;
+        Thu, 06 Apr 2023 10:10:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680800351; x=1683392351;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gzgZMjmyilDK0vxgLwTlV9yeH+l2cEpSp2Bl21notZo=;
-        b=ljKSNK9fymwXC8rZVb8GpgyIUEUlQi2Ci6MZPETRNf9QLw6m7dR0z1KVHXIJ9CsBQ4
-         I98KeljJiA54uURVN+MXYDMDureJAy1X1SI57cW43HSpcj6IhHiT/2WN6zT6Q3pJEGiD
-         EZGWV3ef6LqaLW+N5HJOpwM+4+cxXaEVFFiV1n4WINl9ZSQLKhbJdVUO1en5LjfmpZpX
-         kBntPltZtHu0u1szXCsLRByQveURGpY6GXDHo2mLCmZqu4YS4ATl8q5kdUzbg7Ss26s6
-         lecZOjm/iousTM4v+CB5bVSDmdvSgQqPmY9oJpn44Zt7RijGuprLODYcr8a3z8gDHGTX
-         npVQ==
-X-Gm-Message-State: AAQBX9drB6i+Ghq9YNoMC9q5bF5UPaYvhv+CsG0Y8cIhja29WGTQYqsL
-        85kbprZhbTyfzfuUbPnsjDxeZXKJCJZCks7AAB4=
-X-Google-Smtp-Source: AKy350ZecX1xLXmTv4dqWxVP4QUFmOl+H6LGKFNRot6c2VPicJ/IwXePNfjoY5oXZsDeU/SzuynbQGg3j0Z0qRaeWd0=
-X-Received: by 2002:a9f:305c:0:b0:68a:5c52:7f2b with SMTP id
- i28-20020a9f305c000000b0068a5c527f2bmr6999125uab.1.1680800350908; Thu, 06 Apr
- 2023 09:59:10 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680801000; x=1683393000;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aznOVjaPJTvuXKx1gmzX1wmBBoPOixwVKU/ceJyrGsk=;
+        b=Vbr6Un3XAa1weLdqNkvXUSffebCUdacMfBv/HpDkhSjusZnG5H82+Sq4pLQPZTniw1
+         CyaQA8uX3Qhlfhp+D757Vlrln8zvRzPbTlybMem3gW63EZi66C07MKUjqiHoqpwE9KP7
+         uzu37hn9jVeWEKqiRK9ZmBV093A+i+5mb4psR5LRkpzarpGsra96Z274ApOMe3agtnxI
+         s72UBIurS+FKBxqvZFUXq8YFhljz253Ayi+QWfyPmfzpWQ+RKC0NWuGOAtDKmfa+QbU3
+         y3zdj7z8JUDkZ9A10nLgrjIHlYpM80hynvrh3UdHr6rFnGnkxfUhPUxtIv0yFUajSR/A
+         pcCA==
+X-Gm-Message-State: AAQBX9cI5Fw3QraHNQO/Pd7uVSxb9Zq33zFdnWa3IwBB8rqMD+Ma3ro+
+        MdK+46Pjq67vRkWe0fp/916Ex4yMyQ==
+X-Google-Smtp-Source: AKy350aJ6h65ENKDGuv6javi5hpdIYx3FtFdawgKK8IQG5QLN2+FWPP1Sks4yTp40K/P+Ldr/TLnNQ==
+X-Received: by 2002:aca:1a09:0:b0:387:3239:61fa with SMTP id a9-20020aca1a09000000b00387323961famr4415278oia.30.1680800998716;
+        Thu, 06 Apr 2023 10:09:58 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k9-20020acaba09000000b00387367989d7sm878253oif.23.2023.04.06.10.09.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 10:09:58 -0700 (PDT)
+Received: (nullmailer pid 3363580 invoked by uid 1000);
+        Thu, 06 Apr 2023 17:09:57 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230406124625.41325-1-jim2101024@gmail.com> <20230406124625.41325-2-jim2101024@gmail.com>
- <d0bf241b-ead4-94b7-3f03-a26227f9eb58@i2se.com>
-In-Reply-To: <d0bf241b-ead4-94b7-3f03-a26227f9eb58@i2se.com>
-From:   Jim Quinlan <jim2101024@gmail.com>
-Date:   Thu, 6 Apr 2023 12:58:59 -0400
-Message-ID: <CANCKTBsLxkPb1ajACkyhJk6J1aB2iwX0oKifHkADG0fFPUqMhQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: PCI: brcmstb: Add two optional props
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-wireless@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        ath10k@lists.infradead.org, Bjorn Andersson <andersson@kernel.org>
+In-Reply-To: <20230406-topic-ath10k_bindings-v3-1-00895afc7764@linaro.org>
+References: <20230406-topic-ath10k_bindings-v3-0-00895afc7764@linaro.org>
+ <20230406-topic-ath10k_bindings-v3-1-00895afc7764@linaro.org>
+Message-Id: <168080086267.3336076.3393733023108971913.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: Convert ATH10K to YAML
+Date:   Thu, 06 Apr 2023 12:09:57 -0500
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 6, 2023 at 11:39=E2=80=AFAM Stefan Wahren <stefan.wahren@i2se.c=
-om> wrote:
->
-> Hi Jim,
->
-> Am 06.04.23 um 14:46 schrieb Jim Quinlan:
-> > Regarding "brcm,enable-l1ss":
-> >
-> >    The Broadcom STB/CM PCIe HW -- which is also used by RPi SOCs -- req=
-uires
-> >    the driver probe to configure one of three clkreq# modes:
-> >
-> >    (a) clkreq# driven by the RC
-> >    (b) clkreq# driven by the EP for ASPM L0s, L1
-> >    (c) bidirectional clkreq#, as used for L1 Substates (L1SS).
-> >
-> >    The HW can tell the difference between (a) and (b), but does not kno=
-w
-> >    when to configure (c).  Further, the HW will cause a CPU abort on bo=
-ot if
-> >    guesses wrong regarding the need for (c).  So we introduce the boole=
-an
-> >    "brcm,enable-l1ss" property to indicate that (c) is desired.  This
-> >    property is already present in the Raspian version of Linux, but the
-> >    driver implementaion that will follow adds more details and discerns
-> >    between (a) and (b).
-> >
-> > Regarding "brcm,completion-timeout-msecs"
-> >
-> >    Our HW will cause a CPU abort if the L1SS exit time is longer than t=
-he
-> >    completion abort timeout.  We've been asked to make this configurabl=
-e, so
-> >    we are introducing "brcm,completion-abort-msecs".
-> >
-> > Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> > ---
-> >   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 +++++++++++=
-+
-> >   1 file changed, 12 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b=
-/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > index 7e15aae7d69e..ef4ccc05b258 100644
-> > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > @@ -64,6 +64,18 @@ properties:
-> >
-> >     aspm-no-l0s: true
-> >
-> > +  brcm,enable-l1ss:
-> > +    description: Indicates that the downstream device is L1SS
-> > +      capable and L1SS is desired, e.g. by setting
-> > +      CONFIG_PCIEASPM_POWER_SUPERSAVE=3Dy.  Note that CLKREQ#
->
-> not sure about this, but maybe we should avoid references to Linux
-> kernel config parameter in a DT binding. Since the driver already gaves
-> warning in case the DT parameter is present, but kernel config doesn't
-> fit, this should be enough.
 
-Hello Stefan,
-I will remove this reference.
->
-> > +      assertion to clock active must be within 400ns.
-> > +    type: boolean
-> > +
-> > +  brcm,completion-timeout-msecs:
-> > +    description: Number of msecs before completion timeout
-> > +      abort occurs.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
->
-> According to the driver at least 0 is not allowed, maybe we should
-> define minimum and maximum here and let dtbs_check take care of invalid
-> values?
-I'm not sure I follow what you mean about a zero value;  the property
-may have any value but the driver will clamp it
-to a minimum of ~30msec.  Regardless, I can add a  "minimum: 30" line
-to the YAML.
+On Thu, 06 Apr 2023 14:55:44 +0200, Konrad Dybcio wrote:
+> Convert the ATH10K bindings to YAML.
+> 
+> Dropped properties that are absent at the current state of mainline:
+> - qcom,msi_addr
+> - qcom,msi_base
+> 
+> qcom,coexist-support and qcom,coexist-gpio-pin do very little and should
+> be reconsidered on the driver side, especially the latter one.
+> 
+> Somewhat based on the ath11k bindings.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/net/wireless/qcom,ath10k.txt          | 215 -------------
+>  .../bindings/net/wireless/qcom,ath10k.yaml         | 357 +++++++++++++++++++++
+>  2 files changed, 357 insertions(+), 215 deletions(-)
+> 
 
-Thanks,
-Jim Quinlan
-Broadcom STB
->
-> Best regards
->
-> > +
-> >     brcm,scb-sizes:
-> >       description: u64 giving the 64bit PCIe memory
-> >         viewport size of a memory controller.  There may be up to
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230406-topic-ath10k_bindings-v3-1-00895afc7764@linaro.org
+
+
+wifi@0,0: reg: [[65536, 0, 0, 0, 0], [50397200, 0, 0, 0, 2097152]] is too long
+	arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dtb
+
+wifi@18800000: 'qcom,snoc-host-cap-skip-quirk' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
+
