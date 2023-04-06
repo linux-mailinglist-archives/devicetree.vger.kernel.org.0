@@ -2,108 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 979406D94FE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 13:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCA626D95FA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 13:39:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236434AbjDFLXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 07:23:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54268 "EHLO
+        id S238632AbjDFLjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 07:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbjDFLXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 07:23:09 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603AF19AF;
-        Thu,  6 Apr 2023 04:23:08 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 336AWu52004927;
-        Thu, 6 Apr 2023 11:23:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BzMPYlTxxXBfHEULtkkKX2NInG+vQ7gKm/cq+yJMqQU=;
- b=d8eTDB/ZzWmI/eaGP8WVFxS5aZykBrmBMzpMgBn2iBaNuX9OJ2RW5luu+SGUP879JhH8
- SuDwfeyGFzTtHf7HbC7ZuXWOq8/MI0WVu/0H8JFBHvlHyc/oyM9nH9/msi3GFIRJbqSu
- A7/wgCYDYE9A+WVGL1INdKwbxXXNvrKjvSBOcb5lZvfLu0z44s/TimwzMyR3TPdufh+l
- lZmtwRRzdAuBg3lJwyn3zz0zzq8VyJLs5rGcvU8a1ZxG26z+GlMiD8wMonnZIqU4H0Py
- UN2o55IJJCvV4S8usoT7hGcxA36zQWz4KxEMfV9pcGna1yOIB2B4avTvYFi0ITbTU93M /w== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3psmyx12ce-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Apr 2023 11:23:05 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 336BN4rV001928
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Apr 2023 11:23:04 GMT
-Received: from [10.50.18.39] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 6 Apr 2023
- 04:22:54 -0700
-Message-ID: <147f58fc-75d2-708c-1392-f76fa380b6ed@quicinc.com>
-Date:   Thu, 6 Apr 2023 16:52:51 +0530
+        with ESMTP id S238595AbjDFLip (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 07:38:45 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA21A2;
+        Thu,  6 Apr 2023 04:35:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=YLWXUtPlBzNRctfCp3LF0O5qcqt639y98cAc4+5cpy0=; b=glPn+IesWMVvAEJ0FzHVYHlEFj
+        mDPZh/l+MAcwkoHuEVHKHvWYjJKzKcO27aTPHOE/ZP3xxdayp+pqNxyEcn53jKLX+vE5ryB0vmGDm
+        hucmfHkLa3t5buJXyt5Eab9FqtXZRimI8ppRc3PPfSjxj9ddEYev32YRD/yHWUZQ/h5W0puY9i0yg
+        AlQeX+lvyLb8m8lKNkP9KmlUnNCQUafwrDG9zsD+Z17K82ir5hVTCV7ruIcxu9bABMniUZsUOSqOn
+        bmxZx4yPp/bFR4DJepmG7R/XSEH+10DRX3Gt5SQmBV579k/RXppbMxCag/DNgKJ163mFRvLOdeLXF
+        JePUuJtg==;
+Received: from p200300ccff190e001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff19:e00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pkNsM-0002Aa-Vf; Thu, 06 Apr 2023 13:34:00 +0200
+Date:   Thu, 6 Apr 2023 13:33:57 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        hns@goldelico.com
+Subject: Re: [PATCH 1/2] dt-bindings: leds: ROHM BD2606MVV LED driver
+Message-ID: <20230406133357.45e48bd3@aktux>
+In-Reply-To: <f73050b7-3f86-0dcd-5e43-d8a9258afcae@gmail.com>
+References: <20230406060825.103187-1-andreas@kemnade.info>
+        <20230406060825.103187-2-andreas@kemnade.info>
+        <f73050b7-3f86-0dcd-5e43-d8a9258afcae@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V2 0/2] Add initial support for RDP468 of IPQ5332 family
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230323093120.20558-1-quic_kathirav@quicinc.com>
-Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <20230323093120.20558-1-quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _RNGdXeHSw4o9h9AXcXI9M6N7__s3UxB
-X-Proofpoint-ORIG-GUID: _RNGdXeHSw4o9h9AXcXI9M6N7__s3UxB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-06_05,2023-04-06_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 impostorscore=0 adultscore=0 clxscore=1015 mlxlogscore=887
- bulkscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304060099
-X-Spam-Status: No, score=-3.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Matti,
 
-On 3/23/2023 3:01 PM, Kathiravan T wrote:
-> Add the initial device tree support for the RDP(Reference Design
-> Platform)468 based on IPQ5332 family of SoCs. This patch carries the
-> support for Console UART, SPI NOR, eMMC.
->
-> This series depends on the below which adds support the SPI NOR
-> https://lore.kernel.org/linux-arm-msm/20230320104530.30411-1-quic_kathirav@quicinc.com/
->
-> V1 can be found here
-> https://lore.kernel.org/linux-arm-msm/20230323044929.8694-1-quic_kathirav@quicinc.com/
+On Thu, 6 Apr 2023 11:32:42 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
+> Hi Andreas,
+> 
+> Thanks for the patch! Adding new support for devices is Much Appreciated!
+> 
+> On 4/6/23 09:08, Andreas Kemnade wrote:
+> > Document ROHM BD2606MVV LED driver devicetree bindings.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >   .../bindings/leds/rohm,bd2606mvv.yaml         | 76 +++++++++++++++++++
+> >   1 file changed, 76 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml b/Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+> > new file mode 100644
+> > index 0000000000000..6d4ddd8d31162
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+> > @@ -0,0 +1,76 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/rohm,bd2606mvv.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: BD2606MVV LED controller
+> > +
+> > +maintainers:
+> > +  - Andreas Kemnade <andreas@kemnade.info>
+> > +
+> > +description:
+> > +  The BD2606 MVV is a programmable LED controller connected via I2C that can
+> > +  drive 6 separate lines. Each of them can be individually switched on and off
+> > +  but the brightness setting is shared between two of them.  
+> 
+> Maybe add a link to data-sheet?
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/led_driver/bd2606mvv_1-e.pdf
+> 
+Maybe also (because it has the register description):
+https://fscdn.rohm.com/en/products/databook/applinote/ic/power/led_driver/bd2606mvv_tsb_001_ug-e.pdf
 
-Gentle Reminder...
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: rohm,bd2606mvv
+> > +
+> > +  reg:
+> > +    description: I2C slave address of the controller.
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^led@[0-6]$":
+> > +    type: object
+> > +    $ref: common.yaml#
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 6
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +additionalProperties: false  
+> 
+> According to the data-sheet, BD2606 has an enable-pin. Should it be 
+> visible in the bindings?
+> 
+yes, it should.
 
-
->
-> Kathiravan T (2):
->    dt-bindings: arm: qcom: document MI01.6 board based on IPQ5332 family
->    arm64: dts: qcom: ipq5332: add support for the RDP468 variant
->
->   .../devicetree/bindings/arm/qcom.yaml         |   2 +
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts   | 103 ++++++++++++++++++
->   3 files changed, 106 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
->
+Regards,
+Andreas
