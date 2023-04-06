@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 705466DA0A2
+	by mail.lfdr.de (Postfix) with ESMTP id BC0E66DA0A3
 	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbjDFTE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 15:04:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58704 "EHLO
+        id S229612AbjDFTE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 15:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240518AbjDFTEO (ORCPT
+        with ESMTP id S230055AbjDFTEO (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:04:14 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BDEA30E4
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 12:04:08 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6a11f365f87so1187607a34.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 12:04:08 -0700 (PDT)
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01EFD49F1
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 12:04:11 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-69f7c7cff1fso68721a34.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 12:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680807847; x=1683399847;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tgMSLoXvpb41dzn7vUbLqG4YYGMU1dgRXM40AmhHt3k=;
-        b=kMX/P8uRuh4nCfSPQXZMNuxXEwuQirPpCMzCU4gnXNa2aSTLGq8DMRDppHeVD3U/MI
-         a7OCbUSc+9w+r1GTD14CsrL9DTnLoezq+adGndZpSPQfwYUrtAXd7dKuHMLPvsy0VndO
-         utVvRuFqkNp741ZH59L4avn20gWfJ18lSmsFfKTzyaAdx6KfO1dA/qL6uHkzHENnocV+
-         2A5jfacQPHxDw46+hu8pWKOftFHc3/CcGXGALDtjNAptyS/zwdkkOkiDR4AvY+CluXWe
-         PHLus7FNvlzinp4Y4+1bTi5UDbNF9k1z3emwZ6uxDB+m3agjPz8tr9ySDarxVPxZ37FP
-         XC4Q==
+        d=gmail.com; s=20210112; t=1680807850; x=1683399850;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MkEqUW/wdPs5b4/W/JSh6XQhMQ3aalNHTczsi6c4D04=;
+        b=YYECXQNYlHighZyX+gtI9gNPfVFC+gOy5ImZXx7Uub4egWGs6SVdpEjnVM6Tprjpu6
+         U71fo90ejXBIPzv+vQBYHN9XF8zbRHPQF5BBZ80AYsysTxrocx3gNnHCMEk4txdUsFqJ
+         2CBVffTSnp+7ZfadxKFiWSYtecpABqx6xTmeLd5zeE1FNQvdzZWn5Kji3rztZ51xij1+
+         SLIMV06r1KczjkrtR46i72qpyRWSxiOwcp8IG2hWE153OsJSXwoSHvNFK5LlCjH4mwhN
+         r+u+GatH5wocC+BJg5lGy0I8Lsxsi9If0NkNqUSom6z+Ay23H+FbkuM2merAgS+1DYdt
+         ENbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680807847; x=1683399847;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tgMSLoXvpb41dzn7vUbLqG4YYGMU1dgRXM40AmhHt3k=;
-        b=aYqZorSXw9hWEPh1yDwXCnCUiwUcixIi+MmtSbAr0q7EBCQhiM2ADzRjkyhc++klhE
-         RnWjbk0JxYXpsrmoyEue9/KIzkc+cKnIGpstYf2e4xBG1qqNLpAvZh6FDLsbBmvP/s74
-         z9UAV+L7a7kNvFieCbsk2+yeuhL+t8ZlMB8OK+OjlryjtDxhGuNa5lx4sp8tdcsGC7uu
-         dIDN1yzT0gIDIwsfj654fERnF+q98UiDUgbNQ8HRXFarAg/73O/zyuBShSAiyvsI1V9g
-         xPxa7/man+myv2hbwLMWVI4Op9onfOPDFUaUF3F2Wwe/+6XVm2vw/thO6OUsbPIYnLRU
-         txsg==
-X-Gm-Message-State: AAQBX9fnAa200GKV/jJ8lpOT0WMK3C5delJc3mLXterUMXdQt5krCwI8
-        bPgvvwWlDAXL9lnV7sX70u5o/UoZwbg=
-X-Google-Smtp-Source: AKy350YAqdbAzkif8xUQ6LbO+5MM7Ceb+V7ivrupy8k+evqC08095O2JIY7T/QKhIXWrhhyN55pOZg==
-X-Received: by 2002:a05:6808:1995:b0:385:d91:ee30 with SMTP id bj21-20020a056808199500b003850d91ee30mr2852309oib.3.1680807847256;
-        Thu, 06 Apr 2023 12:04:07 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680807850; x=1683399850;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MkEqUW/wdPs5b4/W/JSh6XQhMQ3aalNHTczsi6c4D04=;
+        b=gBSPJtf6gvKowFxhU91I3FwtA1+WQczBuZp9ckuPLK1fd21q+q+jpZ7gv9YDGAd6Es
+         dQXEeBCigo0DnA7f9AGCeSvWZd/KyarXUkwn4irI9qPN/T32cGRzzN75xc3RDoHuLA5C
+         N79wvqpBLWFlW0se/arWxYogMDkLf6Tufo2wj2Mi3DzRU/6HhwEfBM3B/8w8p+NvWRef
+         MGHb3vgiXSe/H7EX3NcCC3bYX9WfvZVQII9RPxU1E8UupvroWjH7ZSEqaP5M0BGeosFb
+         RamngTfBydCfl7Uu8qt1OdU+7Vc59XivjBSZ73ayTYyhL9isSzw9ErIw1bQvDhPJnBEN
+         vcLQ==
+X-Gm-Message-State: AAQBX9cwJ3LfnssepzWMhLUQDCl3Ovdh2zirT+id5rnaYNtZOEVOBthP
+        RRNQF00soM8VSlfk8aTuA7FiNXs+alg=
+X-Google-Smtp-Source: AKy350bSrwVeMUNiwDblDiK34mHS4MzckVyhRtbMqaYV1khvA13XphdOkcRXc+U3j+WVYmKG4jl6jg==
+X-Received: by 2002:aca:b541:0:b0:38a:f7b7:d1b7 with SMTP id e62-20020acab541000000b0038af7b7d1b7mr2816722oif.4.1680807850238;
+        Thu, 06 Apr 2023 12:04:10 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:c4b0:ddac:a031:82c4])
-        by smtp.gmail.com with ESMTPSA id u10-20020a056808150a00b0037832f60518sm986761oiw.14.2023.04.06.12.04.04
+        by smtp.gmail.com with ESMTPSA id u10-20020a056808150a00b0037832f60518sm986761oiw.14.2023.04.06.12.04.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 12:04:06 -0700 (PDT)
+        Thu, 06 Apr 2023 12:04:09 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     neil.armstrong@linaro.org
 Cc:     marex@denx.de, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, jagan@amarulasolutions.com,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 1/2] dt-bindings: samsung,mipi-dsim: Add 'lane-polarities'
-Date:   Thu,  6 Apr 2023 16:03:53 -0300
-Message-Id: <20230406190354.1641352-1-festevam@gmail.com>
+Subject: [PATCH v2 2/2] drm: bridge: samsung-dsim: Implement support for clock/data polarity swap
+Date:   Thu,  6 Apr 2023 16:03:54 -0300
+Message-Id: <20230406190354.1641352-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230406190354.1641352-1-festevam@gmail.com>
+References: <20230406190354.1641352-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -70,66 +73,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+From: Marek Vasut <marex@denx.de>
 
-The Samsung DSIM IP block allows the inversion of the clock and
-data lanes.
+Implement support for DSI clock and data lane DN/DP polarity swap by
+means of decoding 'lane-polarities' DT property. The controller does
+support DN/DP swap of clock lane and all data lanes, the controller
+does not support polarity swap of individual data lane bundles, add
+a check which verifies all data lanes have the same polarity.
 
-Add an optional property called 'lane-polarities' that describes the
-polarities of the MIPI DSI clock and data lanes.
+This has been validated on an imx8mm board that actually has the MIPI DSI
+clock lanes inverted.
 
-This property is useful for properly describing the hardware when the
-board designer decided to switch the polarities of the MIPI DSI
-clock and/or data lanes.
-
+Signed-off-by: Marek Vasut <marex@denx.de>
 Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
 Changes since v1:
-- Rebased against drm-misc-next that has samsung,mipi-dsim.yaml.
+- Use 'drm: bridge: samsung-dsim:' as prefix (Jagan).
+- Collected Jagan's Reviewed-by tag.
 
- .../display/bridge/samsung,mipi-dsim.yaml     | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ drivers/gpu/drm/bridge/samsung-dsim.c | 27 ++++++++++++++++++++++++++-
+ include/drm/bridge/samsung-dsim.h     |  2 ++
+ 2 files changed, 28 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
-index e841659e20cd..04eb440ade72 100644
---- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
-@@ -105,6 +105,35 @@ properties:
-           DSI output port node to the panel or the next bridge
-           in the chain.
+diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
+index e0a402a85787..5791148e2da2 100644
+--- a/drivers/gpu/drm/bridge/samsung-dsim.c
++++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+@@ -183,6 +183,8 @@
+ #define DSIM_AFC_CTL(x)			(((x) & 0x7) << 5)
  
-+        properties:
-+          endpoint:
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            unevaluatedProperties: false
+ /* DSIM_PLLCTRL */
++#define DSIM_PLL_DPDNSWAP_CLK		(1 << 25)
++#define DSIM_PLL_DPDNSWAP_DAT		(1 << 24)
+ #define DSIM_FREQ_BAND(x)		((x) << 24)
+ #define DSIM_PLL_EN			BIT(23)
+ #define DSIM_PLL_P(x, offset)		((x) << (offset))
+@@ -622,6 +624,11 @@ static unsigned long samsung_dsim_set_pll(struct samsung_dsim *dsi,
+ 		reg |= DSIM_FREQ_BAND(band);
+ 	}
+ 
++	if (dsi->swap_dn_dp_clk)
++		reg |= DSIM_PLL_DPDNSWAP_CLK;
++	if (dsi->swap_dn_dp_data)
++		reg |= DSIM_PLL_DPDNSWAP_DAT;
 +
-+            properties:
-+              data-lanes:
-+                oneOf:
-+                  - minItems: 1
-+                    maxItems: 4
-+                    uniqueItems: true
-+                    items:
-+                      enum: [ 1, 2, 3, 4 ]
-+                    description:
-+                      See ../../media/video-interfaces.yaml for details.
+ 	samsung_dsim_write(dsi, DSIM_PLLCTRL_REG, reg);
+ 
+ 	timeout = 1000;
+@@ -1696,7 +1703,9 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
+ {
+ 	struct device *dev = dsi->dev;
+ 	struct device_node *node = dev->of_node;
+-	int ret;
++	u32 lane_polarities[5] = { 0 };
++	struct device_node *endpoint;
++	int i, nr_lanes, ret;
+ 
+ 	ret = samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequency",
+ 				       &dsi->pll_clk_rate);
+@@ -1713,6 +1722,22 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
+ 	if (ret < 0)
+ 		return ret;
+ 
++	endpoint = of_graph_get_endpoint_by_regs(node, 1, -1);
++	nr_lanes = of_property_count_u32_elems(endpoint, "data-lanes");
++	if (nr_lanes > 0 && nr_lanes <= 4) {
++		/* Polarity 0 is clock lane, 1..4 are data lanes. */
++		of_property_read_u32_array(endpoint, "lane-polarities",
++					   lane_polarities, nr_lanes + 1);
++		for (i = 1; i <= nr_lanes; i++) {
++			if (lane_polarities[1] != lane_polarities[i])
++				DRM_DEV_ERROR(dsi->dev, "Data lanes polarities do not match");
++		}
++		if (lane_polarities[0])
++			dsi->swap_dn_dp_clk = true;
++		if (lane_polarities[1])
++			dsi->swap_dn_dp_data = true;
++	}
 +
-+              lane-polarities:
-+                minItems: 1
-+                maxItems: 5
-+                items:
-+                  enum: [ 0, 1 ]
-+                description:
-+                  See ../../media/video-interfaces.yaml for details.
-+                  The Samsung MIPI DSI IP requires that all the data lanes have
-+                  the same polarity.
-+
-+            dependencies:
-+              lane-polarities: [data-lanes]
-+
- required:
-   - clock-names
-   - clocks
+ 	return 0;
+ }
+ 
+diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsung-dsim.h
+index ba5484de2b30..6a37d1e079bf 100644
+--- a/include/drm/bridge/samsung-dsim.h
++++ b/include/drm/bridge/samsung-dsim.h
+@@ -95,6 +95,8 @@ struct samsung_dsim {
+ 	u32 mode_flags;
+ 	u32 format;
+ 
++	bool swap_dn_dp_clk;
++	bool swap_dn_dp_data;
+ 	int state;
+ 	struct drm_property *brightness;
+ 	struct completion completed;
 -- 
 2.34.1
 
