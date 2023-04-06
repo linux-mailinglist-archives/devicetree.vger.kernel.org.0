@@ -2,65 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB7716DA3AA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 843B86DA3B9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239506AbjDFUmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 16:42:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54978 "EHLO
+        id S238029AbjDFUmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 16:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240337AbjDFUla (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:41:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B5DFB45D;
-        Thu,  6 Apr 2023 13:38:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AC10860F77;
-        Thu,  6 Apr 2023 20:38:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9211FC433D2;
-        Thu,  6 Apr 2023 20:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680813488;
-        bh=3Cznac5B+3sy6hB9DB3/iijT0kNRLGM0krGAPHIjwzU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XFJOGBaUci1k2qda+64OPr7W9hnUOcTeNhu8CRqtWNtPwUevBZwT16jGG3OVwhyt6
-         AuNgxgN1jYEMc5w6gdtT9yJkiZucj+V/TNA30stBeFypoEk7ngGvA6hqr02fwi5Aez
-         GHIbpj6mPZOr3k79jsZDKz8U4hCkRCsxNRrSyrRO+wsrPoD+BVL8nkL8cgyQi8KOCn
-         dERdf/af6ZVxFtDuA+E7sSDkjuZjomZO80b6DxcjawKGW1SgxcO7nPGGFoR+oMlhid
-         NBMfqT6f5zCbIiEtVmuoanCXWzgnXbMAvqboU/k95P4EGkmZtrMa7LljcY1ea7YzzI
-         TCri2M0SRZ1vg==
-Message-ID: <8353399f-c6de-8da7-78f1-d6a558c462d0@kernel.org>
-Date:   Thu, 6 Apr 2023 22:38:03 +0200
+        with ESMTP id S232834AbjDFUmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:42:04 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD1DC668
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 13:38:58 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id x20so41865755ljq.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 13:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680813536;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ev5hN9s8w8JulYzATwh7JsfqAzOtHOwmwJARepKyeMw=;
+        b=uNfdk0aordhm2U+uez5lxiSDLS/E8esBnea+IgMtiNchJog0+I5Qz1K0nQtDN04f0W
+         MvantI/obc5ZeUBW4v0d+LJrObwS/cKin/EJ1uXiRzdu3JcoZ0jYcCPenmIXGDcnEZqA
+         PaI+jIV0JhEsBjb6pI1VHbdnkYx+pcmJjozykULCEc4qwzTWsyI85O+rLgLhIMYaPbt2
+         NDMJxAJ+Hv6+2/LxAhehu5kEL/eae6SskCFlAZK5RI1BGWjd7OE+fqTjqzerPB8D9kuv
+         dF31PDSKQCBGFCpbyQlKkH75wPzmrc7c1bhzng4lxeqDWm4muX6ThgyBmO8tAHi6Le8M
+         d/BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680813536;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ev5hN9s8w8JulYzATwh7JsfqAzOtHOwmwJARepKyeMw=;
+        b=10uEsbJzxLMEQsB1fYtsi0eAJk1mzjlEMsQpW2WfD4HyMR9HzTti64hRTTobzF9bVp
+         0e0udAqj1ZwG5VC3M7vq1PK+K3M2SciB6ohS/LBXkW6QjUKcTDiYt44EsSJwiynMU+ID
+         Iyag8s/uyyFrP8NHA8OmPHCeoifSFb15nB7v7/0Hdjb9bzzK4tYchIIrx4p0AzLs87ce
+         KUro5ufAzdPPL64bJUDIr0jIFfaBF/U6gPGd8U+9MKTUFjk8VaVRAHeIUKwXWE3d8xZo
+         4aA5+uZg2rRs2o9vtagyfYJMouv91+kpX48sEdsZEUp3osaKGo9oAbB8gjCCJ5WOvbIT
+         kUfw==
+X-Gm-Message-State: AAQBX9fXqc1zJNEXcYB2SFwKMM3lJY++eGIGgWBJ+MtFayGb0QbG2BMX
+        vPcZC01GGuwJx1MH4cg8pcH+uw==
+X-Google-Smtp-Source: AKy350aLZqM5dDvzHdfZEM/juTBxRGBJKWn1U+UKEnBo8v9epMrGGWEy59cQT9Ueb/raFbSaz2xtIg==
+X-Received: by 2002:a2e:a408:0:b0:29c:44f1:c1df with SMTP id p8-20020a2ea408000000b0029c44f1c1dfmr2944844ljn.41.1680813536458;
+        Thu, 06 Apr 2023 13:38:56 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id z4-20020a2e8404000000b002a483f01d9csm428053ljg.85.2023.04.06.13.38.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 13:38:56 -0700 (PDT)
+Message-ID: <ae04df79-10d6-6a38-715b-8f00e8764d85@linaro.org>
+Date:   Thu, 6 Apr 2023 22:38:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel <kernel@dh-electronics.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
- <20230406154900.6423-3-cniedermaier@dh-electronics.com>
- <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
- <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
- <f6c8586f-a5d1-875f-b2c0-7871112cf1b1@linaro.org>
- <ff95314402a349a5a2998c1b5e2b13a2@dh-electronics.com>
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V3 2/5] clk: qcom: apss-ipq-pll: Add support for IPQ9574
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <ff95314402a349a5a2998c1b5e2b13a2@dh-electronics.com>
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        dmitry.baryshkov@linaro.org, arnd@arndb.de,
+        geert+renesas@glider.be, nfraprado@collabora.com,
+        broonie@kernel.org, rafal@milecki.pl,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_ipkumar@quicinc.com
+References: <20230406061314.10916-1-quic_devipriy@quicinc.com>
+ <20230406061314.10916-3-quic_devipriy@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230406061314.10916-3-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,40 +85,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 21:57, Christoph Niedermaier wrote:
->>>>> +     aliases {
->>>>> +             /delete-property/ mmc0; /* Avoid double definitions */
->>>>
->>>> I don't understand it. What is "double definition" of aliases?
->>>
->>> Otherwise I end up like this:
->>> mmc0 = &usdhc1;
->>> mmc1 = &usdhc2;
->>> mmc2 = &usdhc2;
->>>
->>> Is "Ensure unique allocation" a better comment here?
->>>
->>>>
->>>>> +             /delete-property/ mmc1;
->>>>> +             mmc2 = &usdhc2; /* eMMC should be mmc2 */
->>>>
->>>> Why? How is this labeled on the board (physically or on schematics)? If
->>>> you answer here "for booting", then the answer is NAK. Don't add
->>>> software policies to Devicetree.
->>>
->>> The name in the schematics is "SD2".
->>
->> Answering also to above - then likely the aliases should be dropped from
->> SoM. I doubt that Som calls it SD1 and your board SD2...
+
+
+On 6.04.2023 08:13, Devi Priya wrote:
+> Add the compatible and configuration values for A73 Huayra PLL found
+> on IPQ9574.
 > 
-> Maybe I don't quite get it, but the hardware starts counting at 1. The first
-> interface is SD1 and it is used as WiFi. The second one is SD2 which is the
-> eMMC. So with this aliases it should match SD2 to mmc2.
-> Do you want me to delete the aliases in the include file "imx6ull-dhcor-som.dtsi"
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Yes, because it incorrectly calls eMMC as mmc1. You said it is SD2, right?
-
-
-Best regards,
-Krzysztof
-
+Konrad
+>  Changes in V3:
+> 	- Updated the subject and aligned the commit message
+> 
+>  drivers/clk/qcom/apss-ipq-pll.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
+> index cf4f0d340cbf..ce28d882ee78 100644
+> --- a/drivers/clk/qcom/apss-ipq-pll.c
+> +++ b/drivers/clk/qcom/apss-ipq-pll.c
+> @@ -111,6 +111,18 @@ static const struct alpha_pll_config ipq8074_pll_config = {
+>  	.test_ctl_hi_val = 0x4000,
+>  };
+>  
+> +static const struct alpha_pll_config ipq9574_pll_config = {
+> +	.l = 0x3b,
+> +	.config_ctl_val = 0x200d4828,
+> +	.config_ctl_hi_val = 0x6,
+> +	.early_output_mask = BIT(3),
+> +	.aux2_output_mask = BIT(2),
+> +	.aux_output_mask = BIT(1),
+> +	.main_output_mask = BIT(0),
+> +	.test_ctl_val = 0x0,
+> +	.test_ctl_hi_val = 0x4000,
+> +};
+> +
+>  struct apss_pll_data {
+>  	int pll_type;
+>  	struct clk_alpha_pll *pll;
+> @@ -135,6 +147,12 @@ static struct apss_pll_data ipq6018_pll_data = {
+>  	.pll_config = &ipq6018_pll_config,
+>  };
+>  
+> +static struct apss_pll_data ipq9574_pll_data = {
+> +	.pll_type = CLK_ALPHA_PLL_TYPE_HUAYRA,
+> +	.pll = &ipq_pll_huayra,
+> +	.pll_config = &ipq9574_pll_config,
+> +};
+> +
+>  static const struct regmap_config ipq_pll_regmap_config = {
+>  	.reg_bits		= 32,
+>  	.reg_stride		= 4,
+> @@ -180,6 +198,7 @@ static const struct of_device_id apss_ipq_pll_match_table[] = {
+>  	{ .compatible = "qcom,ipq5332-a53pll", .data = &ipq5332_pll_data },
+>  	{ .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_data },
+>  	{ .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_data },
+> +	{ .compatible = "qcom,ipq9574-a73pll", .data = &ipq9574_pll_data },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, apss_ipq_pll_match_table);
