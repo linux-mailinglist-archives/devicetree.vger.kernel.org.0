@@ -2,84 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 888FD6D9DDB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9091B6D9DE9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239625AbjDFQsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:48:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33074 "EHLO
+        id S239239AbjDFQu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239811AbjDFQsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:48:43 -0400
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF01559B;
-        Thu,  6 Apr 2023 09:48:31 -0700 (PDT)
-Received: by mail-oo1-f46.google.com with SMTP id s19-20020a4adb93000000b00540fa505f2dso2898586oou.7;
-        Thu, 06 Apr 2023 09:48:31 -0700 (PDT)
+        with ESMTP id S238128AbjDFQu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:50:57 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67B48AA
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:50:56 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id qb20so2910111ejc.6
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:50:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680799855;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nEEb0vXytaBgAhoyEGLzDTpUDIw1OoDVMgFbGhAvTic=;
+        b=v14Uw7nAprto8hu0UwH0MFBkncJz2aZvs0CZMm6NdA5+eXKapEN+DWTXa3ULa8BO+T
+         SWA0WdOcwPevgnX+QT5WKlktDwQKsdabbTeQM7QW3z0XwjSeNTWKmyTFhAUC0h9XKOFp
+         F/sIYWEOFr1+0VpOa85F9TWRNrSKmgD34ALDFUW9q2LY6BhWBBpv5d0sG5haG8reBI3F
+         984AfM59O4KeGA0pptlo8K1fgZ87bPD/wYO3IWHrtwn2B48ZXS2DAzTxegTt1hhgOsFi
+         LpqouiEbctCJtlpzxDJ4spxnKpSQgYGFucp52y0N6bz+yPec3imAOkAIT8EDEc/THZQO
+         g8gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680799711; x=1683391711;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZoIKZZqHzGJyVdkCs91+pdHog4YytlT4U9+saTPsm+g=;
-        b=Wk6pafJEVrJxAS/+ms9G0Aw9U9efhbao9LafLFFuHk30BQOCYqXaKjCDhfg38MISfE
-         gQ8TGxBBbb+e/VX7PB0kYucbr64vhSTSiHqJqmq33jZ687dRUw24DQX15femIOd/ryHa
-         VssVxBNIrktwz4Zqz2bTZv1Xg6F3vQORmBCTgJ6bavtVm3UV1ySNZFgiBSPjDE1iyquk
-         9LQMpwGq//lN1rwK5GuqJCpf75t5At9T4eJIfHrhpRoaCSkDLv2kJ0UDesFia6sW5MCS
-         ITBM5rwYMOdE2/NuKtlrA+2m8Dzn2Xx46wKAWPOv+1iWffOD1CWoZxLgnSHnobKCEUAl
-         eT6g==
-X-Gm-Message-State: AAQBX9ejsezMwiP7rlXlb4hn2bRhtzY+pGcXizZTrtSMHDkOwt9hsugY
-        uTJhQ5nZdFn3Ti172z5Qr9n2JgJwNg==
-X-Google-Smtp-Source: AKy350bLaW+BX3c2Xv1k762fNr+o+vedJksgFUYP/cJObhkX4zHsPA7YruOqiMaeTFLd/cH01dIJqA==
-X-Received: by 2002:a4a:58c1:0:b0:525:36b1:86dd with SMTP id f184-20020a4a58c1000000b0052536b186ddmr68684oob.7.1680799711017;
-        Thu, 06 Apr 2023 09:48:31 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i128-20020acaea86000000b00386eff32f58sm858979oih.13.2023.04.06.09.48.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 09:48:30 -0700 (PDT)
-Received: (nullmailer pid 3283911 invoked by uid 1000);
-        Thu, 06 Apr 2023 16:48:30 -0000
-Date:   Thu, 6 Apr 2023 11:48:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yuti Amonkar <yamonkar@cadence.com>, Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org, Swapnil Jakhade <sjakhade@cadence.com>,
-        linux-kernel@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH 5/5] dt-bindings: phy: ti,phy-j721e-wiz: document
- clock-output-names
-Message-ID: <168079970960.3283855.16770288555764334439.robh@kernel.org>
-References: <20230404190115.546973-1-krzysztof.kozlowski@linaro.org>
- <20230404190115.546973-5-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20210112; t=1680799855;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nEEb0vXytaBgAhoyEGLzDTpUDIw1OoDVMgFbGhAvTic=;
+        b=luZr76ja8lSnwvlqYgc52aPtUBHgv5SP5jiVkH6ON7A+e6gwJldaE4Vd1EZy3i0oNp
+         1vd9Hq6Xwn2qeD2lbBJDODsozWHnZWiO6iCOPMLPFzc3FlrJCBx9LPTD6S6uwrr4YYvW
+         lxybwMHwo66NwpgRLwxjNj0ABh3qLw4u2AD/k/2NoeV6st2lygsPTMD3TgWTdHEUynCS
+         hvxk++euOfb/u0JlQZjbWONMloSwsBNmdAczbpFFNN4g9RpGd2ivT+zdgnuf9y6kh0rY
+         LPsbIMZM8CXVSlkveRsEJ/dnGWpkAm98tmzF2SvwF+bpXBOP8wjq8ex/fSlcDImrri6u
+         wG2w==
+X-Gm-Message-State: AAQBX9fJjXyI09otrjNPuAciygo3rF8XInX6L+gDcNqRbo5/JQl5adCW
+        PAjmro/sXLtL3WqwjigMyQ6z8g==
+X-Google-Smtp-Source: AKy350abJmna6VO/eI3M82NE0QQxWsSYaexna7WKmbO3/KMHw+XgFPJZgIvoURuqm/Gyx18Kj1dWDg==
+X-Received: by 2002:a17:906:14c9:b0:931:41af:8ecb with SMTP id y9-20020a17090614c900b0093141af8ecbmr6916726ejc.49.1680799854808;
+        Thu, 06 Apr 2023 09:50:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id m9-20020a170906848900b00947a97a42f2sm1025704ejx.103.2023.04.06.09.50.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 09:50:54 -0700 (PDT)
+Message-ID: <14634180-aca9-a3e9-d1af-dfaca77b42ee@linaro.org>
+Date:   Thu, 6 Apr 2023 18:50:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230404190115.546973-5-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
+Content-Language: en-US
+To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>
+Cc:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
+        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Walker <dwalker@fifo99.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230405223028.1268141-2-danielwa@cisco.com>
+ <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
+ <20230406151512.GL40472@zorba>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230406151512.GL40472@zorba>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 06/04/2023 17:15, Daniel Walker (danielwa) wrote:
+> On Thu, Apr 06, 2023 at 09:12:34AM +0200, Krzysztof Kozlowski wrote:
+>> On 06/04/2023 00:30, Daniel Walker wrote:
+>>> Describe the compatible properties for the Cisco CrayAR SoC.
+>>>
+>>> Cc: xe-linux-external@cisco.com
+>>> Cc: Marcin Wierzbicki <mawierzb@cisco.com>
+>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>
+>> Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
+>> commit msg. There is no single need to store automated output of
+>> get_maintainers.pl in the git log. It can be easily re-created at any
+>> given time, thus its presence in the git history is redundant and
+>> obfuscates the log.
+>>
+>> If you need it for your own patch management purposes, keep it under the
+>> --- separator.
+>  
+> I added these, so it's not script output. I can move them under the separator.
+> The reason for that was to make sure people who commented get Cc'd.
 
-On Tue, 04 Apr 2023 21:01:15 +0200, Krzysztof Kozlowski wrote:
-> Document the clock-output-names property of clock children, even though
-> the nodes are actually deprecated, to fix dtbs_check warnings like:
-> 
->   k3-j7200-common-proc-board.dtb: wiz@5060000: refclk-dig: 'clock-output-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml        | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
+So read my message again. There is no reason to add these entries for
+people who are listed as maintainers, because you are supposed to CC
+maintainers always.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+>>> Signed-off-by: Daniel Walker <dwalker@fifo99.com>
+>>> ---
+>>>  .../devicetree/bindings/arm/cisco/crayar.yaml | 27 +++++++++++++++++++
+>>>  1 file changed, 27 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/cisco/crayar.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/cisco/crayar.yaml b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
+>>> new file mode 100644
+>>> index 000000000000..0ee4e6313ab0
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
+>>
+>> How many (or not many) platforms do you expect from Cisco? We mostly
+>> have one file per SoC manufacturer.
+> 
+> We have two SoC's one called CrayAR and another called Craw. I've submitted the
+> Craw dts file before , but I've not resubmitted it. Under Craw I think we have
+> at least two, but more likely five variations. CrayAR we have one variation with
+> at least one more planned.
+> 
+> So we would plan over time to add two dtsi files and three to four dts files to
+> this directory. Then more over time.
+
+So just keep them in one file maybe.
+
+Best regards,
+Krzysztof
 
