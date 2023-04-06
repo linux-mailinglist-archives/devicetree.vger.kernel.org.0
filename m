@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 093A26D9CF9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 624EA6D9D07
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239838AbjDFQE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
+        id S239866AbjDFQG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbjDFQEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:04:23 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E49EB9EDE;
-        Thu,  6 Apr 2023 09:04:21 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 62F1086081;
-        Thu,  6 Apr 2023 18:04:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1680797060;
-        bh=hGSNcP+ms4Vn8/e4xgcJRUfGMxd2RCu6Ltfl1sU5U6s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=j4i+KxNDBecht5uxlq7mB9s/myKyJeibtAw6iFvfBKc/35IQSSeYiwNomHTYvSM38
-         ZV0f7RQvqHTU7F8XqKMkKbMknDLh/LX+BsXSC4Qbmw5wskMY87lc38Gsao7ghJVBu0
-         sKQAUE4VDujl8OlqswgNihdfiYnN8v9S6HxQ4/18TjF0Us4y5GV7ue1sW9Ahpiwggv
-         02BgrUGjUBsruU1WsnOCGMf7QNQdy6JhvZDGxMG3heyLZi1nyh7Ju4IkVaJgnzFSAo
-         OGUNCH1vSn0rwTonZGzFA45PRxY6hT9Yg7YF79W9uY84FnIx1JUjZGD+oDMAgfGTFg
-         WPBhhvznCiwsw==
-Message-ID: <6865a0ce-fc77-df43-b36d-a586856c69d7@denx.de>
-Date:   Thu, 6 Apr 2023 18:04:18 +0200
+        with ESMTP id S239862AbjDFQG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:06:28 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A569004
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:06:07 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id m2so40023272wrh.6
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:06:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680797165; x=1683389165;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tGBcjAE6j139nGrIeCa4gFdeD5NsoReg/shcLBHBhms=;
+        b=ilJZDzEidBWQIUC/WEyHBGDCmt0cL+CP5MSZDpG5JB4DEmx+iCCm2eolefvzKHqePs
+         pPr5KEMziD1SfnzjcT7+V2LbK6NO4kGSMU9+vrMBiNxCUo+0yCJLJXN1GOd8xnTsrDFP
+         5ttKj7hXEN+WARyIDBN+aJMbKgLwykkxseBQlNWWYddQ7j24/HTKyL2rfD5d9YgpSvH8
+         NCOWr7ne1XNH4RceyRoq74JZKlfolKiIu4uOwzNmkdyjCaRkkE3yNkOn5sgi+Brd7EQ9
+         BxsNdGp4804+wu6FlQ7CxoZI5ausQcPB0JIBbA10IeZTz+Q1A1ccbUueZTedCg1t2U74
+         YoGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680797165; x=1683389165;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tGBcjAE6j139nGrIeCa4gFdeD5NsoReg/shcLBHBhms=;
+        b=hrxAZGCg7AaGkkKxhVmJiq4Q9xi/RLUhPSYZdyjyaBq2AQ2GYdPFX335uWPMlizWQ1
+         Vo3H/nz4eWhrife26sD0ec8al4Sxd8WH2gIJrZZyCpcCvwYfvFshzsndlNTG5Av8Plxj
+         BTOItgJz3BnBcNfZJ11+fQ/65He1toKM3UpCfRhYNjxFgVK602ZKsu0KEpe9be0wrxxu
+         oBTEEVuFmWBTIpqRd8e+Z0JrjM1t2edTXosTw/HnW3PelPj3mLXiX6+eBg7zrHN6WK+m
+         kegUF9ooQ+/NTe6Vsd5ojbVQahkyF9mqhZD29rCfgKdIw/svcqVPDllPHQNhlm3n5RfJ
+         QgfA==
+X-Gm-Message-State: AAQBX9ezKcT7DKR5dAVYyHvG9AnC9yV4atdOIysbOIk2lkGCL5mqyypS
+        5fzL3VEVwN059By5zou1N3KMlA==
+X-Google-Smtp-Source: AKy350Z6NL84QoajoMkHAcqHoiPnqfDtjwjHP1ozYJ3eK1bhBdJxqz9vdxU74lO60iF0AtXdxGpuBg==
+X-Received: by 2002:a5d:6584:0:b0:2ee:ee98:efbe with SMTP id q4-20020a5d6584000000b002eeee98efbemr1836418wru.58.1680797165454;
+        Thu, 06 Apr 2023 09:06:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8569:a62a:11bd:c344? ([2a01:e0a:982:cbb0:8569:a62a:11bd:c344])
+        by smtp.gmail.com with ESMTPSA id b10-20020a5d634a000000b002e116cbe24esm2112794wrw.32.2023.04.06.09.06.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 09:06:05 -0700 (PDT)
+Message-ID: <9835aeba-6e4c-0594-427b-9990fc07407a@linaro.org>
+Date:   Thu, 6 Apr 2023 18:06:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+ Thunderbird/102.9.1
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] of: fdt: Allow the kernel to mark nomap regions
+ received from fdt
 Content-Language: en-US
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel <kernel@dh-electronics.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-References: <20230405160258.46998-1-cniedermaier@dh-electronics.com>
- <20230405160258.46998-2-cniedermaier@dh-electronics.com>
- <05fa147c-116b-59b4-d14b-760bbefd7602@denx.de>
- <e7aa3b3220e148ee96f5a1c361721845@dh-electronics.com>
- <42737c19-698f-8cc8-45b2-8ff08a274f87@denx.de>
- <531df359744f4bdb9fd34eafc864d2bc@dh-electronics.com>
- <50c88cc4-e046-6c43-2d35-116d1d4ea2f8@denx.de>
- <622e846f1d2c4f8abba171202640d1d3@dh-electronics.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <622e846f1d2c4f8abba171202640d1d3@dh-electronics.com>
+To:     Rob Herring <robh+dt@kernel.org>, Lucas Tanure <tanure@linux.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, jbrunet@baylibre.com,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
+        stefan@agner.ch
+References: <20230406151429.524591-1-tanure@linux.com>
+ <20230406151429.524591-3-tanure@linux.com>
+ <CAL_JsqL_MLHO-zk0HAmuAmiJQ_TmD4EN5YC0JmRs7PXjStjr3A@mail.gmail.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <CAL_JsqL_MLHO-zk0HAmuAmiJQ_TmD4EN5YC0JmRs7PXjStjr3A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,70 +87,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/6/23 17:44, Christoph Niedermaier wrote:
-> From: Marek Vasut [mailto:marex@denx.de]
-> Sent: Thursday, April 6, 2023 4:10 PM
->> On 4/6/23 10:37, Christoph Niedermaier wrote:
->>> From: Marek Vasut [mailto:marex@denx.de]
->>> Sent: Wednesday, April 5, 2023 8:47 PM
->>>> On 4/5/23 20:24, Christoph Niedermaier wrote:
->>>>> From: Marek Vasut [mailto:marex@denx.de]
->>>>> Sent: Wednesday, April 5, 2023 6:25 PM
->>>>>> On 4/5/23 18:02, Christoph Niedermaier wrote:
->>>>>>
->>>>>> [...]
->>>>>>
->>>>>>> +/ {
->>>>>>> +     model = "DH electronics i.MX6ULL DHCOR on maveo box";
->>>>>>> +     compatible = "dh,imx6ull-dhcor-maveo-box", "dh,imx6ull-dhcor-som",
->>>>>>> +                  "fsl,imx6ull";
->>>>>>> +
->>>>>>> +     aliases {
->>>>>>> +             /delete-property/ mmc0; /* Avoid double definitions */
->>>>>>> +             /delete-property/ mmc1;
->>>>>>> +             mmc2 = &usdhc2; /* eMMC should be mmc2 */
->>>>>>
->>>>>> Why not mmc0 ?
->>>>>>
->>>>>> Use root=PARTUUID= when booting to avoid any dependency on
->>>>>> root=/dev/mmcblk2pN enumeration.
->>>>>
->>>>> This is due to software interchangeability with the DHCOM
->>>>> i.MX6ULL, where the eMMC is always mmc2.
->>>>
->>>> +CC Ulf , I vaguely recall some discussion about this enumeration and I
->>>> am not sure one can really depend on that.
->>>
->>> That why I think it good to have a defined number for mmcblk devices
->>> on an embedded system. An excerpt from [1]:
+On 06/04/2023 17:48, Rob Herring wrote:
+> On Thu, Apr 6, 2023 at 10:14 AM Lucas Tanure <tanure@linux.com> wrote:
 >>
->> I might be misremembering this, but could it be that, if any non-OF
->> SDMMC controller probes early and hogs the /dev/mmcblk2 before the OF
->> ones have a chance to probe, then the OF ones would fail to probe ?
->>
->>> Alternative solutions like PARTUUIDs do not cover the case where multiple
->>> mmcblk devices contain the same image.
->>
->> I agree, this is indeed a downside of PARTUUID .
->>
->>> This is a common issue on devices
->>> that can boot both from eMMC (for regular boot) and SD cards (as a
->>> temporary boot medium for development). When a firmware image is
->>> installed to eMMC after a test boot via SD card, there will be no
->>> reliable way to refer to a specific device using (PART)UUIDs oder
->>> LABELs
->>
->> This can be solved by the installer updating the PARTUUID on the eMMC
->> however.
->>
->>> [1] https://patchwork.kernel.org/project/linux-mmc/patch/20200825134441.17537-2-matthias.schiffer@ew.tq-group.com/
->>>
->>> So far I have never had a problem with numbering mmcblk devices via aliases.
->>
->> Based on the above, I don't think either the aliases or PARTUUID is a
->> perfect solution, but the aliases should be fine for mx6ull at least?
->> So I think we can conclude this discussion thread ?
+>> Reserved regions can be described in FDT and device trees, but FDT doesn't
+>> provide the related flags, like nomap.
 > 
-> Yes, I will send a new version with the changes on the first patch.
+> It took me a minute to understand what you meant by FDT vs. device
+> trees. Use the exact things you are talking about: /memreserve/ and
+> /reserved-memory node.
+> 
+>> So allow the kernel to mark regions where the base and size received from
+>> the device tree are the same as the base and region on FDT.
+>> Here we trust that the device tree has a more updated description of the
+>> region than the one received from FDT.
+>>
+>> Signed-off-by: Lucas Tanure <tanure@linux.com>
+>> ---
+>>   drivers/of/fdt.c | 10 ++++++----
+>>   1 file changed, 6 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+>> index d1a68b6d03b3..754a7ea4f45c 100644
+>> --- a/drivers/of/fdt.c
+>> +++ b/drivers/of/fdt.c
+>> @@ -482,11 +482,13 @@ static int __init early_init_dt_reserve_memory(phys_addr_t base,
+>>          if (nomap) {
+>>                  /*
+>>                   * If the memory is already reserved (by another region), we
+>> -                * should not allow it to be marked nomap, but don't worry
+>> -                * if the region isn't memory as it won't be mapped.
+>> +                * should not allow it to be marked nomap, unless is the exact same region
+>> +                * (same base and size), which the kernel knows better and should be allowed to mark
+>> +                *  it as nomap.
+>> +                * But don't worry if the region isn't memory as it won't be mapped.
+>>                   */
+>> -               if (memblock_overlaps_region(&memblock.memory, base, size) &&
+>> -                   memblock_is_region_reserved(base, size))
+>> +               if (memblock_overlaps_region(&memblock.memory, base, size) == MEMBLOCK_OVERLAPS &&
+>> +                   memblock_is_region_reserved(base, size) == MEMBLOCK_OVERLAPS)
+> 
+> Won't this fail to work as IIRC memblock will merge regions when they
+> are adjacent and have the same atrributes.
+> 
+> Perhaps instead, the DT code should ignore any /memreserve/ entries
+> that are also in /reserved-memory.
+> 
+> I would suggest just reverse the order they are processed, but I
+> suspect that might cause some regression. This code is all fragile
+> especially with platforms putting in 100 regions.
+> 
+> Finally, perhaps fix u-boot. The reason the reserved location goes in
+> both places was to support an OS not supporting /reserved-memory. I
+> think that support has been in place for a lot longer than anyone
+> would care about.
 
-Thank you
+Fixing U-Boot won't fix already tagged and in-the-field mainline u-boot
+releases that adds /memreserve/ entries, so yes u-boot should be definitely
+fixed but Linux should ignore the /memreserve/ entries when they matches
+an /reserved-memory node like when the U-Boot /memreserve/ code was added.
+
+Neil
+
+> 
+> Rob
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
