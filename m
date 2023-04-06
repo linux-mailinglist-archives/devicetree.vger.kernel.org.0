@@ -2,129 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2F76D989B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 980956D98AA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236627AbjDFNwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 09:52:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58458 "EHLO
+        id S236901AbjDFNzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 09:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbjDFNwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:52:22 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5C4E71
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 06:52:21 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id y7so8349108ljp.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 06:52:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680789139;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fi3MbKEX3/1oXOmLA6/02HNxunRbR6J+mBMPZLKnID4=;
-        b=T5KOLXwYzh6yxByWV2dKybcPjMqqgH9SwG/TckParRUN/PVAZamZQ1QZ4dSfB4tAMs
-         lCNc1z1xB/sFxIzzJgYc65nNGgV0PaTgdAR7KHR8ecjDY1FdezuAziZKXZM+iv85621I
-         i6ycuNMds3ze0uekYIadsGgk/OLthl6cVWedPqUMdpSzLY/sbRjalFaQbT/HlWXvhGrw
-         kUeyP5x0OWgUjE3sXjHbTUH2OJ6aZQIgQ8irP6f011zLdDG3J1Og6PfzWkIOUGYf7Gni
-         iYMpcvXJ91y+0q0GUS6tiH0uSgIOvSrNKb8IMWVI1r5eCv/9iZNTxJlS/M6c6V+dejBD
-         G7Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680789140;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fi3MbKEX3/1oXOmLA6/02HNxunRbR6J+mBMPZLKnID4=;
-        b=Fju2nS80tbbwKqzbFWs+y0k07hJ6SNHWoGMr46pdOwQrvB9T6aK7RygW6unXAJmFTx
-         nTtM9icf08Fx88jN1hxqeh/W8vI2YISP54mIKYi9VEtBV9c0QdrIBs8htSfCOoMUcf2V
-         xR/yfvxLEJDE+9OHwaCGaufPBzrjlmGX6KVh5O86xpi7q5K8tNIuDKY+sp4EwNc27xKO
-         2nX0rHJaV0XwTsEU5/oqbDd67kvgM8ckRQQVn0OtZa2apKQRFlvWKd05GSNgY61S3wsV
-         S27GOjd7UMTRKKYV4MuRIfkRtf/87I1J96qFEzxk8X9IVusje6Nt1UpCgj1l8uyakxm7
-         H53g==
-X-Gm-Message-State: AAQBX9eE6DuxKm0adWUI/CVmrSgIwR4IXaEC65pRA1waJqmFPsyt7i7r
-        ygy2YPqO3qFbyTHraqsNmZHyNw==
-X-Google-Smtp-Source: AKy350YtOAzeOkwF1HQZlElfqcsFwRMN4c5y60bpJ2y5/F1fIAJg9bOYn481jfAhRCok7/++GyKBXA==
-X-Received: by 2002:a2e:8058:0:b0:29b:aee8:29b3 with SMTP id p24-20020a2e8058000000b0029baee829b3mr3005558ljg.38.1680789139665;
-        Thu, 06 Apr 2023 06:52:19 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id p3-20020a2e9a83000000b0029462e98c07sm295517lji.35.2023.04.06.06.52.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 06:52:19 -0700 (PDT)
-Message-ID: <dfc5797a-784c-0a3e-a290-714fdf356713@linaro.org>
-Date:   Thu, 6 Apr 2023 15:52:17 +0200
+        with ESMTP id S238363AbjDFNyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:54:41 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B5D09777;
+        Thu,  6 Apr 2023 06:54:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=eCyDhIIH7zROrQHs1/YiKAKEaRN5MqlP/rzgVydjPvI=; b=T8qx3rQouZ7XvU4SiE9YvRbYYJ
+        eZ/TIFFWd6LmzPMmlepLNKX294cnNsz5NBy1K0lf6uyD5yo8cEVMMD66JAuSKt2jdTgaf6+EumK2y
+        H3+38xMvHD4Jz1kfvnOmzRVGQzMEvPTeRioo/AiUb+xhnlOoHJmBpes1tBDESCRP7XFs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pkQ46-009dDs-Gr; Thu, 06 Apr 2023 15:54:14 +0200
+Date:   Thu, 6 Apr 2023 15:54:14 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [net-next PATCH v6 16/16] arm: mvebu: dt: Add PHY LED support
+ for 370-rd WAN port
+Message-ID: <ebaedccc-a73b-48fc-8735-c0567d899d5c@lunn.ch>
+References: <20230327141031.11904-1-ansuelsmth@gmail.com>
+ <20230327141031.11904-17-ansuelsmth@gmail.com>
+ <ZCKl1A9dZOIAdMY8@duo.ucw.cz>
+ <2e5c6dfb-5f55-416f-a934-6fa3997783b7@lunn.ch>
+ <ZCsu4qD8k947kN7v@duo.ucw.cz>
+ <7cadf888-8d6e-4b7d-8f94-7e869fd49ee2@lunn.ch>
+ <ZC6OZ2f/NLJxZgle@duo.ucw.cz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sm6115: Add Crypto Engine
- support
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
-References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
- <20230405072836.1690248-8-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230405072836.1690248-8-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZC6OZ2f/NLJxZgle@duo.ucw.cz>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5.04.2023 09:28, Bhupesh Sharma wrote:
-> Add crypto engine (CE) and CE BAM related nodes and definitions to
-> 'sm6115.dtsi'.
+> I don't think basing stuff on position is reasonable. (And am not sure
+> if making difference between MAC and PHY leds is good idea).
 > 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Normally, there's ethernet port with two LEDs, one is usually green
+> and indicates link, second being yellow and indicates activity,
+> correct?
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+Nope. I have machines with 1, 2 or 3 LEDs. I have green, yellow, white
+and red LEDs.
+
+Part of the problem is 802.3 says absolutely nothing about LEDs. So
+every vendor is free to do whatever why want. There is no
+standardisation at all. So we have to assume every vendor does
+something different.
+
+> On devices like ADSL modems, there is one LED per port, typically on
+> with link and blinking with activity.  
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 2a51c938bbcb..ebac026b4cc7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -650,6 +650,28 @@ usb_hsphy: phy@1613000 {
->  			status = "disabled";
->  		};
->  
-> +		cryptobam: dma-controller@1b04000 {
-> +			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-> +			reg = <0x0 0x01b04000 0x0 0x24000>;
-> +			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells = <1>;
-> +			qcom,ee = <0>;
-> +			qcom,controlled-remotely;
-> +			num-channels = <8>;
-> +			qcom,num-ees = <2>;
-> +			iommus = <&apps_smmu 0x94 0x11>,
-> +				 <&apps_smmu 0x96 0x11>;
-> +		};
-> +
-> +		crypto: crypto@1b3a000 {
-> +			compatible = "qcom,sm6115-qce", "qcom,sm8150-qce", "qcom,qce";
-> +			reg = <0x0 0x01b3a000 0x0 0x6000>;
-> +			dmas = <&cryptobam 6>, <&cryptobam 7>;
-> +			dma-names = "rx", "tx";
-> +			iommus = <&apps_smmu 0x94 0x11>,
-> +				 <&apps_smmu 0x96 0x11>;
-> +		};
-> +
->  		qfprom@1b40000 {
->  			compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
->  			reg = <0x0 0x01b40000 0x0 0x7000>;
+> Could we use that distinction instead? (id):green:link,
+> (id):yellow:activity, (id):?:linkact -- for combined LED as it seems.
+> 
+> Are there any other common leds? I seem to remember "100mbps" lights
+> from time where 100mbit was fast...?
+
+But what about 2.5G, 5G, 10G, 40G... And 10Mbps for automotive. And
+collision for 1/2 duplex, which is making a bit of a comeback in
+automotive.
+
+Plus, we are using ledtrig-netdev. A wifi device is a netdev. A CAN
+bus devices is a netdev. Link speed has a totally different meaning
+for 802.11 and CAN.
+
+You are also assuming the LEDs have fixed meaning. But they are not
+fixed, they mean whatever the ledtrig-netdev is configured to make
+them blink.  I even have one of my boxes blinking heartbeat, because
+if has a habit of crashing... And i think for Linux LEDs in general,
+we should not really tie an LED to a meaning. Maybe tie it to a label
+on the case, but the meaning of an LED is all about software, what
+ledtrig- is controlling it.
+
+As to differentiating MAC and PHY, we need to, because as i said, both
+could offer LEDs. Generally, Ethernet switches have LED controllers
+per MAC port. Most switches have internal PHYs, and those PHYs don't
+have LED controllers. However, not all ports have internal PHYs, there
+can be external PHYs with its own LED controller. So in that case,
+both the MAC and the PHY could register an LED controller for the same
+netdev. It comes down to DT to indicate what LED controllers are
+actually wired to an LED.
+
+	 Andrew
