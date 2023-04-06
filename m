@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1AFF6DA05F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 677176DA064
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240299AbjDFSzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:55:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50224 "EHLO
+        id S229806AbjDFS4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:56:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240179AbjDFSyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:54:54 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39DF8688
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:54:52 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id l15so3717025ejq.10
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:54:52 -0700 (PDT)
+        with ESMTP id S239786AbjDFS4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:56:11 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5348688
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:56:09 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id jw24so3726817ejc.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:56:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680807291;
+        d=linaro.org; s=google; t=1680807368;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GDe1sENHqqI/d/KCYB866ORqPLaZkKZCUTL+XlVCWbo=;
-        b=GrEl3QNbr2/uGDQCngerqAbT5bLfc3Oi/elT80KjhVGsTIWcS68iCzgd6AIdBIRERf
-         HYUDsB+topW4/Q+7irLZP6nqRsXRYwNykBW5UCU0cX3MJ9y6K4jlTuo6yK++CkY8EFEi
-         r6WEdLlqPwG2BzpizhLACUbmBY+M4CExpBqXKkSEHmRP1ABRTtCUlhZChB19NeUA7rCN
-         qJ01j5LiaZHrnep3fdBdi/lPQkold1m+9vq7SU+odeUJ+lA2Otc/UZrSKHWKgqUYDXBW
-         FNCjFb2F9euUCFsDc6lXIptHsFLlRxIoNkQ9WaF0ZBwyKe/5lgpSQX3IrNXvkKLnxw+z
-         yk8Q==
+        bh=UKWsjR8dvIajtx2lwaiB5l0sOFoUN7LSgDCFNG47cFM=;
+        b=XjEn4vgMEEWThuDKwwudOndDLakz8rYSUEfoHZwSYrR6827fNdSGSO5eLlexBm5Vnv
+         tSV1KY44b4wSwtSr51m0PBvwMwp/0KLHLjqKJ96ZUc3ucHFXbi9LT6XdH8cjJoopAUrh
+         Ym5qIw6Au09J4j2KcDO9vVWmeYCubuWXG375CMn+1emhdEhvUwcqL4RzuRFGmjXsxWbK
+         r7fj/AMOTrPXVdbRheBL2iM6dw8z4NA/WYfN8ctJd6Kh+usy4dKzg6QQPS6MuvdUdA/4
+         +emlWHLb6n8v1gvxdH6Tpkfz+AmWrjyQ9zC/GdwNnduqIZ1ZPGqPVK0d5djvwMW1RIX6
+         wDJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680807291;
+        d=1e100.net; s=20210112; t=1680807368;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GDe1sENHqqI/d/KCYB866ORqPLaZkKZCUTL+XlVCWbo=;
-        b=eoUHNLABkbRK7xrmSIGkGNj7YncFJJIRtmdvkhBIfrf/9qnGCrJ49BtqHz1UtSFoPC
-         v6bDtv4YLD3NA5T9xVKpwOdxxRLakuNg/HZCpBydFD/DVgNJnBHYg7eijmBGKfgdSMOS
-         dVQaRc1DCoFApMp7B9NYRCXRhNJVJxuY0aWm+uOVRoQYJMazjHTSpFSuRmocA1NNB/SG
-         lXuz+1X5MujT7Kz5yaJSBxBSgpfYOTYlPgfSju2pmEQlTwpLQLWEujIcCDspIT6GJqUb
-         +orwIrUpxluQHGpKuL2kXMsiH0zWplT8aaqHzaJNf336t3Su1lACxvVyIHJd+ks9hrMR
-         bbdg==
-X-Gm-Message-State: AAQBX9cN1R/aEHGW3pRRmSJpQi/AmxA6QUkEEdcwMkUHYVnZvC3BXuao
-        70C7NtjOKh0WQJvwbDMnuBvxAw==
-X-Google-Smtp-Source: AKy350ajwH+Cn7PtrIjxFg1bz46Gzc/hHXKaVxIUMBaYwk71/qH7AUYBzRT+hwieHQjP5df2rvE1rA==
-X-Received: by 2002:a17:906:2e86:b0:931:b4d3:fc7f with SMTP id o6-20020a1709062e8600b00931b4d3fc7fmr7688208eji.30.1680807291091;
-        Thu, 06 Apr 2023 11:54:51 -0700 (PDT)
+        bh=UKWsjR8dvIajtx2lwaiB5l0sOFoUN7LSgDCFNG47cFM=;
+        b=Y5t4Bvnf37uyUpGqstY7oCGp+0rCA6ZVuVHdvGTVuSnPDknarR42Qm2eISaD0GHBYQ
+         Mx4ECMzHX1nG350BEydGl9SEFwXICcWyCDinoiTTx6arvT1elVr0QHxwIZ6aX751MJC7
+         T8UeCGndjgxN4Xrfm1OnyZ7wlMle1WIqRd5ndUZ0QSbNic11jD0I3eepUZlGDX8ElI24
+         SULtvtH27S0OP9w7lzOYDMoV5qpsboaRhn6hEqdTnKWzaEieIU2shTLrTy/ZUHzGWoiM
+         NqfIKet6dMfAw0K1o1ZEBiVjMRloelp9LsDy3drw1CqtvheS0SUnAVInOxSes2jejxjW
+         onrg==
+X-Gm-Message-State: AAQBX9cFIv/PzB/EQMKLqANJdZGNeFAnl5z68WDMWQZCWdC1l60zY2gC
+        udA1uzTNIz2v+fEEuWrNc+0yew==
+X-Google-Smtp-Source: AKy350b5CYgkCwCJEQ33zJ/y2kC09b+dJi0dyD9TAE8pwMa6j0ytFRRtCmrXrSvkvumeFJwFghiQKw==
+X-Received: by 2002:a17:906:828f:b0:931:462f:f141 with SMTP id h15-20020a170906828f00b00931462ff141mr6219852ejx.20.1680807368361;
+        Thu, 06 Apr 2023 11:56:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id p7-20020a170906838700b009484e17e7f5sm1135463ejx.100.2023.04.06.11.54.49
+        by smtp.gmail.com with ESMTPSA id qw34-20020a1709066a2200b008c76facbbf7sm1144477ejc.171.2023.04.06.11.56.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 11:54:50 -0700 (PDT)
-Message-ID: <b6eb826a-2379-d799-24f4-ea7375e0e636@linaro.org>
-Date:   Thu, 6 Apr 2023 20:54:49 +0200
+        Thu, 06 Apr 2023 11:56:07 -0700 (PDT)
+Message-ID: <5e2e5b82-35ae-c3b5-becb-40d387226a7a@linaro.org>
+Date:   Thu, 6 Apr 2023 20:56:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: PCI: brcmstb: Add two optional props
+Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
 Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>
+Cc:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
+        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Walker <dwalker@fifo99.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230406124625.41325-1-jim2101024@gmail.com>
- <20230406124625.41325-2-jim2101024@gmail.com>
- <ebde318b-53be-6779-4f0c-a614c01a0b0a@linaro.org>
- <9e98496b-73a0-78a5-e890-7d7e4be1f469@gmail.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230405223028.1268141-2-danielwa@cisco.com>
+ <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
+ <20230406151512.GL40472@zorba>
+ <14634180-aca9-a3e9-d1af-dfaca77b42ee@linaro.org>
+ <20230406183253.GM40472@zorba>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9e98496b-73a0-78a5-e890-7d7e4be1f469@gmail.com>
+In-Reply-To: <20230406183253.GM40472@zorba>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -93,58 +84,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 20:53, Florian Fainelli wrote:
-> On 4/6/23 11:34, Krzysztof Kozlowski wrote:
->> On 06/04/2023 14:46, Jim Quinlan wrote:
->>> Regarding "brcm,enable-l1ss":
+On 06/04/2023 20:32, Daniel Walker (danielwa) wrote:
+>>>>> +++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
+>>>>
+>>>> How many (or not many) platforms do you expect from Cisco? We mostly
+>>>> have one file per SoC manufacturer.
 >>>
->>>    The Broadcom STB/CM PCIe HW -- which is also used by RPi SOCs -- requires
->>>    the driver probe to configure one of three clkreq# modes:
+>>> We have two SoC's one called CrayAR and another called Craw. I've submitted the
+>>> Craw dts file before , but I've not resubmitted it. Under Craw I think we have
+>>> at least two, but more likely five variations. CrayAR we have one variation with
+>>> at least one more planned.
 >>>
->>>    (a) clkreq# driven by the RC
->>>    (b) clkreq# driven by the EP for ASPM L0s, L1
->>>    (c) bidirectional clkreq#, as used for L1 Substates (L1SS).
->>>
->>>    The HW can tell the difference between (a) and (b), but does not know
->>>    when to configure (c).  Further, the HW will cause a CPU abort on boot if
->>>    guesses wrong regarding the need for (c).  So we introduce the boolean
->>>    "brcm,enable-l1ss" property to indicate that (c) is desired.  This
->>>    property is already present in the Raspian version of Linux, but the
->>>    driver implementaion that will follow adds more details and discerns
->>>    between (a) and (b).
->>>
->>> Regarding "brcm,completion-timeout-msecs"
->>>
->>>    Our HW will cause a CPU abort if the L1SS exit time is longer than the
->>>    completion abort timeout.  We've been asked to make this configurable, so
->>>    we are introducing "brcm,completion-abort-msecs".
->>>
->>> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
->>> ---
->>>   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
->>>   1 file changed, 12 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> index 7e15aae7d69e..ef4ccc05b258 100644
->>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> @@ -64,6 +64,18 @@ properties:
->>>   
->>>     aspm-no-l0s: true
->>>   
->>> +  brcm,enable-l1ss:
->>> +    description: Indicates that the downstream device is L1SS
->>> +      capable and L1SS is desired, e.g. by setting
->>> +      CONFIG_PCIEASPM_POWER_SUPERSAVE=y.  Note that CLKREQ#
+>>> So we would plan over time to add two dtsi files and three to four dts files to
+>>> this directory. Then more over time.
 >>
->> How does CONFIG_PCIEASPM_POWER_SUPERSAVE apply to *BSD?
+>> So just keep them in one file maybe.
 > 
-> In other words, there should be no OS/Linux specific comments in a 
-> Device Tree binding, which would be a friendlier and nicer way of 
-> providing the same feedback.
+> If/when I submit again with anther chip we can discuss it at that time.
 
-I want to give also the answer also why there should be no OS/Linux
-specific comments, so the reader can stop a bit and think about it :)
+Or you can do it now.
 
 Best regards,
 Krzysztof
