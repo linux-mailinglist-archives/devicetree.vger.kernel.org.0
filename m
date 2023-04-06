@@ -2,117 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0D36D976D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 14:56:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E43486D97AD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 15:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237113AbjDFMz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 08:55:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53750 "EHLO
+        id S229817AbjDFNM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 09:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237263AbjDFMz5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 08:55:57 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7DD98684
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 05:55:55 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d7so5683408lfj.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 05:55:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680785754;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vr7hvDh/glr30Yw4qpt5Kbr2lkI/viKC3PQIzjAY6io=;
-        b=uKnjq7nO2hBgKSpX5Y9YkKQayH2KWplyH5jDhXRz+8bLdUOD23xPePP6fjFYIMylj4
-         j5fBWQ8C9JIRixBqrvKCoVo3R5XVvAy1X8sdM1U48uqcaTJdSrBXjR6S3TJhnGTZali9
-         Cup80wzwtjO/b6DqxM8TG7xvLlt50ecIkv5Biv4o09lLdGotkL7eD/0mNq5Cju884r0G
-         gi+mp2iB+lh6wj0BQfMmflLc5pFIGhjhe2kBYy3Via3N7LqoDcGJBGRfkAczPcIVFbYh
-         ljZxDiN1B5wN+ab6k/qo5RQ+6TnWW8LrFVt1bJ/jXWhY1a6E3Vk4Z+DR2ho/e7rrqcOG
-         hJWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680785754;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vr7hvDh/glr30Yw4qpt5Kbr2lkI/viKC3PQIzjAY6io=;
-        b=WOXqkmTH7r3qd/Hd8XyWjh0x2xj3+tjiHTSQX6QRHZ3gygVU//6RP1LZ9P/JJdzEr3
-         AlFvUjvlwl/fF3+eqYsEYKIqq7wqbBlCM1r+3H8Qmtq8muWCLPBdwl83hFNDdxlcwnlk
-         7Tj1A91MakfOT2s1YqL0P1ZYorbomJ0O/poe6fikuuyle0lFJ8aoFvUb8ktNaXMuvy7Z
-         f9bhKconcI0X5M8Gm01prlRkW5R3CX20QtCh7jA4C75rbtZZpM9BKcGrtgmBt/n0Qlmq
-         wiaDIU1VXY0pMUQ6X40l6Kw8ndreyy43xyQ0hS/RJBTSPl+c3w6/y5VN5aOKfhmzQYyu
-         YTRw==
-X-Gm-Message-State: AAQBX9dTApkcvC2Y+O8Fez33Vo6ncYeyGfFV3wCVbeNltHZN4v/upBXV
-        jEEb/9Nj/Qe41y5/q+WmCujClQ==
-X-Google-Smtp-Source: AKy350bft/u4kYYCqIkqe8piY32mlGiSvRknbxsY+1B9JBEeVwyfVgN1xVSi86A6HZmAakyRWhmIKg==
-X-Received: by 2002:a19:750b:0:b0:4dc:4fe2:2aad with SMTP id y11-20020a19750b000000b004dc4fe22aadmr2283288lfe.41.1680785753992;
-        Thu, 06 Apr 2023 05:55:53 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id i13-20020a2e864d000000b00295765966d9sm276513ljj.86.2023.04.06.05.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 05:55:53 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 06 Apr 2023 14:55:45 +0200
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sdm845-polaris: Drop inexistent
- properties
+        with ESMTP id S229671AbjDFNM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 09:12:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F688901C;
+        Thu,  6 Apr 2023 06:12:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C05E36472A;
+        Thu,  6 Apr 2023 13:12:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ADFFC4339C;
+        Thu,  6 Apr 2023 13:12:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680786741;
+        bh=h9ji6NYGYKhe8pru+plznJ5ni8zeCU3Dta5EJvRMeRo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=PjG4crlQOjp5xxZmpAMnr4kZzad/soJ0KNGo0HGrmiUCC9bT0Ru9qwccDBM7xlFqv
+         iCxhiA7JmfQwtz+kz7E67ZkRPZywb6mOgoPl85WBlgZv2w1gy35+9Uklt67ny/l8qD
+         oSIecvVTLcOUh5ILCDpRhEPJJEOklj2rG5AkRob2iesB+MuzM7LuoedaDESuLve2na
+         4ON2tIMn3I+/o3pHq0VLx/2UDJzpssBoiM1TpLCD22w3iyoc5Xo4NQWWLK1n0X2vOs
+         MfrnzCYQzBSebjopvH3+FB9cC6wD8F5czhWTrHrscJWd183FfgyZjs3B5yT0zkzTFQ
+         3yIiQCSEurKDg==
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5491fa028adso242128537b3.10;
+        Thu, 06 Apr 2023 06:12:21 -0700 (PDT)
+X-Gm-Message-State: AAQBX9drupBewGHVmCut8uNDLyBmzCl5fJcA9zhDbcIkiwirLmNrh+bh
+        YqmBsz2T2J1fmJOzvlwGpJMEW309l8T7xQHl4g==
+X-Google-Smtp-Source: AKy350ZOxDGy7DDkguaA4F8q871wWQIN+RJcOt+kM/r0F3L1IVxOIlzJuURUtatL4qNsqf5I9ctDXNLKAui/uCpRtn8=
+X-Received: by 2002:a81:b207:0:b0:545:a7d8:f278 with SMTP id
+ q7-20020a81b207000000b00545a7d8f278mr5591986ywh.5.1680786740183; Thu, 06 Apr
+ 2023 06:12:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230406-topic-ath10k_bindings-v3-2-00895afc7764@linaro.org>
-References: <20230406-topic-ath10k_bindings-v3-0-00895afc7764@linaro.org>
-In-Reply-To: <20230406-topic-ath10k_bindings-v3-0-00895afc7764@linaro.org>
-To:     Kalle Valo <kvalo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1680785748; l=826;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=A+cHJo96LANW/mYlLiz68VJ9kDkIsUWUlAaAZ/obM9g=;
- b=Dn5+ES2v+YAAgWafpzt+vz8m0ORlFjVLwi8YEXZDaB29+Q/YoyRu13AvSdzIDc7SZOeaG5v799hP
- oJjyfvzFA9JLz2Pd5IhvJX51acjGRuE09PGriA9TL+RaCaAoJaIP
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230328091831.55690-1-danascape@gmail.com>
+In-Reply-To: <20230328091831.55690-1-danascape@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 6 Apr 2023 08:12:09 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJzxQb1g=yVgHduLnYOpk8-Q3jppA1qQT1Ce51_gNWjhg@mail.gmail.com>
+Message-ID: <CAL_JsqJzxQb1g=yVgHduLnYOpk8-Q3jppA1qQT1Ce51_gNWjhg@mail.gmail.com>
+Subject: Re: [PATCH v5] ASoC: dt-bindings: ak4458: Convert to dtschema
+To:     Saalim Quadri <danascape@gmail.com>
+Cc:     krzysztof.kozlowski@linaro.org, broonie@kernel.org,
+        daniel.baluta@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        shengjiu.wang@nxp.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the qcom,snoc-host-cap-skip-quirk that was never introduced to
-solve schema warnings.
+On Tue, Mar 28, 2023 at 4:18=E2=80=AFAM Saalim Quadri <danascape@gmail.com>=
+ wrote:
+>
+> Convert the AK4458 audio DAC bindings to DT schema.
+>
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> ---
+> Changes:
+> V1 -> V2: Use the correct way for dsd-path property
+>           Drop ak4458 label form example
+> V2 -> V3: ak4458 is the only one that does not support dsd-path, so we
+>           do not require to define an array
+> V3 -> V4: Add back dsd-path property description
+> V4 -> V5: Fix yaml format as per example-schema
+>
+>  .../devicetree/bindings/sound/ak4458.txt      | 28 -------
+>  .../bindings/sound/asahi-kasei,ak4458.yaml    | 73 +++++++++++++++++++
+>  2 files changed, 73 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/ak4458.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,a=
+k4458.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sound/ak4458.txt b/Documen=
+tation/devicetree/bindings/sound/ak4458.txt
+> deleted file mode 100644
+> index 0416c14895d6..000000000000
+> --- a/Documentation/devicetree/bindings/sound/ak4458.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -AK4458 audio DAC
+> -
+> -This device supports I2C mode.
+> -
+> -Required properties:
+> -
+> -- compatible : "asahi-kasei,ak4458" or "asahi-kasei,ak4497"
+> -- reg : The I2C address of the device for I2C
+> -
+> -Optional properties:
+> -- reset-gpios: A GPIO specifier for the power down & reset pin
+> -- mute-gpios: A GPIO specifier for the soft mute pin
+> -- AVDD-supply: Analog power supply
+> -- DVDD-supply: Digital power supply
+> -- dsd-path: Select DSD input pins for ak4497
+> -            0: select #16, #17, #19 pins
+> -            1: select #3, #4, #5 pins
+> -
+> -Example:
+> -
+> -&i2c {
+> -       ak4458: dac@10 {
+> -               compatible =3D "asahi-kasei,ak4458";
+> -               reg =3D <0x10>;
+> -               reset-gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>
+> -               mute-gpios =3D <&gpio1 11 GPIO_ACTIVE_HIGH>
+> -       };
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.y=
+aml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+> new file mode 100644
+> index 000000000000..0db0c8e923a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4458.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AK4458 audio DAC
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - asahi-kasei,ak4458
+> +      - asahi-kasei,ak4497
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Analog power supply
+> +
+> +  dvdd-supply:
+> +    description: Digital power supply
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  mute-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO used to mute all the outputs
+> +
+> +  dsd-path:
+> +    description: Select DSD input pins for ak4497
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    oneOf:
+> +      - const: 0
+> +        description: select #16, #17, #19 pins
+> +      - const: 1
+> +        description: select #3, #4, #5 pins
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 2 --
- 1 file changed, 2 deletions(-)
+'#' (with a space or newline before) is a comment, so these need to be
+quoted. I only noticed because yamllint now requires a space after as
+well:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-index 1b7fdbae6a2b..56f2d855df78 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-@@ -712,7 +712,5 @@ &wifi {
- 	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
- 	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
- 	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
--
--	qcom,snoc-host-cap-skip-quirk;
- 	status = "okay";
- };
+./Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml:40:30:
+[error] missing starting space in comment (comments)
+./Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml:42:30:
+[error] missing starting space in comment (comments)
 
--- 
-2.40.0
-
+Rob
