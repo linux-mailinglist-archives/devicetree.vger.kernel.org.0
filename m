@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCE236DA3FA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 22:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B50C36DA4B1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 23:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240605AbjDFUqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 16:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60372 "EHLO
+        id S229797AbjDFVbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 17:31:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240606AbjDFUqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 16:46:25 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9D9C652
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 13:43:05 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q14so41881820ljm.11
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 13:43:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680813784;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hjYb+JJW8I3O+mIrtvD7Toze9rRPQIAniPP/DyAemws=;
-        b=V0r8ogOPUHVQWm/U05RejhjJjC6dWRxD1yPdyxlOCuku+kCvNxsl4EsRbuIoRTaCQq
-         o+rVWhpvr9te+49j25Ba0s4/Dzo3INZWmUAkGzF+H/QTfX3ueiiAlXlgqqJo2oKKcgeG
-         uyMJoQqNorh2fVv/I/8z+WxVIwcTIj9hLH9/9QQYfRg/K651mJGDH4UpcxiIKyXqx50n
-         YaL+ieyRfxJIB1MhLeAxky1I3pLc2/3Vfyb5c9hDgWYrvCc2sNQ+u+L3ILc/LM8J2Nco
-         SbIvYDBtfghO0ngYUK53m+Rvc2OU9ONK8dXU/eStzZYM9q3b6OjFP3gGKc3qV8S9aTw7
-         JMSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680813784;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hjYb+JJW8I3O+mIrtvD7Toze9rRPQIAniPP/DyAemws=;
-        b=s/16SfG1lm8oAYhzwicoHAJpclXKiUpv3M8sfZa+aaCYZJWj0nU6yzO0fNDSMngZ+s
-         R/YArotb/FsUNnoJJ210ECLUN+J0fStE4xjgQKlrGAifc4DSPeqMOf9aXp55bN0RwvxP
-         diMmpM/mI/p7XYOhIFR1HfzXrr7KfOafERNWByiHQBXBiRGQQ5MQrChEJmTJIemGxPar
-         hRuloeougGw6pceYWOS5AXGWyAntWEEliyklyvYxGOAwpRlqr0Sj9vklAZb5BbYtHE+z
-         9BdPxSYbCtm6RaoY9mQwCsvS+bJFDed7yf3o1gTP2QR0+3AmnXpKqmpsbc05TToqSyYr
-         QIDQ==
-X-Gm-Message-State: AAQBX9fHerVQqQqmpFc7F/DADEpYkwrSz+R44leCCQYd6ztSDvGF5Rb/
-        yIYh+oQkgtG2t5Jp6ZOV8pwUCg==
-X-Google-Smtp-Source: AKy350ZJdq9Hh31L8H3mS/MSrbl7fhNNRkQjz0P/GlAc/2GKPBiUxYHvpIMONNiMcHjKx2M1VDl5VQ==
-X-Received: by 2002:a2e:a268:0:b0:2a0:5a99:65d8 with SMTP id k8-20020a2ea268000000b002a05a9965d8mr2390419ljm.18.1680813784266;
-        Thu, 06 Apr 2023 13:43:04 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id k20-20020a2e8894000000b0029f3e2efbb9sm432968lji.90.2023.04.06.13.42.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 13:43:03 -0700 (PDT)
-Message-ID: <955adf22-6b52-652e-0215-efacc9a13799@linaro.org>
-Date:   Thu, 6 Apr 2023 22:42:54 +0200
+        with ESMTP id S233112AbjDFVbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 17:31:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C8AF977F;
+        Thu,  6 Apr 2023 14:31:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8377064B73;
+        Thu,  6 Apr 2023 21:31:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B473CC433EF;
+        Thu,  6 Apr 2023 21:31:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680816663;
+        bh=jo/kNXgU9Ka5Ghg8YOyzyFth7IbB7LLr68pBOvSHhLk=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=UyCvrLo2QqxcfY3lpx6SkZE2r9RpBcHiAUL84yInLaQelwepevl7eXCypyyLo9nrJ
+         sv4HOeK7Aiw0L8S26BF1jlji7wW0uf1iAw4krtUUgH3wNVJH9aZTChNXQyqOMlodRr
+         ORRFD3Rrf9sDmXWQ5jZJxJ+/VcnlcAmMOspO0bOBuWDV88phBhFHpsSxZmH3Qi8uND
+         oCtMLsuEHc3bDAVnR8DEgyHAlHPlxZJ6CMPHamxHllInoGHG0lu6ZFlEKr0TsgbeXV
+         RBrKeqCBU48UacnapM8XL/bTfdmn318pS7e0NN9DWG7MkwKvC2YJAjyVPVlX9om4zm
+         PjYuDZTeadXKg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Joseph Chen <chenjh@rock-chips.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+In-Reply-To: <20230406171806.948290-1-cristian.ciocaltea@collabora.com>
+References: <20230406171806.948290-1-cristian.ciocaltea@collabora.com>
+Subject: Re: (subset) [PATCH v2 0/8] Add support for Rockchip RK860X
+ regulators
+Message-Id: <168081666144.315518.8879348580089402745.b4-ty@kernel.org>
+Date:   Thu, 06 Apr 2023 22:31:01 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V3 5/5] arm64: defconfig: Enable ipq6018 apss clock and
- PLL controller
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
-        dmitry.baryshkov@linaro.org, arnd@arndb.de,
-        geert+renesas@glider.be, nfraprado@collabora.com,
-        broonie@kernel.org, rafal@milecki.pl,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_ipkumar@quicinc.com
-References: <20230406061314.10916-1-quic_devipriy@quicinc.com>
- <20230406061314.10916-6-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230406061314.10916-6-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Mailer: b4 0.13-dev-00303
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6.04.2023 08:13, Devi Priya wrote:
-> The PLL and IPQ6018 APSS clock controller are used on several
-> IPQ platforms to clock the CPU. Hence it should be enabled and built-in.
+On Thu, 06 Apr 2023 20:17:58 +0300, Cristian Ciocaltea wrote:
+> This patch series introduces support for the Rockchip RK860X regulators,
+> while also providing a few fixes and improvements to the existing fan53555
+> driver.
 > 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> RK8600/RK8601 are fully compatible with the FAN53555 regulators.
+> 
+> RK8602/RK8603 are a bit different, having a wider output voltage
+> selection range, from 0.5 V to 1.5 V in 6.25 mV steps. They are used
+> in the Rock 5B board to power the ARM Cortex-A76 cores and the NPU.
+> 
+> [...]
 
-Konrad
->  Changes in V3:
-> 	- No change
-> 
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 8f24c280dec2..27dc617ec296 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1153,6 +1153,7 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
->  CONFIG_QCOM_CLK_APCC_MSM8996=y
->  CONFIG_QCOM_CLK_SMD_RPM=y
->  CONFIG_QCOM_CLK_RPMH=y
-> +CONFIG_IPQ_APSS_6018=y
->  CONFIG_IPQ_GCC_5332=y
->  CONFIG_IPQ_GCC_6018=y
->  CONFIG_IPQ_GCC_8074=y
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[2/8] regulator: fan53555: Explicitly include bits header
+      commit: 4fb9a5060f73627303bc531ceaab1b19d0a24aef
+[3/8] regulator: fan53555: Fix wrong TCS_SLEW_MASK
+      commit: c5d5b55b3c1a314137a251efc1001dfd435c6242
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
