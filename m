@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F866D9336
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68C1A6D9351
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236541AbjDFJtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 05:49:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60350 "EHLO
+        id S236891AbjDFJws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 05:52:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236854AbjDFJtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:49:32 -0400
+        with ESMTP id S236741AbjDFJtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:49:35 -0400
 Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8DDA268;
-        Thu,  6 Apr 2023 02:47:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113F61FD2;
+        Thu,  6 Apr 2023 02:47:58 -0700 (PDT)
 Received: from local
         by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
          (Exim 4.96)
         (envelope-from <daniel@makrotopia.org>)
-        id 1pkMCL-000093-0m;
-        Thu, 06 Apr 2023 11:46:29 +0200
-Date:   Thu, 6 Apr 2023 10:46:26 +0100
+        id 1pkMCb-00009F-1W;
+        Thu, 06 Apr 2023 11:46:45 +0200
+Date:   Thu, 6 Apr 2023 10:46:42 +0100
 From:   Daniel Golle <daniel@makrotopia.org>
 To:     arinc9.unal@gmail.com
 Cc:     Andrew Lunn <andrew@lunn.ch>,
@@ -43,15 +43,16 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: net: dsa: mediatek,mt7530: correct
- brand name
-Message-ID: <ZC6U8uVuA6mC-Upf@makrotopia.org>
+Subject: Re: [PATCH 2/7] dt-bindings: net: dsa: mediatek,mt7530: improve MCM
+ and MT7988 information
+Message-ID: <ZC6VAgweb58mfYku@makrotopia.org>
 References: <20230406080141.22924-1-arinc.unal@arinc9.com>
+ <20230406080141.22924-2-arinc.unal@arinc9.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230406080141.22924-1-arinc.unal@arinc9.com>
+In-Reply-To: <20230406080141.22924-2-arinc.unal@arinc9.com>
 X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,32 +61,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 06, 2023 at 11:01:35AM +0300, arinc9.unal@gmail.com wrote:
+On Thu, Apr 06, 2023 at 11:01:36AM +0300, arinc9.unal@gmail.com wrote:
 > From: Arınç ÜNAL <arinc.unal@arinc9.com>
 > 
-> The brand name is MediaTek, change it to that.
+> Improve the description of the schema.
+> 
+> The MT7620 SoCs described are not part of the multi-chip module but rather
+> built into the SoC. Mention the MT7530 MMIO driver not supporting them.
+> 
+> Move information for the switch on the MT7988 SoC below MT7531, and improve
+> it.
+> 
+> List maintainers in alphabetical order by first name.
 > 
 > Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
 Acked-by: Daniel Golle <daniel@makrotopia.org>
 
 > ---
->  Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     | 25 ++++++++++---------
+>  1 file changed, 13 insertions(+), 12 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index e532c6b795f4..6df995478275 100644
+> index 6df995478275..7045a98d9593 100644
 > --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
 > +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/net/dsa/mediatek,mt7530.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Mediatek MT7530 and MT7531 Ethernet Switches
-> +title: MediaTek MT7530 and MT7531 Ethernet Switches
+> @@ -8,29 +8,30 @@ title: MediaTek MT7530 and MT7531 Ethernet Switches
 >  
 >  maintainers:
 >    - Arınç ÜNAL <arinc.unal@arinc9.com>
+> +  - Daniel Golle <daniel@makrotopia.org>
+>    - Landen Chao <Landen.Chao@mediatek.com>
+>    - DENG Qingfang <dqfext@gmail.com>
+>    - Sean Wang <sean.wang@mediatek.com>
+> -  - Daniel Golle <daniel@makrotopia.org>
+>  
+>  description: |
+> -  There are three versions of MT7530, standalone, in a multi-chip module and
+> -  built-into a SoC.
+> +  There are three versions of MT7530, standalone, in a multi-chip module, and
+> +  built into an SoC.
+>  
+> -  MT7530 is a part of the multi-chip module in MT7620AN, MT7620DA, MT7620DAN,
+> -  MT7620NN, MT7621AT, MT7621DAT, MT7621ST and MT7623AI SoCs.
+> -
+> -  The MT7988 SoC comes with a built-in switch similar to MT7531 as well as four
+> -  Gigabit Ethernet PHYs. The switch registers are directly mapped into the SoC's
+> -  memory map rather than using MDIO. The switch got an internally connected 10G
+> -  CPU port and 4 user ports connected to the built-in Gigabit Ethernet PHYs.
+> +  MT7530 is a part of the multi-chip module in MT7621AT, MT7621DAT, MT7621ST and
+> +  MT7623AI SoCs.
+>  
+>    MT7530 in MT7620AN, MT7620DA, MT7620DAN and MT7620NN SoCs has got 10/100 PHYs
+> -  and the switch registers are directly mapped into SoC's memory map rather than
+> -  using MDIO. The DSA driver currently doesn't support MT7620 variants.
+> +  and the switch registers are directly mapped into the SoC's memory map rather
+> +  than using MDIO. The MT7530 MMIO driver currently doesn't support these SoCs.
+>  
+>    There is only the standalone version of MT7531.
+>  
+> +  The MT7988 SoC comes with a built-in switch with four Gigabit Ethernet PHYs.
+> +  The characteristics of the switch is similar to MT7531. The switch registers
+> +  are directly mapped into the SoC's memory map rather than using MDIO. The
+> +  switch has got an internally connected 10G CPU port and 4 user ports connected
+> +  to the built-in Gigabit Ethernet PHYs.
+> +
+>    Port 5 on MT7530 has got various ways of configuration:
+>  
+>      - Port 5 can be used as a CPU port.
 > -- 
 > 2.37.2
 > 
