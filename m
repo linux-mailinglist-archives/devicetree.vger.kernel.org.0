@@ -2,149 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 166EC6DA206
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D639E6DA20E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 21:58:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237926AbjDFTzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 15:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
+        id S230030AbjDFT6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 15:58:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237685AbjDFTzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:55:47 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2618D59E3
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 12:55:46 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id h11so45271860lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 12:55:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680810944;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4e1AWlyBcKR3I5ILtwI72cSCBL6y95j52yQauXVOOT4=;
-        b=Zsrv5K3FHfPUlnAL4tM0QO4XO4TcKMRkr6dlWxS3c689yhPdxiv74jcFDVkZ/++FKe
-         Aj9rESwM+6elJgC6xmYnmx1pRuK/0fw3XztXgJa281VLTq5j2Cg2YErERSatkX7MknPS
-         qXDl72lYtrqkcnYCGlrsF2g5gNn+f6dppe53A9CdTl7rg2ciKvWHgTivf5mKhBl+J00A
-         41rRghCUuxyfYQ7tEQqY/CjKpPf5vPU4PQXifwkN8C5gsmr0+L1eDxuEQbGykLLHnD8Z
-         +83e5LvqHRdu6/jEnC01Ej0zCF71Z8DF7ZJovx2c39KdQtWXoZiFoVbfBulzAoikmHmb
-         T+tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680810944;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4e1AWlyBcKR3I5ILtwI72cSCBL6y95j52yQauXVOOT4=;
-        b=MUTqYcHYSmYOG39zC7vnzovZE3//PiTmzfI38+7WQG6yGHDsJ4YIP8I8BeZWbVEU64
-         2sS7ALzpbVmHR+o3XOCP/V1528TW02Dww2r5Ziah32JM/Sd81Hk+h64FB90MWeT3YpQH
-         DCcNabCnLm/b1IbjM4/yjWwhJ603odd8C8nTU8hPv3eMt6C7GyY62514aamKgXZhx48L
-         CS1R53oVunvzMR4LafP4V+ySeXAUqVWfnb++VRKdM6YRBsBg0slv6zhwl/RXWqPqKPUx
-         IHfYwPYfy4HD7w5HGtFVWZoq72UE9g4Eh0eS0qNOzcMV7U1NN1ib5bESJgWG0RpNNg7H
-         AVjQ==
-X-Gm-Message-State: AAQBX9fnF9UlYpjChq5APUX9sehvvy77BFUlDbSiQ/EHeZlhuZS0Gy/v
-        i1ESVh+7uHeqUKpxQmL/jw5eyQ==
-X-Google-Smtp-Source: AKy350YHCUi8OdmwLOFkttGbLhbPMWeS/ZJvAxLuiglxSYenCnEaHo3KOjeTDn8ks4gRqkuYUnVILA==
-X-Received: by 2002:ac2:54a5:0:b0:4eb:e7f:945 with SMTP id w5-20020ac254a5000000b004eb0e7f0945mr50291lfk.41.1680810944382;
-        Thu, 06 Apr 2023 12:55:44 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id b6-20020a056512218600b004b5480edf67sm393504lft.36.2023.04.06.12.55.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 12:55:43 -0700 (PDT)
-Message-ID: <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
-Date:   Thu, 6 Apr 2023 21:55:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
-Content-Language: en-US
+        with ESMTP id S229550AbjDFT6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 15:58:46 -0400
+Received: from mx2.securetransport.de (mx2.securetransport.de [IPv6:2a03:4000:13:6c7::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536D383D0;
+        Thu,  6 Apr 2023 12:58:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1680811052;
+        bh=hIHZKMCNlD1nj8tlj6y6ab9ucYMc5iHFk+XQ3oEEOmg=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=ixn+X+rixKEeyGUXMD1SrI1W5wdniFZH1OTqrhIZMbvlhyprtrm+gfou01oEdR/oe
+         mckiG0/lJB2phvh8GuaKBrj8LZZlrHJrQx0jb8gvXd5hRogpVM5gvggRNdmRMY1deY
+         X8mWJXnFVz5D10mAvHQuqHXtLv0nRyXzpmhZue8TY5S0F8G8vv+KzfT14jy7nTTrUY
+         kzEh8TtQql/1A5CZCKaKo6hC3AIJHVSuOFLvmQhIly9HOLl9/eAKCATGSyaKDOJxRf
+         xQsuiDcTKEDu++R4VC7YaOFj97bp0qfiHL273g4UAEHDFND/dNnOeCw2FLHwcN+Ztl
+         k4CXVM79quwNw==
+X-secureTransport-forwarded: yes
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Complaints-To: abuse@cubewerk.de
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
- <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
- <168069726278.2356075.14351594478003012447.robh@kernel.org>
- <20230405134727.GA2461305-robh@kernel.org>
- <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
- <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kernel <kernel@dh-electronics.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Thread-Topic: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Thread-Index: AQHZaJ93At1GnP2el0yoagNBg+3G/K8eWhSAgAAwTiD//+YUAIAAON0Q
+Date:   Thu, 6 Apr 2023 19:57:22 +0000
+Message-ID: <ff95314402a349a5a2998c1b5e2b13a2@dh-electronics.com>
+References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
+ <20230406154900.6423-3-cniedermaier@dh-electronics.com>
+ <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
+ <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
+ <f6c8586f-a5d1-875f-b2c0-7871112cf1b1@linaro.org>
+In-Reply-To: <f6c8586f-a5d1-875f-b2c0-7871112cf1b1@linaro.org>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6.04.2023 19:45, Krzysztof Kozlowski wrote:
-> On 05/04/2023 15:49, Konrad Dybcio wrote:
->>
->>
->> On 5.04.2023 15:47, Rob Herring wrote:
->>> On Wed, Apr 05, 2023 at 07:22:40AM -0500, Rob Herring wrote:
->>>>
->>>> On Wed, 05 Apr 2023 12:48:34 +0200, Konrad Dybcio wrote:
->>>>> Due to the wild nature of the Qualcomm RPM Message RAM, we can't really
->>>>> use 'reg' to point to the MPM's slice of Message RAM without cutting into
->>>>> an already-defined RPM MSG RAM node used for GLINK and SMEM.
->>>>>
->>>>> Document passing the register space as a slice of SRAM through the
->>>>> qcom,rpm-msg-ram property. This also makes 'reg' deprecated.
->>>>>
->>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>>> ---
->>>>>  .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml   | 12 +++++++++---
->>>>>  1 file changed, 9 insertions(+), 3 deletions(-)
->>>>>
->>>>
->>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>>
->>>> yamllint warnings/errors:
->>>>
->>>> dtschema/dtc warnings/errors:
->>>> Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dts:22.35-38.11: Warning (node_name_vs_property_name): /example-0/interrupt-controller: node name and property name conflict
->>>
->>> Looks like this is colliding with the example template which has to 
->>> craft an interrupt provider for 'interrupts' properties. Either adding a 
->>> parent node or using interrupts-extended instead should work-around it.
->> Check the devicetree-org issue linked in the cover letter, please!
->>
->> I suppose wrapping it in a parent node could work as a temporary
->> measure, but since it belongs outside /soc, I'd have to make up
->> a bogus simple-bus, I think.
-> 
-> I don't think your issue in dtschema is accurate. As Rob suggested, you
-> need wrapping node.
-I don't really know what kind.. I can add something like:
-
-rpm {
-	compatible = "qcom,rpm", "simple-mfd";
-
-	mpm: interrupt-controller {
-	...
-};
-
-And then only introduce a very simple YAML for "qcom,rpm"
-describing what it is and documenting the compatible.
-
-Or I can push it under rpm-requests{}.
-
-Konrad
-> 
-> Best regards,
-> Krzysztof
-> 
+RnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSBbbWFpbHRvOmtyenlzenRvZi5rb3psb3dza2lAbGlu
+YXJvLm9yZ10NClNlbnQ6IFRodXJzZGF5LCBBcHJpbCA2LCAyMDIzIDg6MDAgUE0NCj4gT24gMDYv
+MDQvMjAyMyAxOTo1NCwgQ2hyaXN0b3BoIE5pZWRlcm1haWVyIHdyb3RlOg0KPiANCj4+Pj4gKysr
+IGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnVsbC1kaGNvci1tYXZlby1ib3guZHRzDQo+Pj4+IEBA
+IC0wLDAgKzEsMzYxIEBADQo+Pj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIu
+MC1vci1sYXRlciBPUiBNSVQNCj4+Pj4gKy8qDQo+Pj4+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMjMg
+REggZWxlY3Ryb25pY3MgR21iSA0KPj4+PiArICogQ29weXJpZ2h0IChDKSAyMDIzIE1hcmFudGVj
+IGVsZWN0cm9uaWNzIEdtYkgNCj4+Pj4gKyAqDQo+Pj4+ICsgKiBESENPTSBpTVg2VUxMIHZhcmlh
+bnQ6DQo+Pj4+ICsgKiBESENSLWlNWDZVTEwtQzA4MC1SMDUxLVNQSS1XQlQtSS0wMUxHDQo+Pj4+
+ICsgKiBESENPUiBQQ0IgbnVtYmVyOiA1NzgtMjAwIG9yIG5ld2VyDQo+Pj4+ICsgKiBtYXZlbyBi
+b3ggUENCIG51bWJlcjogNTI1LTIwMCBvciBuZXdlcg0KPj4+PiArICovDQo+Pj4+ICsNCj4+Pj4g
+Ky9kdHMtdjEvOw0KPj4+PiArDQo+Pj4+ICsjaW5jbHVkZSAiaW14NnVsbC1kaGNvci1zb20uZHRz
+aSINCj4+Pj4gKw0KPj4+PiArLyB7DQo+Pj4+ICsgICAgIG1vZGVsID0gIkRIIGVsZWN0cm9uaWNz
+IGkuTVg2VUxMIERIQ09SIG9uIG1hdmVvIGJveCI7DQo+Pj4+ICsgICAgIGNvbXBhdGlibGUgPSAi
+bWFyYW50ZWMsaW14NnVsbC1kaGNvci1tYXZlby1ib3giLCAiZGgsaW14NnVsbC1kaGNvci1zb20i
+LA0KPj4+PiArICAgICAgICAgICAgICAgICAgImZzbCxpbXg2dWxsIjsNCj4+Pj4gKw0KPj4+PiAr
+ICAgICBhbGlhc2VzIHsNCj4+Pj4gKyAgICAgICAgICAgICAvZGVsZXRlLXByb3BlcnR5LyBtbWMw
+OyAvKiBBdm9pZCBkb3VibGUgZGVmaW5pdGlvbnMgKi8NCj4+Pg0KPj4+IEkgZG9uJ3QgdW5kZXJz
+dGFuZCBpdC4gV2hhdCBpcyAiZG91YmxlIGRlZmluaXRpb24iIG9mIGFsaWFzZXM/DQo+Pg0KPj4g
+T3RoZXJ3aXNlIEkgZW5kIHVwIGxpa2UgdGhpczoNCj4+IG1tYzAgPSAmdXNkaGMxOw0KPj4gbW1j
+MSA9ICZ1c2RoYzI7DQo+PiBtbWMyID0gJnVzZGhjMjsNCj4+DQo+PiBJcyAiRW5zdXJlIHVuaXF1
+ZSBhbGxvY2F0aW9uIiBhIGJldHRlciBjb21tZW50IGhlcmU/DQo+Pg0KPj4+DQo+Pj4+ICsgICAg
+ICAgICAgICAgL2RlbGV0ZS1wcm9wZXJ0eS8gbW1jMTsNCj4+Pj4gKyAgICAgICAgICAgICBtbWMy
+ID0gJnVzZGhjMjsgLyogZU1NQyBzaG91bGQgYmUgbW1jMiAqLw0KPj4+DQo+Pj4gV2h5PyBIb3cg
+aXMgdGhpcyBsYWJlbGVkIG9uIHRoZSBib2FyZCAocGh5c2ljYWxseSBvciBvbiBzY2hlbWF0aWNz
+KT8gSWYNCj4+PiB5b3UgYW5zd2VyIGhlcmUgImZvciBib290aW5nIiwgdGhlbiB0aGUgYW5zd2Vy
+IGlzIE5BSy4gRG9uJ3QgYWRkDQo+Pj4gc29mdHdhcmUgcG9saWNpZXMgdG8gRGV2aWNldHJlZS4N
+Cj4+DQo+PiBUaGUgbmFtZSBpbiB0aGUgc2NoZW1hdGljcyBpcyAiU0QyIi4NCj4gDQo+IEFuc3dl
+cmluZyBhbHNvIHRvIGFib3ZlIC0gdGhlbiBsaWtlbHkgdGhlIGFsaWFzZXMgc2hvdWxkIGJlIGRy
+b3BwZWQgZnJvbQ0KPiBTb00uIEkgZG91YnQgdGhhdCBTb20gY2FsbHMgaXQgU0QxIGFuZCB5b3Vy
+IGJvYXJkIFNEMi4uLg0KDQpNYXliZSBJIGRvbid0IHF1aXRlIGdldCBpdCwgYnV0IHRoZSBoYXJk
+d2FyZSBzdGFydHMgY291bnRpbmcgYXQgMS4gVGhlIGZpcnN0DQppbnRlcmZhY2UgaXMgU0QxIGFu
+ZCBpdCBpcyB1c2VkIGFzIFdpRmkuIFRoZSBzZWNvbmQgb25lIGlzIFNEMiB3aGljaCBpcyB0aGUN
+CmVNTUMuIFNvIHdpdGggdGhpcyBhbGlhc2VzIGl0IHNob3VsZCBtYXRjaCBTRDIgdG8gbW1jMi4N
+CkRvIHlvdSB3YW50IG1lIHRvIGRlbGV0ZSB0aGUgYWxpYXNlcyBpbiB0aGUgaW5jbHVkZSBmaWxl
+ICJpbXg2dWxsLWRoY29yLXNvbS5kdHNpIg0Kb3Igd2hhdCBjYW4gSSBkbz8NCg0KDQpUaGFua3Mg
+YW5kIHJlZ2FyZHMNCkNocmlzdG9waA0K
