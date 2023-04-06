@@ -2,127 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7D9B6D903E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 09:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A0D6D9055
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 09:19:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235883AbjDFHMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 03:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56502 "EHLO
+        id S235626AbjDFHTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 03:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235933AbjDFHMm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 03:12:42 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F4A69EDA
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 00:12:37 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id i5so147204404eda.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 00:12:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680765156;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FTrXatKj0NAmmO1834Hl1S31qH+Qt0j4GCqY89e5gxg=;
-        b=LY4xE+JPncZvDsLtxSZc2wJfU9cG5JbsJL9JC0SDlibUGtjjPIIEvf0ymk4qkFJ/x8
-         qPLEBzGacouN9eVQecazNJ3YmVShLtUvT5MS8l6j/iN9c2tNkp7+PKSkhVeo1V+3aATW
-         kyofd0CDgVcnNbJD217cGLRHW0Mv6KC5LwyIZB/1qHaf3cWfjHxDi79rAT2U9DuY47hJ
-         u3DLKmlHF9w6jiR95Wz4GC9VuN1id0f9D+IzQtcrZ0od3e4BTDMNGbaOKa38fHH8eUgI
-         TZwm9jCvc9mc6Nu/PzPwa6loQ5/Pfaj6bJS4vnIxKwfHfw5w/eL2VcFPWBCccV6oXOlf
-         BvlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680765156;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FTrXatKj0NAmmO1834Hl1S31qH+Qt0j4GCqY89e5gxg=;
-        b=erw+ufvCehwp0JL+iOVT1/w/ZTVkDoRr8VAJEs+f/WmOKdX/Q5miwWgGx2Nc51GPES
-         GkCbxv53d44vPS9QKwlSV5YgAsmGSpzuQ3q4sjKfrBMgCTijigj6M3SPWiLo1/2/rM32
-         2Oy7LfKMob1Xbrbis2TQ7iC8h2FB/Xp55x/XxG0MmzApU48msCzRlAWprNsEXvlQcbmA
-         7mErGYxl0ACkwto37mIPVL2hj9/tO/w85lIj3rHQFpErkFPKU0RQ4qrF26rwVUKy2gYo
-         mnutH7iGLmvh54d/Ey+N6WAEw+KlxbPrDC5mBQ0oz9OLcUuyiVomksfAPVnRFg5+P04d
-         244g==
-X-Gm-Message-State: AAQBX9daLVxhQ3NTp/K6ch6e0b6vlD3uYX43gk9WnSwrBBoHwMrAbAbO
-        AIS0FXxgYAQIEKn970YfDLbeQg==
-X-Google-Smtp-Source: AKy350ZgaU+GMer0ZyEBurWw1ctBgB8mGAmG9JAzJg+/84ZM71L8/az6M5NBv6240Dzw1N3+MGzZ2Q==
-X-Received: by 2002:a17:907:9607:b0:930:3916:df19 with SMTP id gb7-20020a170907960700b009303916df19mr7149830ejc.5.1680765156086;
-        Thu, 06 Apr 2023 00:12:36 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id r18-20020a1709063d7200b00934212e973esm394000ejf.198.2023.04.06.00.12.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 00:12:35 -0700 (PDT)
-Message-ID: <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
-Date:   Thu, 6 Apr 2023 09:12:34 +0200
+        with ESMTP id S235269AbjDFHTb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 03:19:31 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0247F1FD2;
+        Thu,  6 Apr 2023 00:19:29 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3367IR5c8008202, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3367IR5c8008202
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Thu, 6 Apr 2023 15:18:27 +0800
+Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Thu, 6 Apr 2023 15:18:47 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 6 Apr 2023 15:18:46 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::b4a2:2bcc:48d1:8b02]) by
+ RTEXMBS04.realtek.com.tw ([fe80::b4a2:2bcc:48d1:8b02%5]) with mapi id
+ 15.01.2375.007; Thu, 6 Apr 2023 15:18:46 +0800
+From:   =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>,
+        =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] Initial RTD1319 SoC and Realtek PymParticle EVB support
+Thread-Topic: [PATCH v2 0/2] Initial RTD1319 SoC and Realtek PymParticle EVB
+ support
+Thread-Index: AdloUWFHnoi4nqZjQxCI6ksHRb9dMg==
+Date:   Thu, 6 Apr 2023 07:18:46 +0000
+Message-ID: <5d644994dd39447cba7ba7027cc856b0@realtek.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.137]
+x-kse-serverinfo: RTEXMBS01.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
- compatibles
-Content-Language: en-US
-To:     Daniel Walker <danielwa@cisco.com>, - <xe-linux-external@cisco.com>
-Cc:     Marcin Wierzbicki <mawierzb@cisco.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Walker <dwalker@fifo99.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230405223028.1268141-2-danielwa@cisco.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230405223028.1268141-2-danielwa@cisco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 00:30, Daniel Walker wrote:
-> Describe the compatible properties for the Cisco CrayAR SoC.
-> 
-> Cc: xe-linux-external@cisco.com
-> Cc: Marcin Wierzbicki <mawierzb@cisco.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-
-Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
-
-If you need it for your own patch management purposes, keep it under the
---- separator.
-
-> Signed-off-by: Daniel Walker <dwalker@fifo99.com>
-> ---
->  .../devicetree/bindings/arm/cisco/crayar.yaml | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/cisco/crayar.yaml b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-> new file mode 100644
-> index 000000000000..0ee4e6313ab0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-
-How many (or not many) platforms do you expect from Cisco? We mostly
-have one file per SoC manufacturer.
-
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-Dual license.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/cisco/crayar.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cisco CrayAR based Platforms
-> +
-
-Best regards,
-Krzysztof
-
+SGkgS3J6eXN6dG9mLA0KDQpUaGlzIHNlcmllcyBhZGRzIERldmljZSBUcmVlcyBmb3IgdGhlIFJl
+YWx0ZWsgUlREMTMxOSBTb0MgYW5kIFJlYWx0ZWsncw0KUHltUGFydGljbGUgRVZCLg0KDQp2MS0t
+PnYyOg0KKiBQdXQgc3RyaW5nIGluIGFscGhhYmV0aWNhbCBvcmRlcg0KdjE6DQoqIFJURDEzMTkg
+U29DIGFuZCBSZWFsdGVrIFB5bVBhcnRpY2xlIEVWQg0KDQpDYzogUm9iIEhlcnJpbmcgPHJvYmgr
+ZHRAa2VybmVsLm9yZz4NCkNjOiBKYW1lcyBUYWkgPGphbWVzLnRhaUByZWFsdGVrLmNvbT4NCkNj
+OiBBbmRyZWFzIEbDpHJiZXIgPGFmYWVyYmVyQHN1c2UuZGU+DQpDYzogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPg0KQ2M6IGxpbnV4LWFybS1r
+ZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
+DQpDYzogbGludXgtcmVhbHRlay1zb2NAbGlzdHMuaW5mcmFkZWFkLm9yZw0KQ2M6IGxpbnV4LWtl
+cm5lbEB2Z2VyLmtlcm5lbC5vcmcNCg0KY3kuaHVhbmcgKDIpOg0KICBkdC1iaW5kaW5nczogYXJt
+OiByZWFsdGVrOiBBZGQgUmVhbHRlayBQeW0gUGFydGljbGVzIEVWQg0KICBhcm02NDogZHRzOiBy
+ZWFsdGVrOiBBZGQgUlREMTMxOSBTb0MgYW5kIFJlYWx0ZWsgUHltIFBhcnRpY2xlcyBFVkINCg0K
+IC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9yZWFsdGVrLnlhbWwgICAgICB8ICAgNiArDQog
+YXJjaC9hcm02NC9ib290L2R0cy9yZWFsdGVrL01ha2VmaWxlICAgICAgICAgIHwgICAyICsNCiAu
+Li4vYm9vdC9kdHMvcmVhbHRlay9ydGQxMzE5LXB5bXBhcnRpY2xlcy5kdHMgfCAgMjggKysNCiBh
+cmNoL2FybTY0L2Jvb3QvZHRzL3JlYWx0ZWsvcnRkMTN4eC5kdHNpICAgICAgfCAzNDYgKysrKysr
+KysrKysrKysrKysrDQogNCBmaWxlcyBjaGFuZ2VkLCAzODIgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL3JlYWx0ZWsvcnRkMTMxOS1weW1wYXJ0
+aWNsZXMuZHRzDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvcmVhbHRl
+ay9ydGQxM3h4LmR0c2kNCg0KLS0NCjIuMzkuMA0K
