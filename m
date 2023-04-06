@@ -2,102 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB946D92BB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764366D92CC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 11:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236446AbjDFJbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 05:31:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
+        id S236056AbjDFJeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 05:34:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236416AbjDFJbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:31:16 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C421C6A52
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 02:31:14 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id t10so147627984edd.12
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 02:31:14 -0700 (PDT)
+        with ESMTP id S235883AbjDFJeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 05:34:08 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C7A40CE;
+        Thu,  6 Apr 2023 02:33:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680773473;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8RIfpuoVaNfnxeve7MYPNghsS5GMXgpW/gynvfrtPRQ=;
-        b=Z6K9oBTG3TkcviaKOTj+7E+7gJgTDrMRJym9EfJWN39HGEewSP4RY6G7BATJ2N4jRg
-         IadjNVgCfU5oP6DsfsvdN1o5QcGL8cMk0u/BHy1ENWQYuL+6N1PBVwRr+bGd+G8m/gst
-         +LcsiDSq99hplkS6GPFkEOhwb7pYntOyPoeTtpa8FnY12dyJE5m0E9io24mBYg8NWszj
-         xy6QFmtSBEbxaGMVfsdLedo5UASjZDvi3A0ySv+Z8Xs4smaUguvekzumWA6YXItnKuQA
-         wC6OdXo0OSZ/X6GXKwvgHz2qflFNgbe/amKt8aTLlrIRCKgRsJIfHN4VM4zQxDhGR1At
-         6FHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680773473;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8RIfpuoVaNfnxeve7MYPNghsS5GMXgpW/gynvfrtPRQ=;
-        b=ULdbfmqFehpyeA3i43c9IS9LZpZi/19n+gxTzSHWuz4ia8wA4GNrWZqNg9glHP8E0a
-         Z/srxBjEO2h71jimwDUSkRQ0xAeEXmaD3rC9xBOfPBlmBAAXC8xH4zrLK6cGQEpuEIF6
-         eE4hcGEiWUua2jVXxJz6UnUqYHUYKBC8/nEfR4w5yUGGyFpSwuR9I6KHbChuUmpP5ixt
-         UOiQ2cKHbl/qzxB731cJgYkMOC7bdp1RRTBv1VM1beQ2rHBNUUfnazXrE43hq7fcIVwK
-         DOKOxAG5yY0oFtPUWZF5Z5vJTbb2+oVkRd+iX9LPNkO9nrkK8WP8EnnyjKrfkBHzGuui
-         Rhvw==
-X-Gm-Message-State: AAQBX9cFDS2FQ7XH179MFEGhIk6iJmNQdxV8uDb9mxzQv+QB/rozqCAz
-        cCDkKrMjDAwqNwaBgDiRKF4IpA==
-X-Google-Smtp-Source: AKy350Yyy9UiZia+JA070uxpRw7X2DpW+5gxQSCln7rvz8jC2z3gIEAclRA+XxTXfeJmWApTbvYxwg==
-X-Received: by 2002:a17:907:c709:b0:930:1178:2220 with SMTP id ty9-20020a170907c70900b0093011782220mr5510101ejc.40.1680773473299;
-        Thu, 06 Apr 2023 02:31:13 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id jx17-20020a170907761100b009332bb8b1f7sm571254ejc.66.2023.04.06.02.31.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 02:31:12 -0700 (PDT)
-Message-ID: <731caa8b-1a4c-d1c3-9398-ef3fff75aa76@linaro.org>
-Date:   Thu, 6 Apr 2023 11:31:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: dlg,da9063: document voltage
- monitoring
-Content-Language: en-US
-To:     Benjamin Bara <bbara93@gmail.com>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1680773634; x=1712309634;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QQBzJLxAwqw++PuzUEsUokKNrW8J4SM4pq3rrrBEeMU=;
+  b=GXch8GG18muNnEtU8UyxxazM8RTe3717Kc/L2V+9POpdr2tU/qTPtwu4
+   vMh54JNbwabdemUTrZk6Eaeuu4qiEACCOg/Bm5v5xGA1yCGVSmSKDtyAp
+   jVbjYwKmAcrZ2642EnmyGS5+Fe3W4Bs6NBq13gV59zHLR3qIko//uQ/7F
+   OmLb6MKTp6YEZAzWqRj8hCVNOFBgw9ofT5QVm+31f1f4ero4vGYWs6C9d
+   pnTyQ44Vg0k251idVioPLgLl2ViMMYkbce7N+zYtSK+UZ82Hf1wA/Yanz
+   tmrqgwNBBVrlnwrIJbA6L5BSugT8bqQT3WKCJoXy7fcu2uFU/OdvP+52W
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,323,1673910000"; 
+   d="scan'208";a="30188769"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Apr 2023 11:33:52 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 06 Apr 2023 11:33:52 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 06 Apr 2023 11:33:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1680773632; x=1712309632;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QQBzJLxAwqw++PuzUEsUokKNrW8J4SM4pq3rrrBEeMU=;
+  b=oBq7yahBVHA6Icph5KEInTIXWV4rvw+cqTApyFeg8J5bqrI/byev92fm
+   MNsZ8TDlhusGvKOcO1BvtGYCfAkkenfESCyPEfBeRdX2Oa4893LXHdfK1
+   LuHX/hFYWKI6XaA8AHL+O22D57aGW+c/e1wKoB9S7uuwDulqoqDYFgW4z
+   SxdtptcgkXli+Xr663w7yPufq8GIU9rH9Y6DbC0I7lTiNHmit74vnflTz
+   SD8wP4eZXegx3UlOyygi/xxkDq/D/NAGGnJwMTzaVYrRjDqh0F4DpCySn
+   P3LTNsGp7yM/kO9kozND4fGeqF8P/u4HQDzFL990kHbmQ2v8Ko5+H9C9w
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,323,1673910000"; 
+   d="scan'208";a="30188768"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Apr 2023 11:33:52 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F3472280056;
+        Thu,  6 Apr 2023 11:33:51 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>
-Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Benjamin Bara <benjamin.bara@skidata.com>
-References: <20230403-da9063-disable-unused-v3-0-cc4dc698864c@skidata.com>
- <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v1 0/3] gpio: Add gpio-delay support
+Date:   Thu,  6 Apr 2023 11:33:41 +0200
+Message-Id: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2023 19:14, Benjamin Bara wrote:
-> From: Benjamin Bara <benjamin.bara@skidata.com>
-> 
-> Document that the da9063 only provides under- *and* over-voltage
-> monitoring in one, and therefore requires both to be configured with the
-> same severity and value. Add an example for clarification.
-> 
-> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
-> ---
->  Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 17 +++++++++++++++--
+Hello everyone,
 
+thanks for the feedback I've received. This is the first non-RFC series for
+adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes compared to RFC v2 are mentioned in each patch.
 
-Best regards,
-Krzysztof
+Thanks and best regards,
+Alexander
+
+Alexander Stein (3):
+  dt-bindings: gpio: Add gpio-delay binding document
+  gpio: Add gpio delay driver
+  [DNI] arm64: dts: mba8mx: Use gpio-delay for LVDS bridge
+
+ .../devicetree/bindings/gpio/gpio-delay.yaml  |  79 +++++++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi     |  10 +-
+ drivers/gpio/Kconfig                          |   8 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-delay.c                     | 164 ++++++++++++++++++
+ 5 files changed, 261 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+ create mode 100644 drivers/gpio/gpio-delay.c
+
+-- 
+2.34.1
 
