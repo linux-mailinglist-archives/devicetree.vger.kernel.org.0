@@ -2,136 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B62A6D9CA5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DEBA6D9CA9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237173AbjDFPsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 11:48:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51502 "EHLO
+        id S239037AbjDFPtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 11:49:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbjDFPsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:48:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1224A4220;
-        Thu,  6 Apr 2023 08:48:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A391D617D5;
-        Thu,  6 Apr 2023 15:48:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0901FC433EF;
-        Thu,  6 Apr 2023 15:48:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680796125;
-        bh=gCMj7rHc2vXcOYr+ShATDoCKp8S/RUyCf67KISWSutM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZMF5k7KKffyKyYyX7yspk2IyYCGQcqbQ7LzxlG0zX2jKbDx2pOFdE+SdtfFTELZzu
-         FwuO9NAHPoZsCLnHSQWoYxNOd4EZptbNtaEiKJnCtGDzm6HX4olb1dHGrW0yhImCOR
-         b37KPZ+7G8xuKUiVRNVrCB8boMqXobaklI/WLzcrmlJeD33tNmnMgcPDuPBLb3Ev91
-         b+nIaoXvfjTF5tUEoFUBsDbcjQckoybX5C2qhTRZ2RR8OFJ2zqjYJjwUbQsRbq9JlC
-         AYOTinadPVJ62rmoAO7oI8CG+gnG2hnBIDQ5LcvEQIEpNVnoCeYyIeJm9xS/EIn+RM
-         2S4Fih8rtiKlw==
-Received: by mail-yb1-f177.google.com with SMTP id r187so46598062ybr.6;
-        Thu, 06 Apr 2023 08:48:44 -0700 (PDT)
-X-Gm-Message-State: AAQBX9dFNQna3oWOKNwwaiKeBsyWcN+05Dvb6/UAsjSjvFffua3nRbbW
-        5oA815aZ+hNXN5AqAh4rrztutoUscxbxUWu6Ww==
-X-Google-Smtp-Source: AKy350Zzc2mowfFyIPi/dfoj4PLjaJFeaGp+GLAx0yBecFNH8tMSD++w2H0z7ixo8hKG1Kc7Dvdk1MZHPK6dVBFWaNg=
-X-Received: by 2002:a25:cad1:0:b0:b75:3fd4:1b31 with SMTP id
- a200-20020a25cad1000000b00b753fd41b31mr2367088ybg.1.1680796124084; Thu, 06
- Apr 2023 08:48:44 -0700 (PDT)
+        with ESMTP id S239083AbjDFPsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:48:52 -0400
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94365A261;
+        Thu,  6 Apr 2023 08:48:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References;
+        bh=Pskvx082MAeUdvUYOiR5OupVD3nAB2qmVZxOgRw8OXk=; b=gyhANO9cmhVsG0raxaoL6Qao2S
+        ngHh0rJ2TJ10qtV44zOiv/36MrS71Y6yvrCLgOjIOy2ofqcincAy8b9JOTMJLuP1Gjze3F/3vHkcW
+        tpIDCzNf/ErixHKA3mh09b0dQ63WSenp/Ohhtedluf+rpouhM3jfz+LOm3pMpd5YIEwycZMUiLQk0
+        I7ioy6FI3k8Ovmu8u6UD+ZQuzthFibzhsY549absIJ7eVebILurFxB6xavbbWSMnsrX0XpS612Gn0
+        Z/ENhN9j0mazS/a1JqSPEH/gSpluhvqye4YxYsasR7ypFJJliw1YRJvJbvam4Swoy+O8zeikQDcd5
+        5G8GpeDw==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pkRqz-0005yu-AJ; Thu, 06 Apr 2023 17:48:49 +0200
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b] (helo=lars-desktop.lan)
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pkRqy-000IQf-NS; Thu, 06 Apr 2023 17:48:49 +0200
+From:   Lars-Peter Clausen <lars@metafoo.de>
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: i2c: cadence: Document `resets` property
+Date:   Thu,  6 Apr 2023 08:48:33 -0700
+Message-Id: <20230406154834.171577-1-lars@metafoo.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20230406151429.524591-1-tanure@linux.com> <20230406151429.524591-3-tanure@linux.com>
-In-Reply-To: <20230406151429.524591-3-tanure@linux.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 6 Apr 2023 10:48:31 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL_MLHO-zk0HAmuAmiJQ_TmD4EN5YC0JmRs7PXjStjr3A@mail.gmail.com>
-Message-ID: <CAL_JsqL_MLHO-zk0HAmuAmiJQ_TmD4EN5YC0JmRs7PXjStjr3A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of: fdt: Allow the kernel to mark nomap regions
- received from fdt
-To:     Lucas Tanure <tanure@linux.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, jbrunet@baylibre.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-        stefan@agner.ch
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26867/Thu Apr  6 09:24:29 2023)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 6, 2023 at 10:14=E2=80=AFAM Lucas Tanure <tanure@linux.com> wro=
-te:
->
-> Reserved regions can be described in FDT and device trees, but FDT doesn'=
-t
-> provide the related flags, like nomap.
+The Cadence I2C controller has an external reset that needs to be
+de-asserted before the I2C controller can be accessed.
 
-It took me a minute to understand what you meant by FDT vs. device
-trees. Use the exact things you are talking about: /memreserve/ and
-/reserved-memory node.
+Document the `resets` devicetree property that can be used to describe how
+the reset signal is connected.
 
-> So allow the kernel to mark regions where the base and size received from
-> the device tree are the same as the base and region on FDT.
-> Here we trust that the device tree has a more updated description of the
-> region than the one received from FDT.
->
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  drivers/of/fdt.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index d1a68b6d03b3..754a7ea4f45c 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -482,11 +482,13 @@ static int __init early_init_dt_reserve_memory(phys=
-_addr_t base,
->         if (nomap) {
->                 /*
->                  * If the memory is already reserved (by another region),=
- we
-> -                * should not allow it to be marked nomap, but don't worr=
-y
-> -                * if the region isn't memory as it won't be mapped.
-> +                * should not allow it to be marked nomap, unless is the =
-exact same region
-> +                * (same base and size), which the kernel knows better an=
-d should be allowed to mark
-> +                *  it as nomap.
-> +                * But don't worry if the region isn't memory as it won't=
- be mapped.
->                  */
-> -               if (memblock_overlaps_region(&memblock.memory, base, size=
-) &&
-> -                   memblock_is_region_reserved(base, size))
-> +               if (memblock_overlaps_region(&memblock.memory, base, size=
-) =3D=3D MEMBLOCK_OVERLAPS &&
-> +                   memblock_is_region_reserved(base, size) =3D=3D MEMBLO=
-CK_OVERLAPS)
+While the reset signal will always be present in hardware the devicetree
+property is kept optional for backwards compatibility with existing systems
+that do not specify the reset property and where the reset signal might not
+be controlled by operating system.
 
-Won't this fail to work as IIRC memblock will merge regions when they
-are adjacent and have the same atrributes.
+Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v1:
+	* Add `resets` property to example
+---
+ Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Perhaps instead, the DT code should ignore any /memreserve/ entries
-that are also in /reserved-memory.
+diff --git a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+index 9187015d9702..cb24d7b3221c 100644
+--- a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
++++ b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+@@ -24,6 +24,9 @@ properties:
+   clocks:
+     minItems: 1
+ 
++  resets:
++    maxItems: 1
++
+   interrupts:
+     maxItems: 1
+ 
+@@ -59,6 +62,7 @@ examples:
+     i2c@e0004000 {
+         compatible = "cdns,i2c-r1p10";
+         clocks = <&clkc 38>;
++        resets = <&rstc 288>;
+         interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+         reg = <0xe0004000 0x1000>;
+         clock-frequency = <400000>;
+-- 
+2.30.2
 
-I would suggest just reverse the order they are processed, but I
-suspect that might cause some regression. This code is all fragile
-especially with platforms putting in 100 regions.
-
-Finally, perhaps fix u-boot. The reason the reserved location goes in
-both places was to support an OS not supporting /reserved-memory. I
-think that support has been in place for a lot longer than anyone
-would care about.
-
-Rob
