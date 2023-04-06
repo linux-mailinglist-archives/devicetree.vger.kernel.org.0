@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B936F6D9B99
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62126D9BC1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239577AbjDFPDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 11:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50898 "EHLO
+        id S239527AbjDFPHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 11:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239516AbjDFPDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:03:22 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9711D2D4F;
-        Thu,  6 Apr 2023 08:03:11 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id cm7-20020a056830650700b006a11f365d13so19543429otb.0;
-        Thu, 06 Apr 2023 08:03:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680793391;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wYgmHMtE4Z7gXY8fARqNrSklFArQd85DUjhl84S7U8k=;
-        b=46RUrTNkogma/31YfsGCMzy2HZvD4gtizmbuY91BYs2wRCBkBqAeS6meEvd04VQZ0I
-         bI6c9nuoqh1bcH2XaMPQUZisgOcUSBqOYEDb88zipwA41PZedCDS5sJDBXgFPGkIJXXK
-         hui8mywnr1MrDm94fvcvY0+MHbUJ0Esbq+H9x8wGEmKXLcULhlu54Io5Na3LWpePvFH7
-         xlhl8xH4KOoPQOdLb3XoKpsAvYwdRDdECq7oN6hf6wnhxUO1urp7U9Bm6XClDhZRPUGO
-         SkjoOTe5yRLwwTDjkMt9RvM0L+aG6NudWpBa3yuu1shxWjUlbIUbyQFeYHVaVSEulg0E
-         dwiw==
-X-Gm-Message-State: AAQBX9fzWXpDJtvdWJyIrZnXXkiuQyknwt+6NFkMVODDJHV9fq5C8iPC
-        fX3GISgekHIzREQBwm03nQ==
-X-Google-Smtp-Source: AKy350bZD4DjQUO7AVGHEVenQnfIMLuXNlrLc4gknaEfA4cOh4RhwrUIHpdfd4pE2Dh1CZs3PVEqRQ==
-X-Received: by 2002:a05:6830:1390:b0:697:bfe5:93a0 with SMTP id d16-20020a056830139000b00697bfe593a0mr3732206otq.10.1680793390855;
-        Thu, 06 Apr 2023 08:03:10 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c2-20020a9d75c2000000b006a154373578sm765278otl.39.2023.04.06.08.03.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 08:03:10 -0700 (PDT)
-Received: (nullmailer pid 3093825 invoked by uid 1000);
-        Thu, 06 Apr 2023 15:03:09 -0000
-Date:   Thu, 6 Apr 2023 10:03:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Brendan Higgins <brendan.higgins@linux.dev>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kunit-dev@googlegroups.com, Maxime Ripard <maxime@cerno.tech>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        David Gow <davidgow@google.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, patches@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 10/11] dt-bindings: clk: Add KUnit clk_parent_data test
-Message-ID: <168079338907.3093774.3664348677242434161.robh@kernel.org>
-References: <20230327222159.3509818-1-sboyd@kernel.org>
- <20230327222159.3509818-11-sboyd@kernel.org>
+        with ESMTP id S239614AbjDFPHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:07:20 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6D8A5FD;
+        Thu,  6 Apr 2023 08:06:57 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id A1464403BA;
+        Thu,  6 Apr 2023 20:06:53 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1680793614; bh=kNSzackFP9sVV72mw7JFHHvEqaWcDjWJibxovJeXYdI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=4oN7ikRkexVGKdOdkng5/aD5KLqtB2LqlTgMC33M3L/gkCg7+37Z20/BQ9kBVQVFL
+         weLvLAe+aKj7cKsZzrxRNDPo+DUZtRGOKRoxgj+FDEYBPiRt+HQ/7xrpl1N4vkW02X
+         IIJ29NDc3dtywjyseploTyB+psjhEbYX/Y5hgP7YCSwnFLKyHR2BqaEGekOulzb+75
+         te7S8c3kAsRP+jK9TBFX/ixhWkVLPA0SbwqhcPGMBw+GjXVLERKqUCeZC4O0H7JCey
+         mYQforMqD70okivI/92nqESwRQMZr2t66qvC9s2rSfAzEs0YNs0fLAE5R3NY0TKb78
+         6fkK0StgeKd+Q==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     agross@kernel.org, andersson@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        konrad.dybcio@linaro.org, quic_srivasam@quicinc.com,
+        judyhsiao@chromium.org, mka@chromium.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v4 0/4] Add Acer Aspire 1
+Date:   Thu,  6 Apr 2023 20:06:29 +0500
+Message-Id: <20230406150633.83351-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327222159.3509818-11-sboyd@kernel.org>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces Acer Aspire 1 - A WoA laptop with sc7180.
 
-On Mon, 27 Mar 2023 15:21:58 -0700, Stephen Boyd wrote:
-> Describe a binding for a device that provides and consumes clks in DT so
-> that a KUnit test can register clks based on the device node and test
-> clk_hw_register() with clk_parent_data.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Brendan Higgins <brendan.higgins@linux.dev>
-> Cc: David Gow <davidgow@google.com>
-> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> ---
->  .../bindings/clock/test,clk-parent-data.yaml  | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/test,clk-parent-data.yaml
-> 
+The dts adds mostly complite support for the hardware and the device,
+with minor patches on top, can be used as a normal laptop daily.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Notable features absent from this patch:
+- Sound
+   While the dedicated sound components are defined, since the
+   ADSP must be used, sound requires additions of that remoteproc
+   as well some extra "glue" to connect the i2s outputs to it.
+   I was able to hack together some sound based on sm8250 stuff
+   but it needs more work.
+- Embedded Controller
+   The laptop has a dedicated EC that controls, notably,
+   battery/charger and notifies the device about the USB-C DisplayPort
+   HPD events. As per this patch, there is no battery status
+   indication and external display support. Also, due to the EC
+   defaults, the fn key is disabled. I have an experimental driver that
+   implements all of that, which needs more work and will be submitted
+   at a later date.
+- PSCI OSI Mode
+   Firmware on this laptop does not support the PC mode, as is usual
+   for Qualcomm. This change would require adding OSI related
+   power-domains to the SoC dtsi and is omitted in expectation that
+   this can be handled when (if?) CrOS team handles their tf-a, like
+   they did with sc7280.
+
+Changed in v3:
+ - Disable lpass clocks by default (Konrad)
+ - Drop status=disabled for mdp in the common soc dtsi (Konrad)
+
+Changed in v4:
+ - Resend with picked up tags, no other change.
+
+Nikita Travkin (4):
+  arm64: dts: qcom: sc7180: Don't enable lpass clocks by default
+  arm64: dts: qcom: sc7180: Drop redundant disable in mdp
+  dt-bindings: arm: qcom: Add Acer Aspire 1
+  arm64: dts: qcom: Add Acer Aspire 1
+
+ .../devicetree/bindings/arm/qcom.yaml         |   4 +-
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sc7180-acer-aspire1.dts     | 859 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       |   4 -
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  12 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |   6 +-
+ 6 files changed, 874 insertions(+), 12 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
+
+-- 
+2.39.2
 
