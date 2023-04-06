@@ -2,150 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 650EC6D8D00
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 03:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79BB96D8D17
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 03:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234613AbjDFBwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 21:52:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
+        id S229587AbjDFBzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 21:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233903AbjDFBw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 21:52:29 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DBE27A9E;
-        Wed,  5 Apr 2023 18:52:27 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3065D24E203;
-        Thu,  6 Apr 2023 09:52:26 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 6 Apr
- 2023 09:52:26 +0800
-Received: from ubuntu.localdomain (183.27.97.179) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 6 Apr
- 2023 09:52:25 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231696AbjDFBzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 21:55:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631B07EE6
+        for <devicetree@vger.kernel.org>; Wed,  5 Apr 2023 18:55:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0F010629EB
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:55:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 312BFC433D2;
+        Thu,  6 Apr 2023 01:55:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680746127;
+        bh=SVfqk6EOmF0xlkJ1Aw6lWBX0m9O7iHE0tPT8SaU6NVI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Mks0Xvlc0tuLxQfulMNJjPssTcwPSnIZRH8sbbZAt0SWA/Cx37DKZVf0/Q38BmUOG
+         uHjFM9WxOtqfz/ggiP5JVkHndzKvVrtScUBwrq9SW+HDBlMv1xJYO92opkPx3Lwxrq
+         9FldwgF6osmzdKck/12pVnjMSOCQrTRV63jeRHW6WDMjIkNLihsAv8s+Y+k17Qt1bh
+         RDm872qxO6r0L0Do7jXXE2APuAMwqk5stKZgZ7QbgCghPEzI7O04o16uDYuA64NNnM
+         wcbcOOznVsP2If/voDH9+cp3PNcQTIQh5MfmVEUtfwEP6ullUVRI1+QY3n0UKssCYq
+         6YPhg07yarKKw==
+Date:   Thu, 6 Apr 2023 09:55:19 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Minda Chen" <minda.chen@starfivetech.com>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: [PATCH v4 7/7] riscv: dts: starfive: add USB dts configuration for JH7110
-Date:   Thu, 6 Apr 2023 09:52:16 +0800
-Message-ID: <20230406015216.27034-8-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230406015216.27034-1-minda.chen@starfivetech.com>
-References: <20230406015216.27034-1-minda.chen@starfivetech.com>
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] arm64: dts: imx8mm: Add display pipeline
+ components
+Message-ID: <20230406015519.GO11367@dragon>
+References: <20230405165214.95574-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.97.179]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230405165214.95574-1-marex@denx.de>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB wrapper layer and Cadence USB3 controller dts
-configuration for StarFive JH7110 SoC and VisionFive2
-Board.
-USB controller connect to PHY, The PHY dts configuration
-are also added.
+On Wed, Apr 05, 2023 at 06:52:12PM +0200, Marek Vasut wrote:
+> Add LCDIF scanout engine and DSIM bridge nodes for i.MX8M Mini.
+> This makes the DSI display pipeline available on this SoC.
+> 
+> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 44 +++++++++++++++++++
- 2 files changed, 51 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 1155b97b593d..cf0a66faf5d3 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -221,3 +221,10 @@
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&usb0 {
-+	phys = <&usbphy0>;
-+	phy-names = "usb2-phy";
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 29cd798b6732..2f67196ffac0 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -366,6 +366,50 @@
- 			status = "disabled";
- 		};
- 
-+		usb0: usb@10100000 {
-+			compatible = "starfive,jh7110-usb";
-+			reg = <0x0 0x10100000 0x0 0x10000>,
-+			      <0x0 0x10110000 0x0 0x10000>,
-+			      <0x0 0x10120000 0x0 0x10000>;
-+			reg-names = "otg", "xhci", "dev";
-+			interrupts = <100>, <108>, <110>;
-+			interrupt-names = "host", "peripheral", "otg";
-+			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-+				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-+				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-+			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-+			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-+				 <&stgcrg JH7110_STGRST_USB0_APB>,
-+				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-+				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-+			reset-names = "pwrup","apb","axi","utmi";
-+			starfive,stg-syscon = <&stg_syscon 0x4>;
-+			status = "disabled";
-+		};
-+
-+		usbphy0: phy@10200000 {
-+			compatible = "starfive,jh7110-usb-phy";
-+			reg = <0x0 0x10200000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
-+			clock-names = "125m", "app_125";
-+			#phy-cells = <0>;
-+		};
-+
-+		pciephy0: phy@10210000 {
-+			compatible = "starfive,jh7110-pcie-phy";
-+			reg = <0x0 0x10210000 0x0 0x10000>;
-+			#phy-cells = <0>;
-+		};
-+
-+		pciephy1: phy@10220000 {
-+			compatible = "starfive,jh7110-pcie-phy";
-+			reg = <0x0 0x10220000 0x0 0x10000>;
-+			#phy-cells = <0>;
-+		};
-+
- 		stgcrg: clock-controller@10230000 {
- 			compatible = "starfive,jh7110-stgcrg";
- 			reg = <0x0 0x10230000 0x0 0x10000>;
--- 
-2.17.1
-
+Applied all, thanks!
