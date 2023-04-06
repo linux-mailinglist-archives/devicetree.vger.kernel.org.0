@@ -2,158 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 624EA6D9D07
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08E056D9D87
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:27:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239866AbjDFQG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 12:06:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
+        id S239093AbjDFQ1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239862AbjDFQG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:06:28 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A569004
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:06:07 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id m2so40023272wrh.6
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:06:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680797165; x=1683389165;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=tGBcjAE6j139nGrIeCa4gFdeD5NsoReg/shcLBHBhms=;
-        b=ilJZDzEidBWQIUC/WEyHBGDCmt0cL+CP5MSZDpG5JB4DEmx+iCCm2eolefvzKHqePs
-         pPr5KEMziD1SfnzjcT7+V2LbK6NO4kGSMU9+vrMBiNxCUo+0yCJLJXN1GOd8xnTsrDFP
-         5ttKj7hXEN+WARyIDBN+aJMbKgLwykkxseBQlNWWYddQ7j24/HTKyL2rfD5d9YgpSvH8
-         NCOWr7ne1XNH4RceyRoq74JZKlfolKiIu4uOwzNmkdyjCaRkkE3yNkOn5sgi+Brd7EQ9
-         BxsNdGp4804+wu6FlQ7CxoZI5ausQcPB0JIBbA10IeZTz+Q1A1ccbUueZTedCg1t2U74
-         YoGw==
+        with ESMTP id S239144AbjDFQ1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:27:23 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3E7AD3C
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:27:22 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17786581fe1so42891941fac.10
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 09:27:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680797165; x=1683389165;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20210112; t=1680798442; x=1683390442;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tGBcjAE6j139nGrIeCa4gFdeD5NsoReg/shcLBHBhms=;
-        b=hrxAZGCg7AaGkkKxhVmJiq4Q9xi/RLUhPSYZdyjyaBq2AQ2GYdPFX335uWPMlizWQ1
-         Vo3H/nz4eWhrife26sD0ec8al4Sxd8WH2gIJrZZyCpcCvwYfvFshzsndlNTG5Av8Plxj
-         BTOItgJz3BnBcNfZJ11+fQ/65He1toKM3UpCfRhYNjxFgVK602ZKsu0KEpe9be0wrxxu
-         oBTEEVuFmWBTIpqRd8e+Z0JrjM1t2edTXosTw/HnW3PelPj3mLXiX6+eBg7zrHN6WK+m
-         kegUF9ooQ+/NTe6Vsd5ojbVQahkyF9mqhZD29rCfgKdIw/svcqVPDllPHQNhlm3n5RfJ
-         QgfA==
-X-Gm-Message-State: AAQBX9ezKcT7DKR5dAVYyHvG9AnC9yV4atdOIysbOIk2lkGCL5mqyypS
-        5fzL3VEVwN059By5zou1N3KMlA==
-X-Google-Smtp-Source: AKy350Z6NL84QoajoMkHAcqHoiPnqfDtjwjHP1ozYJ3eK1bhBdJxqz9vdxU74lO60iF0AtXdxGpuBg==
-X-Received: by 2002:a5d:6584:0:b0:2ee:ee98:efbe with SMTP id q4-20020a5d6584000000b002eeee98efbemr1836418wru.58.1680797165454;
-        Thu, 06 Apr 2023 09:06:05 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8569:a62a:11bd:c344? ([2a01:e0a:982:cbb0:8569:a62a:11bd:c344])
-        by smtp.gmail.com with ESMTPSA id b10-20020a5d634a000000b002e116cbe24esm2112794wrw.32.2023.04.06.09.06.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 09:06:05 -0700 (PDT)
-Message-ID: <9835aeba-6e4c-0594-427b-9990fc07407a@linaro.org>
-Date:   Thu, 6 Apr 2023 18:06:04 +0200
+        bh=6lHF6wT2R1xBj83krcubHMI3vo+QUUkgHmi0J4qN/9Q=;
+        b=2BEuXa+kc80M2zSwY2YCATX6xkrj6NHzpLsY3ismS5iq3A2rfOWvj3lDFFTS9mBok0
+         7fMP0tg3edox20XDrLkI8FDQCDNgblfkZ8lla34qMp7dd6GK4+yUX4XnH7/F9/0+xf1i
+         dSnNl82PTDoAR5w8Rb4kVVbaXmJ37h4ECwjL2QwmdTjfU8BYS78AxZvhiRPFuPcOiX+/
+         U4fCuRX18SGKNdQUwtYwJ9t34+fRb1QtFDjVy3aLVQWvXUWGMzI8zn6hiFR4Bdm3obsY
+         q02rFxaQrSWMHnyJqYsgyvLGI1zpfHAtfiEF45k3qoHlIANoAnzRJtTwVa2cJpQa1IbM
+         gA/g==
+X-Gm-Message-State: AAQBX9fmu5SyFibMTbThs0BVzMt+LZJ3BSGjfvyw7AqefhjpBEYGlimr
+        M0tJB+sXd7DoBPZPZtK7rA==
+X-Google-Smtp-Source: AKy350Y2gpJwNABtUd8iz0/CtwUpjclbduPBTsTXu612gHBEV/4x+PJKHykUAnTUyhQzlTK2oAhGeQ==
+X-Received: by 2002:a05:6870:339e:b0:180:94ca:f44e with SMTP id w30-20020a056870339e00b0018094caf44emr5968519oae.25.1680798442083;
+        Thu, 06 Apr 2023 09:27:22 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id zg22-20020a0568716b1600b0017197629658sm787912oab.56.2023.04.06.09.27.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 09:27:21 -0700 (PDT)
+Received: (nullmailer pid 3260793 invoked by uid 1000);
+        Thu, 06 Apr 2023 16:27:20 -0000
+Date:   Thu, 6 Apr 2023 11:27:20 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     neil.armstrong@linaro.org, marex@denx.de,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v3] dt-bindings: bridge: Convert Samsung MIPI DSIM bridge
+ to yaml
+Message-ID: <20230406162720.GA3170910-robh@kernel.org>
+References: <20230404023057.510329-1-festevam@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] of: fdt: Allow the kernel to mark nomap regions
- received from fdt
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>, Lucas Tanure <tanure@linux.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, jbrunet@baylibre.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-        stefan@agner.ch
-References: <20230406151429.524591-1-tanure@linux.com>
- <20230406151429.524591-3-tanure@linux.com>
- <CAL_JsqL_MLHO-zk0HAmuAmiJQ_TmD4EN5YC0JmRs7PXjStjr3A@mail.gmail.com>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <CAL_JsqL_MLHO-zk0HAmuAmiJQ_TmD4EN5YC0JmRs7PXjStjr3A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230404023057.510329-1-festevam@gmail.com>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 17:48, Rob Herring wrote:
-> On Thu, Apr 6, 2023 at 10:14 AM Lucas Tanure <tanure@linux.com> wrote:
->>
->> Reserved regions can be described in FDT and device trees, but FDT doesn't
->> provide the related flags, like nomap.
+On Mon, Apr 03, 2023 at 11:30:57PM -0300, Fabio Estevam wrote:
+> From: Jagan Teki <jagan@amarulasolutions.com>
 > 
-> It took me a minute to understand what you meant by FDT vs. device
-> trees. Use the exact things you are talking about: /memreserve/ and
-> /reserved-memory node.
+> Samsung MIPI DSIM bridge can be found on Exynos and NXP's 
+> i.MX8M Mini/Nano/Plus SoCs.
 > 
->> So allow the kernel to mark regions where the base and size received from
->> the device tree are the same as the base and region on FDT.
->> Here we trust that the device tree has a more updated description of the
->> region than the one received from FDT.
->>
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
->> ---
->>   drivers/of/fdt.c | 10 ++++++----
->>   1 file changed, 6 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->> index d1a68b6d03b3..754a7ea4f45c 100644
->> --- a/drivers/of/fdt.c
->> +++ b/drivers/of/fdt.c
->> @@ -482,11 +482,13 @@ static int __init early_init_dt_reserve_memory(phys_addr_t base,
->>          if (nomap) {
->>                  /*
->>                   * If the memory is already reserved (by another region), we
->> -                * should not allow it to be marked nomap, but don't worry
->> -                * if the region isn't memory as it won't be mapped.
->> +                * should not allow it to be marked nomap, unless is the exact same region
->> +                * (same base and size), which the kernel knows better and should be allowed to mark
->> +                *  it as nomap.
->> +                * But don't worry if the region isn't memory as it won't be mapped.
->>                   */
->> -               if (memblock_overlaps_region(&memblock.memory, base, size) &&
->> -                   memblock_is_region_reserved(base, size))
->> +               if (memblock_overlaps_region(&memblock.memory, base, size) == MEMBLOCK_OVERLAPS &&
->> +                   memblock_is_region_reserved(base, size) == MEMBLOCK_OVERLAPS)
+> Convert exynos_dsim.txt to yaml.
 > 
-> Won't this fail to work as IIRC memblock will merge regions when they
-> are adjacent and have the same atrributes.
+> Used the example node from exynos5433.dtsi instead of the one used in
+> the legacy exynos_dsim.txt.
 > 
-> Perhaps instead, the DT code should ignore any /memreserve/ entries
-> that are also in /reserved-memory.
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v2:
+> - Took previous Rob Herring's feedback into account:
+> https://lore.kernel.org/all/20210712151322.GA1931925@robh.at.kernel.org/
+> - Handled imx8mn and imx8mp.
+> - Remove unnecessary #address-cells/size-cells.
 > 
-> I would suggest just reverse the order they are processed, but I
-> suspect that might cause some regression. This code is all fragile
-> especially with platforms putting in 100 regions.
-> 
-> Finally, perhaps fix u-boot. The reason the reserved location goes in
-> both places was to support an OS not supporting /reserved-memory. I
-> think that support has been in place for a lot longer than anyone
-> would care about.
+>  .../display/bridge/samsung,mipi-dsim.yaml     | 255 ++++++++++++++++++
+>  .../bindings/display/exynos/exynos_dsim.txt   |  92 -------
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 256 insertions(+), 92 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
 
-Fixing U-Boot won't fix already tagged and in-the-field mainline u-boot
-releases that adds /memreserve/ entries, so yes u-boot should be definitely
-fixed but Linux should ignore the /memreserve/ entries when they matches
-an /reserved-memory node like when the U-Boot /memreserve/ code was added.
+Applied to drm-misc-next.
 
-Neil
-
-> 
-> Rob
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
+Rob
