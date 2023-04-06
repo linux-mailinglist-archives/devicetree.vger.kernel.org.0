@@ -2,62 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E2A6DA4EA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 23:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B05A6DA500
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 23:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231320AbjDFVxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 17:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41282 "EHLO
+        id S239408AbjDFVz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 17:55:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbjDFVxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 17:53:43 -0400
-Received: from mx3.securetransport.de (mx3.securetransport.de [116.203.31.6])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882AAA5FC;
-        Thu,  6 Apr 2023 14:53:40 -0700 (PDT)
+        with ESMTP id S229792AbjDFVzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 17:55:04 -0400
+Received: from mx3.securetransport.de (mx3.securetransport.de [IPv6:2a01:4f8:c0c:92be::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0D23C9EF3;
+        Thu,  6 Apr 2023 14:55:00 -0700 (PDT)
+Received: from mail.dh-electronics.com (unknown [77.24.89.57])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx3.securetransport.de (Postfix) with ESMTPSA id 420D75DCC3;
+        Thu,  6 Apr 2023 23:54:33 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1680817971;
-        bh=f0pUhAJWTLi8vSi9ZobW2xHA14GSuVsrQ9QrsonYrqg=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=INWTRWecbrNYN1h39h2BpE2FJjMvDgcpKlq2WKwJRdckGGMd1vAM0urH1u/7J9HhB
-         +UsFlNbHnKJ/g7+EIGtKtVLJs50Yh85LWPVXdI/6K9lXQLtABCN3G1DjSat/9HacsE
-         95tOCP4MStHoRYG0MFKFfgn5pUa9Mvy6aqAYPtEagbgT/dP40BQcwtYU3YYgBu8TI+
-         3izXQZuLgZYCFpQoPYtMRxTrxUrIggpOGdakUPnR3uo8GJiZ1MhB0Xg01lW5Crrkgu
-         G+PjaCrv6/JrdAtXjrv/WbLQn2dloa4pZILJYEzGkICzBfZJaX2eoFtJdjc3ZvV7FX
-         ajBb2q5iMhj4g==
-X-secureTransport-forwarded: yes
+        s=dhelectronicscom; t=1680818073;
+        bh=BA4DXr4j+vfbz3sRSTJOe2l521vHySmc4UI+yA4PvGw=;
+        h=From:To:CC:Subject:Date:From;
+        b=OGN5CO05d0rM+yz4W0kV2KZElCK9/JMDDoKk0tzeQM3ajMNvuv16l6TomP6A3evFu
+         MVjca1Xs998auUKCKXVowCN3+AOL0Vx1Fik8Mms+a9iXaEGk4ixFG6jhDnxaCHzVlW
+         mHH5YU+iFZ4/L9kYfeKMvwGe+mt1FLlEYO8vphTYBCB0smtg/AD1Ehp3WeYlwbU2CD
+         dD8uG3rb8ngK5qDmbyV2+9JMQU9vnnWQpUnThBKEo2CeXeZIWYwVygLHcqKnGg6UvR
+         +jnpftzW0sA81Dvrlhp84j/N/xFRhvKAZAW6jm89GG4ZY1a7RvcmfqKM3hXy8VVqRr
+         MQdfa1rBBAOxQ==
+Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 6 Apr 2023 23:54:25 +0200
+Received: from localhost.localdomain (172.16.51.16) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26 via Frontend Transport; Thu, 6 Apr 2023 23:54:24 +0200
 From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+To:     <linux-arm-kernel@lists.infradead.org>
+CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel <kernel@dh-electronics.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-Thread-Topic: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
-Thread-Index: AQHZaJ93At1GnP2el0yoagNBg+3G/K8eWhSAgAAwTiD//+YUAIAAON0Q///zRYCAADW4IA==
-Date:   Thu, 6 Apr 2023 21:52:41 +0000
-Message-ID: <9224dcdbd62641cfb0ee691827d1b57d@dh-electronics.com>
-References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
- <20230406154900.6423-3-cniedermaier@dh-electronics.com>
- <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
- <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
- <f6c8586f-a5d1-875f-b2c0-7871112cf1b1@linaro.org>
- <ff95314402a349a5a2998c1b5e2b13a2@dh-electronics.com>
- <8353399f-c6de-8da7-78f1-d6a558c462d0@kernel.org>
-In-Reply-To: <8353399f-c6de-8da7-78f1-d6a558c462d0@kernel.org>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Marek Vasut <marex@denx.de>,
+        "Fabio Estevam" <festevam@denx.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH V3 1/4] dt-bindings: Add Marantec vendor prefix
+Date:   Thu, 6 Apr 2023 23:53:12 +0200
+Message-ID: <20230406215315.13280-1-cniedermaier@dh-electronics.com>
+X-Mailer: git-send-email 2.11.0
+X-klartext: yes
 MIME-Version: 1.0
+Content-Type: text/plain
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -67,29 +61,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSBbbWFpbHRvOmtyemtAa2VybmVsLm9yZ10NClNlbnQ6
-IFRodXJzZGF5LCBBcHJpbCA2LCAyMDIzIDEwOjM4IFBNDQo+IE9uIDA2LzA0LzIwMjMgMjE6NTcs
-IENocmlzdG9waCBOaWVkZXJtYWllciB3cm90ZToNCj4+Pj4+PiArICAgICBhbGlhc2VzIHsNCj4+
-Pj4+PiArICAgICAgICAgICAgIC9kZWxldGUtcHJvcGVydHkvIG1tYzA7IC8qIEF2b2lkIGRvdWJs
-ZSBkZWZpbml0aW9ucyAqLw0KPj4+Pj4NCj4+Pj4+IEkgZG9uJ3QgdW5kZXJzdGFuZCBpdC4gV2hh
-dCBpcyAiZG91YmxlIGRlZmluaXRpb24iIG9mIGFsaWFzZXM/DQo+Pj4+DQo+Pj4+IE90aGVyd2lz
-ZSBJIGVuZCB1cCBsaWtlIHRoaXM6DQo+Pj4+IG1tYzAgPSAmdXNkaGMxOw0KPj4+PiBtbWMxID0g
-JnVzZGhjMjsNCj4+Pj4gbW1jMiA9ICZ1c2RoYzI7DQo+Pj4+DQo+Pj4+IElzICJFbnN1cmUgdW5p
-cXVlIGFsbG9jYXRpb24iIGEgYmV0dGVyIGNvbW1lbnQgaGVyZT8NCj4+Pj4NCj4+Pj4+DQo+Pj4+
-Pj4gKyAgICAgICAgICAgICAvZGVsZXRlLXByb3BlcnR5LyBtbWMxOw0KPj4+Pj4+ICsgICAgICAg
-ICAgICAgbW1jMiA9ICZ1c2RoYzI7IC8qIGVNTUMgc2hvdWxkIGJlIG1tYzIgKi8NCj4+Pj4+DQo+
-Pj4+PiBXaHk/IEhvdyBpcyB0aGlzIGxhYmVsZWQgb24gdGhlIGJvYXJkIChwaHlzaWNhbGx5IG9y
-IG9uIHNjaGVtYXRpY3MpPyBJZg0KPj4+Pj4geW91IGFuc3dlciBoZXJlICJmb3IgYm9vdGluZyIs
-IHRoZW4gdGhlIGFuc3dlciBpcyBOQUsuIERvbid0IGFkZA0KPj4+Pj4gc29mdHdhcmUgcG9saWNp
-ZXMgdG8gRGV2aWNldHJlZS4NCj4+Pj4NCj4+Pj4gVGhlIG5hbWUgaW4gdGhlIHNjaGVtYXRpY3Mg
-aXMgIlNEMiIuDQo+Pj4NCj4+PiBBbnN3ZXJpbmcgYWxzbyB0byBhYm92ZSAtIHRoZW4gbGlrZWx5
-IHRoZSBhbGlhc2VzIHNob3VsZCBiZSBkcm9wcGVkIGZyb20NCj4+PiBTb00uIEkgZG91YnQgdGhh
-dCBTb20gY2FsbHMgaXQgU0QxIGFuZCB5b3VyIGJvYXJkIFNEMi4uLg0KPj4NCj4+IE1heWJlIEkg
-ZG9uJ3QgcXVpdGUgZ2V0IGl0LCBidXQgdGhlIGhhcmR3YXJlIHN0YXJ0cyBjb3VudGluZyBhdCAx
-LiBUaGUgZmlyc3QNCj4+IGludGVyZmFjZSBpcyBTRDEgYW5kIGl0IGlzIHVzZWQgYXMgV2lGaS4g
-VGhlIHNlY29uZCBvbmUgaXMgU0QyIHdoaWNoIGlzIHRoZQ0KPj4gZU1NQy4gU28gd2l0aCB0aGlz
-IGFsaWFzZXMgaXQgc2hvdWxkIG1hdGNoIFNEMiB0byBtbWMyLg0KPj4gRG8geW91IHdhbnQgbWUg
-dG8gZGVsZXRlIHRoZSBhbGlhc2VzIGluIHRoZSBpbmNsdWRlIGZpbGUgImlteDZ1bGwtZGhjb3It
-c29tLmR0c2kiDQo+IA0KPiBZZXMsIGJlY2F1c2UgaXQgaW5jb3JyZWN0bHkgY2FsbHMgZU1NQyBh
-cyBtbWMxLiBZb3Ugc2FpZCBpdCBpcyBTRDIsIHJpZ2h0Pw0KDQpZZXMuIEkgd2lsbCBkbyB0aGlz
-IGluIHZlcnNpb24gMy4NCg0KDQpUaGFua3MgYW5kIGJlc3QgcmVnYXJkcw0KQ2hyaXN0b3BoDQo=
+Add vendor prefix for Marantec electronics GmbH.
+
+Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+V2: - Add this patch to the series
+V3: - Add Acked-by tag
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 055704dce3d1..f58e5ef2bedd 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -789,6 +789,8 @@ patternProperties:
+     description: Mantix Display Technology Co.,Ltd.
+   "^mapleboard,.*":
+     description: Mapleboard.org
++  "^marantec,.*":
++    description: Marantec electronics GmbH
+   "^marvell,.*":
+     description: Marvell Technology Group Ltd.
+   "^maxbotix,.*":
+-- 
+2.11.0
+
