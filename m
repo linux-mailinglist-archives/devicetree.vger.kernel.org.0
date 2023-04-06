@@ -2,246 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A2606D9FAB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 776576D9FB8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240092AbjDFSUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:20:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36616 "EHLO
+        id S239814AbjDFSZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240054AbjDFSUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:20:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5873319B;
-        Thu,  6 Apr 2023 11:20:08 -0700 (PDT)
-Received: from localhost (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id ED57366031CD;
-        Thu,  6 Apr 2023 19:20:06 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680805207;
-        bh=O9BYcs5X9svxB2IhYBbHQXyjiztmPHgKP/OvoPE0WYs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n19Njp8M7GhQd8lf8p7tVb+pXxyvTtNiT27lmst804wRxmlaJy2zkRDQigwZuMv72
-         BNKpsw17t3cJ/jytT7weuS+ND/g6EwNttSH8oHWM4d/R9I5sH6zmxCtsjJTKRP3fSH
-         LNB5SOp+WKI2v3bpQIEaYC7afJ9g1jPPrVbUtcSg+iaFnh22RNAhHaXL2qz4o/CvCX
-         LTD64UChF0F0AMPZ2GuGZ/kOjuBQXmKwmYRqnC2F3pwA8i/kRxlKUq6EFrlPslka4F
-         VK3g5ZIWr5VcqSyGxU34NFhJHBokDnVdoZxEKD123W1DK5s4TYYDE7hSM8FnP3d1Fs
-         zVtrvdYoVOkHg==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: [PATCH v3 1/1] dt-bindings: hwmon: pwm-fan: Convert to DT schema
-Date:   Thu,  6 Apr 2023 21:20:00 +0300
-Message-Id: <20230406182000.956275-2-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230406182000.956275-1-cristian.ciocaltea@collabora.com>
-References: <20230406182000.956275-1-cristian.ciocaltea@collabora.com>
+        with ESMTP id S229714AbjDFSZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:25:01 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1776B5B88
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:24:59 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id jw24so3539980ejc.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:24:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680805497;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6r4M3/20NCF90WldhYI6dBy2L6b19MPQ4oWqZe9uR0g=;
+        b=xyGvIncYsvAhAnmjZ5hqP918pCTK9mrLNRX9uoc78LE60hSA5ZqTusKtU6yIBNf0Os
+         n8Y5NH+7jPSViCl/GACJFqVwsXsH4hGZxJvKxLSvKSLj6mMiLuG41Cdmdg3TjXn5jt31
+         bmF0EOejvTL0QaUEUEqg4BlKwMo2RnmoZetVTNE0dMfDVtYVeSiwFr1RyX8wC2tIPclC
+         Uq/i34LsemyJo/uk/DEvluDNOqpPu/107PW87lCderC6KhWXV8jQJdEAlyGWCR5Vb9dB
+         NJFttea7l5m8wPZ2b+apoV/0TIgBY0M9pr/A/i/dITy8V0rooegFiQbQ/lxglBAdA174
+         FBZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680805497;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6r4M3/20NCF90WldhYI6dBy2L6b19MPQ4oWqZe9uR0g=;
+        b=NhL4X34rreSssM0sskhtwCHfYsHLFmN6MHY6Wt3lOhRxfaGEl+FDJJAXlSPzLrDgmT
+         uNoMiur5oVzGBDZRsBGI5+4roO62jtMBwi3M9CBDxPO7qKz2a7cGuQFXjdyW/A0LV/5w
+         9wy6kqvEgPdXdl0HJCgtI7+uoR1/8WM4bCVo0ZLB4LmU2RQ9EFL0RdBEoK6PfQFoDRCM
+         KTTOXT28lmkkHCB0I5fY9kZ0QlsvkBoiROVDd5aI9MkMftr7zSPGzR5cOS3zzMmrlo+Q
+         oLlxr0lWjTott1wxid2imxXydoCWQKRjQalesxPrLtJIqgybxD6TjJ5Ks7MvdwPnfVxU
+         ERZA==
+X-Gm-Message-State: AAQBX9fm2BzRSd7U0Me/Fi823H7us2cWHBWfUM3uDL4vgu5QEzShokaB
+        uS0/LT1E7yYdP+sC5EQuYgUsRQ==
+X-Google-Smtp-Source: AKy350YYtP7sG8RlXl6/kG7vInHbk81rKWcqMST+cC4JCnS+hlXlOAvk9bgDGOeYBYvYlBFhj6q7ug==
+X-Received: by 2002:a17:907:3f16:b0:8a5:8620:575 with SMTP id hq22-20020a1709073f1600b008a586200575mr9241478ejc.3.1680805497522;
+        Thu, 06 Apr 2023 11:24:57 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id s27-20020a1709060c1b00b009475bd8f441sm1115544ejf.60.2023.04.06.11.24.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 11:24:57 -0700 (PDT)
+Message-ID: <38bc48bf-7d8c-8ddd-861f-3b7f3d2edce6@linaro.org>
+Date:   Thu, 6 Apr 2023 20:24:55 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 1/3] dt-binding: pci: add JH7110 PCIe dt-binding
+ documents.
+Content-Language: en-US
+To:     Minda Chen <minda.chen@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230406111142.74410-1-minda.chen@starfivetech.com>
+ <20230406111142.74410-2-minda.chen@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230406111142.74410-2-minda.chen@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the PWM fan bindings to DT schema format.
+On 06/04/2023 13:11, Minda Chen wrote:
+> Add PCIe controller driver dt-binding documents
+> for StarFive JH7110 SoC platform.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- .../devicetree/bindings/hwmon/pwm-fan.txt     | 68 +------------
- .../devicetree/bindings/hwmon/pwm-fan.yaml    | 97 +++++++++++++++++++
- 2 files changed, 98 insertions(+), 67 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching). Missing: 's'
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-index 4509e688623a..48886f0ce415 100644
---- a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-+++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-@@ -1,67 +1 @@
--Bindings for a fan connected to the PWM lines
--
--Required properties:
--- compatible	: "pwm-fan"
--- pwms		: the PWM that is used to control the PWM fan
--- cooling-levels      : PWM duty cycle values in a range from 0 to 255
--			which correspond to thermal cooling states
--
--Optional properties:
--- fan-supply		: phandle to the regulator that provides power to the fan
--- interrupts		: This contains an interrupt specifier for each fan
--			  tachometer output connected to an interrupt source.
--			  The output signal must generate a defined number of
--			  interrupts per fan revolution, which require that
--			  it must be self resetting edge interrupts. See
--			  interrupt-controller/interrupts.txt for the format.
--- pulses-per-revolution : define the number of pulses per fan revolution for
--			  each tachometer input as an integer (default is 2
--			  interrupts per revolution). The value must be
--			  greater than zero.
--
--Example:
--	fan0: pwm-fan {
--		compatible = "pwm-fan";
--		#cooling-cells = <2>;
--		pwms = <&pwm 0 10000 0>;
--		cooling-levels = <0 102 170 230>;
--	};
--
--	thermal-zones {
--		cpu_thermal: cpu-thermal {
--			     thermal-sensors = <&tmu 0>;
--			     polling-delay-passive = <0>;
--			     polling-delay = <0>;
--			     trips {
--					cpu_alert1: cpu-alert1 {
--						    temperature = <100000>; /* millicelsius */
--						    hysteresis = <2000>; /* millicelsius */
--						    type = "passive";
--					};
--			     };
--			     cooling-maps {
--					map0 {
--						    trip = <&cpu_alert1>;
--						    cooling-device = <&fan0 0 1>;
--					};
--			     };
--		};
--
--Example 2:
--	fan0: pwm-fan {
--		compatible = "pwm-fan";
--		pwms = <&pwm 0 40000 0>;
--		fan-supply = <&reg_fan>;
--		interrupt-parent = <&gpio5>;
--		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
--		pulses-per-revolution = <2>;
--	};
--
--Example 3:
--	fan0: pwm-fan {
--		compatible = "pwm-fan";
--		pwms = <&pwm1 0 25000 0>;
--		interrupts-extended = <&gpio1 1 IRQ_TYPE_EDGE_FALLING>,
--			<&gpio2 5 IRQ_TYPE_EDGE_FALLING>;
--		pulses-per-revolution = <2>, <1>;
--	};
-+This file has moved to pwm-fan.yaml.
-diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-new file mode 100644
-index 000000000000..4e5abf7580cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Fan connected to PWM lines
-+
-+maintainers:
-+  - Jean Delvare <jdelvare@suse.com>
-+  - Guenter Roeck <linux@roeck-us.net>
-+
-+properties:
-+  compatible:
-+    const: pwm-fan
-+
-+  cooling-levels:
-+    description: PWM duty cycle values corresponding to thermal cooling states.
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      maximum: 255
-+
-+  fan-supply:
-+    description: Phandle to the regulator that provides power to the fan.
-+
-+  interrupts:
-+    description:
-+      This contains an interrupt specifier for each fan tachometer output
-+      connected to an interrupt source. The output signal must generate a
-+      defined number of interrupts per fan revolution, which require that
-+      it must be self resetting edge interrupts.
-+    maxItems: 1
-+
-+  pulses-per-revolution:
-+    description:
-+      Define the number of pulses per fan revolution for each tachometer
-+      input as an integer.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 4
-+    default: 2
-+
-+  pwms:
-+    description: The PWM that is used to control the fan.
-+    maxItems: 1
-+
-+  "#cooling-cells": true
-+
-+required:
-+  - compatible
-+  - pwms
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pwm-fan {
-+      compatible = "pwm-fan";
-+      cooling-levels = <0 102 170 230>;
-+      pwms = <&pwm 0 10000 0>;
-+      #cooling-cells = <2>;
-+    };
-+
-+    thermal-zones {
-+      cpu_thermal: cpu-thermal {
-+        thermal-sensors = <&tmu 0>;
-+        polling-delay-passive = <0>;
-+        polling-delay = <0>;
-+
-+        trips {
-+          cpu_alert1: cpu-alert1 {
-+            temperature = <100000>; /* millicelsius */
-+            hysteresis = <2000>; /* millicelsius */
-+            type = "passive";
-+          };
-+        };
-+
-+        cooling-maps {
-+          map0 {
-+            trip = <&cpu_alert1>;
-+            cooling-device = <&fan0 0 1>;
-+          };
-+        };
-+      };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pwm-fan {
-+      compatible = "pwm-fan";
-+      pwms = <&pwm 0 40000 0>;
-+      fan-supply = <&reg_fan>;
-+      interrupt-parent = <&gpio5>;
-+      interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+      pulses-per-revolution = <2>;
-+    };
--- 
-2.40.0
+Subject: drop second/last, redundant "dt-binding documents". The
+"dt-bindings" prefix is already stating that these are bindings and
+documentation.
+
+Drop also full stop.
+
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> ---
+>  .../bindings/pci/starfive,jh7110-pcie.yaml    | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+> new file mode 100644
+> index 000000000000..fa4829766195
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/starfive,jh7110-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH7110 PCIe 2.0 host controller
+> +
+> +maintainers:
+> +  - Minda Chen <minda.chen@starfivetech.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-pcie
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: reg
+> +      - const: config
+> +
+> +  msi-parent: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: noc
+> +      - const: tl
+> +      - const: axi_mst0
+> +      - const: apb
+> +
+> +  resets:
+> +    items:
+> +      - description: AXI MST0 reset
+> +      - description: AXI SLAVE reset
+> +      - description: AXI SLAVE0 reset
+> +      - description: PCIE BRIDGE reset
+> +      - description: PCIE CORE reset
+> +      - description: PCIE APB reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: mst0
+> +      - const: slv0
+> +      - const: slv
+> +      - const: brg
+> +      - const: core
+> +      - const: apb
+> +
+> +  starfive,stg-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle to System Register Controller stg_syscon node.
+> +        - description: register0 offset of STG_SYSCONSAIF__SYSCFG register for PCIe.
+> +        - description: register1 offset of STG_SYSCONSAIF__SYSCFG register for PCIe.
+> +        - description: register2 offset of STG_SYSCONSAIF__SYSCFG register for PCIe.
+> +        - description: register3 offset of STG_SYSCONSAIF__SYSCFG register for PCIe.
+> +    description:
+> +      The phandle to System Register Controller syscon node and the offset
+> +      of STG_SYSCONSAIF__SYSCFG register for PCIe. Total 4 regsisters offset
+> +      for PCIe.
+> +
+> +  pwren-gpios:
+> +    description: Should specify the GPIO for controlling the PCI bus device power on.
+
+What are these? Different than defined in gpio-consumer-common?
+
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  interrupt-controller:
+> +    type: object
+> +    properties:
+> +      '#address-cells':
+> +        const: 0
+> +
+> +      '#interrupt-cells':
+> +        const: 1
+> +
+> +      interrupt-controller: true
+> +
+> +    required:
+> +      - '#address-cells'
+> +      - '#interrupt-cells'
+> +      - interrupt-controller
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - reg
+> +  - reg-names
+> +  - "#interrupt-cells"
+
+Keep consistent quotes - either ' or "
+
+Are you sure this is correct? You have interrupt controller as child node.
+
+
+> +  - interrupts
+> +  - interrupt-map-mask
+> +  - interrupt-map
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - msi-controller
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        pcie0: pcie@2B000000 {
+
+Lowercase hex. Everywhere.
+
+> +            compatible = "starfive,jh7110-pcie";
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            #interrupt-cells = <1>;
+> +            reg = <0x0 0x2B000000 0x0 0x1000000>,
+> +                  <0x9 0x40000000 0x0 0x10000000>;
+
+reg (and reg-names and ranges) is always second property.
+
+> +            reg-names = "reg", "config";
+> +            device_type = "pci";
+> +            starfive,stg-syscon = <&stg_syscon 0xc0 0xc4 0x130 0x1b8>;
+> +            bus-range = <0x0 0xff>;
+> +            ranges = <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0x08000000>,
+> +                     <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x40000000>;
+> +            interrupt-parent = <&plic>;
+> +            interrupts = <56>;
+> +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+> +            interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
+> +                            <0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
+> +                            <0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
+> +                            <0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
+
+
+Best regards,
+Krzysztof
 
