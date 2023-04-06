@@ -2,126 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 752D96D94B7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 13:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CB616D94CB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 13:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237073AbjDFLJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 07:09:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36158 "EHLO
+        id S237508AbjDFLMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 07:12:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237301AbjDFLJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 07:09:04 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4ED8A63;
-        Thu,  6 Apr 2023 04:09:02 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id k37so50374473lfv.0;
-        Thu, 06 Apr 2023 04:09:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680779340;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gvGmFR5di2sik7RBLdOP/KeRkjaQDZZlALHIAzFWnQk=;
-        b=ao57XiWUibLYquPdos2FQfTnS7PDp4fRz7WDvmBVwry8vdNjEDUiEmAcI7jkqt7Rt/
-         tDaLAkBdRAC1WKmzjpeMa1lo11uRzyVgrKMbKLc3JcMj/GkqGnXWjkQC1zFOjKnnECsz
-         nVX6aiWTFarnsAAyzTSjFhRmuANSYNGU+kKnAFogS5GqR7VYGwMW1H5CkXMUtCG10nwx
-         vF3UsJFDuAHwTYtqCBV6kJYxmTxgod1TED92CBw0UiO4NCMr5xkgnqXLNtmqhoKv1ou/
-         YHLSQwUXCD8kMAwxel703A/kfForyNImw+0stN7QzUkhbhmB20FPs/2ldKl8EBgc4AGa
-         K52Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680779340;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gvGmFR5di2sik7RBLdOP/KeRkjaQDZZlALHIAzFWnQk=;
-        b=E4OzcxqkQtuSYzYkmK7J8B80i/CHuIGklbxMb1k0fHWVuU/Ii7m/l/X2yPvbJbiakw
-         Z3BML3k8HKNk9xbauB7O0Rue7UoVgYjSgp95NtwW1FNunQyJQ4KHGJy9Jfty46Ro32Ur
-         5rRvTneVr1032DHMiHi4vLf4uxQr2KnIyqTAg/4t+rspCP+v4hRAWlJRvMbqWdl75U2d
-         /UgzViUXUKbcou8fnpuW3srDRF6jBZoMKaWLHoI6Ni/dNpZjRiQu8EnBFGaqlm60Yvs+
-         YepwvEZXu5iQHbYdclD3JcWI1o9IZvatNd9Ei+A1ELsGXNCHFn79PS5aFnCyBxzwG5sx
-         KKfA==
-X-Gm-Message-State: AAQBX9dgp2ULH3H8brfuLr1OW7W4vrUmwROLhJ1DeRXGdr5xGT/NLYMN
-        3/YQn49H00Uu7wXzHbG8GRQ=
-X-Google-Smtp-Source: AKy350YiEAMb49gHFQPlKUUaEKEJ1rx2G2QINX9BCYS+LCn/wRFkt+q9Q5JA8ZUFCb2sccpQIKjouw==
-X-Received: by 2002:ac2:4910:0:b0:4eb:ddb:d03f with SMTP id n16-20020ac24910000000b004eb0ddbd03fmr2268881lfi.62.1680779340223;
-        Thu, 06 Apr 2023 04:09:00 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id r26-20020ac252ba000000b004e048852377sm218667lfm.263.2023.04.06.04.08.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 04:08:59 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] ARM: dts: BCM5301X: Specify WAN port MAC address for Luxul XWR-3150
-Date:   Thu,  6 Apr 2023 13:08:04 +0200
-Message-Id: <20230406110804.12024-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230406110804.12024-1-zajec5@gmail.com>
-References: <20230406110804.12024-1-zajec5@gmail.com>
+        with ESMTP id S236782AbjDFLL7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 07:11:59 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DC347EE7;
+        Thu,  6 Apr 2023 04:11:55 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 336ATra9030223;
+        Thu, 6 Apr 2023 13:11:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=lNXQl4ZV/6vn7r3pBuZewXxh3tYHi2TdmaJoMqkDndc=;
+ b=30CchlbXohzL5uB7KQeLzo1CHO5Bh8K6Dl4BegGtjo6JcZ1qBrDYI2SVFeGEHThbKXK3
+ oOgleTH1Y8ffgFwDZuhkXyAc/ARlhtZuWEYpFXJJBRQwcDgTYCiIXd4z626ZM7lko5TJ
+ TH+dfe4GYpVHGiXXP8Zf48ogxNfMYQsw5o+zUAfGOAhT4omYDZJZOxz0BoOq2n9fIJr3
+ yn+akJ9Mzg1ytnmIk+bdgfFyB9qLiunWZ4i6x0r+5XJLqQDztkNF0D416MnI1Z78BfGB
+ 9lfETUEMAn5IzK0DhCy9TzWLPROoLo+zYQQ7Dx9fvJVqR2LWypDZj4+ZiBnlUmIIZPo+ 4Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3psv5xrb6u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 06 Apr 2023 13:11:42 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1A61010002A;
+        Thu,  6 Apr 2023 13:11:40 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3596121BF53;
+        Thu,  6 Apr 2023 13:11:40 +0200 (CEST)
+Received: from [10.201.21.178] (10.201.21.178) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Thu, 6 Apr
+ 2023 13:11:37 +0200
+Message-ID: <9c87443a-90e6-52d3-859f-2b2eb057049b@foss.st.com>
+Date:   Thu, 6 Apr 2023 13:11:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 4/5] remoteproc: stm32: Allow hold boot management by the
+ SCMI reset controller
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+References: <20230331154651.3107173-1-arnaud.pouliquen@foss.st.com>
+ <20230331154651.3107173-5-arnaud.pouliquen@foss.st.com>
+ <20230405180143.GD3812912@p14s>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <20230405180143.GD3812912@p14s>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.178]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-06_05,2023-04-06_01,2023-02-09_01
+X-Spam-Status: No, score=-3.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-It needs to be calculated based on the base Ethernet interface one.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-This PATCH is a proof of concept that can go separately through the ARM
-DT tree. I'd actually suggest that. There are more .dts files I'll want
-to update.
-Srini: can you just take the first 2 patches from this series?
----
- arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+On 4/5/23 20:01, Mathieu Poirier wrote:
+> On Fri, Mar 31, 2023 at 05:46:50PM +0200, Arnaud Pouliquen wrote:
+>> The hold boot can be managed by the SCMI controller as a reset.
+>> If the "hold_boot" reset is defined in the device tree, use it.
+>> Else use the syscon controller directly to access to the register.
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> ---
+>>  drivers/remoteproc/stm32_rproc.c | 34 ++++++++++++++++++++++++++------
+>>  1 file changed, 28 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+>> index 4be651e734ee..6b0d8f30a5c7 100644
+>> --- a/drivers/remoteproc/stm32_rproc.c
+>> +++ b/drivers/remoteproc/stm32_rproc.c
+>> @@ -78,6 +78,7 @@ struct stm32_mbox {
+>>  
+>>  struct stm32_rproc {
+>>  	struct reset_control *rst;
+>> +	struct reset_control *hold_boot_rst;
+>>  	struct stm32_syscon hold_boot;
+>>  	struct stm32_syscon pdds;
+>>  	struct stm32_syscon m4_state;
+>> @@ -398,6 +399,14 @@ static int stm32_rproc_set_hold_boot(struct rproc *rproc, bool hold)
+>>  	struct stm32_syscon hold_boot = ddata->hold_boot;
+>>  	int val, err;
+>>  
+>> +	if (ddata->hold_boot_rst) {
+>> +		/* Use the SCMI reset controller */
+>> +		if (!hold)
+>> +			return reset_control_deassert(ddata->hold_boot_rst);
+>> +		else
+>> +			return reset_control_assert(ddata->hold_boot_rst);
+>> +	}
+>> +
+>>  	val = hold ? HOLD_BOOT : RELEASE_BOOT;
+>>  
+>>  	err = regmap_update_bits(hold_boot.map, hold_boot.reg,
+>> @@ -693,16 +702,29 @@ static int stm32_rproc_parse_dt(struct platform_device *pdev,
+>>  		dev_info(dev, "wdg irq registered\n");
+>>  	}
+>>  
+>> -	ddata->rst = devm_reset_control_get_by_index(dev, 0);
+>> +	ddata->rst = devm_reset_control_get(dev, "mcu_rst");
+> 
+> Peng is correct - newer kernels won't be able to boot with older DT.
+> 
+>>  	if (IS_ERR(ddata->rst))
+>>  		return dev_err_probe(dev, PTR_ERR(ddata->rst),
+>>  				     "failed to get mcu_reset\n");
+>>  
+>> -	err = stm32_rproc_get_syscon(np, "st,syscfg-holdboot",
+>> -				     &ddata->hold_boot);
+>> -	if (err) {
+>> -		dev_err(dev, "failed to get hold boot\n");
+>> -		return err;
+>> +	ddata->hold_boot_rst = devm_reset_control_get(dev, "hold_boot");
+>> +	if (IS_ERR(ddata->hold_boot_rst)) {
+>> +		if (PTR_ERR(ddata->hold_boot_rst) == -EPROBE_DEFER)
+>> +			return PTR_ERR(ddata->hold_boot_rst);
+>> +		ddata->hold_boot_rst = NULL;
+>> +	}
+>> +
+>> +	if (!ddata->hold_boot_rst) {Okay, I definitely need to rewrite the patchset.
+> 
+> Why another if() statement?  The code below should be in the above if()...
+> 
+> This patchset is surprizingly confusing for its size.  I suggest paying
+> attention to the changelogs and adding comments in the code.
 
-diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts b/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
-index 60a2c441d5bd..2dd05f4dce92 100644
---- a/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
-+++ b/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
-@@ -27,6 +27,7 @@ nvram@1eff0000 {
- 		reg = <0x1eff0000 0x10000>;
- 
- 		et0macaddr: et0macaddr {
-+			#nvmem-cell-cells = <1>;
- 		};
- 	};
- 
-@@ -76,7 +77,7 @@ button-restart {
- };
- 
- &gmac0 {
--	nvmem-cells = <&et0macaddr>;
-+	nvmem-cells = <&et0macaddr 0>;
- 	nvmem-cell-names = "mac-address";
- };
- 
-@@ -119,6 +120,8 @@ port@3 {
- 		port@4 {
- 			reg = <4>;
- 			label = "wan";
-+			nvmem-cells = <&et0macaddr 5>;
-+			nvmem-cell-names = "mac-address";
- 		};
- 
- 		port@5 {
--- 
-2.34.1
+I definitely need to rewrite this patchset.
 
+Thanks for all reviewers
+Regards
+Arnaud
+
+> 
+> Thanks,
+> Mathieu
+> 
+>> +		/*
+>> +		 * If the hold boot is not managed by the SCMI reset controller,
+>> +		 * manage it through the syscon controller
+>> +		 */
+>> +		err = stm32_rproc_get_syscon(np, "st,syscfg-holdboot",
+>> +					     &ddata->hold_boot);
+>> +		if (err) {
+>> +			dev_err(dev, "failed to get hold boot\n");
+>> +			return err;
+>> +		}
+>>  	}
+>>  
+>>  	err = stm32_rproc_get_syscon(np, "st,syscfg-pdds", &ddata->pdds);
+>> -- 
+>> 2.25.1
+>>
