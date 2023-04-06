@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B6C6D9FF4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E20CD6D9FFD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 20:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240235AbjDFSgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 14:36:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54562 "EHLO
+        id S229941AbjDFSjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 14:39:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240240AbjDFSgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:36:03 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A24C9004;
-        Thu,  6 Apr 2023 11:35:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=BN8eRYF3Sq4xpM3Dg9tNo1stv4INQ9PaEfyAW6wwvkI=; b=pc7BxjPxLgOmotAEcEcKSQvKJe
-        WenlYuSlqqsMgoed8UuzBBDs6H3i0nka1whGjIn0s8/5IvxmNxV75Q1E3+wBS5FREvDw08leY/fDu
-        cK5vgqQzAtxJlTCKdm9oD7590J4WIMfph3g9iIPv6o2WZtv9K9i5trefv/eqyoXJHCnqWZ2VIXNNh
-        iD5Jo3jzVxOApkgmH2Qssio7XZ50flmifynRppjCZwbootRe2qVmDVzHDoFIlU+UjC6E/814LjJyN
-        +DoKCJoOuAeC87OQMoH5sr4B3aFpqluq2W1CmrD6CVdVn99DvMTrPgv/ZOKYWbKI0Mahjxg/B/ttx
-        CGoZKZBA==;
-Received: from p200300ccff190e001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff19:e00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pkUSb-00030q-K6; Thu, 06 Apr 2023 20:35:50 +0200
-Date:   Thu, 6 Apr 2023 20:35:48 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tony@atomide.com, afd@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: omap: Convert omap.txt to yaml
-Message-ID: <20230406203548.152ae065@aktux>
-In-Reply-To: <7f43953c-d326-f517-d896-cbb060d8092a@linaro.org>
-References: <20230405161908.4312-1-andreas@kemnade.info>
-        <20230405161908.4312-2-andreas@kemnade.info>
-        <eb4cf82d-f523-d5af-be18-25c37678a95a@linaro.org>
-        <7f43953c-d326-f517-d896-cbb060d8092a@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
+        with ESMTP id S240266AbjDFSj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 14:39:29 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DEB6EAB
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 11:39:20 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id t14so41623159ljd.5
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 11:39:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680806358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DzdRb6pnkmsus+yIRwXbtWlbX60lc0X5WvMqlzQrDnw=;
+        b=X2Gjkg08dhQfvA179XoZ/xMR768GPvfiMhSriliUPS2VW6IF+caRHk3oyvVi7zwceb
+         rqYCEXyxbM47uvulQ890YxCwMio7oYiokZU2Q2jZhV26zZNSDHH9/llKN7QMvPHwijoB
+         k9EhQm1tsSNbf9P+mHF3sTpNQfqODiLXNa2JNoUVN+pORj0bkoQB9VgOokmYekFC//8T
+         ciHran2eaQcJEHjLnY3Gp0WpL++IGG6DSMQSXZ4UvxjGlhCI2gxMgvG+jL166wo+n6ir
+         SeM2dr+e68hlv6tP2zTG1o3cIlQ4PJhsocx6ilN9qs9kyYpThk0Qvjf4a8FHQo1RzQiZ
+         dm8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680806358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DzdRb6pnkmsus+yIRwXbtWlbX60lc0X5WvMqlzQrDnw=;
+        b=j2bKLv9uqFDxcbsiVJ4qPo3sKX6l6pdL6Ao5L3UCYjZdPc1DtjiTCwDsYmiVXJfdF7
+         KnA5vV2ESkOmwQi1gBeSnGoFlyRRKOAY+NNSmsaeU5MD+clp17m7g0ABfUs1bKg1+BSJ
+         1Wt/c6pNStWgTSsVUuR/r52xFfNPhqQ1fDwbdIhUu0JFpDOQOOat/mdAe7mwukzQHy1M
+         o0QDa4+GP518Yg8J4KSCpWq59dG3tP+21owxkEeinjL9HcrJ1XXpbXcirgydCc0ge22B
+         aIyjJsEftCP0WemLE9Yjq6/XmocJjEZ5Z9UtpVe/XUCrcKT/E4xTOcfV5FavueLur4Vy
+         brkA==
+X-Gm-Message-State: AAQBX9e0u3s3ifbPoGGJY05RvJaJ+hsFYuj+MiH9vVXqpgSWb+yCPswz
+        tBqNsC+oxTm1TCIldQzr0QG3bg==
+X-Google-Smtp-Source: AKy350a3OD9HVmDgKylvrWyF5U95HSWfUl8N+EQpPalZT/JEENS+L64vmodPR1w4RzfkvCnGXQavIw==
+X-Received: by 2002:a2e:3814:0:b0:295:a958:2bca with SMTP id f20-20020a2e3814000000b00295a9582bcamr3199301lja.6.1680806358396;
+        Thu, 06 Apr 2023 11:39:18 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id w12-20020a05651c102c00b0029b32a40934sm385427ljm.113.2023.04.06.11.39.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 11:39:17 -0700 (PDT)
+Message-ID: <5437085b-706b-2f9a-686e-b95a9a0e6993@linaro.org>
+Date:   Thu, 6 Apr 2023 20:39:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: Convert ATH10K to YAML
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230406-topic-ath10k_bindings-v3-0-00895afc7764@linaro.org>
+ <20230406-topic-ath10k_bindings-v3-1-00895afc7764@linaro.org>
+ <223892d0-9b1b-9459-dec1-574875f7c1c6@linaro.org>
+ <8c818f95-b4a4-658f-701d-3151afdd5179@linaro.org>
+ <6720f61e-550f-6e16-8860-54233a3ea069@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <6720f61e-550f-6e16-8860-54233a3ea069@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 Apr 2023 10:36:36 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> On 06/04/2023 10:32, Krzysztof Kozlowski wrote:
-> > On 05/04/2023 18:19, Andreas Kemnade wrote:  
-> >> From: Andrew Davis <afd@ti.com>
-> >>
-> >> Convert omap.txt to yaml.
-> >>  
-> > 
-> >   
-> >> +      - description: TI AM43 SoC based platforms
-> >> +        items:
-> >> +          - enum:
-> >> +              - compulab,am437x-cm-t43
-> >> +              - ti,am437x-gp-evm
-> >> +              - ti,am437x-idk-evm
-> >> +              - ti,am437x-sk-evm
-> >> +          - pattern: '^ti,am4372[26789]$'
-> >> +          - const: ti,am43
-> >> +
-> >> +      - description: TI AM57 SoC based platforms
-> >> +        items:
-> >> +          - enum:
-> >> +              - beagle,am5729-beagleboneai
-> >> +              - compulab,cl-som-am57x
-> >> +              - ti,am5718-idk
-> >> +              - ti,am5728-idk
-> >> +              - ti,am5748-idk
-> >> +          - pattern: '^ti,am57[0124][689]$'  
-> > 
-> > I don't think my comments were resolved. I asked if it is possible to
-> > make a board called "ti,am5718-idk" with "ti,am5749" or with "ti,am5708"?  
-> 
-> Hm, I cannot find my concern, so maybe it never left my outbox. Anyway,
-> it looks like you allow here many incorrect patterns and combinations.
-> 
-You had concerns about the "dra" stuff for the same valid reasons.
 
-> > 
-> > What's more, you dropped several variations and compatibles against
-> > original binding (all the "dra") and it is not explained in commit msg
-> > at all.  
+On 6.04.2023 20:30, Krzysztof Kozlowski wrote:
+> On 06/04/2023 20:26, Konrad Dybcio wrote:
 > 
-> All changes against original bindings should be explained.
+>>>> +        interrupts:
+>>>> +          items:
+>>>> +            - description: CE0
+>>>> +            - description: CE1
+>>>> +            - description: CE2
+>>>> +            - description: CE3
+>>>> +            - description: CE4
+>>>> +            - description: CE5
+>>>> +            - description: CE6
+>>>> +            - description: CE7
+>>>> +            - description: CE8
+>>>> +            - description: CE9
+>>>> +            - description: CE10
+>>>> +            - description: CE11
+>>>
+>>> What about interrupt-names here? If they are not expected, then just
+>>> interrupt-names: false
+>> They obviously wouldn't hurt, but they're unused on the driver side:
+>>
+>> for (i = 0; i < CE_COUNT; i++) {
+>> 		ret = platform_get_irq(ar_snoc->dev, i);
+>>
+>> So I will forbid them.
 > 
-... which I then just decided not to convert but keep as is in the text file
-because there were no comments hints about it more than a month since the first
-version was sent so thought that it has to be resolved later.
+> Assuming DTS does not have them.
+Tested locally, no warnings, so looks like nobody used them in dt.
 
-Regards,
-Andreas
+Konrad
+> 
+> Best regards,
+> Krzysztof
+> 
