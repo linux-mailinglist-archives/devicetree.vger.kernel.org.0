@@ -2,148 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D59606D968D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 13:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DC406D96A9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 14:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236979AbjDFL6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 07:58:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49770 "EHLO
+        id S238363AbjDFMBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 08:01:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238842AbjDFL5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 07:57:36 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B81F21997;
-        Thu,  6 Apr 2023 04:55:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1680782105; x=1712318105;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VIF3RAwyUACMZc/6Udu1lMbe/9hsVoCd5YuEoegFWzg=;
-  b=qfF0dsvFkK2QoU6OPgTGGPzNZ29N7jl2TSub201zTmrDd0fbbuOhUrSK
-   bJcXPYju3nsGvxVwinR9inUN9pTqIKcuTebbCDtBWOqeZDjp2Rr2gVHTF
-   VuFoUtWbzv19TlvhaUntmSf+kYgfO32s32hnz+5lFWtLlM0buonJpw5xU
-   A1vn72B+kHNm+mO9gT2d4wdS7KK6iJyuh6BUQysflFAPWH1Jd2AtAQ9yS
-   haf3a656/OA8Q6dmOfOnf7yd+6NDt9XmHqQ20Z1CqS5QtkrqBtcTyBoQ4
-   RjyUP9E4NXZrAtWU7XBtvfWMnwTYJKwCzBX6vBQEJtobT10koc5qlMjez
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,323,1673938800"; 
-   d="asc'?scan'208";a="208441740"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Apr 2023 04:54:42 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 6 Apr 2023 04:54:41 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 6 Apr 2023 04:54:38 -0700
-Date:   Thu, 6 Apr 2023 12:54:23 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Minda Chen <minda.chen@starfivetech.com>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>,
-        <daire.mcnamara@microchip.com>
-Subject: Re: [PATCH v1 0/3] Add JH7110 PCIe driver support
-Message-ID: <20230406-coming-stuffed-26f89610959c@wendy>
-References: <20230406111142.74410-1-minda.chen@starfivetech.com>
- <20230406-quench-unharmed-2c11b2617e9f@wendy>
+        with ESMTP id S237243AbjDFMBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 08:01:13 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B4E4D51B
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 04:58:25 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id k18so1733532lfb.12
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 04:58:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680782303;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wEz7vgw5uhU097Ka8WcVBT886eUanKE5TMj9tFqtF7o=;
+        b=byAot6+WRARtE+tR55I6QnRD1vOMNjSZjOixlqR0Jqf3sTZA6yyuLbMrdKeojOkkqZ
+         ByTZ45h9eLg029PvTTfbEqVsvb6OpxWcDkmphKm/7wdJrK2SxrSYAKUrIjPhIGYDB6Ey
+         IqVQLI5rIkI/uC49CTdLCol0n+kpZLLGOHWg2eXgOYH30frOJMUoj0BNyAm2uwd0JpbH
+         xZzFKHVoGiO0sg3wTXXZgDLBdySxLe8I/Tet8a1qrAt005NeNTIrbmx8ytUPFVVSbyCd
+         zX9WVrgTuXvIOyRRkDPeodUB2cJcg9X615NAOWaYdkAIEwTwzuppykTHEoCqNGEf2VWi
+         QwMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680782303;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wEz7vgw5uhU097Ka8WcVBT886eUanKE5TMj9tFqtF7o=;
+        b=CXZChY9izQTIpSvR7g95DVVEmHRGC8ZBJM44YyeonXawhEHHDm5hrI8VV57rSyOj7H
+         EWnLM8VW/wBa4S3jQebBadIwdJ8fAuYH60poZxRgVnr4o/hSCbHHHH0kufD4Lcw4SvmO
+         AqxWFCDTv6FC81V5Kk0XKSgTW7aB5pwHd8pYW9A71qQrBQlZej2MTnHv0rurmTyBp/eo
+         7JG1F8FuSBp/Ta33UZMzzMXMfFgWEQTH8+izg5dhUbQeOrPOnFFNUTe8Ipf3ccVO2uhW
+         yK27sIeLBc75VPKJgqxkY5+NaTFN8+I4xhvo0CV7L2eIOw4RjJc5czxVy/2uthXfAfw5
+         yfZQ==
+X-Gm-Message-State: AAQBX9coXzD4BN43grwuOip41BwE05IJPTeVbmaiFr3fwWEcttiIvtfY
+        n2C9rf8u7n3hdxW/ktumWI24vA==
+X-Google-Smtp-Source: AKy350aT2NUYR0Lrggq1FuR12xhrlDLL2yJ+g0CdIbOZYjd4kzHcKDKxnuePX+7mzAqoxKUhPx9wDA==
+X-Received: by 2002:ac2:4309:0:b0:4e8:43e2:a8 with SMTP id l9-20020ac24309000000b004e843e200a8mr2300539lfh.8.1680782303599;
+        Thu, 06 Apr 2023 04:58:23 -0700 (PDT)
+Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
+        by smtp.gmail.com with ESMTPSA id w3-20020a056512098300b004dd7fefd2c8sm231338lft.242.2023.04.06.04.58.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 04:58:23 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Thu, 06 Apr 2023 13:58:19 +0200
+Subject: [PATCH v2] dt-bindings: iommu: Convert QCOM IOMMU to YAML
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6DiB+R8lixX5OYkj"
-Content-Disposition: inline
-In-Reply-To: <20230406-quench-unharmed-2c11b2617e9f@wendy>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230406-topic-qciommu-v2-1-b8547622b2a4@linaro.org>
+X-B4-Tracking: v=1; b=H4sIANqzLmQC/3WNQQ6CMBBFr0K6dkwLxKor72FYlDKFSaDFKRAN6
+ d2t7F2+l/z/dhGRCaO4F7tg3ChS8BnKUyHsYHyPQF1mUcqykrW8wBJmsvCyFKZpBW21qjq8Ond
+ DkTetiQgtG2+HvPLrOGY5Mzp6H5Fnk3mguAT+HM1N/ey/+02BAlk5pbXSpq71YyRvOJwD96JJK
+ X0BD1/xEsAAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680782302; l=7496;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=hbr4tzXSxd2ffGS4hFOwUKVc93mD2kMGyhvcAspOwI4=;
+ b=DenXYPio0tCOKPyO9yuknO35YDNBAxKz78rm5tpZrAdgUcAoPBpKB55NrCHEvhQGBBDDnThZeInQ
+ ULe3hHBmAF+O+JX5fTHZbHrCMzc7VymjX4MIanXuFGyWAWQ7yOQY
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---6DiB+R8lixX5OYkj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Convert the Qualcomm IOMMU bindings to YAML.
 
-Gah, I never actually CCed Daire. Apologies for the additional email.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+v1 -> v2:
+- Include missing header
+- pad the addresses to 8 hex digits
+- add 'reg' to the mdp device
 
-On Thu, Apr 06, 2023 at 12:47:41PM +0100, Conor Dooley wrote:
-> +CC Daire
->=20
-> Hey Minda,
->=20
-> On Thu, Apr 06, 2023 at 07:11:39PM +0800, Minda Chen wrote:
-> > This patchset adds PCIe driver for the StarFive JH7110 SoC.
-> > The patch has been tested on the VisionFive 2 board. The test
-> > devices include M.2 NVMe SSD and Realtek 8169 Ethernet adapter.
->=20
-> I was talking with Daire last week about some changes he's working on
-> for the microchip driver, and we seemed to recall an off-list email
-> sent to Daire & Bjorn about extracting the common PLDA bits from the
-> pcie-microchip-host driver to be used with an (at that point)
-> unreleased SoC. Perhaps Bjorn has this in his mailbox somewhere still,
-> our corporate mail policy scrubs things from over a year ago & I could
-> not find it.
->=20
-> I realised that that may actually have been StarFive, and the driver on
-> your GitHub [1] certainly felt very familiar to Daire (he said it was
-> very similar to his earlier revisions of his driver).
->=20
-> I've not looked at a diff between this and the version you ship on
-> GitHub, but first a quick inspection it mostly just looks like you
-> did s/plda/sifive/ on the file.
->=20
-> I'm obviously not a PCI maintainer, but if there are common bits between
-> the two drivers, extracting common bits seems like a good idea to me...
->=20
-> https://github.com/starfive-tech/linux/blob/JH7110_VisionFive2_devel/driv=
-ers/pci/controller/pcie-plda.c
-> >=20
-> > This patchset should be applied after the patchset [1], [2], [3] and[4]:
-> > [1] https://patchwork.kernel.org/project/linux-riscv/cover/202303141244=
-04.117592-1-xingyu.wu@starfivetech.com/
-> > [2] https://lore.kernel.org/all/20230315055813.94740-1-william.qiu@star=
-fivetech.com/
-> > [3] https://patchwork.kernel.org/project/linux-phy/cover/20230315100421=
-=2E133428-1-changhuang.liang@starfivetech.com/
-> > [4] https://patchwork.kernel.org/project/linux-usb/cover/20230406015216=
-=2E27034-1-minda.chen@starfivetech.com/
->=20
-> How many of the dependencies here are compiletime for the driver & how
-> many of them are just for the dts patch?
->=20
-> Cheers,
-> Conor.
+v1: https://lore.kernel.org/r/20230406-topic-qciommu-v1-1-03f17717a447@linaro.org
+---
+ .../devicetree/bindings/iommu/qcom,iommu.txt       | 122 ---------------------
+ .../devicetree/bindings/iommu/qcom,iommu.yaml      | 112 +++++++++++++++++++
+ 2 files changed, 112 insertions(+), 122 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt b/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+deleted file mode 100644
+index e6cecfd360eb..000000000000
+--- a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
++++ /dev/null
+@@ -1,122 +0,0 @@
+-* QCOM IOMMU v1 Implementation
+-
+-Qualcomm "B" family devices which are not compatible with arm-smmu have
+-a similar looking IOMMU but without access to the global register space,
+-and optionally requiring additional configuration to route context irqs
+-to non-secure vs secure interrupt line.
+-
+-** Required properties:
+-
+-- compatible       : Should be one of:
+-
+-                        "qcom,msm8916-iommu"
+-                        "qcom,msm8953-iommu"
+-
+-                     Followed by "qcom,msm-iommu-v1".
+-
+-- clock-names      : Should be a pair of "iface" (required for IOMMUs
+-                     register group access) and "bus" (required for
+-                     the IOMMUs underlying bus access).
+-
+-- clocks           : Phandles for respective clocks described by
+-                     clock-names.
+-
+-- #address-cells   : must be 1.
+-
+-- #size-cells      : must be 1.
+-
+-- #iommu-cells     : Must be 1.  Index identifies the context-bank #.
+-
+-- ranges           : Base address and size of the iommu context banks.
+-
+-- qcom,iommu-secure-id  : secure-id.
+-
+-- List of sub-nodes, one per translation context bank.  Each sub-node
+-  has the following required properties:
+-
+-  - compatible     : Should be one of:
+-        - "qcom,msm-iommu-v1-ns"  : non-secure context bank
+-        - "qcom,msm-iommu-v1-sec" : secure context bank
+-  - reg            : Base address and size of context bank within the iommu
+-  - interrupts     : The context fault irq.
+-
+-** Optional properties:
+-
+-- reg              : Base address and size of the SMMU local base, should
+-                     be only specified if the iommu requires configuration
+-                     for routing of context bank irq's to secure vs non-
+-                     secure lines.  (Ie. if the iommu contains secure
+-                     context banks)
+-
+-
+-** Examples:
+-
+-	apps_iommu: iommu@1e20000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		#iommu-cells = <1>;
+-		compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
+-		ranges = <0 0x1e20000 0x40000>;
+-		reg = <0x1ef0000 0x3000>;
+-		clocks = <&gcc GCC_SMMU_CFG_CLK>,
+-			 <&gcc GCC_APSS_TCU_CLK>;
+-		clock-names = "iface", "bus";
+-		qcom,iommu-secure-id = <17>;
+-
+-		// mdp_0:
+-		iommu-ctx@4000 {
+-			compatible = "qcom,msm-iommu-v1-ns";
+-			reg = <0x4000 0x1000>;
+-			interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		// venus_ns:
+-		iommu-ctx@5000 {
+-			compatible = "qcom,msm-iommu-v1-sec";
+-			reg = <0x5000 0x1000>;
+-			interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-	};
+-
+-	gpu_iommu: iommu@1f08000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		#iommu-cells = <1>;
+-		compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
+-		ranges = <0 0x1f08000 0x10000>;
+-		clocks = <&gcc GCC_SMMU_CFG_CLK>,
+-			 <&gcc GCC_GFX_TCU_CLK>;
+-		clock-names = "iface", "bus";
+-		qcom,iommu-secure-id = <18>;
+-
+-		// gfx3d_user:
+-		iommu-ctx@1000 {
+-			compatible = "qcom,msm-iommu-v1-ns";
+-			reg = <0x1000 0x1000>;
+-			interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		// gfx3d_priv:
+-		iommu-ctx@2000 {
+-			compatible = "qcom,msm-iommu-v1-ns";
+-			reg = <0x2000 0x1000>;
+-			interrupts = <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-	};
+-
+-	...
+-
+-	venus: video-codec@1d00000 {
+-		...
+-		iommus = <&apps_iommu 5>;
+-	};
+-
+-	mdp: mdp@1a01000 {
+-		...
+-		iommus = <&apps_iommu 4>;
+-	};
+-
+-	gpu@1c00000 {
+-		...
+-		iommus = <&gpu_iommu 1>, <&gpu_iommu 2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml b/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+new file mode 100644
+index 000000000000..5bb376aeb958
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies legacy IOMMU implementations
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@linaro.org>
++
++description: |
++  Qualcomm "B" family devices which are not compatible with arm-smmu have
++  a similar looking IOMMU, but without access to the global register space
++  and optionally requiring additional configuration to route context IRQs
++  to non-secure vs secure interrupt line.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,msm8916-iommu
++          - qcom,msm8953-iommu
++      - const: qcom,msm-iommu-v1
++
++  clocks:
++    items:
++      - description: Clock required for IOMMU register group access
++      - description: Clock required for underlying bus access
++
++  clock-names:
++    items:
++      - const: iface
++      - const: bus
++
++  power-domains:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  ranges: true
++
++  qcom,iommu-secure-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The SCM secure ID of the IOMMU instance.
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  '#iommu-cells':
++    const: 1
++
++patternProperties:
++  "^iommu-ctx@[0-9a-f]+$":
++    type: object
++    properties:
++      compatible:
++        enum:
++          - qcom,msm-iommu-v1-ns
++          - qcom,msm-iommu-v1-sec
++
++      interrupts:
++        maxItems: 1
++
++      reg:
++        maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - ranges
++  - '#address-cells'
++  - '#size-cells'
++  - '#iommu-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-msm8916.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    apps_iommu: iommu@1e20000 {
++      compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
++      reg = <0x01ef0000 0x3000>;
++      clocks = <&gcc GCC_SMMU_CFG_CLK>,
++               <&gcc GCC_APSS_TCU_CLK>;
++      clock-names = "iface", "bus";
++      qcom,iommu-secure-id = <17>;
++      #address-cells = <1>;
++      #size-cells = <1>;
++      #iommu-cells = <1>;
++      ranges = <0 0x01e20000 0x40000>;
++
++      /* mdp_0: */
++      iommu-ctx@4000 {
++        compatible = "qcom,msm-iommu-v1-ns";
++        reg = <0x4000 0x1000>;
++        interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
++      };
++    };
++
++    mdp: mdp@1a01000 {
++      reg = <0x01a01000 0x1000>;
++      iommus = <&apps_iommu 4>;
++    };
 
+---
+base-commit: 8417c8f5007bf4567ccffda850a3157c7d905f67
+change-id: 20230406-topic-qciommu-7c713de8ff9e
 
---6DiB+R8lixX5OYkj
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZC6y7wAKCRB4tDGHoIJi
-0gN3AQCtoXaVDJRLbEBtu9kNuP3j5MOEWWrcn+EJ7QXQ61DrzgEAmV93dIZ7fkyt
-SbO/ObfnUTym32MCPLClZQbRxcez2Qc=
-=l66h
------END PGP SIGNATURE-----
-
---6DiB+R8lixX5OYkj--
