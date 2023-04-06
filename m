@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5026D9EB6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869E16D9EB4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 19:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239612AbjDFR0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 13:26:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
+        id S238668AbjDFRZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 13:25:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240112AbjDFRY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:24:58 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F4C9AD11
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 10:24:30 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-93071f06a9fso150514266b.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 10:24:30 -0700 (PDT)
+        with ESMTP id S239928AbjDFRZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 13:25:38 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4959749
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 10:25:16 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id cw23so3137733ejb.12
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 10:25:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680801822;
+        d=linaro.org; s=google; t=1680801869;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YZWm8VVPjeFnm2JphubEFlx8VRO3aDXS4Y0MKirBKZc=;
-        b=KaQblYxlv8Wg8dwXdhzP4qzFeNMXk41ba0tlgNgrCN9LirZed/7BpMBMqMCiPA/MKH
-         lZTS2GazYf5qg5bYzuIG7uVN20BmC1nvSPU1RX8yN5XqxbHSBPcOyzH+CCIzAI+zVw7a
-         qXFW8+AqSJPtIr4fcarlM76G9TR2EzHzPqD00UnHxwo64ctd4WP3bXE9euQyMSCMKMcy
-         jI+TIgx/R91BOfaYL9fD2OBpxvGzIcjIePtS27tQtCAAqj3jVcdmaAcKeteQFCJIjzYH
-         3p1lYq9OLxx8r4N1OFwfYXcFf8M/kbEY7QMWP792bqMq6GyUEk5cgNcskuKZHPKDEP+5
-         ZZOA==
+        bh=JL0tcMswVOFBcZqE4ysEfWlvhjaRhWrngkh1Ruhoyo4=;
+        b=MPnQBH6smOnFly3D5rRvEyKmiqswxLyP6gr0q283GTwxvlhz603IrS9F2/iq2f0NPn
+         aKYKWU77mZQcOPlybykSjECnvL0fRAidu65ZbPR2GXBg7hl2FeNx2aVSGFzDbenDXfJL
+         9S1vKwxSiNBGNJUgkUa1eCNZp4+SHY58amq+JWamL8UjzApvijwt+ikbQANg1+17nYd2
+         9RgUl7CAU99JcmphuUYcGBhloboB/Qtwi2ytfZ2EktnW5Gv7RiVYxry8vbP7fcT8nDC9
+         GFTNdOObFQR6uvbrzzR1kqhot3m4RblcY5k2iQTjGiUzTG5kExnUP1/c5SvV8sD5c+MW
+         o3Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680801822;
+        d=1e100.net; s=20210112; t=1680801869;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YZWm8VVPjeFnm2JphubEFlx8VRO3aDXS4Y0MKirBKZc=;
-        b=aMaMJVb8mxjL+v+b10QMhqkkTx7rokiiunr37IMPmagnHrOA1oz62rCcI1TRnI6rew
-         C/aKze9Cv7L1eJ7a6xxFDQ20GmNUxouSbCUuyv70T4Rm06nTjpdjPUqMgrgT6PBaHKGO
-         +gOcEcsf/YzL+MOKzhIMR602mn3wyTsew9eyrVPjsZtUieV4qiGOJPYIJmlaXewPuk7U
-         uznilpIVJgWIW8vnSXm3o2ev2+ffY/9D5kwHmrFAVwSv4nIx7MvYaIpq1aGfwfaaLire
-         Rk/7XbBQtvjp36Fcjc5GHx936sp0gs/mksv1GuBsZYvA3NFxcvdp4pspM/KL8xsCDuks
-         eHBg==
-X-Gm-Message-State: AAQBX9ffO0pFaB20d+XLr7grl1rr2rITULVe1Vntr3MoPNmZIHHnDO1c
-        ZEk+r98cvgUxj7kFaJp0i2kb1w==
-X-Google-Smtp-Source: AKy350ai06lz6ssfMPZUtJwK4e2IEAi6KKdYKCbUWEY+9XXjVsN6ewHSpx6CGQ1uSzp7iWlJhL82sw==
-X-Received: by 2002:aa7:c0c7:0:b0:4fa:d83b:f5da with SMTP id j7-20020aa7c0c7000000b004fad83bf5damr239948edp.30.1680801822458;
-        Thu, 06 Apr 2023 10:23:42 -0700 (PDT)
+        bh=JL0tcMswVOFBcZqE4ysEfWlvhjaRhWrngkh1Ruhoyo4=;
+        b=Ny9ukAg58dq9pfh0Lq8cpVJZwzD+0fq8j6+4GTAi3uHYOarzhHgmIGZcdB/Fzb/lnA
+         kqYCw44zIvTDPAqTC4pMqk8SUpgWMQmZrWSLdJfRWP0rpJPq2ClBQ4onDAgvfUjHWM6t
+         ++f6CHDvWpuFuTpx/e5ZAyiCMHDPUK4Z2xfjEMNhzueMbZNzQeM2QgNrDBjZQ3lUNoEv
+         OhDHM1mbw3J3NEFSsNplprtNakOlW6C8ptS0+47nBc6RKbEHoGLXg28T0jFrLlxHumqx
+         VnSZBdV8TZ7O6qK6NFax4jRAq6fUzeyS5zdrYBpAZUkTFFl+ixyxMxnjcLnwTZmZxUFG
+         pCgQ==
+X-Gm-Message-State: AAQBX9fpaS5KN0NwVT6auLKrPT1QWpxb8JtC6OVidf2W+3le4Vv7MX9X
+        U6tM1l4yNoMPxOfR3Y9Yqx5HCw==
+X-Google-Smtp-Source: AKy350ZDUjvvTADIBKKgF4owoWF4Z6S7eh506PO079mECLi4kym9F7fYqfKxh7TctbTIQkCLAiJ3Cg==
+X-Received: by 2002:a17:907:c201:b0:8b1:75a0:e5c6 with SMTP id ti1-20020a170907c20100b008b175a0e5c6mr6737603ejc.18.1680801868922;
+        Thu, 06 Apr 2023 10:24:28 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
-        by smtp.gmail.com with ESMTPSA id b16-20020a50b410000000b004c5d1a15bd5sm967580edh.69.2023.04.06.10.23.41
+        by smtp.gmail.com with ESMTPSA id li16-20020a170906f99000b008d68d018153sm1059812ejb.23.2023.04.06.10.24.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 10:23:42 -0700 (PDT)
-Message-ID: <4af1ebd0-243f-39e4-c290-1eb627bd7b71@linaro.org>
-Date:   Thu, 6 Apr 2023 19:23:40 +0200
+        Thu, 06 Apr 2023 10:24:28 -0700 (PDT)
+Message-ID: <63f14414-2054-d7d6-8cdd-82f8e034641f@linaro.org>
+Date:   Thu, 6 Apr 2023 19:24:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 3/5] dt-bindings: reset: Add binding constants for
+Subject: Re: [PATCH 4/5] dt-bindings: clock: Add binding constants for
  BLZP1600
 Content-Language: en-US
 To:     Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>,
@@ -75,9 +75,9 @@ Cc:     "soc@kernel.org" <soc@kernel.org>,
         Matt Redfearn <matthew.redfearn@blaize.com>,
         Neil Jones <neil.jones@blaize.com>
 References: <20230406102149.729726-1-nikolaos.pasaloukos@blaize.com>
- <20230406102149.729726-4-nikolaos.pasaloukos@blaize.com>
+ <20230406102149.729726-5-nikolaos.pasaloukos@blaize.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406102149.729726-4-nikolaos.pasaloukos@blaize.com>
+In-Reply-To: <20230406102149.729726-5-nikolaos.pasaloukos@blaize.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -91,7 +91,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/04/2023 12:22, Niko Pasaloukos wrote:
-> Add SCMI reset IDs which are used on Blaize BLZP1600 SoC.
+> Add SCMI clock IDs which are used on Blaize BLZP1600 SoC.
 > 
 > Co-developed-by: James Cowgill <james.cowgill@blaize.com>
 > Signed-off-by: James Cowgill <james.cowgill@blaize.com>
@@ -101,77 +101,35 @@ On 06/04/2023 12:22, Niko Pasaloukos wrote:
 > Signed-off-by: Neil Jones <neil.jones@blaize.com>
 > Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
 > ---
->  .../dt-bindings/reset/blaize,blzp1600-reset.h | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 include/dt-bindings/reset/blaize,blzp1600-reset.h
+>  .../dt-bindings/clock/blaize,blzp1600-clk.h   | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+
+Missing device schema.
+
+>  create mode 100644 include/dt-bindings/clock/blaize,blzp1600-clk.h
 > 
-> diff --git a/include/dt-bindings/reset/blaize,blzp1600-reset.h b/include/dt-bindings/reset/blaize,blzp1600-reset.h
+> diff --git a/include/dt-bindings/clock/blaize,blzp1600-clk.h b/include/dt-bindings/clock/blaize,blzp1600-clk.h
 > new file mode 100644
-> index 000000000000..ff1de6b1bd5c
+> index 000000000000..bcc8ff513b28
 > --- /dev/null
-> +++ b/include/dt-bindings/reset/blaize,blzp1600-reset.h
-> @@ -0,0 +1,76 @@
+> +++ b/include/dt-bindings/clock/blaize,blzp1600-clk.h
+> @@ -0,0 +1,67 @@
 > +/* SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause */
 
-Why 2.0+? Unusual choice. Do you really need it?
-
+Same question as for reset.
 
 > +/*
 > + * Copyright (C) 2022, Blaize, Inc.
 > + */
 > +
-> +#ifndef DT_BINDING_RESET_BLZP1600_H
-> +#define DT_BINDING_RESET_BLZP1600_H
+> +#ifndef DT_BINDING_CLK_BLZP1600_H
+> +#define DT_BINDING_CLK_BLZP1600_H
 > +
-> +#define BLZP1600_A53_C0_HARD_RST	0
-> +#define BLZP1600_A53_C0_SOFT_RST	1
-> +#define BLZP1600_A53_C1_HARD_RST	2
-> +#define BLZP1600_A53_C1_SOFT_RST	3
-> +#define BLZP1600_A53_L2_CACHE_RST	4
-> +#define BLZP1600_A53_DBG_RST		5
-> +#define BLZP1600_GIC_RST		6
-> +#define BLZP1600_CRYPTO_RST		7
-> +#define BLZP1600_GSP_RST		9
-> +#define BLZP1600_DRAM_A_SYS_RST		10
-> +#define BLZP1600_DRAM_A_DDRC_RST	11
-> +#define BLZP1600_DRAM_A_PRST		12
-> +#define BLZP1600_DRAM_A_ARST		13
-> +#define BLZP1600_DRAM_A_PHY_RST		14
-> +#define BLZP1600_DRAM_A_PWRON_RST	15
-> +#define BLZP1600_DRAM_A_PHY_PRST	16
-> +#define BLZP1600_DRAM_B_SYS_RST		17
-> +#define BLZP1600_DRAM_B_DDRC_RST	18
-> +#define BLZP1600_DRAM_B_PRST		19
-> +#define BLZP1600_DRAM_B_ARST		20
-> +#define BLZP1600_DRAM_B_PHY_RST		21
-> +#define BLZP1600_DRAM_B_PWRON_RST	22
-> +#define BLZP1600_DRAM_B_PHY_PRST	23
-> +#define BLZP1600_USB_RST		24
-> +#define BLZP1600_USB_PHY_RST		25
-> +#define BLZP1600_CAN0_RST		26
-> +#define BLZP1600_CAN1_RST		27
-> +#define BLZP1600_CAN2_RST		28
-> +#define BLZP1600_ETH_MAC_RST		29
-> +#define BLZP1600_SDIO0_RST		30
-> +#define BLZP1600_SDIO1_RST		31
-> +#define BLZP1600_SDIO2_RST		32
-> +#define BLZP1600_SD_CARD_RST		34
-> +#define BLZP1600_CSI0_CTRL_RST		35
-> +#define BLZP1600_CSI0_VDMA_RST		36
-> +#define BLZP1600_CSI1_CTRL_RST		37
-> +#define BLZP1600_CSI1_VDMA_RST		38
-> +#define BLZP1600_CSI2_CTRL_RST		39
-> +#define BLZP1600_CSI2_VDMA_RST		40
-> +#define BLZP1600_CSI3_CTRL_RST		41
-> +#define BLZP1600_CSI3_VDMA_RST		42
-> +#define BLZP1600_CSID_CTRL_RST		43
-> +#define BLZP1600_CSID_VDMA_RST		44
-> +#define BLZP1600_DSI_CTRL_RST		45
-> +#define BLZP1600_DSI_VDMA_RST		46
-> +#define BLZP1600_DMA_RST		49
+> +/* Simple clock-gates */
+> +#define BLZP1600_CPU_CLK	0
+> +#define BLZP1600_CRYPTO_CLK	7
 
-You have some gaps here. These are IDs, so they do not have gaps.
-
+Same problems as for reset.
 
 
 Best regards,
