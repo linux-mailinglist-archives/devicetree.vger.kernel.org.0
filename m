@@ -2,130 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF4D06D9AEC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 16:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 252606D9B1B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 16:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239254AbjDFOpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 10:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42470 "EHLO
+        id S239444AbjDFOup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 10:50:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239244AbjDFOp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 10:45:28 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111C79768
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 07:44:34 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id q16so51106940lfe.10
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 07:44:33 -0700 (PDT)
+        with ESMTP id S239476AbjDFOuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 10:50:25 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CE6B455
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 07:49:24 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id s20so20644646ljp.7
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 07:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680792272;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NEzI51ciZrgIncfhw5bsm8CrnZlchCYmEqfodjJXk5A=;
-        b=MHGsl5pAsYot9e+osKLnMyXGsWxprs2n2YzElSZZv1aoMVEJcw+5DmKy264jhyL0w9
-         iGMyTkBGY/7zmg5i+l8jGz/O8k86LUS1iqtzTermHmOOaWocancJZj9Wk/ev1vbzosmD
-         lUM4+Re/DHufKHQJXpxJOgrs38hLD8jwTDlp/4ND/0GjqsmraWIBJ/LSCF+QomJllpl2
-         ZuJ2Du2FMBRCMqkawg21IaCYMTWFHfO83AlTtqnfmhlB25ickb5ziN/oHDXUZOJjJMVS
-         pj7cPkun6F+3bKbsmLyfxP26IxYRU/D8sVaWDCplTUiHFtAcryZArkMlOql/0piopdqF
-         ICwg==
+        d=linaro.org; s=google; t=1680792563;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BykCbxMnV8xY/L0TeIGnWsTlJZykkp54pxXItibgVMI=;
+        b=bzcxnNOrZ/v8KjAn5QTkCjkv2xsBrprdN0ZPQnvTmXvx3saTlY5fRUGTfcXsjwC4VZ
+         zfiy289Lc0i4JKh1ryTOVYB6nzy3HWcVYVT1qaKDJ7N8wdTJJGCmZTdSMOEataSfjmyc
+         dwiH6DubwESI9Wgkr1KfBJQy1fHaNpkEa112/ejG5MTAnh6gkP8ofSGvRP+rU0051NgD
+         74Kg9jzm417DZplf5dUT/iVxOVnHECTfjJrfv+hp1GOwxU+dv/HqSsIRs/pIhHPhN2dG
+         1h0WRdJdoULFGjbIBT4FZGoeMe51Z0ZuuxQf9wAfYaD8EfEluf4oOUqGDVqWtvVAeOaC
+         JpjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680792272;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NEzI51ciZrgIncfhw5bsm8CrnZlchCYmEqfodjJXk5A=;
-        b=oNHVMSIRdVn+euqJYEevUCx4G9A9GjNmgmdFPob6UQlVe5ve6utK6VXciqUe0/bVv3
-         4gHRv+OcMyj+i9tGuUOXxLWwYEibqbJvIBbvVPd1bFJTWhlhi4kuOjA7QkVSar79a/jz
-         whzuRN3un5wVuqKtZK2GsK7+DLu6wtMSNZXCRAy7kXLqyjujANsOCEQvDe5CoETk8kOJ
-         K0niNusMFidMzSDOE+1byEriGwAJQtXLSE8gfQ0m2O+oK2u+JlUd63XSo4yoVEtwvjjx
-         EEOgEUPmIwzuE1KB5vpVcbY4M+OJkKDzLcsEcWV/aICO3UIaInQcFI6iiZR7H8+B6+Gt
-         3trA==
-X-Gm-Message-State: AAQBX9fufzMXSnzw/N/VXOT4J8gkJSI/XWM7SJQIhNSoGUut8LOx4CIu
-        fOVLLnTfd4R+4kx48fUNTqfPnQ==
-X-Google-Smtp-Source: AKy350bgBhHXkKVdgwxsnJCnlU8McRMzVeEfNKkTmL+OwJoS3L2ugnZcDbPKs2h/5yE6WPVb752TEA==
-X-Received: by 2002:ac2:5dd1:0:b0:4eb:79:fa5 with SMTP id x17-20020ac25dd1000000b004eb00790fa5mr2839908lfq.25.1680792271873;
-        Thu, 06 Apr 2023 07:44:31 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680792563;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BykCbxMnV8xY/L0TeIGnWsTlJZykkp54pxXItibgVMI=;
+        b=2wjzpcoZfx50AfArIDzT7HfedPtcYSYTSj8DhfT8M5+hShn1Vju9P4bniZLc6ULWgw
+         /3Pw1ojCy0xG2Hq1aXBLNxzQh56X567psIjp9u6jBXGEJJSqjeR/msuR+39dc9lxMPdO
+         TvxvmnCv3g+4dL+GN3N2xEEdWgvWl/0g0FR3q00yfQvRHCaMG7xsL4usq2TheqR+Se++
+         8TiHR38MbsAtGCYRp7s4tHbmYSCsZWBkAsamK0lffZYggnIsJ7VOoY+Jb7q6D6Mgcww5
+         AG+hLligBdlaWTldkCBm5Hf2/cDSjvCS3Vh/pJeOvCXKrxai3O4mcbMqP/gvCGyG62yb
+         mg0A==
+X-Gm-Message-State: AAQBX9fAr2sEYnlE/Br0t3sdKT6SE6oJY2hYQDW03eR0DRYtoG+UCtyK
+        8VCkIXJSIgTKtVLz+SBGugUP/Q==
+X-Google-Smtp-Source: AKy350b5h5kUeGuocJdzthBYcl+xKoO0yWIimhKZwRNRmXiqk8Pv/UqGiCjoKYVn4i+LWKCs/efSbQ==
+X-Received: by 2002:a2e:980b:0:b0:2a0:202c:93b3 with SMTP id a11-20020a2e980b000000b002a0202c93b3mr2961979ljj.49.1680792562985;
+        Thu, 06 Apr 2023 07:49:22 -0700 (PDT)
 Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id d7-20020ac25447000000b004eb4357122bsm287925lfn.259.2023.04.06.07.44.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Apr 2023 07:44:31 -0700 (PDT)
-Message-ID: <2a379401-fe87-9e30-5449-513dd23c52f5@linaro.org>
-Date:   Thu, 6 Apr 2023 16:44:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH RFT v2 01/14] dt-bindings: clock: qcom,rpmcc: Add a way to
- enable unused clock cleanup
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
- <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
- <20230316225803.GA4036689-robh@kernel.org>
- <62533d5a-f39a-0806-b4d9-932e2af6beef@linaro.org>
- <5601e0edc19dc03d0fc516f9ffe4d1aa.sboyd@kernel.org>
+        by smtp.gmail.com with ESMTPSA id w24-20020a2e9598000000b002945b851ea5sm313864ljh.21.2023.04.06.07.49.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 07:49:22 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <5601e0edc19dc03d0fc516f9ffe4d1aa.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: [PATCH v2 0/2] Introduce RPM Master stats
+Date:   Thu, 06 Apr 2023 16:49:16 +0200
+Message-Id: <20230405-topic-master_stats-v2-0-51c304ecb610@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAOzbLmQC/32NWwqDMBAAryL5bkoelZJ+9R4iZaNRF2wiu6m0i
+ Hdv6gH6OQPDbIIDYWBxqzZBYUXGFAuYUyW6CeIYJPaFhVHGqouqZU4LdvIJnAM9OENm6cEoDQ4
+ GZ3tRQg8cpCeI3VTS+JrnIhcKA76PU9MWnpBzos8xXvXP/n2sWiqpvR7AXK1ztb3PGIHSOdEo2
+ n3fv4ZxWfbKAAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680792561; l=1442;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=vE0OGMBNrSqfCScZ+a+rfWEWnobdzfFLE66cO2LhQH4=;
+ b=gH3/TVC1wazdVX4ZO9yqscgw8jfn3H6yoiXQQOc5AqJTI0OM7RYxMpJsF4VE59xIz7Qj7HWbIhWb
+ xGWFAHEjASBdtaH1YYFSFzoq/e3X9jrk1E5i5V2Mtkiin3SjwGLU
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v1 -> v2:
+- Drop the `-` in /properties/compatible to make our entry be of the
+  correct type [1/2]
+- Change %s to %d for printing out the iterator [2/2]
 
+v1: https://lore.kernel.org/r/20230405-topic-master_stats-v1-0-1b1fa2739953@linaro.org
 
-On 17.03.2023 19:20, Stephen Boyd wrote:
-> Quoting Konrad Dybcio (2023-03-16 17:31:34)
->>
->> On 16.03.2023 23:58, Rob Herring wrote:
->>> On Wed, Mar 08, 2023 at 10:35:17PM +0100, Konrad Dybcio wrote:
->>>>  
->>>> +  qcom,clk-disable-unused:
->>>> +    type: boolean
->>>> +    description:
->>>> +      Indicates whether unused RPM clocks can be shut down with the common
->>>> +      unused clock cleanup. Requires a functional interconnect driver.
->>>
->>> I don't think this should be QCom specific. Come up with something 
->>> common (which will probably have some debate). 
->> Generally the opposite (ignoring unused clocks during the cleanup) is
->> the thing you need to opt into.
->>
->> I can however see how (especially with the focus on not breaking things
->> for older DTs) somebody else may also decide to only allow them to be
->> cleaned up conditionally (by marking the clocks that were enabled earlier
->> as enabled in Linux OR not addding clk.flags |= CLK_IGNORE_UNUSED) as we
->> do here.
->>
->> Stephen, Rob, would `clk-disable-unused` be a fitting generic property
->> name for that? Should we also think about `clk-ignore-unused` as a
->> clock-controller-specific alternative to the CCF-wide clk_ignore_unused
->> cmdline?
->>
-> 
-> There are multiple threads on the list about disabling unused clks.
-> Moving the decision to disable unused clks to a DT property is yet
-> another approach. I'd rather not do that, because it really isn't
-> describing the hardware configuration. If anything, I'd expect the
-> property to be describing which clks are enabled by the firmware and
-> then leave the decision to disable them because they're unused up to the
-> software.
-After some more thinking, I realized that this could be made opt-in
-simply with driver_data..
+The RPM MSG ram includes per-subsystem low-power mode entry/exit/
+residence/etc. statistics which are very useful for trying to debug
+what I'd call "SoC insomnia", or IOW the plaftorm refusing to drop
+the voltage rails to a minimum and gate the non-critical clocks.
 
-WDYT?
+This series adds a very short and simple driver to query that data
+and expose it through debugfs.
 
-Konrad
+The base used for writing this driver is:
+https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.14.r1/drivers/soc/qcom/rpm_master_stat.c
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: soc: qcom: Add RPM Master stats
+      soc: qcom: Introduce RPM master stats driver
+
+ .../bindings/soc/qcom/rpm-master-stats.yaml        |  53 +++++++
+ drivers/soc/qcom/Kconfig                           |  11 ++
+ drivers/soc/qcom/Makefile                          |   1 +
+ drivers/soc/qcom/rpm_master_stats.c                | 160 +++++++++++++++++++++
+ 4 files changed, 225 insertions(+)
+---
+base-commit: e134c93f788fb93fd6a3ec3af9af850a2048c7e6
+change-id: 20230405-topic-master_stats-ba201a9af93d
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
