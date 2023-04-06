@@ -2,43 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC016DA4D6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 23:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7E2A6DA4EA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 23:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231924AbjDFVmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 17:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35390 "EHLO
+        id S231320AbjDFVxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 17:53:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238076AbjDFVl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 17:41:59 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876618A7F;
-        Thu,  6 Apr 2023 14:41:58 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pkXMi-0004sS-1K;
-        Thu, 06 Apr 2023 23:41:56 +0200
-Date:   Thu, 6 Apr 2023 22:41:51 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-i2c@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229941AbjDFVxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 17:53:43 -0400
+Received: from mx3.securetransport.de (mx3.securetransport.de [116.203.31.6])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882AAA5FC;
+        Thu,  6 Apr 2023 14:53:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1680817971;
+        bh=f0pUhAJWTLi8vSi9ZobW2xHA14GSuVsrQ9QrsonYrqg=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=INWTRWecbrNYN1h39h2BpE2FJjMvDgcpKlq2WKwJRdckGGMd1vAM0urH1u/7J9HhB
+         +UsFlNbHnKJ/g7+EIGtKtVLJs50Yh85LWPVXdI/6K9lXQLtABCN3G1DjSat/9HacsE
+         95tOCP4MStHoRYG0MFKFfgn5pUa9Mvy6aqAYPtEagbgT/dP40BQcwtYU3YYgBu8TI+
+         3izXQZuLgZYCFpQoPYtMRxTrxUrIggpOGdakUPnR3uo8GJiZ1MhB0Xg01lW5Crrkgu
+         G+PjaCrv6/JrdAtXjrv/WbLQn2dloa4pZILJYEzGkICzBfZJaX2eoFtJdjc3ZvV7FX
+         ajBb2q5iMhj4g==
+X-secureTransport-forwarded: yes
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Complaints-To: abuse@cubewerk.de
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH 2/2] dt-bindings: i2c: i2c-mt65xx: add binding for MT7981 SoC
-Message-ID: <31957e15116027afd154f0d91e799028e2400bb2.1680817105.git.daniel@makrotopia.org>
-References: <cover.1680817105.git.daniel@makrotopia.org>
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kernel <kernel@dh-electronics.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Thread-Topic: [PATCH V2 3/3] ARM: dts: imx6ull-dhcor: Add Marantec maveo box
+Thread-Index: AQHZaJ93At1GnP2el0yoagNBg+3G/K8eWhSAgAAwTiD//+YUAIAAON0Q///zRYCAADW4IA==
+Date:   Thu, 6 Apr 2023 21:52:41 +0000
+Message-ID: <9224dcdbd62641cfb0ee691827d1b57d@dh-electronics.com>
+References: <20230406154900.6423-1-cniedermaier@dh-electronics.com>
+ <20230406154900.6423-3-cniedermaier@dh-electronics.com>
+ <5478133e-7772-1db9-3473-1ec86fa2aae2@linaro.org>
+ <a7fcfe695623491da96639079eb14c8f@dh-electronics.com>
+ <f6c8586f-a5d1-875f-b2c0-7871112cf1b1@linaro.org>
+ <ff95314402a349a5a2998c1b5e2b13a2@dh-electronics.com>
+ <8353399f-c6de-8da7-78f1-d6a558c462d0@kernel.org>
+In-Reply-To: <8353399f-c6de-8da7-78f1-d6a558c462d0@kernel.org>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1680817105.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,26 +67,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for the I2C controllers found in the
-MediaTek MT7981 SoC.
-
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-index 685da4df688d6..fda0467cdd954 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-@@ -23,6 +23,7 @@ properties:
-       - const: mediatek,mt6577-i2c
-       - const: mediatek,mt6589-i2c
-       - const: mediatek,mt7622-i2c
-+      - const: mediatek,mt7981-i2c
-       - const: mediatek,mt7986-i2c
-       - const: mediatek,mt8168-i2c
-       - const: mediatek,mt8173-i2c
--- 
-2.40.0
-
+RnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSBbbWFpbHRvOmtyemtAa2VybmVsLm9yZ10NClNlbnQ6
+IFRodXJzZGF5LCBBcHJpbCA2LCAyMDIzIDEwOjM4IFBNDQo+IE9uIDA2LzA0LzIwMjMgMjE6NTcs
+IENocmlzdG9waCBOaWVkZXJtYWllciB3cm90ZToNCj4+Pj4+PiArICAgICBhbGlhc2VzIHsNCj4+
+Pj4+PiArICAgICAgICAgICAgIC9kZWxldGUtcHJvcGVydHkvIG1tYzA7IC8qIEF2b2lkIGRvdWJs
+ZSBkZWZpbml0aW9ucyAqLw0KPj4+Pj4NCj4+Pj4+IEkgZG9uJ3QgdW5kZXJzdGFuZCBpdC4gV2hh
+dCBpcyAiZG91YmxlIGRlZmluaXRpb24iIG9mIGFsaWFzZXM/DQo+Pj4+DQo+Pj4+IE90aGVyd2lz
+ZSBJIGVuZCB1cCBsaWtlIHRoaXM6DQo+Pj4+IG1tYzAgPSAmdXNkaGMxOw0KPj4+PiBtbWMxID0g
+JnVzZGhjMjsNCj4+Pj4gbW1jMiA9ICZ1c2RoYzI7DQo+Pj4+DQo+Pj4+IElzICJFbnN1cmUgdW5p
+cXVlIGFsbG9jYXRpb24iIGEgYmV0dGVyIGNvbW1lbnQgaGVyZT8NCj4+Pj4NCj4+Pj4+DQo+Pj4+
+Pj4gKyAgICAgICAgICAgICAvZGVsZXRlLXByb3BlcnR5LyBtbWMxOw0KPj4+Pj4+ICsgICAgICAg
+ICAgICAgbW1jMiA9ICZ1c2RoYzI7IC8qIGVNTUMgc2hvdWxkIGJlIG1tYzIgKi8NCj4+Pj4+DQo+
+Pj4+PiBXaHk/IEhvdyBpcyB0aGlzIGxhYmVsZWQgb24gdGhlIGJvYXJkIChwaHlzaWNhbGx5IG9y
+IG9uIHNjaGVtYXRpY3MpPyBJZg0KPj4+Pj4geW91IGFuc3dlciBoZXJlICJmb3IgYm9vdGluZyIs
+IHRoZW4gdGhlIGFuc3dlciBpcyBOQUsuIERvbid0IGFkZA0KPj4+Pj4gc29mdHdhcmUgcG9saWNp
+ZXMgdG8gRGV2aWNldHJlZS4NCj4+Pj4NCj4+Pj4gVGhlIG5hbWUgaW4gdGhlIHNjaGVtYXRpY3Mg
+aXMgIlNEMiIuDQo+Pj4NCj4+PiBBbnN3ZXJpbmcgYWxzbyB0byBhYm92ZSAtIHRoZW4gbGlrZWx5
+IHRoZSBhbGlhc2VzIHNob3VsZCBiZSBkcm9wcGVkIGZyb20NCj4+PiBTb00uIEkgZG91YnQgdGhh
+dCBTb20gY2FsbHMgaXQgU0QxIGFuZCB5b3VyIGJvYXJkIFNEMi4uLg0KPj4NCj4+IE1heWJlIEkg
+ZG9uJ3QgcXVpdGUgZ2V0IGl0LCBidXQgdGhlIGhhcmR3YXJlIHN0YXJ0cyBjb3VudGluZyBhdCAx
+LiBUaGUgZmlyc3QNCj4+IGludGVyZmFjZSBpcyBTRDEgYW5kIGl0IGlzIHVzZWQgYXMgV2lGaS4g
+VGhlIHNlY29uZCBvbmUgaXMgU0QyIHdoaWNoIGlzIHRoZQ0KPj4gZU1NQy4gU28gd2l0aCB0aGlz
+IGFsaWFzZXMgaXQgc2hvdWxkIG1hdGNoIFNEMiB0byBtbWMyLg0KPj4gRG8geW91IHdhbnQgbWUg
+dG8gZGVsZXRlIHRoZSBhbGlhc2VzIGluIHRoZSBpbmNsdWRlIGZpbGUgImlteDZ1bGwtZGhjb3It
+c29tLmR0c2kiDQo+IA0KPiBZZXMsIGJlY2F1c2UgaXQgaW5jb3JyZWN0bHkgY2FsbHMgZU1NQyBh
+cyBtbWMxLiBZb3Ugc2FpZCBpdCBpcyBTRDIsIHJpZ2h0Pw0KDQpZZXMuIEkgd2lsbCBkbyB0aGlz
+IGluIHZlcnNpb24gMy4NCg0KDQpUaGFua3MgYW5kIGJlc3QgcmVnYXJkcw0KQ2hyaXN0b3BoDQo=
