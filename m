@@ -2,92 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E42B46D9CDB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6454C6D9CEE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 18:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239625AbjDFP7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 11:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34928 "EHLO
+        id S229502AbjDFQBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 12:01:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239575AbjDFP7E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 11:59:04 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9A09755;
-        Thu,  6 Apr 2023 08:59:03 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id w133so29403411oib.1;
-        Thu, 06 Apr 2023 08:59:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680796743; x=1683388743;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Oh7h3jMxLokPLKNPs7kQpXzC9xXuYjOjp2sgIXgC2jU=;
-        b=rvbeNofsvZDZLb0ltwxN+lET8hbSlB+dPnBYG8RF4o3SIKPepcCgQWCkFXSvQ+7+C2
-         KdY3O3XYvojYgDgMsQBpXFUkuELNo4seklJgh3neIcijPhREbUr7i1G0t+how6mYuyDT
-         6GqrM6GLicc1r0oSVxV2Yk2IgGAaG4s6IUrNMBhQLlJEc+B7AtNzSJXAyVPxKkXOrFSc
-         XRv4qLk5F4e93hP2u9H56MgBR0dGuT0BpKbkneYcEpB2kqNb/hp5IYp1x8+emHWIqw+v
-         uLaCXwFE2C7DoyMoI3pjXd2HbvnnCqynfvnXhiQxWtz14h95QXJHp5qgthLBEN5nOH/d
-         jdUQ==
-X-Gm-Message-State: AAQBX9ew6QVWoQhBBfKWksjieZuE9lEL0NymtNcHfmt7RNWYyv6aKwUg
-        fT+IxTefBP8+VXkrLnRYrHwHFIYzpg==
-X-Google-Smtp-Source: AKy350arKIELgvEJntEgvZm0kaiU+d+z/2nRm9Qv5wpmftvqcCoU9kxkvuhMhE6BIYSSc7apiG4Jew==
-X-Received: by 2002:a05:6808:5:b0:383:e1f3:fef6 with SMTP id u5-20020a056808000500b00383e1f3fef6mr2910633oic.18.1680796743189;
-        Thu, 06 Apr 2023 08:59:03 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z7-20020aca6707000000b0038755008179sm780181oix.26.2023.04.06.08.59.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 08:59:02 -0700 (PDT)
-Received: (nullmailer pid 3159384 invoked by uid 1000);
-        Thu, 06 Apr 2023 15:59:02 -0000
-Date:   Thu, 6 Apr 2023 10:59:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Patrick Lai <quic_plai@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rao Mandadapu <quic_srivasam@quicinc.com>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S229775AbjDFQBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 12:01:36 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD43C93E5
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 09:01:34 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 14E7686020;
+        Thu,  6 Apr 2023 18:01:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1680796892;
+        bh=HJXahDN18qgrwvQazJFLHlIx52MZLTTmbp6zm77TZVg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=CmC8XR7iomxuKHrPieNcqnPltspH/vjCLzi9Gl2i3EnehrOwQvDNxMzgqm5tdEvv/
+         uVvUbtPztGkzJG+N3YaphKeSo2uxwybuH/NljgmFW4pTfM07wccg0G7TxKshZeRJ1v
+         49Il0FlBHQ8KkUGH8nsHttG2oQnlkeK2bDkwDeGcFlJ0Knp52QXeQ8c5DjxtKfMm+E
+         g9a0RhvCCfrIh8xir5iSWnR69VujhpEGiFYrtgXv02tj5pqOOxS6pPQISpLtozLAHe
+         4QdiiWHZEw2RJ0pJ2KgExiFWqbm41dqPZOa8ObGPirBb3w1uA2lJE2JmDeZkxojLCp
+         yG+iDVigHCPNA==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: soundwire: qcom: add 16-bit sample
- interval
-Message-ID: <168079674130.3159330.8680786687198930722.robh@kernel.org>
-References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
- <20230403132503.62090-3-krzysztof.kozlowski@linaro.org>
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: arm: Add Data Modul i.MX8M Plus eDM SBC
+Date:   Thu,  6 Apr 2023 18:01:15 +0200
+Message-Id: <20230406160116.10071-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230403132503.62090-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DT compatible for Data Modul i.MX8M Plus eDM SBC board.
+This is an evaluation board for various custom display units.
 
-On Mon, 03 Apr 2023 15:24:58 +0200, Krzysztof Kozlowski wrote:
-> The port sample interval was always 16-bit, split into low and high
-> bytes.  This split was unnecessary, although harmless for older devices
-> because all of them used only lower byte (so values < 0xff).  With
-> support for Soundwire controller on Qualcomm SM8550 and its devices,
-> both bytes will be used, thus add a new 'qcom,ports-sinterval' property
-> to allow 16-bit sample intervals.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/soundwire/qcom,soundwire.yaml    | 22 +++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Li Yang <leoyang.li@nxp.com>
+Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>
+Cc: Max Krummenacher <max.krummenacher@toradex.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+V2: Add AB from Krzysztof
+V3: No change
+V4: Rebase on next-20230127
+V5: Rebase on next-20230317
+V6: Rebase on next-20230406
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index b175f2b1bd300..e956c2a56c3e9 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1007,6 +1007,7 @@ properties:
+         items:
+           - enum:
+               - beacon,imx8mp-beacon-kit  # i.MX8MP Beacon Development Kit
++              - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
+               - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
+               - polyhex,imx8mp-debix      # Polyhex Debix boards
+-- 
+2.39.2
 
