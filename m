@@ -2,140 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80ADF6D91ED
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCCB6D9201
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:51:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236285AbjDFIsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 04:48:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34532 "EHLO
+        id S236293AbjDFIv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 04:51:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233235AbjDFIsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:48:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677E176B0
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:48:23 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pkLH4-0001xA-6k; Thu, 06 Apr 2023 10:47:18 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pkLGz-0004Sj-1e; Thu, 06 Apr 2023 10:47:13 +0200
-Date:   Thu, 6 Apr 2023 10:47:13 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Radu Pirea <radu-nicolae.pirea@oss.nxp.com>,
-        Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-        Keyur Chudgar <keyur@os.amperecomputing.com>,
-        Quan Nguyen <quan@os.amperecomputing.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 06/12] net: phy: add phy_device_atomic_register helper
-Message-ID: <20230406084713.qcnuutobu54pn3ht@pengutronix.de>
-References: <20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de>
- <20230405-net-next-topic-net-phy-reset-v1-6-7e5329f08002@pengutronix.de>
- <ad0b0d90-04bf-457c-9bdf-a747d66871b5@lunn.ch>
- <20230405152225.tu3wmbcvchuugs5u@pengutronix.de>
- <a5a4e735-7b24-4933-b431-f36305689a79@lunn.ch>
- <20230405194353.pwuk7e6rxnha3uqi@pengutronix.de>
- <34e22343-fb11-4a85-bade-492fcbcfb436@lunn.ch>
+        with ESMTP id S235895AbjDFIvr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:51:47 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9629F526C
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:51:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1680771060;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=W1Bdx/wsQfRAwIInAabAl9Jx8i29x6dlAdIxMNIdY9w=;
+        b=D+bJgOZCRTg/iJX67fgU+KIIdNrNmFGhgdV9v/Z19n9jvvrZw0Pb0YhbIEn+VggqMc8NGg
+        VjcVpa+fn+AxNzWaxMmfop12qLNCbV3cqF4z39cUxyCWcdFIFFHvCeu/9vwVllNFmPHhed
+        O3r/H8wk8IiOOhPS44ubUNskewfrl0c=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-97-wmozfyeQPaG_Qcls2jdeKQ-1; Thu, 06 Apr 2023 04:50:59 -0400
+X-MC-Unique: wmozfyeQPaG_Qcls2jdeKQ-1
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-3e1522cf031so13664721cf.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 01:50:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680771059;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W1Bdx/wsQfRAwIInAabAl9Jx8i29x6dlAdIxMNIdY9w=;
+        b=ygsRqlt0e1b8SSjdL0uP5cS9ch05MOkrnBudAvt7r9IOSay0wjLCKWtqDZ3YSt/njf
+         UIlPMYKa9uf1CCpRItbUoWkER8CEpYokVSBpZjJmaJ6F4vRZ5LGFN1iqRH3sqpOgWirx
+         ZJ/AAfUdCLH65Ygya0vMLb+s/ocKAITig9tjI7OdePay4UrCknTufc4XUHvy2svzpQM/
+         iGp07aPiSj4JwPXY6aRwjNjCgWN7n+BDJALobf2+mTngqx+bS69MgxEKNTjSeZ+0VRFw
+         9BMIUPNyTAGXKQAB+iH1+i2hZNI+SoW6oWEf9ZmL4ZKLcdjri/5bQXdZYAADOostMSKO
+         QrYQ==
+X-Gm-Message-State: AAQBX9eZwEH4n+/Jma8lFj1kpnSk//+x7EguGutPfsIDNszBLOU4YVxt
+        tjdU56LympbMaLfRhOUC6LB98lYqL3TSOglku1DdA0f2zUs7z4cszwO/mlXU6ji/iohpeWNjau/
+        omFQy6MH1lTlKHWBQ3Pt6ng==
+X-Received: by 2002:a05:622a:1a24:b0:3e6:707e:d3c2 with SMTP id f36-20020a05622a1a2400b003e6707ed3c2mr10814510qtb.0.1680771059058;
+        Thu, 06 Apr 2023 01:50:59 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bo5VqIhFeRZZcRwVCtgs8cYkmbupz1mYsttbY1gkrcv9BmYYkg1QFtxoLmxwuXn4DxKkvkSg==
+X-Received: by 2002:a05:622a:1a24:b0:3e6:707e:d3c2 with SMTP id f36-20020a05622a1a2400b003e6707ed3c2mr10814489qtb.0.1680771058733;
+        Thu, 06 Apr 2023 01:50:58 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-227-151.dyn.eolo.it. [146.241.227.151])
+        by smtp.gmail.com with ESMTPSA id p15-20020a37420f000000b00749fc742ab4sm327473qka.7.2023.04.06.01.50.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 01:50:58 -0700 (PDT)
+Message-ID: <17cb566ef79342f77b50ad999e9fa910be4cb27f.camel@redhat.com>
+Subject: Re: [PATCH v2 net-next 06/10] dt-bindings: soc: mediatek: move ilm
+ in a dedicated dts node
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
+        nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
+        Mark-MC.Lee@mediatek.com, lorenzo.bianconi@redhat.com,
+        daniel@makrotopia.org, devicetree@vger.kernel.org,
+        Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Date:   Thu, 06 Apr 2023 10:50:54 +0200
+In-Reply-To: <18109725ba14d2fe5c00e627b064b38b5c8f2223.1680268101.git.lorenzo@kernel.org>
+References: <cover.1680268101.git.lorenzo@kernel.org>
+         <18109725ba14d2fe5c00e627b064b38b5c8f2223.1680268101.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <34e22343-fb11-4a85-bade-492fcbcfb436@lunn.ch>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-04-05, Andrew Lunn wrote:
-> > Currently we have one API which creates/allocates the 'struct
-> > phy_device' and intialize the state which is:
-> >    - phy_device_create()
-> > 
-> > This function requests a driver based on the phy_id/c45_ids. The ID have
-> > to come from somewhere if autodection is used. For autodetection case
-> >    - get_phy_device()
-> > 
-> > is called. This function try to access the phy without taken possible
-> > hardware dependencies into account. These dependecies can be reset-lines
-> > (in my case), clocks, supplies, ...
-> > 
-> > For taking fwnode (and possible dependencies) into account fwnode_mdio.c
-> > was written which provides two helpers:
-> >    - fwnode_mdiobus_register_phy()
-> >    - fwnode_mdiobus_phy_device_register().
-> > 
-> > The of_mdio.c and of_mdiobus_register_phy() is just a wrapper around
-> > fwnode_mdiobus_register_phy().
-> 
-> It seems to me that the real problem is that mdio_device_reset() takes
-> an mdio_device. mdiobus_register_gpiod() and mdiobus_register_reset()
-> also take an mdio_device. These are the functions you want to call
-> before calling of_mdiobus_register_phy() in __of_mdiobus_register() to
-> ensure the PHY is out of reset. But you don't have an mdio_device yet.
+On Fri, 2023-03-31 at 15:12 +0200, Lorenzo Bianconi wrote:
+> Since the ilm memory region is not part of the MT7986 RAM SoC, move ilm
+> in a deidicated syscon node.
+>=20
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../arm/mediatek/mediatek,mt7622-wed.yaml     | 14 +++---
+>  .../soc/mediatek/mediatek,mt7986-wo-ilm.yaml  | 45 +++++++++++++++++++
+>  2 files changed, 53 insertions(+), 6 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediat=
+ek,mt7986-wo-ilm.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt76=
+22-wed.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt762=
+2-wed.yaml
+> index 7f6638d43854..e63fb22447c6 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.=
+yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.=
+yaml
+> @@ -32,14 +32,12 @@ properties:
+>    memory-region:
+>      items:
+>        - description: firmware EMI region
+> -      - description: firmware ILM region
+>        - description: firmware DLM region
+>        - description: firmware CPU DATA region
+> =20
+>    memory-region-names:
+>      items:
+>        - const: wo-emi
+> -      - const: wo-ilm
+>        - const: wo-dlm
+>        - const: wo-data
+> =20
+> @@ -51,6 +49,10 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description: mediatek wed-wo cpuboot controller interface.
+> =20
+> +  mediatek,wo-ilm:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: mediatek wed-wo ilm interface.
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -63,6 +65,7 @@ allOf:
+>          memory-region: false
+>          mediatek,wo-ccif: false
+>          mediatek,wo-cpuboot: false
+> +        mediatek,wo-ilm: false
+> =20
+>  required:
+>    - compatible
+> @@ -97,11 +100,10 @@ examples:
+>          reg =3D <0 0x15010000 0 0x1000>;
+>          interrupts =3D <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> =20
+> -        memory-region =3D <&wo_emi>, <&wo_ilm>, <&wo_dlm>,
+> -                        <&wo_data>;
+> -        memory-region-names =3D "wo-emi", "wo-ilm", "wo-dlm",
+> -                              "wo-data";
+> +        memory-region =3D <&wo_emi>, <&wo_dlm>, <&wo_data>;
+> +        memory-region-names =3D "wo-emi", "wo-dlm", "wo-data";
+>          mediatek,wo-ccif =3D <&wo_ccif0>;
+>          mediatek,wo-cpuboot =3D <&wo_cpuboot>;
+> +        mediatek,wo-ilm =3D <&wo_ilm>;
+>        };
+>      };
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt79=
+86-wo-ilm.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt=
+7986-wo-ilm.yaml
+> new file mode 100644
+> index 000000000000..2a3775cd941e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-i=
+lm.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/mediatek/mediatek,mt7986-wo-ilm.y=
+aml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Wireless Ethernet Dispatch (WED) WO ILM firmware interfa=
+ce for MT7986
+> +
+> +maintainers:
+> +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> +  - Felix Fietkau <nbd@nbd.name>
+> +
+> +description:
+> +  The MediaTek wo-ilm (Information Lifecycle Management) provides a conf=
+iguration
+> +  interface for WiFi critical data used by WED WO firmware. WED WO contr=
+oller is
+> +  used to perform offload rx packet processing (e.g. 802.11 aggregation =
+packet
+> +  reordering or rx header translation) on MT7986 soc.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt7986-wo-ilm
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +
+> +      syscon@151e0000 {
+> +        compatible =3D "mediatek,mt7986-wo-ilm", "syscon";
+> +        reg =3D <0 0x151e0000 0 0x8000>;
+> +      };
+> +    };
 
-Of course, this was the problem as well and therefore I did the split in
-the first two patches, to differentiate between allocation and init.
+Hi Rob,
 
-> So i think a better solution is to refactor this code. Move the
-> resources into a structure of their own, and make that a member of
-> mdio_device.
+it's not clear to me if this version and Lorenzo's replies on the
+previous one address your doubts here. Do you have any further
+comments?
 
-Sorry I can't follow you here, I did the refactoring already to
-differentiate between phy_device_alloc() and phy_device_init(). The
-parse and registration happen in between, like you descriped below. I
-didn't changed/touched the mdio_device and phy_device structs since
-those structs are very open and can be adapted by every driver.
+Thanks,
 
-> You can create a stack version of this resource structure
-> in __of_mdiobus_register(), parse DT to fill it out by calling
-> mdiobus_register_gpiod() and mdiobus_register_reset() taking this new
-> structure, take it out of reset by calling mdio_device_reset(), and
-> then call of_mdiobus_register_phy(). If a PHY is found, copy the
-> values in the resulting mdio_device. If not, release the resources.
+Paolo
 
-It is not just the reset, my approach would be the ground work for
-adding support of other resources to, which are not handled yet. e.g.
-phy-supply, clocks, pwdn-lines, ... With my approach it is far easier of
-adding this 
-
-> Doing it like this means there is no API change.
-
-Why is it that important? All users of the current fwnode API are
-changed and even better, they are replaced in a 2:1 ratio. The new API
-is the repaired version of the fwnode API which is already used by ACPI
-and OF to register a phy_device. For all non-ACPI/OF users the new API
-provides a way to allocate/identify and register a new phy within a
-single call.
-
-Regards,
-  Marco
