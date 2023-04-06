@@ -2,79 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD1556D9180
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2143F6D9182
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 10:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235374AbjDFI2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 04:28:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43478 "EHLO
+        id S236103AbjDFI2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 04:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235716AbjDFI2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:28:00 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919B118F;
-        Thu,  6 Apr 2023 01:27:58 -0700 (PDT)
-Received: from [192.168.1.137] (unknown [213.194.153.37])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: rcn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DA0E466031BB;
-        Thu,  6 Apr 2023 09:27:56 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680769677;
-        bh=1nBklH4kyqbA31Jsg1oOEp2EERFF+Vrfj/F3mYi+aao=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=SruWHcSsbj2C2KnJCzfZlaR0GuuxfeXygXfWBpd9MBjiOmLtj6I620IIvivr6uaII
-         gMvxevXHYgyOWJsWq4jV7/Khiu1LlbCpgQzY79qtHaPOtaT7AeEOgjMXwEaSdlY6Gy
-         1/cmH67DUFfbzERz3UWOAmuVN4N9GbxHIob+e1VCujylS3HQPOFRFR+Pqxtz+Wq6vc
-         +FxYWsdvJC+/IXVt6qnHqmwArtciCpZ0aGaBmZLNlo9qA/pnDo8tIcwcIwSthWtWVJ
-         qw91F2H8rvzbFaYDJbZP18MpM3mqQOonkFtPLLoSy7EsEbFpIi9kMRkIhrm149MNPN
-         mAUdKmf4qpfpw==
-Message-ID: <44556911-e56e-6171-07dd-05cc0e30c732@collabora.com>
-Date:   Thu, 6 Apr 2023 10:27:51 +0200
+        with ESMTP id S236127AbjDFI2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 04:28:10 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ECDD61BF
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 01:28:07 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id cn12so147447553edb.4
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 01:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680769685;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I7lRsFf1L4fQnEzaLtv1MoTYQNVZVAYHc8tBsB/TvO4=;
+        b=anCP01luFaDe/Jo9JpPc1+q4v3LHR2ILhcK572jKQfQXsNvmBrCEj6DwlfSnw6PmL1
+         ssFajYuwhXB9prFYXGt6GtMnh+K+To39qgruZl5UfU8V/1BeHynpoAKF7oDgwe5g68P5
+         k3KNCOw8pdZTvzuLL4bG7kGuCU0LSoqZe5hg0v3/PzPlaOHKBEfoKI1XYWSDmUx0127l
+         wDljBKLysSLOMNNqfcwYP/ML+ZHVCteLo6eJNsnO9g/1HF12UCiCcFHssVRwm0o4vwm3
+         wutGqGDdRgxBvsyIP3IIUpvWAoYYDO9CRj5py/f7gVcX7DD+PywkZWpOV9g6DyGqPqEF
+         1HFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680769685;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I7lRsFf1L4fQnEzaLtv1MoTYQNVZVAYHc8tBsB/TvO4=;
+        b=eEhwQXE504KkF28sfMFwguMqYmlwStDcV2+d6B6zUsIMtKxx8+mJLx66x1VcKKloFf
+         OkYdxZ3g39v2DMAxZ7eTPBD/6SdN5jKvXTFNmw1wvC1Bpdzt4sue7pYjWfUGSM+3Q6UH
+         WXjj2ogQTEP5Ga45btWDfSD0b8+CMsmZtecAjFJY1ML1z6N/vhyLEI3jlD83uH7zOZxc
+         WssSCCVCw1loCNS6hDOXLrkEQ9A7cbm/XNZW6irl/KXgu9X0I2CzwNT415XwpzsD+uQi
+         loEb4xlsMmFJrlotXSATnM2d9GFYDyo8VhmS/AX5SfKwYhlVmB/xYlEMu5+ECX3RL80G
+         5H8A==
+X-Gm-Message-State: AAQBX9eFC7aaJ8YY0EYBITxnh/PuTX9YgtYgtPEMVgyDnuKokHAjAsvf
+        spNPC+/6umiwBKphyDlfyW3GcQ==
+X-Google-Smtp-Source: AKy350YLVffCoF2DKktsXZ/ZRG76zI6+Z/r/Kp9Idluq6+XCLkBjUWzD/AXwoB/SDw9rBljyBzOcHA==
+X-Received: by 2002:a17:906:524e:b0:93b:943f:6261 with SMTP id y14-20020a170906524e00b0093b943f6261mr5057621ejm.74.1680769685528;
+        Thu, 06 Apr 2023 01:28:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed? ([2a02:810d:15c0:828:49e6:bb8c:a05b:c4ed])
+        by smtp.gmail.com with ESMTPSA id jw12-20020a17090776ac00b00946c1068b14sm479754ejc.120.2023.04.06.01.28.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 01:28:05 -0700 (PDT)
+Message-ID: <d7e795b8-6c36-70c5-73e4-ae115cac32a9@linaro.org>
+Date:   Thu, 6 Apr 2023 10:28:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/3] ARM: dts: meson: Fix the UART compatible strings
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: dlg,da9063: document voltage
+ monitoring
 Content-Language: en-US
-To:     Thorsten Leemhuis <regressions@leemhuis.info>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211227180026.4068352-1-martin.blumenstingl@googlemail.com>
- <20211227180026.4068352-2-martin.blumenstingl@googlemail.com>
- <20230405132900.ci35xji3xbb3igar@rcn-XPS-13-9305>
- <fdffc009-47cf-e88d-5b9e-d6301f7f73f2@leemhuis.info>
-From:   =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
-In-Reply-To: <fdffc009-47cf-e88d-5b9e-d6301f7f73f2@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Benjamin Bara <bbara93@gmail.com>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steve Twiss <stwiss.opensource@diasemi.com>
+Cc:     DLG-Adam.Thomson.Opensource@dm.renesas.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Benjamin Bara <benjamin.bara@skidata.com>
+References: <20230403-da9063-disable-unused-v3-0-cc4dc698864c@skidata.com>
+ <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 05/04/2023 19:14, Benjamin Bara wrote:
+> From: Benjamin Bara <benjamin.bara@skidata.com>
+> 
+> Document that the da9063 only provides under- *and* over-voltage
+> monitoring in one, and therefore requires both to be configured with the
+> same severity and value. Add an example for clarification.
+> 
+> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
 
-On 5/4/23 19:14, Thorsten Leemhuis wrote:
-> Wait, what? A patch (5225e1b87432 ("ARM: dts: meson: Fix the UART
-> compatible strings")) that was merged for v5.17-rc4 and is not in the
-> list of patches that were in 4.14.312-rc1
-> (https://lore.kernel.org/all/20230403140351.636471867@linuxfoundation.org/
-> ) is meant to suddenly cause this? How is this possible? Am I totally on
-> the wrong track here and misunderstanding something, or is this a
-> bisection that went horribly sideways?
+This is a friendly reminder during the review process.
 
-I didn't say this was introduced in 4.14.312-rc1, this has been failing
-for a long time and it was merged for 4.14.267: https://lwn.net/Articles/884977/
+It looks like you received a tag and forgot to add it.
 
-Sorry I wasn't clear before.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
 
-Regards,
-Ricardo
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
+Best regards,
+Krzysztof
+
