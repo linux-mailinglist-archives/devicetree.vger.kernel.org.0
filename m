@@ -2,186 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A296F6D9B4D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 16:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2604E6D9B74
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 17:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239047AbjDFOyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 10:54:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33730 "EHLO
+        id S239224AbjDFPAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 11:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237173AbjDFOyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 10:54:24 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4C5AD0F;
-        Thu,  6 Apr 2023 07:53:45 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 336BRajb021527;
-        Thu, 6 Apr 2023 14:53:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=144/9a5w4d6LMS2VG/A2VeehwMyub5orrM6ryH5vSzA=;
- b=J+K+Ze8PA5u+MJC7HXuh+dxN1IhnHTo9csUarNPAgwgxcG4NRbUaSsT8c6WCw1KgLKI0
- 4leEgn9e9jsEwcVdCPWmCabfHk6Gi6apAPxTXrGIPKGzglD5xltTjOgww10iUsIzPTUB
- QPWbYMXgvLaAHr33EJwj16fVlJ4k9RlEv49bYTPFFCl/6lPjC6f8HHs2QY3/lh73pBhF
- TedWSBwfVVE5WD8okBHYI87MofwROQcuGn6shIbRAXhLPcTkSCMjpYdN1UZmXSOhz/Y7
- HIfljQQlvMobJ5/5WVYbeoLWNnOyQeEPQCeIFQmXj6orvabXQ/PbeUCzxaasioVtzAR5 vA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3psnp99f19-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Apr 2023 14:53:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 336ErTmH006376
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Apr 2023 14:53:29 GMT
-Received: from [10.242.7.141] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 6 Apr 2023
- 07:53:24 -0700
-Message-ID: <0b182a36-0254-6720-4a35-f9e617c12797@quicinc.com>
-Date:   Thu, 6 Apr 2023 20:23:21 +0530
+        with ESMTP id S239360AbjDFO7t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 10:59:49 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5F79EE1;
+        Thu,  6 Apr 2023 07:59:24 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id l18so29235947oic.13;
+        Thu, 06 Apr 2023 07:59:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680793158;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wcyQ9PVr/q3d+Z2b5CyPmPNAX1Bn6Htbl2OP4BAR1uE=;
+        b=xtIPrB9mnPkv01wG6BfT/mBnevWeJrS1Gci3xHrEVKnYznV5VRRFa3iIbpDKvg/7pY
+         MqlmcEAShgk/ozYFQ4C1L5r+lKQC1QE+tzfVsHVR3TvPG6mClO6CTOtErvvEiKA6pqcv
+         pBoYMeY6e/7k4JxxtfaEtJjdXgty2TuSFty5xb/P2Kcpe4hPpRAme2cHkd/nhsfhgRM/
+         wl/JLBW4BVyoEF69U2xQbLJuzgM3P5l+NrPjznREDxL9tJ3wx5OE9+L6DBxyrfnTwjZX
+         3YMXtZ5oucR3RqlWEgIH8eMLBG/s+L6rNKrtyKU24+9dzasMZb+DCopaQG5iiFI/fxKs
+         Q5kA==
+X-Gm-Message-State: AAQBX9fiNTETMRNi1mAhNtEnyZygrewjztiiOci7sr+G3VcI64oHaQGT
+        keAhXgZtLHtwFBx7+5W1Vg==
+X-Google-Smtp-Source: AKy350bjhoej/GkPRCQguDVc7FGMvBb8pRji3Y3UcdAY1y3ZiLemp4BMpemZ7xkxLgitjCt5O7uYJQ==
+X-Received: by 2002:a05:6808:f12:b0:389:122c:ad2c with SMTP id m18-20020a0568080f1200b00389122cad2cmr5138452oiw.27.1680793157817;
+        Thu, 06 Apr 2023 07:59:17 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 17-20020aca1211000000b0038b862bc35bsm401800ois.8.2023.04.06.07.59.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Apr 2023 07:59:17 -0700 (PDT)
+Received: (nullmailer pid 3082000 invoked by uid 1000);
+        Thu, 06 Apr 2023 14:59:16 -0000
+Date:   Thu, 6 Apr 2023 09:59:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Gow <davidgow@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        kunit-dev@googlegroups.com, Maxime Ripard <maxime@cerno.tech>
+Subject: Re: [PATCH v3 05/11] of: Add a KUnit test for overlays and test
+ managed APIs
+Message-ID: <20230406145916.GB3036886-robh@kernel.org>
+References: <20230327222159.3509818-1-sboyd@kernel.org>
+ <20230327222159.3509818-6-sboyd@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/2] spi: spi-qcom-qspi: Add DMA mode support
-Content-Language: en-CA
-To:     Mark Brown <broonie@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <quic_msavaliy@quicinc.com>, <dianders@chromium.org>,
-        <mka@chromium.org>, <swboyd@chromium.org>,
-        <quic_vtanuku@quicinc.com>
-References: <1680631400-28865-1-git-send-email-quic_vnivarth@quicinc.com>
- <1680631400-28865-3-git-send-email-quic_vnivarth@quicinc.com>
- <d784dab7-a1a6-4db7-aa13-e39e9904f342@sirena.org.uk>
-From:   Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-In-Reply-To: <d784dab7-a1a6-4db7-aa13-e39e9904f342@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FTB515xfMnRXxct9cx3YcW6-tO07eMVz
-X-Proofpoint-GUID: FTB515xfMnRXxct9cx3YcW6-tO07eMVz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-06_08,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=909
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 spamscore=0
- bulkscore=0 phishscore=0 suspectscore=0 impostorscore=0 mlxscore=0
- adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304060132
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327222159.3509818-6-sboyd@kernel.org>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All reviewers,
+On Mon, Mar 27, 2023 at 03:21:53PM -0700, Stephen Boyd wrote:
+> Test the KUnit test managed overlay APIs. Confirm that platform devices
+> are created and destroyed properly. This provides us confidence that the
+> test managed work correctly and can be relied upon to provide tests with
+> fake platform devices and device nodes via overlays compiled into the
+> kernel image.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  drivers/of/.kunitconfig            |   2 +
+>  drivers/of/Kconfig                 |  10 +++
+>  drivers/of/Makefile                |   1 +
+>  drivers/of/kunit_overlay_test.dtso |   9 +++
+>  drivers/of/overlay_test.c          | 110 +++++++++++++++++++++++++++++
+>  5 files changed, 132 insertions(+)
+>  create mode 100644 drivers/of/kunit_overlay_test.dtso
+>  create mode 100644 drivers/of/overlay_test.c
+> 
+> diff --git a/drivers/of/.kunitconfig b/drivers/of/.kunitconfig
+> index 5a8fee11978c..7d570cb922a1 100644
+> --- a/drivers/of/.kunitconfig
+> +++ b/drivers/of/.kunitconfig
+> @@ -1,3 +1,5 @@
+>  CONFIG_KUNIT=y
+>  CONFIG_OF=y
+>  CONFIG_OF_KUNIT_TEST=y
+> +CONFIG_OF_OVERLAY=y
+> +CONFIG_OF_OVERLAY_KUNIT_TEST=y
+> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> index 1b995cecf5be..5bdeba11268d 100644
+> --- a/drivers/of/Kconfig
+> +++ b/drivers/of/Kconfig
+> @@ -113,6 +113,16 @@ config OF_OVERLAY
+>  	  While this option is selected automatically when needed, you can
+>  	  enable it manually to improve device tree unit test coverage.
+>  
+> +config OF_OVERLAY_KUNIT_TEST
+> +	tristate "Device Tree overlay KUnit tests" if !KUNIT_ALL_TESTS
+> +	depends on OF_OVERLAY
+> +	depends on KUNIT
+> +	default KUNIT_ALL_TESTS
+> +	help
+> +	  This option builds KUnit unit tests for the device tree overlay code.
+> +
+> +	  If unsure, say N here, but this option is safe to enable.
+> +
+>  config OF_NUMA
+>  	bool
+>  
+> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> index c694f998b9f5..2ad60d5b87ac 100644
+> --- a/drivers/of/Makefile
+> +++ b/drivers/of/Makefile
+> @@ -21,5 +21,6 @@ endif
+>  
+>  obj-$(CONFIG_KUNIT) += of_kunit.o
+>  obj-$(CONFIG_OF_KUNIT_TEST) += of_test.o
+> +obj-$(CONFIG_OF_OVERLAY_KUNIT_TEST) += overlay_test.o kunit_overlay_test.dtbo.o
+>  
+>  obj-$(CONFIG_OF_UNITTEST) += unittest-data/
+> diff --git a/drivers/of/kunit_overlay_test.dtso b/drivers/of/kunit_overlay_test.dtso
+> new file mode 100644
+> index 000000000000..85f20b4b4c16
+> --- /dev/null
+> +++ b/drivers/of/kunit_overlay_test.dtso
+> @@ -0,0 +1,9 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&{/} {
+> +	kunit-test {
+> +		compatible = "test,empty";
+> +	};
+> +};
+> diff --git a/drivers/of/overlay_test.c b/drivers/of/overlay_test.c
+> new file mode 100644
+> index 000000000000..66b1dceea568
+> --- /dev/null
+> +++ b/drivers/of/overlay_test.c
+> @@ -0,0 +1,110 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * KUnit tests for device tree overlays
+> + */
+> +#include <linux/device/bus.h>
+> +#include <linux/kconfig.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include <kunit/of.h>
+> +#include <kunit/test.h>
+> +
+> +static const char * const kunit_node_name = "kunit-test";
+> +static const char * const kunit_compatible = "test,empty";
+> +
+> +/* Test that of_overlay_apply_kunit() adds a node to the live tree */
+> +static void of_overlay_apply_kunit_apply(struct kunit *test)
+> +{
+> +	struct device_node *np;
+> +
+> +	KUNIT_ASSERT_EQ(test, 0,
+> +			of_overlay_apply_kunit(test, kunit_overlay_test));
+> +
+> +	np = of_find_node_by_name(NULL, kunit_node_name);
+> +	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, np);
+> +	of_node_put(np);
+> +}
+> +
+> +static int bus_match_np(struct device *dev, const void *data)
+> +{
+> +	const struct device_node *np = data;
+> +
+> +	return np == dev->of_node;
+> +}
+> +
+> +/*
+> + * Test that of_overlay_apply_kunit() creates platform devices with the
+> + * expected device_node
+> + */
+> +static void of_overlay_apply_kunit_platform_device(struct kunit *test)
+> +{
+> +	struct device *dev;
+> +	struct device_node *np;
+> +
+> +	KUNIT_ASSERT_EQ(test, 0,
+> +			of_overlay_apply_kunit(test, kunit_overlay_test));
+> +
+> +	np = of_find_node_by_name(NULL, kunit_node_name);
+> +	of_node_put_kunit(test, np);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, np);
+> +
+> +	dev = bus_find_device(&platform_bus_type, NULL, np, bus_match_np);
 
-Thank you very much for your time and review...
+of_find_device_by_node()
 
-While I am addressing other comments, below are some responses...
+> +	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, dev);
+> +	put_device(dev);
+> +}
+> +
+> +static int of_overlay_bus_match_compatible(struct device *dev, const void *data)
+> +{
+> +	return of_device_is_compatible(dev->of_node, data);
+> +}
+> +
+> +/* Test that of_overlay_apply_kunit() cleans up after the test is finished */
+> +static void of_overlay_apply_kunit_cleanup(struct kunit *test)
+> +{
+> +	struct device *dev;
+> +	struct device_node *np;
+> +
+> +	KUNIT_ASSERT_EQ(test, 0,
+> +			of_overlay_apply_kunit(test, kunit_overlay_test));
+> +
+> +	np = of_find_node_by_name(NULL, kunit_node_name);
+> +	of_node_put(np); /* Not derefing 'np' after this */
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, np);
+> +
+> +	dev = bus_find_device(&platform_bus_type, NULL, np, bus_match_np);
 
+And here.
 
-On 4/4/2023 11:47 PM, Mark Brown wrote:
-> On Tue, Apr 04, 2023 at 11:33:20PM +0530, Vijaya Krishna Nivarthi wrote:
->
-> A few quick review comments, mostly coding style though.
->
->> +struct qspi_cmd_desc {
->> +	uint32_t data_address;
->> +	uint32_t next_descriptor;
->> +	uint32_t direction:1;
->> +	uint32_t multi_io_mode:3;
->> +	uint32_t reserved1:4;
->> +	uint32_t fragment:1;
->> +	uint32_t reserved2:7;
->> +	uint32_t length:16;
->> +	//------------------------//
-> What does this mean?
+> +	put_device(dev); /* Not derefing 'device' after this */
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
+> +
+> +	/* Remove overlay */
+> +	kunit_cleanup(test);
 
-That separates the part of cmd_desc that is visible to the HW and the 
-part that is required by the SW after xfer is complete.
-I can add a comment in v2?
+I guess this is testing the cleanup. It's not that obvious given the 
+overlay is removed by kunit_cleanup(). Not sure if anything can be done 
+though...
 
-
->
->> +	uint8_t *bounce_src;
->> +	uint8_t *bounce_dst;
->> +	uint32_t bounce_length;
->> +};
->> +
->> +#define QSPI_MAX_NUM_DESC 5
->>   struct qspi_xfer {
-> Missing blank line after the define...
-
-
-Will address in v2
-
->
->> +	for (ii = 0; ii < sgt->nents; ii++)
->> +		sg_total_len += sg_dma_len(sgt->sgl + ii);
-> Why are we calling the iterator ii here?
-
-
-Calling it ii helps in finding iterator more easily in code.
-
-should I stick to i in v2?
-
->
->> +	if (ctrl->xfer.dir == QSPI_READ)
->> +		byte_ptr = (uint8_t *)xfer->rx_buf;
->> +	else
->> +		byte_ptr = (uint8_t *)xfer->tx_buf;
-> If we need to cast to or from void * there's some sort of problem.
-
-
-the tx_buf is a const void*
-
-in v2 I will cast for tx_buf only?
-
->
->> +/* Switch to DMA if transfer length exceeds this */
->> +#define QSPI_MAX_BYTES_FIFO 64
->> +#define NO_TX_DATA_DELAY_FOR_DMA 1
->> +#define DMA_CONDITIONAL (xfer->len > QSPI_MAX_BYTES_FIFO)
->> +
-> DMA_CONDITIONAL absolutely should not be a define, this just makes
-> things harder to read.  Just have everything call can_dma() when needed.
-
-
-Will address in v2
-
->
->> +#if NO_TX_DATA_DELAY_FOR_DMA
->> +		mstr_cfg &= ~(TX_DATA_OE_DELAY_MSK | TX_DATA_DELAY_MSK);
->> +#endif
-> Why would we add extra delays if we don't need them, might someone set
-> this and if so when?
-
-
-I believe its used when some slave devices need a delay between clock 
-and data.
-
-Its configured as 1 for PIO_MODE(FIFO) right now.
-
-For DMA_MODE we are not using same, both seem to work for DMA.
-
->
->> +	if (ctrl->xfer_mode == QSPI_FIFO) {
->> +	} else if (ctrl->xfer_mode == QSPI_DMA) {
->>   	}
-> This should be a switch statement.
-
-
-Will address in v2
-
+> +
+> +	np = of_find_node_by_name(NULL, kunit_node_name);
+> +	KUNIT_EXPECT_PTR_EQ(test, NULL, np);
+> +	of_node_put(np);
+> +
+> +	dev = bus_find_device(&platform_bus_type, NULL, kunit_compatible,
+> +			      of_overlay_bus_match_compatible);
+> +	KUNIT_EXPECT_PTR_EQ(test, NULL, dev);
+> +	put_device(dev);
+> +}
+> +
+> +static struct kunit_case of_overlay_apply_kunit_test_cases[] = {
+> +	KUNIT_CASE(of_overlay_apply_kunit_apply),
+> +	KUNIT_CASE(of_overlay_apply_kunit_platform_device),
+> +	KUNIT_CASE(of_overlay_apply_kunit_cleanup),
+> +	{}
+> +};
+> +
+> +/*
+> + * Test suite for test managed device tree overlays.
+> + */
+> +static struct kunit_suite of_overlay_apply_kunit_suite = {
+> +	.name = "of_overlay_apply_kunit",
+> +	.test_cases = of_overlay_apply_kunit_test_cases,
+> +};
+> +
+> +kunit_test_suites(
+> +	&of_overlay_apply_kunit_suite,
+> +);
+> +MODULE_LICENSE("GPL");
+> -- 
+> https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
+> https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
+> 
