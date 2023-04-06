@@ -2,112 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D4466D8F33
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 08:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA766D8F9A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 08:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235194AbjDFGPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 02:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
+        id S235538AbjDFGkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Apr 2023 02:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235213AbjDFGOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 02:14:47 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD5EA256;
-        Wed,  5 Apr 2023 23:14:42 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3365084U029480;
-        Thu, 6 Apr 2023 06:14:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=rrWFm4g2kka8YobOBx5TxnOwKU7kNUjdVQZ8CY5LXiQ=;
- b=Lj5hGLZVtxYeN/RFfbgRUDd2oH7rbgtpjY2WBZxazLEd8T7vWqv7RX5OnPM1B5UILPqF
- yFo3WSyt3tWNecPPfBgZfUOwciN5gn1nuSt7lrYd5GVhXW0IYG4pKlmNoeeqGKqt01p1
- Qbo7daQY93fx3xzW2ZVPEdOJlHzaL9n2wLrvklHv7C+UsAmhKXJBaJg1Byji6YEQQqmk
- hE8640P/pLVhiAcE4tv3G+UaLdi3qEW2+/ViF280iUaDmz+i31Lo2dg55oO6zkvZ7n/h
- RwOwusWNpMeIif6aeT9t4r5Q/6XqMK2C3k3LB6q0v2Hij4LvgMoPWbVD55qMJVA2od/V AA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3prn7qmv47-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Apr 2023 06:14:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3366EKOf001319
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Apr 2023 06:14:20 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 5 Apr 2023 23:14:12 -0700
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
-        <broonie@kernel.org>, <rafal@milecki.pl>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_ipkumar@quicinc.com>
-Subject: [PATCH V3 5/5] arm64: defconfig: Enable ipq6018 apss clock and PLL controller
-Date:   Thu, 6 Apr 2023 11:43:14 +0530
-Message-ID: <20230406061314.10916-6-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230406061314.10916-1-quic_devipriy@quicinc.com>
-References: <20230406061314.10916-1-quic_devipriy@quicinc.com>
+        with ESMTP id S235272AbjDFGkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 02:40:21 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D715102;
+        Wed,  5 Apr 2023 23:40:20 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id b20so146847749edd.1;
+        Wed, 05 Apr 2023 23:40:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680763218;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ufn8dXIrnh+56Iea4gFx0gEX9oFLFPbZkbSS9EDVPbA=;
+        b=fnJmHXkS2uyJjTmT3M6mMzRezWhpgHAgnt756Nb+ik0p9gixZjwrz7Z4/YqDN02THY
+         Be58g0grhcXPBndhQETpFchxKaPbVFYpiJmjBg9Lhb2Fg5/uiBYoTC/G4IQwh7t+4lqi
+         //UhTEXWr6WY9mRlSMJCl1nfISa9UByZ2o6RKHEm31XxuMu075zVF1gnbEZL82u+1nQL
+         Djf9YFGdGf2rBdQaOGFivSZp5laX4lswHSRNqPFbxE+6bpUYdixhefzOh/IRR1DHe2F7
+         HG3di5HCADSwluycWG3FxosUxs0jomgIzbAo3etbwibwYndaB0P+MNznCakHUpr9orB+
+         gtgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680763218;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ufn8dXIrnh+56Iea4gFx0gEX9oFLFPbZkbSS9EDVPbA=;
+        b=wXlkXt04q+xsW/oaSLvVwv4j1MS9ruvbnItuYVnruGQHL7dDf9evE0SgdSl8wGqjIT
+         67JHmyVJ0j9uXr9tu5E825z/IDeEhmgRCUkXAb+GSirIyaow+fuNP8p8/9PBA/Nw8sjC
+         VHk4pPfSIzMAkux7AAkHygcbKGDEtnZEg0qE0MIkrbV5Oi81tpvA6k8fkKy4BA1tbxON
+         dqkZ39zqDGub6wHFNcHPYNkhEf3V3D08anZGQVoTiu8dCym01VXmd3Teci7iOTS0vQya
+         zIWh29MbtjuJtBQ7VK920OXp90Fh/6ZwuFQjINgt7Bxi8b6I3vu7f+KpTgUj/jtIa5Ac
+         SSoA==
+X-Gm-Message-State: AAQBX9dIdjG/RYiYKrsMimFEVb6tXPLJ+yS14+90HoIYtzGDskv9g54o
+        j9+IE6UnpNo0qG9lFax6NIZYy2zg5TkFzqjXsg4NaL8s
+X-Google-Smtp-Source: AKy350ZaitaIP37QKRvJ09Xxq14dBzKuBhP+qsRlaK9rt9XekriZtwV+88QyzbMY8o0YYuKBJFV84rdt3YK3h7b9m5s=
+X-Received: by 2002:a17:906:3a8f:b0:947:335f:5a10 with SMTP id
+ y15-20020a1709063a8f00b00947335f5a10mr2624674ejd.12.1680763218206; Wed, 05
+ Apr 2023 23:40:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4w4iFH4np_chfTmc2qL1RUMHbH5zUxB1
-X-Proofpoint-GUID: 4w4iFH4np_chfTmc2qL1RUMHbH5zUxB1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-06_02,2023-04-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 spamscore=0 mlxlogscore=825 suspectscore=0 adultscore=0
- bulkscore=0 mlxscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304060053
+References: <20230405200341.4911-1-danascape@gmail.com> <168074344623.1301612.621743725976519280.robh@kernel.org>
+In-Reply-To: <168074344623.1301612.621743725976519280.robh@kernel.org>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Thu, 6 Apr 2023 09:40:06 +0300
+Message-ID: <CAEnQRZBCN6JrjvaJSD5dnuLXOUyx8Y9LOucY_Fwqcf4ZZLuwJg@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: wm8904: Convert to dtschema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Saalim Quadri <danascape@gmail.com>, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com,
+        robh+dt@kernel.org, broonie@kernel.org,
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PLL and IPQ6018 APSS clock controller are used on several
-IPQ platforms to clock the CPU. Hence it should be enabled and built-in.
+On Thu, Apr 6, 2023 at 4:24=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+>
+>
+> On Thu, 06 Apr 2023 01:33:41 +0530, Saalim Quadri wrote:
+> > Convert the WM8904 audio CODEC bindings to DT schema
+> >
+> > Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> > ---
+> >  .../devicetree/bindings/sound/wlf,wm8904.yaml | 66 +++++++++++++++++++
+> >  .../devicetree/bindings/sound/wm8904.txt      | 33 ----------
+> >  2 files changed, 66 insertions(+), 33 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8904.=
+yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/sound/wm8904.txt
+> >
+>
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>
+So, these properties are present in some dts files! We need to
+evaluated if they are always expected
+or can be optional.
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V3:
-	- No change
-
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8f24c280dec2..27dc617ec296 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1153,6 +1153,7 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
- CONFIG_QCOM_CLK_APCC_MSM8996=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
-+CONFIG_IPQ_APSS_6018=y
- CONFIG_IPQ_GCC_5332=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
--- 
-2.17.1
-
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+>
+> Full log is available here: https://patchwork.ozlabs.org/project/devicetr=
+ee-bindings/patch/20230405200341.4911-1-danascape@gmail.com
+>
+>
+> audio-codec@1a: Unevaluated properties are not allowed ('AVDD-supply', 'C=
+PVDD-supply', 'DBVDD-supply', 'DCVDD-supply', 'MICVDD-supply' were unexpect=
+ed)
+>         arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+>         arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+>
