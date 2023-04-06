@@ -2,106 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F61B6D8CD8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 03:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D0046D8CE7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Apr 2023 03:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234678AbjDFBk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Apr 2023 21:40:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41356 "EHLO
+        id S234744AbjDFBoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Apr 2023 21:44:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232683AbjDFBk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 21:40:28 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507187EC0;
-        Wed,  5 Apr 2023 18:40:27 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (fp76f193f3.tkyc206.ap.nuro.jp [118.241.147.243])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E49AE905;
-        Thu,  6 Apr 2023 03:40:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1680745225;
-        bh=3gqmu4KgxgYFuJy5DilzdfPDlIkPg8yygx/h/5xSCu4=;
+        with ESMTP id S234770AbjDFBoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Apr 2023 21:44:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC5E7EEC;
+        Wed,  5 Apr 2023 18:44:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E84C764250;
+        Thu,  6 Apr 2023 01:44:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F808C433D2;
+        Thu,  6 Apr 2023 01:44:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680745469;
+        bh=drgpXKJ+0i0RnCQqppOYsWBMOPpTHwhRC91xcePhIfY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DQr3ojnssfSQ8mE18DBh0lp66rrAFfpo0cDHvOAXYN0qPOHyi4XWJZHt3v7Wf4nDx
-         TvxcyCgUh89NxDA5D/BmPG3GXuSddCK9rnWW5xubAtvzJBDM/O6BDZfmfSKmixgWzj
-         UlER7+GWwJxVhWmQImI6iiQr/ohFpOrEm9qrQzDE=
-Date:   Thu, 6 Apr 2023 04:40:32 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        rfoss@kernel.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
-        airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
-        jani.nikula@intel.com, tzimmermann@suse.de, javierm@redhat.com,
-        ville.syrjala@linux.intel.com, r-ravikumar@ti.com,
-        lyude@redhat.com, alexander.deucher@amd.com, sjakhade@cadence.com,
-        yamonkar@cadence.com, a-bhatia1@ti.com,
-        tomi.valkeinen@ideasonboard.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: Add no-hpd property
-Message-ID: <20230406014032.GN9915@pendragon.ideasonboard.com>
-References: <20230405142440.191939-1-j-choudhary@ti.com>
- <20230405142440.191939-2-j-choudhary@ti.com>
+        b=lR7sXE7D2TE1JV0ZwCaWhqBsKFjdr2Hunvc9GBE4Iba7cegqS4JoYtKzjuBOjmhYt
+         uTOwt7RSp1JhL7cdj4/18XGaTYtSaGQ6UPA/o4O1bclvvTzlmIMUXq28s6BJbB8rku
+         x+Af5M153I2wJZIAI/KD2WUVIOksJMzBiLscLuYGex/bvjMgiaAAmmPd/Qo3/U8wgG
+         bGiANCHREKHoeqbKCr3NEo71ZPcvaAhmQUJqNBugVE6rKxjAe+8OthzaRC9pFwSD/O
+         Hqye4YT4BxMd7b0c4schKPjpR5M3x2pzREtHGQ6KHEOaWOgHH+6Z2YJW0T7hlAw8Dn
+         bLXdXJE0j+Tnw==
+Date:   Thu, 6 Apr 2023 09:44:22 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        imx@lists.linux.dev, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de
+Subject: Re: [PATCH v5 0/3] dts: imx8qxp add cdns usb3 port
+Message-ID: <20230406014422.GK11367@dragon>
+References: <20230327145523.3121810-1-Frank.Li@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230405142440.191939-2-j-choudhary@ti.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230327145523.3121810-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jayesh,
-
-Thank you for the patch.
-
-On Wed, Apr 05, 2023 at 07:54:39PM +0530, Jayesh Choudhary wrote:
-> From: Rahul T R <r-ravikumar@ti.com>
+On Mon, Mar 27, 2023 at 10:55:20AM -0400, Frank Li wrote:
+> cdns driver code already upstreamed. but missed dts part.
 > 
-> The mhdp bridge can work without its HPD pin hooked up to the connector,
-> but the current bridge driver throws an error when hpd line is not
-> connected to the connector. For such cases, we need an indication for
-> no-hpd, using which we can bypass the hpd detection and instead use the
-> auxiliary channels connected to the DP connector to confirm the
-> connection.
-> So add no-hpd property to the bindings, to disable hpd when not
-> connected or unusable.
+> Change from v4 to v5
+> 1. using shorter clock name
 > 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  .../devicetree/bindings/display/bridge/cdns,mhdp8546.yaml   | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Change from v3 to v4:
+> 1. drop assign-clock in yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index c2b369456e4e..3a6c6d837593 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -57,6 +57,12 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  cdns,no-hpd:
-> +    type: boolean
-> +    description:
-> +      Set if the HPD line on the bridge isn't hooked up to anything or is
-> +      otherwise unusable.
+> Change from v2 to v3:
+> 1. drop fixed frequency clock binding
+> 
+> Change from v1 to v2:
+> 1. Add binding docoument.
+> 2. Fixed all shawn's comments
+> 
+> Frank Li (3):
+>   dt-bindings: usb: cdns-imx8qm: add imx8qm cdns3 glue layer
+>   arm64: dts: imx8qxp: add cadence usb3 support
+>   arm64: dts: freescale: imx8qxp-mek: enable cadence usb3
 
-I'm fine with the non connected part, but concerned with "otherwise
-unusable". It's very vague and could thus be abused. Do you have
-particular use cases in mind for this ? If so, restricting this to those
-use cases, or at least giving examples, would help.
-
-> +
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->  
-
--- 
-Regards,
-
-Laurent Pinchart
+Applied two DTS patches, thanks!
