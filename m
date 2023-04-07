@@ -2,100 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 540A16DA918
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 08:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0DD6DA91B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 08:52:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231814AbjDGGvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 02:51:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
+        id S233056AbjDGGwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 02:52:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjDGGvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 02:51:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D796E94;
-        Thu,  6 Apr 2023 23:51:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C82361011;
-        Fri,  7 Apr 2023 06:51:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CDFC433EF;
-        Fri,  7 Apr 2023 06:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680850276;
-        bh=LMTAC/yn+tcHlKbg9ULyItn48nBnUuiX3Tp1VD1J60g=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BDWW/GlTW4xectp2MdArf65kLoooZ6u6OWbfkGcf59FS1VrmU7wpPy4nurCt/Y77s
-         9u0+czyn1442ZjdleAkfQ8qrQxjRFC8sVMsm2efc+AhVjVr6Ge18XOB7zjpvC4MX9G
-         nV3pJKk7/6sjsTfUCuat/6g2lnHQHpl9kbgVFC9nU8A2ff6tTVYuOuGos9URWVgd77
-         OZ5Z1PSVIvquthT+X5exyJu7NoSJVeRAH9MCY70g93MytOHQnmVYu5/fvUEo6No2g1
-         Beu6047WctdSwc8LKn7HFYLvRoMnkKv1kVelVDhjhO5eeUzdwG/54C/yqeHMQilOF0
-         XLUFCYO7uNwpw==
-Message-ID: <4555d5e8-0403-99bc-9cc2-26b72ea5be3b@kernel.org>
-Date:   Fri, 7 Apr 2023 08:51:12 +0200
+        with ESMTP id S232540AbjDGGwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 02:52:09 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 185DC7DB6;
+        Thu,  6 Apr 2023 23:51:59 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9EC4024E356;
+        Fri,  7 Apr 2023 14:51:57 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
+ 2023 14:51:57 +0800
+Received: from [192.168.125.82] (183.27.97.179) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
+ 2023 14:51:56 +0800
+Message-ID: <fa13e903-809d-064f-baff-c7e7474b52da@starfivetech.com>
+Date:   Fri, 7 Apr 2023 14:51:55 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
- compatibles
+Subject: Re: [PATCH v3 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
 Content-Language: en-US
-To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>
-Cc:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
-        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
-        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
-        Daniel Walker <dwalker@fifo99.com>,
+To:     Rob Herring <robh@kernel.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230405223028.1268141-2-danielwa@cisco.com>
- <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
- <20230406151512.GL40472@zorba>
- <14634180-aca9-a3e9-d1af-dfaca77b42ee@linaro.org>
- <20230406183253.GM40472@zorba>
- <5e2e5b82-35ae-c3b5-becb-40d387226a7a@linaro.org>
- <20230406191506.GN40472@zorba>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230406191506.GN40472@zorba>
-Content-Type: text/plain; charset=UTF-8
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230315100421.133428-1-changhuang.liang@starfivetech.com>
+ <20230315100421.133428-2-changhuang.liang@starfivetech.com>
+ <20230320151437.GA1709620-robh@kernel.org>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230320151437.GA1709620-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [183.27.97.179]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 21:15, Daniel Walker (danielwa) wrote:
-> On Thu, Apr 06, 2023 at 08:56:06PM +0200, Krzysztof Kozlowski wrote:
->> On 06/04/2023 20:32, Daniel Walker (danielwa) wrote:
->>>>>>> +++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
->>>>>>
->>>>>> How many (or not many) platforms do you expect from Cisco? We mostly
->>>>>> have one file per SoC manufacturer.
->>>>>
->>>>> We have two SoC's one called CrayAR and another called Craw. I've submitted the
->>>>> Craw dts file before , but I've not resubmitted it. Under Craw I think we have
->>>>> at least two, but more likely five variations. CrayAR we have one variation with
->>>>> at least one more planned.
->>>>>
->>>>> So we would plan over time to add two dtsi files and three to four dts files to
->>>>> this directory. Then more over time.
->>>>
->>>> So just keep them in one file maybe.
->>>
->>> If/when I submit again with anther chip we can discuss it at that time.
+
+
+On 2023/3/20 23:14, Rob Herring wrote:
+> On Wed, Mar 15, 2023 at 03:04:19AM -0700, Changhuang Liang wrote:
+>> StarFive SoCs like the jh7110 use a MIPI D-PHY RX controller based on
+>> a M31 IP. Add a binding for it.
 >>
->> Or you can do it now.
+>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>> ---
+>>  .../bindings/phy/starfive,jh7110-dphy-rx.yaml | 77 +++++++++++++++++++
+>>  1 file changed, 77 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+>> new file mode 100644
+>> index 000000000000..b72ac44bc29d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+>> @@ -0,0 +1,77 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/starfive,jh7110-dphy-rx.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive SoC MIPI D-PHY Rx Controller
+>> +
+>> +maintainers:
+>> +  - Jack Zhu <jack.zhu@starfivetech.com>
+>> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+>> +
+>> +description:
+>> +  The StarFive SoC uses the MIPI CSI D-PHY based on M31 IP to transfer
+>> +  CSI camera data.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-dphy-rx
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: config clock
+>> +      - description: reference clock
+>> +      - description: escape mode transmit clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: cfg
+>> +      - const: ref
+>> +      - const: tx
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: DPHY_HW reset
+>> +      - description: DPHY_B09_ALWAYS_ON reset
+>> +
+>> +  starfive,aon-syscon:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      - items:
+>> +          - description: phandle of AON SYSCON
+>> +          - description: register offset
+>> +    description: The power of dphy rx is configured by AON SYSCON
+>> +      in this property.
 > 
-> What do you want to talk about exactly ? You said keep everything in one file, doesn't this
-> already fit your suggestion ? I'm only submitting one file.
+> Sounds like AON SYSCON should be a power-domains provider. Custom 
+> phandle links are for things which don't fit standard bindings.
+> 
 
-That is supposed to be one file named like: cisco.yaml
-If you ever need to have separate maintainers, then split it.
+Hi, Rob,
 
-Best regards,
-Krzysztof
+On visionfive2 jh7110 SoC, this AON SYSCON is the Secondary power switch to the DPHY Rx.
+When we open the pmic switch, we also need to configure the AON SYSCON register to turn 
+on the switch, it is used to link the pmic and the DPHY Rx, So I think it just use syscon
+framework is enought. What about your comments.
 
+I am looking forward to your reply.
+
+thanks,
+
+>> +
+>> +  "#phy-cells":
+>> +    const: 0
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - starfive,aon-syscon
+>> +  - "#phy-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    phy@19820000 {
+>> +      compatible = "starfive,jh7110-dphy-rx";
+>> +      reg = <0x19820000 0x10000>;
+>> +      clocks = <&ispcrg 3>,
+>> +               <&ispcrg 4>,
+>> +               <&ispcrg 5>;
+>> +      clock-names = "cfg", "ref", "tx";
+>> +      resets = <&ispcrg 2>,
+>> +               <&ispcrg 3>;
+>> +      starfive,aon-syscon = <&aon_syscon 0x00>;
+>> +      #phy-cells = <0>;
+>> +    };
+>> -- 
+>> 2.25.1
+>>
