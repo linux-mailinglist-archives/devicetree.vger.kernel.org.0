@@ -2,121 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E36B6DAAB3
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC26D6DAABA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:16:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240340AbjDGJOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 05:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33890 "EHLO
+        id S233146AbjDGJQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 05:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240428AbjDGJOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:14:08 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF018A79
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 02:14:07 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id n19-20020a05600c501300b003f064936c3eso4101149wmr.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 02:14:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680858846; x=1683450846;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9gvRZGzZ81MG5/Kz7opKkMvHNkqBqpdFUorIdo7o5i0=;
-        b=xGMUQH8iksEJ8YfExMZNgPR/bg8PQl8w/Qm3p8yAoOnLfxp/qQHfGQsT7zA9DBCMSa
-         jbVc6ldqKsbilNojY7mVUwQOcmpV7IFk2IMmFtZmw0oXXhfmMiiKj+Svt0+c5zn6wBQB
-         HOcZDsR8aaTwLFrCGep6le0PhA48SsKqumaZMAjGYgih4RB6DiFppRcn+lXy9dFzrCN7
-         OWC8bBzY/UKtiAXRrZgytyfiOe3Fb197ke50mBbVfBZFcnHfNjxHXMt59eOPktEMUrmY
-         gx5ndQcbxpALYm6Zll5QpoMuPa7HfllcLlIezWoYtOR/nihABCkNrAhNccj2ys2pjJXH
-         0KIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680858846; x=1683450846;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9gvRZGzZ81MG5/Kz7opKkMvHNkqBqpdFUorIdo7o5i0=;
-        b=Mj7h2cZmesxW2MYjqaJooBa7SsFxRIC+tRxK+aEMrzSfVj0CSHZGuRqDUlpHKNFzMI
-         WtT31TYIpbhCCIm8MOzc8Kh99MKZ+LRV6REZQFwqWXPo8J7qTrdDb2k+TvberAtEEE9/
-         fX2PZLExS9l5Uys1ER8nsDAkQ2EcS/GER3k/fAt+lMMEBXO4rXcpYytwDV1IpyUXnVJa
-         wnIT2lMNbQC7joeLaPPYPrLdB1giRf9Yu4dzw1XtGTpnRchd54y1zOyB4ebHhgQdAxV2
-         n8NvREMBFGx+NIAo75FKJTKU9KrcF4/Lp/VACfoDMlpIf773q3sIrtuDP1Av9WFUE7Rq
-         oPPA==
-X-Gm-Message-State: AAQBX9cBvgYj0Ia+RfHDhRyxdjVG68R7Z+quSe97QEKW1RZYtOQ7N1+s
-        NqH9/3N/1r6ZX/SgTMKyYec7xGMfR59vyRVkfaw=
-X-Google-Smtp-Source: AKy350ZRrTOfycKW9wpb1ySxaW2Z852gPkXpKIHM/8ZPrQgUAJnMq62jSsj7nPudOUhDoiebI/srKQ==
-X-Received: by 2002:a1c:f719:0:b0:3ed:9212:b4fe with SMTP id v25-20020a1cf719000000b003ed9212b4femr793548wmh.0.1680858846111;
-        Fri, 07 Apr 2023 02:14:06 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id k22-20020a7bc416000000b003f04f0c5a6fsm4026429wmi.26.2023.04.07.02.14.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Apr 2023 02:14:05 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 07 Apr 2023 11:13:53 +0200
-Subject: [PATCH v2 3/3] dt-bindings: memory-controllers: mediatek,smi-larb:
- add mt8365
+        with ESMTP id S230265AbjDGJQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:16:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F7372BC;
+        Fri,  7 Apr 2023 02:16:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7BB3360F1B;
+        Fri,  7 Apr 2023 09:16:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1D83C433EF;
+        Fri,  7 Apr 2023 09:16:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680858988;
+        bh=GzznED6tySsGDwb5au4VoNSJsg0rXZvn+Uxk9Vxo2kU=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=KWOJ/imF23ImDcT3NALRq2ogyUAq2NfiEPKOqIgypHGLoX3M9n81SkRvTPzgEV5sW
+         g9XAB6PLfYQIoi5sBynmsX7GH/Zp8ZWOQ1s0V2bjSO4rsq2ou/cxBBm1RrUdz0k3V2
+         WqC0BezqIJI0dMDX8yeqWuoCKtoVs3pLghYyCrrWgdAYzVwpMPJQwe53saAICmHxq3
+         Q4Q/FuiWn2DIVx1T+A0hanF6c/IzEnVx+tlQpIecu6FVG7f1Cr9etwpZnEdGZt9pu0
+         HngDF0bFYIExmCOpaSKah141DT8pYH7GMpYECE0q61YY0AnUfd3TBhakdPSNeSXqgR
+         yixqrKXyej9uQ==
+Message-ID: <083041fc-d8e9-d5c5-adc1-d6095db22fd7@kernel.org>
+Date:   Fri, 7 Apr 2023 11:16:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/2] dt-bindings: input: cirrus,cs40l26: Add bindings
+Content-Language: en-US
+To:     Fred Treven <fred.treven@cirrus.com>, ben.bright@cirrus.com,
+        james.ogletree@cirrus.com, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzystztof.kozlowski+dt@linaro.org,
+        patches@opensource.cirrus.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <Add devicetree bindings for CS40L26 driver>
+ <1680819613-29256-1-git-send-email-fred.treven@cirrus.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <1680819613-29256-1-git-send-email-fred.treven@cirrus.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230407-smi-driver-v2-3-8da6683cdb5c@baylibre.com>
-References: <20230407-smi-driver-v2-0-8da6683cdb5c@baylibre.com>
-In-Reply-To: <20230407-smi-driver-v2-0-8da6683cdb5c@baylibre.com>
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=951; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=dRVBiL9RiPJX/FXqDzKoQWbHskXPf7KJD11X+Bn//b4=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkL97ZGgOc4pIupSNVBNwzWquNMS9nseDM+yjJIvB1
- +Dfza6GJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZC/e2QAKCRArRkmdfjHURWJED/
- 0bCm/8nQsFGhHGeEqIxX9hTkSaIRJOb4F/1r9lSCfquAUx8xV4ArzZu/AmQad0YBbYjSLKtRe6syP/
- nAe+u/8rzKqcb7mITsPUtQ9r2LMHkePwwzRIbiTvm5aw9XTLkK7tHZjqFFlzMfp/DqurdTXTO37TIK
- 4jbFYUguWI33kDHvQfjdSc1rq94IALcD7uCqhNiHjEq7lfJdReZ4SX/u97liUieDv4edDlLJPcQcI3
- I34rW2fZU6ETMVozsRDysD/NPq8Ux+jvmxAa4cS6b30rbfwb00+68iCtc4jS307LUEXAc4Odb1LPlj
- /3LH9BtyzuVsNdN+d+ByjPsrV947p5cklLP/MoSaC3Z08VYIaghcLRd4KJIy76UtHn1n5HcPvl4W6C
- ZiQfr2ycl0TK7m7QtkrH9SB/9pVUFTFSOQhCPyqMnx4X5r/RZUAtn+bVzNI0cP6tg37MLvUiCNsj0x
- wCHjFrhEFKDmbT5nUUniLI+6xMIk6T8cJg8EyEb7moE6KsZe+GSD1/yQHrZzb/sXm/D7pMLiMEjPJ9
- Lh7RqARBb280RhjDGrHVnNWs0+82lfRk16xGlp7oYtd7StIOIWX837WGbNlyxHhJGS90f+QVlmnavh
- 2SXS+01KaySmjWKmMF7GNZs9XxHMYMZf0Ukd8mYDfXlFtKkapnhdvNPf36Dg==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding description for mediatek,mt8365-smi-larb
+On 07/04/2023 00:20, Fred Treven wrote:
+> Add devicetree bindings for CS40L26 driver.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- .../devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml     | 4 ++++
- 1 file changed, 4 insertions(+)
+I appreciate the try to write my name manually, but there is no need to
+struggle. :) You will just make a mistake.
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-index 5f4ac3609887..aee7f6cf1300 100644
---- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-@@ -34,6 +34,10 @@ properties:
-           - const: mediatek,mt7623-smi-larb
-           - const: mediatek,mt2701-smi-larb
- 
-+      - items:
-+          - const: mediatek,mt8365-smi-larb
-+          - const: mediatek,mt8186-smi-larb
-+
-   reg:
-     maxItems: 1
- 
+Just copy-paste or use scripts/get_maintainers.pl.
+You can automate everything with something like:
+https://github.com/krzk/tools/blob/master/linux/.bash_aliases_linux#L91
 
--- 
-2.25.1
+> 
+> Signed-off-by: Fred Treven <fred.treven@cirrus.com>
+> ---
+>  .../devicetree/bindings/input/cs40l26.yaml         | 92 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/cs40l26.yaml
+
+Filename matching compatible, so you need vendor-prefix.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/input/cs40l26.yaml b/Documentation/devicetree/bindings/input/cs40l26.yaml
+> new file mode 100644
+> index 000000000000..1036a374baa0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/cs40l26.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/cs40l26.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic CS40L26 Boosted Haptic Amplifier
+> +
+> +maintainers:
+> +  - Fred Treven <fred.treven@cirrus.com>
+> +
+> +description:
+> +  CS40L26 is a Boosted Haptic Driver with Integrated DSP and Waveform Memory
+> +  with Advanced Closed Loop Algorithms and LRA protection
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cirrus,cs40l26a
+> +      - cirrus,cs40l26b
+> +      - cirrus,cs40l27a
+> +      - cirrus,cs40l27b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Property describing the interrupt line the devices /ALERT pin is connected to.
+> +      The device only has one interrupt source.
+
+Drop description - it is almost useless. You could just mention ALERT pin.
+
+> +
+> +  VA-supply:
+> +    description: Regulator for VA analog voltage
+> +
+> +  VP-supply:
+> +    description: Regulator for VP peak voltage
+> +
+> +  cirrus,bst-ipk-microamp:
+> +    description:
+> +      Maximum amount of current that can be drawn by the device's boost
+> +      converter in uA. Accepted values are between 1600000 uA and 4800000 uA in
+> +      50000 uA increments.
+> +    minimum: 1600000
+> +    maximum: 4800000
+> +    default: 4500000
+
+Isn't this property of regulator? Why do you need it here?
+
+> +
+> +  cirrus,bst-ctl-microvolt:
+> +    description:
+> +      Maximum target voltage to which the class H algorithm may increase the
+> +      VBST supply, expressed in uV. Valid values range from 2550000 to 11000000
+> +      (inclusive) in steps of 50000. If this value is specified as zero or VP
+> +      rises above this value, VBST is bypassed to VP. If this value is omitted,
+> +      the maximum target voltage remains at 11 V.
+
+Don't repeat constraints in free form text - drop last sentence.
+
+> +    minimum: 2550000
+> +    maximum: 11000000
+> +    default: 11000000
+> +
+> +  cirrus,bst-exploratory-mode-disable:
+> +    description:
+> +      Disable boost exploratory mode if this boolean is present in the
+> +      devicetree. 
+
+Don't explain how DT works. Explain how hardware works instead.
+
+> Boost exploratory mode allows the device to overshoot
+> +      the set peak current limit. This has potential to damage the boost
+> +      inductor. Disabling this mode will prevent this from happening; it will
+> +      also prevent the device from detecting boost inductor short errors.
+> +      (Default) Enabled
+
+Why this is suitable for DT? Why would anyone need to disable it per board?
+
+> +    type: boolean
+> +
+> +
+
+Just one blank line.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      cs40l26: cs40l26@58 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +        compatible = "cirrus,cs40l26a";
+> +        reg = <0x58>;
+> +        interrupt-parent = <&gpio0>;
+> +        interrupts = <57 8>;
+
+If 8 is interrupt flag, use appropriate define.
+
+> +        reset-gpios = <&gpio0 54 0>;
+
+Same for GPIO flag.
+
+> +        VA-supply = <&dummy_vreg>;
+> +        VP-supply = <&dummy_vreg>;
+> +        cirrus,bst-ctl-microvolt = <2600000>; // Max boost voltage = 2.6V
+> +        cirrus,bst-ipk-microamp = <1650000>; // Max boost current = 1.65A
+> +        cirrus,bst-exploratory-mode-disabled; // Disable exploratory mode
+
+The comments are not useful - they copy the property. Instead you could
+explain WHY. Or just drop the comments.
+
+>  
+
+Best regards,
+Krzysztof
 
