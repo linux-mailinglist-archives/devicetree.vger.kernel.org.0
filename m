@@ -2,77 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 246336DAFFA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 17:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F0B6DB018
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 18:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239447AbjDGP6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 11:58:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
+        id S229437AbjDGQFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 12:05:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230173AbjDGP6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 11:58:30 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB354BB86;
-        Fri,  7 Apr 2023 08:58:17 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 337Fr1kL027041;
-        Fri, 7 Apr 2023 15:58:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=ZLaW8DB/9vUmOO4NtVwP0HZhPklWTpAyTk7jxdCY6SM=;
- b=ITWsPiSMjs+jHYRoSIW4HmwaYLbHXMLf4+h27J0xuH8ErloJecLQ8FJmXfRfntR9l0mC
- Z63AIfTuRf1xwr3Ga54ScRdls7ohs8CC3ua8GcuVJ5GrfBYjelBuBOVyVSYwaZ7WBTqH
- 0yNJS10M43qdK8M3nTu9B7gCwwCNlesenT+DG2udU0IYxKj309r1E2qfKDnTPW2mBYsY
- rSCx0fG2pwVh6xHsGjESHZgniA3bopfClGwZQrfsdY5KjiLMGTZ2B4sq4GqZSW/65XeV
- Gwm1YfnQzvZjwFk9KplzDqrARPkLYOn5lgKBbLu/DEdTilfcjKRfgsgntc9W6D8LfuG6 tw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pt5s9swh1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 07 Apr 2023 15:58:14 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 337FwDXv008215
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 7 Apr 2023 15:58:13 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+        with ESMTP id S231801AbjDGQEn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 12:04:43 -0400
+Received: from alln-iport-7.cisco.com (alln-iport-7.cisco.com [173.37.142.94])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C784B8;
+        Fri,  7 Apr 2023 09:04:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=409; q=dns/txt; s=iport;
+  t=1680883474; x=1682093074;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=ZvPldDBpkvNt/0abGqrqQoag1IHAQQNn5qS8F705+is=;
+  b=lbTiPbUF+eyTRDeOo1crFo1z48ey5gcANefSD/0KBSkWQdod2vr0V+ZD
+   KiEWLYpzqrllJeX1Ivp3AbI8+uiJxJBWMJiVFAASevKGWEJ804Uu1ruL6
+   iOBbSSzHv742iqwZDWm9Av6oZYN1Ghl+fyNn1ZgSSGYjbYxj9wkAhTU23
+   s=;
+X-IPAS-Result: =?us-ascii?q?A0BEAwBSPjBkmIsNJK1aHQEBAQEJARIBBQUBQIFPgVxSc?=
+ =?us-ascii?q?1s7RogeA4UuiDOSIIoRglEDVg8BAQENAQFEBAEBgVIBgzMChTwCJTgTAQIEA?=
+ =?us-ascii?q?QEBAQMCAwEBAQEBAQMBAQUBAQECAQcEFAEBAQEBAQEBHhkFDhAnhWgNhgQBA?=
+ =?us-ascii?q?QEDEigGAQE3AQ8CAQgYHhAyJQIEDieCXIJdAwGfQQGBPwKKIHiBNIEBgggBA?=
+ =?us-ascii?q?QYEBJ8iCRaBK5E6JxuBSUSBFYE8gW4+gmICgWCEFIIMIpozCoE0doEgDoE9g?=
+ =?us-ascii?q?QQCCQIRa4EQCGqBeUACDWQLDm+BSoMqBAIULDcDRB1AAws7Oj81FCAGWIEZJ?=
+ =?us-ascii?q?AUDCxUqRwQIOAYcNBECCA8SDwYmRA5CNzQTBlwBKQsOEQNPgUYEL4FcBgEmJ?=
+ =?us-ascii?q?J9DxwsKg32gbU0Tg1cBpVeXc6d2AgQCBAUCDgEBBoF6I4FbcBWDIlIZD44gG?=
+ =?us-ascii?q?YNZj3l1PQIHCwEBAwmLRQEB?=
+IronPort-PHdr: A9a23:JD2j5hSHi0qGy6XQ4Kwd83dl4Npso7vLVj580XJvo75Nc6H2+ZPkM
+ QSf4Ph2l1bGUM3d7O4MkOvZta3sGAliqZaMuXwPatpAAhkCj8hFkwkpGsXQD0r9IbbjZDA7G
+ 8IXUlhj8jm7PEFZFdy4aUfVpyi57CUZHVP0Mg8mTtk=
+IronPort-Data: A9a23:CNKzlKmM+qanUMIt9GRfeh7o5gwMJkRdPkR7XQ2eYbSJt1+Wr1Gzt
+ xIXUTyFaP2JY2CmLoxzb4zi8UIC7JGBy9Y1TAFprS42FFtH+JHPbTi7wugcHM8zwunrFh8PA
+ xA2M4GYRCwMZiaA4E/raNANlFEkvU2ybuKU5NXsZ2YgFWeIdA970Ug4w7Jh3dYy6TSEK1rlV
+ e3a8pW31GCNg1aYAkpMg05UgEoy1BhakGpwUm0WPZinjneH/5UmJM53yZWKEpfNatI88thW6
+ Ar05OrREmvxp3/BAz4++1rxWhVirrX6ZWBihpfKMkSvqkAqm8A87ko0HPEBM0pPjie4o9Iy5
+ slvvI6fdhoRF7KZzYzxUzEAe81/FaRC/LmCKn+lvInNiUbHaHDrhf5pCSnaP6VBpb0xWj8Ir
+ KdecWtcBvyAr7reLLaTRuBqh8knM8DDN4IEsXYmxjbcZRojacGZHPuSuYQJtNs2rp9eTK7sd
+ 8ooUjx+VC3aUg1lCHsSLp1ryY9EgVGmI2EH9zp5v5Ef52nV0Rw007X3NtfRUsKFSN8TnUuCo
+ G/CuWPjDXkyONGByDGI7mihi8fRki7hHoEfDru18rhtmlL77m8JGgwNR0e8r7+6jVy6XM1EK
+ E1X9jYGqak0/VasCN7nUHWQrGGNuh0RQfJeEuM9uVDLwa3Riy6DAWIEDTJdQN8rrsk7QXotz
+ FDht9DzFy10oqGSRzSe8aWQqiypOik9KW4EbDUDCwwf7LHeTJobhxbLSJNoF7S4y4OzEjDry
+ DfMpy8771kOsSIV/66mp13fhiCdmpqKYBIX7xf4YX+dxxwsMeZJeLeUwVTc6P9BKqOQQV+Ao
+ GUIlqCiAAYmUMnleMulHb1lIV252xqWGGaG0QMzQ/HN4xzoqiD+LNEIiN1rDBoxWvvobwMFd
+ 6M6Vel5y5ZJOHKsYcebiKruVpx2lsAM+TkZP804g/JHZpx3MQSA5iwrOwib3nvmlw4nlqRX1
+ XannSSEUy5y5UdPlWXeqwIhPVkDnXxWKYT7Hs2T8vhf+eDCDEN5sJ9cWLd0Usg37bmfvCLe+
+ MtFOs2Bxn13CbOuOnmPrN5IdwpQcRDX4KwaTeQKKYZvxSI7Rgkc5wP5mtvNhqQ8xf0Oz7eUl
+ p1Dch4BlDITekEr2S3TOiw8N9sDrL50rGkwOmQ3LE201n04CbtDH49BH6bbiYIPrbQ5pdYtF
+ qFtU5zZXpxnFG+dkxxDNsaVkWCXXEnx7e54F3D7MGFXkl8Jb1Ghx+IIiSO2pXZWUXTn6ZJny
+ 1BivyuCKac+q81ZJJ6+QJqSI5mZ5hDxRMoas5P0H+Ru
+IronPort-HdrOrdr: A9a23:WNZ5/KM+sPkAcMBcT2D155DYdb4zR+YMi2TDiHoedfUFSKOlfp
+ 6V8MjzjSWE9Ar4WBkb6LS90DHpewKSyXcH2/hvAV7EZniphILIFvAv0WKG+Vzd8kLFh5ZgPM
+ tbAspD4ZjLfCVHZKXBkUiF+rQbsaK6GcmT7I+0pRoMPGJXguNbnn1E422gYypLrXx9dOME/e
+ 2nl6x6TlSbCBEqh+2Adwg4dtmGg+eOuIPtYBYACRJiwhKJlymU5LnzFAXd9gsCUhtUqI1SsV
+ Ttokjc3OGOovu7whjT2yv49JJNgubszdNFGYilltUVEDPxkQylDb4RGIFq/QpF4t1H2mxa1O
+ UkkC1QePibLEmhOF1dlCGdnjUIFgxeskMKh2Xo2UcL6vaJOg7SQ/Ax9b6xNCGpsHbJeLpHof
+ 92N6XzjesMMfqIplWP2/HYEx5tjUa6unwkjKoaiGFeS5IXbPtLoZUY5149KuZKIMvW0vFvLA
+ BVNrCV2N9GNVeBK3zJtGhmx9KhGnw1AxedW0AH/siYySJfknx1x1YRgJV3pAZMyLstD51fo+
+ jUOKVhk79DCscQcKJmHe8EBc+6EHbETx7AOH+bZV7nCKYEMXTQrIOf2sR+2Mi6PJgTiJcikp
+ XIV11V8WY0ZkL1EMWLmIZG9xjcKV/NKwgFCvsukKSRloeMMIYDaxfzOmzGu/HQ1skiPg==
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.98,327,1673913600"; 
+   d="scan'208";a="92760439"
+Received: from alln-core-6.cisco.com ([173.36.13.139])
+  by alln-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 07 Apr 2023 16:04:33 +0000
+Received: from mail.cisco.com (xfe-rcd-004.cisco.com [173.37.227.252])
+        by alln-core-6.cisco.com (8.15.2/8.15.2) with ESMTPS id 337G4UHw028029
+        (version=TLSv1.2 cipher=AES256-SHA bits=256 verify=OK);
+        Fri, 7 Apr 2023 16:04:33 GMT
+Received: from xfe-rtp-003.cisco.com (64.101.210.233) by xfe-rcd-004.cisco.com
+ (173.37.227.252) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Fri, 7 Apr
+ 2023 11:04:17 -0500
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (64.101.32.56) by
+ xfe-rtp-003.cisco.com (64.101.210.233) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 7 Apr 2023 08:58:08 -0700
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>
-Subject: [PATCH V4 5/5] arm64: dts: qcom: ipq9574: Add cpufreq support
-Date:   Fri, 7 Apr 2023 21:27:27 +0530
-Message-ID: <20230407155727.20615-6-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230407155727.20615-1-quic_devipriy@quicinc.com>
-References: <20230407155727.20615-1-quic_devipriy@quicinc.com>
+ 15.2.1118.25 via Frontend Transport; Fri, 7 Apr 2023 12:04:16 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jgeMFuXoV0wPu3+M6SmIcvTZFtze+PmamZXPgmy3rV6o2OBV7GDb4E3oVczJ4gWn7JQrsj1BElcZ+mMcWT1QVhfYxW1uCewR+cBb9/QU4+QEdPd5n4ct3d2zBlnRHp3zgWTdAs3lSYz+PQJEcxcIYv/jUoz22SuT4pNZMkR/8zo6mRmAwLew4qVuxEpa6OVCS2HeavsENKTVGrjluBJ2J6LoJ2oostFl7tgrtbyblKLFb91htMV/k0w3ciHK/axl071bYb92WC5aq08I+XlN2wrzmzZknUY10CAVZyIj+CR4cZxzFgQ7Did3tkjtOpHGUOAR2H5QWusJt4f1mF29Nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZvPldDBpkvNt/0abGqrqQoag1IHAQQNn5qS8F705+is=;
+ b=nN+QmDDqIX+oXRrcE2wBklwrWdv+92MGbmu5EKFXQ3bvojHRgfSZQb76exnBdacq5s+8JdOylZl1+3N0k22jgatNLCDSBb6YS86N96qPw3zlPoGYXi5mZvs6a8Vh6eC6qsnfzIq15ybqM3fAJAhYiraWYogsTTg1auS5Xpt1sGQESdVA0Kiyk9M2BGtwEfiGAby8Oqu954i+gUxewz4B3q2cVoiOyuFeKO2hbqO9WLoO9C+jf7KYmDEFh0Vp4B9osVX1ozeQaRgfEf2zRmEk6dFsjf/gQiaA3IAg7bJ600VxxaSHJHF7FttLR/+xc8bg2qPIJREc2U23YUmR9va0iA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cisco.com; dmarc=pass action=none header.from=cisco.com;
+ dkim=pass header.d=cisco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZvPldDBpkvNt/0abGqrqQoag1IHAQQNn5qS8F705+is=;
+ b=ALCemW4aS3nOtuKXsfk5114hZqpPwdPB2An2l0EvAktX3a+ezF6Zy9TSC+ycegg6ETz5LdGtJKP0RXWjaJS12W1dCmCsN9KLRWpmLOA91jIuyG0s6xeXGPPhwoxF0fPtSbx/bDIgTa0iWGkyb16ERAHWLNtRS72x0rhftR5KPNI=
+Received: from SJ0PR11MB5790.namprd11.prod.outlook.com (2603:10b6:a03:422::15)
+ by BL1PR11MB5510.namprd11.prod.outlook.com (2603:10b6:208:31d::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.33; Fri, 7 Apr
+ 2023 16:04:14 +0000
+Received: from SJ0PR11MB5790.namprd11.prod.outlook.com
+ ([fe80::66a3:de62:35f4:ad97]) by SJ0PR11MB5790.namprd11.prod.outlook.com
+ ([fe80::66a3:de62:35f4:ad97%6]) with mapi id 15.20.6277.031; Fri, 7 Apr 2023
+ 16:04:13 +0000
+From:   "Daniel Walker (danielwa)" <danielwa@cisco.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
+        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Walker <dwalker@fifo99.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
+Thread-Topic: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
+Thread-Index: AQHZaWqYW/PiGCKJbkGjA/VaWrFw5w==
+Date:   Fri, 7 Apr 2023 16:04:13 +0000
+Message-ID: <20230407160413.GD1391488@zorba>
+References: <20230405223028.1268141-2-danielwa@cisco.com>
+ <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
+In-Reply-To: <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cisco.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR11MB5790:EE_|BL1PR11MB5510:EE_
+x-ms-office365-filtering-correlation-id: efcca194-05ed-46a8-9392-08db3781bb3a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: RukIpmNFFeDnsYn+ZBQDB1zi6aUMuu3gGkeceFs0WJszYS4pG8PJ8dbJDA0y3/XM8bNSqkepcbgyJwsztvZy4CjlsuOZL9p9uu+VAH0fYu/IV8Va6pXModDFV9powlAjZtjpqpZ+pkz+otxSm2GMJnJVZ/gPWnLrMn7u/27QimmPXlXczMw194lmqm9NQIZwVmneSMjWT04gD96E1Doi+lWXMRwD5Zkmuhvs/veqARpFMSdh1I3UI8PrIr1dNxrZDzy14uSTOkrSvfed0/67lsEOorwsP2XD5suMC5cV9z1ZC3RaaUcKqrXi33ifHS22xgniGYOn0izOI6k50a/zBYAMf1xnS2NhqbtgyDIq/ucXRdUM2L1PTuU23WIFehb9wjl7o0L2fxYuRodUWyRsOD8USNGQoNfO/xB1uYkD+6J9+mrPKiStHlGgRczvAyG9/s/fBffyOw0zZ1Ek1brA7ha9KGp38z4S72+VpTqGXvD+hAI7PWNwTtuHlsF5r3qv7OOPWiYS3CVlQn9WbOb/OaMB045fpU4pHMX79YNpmET3KNnRQ5OgJdSBvyo7jkDfA4ix9UXyxLwZkJqU7PYEI0LIOoYY7/kKMj6U+b/tX+MvnpikpMvtmEpO8NBLTIAB
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB5790.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(366004)(136003)(346002)(39860400002)(376002)(396003)(451199021)(54906003)(66946007)(66556008)(66476007)(64756008)(8676002)(66446008)(316002)(76116006)(4326008)(6916009)(6486002)(71200400001)(41300700001)(8936002)(5660300002)(4744005)(2906002)(26005)(186003)(6506007)(6512007)(9686003)(1076003)(478600001)(122000001)(38100700002)(33716001)(38070700005)(33656002)(86362001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yY5yLk3iidXPKKkMLJG6yAJkhGfYbXZN1NetsdOxEXgbX6SYL4Lc+C9oVsRL?=
+ =?us-ascii?Q?1YrdN9GUVtcyNuuazb6dRUe1+mbN8m2PvhJK/35Ny2/r3/ldtQ3+yfJg7i/3?=
+ =?us-ascii?Q?4XR4JA85jomK09O+G3aB7HVT8+b2il8e5oGfmQdWDvvvSc1A7u3PIUPskFLF?=
+ =?us-ascii?Q?Li91VjGR2pBzZc0yyaqQJ2j9Z6F9vaMKMcXDh5Ibl6pEQn8cytcoerviaJX4?=
+ =?us-ascii?Q?79GbqezVe65NDXkp2QJiRonoPyz1KDTBThdyY6TYNYNuyiX8kJLT9J1UH5lt?=
+ =?us-ascii?Q?jaKjwagtbB6FJly4CqdVhVlNwDa2AaHCBrIMkuZbS8NX1jjyiVZY7Jm0DG5I?=
+ =?us-ascii?Q?9R2KyVGF/0Vyn0xziy9I0YOfBGBjTkmczNJUfzMiivsQvG04Kp0mK73g9D2Z?=
+ =?us-ascii?Q?GtXFCWND4V+if1MDgn/60U7YrDvAesEtHRCjd+bP4riSNji1mvSfXXYItZM/?=
+ =?us-ascii?Q?sJOAR2fq6V7ZVscNVO0LdwACxW5NNgCVA/p+Dy749m6xKIDT2EA/LANRvf2Q?=
+ =?us-ascii?Q?kCrQ2VqP4TyLKNClGBDkBz9YHcm2Gwwvd7V1ZhaXJMrkFr42x6heE9HrTnFx?=
+ =?us-ascii?Q?2Mjkv9JYZtkN1KpMk/83b7/oB9/4zUHpF8kwhYr61RA0Sy2OcQs+236ZmCQF?=
+ =?us-ascii?Q?8Uwc13Q/WewRZTNdHC07sYc4dzxzxpA0/GkEVlQ2EsrBWD/kJDII5HrMKtgo?=
+ =?us-ascii?Q?J04IWa+A5Y8xkbbWbT4LaNumdtLOn8PRpMtAzpaWBpwxqi1c78Z7fLC+9Twh?=
+ =?us-ascii?Q?5gI/yhugk7NbgVaF5hn+nEzAvqzgX8g49JF+AxJeJXglhId3gsw6iC+O05Ep?=
+ =?us-ascii?Q?h/lOi+7XVvbEfwGuBJBJqCijDwFhrkQglAwQYM3RID7zfuJ4YkWVfrdaulP8?=
+ =?us-ascii?Q?ADCu0jYnWR0ZbuOD7oT+oPpLmjuQf0eO/I4AKR6nT1NNHqkaljNiuQj1KIfV?=
+ =?us-ascii?Q?fe7gkvWg2G9C+cxr9hoU0aJ5/0eqxn1tvXzBus21s5LCdA/IfaN39O16j5HP?=
+ =?us-ascii?Q?BYvXCqTTt1T3tHcAeEwgce6FDWvD4MH03t0+UBplSxR18xI9WdotP2xv6807?=
+ =?us-ascii?Q?/4oERTL44tf+yRw1dPNM9NRlNbhaPX7fQj6ip6HIqC39xsJRYF5+jUYCr/Cb?=
+ =?us-ascii?Q?/K62WwEWieAKTQksFD9eddKPRTC+0ItH2ygJpcDyUjq15O9loNdWI/bqkCEr?=
+ =?us-ascii?Q?MrWrTkr4/3piqfroQyyPKmX6x+wzMOGybqgxiIaSxrxczhph68rLZleBfCh6?=
+ =?us-ascii?Q?E7KGbjPehNMRjEcKKprl9ax7UVBnldA6OBOzDEApVtxWCRqsrc5PSSnxWONj?=
+ =?us-ascii?Q?ugc4mZEEMGZljvH+lPUDuTASr248aj1Pk5J2xIz4kD93RhhObyQLdl3jCejJ?=
+ =?us-ascii?Q?hFNT4wxZuBbRJy3hAolpV93M9EY5xPIlDDO0R1GaSKj3mqT6A0keoCIbZNKt?=
+ =?us-ascii?Q?krP+ss6BBxZTc3nUTv/eZPsmCSV64ZYgN+nREepf/R689PchTh+TyQN/upps?=
+ =?us-ascii?Q?ItPd+saCfvAuc2A1EQUaKkQ+K3YpCrW6qknK5kinaj2ERldVJYdIXyWBmksB?=
+ =?us-ascii?Q?mMn/Yzrj9VwzCgoFWqKEEmyJTGKzfVoNfbXjyFiuKzg/j8XpWPd52XRoz35W?=
+ =?us-ascii?Q?Yg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <758C688D0A6D2E489A51151849D79ABD@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: x7iJqwycrajhJsifSQ40WX7zSZk6mx3J
-X-Proofpoint-ORIG-GUID: x7iJqwycrajhJsifSQ40WX7zSZk6mx3J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-07_10,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- adultscore=0 phishscore=0 lowpriorityscore=0 impostorscore=0
- mlxlogscore=964 priorityscore=1501 clxscore=1015 spamscore=0
- malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304070146
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB5790.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: efcca194-05ed-46a8-9392-08db3781bb3a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2023 16:04:13.4009
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5ae1af62-9505-4097-a69a-c1553ef7840e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Z7agnWa80esOD1q1nWLdu6Ltxmbw7lEHzj2wqQM45bQg3lHjFOgy6HpVNJe4xpX2uaGHWDuoYyioYcPUzFwljg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5510
+X-OriginatorOrg: cisco.com
+X-Outbound-SMTP-Client: 173.37.227.252, xfe-rcd-004.cisco.com
+X-Outbound-Node: alln-core-6.cisco.com
+X-Spam-Status: No, score=-10.0 required=5.0 tests=DKIMWL_WL_HIGH,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,123 +197,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add cpu freq nodes in the device tree to bump cpu frequency above 800MHz.
+On Thu, Apr 06, 2023 at 09:12:34AM +0200, Krzysztof Kozlowski wrote:
+> > @@ -0,0 +1,27 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+>=20
+> Dual license.
+>=20
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V4:
-	- Picked up the R-b tag
+What are my choices here? I see this,
 
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 58 +++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 1f9b7529e7ed..cfef87b5fd22 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
-@@ -37,6 +38,10 @@
- 			reg = <0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU1: cpu@1 {
-@@ -45,6 +50,10 @@
- 			reg = <0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU2: cpu@2 {
-@@ -53,6 +62,10 @@
- 			reg = <0x2>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU3: cpu@3 {
-@@ -61,6 +74,10 @@
- 			reg = <0x3>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		L2_0: l2-cache {
-@@ -75,6 +92,47 @@
- 		reg = <0x0 0x40000000 0x0 0x0>;
- 	};
- 
-+	cpu_opp_table: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-936000000 {
-+			opp-hz = /bits/ 64 <936000000>;
-+			opp-microvolt = <725000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1104000000 {
-+			opp-hz = /bits/ 64 <1104000000>;
-+			opp-microvolt = <787500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1416000000 {
-+			opp-hz = /bits/ 64 <1416000000>;
-+			opp-microvolt = <862500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1488000000 {
-+			opp-hz = /bits/ 64 <1488000000>;
-+			opp-microvolt = <925000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <987500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-2208000000 {
-+			opp-hz = /bits/ 64 <2208000000>;
-+			opp-microvolt = <1062500>;
-+			clock-latency-ns = <200000>;
-+		};
-+	};
-+
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-ipq9574", "qcom,scm";
--- 
-2.17.1
+Which appears to be what your suggesting. I also see this,
 
+# SPDX-License-Identifier: GPL-2.0
+
+I'd rather use the later.
+
+Daniel=
