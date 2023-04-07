@@ -2,154 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 814166DAB69
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 12:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FFBC6DAB72
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 12:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237421AbjDGKWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 06:22:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
+        id S240581AbjDGKXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 06:23:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233426AbjDGKWD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 06:22:03 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB967ED3;
-        Fri,  7 Apr 2023 03:22:02 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3377MXI5013040;
-        Fri, 7 Apr 2023 10:21:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=q0vpDgVuiJJwQzilV7Uvd/VJSZtDHMxv30kgg5UkQB0=;
- b=cHa4WkRp32n3m4HroUn/SROrrZlDqhZuR9nC9hfI+6+2iw/EAyUIylF2kwokFpHi6Azx
- h89N3pD6pw1kURyv3IvOE9htGLD+x56cTkVdIOvdNDIrlpnUfumrdBJFKbkbbq2/yfBJ
- 0w/P++SJnyhH92fxQN/RHpYWkRMpz5yRQCzp2Q9BEKCl0uEzLoCk/x2eCEjethOEfjCP
- 94ArvfeOlqQt6y6wVw4J38ae+P4SNe0I/2BDmGcjXZT0tErWoVcGeMhSdWdaAwVOxDAv
- 8tQ5L0BlfEAGBlPI03KtB1cnOyb/8/ZhNryvuz7Ticsa7GtvD+Gn6MPn1skLIy+MKTQr rA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pssmw34th-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 07 Apr 2023 10:21:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 337ALP1A015330
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 7 Apr 2023 10:21:25 GMT
-Received: from [10.216.18.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 7 Apr 2023
- 03:21:15 -0700
-Message-ID: <c74b40fe-92b9-9a53-1a9f-b19a7090a12c@quicinc.com>
-Date:   Fri, 7 Apr 2023 15:51:12 +0530
+        with ESMTP id S240529AbjDGKXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 06:23:37 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8406EB7
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 03:23:34 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id l17so7444832ejp.8
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 03:23:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mind.be; s=google; t=1680863013;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c3Io/udqwHbpHqltZDGsqHtMrnMLw8T2LHE6nGOqTi4=;
+        b=IDQF/IZMULmO/cBIi2eyVVIX0vYzczJRuzsvLdgzNsutudW/0miN3xwrGvJ2F3JM5L
+         bA5LuApl4uJb0cwp1dAcoRMf5/m6E4VfDBgVJ5r2Biu9CYpyDDTZfH77Sm4dC/WxVNwG
+         lgghVGRXftQNxVvXgeq4Zs4ujvfanMYWl+9Krx68FP1BR8UuXZM706fb1t8dxqr+DLyJ
+         NFqtX6evFC/qHgE8UzqnDF0s6MuPDLXGFvCiZTIrkXo3+BhSSYyhsqXA5IIsMntU8G56
+         eTKmsgHW688Iw2JFmC/Ut+PnDNsu+cGrCk5LR5FlzzOkE+/R8JZ6Zfh3GxQvtoaH6iFN
+         uUjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680863013;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c3Io/udqwHbpHqltZDGsqHtMrnMLw8T2LHE6nGOqTi4=;
+        b=AGLc8btkOX+qTMqxsglEhwHzWRkMgX5XGLIUtb+psJKbCM7k+j2G7cphw4iXJIxaka
+         6O5MNDPjPgggXrMWHL2taxMeNobIAaEpdbM8Ehr5VSsuewHSCitXaOxCv3nHV/3qBVgE
+         X4IbDLiqxBao7Wnpaq8m4zHmWTvsVMjMDmRFDgkpPMc77s6DFr9QJdNu71pRQ+hrsJ/8
+         raMcn0KWzntpbQ9xy8PfUlhJ2mqsHwzj6OqAKZQ8HWSW7c0RSn/L2l3+O7qp1B+U1MAz
+         xRAot/Jci5ib55iaQloHniKpX95SqtCsA9UBJNqkdhRFJPs4Djsxgr63JANm7asPekd3
+         qXtg==
+X-Gm-Message-State: AAQBX9fx7bS3PTblQ6R9V/KJZJ7CZ6XmQHOIZZ+nKWj6V/pLI5eF0waA
+        qzhULNZbNbko7jXR9eHeGu4x1g==
+X-Google-Smtp-Source: AKy350b7/j4aNjhcfwWnIRIf0CMTwsVF7i3ReOYvra2kPJFMctNcwfTwKpssHq9qgDZAR1bOxrlhDg==
+X-Received: by 2002:a17:906:6ad9:b0:923:c55d:efd2 with SMTP id q25-20020a1709066ad900b00923c55defd2mr1687962ejs.68.1680863012988;
+        Fri, 07 Apr 2023 03:23:32 -0700 (PDT)
+Received: from dtpc.zanders.be (78-22-137-109.access.telenet.be. [78.22.137.109])
+        by smtp.gmail.com with ESMTPSA id 7-20020a170906014700b00932fa67b48fsm1892612ejh.183.2023.04.07.03.23.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Apr 2023 03:23:32 -0700 (PDT)
+From:   Maarten Zanders <maarten.zanders@mind.be>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Maarten Zanders <maarten.zanders@mind.be>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] leds: lp55xx: configure internal charge pump
+Date:   Fri,  7 Apr 2023 12:23:22 +0200
+Message-Id: <20230407102324.42604-1-maarten.zanders@mind.be>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V11 3/4] arm64: dts: qcom: Add support for ipq9574 SoC and
- RDP433 variant
-Content-Language: en-US
-To:     Marc Zyngier <maz@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <geert+renesas@glider.be>, <rafal@milecki.pl>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <20230404101622.5394-1-quic_devipriy@quicinc.com>
- <20230404101622.5394-4-quic_devipriy@quicinc.com>
- <d410c51ee4beeb4dfee80e13d54d598b@kernel.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <d410c51ee4beeb4dfee80e13d54d598b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tyNx0KBWHNmsGSGr_4E5QkhMMB__RRFu
-X-Proofpoint-ORIG-GUID: tyNx0KBWHNmsGSGr_4E5QkhMMB__RRFu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-07_06,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- suspectscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0 clxscore=1011
- priorityscore=1501 impostorscore=0 mlxlogscore=707 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304070095
-X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+A new option in the devicetree "ti,charge-pump-mode" allows the user to
+configure the charge pump in a certain mode. The previous implementation
+was "auto" mode, which remains the default.
 
+v1 of the patch implemented a bool to disable the charge pump and had some
+issues in the yaml binding.
 
-On 4/4/2023 4:33 PM, Marc Zyngier wrote:
-> On 2023-04-04 11:16, Devi Priya wrote:
->> Add initial device tree support for Qualcomm IPQ9574 SoC and
->> Reference Design Platform(RDP) 433 which is based on IPQ9574
->> family of SoCs
->>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Co-developed-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>  Changes in V11:
->>     - Dropped the unused backup clock source bias_pll_ubi_nc_clk
->>
->>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
->>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts |  84 +++++++
->>  arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 263 ++++++++++++++++++++
->>  3 files changed, 348 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>
-> 
-> [...]
-> 
->> +        intc: interrupt-controller@b000000 {
->> +            compatible = "qcom,msm-qgic2";
->> +            reg = <0x0b000000 0x1000>,  /* GICD */
->> +                  <0x0b002000 0x1000>,  /* GICC */
-> 
-> This is definitely wrong. The GICC region cannot be less than
-> 8kB, as the GICC_DIR register is in the second 4kB region.
-> 
-> I'm pretty sure the kernel shouts at you when booting at EL2.
-Got it, will update the size to 8kB
-> 
->> +                  <0x0b001000 0x1000>,  /* GICH */
->> +                  <0x0b004000 0x1000>;  /* GICV */
-> 
-> Same thing here.
-okay
-> 
->> +            #address-cells = <1>;
->> +            #size-cells = <1>;
->> +            interrupt-controller;
->> +            #interrupt-cells = <3>;
->> +            interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> Missing target CPU encoding.
-Okay, will update the interrupts as below. Hope this is the expectation?
-Please let us know if we are missing something
-interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> 
->          M.
-Best Regards,
-Devi Priya
+v2 implemented all options of the charge pump as a string which was too
+complex to parse & check.
+
+v3 replaces the string by constants.
+
+v4 resend with changelog (notes) in each patch
+
+v5 dual license in dt header, change property type to u32
+
+v6 change license type, simplify DT parameter check
+
+v7 formatting changes, adapt to max 100 char line length
+
+Maarten Zanders (2):
+  dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+  leds: lp55xx: configure internal charge pump
+
+ .../devicetree/bindings/leds/leds-lp55xx.yaml      |  8 ++++++++
+ drivers/leds/leds-lp5521.c                         | 11 +++++------
+ drivers/leds/leds-lp5523.c                         | 14 +++++++++-----
+ drivers/leds/leds-lp55xx-common.c                  |  9 +++++++++
+ drivers/leds/leds-lp8501.c                         |  8 +++++---
+ include/dt-bindings/leds/leds-lp55xx.h             | 10 ++++++++++
+ include/linux/platform_data/leds-lp55xx.h          |  3 +++
+ 7 files changed, 49 insertions(+), 14 deletions(-)
+ create mode 100644 include/dt-bindings/leds/leds-lp55xx.h
+
+-- 
+2.37.3
+
