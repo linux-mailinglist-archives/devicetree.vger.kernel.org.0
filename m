@@ -2,90 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5AA26DAD95
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 15:29:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 034286DADB1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 15:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240767AbjDGN3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 09:29:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35974 "EHLO
+        id S232715AbjDGNjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 09:39:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240849AbjDGN2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 09:28:50 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DBB9AD38
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 06:28:42 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id z42so43509950ljq.13
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 06:28:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680874122;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=71AC0ikf0Km0x4plkaVuEck1Cfenbrjm5IUQHvGO24k=;
-        b=XkNeRFkyD1Vke1fwILYZ5wCBxBjB8TgpmdJeOin1U9seR/kEM0T6tjuTMuVAyA9+d5
-         4MtSRVT0fUyVDZVkKOkdyzhehxSKNDrHjiAf/jiHyXUBDy+BD+MgtqBCzPWTXOohE+o8
-         k7s/Gppk3oXJhP9IMVl+qSkmTICuzRQc+UFcmcbODiWjydzuqUd8srR17IABThPYR7dV
-         3UEKA7G+AMR/EZQktWMYSubrrxlZFsxVmR4FsYAokMjqed5RvZ+GoVZBe4Kj7Es8arNk
-         /AvxIxOyaijm2FtBii86oS6m6fZlsicQaJNHAhxufA6aUwddQP/n78Jb2fSr9chMgOos
-         9FHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680874122;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=71AC0ikf0Km0x4plkaVuEck1Cfenbrjm5IUQHvGO24k=;
-        b=WAbI1dRadBawxkjgyB3ouYodR9FK/uZLHa2Io7IFRd/Ie75zWLyhZfQBtMMDC/CAxh
-         7RbnJHY5NyfQu9Req+LPhY5mOvsehcoTOBRb5b1BXZ+t6itY60VqEbk/G3n+Hn/MLhys
-         IRnshJr29jgf0miHK8R75bKMD1sHtWg/Bk53FdUtf/vvdROcxw/o+nFooeMNbuPEEjh7
-         v2Du5zZQ+L8zahoDXbfrPB8jsNw26EsDnDzv1xtHAW7ClxLi3umPwCRQL2ki+6lzQOpN
-         YRUkO1cG8CtKAwK1UP549LBF6S4T1ZXbZiUUxEMUJRdyLflvS0vLfWuUp7+8sQtRooHl
-         Gtig==
-X-Gm-Message-State: AAQBX9eXY8a39ahgK9pVu2hIeKOSPCbxx5SqjN43Ah75LMh3IZ+arNSP
-        Eq6P5LO74AAaR1KOQVdWCMmPYg==
-X-Google-Smtp-Source: AKy350ZSruER/WhZaHc54QHBOZ51rAbF7UrQ9i5YxFqdcrNz6ioeFKKdY2ttc1T424CJeSRGUvUDvQ==
-X-Received: by 2002:a2e:90d2:0:b0:298:8782:e5f with SMTP id o18-20020a2e90d2000000b0029887820e5fmr562218ljg.43.1680874122036;
-        Fri, 07 Apr 2023 06:28:42 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id h2-20020a2e3a02000000b002a618eb72b1sm811031lja.98.2023.04.07.06.28.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Apr 2023 06:28:41 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 07 Apr 2023 15:28:36 +0200
-Subject: [PATCH 6/6] arm64: dts: qcom: sdm845-oneplus: Fix speaker GPIO
- node
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230407-topic-msm_dtb-v1-6-6efb4196f51f@linaro.org>
-References: <20230407-topic-msm_dtb-v1-0-6efb4196f51f@linaro.org>
-In-Reply-To: <20230407-topic-msm_dtb-v1-0-6efb4196f51f@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S230361AbjDGNjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 09:39:12 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C2E893;
+        Fri,  7 Apr 2023 06:39:09 -0700 (PDT)
+Received: from booty.fritz.box (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id C45F31BF20A;
+        Fri,  7 Apr 2023 13:39:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1680874747;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=VVN0XOngDYz3uGp4wCGBZNM2OHBQACSdvb++Rh+7vvs=;
+        b=SI+lxDSNzORAqgYxur6f7/ldWLJSIqGCO7TYflpS2hfjrz59oR4h0iczIYxpetpxUf+UhJ
+        ESeHWh7albPLHlQ/J4cWqCntV9KwjfOF7psQW/fM+4ly4SFdB0/FJ4q1eRb+V+h1GOdhe2
+        ywHf3Uf46Bc/plUn+c8gkzkAtKWAt+XYyOsOj3FiV6JvbSvDC1RpnEVktRkcXTnr7jRuwf
+        uOY+o5MEFLOMTiK3qKAxqbPEuzcyJavXwtzahTOHaA9XGr2944bS+GGLkyi0rJxA3aUNTV
+        8KU4XvQMUCATp9HPQf5PBl6TbvSf/xIaUsJoIC854ZpmFjQMeb58YyOzd+wxSQ==
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     linux-tegra@vger.kernel.org
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        linux-media@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1680874110; l=899;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=2ZlzTx4qZrv5fI0EvpNhiuB/bNP3eTRF8tP8rrGDU64=;
- b=rMGpDmfTtl9My3tCK5KMbjhv6W+DPUi8hya37IvJUg93v3X1hJhA3hhTChLw4Ae5xjo4R9YcfAXP
- LP3v6XHBBcPwajD4MBHv6PdXz7VPM48G/a5f3Yf/53uBOgINd6BK
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Subject: [PATCH v5 00/20] Add Tegra20 parallel video input capture
+Date:   Fri,  7 Apr 2023 15:38:32 +0200
+Message-Id: <20230407133852.2850145-1-luca.ceresoli@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,37 +64,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the unnecessary mux{} level to make dtbs check happy.
+New in v5: dropped the patch that was removing lots of the logic behind
+enum_format, after discussion with Hans. The rest is unmodified except for
+rebasing and fixing a couple typos in comments.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+Full details follow.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 0c268c560d37..8c2b9382337c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -814,13 +814,11 @@ panel_esd_pin: panel-esd-state {
- 	};
- 
- 	speaker_default: speaker-default-state {
--		mux {
--			pins = "gpio69";
--			function = "gpio";
--			drive-strength = <16>;
--			bias-pull-up;
--			output-high;
--		};
-+		pins = "gpio69";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+		output-high;
- 	};
- };
- 
+Tegra20 and other Tegra SoCs have a video input (VI) peripheral that can
+receive from either MIPI CSI-2 or parallel video (called respectively "CSI"
+and "VIP" in the documentation). The kernel currently has a staging driver
+for Tegra210 CSI capture. This patch set adds support for Tegra20 VIP
+capture.
+
+Unfortunately I had no real documentation available to base this work on.
+I only had a working downstream 3.1 kernel, so I started with the driver
+found there and heavily reworked it to fit into the mainline tegra-video
+driver structure. The existing code appears written with the intent of
+being modular and allow adding new input mechanisms and new SoCs while
+keeping a unique VI core module. However its modularity and extensibility
+was not enough to add Tegra20 VIP support, so I added some hooks to turn
+hard-coded behaviour into per-SoC or per-bus customizable code. There are
+also a fix, some generic cleanups and DT bindings.
+
+Quick tour of the patches:
+
+ * Device tree bindings
+
+   01. dt-bindings: display: tegra: add Tegra20 VIP
+   02. dt-bindings: display: tegra: vi: add 'vip' property and example
+
+ * Minor improvements to logging, comments, cleanups
+
+   03. staging: media: tegra-video: improve documentation of tegra_video_format fields
+   04. staging: media: tegra-video: document tegra_channel_get_remote_source_subdev
+   05. staging: media: tegra-video: fix typos in comment
+   06. staging: media: tegra-video: improve error messages
+   07. staging: media: tegra-video: slightly simplify cleanup on errors
+   08. staging: media: tegra-video: move private struct declaration to C file
+   09. staging: media: tegra-video: move tegra210_csi_soc to C file
+   10. staging: media: tegra-video: remove unneeded include
+
+ * Preparation to make the VI module generic enough to host Tegra20 and VIP
+
+   11. staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
+   12. staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc op
+   13. staging: media: tegra-video: move default format to soc-specific data
+   14. staging: media: tegra-video: move MIPI calibration calls from VI to CSI
+   15. staging: media: tegra-video: add a per-soc enable/disable op
+   16. staging: media: tegra-video: move syncpt init/free to a per-soc op
+   17. staging: media: tegra-video: add syncpts for Tegra20 to struct tegra_vi
+   18. staging: media: tegra-video: add hooks for planar YUV and H/V flip
+   19. staging: media: tegra-video: add H/V flip controls
+
+ * Implementation of VIP and Tegra20
+
+   20. staging: media: tegra-video: add support for Tegra20 parallel input
+
+Enjoy!
+
+Changed in v5:
+- removed patch 3 as requested by Hans Verkuil; now the driver is kept
+  video-node-centric and the enum_format logic is unchanged
+- rebased on top of that
+- trivial fixes (typos)
+
+Changed in RESEND,v4:
+- add Rob's review tag on patch 2
+
+Changed in v4:
+- fixed the leftovers after the removal of 'channel@0' in DT
+- added review tags by Dimtry
+
+Changed in v3:
+- removed the 'channel@0' node from the device tree representation of vip
+- squashed the last two patches (VIP + T20) into one
+- small cleanups
+- rebase on v6.2-rc1
+
+Changed in v2:
+- improved dt-bindings patches based on reviews
+- removed patches 3 and 4 adding DT labels without a mainline user
+- two small fixes to the last patch
+
+[v4,resend] https://lore.kernel.org/linux-tegra/20230309144320.2937553-1-luca.ceresoli@bootlin.com/
+[v4] https://lore.kernel.org/linux-tegra/20230130141603.323221-1-luca.ceresoli@bootlin.com/
+[v3] https://lore.kernel.org/linux-media/20221229133205.981397-1-luca.ceresoli@bootlin.com/
+[v2] https://lore.kernel.org/linux-tegra/20221222100328.6e341874@booty/T/#t
+[v1] https://lore.kernel.org/linux-tegra/20221124155634.5bc2a423@booty/T/#t
+
+Luca
+
+Luca Ceresoli (20):
+  dt-bindings: display: tegra: add Tegra20 VIP
+  dt-bindings: display: tegra: vi: add 'vip' property and example
+  staging: media: tegra-video: improve documentation of
+    tegra_video_format fields
+  staging: media: tegra-video: document
+    tegra_channel_get_remote_source_subdev
+  staging: media: tegra-video: fix typos in comment
+  staging: media: tegra-video: improve error messages
+  staging: media: tegra-video: slightly simplify cleanup on errors
+  staging: media: tegra-video: move private struct declaration to C file
+  staging: media: tegra-video: move tegra210_csi_soc to C file
+  staging: media: tegra-video: remove unneeded include
+  staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
+  staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc
+    op
+  staging: media: tegra-video: move default format to soc-specific data
+  staging: media: tegra-video: move MIPI calibration calls from VI to
+    CSI
+  staging: media: tegra-video: add a per-soc enable/disable op
+  staging: media: tegra-video: move syncpt init/free to a per-soc op
+  staging: media: tegra-video: add syncpts for Tegra20 to struct
+    tegra_vi
+  staging: media: tegra-video: add hooks for planar YUV and H/V flip
+  staging: media: tegra-video: add H/V flip controls
+  staging: media: tegra-video: add support for Tegra20 parallel input
+
+ .../display/tegra/nvidia,tegra20-vi.yaml      |  59 ++
+ .../display/tegra/nvidia,tegra20-vip.yaml     |  41 ++
+ MAINTAINERS                                   |   3 +
+ drivers/staging/media/tegra-video/Kconfig     |   1 +
+ drivers/staging/media/tegra-video/Makefile    |   2 +
+ drivers/staging/media/tegra-video/csi.c       |  48 ++
+ drivers/staging/media/tegra-video/csi.h       |   4 -
+ drivers/staging/media/tegra-video/tegra20.c   | 661 ++++++++++++++++++
+ drivers/staging/media/tegra-video/tegra210.c  |  90 +++
+ drivers/staging/media/tegra-video/vi.c        | 222 ++----
+ drivers/staging/media/tegra-video/vi.h        |  71 +-
+ drivers/staging/media/tegra-video/video.c     |   5 +
+ drivers/staging/media/tegra-video/video.h     |   2 +-
+ drivers/staging/media/tegra-video/vip.c       | 290 ++++++++
+ drivers/staging/media/tegra-video/vip.h       |  68 ++
+ 15 files changed, 1380 insertions(+), 187 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+ create mode 100644 drivers/staging/media/tegra-video/tegra20.c
+ create mode 100644 drivers/staging/media/tegra-video/vip.c
+ create mode 100644 drivers/staging/media/tegra-video/vip.h
 
 -- 
-2.40.0
+2.34.1
 
