@@ -2,134 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8CF96DB196
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 19:28:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E746DB1A4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 19:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbjDGR2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 13:28:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33560 "EHLO
+        id S229575AbjDGRdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 13:33:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbjDGR2d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 13:28:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678A8A5FA;
-        Fri,  7 Apr 2023 10:28:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 04B4365230;
-        Fri,  7 Apr 2023 17:28:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBA1BC433D2;
-        Fri,  7 Apr 2023 17:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680888511;
-        bh=idDlc8ZJaRbDwkcyJQzHCf0qlNbEXgjDa3puNQw4N9c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mtBo5tg3cXKg1cI2/vhx9WamdcOwjH8ylXUHOfZVQsAdN5yBfGzf1oiHOC5v+ZWAK
-         OdyC9vP3M+bOKFJpA/p4IA8YWTmzSewUlKlVulK3AQGjjBs/eME276YiXn47k/uyzP
-         ZDhxRPgiqhH8QVUO1MMKbp1rUk7ZIw8CaDgYYCVriHLS4gtWMBuMFvszA1JKiygBJY
-         g6QYxVv84iIQr5Wy+S9O4UFRpKPyuWp351KbwQikrVkS+ajyF9nQ28WVIiDKnvSVyp
-         iqS7g3X4sJmdfdP7rWwRwJSK+VZuBPOO/JMlP2JMBVeiUahrwpirsJ4DJF4jmakBnp
-         B6fqfgaLfbbmw==
-Date:   Fri, 7 Apr 2023 17:28:29 +0000
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S229458AbjDGRdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 13:33:43 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9CAB45D;
+        Fri,  7 Apr 2023 10:33:40 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 337CUm7Z012340;
+        Fri, 7 Apr 2023 19:33:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=pICdIjFsWv/IjUfnqUMi25ITNSuzVwfvb2LIhpwnTS8=;
+ b=Xq9hyKHc9rf3X2LgP3m6CfJov43CuVXbWnjh7yi7JO+SMYcReuaC6DDELENj7R6U5TF7
+ tHTV3Uxhue75N1kQ9M1HAfdlxIL4wefJaQjXXNwZajo1hTmuoLc7DxzcdWlyZS8iMb6I
+ 7YCxMZRPVXv6MqNcm0dIm2a22v0EGddpkB/0N3C2qkYJqNOOw9sbgRNzqpkBhDc2B9Iy
+ H5Cmr+wfqdwCRDUyxraU/cFA7Q5sUUUNdcgfaH28tYeUyHzXytXjqB48oarvOv8qUMnP
+ EJQgJ/jZI5N8rTA6p+kAJRGRsmxO6DUTzF4LXga+o6ExIIF6jg4Ollkg4E1JWfOXNl4Z ZA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pteygtyh4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 07 Apr 2023 19:33:18 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5D74D10002A;
+        Fri,  7 Apr 2023 19:33:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5741D24553E;
+        Fri,  7 Apr 2023 19:33:17 +0200 (CEST)
+Received: from localhost (10.48.0.157) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Fri, 7 Apr
+ 2023 19:33:16 +0200
+From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v5 4/6] scsi: ufs: ufs-qcom: Switch to the new ICE API
-Message-ID: <ZDBSvVIIq6cMTf1Y@gmail.com>
-References: <20230403200530.2103099-1-abel.vesa@linaro.org>
- <20230403200530.2103099-5-abel.vesa@linaro.org>
- <20230406201634.GA20288@sol.localdomain>
- <ZC/ADOlol2XO7ACL@linaro.org>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH] ARM: dts: stm32: fix typo in stm32mp15xx-dkx.dtsi
+Date:   Fri, 7 Apr 2023 19:33:10 +0200
+Message-ID: <20230407193253.1.If11ffa6edfdfef0869478412ec3cec3169483cb9@changeid>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZC/ADOlol2XO7ACL@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.157]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-07_11,2023-04-06_03,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 07, 2023 at 10:02:36AM +0300, Abel Vesa wrote:
-> On 23-04-06 13:16:34, Eric Biggers wrote:
-> > Hi Abel,
-> > 
-> > On Mon, Apr 03, 2023 at 11:05:28PM +0300, Abel Vesa wrote:
-> > > Now that there is a new dedicated ICE driver, drop the ufs-qcom-ice and
-> > > use the new ICE api provided by the Qualcomm soc driver ice. The platforms
-> > > that already have ICE support will use the API as library since there will
-> > > not be a devicetree node, but instead they have reg range. In this case,
-> > > the of_qcom_ice_get will return an ICE instance created for the consumer's
-> > > device. But if there are platforms that do not have ice reg in the
-> > > consumer devicetree node and instead provide a dedicated ICE devicetree
-> > > node, the of_qcom_ice_get will look up the device based on qcom,ice
-> > > property and will get the ICE instance registered by the probe function
-> > > of the ice driver.
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > 
-> > This is still silent about how the ICE clock behavior is being changed.
-> 
-> Right, I'll add the some more info into the commit message about the
-> clock being handled by the ICE driver.
-> 
-> > 
-> > I'm still trying to understand all this myself, so please bear with me, but my
-> > understanding is that the UFS clocks can be disabled even while the host
-> > controller is runtime-resumed.  This is called "clock gating" in the code.
-> 
-> The ICE clock is now being controlled by the new driver.
-> > 
-> > Before, the ICE clock was just listed as one of the UFS clocks.  So, it was just
-> > managed like the other UFS clocks.
-> > 
-> > Now, it appears that the ICE clock is always enabled while the host controller
-> > is runtime-resumed.  So, this patch removes support for gating of the ICE clock.
-> 
-> I just tested this and it works as expected, which is:
-> 
-> ICE clock gets enable on qcom_ice_create (via *clk_get*_enabled) and
-> then, on the runtime suspend of the UFS, the qcom_ice_suspend is called
-> which will disable the clock. Then, every time UFS runtime
-> resumes/suspends the clock gets enabled/disabled.
-> 
-> Hope that makes sense.
-> 
-> Let me know if you think I'm missing something here.
-> 
+Remove unnecessary space in device tree stm32mp15xx-dkx.dtsi.
 
-Well, it's better than v4 and earlier of this patchset, where the clock was
-never turned off.
+Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+---
 
-But, this patchset still seems to be a regression from the status quo, since it
-makes the ICE clock no longer be disabled when "UFS clock gating" disables the
-other UFS clocks.  Instead, it will only be disabled on runtime-suspend.
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-Now, I don't know whether anyone ever confirmed that the current behavior is
-actually optimal and works as intended.  So, it *might* actually be fine to
-change it!  But I was hoping that you at least had some thoughts about this,
-whereas currently this patchset just ignores the issue entirely.
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+index 11370ae0d868..ccd6c4722bd3 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+@@ -382,21 +382,21 @@ vref_ddr: vref_ddr {
+ 				regulator-always-on;
+ 			};
+ 
+-			 bst_out: boost {
++			bst_out: boost {
+ 				regulator-name = "bst_out";
+ 				interrupts = <IT_OCP_BOOST 0>;
+-			 };
++			};
+ 
+ 			vbus_otg: pwr_sw1 {
+ 				regulator-name = "vbus_otg";
+ 				interrupts = <IT_OCP_OTG 0>;
+-			 };
++			};
+ 
+-			 vbus_sw: pwr_sw2 {
++			vbus_sw: pwr_sw2 {
+ 				regulator-name = "vbus_sw";
+ 				interrupts = <IT_OCP_SWOUT 0>;
+ 				regulator-active-discharge = <1>;
+-			 };
++			};
+ 		};
+ 
+ 		onkey {
+-- 
+2.25.1
 
-- Eric
