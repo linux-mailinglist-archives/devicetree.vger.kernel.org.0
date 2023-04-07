@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D5A6DB444
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE4D66DB448
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:36:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231290AbjDGTdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 15:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34392 "EHLO
+        id S229469AbjDGTgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 15:36:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231178AbjDGTdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 15:33:50 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C94D5FCB
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 12:33:46 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id q16so55574736lfe.10
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 12:33:46 -0700 (PDT)
+        with ESMTP id S229737AbjDGTgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 15:36:45 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9097059D5
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 12:36:42 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id y15so55592211lfa.7
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 12:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680896025;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1680896201;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AChqIZPu5zIXtxq6IuSpeQ9+gNcw1j25CeQVyf5pSTo=;
-        b=mrUP1IGbZDBIk6rqj/QPWb5CtJcaIR1d+ALz6OQ2pVeST//07ElEavHi9xF1Z+/zAW
-         5H0DApG3475Mi5OM0G0f6QSSw8G6PhR8S8/VNqfkTIJQnI2y12qKaGrwCl9+u2q7L8TN
-         dlUxB2kvpUqz348i5wwirOCeaIwwHSd+QyCE4kHur/zZOFbKItsTaD7rI3Sn20seE7Cg
-         MFjERtsdJPSVS/4RGk7m5hewwWjvdi0i0veYAq6+RXr7LomrSEw5X5mMyKuPhU23KTOf
-         GJ82guzwz7JeY0RfAKPUUpnK2QmvA0slKz88RNIY5e9ipHfiop7uPUTFiiEGtGgyJlZ8
-         LZPw==
+        bh=TKYRcl+d8w5lofbNEMKNydH5lmt1IjXJEdkQVh+xrI4=;
+        b=J6OW0erYAmJG7NOOvdaxo2cSQlrnxa0EW0kawWyVUeSr/MrnnFwTaW0dBqWUELritq
+         f0o4I3DeP86Jp6bzj2VQ4i4Kb4zq2xAr3s02oZdOmu8aZ2HwHt77x4+DSOTuEtFM/NLK
+         0ccUfcAqbmvLuKUV/DiL0CfEjG+Ybb0Eoy+q2mCVy6RZjvUNQeLlCsd0IaPUEviAk5sg
+         A+p/E+7ykm8DoZUuqxMUyNWypx7HNz5WzoAxrx8HCd+Yoc6Hmfef1pV2wSKNnLPW07wf
+         sI8W1NELfaV+lQC2De0TEywIpvgJySQdeLHxwujRaeUWYe1jTpEg9M526ZUpqcr4k++t
+         GH5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680896025;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1680896201;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AChqIZPu5zIXtxq6IuSpeQ9+gNcw1j25CeQVyf5pSTo=;
-        b=m25IHdChfkv9PSbLR1qX/5bZxaMbQzl6t1M1JkTB3yt5vPoleHd0vTJcNhNiNyV+Nw
-         6o9QA4J3QdZUAwatoVkqYLOwW/CZWcb+GNEaIQFv3dUGhfgSmQesMkvxgYZCFiZz4H/q
-         4FKzXN4WVSFpyBYg7JJdBybHgZZtN2KoYiOGGP6PgK/jo4d+a1xnSHkuwgz8HwxdDSHj
-         k251zp3QPAZwzN0AwCVT5+tQ8b8tfRG7iPSV73R2U1lBFDBu89kMAxgBKM2U2vCGiBXi
-         zAplbqsyTy9VsNCgm8NfLSXUfTYlXs9tuikPhf3XPaXdk2/hM/Y6L8Ay6LEyl7rRRTy5
-         p8rA==
-X-Gm-Message-State: AAQBX9cq9wsAol+UcXwrZ4tTpAcnrnSaGSckiQtkL1eerAilohmEHNCI
-        4Lbdhv/UlbHbGjivn03YibrzFw==
-X-Google-Smtp-Source: AKy350b02pcZauxxys7qCmWgdH2MI8xlPuOqXTYabkBJVmG9ebI4W2Yo4Of1RWqWFD04nIB0rsVlRw==
-X-Received: by 2002:ac2:560c:0:b0:4cb:280b:33c9 with SMTP id v12-20020ac2560c000000b004cb280b33c9mr1004410lfd.24.1680896024649;
-        Fri, 07 Apr 2023 12:33:44 -0700 (PDT)
+        bh=TKYRcl+d8w5lofbNEMKNydH5lmt1IjXJEdkQVh+xrI4=;
+        b=x+dodwFzA9DbFmYH9ieIPGK/UOrvfllnz/mzr2VaIiNKkkCVhhHBKNMzrdqiYwUr1W
+         2YEC+8vKnyLE7C54iz6pHWj04pK4cY4uZTB/AD5hOnbgMsIN+5VuNpiIkN+nG4H5seUb
+         lkDlWbtWdkL9fX74hlI4YeVokRS/hWiW4SLxK3qbl2vHBYQh7mbm7eqgrOlklxHEV1aL
+         /N1uhPSrT5dc2WbJDvpZ56EDh2mTOeCgMXVSbgI6og3uIEgGbT5KGsQOW3xca83sQed/
+         PXhcR8kPAfzm6ZBDJCf4/F75e3rQXke6CtwRJ+ug6z1DBcE/acwogoXSqze4EckzTwL5
+         LmvA==
+X-Gm-Message-State: AAQBX9fDvLtAiPOJHkGYlfJLm4z9Q/N8vl94LCzuUbchKrKf7vLPRVXn
+        M0n6EoHqy62X6FKwd4SUOCpb/A==
+X-Google-Smtp-Source: AKy350YBR6zNVDEar+oV1BSDq/1Y8u/fnKTZ8b9oW3xMoF5v8rx+6HcUbkBOB7TQSRiNhoyKS+KJFw==
+X-Received: by 2002:ac2:5485:0:b0:4eb:11dc:d9a5 with SMTP id t5-20020ac25485000000b004eb11dcd9a5mr1021070lfk.32.1680896200757;
+        Fri, 07 Apr 2023 12:36:40 -0700 (PDT)
 Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id v30-20020a056512049e00b004e8508899basm835169lfq.86.2023.04.07.12.33.43
+        by smtp.gmail.com with ESMTPSA id k18-20020a2e8892000000b002958a51df76sm957200lji.92.2023.04.07.12.36.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 12:33:44 -0700 (PDT)
-Message-ID: <fc51155e-9538-3a81-98ca-da8722462b71@linaro.org>
-Date:   Fri, 7 Apr 2023 21:33:43 +0200
+        Fri, 07 Apr 2023 12:36:40 -0700 (PDT)
+Message-ID: <d935029e-9ba1-a89e-67e8-79e832d7c736@linaro.org>
+Date:   Fri, 7 Apr 2023 21:36:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH] arm64: dts: qcom: sdm630: move DSI opp-table out of DSI
- node
+Subject: Re: [PATCH V4 2/5] regulator: qcom_smd: Add MP5496 S1 regulator
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230407192605.168666-1-krzysztof.kozlowski@linaro.org>
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com
+References: <20230407155727.20615-1-quic_devipriy@quicinc.com>
+ <20230407155727.20615-3-quic_devipriy@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230407192605.168666-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230407155727.20615-3-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -81,80 +82,43 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 7.04.2023 21:26, Krzysztof Kozlowski wrote:
-> The DSI OPP table on SDM630 is used by one DSI0, but on SDM660 is shared
-> by two nodes (DSI0 and DSI1), thus it should be rather in top-level, not
-> in DSI0.
+On 7.04.2023 17:57, Devi Priya wrote:
+> Adding support for MP5496 S1 regulator on IPQ9574 SoC.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> A cleanup patch to commit a2e5260d0755 ("arm64: dts: qcom: sdm630: move
-> DSI opp-table into DSI node").
-> 
-> Follow-up to:
-> https://lore.kernel.org/all/20230407163442.ckbd4vxa5b2xu3eu@ripper/
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm630.dtsi | 38 ++++++++++++++--------------
->  1 file changed, 19 insertions(+), 19 deletions(-)
+>  Changes in V4:
+> 	- Dropped struct mp5496_smpa1 which was the same as mp5496_smpa2
+> 	  and renamed mp5496_smpa2 to mp5496_smps as suggested by Konrad
+> 	
+>  drivers/regulator/qcom_smd-regulator.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index 8bdb36a63474..b91e423a3cfc 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -328,6 +328,25 @@ memory@80000000 {
->  		reg = <0x0 0x80000000 0x0 0x0>;
->  	};
+> diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
+> index 6f722b2d682e..18189f35db68 100644
+> --- a/drivers/regulator/qcom_smd-regulator.c
+> +++ b/drivers/regulator/qcom_smd-regulator.c
+> @@ -749,7 +749,7 @@ static const struct regulator_desc pms405_pldo600 = {
+>  	.ops = &rpm_smps_ldo_ops,
+>  };
 >  
-> +	dsi_opp_table: opp-table-dsi {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-131250000 {
-> +			opp-hz = /bits/ 64 <131250000>;
-> +			required-opps = <&rpmpd_opp_svs>;
-> +		};
-> +
-> +		opp-210000000 {
-> +			opp-hz = /bits/ 64 <210000000>;
-> +			required-opps = <&rpmpd_opp_svs_plus>;
-> +		};
-> +
-> +		opp-262500000 {
-> +			opp-hz = /bits/ 64 <262500000>;
-> +			required-opps = <&rpmpd_opp_nom>;
-> +		};
-> +	};
-> +
->  	pmu {
->  		compatible = "arm,armv8-pmuv3";
->  		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -1591,25 +1610,6 @@ dsi0: dsi@c994000 {
+> -static const struct regulator_desc mp5496_smpa2 = {
+> +static const struct regulator_desc mp5496_smps = {
+>  	.linear_ranges = (struct linear_range[]) {
+>  		REGULATOR_LINEAR_RANGE(600000, 0, 127, 12500),
+>  	},
+> @@ -794,7 +794,8 @@ struct rpm_regulator_data {
+>  };
 >  
->  				status = "disabled";
->  
-> -				dsi_opp_table: opp-table {
-> -					compatible = "operating-points-v2";
-> -
-> -					opp-131250000 {
-> -						opp-hz = /bits/ 64 <131250000>;
-> -						required-opps = <&rpmpd_opp_svs>;
-> -					};
-> -
-> -					opp-210000000 {
-> -						opp-hz = /bits/ 64 <210000000>;
-> -						required-opps = <&rpmpd_opp_svs_plus>;
-> -					};
-> -
-> -					opp-262500000 {
-> -						opp-hz = /bits/ 64 <262500000>;
-> -						required-opps = <&rpmpd_opp_nom>;
-> -					};
-> -				};
-> -
->  				ports {
->  					#address-cells = <1>;
->  					#size-cells = <0>;
+>  static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
+> -	{ "s2", QCOM_SMD_RPM_SMPA, 2, &mp5496_smpa2, "s2" },
+> +	{ "s1", QCOM_SMD_RPM_SMPA, 1, &mp5496_smps, "s1" },
+> +	{ "s2", QCOM_SMD_RPM_SMPA, 2, &mp5496_smps, "s2" },
+>  	{ "l2", QCOM_SMD_RPM_LDOA, 2, &mp5496_ldoa2, "l2" },
+>  	{}
+>  };
