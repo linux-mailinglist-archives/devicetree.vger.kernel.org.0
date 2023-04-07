@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 066506DAA50
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 10:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E36A56DAA5A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 10:45:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240240AbjDGInQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 04:43:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33748 "EHLO
+        id S239804AbjDGIpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 04:45:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240080AbjDGInP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 04:43:15 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A91A420F
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 01:43:13 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id sg7so6969256ejc.9
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 01:43:13 -0700 (PDT)
+        with ESMTP id S232757AbjDGIpj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 04:45:39 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6638A79
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 01:45:38 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id qb20so6983183ejc.6
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 01:45:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680856991;
+        d=linaro.org; s=google; t=1680857137;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=adkU32LsCttVRXNpLdmBB653haYtpyR0pGsnlxBxnUU=;
-        b=E5+8ob5dlTczC769PGAH+hjeScmR7sm3H0x17B5f0YjL9yuxMTqfBWfouUFtNfn09k
-         MaOcNMHwm3pKf0lpbnC+rlUhVmDLG7v9nPqG8IwIVAdBQ/gHD0p7fiv7f0GvPZrRYfv4
-         114xuT8pSK6PNPb5QPrS5HOeIefiMyY802APGwoHHP1HXh8w/FEs+Rqw+MjmD6yljGz2
-         qWs8bboBFISJ5xiXdCf3J/YQA6nxtZ6OK6tVfJ8abvT1Y//Oc21OcgDYx2yhZTWWQLhy
-         0gyIRkiyF9lfdQZwXIooAeg83KINemFpaREKt0T0Eaeyz+pYEQRtQkRvS5kuqtd5rFp6
-         9zCA==
+        bh=EkzZhTvOzLRcCGpfrge05I6LlNCd0VLnVsi76p0/Q9Y=;
+        b=tidL1h228tOzQTBOUqn76zpPuR/cmWNKWhR2GufNT0+O1y7j3oF2OSRoqiUVqkC5qI
+         vY2BAyE2ubUgiRQ2Y/O6RRY9teFunLs7RVjucHn5es55NYCvw3LpQtTL9VsogpVwPWq4
+         xXrUU3p05SPEeWazhXCGVXFC5Q2AmP7aABD7xTd/FRcPSVoY904UT6oYaJHBglQaqG0K
+         5WBajTPFS/M+EtIoWUjcbVLVQpRJev7tEJwrrmHuJT0nmhKdJ+QVgMJ9TUDx1/yF9iVx
+         R/nDMN+yvJtQHUv0nltGy5t/JpoOdTa1RdJaAjbPTGZXVsiNlDx916SCzNqMW7Wzfqbp
+         bMhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680856991;
+        d=1e100.net; s=20210112; t=1680857137;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=adkU32LsCttVRXNpLdmBB653haYtpyR0pGsnlxBxnUU=;
-        b=1cJ034swi9//v8ZdZ7183kXLRqMuPuCIDp4SDEi42xRTIUZFo24NAUZ8VAuK5bZzt2
-         /WyPNdeE5UWBOiQwKclk2oq1dbwHbk7HA5BVUDK4H+0DObpPhMih7Pb0ALwEHliyJXYy
-         Z8ZJRP0m2pmu99gMAk2CJ8pKDpQqh6q3zml18djbwQ/AN6L1jpXP2I3oLAEWFV0XopH+
-         F0epbpo7MOq26O/AQA3QB144Oo+yscygzadoLYfCov6XAOpQOPWFJ9zXsE2GeWb+hpBB
-         LCZ8nvWrCuq6+nHMo8Nr9wVXASf0yQs+h/IlNk/5LfZEm52cmkXikR6p406QqdFTx+W3
-         4oGg==
-X-Gm-Message-State: AAQBX9dARGT7wHycvLYNO4D5EWtyvd+Gtr/CqnsJfzM2DSkU8wYVIMqW
-        /zaZMzRmrm1/mfHU3o7Y7Qzy5w==
-X-Google-Smtp-Source: AKy350YKKdnjBy0BXE+xCLGnRNN5aa6bX9Vn63qnzwUCqM2PvBFepFb7lyn+md3qnjpO+ScTgh0AbQ==
-X-Received: by 2002:a17:906:66cf:b0:8ab:b03d:a34f with SMTP id k15-20020a17090666cf00b008abb03da34fmr7731487ejp.12.1680856991672;
-        Fri, 07 Apr 2023 01:43:11 -0700 (PDT)
+        bh=EkzZhTvOzLRcCGpfrge05I6LlNCd0VLnVsi76p0/Q9Y=;
+        b=ztn2iuKV1ZYx0mA3uIragay6MYli++Xz8kX5n1K4dJnNeVYfiqn83rsAMLmvTNjTQX
+         RNIbGBGhT9pl54944gckwer4IdyAJAMpxK1a8y5Q+RDJqi8Eug4aOsenQqHG0wimy2TZ
+         HeNPIEq3MNVqVq4G7v1vU7hnmMB30kLDbalbK1TzGZ102G80/rSx+Eree0yHbtC6B7nZ
+         sowyckwA5V1/MBgdG/0f9L9hKt9Xrp80t4WYE+FKRImL3N86G91f9DYe4y22jM8EgBXr
+         AUSwh8737vbG4hCWmOfxACrBHhPlu7r87NpBVtiPXShpTOE+5zQ8FhZwKb/qU8PKuRno
+         /pUA==
+X-Gm-Message-State: AAQBX9dtJbwnb3un+Q9kRf688+zFVRMgGNaUBQkdhKD/D2my9AYVbvwU
+        /cBrfvg10qY+TOwpqf7LOyrAUA==
+X-Google-Smtp-Source: AKy350brdfe8nxr1JYdpIW6N0eS4YwtysVwTUFW03OaK40Lq1FF//oAXxsoNoLZ77c3KBnpLWspb/g==
+X-Received: by 2002:a17:907:7608:b0:8b1:7ae9:647 with SMTP id jx8-20020a170907760800b008b17ae90647mr1063441ejc.76.1680857136910;
+        Fri, 07 Apr 2023 01:45:36 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:14a3:366:3172:3c37? ([2a02:810d:15c0:828:14a3:366:3172:3c37])
-        by smtp.gmail.com with ESMTPSA id n5-20020a170906b30500b00930445428acsm1859041ejz.14.2023.04.07.01.43.10
+        by smtp.gmail.com with ESMTPSA id r13-20020a170906a20d00b008d044ede804sm1802700ejy.163.2023.04.07.01.45.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 01:43:11 -0700 (PDT)
-Message-ID: <e6aa04b2-d83f-80f6-19f7-0aa18622eb89@linaro.org>
-Date:   Fri, 7 Apr 2023 10:43:10 +0200
+        Fri, 07 Apr 2023 01:45:36 -0700 (PDT)
+Message-ID: <0762cb76-a1cb-d25d-2a8f-8f9eda21cc81@linaro.org>
+Date:   Fri, 7 Apr 2023 10:45:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] dt-bindings: regulator: qcom,rpmh: add compatible for
- pmm8654au RPMH
+Subject: Re: [PATCH v2 1/5] dt-bindings: ufs: qcom: add compatible for sa8775p
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230406192811.460888-1-brgl@bgdev.pl>
- <20230406192811.460888-2-brgl@bgdev.pl>
+References: <20230406194703.495836-1-brgl@bgdev.pl>
+ <20230406194703.495836-2-brgl@bgdev.pl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406192811.460888-2-brgl@bgdev.pl>
+In-Reply-To: <20230406194703.495836-2-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,11 +88,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 21:28, Bartosz Golaszewski wrote:
+On 06/04/2023 21:46, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Add the compatible for the pmm8654au RPMH regulators present on the
-> sa8775p-ride development board.
+> Add the compatible string for the UFS on sa8775p platforms.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
