@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7126DB5F6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 23:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2005B6DB68F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 00:39:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbjDGVyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 17:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52298 "EHLO
+        id S230365AbjDGWjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 18:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbjDGVyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 17:54:21 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A87F5FCB
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 14:54:20 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id bx10so26303253ljb.8
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 14:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1680904458;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QUf+hItRUlAyl8Odc+K+o9OQqV17J58V+aP3v0kFHhk=;
-        b=HDRfRiwyLM/lRXtziEze5NRPh6rgRw/JeQ+qfRM5Cqn7guhS0gRrdgIW9xOpT8Raw8
-         N+2IxIYkZudLJOb6CMyliOjZ092IoXrAieqLEVohPUzsgrFKfLb9g6iAhCLHgoq4qgY4
-         QkgDhMcrq2aCU/C+7DEu248Jfb3qILitbqCwE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680904458;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QUf+hItRUlAyl8Odc+K+o9OQqV17J58V+aP3v0kFHhk=;
-        b=pesPozvV0uF1MCMscRZiQNa3kxRSKL67ppTG3rVTdSbbWtOlUbQzj6bfwFhrRKKjN8
-         JU4JwPrQt7UdeQ1nO5Yw78/6mylV18AXVK+V8li54t6KwgOTDQ80UNJNxXgwjaHRxEsy
-         fl/jmjJl4hjelZqClxrEwYUIjjBqcckMX6JDZqWRC9GRXWJflNSNxSzJAhOHx4Zjiq+M
-         SjlOYF8muP88pEv3bTco6iKB5d0Jo3C/W6YcvgOeYcbJN9gQc5OEfOLHYq8ZSkyKxE1f
-         2nMnOoMrf027rjxei15QFxTa4iIOL0sRafMd4EDZwOGBgz2F5Iato0v4jKHuzzhAZ7Ns
-         Aw1A==
-X-Gm-Message-State: AAQBX9dY+JNPu4mxb71JGIRG/jetpK9q7wShLXfGYLECAn+JaRGL2Kfx
-        H4+IQg4Mzr7x18XiSgzphe52QSrci+qvLaH3n0OHAQ==
-X-Google-Smtp-Source: AKy350bK2tfa/ifMpJd99S5lA9yyNvRN8J9D6TZLrauRv7sSWhzgZZFM6h20BylS5hhLgn59vMCdcBgqoUJ4xAgeXvY=
-X-Received: by 2002:a05:651c:1035:b0:2a5:f6f2:1ff4 with SMTP id
- w21-20020a05651c103500b002a5f6f21ff4mr917513ljm.10.1680904458705; Fri, 07 Apr
- 2023 14:54:18 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 7 Apr 2023 14:54:18 -0700
+        with ESMTP id S230383AbjDGWjp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 18:39:45 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 026A3BB80;
+        Fri,  7 Apr 2023 15:39:42 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 337MU3TF002575;
+        Fri, 7 Apr 2023 22:39:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=4wy59giH1iZ0lLV4ochSNdMNyXqOjCvvleqBjTCZwoE=;
+ b=UXgCgL4+inHMZgwAQEA/4AhzAcCd9YPF3nBUAAnc2QdDvIzG1lAK5EXOwJiCIb1TJafK
+ wCBfS33LPdqvGpWJEgr4VTkvImq5KjR+cQKLhQSduLMh5AYsKyCG0/s5jvEP8rlDK7At
+ ZPgS1DDk/IK44byghiUyw24tbuLgYSlkqGPZw8KRs2KZdXgp9OTzj1mC02J6uDwf45r7
+ g38Nyz/NqhjcyboMjM0QH+KXBhlv6jOFVd36wE6s1JWPsxiHtOigcMIQBdaOaO+vFAzu
+ RwjOXhLbcv90bl55st30Aji/IuAezteKq0wCPqKzkNORYP2CVGhtwa8j8xlS3sI00BR5 xA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ptb9wj5kc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 07 Apr 2023 22:39:38 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 337MdA8F003439
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 7 Apr 2023 22:39:10 GMT
+Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 7 Apr 2023 15:39:10 -0700
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+To:     <pavel@ucw.cz>, <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <andersson@kernel.org>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Anjelique Melendez <quic_amelende@quicinc.com>
+Subject: [PATCH v2 0/3] Add support for high resolution PWMs
+Date:   Fri, 7 Apr 2023 15:38:46 -0700
+Message-ID: <20230407223849.17623-1-quic_amelende@quicinc.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-In-Reply-To: <20230331091145.737305-2-treapking@chromium.org>
-References: <20230331091145.737305-1-treapking@chromium.org> <20230331091145.737305-2-treapking@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 7 Apr 2023 14:54:18 -0700
-Message-ID: <CAE-0n53Dw1tk0vVuToTwGYrKD76O_F97QgSGricBuvuPJnG60g@mail.gmail.com>
-Subject: Re: [PATCH v15 01/10] device property: Add remote endpoint to devcon matcher
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Benson Leung <bleung@chromium.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _K6f48eR73Bw6sbf-WIHrZn9nUrZM8Pv
+X-Proofpoint-ORIG-GUID: _K6f48eR73Bw6sbf-WIHrZn9nUrZM8Pv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-07_14,2023-04-06_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 phishscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ suspectscore=0 priorityscore=1501 mlxscore=0 impostorscore=0
+ mlxlogscore=615 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2304070205
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Pin-yen Lin (2023-03-31 02:11:36)
-> From: Prashant Malani <pmalani@chromium.org>
->
-> When searching the device graph for device matches, check the
-> remote-endpoint itself for a match.
->
-> Some drivers register devices for individual endpoints. This allows
-> the matcher code to evaluate those for a match too, instead
-> of only looking at the remote parent devices. This is required when a
-> device supports two mode switches in its endpoints, so we can't simply
-> register the mode switch with the parent node.
+Certain PMICs have a high reolution PWM module which can support from 8-bit
+to 15-bit PWM. This change series adds support for those PMICs. Thanks!
 
-Looking at this in isolation I have no idea what a mode switch is and
-how it is related to drivers/base/property.c. Can you expand on this
-commit text? Maybe say two "usb typec mode switches"? And maybe include
-an example graph node snippet?
+Changes since v1:
+  1. Updated some variable names in driver. 
+  2. Updated driver to address compilation issue reported by
+     kernel test robot.
+
+Anjelique Melendez (3):
+  dt-bindings: leds-qcom-lpg: Add qcom,pmk8550-pwm compatible string
+  leds: rgb: leds-qcom-lpg: Add support for high resolution PWM
+  leds: rgb: leds-qcom-lpg: Add support for PMK8550 PWM
+
+ .../bindings/leds/leds-qcom-lpg.yaml          |   1 +
+ drivers/leds/rgb/leds-qcom-lpg.c              | 160 +++++++++++++-----
+ 2 files changed, 116 insertions(+), 45 deletions(-)
+
+-- 
+2.40.0
+
