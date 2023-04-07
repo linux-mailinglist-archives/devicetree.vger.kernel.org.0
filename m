@@ -2,55 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B36816DB1BB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 19:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA0586DB1C8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 19:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbjDGRic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 13:38:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41780 "EHLO
+        id S230077AbjDGRii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 13:38:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbjDGRib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 13:38:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23033B45D;
-        Fri,  7 Apr 2023 10:38:31 -0700 (PDT)
+        with ESMTP id S230015AbjDGRif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 13:38:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FC3BB92;
+        Fri,  7 Apr 2023 10:38:34 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AEBCE612B8;
-        Fri,  7 Apr 2023 17:38:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8510C4339B;
-        Fri,  7 Apr 2023 17:38:28 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F41B612B8;
+        Fri,  7 Apr 2023 17:38:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EB52C4339C;
+        Fri,  7 Apr 2023 17:38:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680889110;
-        bh=SVNdCzS5dOwnIbizNI04FQZAvngU0frQKSwP0pYnE58=;
+        s=k20201202; t=1680889113;
+        bh=1G/0q1PmMTKTGGQ7jW9JhNzxGtHF75wxfJBUD8OFHxA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=a/s2ZLcAgk9hLlTiaAr64AUYtH7rj+xQMjm2/KR2Kno4hH5n0M/fgaqYWE6/sAXej
-         U51utwPwJFdgXtqjg2cdIDhc3u2JKQcqWNWpZhZULplQlfArsSG0IMLJm6t/WNa7OD
-         42raklQ1RSyVOArMHkTZUZ+msCYv3zJ7QxRrWBk7zhcBQvLHmyTOkbEgr1LlZF16fY
-         ULZGADQglbjJH8fu+rz38gz1lwRahgHfjqP7nm/LTzfhbA/mFHWkrj2QEFgCoYljXW
-         ao7AlYCzCeK6GlFYVGMbzba3QV1C/KXO9kgWkO6+fYVXWD/KATDcIQKIWVGlhm0+qa
-         1kbOj5qxPq53A==
+        b=KylqOCQ+CFTC7v/OPqOXddLMRlIGLuh5IhbD7wxI9lfoeCB8upsBiq/6BmIVBe7Ww
+         k3YNQS1fHtsVz6ECBKVAKXOVBnDakxx+7cSsQwuO5c13TJao9SBFjoRgN1UJvoU7bR
+         edEcuOEUUcmPI3QBbITLU/vo7AYv4n3APLGBwOXFczYOEcH2uJ67dcXmUy+YYYYiyF
+         yQ4k8mfccY1F+bUpcF5KHL2JedS3Wam2PBUNePc6rMvLlRL5GwCUkAbv1prTzLCL4/
+         iT6yjv8fUrTm/GIOHwfNBFZ5dlj7jTHkJ+tCRHGUy1fCrhOAg/8A2BGrYCyUwX3ZML
+         oBVE5lZnt+kHw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     krzysztof.kozlowski+dt@linaro.org, Alex Elder <elder@linaro.org>,
-        robh+dt@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org
-Cc:     mka@chromium.org, quic_jponduru@quicinc.com,
-        quic_cpratapa@quicinc.com, evgreen@chromium.org,
-        quic_subashab@quicinc.com, caleb.connolly@linaro.org,
-        quic_avuyyuru@quicinc.com, linux-kernel@vger.kernel.org,
-        elder@kernel.org, quic_rohiagar@quicinc.com,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] ARM: dts: qcom: sdx65: support IPA
-Date:   Fri,  7 Apr 2023 10:41:07 -0700
-Message-Id: <168088927576.2561591.15794170389939298837.b4-ty@kernel.org>
+To:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH v6 0/9] Fix DSI host idx detection on HW revision clash
+Date:   Fri,  7 Apr 2023 10:41:10 -0700
+Message-Id: <168088927578.2561591.16211627310049586642.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230327195605.2854123-1-elder@linaro.org>
-References: <20230327195605.2854123-1-elder@linaro.org>
+In-Reply-To: <20230307-topic-dsi_qcm-v6-0-70e13b1214fa@linaro.org>
+References: <20230307-topic-dsi_qcm-v6-0-70e13b1214fa@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,22 +66,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Mar 2023 14:56:03 -0500, Alex Elder wrote:
-> The upstream IPA driver now supports IPA v5.0 for SDX65.  Add
-> IPA-related nodes and definitions to "sdx65.dtsi", and enable IPA
-> in "sdx65-mtp.dts".
+On Sat, 18 Mar 2023 14:42:46 +0100, Konrad Dybcio wrote:
+> v5 -> v6:
+> - Squash both fixes that concerned the deprecated QCM2290 compatible to
+>   avoid warnings
 > 
-> Having touched these files, Konrad advised I should update them to
-> move the "status" property to the end of nodes where it is used.
+> v5: https://lore.kernel.org/r/20230307-topic-dsi_qcm-v5-0-9d4235b77f4f@linaro.org
+> 
+> v4 -> v5:
+> - Drop superfluous items: level in [8/10]
+> - Remove the header define for the qcm2290 config in [6/10] instead of
+>   [7/10]
+> - Pick up tags
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] ARM: dts: qcom: sdx65: add IPA information
-      commit: 14079448cccc2fb8e2709d5ea194bd5e6a11ded9
-[2/2] ARM: dts: qcom-sdx65: move status properties to end of nodes
-      commit: 280ecc191281892bf33ed6bfdea46b4c27ce582c
+[9/9] arm64: dts: qcom: sm6115: Use the correct DSI compatible
+      commit: 1e6e0c1c971e5e02047a05c015510cc203530dc2
 
 Best regards,
 -- 
