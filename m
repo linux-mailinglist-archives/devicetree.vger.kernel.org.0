@@ -2,133 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF03B6DAB45
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 12:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 814166DAB69
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 12:22:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232012AbjDGKL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 06:11:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
+        id S237421AbjDGKWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 06:22:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbjDGKL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 06:11:28 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D458B7ED8;
-        Fri,  7 Apr 2023 03:11:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1680862287; x=1712398287;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gAO8SRCumNxD+pCFQwia+WypiPkxM5kfEBEREoMMxqc=;
-  b=wL50An3baxroiYEsk6SUdxyVfUtCw0Ou19l/IYJ8+u+ZojWy8F2ey9J8
-   THpeFxVRFCAePSwZgghcmY56dL7Q8ohs2ZI7wH749OhEuoh8/dA9vTNq3
-   loK9+hOzWgwCBfqsBM3CapquDtPUBUPDxNFF742m466pfSPl/5jZWCLeQ
-   VlMLZvlhnLq8WOGwYTKDQUZx9pWdfQrPPlYjyr0b+jCjG6plvpPBDiQOv
-   FEX+3COIPrh9xZoI+25cv0iOryUAW92Hoj3E76kiU2ruGYxJv17EkvmhU
-   od8uutVZSFtlZw+m+YtbZ7XPAC3DvHimsTu8yes8vXvLJqG575LUEAOMb
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,326,1673938800"; 
-   d="asc'?scan'208";a="145993498"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Apr 2023 03:11:26 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 7 Apr 2023 03:11:26 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 7 Apr 2023 03:11:24 -0700
-Date:   Fri, 7 Apr 2023 11:11:09 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     William Qiu <william.qiu@starfivetech.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Subject: Re: [PATCH v7 1/2] dt-bindings: soc: starfive: Add StarFive syscon
- doc
-Message-ID: <20230407-stand-reversion-1db211c03ff4@wendy>
-References: <20230406103308.1280860-1-william.qiu@starfivetech.com>
- <20230406103308.1280860-2-william.qiu@starfivetech.com>
- <833b68a5-263d-d293-4910-2ca50b43e60d@linaro.org>
- <2ce35d68-ae6c-129f-588e-9b292de3a654@starfivetech.com>
+        with ESMTP id S233426AbjDGKWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 06:22:03 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB967ED3;
+        Fri,  7 Apr 2023 03:22:02 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3377MXI5013040;
+        Fri, 7 Apr 2023 10:21:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=q0vpDgVuiJJwQzilV7Uvd/VJSZtDHMxv30kgg5UkQB0=;
+ b=cHa4WkRp32n3m4HroUn/SROrrZlDqhZuR9nC9hfI+6+2iw/EAyUIylF2kwokFpHi6Azx
+ h89N3pD6pw1kURyv3IvOE9htGLD+x56cTkVdIOvdNDIrlpnUfumrdBJFKbkbbq2/yfBJ
+ 0w/P++SJnyhH92fxQN/RHpYWkRMpz5yRQCzp2Q9BEKCl0uEzLoCk/x2eCEjethOEfjCP
+ 94ArvfeOlqQt6y6wVw4J38ae+P4SNe0I/2BDmGcjXZT0tErWoVcGeMhSdWdaAwVOxDAv
+ 8tQ5L0BlfEAGBlPI03KtB1cnOyb/8/ZhNryvuz7Ticsa7GtvD+Gn6MPn1skLIy+MKTQr rA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pssmw34th-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 07 Apr 2023 10:21:27 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 337ALP1A015330
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 7 Apr 2023 10:21:25 GMT
+Received: from [10.216.18.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 7 Apr 2023
+ 03:21:15 -0700
+Message-ID: <c74b40fe-92b9-9a53-1a9f-b19a7090a12c@quicinc.com>
+Date:   Fri, 7 Apr 2023 15:51:12 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Fh2qLU8GMRk0u5gs"
-Content-Disposition: inline
-In-Reply-To: <2ce35d68-ae6c-129f-588e-9b292de3a654@starfivetech.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V11 3/4] arm64: dts: qcom: Add support for ipq9574 SoC and
+ RDP433 variant
+Content-Language: en-US
+To:     Marc Zyngier <maz@kernel.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <geert+renesas@glider.be>, <rafal@milecki.pl>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+References: <20230404101622.5394-1-quic_devipriy@quicinc.com>
+ <20230404101622.5394-4-quic_devipriy@quicinc.com>
+ <d410c51ee4beeb4dfee80e13d54d598b@kernel.org>
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <d410c51ee4beeb4dfee80e13d54d598b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tyNx0KBWHNmsGSGr_4E5QkhMMB__RRFu
+X-Proofpoint-ORIG-GUID: tyNx0KBWHNmsGSGr_4E5QkhMMB__RRFu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-07_06,2023-04-06_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ suspectscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0 clxscore=1011
+ priorityscore=1501 impostorscore=0 mlxlogscore=707 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304070095
+X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Fh2qLU8GMRk0u5gs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 07, 2023 at 05:30:31PM +0800, William Qiu wrote:
->=20
-> This would be $ref: /schemas/clock/starfive,jh7110-pll.yaml#, but this fi=
-le is not
-> available at present,  so I would like to ask if I should submit the docu=
-ments
-> instead of Xingyu
 
-Or just send the whole lot as one series, and I'll ack the soc bits for
-Stephen to take the whole lot via clk? I think Xingyu owes a respin
-anyway cos of the changes to this binding file that Krzysztof requested
-there.
-
-Plus, the base clock support is now in clk-next, so their stuff is now
-applicable to the clk tree.
-
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4c0b39c44957..0b2170e1e4ff 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19911,6 +19911,11 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/mmc/starfive*
->  F:	drivers/mmc/host/dw_mmc-starfive.c
-> =20
-> +STARFIVE JH7110 SYSCON
-> +M:	William Qiu <william.qiu@starfivetech.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon=
-=2Eyaml
-
-Can you squash this in please (whitespace damaged):
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90abe83c02f3..6fbb486f59ab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19943,6 +19943,7 @@ STARFIVE SOC DRIVERS
- M:     Conor Dooley <conor@kernel.org>
- S:     Maintained
- T:     git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
-+F:     Documentation/devicetree/bindings/soc/starfive/
- F:     drivers/soc/starfive/
-
-Cheers,
-Conor.
-
---Fh2qLU8GMRk0u5gs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZC/sPQAKCRB4tDGHoIJi
-0mqrAQD68lH1tU4Wq6HSU+FTpSvVnORJwEnuw/Y48zO6SDo9OAD/fZYy57Fk/I74
-EpFkC7hl22U7CmGZuW8tlC/bZfG+1QE=
-=K7GJ
------END PGP SIGNATURE-----
-
---Fh2qLU8GMRk0u5gs--
+On 4/4/2023 4:33 PM, Marc Zyngier wrote:
+> On 2023-04-04 11:16, Devi Priya wrote:
+>> Add initial device tree support for Qualcomm IPQ9574 SoC and
+>> Reference Design Platform(RDP) 433 which is based on IPQ9574
+>> family of SoCs
+>>
+>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Co-developed-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
+>>  Changes in V11:
+>>     - Dropped the unused backup clock source bias_pll_ubi_nc_clk
+>>
+>>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts |  84 +++++++
+>>  arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 263 ++++++++++++++++++++
+>>  3 files changed, 348 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+>>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>
+> 
+> [...]
+> 
+>> +        intc: interrupt-controller@b000000 {
+>> +            compatible = "qcom,msm-qgic2";
+>> +            reg = <0x0b000000 0x1000>,  /* GICD */
+>> +                  <0x0b002000 0x1000>,  /* GICC */
+> 
+> This is definitely wrong. The GICC region cannot be less than
+> 8kB, as the GICC_DIR register is in the second 4kB region.
+> 
+> I'm pretty sure the kernel shouts at you when booting at EL2.
+Got it, will update the size to 8kB
+> 
+>> +                  <0x0b001000 0x1000>,  /* GICH */
+>> +                  <0x0b004000 0x1000>;  /* GICV */
+> 
+> Same thing here.
+okay
+> 
+>> +            #address-cells = <1>;
+>> +            #size-cells = <1>;
+>> +            interrupt-controller;
+>> +            #interrupt-cells = <3>;
+>> +            interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> Missing target CPU encoding.
+Okay, will update the interrupts as below. Hope this is the expectation?
+Please let us know if we are missing something
+interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> 
+>          M.
+Best Regards,
+Devi Priya
