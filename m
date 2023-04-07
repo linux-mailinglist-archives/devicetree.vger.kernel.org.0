@@ -2,126 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B166DA817
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 05:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E6D76DA837
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 06:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232354AbjDGDp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Apr 2023 23:45:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54276 "EHLO
+        id S232925AbjDGESp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 00:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbjDGDpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Apr 2023 23:45:55 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60FCCE63;
-        Thu,  6 Apr 2023 20:45:51 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 761F524E1B6;
-        Fri,  7 Apr 2023 11:45:39 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
- 2023 11:45:39 +0800
-Received: from [192.168.125.108] (183.27.97.179) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
- 2023 11:45:38 +0800
-Message-ID: <548b4d0f-447a-23a9-0e58-3d6c80cb8e3b@starfivetech.com>
-Date:   Fri, 7 Apr 2023 11:45:37 +0800
+        with ESMTP id S232933AbjDGESn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 00:18:43 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6E86E82;
+        Thu,  6 Apr 2023 21:18:35 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id 5B25241352;
+        Fri,  7 Apr 2023 09:18:30 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1680841112; bh=e6KYdthnog///fCvA7GhcHBk9WCpwTdwqv+2kcPLjxk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=yW3YOfWnOtfjhaAwLtivKyWClbXHbyZyGaX07DGfG6pZzLT5Dy4bHdFUy9P1rPqNR
+         MQhFdmKmYupa8LnI1OXeSwKbjzwyR+tG7N4Mf+b+yVAuTMGyW9oT2dnZeOs3wZ4psg
+         zgFjeJXNyZVZFgnlUDKvJotEVUjL9uFtWddGhVGZ1Th++EjC8XiLouyeqlZD3jUUcg
+         DbZ9NGX3q+vraWp2L+hY8l6FgMJ3qFnMS0ify4qjvqbT0PtIWce3IRhqPBD69Y5vH5
+         175Zq/6fJDZZwyIKqH/58IFvdswL+oAaqx8BK/zRYOB0UWPRTonZZ+gE2y+pW5aYRQ
+         b+PaWjAEwaMsg==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v1 1/3] dt-binding: pci: add JH7110 PCIe dt-binding
- documents.
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-References: <20230406111142.74410-1-minda.chen@starfivetech.com>
- <20230406111142.74410-2-minda.chen@starfivetech.com>
- <38bc48bf-7d8c-8ddd-861f-3b7f3d2edce6@linaro.org>
- <20230406-revisit-patchy-a0063d964070@spud>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <20230406-revisit-patchy-a0063d964070@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.179]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Date:   Fri, 07 Apr 2023 09:18:30 +0500
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_srivasam@quicinc.com,
+        judyhsiao@chromium.org, mka@chromium.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: sc7180: Don't enable lpass
+ clocks by default
+In-Reply-To: <7bec0262-8a20-9b6a-599f-5ba759e6bd6b@linaro.org>
+References: <20230406150633.83351-1-nikita@trvn.ru>
+ <20230406150633.83351-2-nikita@trvn.ru>
+ <7bec0262-8a20-9b6a-599f-5ba759e6bd6b@linaro.org>
+Message-ID: <15c96acc4d502795b08c9b264efa7082@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Konrad Dybcio писал(а) 07.04.2023 00:31:
+> On 6.04.2023 17:06, Nikita Travkin wrote:
+>> lpass clocks are usually blocked from HLOS by the firmware and
+>> instead are managed by the ADSP. Mark them as reserved and explicitly
+>> enable in the CrOS boards that have special, cooperative firmware.
+>>
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
+>>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 4 ++++
+>>  2 files changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> index 423630c4d02c..26def6e12723 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> @@ -785,6 +785,14 @@ alc5682: codec@1a {
+>>  	};
+>>  };
+>>
+>> +&lpasscc {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&lpass_hm {
+>> +	status = "okay";
+>> +};
+>> +
+>>  &lpass_cpu {
+>>  	status = "okay";
+>>
+> _hm should come after _cpu alphabetically
+> 
 
+Oops, will fix, thanks!
 
-On 2023/4/7 2:35, Conor Dooley wrote:
-> On Thu, Apr 06, 2023 at 08:24:55PM +0200, Krzysztof Kozlowski wrote:
->> On 06/04/2023 13:11, Minda Chen wrote:
->> > +
->> > +  interrupt-controller:
->> > +    type: object
->> > +    properties:
->> > +      '#address-cells':
->> > +        const: 0
->> > +
->> > +      '#interrupt-cells':
->> > +        const: 1
->> > +
->> > +      interrupt-controller: true
->> > +
->> > +    required:
->> > +      - '#address-cells'
->> > +      - '#interrupt-cells'
->> > +      - interrupt-controller
->> > +
->> > +    additionalProperties: false
->> > +
->> > +required:
->> > +  - reg
->> > +  - reg-names
->> > +  - "#interrupt-cells"
->> 
->> Keep consistent quotes - either ' or "
->> 
->> Are you sure this is correct? You have interrupt controller as child node.
+> w/ that
 > 
-> I know existing stuff in-tree is far from a guarantee that it'll be
-> right, but this does at least follow what we've got for PolarFire SoC:
-> Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Both PLDA and both RISC-V w/ a PLIC as the interrupt controller, so in
-> similar waters.
-> This note existed in the original text form binding of the Microchip
-> PCI controller:
-> | +NOTE:
-> | +The core provides a single interrupt for both INTx/MSI messages. So,
-> | +create an interrupt controller node to support 'interrupt-map' DT
-> | +functionality.  The driver will create an IRQ domain for this map, decode
-> | +the four INTx interrupts in ISR and route them to this domain.
-> 
-> Given the similarities, I figure the same requirement applies here too.
-> Minda?
-> 
-> Cheers,
-> Conor.
-
-Yes, Thanks very much.
+> Konrad
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> index 3c799b564b64..6f40301faa1c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> @@ -3621,6 +3621,8 @@ lpasscc: clock-controller@62d00000 {
+>>  			power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
+>>  			#clock-cells = <1>;
+>>  			#power-domain-cells = <1>;
+>> +
+>> +			status = "reserved"; /* Controlled by ADSP */
+>>  		};
+>>
+>>  		lpass_cpu: lpass@62d87000 {
+>> @@ -3669,6 +3671,8 @@ lpass_hm: clock-controller@63000000 {
+>>
+>>  			#clock-cells = <1>;
+>>  			#power-domain-cells = <1>;
+>> +
+>> +			status = "reserved"; /* Controlled by ADSP */
+>>  		};
+>>  	};
+>>
