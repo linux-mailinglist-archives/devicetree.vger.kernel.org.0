@@ -2,75 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D5E6DB41F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:23:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 915AA6DB441
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjDGTXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 15:23:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50298 "EHLO
+        id S230321AbjDGTdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 15:33:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjDGTXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 15:23:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FEB7D9B;
-        Fri,  7 Apr 2023 12:23:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 427B3612FD;
-        Fri,  7 Apr 2023 19:23:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0DD5C433EF;
-        Fri,  7 Apr 2023 19:23:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680895411;
-        bh=T4VZPDMaf3+6YnZBOz2pM6Rn4UXyJHX4JL0AyrpyYto=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=sbvBl1b2QI2Q1ihm6MNZ5vtL6BW/xPWZ1rEwqUifaPZLZGiLGsMh7lfQj51M4pEdo
-         yeBiBWaAatAUYKytAQXgD5h0J/I1HL1oglbGEVDB3ZawZ0JUqlSN6UwyiQg3mmzytn
-         Wm8Fc8Rvol3NPhLjFb5aM5trVy4/MaMAzUNPSt/vvCY5brW8beOAeEDXnBkc54qwZe
-         41X9/ZP1+yMNbBMDNO3Mx8E8/A69h9VjXX8ZzgMAGHAw9RFpJxdb+JKkmQnj5aerMn
-         tYgpdp5m04xjnTqkgdDWfy4+ZUQaND066oBfeoqDd60FN1mVmFz4U8GamLG+1VSgg3
-         K5WCc2iaonxPQ==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: (subset) [PATCH 1/5] arm64: dts: qcom: msm8916-thwc-ufi001c: add function to pin config
-Date:   Fri,  7 Apr 2023 12:26:22 -0700
-Message-Id: <168089557840.2742951.8556650585979147303.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
-References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229587AbjDGTdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 15:33:41 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F53D59DA
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 12:33:37 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id lj25so10446467ejb.11
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 12:33:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680896016;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CFcdt1ttR0JYr0me/5LJWwJyzWI4lE8LLRex0Ck54qI=;
+        b=FfYMlF/JVt7WPbyOAw3CJ5nrX7HmzTF5uYdpNXnNgD56bmOtp8l+u07FQ/4OafANU7
+         O/r0phQh0tTxwq0BUaTSFlMyG6O7I+Lxv0PAWFUI/3yk/IaEq9X6CoLVpu1khm5dh4CW
+         HdxY9rWtBQi8EQsX1mYFnpyfVzOz3sMLM7jUcp2VstzEaZvMdpup12XQIF8TBTuzngZe
+         GRaeGZcWaB748FYU01VN2XOkuyeRUkxo7JO8yXrA1UADpvBHoca7PxmN5Ow4eBpfwGK9
+         PBmM/B5+Q7TvqohZoUVgpaeMYYYLkEW+2rWf+6fhXiZ8FvXUcvTbxX21J2HBo4kU3xjL
+         3yrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680896016;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CFcdt1ttR0JYr0me/5LJWwJyzWI4lE8LLRex0Ck54qI=;
+        b=21J7/Qsqy5rahcf46jMYh+jPnQUHv1Q4lai22OWyx03IIycxmbdr2NoZwHl0O+uOSu
+         DTJHwEDyX5KCGheaLwzxtFIbN0EC+hHZ/tA6JHRpfs//hz4RUi0o4v7gX/M5DSsX+8OU
+         p5KvBZCuYLauEkMTsjoAW0IiWYxqLVRMlr39GtUyUJQG/cdZPFzo/jFYfj4r/zoJ5icb
+         o3w2Z3WNK8f5CtWcwsj9wF0e3zg8W4BawjUHY37fNiMNPcDWDwtxT9lmawK8sC2/41QG
+         ldfw+11ALoporieNM+M3Y6rqFLIRxRNaXgrP6RdzwpBTsZq6eQrA7+OpACxBj++TKJZv
+         96Gw==
+X-Gm-Message-State: AAQBX9fchv4KsvfMxYlplijchFkd8RSP7EV/5hPPakVgdHYnl/hu+qHX
+        bkfQdFdYDK+WoeNp7IEytfbGAQ==
+X-Google-Smtp-Source: AKy350ZaW3hCil6LKliWTuygUI+papi9EEN403UkJdh/kiNh2NqDn57PzsJDJBPuEJkj2sDdpl7LZQ==
+X-Received: by 2002:a17:906:58f:b0:926:fce:c080 with SMTP id 15-20020a170906058f00b009260fcec080mr492038ejn.17.1680896016079;
+        Fri, 07 Apr 2023 12:33:36 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:b20f:8824:c926:8299? ([2a02:810d:15c0:828:b20f:8824:c926:8299])
+        by smtp.gmail.com with ESMTPSA id vo14-20020a170907a80e00b00947cac48916sm2339974ejc.8.2023.04.07.12.33.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Apr 2023 12:33:35 -0700 (PDT)
+Message-ID: <d8de5632-09f9-565a-ec06-814cc23c12ea@linaro.org>
+Date:   Fri, 7 Apr 2023 21:33:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: qcom: Add Acer Aspire 1
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Nikita Travkin <nikita@trvn.ru>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
+        quic_srivasam@quicinc.com, judyhsiao@chromium.org,
+        mka@chromium.org, cros-qcom-dts-watchers@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230407151423.59993-1-nikita@trvn.ru>
+ <20230407151423.59993-4-nikita@trvn.ru>
+ <CAD=FV=VQKS1J42qx-Zk9JKwRUeX1evQjZzs_RMAMFby-gaNDXw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=VQKS1J42qx-Zk9JKwRUeX1evQjZzs_RMAMFby-gaNDXw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Mar 2023 21:22:40 +0100, Krzysztof Kozlowski wrote:
-> Bindings require pin configuration nodes to have the function, even if
-> it is GPIO:
+On 07/04/2023 18:23, Doug Anderson wrote:
+> Hi,
 > 
->   msm8916-thwc-ufi001c.dtb: pinctrl@1000000: sim-ctrl-default-state: 'oneOf' conditional failed, one must be fixed:
->     'esim-sel-pins', 'sim-en-pins', 'sim-sel-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
+> On Fri, Apr 7, 2023 at 8:14 AM Nikita Travkin <nikita@trvn.ru> wrote:
+>>
+>> Acer Aspire 1 is a laptop based on sc7180. Document it's compatible.
+>>
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>> Changes in v2:
+>>  - Merge with IDP (Krzysztof)
+>> ---
+>>  Documentation/devicetree/bindings/arm/qcom.yaml | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> index f8d29b65f28b..db97a61e8ccb 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> @@ -367,9 +367,9 @@ properties:
+>>                - qcom,qru1000-idp
+>>            - const: qcom,qru1000
+>>
+>> -      - description: Qualcomm Technologies, Inc. SC7180 IDP
+>> -        items:
+>> +      - items:
+>>            - enum:
+>> +              - acer,aspire1
+>>                - qcom,sc7180-idp
+>>            - const: qcom,sc7180
 > 
-> 
-> [...]
+> If Krzysztof is happy then I have no real objections here. That being
+> said, I personally would have updated the description to be more
+> generic and not say "IDP" anymore. Something like "Non-Chromebook
+> sc7180 boards".
 
-Applied, thanks!
-
-[1/5] arm64: dts: qcom: msm8916-thwc-ufi001c: add function to pin config
-      commit: d4a7e17f402de8ebdbae4844b011a5b18f93e341
+I am fine with both - dropping the description or changing it to
+something meaningful.
 
 Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Krzysztof
+
