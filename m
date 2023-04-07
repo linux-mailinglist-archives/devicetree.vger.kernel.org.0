@@ -2,127 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F16C56DAAF8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 681F86DAB0C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:47:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240613AbjDGJe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 05:34:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50452 "EHLO
+        id S233146AbjDGJrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 05:47:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240605AbjDGJef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:34:35 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE754ED2
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 02:34:34 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id v1so41849767wrv.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 02:34:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680860073; x=1683452073;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ty5wIc3Z81+kG82VSRnC8Apz5DxLYwgxvYQ6Q3KABLA=;
-        b=tGurBQVuQ7y9plBgUeZloAz5GvkNiKOghaNxx/zgC4n9qgmf/dYpOv/I1JpDD7BAYm
-         lD/0lDBqanGaFQctbOZnMkGXYeWdo2xX4SxSrY67cB0+aIEyvhmxN+M9zyHEanwotGOG
-         HQq8w/lm6GHLYxROo9Vskj/9MZeCzS8DbKoaIkAmJL2wHIOVgQ80jHUhe4WJO1V5XQ9L
-         jSxS1uvBzzsIaWb0JQnG/RvfWOLeJxeNq9BYFxzas5tknG5RslJOSFbgfAq0Mx3CrIoh
-         M67aOk60Bt7VsO8EzPpf0Ltc9SQ/E8WITG/2UsmQMX6ZtgyB+d5A5y7iSf2XDPOQp5dY
-         TxJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680860073; x=1683452073;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ty5wIc3Z81+kG82VSRnC8Apz5DxLYwgxvYQ6Q3KABLA=;
-        b=7r1CPOZPSC3Z4Lnd2lPGQFSP6aCKGqBK0BPmRgTcuYVCkRKgM0AQryciPI+U3f1hlc
-         rBlAduUKrBo8mTuanN9jCyp3t7bEcOkljeqM1/1OECCivxL/ftJ7GUzfSU+s7at8w1Pf
-         ze9vPpfP5eKhkN2XuudooqLxgAAS+w7x+dNNvkvUd9DoUz4ofYNdRrT4QAWVWRMQXVg1
-         Lcbtbc0xcP/2WgtTH3hvGV7J5J3CYmDe/L44cWpG4BAPa8RyWolkMQ4rX4wnLuvZ65uy
-         wMHIqADIAKfM1j8BBcDyHts2TgeIe591FKu/irWoSTkkeDRvdnBdvjmL20b60w/8Z5Fw
-         7rrg==
-X-Gm-Message-State: AAQBX9eF6Loa7ZqfKGV4fyhi5M0h+xUabkLm8KuyyoI02Mbm6AkHQu6I
-        St0NIa6Zym8YJj2D69gdoJfHlA==
-X-Google-Smtp-Source: AKy350ZCxukRPbiYxfQSW8vlwe9x8x2sFSg0sdY5cneYe0HCrfwmHA6Q4RTnYxKfkajPgrsZn6ufjQ==
-X-Received: by 2002:adf:db8e:0:b0:2d4:a843:d000 with SMTP id u14-20020adfdb8e000000b002d4a843d000mr857999wri.56.1680860073602;
-        Fri, 07 Apr 2023 02:34:33 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id s13-20020a5d510d000000b002d64fcb362dsm4020432wrt.111.2023.04.07.02.34.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Apr 2023 02:34:33 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 07 Apr 2023 11:34:18 +0200
-Subject: [PATCH v3 7/7] arm64: dts: mediatek: add iommu support for mt8365
- SoC
+        with ESMTP id S229437AbjDGJrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:47:03 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EC51721;
+        Fri,  7 Apr 2023 02:47:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1680860782; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=eBTYQ58vhgLgJ4yHfjiHgtJlGFjyAESluw6BNI9VBH5VQR6zqkymV5P4XN8VfnotRf6TJJPBDn5CONQlz8VkMRCcgJ4R9l1InItL8Ud0HBvexc8+uyLa8OSgmL+CfMrlP2EJiW4GOFrSWUd1XViYS5gKsZUrl1vVnFj0vM1W+bw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1680860782; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=mmgW4edYlUnyxLuwyv+RhMeMNoN0f2U2QoMCWe0iOyU=; 
+        b=eVom5K6RyjeM2xe4T2tXSDGQ03nQ9gtC8ejvyc/iCvWWf7I4lO5dc6SGFe1yVTCc2vLYELVid26V2R28/bXOnD7502mNaBidHISMBo8GEyyfdMyVf8uCGbPB5Kj4a/YanAncljYw608MewcFj9uzRooLn3ZwdY11/jHz86Cuhps=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680860782;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=mmgW4edYlUnyxLuwyv+RhMeMNoN0f2U2QoMCWe0iOyU=;
+        b=VP1bH1Sbx6pTq9Kefa1rc9NVAak3gRAr6CeVg1qZoECgJA8CIW0I78wk41fXtDoZ
+        yNUs4exZsnDYl+2zE5zMrAAyvIOIUUMS9NII3Hz5Vjdzj29txsbpploTVhgKOCM0odx
+        413Pz23s8WrQ/Avqhcn/T4IX7KuKrx6gLmDV43nw=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 168086078067680.0988150323908; Fri, 7 Apr 2023 02:46:20 -0700 (PDT)
+Message-ID: <5a92419c-4d2c-a169-687b-026dc6094cd8@arinc9.com>
+Date:   Fri, 7 Apr 2023 12:46:14 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-iommu-support-v3-7-97e19ad4e85d@baylibre.com>
-References: <20230207-iommu-support-v3-0-97e19ad4e85d@baylibre.com>
-In-Reply-To: <20230207-iommu-support-v3-0-97e19ad4e85d@baylibre.com>
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/7] dt-bindings: net: dsa: mediatek,mt7530: add port
+ bindings for MT7988
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1094; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=DnJEBHRsbqHL6qyjSRQDzaDxfH+izMrFh6xvaojG8T4=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkL+Ohg0L1C33TWbvz3zKaLZwmTsLFe1MkCtyZMLpe
- Ti6X3s+JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZC/joQAKCRArRkmdfjHURZN1D/
- 9aluz//LTMCYnheiQnLj++jXjk9/55KstgFzy9l/ZWVHcvv8qQgM37m3sxH+YQNW6PJHEUlYzA/75K
- dTUyKBiuWeqMB4BOwQo562DAf1kNBKsF5JcYN4fB0pjA4o5n4m+vzcZKAmtE81cPCrWO+Z680f7rod
- BLI9n/dMaWMSLeII7jmm2Npbe5D8hwifuSO9AUR06joR9hoGb/cDy1eOoehhAj5IPJk0P248cYB1Ri
- o+ThpClfOsU7f22gCusbilqxsw2AXhtW0OnUsfycFnXlzX5Z5EFCzIMJq3AzoUSTZcwD/0umfLMn5Z
- 0IfscdgMC/LtaEU5lHtjnj3b0nut0f43D++w9tUJJ/Np3HF9L/OIzb4kDE0HYBo1HNAAFiQHXRZIqf
- 3meLX+WJEi+cz8PgFkhmaFS47aAwoe/VlD4BQ3c4Q0O6nuctY/EYQVecHMbtGa6asRpdpSWV6td/15
- FpfUITZap/juI5/Ll13V5MSfEbyH7+iE6qeeQo+GPdatetwyfuEoyQr4yV/tyUVDul0N/PtpwgrdKn
- FznOxUto/U6TBCeK9lh2DHw177IOmvD1ChDGCh4XpHDVUfNlnf5JF/tQ0t5bX295u22eNxSsZWEEQW
- jDnOWlcyNfLFUjdW3Wud9AwSiji2/arQFTmDrfqUDHwUhnVKbm+7MzULNntA==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230406080141.22924-1-arinc.unal@arinc9.com>
+ <20230406080141.22924-3-arinc.unal@arinc9.com>
+ <23c8c4b5-baaa-b72b-4103-b415d970acf2@linaro.org>
+ <5b3a10ff-e960-1c6e-3482-cb25200c83c6@arinc9.com>
+ <951841d3-59a4-fa86-5b45-46afdb2942dd@linaro.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <951841d3-59a4-fa86-5b45-46afdb2942dd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iommu support in the SoC DTS using the 4 local arbiters (LARBs)
+On 7.04.2023 12:07, Krzysztof Kozlowski wrote:
+> On 06/04/2023 21:18, Arınç ÜNAL wrote:
+>> On 6.04.2023 22:07, Krzysztof Kozlowski wrote:
+>>> On 06/04/2023 10:01, arinc9.unal@gmail.com wrote:
+>>>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>>>
+>>>> The switch on MT7988 has got only port 6 as a CPU port. The only phy-mode
+>>>> to be used is internal. Add this.
+>>>>
+>>>> Some bindings are incorrect for this switch now, so move them to more
+>>>> specific places.
+>>>>
+>>>> Address the incorrect information of which ports can be used as a user
+>>>> port. Any port can be used as a user port.
+>>>>
+>>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>>> ---
+>>>>    .../bindings/net/dsa/mediatek,mt7530.yaml     | 63 ++++++++++++++-----
+>>>>    1 file changed, 46 insertions(+), 17 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>>> index 7045a98d9593..605888ce2bc6 100644
+>>>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>>> @@ -160,22 +160,6 @@ patternProperties:
+>>>>          "^(ethernet-)?port@[0-9]+$":
+>>>>            type: object
+>>>>    
+>>>> -        properties:
+>>>> -          reg:
+>>>> -            description:
+>>>> -              Port address described must be 5 or 6 for CPU port and from 0 to 5
+>>>> -              for user ports.
+>>>> -
+>>>> -        allOf:
+>>>> -          - if:
+>>>> -              required: [ ethernet ]
+>>>> -            then:
+>>>> -              properties:
+>>>> -                reg:
+>>>> -                  enum:
+>>>> -                    - 5
+>>>> -                    - 6
+>>>> -
+>>>
+>>> I have doubts that the binding is still maintainable/reviewable. First,
+>>> why do you need all above patterns after removal of entire contents?
+>>
+>> The 'type: object' item is still globally used. I'd have to define that
+>> on each definitions, I suppose?
+> 
+> Doesn't it come from dsa.yaml/dsa-port.yaml schema?
 
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+It comes from dsa.yaml#/$defs/ethernet-ports which this schema already 
+refers to. I'll remove the patterns above.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index 07a7267f338e..6260744f4be5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -456,6 +456,14 @@ sysirq: interrupt-controller@10200a80 {
- 			reg = <0 0x10200a80 0 0x20>;
- 		};
- 
-+		iommu: iommu@10205000 {
-+			compatible = "mediatek,mt8365-m4u";
-+			reg = <0 0x10205000 0 0x1000>;
-+			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_LOW>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>, <&larb3>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		infracfg_nao: infracfg@1020e000 {
- 			compatible = "mediatek,mt8365-infracfg", "syscon";
- 			reg = <0 0x1020e000 0 0x1000>;
+Though 'type: object' is not there for "^(ethernet-)?port@[0-9]+$". I 
+think I should add it there as the dsa-port.yaml schema defines the 
+properties of the DSA switch port object. So the value matching the 
+"^(ethernet-)?port@[0-9]+$" regular expression is expected to be an 
+object conforming to the structure defined in dsa-port.yaml.
 
--- 
-2.25.1
+Does that make sense?
 
+> 
+>>
+>>>
+>>> Second, amount of if-then-if-then located in existing blocks (not
+>>> top-level) is quite big. I counted if-then-using defs, where defs has
+>>> patternProps-patternProps-if-then-if-then-properties.... OMG. :)
+>>
+>> Yup, not much to do if we want to keep the information. I'm still
+>> maintaining this though. ¯\_(ツ)_/¯
+> 
+> Maybe it should be split into few bindings sharing common part.
+
+Agreed, I think it makes sense to split this to MT7530, MT7531, and 
+MT7988. I will do this after this series.
+
+Arınç
