@@ -2,122 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72C5F6DB286
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 20:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0BC46DB292
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 20:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbjDGSLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 14:11:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56044 "EHLO
+        id S229928AbjDGSNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 14:13:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230058AbjDGSLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 14:11:31 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41CBAF2C
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 11:11:29 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-4fa3c484814so2107575a12.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 11:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680891088;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L+XwHH+NxH3fpDTzT7U2Uejz40Vg3/GuvV21vLfzLyA=;
-        b=mkSF57qv7GXr0i6rVvc5d21h96Tj8SqUcR64xPYNrobd+PQ7P6B0Zt3vCo/pDNt6sj
-         +qxLslDoBW1QlLB5DBUtbV7WXVcuQF+wmouHnEDpCujvPmtd8ImsjYTsgGKVemzI99wU
-         JzRJnG9LldtJyfbrD68/U+qOSot3OZywvaL9R9Z1N2T5+zjL5ZNn1rzwUzq5SEiheiZ1
-         4/Zv7GFSNIfAJ6NbHOWw/HH9x0bVBtG2oCd/8qctgs0r801T+iJVqdS3EcsRYI40uyIC
-         qqQtiXU8i0Vut4VcWtLxyFGEdyIotlef6orWDCPU4JbhCgIGHewRJotSj5A5v1p2IW01
-         PdrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680891088;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L+XwHH+NxH3fpDTzT7U2Uejz40Vg3/GuvV21vLfzLyA=;
-        b=s2MwsUSFPP/AWMec+yWap29zMPR2jCTwhxthNxLiyTQupwSdbjpk5xB4aNo4AZsozG
-         1VlhuC4zBc8zmu3D/mPTpyeatvkI2oWjpeeHPebV/JV661Dde4vZcPbDFB8C46C+t3wI
-         +tFao3j1SbrKKZsqvTbGopdqmjSvsjnwBC8Ep+hyZ3oAzCPLGodC3a4aIsjw2Pjv/fFn
-         IVDZFkl1CVUwuhnN8O6MSFVkYVUXZBdgDT4NLE55PUer8m0hIctii0YX8gHSizcsJ84q
-         +dqHv/Y9LV2CEWWbLuz2eXq6PRZGONaXlT4TXqFTrCf5B6z/HGvIhnTqAerworUINP03
-         AwdQ==
-X-Gm-Message-State: AAQBX9fOI2CIet0fd1zClcneVYREs9EdJLtJJTNyPvHRm1uNMVP9Wvx8
-        LVpknqwrSTcOC9A2Os4CN7gCwQ==
-X-Google-Smtp-Source: AKy350YA4WOMGlUud0T2KIJv6phMSse28tyWV3pz9UJmgbHa/WEwOfeYZ8OM4J3oJ5P98WpBIqBrvw==
-X-Received: by 2002:a50:fb87:0:b0:501:d532:d84e with SMTP id e7-20020a50fb87000000b00501d532d84emr2779887edq.39.1680891087495;
-        Fri, 07 Apr 2023 11:11:27 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:b20f:8824:c926:8299? ([2a02:810d:15c0:828:b20f:8824:c926:8299])
-        by smtp.gmail.com with ESMTPSA id m20-20020a509994000000b0050470aa444fsm1700323edb.51.2023.04.07.11.11.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 11:11:27 -0700 (PDT)
-Message-ID: <43b74b3f-e607-ba55-a5fa-326fb4b5519d@linaro.org>
-Date:   Fri, 7 Apr 2023 20:11:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 12/14] arm64: dts: qcom: sc7180: Fix trogdor qspi pin
- config
-Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229658AbjDGSNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 14:13:06 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C8D0420F;
+        Fri,  7 Apr 2023 11:13:05 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 337CMGeF012601;
+        Fri, 7 Apr 2023 20:12:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=F0o+B3Jxb3/uk+z8z/TkZpS2JFK+X2n8RM237B5Z72s=;
+ b=bqgkoPZvUyir/9JcBxPvKJggAKC9PUuKLgNeIkclpMXM0GLtrtPN6cxMiCfkhJWlXCmJ
+ ropCFJSTtStST82JiZPewnaKLFQNJdTASQ1c0UuWQ16chif+3rrAukGVwbQ1ZFYdZSNC
+ O/gwQRqohI8PHDEFd8/JmHOTCA+7v0czgWSVMiEyc3iJRIkT2HbKGDvCAUy/4Ts+AOxD
+ NcuS3i4UvnymrAJtOHqZZMhgtATXoamD4VZiGUJE2T72FljMT1p9cL5AvbhJUKYN/7lP
+ pAktTMoCVdAp7ppgGumZgovQMr3lsY85Rc8FFyLzHPahrfS+1Ox5Y/mkbEIXZdY7Srxr Jg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pteygu39y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 07 Apr 2023 20:12:51 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 82C1210002A;
+        Fri,  7 Apr 2023 20:12:50 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7BB7024C44C;
+        Fri,  7 Apr 2023 20:12:50 +0200 (CEST)
+Received: from localhost (10.48.0.157) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Fri, 7 Apr
+ 2023 20:12:50 +0200
+From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-gpio@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-spi@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-kernel@vger.kernel.org
-References: <20230323173019.3706069-1-dianders@chromium.org>
- <20230323102605.12.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230323102605.12.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH] dt-bindings: mfd: stm32: Fix STM32F4 DT include file
+Date:   Fri, 7 Apr 2023 20:12:43 +0200
+Message-ID: <20230407201235.1.I483a676579cc7e3ac07e1db649091553743fecc8@changeid>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.157]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-07_11,2023-04-06_03,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 18:30, Douglas Anderson wrote:
-> In commit 7ec3e67307f8 ("arm64: dts: qcom: sc7180-trogdor: add initial
-> trogdor and lazor dt") we specified the pull settings on the boot SPI
-> (the qspi) data lines as pullups to "park" the lines. This seemed like
-> the right thing to do, but I never really probed the lines to confirm.
-> 
+Minor cosmetic change, aligned with file in U-Boot:
+- remove extra space
 
+Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+---
 
->  &qup_i2c2_default {
-> @@ -1336,6 +1340,22 @@ p_sensor_int_l: p-sensor-int-l-state {
->  		bias-disable;
->  	};
->  
-> +	qspi_sleep: qspi-sleep-state {
-> +		pins = "gpio63", "gpio64", "gpio65", "gpio68";
-> +
-> +		/*
-> +		 * When we're not actively transferring we want pins as GPIOs
-> +		 * with output disabled so that the quad SPI IP block stops
-> +		 * driving them. We rely on the normal pulls configured in
-> +		 * the active state and don't redefine them here. Also note
-> +		 * that we don't need the reverse (output-enable) in the
-> +		 * normal mode since the "output-enable" only matters for
-> +		 * GPIO function.
-> +		 */
-> +		function = "gpio";
-> +		output-disable;
+ include/dt-bindings/mfd/stm32f4-rcc.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-Doug,
-
-I acked some of your patches, but I assumed you tested all this. It
-turns out you never run dtbs_check on the patches you sent.
-
-Best regards,
-Krzysztof
+diff --git a/include/dt-bindings/mfd/stm32f4-rcc.h b/include/dt-bindings/mfd/stm32f4-rcc.h
+index 309e8c79f27b..36448a5619a1 100644
+--- a/include/dt-bindings/mfd/stm32f4-rcc.h
++++ b/include/dt-bindings/mfd/stm32f4-rcc.h
+@@ -34,7 +34,6 @@
+ #define STM32F4_AHB1_RESET(bit) (STM32F4_RCC_AHB1_##bit + (0x10 * 8))
+ #define STM32F4_AHB1_CLOCK(bit) (STM32F4_RCC_AHB1_##bit)
+ 
+-
+ /* AHB2 */
+ #define STM32F4_RCC_AHB2_DCMI	0
+ #define STM32F4_RCC_AHB2_CRYP	4
+-- 
+2.25.1
 
