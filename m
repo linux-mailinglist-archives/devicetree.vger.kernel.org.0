@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 444346DAD4E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 15:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0C36DAD52
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 15:14:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231939AbjDGNOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 09:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56228 "EHLO
+        id S232602AbjDGNO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 09:14:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240651AbjDGNN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 09:13:59 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 016148684
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 06:13:50 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id r187so48949067ybr.6
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 06:13:50 -0700 (PDT)
+        with ESMTP id S240803AbjDGNOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 09:14:21 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CE6C7
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 06:14:17 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id f188so30493026ybb.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 06:14:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680873230; x=1683465230;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680873257; x=1683465257;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y/EkXHhpekudgYRSVvD2Wp54aMGgIOeanmC+1OUeyjw=;
-        b=Lmi33RpPAeAf0TiyeOM6CEzn/jQzfV9SihWbM/WsNHUP6UpULDqWC0TZnWQGpF2olD
-         uGLvtNPlIAmdsHfDkoW4BnfZs1flgjgkdPMh+gx9rppah0S/hajaOFAfaPHlGlGRhAUw
-         UOQ3YRUabWENsRnhFMr6JaHXktYn7krBaTpR/rIyb31stu94zFYRgkVcv5YURQM7qhV2
-         t5NFe73izFRSjn1s8XL99h3w8uZ/1NHm39yoKyHcmq+dmIhxY4/lGiv9tjtSjt2tHjLn
-         kreZgT+O723mZsRmhFfP14yop6Zjt5IEqPDiY6sL0aLx1/UoxqcBfBFm8fgkNbAfCVNW
-         zh8A==
+        bh=43UCQJrVzHswziYr5j431+xtEn2T8Kb0mLYkPJWFQYI=;
+        b=3+FaYIWDw45RP1NCHb0+lFiokMfMZ7MBQBciFil7FihVwy+v7+XYsM+hGga5McbGdy
+         7PEmcVy0pAuCdXb6BR+XssMrHW+d4I5au64UqgEI1ciBV3+QhU7KqkoNhQH3lfKAfInz
+         DMh/I63ue5b9t9sm3w6Q8VJB/lNLtLbuCDPiuGPMuqntXafe2OWfmFLzAO9lcpFAPdla
+         JioF59KPAiD7nn6N8hBu03bS2GjqUckuTy04+w4lqnxxuu18IoygELCtAsLBhuveYnDO
+         ttgZkp7VRcBh/mEvcFwU+51sdh34HLQ+hw6hbebW03EI4Ko+bFqHaI982lEabisn5On4
+         L2DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680873230; x=1683465230;
+        d=1e100.net; s=20210112; t=1680873257; x=1683465257;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y/EkXHhpekudgYRSVvD2Wp54aMGgIOeanmC+1OUeyjw=;
-        b=OaqIldtLyy6L3qVw4pGN9wEobtHWErVhO5AW3DqIITsnxfMHW7V2bU84aILGv/Ob/v
-         N6CCUfSS/yYJ6qJJTZEs/eQTR6U7SxD9EQaENpzXEUEhnJzTMbQFMA5e7zU6ikt5Pzn3
-         wX+PeqAD3ts9bzOcf86t8Z4FvfItzE3vc53h/Q5eLB0r25KILr6g7qGkdCvgRMcmOor+
-         Ihr0+AcGkAXwOkgs2tbzFdptwh1T6MiMY3Yr45GX6tp8tlXoNr4LpWoaocQnzsWWt70J
-         D3bOG29EPUKqjJRan0PCnJMevw8ahCIBJf1Te+klpAbC6QngvTuaOJjOs0Zzl/mD211A
-         Zb4Q==
-X-Gm-Message-State: AAQBX9f911aDqhhtzNZNGYadQ4/VFGM6GDFWFLgwE9m8I75mxvos2H/5
-        bl6MtIOoWBpA3CUzM8tUZ2kM646Q2ANZCv4MqUCIMg==
-X-Google-Smtp-Source: AKy350akqDsJXu8LyrjpR3lx1Wv1xBy9qWRvVsjm6zQR79fUvbUwSsanR9UopPQcb5ZzGjYyfda/gmvkrWB1tttm4+o=
-X-Received: by 2002:a25:6e85:0:b0:b78:1b26:a642 with SMTP id
- j127-20020a256e85000000b00b781b26a642mr1408026ybc.1.1680873230051; Fri, 07
- Apr 2023 06:13:50 -0700 (PDT)
+        bh=43UCQJrVzHswziYr5j431+xtEn2T8Kb0mLYkPJWFQYI=;
+        b=2jQhbIW0YtDM7U9hu7dwfA6uuZCJeMzSFHzF8zkkzf8XH384V9bc0yelsrHXrBrZup
+         QAwzCtlBtJgEZNiN+CeZAjloAdew1sA6pW4IoMsdy3d2t0WEsjRP/izFnT2FXzknIFkA
+         r1+3totbGYSU4OTOmU1HdVxDvvancLQLaim6Ka+jCq67hOog3NqWomfieQBOdtZnrKV0
+         chHAmXaSGnrAo9ZZN/7mN42HJW/GJXrGh5WgQ6c2tNrwnPr741/UCIGDK1v1jEicxxQW
+         Xjg9KC6JpYjJKRWu+RtMnoVhATCCJDpbr4gF5EOX1g1oLay5T3+3aQQLgOBKelGwZQut
+         Ciag==
+X-Gm-Message-State: AAQBX9erapwpnqYve+AJqf15ZWX+T8p3Npf4p183ZZSzdpeK2bUrilym
+        IRe933v3IGIlnoeHiEtm+G4ASGiz1OB41UlKwv3VEQ==
+X-Google-Smtp-Source: AKy350bBt2BGk3rQAngcNnk4+eCsUSeEfLrMscG5cjhFuWxjMzW5cxG1UfjeAjNCFrHkIAUzBImsPk28UxKQWlxNGPI=
+X-Received: by 2002:a25:d28b:0:b0:b6c:2224:8a77 with SMTP id
+ j133-20020a25d28b000000b00b6c22248a77mr1787926ybg.1.1680873256816; Fri, 07
+ Apr 2023 06:14:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230203-evk-board-support-v5-0-1883c1b405ad@baylibre.com> <20230203-evk-board-support-v5-9-1883c1b405ad@baylibre.com>
-In-Reply-To: <20230203-evk-board-support-v5-9-1883c1b405ad@baylibre.com>
+References: <20230203-evk-board-support-v5-0-1883c1b405ad@baylibre.com> <20230203-evk-board-support-v5-10-1883c1b405ad@baylibre.com>
+In-Reply-To: <20230203-evk-board-support-v5-10-1883c1b405ad@baylibre.com>
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 7 Apr 2023 15:13:39 +0200
-Message-ID: <CAFGrd9oZW0xjoXXPgZoqwMbgT5ovnRbDr+mZMPO=D2oee7tuuw@mail.gmail.com>
-Subject: Re: [PATCH v5 09/12] arm64: dts: mediatek: add ethernet support for mt8365-evk
+Date:   Fri, 7 Apr 2023 15:14:06 +0200
+Message-ID: <CAFGrd9qz5Xxp2xpeA0OeBPVnjCe1wX+2_QHG6_=6ipMnCzBDPw@mail.gmail.com>
+Subject: Re: [PATCH v5 10/12] arm64: dts: mediatek: add OPP support for mt8365 SoC
 To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
         Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
@@ -96,98 +96,156 @@ Alexandre
 Le ven. 7 avr. 2023 =C3=A0 14:59, Alexandre Mergnat <amergnat@baylibre.com>=
  a =C3=A9crit :
 >
-> - Enable "vibr" and "vsim2" regulators to power the ethernet chip.
+> In order to have cpufreq support, this patch adds generic Operating
+> Performance Points support.
 >
 > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 57 +++++++++++++++++++++++=
+>  arch/arm64/boot/dts/mediatek/mt8365.dtsi | 101 +++++++++++++++++++++++++=
 ++++++
->  1 file changed, 57 insertions(+)
+>  1 file changed, 101 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boo=
-t/dts/mediatek/mt8365-evk.dts
-> index 9760f181eb34..431078f8670e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> @@ -88,6 +88,28 @@ optee_reserved: optee@43200000 {
->         };
->  };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8365.dtsi
+> index bb45aab2e6a9..cfe0c67ad61f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+> @@ -20,6 +20,91 @@ cpus {
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <0>;
 >
-> +&ethernet {
-> +       pinctrl-0 =3D <&ethernet_pins>;
-> +       pinctrl-names =3D "default";
-> +       phy-handle =3D <&eth_phy>;
-> +       phy-mode =3D "rmii";
-> +       /*
-> +        * Ethernet and HDMI (DSI0) are sharing pins.
-> +        * Only one can be enabled at a time and require the physical swi=
-tch
-> +        * SW2101 to be set on LAN position
-> +        */
-> +       status =3D "disabled";
+> +       cluster0_opp: opp-table-0 {
+> +               compatible =3D "operating-points-v2";
+> +               opp-shared;
 > +
-> +       mdio {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
+> +               opp-850000000 {
+> +                       opp-hz =3D /bits/ 64 <850000000>;
+> +                       opp-microvolt =3D <650000>;
+> +               };
 > +
-> +               eth_phy: ethernet-phy@0 {
-> +                       reg =3D <0>;
+> +               opp-918000000 {
+> +                       opp-hz =3D /bits/ 64 <918000000>;
+> +                       opp-microvolt =3D <668750>;
+> +               };
+> +
+> +               opp-987000000 {
+> +                       opp-hz =3D /bits/ 64 <987000000>;
+> +                       opp-microvolt =3D <687500>;
+> +               };
+> +
+> +               opp-1056000000 {
+> +                       opp-hz =3D /bits/ 64 <1056000000>;
+> +                       opp-microvolt =3D <706250>;
+> +               };
+> +
+> +               opp-1125000000 {
+> +                       opp-hz =3D /bits/ 64 <1125000000>;
+> +                       opp-microvolt =3D <725000>;
+> +               };
+> +
+> +               opp-1216000000 {
+> +                       opp-hz =3D /bits/ 64 <1216000000>;
+> +                       opp-microvolt =3D <750000>;
+> +               };
+> +
+> +               opp-1308000000 {
+> +                       opp-hz =3D /bits/ 64 <1308000000>;
+> +                       opp-microvolt =3D <775000>;
+> +               };
+> +
+> +               opp-1400000000 {
+> +                       opp-hz =3D /bits/ 64 <1400000000>;
+> +                       opp-microvolt =3D <800000>;
+> +               };
+> +
+> +               opp-1466000000 {
+> +                       opp-hz =3D /bits/ 64 <1466000000>;
+> +                       opp-microvolt =3D <825000>;
+> +               };
+> +
+> +               opp-1533000000 {
+> +                       opp-hz =3D /bits/ 64 <1533000000>;
+> +                       opp-microvolt =3D <850000>;
+> +               };
+> +
+> +               opp-1633000000 {
+> +                       opp-hz =3D /bits/ 64 <1633000000>;
+> +                       opp-microvolt =3D <887500>;
+> +               };
+> +
+> +               opp-1700000000 {
+> +                       opp-hz =3D /bits/ 64 <1700000000>;
+> +                       opp-microvolt =3D <912500>;
+> +               };
+> +
+> +               opp-1767000000 {
+> +                       opp-hz =3D /bits/ 64 <1767000000>;
+> +                       opp-microvolt =3D <937500>;
+> +               };
+> +
+> +               opp-1834000000 {
+> +                       opp-hz =3D /bits/ 64 <1834000000>;
+> +                       opp-microvolt =3D <962500>;
+> +               };
+> +
+> +               opp-1917000000 {
+> +                       opp-hz =3D /bits/ 64 <1917000000>;
+> +                       opp-microvolt =3D <993750>;
+> +               };
+> +
+> +               opp-2001000000 {
+> +                       opp-hz =3D /bits/ 64 <2001000000>;
+> +                       opp-microvolt =3D <1025000>;
 > +               };
 > +       };
-> +};
 > +
->  &i2c0 {
->         clock-frequency =3D <100000>;
->         pinctrl-0 =3D <&i2c0_pins>;
-> @@ -137,12 +159,47 @@ &mt6357_pmic {
->         #interrupt-cells =3D <2>;
->  };
+>                 cpu-map {
+>                         cluster0 {
+>                                 core0 {
+> @@ -50,6 +135,10 @@ cpu0: cpu@0 {
+>                         d-cache-line-size =3D <64>;
+>                         d-cache-sets =3D <256>;
+>                         next-level-cache =3D <&l2>;
+> +                       clocks =3D <&mcucfg CLK_MCU_BUS_SEL>,
+> +                                <&apmixedsys CLK_APMIXED_MAINPLL>;
+> +                       clock-names =3D "cpu", "intermediate";
+> +                       operating-points-v2 =3D <&cluster0_opp>;
+>                 };
 >
-> +/* Needed by analog switch (multiplexer), HDMI and ethernet */
-> +&mt6357_vibr_reg {
-> +       regulator-always-on;
-> +};
-> +
->  /* Needed by MSDC1 */
->  &mt6357_vmc_reg {
->         regulator-always-on;
->  };
+>                 cpu1: cpu@1 {
+> @@ -65,6 +154,10 @@ cpu1: cpu@1 {
+>                         d-cache-line-size =3D <64>;
+>                         d-cache-sets =3D <256>;
+>                         next-level-cache =3D <&l2>;
+> +                       clocks =3D <&mcucfg CLK_MCU_BUS_SEL>,
+> +                                <&apmixedsys CLK_APMIXED_MAINPLL>;
+> +                       clock-names =3D "cpu", "intermediate", "armpll";
+> +                       operating-points-v2 =3D <&cluster0_opp>;
+>                 };
 >
-> +/* Needed by ethernet */
-> +&mt6357_vsim2_reg {
-> +       regulator-always-on;
-> +};
-> +
->  &pio {
-> +       ethernet_pins: ethernet-pins {
-> +               phy_reset_pins {
-> +                       pinmux =3D <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPI=
-O133>;
-> +               };
-> +
-> +               rmii_pins {
-> +                       pinmux =3D <MT8365_PIN_0_GPIO0__FUNC_EXT_TXD0>,
-> +                                <MT8365_PIN_1_GPIO1__FUNC_EXT_TXD1>,
-> +                                <MT8365_PIN_2_GPIO2__FUNC_EXT_TXD2>,
-> +                                <MT8365_PIN_3_GPIO3__FUNC_EXT_TXD3>,
-> +                                <MT8365_PIN_4_GPIO4__FUNC_EXT_TXC>,
-> +                                <MT8365_PIN_5_GPIO5__FUNC_EXT_RXER>,
-> +                                <MT8365_PIN_6_GPIO6__FUNC_EXT_RXC>,
-> +                                <MT8365_PIN_7_GPIO7__FUNC_EXT_RXDV>,
-> +                                <MT8365_PIN_8_GPIO8__FUNC_EXT_RXD0>,
-> +                                <MT8365_PIN_9_GPIO9__FUNC_EXT_RXD1>,
-> +                                <MT8365_PIN_10_GPIO10__FUNC_EXT_RXD2>,
-> +                                <MT8365_PIN_11_GPIO11__FUNC_EXT_RXD3>,
-> +                                <MT8365_PIN_12_GPIO12__FUNC_EXT_TXEN>,
-> +                                <MT8365_PIN_13_GPIO13__FUNC_EXT_COL>,
-> +                                <MT8365_PIN_14_GPIO14__FUNC_EXT_MDIO>,
-> +                                <MT8365_PIN_15_GPIO15__FUNC_EXT_MDC>;
-> +               };
-> +       };
-> +
->         gpio_keys: gpio-keys-pins {
->                 pins {
->                         pinmux =3D <MT8365_PIN_24_KPCOL0__FUNC_KPCOL0>;
+>                 cpu2: cpu@2 {
+> @@ -80,6 +173,10 @@ cpu2: cpu@2 {
+>                         d-cache-line-size =3D <64>;
+>                         d-cache-sets =3D <256>;
+>                         next-level-cache =3D <&l2>;
+> +                       clocks =3D <&mcucfg CLK_MCU_BUS_SEL>,
+> +                                <&apmixedsys CLK_APMIXED_MAINPLL>;
+> +                       clock-names =3D "cpu", "intermediate", "armpll";
+> +                       operating-points-v2 =3D <&cluster0_opp>;
+>                 };
+>
+>                 cpu3: cpu@3 {
+> @@ -95,6 +192,10 @@ cpu3: cpu@3 {
+>                         d-cache-line-size =3D <64>;
+>                         d-cache-sets =3D <256>;
+>                         next-level-cache =3D <&l2>;
+> +                       clocks =3D <&mcucfg CLK_MCU_BUS_SEL>,
+> +                                <&apmixedsys CLK_APMIXED_MAINPLL>;
+> +                       clock-names =3D "cpu", "intermediate", "armpll";
+> +                       operating-points-v2 =3D <&cluster0_opp>;
+>                 };
+>
+>                 l2: l2-cache {
 >
 > --
 > 2.25.1
