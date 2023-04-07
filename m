@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 778386DB3D3
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A096DB3C2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 20:57:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbjDGTAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 15:00:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53772 "EHLO
+        id S232624AbjDGS5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 14:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbjDGS7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 14:59:41 -0400
-Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3465C650
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 11:58:10 -0700 (PDT)
-Received: from localhost (88-113-24-128.elisa-laajakaista.fi [88.113.24.128])
-        by fgw23.mail.saunalahti.fi (Halon) with ESMTP
-        id 0d580af0-d576-11ed-b972-005056bdfda7;
-        Fri, 07 Apr 2023 21:57:33 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Fri, 7 Apr 2023 21:57:32 +0300
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230044AbjDGS51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 14:57:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F978D30E;
+        Fri,  7 Apr 2023 11:55:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B67764753;
+        Fri,  7 Apr 2023 18:54:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C072CC433EF;
+        Fri,  7 Apr 2023 18:54:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680893686;
+        bh=wPrLGK1mrTZriNzn2DsauwFwUooVa5vI985iVF2sO0k=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=ZY70rN12F1/V/gczy3ivaTrU39pV0oAohk3TOpauN+B0XYYoSnjg5WC5RZcBhA3WP
+         kcei+ZKcpKiQJOoNko5Ee4jozI6wyZ+lPxGVRpX90ovy2ULWiXzqKOnfFPQc7IHC9P
+         F/kyntBjm4yGHQp/AV30bBglZoqMBMNzrDtiKpojwObZTibBWQsCy6j/NK8h3Zpgw6
+         hE9dFlBBW2hjuNsU8sgcI4GwyVcsbT1vDnNFf0WHo+502jP/cvSvrrG0uaxapU0p6d
+         foFirphAOFF32j7jJn3A7LL/Fhz3vH7nyXyTuv81SeHG4sgrfNJxPWeu+C1OeE8bmx
+         3TBX/b5mXzSNA==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
-Message-ID: <ZDBnnKy7QF0KZuZd@surfacebook>
-References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/2] arm64: dts: qcom: sm8150: remove superfluous "input-enable"
+Date:   Fri,  7 Apr 2023 11:57:33 -0700
+Message-Id: <168089385287.2679377.8176092418700554250.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230407180655.128771-1-krzysztof.kozlowski@linaro.org>
+References: <20230407180655.128771-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=3.2 required=5.0 tests=DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_SOFTFAIL autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thu, Apr 06, 2023 at 11:33:41AM +0200, Alexander Stein kirjoitti:
-> Hello everyone,
+On Fri, 7 Apr 2023 20:06:54 +0200, Krzysztof Kozlowski wrote:
+> Pin configuration property "input-enable" was used with the intention to
+> disable the output, but this is done by default by Linux drivers.  Since
+> patch ("dt-bindings: pinctrl: qcom: tlmm should use output-disable, not
+> input-enable") the property is not accepted anymore.
 > 
-> thanks for the feedback I've received. This is the first non-RFC series for
-> adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
 > 
-> Changes compared to RFC v2 are mentioned in each patch.
 
-Reading the (poor?) documentation does not clarify the use case.
-Looking at them I think that this is can be implemented as debounce.
-Also I have no clue why it's so important that we _need_ to have a
-driver for this. We have plenty of consumer drivers that implement
-delays on ramping up or down or whatever if they need.
+Applied, thanks!
 
-Which part(s) did I got wrong?
+[1/2] arm64: dts: qcom: sm8150: remove superfluous "input-enable"
+      commit: 087fc87e1882a44637a48cc537b49df9bec91780
+[2/2] arm64: dts: qcom: sm8350: remove superfluous "input-enable"
+      commit: a72768eecb9d98ed5b5f75f5be02a365b5541456
 
-P.S. Are we going to have a _driver_ per each subtle feature like this?
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Bjorn Andersson <andersson@kernel.org>
