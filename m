@@ -2,215 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC26D6DAABA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:16:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B9C6DAAE1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233146AbjDGJQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 05:16:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37030 "EHLO
+        id S231700AbjDGJam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 05:30:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbjDGJQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:16:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F7372BC;
-        Fri,  7 Apr 2023 02:16:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7BB3360F1B;
-        Fri,  7 Apr 2023 09:16:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1D83C433EF;
-        Fri,  7 Apr 2023 09:16:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680858988;
-        bh=GzznED6tySsGDwb5au4VoNSJsg0rXZvn+Uxk9Vxo2kU=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=KWOJ/imF23ImDcT3NALRq2ogyUAq2NfiEPKOqIgypHGLoX3M9n81SkRvTPzgEV5sW
-         g9XAB6PLfYQIoi5sBynmsX7GH/Zp8ZWOQ1s0V2bjSO4rsq2ou/cxBBm1RrUdz0k3V2
-         WqC0BezqIJI0dMDX8yeqWuoCKtoVs3pLghYyCrrWgdAYzVwpMPJQwe53saAICmHxq3
-         Q4Q/FuiWn2DIVx1T+A0hanF6c/IzEnVx+tlQpIecu6FVG7f1Cr9etwpZnEdGZt9pu0
-         HngDF0bFYIExmCOpaSKah141DT8pYH7GMpYECE0q61YY0AnUfd3TBhakdPSNeSXqgR
-         yixqrKXyej9uQ==
-Message-ID: <083041fc-d8e9-d5c5-adc1-d6095db22fd7@kernel.org>
-Date:   Fri, 7 Apr 2023 11:16:24 +0200
+        with ESMTP id S230261AbjDGJal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:30:41 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F50A902D;
+        Fri,  7 Apr 2023 02:30:35 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 319A924E245;
+        Fri,  7 Apr 2023 17:30:33 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
+ 2023 17:30:33 +0800
+Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
+ 2023 17:30:32 +0800
+Message-ID: <2ce35d68-ae6c-129f-588e-9b292de3a654@starfivetech.com>
+Date:   Fri, 7 Apr 2023 17:30:31 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] dt-bindings: input: cirrus,cs40l26: Add bindings
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v7 1/2] dt-bindings: soc: starfive: Add StarFive syscon
+ doc
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>
+References: <20230406103308.1280860-1-william.qiu@starfivetech.com>
+ <20230406103308.1280860-2-william.qiu@starfivetech.com>
+ <833b68a5-263d-d293-4910-2ca50b43e60d@linaro.org>
 Content-Language: en-US
-To:     Fred Treven <fred.treven@cirrus.com>, ben.bright@cirrus.com,
-        james.ogletree@cirrus.com, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzystztof.kozlowski+dt@linaro.org,
-        patches@opensource.cirrus.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <Add devicetree bindings for CS40L26 driver>
- <1680819613-29256-1-git-send-email-fred.treven@cirrus.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <1680819613-29256-1-git-send-email-fred.treven@cirrus.com>
-Content-Type: text/plain; charset=UTF-8
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <833b68a5-263d-d293-4910-2ca50b43e60d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2023 00:20, Fred Treven wrote:
-> Add devicetree bindings for CS40L26 driver.
 
-I appreciate the try to write my name manually, but there is no need to
-struggle. :) You will just make a mistake.
 
-Just copy-paste or use scripts/get_maintainers.pl.
-You can automate everything with something like:
-https://github.com/krzk/tools/blob/master/linux/.bash_aliases_linux#L91
-
+On 2023/4/7 2:30, Krzysztof Kozlowski wrote:
+> On 06/04/2023 12:33, William Qiu wrote:
+>> Add documentation to describe StarFive System Controller Registers.
 > 
-> Signed-off-by: Fred Treven <fred.treven@cirrus.com>
-> ---
->  .../devicetree/bindings/input/cs40l26.yaml         | 92 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/cs40l26.yaml
-
-Filename matching compatible, so you need vendor-prefix.
-
+> Subject: drop second/last, redundant "doc". The "dt-bindings" prefix is
+> already stating that these are documentation files.
 > 
-> diff --git a/Documentation/devicetree/bindings/input/cs40l26.yaml b/Documentation/devicetree/bindings/input/cs40l26.yaml
-> new file mode 100644
-> index 000000000000..1036a374baa0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/cs40l26.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/cs40l26.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logic CS40L26 Boosted Haptic Amplifier
-> +
-> +maintainers:
-> +  - Fred Treven <fred.treven@cirrus.com>
-> +
-> +description:
-> +  CS40L26 is a Boosted Haptic Driver with Integrated DSP and Waveform Memory
-> +  with Advanced Closed Loop Algorithms and LRA protection
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cirrus,cs40l26a
-> +      - cirrus,cs40l26b
-> +      - cirrus,cs40l27a
-> +      - cirrus,cs40l27b
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Property describing the interrupt line the devices /ALERT pin is connected to.
-> +      The device only has one interrupt source.
+Will fix.
+>> 
+>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>> ---
+>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 56 +++++++++++++++++++
+>>  MAINTAINERS                                   |  5 ++
+>>  2 files changed, 61 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> new file mode 100644
+>> index 000000000000..0d0319426b67
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> @@ -0,0 +1,56 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH7110 SoC system controller
+>> +
+>> +maintainers:
+>> +  - William Qiu <william.qiu@starfivetech.com>
+>> +
+>> +description: |
+>> +  The StarFive JH7110 SoC system controller provides register information such
+>> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - starfive,jh7110-aon-syscon
+>> +              - starfive,jh7110-sys-syscon
+>> +          - const: syscon
+>> +          - const: simple-mfd
+>> +      - items:
+>> +          - const: starfive,jh7110-stg-syscon
+>> +          - const: syscon
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clock-controller:
+>> +    type: object
+> 
+> This should be rather specific schema, so $ref.
+> 
 
-Drop description - it is almost useless. You could just mention ALERT pin.
+This would be $ref: /schemas/clock/starfive,jh7110-pll.yaml#, but this file is not
+available at present,  so I would like to ask if I should submit the documents
+instead of Xingyu
 
-> +
-> +  VA-supply:
-> +    description: Regulator for VA analog voltage
-> +
-> +  VP-supply:
-> +    description: Regulator for VP peak voltage
-> +
-> +  cirrus,bst-ipk-microamp:
-> +    description:
-> +      Maximum amount of current that can be drawn by the device's boost
-> +      converter in uA. Accepted values are between 1600000 uA and 4800000 uA in
-> +      50000 uA increments.
-> +    minimum: 1600000
-> +    maximum: 4800000
-> +    default: 4500000
 
-Isn't this property of regulator? Why do you need it here?
-
-> +
-> +  cirrus,bst-ctl-microvolt:
-> +    description:
-> +      Maximum target voltage to which the class H algorithm may increase the
-> +      VBST supply, expressed in uV. Valid values range from 2550000 to 11000000
-> +      (inclusive) in steps of 50000. If this value is specified as zero or VP
-> +      rises above this value, VBST is bypassed to VP. If this value is omitted,
-> +      the maximum target voltage remains at 11 V.
-
-Don't repeat constraints in free form text - drop last sentence.
-
-> +    minimum: 2550000
-> +    maximum: 11000000
-> +    default: 11000000
-> +
-> +  cirrus,bst-exploratory-mode-disable:
-> +    description:
-> +      Disable boost exploratory mode if this boolean is present in the
-> +      devicetree. 
-
-Don't explain how DT works. Explain how hardware works instead.
-
-> Boost exploratory mode allows the device to overshoot
-> +      the set peak current limit. This has potential to damage the boost
-> +      inductor. Disabling this mode will prevent this from happening; it will
-> +      also prevent the device from detecting boost inductor short errors.
-> +      (Default) Enabled
-
-Why this is suitable for DT? Why would anyone need to disable it per board?
-
-> +    type: boolean
-> +
-> +
-
-Just one blank line.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      cs40l26: cs40l26@58 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +        compatible = "cirrus,cs40l26a";
-> +        reg = <0x58>;
-> +        interrupt-parent = <&gpio0>;
-> +        interrupts = <57 8>;
-
-If 8 is interrupt flag, use appropriate define.
-
-> +        reset-gpios = <&gpio0 54 0>;
-
-Same for GPIO flag.
-
-> +        VA-supply = <&dummy_vreg>;
-> +        VP-supply = <&dummy_vreg>;
-> +        cirrus,bst-ctl-microvolt = <2600000>; // Max boost voltage = 2.6V
-> +        cirrus,bst-ipk-microamp = <1650000>; // Max boost current = 1.65A
-> +        cirrus,bst-exploratory-mode-disabled; // Disable exploratory mode
-
-The comments are not useful - they copy the property. Instead you could
-explain WHY. Or just drop the comments.
-
->  
+>> +
+>> +  power-controller:
+>> +    type: object
+> 
+Will fix, it would be $ref: /schemas/power/starfive,jh7110-pmu.yaml#.
 
 Best regards,
-Krzysztof
-
+William
+> Same problem.
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    syscon@10240000 {
+>> +        compatible = "starfive,jh7110-stg-syscon", "syscon";
+>> +        reg = <0x10240000 0x1000>;
+>> +    };
+>> +
+>> +    syscon@13030000 {
+>> +        compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
+>> +        reg = <0x13030000 0x1000>;
+>> +    };
+> Best regards,
+> Krzysztof
+> 
