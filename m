@@ -2,127 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8971C6DB5AC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 23:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7126DB5F6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 23:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231499AbjDGVCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 17:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53026 "EHLO
+        id S231379AbjDGVyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 17:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231563AbjDGVCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 17:02:33 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C6CD50A
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 14:02:15 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 3BFCB85802;
-        Fri,  7 Apr 2023 23:02:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1680901332;
-        bh=AJ02imYCOxJwPvi0oNZrvixeZ4REKxeDBU6fHomFj48=;
-        h=From:To:Cc:Subject:Date:From;
-        b=WdbFZYTYB0h/+B7R7+jkPQH1WXeoVFbIiC0Vr2VngOaQWFq5PG4Vj+Z8Uls7+lN1r
-         IVh1tnK9n8aiuZwApmNAO0emYsEQYkeJs84mgNo5wumOJ9NmW4knxVShM39S1O4o05
-         HlNszHdDauF1/N03Y+qClpV4IRw3qs6rb1avyKeSYLyefs5fuB5Yr9Sig72FikUvoo
-         qbfILf0vuzwKk3uE9CpasJuLH7RtVOtLivf38LI0fXej3rn4TcGoxBx/esbE6sqrPK
-         8VuKabLSIQSa82ASnVDXazfiB1ceExj6t9SJf3PtD+A7gCRyMD8EU8XTDWQnCjloxY
-         lTY2Hxk1jQw5g==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Replace deprecated st,hw-flow-ctrl with uart-has-rtscts
-Date:   Fri,  7 Apr 2023 23:01:52 +0200
-Message-Id: <20230407210152.138549-1-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S229724AbjDGVyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 17:54:21 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A87F5FCB
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 14:54:20 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id bx10so26303253ljb.8
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 14:54:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1680904458;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QUf+hItRUlAyl8Odc+K+o9OQqV17J58V+aP3v0kFHhk=;
+        b=HDRfRiwyLM/lRXtziEze5NRPh6rgRw/JeQ+qfRM5Cqn7guhS0gRrdgIW9xOpT8Raw8
+         N+2IxIYkZudLJOb6CMyliOjZ092IoXrAieqLEVohPUzsgrFKfLb9g6iAhCLHgoq4qgY4
+         QkgDhMcrq2aCU/C+7DEu248Jfb3qILitbqCwE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680904458;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QUf+hItRUlAyl8Odc+K+o9OQqV17J58V+aP3v0kFHhk=;
+        b=pesPozvV0uF1MCMscRZiQNa3kxRSKL67ppTG3rVTdSbbWtOlUbQzj6bfwFhrRKKjN8
+         JU4JwPrQt7UdeQ1nO5Yw78/6mylV18AXVK+V8li54t6KwgOTDQ80UNJNxXgwjaHRxEsy
+         fl/jmjJl4hjelZqClxrEwYUIjjBqcckMX6JDZqWRC9GRXWJflNSNxSzJAhOHx4Zjiq+M
+         SjlOYF8muP88pEv3bTco6iKB5d0Jo3C/W6YcvgOeYcbJN9gQc5OEfOLHYq8ZSkyKxE1f
+         2nMnOoMrf027rjxei15QFxTa4iIOL0sRafMd4EDZwOGBgz2F5Iato0v4jKHuzzhAZ7Ns
+         Aw1A==
+X-Gm-Message-State: AAQBX9dY+JNPu4mxb71JGIRG/jetpK9q7wShLXfGYLECAn+JaRGL2Kfx
+        H4+IQg4Mzr7x18XiSgzphe52QSrci+qvLaH3n0OHAQ==
+X-Google-Smtp-Source: AKy350bK2tfa/ifMpJd99S5lA9yyNvRN8J9D6TZLrauRv7sSWhzgZZFM6h20BylS5hhLgn59vMCdcBgqoUJ4xAgeXvY=
+X-Received: by 2002:a05:651c:1035:b0:2a5:f6f2:1ff4 with SMTP id
+ w21-20020a05651c103500b002a5f6f21ff4mr917513ljm.10.1680904458705; Fri, 07 Apr
+ 2023 14:54:18 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 7 Apr 2023 14:54:18 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230331091145.737305-2-treapking@chromium.org>
+References: <20230331091145.737305-1-treapking@chromium.org> <20230331091145.737305-2-treapking@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 7 Apr 2023 14:54:18 -0700
+Message-ID: <CAE-0n53Dw1tk0vVuToTwGYrKD76O_F97QgSGricBuvuPJnG60g@mail.gmail.com>
+Subject: Re: [PATCH v15 01/10] device property: Add remote endpoint to devcon matcher
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Benson Leung <bleung@chromium.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace deprecated st,hw-flow-ctrl with uart-has-rtscts .
-No functional change.
+Quoting Pin-yen Lin (2023-03-31 02:11:36)
+> From: Prashant Malani <pmalani@chromium.org>
+>
+> When searching the device graph for device matches, check the
+> remote-endpoint itself for a match.
+>
+> Some drivers register devices for individual endpoints. This allows
+> the matcher code to evaluate those for a match too, instead
+> of only looking at the remote parent devices. This is required when a
+> device supports two mode switches in its endpoints, so we can't simply
+> register the mode switch with the parent node.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/stm32h750i-art-pi.dts            | 2 +-
- arch/arm/boot/dts/stm32mp157a-stinger96.dtsi       | 4 ++--
- arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/stm32h750i-art-pi.dts b/arch/arm/boot/dts/stm32h750i-art-pi.dts
-index f3e70d3b65ac4..44c307f8b09cf 100644
---- a/arch/arm/boot/dts/stm32h750i-art-pi.dts
-+++ b/arch/arm/boot/dts/stm32h750i-art-pi.dts
-@@ -208,7 +208,7 @@ &usart3 {
- 	dmas = <&dmamux1 45 0x400 0x05>,
- 	       <&dmamux1 46 0x400 0x05>;
- 	dma-names = "rx", "tx";
--	st,hw-flow-ctrl;
-+	uart-has-rtscts;
- 	status = "okay";
- 
- 	bluetooth {
-diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-index 3a36f7fe0a2c3..5f85598cc7c6b 100644
---- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-@@ -287,7 +287,7 @@ &usart2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&usart2_pins_b>;
- 	pinctrl-1 = <&usart2_sleep_pins_b>;
--	st,hw-flow-ctrl;
-+	uart-has-rtscts;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status = "okay";
-@@ -297,7 +297,7 @@ &usart2 {
- &uart4 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart4_pins_c>;
--	st,hw-flow-ctrl;
-+	uart-has-rtscts;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status = "okay";
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-index 50af4a27d6be4..8232bbbae379c 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-@@ -452,7 +452,7 @@ &usart2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
- 	pinctrl-1 = <&usart2_sleep_pins_a>;
--	st,hw-flow-ctrl;
-+	uart-has-rtscts;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status = "okay";
--- 
-2.39.2
-
+Looking at this in isolation I have no idea what a mode switch is and
+how it is related to drivers/base/property.c. Can you expand on this
+commit text? Maybe say two "usb typec mode switches"? And maybe include
+an example graph node snippet?
