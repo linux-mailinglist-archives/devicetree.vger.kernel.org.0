@@ -2,103 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A48EB6DAE5A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 15:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61B186DAE5F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 15:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240193AbjDGNvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 09:51:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40810 "EHLO
+        id S234269AbjDGNwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 09:52:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236512AbjDGNvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 09:51:17 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543B7CA25
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 06:48:37 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id f188so30587997ybb.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 06:48:37 -0700 (PDT)
+        with ESMTP id S235484AbjDGNwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 09:52:14 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2B2D531
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 06:49:27 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id n21so8547378ejz.4
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 06:49:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680875316;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aKK09fngq38ILpy1qwOd5H4TNRR3elskTobTEmmbiwE=;
-        b=gecNJ+X1UXFrJOR9jcDYcM6qMfLOurNZETsFwO7h71tAaUNxew8gclFKyL6cXUzze3
-         Aptfhq7i7Hhh0c69UWzoA0lLdtiaXsP+LwYlb7dIGKCsvL2npvyvml+tRD3CpexDD3Am
-         nlK34EUsiaWTGsygZivf6TaFZirXlH7i6YVwfyk64Pwboul69xIWB4A9H447UcHr30vH
-         aq3ec57aimCI3IE40YFoqQXAXVxdsD0CKPQk+/NtO6iFdOV0wUQVqD3NKXIg5L2bKBB4
-         mOa3oSGOUdMRjxVa+WAgNIGnir4KRvZaNTGeSGf5uTx2Gayb+XkwtNlDZN3apq2PH3o7
-         aKOQ==
+        d=linaro.org; s=google; t=1680875364;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bzY0VrOQTdhqb0xLz66yvPJl/GNdYUn650SOB4Bm09E=;
+        b=cOGiYYGRbtQnZeCD9QAclfQHyNRlDqZeUSuPCh4/DPCGm+6i5ASUZFEjO9l3nyDeoa
+         XkmIRhNgo+pcN9x653lqzGw/M3/5QwxdKu/ZMmRBlNKOSBjppYXDlKLY78rDUxER3m8e
+         mMkrhEY43wWKGpIhXiANbwLJKNMH4HHDoywdrjO2Qyk8mqfqLAAsiB625woAheq7WXCz
+         xT2KhVP2TAB4PlC/oZn81zwh1YsUvFucFmx+Lbx88AcUXcw3mcy2cWE06QnCWOb81rLo
+         CfMCkUPhcHPuEOk0KaXFFyQxGob2ac7IVuHZOYSuHAcDNYAaJkIF6SDUSgKP6xBafTm7
+         afhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680875316;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aKK09fngq38ILpy1qwOd5H4TNRR3elskTobTEmmbiwE=;
-        b=l/V3VzhVRsDZ58O7xUlnVIcLWnC9XMvHSvm9GKe30Y8Fvc+0zwTrMvXpKYumyoUNwg
-         0dHoTWirUxkNZIigWqL/BkjO+rWr7nrnaCYDuoWYagAvPbB+FqHZYMf7ZJr0oZQiPfeZ
-         KT+3INHuWgi86UvUyOQmPxLxtqwq8uJkoKEr4eE90pIOh+9hRy9yWlMCouWp2g0XxsDo
-         HVJl4fgPF6e5H2KGYyeAJbDOx64u4A3qUWsGCb3L5ynWB5oI9FXH+k3xZ7woNjXAiFen
-         HfUMoA9dFJHsXBgyy5tr07ICi8hNhJAitRWfEKh0OedIiHg78gnOGORqQtAdqYGtfpc5
-         eKvw==
-X-Gm-Message-State: AAQBX9dj/H1mpcLpTV5LjpW4iRTyigIkC5OWd/ZjkgS7o2SNtJd2sr/S
-        pbJYQT38dB3FT3ZytLNxXFepjbE2XgFr55OSBzBfzg==
-X-Google-Smtp-Source: AKy350aaHrMYyuOilTUIt2bIGijezFMGhN+vlFiDrxGpwtyukP/2S2+L+vnBLQ8icbdnzVt0fXeoQ7uKNhgsTqwyKgo=
-X-Received: by 2002:a25:740f:0:b0:b09:6f3d:ea1f with SMTP id
- p15-20020a25740f000000b00b096f3dea1fmr1907548ybc.4.1680875316286; Fri, 07 Apr
- 2023 06:48:36 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680875364;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bzY0VrOQTdhqb0xLz66yvPJl/GNdYUn650SOB4Bm09E=;
+        b=WCRZz2nZjmY8QaUlHCIXyl3GAfsrWittTOTNRLa8bAUQA9CsE+9VMJxdzjGkEIUKRq
+         bWd4jUXJYWUhoVWb4CVgeeVM6skOH5IpMQYkAn3GSN3j6H+pm1IyphLM6RTsXdO8K2pz
+         NoWSTpZGuue8kcOJ4KAF8/n0YgXXmyetimUgw7W59TgftR2hGP7RNDSAB/ExJ9/piGEJ
+         YFK7eExvVcgNXinfapTBkCHpCCiNUHpK9VTsM6ARm61KeXouDuygyaJabsUiOsN5jTzM
+         osbJHRNbLpM5g8kH+C4uFkjUpYLYjaDl93/qOZedH9qgV+h2dbBOa5GJE0zDz3/S7tp+
+         5vPw==
+X-Gm-Message-State: AAQBX9fXX0+jk29XXkgsTIJmM3OzIxavQKteBsazRZzNM4oalOMC1zYM
+        jF7zPw7x/cVskz+LCUGnU93ieg==
+X-Google-Smtp-Source: AKy350YwpUdmG0KaCQJJF4r+lCKOc6QEvs5tkq4aYNG2bKi1iKT+qj+Y9CzWolMLeqEkPQOItaOBlw==
+X-Received: by 2002:a17:906:5945:b0:8c3:3439:24d9 with SMTP id g5-20020a170906594500b008c3343924d9mr2393601ejr.24.1680875364729;
+        Fri, 07 Apr 2023 06:49:24 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:b20f:8824:c926:8299? ([2a02:810d:15c0:828:b20f:8824:c926:8299])
+        by smtp.gmail.com with ESMTPSA id x9-20020a50d609000000b004fce9ff4830sm1907574edi.88.2023.04.07.06.49.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Apr 2023 06:49:24 -0700 (PDT)
+Message-ID: <0f1c0267-da04-8ddc-0703-1f51b53f542f@linaro.org>
+Date:   Fri, 7 Apr 2023 15:49:23 +0200
 MIME-Version: 1.0
-References: <20230327130010.8342-1-okan.sahin@analog.com> <20230327130010.8342-3-okan.sahin@analog.com>
- <CACRpkda5G5b+At5s1WFudpQBQ6LDQxhE3fZj7eBhkZ=thvnQhg@mail.gmail.com>
- <MN2PR03MB51682210CADA6E33FB99052CE7939@MN2PR03MB5168.namprd03.prod.outlook.com>
- <CACRpkdZJA0DyzgLxm9HFeHO03rqNUff=avuV=VrGuJkkOg6wNQ@mail.gmail.com> <25e1fda4b6df2d10444d7eca3cd0e387@walle.cc>
-In-Reply-To: <25e1fda4b6df2d10444d7eca3cd0e387@walle.cc>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 Apr 2023 15:48:25 +0200
-Message-ID: <CACRpkdYKEid8-0-7sBECNgSyW3kMRCsv3DeBVUzxo4z6p+Grnw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] gpio: ds4520: Add ADI DS4520 Regulator Support
-To:     Michael Walle <michael@walle.cc>
-Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: arm: amlogic: add C3 bindings
+Content-Language: en-US
+To:     Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230407102704.1055152-1-kelvin.zhang@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230407102704.1055152-1-kelvin.zhang@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 5, 2023 at 3:57=E2=80=AFPM Michael Walle <michael@walle.cc> wro=
-te:
+On 07/04/2023 12:27, Kelvin Zhang wrote:
+> Document the new C3 SoC/board device tree bindings.
+> 
+> C3 is an advanced edge AI processor designed for smart IP camera
+> applications, which does not belong to Meson series.
+> 
+> Therefore, modify the title field accordingly.
 
-> OTOH I'm not sure the driver is doing it correctly, because it also
-> seems to switch the pullup resisters together with the direction.
-> I'm not sure that is correct. So there might be just one register
-> involved after all and the GPIO_REGMAP should work again.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I'm pretty sure that should be in the .set_config() callback.
+Best regards,
+Krzysztof
 
-> Also, according to the datasheet this has some nv memory (to set the
-> initial state of the GPIOs [?]). So it should really be a multi-function
-> device. I'm not sure if this has to be considered right from the
-> beginning or if the device support can start with GPIO only and later
-> be transitioned to a full featured MFD (probably with nvmem support).
-
-That's a bit of a soft definition.
-
-If the chip is *only* doing GPIO and nvram it can be a GPIO-only
-device I think.
-
-The precedent is a ton of ethernet drivers with nvram for storing
-e.g. the MAC address. We don't make all of those into MFDs,
-as the nvram is closely tied to the one and only function of the
-block.
-
-Yours,
-Linus Walleij
