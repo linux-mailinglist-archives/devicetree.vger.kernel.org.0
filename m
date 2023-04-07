@@ -2,164 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 681F86DAB0C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:47:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E548D6DAB20
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233146AbjDGJrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 05:47:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59384 "EHLO
+        id S232182AbjDGJ45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 05:56:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjDGJrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:47:03 -0400
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EC51721;
-        Fri,  7 Apr 2023 02:47:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1680860782; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=eBTYQ58vhgLgJ4yHfjiHgtJlGFjyAESluw6BNI9VBH5VQR6zqkymV5P4XN8VfnotRf6TJJPBDn5CONQlz8VkMRCcgJ4R9l1InItL8Ud0HBvexc8+uyLa8OSgmL+CfMrlP2EJiW4GOFrSWUd1XViYS5gKsZUrl1vVnFj0vM1W+bw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1680860782; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=mmgW4edYlUnyxLuwyv+RhMeMNoN0f2U2QoMCWe0iOyU=; 
-        b=eVom5K6RyjeM2xe4T2tXSDGQ03nQ9gtC8ejvyc/iCvWWf7I4lO5dc6SGFe1yVTCc2vLYELVid26V2R28/bXOnD7502mNaBidHISMBo8GEyyfdMyVf8uCGbPB5Kj4a/YanAncljYw608MewcFj9uzRooLn3ZwdY11/jHz86Cuhps=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680860782;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=mmgW4edYlUnyxLuwyv+RhMeMNoN0f2U2QoMCWe0iOyU=;
-        b=VP1bH1Sbx6pTq9Kefa1rc9NVAak3gRAr6CeVg1qZoECgJA8CIW0I78wk41fXtDoZ
-        yNUs4exZsnDYl+2zE5zMrAAyvIOIUUMS9NII3Hz5Vjdzj29txsbpploTVhgKOCM0odx
-        413Pz23s8WrQ/Avqhcn/T4IX7KuKrx6gLmDV43nw=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 168086078067680.0988150323908; Fri, 7 Apr 2023 02:46:20 -0700 (PDT)
-Message-ID: <5a92419c-4d2c-a169-687b-026dc6094cd8@arinc9.com>
-Date:   Fri, 7 Apr 2023 12:46:14 +0300
+        with ESMTP id S231563AbjDGJ44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:56:56 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61CA37ECB;
+        Fri,  7 Apr 2023 02:56:53 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id bx10so24765678ljb.8;
+        Fri, 07 Apr 2023 02:56:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680861411;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IMmt0J7ORv2kNOivTrzHCNzDsNn+ORI7SQCDfabUQlQ=;
+        b=eNPnkVGvBbGr9Btxvn/s9UijDefC/i/wn3RTw621S4TZ5aZ0BfwJNXwW4fy2AylBQ4
+         RP8Yy6IKobIQrGZClMZumuo4PM7YX5n84HpT7Bn665/AHIXRoe2yONpfxMGUlfjXOFog
+         1H/fY3/qfzNFw1AC1JbXxf3Tu0CmG3/6sqKd119Cd22sTotw7zkk0MzzxGRwcy16whfR
+         sg+KRqXXd7x/d8mrXUJge4mhBXIgdwWnLV8zo3cdHAR10l1FXUUBTftONJgzrTKeh37m
+         LCK731eIzVgbZld3/Np9RXN44ukaWvEDgg0btTzFAIqhGxEYw3sHlmy/nqIT4xthpONi
+         LIRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680861411;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IMmt0J7ORv2kNOivTrzHCNzDsNn+ORI7SQCDfabUQlQ=;
+        b=UO5O7MeqmxYige3sW+ATSE3mZ99j+NwLHluo2nx57ndNjRsVYwkzGCYfQTMGw8BwuT
+         C9zG8kR09fHonW6UOGhad+VHyQvoNe8BWX7GzJ5uWAlBjh5eQrmfWcqm+iFjUPHbwmYI
+         qWaAMDhr8N+UhLcBFg5amemrFhePH6aBpib9sje6mLPCrMSigMawd8eZHzB7Npxucevl
+         fINlQahiqqGtjt9dISp38QNf+JWllymDNXGAfuFqsbGSqoK/6EBIoND2GCucu1tnOXHM
+         aUkGz/NGEt7U+6MaTQiNmmd52NV4QxLZrnCU1Ns6g8S4CLSqWsVgl9ib3GUdfLLBBlzs
+         bXbQ==
+X-Gm-Message-State: AAQBX9eDXRDhJzZDRT9sjWwJ2dcU5+mPzBcURgB9FUu2bfCwNHovm9Iv
+        WlTfnuNpmv2/NwuJsopaJ9k4ZRTolXI=
+X-Google-Smtp-Source: AKy350adYwZ2tMS6/aINbpRHWU2upOjKpcv+V0eiAolEaez7cReLwzPlmEqDWjL60giadZTX9sxsCA==
+X-Received: by 2002:a2e:9a90:0:b0:295:ba22:360 with SMTP id p16-20020a2e9a90000000b00295ba220360mr524428lji.42.1680861411435;
+        Fri, 07 Apr 2023 02:56:51 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id v12-20020a2e9f4c000000b00295a583a20bsm722163ljk.74.2023.04.07.02.56.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Apr 2023 02:56:51 -0700 (PDT)
+Message-ID: <fafac053-6009-562e-8e29-ee6435a3c8d1@gmail.com>
+Date:   Fri, 7 Apr 2023 12:56:50 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 3/7] dt-bindings: net: dsa: mediatek,mt7530: add port
- bindings for MT7988
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230406080141.22924-1-arinc.unal@arinc9.com>
- <20230406080141.22924-3-arinc.unal@arinc9.com>
- <23c8c4b5-baaa-b72b-4103-b415d970acf2@linaro.org>
- <5b3a10ff-e960-1c6e-3482-cb25200c83c6@arinc9.com>
- <951841d3-59a4-fa86-5b45-46afdb2942dd@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <951841d3-59a4-fa86-5b45-46afdb2942dd@linaro.org>
+        hns@goldelico.com
+References: <20230406060825.103187-1-andreas@kemnade.info>
+ <20230406060825.103187-3-andreas@kemnade.info>
+ <7d8c558f-0d21-91ed-ecd0-cac079d366ee@gmail.com>
+ <20230406214539.59dfaac7@aktux>
+Content-Language: en-US, en-GB
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH 2/2] leds: bd2606mvv: Driver for the Rohm 6 Channel i2c
+ LED driver
+In-Reply-To: <20230406214539.59dfaac7@aktux>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7.04.2023 12:07, Krzysztof Kozlowski wrote:
-> On 06/04/2023 21:18, Arınç ÜNAL wrote:
->> On 6.04.2023 22:07, Krzysztof Kozlowski wrote:
->>> On 06/04/2023 10:01, arinc9.unal@gmail.com wrote:
->>>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>
->>>> The switch on MT7988 has got only port 6 as a CPU port. The only phy-mode
->>>> to be used is internal. Add this.
->>>>
->>>> Some bindings are incorrect for this switch now, so move them to more
->>>> specific places.
->>>>
->>>> Address the incorrect information of which ports can be used as a user
->>>> port. Any port can be used as a user port.
->>>>
->>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>> ---
->>>>    .../bindings/net/dsa/mediatek,mt7530.yaml     | 63 ++++++++++++++-----
->>>>    1 file changed, 46 insertions(+), 17 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>> index 7045a98d9593..605888ce2bc6 100644
->>>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>> @@ -160,22 +160,6 @@ patternProperties:
->>>>          "^(ethernet-)?port@[0-9]+$":
->>>>            type: object
->>>>    
->>>> -        properties:
->>>> -          reg:
->>>> -            description:
->>>> -              Port address described must be 5 or 6 for CPU port and from 0 to 5
->>>> -              for user ports.
->>>> -
->>>> -        allOf:
->>>> -          - if:
->>>> -              required: [ ethernet ]
->>>> -            then:
->>>> -              properties:
->>>> -                reg:
->>>> -                  enum:
->>>> -                    - 5
->>>> -                    - 6
->>>> -
->>>
->>> I have doubts that the binding is still maintainable/reviewable. First,
->>> why do you need all above patterns after removal of entire contents?
->>
->> The 'type: object' item is still globally used. I'd have to define that
->> on each definitions, I suppose?
+On 4/6/23 22:45, Andreas Kemnade wrote:
+> On Thu, 6 Apr 2023 11:57:15 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 > 
-> Doesn't it come from dsa.yaml/dsa-port.yaml schema?
-
-It comes from dsa.yaml#/$defs/ethernet-ports which this schema already 
-refers to. I'll remove the patterns above.
-
-Though 'type: object' is not there for "^(ethernet-)?port@[0-9]+$". I 
-think I should add it there as the dsa-port.yaml schema defines the 
-properties of the DSA switch port object. So the value matching the 
-"^(ethernet-)?port@[0-9]+$" regular expression is expected to be an 
-object conforming to the structure defined in dsa-port.yaml.
-
-Does that make sense?
-
+> [...]
 > 
 >>
->>>
->>> Second, amount of if-then-if-then located in existing blocks (not
->>> top-level) is quite big. I counted if-then-using defs, where defs has
->>> patternProps-patternProps-if-then-if-then-properties.... OMG. :)
+>>> + */
+>>> +
+>>> +#include <linux/i2c.h>
+>>> +#include <linux/leds.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/of_device.h>
+>>> +#include <linux/regmap.h>
+>>> +#include <linux/slab.h>
+>>> +
+>>> +#define BD2606_MAX_LEDS 6
+>>> +#define BD2606_MAX_BRIGHTNESS 63
+>>> +#define BD2606_REG_PWRCNT 3
+>>> +#define ldev_to_led(c)	container_of(c, struct bd2606mvv_led, ldev)
+>>> +
+>>> +struct bd2606mvv_led {
+>>> +	bool active;
 >>
->> Yup, not much to do if we want to keep the information. I'm still
->> maintaining this though. ¯\_(ツ)_/¯
+>> I didn't spot where this 'active' was used?
+>>
+> [..]
 > 
-> Maybe it should be split into few bindings sharing common part.
+>>> +		if (reg < 0 || reg >= BD2606_MAX_LEDS ||
+>>> +		    priv->leds[reg].active) {
+> 
+> here
+> 
+>>> +			of_node_put(child);
+>>> +			return -EINVAL;
+>>> +		}
+>>> +		led = &priv->leds[reg];
+>>> +
+>>> +		led->active = true;
+> 
+> and here
 
-Agreed, I think it makes sense to split this to MT7530, MT7531, and 
-MT7988. I will do this after this series.
+Oh, right. So, if I read this correctly, "active" is only used in the 
+probe for checking if same 'reg' is given for mone than one LEDs.
 
-Arınç
+If the 'active' is not used after probe then I'd prefer limiting the 
+life-time to probe. Perhaps drop this from the allocated private data 
+and just take it from the stack and let it go when probe is done?
+
+This is a minor thing but if there will be other reason(s) to re-spin, 
+then this might be changed?
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
