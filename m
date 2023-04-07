@@ -2,95 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 764136DAAA8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B61946DAAAF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 11:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbjDGJJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 05:09:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59016 "EHLO
+        id S239421AbjDGJOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 05:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240352AbjDGJJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:09:14 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE411B9;
-        Fri,  7 Apr 2023 02:09:09 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 01E4C66031A4;
-        Fri,  7 Apr 2023 10:09:07 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680858548;
-        bh=OmRy3BTQJvyb7zaP08nHY6cTSKkLTpfgKTbifvNowaA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jWw5BRxZILBXoMZf7owsL+geF1AUYnERBWyPL16Egb/i+Fio0DceOh4s50wEo5NMi
-         61Pm2tpXsy3V5i4rbsoN67yrlhjliUiaYqj+0rfhH8FNM0WWApeg4WK3s6QYrAVNk6
-         l07me0YDQuPhZ10eePPk7p61G9Avm0Rn2w4t23VpJV794uLsAml8DMuRFP/rzJF3QV
-         whw2GNMrlr48TfA7jhlbL6lJHTt1JdwXDEI98rNAML6NOMMcZt+lZb2/RWcMMJXev9
-         pVd6HNdDIYazyCvsvBnRYV9M/GX1pyzz7Ap2ZhWrrwqVKKxT4yYU+XzWCP28NDt8VR
-         XPfHYsqdE9vtQ==
-Message-ID: <0d4162ea-e161-5afd-8b27-92f8e53b52aa@collabora.com>
-Date:   Fri, 7 Apr 2023 11:09:06 +0200
+        with ESMTP id S231652AbjDGJOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 05:14:06 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26A97683
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 02:14:04 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id p34so23738655wms.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 02:14:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680858843; x=1683450843;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/iRPnKOXmlOdilFnoShh5yI6AjtEilCaiDGDFmPOYkQ=;
+        b=ogxAc3Mumf11FOLzjNLFLfFgMp+ab4L7z16PKrZblcnB1bdXshZsOK131l7SG5N/om
+         olvuifIVwhP+I1aTafFtDXnzvWvvA0KTB5MW6KvfAuPzjKW9e7vchST+3zsHNc2UzlB+
+         N6RTjD7HlfwUIn80UPhAuhYiyTsaZ2zlQS5mjPItPzfLDl5ELhSzrKVP1Kqwf2dHeAi3
+         GPdm5cJg2BDEZGudj3MiXkWfj9xIiIXFZtwwD/evDAINM7uhY+X5h0jt+/zAREpnC07R
+         l1/mpoL8+occ1dfb0og0K8TM6Ze3S7+fTAyBXCb7lGgmi0Q4tvTAKoMd1n37tnEkhXWy
+         sTfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680858843; x=1683450843;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/iRPnKOXmlOdilFnoShh5yI6AjtEilCaiDGDFmPOYkQ=;
+        b=GzSvTMdGKZWCdpYBhwOTBMZGqUW/OE1k9VMyX4Kl7Bx0udlmHcs1W9WKQFo0fFUECo
+         N4HkRxL4kRgitGGn+xOBa1AMrYeH/jEOiU0iGqqwEoUGyCFBglFKpz3kFGy1fV4coliR
+         TTOJRYEm9gpDzQk/FsJM0x7cqeCXZ2pt0FbfrnZmbW61okzkxnU9K+jeU1K2JcjdAIMM
+         qWQIS4EerwCc1NlZmF19LfuXJpo+F7acEocvASeWA5mRYn8ih0h2KwxQj/8SJVQtyFin
+         q+VW/g3Wx5S+DKe3joIrcvSAv7U1/2A7NLB/6yv/0CMsyMAvod8z5WrgwMGwpZoOQfR6
+         iUIw==
+X-Gm-Message-State: AAQBX9caO/SC66Kk6EYtp8AfHv/iu6RQ8ZUfEgemAF55xktOSKIBToYg
+        n5aJmaoB8KmzcKqO4BAEOANIbA==
+X-Google-Smtp-Source: AKy350Za/6RWX2oz9CbTQclsW6Ctfk4fA1+j0eL6S8zuOsAqYIbYNirmY3B8SXWCVkE0U54tlTqMlQ==
+X-Received: by 2002:a1c:cc05:0:b0:3f0:57be:666f with SMTP id h5-20020a1ccc05000000b003f057be666fmr1107869wmb.7.1680858843049;
+        Fri, 07 Apr 2023 02:14:03 -0700 (PDT)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id k22-20020a7bc416000000b003f04f0c5a6fsm4026429wmi.26.2023.04.07.02.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Apr 2023 02:14:02 -0700 (PDT)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v2 0/3] Add MT8365 SMI driver support
+Date:   Fri, 07 Apr 2023 11:13:50 +0200
+Message-Id: <20230407-smi-driver-v2-0-8da6683cdb5c@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 3/7] usb: mtu3: fix kernel panic at qmu transfer done
- irq handler
-Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Tianping Fang <tianping.fang@mediatek.com>
-References: <20230407082937.14558-1-chunfeng.yun@mediatek.com>
- <20230407082937.14558-3-chunfeng.yun@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230407082937.14558-3-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAM7eL2QC/22OzQ6CMBCEX8X07EopBtCT72E89GeFTaA020I0h
+ He3cPb4TTIz3yoiMmEU99MqGBeKNPkM6nwStte+QyCXWSipKnmVDcSRwDEtyNC0SjXS1E4rFLl
+ gdEQwrL3t98ocCjug9nOAQN4mHsCQd+S7Ik2BbDHOQyJ4o04z5x+fsGOddoE8Fhjf9DnMnq/MP
+ cU08fcQXco9/eu0lFCCrGpXuxbb2616GP0dyDBe7DSK17ZtPxSVflz0AAAA
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1864; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=XMCnV2elFtLjP2Sn9yuzQN2YDzzqESOsgUOGg8Iu4SA=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkL97ZcnlQw6HSmOX693KdDwg2alXCJ7TraSlf6K/2
+ n31XqJ6JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZC/e2QAKCRArRkmdfjHURQiYEA
+ ClYLk2Ia6AyQSoVshjwgtKw5Rd4wqlwAaZ1Kv/UHdszErCHNyRfSzeahujY6zPDaOhFtara4IHCm36
+ /U/ImHXqgcLCAPpxym32iQZqXxw8+hsmtFK+Fd/BNB8WunCJfFrKCd0G21UGQ69ljerMqQ6MeekmmJ
+ c0bGxcedFVatQmKil+NEZSw31IRE1ZUWSBPwUsIB3ZbMkIymG7K6KGkYpbEkaGz/Dkg4ZbKin2xU8d
+ VzEjzEhn80peQP4pSReFChDTpQoQUiaYlYQIgK+2/YTcEEAzvdUXOvCAxFQOep9YMAn7eqBdYCv2RG
+ 21J2ktHK6lsaK/puctOisPEu8I0Wol+2tWQrTNN4V2CJ+aU5FWl6wFqeNxIr3nof3PlQVyeictKOEv
+ QfgD4G2PhMCHIIsgqWazIACGmjQUn1BPT72CG7wfb9K1WXvr/R3+S/jthvTGq4D4rvHldb3P4eOAXj
+ aOQxgDsHoHE8zOzqG/pysyNCFa4xt6R6eyUlSrIvCmgn70pb1cSWI9/Ws2Bc9f8h1ovVXThn45BfuP
+ jgTqaQNHtTHl7lYtQtGRA8RP18Da4lrBRg7Yfql0ivu4a9BbgFZR07yNs55tMjH7CN23DkvLRLvDLL
+ CmTrPCFCs0xss0ojm6DwrMMps+O2xQxpOpcAMjuPknoTWP1+hD7uVLtiyWlg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/04/23 10:29, Chunfeng Yun ha scritto:
-> When handle qmu transfer irq, it will unlock @mtu->lock before give back
-> request, if another thread handle disconnect event at the same time, and
-> try to disable ep, it may lock @mtu->lock and free qmu ring, then qmu
-> irq hanlder may get a NULL gpd, avoid the KE by checking gpd's value before
-> handling it.
-> 
-> e.g.
-> qmu done irq on cpu0                 thread running on cpu1
-> 
-> qmu_done_tx()
->    handle gpd [0]
->      mtu3_requ_complete()        mtu3_gadget_ep_disable()
->        unlock @mtu->lock
->          give back request         lock @mtu->lock
->                                      mtu3_ep_disable()
->                                        mtu3_gpd_ring_free()
->                                     unlock @mtu->lock
->        lock @mtu->lock
->      get next gpd [1]
-> 
-> [1]: goto [0] to handle next gpd, and next gpd may be NULL.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+This serie add MT8365 SMI common driver support, to be bisectable and
+avoid issue with the DTS change. This driver change and the related
+change in the DTS should be applied in the right order (driver first).
 
-NACK. You still miss the Fixes tag.
+Here the related DTS change: [1]
+
+Also add the SMI common and LARB bindings for MT8365 support,
+I kept the Matthias Brugger reviewed-by from the previous series [3] [4].
 
 Regards,
-Angelo
+Alexandre
+
+[1]: https://lore.kernel.org/all/20230207-iommu-support-v2-7-60d5fa00e4e5@baylibre.com/
+[2]: https://lore.kernel.org/all/9ad8c606026586b682df5e0ce0c699e21a1e6fb7.camel@mediatek.com/
+[3]: https://lore.kernel.org/all/d1dc242d-c381-3307-b939-7bc35c6ce55b@gmail.com/
+[4]: https://lore.kernel.org/all/0e863367-5b24-9559-f782-4d3e5dc06961@gmail.com/
+
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Changes in v2:
+- Add SMI common and LARB bindings for MT8365 support.
+  I kept trailers [3] [4]
+- Forgot to mention, in the v1, I've addressed the Yong Wu's comment [2]
+  by removing "has_gals=true" from the mtk_smi_common_mt8365 structure.
+  Then I've put the reviewed-by.
+- Link to v1: https://lore.kernel.org/r/20230407-smi-driver-v1-1-036d6d8e8993@baylibre.com
+
+---
+Alexandre Mergnat (3):
+      memory: mtk-smi: mt8365: Add SMI Support
+      dt-bindings: memory-controllers: mediatek,smi-common: add mt8365
+      dt-bindings: memory-controllers: mediatek,smi-larb: add mt8365
+
+ .../devicetree/bindings/memory-controllers/mediatek,smi-common.yaml | 2 ++
+ .../devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml   | 4 ++++
+ drivers/memory/mtk-smi.c                                            | 6 ++++++
+ 3 files changed, 12 insertions(+)
+---
+base-commit: ea2dcf9394947d5d8e24cb9d52144923f6645632
+change-id: 20230407-smi-driver-782270b6da2e
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
 
