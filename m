@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A08286DA899
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 07:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA6D6DA8BF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 08:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjDGFwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 01:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
+        id S232848AbjDGGLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 02:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbjDGFwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 01:52:13 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CE49768
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 22:52:11 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id m6-20020a05600c3b0600b003ee6e324b19so24716278wms.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 22:52:11 -0700 (PDT)
+        with ESMTP id S229783AbjDGGLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 02:11:36 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A452420F
+        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 23:11:34 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-62ddb232ddaso292130b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 23:11:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680846730; x=1683438730;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=N85jrvvXyD9fHkvKb/3/oJj/HF/PifZiFmuCM3M4Pjs=;
-        b=u1TFdX7fv7gXqeGkS3FZ2pijuds6NGsuWOLE0kxlwH4A+do7EIvSpEPydBGmUAULUD
-         goa8zLGLVsSrq8EAIe6uU0vK5DwX7CGApuDjIv4khw5cQujK8O9YIbQubWB1pHqqb9HX
-         jQGy0jhiHHKj+L0ENBNgni8H6kphMJ8qJ0oesw10CFn3UoZIJiBBKwB6nVjTvVmz5WUu
-         ZoxyYm+MGM6skYk+0ZdH8pMGu0Zcf3RJ3t9kvVr0n+72igx0qkjak6+OhhmnQI+g2tis
-         tFRpKyrew5jTsI4Uv2se4DHQg999JrITI9bipdgG+3Q6hkGq8tpTRpfzO1Wc7roprM00
-         z45Q==
+        d=linaro.org; s=google; t=1680847894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gmR6rgctA5h10qi1E78YOiMPgpuJw+XUWgs2ChaCqpA=;
+        b=jODbys5Apjv7G2eYFmFneVRNWweq5T5O59tDNnQOXJxee50FOgwRIdkDzdq0Kdanhr
+         Cke51z1sgQEKCgS4MHLHgzSTHSQlHZJjfHLMshUxX2cgq56MiSm5ldiI1GAn9H55rODy
+         MdI1gd58eKVBF5qT+R5i1eTcl3HqtWcpNfX+jdC/Zcc55oKtvEWByPI7O5MKfqMPpcf2
+         Vxl+AngaHUao19oybBOjcyaW/9hFgfvx9b9itGKU0Aj458+7afFVmLqu71tAfkeY81cc
+         20X4G16nvTPMUmvFFVpZUJQnqV7ajI2dX9y8yTIdb9jiTZ0rY6B3CV1jayfFSfa+eXbZ
+         8dNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680846730; x=1683438730;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N85jrvvXyD9fHkvKb/3/oJj/HF/PifZiFmuCM3M4Pjs=;
-        b=FQiZiL6oCrFRMbdFsB7AnFMLEcHlxkXQg3GMOA9RbKsy7cl/VWGgB7ugm8Vq/wOdIh
-         kpOrES4e4PNnclgh5HbJB1RXaG3K3qgwqpNXsgmptIQhrcYcrk3OR39RIYAYIbaKEQyE
-         1ZmzF4wgNncn37LHjra5ReeHc/Oq4ZPY4zFu70/97SL3UGMQqJTrg2P+mvez/gZ0256i
-         oR4FdYR3wWUYdMC9pXD3pqxK+NzL431sgXERzcRweMecyE9VVPSuWXxcrnF3boWG3OiB
-         8YBHkZo6QRLvSzUIlij3qhx1xIJ7GsSRQEZ5iXhsa3FGk320fD8RH4HW0rUKhWQKl9Nh
-         s/vA==
-X-Gm-Message-State: AAQBX9evwop2WDYEawz46f65XkNh8cn25tYbcae4rIY45Jx0lH3YI/77
-        hL/PWr23kBsiLCkH6Wmgkr8UVDDYuz0lsUDFnzI=
-X-Google-Smtp-Source: AKy350ZGeZWg3kfEOsRAKHRLRfqytP+ssITGSZmZoPdlv66cizXKdo8hN4eDF/FYbjn+3KPWlPsbfg==
-X-Received: by 2002:a7b:ce99:0:b0:3ef:672a:2c93 with SMTP id q25-20020a7bce99000000b003ef672a2c93mr363926wmj.36.1680846730106;
-        Thu, 06 Apr 2023 22:52:10 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id y10-20020a7bcd8a000000b003e203681b26sm3421659wmj.29.2023.04.06.22.52.08
+        d=1e100.net; s=20210112; t=1680847894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gmR6rgctA5h10qi1E78YOiMPgpuJw+XUWgs2ChaCqpA=;
+        b=XoMscREdSw//9NHQGxtJ2QwOTDNQsgSEcOJuLdNPhHglQnoG7o2UdsHj0nepyP0es4
+         qXzOcnebnRtLL2VVxh+MlunPzxWF3SUg6xDtdS4K/NTnuyyqlNTLy6jcailT7Nj2RPV4
+         PyBgRLADlItWprXad6Bf+BBqqqdNyMiqa1wXDfm3TZHAV2T0kG/4LGmccIWHUHFW++LZ
+         qsu9NnS3Yl2IFr5SXeRkSR/Eot53V5oCch6HELJQmE6kHJHn6tGXUC9w0YSq9WHA/hWa
+         n2Ul39NbfzEg3dW+ZWgRggJEpuIjUXETjIAXUKdT6eLRIslFkXM9kGSZUGah/WEmUZ/k
+         DAyQ==
+X-Gm-Message-State: AAQBX9eubBJ+WjEk4A4nmo3Q0d5YiKfiPUHqaq0RmaOEZl3lFS+IziJY
+        zOpPkhDkKeu7d7lJZrFsSggEwQ==
+X-Google-Smtp-Source: AKy350Y7KRs3leRqQpn30cRKbXpN644SPm6MQrKtQyUq0iAZ3hOGXe20kE/v1O6tA+VYYJhJ9Jhz7w==
+X-Received: by 2002:a62:38c9:0:b0:625:4b46:e019 with SMTP id f192-20020a6238c9000000b006254b46e019mr1077459pfa.9.1680847893649;
+        Thu, 06 Apr 2023 23:11:33 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:6a11:8ba1:beba:def7:a4ae])
+        by smtp.gmail.com with ESMTPSA id u25-20020aa78399000000b0062d7e9bb17asm2253879pfm.81.2023.04.06.23.11.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 22:52:09 -0700 (PDT)
-Date:   Fri, 7 Apr 2023 08:52:08 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] soc: qcom: llcc: Refactor llcc driver to support
- multiple configuration
-Message-ID: <ZC+viDZTelCJiuBJ@linaro.org>
-References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
- <20230313124040.9463-2-quic_kbajaj@quicinc.com>
+        Thu, 06 Apr 2023 23:11:33 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v6 0/2] Enable USB SS qmp phy for Qualcomm SM6115 SoC
+Date:   Fri,  7 Apr 2023 11:41:20 +0530
+Message-Id: <20230407061122.2036838-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230313124040.9463-2-quic_kbajaj@quicinc.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -77,255 +71,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-03-13 18:10:36, Komal Bajaj wrote:
-> Refactor driver to support multiple configuration for llcc on a target.
-> 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+Changes since v5:
+-----------------
+- v5 can be seen here: https://lore.kernel.org/linux-arm-msm/20230405191633.1864671-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry and made [PATCH 1/2] compatible with his 
+  'split away legacy USB+DP code' series:
+  <https://patchwork.kernel.org/project/linux-phy/cover/20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
 
-LGTM.
+Changes since v4:
+-----------------
+- v4 can be seen here: https://lore.kernel.org/linux-arm-msm/20230401154725.1059563-1-bhupesh.sharma@linaro.org/ 
+- Collected Krzysztof's Ack for [PATCH 1/2].
+- Added more descriptive commit logs as per Dmitry's comments on v4.
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Changes since v3:
+-----------------
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20221215094532.589291-4-bhupesh.sharma@linaro.org/
+- Fixed v4 as per the downstream driver code: https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
 
-> ---
->  drivers/soc/qcom/llcc-qcom.c | 191 ++++++++++++++++++++---------------
->  1 file changed, 112 insertions(+), 79 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index 23ce2f78c4ed..00699a0c047e 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -416,92 +416,125 @@ static const u32 llcc_v2_1_reg_offset[] = {
->  	[LLCC_COMMON_STATUS0]	= 0x0003400c,
->  };
->  
-> -static const struct qcom_llcc_config sc7180_cfg = {
-> -	.sct_data	= sc7180_data,
-> -	.size		= ARRAY_SIZE(sc7180_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sc7180_cfg[] = {
-> +	{
-> +		.sct_data	= sc7180_data,
-> +		.size		= ARRAY_SIZE(sc7180_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sc7280_cfg = {
-> -	.sct_data	= sc7280_data,
-> -	.size		= ARRAY_SIZE(sc7280_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sc7280_cfg[] = {
-> +	{
-> +		.sct_data	= sc7280_data,
-> +		.size		= ARRAY_SIZE(sc7280_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sc8180x_cfg = {
-> -	.sct_data	= sc8180x_data,
-> -	.size		= ARRAY_SIZE(sc8180x_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sc8180x_cfg[] = {
-> +	{
-> +		.sct_data	= sc8180x_data,
-> +		.size		= ARRAY_SIZE(sc8180x_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sc8280xp_cfg = {
-> -	.sct_data	= sc8280xp_data,
-> -	.size		= ARRAY_SIZE(sc8280xp_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sc8280xp_cfg[] = {
-> +	{
-> +		.sct_data	= sc8280xp_data,
-> +		.size		= ARRAY_SIZE(sc8280xp_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sdm845_cfg = {
-> -	.sct_data	= sdm845_data,
-> -	.size		= ARRAY_SIZE(sdm845_data),
-> -	.need_llcc_cfg	= false,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sdm845_cfg[] = {
-> +	{
-> +		.sct_data	= sdm845_data,
-> +		.size		= ARRAY_SIZE(sdm845_data),
-> +		.need_llcc_cfg	= false,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sm6350_cfg = {
-> -	.sct_data	= sm6350_data,
-> -	.size		= ARRAY_SIZE(sm6350_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sm6350_cfg[] = {
-> +	{
-> +		.sct_data	= sm6350_data,
-> +		.size		= ARRAY_SIZE(sm6350_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sm8150_cfg = {
-> -	.sct_data       = sm8150_data,
-> -	.size           = ARRAY_SIZE(sm8150_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sm8150_cfg[] = {
-> +	{
-> +		.sct_data       = sm8150_data,
-> +		.size           = ARRAY_SIZE(sm8150_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sm8250_cfg = {
-> -	.sct_data       = sm8250_data,
-> -	.size           = ARRAY_SIZE(sm8250_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sm8250_cfg[] = {
-> +	{
-> +		.sct_data       = sm8250_data,
-> +		.size           = ARRAY_SIZE(sm8250_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sm8350_cfg = {
-> -	.sct_data       = sm8350_data,
-> -	.size           = ARRAY_SIZE(sm8350_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v1_reg_offset,
-> -	.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +static const struct qcom_llcc_config sm8350_cfg[] = {
-> +	{
-> +		.sct_data       = sm8350_data,
-> +		.size           = ARRAY_SIZE(sm8350_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v1_reg_offset,
-> +		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sm8450_cfg = {
-> -	.sct_data       = sm8450_data,
-> -	.size           = ARRAY_SIZE(sm8450_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v2_1_reg_offset,
-> -	.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +static const struct qcom_llcc_config sm8450_cfg[] = {
-> +	{
-> +		.sct_data       = sm8450_data,
-> +		.size           = ARRAY_SIZE(sm8450_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
-> -static const struct qcom_llcc_config sm8550_cfg = {
-> -	.sct_data       = sm8550_data,
-> -	.size           = ARRAY_SIZE(sm8550_data),
-> -	.need_llcc_cfg	= true,
-> -	.reg_offset	= llcc_v2_1_reg_offset,
-> -	.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +static const struct qcom_llcc_config sm8550_cfg[] = {
-> +	{
-> +		.sct_data       = sm8550_data,
-> +		.size           = ARRAY_SIZE(sm8550_data),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{ },
->  };
->  
->  static struct llcc_drv_data *drv_data = (void *) -EPROBE_DEFER;
-> @@ -966,8 +999,8 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->  	num_banks >>= LLCC_LB_CNT_SHIFT;
->  	drv_data->num_banks = num_banks;
->  
-> -	llcc_cfg = cfg->sct_data;
-> -	sz = cfg->size;
-> +	llcc_cfg = cfg[0].sct_data;
-> +	sz = cfg[0].size;
->  
->  	for (i = 0; i < sz; i++)
->  		if (llcc_cfg[i].slice_id > drv_data->max_slices)
-> @@ -1016,17 +1049,17 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id qcom_llcc_of_match[] = {
-> -	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfg },
-> -	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfg },
-> -	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfg },
-> -	{ .compatible = "qcom,sc8280xp-llcc", .data = &sc8280xp_cfg },
-> -	{ .compatible = "qcom,sdm845-llcc", .data = &sdm845_cfg },
-> -	{ .compatible = "qcom,sm6350-llcc", .data = &sm6350_cfg },
-> -	{ .compatible = "qcom,sm8150-llcc", .data = &sm8150_cfg },
-> -	{ .compatible = "qcom,sm8250-llcc", .data = &sm8250_cfg },
-> -	{ .compatible = "qcom,sm8350-llcc", .data = &sm8350_cfg },
-> -	{ .compatible = "qcom,sm8450-llcc", .data = &sm8450_cfg },
-> -	{ .compatible = "qcom,sm8550-llcc", .data = &sm8550_cfg },
-> +	{ .compatible = "qcom,sc7180-llcc", .data = sc7180_cfg },
-> +	{ .compatible = "qcom,sc7280-llcc", .data = sc7280_cfg },
-> +	{ .compatible = "qcom,sc8180x-llcc", .data = sc8180x_cfg },
-> +	{ .compatible = "qcom,sc8280xp-llcc", .data = sc8280xp_cfg },
-> +	{ .compatible = "qcom,sdm845-llcc", .data = sdm845_cfg },
-> +	{ .compatible = "qcom,sm6350-llcc", .data = sm6350_cfg },
-> +	{ .compatible = "qcom,sm8150-llcc", .data = sm8150_cfg },
-> +	{ .compatible = "qcom,sm8250-llcc", .data = sm8250_cfg },
-> +	{ .compatible = "qcom,sm8350-llcc", .data = sm8350_cfg },
-> +	{ .compatible = "qcom,sm8450-llcc", .data = sm8450_cfg },
-> +	{ .compatible = "qcom,sm8550-llcc", .data = sm8550_cfg },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, qcom_llcc_of_match);
-> -- 
-> 2.39.1
-> 
+This patchset adds the support for USB SS qmp phy for Qualcomm SM6115
+SoC. For the previous versions of this patch there were conversations
+on irc as to whether this was a 'qcom,usb-ssphy-qmp-usb3-or-dp' or a
+'qcom,usb-ssphy-qmp-dp-combo' as per downstream code and hardware
+documentation.
+
+But after a careful look at downstream dtsi (see [1]) it appears that
+this indeed is a 'qcom,usb-ssphy-qmp-usb3-or-dp' phy and not a
+'dp-combo' phy.
+
+[1]. https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
+
+Bhupesh Sharma (2):
+  dt-bindings: phy: qcom,qmp-usb: Drop legacy bindings and move to newer
+    one (SM6115 & QCM2290)
+  arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        |  27 -----
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 109 +++++++++++++++++-
+ .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |   3 +
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          |  36 +++++-
+ .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |   3 +
+ 5 files changed, 144 insertions(+), 34 deletions(-)
+
+-- 
+2.38.1
+
