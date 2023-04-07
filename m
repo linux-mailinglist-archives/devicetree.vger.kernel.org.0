@@ -2,50 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CFA96DAF83
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 17:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB82E6DAF8F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 17:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240200AbjDGPPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 11:15:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
+        id S238089AbjDGPQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 11:16:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240427AbjDGPOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 11:14:50 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB857211F;
-        Fri,  7 Apr 2023 08:14:46 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id DA11748FBB;
-        Fri,  7 Apr 2023 20:14:40 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1680880481; bh=WeTM0sUDR8Fb3Y6Eq+hl+DurApe+oEw2vTlu6D42Ewo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nrVkBRoc9kSCW1mAkp4xS4fQZdh76zA4gl5AGdoznxEtrVVTeGH2UXrdQM4DY5S/u
-         cvcY4uHQgNMcqA1blafytsQ4sWN+DCdhW/TiuWYlqaGB+6UmjpF6I/9QebKCFfU0PM
-         aGJx7dje0PEWmlsu3s+ybA3MlNxyZ6anuK+YE8UD2KEPtLzn9erGluUTdJvD2Ik4Dc
-         3zplBKc8arU1O7whpxosRK9gLt2HIQbhFkdnjDn7FG8V9+3BK9lfPQzA/ypvNARdtl
-         zZEZ4YzqCwZ/IJK1hekfC9fgNb0W7nCIs7boTu4uwfSnwCv52CLr6+iuHiy1XAbBKf
-         wU3kd6xa+87kg==
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     agross@kernel.org, andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@linaro.org, quic_srivasam@quicinc.com,
-        judyhsiao@chromium.org, mka@chromium.org, dianders@chromium.org,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: [PATCH v5 4/4] arm64: dts: qcom: Add Acer Aspire 1
-Date:   Fri,  7 Apr 2023 20:14:23 +0500
-Message-Id: <20230407151423.59993-5-nikita@trvn.ru>
-In-Reply-To: <20230407151423.59993-1-nikita@trvn.ru>
-References: <20230407151423.59993-1-nikita@trvn.ru>
+        with ESMTP id S240488AbjDGPQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 11:16:41 -0400
+Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B2B74ED6;
+        Fri,  7 Apr 2023 08:16:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1434; q=dns/txt; s=iport;
+  t=1680880571; x=1682090171;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=4qtkxbO4YtW5r1YaMvp7RIQeT5HBocMDIOZihyeeUFE=;
+  b=SMo4yw5Cr4J6Fs3m61LzEW0e5pbxR4m+0ae4SId0tQ94IHDCWT+xfE7D
+   YopLzvAjZY7CqSR8K8iMGZLwhXJfCc2KQzj3CM0FKDu5IybiCRCz8b66k
+   m8fPxdG91h1DOCJ7F7ZaSNPRoGjfV/TpndrT9ybQsmVN5awY86zJHqpbC
+   M=;
+X-IPAS-Result: =?us-ascii?q?A0BEAAALMzBkmJpdJa1aHQEBAQEJARIBBQUBQIE8BwELA?=
+ =?us-ascii?q?YFbUnNbO0aIHgOFLogzkiCKEYEsgSUDVg8BAQENAQFEBAEBgVIBgzMChTwCJ?=
+ =?us-ascii?q?TUIDgECBAEBAQEDAgMBAQEBAQEDAQEFAQEBAgEHBBQBAQEBAQEBAR4ZBQ4QJ?=
+ =?us-ascii?q?4VoDYYEAQEBAxIoBgEBNwEPAgEIDgoeEDIlAgQOJ4Jcgl0DAZ86AYE/Aooge?=
+ =?us-ascii?q?IE0gQGCCAEBBgQEnyIJFoErAZE5JxuBSUSEPz6CYgKBYIQUggwigQyZJgqBN?=
+ =?us-ascii?q?HaBIA6BPYEEAgkCEWuBEAhqgXlAAg1kCw5vgUqDKgQCFCc3A0QdQAMLOzo/N?=
+ =?us-ascii?q?RQgBliBGSQFAwsVKkcECDgGHDQRAggPEg8GJkQOQjc0EwZcASkLDhEDT4FGB?=
+ =?us-ascii?q?C+BXAYBJiSfQCsBlXqwZQqDfaBtTROpL5dzomWFEQIEAgQFAg4BAQaBZAE4g?=
+ =?us-ascii?q?VtwFYMiUhkPhnOHLQwNCYNQj3l1PQIHCwEBAwmLRQEB?=
+IronPort-PHdr: A9a23:Om9YmxOvxE88TJJuVlYl6ncDWUAX0o4cdiYZ6Zsi3rRJdKnrv5HvJ
+ 1fW6vgliljVFZ7a5PRJh6uz0ejgVGUM7IzHvCUEd5pBBBMAgN8dygonBsPNAEbnLfnsOio9G
+ skKVFJs83yhd0ZPH8OrbFzJqXr05jkXSX3C
+IronPort-Data: A9a23:hNt8i6lW0aEGIuMLL/Y4lIvo5gwAJkRdPkR7XQ2eYbSJt1+Wr1Gzt
+ xIfUW+FPK6KMWegeItyaIng/EtV75XQytdjHQJt/Hg3H1tH+JHPbTi7wugcHM8zwunrFh8PA
+ xA2M4GYRCwMZiaA4E3ra9ANlFEkvYmQXL3wFeXYDS54QA5gWU8JhAlq8wIDqtYAbeORXkXc6
+ bsen+WFYAX+g2IsbTpOg06+gEoHUMra6WtwUmMWPZinjHeG/1EJAZQWI72GLneQauG4ycbjG
+ o4vZJnglo/o109F5uGNy94XQWVWKlLmBjViv1INM0SUbreukQRpukozHKJ0hU66EFxllfgpo
+ DlGncTYpQvEosQglcxFOyS0HR2SMoV34pjiCGaQk/XI7Gr4VEvp08pJBlk5aNhwFuZfWQmi9
+ NQCIzwLKxuEne/zm/SwS/JngYIoK8yD0IE34y47i2qGS6d9B8meH80m5vcAtNs0rsxHG/fTY
+ 9UQQTFudx/HJRZIPz/7Dbpvwrbx2CemIlW0rnqHpasNz1nS0zVfyei0auXFWeymZtVsyxPwS
+ mXupjSlXU5y2Mak4T6E9G+8w+zChyX2XKoMG7CisP1nmluewioUEhJ+fVe2v/iyh1KkVt93N
+ UMZ4GwtoLI0+UjtScPyNzW7umyVpQwAXNQWEOoo7AaS0anVoAqFLmwFSDdbb5ohrsBebTA13
+ 1uKksnBCz1ht+zED3ma89+8tzS4OWsZMUcBaDUCQA9D5MPsyKkwlADMZtVuCqi4ipvyAz6Y/
+ tyRhDI1i7NWhskR2uDgu1vGmDmr4JPOS2bZ+zk7QEqU9CRcTZCKRbXzyn/lysZFPLm+REGO6
+ S1sd9el0MgCCpSElSqoSeoLHa206/vtDNE6qQM3d3XG32n1k0NPbby88xklexg0apdslSvBJ
+ R6M6VkItfe/KVPzNfcvC79dHfjG2kQJKDgIfurfYtwLaZ9reUrcuipvfkWXmWvqlSDAcJ3T2
+ 7/HIK5A7l5DWcyLKQZaoc9GidfHIQhlnwvuqWjTlUjP7FZnTCf9pU05GFWPdPsly6iPvR/Y9
+ d1SX+PTlUUHALWjMnKNq9RPRbzvEZTdLc2pwyCwXrPdSjeK5El6YxMs6ep7Itc8z/g9ehngr
+ yjhMqOn9LYPrSSXdVrVApySQLjuRp145WkqJjAhOE3A5pTQSdjH0UvrTLNuJeNP3LU6lZZcF
+ qBZE+3eWa4nYmqcpFwggWzV8dYKmOKD31zeZkJIoVEXIvZdeuA+0oa1IVOwqnlSV3PfWAlXi
+ +TI6z43iKErH2xKZPs6otr/p79tlRDxQN5PYnY=
+IronPort-HdrOrdr: A9a23:FqvGJqCyceUDTZrlHegNsceALOsnbusQ8zAXPh9KJyC9I/b2qy
+ nxppgmPEfP+UossHFJo6HlBEEZKUmsuqKdkrNhQotKOzOW9ldATbsSobcKpgeAJ8SQzJ8k6U
+ 4NSdkdNDS0NykGsS+Y2nj4Lz9D+qj9zEnAv463pB0BLXAIV0gj1XYCNu/xKDwQeOAyP+tBKH
+ Pq3Lsgm9PPQwVzUi2TPAh1Y8Hz4/nw0L72ax8PABAqrCOUiymz1bL8Gx+Emj8DTjJm294ZgC
+ j4uj28wp/mn+Cwyxfa2WOWxY9RgsHdxtxKA9HJotQJKw/rlh2jaO1aKv6/VXEO0aOSAWQR4Z
+ 3xSiQbToNOArTqDyeISC7WqkzdOfAVmibfIBGj8CPeSIfCNUwH4oJ69PJkm13imhEdVBUW6t
+ MX44pf3KAnVy8o1R6NlOTgRlVkkFG5rmEllvNWh3tDUZEGYLsUtoAH+lhJea1wVx4SxbpXWd
+ WGNvusrMp+YBefdTTUr2NvyNujUjA6GQqHWFELvoiQ3yJNlH50wkMEzIhH901wua4VWt1B/a
+ DJI65onLZBQosfar98Hv4IRY+yBnbWSRzBPWqOKRDsFb0BOXjKt5nriY9Frt2CadgN1t8/iZ
+ 7BWFRXuSo7fF/vE9SH2NlR/hXEUAyGLELQIwFllu9EU5HHNc7W2He4OSITeuOb0oAiPvE=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.98,327,1673913600"; 
+   d="scan'208";a="96916619"
+Received: from rcdn-core-3.cisco.com ([173.37.93.154])
+  by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 07 Apr 2023 15:15:59 +0000
+Received: from mail.cisco.com (xfe-aln-005.cisco.com [173.37.135.125])
+        by rcdn-core-3.cisco.com (8.15.2/8.15.2) with ESMTPS id 337FFxel028815
+        (version=TLSv1.2 cipher=AES256-SHA bits=256 verify=OK);
+        Fri, 7 Apr 2023 15:15:59 GMT
+Received: from xfe-aln-004.cisco.com (173.37.135.124) by xfe-aln-005.cisco.com
+ (173.37.135.125) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Fri, 7 Apr
+ 2023 10:15:58 -0500
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (173.37.151.57)
+ by xfe-aln-004.cisco.com (173.37.135.124) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25 via Frontend Transport; Fri, 7 Apr 2023 10:15:58 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f0FD2C25xzbS1t/Y3lwtngtNp8zf14aU9Z8Pr4wVtYZeTmiZ553mdgrEI3w0Fi46w9s7RtkF/odTQuuR6dCMAtXz5cPz/CfWkG3QaBAzyc0TEQYTR53yubyowx8QROaoxhqbgD7W13T/qIjTd+uOZHZF/nj7/GNgcZ0uypvqXS/UwPbh9qRxhBT5ybOEwsmp8AqipBqYzq+FZwkY92S7tkrA44Rg0vqvTAXTdB1issfSZlk90Q/M9v3tFdBdYYodjKdVXEIvfmXiIzkBDVigtByov5vyGItM6VGkYr3MzYw9CJ7Q8wWQ1+LBuhJYtmQoOuadI65Aww/ZqkQwSGBKDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4qtkxbO4YtW5r1YaMvp7RIQeT5HBocMDIOZihyeeUFE=;
+ b=WudBfivDxtp5yLIMQn/q79kxiScE3asqFn52wJg8zYGwP9KLXYU7DkJzDCUb8yoyU8so7O+OR19ug0p+Z+2VS0FH1LnImw+aHoXse3Bh+s/PrMU7dJsC2jPRFzOIxlF44F8cYHD0eKJH09kkBD30h4e7ekjY+llcBCuwT3QBIpTQy4BHiFnLiG10JCAqOyU/zLM6ufdvb90JS+7ZsP92hG/i+jEOPdA5H6c60VJ3y9DPXIdCLbdcnBd8jX+cKPX6R/fMuzT0cw1t3BfVNiy5hpeO6p48gQ+7TkAFXmLuvr7hN3Oe/z/eIZJ6B2n6ovSfSm9WybIJ0OjtogsCAPdMlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cisco.com; dmarc=pass action=none header.from=cisco.com;
+ dkim=pass header.d=cisco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4qtkxbO4YtW5r1YaMvp7RIQeT5HBocMDIOZihyeeUFE=;
+ b=LCpEiR1pQxJDWEMkU6cYVYGzj+G/Dp+GVIFwfNXPKqojPDmvalx6wn8EqefZqNT4kvxCFDfaDAFS/+UqqAztkTMJL29NJcQv9+oeemMx3acCKmq2/16qgZgdLYzHJBccEmCd5hgDkUPCPRWNPvpSOrZ3uh8S2eT+NvZjUwyPLR8=
+Received: from SJ0PR11MB5790.namprd11.prod.outlook.com (2603:10b6:a03:422::15)
+ by SA1PR11MB6870.namprd11.prod.outlook.com (2603:10b6:806:2b4::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.34; Fri, 7 Apr
+ 2023 15:15:55 +0000
+Received: from SJ0PR11MB5790.namprd11.prod.outlook.com
+ ([fe80::66a3:de62:35f4:ad97]) by SJ0PR11MB5790.namprd11.prod.outlook.com
+ ([fe80::66a3:de62:35f4:ad97%6]) with mapi id 15.20.6277.031; Fri, 7 Apr 2023
+ 15:15:55 +0000
+From:   "Daniel Walker (danielwa)" <danielwa@cisco.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
+        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Walker <dwalker@fifo99.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
+Thread-Topic: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
+Thread-Index: AQHZaJqfW/PiGCKJbkGjA/VaWrFw5w==
+Date:   Fri, 7 Apr 2023 15:15:54 +0000
+Message-ID: <20230407151554.GB1391488@zorba>
+References: <20230405223028.1268141-2-danielwa@cisco.com>
+ <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
+ <20230406151512.GL40472@zorba>
+ <14634180-aca9-a3e9-d1af-dfaca77b42ee@linaro.org>
+ <20230406183253.GM40472@zorba>
+ <5e2e5b82-35ae-c3b5-becb-40d387226a7a@linaro.org>
+ <20230406191506.GN40472@zorba>
+ <4555d5e8-0403-99bc-9cc2-26b72ea5be3b@kernel.org>
+In-Reply-To: <4555d5e8-0403-99bc-9cc2-26b72ea5be3b@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cisco.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR11MB5790:EE_|SA1PR11MB6870:EE_
+x-ms-office365-filtering-correlation-id: 8639233b-3fe9-4746-40ee-08db377afb8d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: STbPIgihcsz+L/yMe0N1gVZvdxKcV/ZbtzvYvSGRgYUry249t/WyAUE+s5wOB5Imp69QHldF1hZRF5FY0/gWksdATjTn8VPuoC2UfzBtKJ3CvGTeOvc+ZxBaUurEuIvyhCEVwukqISsE4QUbCxgvhmbKbke76Rjh3t073RkHkshguJfVQFepc5DfcZbbEo0hI5XSUakaF9gdfmAZ0jXL4tFKFW+LF7Fa0aiLOVHarCCr4Ft7KOwkzZFzVa1/xdEgGveHf5egTHptfpSzQvJefaysjU55RnSvkVIZ1d41gdfqIYXXBmmzRXITTdCNICaXyTH/E2sCMLcEmchUhoxNqbbzZ8hJ5jOK09nxyr2D45B5LYFDVFdd6AFwB+QhsdyGoCuL5IN3G74oh6EouWkAeaWgtpFnwxcCSOurK/SwVMJUR951SnDEVrJdeHA5SaINRl5ED0cpUPEVqboKlymQzyam35Z23NQ6TXF1Kfv7jAxHO1DP8XTWPoJyuFUWIn50CasY+iqwGavi0+wWg1FiHbhqlG10alNsjybDHxu0mrjiU277PNXvxkyvAjGcJixXway5vyvqEEw144lsPqSrfGvkeuAXJuel6HSxIdqlHwIalB7uq9e1KaY1d7+jqUPl
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB5790.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199021)(122000001)(38070700005)(2906002)(38100700002)(86362001)(33716001)(66446008)(8676002)(6512007)(64756008)(66476007)(76116006)(66946007)(66556008)(1076003)(9686003)(26005)(6506007)(316002)(53546011)(54906003)(6916009)(41300700001)(478600001)(4326008)(6486002)(71200400001)(5660300002)(186003)(33656002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?EW1WRCjYzDdIWIn5Go6bVMxqlAzsAWxJr+5q9b+QuzSkHYEFUz0xNuEGcEl8?=
+ =?us-ascii?Q?fFrsl3znDtLEv5o8FtN1aoUmEl2O/KyHHq8CyhxluBYq3By+y5pLJfgXh5sw?=
+ =?us-ascii?Q?bA7qZ2DXATB11M2mlDBSaPLl6xSgS54ni16Qjq21C1bvm68e606cqYi13bBv?=
+ =?us-ascii?Q?WK42bf0AuYlRb672tboYPJvQat1o0d/BRbaQw4pjoFC6gT7PK4JPv0L88QiU?=
+ =?us-ascii?Q?OMhodo9hKq5KtqF0/+VqIpyfB+SPaTNWOxPMS3ZS5ZtAIGlgbSxPBzbrMstI?=
+ =?us-ascii?Q?zHnTEnnU/esQn3oYhXBnJ1n91gOS92vBkpPDHpGEges6PxHdAX/NJAc0dHtu?=
+ =?us-ascii?Q?Qm+1Q5LHasp6d1RNlCcjzyO36DWvAJbzKeNcDzPM69I3LD79MygTLlswxwMC?=
+ =?us-ascii?Q?7dh39dMiAJaIv4zlP/i3IsXizcyemGgsnZ7P2pVoJJVsfHd4EJDI2u29bSTb?=
+ =?us-ascii?Q?tSytxor4y7H75lCLpbtUwvNrrK84MX8Pd0nnHqx/9jkOOAHKDu3VBo4p3hPf?=
+ =?us-ascii?Q?pYnUe4me1rYEXXeIks/D0ifwHElecdUUJq/mn8OJ+9JPB0i5FIYY7WDkETP6?=
+ =?us-ascii?Q?CUgmf1s0bdCy9QAMxYjA4amdeCzEfWxnzTcvA/Z5m64EkGoGZ63toA25/Vcm?=
+ =?us-ascii?Q?u86psXx7spWo++FxM1N01O0KmBhulH+As+/4vYAh3woAsJKh4GAsA+xQftSs?=
+ =?us-ascii?Q?7GKkUxJHZk9g4z0Czb/7dqfcpUr3dTuU/img2iaMrq1Iq+nH9KEPsM5J+ssO?=
+ =?us-ascii?Q?1BfnLT32CVumiPCOpnBV4cn/6rYahzp215gxZYdDwgy04BPfprsIb3i6bnDI?=
+ =?us-ascii?Q?A2vksGRa64UqgpL5w+HKQOj4dpTPmIkYaMVGSGuwETaMgEpHU5CPZGfSKJt8?=
+ =?us-ascii?Q?8Clgjfc6kOKjryxau5ph8SKDxQ87emvNcFcgJ/f5Fq/GtvQe/HH+M9qs8pxP?=
+ =?us-ascii?Q?2TNslnOcMZaLCsJMtAS7/QvNshY6pWITCCMFTlrRtM13r7I+UbLG9EN3Sd2S?=
+ =?us-ascii?Q?AGqzoP7x22/NzUDOHgCrv4FYS3IhRJNoUDSbvpiHi0dc2E06BRWj1B/HbVYd?=
+ =?us-ascii?Q?iyFIEDNtM5iLykAK2aqXYCNOKIeGYTni5WD5xqthoRKEw7RNCx2difvkIUoQ?=
+ =?us-ascii?Q?6cWlaBtbn4AUIFzlBdlSAy/VY6ymyoyk+vtWVVi9CG8rnOksijrh6YL5GPCB?=
+ =?us-ascii?Q?j6GnlN+6svDeEZaDTmC3rmlNXv3KUHlWsMH6EvGszo5lvVAVRNfGAiSr/+Uu?=
+ =?us-ascii?Q?vbEoYY8sAyxPdYEyMlQGRvT1yvchdm5qoSDIHrvrqnDH25hvkBVYricHrng5?=
+ =?us-ascii?Q?eXU0+uawxdQkjid0XjFfXQJn3welui/O29nYuNAUVwEjmaSb95WrU9exuu53?=
+ =?us-ascii?Q?uAb5bpNQOyodbH63UU3rICCGPfItDR2RWwHeijbkay2PcBkrXSJDOwOvCzTZ?=
+ =?us-ascii?Q?1aBTYK03ko0cgcIf7nBcIsJTNltlTfskan644UUtrcD1WjfcwmT3eJh6XuYO?=
+ =?us-ascii?Q?YI/kf5db7AUPpsX+0dAx7EFGqdvDzsq7fXa0oJBYimuqNw+1YarEaC+Nrsmh?=
+ =?us-ascii?Q?3V3lGhtuFqU3yzei6CgK61kJO+Lrbay/Ikj5eXMPrchNSPsvJopVKAksV5vL?=
+ =?us-ascii?Q?dw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <391771BB01286546B682F058A1427B77@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB5790.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8639233b-3fe9-4746-40ee-08db377afb8d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2023 15:15:54.8743
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5ae1af62-9505-4097-a69a-c1553ef7840e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZYNDzAMAhzhMySs2zy1QH+22qKAlkIYN9wzBDOM5gWCn8+waATM1ACyZxHknhnAhwY9tZewhKu/F5PtqYIPcIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6870
+X-OriginatorOrg: cisco.com
+X-Outbound-SMTP-Client: 173.37.135.125, xfe-aln-005.cisco.com
+X-Outbound-Node: rcdn-core-3.cisco.com
+X-Spam-Status: No, score=-10.0 required=5.0 tests=DKIMWL_WL_HIGH,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,903 +203,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acer Aspire 1 is a WoA laptop based on Snapdragon 7c gen1 platform.
+On Fri, Apr 07, 2023 at 08:51:12AM +0200, Krzysztof Kozlowski wrote:
+> On 06/04/2023 21:15, Daniel Walker (danielwa) wrote:
+> > On Thu, Apr 06, 2023 at 08:56:06PM +0200, Krzysztof Kozlowski wrote:
+> >> On 06/04/2023 20:32, Daniel Walker (danielwa) wrote:
+> >>>>>>> +++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
+> >>>>>>
+> >>>>>> How many (or not many) platforms do you expect from Cisco? We most=
+ly
+> >>>>>> have one file per SoC manufacturer.
+> >>>>>
+> >>>>> We have two SoC's one called CrayAR and another called Craw. I've s=
+ubmitted the
+> >>>>> Craw dts file before , but I've not resubmitted it. Under Craw I th=
+ink we have
+> >>>>> at least two, but more likely five variations. CrayAR we have one v=
+ariation with
+> >>>>> at least one more planned.
+> >>>>>
+> >>>>> So we would plan over time to add two dtsi files and three to four =
+dts files to
+> >>>>> this directory. Then more over time.
+> >>>>
+> >>>> So just keep them in one file maybe.
+> >>>
+> >>> If/when I submit again with anther chip we can discuss it at that tim=
+e.
+> >>
+> >> Or you can do it now.
+> >=20
+> > What do you want to talk about exactly ? You said keep everything in on=
+e file, doesn't this
+> > already fit your suggestion ? I'm only submitting one file.
+>=20
+> That is supposed to be one file named like: cisco.yaml
+> If you ever need to have separate maintainers, then split it.
 
-The laptop design is similar to trogdor in the choice of primary
-components but the specifics on usage of those differ slightly.
+Ok.
 
-Add the devicetree for the laptop with support for most of the
-hardware present.
-
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-Changed in v2:
- - Various styling, ordering and node naming issues fixed. (Krzysztof)
-
-Changed in v3:
- - Kepp camcc on, wakeup on touchpad, minor style issues. (Konrad)
-
-Changed in v5:
- - Minor style issues (Konrad)
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sc7180-acer-aspire1.dts     | 854 ++++++++++++++++++
- 2 files changed, 855 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f6ff4024a60e..f0d92c47bc7f 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8775p-ride.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-acer-aspire1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-new file mode 100644
-index 000000000000..d0ec759a44ce
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-@@ -0,0 +1,854 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "sc7180.dtsi"
-+
-+#include "pm6150.dtsi"
-+#include "pm6150l.dtsi"
-+
-+/delete-node/ &tz_mem;
-+/delete-node/ &ipa_fw_mem;
-+
-+/ {
-+	model = "Acer Aspire 1";
-+	compatible = "acer,aspire1", "qcom,sc7180";
-+	chassis-type = "laptop";
-+
-+	aliases {
-+		bluetooth0 = &bluetooth;
-+		hsuart0 = &uart3;
-+		serial0 = &uart8;
-+		wifi0 = &wifi;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reserved-memory {
-+		zap_mem: zap-shader@80840000 {
-+			reg = <0x0 0x80840000 0 0x2000>;
-+			no-map;
-+		};
-+
-+		venus_mem: venus@85b00000 {
-+			reg = <0x0 0x85b00000 0 0x500000>;
-+			no-map;
-+		};
-+
-+		mpss_mem: mpss@86000000 {
-+			reg = <0x0 0x86000000 0x0 0x2000000>;
-+			no-map;
-+		};
-+
-+		adsp_mem: adsp@8e400000 {
-+			reg = <0x0 0x8e400000 0x0 0x2800000>;
-+			no-map;
-+		};
-+
-+		wlan_mem: wlan@93900000 {
-+			reg = <0x0 0x93900000 0x0 0x200000>;
-+			no-map;
-+		};
-+	};
-+
-+	max98357a: audio-codec {
-+		compatible = "maxim,max98357a";
-+		sdmode-gpios = <&tlmm 23 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&amp_sd_mode_default>;
-+		pinctrl-names = "default";
-+
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&sn65dsi86_bridge 1000000>;
-+		enable-gpios = <&tlmm 10 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&soc_bkoff_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_brij_1p2: bridge-1p2-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "brij_1p2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+
-+		gpio = <&tlmm 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_edp_1p2_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_brij_1p8: bridge-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "brij_1p8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		vin-supply = <&vreg_l8c_1p8>;
-+
-+		gpio = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_edp_1p8_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_codec_3p3: codec-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "codec_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 83 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_audio_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_lcm_3p3: panel-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "lcm_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		/*
-+		 * HACK: Display fails with
-+		 *
-+		 * *ERROR* Unexpected max rate (0x0); assuming 5.4 GHz
-+		 * *ERROR* Link training failed, link is off (-5)
-+		 *
-+		 * if the power to the panel was ever cut
-+		 */
-+		regulator-always-on;
-+
-+		gpio = <&tlmm 26 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_lcm_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_tp_3p3: touchpad-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "tp_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 25 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_tp_en_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&dsi0 {
-+	vdda-supply = <&vreg_l3c_1p2>;
-+	status = "okay";
-+};
-+
-+&dsi0_out {
-+	remote-endpoint = <&sn65dsi86_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&dsi_phy {
-+	vdds-supply = <&vreg_l4a_0p8>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	/* embedded-controller@76 */
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	/*
-+	 * NOTE: DSDT defines two possible touchpads, other one is
-+	 *
-+	 * reg = <0x15>;
-+	 * hid-descr-addr = <0x1>;
-+	 */
-+
-+	touchpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+
-+		vdd-supply = <&reg_tp_3p3>;
-+
-+		interrupts-extended = <&tlmm 94 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&hid_touchpad_default>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+
-+	keyboard@3a {
-+		compatible = "hid-over-i2c";
-+		reg = <0x3a>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 33 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&hid_keyboard_default>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c9 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	alc5682: codec@1a {
-+		compatible = "realtek,rt5682i";
-+		reg = <0x1a>;
-+
-+		#sound-dai-cells = <1>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <28 IRQ_TYPE_EDGE_BOTH>;
-+
-+		pinctrl-0 = <&codec_irq_default>;
-+		pinctrl-names = "default";
-+
-+		AVDD-supply = <&vreg_l15a_1p8>;
-+		MICVDD-supply = <&reg_codec_3p3>;
-+		VBAT-supply = <&reg_codec_3p3>;
-+
-+		realtek,dmic1-data-pin = <1>;
-+		realtek,dmic1-clk-pin = <1>;
-+		realtek,jd-src = <1>;
-+	};
-+};
-+
-+&i2c10 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	sn65dsi86_bridge: bridge@2c {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2c>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		#pwm-cells = <1>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		enable-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-+		suspend-gpios = <&tlmm 22 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&bridge_en_default>,
-+			    <&edp_bridge_irq_default>,
-+			    <&bridge_suspend_default>;
-+		pinctrl-names = "default";
-+
-+		vpll-supply = <&reg_brij_1p8>;
-+		vccio-supply = <&reg_brij_1p8>;
-+		vcca-supply = <&reg_brij_1p2>;
-+		vcc-supply = <&reg_brij_1p2>;
-+
-+		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
-+		clock-names = "refclk";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				sn65dsi86_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				sn65dsi86_out: endpoint {
-+					data-lanes = <0 1>;
-+					remote-endpoint = <&panel_in_edp>;
-+				};
-+			};
-+		};
-+
-+		aux-bus {
-+			panel: panel {
-+				compatible = "edp-panel";
-+				power-supply = <&reg_lcm_3p3>;
-+				backlight = <&backlight>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&sn65dsi86_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&zap_mem>;
-+		firmware-name = "qcom/sc7180/acer/aspire1/qcdxkmsuc7180.mbn";
-+	};
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&pm6150_adc {
-+	thermistor@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	charger-thermistor@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm6150_adc_tm {
-+	status = "okay";
-+
-+	charger-thermistor@0 {
-+		reg = <0>;
-+		io-channels = <&pm6150_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	thermistor@1 {
-+		reg = <1>;
-+		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm6150_pon {
-+	status = "disabled";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&remoteproc_mpss {
-+	firmware-name = "qcom/sc7180/acer/aspire1/qcmpss7180_nm.mbn";
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	pinctrl-0 = <&sdc1_default>;
-+	pinctrl-1 = <&sdc1_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	vmmc-supply = <&vreg_l19a_2p9>;
-+	vqmmc-supply = <&vreg_l12a_1p8>;
-+
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	/delete-property/interrupts;
-+	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
-+			      <&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
-+
-+	pinctrl-1 = <&qup_uart3_sleep>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn3991-bt";
-+		vddio-supply = <&vreg_l10a_1p8>;
-+		vddxo-supply = <&vreg_l1c_1p8>;
-+		vddrf-supply = <&vreg_l2c_1p3>;
-+		vddch0-supply = <&vreg_l10c_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart8 {
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	usb_hub_2_x: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		peer-hub = <&usb_hub_3_x>;
-+	};
-+
-+	usb_hub_3_x: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		peer-hub = <&usb_hub_2_x>;
-+	};
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&vreg_l4a_0p8>;
-+	vdda-pll-supply = <&vreg_l11a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l17a_3p0>;
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_15_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+	qcom,bias-ctrl-value = <0x22>;
-+	qcom,charge-ctrl-value = <3>;
-+	qcom,hsdisc-trim-value = <0>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	vdda-phy-supply = <&vreg_l3c_1p2>;
-+	vdda-pll-supply = <&vreg_l4a_0p8>;
-+
-+	status = "okay";
-+};
-+
-+&venus {
-+	firmware-name = "qcom/sc7180/acer/aspire1/qcvss7180.mbn";
-+};
-+
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
-+	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
-+	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
-+	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
-+
-+	status = "okay";
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm6150-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_s1a_1p1: smps1 {
-+			regulator-min-microvolt = <1128000>;
-+			regulator-max-microvolt = <1128000>;
-+		};
-+
-+		vreg_l4a_0p8: ldo4 {
-+			regulator-min-microvolt = <824000>;
-+			regulator-max-microvolt = <928000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9a_0p6: ldo9 {
-+			regulator-min-microvolt = <488000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10a_1p8: ldo10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		vreg_l11a_1p8: ldo11 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13a_1p8: ldo13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14a_1p8: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15a_1p8: ldo15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l16a_2p7: ldo16 {
-+			regulator-min-microvolt = <2496000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l17a_3p0: ldo17 {
-+			regulator-min-microvolt = <2920000>;
-+			regulator-max-microvolt = <3232000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_2p8: ldo18 {
-+			regulator-min-microvolt = <2496000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l19a_2p9: ldo19 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm6150l-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_s8c_1p3: smps8 {
-+			regulator-min-microvolt = <1120000>;
-+			regulator-max-microvolt = <1408000>;
-+		};
-+
-+		vreg_l1c_1p8: ldo1 {
-+			regulator-min-microvolt = <1616000>;
-+			regulator-max-microvolt = <1984000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c_1p3: ldo2 {
-+			regulator-min-microvolt = <1168000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c_1p2: ldo3 {
-+			regulator-min-microvolt = <1144000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4c_1p8: ldo4 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+		};
-+
-+		vreg_l5c_1p8: ldo5 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+		};
-+
-+		vreg_l6c_2p9: ldo6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7c_3p0: ldo7 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+		};
-+
-+		vreg_l8c_1p8: ldo8 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c_2p9: ldo9 {
-+			regulator-min-microvolt = <2952000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10c_3p3: ldo10 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11c_3p3: ldo11 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+		};
-+	};
-+};
-+
-+&qup_i2c2_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&qup_i2c4_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&qup_i2c9_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&qup_i2c10_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&tlmm {
-+	/*
-+	 * The TZ seem to protect those because some boards can have
-+	 * fingerprint sensor connected to this range. Not connected
-+	 * on this board
-+	 */
-+	gpio-reserved-ranges = <58 5>;
-+
-+	amp_sd_mode_default: amp-sd-mode-deault-state {
-+		pins = "gpio23";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	bridge_en_default: bridge-en-default-state {
-+		pins = "gpio51";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	bridge_suspend_default: bridge-suspend-default-state {
-+		pins = "gpio22";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+	};
-+
-+	codec_irq_default: codec-irq-deault-state {
-+		pins = "gpio28";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	edp_bridge_irq_default: edp-bridge-irq-default-state {
-+		pins = "gpio11";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	hid_keyboard_default: hid-keyboard-default-state {
-+		pins = "gpio33";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	hid_touchpad_default: hid-touchpad-default-state {
-+		pins = "gpio94";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	qup_uart3_sleep: qup-uart3-sleep-state {
-+		cts-pins {
-+			/*
-+			 * Configure a pull-down on CTS to match the pull of
-+			 * the Bluetooth module.
-+			 */
-+			pins = "gpio38";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+
-+		rts-pins {
-+			/*
-+			 * Configure pull-down on RTS. As RTS is active low
-+			 * signal, pull it low to indicate the BT SoC that it
-+			 * can wakeup the system anytime from suspend state by
-+			 * pulling RX low (by sending wakeup bytes).
-+			 */
-+			pins = "gpio39";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+
-+		tx-pins {
-+			/*
-+			 * Configure pull-up on TX when it isn't actively driven
-+			 * to prevent BT SoC from receiving garbage during sleep.
-+			 */
-+			pins = "gpio40";
-+			function = "gpio";
-+			bias-pull-up;
-+		};
-+
-+		rx-pins {
-+			/*
-+			 * Configure a pull-up on RX. This is needed to avoid
-+			 * garbage data when the TX pin of the Bluetooth module
-+			 * is floating which may cause spurious wakeups.
-+			 */
-+			pins = "gpio41";
-+			function = "gpio";
-+			bias-pull-up;
-+		};
-+	};
-+
-+	reg_edp_1p2_en_default: reg-edp-1p2-en-deault-state {
-+		pins = "gpio19";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	reg_edp_1p8_en_default: reg-edp-1p8-en-deault-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	reg_lcm_en_default: reg-lcm-en-deault-state {
-+		pins = "gpio26";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	reg_audio_en_default: reg-audio-en-deault-state {
-+		pins = "gpio83";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	reg_tp_en_default: reg-tp-en-deault-state {
-+		pins = "gpio25";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	soc_bkoff_default: soc-bkoff-deault-state {
-+		pins = "gpio10";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	sdc1_default: sdc1-default-state {
-+		clk-pins {
-+			pins = "sdc1_clk";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		cmd-pins {
-+			pins = "sdc1_cmd";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		data-pins {
-+			pins = "sdc1_data";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rclk-pins {
-+			pins = "sdc1_rclk";
-+			bias-pull-down;
-+		};
-+	};
-+
-+	sdc1_sleep: sdc1-sleep-state {
-+		clk-pins {
-+			pins = "sdc1_clk";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		cmd-pins {
-+			pins = "sdc1_cmd";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		data-pins {
-+			pins = "sdc1_data";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		rclk-pins {
-+			pins = "sdc1_rclk";
-+			bias-pull-down;
-+		};
-+	};
-+};
--- 
-2.39.2
-
+Daniel=
