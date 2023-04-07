@@ -2,111 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA75C6DB410
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E31B06DB40A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 21:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbjDGTSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 15:18:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46652 "EHLO
+        id S229932AbjDGTSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 15:18:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230486AbjDGTSo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 15:18:44 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD15976F
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 12:18:41 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id j22so10399852ejv.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 12:18:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680895119;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cVZrkBqgVgcVzeGGGFBhsy4jLsRZIddjwzjEhu3g9lM=;
-        b=ntTn7ynloJD1t1Gl4ChofmVHRUhHROukNNWnB9ljx+J7RETmKFEFQ+KJ5gtfYozxXW
-         Axho8MKxdGYzZHD94OLoGbONIekG1GdcUeeXbml8S10Gs2C9bjsVTb4Mo/3NMiJDPlJz
-         3mLk3P405NWO/vlSub75PYDuBfcnLSugHnpurF1ZWjwnWlrFM9AyHfMJgjHm6gfhufU+
-         smYPokPhd+PSyx7wLigoXXWfgpxFgajrgvko4le4iaj6idEpEdy55L3gtnuYNScoYIpv
-         HDn+maIzr7RmUxuQSrUZuJkUR7tVLOUmgFKIENhh7NzIQCINkwxhv3Jd52UR63vUpadz
-         VNmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680895119;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cVZrkBqgVgcVzeGGGFBhsy4jLsRZIddjwzjEhu3g9lM=;
-        b=WEJzMOOy9rxJ/B6SfN5BUiNcx3jOgyPq0VIWapK0RXDEjvZJqZLAVC1viEPkGWqFxl
-         AFVvWOOWJrS825ufRTjq37LidLZ5YbMbTSsqrv3/6EYOcX426fSz+dxqpR39Axfyrh2H
-         P6rbhVk6NyArquUkvVFGw/d+81J877FIPZtNMOjytTmVnSerJgISCl5cgCelRHr3/jX/
-         nK4mBBevKBH6DhCHL+6UCRyrRTClCGrYea+rZw9VpsrTNA0oUaSvgrQKBqz1uJ7+GCjE
-         +j/Rkuqy2Nl772TKeMRrfgWuMxl5wVniQbHt3U/GnjOFrbPqHNwyTJrECZOwoSgpeUoa
-         cxpg==
-X-Gm-Message-State: AAQBX9cCiu+ZgO0fMFQy7Fmc4Fwpl/XGJuKz/AeYYWkkZSe1cDGSWN8v
-        lIRtk84AuUfINtlxJWHTYv0vdw==
-X-Google-Smtp-Source: AKy350ayqtLaBs8rKb/x8oA6mTQe4UuwpmtgcUiP9/ueZGZEGgmoxYXtwqgNZ8xQ0h9e6tayUIDijA==
-X-Received: by 2002:a17:906:fe44:b0:879:ab3:93d1 with SMTP id wz4-20020a170906fe4400b008790ab393d1mr711542ejb.4.1680895119358;
-        Fri, 07 Apr 2023 12:18:39 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:b20f:8824:c926:8299? ([2a02:810d:15c0:828:b20f:8824:c926:8299])
-        by smtp.gmail.com with ESMTPSA id lf27-20020a170906ae5b00b008e68d2c11d8sm2312732ejb.218.2023.04.07.12.18.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 12:18:38 -0700 (PDT)
-Message-ID: <070b55eb-504c-f505-8b13-a903d5ec7564@linaro.org>
-Date:   Fri, 7 Apr 2023 21:18:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: move DSI opp-table out of
- soc node
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230347AbjDGTSK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 15:18:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A477BBB9A;
+        Fri,  7 Apr 2023 12:18:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F7AF64D51;
+        Fri,  7 Apr 2023 19:18:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 316F4C433EF;
+        Fri,  7 Apr 2023 19:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680895088;
+        bh=v36g2BJAp9VAUH4Pa6BbAM86j6+La0PhFyT56lBz4qk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MiTiaY4nNrXh2Blyn4YPwEYHeW1ZRvk7gDlluFVq7g0F5of484SqgjKjTogpg7PYY
+         U7nFq0OuSg4f3cJ0Slb0/ECgFq1IOCt5bj3lc6EI7yCutpMlbHLZu/5rb9fIhh/xZ7
+         KZOlhNoAXKw1XOGLEyQH3W4olv3S9pdTRU6y72XxZ1aN/F6sbHsefCN1YokjDYYGfQ
+         XewjP5Wog4DHU8Up85MynErWjvvYhzNr2z80wyNFovvWpxQpOwBUT0u2XQA0fkJdxY
+         j6lBo/q9pJ5y0fcOXnyjYsEaYmAv1Yn0j+DFGJpnzRQcoDBjZqkIyfaEQ1O6F9jAXA
+         xstivBMt6PjzQ==
+Date:   Fri, 7 Apr 2023 12:20:57 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
- <20230327193938.42rvpttgo5p4kia6@ripper>
- <edb9fc8d-5d64-146f-fb82-6112c1d9455e@linaro.org>
- <20230407163442.ckbd4vxa5b2xu3eu@ripper>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230407163442.ckbd4vxa5b2xu3eu@ripper>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH v6 0/6] Add dedicated Qcom ICE driver
+Message-ID: <20230407192057.pgccwiie3mriuklp@ripper>
+References: <20230407105029.2274111-1-abel.vesa@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230407105029.2274111-1-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2023 18:34, Bjorn Andersson wrote:
-> On Mon, Mar 27, 2023 at 09:39:00PM +0200, Krzysztof Kozlowski wrote:
->> On 27/03/2023 21:39, Bjorn Andersson wrote:
->>> On Sun, Mar 26, 2023 at 11:16:05AM +0200, Krzysztof Kozlowski wrote:
->>>> The soc node is supposed to have only device nodes with MMIO addresses,
->>>> so move the DSI OPP out of it (it is used also by second DSI1 on
->>>> SDM660):
->>>>
->>>
->>> This node has been moved into the dsi node, so if we still want this,
->>> could you please update the commit message.
->>
->> The OPP table has been moved *out of* DSI node. The v1 was moving
->> inside, but this was not good approach, thus v2 moves it out.
->>
->> I don't understand what shall be updated here.
->>
+On Fri, Apr 07, 2023 at 01:50:23PM +0300, Abel Vesa wrote:
+> As both SDCC and UFS drivers use the ICE with duplicated implementation,
+> while none of the currently supported platforms make use concomitantly
+> of the same ICE IP block instance, the new SM8550 allows both UFS and
+> SDCC to do so. In order to support such scenario, there is a need for
+> a unified implementation and a devicetree node to be shared between
+> both types of storage devices. So lets drop the duplicate implementation
+> of the ICE from both SDCC and UFS and make it a dedicated (soc) driver.
 > 
-> The commit message doesn't reflect what's in linux-next today and the
-> patch doesn't apply.
+> For now, only SM8550 has been added to support the new approach. This
+> also involves adding support for HW version 4.x.
 > 
 
-It seems you applied v1. It's okay, yet would be nice to clean up so I
-will send a follow-up patch.
+I picked the ICE driver and pushed it out to make it possible to pick up
+the mmc and ufs patches independently.
 
-Best regards,
-Krzysztof
+  https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/20230407105029.2274111-4-abel.vesa@linaro.org
 
+Regards,
+Bjorn
+
+> The v5 is here:
+> https://lore.kernel.org/all/20230403200530.2103099-1-abel.vesa@linaro.org/
+> 
+> Changes since v5:
+>  * See each individual patch for changelogs.
+> 
+> Changes since v4:
+>  * dropped the SDHCI dt-bindings patch as it will be added along
+>    with the first use of qcom,ice property from an SDHCI DT node
+> 
+> Abel Vesa (6):
+>   dt-bindings: crypto: Add Qualcomm Inline Crypto Engine
+>   dt-bindings: ufs: qcom: Add ICE phandle
+>   soc: qcom: Make the Qualcomm UFS/SDCC ICE a dedicated driver
+>   scsi: ufs: ufs-qcom: Switch to the new ICE API
+>   mmc: sdhci-msm: Switch to the new ICE API
+>   arm64: dts: qcom: sm8550: Add the Inline Crypto Engine node
+> 
+>  .../crypto/qcom,inline-crypto-engine.yaml     |  42 ++
+>  .../devicetree/bindings/ufs/qcom,ufs.yaml     |  26 ++
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi          |   9 +
+>  drivers/mmc/host/Kconfig                      |   2 +-
+>  drivers/mmc/host/sdhci-msm.c                  | 223 +++--------
+>  drivers/soc/qcom/Kconfig                      |   4 +
+>  drivers/soc/qcom/Makefile                     |   1 +
+>  drivers/soc/qcom/ice.c                        | 366 ++++++++++++++++++
+>  drivers/ufs/host/Kconfig                      |   2 +-
+>  drivers/ufs/host/Makefile                     |   4 +-
+>  drivers/ufs/host/ufs-qcom-ice.c               | 244 ------------
+>  drivers/ufs/host/ufs-qcom.c                   |  99 ++++-
+>  drivers/ufs/host/ufs-qcom.h                   |  32 +-
+>  include/soc/qcom/ice.h                        |  37 ++
+>  14 files changed, 637 insertions(+), 454 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>  create mode 100644 drivers/soc/qcom/ice.c
+>  delete mode 100644 drivers/ufs/host/ufs-qcom-ice.c
+>  create mode 100644 include/soc/qcom/ice.h
+> 
+> -- 
+> 2.34.1
+> 
