@@ -2,115 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C72C66DAC24
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 13:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8936DAC41
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 13:37:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbjDGLR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 07:17:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40164 "EHLO
+        id S232660AbjDGLhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 07:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbjDGLR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 07:17:26 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E10F30EF;
-        Fri,  7 Apr 2023 04:17:24 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id F085124E36E;
-        Fri,  7 Apr 2023 19:17:22 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
- 2023 19:17:22 +0800
-Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
- 2023 19:17:22 +0800
-Message-ID: <f56fc309-0397-96ad-7df4-8bc3d9a914cb@starfivetech.com>
-Date:   Fri, 7 Apr 2023 19:17:16 +0800
+        with ESMTP id S231758AbjDGLhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 07:37:12 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D766561BA;
+        Fri,  7 Apr 2023 04:37:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1680867426; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=ogRunCNgf+X6hfZj9vHay1N/BYg+q+7s/1dfjsC+8RTk7X8gjgYIqtwNTTVisXz+Y6
+    FIxjGmM/ADJNViLFAPTcMkKzDlevFupgS6K1fKr2MzO4+wc+UR/964SO/vMZoa+92D8c
+    MzVoyOf1e4HwcmMve9ZoOiEKkqQW/1jg/THlWwveRtFTPxiQiA1oV+y7boltyQnn73vW
+    fGb9PuAv+QBfVk2PPShUpF5hm7oBbg9QvEhzfq+iqxwbQTB/ktOvmcc+QelcxFQ+H6pp
+    GPx8SEIrJLcPh9SRHiNVDq7vXo5yplJUV9wFbT5qi38O3MfXT8E+uPJtYDGDeWUOzdEA
+    F5EA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1680867426;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=WtcNgXXpAMGIIst+4wNEMLyfSz80SI4jFwbanGxvG/Q=;
+    b=OO5HfLoSxoJVpcRKU8doKTrqfjTNAiltE5BdxrNjMUM+2TWhfzwDNhPIaEFa6CsoJu
+    47D50paIQQDTHBtogO9B/rgUcBPgoUXPupoqW4dzzhT/MeTg7IcGcaIIFnoTvDgp4tf8
+    SLG5UPK7dNvSUcDe5jjFa4R8ZKe1NF7+UTnIAHRSZclJlo2sU0HofJbtOjI5YfvH03PP
+    +DrNKTbiA6G3P6jAmRHemOqZ99fNCZ+2Dg2kPi/W5D42N3mtEDMpBd0xax1EE8l28z1f
+    /3rzHk2TAhVYcUQHhFcrMXCtq++0f//vxeebOQ7vgXnQLAvK7BLGKQrX/MsX9VM+Zfua
+    zgwQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1680867426;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=WtcNgXXpAMGIIst+4wNEMLyfSz80SI4jFwbanGxvG/Q=;
+    b=iHGE9XIfJ2DdIkkqA1bmAhW+soPFstURSvpietIs6Nm9xO3k9ifiBmgvmCrC0fdhQZ
+    jHwxfZg5YpusNqrzBqvdNkZyeDc4/u+uFyZ3mYUd/zZ6hUpb4janhbDNVvEWzftSP5hM
+    1t/dRWkrtSk5zemcqKPFTihveetuicv9lgXHUrG3zVaFo9weo4FQenGwulhi5ynEAStF
+    BTrZw3mZiJRjWo9OMAeqxdukwnTPrCW2eSLhtXrB4hd4K000o1YUbMzs20R7XPyN8CPD
+    coeIPD7ifP0aLyrz1z574uygI/31V+A8aohE2t2WGOjRPVQgKakw/2X5X2nbe1eHYjtS
+    4XUw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1680867426;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=WtcNgXXpAMGIIst+4wNEMLyfSz80SI4jFwbanGxvG/Q=;
+    b=i0CxDF4R99oPsYjvqWrjelIewiROralEB2uJPLlQKvJpwu4EkBy/m2S3I2oW+vKy2O
+    oEN8LEYVFrvF+TXlG7Dw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8Z+J1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
+    with ESMTPSA id j6420az37Bb5Ed8
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 7 Apr 2023 13:37:05 +0200 (CEST)
+Date:   Fri, 7 Apr 2023 13:36:55 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
+ RAM slice through phandle
+Message-ID: <ZDAAToSzNLVo6le8@gerhold.net>
+References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
+ <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
+ <168069726278.2356075.14351594478003012447.robh@kernel.org>
+ <20230405134727.GA2461305-robh@kernel.org>
+ <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
+ <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
+ <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v7 1/2] dt-bindings: soc: starfive: Add StarFive syscon
- doc
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>
-References: <20230406103308.1280860-1-william.qiu@starfivetech.com>
- <20230406103308.1280860-2-william.qiu@starfivetech.com>
- <833b68a5-263d-d293-4910-2ca50b43e60d@linaro.org>
- <2ce35d68-ae6c-129f-588e-9b292de3a654@starfivetech.com>
- <20230407-stand-reversion-1db211c03ff4@wendy>
-Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <20230407-stand-reversion-1db211c03ff4@wendy>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/4/7 18:11, Conor Dooley wrote:
-> On Fri, Apr 07, 2023 at 05:30:31PM +0800, William Qiu wrote:
->> 
->> This would be $ref: /schemas/clock/starfive,jh7110-pll.yaml#, but this file is not
->> available at present,  so I would like to ask if I should submit the documents
->> instead of Xingyu
+On Thu, Apr 06, 2023 at 09:55:40PM +0200, Konrad Dybcio wrote:
+> [...]
+> I don't really know what kind.. I can add something like:
 > 
-> Or just send the whole lot as one series, and I'll ack the soc bits for
-> Stephen to take the whole lot via clk? I think Xingyu owes a respin
-> anyway cos of the changes to this binding file that Krzysztof requested
-> there.
+> rpm {
+> 	compatible = "qcom,rpm", "simple-mfd";
 > 
-> Plus, the base clock support is now in clk-next, so their stuff is now
-> applicable to the clk tree.
+> 	mpm: interrupt-controller {
+> 	...
+> };
 > 
 
-So it is the best choice to give the whole series to Xingyu?
+IMO we should indeed add something like this, because the current
+representation of the RPM below the top level /smd node is misleading.
+"SMD" is not a device, bus, component or anything like that. It is just
+the communication protocol. There should not be a top-level DT node for
+this.
 
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4c0b39c44957..0b2170e1e4ff 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19911,6 +19911,11 @@ S:	Supported
->>  F:	Documentation/devicetree/bindings/mmc/starfive*
->>  F:	drivers/mmc/host/dw_mmc-starfive.c
->>  
->> +STARFIVE JH7110 SYSCON
->> +M:	William Qiu <william.qiu@starfivetech.com>
->> +S:	Supported
->> +F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
-> 
-> Can you squash this in please (whitespace damaged):
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 90abe83c02f3..6fbb486f59ab 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19943,6 +19943,7 @@ STARFIVE SOC DRIVERS
->  M:     Conor Dooley <conor@kernel.org>
->  S:     Maintained
->  T:     git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
-> +F:     Documentation/devicetree/bindings/soc/starfive/
->  F:     drivers/soc/starfive/
-> 
+Instead there should be a dedicated device tree node for the RPM like in
+your example above, which will allow adding properties and subnodes to
+it as needed.
 
-I would tell Xingyu to do so.
+For unrelated reasons I actually have some patches for this, that switch
+the /smd top-level node to a "remoteproc-like" node dedicated to the
+RPM, similar to how WCNSS/ADSP/Modem/etc are represented. I need this to
+add additional (optional) properties like "resets" and "iommus" for the
+RPM, but it would allow adding arbitrary subnodes as well:
 
-Best regards,
-William
-> Cheers,
-> Conor.
+https://github.com/msm8916-mainline/linux/commit/35231ac28703805daa8220f1233847c7df34589e
+
+I could finish those up and post them if that would help...
+
+Thanks,
+Stephan
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index dcbc5972248b22..1c24b01bd268c8 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -310,10 +310,10 @@
+ 		};
+ 	};
+ 
+-	smd {
+-		compatible = "qcom,smd";
++	rpm: remoteproc-rpm {
++		compatible = "qcom,msm8916-rpm-proc", "qcom,rpm-proc";
+ 
+-		rpm {
++		smd-edge {
+ 			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+ 			qcom,ipc = <&apcs 8 0>;
+ 			qcom,smd-edge = <15>;
+
+
