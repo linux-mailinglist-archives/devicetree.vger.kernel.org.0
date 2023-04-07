@@ -2,399 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E295A6DB268
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 20:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F32C16DB2CD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 20:32:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbjDGSFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 14:05:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48958 "EHLO
+        id S231390AbjDGScQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 14:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjDGSFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 14:05:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE97C199;
-        Fri,  7 Apr 2023 11:04:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 56A0464D51;
-        Fri,  7 Apr 2023 18:04:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 468ABC433EF;
-        Fri,  7 Apr 2023 18:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680890698;
-        bh=oqvtN/eGmNQwx1wX8oYy6ARjV3ot4hAZ1vSYDWdUhW0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=piiokn2OqzK+Hnc7/0VdzvybXsIBYlm8Q2g+w1KkMX5mdbVFI1BY1zt6aVQXPwFxD
-         /xhmJ3mSrmT5Iu/INHnOrmkTcZZJcb/3808c/sWmChXHkqc+nx8mL1i7a1NB/x2gaJ
-         YnssfUTj+lGSj9aVE3bvPjpiR3TpXzRbKH/z18Zt1TgGg2YTfTmnVeSrTkwMMxWXnG
-         uWsxejs93mSLaFwYTk17PaokVATqXPnY4JrV9pmIyrS7OUz16XWvElYPa96MUHwKsw
-         tf+/NFonvZuj/aP6BURymVeObs9tcp5513jdJS6ACaRuxnd9UPxbvFqWAWB9tV/mHa
-         eYz6vQUr7UDuQ==
-Date:   Fri, 7 Apr 2023 19:20:14 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S230015AbjDGScN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 14:32:13 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34563BDCF;
+        Fri,  7 Apr 2023 11:32:11 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 337CMGfG012601;
+        Fri, 7 Apr 2023 20:32:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=JOLfndtl+mN4Grspt7XxETH+EfXqJCgxlmF6LoEPr64=;
+ b=QUJkbBVBc/80GLQHPDlw9MoHOck/v5Lz9zgvKd9UFwseVXW7X7xKLXlPVxx0mWKJaKeP
+ my2Ve5QzR3Bb5IQSunWVkSl0ztxmLibyAAXE0zrO1I5dCMEgA1qRuUFJyldCBDeR+lpX
+ oLs0d6kbpKiUYLfkLLVDDA8JjhYA03oDPzSYBoGtkPx7J1JuUrJo23ai8Zwd+fzyKZ9d
+ aecX873mp2Qqb9k7XC+hJDyq3ETTrduX01lmbCFU8vdI0CWUs3vgG3X3LNktoRL8idW9
+ frB20Me4FK3AyvfGx7HxDV+PJBGFkA6+FCtGL9UB3wHBq5FKwqPxAYLUHpgqsryUmpyV QA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pteygu570-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 07 Apr 2023 20:32:00 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CE6DA10002A;
+        Fri,  7 Apr 2023 20:31:59 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C791225223F;
+        Fri,  7 Apr 2023 20:31:59 +0200 (CEST)
+Received: from localhost (10.48.0.157) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Fri, 7 Apr
+ 2023 20:31:59 +0200
+From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@axis.com>
-Subject: Re: [PATCH 2/2] iio: light: Add support for TI OPT4001 light sensor
-Message-ID: <20230407192014.5d7d167c@jic23-huawei>
-In-Reply-To: <20230323-add-opt4001-driver-v1-2-1451dcc1bc8a@axis.com>
-References: <20230323-add-opt4001-driver-v1-0-1451dcc1bc8a@axis.com>
-        <20230323-add-opt4001-driver-v1-2-1451dcc1bc8a@axis.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH] ARM: dts: stm32: add part number for STM32MP15x
+Date:   Fri, 7 Apr 2023 20:31:57 +0200
+Message-ID: <20230407203151.1.Ia16c922b77242e5832106fedc76d27f7ed4dd952@changeid>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.157]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-07_12,2023-04-06_03,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Apr 2023 11:07:43 +0200
-Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com> wrote:
+The STM32MP15x Device Part Number is located in the first 8 bits of OTP4,
+this patch add its description as the NVMEM cell.
 
-> This driver uses the continuous mode of the chip and integration
-> time can be configured through sysfs.
-> The constants for calculating lux value differs between packaging
-> so it uses different compatible string for the two versions
-> "ti,opt4001-picostar" and "ti,opt4001-sot-5x3" since the device id
-> is the same.
-> 
-> Datasheet: https://www.ti.com/lit/gpn/opt4001
-> Signed-off-by: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-> ---
-Hi Stefan,
+Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+---
 
-Various comments inline.
+ arch/arm/boot/dts/stm32mp151.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks,
-
-Jonathan
-
-> diff --git a/drivers/iio/light/opt4001.c b/drivers/iio/light/opt4001.c
-> new file mode 100644
-> index 000000000000..1ddcb10e997b
-> --- /dev/null
-> +++ b/drivers/iio/light/opt4001.c
-> @@ -0,0 +1,487 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Axis Communications AB
-> + *
-> + * Datasheet: https://www.ti.com/lit/gpn/opt4001
-> + *
-> + * Device driver for the Texas Instruments OPT4001.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/i2c.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/math64.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of_device.h>
-
-As below, use property.h functions instead that work for lots of types of
-firmware including OF.
-
-> +#include <linux/regmap.h>
-
-..
-
-> +/* OPT4001 constants */
-> +#define OPT4001_DEVICE_ID_VAL            0x121
-> +/* OPT4001 needs different constants to calculate lux for different packaging */
-> +#define OPT4001_PICOSTAR_MUL_CONST       3125
-> +#define OPT4001_SOT_5x3_MUL_CONST        4375
-> +#define OPT4001_PACKAGE_DIV_CONST        10000000
-> +
-
-...
-
-
-> +
-> +/* OPT4001 default values */
-> +#define OPT4001_DEFAULT_CONVERSION_TIME OPT4001_CTRL_CONVERSION_800MS
-> +
-> +struct opt4001_package_const {
-I would would include other things about the device variants in here.
-If you want the naming to reflect which one of these you have then
-a const char *name would make that easy to do.
-
-> +	int mul;
-> +	int div;
-> +};
-> +
-> +struct opt4001_settings {
-> +	/* Index of the chosen integration time */
-> +	u8 int_time;
-> +	u8 chip_type;
-> +};
-> +
-> +struct opt4001_chip {
-> +	struct opt4001_settings light_settings;
-> +	struct regmap *regmap;
-> +	struct i2c_client *client;
-> +	const struct opt4001_package_const *package_constants;
-> +	/*
-> +	 * Keep light_settings in sync with hardware state
-> +	 * and ensure multiple readers are serialized.
-Multiple readers will be serialized with the underlying bus lock.
-If you need to handle multiple part accesses together that's
-what you should highlight here.
-
-> +	 */
-> +	struct mutex als_mutex;
-> +};
-> +
-> +static const struct opt4001_package_const opt4001_sot_5x3_const = {
-> +	.mul = OPT4001_SOT_5x3_MUL_CONST,
-> +	.div = OPT4001_PACKAGE_DIV_CONST,
-> +};
-> +
-> +static const struct opt4001_package_const opt4001_picostar_const = {
-> +	.mul = OPT4001_PICOSTAR_MUL_CONST,
-
-Unless used in multiple places, just having numbers here will be more readable
-than giving them names.
-
-> +	.div = OPT4001_PACKAGE_DIV_CONST,
-> +};
-
-> +static int opt4001_read_lux_value(struct iio_dev *indio_dev,
-> +				  int *val, int *val2)
-> +{
-> +	struct opt4001_chip *chip = iio_priv(indio_dev);
-> +	struct device *dev = &chip->client->dev;
-> +	uint light1;
-> +	uint light2;
-> +	uint msb;
-> +	uint lsb;
-> +	uint exp;
-> +	uint count;
-> +	uint crc;
-> +	uint calc_crc;
-
-Would prefer fixed width types or unsigned int
-
-> +	unsigned long long lux_raw;
-
-u64 
-
-> +	int ret;
-> +
-> +	ret = regmap_read(chip->regmap, OPT4001_LIGHT1_MSB, &light1);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to read data bytes");
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_read(chip->regmap, OPT4001_LIGHT1_LSB, &light2);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to read data bytes");
-> +		return ret;
-> +	}
-> +
-> +	count = (OPT4001_COUNTER_MASK & light2) >> 4;
-> +	exp = (OPT4001_EXPONENT_MASK & light1) >> 12;
-> +	crc = (OPT4001_CRC_MASK & light2);
-
-FIELD_GET() for all these so no need to go look to see
-if the field is aligned to LSB.
-
-> +	msb = (OPT4001_MSB_MASK & light1);
-> +	lsb = (OPT4001_LSB_MASK & light2) >> 8;
-> +	lux_raw = (msb << 8) + lsb;
-> +	calc_crc = opt4001_calculate_crc(exp, lux_raw, count);
-> +	if (calc_crc != crc)
-> +		return -EIO;
-> +
-> +	lux_raw = lux_raw << exp;
-> +	lux_raw = lux_raw * chip->package_constants->mul;
-> +	*val = div_u64_rem(lux_raw, chip->package_constants->div, val2);
-> +	*val2 = *val2 * 100;
-> +
-> +	return IIO_VAL_INT_PLUS_NANO;
-> +}
-
-
-...
-
-
-> +
-> +static int opt4001_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int val, int val2, long mask)
-> +{
-> +	struct opt4001_chip *chip = iio_priv(indio_dev);
-> +	int int_time;
-> +	int ret = 0;
-
-Set in all paths that I can see so don't set it here.
-
-
-> +
-> +	mutex_lock(&chip->als_mutex);
-
-Might as well move the mutex into the case statement and simplify things
-a little.
-
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_INT_TIME:
-> +		int_time = opt4001_als_time_to_index(val2);
-> +		if (int_time < 0) {
-> +			ret = int_time;
-> +		} else {
-> +			chip->light_settings.int_time = int_time;
-> +			ret = opt4001_set_conf(chip);
-> +		}
-> +
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +	}
-> +
-> +
-> +	mutex_unlock(&chip->als_mutex);
-> +	return ret;
-> +}
-...
-
- +/*
-> + * The compatible string determines which constants to use depending on
-> + * opt4001 packaging
-> + */
-> +static const struct of_device_id opt4001_of_match[] = {
-> +	{ .compatible = "ti,opt4001-sot-5x3", .data = &opt4001_sot_5x3_const},
-> +	{ .compatible = "ti,opt4001-picostar", .data = &opt4001_picostar_const},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, opt4001_of_match);
-> +
-> +static int opt4001_probe(struct i2c_client *client)
-> +{
-> +	struct opt4001_chip *chip;
-> +	struct iio_dev *indio_dev;
-> +	const struct of_device_id *of_id;
-> +	int ret;
-> +	uint dev_id;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	chip = iio_priv(indio_dev);
-> +
-> +	chip->regmap = devm_regmap_init_i2c(client, &opt4001_regmap_config);
-> +	if (IS_ERR(chip->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap),
-> +				     "regmap initialization failed\n");
-> +
-> +	i2c_set_clientdata(client, indio_dev);
-
-Don't think you'll need this after taking the remainder of remove over to
-devm_ automatic unwinding.
-
-> +	chip->client = client;
-> +
-> +	indio_dev->info = &opt4001_info_no_irq;
-> +
-> +	mutex_init(&chip->als_mutex);
-> +
-> +	ret = regmap_reinit_cache(chip->regmap, &opt4001_regmap_config);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to reinit regmap cache\n");
-> +
-> +	ret = regmap_read(chip->regmap, OPT4001_DEVICE_ID, &dev_id);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +			"Failed to read the device ID register\n");
-> +
-> +	dev_id = FIELD_GET(OPT4001_DEVICE_ID_MASK, dev_id);
-> +	if (dev_id != OPT4001_DEVICE_ID_VAL) {
-> +		dev_err(&client->dev, "Device ID: %#04x unknown\n", dev_id);
-> +		return -EINVAL;
-> +	}
-> +
-> +	indio_dev->channels = opt4001_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(opt4001_channels);
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->name = chip->client->name;
-
-I'd prefer to see the string obtained from the 'package constants' (renamed
-to reflect it covers other details of the chip. That tends to remove any
-risk of things getting out of sync.
-
-
-> +
-> +	of_id = of_match_device(of_match_ptr(opt4001_of_match), &client->dev);
-
-device_get_match_data() from property.h
-
-
-> +	chip->package_constants = of_id->data;
-> +
-> +	ret = opt4001_load_defaults(chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to set sensor defaults\n");
-
-I assume load defaults powers up the chip. If so, you should
-register a callback to power it down here (see below)
-
-> +
-> +	return devm_iio_device_register(&client->dev, indio_dev);
-> +}
-> +
-> +static void opt4001_remove(struct i2c_client *client)
-> +{
-> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-> +	struct opt4001_chip *chip = iio_priv(indio_dev);
-> +
-> +	opt4001_power_down(chip);
-
-If that's all that needs doing, can we use a devm_add_action_or_reset()
-registered custom handler to power this off.
-
-Note that currently you turn the chip off before the userspace interfaces
-are removed which is a race we should close. Take things fully devm
-managed and that should be automatic.
-
-> +}
-> +
-> +static struct i2c_driver opt4001_driver = {
-> +	.driver = {
-> +		.name = "opt4001",
-> +		.of_match_table = of_match_ptr(opt4001_of_match),
-
-Don't use of_match_ptr().
-
-Multiple reasons.
-1) Will result in unused variable warnings if DT support not built.
-2) Prevents other firmware registration paths (in particular ACPI PRP0001
-   which uses this from non OF firmware).
-
-> +	},
-> +	.probe_new = opt4001_probe,
-> +	.remove = opt4001_remove
-
-Add an i2c_device_id table as well as the of one and MODULE_DEVICE_TABLE
-for that. I think some auto probing of the driver still needs that.
-
-> +};
-> +module_i2c_driver(opt4001_driver);
-> +
-> +MODULE_AUTHOR("Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>");
-> +MODULE_DESCRIPTION("Texas Instruments opt4001 ambient light sensor driver");
-> +MODULE_LICENSE("GPL");
-> 
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index 4e437d3f2ed6..3cf78f706400 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1620,6 +1620,9 @@ bsec: efuse@5c005000 {
+ 			reg = <0x5c005000 0x400>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
++			part_number_otp: part-number-otp@4 {
++				reg = <0x4 0x1>;
++			};
+ 			ts_cal1: calib@5c {
+ 				reg = <0x5c 0x2>;
+ 			};
+-- 
+2.25.1
 
