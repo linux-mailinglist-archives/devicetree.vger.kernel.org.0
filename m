@@ -2,218 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 479026DAC71
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 13:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8036DACB6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 14:47:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240274AbjDGL7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 07:59:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37424 "EHLO
+        id S239104AbjDGMrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 08:47:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232209AbjDGL7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 07:59:21 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5F783CD
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 04:59:19 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id o20so40421972ljp.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 04:59:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680868758;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wyNciRuuESIaKZEY8Qa86obLOtLCt19xSQ+LjBWVyjQ=;
-        b=x6t4GkePT4JZJ8ZgtSOSGs26QhXMjRbSyqg/eMVLLWn4zVRxKrxl5K/BgF+DrHZuds
-         s0jW3zyiwUl/LnZAih0GzV/X/1Yps9wU0ws51V8XXiC7LGAh/g4dxNtNwLdb15crQUc0
-         UwR7GcC+qebSayaEPaFwBe8FBh3Jko6hrhaUwDVm2EhKHm5yURJALcbFXl+dAbNGkZDO
-         c+jEhsEZG1Iq/c/pZdsOrQFyym9+iodZUZXLoUP4tecBl+dCpf2kwvZr3saMHm9UgPNV
-         9fBa1sIS11zPyUf5IQC1zSYK/oeWeRX+S/84SWlAYY4BYvnmtQQasWB1j3bKyB6kujM3
-         8JDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680868758;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wyNciRuuESIaKZEY8Qa86obLOtLCt19xSQ+LjBWVyjQ=;
-        b=5BV/NfqwF7THSE/DhdnxAAb84bvze741hG/ebiqwAduPFsPCgHKnK5xIkqFK/0AmFR
-         C5NyZw7AeZJ6fLqDmU+Y6eGb/MHhi8iwehe7q7P8uaa1VSozHnQ3mMfokHJnl5Zp7ki7
-         dvXP2ljO29HyWRJlT8g4RBzRJAgsyc9qoZcvWLv880Pxe3xlkKnSmi08FCuGDjoc2IXQ
-         o55IYCKITzmSwwqO8vIL5mmg2c1Hm/vrrM27o3Dn23KTeFb1TQtagpI4PKuwuATTvv8w
-         3/NpF8Ho2Cyrn9q0NSxYh1WJN4/zhW+3jn1RakEAJ/XXUloJk2pqOoY7uegevL3YEhJT
-         ynhw==
-X-Gm-Message-State: AAQBX9cH7mE/1U/Q60wFNWmxVrc1oYS3THMQT5rt5cJD/ZG7lLJY9g8a
-        XukFT6PAHml766z+itaggjRJuIV7Mp3FWlQnX6E=
-X-Google-Smtp-Source: AKy350Y/DseiDOs/iuLqIXCJWd8Opwq/gvW1OI6u7YlYkagveYzVKg33OhOzFmfNjp8MwWfARVgJ4A==
-X-Received: by 2002:a05:651c:ba5:b0:2a6:13f:5f6c with SMTP id bg37-20020a05651c0ba500b002a6013f5f6cmr419351ljb.5.1680868757969;
-        Fri, 07 Apr 2023 04:59:17 -0700 (PDT)
-Received: from [192.168.1.101] (abxh37.neoplus.adsl.tpnet.pl. [83.9.1.37])
-        by smtp.gmail.com with ESMTPSA id b8-20020a2e9888000000b0029571d505a1sm774904ljj.80.2023.04.07.04.59.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 04:59:17 -0700 (PDT)
-Message-ID: <de8d228f-36b9-e35e-2f08-880c96a39267@linaro.org>
-Date:   Fri, 7 Apr 2023 13:59:15 +0200
+        with ESMTP id S239298AbjDGMrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 08:47:08 -0400
+Received: from smtprelay04.ispgateway.de (smtprelay04.ispgateway.de [80.67.18.16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332777D9E;
+        Fri,  7 Apr 2023 05:47:03 -0700 (PDT)
+Received: from [92.206.161.29] (helo=note-book.lan)
+        by smtprelay04.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <git@apitzsch.eu>)
+        id 1pklTD-0002cY-Rx; Fri, 07 Apr 2023 14:45:35 +0200
+From:   =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Subject: [PATCH v2 0/2] Input: atmel_mxt_ts - support capacitive keys
+Date:   Fri, 07 Apr 2023 14:44:23 +0200
+Message-Id: <20230407-atmel_keys-v2-0-92446a4343cb@apitzsch.eu>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V3 5/5] arm64: dts: qcom: ipq9574: Add cpufreq support
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_ipkumar@quicinc.com
-References: <20230406070032.22243-1-quic_devipriy@quicinc.com>
- <20230406070032.22243-6-quic_devipriy@quicinc.com>
- <18eb5708-bf51-26c3-51a0-70a5069ffdbe@linaro.org>
- <c1d916f0-514e-5ad8-d474-4d6fa9842364@quicinc.com>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <c1d916f0-514e-5ad8-d474-4d6fa9842364@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-B4-Tracking: v=1; b=H4sIACcQMGQC/0WNyw7CIBBFf8WwlobSUtSV/2GMGXBaJtpHGDRq0
+ 3+XunF5cnPOnQVjJGRx2Mwi4pOYxiGD3m6EDzB0KOmaWWilK1UrKyH1eL/c8M3SQr33jWusdVp
+ kwQGjdBEGH1alB04Y12GK2NLr93I6Z27j2MsUIsK/rbXVyqjKFOXOmFKWsqN0hInSh30o8CGW5
+ QvEhNlprgAAAA==
+To:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for touch keys found in some Atmel touch controller
+configurations.
 
+Signed-off-by: André Apitzsch <git@apitzsch.eu>
+---
+Changes in v2:
+  * Added A-b, R-b tags
 
-On 7.04.2023 06:53, Devi Priya wrote:
-> 
-> 
-> On 4/7/2023 1:21 AM, Konrad Dybcio wrote:
->>
->>
->> On 6.04.2023 09:00, Devi Priya wrote:
->>> Add cpu freq nodes in the device tree to bump cpu frequency above 800MHz.
->>>
->>> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->>> ---
->>>   Changes in V3:
->>>     - No change
->>>
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 58 +++++++++++++++++++++++++++
->>>   1 file changed, 58 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> index 1f9b7529e7ed..cfef87b5fd22 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> @@ -6,6 +6,7 @@
->>>    * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->>>    */
->>>   +#include <dt-bindings/clock/qcom,apss-ipq.h>
->>>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>   #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
->>> @@ -37,6 +38,10 @@
->>>               reg = <0x0>;
->>>               enable-method = "psci";
->>>               next-level-cache = <&L2_0>;
->>> +            clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->>> +            clock-names = "cpu";
->>> +            operating-points-v2 = <&cpu_opp_table>;
->>> +            cpu-supply = <&ipq9574_s1>;
->>>           };
->>>             CPU1: cpu@1 {
->>> @@ -45,6 +50,10 @@
->>>               reg = <0x1>;
->>>               enable-method = "psci";
->>>               next-level-cache = <&L2_0>;
->>> +            clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->>> +            clock-names = "cpu";
->>> +            operating-points-v2 = <&cpu_opp_table>;
->>> +            cpu-supply = <&ipq9574_s1>;
->>>           };
->>>             CPU2: cpu@2 {
->>> @@ -53,6 +62,10 @@
->>>               reg = <0x2>;
->>>               enable-method = "psci";
->>>               next-level-cache = <&L2_0>;
->>> +            clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->>> +            clock-names = "cpu";
->>> +            operating-points-v2 = <&cpu_opp_table>;
->>> +            cpu-supply = <&ipq9574_s1>;
->>>           };
->>>             CPU3: cpu@3 {
->>> @@ -61,6 +74,10 @@
->>>               reg = <0x3>;
->>>               enable-method = "psci";
->>>               next-level-cache = <&L2_0>;
->>> +            clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->>> +            clock-names = "cpu";
->>> +            operating-points-v2 = <&cpu_opp_table>;
->>> +            cpu-supply = <&ipq9574_s1>;
->>>           };
->>>             L2_0: l2-cache {
->>> @@ -75,6 +92,47 @@
->>>           reg = <0x0 0x40000000 0x0 0x0>;
->>>       };
->>>   +    cpu_opp_table: opp-table-cpu {
->> This is not sorted properly. It should probably come
->> after memory alphabetically ('o' > 'm')
->>
-> Yes, But I see that opp-table-cpu node is already placed after
-> memory@40000000
+---
+André Apitzsch (2):
+      dt-bindings: input: atmel,maxtouch: add linux,keycodes
+      Input: atmel_mxt_ts - support capacitive keys
 
-Oh you're right, the diff doesn't really show that very
-well and I didn't notice..
+ .../devicetree/bindings/input/atmel,maxtouch.yaml  |  7 ++
+ drivers/input/touchscreen/atmel_mxt_ts.c           | 85 ++++++++++++++++++++++
+ 2 files changed, 92 insertions(+)
+---
+base-commit: f2afccfefe7be1f7346564fe619277110d341f9b
+change-id: 20230407-atmel_keys-7a49c6b677b2
 
+Best regards,
+-- 
+André Apitzsch <git@apitzsch.eu>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->> Konrad
->>> +        compatible = "operating-points-v2";
->>> +        opp-shared;
->>> +
->>> +        opp-936000000 {
->>> +            opp-hz = /bits/ 64 <936000000>;
->>> +            opp-microvolt = <725000>;
->>> +            clock-latency-ns = <200000>;
->>> +        };
->>> +
->>> +        opp-1104000000 {
->>> +            opp-hz = /bits/ 64 <1104000000>;
->>> +            opp-microvolt = <787500>;
->>> +            clock-latency-ns = <200000>;
->>> +        };
->>> +
->>> +        opp-1416000000 {
->>> +            opp-hz = /bits/ 64 <1416000000>;
->>> +            opp-microvolt = <862500>;
->>> +            clock-latency-ns = <200000>;
->>> +        };
->>> +
->>> +        opp-1488000000 {
->>> +            opp-hz = /bits/ 64 <1488000000>;
->>> +            opp-microvolt = <925000>;
->>> +            clock-latency-ns = <200000>;
->>> +        };
->>> +
->>> +        opp-1800000000 {
->>> +            opp-hz = /bits/ 64 <1800000000>;
->>> +            opp-microvolt = <987500>;
->>> +            clock-latency-ns = <200000>;
->>> +        };
->>> +
->>> +        opp-2208000000 {
->>> +            opp-hz = /bits/ 64 <2208000000>;
->>> +            opp-microvolt = <1062500>;
->>> +            clock-latency-ns = <200000>;
->>> +        };
->>> +    };
->>> +
->>>       firmware {
->>>           scm {
->>>               compatible = "qcom,scm-ipq9574", "qcom,scm";
-> Best Regards,
-> Devi Priya
