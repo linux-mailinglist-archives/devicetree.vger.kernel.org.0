@@ -2,209 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0D316DB1A7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 19:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E20146DB20F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 19:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjDGReQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 13:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37642 "EHLO
+        id S230322AbjDGRut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 13:50:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjDGReP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 13:34:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EBF4B463;
-        Fri,  7 Apr 2023 10:34:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B21A9652AB;
-        Fri,  7 Apr 2023 17:34:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0044C433EF;
-        Fri,  7 Apr 2023 17:34:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680888853;
-        bh=k39ojLugdZzlydji/uAprODGtjuwBnxp5qDd/32ojsM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HOFnsOX28/9Fgo47FkYTcewM/vmizzt11vguHO4KUobFRITA8GIMnl+DofpKHj55y
-         M4ELJNfszyfEB1FSOD6tm+fErdIuVcgjAiog1wJ/JMzjdeVvM6FPFoh7hZfomkWdB0
-         4xgZuzkvtYSe6XlyPPLXdDirYf4gXUVmaWfrORraBfRIRaDfsqa5sbxm/nmDjFLRUU
-         YBkCYAvyqqspcPLPZnEkhSdoeSM6Y6l/PyEM1hsckv0IDZmDiU5LGa1d4dOIwbizbl
-         E5AXs27B3EgQq3zeSKk55A5KyfqvV3vb0m3jFRJ8ADB7auUdQZnfqTUBZlysTYoKTI
-         umpsbjRulrmew==
-Date:   Fri, 7 Apr 2023 18:49:28 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+        with ESMTP id S229908AbjDGRus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 13:50:48 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7179ABB96
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 10:50:43 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1a2bef29f3cso1819565ad.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 10:50:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680889843;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eJzkrQgSJLoh68CvGvp1JznAA6lKkLejE1Wur3zdskg=;
+        b=XH0UjXnkmfvcZqjTewbnJtcDWSFSJA41wC6V9r5Jriy4njsRmD3H27O3QYYV4AMbUm
+         tXDMOylFQmjGVHAvVJDVThyrSJpCbK15BdyXAw/RTy3qqsHIR6h5GbuWp0D0RbsJJMyQ
+         tYigUWAUK0wuJZ9Ln/RC6nNHR0Xc5/0j6baPRmmPBKLWI8mS58J1JBnQoFDh2fV6gAVB
+         aCWwMbSzJaVd3dqKFSysqW62WCaXVoVFyPNeXhO/N8IkyefOB7epKgE0KjIbL9lO4E2A
+         nOD8OiTN+7/mE4Ln7W/1Og55k8VV9viFgsgqrLPhDjnLlEirWNgizYb/4I63kiVYkSRp
+         /wmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680889843;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eJzkrQgSJLoh68CvGvp1JznAA6lKkLejE1Wur3zdskg=;
+        b=oT1Gw4eqHnJe7i7hYsdgtXwv9LHx6Gh4LgcvW24Xh3XcVtQqws2sM7Y/uY5AOc/mue
+         aoFZwY3TCTAF2xOYzVrWTAk0sYl+zF3OiIdoF7jh58B1p2zKITBSFqGuMxm5f8a02x6q
+         +Z2LutPGN3eE3Hj4wQpjHzYT0oBSfA/I90amP/9zyKyC43iOEt638qrdFZnC06SEAQmG
+         n+uy/uXZ/hadkge3Q3zb9zgDyEMllLhmx51nr5C582pu67gStK5w4Tn16lXxPkuKrvAD
+         PaUQbVxfQuvCHXMkFfVYAdCwy4V3hd3KXvTy5lgdd0mgaOvPRcLJjCcsnFv/Cg8RLzWK
+         LFrw==
+X-Gm-Message-State: AAQBX9fEELNbppEQ9i9rq93REELDtH16Qx/hUjON18F0ikmTwUyx8INX
+        82stvWsyajV/LRcCbvNdzmIL0g==
+X-Google-Smtp-Source: AKy350aspk9YnMVy5hked+xx58M1c9hroC6snupKIoerfp0YWnXGXrL18Plz3ceLDw7pQ7fY4UQTgQ==
+X-Received: by 2002:aa7:9ec4:0:b0:626:7c43:7cb8 with SMTP id r4-20020aa79ec4000000b006267c437cb8mr3003966pfq.20.1680889842767;
+        Fri, 07 Apr 2023 10:50:42 -0700 (PDT)
+Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
+        by smtp.gmail.com with ESMTPSA id e18-20020aa78c52000000b0062a474cd46asm3298198pfd.137.2023.04.07.10.50.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Apr 2023 10:50:42 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: temperature: ltc2983: Fix child
- node unevaluated properties
-Message-ID: <20230407184928.43f6d730@jic23-huawei>
-In-Reply-To: <20230404205014.644336-1-robh@kernel.org>
-References: <20230404205014.644336-1-robh@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Bernhard =?utf-8?Q?Rosenkr=C3=A4n?= =?utf-8?Q?zer?= 
+        <bero@baylibre.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 00/12] Improve the MT8365 SoC and EVK board support
+In-Reply-To: <20230203-evk-board-support-v5-0-1883c1b405ad@baylibre.com>
+References: <20230203-evk-board-support-v5-0-1883c1b405ad@baylibre.com>
+Date:   Fri, 07 Apr 2023 10:50:41 -0700
+Message-ID: <7h355b1szy.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  4 Apr 2023 15:50:13 -0500
-Rob Herring <robh@kernel.org> wrote:
+Alexandre Mergnat <amergnat@baylibre.com> writes:
 
-> The child node schemas are missing 'unevaluatedProperties' constraints,
-> so any unknown properties are allowed. The current structure with
-> multiple patternProperties schemas doesn't work for
-> unevaluatedProperties as each sub-schema is evaluated independently. To
-> fix this, move the sub-schema for all child nodes to a $defs entry and
-> reference it from each named child node.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> This commits are based on the Fabien Parent <fparent@baylibre.com> work.
+>
+> The purpose of this series is to add the following HWs / IPs support for
+> the mt8365-evk board:
+> - Watchdog
+> - Power Management Integrated Circuit "PMIC" wrapper
+> - MT6357 PMIC
+> - MultiMediaCard "MMC" & Secure Digital "SD" controller
+> - USB controller
+> - Ethernet MAC controller
+>
+> Add CPU Freq & IDLE support for this board.
 
-Nice. Series applied to the togreg branch of iio.git and pushed out as
-testing so 0-day can poke at it.
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 
-Thanks,
+Thanks for providing the branch with the dependencies.  With that, I
+tested basic build & boot on mt8365-evk, and things are working as
+expected.
 
-Jonathan
+I also enabled `CONFIG_USB_ETH=y` to test with USB ethernet gadget, and
+was able use NFSroot, so that's working well also.
 
-> ---
->  .../bindings/iio/temperature/adi,ltc2983.yaml | 65 +++++++++++--------
->  1 file changed, 38 insertions(+), 27 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> index f44fc32ce87e..e04f961ab92c 100644
-> --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> @@ -18,6 +18,28 @@ description: |
->    https://www.analog.com/media/en/technical-documentation/data-sheets/29861fa.pdf
->    https://www.analog.com/media/en/technical-documentation/data-sheets/ltm2985.pdf
->  
-> +$defs:
-> +  sensor-node:
-> +    type: object
-> +    description: Sensor node common constraints
-> +
-> +    properties:
-> +      reg:
-> +        description:
-> +          Channel number. Connects the sensor to the channel with this number
-> +          of the device.
-> +        minimum: 1
-> +        maximum: 20
-> +
-> +      adi,sensor-type:
-> +        description: Type of sensor connected to the device.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +
-> +
->  properties:
->    compatible:
->      oneOf:
-> @@ -64,28 +86,10 @@ properties:
->      const: 0
->  
->  patternProperties:
-> -  "@([0-9a-f]+)$":
-> -    type: object
-> -    description: Sensor.
-> -
-> -    properties:
-> -      reg:
-> -        description:
-> -          Channel number. Connects the sensor to the channel with this number
-> -          of the device.
-> -        minimum: 1
-> -        maximum: 20
-> -
-> -      adi,sensor-type:
-> -        description: Type of sensor connected to the device.
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -
-> -    required:
-> -      - reg
-> -      - adi,sensor-type
-> -
->    "^thermocouple@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
-> +
->      description: Thermocouple sensor.
->  
->      properties:
-> @@ -141,7 +145,9 @@ patternProperties:
->              - adi,custom-thermocouple
->  
->    "^diode@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
-> +
->      description: Diode sensor.
->  
->      properties:
-> @@ -184,7 +190,8 @@ patternProperties:
->          default: 0
->  
->    "^rtd@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
->      description: RTD sensor.
->  
->      properties:
-> @@ -282,7 +289,8 @@ patternProperties:
->              - adi,custom-rtd
->  
->    "^thermistor@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
->      description: Thermistor sensor.
->  
->      properties:
-> @@ -383,7 +391,8 @@ patternProperties:
->              - adi,custom-thermistor
->  
->    "^adc@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
->      description: Direct ADC sensor.
->  
->      properties:
-> @@ -397,7 +406,8 @@ patternProperties:
->          type: boolean
->  
->    "^temp@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
->      description: Active analog temperature sensor.
->  
->      properties:
-> @@ -426,7 +436,8 @@ patternProperties:
->        - adi,custom-temp
->  
->    "^rsense@":
-> -    type: object
-> +    $ref: '#/$defs/sensor-node'
-> +    unevaluatedProperties: false
->      description: Sense resistor sensor.
->  
->      properties:
-
+Kevin
