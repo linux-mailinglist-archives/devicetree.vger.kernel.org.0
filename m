@@ -2,65 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E658C6DB088
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 18:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7284D6DB0A9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 18:34:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjDGQZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 12:25:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37700 "EHLO
+        id S229587AbjDGQeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 12:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjDGQZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 12:25:36 -0400
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3D0E42
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 09:25:35 -0700 (PDT)
-Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-541952d6ed5so156641eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 09:25:35 -0700 (PDT)
+        with ESMTP id S229581AbjDGQeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 12:34:12 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B412101
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 09:34:05 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id y20so55137702lfj.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 09:34:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680884735; x=1683476735;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=stW6gIDZMIVV6t0/ZvFLCRMLkHtcro4SznzWRSvvIhc=;
-        b=oclR9DPY6D8sse7AAn2L8WMK6knXL9ywPuYxMEPZAR9fejMhRUOuLK6g2uK8loxvA/
-         3TyvCBSP7I6XYqDsYgozo54Cbnb+8759XZpazxloe4R3o5NSrTDKk84+DL2IFvIBuxPU
-         mLYVy6SdZCQ4R5zs5kMYYyJUvDDeATCMIn4Ehh61kOnf7oY1LN+E4BrbiirQ/V+jDRDw
-         KA1SBxXQA3ZwmrjUUXgCVBLMv3mpkZkqhCarGnzL+UpIReXkrapRNPW2u9o0nUXqg8Wr
-         o0U4eWdtyo4M752ON+qsu/Y3mXqP4WPsnXVyLgd1CAq05xap9j+JsQhMABE8NP9DonBY
-         uxTw==
+        d=linaro.org; s=google; t=1680885244;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ns5LOSHu/7rt5El0gaG0VOdBa6A5/wehdLEQPfWFNHE=;
+        b=mreYxKmu7Qa1bKhb0dlbcqmjd5mvNHJiWaY50cJ10nht3hVDars6QEXLXzT6VTsJe+
+         NvVwJDMppTlB2XpvB3ZxqP5pz6ETnaX/4XvIuNlnmI7VIFE9TKZSaXfgvE8Boh/0JiJV
+         l62T2IEjQpJY8EQyoJ9qObQzFizN+JABL6NRYPN9YrjyusUlbFxAM1AxidabgyB5SstI
+         kffiZ90QekZb5gtEvxxh8fPCzr9aTMafRzNCiXFSosns5x10+pkllVVlliRuvMdyMuu0
+         YmCVSUyZEdB7pRWpLR+7IqAJtFlhckngThMwZufS0LjouQti3UMOzbmhIMtbVDha0oTH
+         YX4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680884735; x=1683476735;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=stW6gIDZMIVV6t0/ZvFLCRMLkHtcro4SznzWRSvvIhc=;
-        b=JsSUQnZ+SdB2wt2eE22JKCzgp/QcFQNUCAW2OHqbUJh6Fkr3ykGW7IUeN/LL5YfPP4
-         HpF7NZCzenItS3AIaGJ68xqykIcaZT9J2Wp+fy+dzLCuoP6tpBBwQuHhl6A01TpVxqNP
-         3S2s2fjHiF/nnXvHXIw9seMP319YKJ1Af4gHtHEO4gyo70xHrsladO7KA1LA3AR1nDW/
-         Gv/ISm20GzmQz0VuDyTtqr3QPuThYrPCbYsBO+qNgyiCVpYmZbLKlA5BgsnnsE0z+rRO
-         FlpB7JtcoG8AX9Xts5dek7nx37fv+OiTqh9ObJ+/cRdG+ssWBvMpfjSvSb+JgE0zqYNB
-         wLsw==
-X-Gm-Message-State: AAQBX9f2zs/7uz+7GVmCu475TCZYcJyf/7xOXRIM+D39YrGf/bN/KIpQ
-        4IQPxmzmsTwa2QcU4gxkCec=
-X-Google-Smtp-Source: AKy350bZcm4mkeWXgFX4yGlYUtMofhd+N3oEVPdRDXj+26dONsLVqUJRGlVIkjVTd3MHbNrU2TtoCA==
-X-Received: by 2002:a05:6871:892:b0:171:a749:bc0c with SMTP id r18-20020a056871089200b00171a749bc0cmr1911266oaq.3.1680884735067;
-        Fri, 07 Apr 2023 09:25:35 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:7f0:b380:973d:85ce:575d:c0a1:5abf])
-        by smtp.gmail.com with ESMTPSA id u40-20020a056870b0e800b00177b33ce85bsm1740763oag.30.2023.04.07.09.25.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Apr 2023 09:25:33 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: nomadik: Replace deprecated spi-gpio properties
-Date:   Fri,  7 Apr 2023 13:25:04 -0300
-Message-Id: <20230407162504.1683422-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20210112; t=1680885244;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ns5LOSHu/7rt5El0gaG0VOdBa6A5/wehdLEQPfWFNHE=;
+        b=g/vHbhPN6qk5Nch0VqUUq4z/YWryoREd/vkTi5q7Xle40LQBaqOVGCIWuSnEIMowyZ
+         NIAKfcddVO3DDNsshRxEDFjgCNB50RtAtd7OYpGaMH9+ESMVTouxvOrlWACpS4r+3vAC
+         mPUuO+fXmTXROoRYjxPvKhSVmdxF4uqE4rEJUWkFbXJkGEVI5XntlcXsqwEDsVPqXUZN
+         1taSTG2O+2ZZCIk3B7BZPuW4WSYMnGyn7gT/5NIQAl46hiKwHTzCi2s3hY5Te4pssZ9X
+         vd1PNxJk7zIXbVpAtUFWamrwlnWkdGwWSPYNAhOAZ8yxNNNWodbnYomlg/csUs2mTAYf
+         sPVA==
+X-Gm-Message-State: AAQBX9fpQ9KokB56KmVhoe0gJ7E2YgRVGzdOcGzJBeQ9tPqvJCgLcv8a
+        /B1k6FIrTN4wVplj4mLB4YDIJQ==
+X-Google-Smtp-Source: AKy350YiJHTNXXb7fD+W+VfSVc1OojuyNSt8JSxB25sutoPPaP/XveG/bQwJt4kq/eupW1E01yk3yw==
+X-Received: by 2002:ac2:5f0f:0:b0:4eb:13ff:6ca7 with SMTP id 15-20020ac25f0f000000b004eb13ff6ca7mr791005lfq.16.1680885243956;
+        Fri, 07 Apr 2023 09:34:03 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id o23-20020a2e90d7000000b002934fe524d2sm894103ljg.83.2023.04.07.09.34.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Apr 2023 09:34:03 -0700 (PDT)
+Message-ID: <7745f5c7-9dd0-3010-ae21-b269e059620f@linaro.org>
+Date:   Fri, 7 Apr 2023 19:34:03 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v8 09/10] arm64: dts: qcom: sc7180: Add support for HDCP
+ in dp-controller
+Content-Language: en-GB
+To:     Mark Yacoub <markyacoub@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     seanpaul@chromium.org, suraj.kandpal@intel.com,
+        dianders@chromium.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230331221213.1691997-1-markyacoub@google.com>
+ <20230331221213.1691997-10-markyacoub@google.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230331221213.1691997-10-markyacoub@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,33 +84,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 01/04/2023 01:12, Mark Yacoub wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> Add the register ranges required for HDCP key injection and
+> HDCP TrustZone interaction as described in the dt-bindings for the
+> sc7180 dp controller.
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> 
+> ---
+> Changes in v3:
+> -Split off into a new patch containing just the dts change (Stephen)
+> -Add hdcp compatible string (Stephen)
+> Changes in v4:
+> -Rebase on Bjorn's multi-dp patchset
+> Changes in v5:
+> -Put the tz register offsets in trogdor dtsi (Rob C)
+> Changes in v6:
+> -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
+> Changes in v7:
+> -Change registers offset
+> Changes in v8:
+> -None
+> 
+>   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 
-As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
-'gpio-mosi' and 'gpio-sck' are deprecated properties.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Use the recommeded 'mosi-gpios' and 'sck-gpios' instead.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/ste-nomadik-nhk15.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/ste-nomadik-nhk15.dts b/arch/arm/boot/dts/ste-nomadik-nhk15.dts
-index 8142c017882c..4d741adc16cd 100644
---- a/arch/arm/boot/dts/ste-nomadik-nhk15.dts
-+++ b/arch/arm/boot/dts/ste-nomadik-nhk15.dts
-@@ -210,8 +210,8 @@ spi {
- 		 * As we're dealing with 3wire SPI, we only define SCK
- 		 * and MOSI (in the spec MOSI is called "SDA").
- 		 */
--		gpio-sck = <&gpio0 5 GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio0 4 GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
- 		cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
- 		num-chipselects = <1>;
- 
 -- 
-2.34.1
+With best wishes
+Dmitry
 
