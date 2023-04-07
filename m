@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1F966DB068
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 18:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9A66DB06A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 18:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbjDGQPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 12:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57658 "EHLO
+        id S230253AbjDGQPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 12:15:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbjDGQPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 12:15:37 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E9ED180
-        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 09:15:18 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id 46e09a7af769-6a11f365f87so1282706a34.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 09:15:18 -0700 (PDT)
+        with ESMTP id S230240AbjDGQPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 12:15:41 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF2EB77B
+        for <devicetree@vger.kernel.org>; Fri,  7 Apr 2023 09:15:24 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-69f7c7cff1fso164083a34.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Apr 2023 09:15:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680884117; x=1683476117;
+        d=gmail.com; s=20210112; t=1680884124; x=1683476124;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Jq0XJ1arMTiFYqsoDE8JcAr7vxYrUBV82NHspT5qUZE=;
-        b=XCDmzgcgSd1FiI3V3N5V9EKLG0Do1MUW+xRcCgdLs0sCekMovvgTKeQmLRzukfDTub
-         G+9prX4V9QOHnliVjy6WBKbY2jJeXWS1kKPQ+aJJqHIqkNth1CtL0R5+34pnEzeUZUKe
-         Mv+Aeeal/1eEjoe9uilNmRKMqhvEJX8Pjl1KX0Ip6pMgHYJMKGHJOtK10L2t7s6HIQSl
-         m6H0ubC6YnQpzip3m2d2pd7gg2LoKlSZWNBsvbJI2kFWU2XoOrHk7sVPyJmzQT6wU7go
-         XmMgv6Na9ovq8wmErLg2pn16dJfXso2WNC+XhG7ct3Yr6bL/z0/kXc7kL8movuRgPA5E
-         BVyw==
+        bh=tZyvvgQEdHO6FsUf6DGM2oqa7+ztGwt+ZwRzWk+9YQ0=;
+        b=q51Ce+0CfZ0ql+gEnula+2LEuyDr7YnPVJUqoKY1kOIqUG5/z7XBxdL51CpXKd8uSm
+         1LZ2EDnsWCmdlMJNH6WDER2QxTfilP32ZKuqMEcdBWDi3cAVALsHTpnzfFvdiyNE7l0y
+         xfU1oq3EYfxtwFggwgg5Y7ECarwEPWhcEc+oazBw1tGVXzPVJPsxAR0iXEJfHti6CLR2
+         m3K6+cIG67kq/rARxk1j7cJNcm+Pj/6K2ame6h0s3K9WxLyPa9z2lUWXjSHbO09W2u6N
+         VkyxL9A9vX7l0BMc8lxaLZj4umAtsDQJFoyNJmvphhRZm6PqAit7mEBXFKcr4RZYTg/k
+         U/BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680884117; x=1683476117;
+        d=1e100.net; s=20210112; t=1680884124; x=1683476124;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Jq0XJ1arMTiFYqsoDE8JcAr7vxYrUBV82NHspT5qUZE=;
-        b=OylgB//YWSTZlkaRhFMHy96VsyIORdCr2qv7ID2sDcRVCVj+3UUI6OeR7VGoFauh+L
-         MMVky8yKUw5UEYHGPd/TC8uhJMTeMRRK1TEUOv9v/EsLGZ3tXsitfMLZl75+m0DETNOG
-         4zHZzvJloVWpAsZBN+J1sM4CkdyRYPyixIW6l98lpQdI1SXf8hzrOr8gXXHpGhEKPS3D
-         HE3rDPsoxONJBCa66D8omHRhRsj+0gkj9VvlLRAq1TV0V5j0NCPWxoOn7fcJcqeLyjXw
-         R4JHGrxP4vcWY0BuKxk7pQV/XN8YB3kw9+e7jNWCoqHEKIhsdzPDgm17a5cHUCxLGwTs
-         TKcg==
-X-Gm-Message-State: AAQBX9eNguBuBGwh+Tr0f7hS2dYVc0z4kP/XM55Dwz+a2oBrDi9R8ywt
-        PFd5FLk4wECaU6M/Kro6KMw=
-X-Google-Smtp-Source: AKy350aWaFPjxnuFADy4NXDcL6TWjlSwjTJSTd8Z9430KoMk+fPHfi5EJc0D5XeyuvhWeWpimNqX1g==
-X-Received: by 2002:a05:6870:a784:b0:17a:c90e:5d4a with SMTP id x4-20020a056870a78400b0017ac90e5d4amr1562895oao.0.1680884117574;
-        Fri, 07 Apr 2023 09:15:17 -0700 (PDT)
+        bh=tZyvvgQEdHO6FsUf6DGM2oqa7+ztGwt+ZwRzWk+9YQ0=;
+        b=ydAAvXyHAOuSryNGCTwNyRzzzrL5UqfY91Dm0z9AC7KCuW6bHXmtqNkfLMTaPjC/PT
+         T2Jhg7lpo6EXuEWMX2GqaXQbF0VuYQz2YCDTSvPXS6rq67p2itBoZkTtED1eFSsROlc8
+         e/2g9Q+OyNjjmuy1aiyagvXhX2qasybrqC8pDsWO22iJq+6zNPhqbVv14nRgSfpUNxGh
+         RTVcUvUMnZA3iaM29bqOPitFwDVIhi29iIHBg+H9rInLtCkfb72ADOGD73kv8xGKfz3L
+         VhhJ07txaAk3mSpowa4ZLvZmbJ1POK1w23QFEk337iWF4bMP1+64HwY6RT82iO003O4b
+         e/EA==
+X-Gm-Message-State: AAQBX9fIetQuzoDAHKoSmvCzVmbMp3ryeJwZZBSaA5WPQnkXf3H6V9Ij
+        Cy3JkaUdm40QQd/+vm9OFXM=
+X-Google-Smtp-Source: AKy350YhPE6xzw2gj/oMGKeI54CLowJ3UPwi7RoBrJaBP3PRMGjmtLZMQt5Qd2f5gEi335lIwK4GtA==
+X-Received: by 2002:a05:6830:d86:b0:6a1:6d65:9849 with SMTP id bv6-20020a0568300d8600b006a16d659849mr1835998otb.2.1680884123891;
+        Fri, 07 Apr 2023 09:15:23 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:7f0:b380:973d:85ce:575d:c0a1:5abf])
-        by smtp.gmail.com with ESMTPSA id q25-20020a9d7c99000000b00690e21a46e1sm1801910otn.56.2023.04.07.09.15.12
+        by smtp.gmail.com with ESMTPSA id q25-20020a9d7c99000000b00690e21a46e1sm1801910otn.56.2023.04.07.09.15.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Apr 2023 09:15:15 -0700 (PDT)
+        Fri, 07 Apr 2023 09:15:20 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 6/7] sARM: dts: imx28-tx28: Replace deprecated spi-gpio properties
-Date:   Fri,  7 Apr 2023 13:14:43 -0300
-Message-Id: <20230407161444.1682038-6-festevam@gmail.com>
+Subject: [PATCH 7/7] ARM: dts: imx28-cfa: Replace deprecated spi-gpio properties
+Date:   Fri,  7 Apr 2023 13:14:44 -0300
+Message-Id: <20230407161444.1682038-7-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230407161444.1682038-1-festevam@gmail.com>
 References: <20230407161444.1682038-1-festevam@gmail.com>
@@ -81,26 +81,73 @@ Use the recommeded 'miso-gpios', 'mosi-gpios' and 'sck-gpios' instead.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/imx28-tx28.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/imx28-cfa10049.dts | 10 +++++-----
+ arch/arm/boot/dts/imx28-cfa10055.dts |  6 +++---
+ arch/arm/boot/dts/imx28-cfa10056.dts |  6 +++---
+ 3 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx28-tx28.dts b/arch/arm/boot/dts/imx28-tx28.dts
-index ffe58c7093e1..23ad7cd0a1de 100644
---- a/arch/arm/boot/dts/imx28-tx28.dts
-+++ b/arch/arm/boot/dts/imx28-tx28.dts
-@@ -192,9 +192,9 @@ spi_gpio: spi {
+diff --git a/arch/arm/boot/dts/imx28-cfa10049.dts b/arch/arm/boot/dts/imx28-cfa10049.dts
+index 94d6614c1983..c5a7f56d83db 100644
+--- a/arch/arm/boot/dts/imx28-cfa10049.dts
++++ b/arch/arm/boot/dts/imx28-cfa10049.dts
+@@ -100,9 +100,9 @@ spi-2 {
  		pinctrl-names = "default";
- 		pinctrl-0 = <&tx28_spi_gpio_pins>;
- 
--		gpio-sck = <&gpio2 24 GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio2 25 GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio2 26 GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio2 24 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio2 26 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-0 = <&spi2_pins_cfa10049>;
+ 		status = "okay";
+-		gpio-sck = <&gpio2 16 0>;
+-		gpio-mosi = <&gpio2 17 0>;
+-		gpio-miso = <&gpio2 18 0>;
++		sck-gpios = <&gpio2 16 0>;
++		mosi-gpios = <&gpio2 17 0>;
++		miso-gpios = <&gpio2 18 0>;
+ 		cs-gpios = <&gpio3 5 0>;
+ 		num-chipselects = <1>;
+ 		#address-cells = <1>;
+@@ -124,8 +124,8 @@ spi-3 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&spi3_pins_cfa10049>;
+ 		status = "okay";
+-		gpio-sck = <&gpio0 24 0>;
+-		gpio-mosi = <&gpio0 28 0>;
++		sck-gpios = <&gpio0 24 0>;
++		mosi-gpios = <&gpio0 28 0>;
+ 		cs-gpios = <&gpio0 17 0 &gpio0 26 0 &gpio0 27 0>;
  		num-chipselects = <3>;
- 		cs-gpios = <
- 			&gpio2 27 GPIO_ACTIVE_LOW
+ 		#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/imx28-cfa10055.dts b/arch/arm/boot/dts/imx28-cfa10055.dts
+index 42ba7da48beb..70e225a99fbe 100644
+--- a/arch/arm/boot/dts/imx28-cfa10055.dts
++++ b/arch/arm/boot/dts/imx28-cfa10055.dts
+@@ -19,9 +19,9 @@ spi-2 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&spi2_pins_cfa10055>;
+ 		status = "okay";
+-		gpio-sck = <&gpio2 16 0>;
+-		gpio-mosi = <&gpio2 17 0>;
+-		gpio-miso = <&gpio2 18 0>;
++		sck-gpios = <&gpio2 16 0>;
++		mosi-gpios = <&gpio2 17 0>;
++		miso-gpios = <&gpio2 18 0>;
+ 		cs-gpios = <&gpio3 5 0>;
+ 		num-chipselects = <1>;
+ 		#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/imx28-cfa10056.dts b/arch/arm/boot/dts/imx28-cfa10056.dts
+index 0e15bdfd7281..bc2d6fcad12f 100644
+--- a/arch/arm/boot/dts/imx28-cfa10056.dts
++++ b/arch/arm/boot/dts/imx28-cfa10056.dts
+@@ -18,9 +18,9 @@ spi-2 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&spi2_pins_cfa10056>;
+ 		status = "okay";
+-		gpio-sck = <&gpio2 16 0>;
+-		gpio-mosi = <&gpio2 17 0>;
+-		gpio-miso = <&gpio2 18 0>;
++		sck-gpios = <&gpio2 16 0>;
++		mosi-gpios = <&gpio2 17 0>;
++		miso-gpios = <&gpio2 18 0>;
+ 		cs-gpios = <&gpio3 5 0>;
+ 		num-chipselects = <1>;
+ 		#address-cells = <1>;
 -- 
 2.34.1
 
