@@ -2,172 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 226326DA8C5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 08:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2E8F6DA8D3
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 08:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237444AbjDGGLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 02:11:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42762 "EHLO
+        id S231508AbjDGGVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 02:21:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233324AbjDGGLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 02:11:49 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4363A5EC
-        for <devicetree@vger.kernel.org>; Thu,  6 Apr 2023 23:11:43 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-62609d98b78so105112b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Apr 2023 23:11:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680847903;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=211/WQndq/0dIl4SBYP+HR+YcyINuvXrDMq+d+OBMX0=;
-        b=lIm2dOTV1ZyuKjez2fSI0LPbQVa4KKfwrbjvSJegqX/etzx4+UuDyt4VMVUuOmqXZh
-         eYtKJ+tY+5EnH4q3WvFr6YsnG8hZSVYA6dcUENfbDukd1+PtsFY/TNQcfNZ9UJbMCZXl
-         H04QxaDhreuEVjVgjrtUzMMZSt99NE62IDD+POwPQlMk9DG2GNkiqqP2OIHoL1GQtYGq
-         lFYdHzjq2xjmwm2W+GTP90JFxWBTZdTFil+23TQkZQEcf4+hRvuaUSarLliAGVn0GAhW
-         RRyej4c0zdtxcSmzg1+mGRxqgVw6SqBgxvHLB9AhqWbYs2g0907aEOvPnzGG51nNo005
-         I2ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680847903;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=211/WQndq/0dIl4SBYP+HR+YcyINuvXrDMq+d+OBMX0=;
-        b=4TQRq06X10iKYjySCQOzjI2bOkDahGWO6c6cwryZ/fO31q8zSLkYgarFGAbE1j/cnl
-         1w6fWGqNTqj+8nDDF7wyDqQgNFEJCaDF3Tfgtq2/Ccl5dzC2tLiIHWfdZvoDc78NIfu2
-         36T0k3ODOIuptM3y/malJMmjZJsQ2Xo5EDVCyCf86xULlpEeftMz9PJ2jhM124klB3ER
-         8xduQXg81UUIVhMuR3Newes9jz+RSFA1kRZSjylcwZis+tIzNXKDyi2vpqZwcDxM5XTj
-         Dj7UdWv8JfCQYeVz0JVK3hf+5rqOwsLL8zThtq3Ys1Ovx6G4T8w9sNg83xot+brNe6yQ
-         K0qg==
-X-Gm-Message-State: AAQBX9cacaORHWTU8vtcaKWP5N/lWShgtz8s+hVugkaeKWRAq3HpQUJc
-        zrv0uwdu/UQfJ35y0b9gKME5xQ==
-X-Google-Smtp-Source: AKy350bzkyU/L95q1La6S7UbwY2cS2FuyGPLUXtdRiLUdUhCCWKIm6ciLc7IhgzxzDKXjvMjwoFsBQ==
-X-Received: by 2002:a62:7b50:0:b0:62a:5769:25f9 with SMTP id w77-20020a627b50000000b0062a576925f9mr1420730pfc.28.1680847903256;
-        Thu, 06 Apr 2023 23:11:43 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c60:6a11:8ba1:beba:def7:a4ae])
-        by smtp.gmail.com with ESMTPSA id u25-20020aa78399000000b0062d7e9bb17asm2253879pfm.81.2023.04.06.23.11.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 23:11:42 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, bhupesh.sharma@linaro.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
-        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH v6 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-Date:   Fri,  7 Apr 2023 11:41:22 +0530
-Message-Id: <20230407061122.2036838-3-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230407061122.2036838-1-bhupesh.sharma@linaro.org>
-References: <20230407061122.2036838-1-bhupesh.sharma@linaro.org>
+        with ESMTP id S229844AbjDGGVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 02:21:05 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7F1197;
+        Thu,  6 Apr 2023 23:21:02 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 159DD24E338;
+        Fri,  7 Apr 2023 14:21:00 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
+ 2023 14:21:00 +0800
+Received: from [192.168.60.111] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 7 Apr
+ 2023 14:20:59 +0800
+Message-ID: <56003fe8-ec87-672e-6bb2-a574b741be77@starfivetech.com>
+Date:   Fri, 7 Apr 2023 14:20:59 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3 1/9] media: dt-bindings: Add bindings for JH7110 Camera
+ Subsystem
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Ezequiel Garcia" <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230331121826.96973-1-jack.zhu@starfivetech.com>
+ <20230331121826.96973-2-jack.zhu@starfivetech.com>
+ <20230404043949.GJ16648@pendragon.ideasonboard.com>
+Content-Language: en-US
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <20230404043949.GJ16648@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB superspeed qmp phy node to dtsi.
 
-Make sure that the various board dts files (which include sm4250.dtsi file)
-continue to work as intended.
 
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
- arch/arm64/boot/dts/qcom/sm6115.dtsi          | 36 +++++++++++++++++--
- .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
- 3 files changed, 40 insertions(+), 2 deletions(-)
+On 2023/4/4 12:39, Laurent Pinchart wrote:
+> Hi Jack,
+> 
+> Thank you for the patch.
+> 
+> On Fri, Mar 31, 2023 at 08:18:18PM +0800, Jack Zhu wrote:
+>> Add the bindings documentation for Starfive JH7110 Camera Subsystem
+>> which is used for handing image sensor data.
+>> 
+>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+>> ---
+>>  .../bindings/media/starfive,jh7110-camss.yaml | 159 ++++++++++++++++++
+>>  MAINTAINERS                                   |   7 +
+>>  2 files changed, 166 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+>> new file mode 100644
+>> index 000000000000..0235c70e7793
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+>> @@ -0,0 +1,159 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Starfive SoC CAMSS ISP
+>> +
+>> +maintainers:
+>> +  - Jack Zhu <jack.zhu@starfivetech.com>
+>> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+>> +
+>> +description:
+>> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
+>> +  consists of a VIN controller (Video In Controller, a top-level control until)
+>> +  and an ISP.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-camss
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: syscon
+>> +      - const: isp
+>> +
+>> +  clocks:
+>> +    maxItems: 7
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: apb_func
+>> +      - const: wrapper_clk_c
+>> +      - const: dvp_inv
+>> +      - const: axiwr
+>> +      - const: mipi_rx0_pxl
+>> +      - const: ispcore_2x
+>> +      - const: isp_axi
+>> +
+>> +  resets:
+>> +    maxItems: 6
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: wrapper_p
+>> +      - const: wrapper_c
+>> +      - const: axird
+>> +      - const: axiwr
+>> +      - const: isp_top_n
+>> +      - const: isp_top_axi
+>> +
+>> +  power-domains:
+>> +    items:
+>> +      - description: JH7110 ISP Power Domain Switch Controller.
+>> +
+>> +  interrupts:
+>> +    maxItems: 4
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        unevaluatedProperties: false
+>> +        description:
+>> +          Input port for receiving DVP data.
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        unevaluatedProperties: false
+>> +        description:
+>> +          Input port for receiving CSI data.
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +    required:
+>> +      - port@1
+> 
+> Both ports should be required. It's fine to have unconnected ports (that
+> is, without any endpoint child node), but the ports should always be
+> present if they exist in the hardware.
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-index a1f0622db5a0..75951fd439df 100644
---- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-+++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-@@ -242,6 +242,9 @@ &usb {
- &usb_dwc3 {
- 	maximum-speed = "high-speed";
- 	dr_mode = "peripheral";
-+
-+	phys = <&usb_hsphy>;
-+	phy-names = "usb2-phy";
- };
- 
- &usb_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 2505c815c65a..f42065a0a71d 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -651,6 +651,38 @@ usb_hsphy: phy@1613000 {
- 			status = "disabled";
- 		};
- 
-+		usb_qmpphy: phy@1615000 {
-+			compatible = "qcom,sm6115-qmp-usb3-phy";
-+			reg = <0x0 0x01615000 0x0 0x200>;
-+			clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
-+				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-+			clock-names = "cfg_ahb",
-+				      "ref",
-+				      "com_aux";
-+			resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
-+				 <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
-+			reset-names = "phy", "phy_phy";
-+			status = "disabled";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			usb_ssphy: phy@1615200 {
-+				reg = <0x0 0x01615200 0x0 0x200>,
-+				      <0x0 0x01615400 0x0 0x200>,
-+				      <0x0 0x01615c00 0x0 0x400>,
-+				      <0x0 0x01615600 0x0 0x200>,
-+				      <0x0 0x01615800 0x0 0x200>,
-+				      <0x0 0x01615a00 0x0 0x100>;
-+				#clock-cells = <0>;
-+				#phy-cells = <0>;
-+				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-+				clock-names = "pipe0";
-+				clock-output-names = "usb3_phy_pipe_clk_src";
-+			};
-+		};
-+
- 		qfprom@1b40000 {
- 			compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
- 			reg = <0x0 0x01b40000 0x0 0x7000>;
-@@ -1101,8 +1133,8 @@ usb_dwc3: usb@4e00000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x0 0x04e00000 0x0 0xcd00>;
- 				interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
--				phys = <&usb_hsphy>;
--				phy-names = "usb2-phy";
-+				phys = <&usb_hsphy>, <&usb_ssphy>;
-+				phy-names = "usb2-phy", "usb3-phy";
- 				iommus = <&apps_smmu 0x120 0x0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-index 10c9d338446c..d60cc024749b 100644
---- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-@@ -280,6 +280,9 @@ &usb {
- &usb_dwc3 {
- 	maximum-speed = "high-speed";
- 	dr_mode = "peripheral";
-+
-+	phys = <&usb_hsphy>;
-+	phy-names = "usb2-phy";
- };
- 
- &usb_hsphy {
--- 
-2.38.1
+Thank you for your comments.
+OK, I will add port@0.
 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +  - power-domains
+>> +  - interrupts
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    isp@19840000 {
+>> +        compatible = "starfive,jh7110-camss";
+>> +        reg = <0x19840000 0x10000>,
+>> +              <0x19870000 0x30000>;
+>> +        reg-names = "syscon", "isp";
+>> +        clocks = <&ispcrg 0>,
+>> +                 <&ispcrg 13>,
+>> +                 <&ispcrg 2>,
+>> +                 <&ispcrg 12>,
+>> +                 <&ispcrg 1>,
+>> +                 <&syscrg 51>,
+>> +                 <&syscrg 52>;
+>> +        clock-names = "apb_func",
+>> +                      "wrapper_clk_c",
+>> +                      "dvp_inv",
+>> +                      "axiwr",
+>> +                      "mipi_rx0_pxl",
+>> +                      "ispcore_2x",
+>> +                      "isp_axi";
+>> +        resets = <&ispcrg 0>,
+>> +                 <&ispcrg 1>,
+>> +                 <&ispcrg 10>,
+>> +                 <&ispcrg 11>,
+>> +                 <&syscrg 41>,
+>> +                 <&syscrg 42>;
+>> +        reset-names = "wrapper_p",
+>> +                      "wrapper_c",
+>> +                      "axird",
+>> +                      "axiwr",
+>> +                      "isp_top_n",
+>> +                      "isp_top_axi";
+>> +        power-domains = <&pwrc 5>;
+>> +        interrupts = <92>, <87>, <88>, <90>;
+>> +
+>> +        ports {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +            port@0 {
+>> +                reg = <0>;
+>> +                vin_from_sc2235: endpoint {
+>> +                    remote-endpoint = <&sc2235_to_vin>;
+>> +                };
+>> +            };
+>> +
+>> +            port@1 {
+>> +                reg = <1>;
+>> +                vin_from_csi2rx: endpoint {
+>> +                    remote-endpoint = <&csi2rx_to_vin>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index b6c811326355..f7165371c56d 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -19908,6 +19908,13 @@ M:	Ion Badulescu <ionut@badula.org>
+>>  S:	Odd Fixes
+>>  F:	drivers/net/ethernet/adaptec/starfire*
+>>  
+>> +STARFIVE CAMERA SUBSYSTEM DRIVER
+>> +M:	Jack Zhu <jack.zhu@starfivetech.com>
+>> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+>> +L:	linux-media@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+>> +
+>>  STARFIVE DEVICETREES
+>>  M:	Emil Renner Berthing <kernel@esmil.dk>
+>>  S:	Maintained
+> 
