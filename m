@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F5C6DAB41
-	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 12:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF03B6DAB45
+	for <lists+devicetree@lfdr.de>; Fri,  7 Apr 2023 12:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232658AbjDGKKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Apr 2023 06:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43602 "EHLO
+        id S232012AbjDGKL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Apr 2023 06:11:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240395AbjDGKKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 06:10:37 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EB504C3F;
-        Fri,  7 Apr 2023 03:10:35 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id o3so861709lfd.12;
-        Fri, 07 Apr 2023 03:10:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680862233;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AV2F4DSz+hAoPsBNchYpKP8BCe+dN7CqxHM1THS5IQ0=;
-        b=jtcPqo9Nzp/sRPesvPFdYJrtzFvHqBua33jYxPt9ouLKx6u8j/8spna48t0xnQOsCs
-         C6ullEloa94nBjloYClYwfHGx4VOB41ES/Iw5dpeiMGKVriYSDOV4toQ4fKnF6G/J8On
-         w7Yz6OpWm7dtIXxvSmR8Bo+MAxOOFjCA8LeTsznTA2fx1KNgu+N2JH5eMFAHqhW8R3EJ
-         ATZMTxiUkcESt7T7ZX3OOtIlQv10WgWdS+Hs8//oNxPOx9C1iZ4uUIbKweZJoPRJOelh
-         nT3D2M8GgjFsR4eIf2qihwDMJkB6u2P3d7PqcIQ4Xc+SsY767/6mAJEpO7YlMtN2kgWU
-         H9Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680862233;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AV2F4DSz+hAoPsBNchYpKP8BCe+dN7CqxHM1THS5IQ0=;
-        b=gFuxh/fGkN+AeBJuYXFhOHY+LzWFSoLY8Rz2mCjrDalpjwrm8yVhRkXFeNHO6vINKt
-         NyKkhFRUrBLSdlxrZ0zbHCBgqsMzOOxXP0cyl/JXJXouJE0SGPWdS5vh9ROWYjkZd53t
-         CaKRWUjH3rJ6n/ZyHyofu1J24+aDNusq8NucwAEOtXPW0umPFexjvek0037/n60wJscI
-         01c/FjDj1gUGQvn4FxDoAr5x62KSn5G2CFnSiI8aeeEtUhXGKJafOPpyCtP2MZioi4r1
-         L+PaVqwADPfUGYih22U8fXrDPDfoJvuWgY7JuQ5m5jNSPQKXmsIoZt4Y8NICslxT9Z3O
-         d9pA==
-X-Gm-Message-State: AAQBX9dgcNS2Drm7xZjLiV9INxS4LPMxHLkTl0vTegFvdfFcAh+K4/JX
-        0QDRn8+mKAjUvPBi2TwGofs6dG5Ua7g=
-X-Google-Smtp-Source: AKy350br/Td7o2c/LAJhdK5O38l6fhc+mxteoTiiKRQb3dpdqHGT4CokLccW1bx7vT5KcfJZWFttPA==
-X-Received: by 2002:a05:6512:3885:b0:4ea:f526:5bee with SMTP id n5-20020a056512388500b004eaf5265beemr648395lft.11.1680862233175;
-        Fri, 07 Apr 2023 03:10:33 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id h26-20020a19701a000000b004e1b880ba20sm630423lfc.292.2023.04.07.03.10.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 03:10:32 -0700 (PDT)
-Message-ID: <1f6b470d-7740-8b0f-6c1d-a4a986d1c0c8@gmail.com>
-Date:   Fri, 7 Apr 2023 13:10:32 +0300
+        with ESMTP id S229863AbjDGKL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Apr 2023 06:11:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D458B7ED8;
+        Fri,  7 Apr 2023 03:11:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680862287; x=1712398287;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gAO8SRCumNxD+pCFQwia+WypiPkxM5kfEBEREoMMxqc=;
+  b=wL50An3baxroiYEsk6SUdxyVfUtCw0Ou19l/IYJ8+u+ZojWy8F2ey9J8
+   THpeFxVRFCAePSwZgghcmY56dL7Q8ohs2ZI7wH749OhEuoh8/dA9vTNq3
+   loK9+hOzWgwCBfqsBM3CapquDtPUBUPDxNFF742m466pfSPl/5jZWCLeQ
+   VlMLZvlhnLq8WOGwYTKDQUZx9pWdfQrPPlYjyr0b+jCjG6plvpPBDiQOv
+   FEX+3COIPrh9xZoI+25cv0iOryUAW92Hoj3E76kiU2ruGYxJv17EkvmhU
+   od8uutVZSFtlZw+m+YtbZ7XPAC3DvHimsTu8yes8vXvLJqG575LUEAOMb
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,326,1673938800"; 
+   d="asc'?scan'208";a="145993498"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Apr 2023 03:11:26 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 7 Apr 2023 03:11:26 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 7 Apr 2023 03:11:24 -0700
+Date:   Fri, 7 Apr 2023 11:11:09 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     William Qiu <william.qiu@starfivetech.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>
+Subject: Re: [PATCH v7 1/2] dt-bindings: soc: starfive: Add StarFive syscon
+ doc
+Message-ID: <20230407-stand-reversion-1db211c03ff4@wendy>
+References: <20230406103308.1280860-1-william.qiu@starfivetech.com>
+ <20230406103308.1280860-2-william.qiu@starfivetech.com>
+ <833b68a5-263d-d293-4910-2ca50b43e60d@linaro.org>
+ <2ce35d68-ae6c-129f-588e-9b292de3a654@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/2] leds: bd2606mvv: Driver for the Rohm 6 Channel i2c
- LED driver
-Content-Language: en-US, en-GB
-To:     Andreas Kemnade <andreas@kemnade.info>, pavel@ucw.cz,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230407050803.170773-1-andreas@kemnade.info>
- <20230407050803.170773-3-andreas@kemnade.info>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230407050803.170773-3-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Fh2qLU8GMRk0u5gs"
+Content-Disposition: inline
+In-Reply-To: <2ce35d68-ae6c-129f-588e-9b292de3a654@starfivetech.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,99 +70,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/7/23 08:08, Andreas Kemnade wrote:
-> The device provides 6 channels which can be individually
-> turned off and on but groups of two channels share a common brightness
-> register.
-> 
-> Limitation: The GPIO to enable the device is not used yet.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->   drivers/leds/Kconfig          |  11 +++
->   drivers/leds/Makefile         |   1 +
->   drivers/leds/leds-bd2606mvv.c | 143 ++++++++++++++++++++++++++++++++++
->   3 files changed, 155 insertions(+)
->   create mode 100644 drivers/leds/leds-bd2606mvv.c
-> 
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 9dbce09eabacf..cc4eadbb2542e 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -551,6 +551,17 @@ config LEDS_REGULATOR
->   	help
->   	  This option enables support for regulator driven LEDs.
->   
-> +config LEDS_BD2606MVV
-> +	tristate "LED driver for BD2606MVV"
-> +	depends on LEDS_CLASS
-> +	depends on I2C
-> +	select REGMAP_I2C
-> +	help
-> +	  This option enables support for BD2606MVV LED driver chips
-> +	  accessed via the I2C bus. It supports setting brightness, with
-> +	  the limitiation that there are groups of two channels sharing
-> +	  a brightness setting, but not the on/off setting.
-> +
->   config LEDS_BD2802
->   	tristate "LED driver for BD2802 RGB LED"
->   	depends on LEDS_CLASS
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index d30395d11fd84..c07d1512c745a 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -17,6 +17,7 @@ obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
->   obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
->   obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
->   obj-$(CONFIG_LEDS_BCM6358)		+= leds-bcm6358.o
-> +obj-$(CONFIG_LEDS_BD2606MVV)		+= leds-bd2606mvv.o
->   obj-$(CONFIG_LEDS_BD2802)		+= leds-bd2802.o
->   obj-$(CONFIG_LEDS_BLINKM)		+= leds-blinkm.o
->   obj-$(CONFIG_LEDS_CLEVO_MAIL)		+= leds-clevo-mail.o
-> diff --git a/drivers/leds/leds-bd2606mvv.c b/drivers/leds/leds-bd2606mvv.c
-> new file mode 100644
-> index 0000000000000..808100e50487c
-> --- /dev/null
-> +++ b/drivers/leds/leds-bd2606mvv.c
-> @@ -0,0 +1,143 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2023 Andreas Kemnade
-> + *
-> + * Datasheet:
-> + * https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/led_driver/bd2606mvv_1-e.pdf
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/leds.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +
-> +#define BD2606_MAX_LEDS 6
-> +#define BD2606_MAX_BRIGHTNESS 63
-> +#define BD2606_REG_PWRCNT 3
-> +#define ldev_to_led(c)	container_of(c, struct bd2606mvv_led, ldev)
-> +
-> +struct bd2606mvv_led {
-> +	bool active;
+--Fh2qLU8GMRk0u5gs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I still think having this 'active' here for the whole lifetime of the 
-driver is a bit misleading. This, however, is a minor thing. With or 
-without the 'active' removed from the private data:
+On Fri, Apr 07, 2023 at 05:30:31PM +0800, William Qiu wrote:
+>=20
+> This would be $ref: /schemas/clock/starfive,jh7110-pll.yaml#, but this fi=
+le is not
+> available at present,  so I would like to ask if I should submit the docu=
+ments
+> instead of Xingyu
 
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Or just send the whole lot as one series, and I'll ack the soc bits for
+Stephen to take the whole lot via clk? I think Xingyu owes a respin
+anyway cos of the changes to this binding file that Krzysztof requested
+there.
 
+Plus, the base clock support is now in clk-next, so their stuff is now
+applicable to the clk tree.
 
-Yours,
-	-- Matti
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4c0b39c44957..0b2170e1e4ff 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19911,6 +19911,11 @@ S:	Supported
+>  F:	Documentation/devicetree/bindings/mmc/starfive*
+>  F:	drivers/mmc/host/dw_mmc-starfive.c
+> =20
+> +STARFIVE JH7110 SYSCON
+> +M:	William Qiu <william.qiu@starfivetech.com>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon=
+=2Eyaml
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Can you squash this in please (whitespace damaged):
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 90abe83c02f3..6fbb486f59ab 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19943,6 +19943,7 @@ STARFIVE SOC DRIVERS
+ M:     Conor Dooley <conor@kernel.org>
+ S:     Maintained
+ T:     git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
++F:     Documentation/devicetree/bindings/soc/starfive/
+ F:     drivers/soc/starfive/
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Cheers,
+Conor.
 
+--Fh2qLU8GMRk0u5gs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZC/sPQAKCRB4tDGHoIJi
+0mqrAQD68lH1tU4Wq6HSU+FTpSvVnORJwEnuw/Y48zO6SDo9OAD/fZYy57Fk/I74
+EpFkC7hl22U7CmGZuW8tlC/bZfG+1QE=
+=K7GJ
+-----END PGP SIGNATURE-----
+
+--Fh2qLU8GMRk0u5gs--
