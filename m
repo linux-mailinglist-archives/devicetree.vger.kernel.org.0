@@ -2,204 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E58286DBBF2
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 17:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1A9D6DBC55
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 19:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjDHPg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 11:36:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58724 "EHLO
+        id S229759AbjDHRa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 13:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbjDHPg1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 11:36:27 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C563EBDFB;
-        Sat,  8 Apr 2023 08:36:25 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id h24so1351999plr.1;
-        Sat, 08 Apr 2023 08:36:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680968185; x=1683560185;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f5t3AuDYeankzi6hnhNs+aHg6q95No4+4bEk6pENF0Y=;
-        b=C+YUX5zusn1dVa9qof4WQPQuMIHS7lI3S5bdu7dI3qOBWTFtPsktKhsJY6B8n3Sju5
-         Lz74r/IwP5He8AP/z+aBrY0l6hjJTFpncGpwf4zb4468mSV+p1Hd9LEXvEaj9RhHxfWN
-         HTVVqwdFg2U+5+n6gEvckqB6In76Yyfin1Xd8Oq2ErIz/GUHxuXn38dUWbYOdmLuAZvw
-         B8jFnVy+o9jeAi0yYZQscUtEU99bLXkrgBT4P4cnTNtdm9Lf7+3kjR7GMmGiepg4yFuq
-         uo0CVKFYtynX7K7DUjvlbJesCQOAPOs+yUl7yaNM1so8O+dSQm76mrhHIUcV0geILUQl
-         ArtQ==
+        with ESMTP id S229724AbjDHRaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 13:30:55 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2405273
+        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 10:30:53 -0700 (PDT)
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8174F3F237
+        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 17:30:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1680975051;
+        bh=x9KWRT4xog/ngy4GL49raWCNQIsW6oOkwv79lX+JQvg=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=GYjM7Sgf4Gy/ScQQZyLXZYtcF898pImkbW/vKPawIxSm+b0n7jor9FnZZPVV+wKMi
+         2agv4S5Qlwg6bxrRRCbvSQ7lrestt/FTlQQiuJgVVirmeMRci7+f8zB4ROByKctF2o
+         0H2Eo+NnAL75aIsRrUC2PxN46BmLAsPQ/BOGjRoVMzo7EbtIWg6CyOxVuzC22TpDBU
+         ldmDakGjzYdi9SwV3CIJthEtuR6O/Xw6lCfHRVm8AiANFlK2+ak+AU1AnQ67B/n+Mr
+         cETasJDG4vd+GGL7nVoGBIfC3/7QXQtG3sREcLA9RFNsz53oxIOgJ9qfi6f70FvBmv
+         Qza5VqxrbhnCQ==
+Received: by mail-qk1-f197.google.com with SMTP id o6-20020a374106000000b007467b5765d2so863299qka.0
+        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 10:30:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680968185; x=1683560185;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f5t3AuDYeankzi6hnhNs+aHg6q95No4+4bEk6pENF0Y=;
-        b=MbL1Kch0SBs70ze9NB+PgoJuCo8+Hq6GweAxQKOL1GehE7+CCPJm3jd77DhpLoZl63
-         8KMUPn7kTjXY7qAPrx0NGFQwsaL/NJxx+IkCqUflI216f5LQG9ZDvua6BxVxhTej/ofl
-         5vA2Y2N6EHu9JeUg/A5q5DmcsGbqJcRr8YxMyFxXmLVEqHV17UTo5kafbaCp0TalOM+q
-         UxzpGipBKykSPjoIj3ssXq4uIpztkDFa5OhHCHyDUpLsUYLdJrmCImdK7c1fmSk9Z2v7
-         cA1gUWnIAk2Ltcws5Pb5dnpcNEN10Rb0DQUUjeztDYt4vRSU6RzVzEORL+Stgs5k8kmK
-         yneQ==
-X-Gm-Message-State: AAQBX9e0HdY3LwpXEUpPrcef2WG97W1G8lIgiAr6U2pfY3NnCAMlKMki
-        IqN7JHkGwRNTeeX5kP3bUVEmdOyv0Wc=
-X-Google-Smtp-Source: AKy350ZWZhZXxy91AQ5uHFcuvy0B45VlYPZ4Vph09MaCSI++TffO9x6BpQAiYEl4ehCZB+qnUxHPFA==
-X-Received: by 2002:a17:90b:4c0a:b0:244:af8c:295e with SMTP id na10-20020a17090b4c0a00b00244af8c295emr7295429pjb.26.1680968185200;
-        Sat, 08 Apr 2023 08:36:25 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r5-20020a17090b050500b0023b3a9fa603sm6291700pjz.55.2023.04.08.08.36.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Apr 2023 08:36:24 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 8 Apr 2023 08:36:23 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Cc:     robh+dt@kernel.org, jdelvare@suse.com,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] hwmon: (pmbus/acbel-fsg032) Add Acbel power supply
-Message-ID: <e8b3489a-8386-4557-8f28-3465bd1589d0@roeck-us.net>
-References: <20230322114623.2278920-1-lakshmiy@us.ibm.com>
- <20230322114623.2278920-4-lakshmiy@us.ibm.com>
+        d=1e100.net; s=20210112; t=1680975049;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x9KWRT4xog/ngy4GL49raWCNQIsW6oOkwv79lX+JQvg=;
+        b=05bURp81fxMYG7xKzfwz5Hi09uXRu1VHdcv14qrW/IFIlNR0HrX1lpq+aRVUe5LQXV
+         ajKRBE3QlxAVDv7pQHthfB91zfHBbewaZaUh2beqwiwgMmSSra2XH/Q4vo/Xv53oBkRO
+         vduOSS1wOTkQrOd/E4p+WKWBI2xpIPvKtRFNYHKgcKJOD5LKSTPpPXXLZvO9xzU+153J
+         5XKrvl2tWNglnj0a6D6UsL2SU0QR3eQ67ZTx+KpHdqfEwhRj1nCz9eY0iGDcY22uQ+hQ
+         r+v4xLYWbHwg7CDavIutYJFu9wJotPEy7xvSrYWaQxEe4MN7ourNgfhys37Q/oBF+rnF
+         gN4w==
+X-Gm-Message-State: AAQBX9fUJFU8lU3snTDxxEDaPdWUsIZLun1UBpqX/mwAhyBLPeW0cxwP
+        28hsk28ORcPVv9ZdNNgF85B4oR7GBw54WNM0VBVCdryIIdxM67jwZPU+nRLX1o7ffKC310fy013
+        cASqJ6o0YvDhmxbmkZFOxA73ekfoZCba1gacQpPh4tjzsggNHUXAJOy0=
+X-Received: by 2002:a05:620a:1a95:b0:746:9174:3d3c with SMTP id bl21-20020a05620a1a9500b0074691743d3cmr794277qkb.13.1680975049101;
+        Sat, 08 Apr 2023 10:30:49 -0700 (PDT)
+X-Google-Smtp-Source: AKy350aB0C5v/S2vwLF85CjFKwCbcNauCS5fF7OfaV3dGX3/2Xmx2wPoJxtTVSxZbRWbzfwrkOnTQmQoOH+2jlbwedU=
+X-Received: by 2002:a05:620a:1a95:b0:746:9174:3d3c with SMTP id
+ bl21-20020a05620a1a9500b0074691743d3cmr794264qkb.13.1680975048818; Sat, 08
+ Apr 2023 10:30:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230322114623.2278920-4-lakshmiy@us.ibm.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230407110356.8449-1-samin.guo@starfivetech.com>
+ <20230407110356.8449-6-samin.guo@starfivetech.com> <CAJM55Z9jCdPASsk+fw_j+9QH3+Kj28tpCA4PgW_nB_ce7qWL8w@mail.gmail.com>
+ <b8764e20-f983-177c-63c5-36bb3b57ba9e@starfivetech.com>
+In-Reply-To: <b8764e20-f983-177c-63c5-36bb3b57ba9e@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Sat, 8 Apr 2023 19:30:32 +0200
+Message-ID: <CAJM55Z8jSPz70ri_sFnKMjZDoNvoA=K-o7VCeAMmXztzOKRxaA@mail.gmail.com>
+Subject: Re: [-net-next v11 5/6] net: stmmac: Add glue layer for StarFive
+ JH7110 SoC
+To:     Guo Samin <samin.guo@starfivetech.com>
+Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Pedro Moreira <pmmoreir@synopsys.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 06:46:21AM -0500, Lakshmi Yadlapati wrote:
-> Add the driver to support ACBEL FSG032 power supply.
-> 
-> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-> ---
->  drivers/hwmon/pmbus/Kconfig        |  9 +++
->  drivers/hwmon/pmbus/Makefile       |  1 +
->  drivers/hwmon/pmbus/acbel-fsg032.c | 96 ++++++++++++++++++++++++++++++
->  3 files changed, 106 insertions(+)
->  create mode 100644 drivers/hwmon/pmbus/acbel-fsg032.c
-> 
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 59d9a7430499..270b6336b76d 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -27,6 +27,15 @@ config SENSORS_PMBUS
->  	  This driver can also be built as a module. If so, the module will
->  	  be called pmbus.
->  
-> +config SENSORS_ACBEL_FSG032
-> +	tristate "ACBEL FSG032 Power Supply"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for the ACBEL
-> +	  FSG032 Power Supply.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called acbel-fsg032.
-> +
->  config SENSORS_ADM1266
->  	tristate "Analog Devices ADM1266 Sequencer"
->  	select CRC8
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 3ae019916267..84ee960a6c2d 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -5,6 +5,7 @@
->  
->  obj-$(CONFIG_PMBUS)		+= pmbus_core.o
->  obj-$(CONFIG_SENSORS_PMBUS)	+= pmbus.o
-> +obj-$(CONFIG_SENSORS_ACBEL_FSG032) += acbel-fsg032.o
->  obj-$(CONFIG_SENSORS_ADM1266)	+= adm1266.o
->  obj-$(CONFIG_SENSORS_ADM1275)	+= adm1275.o
->  obj-$(CONFIG_SENSORS_BEL_PFE)	+= bel-pfe.o
-> diff --git a/drivers/hwmon/pmbus/acbel-fsg032.c b/drivers/hwmon/pmbus/acbel-fsg032.c
-> new file mode 100644
-> index 000000000000..7bfa0bf048db
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/acbel-fsg032.c
-> @@ -0,0 +1,96 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright 2023 IBM Corp.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/fs.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/pmbus.h>
-> +#include <linux/hwmon-sysfs.h>
-> +#include "pmbus.h"
-> +
-> +struct acbel_fsg032 {
-> +	struct i2c_client *client;
-> +};
+On Sat, 8 Apr 2023 at 03:16, Guo Samin <samin.guo@starfivetech.com> wrote:
+>
+>  Re: [-net-next v11 5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
+> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> to: Samin Guo <samin.guo@starfivetech.com>
+> data: 2023/4/8
+>
+> > On Fri, 7 Apr 2023 at 13:05, Samin Guo <samin.guo@starfivetech.com> wrote:
+> >>
+> >> This adds StarFive dwmac driver support on the StarFive JH7110 SoC.
+> >>
+> >> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> >> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+> >> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> >> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+> >> ---
+> >>  MAINTAINERS                                   |   1 +
+> >>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+> >>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+> >>  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 123 ++++++++++++++++++
+> >>  4 files changed, 137 insertions(+)
+> >>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> >>
+> >> diff --git a/MAINTAINERS b/MAINTAINERS
+> >> index 6b6b67468b8f..46b366456cee 100644
+> >> --- a/MAINTAINERS
+> >> +++ b/MAINTAINERS
+> >> @@ -19910,6 +19910,7 @@ M:      Emil Renner Berthing <kernel@esmil.dk>
+> >>  M:     Samin Guo <samin.guo@starfivetech.com>
+> >>  S:     Maintained
+> >>  F:     Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> >> +F:     drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> >>
+> >>  STARFIVE JH7100 CLOCK DRIVERS
+> >>  M:     Emil Renner Berthing <kernel@esmil.dk>
+> >> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> >> index f77511fe4e87..5f5a997f21f3 100644
+> >> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> >> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> >> @@ -165,6 +165,18 @@ config DWMAC_SOCFPGA
+> >>           for the stmmac device driver. This driver is used for
+> >>           arria5 and cyclone5 FPGA SoCs.
+> >>
+> >> +config DWMAC_STARFIVE
+> >> +       tristate "StarFive dwmac support"
+> >> +       depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
+> >> +       select MFD_SYSCON
+> >> +       default m if ARCH_STARFIVE
+> >> +       help
+> >> +         Support for ethernet controllers on StarFive RISC-V SoCs
+> >> +
+> >> +         This selects the StarFive platform specific glue layer support for
+> >> +         the stmmac device driver. This driver is used for StarFive JH7110
+> >> +         ethernet controller.
+> >> +
+> >>  config DWMAC_STI
+> >>         tristate "STi GMAC support"
+> >>         default ARCH_STI
+> >> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> >> index 057e4bab5c08..8738fdbb4b2d 100644
+> >> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+> >> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> >> @@ -23,6 +23,7 @@ obj-$(CONFIG_DWMAC_OXNAS)     += dwmac-oxnas.o
+> >>  obj-$(CONFIG_DWMAC_QCOM_ETHQOS)        += dwmac-qcom-ethqos.o
+> >>  obj-$(CONFIG_DWMAC_ROCKCHIP)   += dwmac-rk.o
+> >>  obj-$(CONFIG_DWMAC_SOCFPGA)    += dwmac-altr-socfpga.o
+> >> +obj-$(CONFIG_DWMAC_STARFIVE)   += dwmac-starfive.o
+> >>  obj-$(CONFIG_DWMAC_STI)                += dwmac-sti.o
+> >>  obj-$(CONFIG_DWMAC_STM32)      += dwmac-stm32.o
+> >>  obj-$(CONFIG_DWMAC_SUNXI)      += dwmac-sunxi.o
+> >> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> >> new file mode 100644
+> >> index 000000000000..4963d4008485
+> >> --- /dev/null
+> >> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> >> @@ -0,0 +1,123 @@
+> >> +// SPDX-License-Identifier: GPL-2.0+
+> >> +/*
+> >> + * StarFive DWMAC platform driver
+> >> + *
+> >> + * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
+> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> >> + *
+> >> + */
+> >> +
+> >> +#include <linux/mfd/syscon.h>
+> >> +#include <linux/of_device.h>
+> >> +#include <linux/regmap.h>
+> >> +
+> >> +#include "stmmac_platform.h"
+> >> +
+> >> +struct starfive_dwmac {
+> >> +       struct device *dev;
+> >> +       struct clk *clk_tx;
+> >> +};
+> >> +
+> >> +static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed)
+> >> +{
+> >> +       struct starfive_dwmac *dwmac = priv;
+> >> +       unsigned long rate;
+> >> +       int err;
+> >> +
+> >> +       rate = clk_get_rate(dwmac->clk_tx);
+> >
+> > Hi Samin,
+> >
+> > I'm not sure why you added this line in this revision. If it's just to
+> > not call clk_set_rate on the uninitialized rate, I'd much rather you
+> > just returned early and don't call clk_set_rate at all in case of
+> > errors.
+> >
+> >> +
+> >> +       switch (speed) {
+> >> +       case SPEED_1000:
+> >> +               rate = 125000000;
+> >> +               break;
+> >> +       case SPEED_100:
+> >> +               rate = 25000000;
+> >> +               break;
+> >> +       case SPEED_10:
+> >> +               rate = 2500000;
+> >> +               break;
+> >> +       default:
+> >> +               dev_err(dwmac->dev, "invalid speed %u\n", speed);
+> >> +               break;
+> >
+> > That is skip the clk_get_rate above and just change this break to a return.
+> >
+>
+> Hi Emil,
+>
+> We used the solution you mentioned before V3, but Arun Ramadoss doesn't think that's great.
+> (https://patchwork.kernel.org/project/linux-riscv/patch/20230106030001.1952-6-yanhong.wang@starfivetech.com)
+>
+>
+> > +static void starfive_eth_plat_fix_mac_speed(void *priv, unsigned int
+> > speed)
+> > +{
+> > +     struct starfive_dwmac *dwmac = priv;
+> > +     unsigned long rate;
+> > +     int err;
+> > +
+> > +     switch (speed) {
+> > +     case SPEED_1000:
+> > +             rate = 125000000;
+> > +             break;
+> > +     case SPEED_100:
+> > +             rate = 25000000;
+> > +             break;
+> > +     case SPEED_10:
+> > +             rate = 2500000;
+> > +             break;
+> > +     default:
+> > +             dev_err(dwmac->dev, "invalid speed %u\n", speed);
+> > +             return;
+>
+> Do we need to return value, since it is invalid speed. But the return
+> value of function is void.(Arun Ramadoss)
+>
+>
+> So in v9, after discussing with Jakub Kicinski, the clk_set_rate was used to initialize the rate.
+> (It is a reference to Intel's scheme:    dwmac-intel-plat.c: kmb_eth_fix_mac_speed)
+> (https://patchwork.kernel.org/project/linux-riscv/patch/20230328062009.25454-6-samin.guo@starfivetech.com)
+>
 
-Not used anywhere and pointless.
+Yeah, I think this is a misunderstanding and Arun is considering if we
+ought to return the error which we can't without changing generic
+dwmac code, and Jakub is rightly concerned about using a local
+variable uninitialized. I don't think anyone is suggesting that
+getting the rate just to set it to the exact same value is better than
+just leaving the clock alone.
 
-> +
-> +static const struct i2c_device_id acbel_fsg032_id[] = {
-> +	{ "acbel_fsg032" },
-> +	{}
-> +};
-> +
-> +static struct pmbus_driver_info acbel_fsg032_info = {
-> +	.pages = 1,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_IIN | PMBUS_HAVE_PIN |
-> +		   PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT | PMBUS_HAVE_POUT |
-> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
-> +		   PMBUS_HAVE_FAN12 | PMBUS_HAVE_STATUS_VOUT |
-> +		   PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_TEMP |
-> +		   PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_FAN12,
-> +};
-> +
-> +static int acbel_fsg032_probe(struct i2c_client *client)
-> +{
-> +	struct acbel_fsg032 *psu;
-> +	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
-> +	struct device *dev = &client->dev;
-> +	int rc;
-> +
-> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, buf);
-> +	if (rc < 0) {
-> +		dev_err(dev, "Failed to read PMBUS_MFR_ID\n");
-> +		return rc;
-> +	}
-> +	if (strncmp(buf, "ACBEL", 5)) {
-> +		buf[rc] = '\0';
-> +		dev_err(dev, "Manufacturer '%s' not supported\n", buf);
-> +		return -ENODEV;
-> +	}
-> +
-> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
-> +	if (rc < 0) {
-> +		dev_err(dev, "Failed to read PMBUS_MFR_MODEL\n");
-> +		return rc;
-> +	}
-> +
-> +	if (strncmp(buf, "FSG032", 6)) {
-> +		buf[rc] = '\0';
-> +		dev_err(dev, "Model '%s' not supported\n", buf);
-> +		return -ENODEV;
-> +	}
-> +
-> +	rc = pmbus_do_probe(client, &acbel_fsg032_info);
-> +	if (rc)
-> +		return rc;
-> +	/*
-> +         * Don't fail the probe if there isn't enough memory for debugfs.
-> +         */
-> +	psu = devm_kzalloc(&client->dev, sizeof(*psu), GFP_KERNEL);
-> +	if (!psu)
-> +		return 0;
-
-'psu is not used anywhere and allocating it is pointless. I am quite sure
-that I did bring that up before.
-
-Guenter
+> Best regards,
+> Samin
+> >> +       }
+> >> +
+> >> +       err = clk_set_rate(dwmac->clk_tx, rate);
+> >> +       if (err)
+> >> +               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+> >> +}
+> >> +
+> >> +static int starfive_dwmac_probe(struct platform_device *pdev)
+> >> +{
+> >> +       struct plat_stmmacenet_data *plat_dat;
+>  cons>> +       struct stmmac_resources stmmac_res;
+> >> +       struct starfive_dwmac *dwmac;
+> >> +       struct clk *clk_gtx;
+> >> +       int err;
+> >> +
+> >> +       err = stmmac_get_platform_resources(pdev, &stmmac_res);
+> >> +       if (err)
+> >> +               return dev_err_probe(&pdev->dev, err,
+> >> +                                    "failed to get resources\n");
+> >> +
+> >> +       plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> >> +       if (IS_ERR(plat_dat))
+> >> +               return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
+> >> +                                    "dt configuration failed\n");
+> >> +
+> >> +       dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
+> >> +       if (!dwmac)
+> >> +               return -ENOMEM;
+> >> +
+> >> +       dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
+> >> +       if (IS_ERR(dwmac->clk_tx))
+> >> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
+> >> +                                    "error getting tx clock\n");
+> >> +
+> >> +       clk_gtx = devm_clk_get_enabled(&pdev->dev, "gtx");
+> >> +       if (IS_ERR(clk_gtx))
+> >> +               return dev_err_probe(&pdev->dev, PTR_ERR(clk_gtx),
+> >> +                                    "error getting gtx clock\n");
+> >> +
+> >> +       /* Generally, the rgmii_tx clock is provided by the internal clock,
+> >> +        * which needs to match the corresponding clock frequency according
+> >> +        * to different speeds. If the rgmii_tx clock is provided by the
+> >> +        * external rgmii_rxin, there is no need to configure the clock
+> >> +        * internally, because rgmii_rxin will be adaptively adjusted.
+> >> +        */
+> >> +       if (!device_property_read_bool(&pdev->dev, "starfive,tx-use-rgmii-clk"))
+> >> +               plat_dat->fix_mac_speed = starfive_dwmac_fix_mac_speed;
+> >> +
+> >> +       dwmac->dev = &pdev->dev;
+> >> +       plat_dat->bsp_priv = dwmac;
+> >> +       plat_dat->dma_cfg->dche = true;
+> >> +
+> >> +       err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+> >> +       if (err) {
+> >> +               stmmac_remove_config_dt(pdev, plat_dat);
+> >> +               return err;
+> >> +       }
+> >> +
+> >> +       return 0;
+> >> +}
+> >> +
+> >> +static const struct of_device_id starfive_dwmac_match[] = {
+> >> +       { .compatible = "starfive,jh7110-dwmac" },
+> >> +       { /* sentinel */ }
+> >> +};
+> >> +MODULE_DEVICE_TABLE(of, starfive_dwmac_match);
+> >> +
+> >> +static struct platform_driver starfive_dwmac_driver = {
+> >> +       .probe  = starfive_dwmac_probe,
+> >> +       .remove = stmmac_pltfr_remove,
+> >> +       .driver = {
+> >> +               .name = "starfive-dwmac",
+> >> +               .pm = &stmmac_pltfr_pm_ops,
+> >> +               .of_match_table = starfive_dwmac_match,
+> >> +       },
+> >> +};
+> >> +module_platform_driver(starfive_dwmac_driver);
+> >> +
+> >> +MODULE_LICENSE("GPL");
+> >> +MODULE_DESCRIPTION("StarFive DWMAC platform driver");
+> >> +MODULE_AUTHOR("Emil Renner Berthing <kernel@esmil.dk>");
+> >> +MODULE_AUTHOR("Samin Guo <samin.guo@starfivetech.com>");
+> >> --
+> >> 2.17.1
+> >>
+> >>
+> >> _______________________________________________
+> >> linux-riscv mailing list
+> >> linux-riscv@lists.infradead.org
+> >> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>
+> --
+> Best regards,
+> Samin
