@@ -2,127 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 094396DBBB1
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 16:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D4426DBBE3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 17:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjDHO55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 10:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39918 "EHLO
+        id S229944AbjDHP3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 11:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjDHO54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 10:57:56 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79ACA2D75
-        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 07:57:55 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id g18so14430670ejj.5
-        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 07:57:55 -0700 (PDT)
+        with ESMTP id S229778AbjDHP3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 11:29:04 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8AC44AA;
+        Sat,  8 Apr 2023 08:29:03 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id bp17-20020a17090b0c1100b0023f187954acso994213pjb.2;
+        Sat, 08 Apr 2023 08:29:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680965874;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r2/qlTZK3oc+3BcIiO+i7wsdJpDN0YCENNW/riWaWBw=;
-        b=hEiQFv4Ri1VXTALwil3u0QmuzXY0NHaOpRgLjpVfPDSS3CDBk/tqGai+aC2FpNSmSC
-         WdE0SI1vxEIPPW4zKU67JMvoFtxvR3KkYlkXTyw/wR+Fi6IwLsqQL/DKFLzNqc77L+Dx
-         y4aca0jvgoH1AvWAyWcEkvKN8oe/WP6bwIdYOaQU+vOFvKIxhIalNIt4GERDacNG2dvX
-         e51p/jb08wUSRuPTKASgPD++ZBUFmHy6dhhZZOmBUVL7MJW9MQr3JFgETcb+2ZWICzKW
-         ovr5iEDN1OoKDBozgKXEoESyxAU4fcC4hbFs1xUYEBIunL48uwU6VwVJbexyrmyc3LJq
-         IS2Q==
+        d=gmail.com; s=20210112; t=1680967743; x=1683559743;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L/CqlFLSqTlHbIyKxwvXGQ5ogjJykzkwTVvFA5reLrY=;
+        b=MRHkIlNVuAzdfLMyOf1KU3dKEl6JGIYPOpOLaz/HH3DtmrUctyXQ6l5ZQJqZgDVhII
+         0uMYKnIRjhgXPogcW5LMZ/J4g5sETfrVvjSbPfNusD7z7mi7xhSjgX31uqk8sKhTxbKQ
+         bzGsMMYzPZhWqqxuL4p5QStegnHRzjYalYEE21AwRlXaGNiLjGwBvf8hAi7fUdKjTr2W
+         XlnaE7GsJKO9h1P8HKm4NmjGXjtFWiAIOdOI7UzPOcJ3CIypeiC8wdx2mxm12KaxB3qm
+         OwHYIkTnDjO9VtZjmUrWxupB0IP5+qHJJXQwge+J3xlSUgQeN3H3DXKLZM79LZFqsYli
+         A/Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680965874;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r2/qlTZK3oc+3BcIiO+i7wsdJpDN0YCENNW/riWaWBw=;
-        b=72+I2oZbaI8jPYCDuqsHCt1ckvtFPNuCJ7ANpDaCiBZMz6GyYHGfQlX8C/zMaTXdla
-         SlrzG+jh4CyhOupV7ZLN25QTcsKfUg+q5rhCTLPcTTIqBnxHQ3/j/QFqG2+pKKbF7uvn
-         XAbEQErFWUHzvvKTsXPVqzCmfTqfAZRJtNyZhla8/cLHONV5bgF9g3/W9UdGh7vdHMc9
-         eJwQkJ3KrXyODvp4/ZBDTPiEHEe9EjMGhKQz9Tbc0Mt8Wor2Gvm9v9bBmBuhZUZIWB2X
-         U8ACqCOcqXkrYGpfu4ossMLiI8MCG0kMQAY/nMGobeQbbI5RJH8/6MrezklDEr+KOd2T
-         +jhQ==
-X-Gm-Message-State: AAQBX9fqHc/I5TBzV7vaYoOXy/leSt5qEh2JenL31/yoMMEFPkUWPFON
-        EaFhQhBvGwVVJA6XxY5KQzXHCg==
-X-Google-Smtp-Source: AKy350adYYuy2WWnFavedFp4QpR1b9dBllUR2MoosuAuU4Q4DaBN8J38njDCEHhG4EuXGlh6kHrcZg==
-X-Received: by 2002:a17:906:784:b0:949:c05d:73b6 with SMTP id l4-20020a170906078400b00949c05d73b6mr1966937ejc.17.1680965873987;
-        Sat, 08 Apr 2023 07:57:53 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:e293:da16:7aac:96e6? ([2a02:810d:15c0:828:e293:da16:7aac:96e6])
-        by smtp.gmail.com with ESMTPSA id f7-20020a1709064dc700b0093f83562f09sm3191976ejw.87.2023.04.08.07.57.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Apr 2023 07:57:53 -0700 (PDT)
-Message-ID: <0205fab6-3665-f985-41a5-3fed24644665@linaro.org>
-Date:   Sat, 8 Apr 2023 16:57:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] ARM: dts: stm32: fix typo in stm32mp15xx-dkx.dtsi
-Content-Language: en-US
-To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        d=1e100.net; s=20210112; t=1680967743; x=1683559743;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L/CqlFLSqTlHbIyKxwvXGQ5ogjJykzkwTVvFA5reLrY=;
+        b=LakrHfLRSEJb47B5QouSD+ub+MnsXGHDliepDjsLSTw8GZJ0uTGwce73maDGluzh7B
+         gMspR/GJ3Qz9Pki3bme8RDKQq0ROgS7Yf2S+F2T/IHEz80LkPyRq/TUgMi2NyUeMZUsv
+         Q3M7ZHJAm5OTLPWZRzrMNvIBNooghvtoOYMFuWy1CHKLC/Wpf2h4WUpu6Ctq6I6ZYx7b
+         NahUX00QGBxZVgDOCw5lqHg7Ypkdwu9dIaJDK+ItEGdBb9jfUEoJ7jQufE6eTGGynTZe
+         QAXMLrCzyQ3btNgz9l02R8WbZtSQwPZL0fSU0tDqxVtouUd2T7w5lD55s6YwEj7JlE6g
+         7zPg==
+X-Gm-Message-State: AAQBX9f2rzNDab5DUdslNJcePJRbm+VKzHU8BiyoN8v/C6bOnDSELnmZ
+        tm/6LHe4uHyQoLsYps55JSs=
+X-Google-Smtp-Source: AKy350Y+M27wSUr2e2KA/3Osm5k6tDYPZAW3F7SZ5WX9U9qR8HLOaf0b2Pwx1PQHytYXXR2m/tR1vg==
+X-Received: by 2002:a17:902:e550:b0:19c:da7f:a234 with SMTP id n16-20020a170902e55000b0019cda7fa234mr7765282plf.67.1680967742844;
+        Sat, 08 Apr 2023 08:29:02 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id ju18-20020a170903429200b00199023c688esm4688711plb.26.2023.04.08.08.29.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Apr 2023 08:29:02 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sat, 8 Apr 2023 08:29:01 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230407193253.1.If11ffa6edfdfef0869478412ec3cec3169483cb9@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230407193253.1.If11ffa6edfdfef0869478412ec3cec3169483cb9@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: Add starfive,jh71x0-temp
+Message-ID: <746ae322-f661-4713-8152-1f7b33b1a988@roeck-us.net>
+References: <20230321022644.107027-1-hal.feng@starfivetech.com>
+ <20230321022644.107027-2-hal.feng@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230321022644.107027-2-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2023 19:33, Patrick Delaunay wrote:
-> Remove unnecessary space in device tree stm32mp15xx-dkx.dtsi.
-
-Your commit subject says typo. Where is it?
-
+On Tue, Mar 21, 2023 at 10:26:43AM +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
 > 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> Add bindings for the temperature sensor on the StarFive JH7100 and
+> JH7110 SoCs.
+> 
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied.
+
+Thanks,
+Guenter
+
 > ---
+>  .../bindings/hwmon/starfive,jh71x0-temp.yaml  | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
 > 
->  arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-> index 11370ae0d868..ccd6c4722bd3 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-> @@ -382,21 +382,21 @@ vref_ddr: vref_ddr {
->  				regulator-always-on;
->  			};
->  
-> -			 bst_out: boost {
-> +			bst_out: boost {
->  				regulator-name = "bst_out";
->  				interrupts = <IT_OCP_BOOST 0>;
-> -			 };
-> +			};
->  
->  			vbus_otg: pwr_sw1 {
->  				regulator-name = "vbus_otg";
->  				interrupts = <IT_OCP_OTG 0>;
-> -			 };
-> +			};
->  
-> -			 vbus_sw: pwr_sw2 {
-> +			vbus_sw: pwr_sw2 {
->  				regulator-name = "vbus_sw";
->  				interrupts = <IT_OCP_SWOUT 0>;
->  				regulator-active-discharge = <1>;
-> -			 };
-> +			};
->  		};
->  
->  		onkey {
-
-Best regards,
-Krzysztof
-
+> diff --git a/Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml b/Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
+> new file mode 100644
+> index 000000000000..f5b34528928d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/starfive,jh71x0-temp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH71x0 Temperature Sensor
+> +
+> +maintainers:
+> +  - Emil Renner Berthing <kernel@esmil.dk>
+> +
+> +description: |
+> +  StarFive Technology Co. JH71x0 embedded temperature sensor
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - starfive,jh7100-temp
+> +      - starfive,jh7110-temp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: "sense"
+> +      - const: "bus"
+> +
+> +  '#thermal-sensor-cells':
+> +    const: 0
+> +
+> +  resets:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: "sense"
+> +      - const: "bus"
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive-jh7100.h>
+> +    #include <dt-bindings/reset/starfive-jh7100.h>
+> +
+> +    temperature-sensor@124a0000 {
+> +        compatible = "starfive,jh7100-temp";
+> +        reg = <0x124a0000 0x10000>;
+> +        clocks = <&clkgen JH7100_CLK_TEMP_SENSE>,
+> +                 <&clkgen JH7100_CLK_TEMP_APB>;
+> +        clock-names = "sense", "bus";
+> +        #thermal-sensor-cells = <0>;
+> +        resets = <&rstgen JH7100_RSTN_TEMP_SENSE>,
+> +                 <&rstgen JH7100_RSTN_TEMP_APB>;
+> +        reset-names = "sense", "bus";
+> +    };
