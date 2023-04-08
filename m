@@ -2,91 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F9C6DB971
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 10:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD0C6DB984
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 10:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbjDHIBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 04:01:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
+        id S229770AbjDHIOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 04:14:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjDHIBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 04:01:45 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18E03A84;
-        Sat,  8 Apr 2023 01:01:43 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id qa44so1330406ejc.4;
-        Sat, 08 Apr 2023 01:01:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680940902; x=1683532902;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=K5tWKyBW1O5WmbCgc/4ykx5MxlKMaKP2zAFZ1gL/EkE=;
-        b=LKe4kQDtEH01/12w5TidPgxQ/hk+cRbhpRzXvRDRz4VqLeaVkBoBELY8ndkWtkr7Xw
-         2Ll031OvIyJyI2GwzSSm3a7cgms3a1UNy7QV3jD8p+ykRAh5JRffn4bfyOj3MlFuKoQb
-         HCwCShmsF39vt/x7fV9tVxUXGgMPIXzjhvJxqbvH9v1l56uxJjEthLBefU4UHlBrqvub
-         2ZCxCvWsXUpzQ30Fm0eLRyjjRWBPlxQ7OMSfcLmfyfAO7ACe9EV44pCseiurV4vgnJd9
-         xxbvpewi1sj4VEzH1UpPW+cKaRnKFfFZHUkWyLaNCIHPRNTiadyEvkaYgdpCnRn9cVoW
-         59GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680940902; x=1683532902;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K5tWKyBW1O5WmbCgc/4ykx5MxlKMaKP2zAFZ1gL/EkE=;
-        b=REYwWGJU0OZCNHN6t2IEQ2hs+oNEjCq5X2R+W8kTkwkeFfrNHZyYnsarr2DkVwF7l/
-         rjQo/OjB4NfOUdj1mxi4i9VCTiehRJcw8cWMTKdVTpXXFcMWGyMqUMc1FMWe2R0u7zqM
-         l5NP4nRG+2QNYWfFRmVTtkW3jzi3lKbXLUZiF/AMMrK7A6NScxjErtbVUQ8/1jybtDmi
-         aef+B5CzgP+hotvx3DCoAg64kO85IjcrsPooDnwM2ssd8zQHtL70I6W1XB5pvm1e0Fc7
-         kG2K8yTMqRQ0+7wPxlw3bqiQFu2Fft2C4ivM22oC7BRjAybhmWUp0+3WAGTqkf22rkE2
-         aqJA==
-X-Gm-Message-State: AAQBX9dl0cuziLwYya9gJvJ8geoHBJ39x4OS1hxDWbfCLnzCd3oxdCM9
-        VeKwRSTgClu9qgCjAtnDHH8=
-X-Google-Smtp-Source: AKy350bl5z3CITJRDeP4kexVek58k7J2u1EX5Y5MvhCvgaCshsDhwBqpj6fPDcbUoQYc2ENDd/zV6Q==
-X-Received: by 2002:a17:906:b1d7:b0:933:868:413a with SMTP id bv23-20020a170906b1d700b009330868413amr1832817ejb.15.1680940902037;
-        Sat, 08 Apr 2023 01:01:42 -0700 (PDT)
-Received: from xeon.. ([188.163.112.79])
-        by smtp.gmail.com with ESMTPSA id u11-20020a17090617cb00b008c16025b318sm2878015eje.155.2023.04.08.01.01.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Apr 2023 01:01:41 -0700 (PDT)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] Add power supply for INA2XX
-Date:   Sat,  8 Apr 2023 11:01:21 +0300
-Message-Id: <20230408080121.7306-1-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S229457AbjDHIOS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 04:14:18 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E24849CB;
+        Sat,  8 Apr 2023 01:14:17 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id 9BFA7403B9;
+        Sat,  8 Apr 2023 13:14:14 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1680941655; bh=7ypwQpfzYbwP9zkuvkd1wuczBoIHgDyxmN9zJNBqqz4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LKEiVWLaJBAh4l0ZYdMg0OQx2RLPxqrE3VMbE8OJR1gnrNdzHByV0IJq6Mn+ApJYU
+         pP8QNY7ne2qBVa923c7s5NwrEzkMCs+fhnmT1COMSHEOOlFoVYJ63dE8praLxc/b6n
+         0c3HTmQck6SVTRI5SOsXVbZc/6/C4qfbi+x7NCMUg2ehZn69mzeCur4n8CNNs8UZpM
+         fbygv4EVeBOyfY5NzlGAjoilUPJn6DgSsP0xo+9SbOxfXR8gJeIuBIBNRBzZi9D+is
+         cbNF+N7brtx6YTvPE3PIdzvWjSVNqHcz0h14ZgWAhrbzMc4FTiWsstFTIjqC9rjJt9
+         86OIIjiiQVTHA==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     agross@kernel.org, andersson@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        konrad.dybcio@linaro.org, quic_srivasam@quicinc.com,
+        judyhsiao@chromium.org, mka@chromium.org, dianders@chromium.org,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v6 0/4] Add Acer Aspire 1
+Date:   Sat,  8 Apr 2023 13:13:12 +0500
+Message-Id: <20230408081316.234293-1-nikita@trvn.ru>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI ina2xx hwmon has vs power supply, add one for correct work.
+This series introduces Acer Aspire 1 - A WoA laptop with sc7180.
 
-Changes from v1
-- fixed regulator disable and release
-- set correct supply name
-- added supply description
+The dts adds mostly complite support for the hardware and the device,
+with minor patches on top, can be used as a normal laptop daily.
 
-Svyatoslav Ryhel (2):
-  dt-bindings: hwmon: ina2xx: add supply property
-  hwmon: ina2xx: add optional regulator support
+Notable features absent from this patch:
+- Sound
+   While the dedicated sound components are defined, since the
+   ADSP must be used, sound requires additions of that remoteproc
+   as well some extra "glue" to connect the i2s outputs to it.
+   I was able to hack together some sound based on sm8250 stuff
+   but it needs more work.
+- Embedded Controller
+   The laptop has a dedicated EC that controls, notably,
+   battery/charger and notifies the device about the USB-C DisplayPort
+   HPD events. As per this patch, there is no battery status
+   indication and external display support. Also, due to the EC
+   defaults, the fn key is disabled. I have an experimental driver that
+   implements all of that, which needs more work and will be submitted
+   at a later date.
+- PSCI OSI Mode
+   Firmware on this laptop does not support the PC mode, as is usual
+   for Qualcomm. This change would require adding OSI related
+   power-domains to the SoC dtsi and is omitted in expectation that
+   this can be handled when (if?) CrOS team handles their tf-a, like
+   they did with sc7280.
 
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
- drivers/hwmon/ina2xx.c                                 | 4 ++++
- 2 files changed, 9 insertions(+)
+Changed in v3:
+ - Disable lpass clocks by default (Konrad)
+ - Drop status=disabled for mdp in the common soc dtsi (Konrad)
+
+Changed in v4:
+ - Resend with picked up tags, no other change.
+
+Changed in v5:
+ - Minor style issues fixed. (Konrad)
+
+Changed in v6:
+ - Fix eDP HPD hack (Doug)
+
+Nikita Travkin (4):
+  arm64: dts: qcom: sc7180: Don't enable lpass clocks by default
+  arm64: dts: qcom: sc7180: Drop redundant disable in mdp
+  dt-bindings: arm: qcom: Add Acer Aspire 1
+  arm64: dts: qcom: Add Acer Aspire 1
+
+ .../devicetree/bindings/arm/qcom.yaml         |   4 +-
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sc7180-acer-aspire1.dts     | 845 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       |   4 -
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |   6 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |   6 +-
+ 6 files changed, 857 insertions(+), 9 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
 
 -- 
-2.37.2
+2.39.2
 
