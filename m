@@ -2,97 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E8106DBA5D
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 13:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6DC6DBA71
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 13:36:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbjDHLOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 07:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45408 "EHLO
+        id S230211AbjDHLgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 07:36:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbjDHLOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 07:14:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605596A59;
-        Sat,  8 Apr 2023 04:14:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EFF61614AD;
-        Sat,  8 Apr 2023 11:14:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C67C433EF;
-        Sat,  8 Apr 2023 11:14:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680952458;
-        bh=F8Pk70gmucOlar+dBkR0TXgLrRuVtEej5mAHyAYA+k0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=p0Rd1YXRGTxEFzXbpx9IpL79wKWPU3UsKAB7IHgYmBeKyf0sf6fUVp64d93wTIvIS
-         mm8vyHoCtrxx5n4xcbgrqgPsVXWaJH7Duu0kQUZCDgOj/GKIK/lTMyH3eHitncHK3F
-         kXAkMGXKiQghyEg8zxG+RpDWu0MAKamaeoVC49AS5EwQ9KqQy4MrBh8Wst9DRyHP1O
-         zso0/22z+uJ+SstAzIF7iOVopOe6PyIcq0QUMl/JWE9hqdtjt13LTCXvgdFUg3B1ne
-         t4OsjFn3zDOGYn8SjPETZCOkqWrsJdKA19n00s1/K3Re81jfw0SeU0NmIGPaSpwsob
-         us5gfEoz4fpuA==
-Date:   Sat, 8 Apr 2023 12:29:32 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andreas Klinger <ak@it-klinger.de>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229699AbjDHLga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 07:36:30 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B6CAF3F
+        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 04:36:28 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id jg21so1964874ejc.2
+        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 04:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680953787;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6KMCVN4L9ldklrxsAVU+YsdQxCGvFHVbNDAEiVGPna8=;
+        b=bM8PxqxodCpdHWxRqzqVx0Cgn3TYN3yuyV7ntN6AyozvP5C6fZxPV//yW/PQZGufix
+         3bQ3dAkqukP444e1E1NvWps5tw8nZM35cW0mZCcRnT/eTOamXjchwMWIxbJdUVd1TSzp
+         WCHojVUaIZd5Moav5opWP6rDgbROlmEKDPRByOEk9joJFq2m/NMzyL4xsSrMqbIi3KNS
+         rVJ+qLuZJL+Xh5lIRsF0yhYpQG3OGvtjTQpeUPkBvOIgLl5KWsFwrBfrCn3Fnb24sw24
+         r7zdvV87LMmkpOq1XpW/CpoFHoylIONBitJbZFY1CCjOF5wD3eNTXtUP0UMAGZ2/Bniw
+         PqDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680953787;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6KMCVN4L9ldklrxsAVU+YsdQxCGvFHVbNDAEiVGPna8=;
+        b=tPHJbM/7UUPYeigpJ7dtnigmn0QWf1FWeQv6r3y3GbXzN1Nn1xQy+gsxB2PbOtTn3u
+         mJ0/lD5qKhD0MOtNdY3DZdwW3UTMDjraqPAJbQQYjxCNhzp3zJX8+vmL2ulXDuIkx2/y
+         4gGYE8dDEZ5AQtWBpvwajKrf3Pa8V1jOQrvJPeqBbyi/R0DN9BcwymcGS4GCSkBzlVn4
+         BTAHROGFijuEMojtcnlAjxMS9ypKeiziB1GSEYGED/2RBypdWH9WxlROMU+e0N3JAFD5
+         XqGBpK9VWT2kdtc3xcqI4Mb59iDayYKomSrdknOl8jq3+Zn6t3SEfcZ3zw2imOUrEtv0
+         6q5w==
+X-Gm-Message-State: AAQBX9eyayxUHnonXkY5kB1kuxzQKb5xMm0QkyQ5RN1QcTKDTlg97Uby
+        X6OHsmUVjhg07LRHz8JN8SdzaQ==
+X-Google-Smtp-Source: AKy350ZjUl26qCzn/b2R5qoeTLSeScfNvPyM4mr4GcK4curXt7xM05OURsWwQqKojqOFAxaux0orWw==
+X-Received: by 2002:a17:907:2157:b0:914:4277:f3e1 with SMTP id rk23-20020a170907215700b009144277f3e1mr2016161ejb.53.1680953786790;
+        Sat, 08 Apr 2023 04:36:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:4c06:aac9:100f:9d7f? ([2a02:810d:15c0:828:4c06:aac9:100f:9d7f])
+        by smtp.gmail.com with ESMTPSA id y11-20020a17090629cb00b00949173c1dcfsm3090237eje.18.2023.04.08.04.36.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Apr 2023 04:36:26 -0700 (PDT)
+Message-ID: <70dd6449-06d2-7182-9922-ddc3476ba472@linaro.org>
+Date:   Sat, 8 Apr 2023 13:36:25 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 0/8] Add multiport support for DWC3 controllers
+Content-Language: en-US
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: pressure: Honeywell mpr pressure sensor
-Message-ID: <20230408122932.61d2bff0@jic23-huawei>
-In-Reply-To: <ZC8g/dfMYWZcW4zg@arbad>
-References: <20230401185717.1b971617@jic23-huawei>
-        <ZC8g/dfMYWZcW4zg@arbad>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
+        "quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
+        "quic_wcheng@quicinc.com" <quic_wcheng@quicinc.com>,
+        "quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
+        "quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
+        "ahalaney@redhat.com" <ahalaney@redhat.com>,
+        "quic_shazhuss@quicinc.com" <quic_shazhuss@quicinc.com>
+References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
+ <20230408014251.6cyjwuvsgu7dmz53@synopsys.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230408014251.6cyjwuvsgu7dmz53@synopsys.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 Apr 2023 21:43:57 +0200
-Andreas Klinger <ak@it-klinger.de> wrote:
-
-> Hi Jonathan,
+On 08/04/2023 03:42, Thinh Nguyen wrote:
+>> Krishna Kurapati (8):
+>>   dt-bindings: usb: Add bindings for multiport properties on DWC3
+>>     controller
+>>   usb: dwc3: core: Access XHCI address space temporarily to read port
+>>     info
+>>   usb: dwc3: core: Skip setting event buffers for host only controllers
+>>   usb: dwc3: core: Refactor PHY logic to support Multiport Controller
+>>   usb: dwc3: qcom: Add multiport controller support for qcom wrapper
+>>   arm64: dts: qcom: sc8280xp: Add multiport controller node for SC8280
+>>   arm64: dts: qcom: sa8295p: Enable tertiary controller and its 4 USB
+>>     ports
+>>   arm64: dts: qcom: sa8540-ride: Enable first port of tertiary usb
+>>     controller
+>>
+>>  .../devicetree/bindings/usb/snps,dwc3.yaml    |  13 +-
+>>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  47 +++
+>>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  22 ++
+>>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  58 +++
+>>  drivers/usb/dwc3/core.c                       | 373 ++++++++++++++----
+>>  drivers/usb/dwc3/core.h                       |  71 +++-
+>>  drivers/usb/dwc3/drd.c                        |  13 +-
+>>  drivers/usb/dwc3/dwc3-qcom.c                  |  28 +-
+>>  8 files changed, 523 insertions(+), 102 deletions(-)
+>>
+>> -- 
+>> 2.40.0
+>>
 > 
-> thanks for the extensive review. Most of it is clear but one questions remain.
-> See below.
-> 
-> Jonathan Cameron <jic23@kernel.org> schrieb am Sa, 01. Apr 18:57:
-> > > +static void mpr_reset(struct mpr_data *data)
-> > > +{
-> > > +	if (data->gpiod_reset) {
-> > > +		gpiod_set_value(data->gpiod_reset, 0);
-> > > +		udelay(10);
-> > > +		gpiod_set_value(data->gpiod_reset, 1);
-> > > +	}  
-> > 
-> > If there isn't a reset signal, I'd like to see an attempt at least to write
-> > all configuration registers to a known value (same as the one you'd
-> > get after reset).    
-> 
-> There is no configuration register in the sensor I could write to. But maybe I
-> didn't comprehend your point.
+> Please check if your patches and mailing client. Looks like they are
+> corrupted.
 
-Ah. Devices is even simpler than I was anticipating. Which makes me wonder.
-What does the reset actually do?
+All patches look from patch-syntax and apply fine. What is exactly
+corrupted?
 
-I checked the datasheet and reason to bother with this is about powersupplies
-that don't come up fast enough.  Fair enough. If someone hasn't wired
-the reset I guess they are happy that the power on reset will work.
-(4.0 Power support requirement) 
-
-Jonathan
-
-> 
-> Andreas
-> 
+Best regards,
+Krzysztof
 
