@@ -2,175 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE48D6DB9EE
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 11:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7015A6DBA44
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 12:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjDHJrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 05:47:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50338 "EHLO
+        id S230177AbjDHKzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 06:55:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjDHJru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 05:47:50 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07F4CCC2C;
-        Sat,  8 Apr 2023 02:47:49 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id qb20so1509861ejc.6;
-        Sat, 08 Apr 2023 02:47:48 -0700 (PDT)
+        with ESMTP id S230463AbjDHKyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 06:54:47 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8CDED501
+        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 03:53:13 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id g18so13555164ejj.5
+        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 03:53:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680947267; x=1683539267;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a7JcVwqthdcJ8hCQRH20mpyswxWH0pIeDYiRTxlRyzE=;
-        b=GrOTY5DqaxGZuDFLw9SJTkHvxA73yO/zPw/FZKG55r+tjyVbuOG+a2XAJUlYkxu+ku
-         1pwXUF0J7QenhGNPYk2ljI8NhvtWOFetj+golw0VWH+Y4Nw4CpMaYl0a6zIFMJbMnysc
-         WDNkab6lVRbLfP1a+o0Ef8S4x9x65IQ23WZZY4mqpCY8uBwLUXQys/oAMCF/Q7ExVfmH
-         1bL0xYnF9N/Y1B+4kkcqMY1KHCvEwW6U4dZUj0crpahel0qCBNO7pQDEiHlFSU8dDGB6
-         OLS3BtHd1OQQ39TRP73/Sm/eGJo+oGGJLfswJ+UMOjl4FJ/i6CcEbUKl7/yEGZxl0HEe
-         S3gg==
+        d=linaro.org; s=google; t=1680951144;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xzlcPDdhLXiZUIT0eAmMiOCXXvUXvy1/5/KTBOdWAJA=;
+        b=X5IMUAXYOYOQUvk4BIOf4N93LRNKbzaBZ2CCaJlIorV7qKi1LeZi04eJHS5Y3tWRI9
+         T1rvvMAeehVALKOuMV6OQEPhffODCKMrenoUs52NodUA1kM/l0kCte3CQlnNtZlMyvpt
+         R7bH9G53BVQzSYzTH3ZYx+wGWGaIb+7nT+CwrTXecydJqyoI0QeVm90bLpCVumFP551C
+         mXJdQ8QLGFmKlQ++S7Uo0YSHpVnN2c1pAgF6dXtgA54YFCUO3pNQLmyAoLBYnGaqdCMn
+         FELx3+JtWHumMo7a+70dX8wNMpcSZnOjh1fPf/AcWA8ACtrT4o5JA4tZNTdmQ2QS3s8r
+         fPjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680947267; x=1683539267;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a7JcVwqthdcJ8hCQRH20mpyswxWH0pIeDYiRTxlRyzE=;
-        b=CZcZW7ABmax0TNnhDfE188Zy1ZwhHbj8HxCH8p6yO/fom4NCXNplQrYHKQuVCM/9L+
-         VZDtAQWYygwynfgqPp69v9pD60OJvcPavjZmWc4Y9kXjAnaAwBCE2m5x9070U3W5zjfJ
-         auhbghSWeVVUU9EKmT2JTTIQEJxItY7C1g/+8+i3JvjoBopB+C3gKP1qzqUBK+TgGQyA
-         Z2sh2F5EXZjwVD9cz+bguvH+U1beImLaQDa3uAowKiKSzBMFQfng1Dqia5Qtje+tPneq
-         PRgxi7mhkGJw2lpBVVhOhojhg3fouRds5rjlsV4lmO1Pme+bYxvskZE4wg28Z/U3ffX3
-         EN8A==
-X-Gm-Message-State: AAQBX9e5uHXr+8NxM6Sa0t3nYJKQCW5aMrumCG7esc5njmPMicaCg8d8
-        3Of4FRLDdpCJCXniLN9/weU=
-X-Google-Smtp-Source: AKy350b6o8A/fVh/YL6rI4iMR4TK2MLQhaSPsZkerv2yJgeK2/onG9QYyVuPaJ/tfM+ENyVqTAXrLQ==
-X-Received: by 2002:a17:907:a08:b0:93b:b8f3:225d with SMTP id bb8-20020a1709070a0800b0093bb8f3225dmr1490869ejc.15.1680947267449;
-        Sat, 08 Apr 2023 02:47:47 -0700 (PDT)
-Received: from xeon.. ([188.163.112.79])
-        by smtp.gmail.com with ESMTPSA id a21-20020a50c315000000b0050481736f0csm982297edb.12.2023.04.08.02.47.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Apr 2023 02:47:47 -0700 (PDT)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v1 2/2] ARM: tegra: transformers: add connector node
-Date:   Sat,  8 Apr 2023 12:47:23 +0300
-Message-Id: <20230408094723.12733-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230408094723.12733-1-clamor95@gmail.com>
-References: <20230408094723.12733-1-clamor95@gmail.com>
+        d=1e100.net; s=20210112; t=1680951144;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xzlcPDdhLXiZUIT0eAmMiOCXXvUXvy1/5/KTBOdWAJA=;
+        b=v5uzf374z4doxevBgu2VSXll57UyNUud9wzfXTjj0TZOFiGUaZFtxJBwscVStw1Xey
+         Trie5gze/Syv1zNM8DdJ4GA/giNc00IM5rSZ6qczlf5FYHi4EwoNfsFkKNVTS+IxseHW
+         GgtL9+7HPaXD4thJHDHoe8O+/Vj9eCXfbOPOIuGcVRS/nxlxUdViJCOCFY24j8AzE7hs
+         1q4RYZtnZ9v3OniQ7Xzoa46WUCerKMfl4yCxbp1eVqnVpYN0Mx57kjpsG5A5+EqQrFbV
+         my5cm0o2NTLBWtjg3Be55boRbiqNqGPoRWtqz1BNaVuXf4/sqrEDRW1LHRsXLiEKzpUB
+         YiJw==
+X-Gm-Message-State: AAQBX9dagS9KM9XjwpiU9FH8GqmL4g4F7tJpW82suVpEJ5qNBlnFBD7a
+        Zz6wM0ccWGXbsgyJLAZRwQlpbw==
+X-Google-Smtp-Source: AKy350anWXnwjZ5u8PEeIytE4Zu/+haX07IcVOOwbe2BuzCnQbj9FO4aSCg0Qqbw/RWcoxWvWSjjqQ==
+X-Received: by 2002:a17:906:c085:b0:949:7c05:71b6 with SMTP id f5-20020a170906c08500b009497c0571b6mr2242272ejz.44.1680951144449;
+        Sat, 08 Apr 2023 03:52:24 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:4c06:aac9:100f:9d7f? ([2a02:810d:15c0:828:4c06:aac9:100f:9d7f])
+        by smtp.gmail.com with ESMTPSA id i19-20020a170906091300b00923f05b2931sm3023452ejd.118.2023.04.08.03.52.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Apr 2023 03:52:24 -0700 (PDT)
+Message-ID: <6127f21a-9101-9739-f798-0a181d8a5fcb@linaro.org>
+Date:   Sat, 8 Apr 2023 12:52:22 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 12/14] arm64: dts: qcom: sc7180: Fix trogdor qspi pin
+ config
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-spi@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-kernel@vger.kernel.org
+References: <20230323173019.3706069-1-dianders@chromium.org>
+ <20230323102605.12.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
+ <43b74b3f-e607-ba55-a5fa-326fb4b5519d@linaro.org>
+ <CAD=FV=VvgbPKQsOirMa-k0PE-KAvjWy+iMWd0TCbysYirwEH7w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=VvgbPKQsOirMa-k0PE-KAvjWy+iMWd0TCbysYirwEH7w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All ASUS Transformers have micro-HDMI connector directly available.
-After Tegra HDMI got bridge/connector support, we should use connector
-framework for proper HW description.
+On 07/04/2023 21:53, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Apr 7, 2023 at 11:11 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 23/03/2023 18:30, Douglas Anderson wrote:
+>>> In commit 7ec3e67307f8 ("arm64: dts: qcom: sc7180-trogdor: add initial
+>>> trogdor and lazor dt") we specified the pull settings on the boot SPI
+>>> (the qspi) data lines as pullups to "park" the lines. This seemed like
+>>> the right thing to do, but I never really probed the lines to confirm.
+>>>
+>>
+>>
+>>>  &qup_i2c2_default {
+>>> @@ -1336,6 +1340,22 @@ p_sensor_int_l: p-sensor-int-l-state {
+>>>               bias-disable;
+>>>       };
+>>>
+>>> +     qspi_sleep: qspi-sleep-state {
+>>> +             pins = "gpio63", "gpio64", "gpio65", "gpio68";
+>>> +
+>>> +             /*
+>>> +              * When we're not actively transferring we want pins as GPIOs
+>>> +              * with output disabled so that the quad SPI IP block stops
+>>> +              * driving them. We rely on the normal pulls configured in
+>>> +              * the active state and don't redefine them here. Also note
+>>> +              * that we don't need the reverse (output-enable) in the
+>>> +              * normal mode since the "output-enable" only matters for
+>>> +              * GPIO function.
+>>> +              */
+>>> +             function = "gpio";
+>>> +             output-disable;
+>>
+>> Doug,
+>>
+>> I acked some of your patches, but I assumed you tested all this. It
+>> turns out you never run dtbs_check on the patches you sent.
+> 
+> I'm fairly certain that I ran dtbs_check and confirmed that no new
+> errors were introduced on the device tree files that this patch series
+> cleaned up. Did I miss one?
 
-Tested-by: Andreas Westman Dorcsak <hedmoo@yahoo.com> # ASUS TF T30
-Tested-by: Robert Eckelmann <longnoserob@gmail.com> # ASUS TF101 T20
-Tested-by: Svyatoslav Ryhel <clamor95@gmail.com> # ASUS TF201 T30
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- arch/arm/boot/dts/tegra20-asus-tf101.dts      | 22 ++++++++++++++++---
- .../dts/tegra30-asus-transformer-common.dtsi  | 21 ++++++++++++++++--
- 2 files changed, 38 insertions(+), 5 deletions(-)
+You missed everything.
+Before the patchset almost all pinctrl bindings were passing on arm64
+DTS. Just one or two things to fix.
 
-diff --git a/arch/arm/boot/dts/tegra20-asus-tf101.dts b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-index 7b2969656ec9..d8d14aa145e5 100644
---- a/arch/arm/boot/dts/tegra20-asus-tf101.dts
-+++ b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-@@ -82,9 +82,11 @@ hdmi@54280000 {
- 			pll-supply = <&hdmi_pll_reg>;
- 			hdmi-supply = <&vdd_hdmi_en>;
- 
--			nvidia,ddc-i2c-bus = <&hdmi_ddc>;
--			nvidia,hpd-gpio = <&gpio TEGRA_GPIO(N, 7)
--				GPIO_ACTIVE_HIGH>;
-+			port@0 {
-+				hdmi_out: endpoint {
-+					remote-endpoint = <&connector_in>;
-+				};
-+			};
- 		};
- 	};
- 
-@@ -963,6 +965,20 @@ clk32k_in: clock-32k-in {
- 		#clock-cells = <0>;
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		hpd-gpios = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
-+		ddc-i2c-bus = <&hdmi_ddc>;
-+
-+		port {
-+			connector_in: endpoint {
-+				remote-endpoint = <&hdmi_out>;
-+			};
-+		};
-+	};
-+
- 	cpus {
- 		cpu0: cpu@0 {
- 			cpu-supply = <&vdd_cpu>;
-diff --git a/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi b/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
-index 1861b2de2dc3..b0d041a5b20f 100644
---- a/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
-+++ b/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
-@@ -80,8 +80,11 @@ hdmi: hdmi@54280000 {
- 			pll-supply = <&vdd_1v8_vio>;
- 			vdd-supply = <&vdd_3v3_sys>;
- 
--			nvidia,hpd-gpio = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
--			nvidia,ddc-i2c-bus = <&hdmi_ddc>;
-+			port@0 {
-+				hdmi_out: endpoint {
-+					remote-endpoint = <&connector_in>;
-+				};
-+			};
- 		};
- 	};
- 
-@@ -1492,6 +1495,20 @@ clk32k_in: clock-32k {
- 		clock-output-names = "pmic-oscillator";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		hpd-gpios = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
-+		ddc-i2c-bus = <&hdmi_ddc>;
-+
-+		port {
-+			connector_in: endpoint {
-+				remote-endpoint = <&hdmi_out>;
-+			};
-+		};
-+	};
-+
- 	cpus {
- 		cpu0: cpu@0 {
- 			cpu-supply = <&vdd_cpu>;
--- 
-2.37.2
+After the patchset: many new warnings.
+
+>  I did not try to go through and fix all
+> examples of people using "input-enable" across all Qualcomm device
+> trees, though. 
+
+You introduced new warnings, so it is expected to do.
+
+> Those old device trees still work even if they're using
+> the now-deprecated bindings. When deprecating something my
+> understanding is that it's not required to go back and immediately
+> transition all old device tree files.
+
+You did not deprecate anything. You disallowed property causing many new
+warnings to pop up.
+
+> 
+> If having the "input-enable: false" in the bindings is causing huge
+> problems we could do a blank search-and-replace to rename it to
+> "output-disable", at least for places under "tlmm". Even if there are
+> cases where it's superfluous it would at least make the bindings
+> validate.
+
+There are different ways to fix it, the point is that none of the ways
+were used.
+
+I fixed it up:
+https://lore.kernel.org/linux-arm-msm/574d3aa5-21f4-014a-8cc7-7549df59ff3c@linaro.org/
+
+https://lore.kernel.org/linux-arm-msm/20230407180655.128771-1-krzysztof.kozlowski@linaro.org/
+
+https://lore.kernel.org/linux-arm-msm/20230407180045.126952-1-krzysztof.kozlowski@linaro.org/
+
+https://lore.kernel.org/linux-arm-msm/20230407175807.124394-1-krzysztof.kozlowski@linaro.org/
+
+
+Best regards,
+Krzysztof
 
