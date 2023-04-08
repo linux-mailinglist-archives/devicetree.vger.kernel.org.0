@@ -2,82 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E986DBDFC
-	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 01:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C6DF6DBE04
+	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 01:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbjDHXgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 19:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35946 "EHLO
+        id S229461AbjDHXth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 19:49:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjDHXgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 19:36:18 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91FC1768D;
-        Sat,  8 Apr 2023 16:36:17 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id xi5so4750112ejb.13;
-        Sat, 08 Apr 2023 16:36:17 -0700 (PDT)
+        with ESMTP id S229379AbjDHXtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 19:49:36 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB277D9F
+        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 16:49:35 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id d7so13545276lfj.3
+        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 16:49:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680996976; x=1683588976;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X6FhrMBFoJdzUcA3t3Wnsbff5tYmkBEVZpD1D+Jf5NI=;
-        b=n/9kCvIBPCZp+18N5zqVm0hWuq+LUwDBTl0BJD0vrupHqFr2D1A3QgjEvb1tNItsQ/
-         AUcVncAOSPSrFbaTibszSjso+rh7SrCwRjSnQ+aqNhZkzqR8L5HMaohVuYq8XxhoESjF
-         Sgk1d907dKYqISM6mdAcnoY27a5tQVJka6+UGzRlP421QH611ac9lqknS/US7Wfn3kfm
-         6Ardf2Q5Bmou2pfsyKAPbBiWFFCxncSzqyzWRLGgusO8Xgez9Qeg8uUiM3+hqnBgSjTG
-         xwLF6c0h9M28PZLJ//jFzG705HxQi6px+RBnCUsAtUu4bV6xhZ/Dk15ERII/t6041Mct
-         1U2A==
+        d=linaro.org; s=google; t=1680997773;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vjY5uC2OLDu9t/zvDb185Jxk6WyhGhG54ExhZw16Qwo=;
+        b=l2al2UAagNYfqX7sZv1z+V5IlXKiVQBgY4m2o784ANPhaiE9CXzTO9siI09VRwmCkh
+         p9cKuEQ/ZuqqK7dPMC6pfISk9F8xNwTLWrP2lnX1pnKIDcHkJyBBKDu7Nk3nVTWJ59NG
+         iEdgNvK8qDnu4tDRr1rGXyAS1P1DSUZqpb4jwRpIR6d8l/OxXZej1rFMejyw8ARgkJ67
+         pkvQz6gjwNs4NGFogR/hp1D1rEhM8XruZqVAK2Lw36XrgfJz3Sot7kIZDk/tSH5PsZVZ
+         w2UKdAmdZvBf99EW+s7id68E9wh6sylpHYSWWcsY3qBsZBBobiCMg62sfA6p7ywuIvjc
+         +SUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680996976; x=1683588976;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X6FhrMBFoJdzUcA3t3Wnsbff5tYmkBEVZpD1D+Jf5NI=;
-        b=WXxf9f0znNa4JSevwG5ULmKKH8O6VfM35LECoBkoH52Nil4/eo4ydoEW7Tneotf2Sn
-         +X+ujO8AhO2lMSpeoGD9mvYehug9eu+VqVjhVp5EcDQP3p7bYdU/RplnatkanKC6qr7I
-         vjhKZUU4VQb18m+04j6c6s7mcWt6yn+6uh1DwcYCBgx5iZvi5MrgWTDVTuSHPvCrX+Hp
-         X27s6WRKyxbaCGRLsAbIlgMN8B4f7LNvQL1Giy8fprfdEgkaF5qq8Zktdf3D+OfkJqnN
-         gLR0Y8lLwZ8bRVX9CLj8TBpc72z8LyDo5cwGeGuG72+rw333OCM/OUxjZ55Q2tbLsZgW
-         lFCw==
-X-Gm-Message-State: AAQBX9fXIwNvFkGfejdaazziczeDi9HdzM4MsudnwU7RV9szBukaq0Xd
-        MzGwlitY9ELBc4g+fVx95RKjRJUl3l6MgWePglU=
-X-Google-Smtp-Source: AKy350azSQDnGDRoUl30SX8F/7DNT/3THmMqHzp4vz0BLGWSXuKLHBWS3NLKgw/7cbxRNOjm+286jypmLtY61Nx/zc8=
-X-Received: by 2002:a17:906:380c:b0:931:2bcd:ee00 with SMTP id
- v12-20020a170906380c00b009312bcdee00mr1617332ejc.15.1680996975852; Sat, 08
- Apr 2023 16:36:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230214204945.4215-1-avolmat@me.com> <9f2debc1-6040-3182-5945-36e668eac171@linaro.org>
- <ZDBruk2t+gB0lSEL@imac101>
-In-Reply-To: <ZDBruk2t+gB0lSEL@imac101>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Sat, 8 Apr 2023 18:36:04 -0500
-Message-ID: <CABb+yY2YWJCxoAtcVhVO4RCcAELnbC-OD9i2odt1nxigopLDNg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: mailbox: sti-mailbox: convert to DT schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+        d=1e100.net; s=20210112; t=1680997773;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vjY5uC2OLDu9t/zvDb185Jxk6WyhGhG54ExhZw16Qwo=;
+        b=gqdKk13HxB3VnODDJoOTUATG5erG66UsCA7wNLnRdd3ZpByFsrIqa69Ft3T0M1wJMy
+         kiBiUFQl4yHwzROmPDidA9DYxYTb2TjzRNTM0auAoa670F4JzqPiWl3QROxn9ynWISH0
+         +DzoCOm8ryceL9WFeHxPK/ovTudyjIE0tzMYSnuvzYBWZN8Euykv0XnBt8PIHQH6fLGK
+         DjAASlz/Lbl+QX8n2STd595Ufze33ME0Fwt109HOjSilYnnNXHEqQYr7AGlSXCYtsFus
+         abei5Iz2j1GUSQ9WjSAmRlhlQRDwBgxyu/0MhIAZ69gjdIPBLaphPqLpdC4CUPx4D2Xr
+         vV4Q==
+X-Gm-Message-State: AAQBX9f+e97UVggyikqIlHiueiHYLu91FzuSWvmnQ15oAb1u54SXUAsE
+        /vx7b3/c1GNCTSsQXxTXRBHyPA==
+X-Google-Smtp-Source: AKy350ZHHe39RG5XW12vdubBuDno6QcKlq9lIVpew6JDRJpleJrMUXHY+fJ/ATmARXYRoruGadAYEQ==
+X-Received: by 2002:ac2:5385:0:b0:4db:3a70:e9f3 with SMTP id g5-20020ac25385000000b004db3a70e9f3mr1371294lfh.69.1680997773424;
+        Sat, 08 Apr 2023 16:49:33 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id q26-20020ac2529a000000b004e7fa99f3f4sm1353008lfm.265.2023.04.08.16.49.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Apr 2023 16:49:33 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 0/4] clk: qcom: msm8996: add support for the CBF clock
+Date:   Sun,  9 Apr 2023 02:49:28 +0300
+Message-Id: <20230408234932.2363302-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 7, 2023 at 2:15=E2=80=AFPM Alain Volmat <avolmat@me.com> wrote:
->
-> Gentle reminder, could someone take this patch into his branch ?
->
-Why do you think it's not picked yet?
-Please have a look at v6.3-rc1
+On MSM8996 two CPU clusters are interconnected using the Core Bus
+Fabric (CBF). In order for the CPU clusters to function properly, it
+should be clocked following the core's frequencies to provide adequate
+bandwidth.
 
-cheers
--jassi
+Register CBF as a clock (required for CPU to boot) and add a tiny
+interconnect layer on top of it to let cpufreq/opp scale the CBF clock.
+
+Changes since v3:
+- Dropped merged patches
+- Moved interconnect shim to drivers/interconnect/icc-clk.c
+
+Changes since v2:
+- Added interconnect-related bindings
+- Switched CPU and CBF clocks to RPM_SMD_XO_A_CLK_SRC
+
+Changes since v1:
+- Relicensed schema to GPL-2.0 + BSD-2-Clause (Krzysztof)
+- Changed clock driver to use parent_hws (Konrad)
+- Fixed indentation in CBF clock driver (Konrad)
+- Changed MODULE_LICENSE of CBF clock driver to GPL from GPL-v2
+- Switched CBF to use RPM_SMD_XO_CLK_SRC as one of the parents
+- Enabled RPM_SMD_XO_CLK_SRC on msm8996 platform and switch to it from
+  RPM_SMD_BB_CLK1 clock
+
+Dmitry Baryshkov (4):
+  dt-bindints: interconnect/msm8996-cbf: add defines to be used by CBF
+  iterconnect: add clk-based icc provider support
+  clk: qcom: cbf-msm8996: scale CBF clock according to the CPUfreq
+  arm64: dts: qcom: msm8996: scale CBF clock according to the CPUfreq
+
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  51 ++++++
+ drivers/clk/qcom/Kconfig                      |   1 +
+ drivers/clk/qcom/clk-cbf-8996.c               |  59 +++++-
+ drivers/interconnect/Kconfig                  |   6 +
+ drivers/interconnect/Makefile                 |   2 +
+ drivers/interconnect/icc-clk.c                | 168 ++++++++++++++++++
+ .../interconnect/qcom,msm8996-cbf.h           |  12 ++
+ include/linux/interconnect-clk.h              |  22 +++
+ 8 files changed, 320 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/interconnect/icc-clk.c
+ create mode 100644 include/dt-bindings/interconnect/qcom,msm8996-cbf.h
+ create mode 100644 include/linux/interconnect-clk.h
+
+-- 
+2.30.2
+
