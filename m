@@ -2,82 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7DAC6DBAEE
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 14:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E23D86DBB0F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 15:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230249AbjDHMgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 08:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47690 "EHLO
+        id S229902AbjDHNE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 09:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjDHMgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 08:36:09 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68335CD;
-        Sat,  8 Apr 2023 05:36:04 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94a34e3526fso27545766b.3;
-        Sat, 08 Apr 2023 05:36:04 -0700 (PDT)
+        with ESMTP id S229817AbjDHNE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 09:04:57 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6329BC15F
+        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 06:04:56 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id jw24so14019525ejc.3
+        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 06:04:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680957363;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BOWahdTnRG3Wj8yi+V6U+R9QIgRUu+TUuu4yKrmq1Po=;
-        b=HZ6hA51qYqRkCOfrq5rl07wWJs6ZXodOnniOCbtg/CbbYj7+Cvt0H/2M7mWU6STdP6
-         YOCr/NpmbIHfxI8gLFijenNJ04LxQ730dvOfjolF7mWWPKQXUTIfOcMcQ8Djt9ZaNlCK
-         3q7IN9EcIndh/yIHLuDs4+yc5QTbEwwipGOCD/1O49JHGcjZDx1hiRG8lyW61fC0imq9
-         HAfOFK9k3mx2rVUGqodOLjVeclsDfg2D7xqcLRNbvJDv3humib9EhZuqgkVPXTnqKT9H
-         2thBmOmXK9xUVo2lVb+zmIWvxFP45GPo5CTKAeIY7J7yaNWWC7foDjqVPTsmipJ+Pn+s
-         jrWw==
+        d=linaro.org; s=google; t=1680959095;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xh6bkPStbSQ1dpU7KkzU52JsHTt879N0HimG72vQ3b8=;
+        b=nC2gVPZl249RFf3lqlnEwLwWaSnSBhNAAtAGz51eClGxhAosm6fjUWZPeTiE8fQAcN
+         onc0QiQ86NbO04Ch6QpqEmeAa4xq2it6BIgeVTutKtZbQO7L5+fHcbBaHl1yI5ZW0TSY
+         VbT/ntcEB21JGFm7srOvxNoqHU/DcHZlMu1hfYbExArDiLDB6DYMlB5YH0uFXkVCykFV
+         QLJtz87vdQvGne7zLWLfOJ1LmMpYiWR9X9LvfqxgZSdeN49ARPnZ/cDzxLhmRF5Sy7yk
+         66k4XbOQDgpQP1hQ8yzswguZYWQkV2SGe7IVN+c6VCWRXWYv5LMlqxzLagN1olSjk4Cy
+         yyUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680957363;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BOWahdTnRG3Wj8yi+V6U+R9QIgRUu+TUuu4yKrmq1Po=;
-        b=gHF8pbEfX+cP2CUm0YB1Vkh4nvO1ZyyhjS0oT2iOR7qtmjK856XtUYMbdZHhfI2Mfv
-         9XhwkYT3iZ+D8NgkPCwrSkVFZlP39T1yJqLB1oTBLwXDw3zzYoXRZZRdE8X+xuR85Ati
-         /BAdVkMI/ZxSb7AVBVoZY8RNcE41MB0UH2Ss7z8w8PW1IyXwRAOMdeKjuN7JJnNq4Ch2
-         ydY0SMiRujiX8uukCGQK3uwOkqpcpudywO8pH77+IEz6mvbgQLyona2PCUMYyCZmv/TH
-         ijoVqeyQm8sGAz2Xu4/cVSt9C5xJpTciuAqouwlUr9NHnY5iy5vbk6YquZqRPlIIToc3
-         wIVQ==
-X-Gm-Message-State: AAQBX9dh+NPdF2jUxkmlk+DyLMUlsD1x/L1jNUwUcxlMDtyBZ6SLwe0v
-        Qz0r6HQQ9Dz9Qf2ZkK4LRYs=
-X-Google-Smtp-Source: AKy350Y1drrvxW3UM2vKy8JNJ5ywWt6Gxl4RwyNbLie7SrkT0Gou8ZfxNt9jwSJcq2xa5fyzHkUS/g==
-X-Received: by 2002:a50:ee06:0:b0:502:2a76:5781 with SMTP id g6-20020a50ee06000000b005022a765781mr4928298eds.5.1680957362692;
-        Sat, 08 Apr 2023 05:36:02 -0700 (PDT)
-Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
-        by smtp.gmail.com with ESMTPSA id h2-20020a50c382000000b004ad601533a3sm2898806edf.55.2023.04.08.05.36.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Apr 2023 05:36:02 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 06/10] riscv: dts: allwinner: d1: Switch dma-names order for
- snps,dw-apb-uart nodes
-Date:   Sat, 08 Apr 2023 14:36:00 +0200
-Message-ID: <1945003.usQuhbGJ8B@jernej-laptop>
-In-Reply-To: <20230321215624.78383-7-cristian.ciocaltea@collabora.com>
-References: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
- <20230321215624.78383-7-cristian.ciocaltea@collabora.com>
+        d=1e100.net; s=20210112; t=1680959095;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xh6bkPStbSQ1dpU7KkzU52JsHTt879N0HimG72vQ3b8=;
+        b=0t0bAeyH6t7cRC4/pyfiS7vPMnY7KaNRounlsb02re0SAgv3n4lpBgZ7n395Heevt4
+         MkwU0FpPgPFIoCqR2czy1DAL3LnoSgsHoC454AbF2tBKplrOe7j3flrAagMPB6VtdspU
+         C18m1D2JrmjJ1IK4xUQ+v/d6S1WhYgTfWvEJIUPzxQCjht+blrwPZT6bl0C33srgMKRE
+         cCsbjNOcTrIdWv8DQ8OuEBlYGUPv4FfyyF1+QA1mP8eQNoLSKEVMMYepTAOdV2e+3t8X
+         xLpfDyBenq17HwlTk1bG4V5JhbdCuW26rrAq9mT97JUG/5l48JkE7oMl4sz4diCUIqA1
+         /ifw==
+X-Gm-Message-State: AAQBX9d6Rry7K/yc7wdUNqB0lGGXlWce935Hbmf8LUzC5y9xd0oDwyt9
+        BOqtoMkwKhetvhMrmzdOYDQ4Hg==
+X-Google-Smtp-Source: AKy350boyGnKqw7hqq5JoG0wMx75lTrgQ0trInMINpWhZDplgYwWd4Yao3TWoUpRzku1t20dTYUkNw==
+X-Received: by 2002:a17:906:4b14:b0:94a:52bf:b820 with SMTP id y20-20020a1709064b1400b0094a52bfb820mr458098eju.46.1680959094876;
+        Sat, 08 Apr 2023 06:04:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7ecc:a9b7:a95b:bbea? ([2a02:810d:15c0:828:7ecc:a9b7:a95b:bbea])
+        by smtp.gmail.com with ESMTPSA id xa16-20020a170907b9d000b00948aae5e3d3sm3104065ejc.184.2023.04.08.06.04.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Apr 2023 06:04:53 -0700 (PDT)
+Message-ID: <0a5729a8-9fd8-a084-3932-cf8ebf00860b@linaro.org>
+Date:   Sat, 8 Apr 2023 15:04:52 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sm8250-xiaomi-elish-boe: Add
+ mdss and dsi panel
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230323005925.23179-1-lujianhua000@gmail.com>
+ <20230323005925.23179-2-lujianhua000@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323005925.23179-2-lujianhua000@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,27 +82,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne torek, 21. marec 2023 ob 22:56:20 CEST je Cristian Ciocaltea napisal(a):
-> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
-> dma-names properties") documented dma-names property to handle Allwinner
-> D1 dtbs_check warnings, but relies on the rx->tx ordering, which is the
-> reverse of what a bunch of different boards expect.
+On 23/03/2023 01:59, Jianhua Lu wrote:
+> Add nodes for BOE NT36523 panel found in xiaomi-elish. This panel
+> is a dual dsi mode panel and the dsi phy type is cphy.
 > 
-> The initial proposed solution was to allow a flexible dma-names order in
-> the binding, due to potential ABI breakage concerns after fixing the DTS
-> files. But luckily the Allwinner boards are not affected, since they are
-> using a shared DMA channel for rx and tx.
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+> Changes in v2:
+>   - Include missing <dt-bindings/phy/phy.h> for phy-type property.
 > 
-> Hence, the first step in fixing the inconsistency was to change
-> dma-names order in the binding to tx->rx.
+> Changes in v3:
+>   - Sort include header.
+>   - Move qcom,sync-dual-dsi to the front of qcom,master-dsi 
+>   - Add newline before subnode.
 > 
-> Do the same for the snps,dw-apb-uart nodes in the DTS file.
+>  .../boot/dts/qcom/sm8250-xiaomi-elish-boe.dts |  5 ++
+>  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 75 +++++++++++++++++++
+>  2 files changed, 80 insertions(+)
 > 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts
+> index bd9ad109daf9..8b2ae39950ff 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts
+> @@ -11,3 +11,8 @@ / {
+>  	model = "Xiaomi Mi Pad 5 Pro (BOE)";
+>  	compatible = "xiaomi,elish", "qcom,sm8250";
+>  };
+> +
+> +&display_panel {
+> +	compatible = "xiaomi,elish-boe-nt36523";
 
-Applied patches 2-6, thanks!
+If you add new bindings and new nodes using these - in this case this
+panel - please test it. This is why we have DT schema, so you can verify
+your DTS. Sending DTS which is entirely different than the bindings you
+sent, is adding quite an effort for us later to fix it.
 
 Best regards,
-Jernej
-
+Krzysztof
 
