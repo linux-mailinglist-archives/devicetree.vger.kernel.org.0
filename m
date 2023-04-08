@@ -2,88 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B6DC6DBA71
-	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 13:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF166DBABB
+	for <lists+devicetree@lfdr.de>; Sat,  8 Apr 2023 14:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbjDHLgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 07:36:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56832 "EHLO
+        id S230166AbjDHMMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Apr 2023 08:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbjDHLga (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 07:36:30 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B6CAF3F
-        for <devicetree@vger.kernel.org>; Sat,  8 Apr 2023 04:36:28 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id jg21so1964874ejc.2
-        for <devicetree@vger.kernel.org>; Sat, 08 Apr 2023 04:36:28 -0700 (PDT)
+        with ESMTP id S229611AbjDHMMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 08:12:17 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 251C8EF8B;
+        Sat,  8 Apr 2023 05:12:16 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id jg21so2092863ejc.2;
+        Sat, 08 Apr 2023 05:12:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680953787;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6KMCVN4L9ldklrxsAVU+YsdQxCGvFHVbNDAEiVGPna8=;
-        b=bM8PxqxodCpdHWxRqzqVx0Cgn3TYN3yuyV7ntN6AyozvP5C6fZxPV//yW/PQZGufix
-         3bQ3dAkqukP444e1E1NvWps5tw8nZM35cW0mZCcRnT/eTOamXjchwMWIxbJdUVd1TSzp
-         WCHojVUaIZd5Moav5opWP6rDgbROlmEKDPRByOEk9joJFq2m/NMzyL4xsSrMqbIi3KNS
-         rVJ+qLuZJL+Xh5lIRsF0yhYpQG3OGvtjTQpeUPkBvOIgLl5KWsFwrBfrCn3Fnb24sw24
-         r7zdvV87LMmkpOq1XpW/CpoFHoylIONBitJbZFY1CCjOF5wD3eNTXtUP0UMAGZ2/Bniw
-         PqDw==
+        d=gmail.com; s=20210112; t=1680955934;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gsp6bAaqdkC+3l7L0QU9gWWFuWF86YUu16J9MyhyV3E=;
+        b=Vzms7iQnafiqUkeMs1GMmPsw583bn+6RhHpsqKO6zfkfU10NzcwiOfy+EMZesNx5vb
+         W+YGKbjYybKIxFFaYXDNotsBdrMm6NKOWtzAu6Yvjv3USDondpL9Ns2QsTGtrVTgd0Wg
+         stS2FNX2Z3XSzrNDITuRIme9HfeIEahuuNLWvC06exD1Qjg1lv9/wjHLnb+arT4M2mtH
+         g8w9lhCldDRNFrIV5VY1w98FYZKIwEDJqt0SUy2epVSqNrUkcsKdQfGAsgRMuDcVrFBi
+         dhkdgQDTnRXFVF3EEBUsF5hphK0cX6AdpsOQoyHLUCyAiZ4sEQgNlvshf4rmgrD1cXEI
+         ReZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680953787;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6KMCVN4L9ldklrxsAVU+YsdQxCGvFHVbNDAEiVGPna8=;
-        b=tPHJbM/7UUPYeigpJ7dtnigmn0QWf1FWeQv6r3y3GbXzN1Nn1xQy+gsxB2PbOtTn3u
-         mJ0/lD5qKhD0MOtNdY3DZdwW3UTMDjraqPAJbQQYjxCNhzp3zJX8+vmL2ulXDuIkx2/y
-         4gGYE8dDEZ5AQtWBpvwajKrf3Pa8V1jOQrvJPeqBbyi/R0DN9BcwymcGS4GCSkBzlVn4
-         BTAHROGFijuEMojtcnlAjxMS9ypKeiziB1GSEYGED/2RBypdWH9WxlROMU+e0N3JAFD5
-         XqGBpK9VWT2kdtc3xcqI4Mb59iDayYKomSrdknOl8jq3+Zn6t3SEfcZ3zw2imOUrEtv0
-         6q5w==
-X-Gm-Message-State: AAQBX9eyayxUHnonXkY5kB1kuxzQKb5xMm0QkyQ5RN1QcTKDTlg97Uby
-        X6OHsmUVjhg07LRHz8JN8SdzaQ==
-X-Google-Smtp-Source: AKy350ZjUl26qCzn/b2R5qoeTLSeScfNvPyM4mr4GcK4curXt7xM05OURsWwQqKojqOFAxaux0orWw==
-X-Received: by 2002:a17:907:2157:b0:914:4277:f3e1 with SMTP id rk23-20020a170907215700b009144277f3e1mr2016161ejb.53.1680953786790;
-        Sat, 08 Apr 2023 04:36:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:4c06:aac9:100f:9d7f? ([2a02:810d:15c0:828:4c06:aac9:100f:9d7f])
-        by smtp.gmail.com with ESMTPSA id y11-20020a17090629cb00b00949173c1dcfsm3090237eje.18.2023.04.08.04.36.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Apr 2023 04:36:26 -0700 (PDT)
-Message-ID: <70dd6449-06d2-7182-9922-ddc3476ba472@linaro.org>
-Date:   Sat, 8 Apr 2023 13:36:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 0/8] Add multiport support for DWC3 controllers
-Content-Language: en-US
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20210112; t=1680955934;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gsp6bAaqdkC+3l7L0QU9gWWFuWF86YUu16J9MyhyV3E=;
+        b=gpC7K420jcdGH4IlShNAaTX7c2ALQW9nsYOeR3UtYMiB4wcNFX5DW7xMQrxY4X3Jte
+         pvPH6rDPGiDM6ovy+HJGkDFZgZsp4zIP/I+SIUMRuMgOyjQt/MdtaJ0rHPd55KWDCvW7
+         1wSZ6KK4qRrHdOmwS8XmcVaSln+fZxApwGCROQFqNzaRO11s66VNQBj9tlwhp9TS7AhY
+         WLEmAi4xTsE5H/ZNyUNVM8+64a48sunD1oMR5J38lHPUHEBdYvpaptKdn4OmyUPoUudd
+         feVvvTyPY7g0FUKSp/Gvq5Gdk9V+VQKzeFfTdqKQhIbsXgt2advGKQ22h9pIQk6lpoYm
+         AMvg==
+X-Gm-Message-State: AAQBX9c8WXsQ0xIcQHvzvztMVFPFlja2W4Qhz0kAN1k7YP09YJodlKbo
+        NO/GTWJJ8ic1oUMLoE6+2T4=
+X-Google-Smtp-Source: AKy350ZoljWQmJaFYZYXyiATILTnWWThGxROLCrvBR/uFCN9linJDLlNU8p8TFP9b2zvbHhV1DPxfg==
+X-Received: by 2002:a17:907:e91:b0:920:254c:1e2d with SMTP id ho17-20020a1709070e9100b00920254c1e2dmr2670313ejc.39.1680955934385;
+        Sat, 08 Apr 2023 05:12:14 -0700 (PDT)
+Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
+        by smtp.gmail.com with ESMTPSA id m2-20020a1709062ac200b008b176df2899sm3072135eje.160.2023.04.08.05.12.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Apr 2023 05:12:13 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
-        "quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
-        "quic_wcheng@quicinc.com" <quic_wcheng@quicinc.com>,
-        "quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
-        "quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
-        "ahalaney@redhat.com" <ahalaney@redhat.com>,
-        "quic_shazhuss@quicinc.com" <quic_shazhuss@quicinc.com>
-References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
- <20230408014251.6cyjwuvsgu7dmz53@synopsys.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230408014251.6cyjwuvsgu7dmz53@synopsys.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 02/10] ARM: dts: sun6i: a31: Switch dma-names order for
+ snps,dw-apb-uart nodes
+Date:   Sat, 08 Apr 2023 14:12:12 +0200
+Message-ID: <7505967.EvYhyI6sBW@jernej-laptop>
+In-Reply-To: <20230321215624.78383-3-cristian.ciocaltea@collabora.com>
+References: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
+ <20230321215624.78383-3-cristian.ciocaltea@collabora.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -92,41 +86,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2023 03:42, Thinh Nguyen wrote:
->> Krishna Kurapati (8):
->>   dt-bindings: usb: Add bindings for multiport properties on DWC3
->>     controller
->>   usb: dwc3: core: Access XHCI address space temporarily to read port
->>     info
->>   usb: dwc3: core: Skip setting event buffers for host only controllers
->>   usb: dwc3: core: Refactor PHY logic to support Multiport Controller
->>   usb: dwc3: qcom: Add multiport controller support for qcom wrapper
->>   arm64: dts: qcom: sc8280xp: Add multiport controller node for SC8280
->>   arm64: dts: qcom: sa8295p: Enable tertiary controller and its 4 USB
->>     ports
->>   arm64: dts: qcom: sa8540-ride: Enable first port of tertiary usb
->>     controller
->>
->>  .../devicetree/bindings/usb/snps,dwc3.yaml    |  13 +-
->>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  47 +++
->>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  22 ++
->>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  58 +++
->>  drivers/usb/dwc3/core.c                       | 373 ++++++++++++++----
->>  drivers/usb/dwc3/core.h                       |  71 +++-
->>  drivers/usb/dwc3/drd.c                        |  13 +-
->>  drivers/usb/dwc3/dwc3-qcom.c                  |  28 +-
->>  8 files changed, 523 insertions(+), 102 deletions(-)
->>
->> -- 
->> 2.40.0
->>
+Dne torek, 21. marec 2023 ob 22:56:16 CEST je Cristian Ciocaltea napisal(a):
+> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
+> dma-names properties") documented dma-names property to handle Allwinner
+> D1 dtbs_check warnings, but relies on the rx->tx ordering, which is the
+> reverse of what a bunch of different boards expect.
 > 
-> Please check if your patches and mailing client. Looks like they are
-> corrupted.
+> The initial proposed solution was to allow a flexible dma-names order in
+> the binding, due to potential ABI breakage concerns after fixing the DTS
+> files. But luckily the Allwinner boards are not affected, since they are
+> using a shared DMA channel for rx and tx.
+> 
+> Hence, the first step in fixing the inconsistency was to change
+> dma-names order in the binding to tx->rx.
+> 
+> Do the same for the snps,dw-apb-uart nodes in the DTS file.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
-All patches look from patch-syntax and apply fine. What is exactly
-corrupted?
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
-Krzysztof
+Jernej
+
+> ---
+>  arch/arm/boot/dts/sun6i-a31.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi
+> b/arch/arm/boot/dts/sun6i-a31.dtsi index 6cdadba6a3ac..5cce4918f84c 100644
+> --- a/arch/arm/boot/dts/sun6i-a31.dtsi
+> +++ b/arch/arm/boot/dts/sun6i-a31.dtsi
+> @@ -822,7 +822,7 @@ uart0: serial@1c28000 {
+>  			clocks = <&ccu CLK_APB2_UART0>;
+>  			resets = <&ccu RST_APB2_UART0>;
+>  			dmas = <&dma 6>, <&dma 6>;
+> -			dma-names = "rx", "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+> 
+> @@ -835,7 +835,7 @@ uart1: serial@1c28400 {
+>  			clocks = <&ccu CLK_APB2_UART1>;
+>  			resets = <&ccu RST_APB2_UART1>;
+>  			dmas = <&dma 7>, <&dma 7>;
+> -			dma-names = "rx", "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+> 
+> @@ -848,7 +848,7 @@ uart2: serial@1c28800 {
+>  			clocks = <&ccu CLK_APB2_UART2>;
+>  			resets = <&ccu RST_APB2_UART2>;
+>  			dmas = <&dma 8>, <&dma 8>;
+> -			dma-names = "rx", "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+> 
+> @@ -861,7 +861,7 @@ uart3: serial@1c28c00 {
+>  			clocks = <&ccu CLK_APB2_UART3>;
+>  			resets = <&ccu RST_APB2_UART3>;
+>  			dmas = <&dma 9>, <&dma 9>;
+> -			dma-names = "rx", "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+> 
+> @@ -874,7 +874,7 @@ uart4: serial@1c29000 {
+>  			clocks = <&ccu CLK_APB2_UART4>;
+>  			resets = <&ccu RST_APB2_UART4>;
+>  			dmas = <&dma 10>, <&dma 10>;
+> -			dma-names = "rx", "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+> 
+> @@ -887,7 +887,7 @@ uart5: serial@1c29400 {
+>  			clocks = <&ccu CLK_APB2_UART5>;
+>  			resets = <&ccu RST_APB2_UART5>;
+>  			dmas = <&dma 22>, <&dma 22>;
+> -			dma-names = "rx", "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+
+
+
 
