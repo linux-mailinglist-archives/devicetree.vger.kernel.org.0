@@ -2,132 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A480A6DBE15
-	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 01:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3073E6DBEB6
+	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 07:13:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbjDHX40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Apr 2023 19:56:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40270 "EHLO
+        id S229450AbjDIFNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Apr 2023 01:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjDHX4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Apr 2023 19:56:25 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392157DA9;
-        Sat,  8 Apr 2023 16:56:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680998184; x=1712534184;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SBjWLCDduqazACPY0rYViNrxuDYPCkxNDiJwaPS7Jjg=;
-  b=O3LmloptMUd9ILc5yPsjWbQHq46Q0V6KmZ8zpGF4sHeNHJGPBcIWSgos
-   +rrYz1jRkC1Itl1j1Ic4y86iI67yKF+FpO0olhOgJ+Bc5uJcYW2IXPPDT
-   S4KvP7iqC5tcW9tuy1NMiH3V5px1dcwaSWcw/JKHdhTgKKH/u4fdVqbh3
-   vK98YxkpoDP9filzIy+W1oc6C+KcGCbh9hPTI+JkuHeU4pqzUPKocRs7E
-   01SsdNV3M08p85NK1ng52SYtShOlnkoVp5gDWGvcpbqIPSop1cs0YooHZ
-   bXiPnlO8PlwCno1rIra7VUb3Oi4wHGqHS/V6Enm4KXGooH5ov9Tr9kM62
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10674"; a="345833281"
-X-IronPort-AV: E=Sophos;i="5.98,330,1673942400"; 
-   d="scan'208";a="345833281"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2023 16:56:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10674"; a="933943627"
-X-IronPort-AV: E=Sophos;i="5.98,330,1673942400"; 
-   d="scan'208";a="933943627"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 08 Apr 2023 16:56:18 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1plIPp-000UDp-1X;
-        Sat, 08 Apr 2023 23:56:17 +0000
-Date:   Sun, 9 Apr 2023 07:55:49 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Biggers <ebiggers@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] mmc: sdhci-msm: Switch to the new ICE API
-Message-ID: <202304090709.QHt43PE6-lkp@intel.com>
-References: <20230408214041.533749-4-abel.vesa@linaro.org>
+        with ESMTP id S229436AbjDIFNh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 01:13:37 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 168663AB7;
+        Sat,  8 Apr 2023 22:13:37 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id c3so2392888pjg.1;
+        Sat, 08 Apr 2023 22:13:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1681017216; x=1683609216;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LRhfT/jJt56gQonvPXvx6IVAYr5d71sWEwaXQOdTWt0=;
+        b=isiRT4JSi/nUXDJfYQyWktqVz8AQfSNpmeKeScWMXr8OIsOGpAGG4P9p0E0N1Ann/3
+         pxBUknP/n1E/Z95Cep6IFmKkVcNPpYCvvy0XjUbCdM1hA8MWtWraRiM6vIz151sPx3Rc
+         5VKPbB4PCzUBYQ3LAxJIBZ+uDCCMVnHKAD7uxoI1rqaBS4PqHRzZYCmqEkRenyOE7IiX
+         KWq8gee0JSMDCmTo7o/m0zP/NiERRLXXKl/FWALL5u10f2MJ9tIoAmbmIJ5fBsBKPHXI
+         W/F6Jvq/HZUQROhEDha4rbHmDSW55UZtWFgxpY/o7TweouuJQ5mo9yAsEjAMoHBIFUY5
+         zrYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681017216; x=1683609216;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LRhfT/jJt56gQonvPXvx6IVAYr5d71sWEwaXQOdTWt0=;
+        b=fXIgFuCqcDOrtW0Y6HSQnGKqOaRkQXhUwVk6TMa3pqKaZ8FSAfk0PyyNMnBERKP8lo
+         RHtrUQIkdaU4/BHbzEYzEYWBffRleuUyFBhFYegpUx7cn8VI5KrfA99VcTXLXEe5Lut/
+         lMfqUi513XLQg8EUaqSALzYIA89zvR9l3AiSJtmr4lFy1IoNiHWrtBVLSm/gR9E7pT1R
+         fVPmxD6GFYcQHKYKjBDzJON6WCSqgPOo0oPI9kCIqFve++X85O//27RrHbBTOm4Y4z5r
+         VywtEtmPjQP1e6JKvShULHvMKVJzbhgeB1EMPDay6IwnS9YX4sRHe7fNtWXpvTZ9LXDz
+         X/Lw==
+X-Gm-Message-State: AAQBX9cjtqsCqRwjI8muBzYEkQKwrYIvwHlEYqeG7vG3FoH5DlaMuXBr
+        KokJ/oNS58Hx6lJPs12BfLbwqIRTXu4=
+X-Google-Smtp-Source: AKy350bjXZ6cnnsqNjdK1bVngXxF5K96JNo6lECfmQ6cO6XmA8K8KYeIGEzbDhRfSxCe/pVR7u2e5A==
+X-Received: by 2002:a17:902:f0d2:b0:1a5:150f:8553 with SMTP id v18-20020a170902f0d200b001a5150f8553mr4097650pla.0.1681017216477;
+        Sat, 08 Apr 2023 22:13:36 -0700 (PDT)
+Received: from [192.168.1.39] (M014008005000.v4.enabler.ne.jp. [14.8.5.0])
+        by smtp.gmail.com with ESMTPSA id jo18-20020a170903055200b0019a70a85e8fsm5294960plb.220.2023.04.08.22.13.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Apr 2023 22:13:36 -0700 (PDT)
+Message-ID: <64b5504d-c81d-f77e-da67-c6d9e76aedd6@gmail.com>
+Date:   Sun, 9 Apr 2023 14:13:11 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230408214041.533749-4-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/2] ARM: dts: mvebu: add device tree for IIJ SA-W2
+ appliance
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        sebastian.hesselbarth@gmail.com, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20230223132502.2045-1-musashino.open@gmail.com>
+ <20230223132502.2045-2-musashino.open@gmail.com> <Y/d7gjqQCKKXMHqj@lunn.ch>
+ <7d4a218d-8b8a-5a1d-eff8-e154bfde69be@gmail.com> <87jzyn3dv9.fsf@BL-laptop>
+Content-Language: en-US
+From:   INAGAKI Hiroshi <musashino.open@gmail.com>
+In-Reply-To: <87jzyn3dv9.fsf@BL-laptop>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.3 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Abel,
+Hello Gregory CLEMENT,
 
-kernel test robot noticed the following build errors:
+On 2023/04/08 0:34, Gregory CLEMENT wrote:
+> Hello INAGAKI Hiroshi,
+>
+> do you plan to send a v2 soon based on the reviews you got ?
 
-[auto build test ERROR on mkp-scsi/for-next]
-[also build test ERROR on jejb-scsi/for-next robh/for-next linus/master v6.3-rc5 next-20230405]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Yes, I'm planning to send the next series.
+But I don't know the details about "documenting the board compatibles" 
+suggested by Krzysztof Kozlowski and I don't know what to do for it, 
+so I'm pausing this contribution...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Abel-Vesa/dt-bindings-ufs-qcom-Add-ICE-phandle/20230409-054151
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git for-next
-patch link:    https://lore.kernel.org/r/20230408214041.533749-4-abel.vesa%40linaro.org
-patch subject: [PATCH v7 3/3] mmc: sdhci-msm: Switch to the new ICE API
-config: ia64-allmodconfig (https://download.01.org/0day-ci/archive/20230409/202304090709.QHt43PE6-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/ec033fe93e3a653b68ee5c28699b7cbe180ff625
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Abel-Vesa/dt-bindings-ufs-qcom-Add-ICE-phandle/20230409-054151
-        git checkout ec033fe93e3a653b68ee5c28699b7cbe180ff625
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/mmc/host/
+>
+> Or if you already sent it, I missed it, in this case could you resend it
+> with me in CC ?
+>
+> Thanks,
+>
+> Gregory
+>
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304090709.QHt43PE6-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/mmc/host/sdhci-msm.c:21:10: fatal error: soc/qcom/ice.h: No such file or directory
-      21 | #include <soc/qcom/ice.h>
-         |          ^~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +21 drivers/mmc/host/sdhci-msm.c
-
-    20	
-  > 21	#include <soc/qcom/ice.h>
-    22	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Regards,
+Hiroshi
