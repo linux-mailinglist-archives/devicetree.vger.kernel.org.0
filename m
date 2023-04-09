@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C4E6DC0F6
-	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 20:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E7D6DC0FC
+	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 20:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229600AbjDISUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Apr 2023 14:20:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56438 "EHLO
+        id S229616AbjDISVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Apr 2023 14:21:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjDISUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 14:20:00 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D502D70;
-        Sun,  9 Apr 2023 11:19:58 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 339IJoGl013399;
-        Sun, 9 Apr 2023 18:19:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=AH6JycWFfTa0H9UydaGSCHS5yCEanwthhgNDmq0/Tto=;
- b=muEmNQtCuOuiHAwTyxIcWZOhclyF71lyY+z2hbUVpSF7twHeHSxPR68ueUerLmRlf6vl
- rytmHFKSwPD7OdIdQW4DHbkIVfLs9pwfpPesUog44U8o2dqhxF72pBV7YnoE5X4Yldkl
- azfYrF7QTgTgpkjjhxqqryHx4sonLMKbfRZYDk3/8/IKPrP3iHJM7FYxEB3uh4w+ktE6
- 3+1JfbJnHnx+p/JlscnItLfjeFfUg03B6E+1tsnVmEsyk3WCfD4y80G6d4OH3DfaEi69
- cJl7TBEvrWJaoqXDGkpeTnTSDjsZohH2ILVLJ4z1/YQo7zL6cD9u1wm41DNkYk1rW/YX kA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pu0c31n9j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 09 Apr 2023 18:19:49 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 339IJmcE007268
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 9 Apr 2023 18:19:48 GMT
-Received: from car-linux11.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Sun, 9 Apr 2023 11:19:47 -0700
-From:   Nikunj Kela <quic_nkela@quicinc.com>
-To:     <sudeep.holla@arm.com>
-CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Nikunj Kela <quic_nkela@quicinc.com>
-Subject: [PATCH 2/2] firmware: arm_scmi: Augment SMC/HVC to allow optional parameters
-Date:   Sun, 9 Apr 2023 11:19:18 -0700
-Message-ID: <20230409181918.29270-3-quic_nkela@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230409181918.29270-1-quic_nkela@quicinc.com>
-References: <20230409181918.29270-1-quic_nkela@quicinc.com>
+        with ESMTP id S229573AbjDISVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 14:21:49 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5614C2D70
+        for <devicetree@vger.kernel.org>; Sun,  9 Apr 2023 11:21:48 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id n22so1654098ljq.8
+        for <devicetree@vger.kernel.org>; Sun, 09 Apr 2023 11:21:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681064506;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HGf2TObw1109OPvfJLr+dURMsGATmHG/HizFozIIbfw=;
+        b=xv+OHCghpdUt5+xBHjEWXpr7+okZ7hnfdCYoNMPU3+sfr22gWqC4QNGKowWVoxckVS
+         fhP0QVceNq5yxtYa+jFYQQmh0MeErZ8REdcvho6UhNCjqUkVUCIW3bMgiwXvi6yqg7Ix
+         8A1PaPi3RW4bQZjByKY5FXxMFqHBjM/6kQ5ETv6EzTTGf9ZQDemRQMEdEZEvG3wiOMEH
+         3NHjpU3BC1hcdZ8WRKlJcX0VQ7Yi9+bIOxGE+o8iuj1vpTbFjUjMAD1GujziKBpJ1E3T
+         ej7gyH3n0VZ4aIjESU3eV/P/9I9lel/9wAGj2hT09DSpY9T0aJ+fwRXCHyR6bnHiD20C
+         olRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681064506;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HGf2TObw1109OPvfJLr+dURMsGATmHG/HizFozIIbfw=;
+        b=LXLKt1CU9dq6gGOdtPS0jTWOuQYf/OA+ZbyvpCMgGdrWtpaNE3lXNhg3IFNfuDotPL
+         6UI+JAvZUdizTHKJiMgp1m7CyNa6C+BHgfSY8TLzQQAX9CO++jiCk8pxpCqagzaf3Jcd
+         K8EssGd3Z3LJR83d8K9qiNBSHv4ETf+lM6dPM6C1xVzwdbgMOsRfSHRF6f7xSFcMv/zD
+         JPaFK0BRGwZ+al/iFmA71sim7Touqo3B1nyCMo9DzdRfFirXEO0Ky4IbyYaRGzLyAe0E
+         abC5+V0UIR8CHKMpPjR16MiaIh503AFuFCJrdsLB/Ebtgriuf4iyJt/NIXqJflhtQ17J
+         /zuQ==
+X-Gm-Message-State: AAQBX9e5EKlg61yWd/ayBDUhyoUrHRwpSSwuZQ1xYu2Sg49pMHVX2Pfn
+        Yn3mBCJyWy/uCVx2yJCrifh0kjiXcZEImVwZYUA=
+X-Google-Smtp-Source: AKy350a+mB2dKB5w4gf9zIRMk1NZetv1PbXxuGbrQOhmAzB1IkQI4lhkcr6Hb5IsdN3XDi/VGqYpdg==
+X-Received: by 2002:a05:651c:8a:b0:2a7:6ed7:473f with SMTP id 10-20020a05651c008a00b002a76ed7473fmr1105651ljq.51.1681064506550;
+        Sun, 09 Apr 2023 11:21:46 -0700 (PDT)
+Received: from lothlorien.lan (dzccz6yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::ab2])
+        by smtp.gmail.com with ESMTPSA id y10-20020ac2446a000000b004b4b600c093sm1705695lfl.92.2023.04.09.11.21.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Apr 2023 11:21:46 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: pm8998: don't use GIC_SPI for SPMI interrupts
+Date:   Sun,  9 Apr 2023 21:21:45 +0300
+Message-Id: <20230409182145.122895-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YUhtf_wvWNzYzLEuId7HEoLyyz7E5_e7
-X-Proofpoint-ORIG-GUID: YUhtf_wvWNzYzLEuId7HEoLyyz7E5_e7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-09_13,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 bulkscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
- suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304090167
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,129 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add support for passing parameters to smc/hvc calls.
-This patch is useful when multiple scmi instances are using same
-smc-id and firmware needs to distiguish among the instances.
+Unlike typical GIC interrupts, first cell for SPMI interrupts is the
+USID rather than GIC_SPI/GIC_PPI/GIC_LPI qualifier. Fix the resin
+interrupt to use USID value 0x0 rather than GIC_SPI define.
 
-Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+Fixes: f86ae6f23a9e ("arm64: dts: qcom: sagit: add initial device tree for sagit")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/firmware/arm_scmi/smc.c | 66 ++++++++++++++++++++++++++++++++-
- 1 file changed, 65 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/pm8998.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/arm_scmi/smc.c b/drivers/firmware/arm_scmi/smc.c
-index 93272e4bbd12..39582d1e2c9f 100644
---- a/drivers/firmware/arm_scmi/smc.c
-+++ b/drivers/firmware/arm_scmi/smc.c
-@@ -20,6 +20,16 @@
+diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
+index adbba9f4089a..13925ac44669 100644
+--- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
+@@ -55,7 +55,7 @@ pm8998_pwrkey: pwrkey {
  
- #include "common.h"
- 
-+#define MAX_PARAM_COUNT 6
-+
-+/**
-+ * scmi_smc_param_t - parameter type for SCMI smc/hvc call
-+ */
-+typedef union {
-+	u64 x;
-+	u32 w;
-+} scmi_smc_param_t;
-+
- /**
-  * struct scmi_smc - Structure representing a SCMI smc transport
-  *
-@@ -30,6 +40,8 @@
-  * @inflight: Atomic flag to protect access to Tx/Rx shared memory area.
-  *	      Used when operating in atomic mode.
-  * @func_id: smc/hvc call function id
-+ * @is_smc64: A flag, indicating smc64 calling convention.
-+ * @params: Optional, smc/hvc call parameters.
-  */
- 
- struct scmi_smc {
-@@ -40,8 +52,51 @@ struct scmi_smc {
- #define INFLIGHT_NONE	MSG_TOKEN_MAX
- 	atomic_t inflight;
- 	u32 func_id;
-+	bool is_smc64;
-+	scmi_smc_param_t params[MAX_PARAM_COUNT];
- };
- 
-+static void populate_smc_params(struct device *dev, struct scmi_smc *scmi_info)
-+{
-+	struct device_node *np = dev->of_node;
-+	u64 params64[MAX_PARAM_COUNT] = { 0 };
-+	u32 params32[MAX_PARAM_COUNT] = { 0 };
-+	int i, count;
-+
-+	if (scmi_info->is_smc64) {
-+		count = of_property_read_variable_u64_array(np,
-+							    "arm,smc64-params",
-+							    &params64[0], 1,
-+							    MAX_PARAM_COUNT);
-+		if (count == -EINVAL)  /* if property is not defined */
-+			return;
-+
-+		if (count > 0)	/* populate the parameters */
-+			for (i = 0; i < count; i++)
-+				scmi_info->params[i].x = params64[i];
-+		else
-+			goto param_err;
-+	} else {
-+		count = of_property_read_variable_u32_array(np,
-+							    "arm,smc32-params",
-+							    &params32[0], 1,
-+							    MAX_PARAM_COUNT);
-+		if (count == -EINVAL)  /* if property is not defined */
-+			return;
-+
-+		if (count > 0)	/* populate the parameters */
-+			for (i = 0; i < count; i++)
-+				scmi_info->params[i].w = params32[i];
-+		else
-+			goto param_err;
-+	}
-+
-+	return;
-+
-+param_err:
-+	dev_warn(dev, "failed to read smc/hvc call parameters\n");
-+}
-+
- static irqreturn_t smc_msg_done_isr(int irq, void *data)
- {
- 	struct scmi_smc *scmi_info = data;
-@@ -156,6 +211,8 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	}
- 
- 	scmi_info->func_id = func_id;
-+	scmi_info->is_smc64 = ARM_SMCCC_IS_64(func_id);
-+	populate_smc_params(dev, scmi_info);
- 	scmi_info->cinfo = cinfo;
- 	smc_channel_lock_init(scmi_info);
- 	cinfo->transport_info = scmi_info;
-@@ -179,6 +236,7 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
- {
- 	struct scmi_smc *scmi_info = cinfo->transport_info;
- 	struct arm_smccc_res res;
-+	scmi_smc_param_t *p = scmi_info->params;
- 
- 	/*
- 	 * Channel will be released only once response has been
-@@ -188,7 +246,13 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
- 
- 	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
- 
--	arm_smccc_1_1_invoke(scmi_info->func_id, 0, 0, 0, 0, 0, 0, 0, &res);
-+	if (scmi_info->is_smc64)
-+		arm_smccc_1_1_invoke(scmi_info->func_id, p[0].x, p[1].x, p[2].x,
-+				     p[3].x, p[4].x, p[5].x, 0, &res);
-+	else
-+		arm_smccc_1_1_invoke(scmi_info->func_id, p[0].w, p[1].w, p[2].w,
-+				     p[3].w, p[4].w, p[5].w, 0, &res);
-+
- 
- 	/* Only SMCCC_RET_NOT_SUPPORTED is valid error code */
- 	if (res.a0) {
+ 			pm8998_resin: resin {
+ 				compatible = "qcom,pm8941-resin";
+-				interrupts = <GIC_SPI 0x8 1 IRQ_TYPE_EDGE_BOTH>;
++				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
+ 				debounce = <15625>;
+ 				bias-pull-up;
+ 				status = "disabled";
 -- 
-2.17.1
+2.39.2
 
