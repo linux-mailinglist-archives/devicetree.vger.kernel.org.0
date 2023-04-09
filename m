@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E7D6DC0FC
-	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 20:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 621E06DC14C
+	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 22:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjDISVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Apr 2023 14:21:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58332 "EHLO
+        id S229503AbjDIUJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Apr 2023 16:09:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjDISVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 14:21:49 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5614C2D70
-        for <devicetree@vger.kernel.org>; Sun,  9 Apr 2023 11:21:48 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id n22so1654098ljq.8
-        for <devicetree@vger.kernel.org>; Sun, 09 Apr 2023 11:21:48 -0700 (PDT)
+        with ESMTP id S229498AbjDIUJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 16:09:46 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D9CA30F9
+        for <devicetree@vger.kernel.org>; Sun,  9 Apr 2023 13:09:45 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id j8so813700pjy.4
+        for <devicetree@vger.kernel.org>; Sun, 09 Apr 2023 13:09:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681064506;
+        d=linaro.org; s=google; t=1681070984;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HGf2TObw1109OPvfJLr+dURMsGATmHG/HizFozIIbfw=;
-        b=xv+OHCghpdUt5+xBHjEWXpr7+okZ7hnfdCYoNMPU3+sfr22gWqC4QNGKowWVoxckVS
-         fhP0QVceNq5yxtYa+jFYQQmh0MeErZ8REdcvho6UhNCjqUkVUCIW3bMgiwXvi6yqg7Ix
-         8A1PaPi3RW4bQZjByKY5FXxMFqHBjM/6kQ5ETv6EzTTGf9ZQDemRQMEdEZEvG3wiOMEH
-         3NHjpU3BC1hcdZ8WRKlJcX0VQ7Yi9+bIOxGE+o8iuj1vpTbFjUjMAD1GujziKBpJ1E3T
-         ej7gyH3n0VZ4aIjESU3eV/P/9I9lel/9wAGj2hT09DSpY9T0aJ+fwRXCHyR6bnHiD20C
-         olRA==
+        bh=8A4KMRqswiSVoBTUCqWQOh29FItb4T+mQDuhm/yB/gc=;
+        b=O6X9iRNaynxt6Ui8WBYuHJ7FkDcp4hu13dIwUfrsMJJqOsz2GaiPLnCmSeSiSPGhMb
+         0c03gpsjOAdmdyV0KY25K68VJMokMta5X0BVv3z3CvUcLBJBBlzJ9wHoc17hZZRQBNOb
+         tJKdahKvyxJGFax6f6Rwzqct5xBw/ELPQZfCHY3bHfqh2OyIagTXVSND3M9PWCu1F7xZ
+         sJsWl8jSoT0ZkI6Ntscb4LngwQzIpYFq/f7jAirNwhqU+eMQ+hqhpmDmcG6QlLbJNeoD
+         exRfAoAnl6xyg4rG7llGWbqJxte36gZufhpT9HpYK/Flyl9wCAkZtU+hq4VaZda+RbdC
+         b4bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681064506;
+        d=1e100.net; s=20210112; t=1681070984;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HGf2TObw1109OPvfJLr+dURMsGATmHG/HizFozIIbfw=;
-        b=LXLKt1CU9dq6gGOdtPS0jTWOuQYf/OA+ZbyvpCMgGdrWtpaNE3lXNhg3IFNfuDotPL
-         6UI+JAvZUdizTHKJiMgp1m7CyNa6C+BHgfSY8TLzQQAX9CO++jiCk8pxpCqagzaf3Jcd
-         K8EssGd3Z3LJR83d8K9qiNBSHv4ETf+lM6dPM6C1xVzwdbgMOsRfSHRF6f7xSFcMv/zD
-         JPaFK0BRGwZ+al/iFmA71sim7Touqo3B1nyCMo9DzdRfFirXEO0Ky4IbyYaRGzLyAe0E
-         abC5+V0UIR8CHKMpPjR16MiaIh503AFuFCJrdsLB/Ebtgriuf4iyJt/NIXqJflhtQ17J
-         /zuQ==
-X-Gm-Message-State: AAQBX9e5EKlg61yWd/ayBDUhyoUrHRwpSSwuZQ1xYu2Sg49pMHVX2Pfn
-        Yn3mBCJyWy/uCVx2yJCrifh0kjiXcZEImVwZYUA=
-X-Google-Smtp-Source: AKy350a+mB2dKB5w4gf9zIRMk1NZetv1PbXxuGbrQOhmAzB1IkQI4lhkcr6Hb5IsdN3XDi/VGqYpdg==
-X-Received: by 2002:a05:651c:8a:b0:2a7:6ed7:473f with SMTP id 10-20020a05651c008a00b002a76ed7473fmr1105651ljq.51.1681064506550;
-        Sun, 09 Apr 2023 11:21:46 -0700 (PDT)
-Received: from lothlorien.lan (dzccz6yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::ab2])
-        by smtp.gmail.com with ESMTPSA id y10-20020ac2446a000000b004b4b600c093sm1705695lfl.92.2023.04.09.11.21.45
+        bh=8A4KMRqswiSVoBTUCqWQOh29FItb4T+mQDuhm/yB/gc=;
+        b=6YXhvNOsWE0tEp5pDI47eRSA9P64RSyZXlnpTK34Lm65tHxL+dXlmUBS7+riaUUunl
+         b5+zmQWCCaBBDOiuQaMTE2weRs2mrawWeLRtKP6za5AGGdTJu8yy08lHbVZHuExYSS1t
+         Biqdu73C+FbK4PWAGlegAKKBKtWirjLT21xIiZ0hRIx/y8AQcHaoYc66LD5HVZm5nqR+
+         1+snC2WBMraFCvO1gRm/dIW+jw4hUfnlg4gfBy0tyM71+J/ZWRO3tokYEuh0DcKyUuKA
+         txUq0yPxrYwBXks678jyBix9j/DCZIT7r/LnCNq30HLjs3zRqFL2oJQsOrpz6PIG+W7J
+         Vsdw==
+X-Gm-Message-State: AAQBX9cmEgiuuMbNWc1S9WX5O41X3kQ/fHFnYxHj+0GMKWF2LsUqyMC/
+        f7IHhkpPxnpimft30WFEZ63s9A==
+X-Google-Smtp-Source: AKy350YVj2o7rWdAQE/4+00ZqJXmAY0kxTBlWztMDF36iEsMbYF1xd4Ho/hZggqdIqZBDsuWQmJCLA==
+X-Received: by 2002:a17:902:c94f:b0:1a5:27d2:b6de with SMTP id i15-20020a170902c94f00b001a527d2b6demr5816920pla.3.1681070984456;
+        Sun, 09 Apr 2023 13:09:44 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:6a11:8ba1:beba:def7:a4ae])
+        by smtp.gmail.com with ESMTPSA id ji21-20020a170903325500b001a5260a6e6csm2876304plb.206.2023.04.09.13.09.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Apr 2023 11:21:46 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: pm8998: don't use GIC_SPI for SPMI interrupts
-Date:   Sun,  9 Apr 2023 21:21:45 +0300
-Message-Id: <20230409182145.122895-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
+        Sun, 09 Apr 2023 13:09:43 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v7 0/2] Enable USB SS qmp phy for Qualcomm SM6115 SoC
+Date:   Mon, 10 Apr 2023 01:39:32 +0530
+Message-Id: <20230409200934.2329297-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -70,29 +71,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Unlike typical GIC interrupts, first cell for SPMI interrupts is the
-USID rather than GIC_SPI/GIC_PPI/GIC_LPI qualifier. Fix the resin
-interrupt to use USID value 0x0 rather than GIC_SPI define.
+Changes since v6:
+-----------------
+- v6 can be seen here: https://lore.kernel.org/linux-arm-msm/20230407061122.2036838-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Bjorn and Dmitry and dropped old bindings in this
+  version.
 
-Fixes: f86ae6f23a9e ("arm64: dts: qcom: sagit: add initial device tree for sagit")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm8998.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v5:
+-----------------
+- v5 can be seen here: https://lore.kernel.org/linux-arm-msm/20230405191633.1864671-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry and made [PATCH 1/2] compatible with his 
+  'split away legacy USB+DP code' series:
+  <https://patchwork.kernel.org/project/linux-phy/cover/20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-index adbba9f4089a..13925ac44669 100644
---- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-@@ -55,7 +55,7 @@ pm8998_pwrkey: pwrkey {
- 
- 			pm8998_resin: resin {
- 				compatible = "qcom,pm8941-resin";
--				interrupts = <GIC_SPI 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-+				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
- 				debounce = <15625>;
- 				bias-pull-up;
- 				status = "disabled";
+Changes since v4:
+-----------------
+- v4 can be seen here: https://lore.kernel.org/linux-arm-msm/20230401154725.1059563-1-bhupesh.sharma@linaro.org/ 
+- Collected Krzysztof's Ack for [PATCH 1/2].
+- Added more descriptive commit logs as per Dmitry's comments on v4.
+
+Changes since v3:
+-----------------
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20221215094532.589291-4-bhupesh.sharma@linaro.org/
+- Fixed v4 as per the downstream driver code: https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
+
+This patchset adds the support for USB SS qmp phy for Qualcomm SM6115
+SoC. For the previous versions of this patch there were conversations
+on irc as to whether this was a 'qcom,usb-ssphy-qmp-usb3-or-dp' or a
+'qcom,usb-ssphy-qmp-dp-combo' as per downstream code and hardware
+documentation.
+
+But after a careful look at downstream dtsi (see [1]) it appears that
+this indeed is a 'qcom,usb-ssphy-qmp-usb3-or-dp' phy and not a
+'dp-combo' phy.
+
+[1]. https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
+
+Bhupesh Sharma (2):
+  dt-bindings: phy: qcom,qmp-usb: Drop legacy bindings and move to newer
+    one (SM6115 & QCM2290)
+  arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        | 27 -----------
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 45 ++++++++++++++++---
+ .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 27 ++++++++++-
+ .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+ 5 files changed, 71 insertions(+), 34 deletions(-)
+
 -- 
-2.39.2
+2.38.1
 
