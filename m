@@ -2,106 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C20C66DC03C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 16:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25ADC6DC054
+	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 16:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjDIOHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Apr 2023 10:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52302 "EHLO
+        id S229589AbjDIOYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Apr 2023 10:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbjDIOHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 10:07:36 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6731140D0;
-        Sun,  9 Apr 2023 07:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=jf6jO3ttspH8uPqIAbw5feGA1slabzlsM/7hpKfh80Y=; b=jtOBGbQTeyoCuSP6NOn3dicHvZ
-        G0+bCMKVAYrBH1PW4Q0lwFAr8D+89Et35zt5FUofyz+tJXiEv9Jt4yras8u0xJUZ3YCwhDnjBmbaU
-        R6d1GAPVrrPlhLtGd5o3SiixO3YNorPDAD5LRXajMHq3En2cEOYo5EjDgszNc2dCzbes=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1plVhX-009qEj-IU; Sun, 09 Apr 2023 16:07:27 +0200
-Date:   Sun, 9 Apr 2023 16:07:27 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     INAGAKI Hiroshi <musashino.open@gmail.com>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        sebastian.hesselbarth@gmail.com, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 2/2] ARM: dts: mvebu: add device tree for IIJ SA-W2
- appliance
-Message-ID: <b153523b-45cf-4e2e-8d62-de15b01a158d@lunn.ch>
-References: <20230223132502.2045-1-musashino.open@gmail.com>
- <20230223132502.2045-2-musashino.open@gmail.com>
- <Y/d7gjqQCKKXMHqj@lunn.ch>
- <7d4a218d-8b8a-5a1d-eff8-e154bfde69be@gmail.com>
- <87jzyn3dv9.fsf@BL-laptop>
- <64b5504d-c81d-f77e-da67-c6d9e76aedd6@gmail.com>
+        with ESMTP id S229581AbjDIOYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 10:24:14 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86CBA3C1E;
+        Sun,  9 Apr 2023 07:24:13 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id ca18e2360f4ac-7606cf9c551so837739f.0;
+        Sun, 09 Apr 2023 07:24:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1681050253; x=1683642253;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MHSYHiDIzBHYaMVI0wzSHbeNEEeUgNK+KBUGPamVoTI=;
+        b=fwJe44uxeTO23RKC1OfwUecw7FRiSCZSNDF7dFPwhmnc2Sh+dNlQrB3RmC08UJcM6i
+         eeJthrJ26fhXHdoUn6uAejjroei+54f43vk6AMA5knEfO2r5MJWdTPftBBnliDfKe8rx
+         vUb5OotTptb4muF7PMzIFq8SsOL48owkj/CKA1SMhDfxed/xpaqTBIzRpiUFeAgTK23t
+         ArvNNPI3llK6DoY+Zo9O+xMlnEF3gyWTA5dFNf+JqPCf8+EcFg22/LZwEZS0VKovgZVU
+         5vsxZmquy5Q+0SI7DXcwey3cV9E0FQtx4lFJnu3NtCV9eGcwQzsQ/PMCl47YP2AuugVq
+         Z4UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681050253; x=1683642253;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MHSYHiDIzBHYaMVI0wzSHbeNEEeUgNK+KBUGPamVoTI=;
+        b=xvX20GcYw8h18Tmqjng7ML8zyqYtZYif2D3YiFqOF+VdTPKYO0GUvYlwhbNfj8h8mW
+         lO6Fp76lkDsYCd9QopDtd0RIzYSCEggFjdJkIzGgXG+mMpZDcrOve1kcYK3hPDsiMMjE
+         ntOEMEpYBwE1FvGbZHniFy9GoxWjxOMe3+6CTd6TGZe7LMcLIJ2Xoz5heFH+z12rc2V9
+         uSmkp1hv6pqgEdAFvQkaVNYLoL9F97JfD5KgswmJiNgh1sRklycj/9z/IcG1Nkp3KdrZ
+         rcBzP9I+RHrGo9yfMeZ3YVH6xWzsL3oglRNOJGdzoLBu+nGJmKx1RP5NM1w4O9INJ/wA
+         X9Xw==
+X-Gm-Message-State: AAQBX9fErX2qlAttVCHw5Ca1V6GjRDnxTDchywB+AwLCalCd99YM0JBx
+        pPfoaIIKM1/LaNJ/5kL9tFs=
+X-Google-Smtp-Source: AKy350ajeWPC0FBnxE/7DVJzQIH1nvd4qauxyXv8VLbEMO9fTPhqsZZLJPPOw3a6w57EhWIkDlvSYA==
+X-Received: by 2002:a05:6602:4192:b0:760:478f:e436 with SMTP id bx18-20020a056602419200b00760478fe436mr2453709iob.2.1681050252926;
+        Sun, 09 Apr 2023 07:24:12 -0700 (PDT)
+Received: from ?IPV6:2604:2d80:4d87:cd00:9f51:32d7:1177:67d? ([2604:2d80:4d87:cd00:9f51:32d7:1177:67d])
+        by smtp.gmail.com with ESMTPSA id e12-20020a05660222cc00b0074555814e73sm2428949ioe.32.2023.04.09.07.24.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Apr 2023 07:24:12 -0700 (PDT)
+Message-ID: <0f6e0854-5097-3abe-8e02-36cb7027bf61@gmail.com>
+Date:   Sun, 9 Apr 2023 09:24:10 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <64b5504d-c81d-f77e-da67-c6d9e76aedd6@gmail.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH 2/5] Input: add driver for Focaltech FTS touchscreen
+Content-Language: en-US
+To:     Markuss Broks <markuss.broks@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jean Delvare <jdelvare@suse.de>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Job Noorman <job@noorman.info>,
+        Alistair Francis <alistair@alistair23.me>,
+        Chris Morgan <macromorgan@hotmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230312093249.1846993-1-joelselvaraj.oss@gmail.com>
+ <20230312093249.1846993-3-joelselvaraj.oss@gmail.com>
+ <68b05c43-5808-5792-9b57-aeafffe84149@gmail.com>
+ <d40faca2-fe5d-5b5a-eefe-68eb3e5e8125@gmail.com>
+ <f9c8e0d4-1d0c-cefc-866c-046d4d374576@gmail.com>
+From:   Joel Selvaraj <joelselvaraj.oss@gmail.com>
+In-Reply-To: <f9c8e0d4-1d0c-cefc-866c-046d4d374576@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 09, 2023 at 02:13:11PM +0900, INAGAKI Hiroshi wrote:
-> Hello Gregory CLEMENT,
+Hi Markuss,
+
+On 09/04/23 08:32, Markuss Broks wrote:
+> By that I meant doing something like the Zinitix driver[1] does. It has
+> a struct data type for whatever you read from hardware, e.g.
 > 
-> On 2023/04/08 0:34, Gregory CLEMENT wrote:
-> > Hello INAGAKI Hiroshi,
-> > 
-> > do you plan to send a v2 soon based on the reviews you got ?
+> struct point_coord {
+>     __le16    x;
+>     __le16    y;
+> ...
+> };
 > 
-> Yes, I'm planning to send the next series.
-> But I don't know the details about "documenting the board compatibles"
-> suggested by Krzysztof Kozlowski and I don't know what to do for it, so I'm
-> pausing this contribution...
+> from that driver. That way you can cast the data read to that struct and
+> have it look a bit nicer.
 
-Create Documentation/devicetree/bindings/arm/marvell/armada-380.yaml
+Understood. Thanks for the clarification. Jeff LaBundy explained it a
+bit too. I have addressed all the other comments in this patch series in
+my WIP v2. However, I am having quite the trouble casting the buffer to
+a struct. The register layout is bit weird. It would have been easier if
+they are sets of 8bits or 16bits values. Instead it seems to be split in
+terms 4bits and 12bits or I don't know. I am a bit new to this and
+having trouble handling endianess with these weird splits in the buffer.
 
-Put in it
+Here is a hand drawn image of the buffer layout [1]. Let me know if you
+or anyone have any thoughts on this. Wonder if it's worth the trouble :)
 
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-%YAML 1.2
----
-$id: http://devicetree.org/schemas/arm/marvell/armada-380.yaml#
-$schema: http://devicetree.org/meta-schemas/core.yaml#
+[1] https://imgur.com/a/4RYrB1G
 
-title: Marvell Armada 380 SoC architecture
+> This is just a suggestion though, you have the final choice in what
+> design you choose for your code :)
 
-maintainers:
-  - Andrew Lunn <andrew@lunn.ch>
+I am gonna try it a few more days and if I can't make it work in a
+sensible way, I will probably go with the existing approach.
 
-description:
-  Platforms based on Marvell Armada 380 SoC architecture.
+> - Markuss
 
-properties:
-  $nodename:
-    const: '/'
-  compatibnle:
-    oneOf:
-
-      - description: Marvell Armada 380 SoC based platforms
-        items:
-          - enum:
-              - phytec,pcm049   # Phytec OMAP 4460 SoM
-          - const: "marvell,armada380"
-
-additionalProperties: true
-
-
-But replace the phytex,pcm049 with the compatible for your board.
-
-    Andrew
+Thanks,
+Joel
