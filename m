@@ -2,193 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B988B6DBF56
-	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 11:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6836DC000
+	for <lists+devicetree@lfdr.de>; Sun,  9 Apr 2023 15:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbjDIJSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Apr 2023 05:18:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
+        id S229581AbjDINce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Apr 2023 09:32:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjDIJSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 05:18:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 887764EC9;
-        Sun,  9 Apr 2023 02:18:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 21E8360DF8;
-        Sun,  9 Apr 2023 09:18:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6D133C433EF;
-        Sun,  9 Apr 2023 09:18:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681031928;
-        bh=c2I0yJTyQr3Uyst/ro4wytwPfIU+WGszhyD9VTJ7OqU=;
-        h=From:Date:Subject:To:Cc:Reply-To:From;
-        b=iQ678+S5SD4L2NIJKyc6o7UoG6nKCLzPMuC57jnBRsYv/BddCSFczRmsPavRk7Pxk
-         tbgp9cxLBM1czMMRRk4ReElYd3rKH8pVyuJBP5RlPR9SQewtORy7DcFwtVXkYhgJIe
-         //dQULHyFtYoL6X+ER4JcGz//BZ6t7Sx/SjNf0pxsTSyvhGWl35/kWqBSuIHmrl5qE
-         KKfdxeapb9GUOIpvmTlXZoGM9yA+UdDgSZuL9KwZ9PwbRK2AWdgkJAJid025BF9h18
-         gqYo8Fz8SF6ul23EakKCq5U7nkdCnBj7fLKeox5aF0+fWnZ8vMyrDpEkPeV9xPrMK+
-         JeyfUUwkafSwg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.lore.kernel.org (Postfix) with ESMTP id 5A9C6C77B70;
-        Sun,  9 Apr 2023 09:18:48 +0000 (UTC)
-From:   Sasha Finkelstein via B4 Relay 
-        <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date:   Sun, 09 Apr 2023 11:18:46 +0200
-Subject: [PATCH] arm64: dts: apple: t8112: Add PWM controller
+        with ESMTP id S229484AbjDINcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 09:32:33 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF013599;
+        Sun,  9 Apr 2023 06:32:32 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id g19so46561616lfr.9;
+        Sun, 09 Apr 2023 06:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1681047150; x=1683639150;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2OwlGcOxlJlN3MIUaRMj/bpmF1BMiMrIYCbEpNuZpqI=;
+        b=FnDCAnPk1QMeGGkItp3mZTwuQWT8ViMPWxedYv6BSzXp2wayH4Dm0zeISrNN2b4bZj
+         Wh3owmlZod2AplRR7/0ZdFlTTbfRTOOb9swkRUZPctUzKIQDWF7CxwpH8udeHGfevYNU
+         kh8jYzW5DHK6ae2kTkse5g87Fn1IMorT5NLIheVL5bTx595qGQLEP6/oXlu488ml3Q4f
+         p00nfLESHPVIzl25cwAApk3E04YW45Y1gY5zlWdempWG/U8rZZCd+PHAjczmFJnf/YLL
+         NcTk4baptK0nTGRvtfMYQa8IvR8Ar1eumG3Elhfg/6Bx4mG6ouznEuThO2/3r6dEdj4K
+         j/cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681047150; x=1683639150;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2OwlGcOxlJlN3MIUaRMj/bpmF1BMiMrIYCbEpNuZpqI=;
+        b=YltNtgxFkFtZpEnICz5rU5c7wQz2nGAX3qrnFgHt6NUgcx5R35bK2DORJZxjGWC+qK
+         fMKibrO3z8kvoHPKCUGt2wF92eNoPt60XtfVkeHq7G6Pof6xtwDbs0cP+tRLzq0u1ELR
+         9hcySry5p+gp1Ve0jSJUfA0n+fL/YddqwwDxk6Ddkvi2ld6YKsFI07PTaKzzaTgDV2Yk
+         i+Vs8p4yK43bZMcRjqf9qSsd3vZQIRDopO+rK+eHQsWf9PpUrLIR4P7R4r2nTJX1rGN7
+         /2AnRekJNLTAM9Jl3Uh/SK4K5Vh1Q5/ILHXlk5y5yag3tcVvV/XIrUMtjgcG92aKAaOD
+         R/gg==
+X-Gm-Message-State: AAQBX9fJqmW9xFxDo1YkEP3jn+W+6ByIc5ykStMmkdkVDCdCWdPVQAVB
+        FHaUA2uuINvAbh1yRYC3rVQ=
+X-Google-Smtp-Source: AKy350bix1b3DMlJK9+vyuOd62RoWfeZNF6BH+0X4TDDpyFCQiNNS3eOugX8Iw1egN3tajdtsR8E+Q==
+X-Received: by 2002:ac2:4d03:0:b0:4eb:3fb2:c56d with SMTP id r3-20020ac24d03000000b004eb3fb2c56dmr2803384lfi.12.1681047150024;
+        Sun, 09 Apr 2023 06:32:30 -0700 (PDT)
+Received: from [192.168.171.122] ([46.211.100.81])
+        by smtp.gmail.com with ESMTPSA id v11-20020ac2560b000000b004d58e782886sm1608274lfd.303.2023.04.09.06.32.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Apr 2023 06:32:29 -0700 (PDT)
+Message-ID: <f9c8e0d4-1d0c-cefc-866c-046d4d374576@gmail.com>
+Date:   Sun, 9 Apr 2023 16:32:27 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230409-t8112-fpwm-v1-1-feffa5f8b99b@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAPaCMmQC/x2NywrCMBAAf6Xs2cW8lOqvFA/bZGv2YFqyRYXSf
- zf1OAzDbKBchRXu3QaV36Iylwb21EHMVJ6MkhqDM86bYG649tY6nJbPC82Vgw8x+kufoAUjKeN
- YqcR8JKSUBXWO57Qeeqk8yff/Gh77/gOATlWmewAAAA==
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 2/5] Input: add driver for Focaltech FTS touchscreen
+Content-Language: en-US
+To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sasha Finkelstein <fnkl.kernel@gmail.com>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681031927; l=3074;
- i=fnkl.kernel@gmail.com; s=20230213; h=from:subject:message-id;
- bh=oZH+o0OuBKtAeL1N+AILko2fVUAecOJUeYZVbst1W5o=;
- b=C18AutLzDFanW7c9JjMjZfk0eZAnVX7s7KUp5iGQQ+Xga9D+G1Fwk2ky0g2IDzDC1+b6xsTgs
- 6muF/T8FkQ9AAYwfsTeW9Q/xO9EOCGv3VJO3ck8bLAS5cJohh33NURk
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=7LFSAJtxIWAs9LzCIyX0sSvCZy2wQTyEIu1zch6o804=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20230213 with auth_id=28
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: <fnkl.kernel@gmail.com>
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jean Delvare <jdelvare@suse.de>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Job Noorman <job@noorman.info>,
+        Alistair Francis <alistair@alistair23.me>,
+        Chris Morgan <macromorgan@hotmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230312093249.1846993-1-joelselvaraj.oss@gmail.com>
+ <20230312093249.1846993-3-joelselvaraj.oss@gmail.com>
+ <68b05c43-5808-5792-9b57-aeafffe84149@gmail.com>
+ <d40faca2-fe5d-5b5a-eefe-68eb3e5e8125@gmail.com>
+From:   Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <d40faca2-fe5d-5b5a-eefe-68eb3e5e8125@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Hi Joel,
 
-This patch adds the device tree entries for the PWM controller
-present on M2 macbooks that is connected to the keyboard backlight.
+Sorry for responding late:
 
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- arch/arm64/boot/dts/apple/t8112-j413.dts | 17 +++++++++++++++++
- arch/arm64/boot/dts/apple/t8112-j493.dts | 17 +++++++++++++++++
- arch/arm64/boot/dts/apple/t8112.dtsi     |  9 +++++++++
- 3 files changed, 43 insertions(+)
+On 3/13/23 00:21, Joel Selvaraj wrote:
+> Hi Markuss,
+>
+> Thanks for the quick review! I agree with most of your comments and will
+> fix them in a v2 soon. I have a few doubts as discussed below.
+>
+> On 12/03/23 15:40, Markuss Broks wrote:
+>
+>> Why is the _ratelimited variant necessary?
+> I assumed in case of the interrupt working, but i2c reads fail for some
+> reason, it would spam a lot of error messages if the user touches the
+> screen continuously, like a swipe up gesture or something.
+>
+> I referred to ad7879 touchscreen's irq handling code [1] and thought
+> it's probably best to do this, to be on the safe side. I will remove
+> this if it's not needed in v2.
+>
+>> Overall, I think it's better to cast the data type to a struct, which
+>> would make this seem with less random.
+> Sorry, I am not sure I got this right. Do you mean I create an array of
+> struct called say "fts_point" that stores the x, y, type, etc. info of
+> all the points, then report it separately. Like similar to something
+> done by the auo-pixcir touchscreen driver [2]?
 
-diff --git a/arch/arm64/boot/dts/apple/t8112-j413.dts b/arch/arm64/boot/dts/apple/t8112-j413.dts
-index 9e758edeaa82..6f69658623bf 100644
---- a/arch/arm64/boot/dts/apple/t8112-j413.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j413.dts
-@@ -11,6 +11,7 @@
- 
- #include "t8112.dtsi"
- #include "t8112-jxxx.dtsi"
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	compatible = "apple,j413", "apple,t8112", "apple,arm-platform";
-@@ -20,6 +21,18 @@ aliases {
- 		bluetooth0 = &bluetooth0;
- 		wifi0 = &wifi0;
- 	};
-+
-+	led-controller {
-+		compatible = "pwm-leds";
-+		led-0 {
-+			pwms = <&fpwm1 0 40000>;
-+			label = "kbd_backlight";
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+			color = <LED_COLOR_ID_WHITE>;
-+			max-brightness = <255>;
-+			default-state = "keep";
-+		};
-+	};
- };
- 
- /*
-@@ -61,3 +74,7 @@ hpm5: usb-pd@3a {
- &i2c4 {
- 	status = "okay";
- };
-+
-+&fpwm1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
-index 8552c15be265..0ad908349f55 100644
---- a/arch/arm64/boot/dts/apple/t8112-j493.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
-@@ -11,6 +11,7 @@
- 
- #include "t8112.dtsi"
- #include "t8112-jxxx.dtsi"
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	compatible = "apple,j493", "apple,t8112", "apple,arm-platform";
-@@ -20,6 +21,18 @@ aliases {
- 		bluetooth0 = &bluetooth0;
- 		wifi0 = &wifi0;
- 	};
-+
-+	led-controller {
-+		compatible = "pwm-leds";
-+		led-0 {
-+			pwms = <&fpwm1 0 40000>;
-+			label = "kbd_backlight";
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+			color = <LED_COLOR_ID_WHITE>;
-+			max-brightness = <255>;
-+			default-state = "keep";
-+		};
-+	};
- };
- 
- /*
-@@ -50,3 +63,7 @@ bluetooth0: bluetooth@0,1 {
- &i2c4 {
- 	status = "okay";
- };
-+
-+&fpwm1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-index 698a436e7dac..1666e6ab250b 100644
---- a/arch/arm64/boot/dts/apple/t8112.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-@@ -458,6 +458,15 @@ i2c4: i2c@235020000 {
- 			status = "disabled";
- 		};
- 
-+		fpwm1: pwm@235044000 {
-+			compatible = "apple,t8112-fpwm", "apple,s5l-fpwm";
-+			reg = <0x2 0x35044000 0x0 0x4000>;
-+			power-domains = <&ps_fpwm1>;
-+			clocks = <&clkref>;
-+			#pwm-cells = <2>;
-+			status = "disabled";
-+		};
-+
- 		serial0: serial@235200000 {
- 			compatible = "apple,s5l-uart";
- 			reg = <0x2 0x35200000 0x0 0x1000>;
+By that I meant doing something like the Zinitix driver[1] does. It has 
+a struct data type for whatever you read from hardware, e.g.
 
----
-base-commit: 8d59efc33fdaa2c82072b4d3ba5f67d7dd9270d0
-change-id: 20230409-t8112-fpwm-06e434cc358d
+struct point_coord {
+     __le16    x;
+     __le16    y;
+...
+};
 
-Best regards,
--- 
-Sasha Finkelstein <fnkl.kernel@gmail.com>
+from that driver. That way you can cast the data read to that struct and 
+have it look a bit nicer.
+
+This is just a suggestion though, you have the final choice in what 
+design you choose for your code :)
+
+>
+> If I didn't get this correctly, can you show me some code in mainline,
+> that does it? It would be very helpful.
+>
+> [1]
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/input/touchscreen/ad7879.c?h=v6.3-rc1#n250
+> [2]
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/input/touchscreen/auo-pixcir-ts.c?h=v6.3-rc1#n162
+>
+>> - Markuss
+> Thanks,
+> Joel
+[1]
+https://elixir.free-electrons.com/linux/v6.3-rc5/source/drivers/input/touchscreen/zinitix.c
+
+
+- Markuss
 
