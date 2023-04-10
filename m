@@ -2,145 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE536DC49D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 10:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 571316DC4A6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 10:51:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbjDJIs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 04:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
+        id S229716AbjDJIup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 04:50:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbjDJIsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 04:48:41 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB82559F3;
-        Mon, 10 Apr 2023 01:47:31 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id BFC6924E0D6;
-        Mon, 10 Apr 2023 16:43:40 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
- 2023 16:43:41 +0800
-Received: from [192.168.155.128] (202.188.176.82) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
- 2023 16:43:37 +0800
-Message-ID: <6df549e9-d0f6-23ca-882f-527c4e40b553@starfivetech.com>
-Date:   Mon, 10 Apr 2023 16:43:37 +0800
+        with ESMTP id S230376AbjDJIuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 04:50:19 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BBEE5587
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 01:49:51 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id xi5so10935034ejb.13
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 01:49:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1681116579; x=1683708579;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y5ePFxjbLBzvierh0vPmoX2AJ6odjU/okQNVSYo6+J0=;
+        b=RCJpuhAmaiEhyX7miTtpDm2B6aHyY7G7AUvRlRukNsyjL70ZJsCQAtaj3OQvh5OYPV
+         TFriUULQnUDlx2HjEsI/Kw2Ah9VIJ9ZIeDYYBye3hexNLts3plMTPCJjFWrxMbIu6Eag
+         XjqvoXa1xSsAljafdAreM72uC7lUHl6yPkaAmYZuhufCOwNvWRRWHj1YBOsWfhdoFgnF
+         kSBopPrfEZ28my/Fa41Qr6TJNH9JpbaOPigMEYVU/B8HSmVqjIqBmV8qS+8UuhdK0dRL
+         nxO6iYDY4vXdt8A9z2+h74Uj92wooKBV/Qh70Eg4GbRrknLo9F3pWeHJHPTVX9UIkidz
+         CSUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681116579; x=1683708579;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y5ePFxjbLBzvierh0vPmoX2AJ6odjU/okQNVSYo6+J0=;
+        b=YbA+mnXe9/hO2VJz91tjS3Ao/AzPraaved0UNQsIRG44Q7tRw/ag0jmtgARFSNiU6c
+         skkDkPyYBloMIfn4L8T9W6xOM2rQV1xi/mnrukl9OYAYAT7q1EYoy6arqyLjhfYuguU1
+         w27qxDY7MtrFZFzfOls+h0DkQ7XUqm1W7ADoCnuQ7iiOl0qrl7XUHtsJ4UOccjySE86r
+         YrpZriT13VFcuP50BwM0PZbAO9QuEYXtMYWlGfwEn6Y7gxZRg4YsEOhnn/l4qPzd9Q34
+         ULxI52lBuApZUGGO7K8wQ1SsrVmJ6UaLZv3UV0SEYhZPCbtz6FKHRrvA5UrmQ91NjJEk
+         PiYA==
+X-Gm-Message-State: AAQBX9cYfqsHz8plUtxEJwUQ+U2dPUmm3kN9k/mriORt3w/kNtS3QKXp
+        YjvTe+XfNAdYBwJeNrbib1sapND/tjQ1kXg8
+X-Google-Smtp-Source: AKy350bKbp2C72vty5skdGElAcpoLwKvITKzpR2b0BLRFPeIA6nODgwcXIjQGRg4GNgULAPUQS2ugA==
+X-Received: by 2002:a17:906:8585:b0:94a:7a2f:d6e8 with SMTP id v5-20020a170906858500b0094a7a2fd6e8mr2904492ejx.61.1681116578666;
+        Mon, 10 Apr 2023 01:49:38 -0700 (PDT)
+Received: from localhost.localdomain ([154.72.161.184])
+        by smtp.gmail.com with ESMTPSA id v13-20020a50954d000000b004fc649481basm4709962eda.58.2023.04.10.01.49.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Apr 2023 01:49:38 -0700 (PDT)
+From:   Brandon Cheo Fusi <fusibrandon13@gmail.com>
+To:     maxime@cerno.tech
+Cc:     airlied@gmail.com, andrzej.hajda@intel.com, daniel@ffwll.ch,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, jagan@amarulasolutions.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        maarten.lankhorst@linux.intel.com, marex@denx.de,
+        neil.armstrong@linaro.org, rfoss@kernel.org, robh+dt@kernel.org,
+        sam@ravnborg.org, samuel@sholland.org, tzimmermann@suse.de,
+        wens@csie.org, Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Subject: [PATCH 0/2] drm: sun4i/dsi: allow modeset helpers to manage display
+Date:   Mon, 10 Apr 2023 09:47:48 +0100
+Message-Id: <20230410084750.164016-1-fusibrandon13@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 4/4] crypto: starfive - Add hash and HMAC support
-Content-Language: en-US
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230410073752.39506-1-jiajie.ho@starfivetech.com>
- <20230410073752.39506-5-jiajie.ho@starfivetech.com>
- <ZDO/z++4/TE6AiIz@gondor.apana.org.au>
-From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
-In-Reply-To: <ZDO/z++4/TE6AiIz@gondor.apana.org.au>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [202.188.176.82]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.9 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/4/2023 3:50 pm, Herbert Xu wrote:
-> On Mon, Apr 10, 2023 at 03:37:52PM +0800, Jia Jie Ho wrote:
->>
->> +static void starfive_hash_start(void *param)
->> +{
->> +	struct starfive_cryp_ctx *ctx = param;
->> +	struct starfive_cryp_request_ctx *rctx = ctx->rctx;
->> +	struct starfive_cryp_dev *cryp = ctx->cryp;
->> +	union starfive_alg_cr alg_cr;
->> +	union starfive_hash_csr csr;
->> +
->> +	dma_unmap_sg(cryp->dev, rctx->in_sg, rctx->in_sg_len, DMA_TO_DEVICE);
->> +
->> +	alg_cr.v = 0;
->> +	alg_cr.clear = 1;
->> +
->> +	writel(alg_cr.v, cryp->base + STARFIVE_ALG_CR_OFFSET);
->> +
->> +	csr.v = readl(cryp->base + STARFIVE_HASH_SHACSR);
->> +	csr.firstb = 0;
->> +	csr.final = 1;
->> +
->> +	reinit_completion(&cryp->hash_done);
->> +	writel(~STARFIVE_IE_MASK_HASH_DONE, cryp->base + STARFIVE_IE_MASK_OFFSET);
->> +	writel(csr.v, cryp->base + STARFIVE_HASH_SHACSR);
->> +}
-> 
-> Why are you still using a completion? The callback function should
-> invoke the crypto_engine finalize_request call directly.
-> 
+This change moves DSI PHY poweron/off from the encoder to the TCON. 
 
-Hi Herbert,
-The hardware requires user to set a 'final' bit after data transfer completed.
-This completion is to wait for the interrupt signal from device that the final digest 
-has been populated to the read registers.
+As a consequence enabling or disabling the DSI sink can be left to the modeset
+helpers, and bridge support easily introduced without touching the 
+drm_encoder.bridge_chain or converting the encoder to a drm_bridge.
 
-I'll do the finalize_request call directly in the next version.
+Brandon Cheo Fusi (2):
+  drm: sun4i/dsi: factor out DSI PHY poweron and poweroff
+  drm: sun4i: tie DSI PHY Poweron/off to crtc enable/disable
 
->> +static int starfive_hash_xmit(struct starfive_cryp_ctx *ctx)
->> +{
->> +	struct starfive_cryp_request_ctx *rctx = ctx->rctx;
->> +	struct starfive_cryp_dev *cryp = ctx->cryp;
->> +	int ret;
->> +
->> +	rctx->csr.hash.v = 0;
->> +	rctx->csr.hash.reset = 1;
->> +	writel(rctx->csr.hash.v, cryp->base + STARFIVE_HASH_SHACSR);
->> +
->> +	if (starfive_hash_wait_busy(ctx))
->> +		return dev_err_probe(cryp->dev, -ETIMEDOUT, "Error resetting engine.\n");
->> +
->> +	rctx->csr.hash.v = 0;
->> +	rctx->csr.hash.mode = ctx->hash_mode & STARFIVE_HASH_MODE_MASK;
->> +	rctx->csr.hash.ie = 1;
->> +
->> +	if (ctx->hash_mode & STARFIVE_HASH_HMAC_FLAGS) {
->> +		ret = starfive_hash_hmac_key(ctx);
->> +		if (ret)
->> +			return ret;
->> +	} else {
->> +		rctx->csr.hash.start = 1;
->> +		rctx->csr.hash.firstb = 1;
->> +		writel(rctx->csr.hash.v, cryp->base + STARFIVE_HASH_SHACSR);
->> +	}
->> +
->> +	ret = starfive_hash_xmit_dma(ctx);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (!wait_for_completion_timeout(&cryp->hash_done, msecs_to_jiffies(10000)))
->> +		return dev_err_probe(cryp->dev, -ETIMEDOUT, "Timeout waiting for hash done\n");
-> 
-> There is no point in waiting for completion.  Just return 0 and
-> you're done.
-> 
+ drivers/gpu/drm/sun4i/sun4i_tcon.c     | 10 +++-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 64 ++++++++++++--------------
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  4 ++
+ 3 files changed, 43 insertions(+), 35 deletions(-)
 
-I'll change this in the next version too.
-
-Thanks for taking time reviewing this patch.
-
-Best regards,
-Jia Jie
+-- 
+2.30.2
 
