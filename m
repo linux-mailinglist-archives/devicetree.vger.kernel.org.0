@@ -2,87 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C2276DCABA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 20:25:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A6F6DCA7A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 20:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbjDJSZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 14:25:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38816 "EHLO
+        id S230013AbjDJSKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 14:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbjDJSZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 14:25:15 -0400
-X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 10 Apr 2023 11:25:14 PDT
-Received: from new-shark9.inbox.lv (new-shark9.inbox.lv [194.152.32.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693A61FE5;
-        Mon, 10 Apr 2023 11:25:14 -0700 (PDT)
-Received: from shark1.inbox.lv (shark1 [10.0.1.81])
-        by new-shark9.inbox.lv (Postfix) with ESMTP id 8B2C3480813;
-        Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
-Received: from shark1.inbox.lv (localhost [127.0.0.1])
-        by shark1-out.inbox.lv (Postfix) with ESMTP id 7AD4B11180E5;
-        Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv;
-        s=p20220324; t=1681150058; x=1681151858;
-        bh=y1ChjUCMzQii6EhLRKMmO6a7digcuovwd1kw7u2N5go=;
-        h=From:To:Cc:Subject:Date:Message-Id:X-ESPOL:From:Date:To:Cc:
-         Message-ID:Subject:Reply-To;
-        b=vb5mdnl4+jFXMtD2syWXhid9OerURW9+OTxEiG46GWdvu41h4BFJg/3wmxu52azlo
-         fAJE4FNri0TYa2bD8MaE1TT6fgTI5FU2ZFWuYl3tc6HZ3djX/NlyWCEc3Z24B8H1Kf
-         76ifSzUT4RgEL2pX961SJaJfYhSMEfkrnx9oPe5g=
-Received: from localhost (localhost [127.0.0.1])
-        by shark1-in.inbox.lv (Postfix) with ESMTP id 736F211180B3;
-        Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
-Received: from shark1.inbox.lv ([127.0.0.1])
-        by localhost (shark1.inbox.lv [127.0.0.1]) (spamfilter, port 35)
-        with ESMTP id PONECAxGTz8l; Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
-Received: from mail.inbox.lv (pop1 [127.0.0.1])
-        by shark1-in.inbox.lv (Postfix) with ESMTP id 3517B111809A;
-        Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
-From:   Karl Chan <exkcmailist@inbox.lv>
-To:     linux-amlogic@lists.infradead.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, "Karl Chan" <exkcmailist@inbox.lv>
-Subject: [PATCH v3 0/2] arm64: dts: meson-gxl: add support for Xiaomi Mibox 3
-Date:   Tue, 11 Apr 2023 02:07:26 +0800
-Message-Id: <20230410180728.30332-1-exkcmailist@inbox.lv>
-X-Mailer: git-send-email 2.40.0
+        with ESMTP id S229798AbjDJSKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 14:10:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F66CF;
+        Mon, 10 Apr 2023 11:10:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C5066614C7;
+        Mon, 10 Apr 2023 18:10:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8509C433EF;
+        Mon, 10 Apr 2023 18:10:09 +0000 (UTC)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] ARM: dts: qcom: apq8026: remove superfluous "input-enable"
+Date:   Mon, 10 Apr 2023 20:10:03 +0200
+Message-Id: <20230410181005.25853-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: OK
-X-ESPOL: AJqEQ3gB6gpLwLuiSfBh5uXsxt+2VFkkvDuJsLBwtjJYqsqhvt90eXGXGIPxEAGnemLD
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Karl Chan"  <exkcmailist@inbox.lv>
+Pin configuration property "input-enable" was used with the intention to
+disable the output, but this is done by default by Linux drivers.  Since
+patch ("dt-bindings: pinctrl: qcom: tlmm should use output-disable, not
+input-enable") the property is not accepted anymore.
 
-The Xiaomi Mibox 3 is a TV box based on the Amlogic S905X chipset.
-There are two variants:
-- 2 GiB/8GIB
-- 1 GiB/4GIB
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts    | 2 --
+ arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts | 1 -
+ arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts        | 3 ---
+ 3 files changed, 6 deletions(-)
 
-Both variants come with:
-- 802.11a/b/g/n/ac wifi (BCM4345)
-- HDMI , AV (CVBS) and S/PDIF optical output
-- 1x USB (utilizing both USB ports provided by the SoC)
-
-Karl Chan (2):
-  dt-bindings: arm: amlogic: add Xiaomi Mibox 3 binding
-  arm64: dts: meson-gxl: add support for Xiaomi Mibox 3
-
- .../devicetree/bindings/arm/amlogic.yaml      |   1 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-gxl-s905x-xiaomi-mibox3.dts | 142 ++++++++++++++++++
- 3 files changed, 144 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
-
+diff --git a/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts b/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts
+index 7a80e1c9f126..aa0e0e8d2a97 100644
+--- a/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts
++++ b/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts
+@@ -268,7 +268,6 @@ bluetooth_default_state: bluetooth-default-state {
+ 		function = "gpio";
+ 		drive-strength = <8>;
+ 		bias-disable;
+-		input-enable;
+ 	};
+ 
+ 	wlan_hostwake_default_state: wlan-hostwake-default-state {
+@@ -276,7 +275,6 @@ wlan_hostwake_default_state: wlan-hostwake-default-state {
+ 		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-disable;
+-		input-enable;
+ 	};
+ 
+ 	wlan_regulator_default_state: wlan-regulator-default-state {
+diff --git a/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts b/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts
+index d64096028ab1..5593a3a60d6c 100644
+--- a/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts
++++ b/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts
+@@ -352,7 +352,6 @@ wlan_hostwake_default_state: wlan-hostwake-default-state {
+ 		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-disable;
+-		input-enable;
+ 	};
+ 
+ 	wlan_regulator_default_state: wlan-regulator-default-state {
+diff --git a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
+index b82381229adf..b887e5361ec3 100644
+--- a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
++++ b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
+@@ -307,7 +307,6 @@ bluetooth_default_state: bluetooth-default-state {
+ 		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-disable;
+-		input-enable;
+ 	};
+ 
+ 	touch_pins: touch-state {
+@@ -317,7 +316,6 @@ irq-pins {
+ 
+ 			drive-strength = <8>;
+ 			bias-pull-down;
+-			input-enable;
+ 		};
+ 
+ 		reset-pins {
+@@ -335,7 +333,6 @@ wlan_hostwake_default_state: wlan-hostwake-default-state {
+ 		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-disable;
+-		input-enable;
+ 	};
+ 
+ 	wlan_regulator_default_state: wlan-regulator-default-state {
 -- 
-2.40.0
+2.34.1
+
