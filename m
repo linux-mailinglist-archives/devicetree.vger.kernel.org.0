@@ -2,425 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DC7A6DC8AF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 585D56DC890
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjDJPnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 11:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53380 "EHLO
+        id S230028AbjDJPeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 11:34:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230073AbjDJPnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:43:00 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AEF049EC;
-        Mon, 10 Apr 2023 08:42:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681141379; x=1712677379;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3Ym2cho9LOcQwyXbTc9OkJFyWAtaHr3Us3FO9g6jBII=;
-  b=PaHoH9EDdCTl3J1sAeODk+KuVDVk0DKSsjijcR97ArbYc08OINR9E/U6
-   DMIW9nY7NaUaMglnbJPZI+Zl0fZjgPBt0CJ7geI4sEi+Rd8MJvYfCmb1G
-   /s4xJSlZ3hqxcmpqbCuiCGPvoCzKDh65tQ9tSd654ibDr+sPpnnIrbskc
-   DYKznVb7UN942w3Eh9AMG35UbsRHLCh94MkFooJZTSReds4wRxngxc4HK
-   Gpj+yMYiVyKe/uy7pvX7B8zlnRaoEWxxWm4KhwPNuZrsJ40Iq2e4d+53a
-   joXV9hR1CjKWqNScmm0MkcgmffV3zSNZrBSUPNzMeRFzsVRwVmvMcjvOZ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="340868175"
-X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; 
-   d="scan'208";a="340868175"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2023 08:42:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="757482052"
-X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; 
-   d="scan'208";a="757482052"
-Received: from linux-builds1.an.intel.com ([10.122.105.32])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2023 08:42:57 -0700
-From:   dinh.nguyen@linux.intel.com
-To:     linux-hwmon@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com,
-        linux@roeck-us.net, Dinh Nguyen <dinh.nguyen@linux.intel.com>
-Subject: [PATCH 5/5] arm64: dts: socfpga: add hwmon properties
-Date:   Mon, 10 Apr 2023 10:33:14 -0500
-Message-Id: <20230410153314.27127-5-dinh.nguyen@linux.intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
-References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
+        with ESMTP id S230019AbjDJPeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:34:05 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34E461B1
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:34:03 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id xi5so13324893ejb.13
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:34:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681140842;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KqtoN0OKgoyUeb8t5u3oNJm4LieXPZgqxU17hzS/9gQ=;
+        b=fF5XvSpx0zslDPXSB/uQtorXfgA0CJVWQSI3PrMvgsylTl5Ht3d1s+3XySk5bt5xYk
+         lhqlfsT4aKSnjIYtBAGg4YZUCGFzo8BDDP91u8IFb+UGKEOLb+BkMEF7kKBfp4WfM0ok
+         juQ5BsGN0o7psWMQ8E/kYUG7aP5lbBmOCIr50rAIbWTGANCOCHyOqhgbsQ+5dQLTvq9O
+         QqgzNnhESNBzVjSRLlqF12X8a2XNfE2dmPsEPgMGoiZQhDE5A1l1IZlHOxi5+torbuZ2
+         ckRZ6ha0VYHZdvBdwzRZTLMWT80iUNbze5XK0d/kFGrreBnz3XWFUaKVMllIKTIKi/OB
+         orBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681140842;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KqtoN0OKgoyUeb8t5u3oNJm4LieXPZgqxU17hzS/9gQ=;
+        b=QOTSL8L9MCiBbDRAKGxMBF4u6BaAgyAfHQ1COH3BkWb7HYCz2fc1JqRhMG5PmpO+D9
+         9X+r31omA+7vqyTQ294HlQhES30GkbNZ6Lsny4tc62reIqruLmSj4N/vWUH9bFHNCSgL
+         nCkytm2p8HZDZDU3/53Yu+VEPUz8HAfUCdqK3yAMtyRwknVZPtJyrzrXEi4pHfjevjc1
+         wPRaY4bWkZ4Y37kTZfcifoXGisHgy5nAJ9CFFLsvsjEHZvj1d0WoEklLO2YhP7xzcntB
+         mBZNRHihsZh/1zrjT7BCsAApa/L/q4Kxrq0IMfiuwtFux36g3qdyeHlJkZDB9GtT/OKx
+         lFSw==
+X-Gm-Message-State: AAQBX9dwiJt9Lmu6xlSzxOMQ11MRQgG5iHLjgJI9YP0imd6vZU4P4JqA
+        LKJSFXRC4z0ys8I28EHdJTDMFA==
+X-Google-Smtp-Source: AKy350YFKRsLWRh4bwiLgUNwYtlrqIPpRVMDQA3iKKi6yhZ6JiwSwZjdcKLSrkM897T8RTwHSFdG7A==
+X-Received: by 2002:a17:906:f8c2:b0:949:f4fb:9923 with SMTP id lh2-20020a170906f8c200b00949f4fb9923mr8408823ejb.34.1681140842133;
+        Mon, 10 Apr 2023 08:34:02 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:eacd:ffa4:1df7:3870? ([2a02:810d:15c0:828:eacd:ffa4:1df7:3870])
+        by smtp.gmail.com with ESMTPSA id c17-20020a170906529100b009447277c26fsm5174272ejm.72.2023.04.10.08.34.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Apr 2023 08:34:01 -0700 (PDT)
+Message-ID: <a16a8071-3c67-0f40-d7da-3459f7dc584d@linaro.org>
+Date:   Mon, 10 Apr 2023 17:34:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: ROHM BD2606MVV LED driver
+Content-Language: en-US
+To:     Andreas Kemnade <andreas@kemnade.info>, pavel@ucw.cz,
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+References: <20230407050803.170773-1-andreas@kemnade.info>
+ <20230407050803.170773-2-andreas@kemnade.info>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230407050803.170773-2-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dinh Nguyen <dinh.nguyen@linux.intel.com>
+On 07/04/2023 07:08, Andreas Kemnade wrote:
+> Document ROHM BD2606MVV LED driver devicetree bindings.
 
-Add the hardware monitoring properties for Stratix10 and Agilex.
+Subject: maybe drop "driver" (suggests it is for Linux drivers, although
+maybe it matches the actual hardware here?) and add missing verb, e.g.
+"Add ROHM ..."
 
-Signed-off-by: Dinh Nguyen <dinh.nguyen@linux.intel.com>
----
- .../boot/dts/altera/socfpga_stratix10.dtsi    |  4 ++
- .../dts/altera/socfpga_stratix10_socdk.dts    | 31 +++++++++
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  4 ++
- .../boot/dts/intel/socfpga_agilex_n6000.dts   | 66 +++++++++++++++++++
- .../boot/dts/intel/socfpga_agilex_socdk.dts   | 66 +++++++++++++++++++
- .../dts/intel/socfpga_agilex_socdk_nand.dts   | 66 +++++++++++++++++++
- .../boot/dts/intel/socfpga_n5x_socdk.dts      | 46 +++++++++++++
- 7 files changed, 283 insertions(+)
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../bindings/leds/rohm,bd2606mvv.yaml         | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml b/Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+> new file mode 100644
+> index 0000000000000..7f53d09e7b054
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/rohm,bd2606mvv.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BD2606MVV LED controller
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index 41c9eb51d0ee..0efb570d27e5 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -633,6 +633,10 @@ svc {
- 				fpga_mgr: fpga-mgr {
- 					compatible = "intel,stratix10-soc-fpga-mgr";
- 				};
-+
-+				temp_volt: hwmon {
-+					compatible = "intel,socfpga-hwmon";
-+				};
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-index 38ae674f2f02..eb0880a49f77 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -212,3 +212,34 @@ qspi_rootfs: partition@3FE0000 {
- 		};
- 	};
- };
-+
-+&temp_volt {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.0V VCCIO";
-+			reg = <3>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCERAM";
-+			reg = <6>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index f9674cc46764..d6cc52a48599 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -666,6 +666,10 @@ svc {
- 				fpga_mgr: fpga-mgr {
- 					compatible = "intel,agilex-soc-fpga-mgr";
- 				};
-+
-+				temp_volt: hwmon {
-+					compatible = "intel,socfpga-hwmon";
-+				};
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-index 6231a69204b1..09ce00fe42d1 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-@@ -64,3 +64,69 @@ &watchdog0 {
- &fpga_mgr {
- 	status = "disabled";
- };
-+
-+&temp_volt {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCPT";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.2V VCCCRCORE";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCH";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VCCL";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+
-+		input@10000 {
-+			label = "Main Die corner bottom left max";
-+			reg = <0x10000>;
-+		};
-+
-+		input@20000 {
-+			label = "Main Die corner top left max";
-+			reg = <0x20000>;
-+		};
-+
-+		input@30000 {
-+			label = "Main Die corner bottom right max";
-+			reg = <0x30000>;
-+		};
-+
-+		input@40000 {
-+			label = "Main Die corner top right max";
-+			reg = <0x40000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-index 07c3f8876613..9af029e5633e 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-@@ -138,3 +138,69 @@ qspi_rootfs: partition@3FE0000 {
- 		};
- 	};
- };
-+
-+&temp_volt {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCPT";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.2V VCCCRCORE";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCH";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VCCL";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+
-+		input@10000 {
-+			label = "Main Die corner bottom left max";
-+			reg = <0x10000>;
-+		};
-+
-+		input@20000 {
-+			label = "Main Die corner top left max";
-+			reg = <0x20000>;
-+		};
-+
-+		input@30000 {
-+			label = "Main Die corner bottom right max";
-+			reg = <0x30000>;
-+		};
-+
-+		input@40000 {
-+			label = "Main Die corner top right max";
-+			reg = <0x40000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-index 51f83f96ec65..d3576bb8b04d 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-@@ -114,3 +114,69 @@ &usb0 {
- &watchdog0 {
- 	status = "okay";
- };
-+
-+&temp_volt {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCPT";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.2V VCCCRCORE";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCH";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VCCL";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+
-+		input@10000 {
-+			label = "Main Die corner bottom left max";
-+			reg = <0x10000>;
-+		};
-+
-+		input@20000 {
-+			label = "Main Die corner top left max";
-+			reg = <0x20000>;
-+		};
-+
-+		input@30000 {
-+			label = "Main Die corner bottom right max";
-+			reg = <0x30000>;
-+		};
-+
-+		input@40000 {
-+			label = "Main Die corner top right max";
-+			reg = <0x40000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-index 08c088571270..70b9f0e56cc5 100644
---- a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-@@ -129,3 +129,49 @@ &usb0 {
- &watchdog0 {
- 	status = "okay";
- };
-+
-+&temp_volt {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VDD";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "0.8V VDD_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCADC";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.8V VCCPD";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VDD_HPS";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+	};
-+};
--- 
-2.40.0
+ROHM BD....
+
+> +
+> +maintainers:
+> +  - Andreas Kemnade <andreas@kemnade.info>
+> +
+> +description:
+> +  The BD2606 MVV is a programmable LED controller connected via I2C that can
+> +  drive 6 separate lines. Each of them can be individually switched on and off
+> +  but the brightness setting is shared between two of them.
+> +
+> +  Datasheet is available at
+> +  https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/led_driver/bd2606mvv_1-e.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: rohm,bd2606mvv
+> +
+> +  reg:
+> +    description: I2C slave address of the controller.
+
+Drop description, it's obvious.
+
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO pin to enable/disable the device.
+> +
+> +patternProperties:
+> +  "^led@[0-6]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 6
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+Drop blank line
+
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c0 {
+
+i2c {
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led-controller@66 {
+> +            compatible = "rohm,bd2606mvv";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x66>;
+
+reg is always second property in DTS.
+
+> +
+> +            led@0 {
+> +                color = <LED_COLOR_ID_RED>;
+> +                function = LED_FUNCTION_POWER;
+> +                reg = <0x0>;
+
+Ditto
+
+
+
+Best regards,
+Krzysztof
 
