@@ -2,115 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF7D6DC818
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 16:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A9E6DC81C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 16:58:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbjDJOyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 10:54:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
+        id S229922AbjDJO6Z convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Apr 2023 10:58:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbjDJOyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 10:54:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 491484ED2;
-        Mon, 10 Apr 2023 07:54:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D08556103F;
-        Mon, 10 Apr 2023 14:54:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B92D9C433EF;
-        Mon, 10 Apr 2023 14:54:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681138454;
-        bh=9+uOJWRfOOVtlTBySmg32nz3qSkxlHDeOSpYS+o/RlE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ssAqJLGeCv4udxLGiYHv6O38FhSmjbqX2wp9b/hgpG2OED4HO/QFSXcN7Z2dUrNq+
-         eI+Ff5vJYt05iDKQToytkFVNzf0IqjYHDz0IXgMTJffGfKbU6mvRuKXcO2RzblWn+k
-         aKcoF4an4eHpQEVNUsdU4fCQo3ubojUDJ5rHL9GBGelkJRW2IJX/pK4u0CWKlfbr8T
-         UIhaxAsOtFMxz7+sip5msZdAf9PMqkKj5SPxuokS1kwM1dOBPILyofwLFpO/LUAjGn
-         oy4oM4CdTOLZ5v5PQV4X+MlN1WDFIp3Dn/aEy4kNRgDcFUX3cWZL/Yd132KaCrWMgr
-         Pc8EIbkmSVvgA==
-Date:   Mon, 10 Apr 2023 16:54:10 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
-        pabeni@redhat.com, kuba@kernel.org, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        lorenzo.bianconi@redhat.com, daniel@makrotopia.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 00/10] mtk: wed: move cpuboot, ilm and dlm in
- dedicated dts nodes
-Message-ID: <ZDQjEkTstngxib/0@lore-desk>
-References: <cover.1680268101.git.lorenzo@kernel.org>
- <20230406152511.GA3117403-robh@kernel.org>
+        with ESMTP id S229697AbjDJO6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 10:58:24 -0400
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E065E4C17;
+        Mon, 10 Apr 2023 07:58:23 -0700 (PDT)
+Received: by mail-oo1-f46.google.com with SMTP id i10-20020a4ad68a000000b0053b8aa32089so733188oot.5;
+        Mon, 10 Apr 2023 07:58:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681138702; x=1683730702;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZC0Mdx6dJbemnObfOPEMw+WA676pFjjKABCK5HPK6ZI=;
+        b=FgyDaift2CXfb/RRzYxX0qdXdD/BflN+hVtvQMhfsFRWo5R/lkn74StyzGYgpWP9st
+         TyMnnbziZR43Uef8sWuW5veO6YDKuilJEccCXNyotYxUCC1M6TTMWZod4A+sOqGMwYEd
+         cSwFVrVcK4ZCw06u85QSj0WTuMXWX+epgBndTDjyKKIn4ss02rOkeslekTFcEgxr4Aio
+         yFZrujxyALelzE8ekHzxHa1BKcuo1kYnlhfwLZHIg3PdvUbvhM8jLriex8E3Zh5IpQZH
+         tmpnKW6iRlICYa+CdWUufRjTGy2eVvrokkfV9MPj/3FgoxsaW4nmzFmHs8x92QXSiIB0
+         kclg==
+X-Gm-Message-State: AAQBX9fDGIXdTzhww94vzLSlrBlyTtCOB77HQ3gLxqedDei7JZQiW69K
+        +GRArXWM/ja5MSrsGjH5bUOLn03DOqEWTzYr
+X-Google-Smtp-Source: AKy350bMib/6nqzOEoVagJeYapdnMLDBVy1q4ZKpYR+erJJu0wYdK3T7MC6x5tOIhQeCgaWRorGykw==
+X-Received: by 2002:a4a:418e:0:b0:541:b682:13eb with SMTP id x136-20020a4a418e000000b00541b68213ebmr3036743ooa.5.1681138702011;
+        Mon, 10 Apr 2023 07:58:22 -0700 (PDT)
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com. [209.85.160.44])
+        by smtp.gmail.com with ESMTPSA id j41-20020a4a88ac000000b0053b88b03e24sm4677616ooa.18.2023.04.10.07.58.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Apr 2023 07:58:21 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-184518754bfso2591972fac.5;
+        Mon, 10 Apr 2023 07:58:21 -0700 (PDT)
+X-Received: by 2002:a05:6870:d608:b0:17d:7221:d80c with SMTP id
+ a8-20020a056870d60800b0017d7221d80cmr3664255oaq.5.1681138701166; Mon, 10 Apr
+ 2023 07:58:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Mbdi1ZojGS1vdtOH"
-Content-Disposition: inline
-In-Reply-To: <20230406152511.GA3117403-robh@kernel.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230410120017.41664-1-tanure@linux.com> <20230410120017.41664-2-tanure@linux.com>
+ <CAL_JsqJZWmy8PGwjjBc7FA2JcgvHqmtgkkuHy=XHMT8bVEAxSA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJZWmy8PGwjjBc7FA2JcgvHqmtgkkuHy=XHMT8bVEAxSA@mail.gmail.com>
+Reply-To: tanure@linux.com
+From:   Lucas Tanure <tanure@linux.com>
+Date:   Mon, 10 Apr 2023 10:58:10 -0400
+X-Gmail-Original-Message-ID: <CAJX_Q+2thy6T8JYn4EDA5WTTv9C-m-1b2egUDtTHYisu3ePrsg@mail.gmail.com>
+Message-ID: <CAJX_Q+2thy6T8JYn4EDA5WTTv9C-m-1b2egUDtTHYisu3ePrsg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] of: fdt: Scan /memreserve/ last
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, jbrunet@baylibre.com,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
+        stefan@agner.ch
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---Mbdi1ZojGS1vdtOH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-> On Fri, Mar 31, 2023 at 03:12:36PM +0200, Lorenzo Bianconi wrote:
-> > Since cpuboot, ilm and dlm memory region are not part of MT7986 SoC RAM,
->=20
-> That's not really a requirement. Is that the only "problem" here?
-
-I would say this series allows to be closer to a standard binding and at the
-same time helps with uboot compatibility.
-
->=20
-> Certainly going from a standard binding to a custom phandle reference is=
-=20
-> not an improvement.
->=20
-> > move them in dedicated mt7986a syscon dts nodes.
->=20
-> What makes them a syscon? Are they memory or h/w registers? Can't be=20
-> both...
-
->=20
-> Perhaps mmio-sram?
-
-ilm and dlm do not have h/w registers afaik, they are chip memory used
-to store firmware information, syscon is just the closest binding I found.
-I did not find mmio-sram, my fault.
-
-Regards,
-Lorenzo
-
->=20
-> > At the same time we keep backward-compatibility with older dts version =
-where
-> > cpuboot, ilm and dlm were defined as reserved-memory child nodes.
->=20
-> Doesn't really seem big enough issue to justify carrying this.
->=20
-> Rob
-
---Mbdi1ZojGS1vdtOH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZDQjEgAKCRA6cBh0uS2t
-rNnEAP98v7/BKa/Fd5y1OymB9T4LAXXAgNEIA7/LExkl8VzmzQD+L0fjplWxRgsc
-nyGfpakLxtEGDs0uoT1Qtz4Fd7IzAAI=
-=ri5+
------END PGP SIGNATURE-----
-
---Mbdi1ZojGS1vdtOH--
+On Mon, Apr 10, 2023 at 8:52 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Apr 10, 2023 at 7:00 AM Lucas Tanure <tanure@linux.com> wrote:
+> >
+> > Change the order of scanning /memreserve/ and /reserved-memory node.
+> > /reserved-memory node should go first, as it has a more updated
+> > description of the memory regions and it can apply flags, like nomap.
+> > Also, /memreserve/ should avoid reserving regions described in
+> > /reserved-memory node.
+>
+> Like I said on v1, I think doing this has a high chance of causing
+> regressions on other platforms. It should probably not go to stable
+> for some time after a kernel release.
+>
+> > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > ---
+> >  drivers/of/fdt.c | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index d1a68b6d03b3..26e608d8025d 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -635,16 +635,21 @@ void __init early_init_fdt_scan_reserved_mem(void)
+> >         if (!initial_boot_params)
+> >                 return;
+> >
+> > +       fdt_scan_reserved_mem();
+> > +       fdt_reserve_elfcorehdr();
+> > +
+> >         /* Process header /memreserve/ fields */
+> >         for (n = 0; ; n++) {
+> >                 fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
+> >                 if (!size)
+> >                         break;
+> > +               if (memblock_overlaps_region(&memblock.memory, base, size) &&
+> > +                   memblock_is_region_reserved(base, size))
+>
+> Just to make sure, a partial overlap will still get reserved?
+A partial overlap will get reserved if not already reserved by the
+/reserved-memory node.
+>
+> > +                       break;
+>
+> Shouldn't we continue to the next entry rather than stopping.
+Yes, my mistake; I will send v3.
+>
+> > +
+> >                 memblock_reserve(base, size);
+> >         }
+> >
+> > -       fdt_scan_reserved_mem();
+> > -       fdt_reserve_elfcorehdr();
+> >         fdt_init_reserved_mem();
+> >  }
+> >
+> > --
+> > 2.40.0
+> >
