@@ -2,119 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D47016DC3FF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 09:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B01D86DC43E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 10:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjDJHv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 03:51:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
+        id S229611AbjDJIVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 04:21:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbjDJHv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 03:51:28 -0400
-Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A4A63C0A;
-        Mon, 10 Apr 2023 00:51:25 -0700 (PDT)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1plmIR-00EEnN-4P; Mon, 10 Apr 2023 15:50:40 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Mon, 10 Apr 2023 15:50:39 +0800
-Date:   Mon, 10 Apr 2023 15:50:39 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 4/4] crypto: starfive - Add hash and HMAC support
-Message-ID: <ZDO/z++4/TE6AiIz@gondor.apana.org.au>
-References: <20230410073752.39506-1-jiajie.ho@starfivetech.com>
- <20230410073752.39506-5-jiajie.ho@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230410073752.39506-5-jiajie.ho@starfivetech.com>
-X-Spam-Status: No, score=4.3 required=5.0 tests=HELO_DYNAMIC_IPADDR2,
-        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS,TVD_RCVD_IP autolearn=no
+        with ESMTP id S229503AbjDJIVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 04:21:39 -0400
+Received: from smtp.outgoing.loopia.se (smtp.outgoing.loopia.se [93.188.3.37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD4DC2105
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 01:21:37 -0700 (PDT)
+Received: from s807.loopia.se (localhost [127.0.0.1])
+        by s807.loopia.se (Postfix) with ESMTP id 5C82A2F1FACE
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:21:35 +0200 (CEST)
+Received: from s981.loopia.se (unknown [172.22.191.6])
+        by s807.loopia.se (Postfix) with ESMTP id 4DA9F2E27DE1;
+        Mon, 10 Apr 2023 10:21:35 +0200 (CEST)
+Received: from s473.loopia.se (unknown [172.22.191.5])
+        by s981.loopia.se (Postfix) with ESMTP id 498EF22B1737;
+        Mon, 10 Apr 2023 10:21:35 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at amavis.loopia.se
+X-Spam-Score: -1
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Received: from s899.loopia.se ([172.22.191.6])
+        by s473.loopia.se (s473.loopia.se [172.22.190.13]) (amavisd-new, port 10024)
+        with LMTP id VSv7fonlg6Ib; Mon, 10 Apr 2023 10:21:34 +0200 (CEST)
+X-Loopia-Auth: user
+X-Loopia-User: richard@bit42.se
+X-Loopia-Originating-IP: 178.174.130.84
+Received: from hypercube.. (h-178-174-130-84.A444.priv.bahnhof.se [178.174.130.84])
+        (Authenticated sender: richard@bit42.se)
+        by s899.loopia.se (Postfix) with ESMTPSA id B420F2C8BA8D;
+        Mon, 10 Apr 2023 10:21:34 +0200 (CEST)
+From:   Richard Alpe <richard@bit42.se>
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        niklas.soderlund+renesas@ragnatech.se,
+        Richard Alpe <richard@bit42.se>
+Subject: [PATCH v5 1/2] dt-bindings: nvmem: Add t1023-sfp efuse support
+Date:   Mon, 10 Apr 2023 10:20:50 +0200
+Message-Id: <20230410082051.2948510-1-richard@bit42.se>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1455; h=from:subject; bh=Da9LvvCXvjVlfaRpHIIGqxKThdBgra/8TpKwUia8OdY=; b=owEBbQKS/ZANAwAKAaR4ncy5pstaAcsmYgBkM8bhhP+70eMiFG9Joa0W0tbe1OPbW1/u5r/5IURm fb2Ehq+JAjMEAAEKAB0WIQQsEvAKF4GLpV03omKkeJ3MuabLWgUCZDPG4QAKCRCkeJ3MuabLWpWBD/ 42N9SA4iPCRxC55Fki8jDeX5WthAo2Gj9qwhIjf7pU88Zc5x6x0e215+bEXF372x1K3501fByFbZQW L7ERQwachK4qwwgpXeyMYlV+muhIHSIzRmOonR9Z5ksKeJ6d0T0+1RxKZYFW7Y/2GdtlWvydcuTjgs Ccp0mmUSBJgljtHBlg3m5+F2UWMeiPblVOrreu7/7MwDdnFa6Y7L0vlYxQpJkHz88MX3dtqlk6XNHM w7sPHHb2vmTDU5uxUVK0lUuj3VnJqWqHdHib+28nkzskp2ObmrafAg6ZZRddT+bWT0rmbN/btJv2Fn cXapZD4PNiaZDAvySpTMCm1yRETDXBfByRVQMOwKB/F2TBp2QsIwSwlT795KnBiz1l3zVVpMKtLLhu rWju4hZZkMd9Czw1wNGLwzFhFgcb9JY+YINI7uV5wgCZ45+y/QQGevWAWMC2jCJvRERnVftFbo9+1Z ymQZ5WcqYAbLtOE87FMAcLwFbWUAnZRq/K38HQvJfC44qa63mtXy57H/COCmigsdXRjc26YGVbARx9 mhFAW748VtJP0zUJVLS+4yOx9aYKR/ufuC8NE1kSCem1fWaohqj1oatfct8qvmalRy/J0Svl7NzL1P v5lv3lzDa2mUJVONBY9kVNF7Y+NFaFOMeFnEb3a/GjooRN9UjH8NDLlycCog==
+X-Developer-Key: i=richard@bit42.se; a=openpgp; fpr=B1C705C6B1BF719CA5CD67398BEE8379084BC511
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 10, 2023 at 03:37:52PM +0800, Jia Jie Ho wrote:
->
-> +static void starfive_hash_start(void *param)
-> +{
-> +	struct starfive_cryp_ctx *ctx = param;
-> +	struct starfive_cryp_request_ctx *rctx = ctx->rctx;
-> +	struct starfive_cryp_dev *cryp = ctx->cryp;
-> +	union starfive_alg_cr alg_cr;
-> +	union starfive_hash_csr csr;
-> +
-> +	dma_unmap_sg(cryp->dev, rctx->in_sg, rctx->in_sg_len, DMA_TO_DEVICE);
-> +
-> +	alg_cr.v = 0;
-> +	alg_cr.clear = 1;
-> +
-> +	writel(alg_cr.v, cryp->base + STARFIVE_ALG_CR_OFFSET);
-> +
-> +	csr.v = readl(cryp->base + STARFIVE_HASH_SHACSR);
-> +	csr.firstb = 0;
-> +	csr.final = 1;
-> +
-> +	reinit_completion(&cryp->hash_done);
-> +	writel(~STARFIVE_IE_MASK_HASH_DONE, cryp->base + STARFIVE_IE_MASK_OFFSET);
-> +	writel(csr.v, cryp->base + STARFIVE_HASH_SHACSR);
-> +}
+Add a schema for the NVMEM eFuse (SFP) layout on the NXP QorIQ SOC.
 
-Why are you still using a completion? The callback function should
-invoke the crypto_engine finalize_request call directly.
+Signed-off-by: Richard Alpe <richard@bit42.se>
+---
+v3: Introduce this patch.
+v4: Updates according to feedback from Krzysztof.
+v5: Fix yamllint warning (file name $id matching).
 
-> +static int starfive_hash_xmit(struct starfive_cryp_ctx *ctx)
-> +{
-> +	struct starfive_cryp_request_ctx *rctx = ctx->rctx;
-> +	struct starfive_cryp_dev *cryp = ctx->cryp;
-> +	int ret;
-> +
-> +	rctx->csr.hash.v = 0;
-> +	rctx->csr.hash.reset = 1;
-> +	writel(rctx->csr.hash.v, cryp->base + STARFIVE_HASH_SHACSR);
-> +
-> +	if (starfive_hash_wait_busy(ctx))
-> +		return dev_err_probe(cryp->dev, -ETIMEDOUT, "Error resetting engine.\n");
-> +
-> +	rctx->csr.hash.v = 0;
-> +	rctx->csr.hash.mode = ctx->hash_mode & STARFIVE_HASH_MODE_MASK;
-> +	rctx->csr.hash.ie = 1;
-> +
-> +	if (ctx->hash_mode & STARFIVE_HASH_HMAC_FLAGS) {
-> +		ret = starfive_hash_hmac_key(ctx);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		rctx->csr.hash.start = 1;
-> +		rctx->csr.hash.firstb = 1;
-> +		writel(rctx->csr.hash.v, cryp->base + STARFIVE_HASH_SHACSR);
-> +	}
-> +
-> +	ret = starfive_hash_xmit_dma(ctx);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!wait_for_completion_timeout(&cryp->hash_done, msecs_to_jiffies(10000)))
-> +		return dev_err_probe(cryp->dev, -ETIMEDOUT, "Timeout waiting for hash done\n");
+ .../bindings/nvmem/fsl,t1023-sfp.yaml         | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
 
-There is no point in waiting for completion.  Just return 0 and
-you're done.
-
-Cheers,
+diff --git a/Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml b/Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
+new file mode 100644
+index 000000000000..df826b40d8ca
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/fsl,t1023-sfp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP QorIQ eFuse support
++
++maintainers:
++  - Richard Alpe <richard@bit42.se>
++
++description:
++  Read support for the eFuses (SFP) on NXP QorIQ series SoC's.
++
++allOf:
++  - $ref: nvmem.yaml#
++
++properties:
++  compatible:
++    const: fsl,t1023-sfp
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@e8000 {
++        compatible = "fsl,t1023-sfp";
++        reg = <0xe8000 0x1000>;
++    };
++...
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.34.1
+
