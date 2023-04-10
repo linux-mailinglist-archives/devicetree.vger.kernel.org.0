@@ -2,222 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CB6D6DC3C3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 09:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D27E96DC3E9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 09:38:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjDJHLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 03:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34400 "EHLO
+        id S229807AbjDJHiO convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Apr 2023 03:38:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjDJHLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 03:11:39 -0400
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2049.outbound.protection.outlook.com [40.107.117.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC5D30C8;
-        Mon, 10 Apr 2023 00:11:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MuYQXDHdpsNqPlJXRPsWqyB2uQ5LODXtV5eyBxH8DkFgP4qCPJ3uBsZRkqEb9TJurarG1LFb96Ai9pH5Kj6mmR8aZIjbnyhG5xMhlP/j1lbfyqP/cqvJQjdnRyzmqxG1CS4W1OoRVHGQt3KWvL+2JnDmHSjaoaoZ/p/S7O3rYE98EZglDdTN/MMHjfkFahyDkug58yr+5w2Z8csRLXCAIstiHzd96k5r1a4ONgz1c8S4FS4HQx/lSGVoOwVzH3syjHR1YwJ+SQm9zLj4/gMKCNDVQTYB17O0PYMsP5TE0HBLyA4OSWNgTD2WY9qFbvwb8ELQCW6lFPjhxSwG7fyiCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hUAhVkwZrlPOMdMrh9bbMRGuXcnjTPhYSmqwv0Qvvo0=;
- b=UdpaGCeQCGtBCqrdFQ5HN7lYlqydabndvoWr80dQ22+03DtkVKDjUtUv0JqK537FjU60isGwu0bW3/kUyVpi/egdx12GM1aqquhU51mOAZKln4CyUjJU0+uIb6osqUSqENjWONavk0fGXJ3vQc2P+t3LfiyVENoXoEa1yjnUAkm3OiLdBqNlW58hLNrf3Lb5rF1rFUIpHIGCH2vxcAB+Wk9jDtfBWNefYnedPJPnrWY8z7WwwKdQm1QlVI0nJPPp94S2lUEaBZd64b8Kdwnp6yn5L5KMmUjL8l/QmMB57tCCq/dzHT2AoO8qNNUP9yxd80qnaq4U47jXQIOj3Yz0bA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wiwynn.com; dmarc=pass action=none header.from=wiwynn.com;
- dkim=pass header.d=wiwynn.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hUAhVkwZrlPOMdMrh9bbMRGuXcnjTPhYSmqwv0Qvvo0=;
- b=fT7ruVhE21XokAcN0KGRzW8G72lSyxGXDKBkT9ythAkAdxNcjwGz44BF6RNxEqswzcB8g6pC3u5EKrHoFmuDmbvqYBtH4z0C2DEo49493z9D7IaTH2nqBdMLqWpD5GZf7IdBwzu3uusSli7JILB4PrbkZk4FY1Z7lfw9EYm4Wo1zMf2OE4atwvBX5H2TjyzTHYHRXcCAdmXmLDJvF29drHYhTC8hxVyTuT1r58nwqt4ee3sqb8RgVbWib+0xlJ//gqZGN6y3jcHSvA3oUtKlYQnzXD/krj8eQqvpJJX+rhqELGzyuHQKqi1nIrNV/bhVlrs/KpEnszQLqORHWaNJMQ==
-Received: from PS2PR04MB3592.apcprd04.prod.outlook.com (2603:1096:300:61::21)
- by TY0PR04MB6445.apcprd04.prod.outlook.com (2603:1096:400:278::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Mon, 10 Apr
- 2023 07:11:34 +0000
-Received: from PS2PR04MB3592.apcprd04.prod.outlook.com
- ([fe80::285a:4ee7:6103:61ec]) by PS2PR04MB3592.apcprd04.prod.outlook.com
- ([fe80::285a:4ee7:6103:61ec%4]) with mapi id 15.20.6277.035; Mon, 10 Apr 2023
- 07:11:34 +0000
-From:   Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        with ESMTP id S229793AbjDJHiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 03:38:13 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9BA3C0A;
+        Mon, 10 Apr 2023 00:38:10 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B04C924E17E;
+        Mon, 10 Apr 2023 15:37:58 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
+ 2023 15:37:58 +0800
+Received: from ubuntu.localdomain (202.188.176.82) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
+ 2023 15:37:54 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v1 1/2] ARM: dts: aspeed: greatlakes: Add gpio names
-Thread-Topic: [PATCH v1 1/2] ARM: dts: aspeed: greatlakes: Add gpio names
-Thread-Index: AQHZYhkTutxhEWwlQkmbugxPVHPWKK8RbwYAgBLDDTA=
-Date:   Mon, 10 Apr 2023 07:11:34 +0000
-Message-ID: <PS2PR04MB3592E90B033CA23F47CD02F2B7959@PS2PR04MB3592.apcprd04.prod.outlook.com>
-References: <20230329083235.24123-1-Delphine_CC_Chiu@Wiwynn.com>
- <20230329083235.24123-2-Delphine_CC_Chiu@Wiwynn.com>
- <b66f708c-5369-c1c9-5506-c609a245bf4c@linaro.org>
-In-Reply-To: <b66f708c-5369-c1c9-5506-c609a245bf4c@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wiwynn.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PS2PR04MB3592:EE_|TY0PR04MB6445:EE_
-x-ms-office365-filtering-correlation-id: 4e2d9479-7ebc-4ae4-0d80-08db3992d14b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JPqfg2D6HYlpC6Da4IOSH+JfVJvKJ1HZevN9Wd89M5RooGwxWXh6EZEucxMm3BLqJUIXRK9fy06b6bsyILAS5YTcIC0yYcElwwFVxUkEvbISB4sj5907naYqchTPB7RXya63iIyytH11IaaYFD1IhdWD7ig/5+eVvUqsQaPjrHViXL1orzijAnWFmmXn6s3YAmzx08EPDi46zTUj3kbO7gEaqlZfTpikzX1k5LaEWcgja8IatjB6JNxx0q3nxs/fzv2l9ICitVMID+qOzGIfet/NrEhJJIuZixE6UDecRZ2B6HVyBPMrs6eu/zJNVwYJJd4bVHk13ss6YMZUMrImLeQlYm6GXyLXB3HXApzdFud8m+WqKFyrmQaOBXLMiCoYh362kYEMy+qC7KwM9lPiNs2nwEwkLfwhHT0uDaMqQmOqlIDYZLjNsp2x5TJ+9B5z8Y/nAsiB3mmX+jw6P0NzYO4377evnHhA95j6Mfhni0iU7+PuRpp9huqWE7vydz5X7bhHqvqlpGM9UEQSw3BMJdDpd9lxXKreMBqTir3n9/zMoFDxNLOS/7giw9JecqBYOWap4OmgN5dJaK4yCQ3XCjIh3VsTrnqDLijIymeIKKc1GWRjmXszjV7yu8pQ6OK3
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS2PR04MB3592.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(346002)(39850400004)(366004)(136003)(451199021)(55016003)(83380400001)(76116006)(478600001)(7696005)(186003)(71200400001)(110136005)(316002)(26005)(9686003)(6506007)(53546011)(54906003)(2906002)(7416002)(52536014)(5660300002)(33656002)(38100700002)(122000001)(66556008)(66946007)(64756008)(4326008)(41300700001)(66476007)(66446008)(8676002)(8936002)(38070700005)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kKVAoGl0J2qGy7JlVQQBMnbgfHYbwTgjDzPKs3gL8fyPlKFpp6TB80Lw5mpN?=
- =?us-ascii?Q?XcXTMpNA8VlK3+/0lEVxNlTfoRgwVd/BrZJIpjqxteoCc05PVm64+lBBN291?=
- =?us-ascii?Q?990ma9LtsUytKty5055QMewChQhVGsbjzASMsl5OeCaE0B5VN7DAUwxPeAVM?=
- =?us-ascii?Q?0MOuwbjEPmuPKBoFPa0Bi/wVkD9pgE0d6u2HQ1NFv+aguzW7CBF1b7NlaKQ6?=
- =?us-ascii?Q?4WqDZWllDLQ/7W9j4Dp1Zpp7PJ4N9NU5ySzqvzBdTQsYt0dNAijAf74xvH1V?=
- =?us-ascii?Q?RqlEkBmaePcKYchbsjBVC3rexaDAxJ56km7iQcGaBJlp1J8e25P2I+FqyKYX?=
- =?us-ascii?Q?AcDTwRlgnOjNjus8L+raCdnk/y5wtMzXOLxmKY3JXvS50/JBrqry8QD19xmZ?=
- =?us-ascii?Q?YS7YQg45DJiODYuJ8itk64bPVVvM5pI5wR9dfY6REJk4bPG/V6cTrk+BBlcH?=
- =?us-ascii?Q?oGO2aTAEyj/doY6iLyCYirWnZx+Vm1p++SCmP79ndPizrrlspQl6GGoZpg8F?=
- =?us-ascii?Q?/BApoVR+ysUz4ljuDWIcU+MObongbDtbSakFytLO31h1sR0di1SZiFRVbHfO?=
- =?us-ascii?Q?gMkSfc9ijgbDnbXebFkgW1D3hv7H6YoWwn87rrlpbIPJ5oEniKLD+0+KT62V?=
- =?us-ascii?Q?jt8iX0wVncp0BW0oM/W2Zzotp2O+hDSq/Kpa062vTQgjaO6QFICJ+ZSnNnYf?=
- =?us-ascii?Q?pjFyb0iD89HNHpOkeEJ6E7nRpY3VY5g9e/rZ/udB7+lhiSD5RB6B7yG+jZ3j?=
- =?us-ascii?Q?koXyjGzEPtdgeVhmpzrrhypckWUo4hUXUH3OEuuV9MfvKHYaO2tTn8ANhB18?=
- =?us-ascii?Q?+fQM2JWtGgN7yyeBvWrfupsA6fj1y5IpkTNLDuhpR6zYg4FR8ehBkX6dUmJW?=
- =?us-ascii?Q?zIzdby13XA2pbgBRJDxmsxpnEdZhdH7NWqUqfSlPBfQtjOV84S+lj5bXbLSx?=
- =?us-ascii?Q?M6h2A8lNKZFAKgKgtf6djEN4tTQqCkGoyA6neN+eLRW4aefROT9MVPSVBpEm?=
- =?us-ascii?Q?l6o460KIdmllZFAETtob2jheX2n2ObrVyvs/EjuGXU3QnvfDY6pZeY+j4KE/?=
- =?us-ascii?Q?OFcjua5RSzwbIBgnTVBiYZmambd2/NHgpWi4zMxHjRRGK+o9tGePvhH+rm3c?=
- =?us-ascii?Q?ZgIzqpKCjL/nTBHa3Sg+YTcLFPJOV88/McuFCZwF+VhjpHVQSGttcBxy+X8p?=
- =?us-ascii?Q?8DZWp/96Lb/ZryIyPLBFjcvnKcKTZG8n42phB1KYUyrMfRSOBAMFcY2Jae2C?=
- =?us-ascii?Q?z5Zuw36H0fOypq3JSgHszNfUsbJTHA3BwJSX5Frrfin57vwzdssslW4bcDc2?=
- =?us-ascii?Q?xiE1rpspcdEbLaMq97aIWvLfmt7EJe9aP8vv9tYYL7Gj6Qh7PFu5OA+ySOqA?=
- =?us-ascii?Q?Cf/3P1SCwOQnnZdQykj6nM0r6Re2rLd1jD/fMlZPsZtOaeu/Y2P8+eID04w3?=
- =?us-ascii?Q?LPWK36+6ACzbhuxVJJd/W9eAC+2BU1+ZGsRlXqOMJenKgy3xKPl5UNwWTDrs?=
- =?us-ascii?Q?aI75vYaRJDnUN0FsE878+AUJQTgRo3b6RNqEwDJGfNc1hQPiH2KpeL+mZ7jf?=
- =?us-ascii?Q?NjE98aUnVQpnYWeqiUqkepPDHt0t1gk1W268j8qq?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v4 0/4] crypto: starfive - Add drivers for crypto engine
+Date:   Mon, 10 Apr 2023 15:37:48 +0800
+Message-ID: <20230410073752.39506-1-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PS2PR04MB3592.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e2d9479-7ebc-4ae4-0d80-08db3992d14b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2023 07:11:34.2327
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VICKgVs0xSPlkLw9e1YiVT3CDTnhOKMdjGXqxZlxt4aMmE2bSdt/A3Fc8rKfoLjTd5IIzNOi94SfKjcJJjrmgQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6445
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,WEIRD_QUOTING autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for reviewing.
+This patch series adds kernel driver support for StarFive JH7110 crypto
+engine. The first patch adds Documentations for the device and Patch 2
+adds device probe and DMA init for the module. Patch 3 adds crypto and
+DMA dts node for VisionFive 2 board. Patch 4 adds hash/hmac support to
+the module.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Wednesday, March 29, 2023 4:37 PM
-> To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>;
-> patrick@stwcx.xyz; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Joel Stanley <joel@jms.id.au>; Andre=
-w
-> Jeffery <andrew@aj.id.au>
-> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH v1 1/2] ARM: dts: aspeed: greatlakes: Add gpio names
->=20
->   Security Reminder: Please be aware that this email is sent by an extern=
-al
-> sender.
->=20
-> On 29/03/2023 10:32, Delphine CC Chiu wrote:
-> > From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> >
-> > Add GPIO names for SOC lines.
-> >
-> > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> > ---
-> >  .../dts/aspeed-bmc-facebook-greatlakes.dts    | 49
-> +++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> > b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> > index 8c05bd56ce1e..59819115c39d 100644
-> > --- a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> > +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> > @@ -238,4 +238,53 @@
-> >  &gpio0 {
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&pinctrl_gpiu1_default &pinctrl_gpiu7_default>;
-> > +     status =3D "okay";
->=20
-> Was it disabled before?
->=20
-Yes, we have to enable gpio status for meeting aspeed-g6 device tree settin=
-g, and set net names for pulling gpio pin from application layer.
-> > +     gpio-line-names =3D
-> > +     /*A0-A7*/ "","","","","","","","",
-> > +     /*B0-B7*/ "power-bmc-nic","presence-ocp-debug",
-> > +               "power-bmc-slot1","power-bmc-slot2",
-> > +               "power-bmc-slot3","power-bmc-slot4","","",
-> > +     /*C0-C7*/ "presence-ocp-nic","","","reset-cause-nic-primary",
-> > +               "reset-cause-nic-secondary","","","",
-> > +     /*D0-D7*/ "","","","","","","","",
-> > +     /*E0-E7*/ "","","","","","","","",
-> > +     /*F0-F7*/ "slot1-bmc-reset-button","slot2-bmc-reset-button",
-> > +               "slot3-bmc-reset-button","slot4-bmc-reset-button",
-> > +               "","","","presence-emmc",
-> > +     /*G0-G7*/ "","","","","","","","",
-> > +     /*H0-H7*/ "","","","",
-> > +               "presence-mb-slot1","presence-mb-slot2",
-> > +               "presence-mb-slot3","presence-mb-slot4",
-> > +     /*I0-I7*/ "","","","","","","bb-bmc-button","",
-> > +     /*J0-J7*/ "","","","","","","","",
-> > +     /*K0-K7*/ "","","","","","","","",
-> > +     /*L0-L7*/ "","","","","","","","",
-> > +     /*M0-M7*/
-> "","power-nic-bmc-enable","","usb-bmc-enable","","reset-cause-usb-hub",""=
-,"",
-> > +     /*N0-N7*/ "","","","","bmc-ready","","","",
-> > +     /*O0-O7*/
-> "","","","","","","fan0-bmc-cpld-enable","fan1-bmc-cpld-enable",
-> > +     /*P0-P7*/ "fan2-bmc-cpld-enable","fan3-bmc-cpld-enable",
-> > +               "reset-cause-pcie-slot1","reset-cause-pcie-slot2",
-> > +               "reset-cause-pcie-slot3","reset-cause-pcie-slot4","",""=
-,
-> > +     /*Q0-Q7*/ "","","","","","","","",
-> > +     /*R0-R7*/ "","","","","","","","",
-> > +     /*S0-S7*/ "","","power-p5v-usb","presence-bmc-tpm","","","","",
-> > +     /*T0-T7*/ "","","","","","","","",
-> > +     /*U0-U7*/ "","","","","","","","GND",
-> > +     /*V0-V7*/ "bmc-slot1-ac-button","bmc-slot2-ac-button",
-> > +               "bmc-slot3-ac-button","bmc-slot4-ac-button",
-> > +               "","","","",
-> > +     /*W0-W7*/ "","","","","","","","",
-> > +     /*X0-X7*/ "","","","","","","","",
-> > +     /*Y0-Y7*/ "","","","reset-cause-emmc","","","","",
-> > +     /*Z0-Z7*/ "","","","","","","",""; };
-> > +
-> > +&gpio1 {
-> > +     status =3D "okay";
->=20
-> Same question...
-Yes, the answer is same as above.
-> Best regards,
-> Krzysztof
+Patch 3 needs to be applied on top of:
+https://patchwork.kernel.org/project/linux-riscv/cover/20230120024445.244345-1-xingyu.wu@starfivetech.com/
+
+Changes v3->v4:
+- Use fallback for non-aligned cases as hardware doesn't support
+  hashing piece-meal (Herbert)
+- Use ahash_request_set_* helpers to update members of ahash_request
+  (Herbert)
+- Set callbacks for async fallback (Herbert)
+- Remove completion variable and use dma_callback to do the rest of
+  processing instead. (Herbert)
+
+Changes v2->v3:
+- Only implement digest and use fallback for other ops (Herbert)
+- Use interrupt instead of polling for hash complete (Herbert)
+- Remove manual data copy from out-of-bound memory location as it will
+  be handled by DMA API. (Christoph & Herbert)
+
+Changes v1->v2:
+- Fixed yaml filename and format (Krzysztof)
+- Removed unnecessary property names in yaml (Krzysztof)
+- Moved of_device_id table close to usage (Krzysztof)
+- Use dev_err_probe for error returns (Krzysztof)
+- Dropped redundant readl and writel wrappers (Krzysztof)
+- Updated commit signed offs (Conor)
+- Dropped redundant node in dts, module set to on in dtsi (Conor)
+
+Jia Jie Ho (4):
+  dt-bindings: crypto: Add StarFive crypto module
+  crypto: starfive - Add crypto engine support
+  riscv: dts: starfive: Add crypto and DMA node for VisionFive 2
+  crypto: starfive - Add hash and HMAC support
+
+ .../crypto/starfive,jh7110-crypto.yaml        |  70 ++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  28 +
+ drivers/crypto/Kconfig                        |   1 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/starfive/Kconfig               |  21 +
+ drivers/crypto/starfive/Makefile              |   4 +
+ drivers/crypto/starfive/jh7110-cryp.c         | 234 +++++
+ drivers/crypto/starfive/jh7110-cryp.h         | 127 +++
+ drivers/crypto/starfive/jh7110-hash.c         | 990 ++++++++++++++++++
+ 10 files changed, 1483 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
+ create mode 100644 drivers/crypto/starfive/Kconfig
+ create mode 100644 drivers/crypto/starfive/Makefile
+ create mode 100644 drivers/crypto/starfive/jh7110-cryp.c
+ create mode 100644 drivers/crypto/starfive/jh7110-cryp.h
+ create mode 100644 drivers/crypto/starfive/jh7110-hash.c
+
+-- 
+2.25.1
 
