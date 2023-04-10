@@ -2,125 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1F2D6DC266
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 03:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 360266DC2C1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 04:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbjDJBpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Apr 2023 21:45:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
+        id S229733AbjDJCay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Apr 2023 22:30:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjDJBph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 21:45:37 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723FB35A7;
-        Sun,  9 Apr 2023 18:45:36 -0700 (PDT)
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 339N7gHj002478;
-        Mon, 10 Apr 2023 01:45:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=lACip7+EkKWDEeQBT2iYREjHR0TDo6jILmW0mTPMejc=;
- b=L0y3esTzbs4xYZXU3LAeItzl76oVXJBmhHlelmp7GfVM+mO97QJRgQvybWruO8F0v7gb
- 274YQ+MDaHX3axi57YbfwcNlrYEWmk2cWiZfemdY1gSanAHkf3IjPgHPidZHTgGgcmI/
- Ni24zbFW95PsCh8MQuq65wp26aE1Dh+3JtjvqgrQoRO2asf2AC9XadLuW8W8BawsUKaU
- NZG25acLyhajOTYaumA3y5mTSENgEoToh24e6yF4/qUaPjz97+s41KK+9yh7N74AsFAu
- FghTh8zex1tpJZ/CSydWCbLc6J1w0ZN/yZGH/Bj2MqaoemRUyavcjOKzcPruEVwR0DZ4 /w== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3puj2tjk0n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Apr 2023 01:45:09 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 339Mq140030378;
-        Mon, 10 Apr 2023 01:45:08 GMT
-Received: from smtprelay04.dal12v.mail.ibm.com ([9.208.130.102])
-        by ppma03dal.us.ibm.com (PPS) with ESMTPS id 3pu0ktabu9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Apr 2023 01:45:08 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-        by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33A1j70311076192
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 10 Apr 2023 01:45:07 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 00EC958057;
-        Mon, 10 Apr 2023 01:45:07 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E5D2D58061;
-        Mon, 10 Apr 2023 01:45:06 +0000 (GMT)
-Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
-        by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTPS;
-        Mon, 10 Apr 2023 01:45:06 +0000 (GMT)
-Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
-        id AEE5E74514F; Sun,  9 Apr 2023 20:45:06 -0500 (CDT)
-From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-To:     robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        eajames@linux.ibm.com
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Subject: [PATCH v5 5/5] ARM: dts: aspeed: p10bmc: Change power supply info
-Date:   Sun,  9 Apr 2023 20:44:45 -0500
-Message-Id: <20230410014445.458385-6-lakshmiy@us.ibm.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230410014445.458385-1-lakshmiy@us.ibm.com>
-References: <20230410014445.458385-1-lakshmiy@us.ibm.com>
+        with ESMTP id S229716AbjDJCas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 22:30:48 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8C92707;
+        Sun,  9 Apr 2023 19:30:47 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-632cf805762so353551b3a.3;
+        Sun, 09 Apr 2023 19:30:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1681093847;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=91oVa4U4E752SRKAZUiXCqWTpRWldtV5m/eQGoWFvDo=;
+        b=GvjyKFfrXQTDTegaGVK2x3sG0Ip6I3hXwmxFfOJmMEaHR3FIpZXlAWKenZDLqvBSPu
+         puqcCBoYi4yqP7Q2ciPTlbPkpHDluTpkF7hud2O5kOk4VFK2ULK9zwJttHL/uKGfaGog
+         BKABVer4EjKFxgiupm7RulsPxONmCa7ZRqa0D35uiB3BGDbX6SGxzSuYFXegS87cEUq5
+         3+hAyEhRKhiMtgQrVBGdxi22HvKUi10Z4RUlTyIkSxrwpL7FlqeB3Bh7ZTseIp/AOAI0
+         PAdtNlIAJSxK2ziOqKUNi8wXjnbEcUV5LaFA8ruWLlrtsFeobb1d+bArks5aVsd+sCy9
+         mttg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681093847;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=91oVa4U4E752SRKAZUiXCqWTpRWldtV5m/eQGoWFvDo=;
+        b=vX92haYdFAOd9Mp+G6LvbvfI517iqTfdy10Ef5vWI/JtaYP0oemAJGOY/ebf4bEhml
+         11ORY7PJLJtOa2gvQ2e7PDCniAuaXUyjM/khlf448c4MMoKCw+1ZZ2jGNsMBtl9dJJVg
+         OAgl5EcOSfH0PWE0b5B0iS9gdUDgtejtlfThLivtOg+b62nQrWK4fj1t1ZR8BKqx93h7
+         uUz5gHHQMIzpVwTrcBiSEv2LDLU+ANUgs7Y4fRNzABPKqfIJQsvvzbiA1eXWlyhQOU6x
+         FbzV1ygEqubzQvqTQqvPIrRIsEPBehtRxiXJLaKEi52k11GDQxxwMUJ9mjpLr+AnxHbA
+         bO3Q==
+X-Gm-Message-State: AAQBX9fUoAfG+Q5yJBjMz/lahOcV8+uZtgB6AYOW190i20/Ril9af7Oa
+        r8YGAGrviPPDKuY8BMK5GGQ=
+X-Google-Smtp-Source: AKy350arnos9p4x6ClCP16vCSb7Y1qpCkhOMhsM+5TChYcKYrgNgkdmDap4qv4y7/IEV5piWIUV7pg==
+X-Received: by 2002:a62:1d4d:0:b0:625:fe95:f120 with SMTP id d74-20020a621d4d000000b00625fe95f120mr6471688pfd.8.1681093846702;
+        Sun, 09 Apr 2023 19:30:46 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:803c:4683:913e:ce04])
+        by smtp.gmail.com with ESMTPSA id i22-20020aa79096000000b005e0699464e3sm6614117pfa.206.2023.04.09.19.30.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Apr 2023 19:30:45 -0700 (PDT)
+Date:   Sun, 9 Apr 2023 19:30:42 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, aisheng.dong@nxp.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/2] input: imx_sc_key: add wakeup support
+Message-ID: <ZDN00vwyCOzFrDYt@google.com>
+References: <20230323093141.4070840-1-peng.fan@oss.nxp.com>
+ <20230323093141.4070840-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: MFVw4rAws1ngeJerebW_fc5YDxFswB6U
-X-Proofpoint-ORIG-GUID: MFVw4rAws1ngeJerebW_fc5YDxFswB6U
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-09_18,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- phishscore=0 spamscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0
- adultscore=0 suspectscore=0 priorityscore=1501 mlxlogscore=852
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304100011
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230323093141.4070840-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bonnell system supports new ACBEL FSG032 power supply on
-I2C addresses 5A and 5B. Update the device tree with new
-power supply information and device addresses.
+On Thu, Mar 23, 2023 at 05:31:41PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add support for waking up from system wide suspend.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/input/keyboard/imx_sc_key.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/input/keyboard/imx_sc_key.c b/drivers/input/keyboard/imx_sc_key.c
+> index d18839f1f4f6..234f23cf9990 100644
+> --- a/drivers/input/keyboard/imx_sc_key.c
+> +++ b/drivers/input/keyboard/imx_sc_key.c
+> @@ -151,6 +151,8 @@ static int imx_sc_key_probe(struct platform_device *pdev)
+>  	priv->input = input;
+>  	platform_set_drvdata(pdev, priv);
+>  
+> +	device_init_wakeup(&pdev->dev, device_property_read_bool(&pdev->dev, "wakeup-source"));
+> +
 
-Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Reviewed-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+I wonder - could we move this to the device core?
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-index a5be0ee048ec..4f959a4f8b58 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-@@ -552,14 +552,14 @@ ucd90160@64 {
- &i2c3 {
- 	status = "okay";
- 
--	power-supply@58 {
--		compatible = "ibm,cffps";
--		reg = <0x58>;
-+	power-supply@5a {
-+		compatible = "acbel,fsg032";
-+		reg = <0x5a>;
- 	};
- 
--	power-supply@59 {
--		compatible = "ibm,cffps";
--		reg = <0x59>;
-+	power-supply@5b {
-+		compatible = "acbel,fsg032";
-+		reg = <0x5b>;
- 	};
- };
- 
+>  	error = imx_scu_irq_group_enable(SC_IRQ_GROUP_WAKE, SC_IRQ_BUTTON,
+>  					 true);
+>  	if (error) {
+> -- 
+> 2.37.1
+> 
+
+Thanks.
+
 -- 
-2.37.2
-
+Dmitry
