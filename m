@@ -2,76 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50BC96DCA3D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 19:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A5D6DCA44
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 19:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbjDJRwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 13:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41656 "EHLO
+        id S230299AbjDJR5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 13:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbjDJRwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 13:52:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF802171C;
-        Mon, 10 Apr 2023 10:52:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A7036136E;
-        Mon, 10 Apr 2023 17:52:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB973C433EF;
-        Mon, 10 Apr 2023 17:52:35 +0000 (UTC)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: qcom: msm8974: do not use underscore in node name (again)
-Date:   Mon, 10 Apr 2023 19:52:32 +0200
-Message-Id: <20230410175232.22317-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230333AbjDJR5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 13:57:43 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2811988
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:57:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681149460; x=1712685460;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GGZihadSCBgzCcdSKBrsS74hHB5H97zTUqXPQmXpWRE=;
+  b=cmC+k5epsLQ/uBrSfjBetQqbpU9w8IsEBYPH6Qzvy54v7xWa26w5vh+4
+   r25jk6OZJuppqmiLnMr/6w2YTwx9DPyU2WHIV7CjwwWspq0k1hrJmEz8f
+   SMCCTLIRw6hf1TCSsUImIlu3ySjkjOdk1vJCeKK7srrl2zZYB5KoKFLWR
+   V/7kofT7YjM7ix9sblc0elPES54XM3UGDCd97gfHI56aaYvJU2wFmKhV3
+   AZWohZiRNSd3LZjCBVQuxHHQumiGkTWhWIknjfpobR7ct7IyJH22aNfv1
+   VOcR5NJ2fkYI5duJpksfKY9eJ7R0Wq2OvWdQAIcTqkYp39YGnKwGUhPEH
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="406247823"
+X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; 
+   d="scan'208";a="406247823"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2023 10:57:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="799581024"
+X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; 
+   d="scan'208";a="799581024"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 10 Apr 2023 10:57:32 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1plvlk-000VYf-07;
+        Mon, 10 Apr 2023 17:57:32 +0000
+Date:   Tue, 11 Apr 2023 01:57:26 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Brandon Cheo Fusi <fusibrandon13@gmail.com>, maxime@cerno.tech
+Cc:     oe-kbuild-all@lists.linux.dev, airlied@gmail.com,
+        andrzej.hajda@intel.com, daniel@ffwll.ch,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, jagan@amarulasolutions.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        maarten.lankhorst@linux.intel.com, marex@denx.de,
+        neil.armstrong@linaro.org, rfoss@kernel.org, robh+dt@kernel.org,
+        sam@ravnborg.org, samuel@sholland.org, tzimmermann@suse.de,
+        wens@csie.org, Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Subject: Re: [PATCH 1/2] drm: sun4i/dsi: factor out DSI PHY poweron and
+ poweroff
+Message-ID: <202304110110.ZLinpepn-lkp@intel.com>
+References: <20230410084750.164016-2-fusibrandon13@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230410084750.164016-2-fusibrandon13@gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align RPM requests node with DT schema by using hyphen instead of
-underscore.
+Hi Brandon,
 
-Fixes: f300826d27be ("ARM: dts: qcom-msm8974: Sort and clean up nodes")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+kernel test robot noticed the following build errors:
 
----
+[auto build test ERROR on sunxi/sunxi/for-next]
+[also build test ERROR on linus/master v6.3-rc6 next-20230406]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I guess some changes has to be done more than once, to be sure they
-get written properly to Git.
----
- arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Brandon-Cheo-Fusi/drm-sun4i-dsi-factor-out-DSI-PHY-poweron-and-poweroff/20230410-165257
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
+patch link:    https://lore.kernel.org/r/20230410084750.164016-2-fusibrandon13%40gmail.com
+patch subject: [PATCH 1/2] drm: sun4i/dsi: factor out DSI PHY poweron and poweroff
+config: ia64-allyesconfig (https://download.01.org/0day-ci/archive/20230411/202304110110.ZLinpepn-lkp@intel.com/config)
+compiler: ia64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/afa9cb6821e4527f07c10a777ea44e380b524858
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Brandon-Cheo-Fusi/drm-sun4i-dsi-factor-out-DSI-PHY-poweron-and-poweroff/20230410-165257
+        git checkout afa9cb6821e4527f07c10a777ea44e380b524858
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/gpu/
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index 8208012684d4..38d3ee152dcb 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -300,7 +300,7 @@ rpm {
- 			qcom,ipc = <&apcs 8 0>;
- 			qcom,smd-edge = <15>;
- 
--			rpm_requests: rpm_requests {
-+			rpm_requests: rpm-requests {
- 				compatible = "qcom,rpm-msm8974";
- 				qcom,smd-channels = "rpm_requests";
- 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304110110.ZLinpepn-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c:843:27: error: initialization of 'void (*)(struct drm_encoder *)' from incompatible pointer type 'void (*)(struct drm_encoder *, struct drm_atomic_state *)' [-Werror=incompatible-pointer-types]
+     843 |         .enable         = sun6i_dsi_encoder_enable,
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c:843:27: note: (near initialization for 'sun6i_dsi_enc_helper_funcs.enable')
+   cc1: some warnings being treated as errors
+
+
+vim +843 drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
+
+133add5b5ad42b Maxime Ripard 2018-04-04  841  
+133add5b5ad42b Maxime Ripard 2018-04-04  842  static const struct drm_encoder_helper_funcs sun6i_dsi_enc_helper_funcs = {
+133add5b5ad42b Maxime Ripard 2018-04-04 @843  	.enable		= sun6i_dsi_encoder_enable,
+133add5b5ad42b Maxime Ripard 2018-04-04  844  };
+133add5b5ad42b Maxime Ripard 2018-04-04  845  
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
