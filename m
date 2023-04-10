@@ -2,199 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A65FF6DC440
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 10:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 128FF6DC44B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 10:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjDJIVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 04:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41246 "EHLO
+        id S229536AbjDJI3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 04:29:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbjDJIVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 04:21:46 -0400
-Received: from smtp.outgoing.loopia.se (smtp.outgoing.loopia.se [93.188.3.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873FB2691
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 01:21:45 -0700 (PDT)
-Received: from s807.loopia.se (localhost [127.0.0.1])
-        by s807.loopia.se (Postfix) with ESMTP id E0AED2F5D82E
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:21:43 +0200 (CEST)
-Received: from s979.loopia.se (unknown [172.22.191.6])
-        by s807.loopia.se (Postfix) with ESMTP id D1D0C2E27E3A;
-        Mon, 10 Apr 2023 10:21:43 +0200 (CEST)
-Received: from s474.loopia.se (unknown [172.22.191.6])
-        by s979.loopia.se (Postfix) with ESMTP id CAC2610BC48E;
-        Mon, 10 Apr 2023 10:21:43 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at amavis.loopia.se
-X-Spam-Score: -1
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
-Received: from s899.loopia.se ([172.22.191.6])
-        by s474.loopia.se (s474.loopia.se [172.22.190.14]) (amavisd-new, port 10024)
-        with LMTP id emeHnmFmr4ku; Mon, 10 Apr 2023 10:21:43 +0200 (CEST)
-X-Loopia-Auth: user
-X-Loopia-User: richard@bit42.se
-X-Loopia-Originating-IP: 178.174.130.84
-Received: from hypercube.. (h-178-174-130-84.A444.priv.bahnhof.se [178.174.130.84])
-        (Authenticated sender: richard@bit42.se)
-        by s899.loopia.se (Postfix) with ESMTPSA id 23BA42C8BA9A;
-        Mon, 10 Apr 2023 10:21:43 +0200 (CEST)
-From:   Richard Alpe <richard@bit42.se>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        niklas.soderlund+renesas@ragnatech.se,
-        Richard Alpe <richard@bit42.se>
-Subject: [PATCH v5 2/2] nvmem: add new NXP QorIQ eFuse driver
-Date:   Mon, 10 Apr 2023 10:20:51 +0200
-Message-Id: <20230410082051.2948510-2-richard@bit42.se>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230410082051.2948510-1-richard@bit42.se>
-References: <20230410082051.2948510-1-richard@bit42.se>
+        with ESMTP id S229526AbjDJI3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 04:29:20 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3153590;
+        Mon, 10 Apr 2023 01:29:15 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0C68124E02F;
+        Mon, 10 Apr 2023 16:29:14 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
+ 2023 16:29:14 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
+ 2023 16:29:12 +0800
+Message-ID: <62fc36bc-7e43-0214-85d7-be66748a901b@starfivetech.com>
+Date:   Mon, 10 Apr 2023 16:29:10 +0800
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4155; h=from:subject; bh=+qAKOzP+YseS0DJfXUHuVNxeIJgGIlZKKrwySn5vQFE=; b=owEBbQKS/ZANAwAKAaR4ncy5pstaAcsmYgBkM8bihXgj51SD9+f+Di7wBKOqNtqO97XSi10HyscC UTzagHeJAjMEAAEKAB0WIQQsEvAKF4GLpV03omKkeJ3MuabLWgUCZDPG4gAKCRCkeJ3MuabLWtEiEA CIIaWL48jxcE2N0dBgr9Go1JRqCuWZf9vz0T2ZCbtutN6Vj9Pmderbj+B3vB6wax3wW7uDz3O68zps Ny+nIH4SqCOgZgCxP6LDesbF0CQsZOZWPzIUr915vRm1XhWJaaySyQuJTEWSyMwSukeEfzcCVr5nR/ muaFXkBxtLiFAMd+uG4Qa7BYpJXZvMepLNdJBAmJElxzmnJ5aF7ZzojBBfGyyvXv2H+hYpIgMsbEV8 2Bv4DeCJFVmapGTm1jWZtEeGBeaFNLuUpNHUbV3V4P6hkrL9wprHsjWV9osSrC0Bm+LKzbysQxK+8o RPab1lA+/UH6he5NmaoVKOW/apfUmQmOBbiNbL/ze6ID4GnIGgeYAdWuXU7JQVFLi3dt8SgV/zF9ZX F+2f8Q/hVRY9on1q4bwoOEKu2YGrKokQei9dL+Dg86ggCY4XUAblP6qQKYJaVcqt2posVVaSb1ebig u/pmoPNHCWQL6uYPfM8svaGoUZAOZfcjig9NmWnsm8UK5381TpzPMWs88ZvTFJyaVZL9nSFOv42gIl yljWktWCKWNDUFggGfy2CYe87Ew1SLmvftivKiri7N3C4+CoXTFH+GKTh1mNtq03JFhp8PVeUo4squ NraygGnNMGxh5FBQb2BPa7adApNjhlCM4qgLzwZJI1x8rmIozZlpVuWHr5rA==
-X-Developer-Key: i=richard@bit42.se; a=openpgp; fpr=B1C705C6B1BF719CA5CD67398BEE8379084BC511
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [-net-next v11 5/6] net: stmmac: Add glue layer for StarFive
+ JH7110 SoC
+Content-Language: en-US
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <Arun.Ramadoss@microchip.com>
+CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Pedro Moreira <pmmoreir@synopsys.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+References: <20230407110356.8449-1-samin.guo@starfivetech.com>
+ <20230407110356.8449-6-samin.guo@starfivetech.com>
+ <CAJM55Z9jCdPASsk+fw_j+9QH3+Kj28tpCA4PgW_nB_ce7qWL8w@mail.gmail.com>
+ <b8764e20-f983-177c-63c5-36bb3b57ba9e@starfivetech.com>
+ <CAJM55Z8jSPz70ri_sFnKMjZDoNvoA=K-o7VCeAMmXztzOKRxaA@mail.gmail.com>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <CAJM55Z8jSPz70ri_sFnKMjZDoNvoA=K-o7VCeAMmXztzOKRxaA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.9 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SFP (Security Fuse Processor) read support for NXP (Freescale)
-QorIQ series SOC's.
 
-This patch adds support for the T1023 SOC using the SFP offset from
-the existing T1023 device tree. In theory this should also work for
-T1024, T1014 and T1013 which uses the same SFP base offset.
+Re: [-net-next v11 5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+to: Guo Samin <samin.guo@starfivetech.com>
+data: 2023/4/9
 
-Signed-off-by: Richard Alpe <richard@bit42.se>
----
-v2: Rebase.
-v3: Updates according to feedback from Srinivas.
-v4,v5: No changes to this patch.
+> On Sat, 8 Apr 2023 at 03:16, Guo Samin <samin.guo@starfivetech.com> wrote:
+>>
+>>  Re: [-net-next v11 5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
+>> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>> to: Samin Guo <samin.guo@starfivetech.com>
+>> data: 2023/4/8
+>>
+>>> On Fri, 7 Apr 2023 at 13:05, Samin Guo <samin.guo@starfivetech.com> wrote:
+>>>>
+>>>> This adds StarFive dwmac driver support on the StarFive JH7110 SoC.
+>>>>
+>>>> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+>>>> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+>>>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>>>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+>>>> ---
+>>>>  MAINTAINERS                                   |   1 +
+>>>>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+>>>>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>>>>  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 123 ++++++++++++++++++
+>>>>  4 files changed, 137 insertions(+)
+>>>>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>>>>
+>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>> index 6b6b67468b8f..46b366456cee 100644
+>>>> --- a/MAINTAINERS
+>>>> +++ b/MAINTAINERS
+>>>> @@ -19910,6 +19910,7 @@ M:      Emil Renner Berthing <kernel@esmil.dk>
+>>>>  M:     Samin Guo <samin.guo@starfivetech.com>
+>>>>  S:     Maintained
+>>>>  F:     Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>>>> +F:     drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>>>>
+>>>>  STARFIVE JH7100 CLOCK DRIVERS
+>>>>  M:     Emil Renner Berthing <kernel@esmil.dk>
+>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+>>>> index f77511fe4e87..5f5a997f21f3 100644
+>>>> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+>>>> @@ -165,6 +165,18 @@ config DWMAC_SOCFPGA
+>>>>           for the stmmac device driver. This driver is used for
+>>>>           arria5 and cyclone5 FPGA SoCs.
+>>>>
+>>>> +config DWMAC_STARFIVE
+>>>> +       tristate "StarFive dwmac support"
+>>>> +       depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
+>>>> +       select MFD_SYSCON
+>>>> +       default m if ARCH_STARFIVE
+>>>> +       help
+>>>> +         Support for ethernet controllers on StarFive RISC-V SoCs
+>>>> +
+>>>> +         This selects the StarFive platform specific glue layer support for
+>>>> +         the stmmac device driver. This driver is used for StarFive JH7110
+>>>> +         ethernet controller.
+>>>> +
+>>>>  config DWMAC_STI
+>>>>         tristate "STi GMAC support"
+>>>>         default ARCH_STI
+>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+>>>> index 057e4bab5c08..8738fdbb4b2d 100644
+>>>> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+>>>> @@ -23,6 +23,7 @@ obj-$(CONFIG_DWMAC_OXNAS)     += dwmac-oxnas.o
+>>>>  obj-$(CONFIG_DWMAC_QCOM_ETHQOS)        += dwmac-qcom-ethqos.o
+>>>>  obj-$(CONFIG_DWMAC_ROCKCHIP)   += dwmac-rk.o
+>>>>  obj-$(CONFIG_DWMAC_SOCFPGA)    += dwmac-altr-socfpga.o
+>>>> +obj-$(CONFIG_DWMAC_STARFIVE)   += dwmac-starfive.o
+>>>>  obj-$(CONFIG_DWMAC_STI)                += dwmac-sti.o
+>>>>  obj-$(CONFIG_DWMAC_STM32)      += dwmac-stm32.o
+>>>>  obj-$(CONFIG_DWMAC_SUNXI)      += dwmac-sunxi.o
+>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>>>> new file mode 100644
+>>>> index 000000000000..4963d4008485
+>>>> --- /dev/null
+>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>>>> @@ -0,0 +1,123 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0+
+>>>> +/*
+>>>> + * StarFive DWMAC platform driver
+>>>> + *
+>>>> + * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
+>>>> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+>>>> + *
+>>>> + */
+>>>> +
+>>>> +#include <linux/mfd/syscon.h>
+>>>> +#include <linux/of_device.h>
+>>>> +#include <linux/regmap.h>
+>>>> +
+>>>> +#include "stmmac_platform.h"
+>>>> +
+>>>> +struct starfive_dwmac {
+>>>> +       struct device *dev;
+>>>> +       struct clk *clk_tx;
+>>>> +};
+>>>> +
+>>>> +static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed)
+>>>> +{
+>>>> +       struct starfive_dwmac *dwmac = priv;
+>>>> +       unsigned long rate;
+>>>> +       int err;
+>>>> +
+>>>> +       rate = clk_get_rate(dwmac->clk_tx);
+>>>
+>>> Hi Samin,
+>>>
+>>> I'm not sure why you added this line in this revision. If it's just to
+>>> not call clk_set_rate on the uninitialized rate, I'd much rather you
+>>> just returned early and don't call clk_set_rate at all in case of
+>>> errors.
+>>>
+>>>> +
+>>>> +       switch (speed) {
+>>>> +       case SPEED_1000:
+>>>> +               rate = 125000000;
+>>>> +               break;
+>>>> +       case SPEED_100:
+>>>> +               rate = 25000000;
+>>>> +               break;
+>>>> +       case SPEED_10:
+>>>> +               rate = 2500000;
+>>>> +               break;
+>>>> +       default:
+>>>> +               dev_err(dwmac->dev, "invalid speed %u\n", speed);
+>>>> +               break;
+>>>
+>>> That is skip the clk_get_rate above and just change this break to a return.
+>>>
+>>
+>> Hi Emil,
+>>
+>> We used the solution you mentioned before V3, but Arun Ramadoss doesn't think that's great.
+>> (https://patchwork.kernel.org/project/linux-riscv/patch/20230106030001.1952-6-yanhong.wang@starfivetech.com)
+>>
+>>
+>>> +static void starfive_eth_plat_fix_mac_speed(void *priv, unsigned int
+>>> speed)
+>>> +{
+>>> +     struct starfive_dwmac *dwmac = priv;
+>>> +     unsigned long rate;
+>>> +     int err;
+>>> +
+>>> +     switch (speed) {
+>>> +     case SPEED_1000:
+>>> +             rate = 125000000;
+>>> +             break;
+>>> +     case SPEED_100:
+>>> +             rate = 25000000;
+>>> +             break;
+>>> +     case SPEED_10:
+>>> +             rate = 2500000;
+>>> +             break;
+>>> +     default:
+>>> +             dev_err(dwmac->dev, "invalid speed %u\n", speed);
+>>> +             return;
+>>
+>> Do we need to return value, since it is invalid speed. But the return
+>> value of function is void.(Arun Ramadoss)
+>>
+>>
+>> So in v9, after discussing with Jakub Kicinski, the clk_set_rate was used to initialize the rate.
+>> (It is a reference to Intel's scheme:    dwmac-intel-plat.c: kmb_eth_fix_mac_speed)
+>> (https://patchwork.kernel.org/project/linux-riscv/patch/20230328062009.25454-6-samin.guo@starfivetech.com)
+>>
+> 
+> Yeah, I think this is a misunderstanding and Arun is considering if we
+> ought to return the error which we can't without changing generic
+> dwmac code, and Jakub is rightly concerned about using a local
+> variable uninitialized. I don't think anyone is suggesting that
+> getting the rate just to set it to the exact same value is better than
+> just leaving the clock alone.
+> 
+HI Emil,
 
- drivers/nvmem/Kconfig       | 12 ++++++
- drivers/nvmem/Makefile      |  2 +
- drivers/nvmem/qoriq-efuse.c | 78 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 92 insertions(+)
- create mode 100644 drivers/nvmem/qoriq-efuse.c
+Yeah, return early saves time and code complexity, and seems like a good solution so Yanhong did the same before v3. (Jakub has suggested it before),
+I wonder if Arun or other maintainers accept this solution or if there are other solutions?
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 6dec38805041..43446e5f7d9b 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -377,4 +377,16 @@ config NVMEM_ZYNQMP
- 
- 	  If sure, say yes. If unsure, say no.
- 
-+config NVMEM_QORIQ_EFUSE
-+	tristate "NXP QorIQ eFuse support"
-+	depends on PPC_85xx || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	help
-+	  This driver provides read support for the eFuses (SFP) on NXP QorIQ
-+	  series SoC's. This includes secure boot settings, the globally unique
-+	  NXP ID 'FUIDR' and the OEM unique ID 'OUIDR'.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nvmem_qoriq_efuse.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 6a1efffa88f0..b8fdf9b51953 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -74,3 +74,5 @@ obj-$(CONFIG_NVMEM_VF610_OCOTP)		+= nvmem-vf610-ocotp.o
- nvmem-vf610-ocotp-y			:= vf610-ocotp.o
- obj-$(CONFIG_NVMEM_ZYNQMP)		+= nvmem_zynqmp_nvmem.o
- nvmem_zynqmp_nvmem-y			:= zynqmp_nvmem.o
-+obj-$(CONFIG_NVMEM_QORIQ_EFUSE)		+= nvmem-qoriq-efuse.o
-+nvmem-qoriq-efuse-y			:= qoriq-efuse.o
-diff --git a/drivers/nvmem/qoriq-efuse.c b/drivers/nvmem/qoriq-efuse.c
-new file mode 100644
-index 000000000000..e7fd04d6dd94
---- /dev/null
-+++ b/drivers/nvmem/qoriq-efuse.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *  Copyright (C) 2023  Westermo Network Technologies AB
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+
-+struct qoriq_efuse_priv {
-+	void __iomem *base;
-+};
-+
-+static int qoriq_efuse_read(void *context, unsigned int offset, void *val,
-+			    size_t bytes)
-+{
-+	struct qoriq_efuse_priv *priv = context;
-+
-+	/* .stride = 4 so offset is guaranteed to be aligned */
-+	__ioread32_copy(val, priv->base + offset, bytes / 4);
-+
-+	/* Ignore trailing bytes (there shouldn't be any) */
-+
-+	return 0;
-+}
-+
-+static int qoriq_efuse_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.dev = &pdev->dev,
-+		.read_only = true,
-+		.reg_read = qoriq_efuse_read,
-+		.stride = sizeof(u32),
-+		.word_size = sizeof(u32),
-+		.name = "qoriq_efuse_read",
-+		.id = NVMEM_DEVID_AUTO,
-+		.root_only = true,
-+	};
-+	struct qoriq_efuse_priv *priv;
-+	struct nvmem_device *nvmem;
-+	struct resource *res;
-+
-+	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	config.size = resource_size(res);
-+	config.priv = priv;
-+	nvmem = devm_nvmem_register(config.dev, &config);
-+
-+	return PTR_ERR_OR_ZERO(nvmem);
-+}
-+
-+static const struct of_device_id qoriq_efuse_of_match[] = {
-+	{ .compatible = "fsl,t1023-sfp", },
-+	{/* sentinel */},
-+};
-+MODULE_DEVICE_TABLE(of, qoriq_efuse_of_match);
-+
-+static struct platform_driver qoriq_efuse_driver = {
-+	.probe = qoriq_efuse_probe,
-+	.driver = {
-+		.name = "qoriq-efuse",
-+		.of_match_table = qoriq_efuse_of_match,
-+	},
-+};
-+module_platform_driver(qoriq_efuse_driver);
-+
-+MODULE_AUTHOR("Richard Alpe <richard.alpe@bit42.se>");
-+MODULE_DESCRIPTION("NXP QorIQ Security Fuse Processor (SFP) Reader");
-+MODULE_LICENSE("GPL");
+Best regards,
+Samin
+
+>> Best regards,
+>> Samin
+>>>> +       }
+>>>> +
+>>>> +       err = clk_set_rate(dwmac->clk_tx, rate);
+>>>> +       if (err)
+>>>> +               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>>>> +}
+>>>> +
+>>>> +static int starfive_dwmac_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +       struct plat_stmmacenet_data *plat_dat;
+>>  cons>> +       struct stmmac_resources stmmac_res;
+>>>> +       struct starfive_dwmac *dwmac;
+>>>> +       struct clk *clk_gtx;
+>>>> +       int err;
+>>>> +
+>>>> +       err = stmmac_get_platform_resources(pdev, &stmmac_res);
+>>>> +       if (err)
+>>>> +               return dev_err_probe(&pdev->dev, err,
+>>>> +                                    "failed to get resources\n");
+>>>> +
+>>>> +       plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
+>>>> +       if (IS_ERR(plat_dat))
+>>>> +               return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
+>>>> +                                    "dt configuration failed\n");
+>>>> +
+>>>> +       dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
+>>>> +       if (!dwmac)
+>>>> +               return -ENOMEM;
+>>>> +
+>>>> +       dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
+>>>> +       if (IS_ERR(dwmac->clk_tx))
+>>>> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
+>>>> +                                    "error getting tx clock\n");
+>>>> +
+>>>> +       clk_gtx = devm_clk_get_enabled(&pdev->dev, "gtx");
+>>>> +       if (IS_ERR(clk_gtx))
+>>>> +               return dev_err_probe(&pdev->dev, PTR_ERR(clk_gtx),
+>>>> +                                    "error getting gtx clock\n");
+>>>> +
+>>>> +       /* Generally, the rgmii_tx clock is provided by the internal clock,
+>>>> +        * which needs to match the corresponding clock frequency according
+>>>> +        * to different speeds. If the rgmii_tx clock is provided by the
+>>>> +        * external rgmii_rxin, there is no need to configure the clock
+>>>> +        * internally, because rgmii_rxin will be adaptively adjusted.
+>>>> +        */
+>>>> +       if (!device_property_read_bool(&pdev->dev, "starfive,tx-use-rgmii-clk"))
+>>>> +               plat_dat->fix_mac_speed = starfive_dwmac_fix_mac_speed;
+>>>> +
+>>>> +       dwmac->dev = &pdev->dev;
+>>>> +       plat_dat->bsp_priv = dwmac;
+>>>> +       plat_dat->dma_cfg->dche = true;
+>>>> +
+>>>> +       err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+>>>> +       if (err) {
+>>>> +               stmmac_remove_config_dt(pdev, plat_dat);
+>>>> +               return err;
+>>>> +       }
+>>>> +
+>>>> +       return 0;
+>>>> +}
+>>>> +
+>>>> +static const struct of_device_id starfive_dwmac_match[] = {
+>>>> +       { .compatible = "starfive,jh7110-dwmac" },
+>>>> +       { /* sentinel */ }
+>>>> +};
+>>>> +MODULE_DEVICE_TABLE(of, starfive_dwmac_match);
+>>>> +
+>>>> +static struct platform_driver starfive_dwmac_driver = {
+>>>> +       .probe  = starfive_dwmac_probe,
+>>>> +       .remove = stmmac_pltfr_remove,
+>>>> +       .driver = {
+>>>> +               .name = "starfive-dwmac",
+>>>> +               .pm = &stmmac_pltfr_pm_ops,
+>>>> +               .of_match_table = starfive_dwmac_match,
+>>>> +       },
+>>>> +};
+>>>> +module_platform_driver(starfive_dwmac_driver);
+>>>> +
+>>>> +MODULE_LICENSE("GPL");
+>>>> +MODULE_DESCRIPTION("StarFive DWMAC platform driver");
+>>>> +MODULE_AUTHOR("Emil Renner Berthing <kernel@esmil.dk>");
+>>>> +MODULE_AUTHOR("Samin Guo <samin.guo@starfivetech.com>");
+>>>> --
+>>>> 2.17.1
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> linux-riscv mailing list
+>>>> linux-riscv@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>>
+>> --
+>> Best regards,
+>> Samin
+
 -- 
-2.34.1
-
+Best regards,
+Samin
