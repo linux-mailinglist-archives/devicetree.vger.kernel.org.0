@@ -2,74 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2125E6DF8BD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C87E46DC749
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 15:29:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbjDLOjR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Apr 2023 10:39:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40670 "EHLO
+        id S229663AbjDJN3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 09:29:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjDLOjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:39:13 -0400
-X-Greylist: delayed 25617 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 12 Apr 2023 07:38:46 PDT
-Received: from energy.go.ug (unknown [154.72.195.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F22983F7
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 07:38:46 -0700 (PDT)
-Received: from [192.168.10.4] (port=30809 helo=Exchange1.energy.go.ug)
-        by energy.go.ug with esmtps  (TLS1) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-        (Exim 4.96)
-        (envelope-from <msmd@energy.go.ug>)
-        id 1plr1d-0005J9-3C;
-        Mon, 10 Apr 2023 15:53:38 +0300
-Received: from [45.80.158.229] (192.168.10.1) by Exchange1.energy.go.ug
- (192.168.10.4) with Microsoft SMTP Server (TLS) id 15.0.847.32; Mon, 10 Apr
- 2023 16:13:40 +0300
-Content-Type: text/plain; charset="iso-8859-1"
+        with ESMTP id S229536AbjDJN3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 09:29:55 -0400
+Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099B34C09;
+        Mon, 10 Apr 2023 06:29:50 -0700 (PDT)
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+        id 1plra8-00EJyK-RY; Mon, 10 Apr 2023 21:29:17 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Mon, 10 Apr 2023 21:29:16 +0800
+Date:   Mon, 10 Apr 2023 21:29:16 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     JiaJie Ho <jiajie.ho@starfivetech.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 4/4] crypto: starfive - Add hash and HMAC support
+Message-ID: <ZDQPLGG+DorFwZ+1@gondor.apana.org.au>
+References: <20230410073752.39506-1-jiajie.ho@starfivetech.com>
+ <20230410073752.39506-5-jiajie.ho@starfivetech.com>
+ <ZDO/z++4/TE6AiIz@gondor.apana.org.au>
+ <6df549e9-d0f6-23ca-882f-527c4e40b553@starfivetech.com>
+ <ZDPgXyGZtMZw5G4q@gondor.apana.org.au>
+ <c1925af208b540c2bd78a16bc593ecae@EXMBX168.cuchost.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: GUTE NACHRICHTEN:
-To:     Recipients <msmd@energy.go.ug>
-From:   Maria Elisabeth Schaeffler <msmd@energy.go.ug>
-Date:   Mon, 10 Apr 2023 15:11:28 +0200
-Reply-To: <info.mariaelisabethschaeffler1@gmail.com>
-Message-ID: <6541051c-0b15-44a5-b54c-ce3bb23b17b6@Exchange1.energy.go.ug>
-X-Originating-IP: [192.168.10.1]
-X-ClientProxiedBy: Exchange1.energy.go.ug (192.168.10.4) To
- Exchange1.energy.go.ug (192.168.10.4)
-X-Sophos-OBS: success
-X-SASI-Version: Antispam-Engine: 5.1.1, AntispamData: 2023.4.12.40316
-X-SASI-RCODE: 200
-X-SASI-SpamProbability: 87%
-X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_1000_LESS 0.000000,
- BODY_SIZE_2000_LESS 0.000000, BODY_SIZE_5000_LESS 0.000000,
- BODY_SIZE_500_599 0.000000, BODY_SIZE_7000_LESS 0.000000,
- CTE_QUOTED_PRINTABLE 0.000000, FRAUD_WEBMAIL_R_NOT_F 0.100000,
- FROM_NAME_PHRASE 0.000000, FROM_SAME_AS_TO_DOMAIN 0.000000,
- MSGID_SAMEAS_FROM_HEX_844412 0.100000, NO_FUR_HEADER 0.000000,
- OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000, REPLYTO_FROM_DIFF_ADDY 0.100000,
- SENDER_NO_AUTH 0.000000, URI_CLASS_SCAM_MAILTO 8.000000,
- WEBMAIL_REPLYTO_NOT_FROM 0.500000, WEBMAIL_SOURCE 0.000000,
- WEBMAIL_XOIP 0.000000, WEBMAIL_X_IP_HDR 0.000000, __CT 0.000000,
- __CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __FRAUD_SUBJ_ALLCAPS 0.000000,
- __FRAUD_WEBMAIL_REPLYTO 0.000000, __FROM_DOMAIN_IN_RCPT 0.000000,
- __FROM_NAME_NOT_IN_ADDR 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
- __HAS_REPLYTO 0.000000, __HAS_XOIP 0.000000, __HEADER_ORDER_FROM 0.000000,
- __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
- __MSGID_HEX_844412 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
- __OUTBOUND_SOPHOS_FUR_IP 0.000000, __PHISH_SPEAR_SUBJECT 0.000000,
- __PHISH_SPEAR_SUBJECT_CAPS 0.000000, __PHISH_SPEAR_SUBJ_SUBJECT 0.000000,
- __REPLYTO_GMAIL 0.000000, __SANE_MSGID 0.000000, __SUBJECT_ALLCAPS 0.000000,
- __SUBJECT_NOLC 0.000000, __SUBJ_SHORT 0.000000, __TO_DOMAIN_IN_FROM 0.000000,
- __TO_DOMAIN_IN_MSGID 0.000000, __TO_HOST_IN_FROM 0.000000,
- __TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
- __TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
- __URI_CLASS_ANY 0.000000
-X-Spam-Status: No, score=4.0 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,LOTS_OF_MONEY,
-        MAY_BE_FORGED,MONEY_FREEMAIL_REPTO,RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,
-        SPF_FAIL,SPF_HELO_FAIL,SUBJ_ALL_CAPS,TO_EQ_FM_DOM_SPF_FAIL,
-        TO_EQ_FM_SPF_FAIL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c1925af208b540c2bd78a16bc593ecae@EXMBX168.cuchost.com>
+X-Spam-Status: No, score=4.3 required=5.0 tests=HELO_DYNAMIC_IPADDR2,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS,TVD_RCVD_IP autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,6 +53,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hallo,
+On Mon, Apr 10, 2023 at 01:10:29PM +0000, JiaJie Ho wrote:
+>
+> The sequence of event would be:
+> 1. Wait for DMA transfer to complete.
+> 2. Set bit in device CSR to indicate final block has been transferred.
 
-Ich bin Frau Maria Elisabeth Schaeffler, eine deutsche Wirtschaftsmagnatin, Investorin und Philanthropin. Ich bin der Vorsitzende von Wipro Limited. 25% meines persönlichen Vermögens werden für wohltätige Zwecke ausgegeben. Und ich habe auch versprochen, die restlichen 25% dieses Jahr an Einzelpersonen zu verschenken. Ich habe mich entschlossen, Ihnen 1.000.000,00 Euro zu spenden. Wenn Sie an meiner Spende interessiert sind, kontaktieren Sie mich für weitere Informationen über: info.mariaelisabethschaeffler1@gmail.com
+OK, 2 should be done in the DMA callback function.
+
+> 3. Device will send IRQ once result is ready.
+> 4. Read out final digest value from device.
+
+4 should be done from a tasklet scheduled from the IRQ handler.
+
+Cheers,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
