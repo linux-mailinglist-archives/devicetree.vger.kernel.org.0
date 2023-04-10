@@ -2,134 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A9E6DC81C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 16:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCCE6DC851
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbjDJO6Z convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Apr 2023 10:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
+        id S229736AbjDJPVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 11:21:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbjDJO6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 10:58:24 -0400
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E065E4C17;
-        Mon, 10 Apr 2023 07:58:23 -0700 (PDT)
-Received: by mail-oo1-f46.google.com with SMTP id i10-20020a4ad68a000000b0053b8aa32089so733188oot.5;
-        Mon, 10 Apr 2023 07:58:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681138702; x=1683730702;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+        with ESMTP id S229670AbjDJPVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:21:12 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF4E3ABD
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:21:11 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id jg21so12906785ejc.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:21:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681140070;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZC0Mdx6dJbemnObfOPEMw+WA676pFjjKABCK5HPK6ZI=;
-        b=FgyDaift2CXfb/RRzYxX0qdXdD/BflN+hVtvQMhfsFRWo5R/lkn74StyzGYgpWP9st
-         TyMnnbziZR43Uef8sWuW5veO6YDKuilJEccCXNyotYxUCC1M6TTMWZod4A+sOqGMwYEd
-         cSwFVrVcK4ZCw06u85QSj0WTuMXWX+epgBndTDjyKKIn4ss02rOkeslekTFcEgxr4Aio
-         yFZrujxyALelzE8ekHzxHa1BKcuo1kYnlhfwLZHIg3PdvUbvhM8jLriex8E3Zh5IpQZH
-         tmpnKW6iRlICYa+CdWUufRjTGy2eVvrokkfV9MPj/3FgoxsaW4nmzFmHs8x92QXSiIB0
-         kclg==
-X-Gm-Message-State: AAQBX9fDGIXdTzhww94vzLSlrBlyTtCOB77HQ3gLxqedDei7JZQiW69K
-        +GRArXWM/ja5MSrsGjH5bUOLn03DOqEWTzYr
-X-Google-Smtp-Source: AKy350bMib/6nqzOEoVagJeYapdnMLDBVy1q4ZKpYR+erJJu0wYdK3T7MC6x5tOIhQeCgaWRorGykw==
-X-Received: by 2002:a4a:418e:0:b0:541:b682:13eb with SMTP id x136-20020a4a418e000000b00541b68213ebmr3036743ooa.5.1681138702011;
-        Mon, 10 Apr 2023 07:58:22 -0700 (PDT)
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com. [209.85.160.44])
-        by smtp.gmail.com with ESMTPSA id j41-20020a4a88ac000000b0053b88b03e24sm4677616ooa.18.2023.04.10.07.58.21
+        bh=ZZRw2wqvE/1MC1yZ0G5iCqLIwh8QF13oSGU/qO0zu+o=;
+        b=NYo/3/coo0c/yMIO7bncY2O4PQowzUY4HreJOHBoBdj/x/RT9LPYs4ujUtFPQI+WqW
+         Bxc9fR08xu5vm9VS6WFaCprSpdIAtUR6LsjR9LnFAETjS+VrCEtoYq3PzHzsqy/M4Uls
+         d6+XvtbngL3LscT0riA721aHMiTkyQjxPYRDQfqlV8BTrWJH6AzeZ2LeRg9rsVNtoZmJ
+         hVp9RTmhyPI8hSl0Qp0w8iv9r2bbaeu1jgXTcqpn2kb/x9clBGSQLRfPu7BZxokZZGwq
+         Z9zuTz6iZZvKScRfWUaqJOebbbRn/wyv2jQ7p1YharDKr3joVIx9E9uAp1SRaR0ByNXp
+         INxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681140070;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZZRw2wqvE/1MC1yZ0G5iCqLIwh8QF13oSGU/qO0zu+o=;
+        b=49IsxEXuLLdGlU64asL/1npKy3N/P5FmAgGcvMQ6VrsnvA8UDqPfpMF44DNnR6brRG
+         EiVPUJJ/Y5eWXpjoQUG66+ID5O9MnIGKv2T7NzlcC+ay5L2j7azOJcibMdfcLEVuWFxi
+         6viACRRdt/8UNBCEm2Jf58EWKlawafOMEqhD5NcehqLcb1nPOjj5Qzw0Nkcid2pyjXtG
+         fx4c7wGqN602jz18kmz8Fhv9Nq1QrP7US2SShAZapJW4RAAX88wKbM53kuAjXRNV2HCB
+         IjTmj18aogp7mtAfiMRA6Zp7M90eb1Yl2dhU0LO16yd91CuSyvJv6cWvgnwVDhgB0/HB
+         174A==
+X-Gm-Message-State: AAQBX9cfwKFuTEU01zw0DDnmTD3OsTglYm1fsKNv1dIXtLek2RyfgIHP
+        8nYjW2dzTvicHqNC1b0w88sAmg==
+X-Google-Smtp-Source: AKy350brrjadn1puHhcMr9fNNUWP0/tw4thCV3WBC6mO5mKGKNcG/rCgLhMkPEKFkStbM15G1M4YBw==
+X-Received: by 2002:a17:907:c60f:b0:94a:6fe4:c309 with SMTP id ud15-20020a170907c60f00b0094a6fe4c309mr3938620ejc.16.1681140069909;
+        Mon, 10 Apr 2023 08:21:09 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:eacd:ffa4:1df7:3870? ([2a02:810d:15c0:828:eacd:ffa4:1df7:3870])
+        by smtp.gmail.com with ESMTPSA id h22-20020a1709063b5600b0094cafa4fb8bsm344729ejf.124.2023.04.10.08.21.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 07:58:21 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-184518754bfso2591972fac.5;
-        Mon, 10 Apr 2023 07:58:21 -0700 (PDT)
-X-Received: by 2002:a05:6870:d608:b0:17d:7221:d80c with SMTP id
- a8-20020a056870d60800b0017d7221d80cmr3664255oaq.5.1681138701166; Mon, 10 Apr
- 2023 07:58:21 -0700 (PDT)
+        Mon, 10 Apr 2023 08:21:09 -0700 (PDT)
+Message-ID: <44a7ee80-e770-4918-9caa-f606713fe584@linaro.org>
+Date:   Mon, 10 Apr 2023 17:21:08 +0200
 MIME-Version: 1.0
-References: <20230410120017.41664-1-tanure@linux.com> <20230410120017.41664-2-tanure@linux.com>
- <CAL_JsqJZWmy8PGwjjBc7FA2JcgvHqmtgkkuHy=XHMT8bVEAxSA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJZWmy8PGwjjBc7FA2JcgvHqmtgkkuHy=XHMT8bVEAxSA@mail.gmail.com>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Mon, 10 Apr 2023 10:58:10 -0400
-X-Gmail-Original-Message-ID: <CAJX_Q+2thy6T8JYn4EDA5WTTv9C-m-1b2egUDtTHYisu3ePrsg@mail.gmail.com>
-Message-ID: <CAJX_Q+2thy6T8JYn4EDA5WTTv9C-m-1b2egUDtTHYisu3ePrsg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] of: fdt: Scan /memreserve/ last
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, jbrunet@baylibre.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-        stefan@agner.ch
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 1/2] ARM: dts: aspeed: greatlakes: Add gpio names
+Content-Language: en-US
+To:     Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230329083235.24123-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20230329083235.24123-2-Delphine_CC_Chiu@Wiwynn.com>
+ <b66f708c-5369-c1c9-5506-c609a245bf4c@linaro.org>
+ <PS2PR04MB3592E90B033CA23F47CD02F2B7959@PS2PR04MB3592.apcprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <PS2PR04MB3592E90B033CA23F47CD02F2B7959@PS2PR04MB3592.apcprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 10, 2023 at 8:52 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Mon, Apr 10, 2023 at 7:00 AM Lucas Tanure <tanure@linux.com> wrote:
-> >
-> > Change the order of scanning /memreserve/ and /reserved-memory node.
-> > /reserved-memory node should go first, as it has a more updated
-> > description of the memory regions and it can apply flags, like nomap.
-> > Also, /memreserve/ should avoid reserving regions described in
-> > /reserved-memory node.
->
-> Like I said on v1, I think doing this has a high chance of causing
-> regressions on other platforms. It should probably not go to stable
-> for some time after a kernel release.
->
-> > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > ---
-> >  drivers/of/fdt.c | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index d1a68b6d03b3..26e608d8025d 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -635,16 +635,21 @@ void __init early_init_fdt_scan_reserved_mem(void)
-> >         if (!initial_boot_params)
-> >                 return;
-> >
-> > +       fdt_scan_reserved_mem();
-> > +       fdt_reserve_elfcorehdr();
-> > +
-> >         /* Process header /memreserve/ fields */
-> >         for (n = 0; ; n++) {
-> >                 fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
-> >                 if (!size)
-> >                         break;
-> > +               if (memblock_overlaps_region(&memblock.memory, base, size) &&
-> > +                   memblock_is_region_reserved(base, size))
->
-> Just to make sure, a partial overlap will still get reserved?
-A partial overlap will get reserved if not already reserved by the
-/reserved-memory node.
->
-> > +                       break;
->
-> Shouldn't we continue to the next entry rather than stopping.
-Yes, my mistake; I will send v3.
->
-> > +
-> >                 memblock_reserve(base, size);
-> >         }
-> >
-> > -       fdt_scan_reserved_mem();
-> > -       fdt_reserve_elfcorehdr();
-> >         fdt_init_reserved_mem();
-> >  }
-> >
-> > --
-> > 2.40.0
-> >
+On 10/04/2023 09:11, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
+> Thank you for reviewing.
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Wednesday, March 29, 2023 4:37 PM
+>> To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>;
+>> patrick@stwcx.xyz; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Joel Stanley <joel@jms.id.au>; Andrew
+>> Jeffery <andrew@aj.id.au>
+>> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH v1 1/2] ARM: dts: aspeed: greatlakes: Add gpio names
+>>
+>>   Security Reminder: Please be aware that this email is sent by an external
+>> sender.
+>>
+>> On 29/03/2023 10:32, Delphine CC Chiu wrote:
+>>> From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+>>>
+>>> Add GPIO names for SOC lines.
+>>>
+>>> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+>>> ---
+>>>  .../dts/aspeed-bmc-facebook-greatlakes.dts    | 49
+>> +++++++++++++++++++
+>>>  1 file changed, 49 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+>>> b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+>>> index 8c05bd56ce1e..59819115c39d 100644
+>>> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+>>> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+>>> @@ -238,4 +238,53 @@
+>>>  &gpio0 {
+>>>       pinctrl-names = "default";
+>>>       pinctrl-0 = <&pinctrl_gpiu1_default &pinctrl_gpiu7_default>;
+>>> +     status = "okay";
+>>
+>> Was it disabled before?
+>>
+> Yes, 
+
+Really? Can you provide any proof for this?
+
+> we have to enable gpio status for meeting aspeed-g6 device tree setting, and set net names for pulling gpio pin from application layer.
+
+What is "enable gpio status"? What does it mean to "meet aspeeg-g6
+devicetree setting"?
+What names have anything to do with my question?
+
+Sorry, I cannot parse it at all.
+
+>>> +     gpio-line-names =
+>>> +     /*A0-A7*/ "","","","","","","","",
+>>> +     /*B0-B7*/ "power-bmc-nic","presence-ocp-debug",
+>>> +               "power-bmc-slot1","power-bmc-slot2",
+>>> +               "power-bmc-slot3","power-bmc-slot4","","",
+>>> +     /*C0-C7*/ "presence-ocp-nic","","","reset-cause-nic-primary",
+>>> +               "reset-cause-nic-secondary","","","",
+>>> +     /*D0-D7*/ "","","","","","","","",
+>>> +     /*E0-E7*/ "","","","","","","","",
+>>> +     /*F0-F7*/ "slot1-bmc-reset-button","slot2-bmc-reset-button",
+>>> +               "slot3-bmc-reset-button","slot4-bmc-reset-button",
+>>> +               "","","","presence-emmc",
+>>> +     /*G0-G7*/ "","","","","","","","",
+>>> +     /*H0-H7*/ "","","","",
+>>> +               "presence-mb-slot1","presence-mb-slot2",
+>>> +               "presence-mb-slot3","presence-mb-slot4",
+>>> +     /*I0-I7*/ "","","","","","","bb-bmc-button","",
+>>> +     /*J0-J7*/ "","","","","","","","",
+>>> +     /*K0-K7*/ "","","","","","","","",
+>>> +     /*L0-L7*/ "","","","","","","","",
+>>> +     /*M0-M7*/
+>> "","power-nic-bmc-enable","","usb-bmc-enable","","reset-cause-usb-hub","","",
+>>> +     /*N0-N7*/ "","","","","bmc-ready","","","",
+>>> +     /*O0-O7*/
+>> "","","","","","","fan0-bmc-cpld-enable","fan1-bmc-cpld-enable",
+>>> +     /*P0-P7*/ "fan2-bmc-cpld-enable","fan3-bmc-cpld-enable",
+>>> +               "reset-cause-pcie-slot1","reset-cause-pcie-slot2",
+>>> +               "reset-cause-pcie-slot3","reset-cause-pcie-slot4","","",
+>>> +     /*Q0-Q7*/ "","","","","","","","",
+>>> +     /*R0-R7*/ "","","","","","","","",
+>>> +     /*S0-S7*/ "","","power-p5v-usb","presence-bmc-tpm","","","","",
+>>> +     /*T0-T7*/ "","","","","","","","",
+>>> +     /*U0-U7*/ "","","","","","","","GND",
+>>> +     /*V0-V7*/ "bmc-slot1-ac-button","bmc-slot2-ac-button",
+>>> +               "bmc-slot3-ac-button","bmc-slot4-ac-button",
+>>> +               "","","","",
+>>> +     /*W0-W7*/ "","","","","","","","",
+>>> +     /*X0-X7*/ "","","","","","","","",
+>>> +     /*Y0-Y7*/ "","","","reset-cause-emmc","","","","",
+>>> +     /*Z0-Z7*/ "","","","","","","",""; };
+>>> +
+>>> +&gpio1 {
+>>> +     status = "okay";
+>>
+>> Same question...
+> Yes, the answer is same as above.
+
+So the same incorrect?
+
+
+Best regards,
+Krzysztof
+
