@@ -2,96 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EAAB6DC723
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 15:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2125E6DF8BD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:39:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjDJNKq convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Apr 2023 09:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46288 "EHLO
+        id S231698AbjDLOjR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Apr 2023 10:39:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbjDJNKo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 09:10:44 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F1E2D49;
-        Mon, 10 Apr 2023 06:10:38 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 2ADE524E20A;
-        Mon, 10 Apr 2023 21:10:30 +0800 (CST)
-Received: from EXMBX167.cuchost.com (172.16.6.77) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
- 2023 21:10:30 +0800
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX167.cuchost.com
- (172.16.6.77) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Apr
- 2023 21:10:29 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Mon, 10 Apr 2023 21:10:29 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v4 4/4] crypto: starfive - Add hash and HMAC support
-Thread-Topic: [PATCH v4 4/4] crypto: starfive - Add hash and HMAC support
-Thread-Index: AQHZa3+jdYvISdTjqUmPzN0mADxyja8jpS2AgACU6YD//5HogIAAsqtQ
-Date:   Mon, 10 Apr 2023 13:10:29 +0000
-Message-ID: <c1925af208b540c2bd78a16bc593ecae@EXMBX168.cuchost.com>
-References: <20230410073752.39506-1-jiajie.ho@starfivetech.com>
- <20230410073752.39506-5-jiajie.ho@starfivetech.com>
- <ZDO/z++4/TE6AiIz@gondor.apana.org.au>
- <6df549e9-d0f6-23ca-882f-527c4e40b553@starfivetech.com>
- <ZDPgXyGZtMZw5G4q@gondor.apana.org.au>
-In-Reply-To: <ZDPgXyGZtMZw5G4q@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [161.142.156.149]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S230170AbjDLOjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:39:13 -0400
+X-Greylist: delayed 25617 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 12 Apr 2023 07:38:46 PDT
+Received: from energy.go.ug (unknown [154.72.195.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F22983F7
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 07:38:46 -0700 (PDT)
+Received: from [192.168.10.4] (port=30809 helo=Exchange1.energy.go.ug)
+        by energy.go.ug with esmtps  (TLS1) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+        (Exim 4.96)
+        (envelope-from <msmd@energy.go.ug>)
+        id 1plr1d-0005J9-3C;
+        Mon, 10 Apr 2023 15:53:38 +0300
+Received: from [45.80.158.229] (192.168.10.1) by Exchange1.energy.go.ug
+ (192.168.10.4) with Microsoft SMTP Server (TLS) id 15.0.847.32; Mon, 10 Apr
+ 2023 16:13:40 +0300
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: GUTE NACHRICHTEN:
+To:     Recipients <msmd@energy.go.ug>
+From:   Maria Elisabeth Schaeffler <msmd@energy.go.ug>
+Date:   Mon, 10 Apr 2023 15:11:28 +0200
+Reply-To: <info.mariaelisabethschaeffler1@gmail.com>
+Message-ID: <6541051c-0b15-44a5-b54c-ce3bb23b17b6@Exchange1.energy.go.ug>
+X-Originating-IP: [192.168.10.1]
+X-ClientProxiedBy: Exchange1.energy.go.ug (192.168.10.4) To
+ Exchange1.energy.go.ug (192.168.10.4)
+X-Sophos-OBS: success
+X-SASI-Version: Antispam-Engine: 5.1.1, AntispamData: 2023.4.12.40316
+X-SASI-RCODE: 200
+X-SASI-SpamProbability: 87%
+X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_1000_LESS 0.000000,
+ BODY_SIZE_2000_LESS 0.000000, BODY_SIZE_5000_LESS 0.000000,
+ BODY_SIZE_500_599 0.000000, BODY_SIZE_7000_LESS 0.000000,
+ CTE_QUOTED_PRINTABLE 0.000000, FRAUD_WEBMAIL_R_NOT_F 0.100000,
+ FROM_NAME_PHRASE 0.000000, FROM_SAME_AS_TO_DOMAIN 0.000000,
+ MSGID_SAMEAS_FROM_HEX_844412 0.100000, NO_FUR_HEADER 0.000000,
+ OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000, REPLYTO_FROM_DIFF_ADDY 0.100000,
+ SENDER_NO_AUTH 0.000000, URI_CLASS_SCAM_MAILTO 8.000000,
+ WEBMAIL_REPLYTO_NOT_FROM 0.500000, WEBMAIL_SOURCE 0.000000,
+ WEBMAIL_XOIP 0.000000, WEBMAIL_X_IP_HDR 0.000000, __CT 0.000000,
+ __CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __FRAUD_SUBJ_ALLCAPS 0.000000,
+ __FRAUD_WEBMAIL_REPLYTO 0.000000, __FROM_DOMAIN_IN_RCPT 0.000000,
+ __FROM_NAME_NOT_IN_ADDR 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
+ __HAS_REPLYTO 0.000000, __HAS_XOIP 0.000000, __HEADER_ORDER_FROM 0.000000,
+ __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
+ __MSGID_HEX_844412 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
+ __OUTBOUND_SOPHOS_FUR_IP 0.000000, __PHISH_SPEAR_SUBJECT 0.000000,
+ __PHISH_SPEAR_SUBJECT_CAPS 0.000000, __PHISH_SPEAR_SUBJ_SUBJECT 0.000000,
+ __REPLYTO_GMAIL 0.000000, __SANE_MSGID 0.000000, __SUBJECT_ALLCAPS 0.000000,
+ __SUBJECT_NOLC 0.000000, __SUBJ_SHORT 0.000000, __TO_DOMAIN_IN_FROM 0.000000,
+ __TO_DOMAIN_IN_MSGID 0.000000, __TO_HOST_IN_FROM 0.000000,
+ __TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
+ __TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
+ __URI_CLASS_ANY 0.000000
+X-Spam-Status: No, score=4.0 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,LOTS_OF_MONEY,
+        MAY_BE_FORGED,MONEY_FREEMAIL_REPTO,RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,
+        SPF_FAIL,SPF_HELO_FAIL,SUBJ_ALL_CAPS,TO_EQ_FM_DOM_SPF_FAIL,
+        TO_EQ_FM_SPF_FAIL autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: Re: [PATCH v4 4/4] crypto: starfive - Add hash and HMAC support
-> 
-> On Mon, Apr 10, 2023 at 04:43:37PM +0800, Jia Jie Ho wrote:
-> >
-> > The hardware requires user to set a 'final' bit after data transfer completed.
-> > This completion is to wait for the interrupt signal from device that
-> > the final digest has been populated to the read registers.
-> >
-> > I'll do the finalize_request call directly in the next version.
-> 
-> Instead of the IRQ performing a completion, it could instead schedule a tasklet
-> and do the callback directly from the tasklet.
-> 
-> Actually, the ordering between the IRQ and DMA callback is a bit confusing.
-> Which one is supposed to occur first and how does it interact with the other
-> event?
-> 
+Hallo,
 
-The sequence of event would be:
-1. Wait for DMA transfer to complete.
-2. Set bit in device CSR to indicate final block has been transferred.
-3. Device will send IRQ once result is ready.
-4. Read out final digest value from device.
-
-Thanks,
-Jia Jie
+Ich bin Frau Maria Elisabeth Schaeffler, eine deutsche Wirtschaftsmagnatin, Investorin und Philanthropin. Ich bin der Vorsitzende von Wipro Limited. 25% meines persönlichen Vermögens werden für wohltätige Zwecke ausgegeben. Und ich habe auch versprochen, die restlichen 25% dieses Jahr an Einzelpersonen zu verschenken. Ich habe mich entschlossen, Ihnen 1.000.000,00 Euro zu spenden. Wenn Sie an meiner Spende interessiert sind, kontaktieren Sie mich für weitere Informationen über: info.mariaelisabethschaeffler1@gmail.com
