@@ -2,109 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74D3D6DCD64
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 00:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C67596DCD71
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 00:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbjDJWU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 18:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55066 "EHLO
+        id S229571AbjDJWaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 18:30:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229831AbjDJWU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 18:20:56 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AABC1BCF
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 15:20:54 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 72so6262863ybe.6
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 15:20:54 -0700 (PDT)
+        with ESMTP id S229536AbjDJWaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 18:30:06 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3F0E60;
+        Mon, 10 Apr 2023 15:30:05 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id n19-20020a05600c501300b003f064936c3eso8379497wmr.0;
+        Mon, 10 Apr 2023 15:30:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681165253;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GY3XURVYWCIcemLAr8O9Wiej+aFCql/3yCAZTzhHcSs=;
-        b=VNcMwyYOH9xebcPuWV3dFdUJ5t+c0vlfeyFbDGAu53qPX29fh9SVStP0ZvJlPO9b0N
-         HGUPWUOezP7UdaQQly+jeaBFl4E8qA23Xz7uxqiFVJjVk06p7HvPKC4HpaDgA8hjHlBi
-         xJBgoAeN9xkOU2PpC0BwJVbfKvDVoS4lkBYBu7KCqS9MyWvrgGRFOUMaHfjuNdMcBmlB
-         t5whbFRg6wPG6/IAA0+edaA3s7DXYbZij5R1ZQaaXIj+Tt3Udi0gJGEY7J1uyw+DDF44
-         bqlj3OBWyJdp9QC/BJ6N+JzIVYy9nIQ6qdWDa2V8vJT4WNdbz4w5/eAIynxyAnLll+gS
-         mBUg==
+        d=gmail.com; s=20210112; t=1681165803;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0D4LsfAW6191QwNdK4ta66PY+hl1RuuGNyGsehh1bKM=;
+        b=RaOH+5cpTaSGaPQ96/dB25hRT8d8reD+ky6sQeH+7WLElvuuAeDsMN96MQEUehm+nl
+         JquppEasMJwoOBkDPoD+jS09xZgi+pR8KVWYco2JDjdqDzZOZ93TiCJ8oo98L/nZ6R+E
+         zj5u4+eHMwtpZL+YR6OACcLwnHOwpuf4Al+WRJfyx3ZdD7DaDvJAU91h98FwV0mXXAgI
+         w2QgNZfU9hwTD/6SiqVidbBIy+Etb3MgesVHNdhS7npny42SK2rFfCG1AfHMd0CAymgP
+         UjQcVQjB7qKHjqkzmU9MwETrEGr4DDTDe1o84HdKOz97QWclHo1J3suc+iSKe/6YxGtm
+         SGEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681165253;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GY3XURVYWCIcemLAr8O9Wiej+aFCql/3yCAZTzhHcSs=;
-        b=20AvuXZp8J0DrCs+BlGJeHFFR5OsXJYPid4LdxpQkrz5BjBPM1WDNrMZXFUDLbm/VG
-         J6QSTzqVeSa4Pt3x2+0D+fpOOQ1hHwYvDHcRwnxSy2FjArUYd8qEgauDXgJcqyiE/jog
-         1G+WgU19INy5S+6lTIP9pnEcjXKwgrLBSMF6E8QdEUcTHhfdGG8T2CPwMp2URXlHEjUq
-         D+iufVlKjqDs5NpUT1VkU8br6gBzXuU0lx+93oZ2EbLr3FZlOtNyNMdc7lo2JVL5J/vq
-         633gyjMkOjXYC/1ro+ON+yw/QhY33Dw5vEHMRqLT70cXztcT1F31H/kF4h7cZn6ChJ6b
-         kAAQ==
-X-Gm-Message-State: AAQBX9d3zbf01FEMVhfysZsT9F1dZsfypPOQ0pHXzcemGdVUl51uZB2H
-        fbPvMs5L/lc65iDTgzTFU1jjq6W8CzTk7WIrOAwdeg==
-X-Google-Smtp-Source: AKy350bXiLysNcV+Q+/hru2MCd67dq41AQdoznEw88BUw2uC8Wa1FCc0rGVz3dTyK37BVHXOUEC94ofML1oMScjzdTk=
-X-Received: by 2002:a25:d994:0:b0:b8e:fbcb:d6ef with SMTP id
- q142-20020a25d994000000b00b8efbcbd6efmr2648692ybg.4.1681165253591; Mon, 10
- Apr 2023 15:20:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com>
-In-Reply-To: <20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 11 Apr 2023 00:20:42 +0200
-Message-ID: <CACRpkdbXvMsa=suwEZ64b1Jn9Tp2mD8CqhmwLhSHdtdAOBzN-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Cleanup Mediatek pinctrl device tree binding
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20210112; t=1681165803;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0D4LsfAW6191QwNdK4ta66PY+hl1RuuGNyGsehh1bKM=;
+        b=KMT5+yYQReVqlrDPZLRBA9VGw4vXGWhQ7kHsHE7FPXCsj+BqRmRYiXYkuLQc6a+Grx
+         gFoUxHh9vx96UdpK/ej32uDTnPNK5pyMOX02pgDnqjyQY4PpoT+4U2cYgXIHkxSrFIhC
+         O7Svxecl6Z/NnbhJzZisYalqAtwlOShtGhVThv8C/0oLbcgen4dT+Nz9Hjr70GsT29lK
+         Srom75Dntmh9o0Ywz+lOlOCeaHaF08Dc+QR1VnWRMjWflU7Fn/oNM/bmmhrLvDkYBQ7h
+         Ua8sc5uQRzXZyxUIZoRpCYaK91E1vcHwkjFgHgrKPm/YWvs0AL2HZBXL9DUgJ6zFasBT
+         cP5A==
+X-Gm-Message-State: AAQBX9cjB8cQAFtmo7d2L0U5s8mfZgM4/hYE5WaIVdtTIJ0SJVMKKEMN
+        zH2i0YjXoyF/KMefsxocpYZc/99RbmzjAw==
+X-Google-Smtp-Source: AKy350ZNlm7b4LIjyU0q14EYTktx6/KUiaIJFJCINddBIpuiCQNGe64Jzpa+jWPi9kCKl0LeTthkGw==
+X-Received: by 2002:a05:600c:c4:b0:3ed:f5d4:3bff with SMTP id u4-20020a05600c00c400b003edf5d43bffmr8570805wmm.38.1681165803300;
+        Mon, 10 Apr 2023 15:30:03 -0700 (PDT)
+Received: from localhost ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with UTF8SMTPSA id n4-20020a5d51c4000000b002efb55de21dsm8613137wrv.103.2023.04.10.15.30.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Apr 2023 15:30:02 -0700 (PDT)
+From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Nikita Shubin <nikita.shubin@maquefel.me>
+Subject: [PATCH v2 1/2] dt-bindings: sound: ep93xx: Add I2S description
+Date:   Tue, 11 Apr 2023 00:29:57 +0200
+Message-Id: <20230410222958.2321398-1-alexander.sverdlin@gmail.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 4, 2023 at 6:30=E2=80=AFPM Alexandre Mergnat <amergnat@baylibre=
-.com> wrote:
+Add device tree bindings for Cirrus Logic EP93xx internal SoCs' I2S
+controller.
 
-> Deprecate properties which shall not exist, leaked upstream from downstre=
-am
-> kernels, there's no reason to use them. Here the deprecated properties an=
-d
-> the generic properties which will replace them:
->
-> - mediatek,drive-strength-adv =3D> drive-strength-microamp
-> - mediatek,pull-up-adv        =3D> bias-pull-up
-> - mediatek,pull-down-adv      =3D> bias-pull-down
->
-> Another commit has been added in v3 to make it easier to merge. [2]
->
-> Thanks AngeloGioacchino Del Regno to reported it. [1]
->
-> [1]: https://lore.kernel.org/all/6e08d78f-ef4c-b228-f7d2-d63767ea87b8@col=
-labora.com/
-> [2]: https://lore.kernel.org/all/20230203-evk-board-support-v4-2-5cffe66a=
-38c0@baylibre.com/
-> [3]: https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl=
-.git/log/?h=3Ddevel
->
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+---
+Changelog:
+v2:
+ - Incorporated most of the suggestions from Krzysztof Kozlowski [1]
+ - Dropped AC97 (deleted from the tree)
 
-Patches applied!
+[1]. https://lore.kernel.org/lkml/46d5b6af-23e1-4178-83bc-b4a435b1426e@linaro.org/
 
-Thanks for you excellent attention to detail!
+ .../bindings/sound/cirrus,ep9301-i2s.yaml     | 66 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
 
-Yours,
-Linus Walleij
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+new file mode 100644
+index 000000000000..9c01310a5445
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/cirrus,ep9301-i2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus EP93xx I2S Controller
++
++description: |
++  The I2S controller is used to stream serial audio data between the external
++  I2S CODECs’, ADCs/DACs, and the ARM Core. The controller supports I2S, Left-
++  and Right-Justified DSP formats.
++
++maintainers:
++  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: cirrus,ep9301-i2s
++
++  '#sound-dai-cells':
++    const: 0
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: mclk
++      - const: sclk
++      - const: lrclk
++
++required:
++  - compatible
++  - '#sound-dai-cells'
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    i2s: i2s@80820000 {
++        compatible = "cirrus,ep9301-i2s";
++        #sound-dai-cells = <0>;
++        reg = <0x80820000 0x100>;
++        interrupt-parent = <&vic1>;
++        interrupts = <28>;
++        clocks = <&syscon 29>,
++                 <&syscon 30>,
++                 <&syscon 31>;
++        clock-names = "mclk", "sclk", "lrclk";
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4485969f58f1..da829bedb89b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2072,6 +2072,7 @@ M:	Alexander Sverdlin <alexander.sverdlin@gmail.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/adc/cirrus,ep9301-adc.yaml
++F:	Documentation/devicetree/bindings/sound/cirrus,ep9301-*
+ F:	arch/arm/boot/compressed/misc-ep93xx.h
+ F:	arch/arm/mach-ep93xx/
+ F:	drivers/iio/adc/ep93xx_adc.c
+-- 
+2.40.0
+
