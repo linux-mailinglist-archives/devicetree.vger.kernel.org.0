@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6822E6DC87A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B82866DC881
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:30:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbjDJP2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 11:28:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
+        id S229995AbjDJPaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 11:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjDJP2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:28:07 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76E592724
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:28:06 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-94a34e3526fso130762666b.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:28:06 -0700 (PDT)
+        with ESMTP id S229766AbjDJPaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:30:15 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0380C524C
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:30:11 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id ud9so13103613ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:30:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681140485;
+        d=linaro.org; s=google; t=1681140609;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dp13ZHGUFanjepGsifd/KgUECg6uDvRrmxkBGZs93ug=;
-        b=VJDgviaMgKA3WIpiIopy0BNdVrW+3/ww0KHaAljUohETxtWQUCSFZb1cHqeaqpKy0z
-         Wea0lQhBKouVYM+J6uYUWzWhtHENKj0YR/ocF1/tNlDjJq8yrbXQJevk6wefACZwDVpQ
-         n4J6ulXKFAEpz+lHRUNR5s5zqkuNx36KsvGfIJ1zvyPs7/vRN8+Xh/Ewge7GZ6Soootg
-         OrrvtUxIZcxoSc3SCxLePkEKXM+E5pFwsyujuj+VXxKo8hBdh1aCsdzhVf05IZYLZohA
-         l8HC2qMudBZ+lAhlEgd7dFnyQWbYAFuhQ6IX+oS/V3nDl2RytFZdwVeSRDPKiP1GYMge
-         dGCQ==
+        bh=h8Pyn429W1/wp1DI5s9de8EnnQwfVf1lqFb2czkxkME=;
+        b=F3fk/SBMp8tAOXilQTsptvctAzvKRopbIV1fWonXvr5RdOGFL/6XqAqBoFL3cWsG8c
+         9K9tktPHrW1oTcFrE53rBSck4a9CVoidSXwRh6o9cpq3q9bFoal3+TIPoP9s/FjfurfC
+         q7JkdmRBv1BFl2fZZBTFTy86CV7LAWXeBmAt6mtLKwlsPnEZFZECT/4HjNnnlnKvGxaO
+         JQ57CGdREsx8YHhpwzaDJ/9GWLT85TB+/IJBio9WmgHHmzyxAZr4lGSwEIA70hIgoCNh
+         aqJeJIL7YRWFmyhcfCr2EmmPZWaxm4Ps5MEnGqWA5RnaDyxL7cf4qU4nj3B2osOU5ibh
+         eD/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681140485;
+        d=1e100.net; s=20210112; t=1681140609;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dp13ZHGUFanjepGsifd/KgUECg6uDvRrmxkBGZs93ug=;
-        b=Xxq+xS7K9mz0Y04nNW30XkBxFjesQwpUPHZMQcl9k611TsTXD4MunDdCaATjcBvvhL
-         hMXvOyN7X6xvR3VLPqE6AlR2lQV3Qcn+KOPW8iJwP9nCNImDgYYd3eM0Bb/isJ4f+Ech
-         n0M2pbWgOAvESFMuw8DAQqJsKBFR+FOFL2WxsnJarOKn9P6WXBjgorT/Pc/ggb62rzk9
-         Hl0PZQEqYckh1WO9cZJt1eAHu71uADw45T36X2tDhib3JwjVEMj0Qzbz6FZWztgoZSwU
-         FDW3Vjdv3ruAQL7adhWlqFtzsnH1g5ID5V1BHvdB5T3Hw9h4qUGTRP2h1iHcGcoNMGi2
-         44xw==
-X-Gm-Message-State: AAQBX9cqHscO5n/TiLmjkfJXOxvJqXIt28nNxvODMvvK1Bd5kQYaLDQI
-        QvQLrap9m7+1h/e8UgB9gcwS9+MJUgrFeiNY4jL+Vw==
-X-Google-Smtp-Source: AKy350Yzxb3H/nJQGY9DSwrE1vKzTLF7o5ExyyL2MkfT1MrNbQ82m28DtEf2sVPQXfo6WzU/8AQqWg==
-X-Received: by 2002:aa7:c510:0:b0:4fa:733f:8abb with SMTP id o16-20020aa7c510000000b004fa733f8abbmr11099308edq.32.1681140484930;
-        Mon, 10 Apr 2023 08:28:04 -0700 (PDT)
+        bh=h8Pyn429W1/wp1DI5s9de8EnnQwfVf1lqFb2czkxkME=;
+        b=dlKh2K3aBcFXEiHl9Fh9sb4pfHtCfje6l6loyM9OBwtko2b1u8OWaTJesCdIBio5C4
+         CGylIVoPawvgi4xLiyJUWqmbCiLdYgsWIgmlRCJ9Fu6RH9+aS08AxI9ikz/rAwyjiT2F
+         7TJChc3c0AC92Mcp+Y8Zjs9bKSy0EN8iOIiYto3KNmfLw1cfm9ppVNm31Epfa1ggqyOg
+         /ikWBK4KgkQTOEX9dd892UZPcnjQ0gF5l0axDNVqjwYX/XC7d6uvwRbcl770T3yHdPtT
+         1eGeSWvEjPFczKdbWZzLl32Wyk/1eJs/bzwx15Uv59BanWpUtZ9dfl9y+K/F1Mr+ecT1
+         RuFA==
+X-Gm-Message-State: AAQBX9espfQTEGTOLnoiB2PBdvTNQMjpHkDxCo2VpZQZnTgISyGpVE6x
+        B2jujsNbPrrHRq3xMcaLKd0S1w==
+X-Google-Smtp-Source: AKy350b3hxrDKBGR1lzxxof8ns1PA89D/99bVkbjAasQmU+Zs94T6DtaBtUrAOVGBmPLtDth1gX5Kg==
+X-Received: by 2002:a17:906:c78f:b0:931:636e:de5a with SMTP id cw15-20020a170906c78f00b00931636ede5amr6331879ejb.31.1681140609418;
+        Mon, 10 Apr 2023 08:30:09 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:eacd:ffa4:1df7:3870? ([2a02:810d:15c0:828:eacd:ffa4:1df7:3870])
-        by smtp.gmail.com with ESMTPSA id z11-20020a05640235cb00b004fa380a14e7sm4805063edc.77.2023.04.10.08.28.03
+        by smtp.gmail.com with ESMTPSA id hg15-20020a1709072ccf00b0094e002dd3bbsm84738ejc.224.2023.04.10.08.30.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 08:28:04 -0700 (PDT)
-Message-ID: <6af9effe-89c0-7630-9a72-a5a6351e0a95@linaro.org>
-Date:   Mon, 10 Apr 2023 17:28:03 +0200
+        Mon, 10 Apr 2023 08:30:08 -0700 (PDT)
+Message-ID: <565d0cdd-14b3-1b17-c978-4f4ae557e71c@linaro.org>
+Date:   Mon, 10 Apr 2023 17:30:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
- compatibles
+Subject: Re: [PATCH v3 1/8] regulator: dt-bindings: fcs,fan53555: Add support
+ for RK860X
 Content-Language: en-US
-To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>
-Cc:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
-        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
-        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
-        Daniel Walker <dwalker@fifo99.com>,
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230405223028.1268141-2-danielwa@cisco.com>
- <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
- <20230407160413.GD1391488@zorba>
+        Heiko Stuebner <heiko@sntech.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Joseph Chen <chenjh@rock-chips.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20230406194158.963352-1-cristian.ciocaltea@collabora.com>
+ <20230406194158.963352-2-cristian.ciocaltea@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230407160413.GD1391488@zorba>
+In-Reply-To: <20230406194158.963352-2-cristian.ciocaltea@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,29 +84,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2023 18:04, Daniel Walker (danielwa) wrote:
-> On Thu, Apr 06, 2023 at 09:12:34AM +0200, Krzysztof Kozlowski wrote:
->>> @@ -0,0 +1,27 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>
->> Dual license.
->>
+On 06/04/2023 21:41, Cristian Ciocaltea wrote:
+> Add compatibles to support Rockchip RK860X regulators.
 > 
-> What are my choices here? I see this,
-> 
-> # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> RK8600/RK8601 are pretty similar to the FAN53555 regulators, while
+> RK8602/RK8603 are a bit different, having a wider voltage selection
+> range.
 
-Yes, the one suggested by the checkpatch. Did you run it?
-
-> 
-> Which appears to be what your suggesting. I also see this,
-> 
-> # SPDX-License-Identifier: GPL-2.0
-> 
-> I'd rather use the later.
-
-Why? Bindings should be licensed under BSD, so what is the reason to
-make here exception?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
