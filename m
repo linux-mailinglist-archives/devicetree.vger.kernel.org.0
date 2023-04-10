@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B486DC9FF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 19:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 287CE6DCA09
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 19:34:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbjDJR2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 13:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53210 "EHLO
+        id S229848AbjDJReF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 13:34:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbjDJR2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 13:28:01 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386B4E74
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:27:59 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id gb34so14239521ejc.12
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:27:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681147678;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d9mHuc/0jkxbtCProBti3bz+sK5Di7+vyx8qV3tJ7YI=;
-        b=R9adl5n07bSFGSJT0gB0RCP7MH8bgWX/Bbx4Wj5w3/wwG4PhmjGDgZjlxrD0t10/M2
-         lfD+MMiH56z6PMJ7NoS82YTxQeNNzmp9BE8EV7RTsnA3+wbj5FRKE+4rLG0CAX1+vWGq
-         6giF61LUf/qH0rIvdyic7EZifsb2wgLlK9jtcYNZ9H78UoIejZsiUawChqZO/tnBr0Fs
-         7io8Mk+Vuta/8n8R3jTgruJoygMEaEa5vMPrDOLulmDJdU10YEzDbstJ1F4fo5MlQ8/w
-         cSc+A2ZJc34P6+8h2kuW0jbgNhf82BTEZ4Wb0hIEdSlNGaEZk2FsspzHHCnLJamSHEI4
-         x7cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681147678;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d9mHuc/0jkxbtCProBti3bz+sK5Di7+vyx8qV3tJ7YI=;
-        b=UijaaO8PuDduJ/mzc4AhCxbvoR/9YZ7sHOaN58I3s19zzfH3Ib7o9Yk6giFeu/nnqA
-         CB8zOLNtuT9/QsP1yIwFpMJGIzR9s622lFwqi1IbFNV0/hEEFfB3svAQIDD5ik664tZh
-         SCTnJ/qABGtbyqDBG7saYNq92LcGbotc4ND8OD0G5pyadD383y66CQeiQ/pgpxLD+YG/
-         N5dkbnmXDsaLhZNyBrf6vOTN2kEtZaHAoNTVw8gSCiRNAbb4zvAD6dsTSBTqcwwssxsi
-         GtZle+ZKvKHzHsHIIbOuBS7bdXEz/4B7IIRCkTUZXtVcABd/SgCxG5OueXv3AgIN7nR+
-         sZMg==
-X-Gm-Message-State: AAQBX9exMXwSw/RGq3HXaR8+uiF2Wr21cju0pvOcUaEKDuQgNhECrF0J
-        0gt0VZ4SsZn6KO31eaAtmvoGCtu8mZWPFZO/ME673Q==
-X-Google-Smtp-Source: AKy350YfN+2UEzC0NlN4x6X62S+nRiFw26ejYnSb99QGBYY/lmtcP5njB3CNLnqALOGz4qy5AbaRHw==
-X-Received: by 2002:a17:906:80cc:b0:939:a610:fc32 with SMTP id a12-20020a17090680cc00b00939a610fc32mr7335057ejx.53.1681147677725;
-        Mon, 10 Apr 2023 10:27:57 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:1a6c:6968:e633:48df? ([2a02:810d:15c0:828:1a6c:6968:e633:48df])
-        by smtp.gmail.com with ESMTPSA id gl2-20020a170906e0c200b00930aa50372csm5268807ejb.43.2023.04.10.10.27.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 10:27:57 -0700 (PDT)
-Message-ID: <ffe813e4-e3ad-3dff-b8e5-42b0f82faed3@linaro.org>
-Date:   Mon, 10 Apr 2023 19:27:56 +0200
+        with ESMTP id S229731AbjDJReE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 13:34:04 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E6A1BF3;
+        Mon, 10 Apr 2023 10:34:03 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33AFqbZn017675;
+        Mon, 10 Apr 2023 17:33:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=sb6jpc0KNTLDv897qIhEwyKHMSgx7o9THMFXo2oD9bU=;
+ b=dxGZsF62iaLppBkOy6SOUJELTdCvaPly5rVhisdckfB3Gc/dwgAJ8zGLulvP0Prbn6fM
+ l5O1rm9zkhlXMekbQpqwNDji8IdPGrumaHaCyEovpwwkJcttosz4uujfLvtTpEI9Gehr
+ moixAK/Sq5rY7ab9635XOZyzGa0F5Hhgig6NvGfjobGGKMH1wgWZdCSFfTikio/LQNXV
+ /yvMeTSw/ifdNyy52SXD35v73R+exi9farghvxMx+jAxwF7kFTAKSapMAnWQIjHBcZnr
+ EZM+FO/4stKpzUL36nYbEFYpkjOAiXIcpqHvEGh+60/kT/0BvKOWx3OJg9ykfUWOPSDG Dg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pvmnagd0d-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Apr 2023 17:33:54 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33AHXrs1030256
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Apr 2023 17:33:53 GMT
+Received: from [10.110.88.83] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 10 Apr
+ 2023 10:33:53 -0700
+Message-ID: <74551421-56df-73d3-3f4d-1708768e207a@quicinc.com>
+Date:   Mon, 10 Apr 2023 10:33:52 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/4] dt-bindings: mfd: x-powers,axp152: Document the
- AXP15060 variant
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: support parameter
+ passing in smc/hvc
 Content-Language: en-US
-To:     Shengyu Qu <wiagn233@outlook.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, lgirdwood@gmail.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230407141813.89-1-wiagn233@outlook.com>
- <TY3P286MB26117891DFB2DD615A7C54EF98969@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TY3P286MB26117891DFB2DD615A7C54EF98969@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <sudeep.holla@arm.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230409181918.29270-1-quic_nkela@quicinc.com>
+ <20230409181918.29270-2-quic_nkela@quicinc.com>
+ <5d264f46-b9e8-62ec-9bce-9d666fd1eaa8@linaro.org>
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <5d264f46-b9e8-62ec-9bce-9d666fd1eaa8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Yz9HcfcsfpGN7L2DzyzCAtch_uGvDWY1
+X-Proofpoint-GUID: Yz9HcfcsfpGN7L2DzyzCAtch_uGvDWY1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-10_12,2023-04-06_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=984
+ impostorscore=0 adultscore=0 phishscore=0 clxscore=1011 lowpriorityscore=0
+ mlxscore=0 bulkscore=0 priorityscore=1501 malwarescore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304100151
+X-Spam-Status: No, score=-4.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,49 +84,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2023 16:18, Shengyu Qu wrote:
-> The X-Powers AXP15060 is a PMIC seen on Starfive Visionfive 2 board. Add
-> relative compatible item and CPUSLDO support for it.
-> 
-> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
-> ---
->  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 3 ++-
 
-I received cover letter disattached from rest of patchset and everything
-duplicate. Please check your process of sending patches.
+On 4/10/2023 10:20 AM, Krzysztof Kozlowski wrote:
+> On 09/04/2023 20:19, Nikunj Kela wrote:
+>> Currently, smc/hvc calls are made with smc-id only. The parameters are
+>> all set to zeros. This patch defines two optional device tree bindings,
+>> that can be used to pass parameters in smc/hvc calls.
+>>
+>> This is useful when multiple scmi instances are used with common smc-id.
+>>
+>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/firmware/arm,scmi.yaml   | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> index 5824c43e9893..08c331a79b80 100644
+>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> @@ -115,6 +115,22 @@ properties:
+>>       description:
+>>         SMC id required when using smc or hvc transports
+>>   
+>> +  arm,smc32-params:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description:
+>> +      An optional parameter list passed in smc32 or hvc32 calls
+>> +    default: 0
+>> +    minItems: 1
+>> +    maxItems: 6
+>> +
+>> +  arm,smc64-params:
+>> +    $ref: /schemas/types.yaml#/definitions/uint64-array
+>> +    description:
+>> +      An optional parameter list passed in smc64 or hvc64 calls
+>> +    default: 0
+>> +    minItems: 1
+>> +    maxItems: 6
+> These do not look like hardware properties and the fact that you need
+> two properties for the same also points that you tied it to specific SW
+> interface.
 
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> index b7a8747d5fa0..e150a8bf040a 100644
-> --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> @@ -92,6 +92,7 @@ properties:
->            - x-powers,axp806
->            - x-powers,axp809
->            - x-powers,axp813
-> +          - x-powers,axp15060
+This is certainly not the H/W property but then smc-id is also not H/W 
+property either
 
-So you have chosen order by absolute number, not alphabetically. That's
-fine, but keep it for the future entries as well. :)
+but that gets passed via DTB. I could use the same property for both 
+however I wasn't sure
 
+which datatype should be used, uint32-array/uint64-array. Moreover, I 
+thought if users are
 
+passing parameters, they better know which SMC convention they are using 
+hence used two
 
->        - items:
->            - const: x-powers,axp228
->            - const: x-powers,axp221
-> @@ -260,7 +261,7 @@ properties:
->            Defines the work frequency of DC-DC in kHz.
->  
->      patternProperties:
-> -      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|drivevbus|dc5ldo)$":
-> +      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|cpusldo|(dc1)?sw|rtc(_|-)ldo|drivevbus|dc5ldo)$":
+explicit properties.
 
-It seems fixed strings are at the end of entire pattern, so "cpusldo"
-should be before "drivevbus".
+> Why this should be board-specific? Actually better question - why this
+> should be fixed per board? Doesn't my software want to have different
+> parameters, depending on some other condition?
 
+Not sure I follow, I didn't say this is board specific. People can use 
+the parameters to pass
 
+whatever their S/W demands. SMC/HVC calls are made by passing parameters 
+which is what this patch is enabling.
 
-Best regards,
-Krzysztof
+>
+> You also did not provide any DTS user for this, so difficult to judge
+> usefulness.
 
+The work is still on going and we will push the dts in few months, 
+however that shouldn't stop
+
+making changes in advance.
+
+> Best regards,
+> Krzysztof
+>
