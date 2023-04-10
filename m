@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A2FC6DC9E3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 19:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF2A6DC9EC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 19:22:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbjDJRUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 13:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
+        id S230328AbjDJRWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 13:22:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjDJRU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 13:20:29 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68BE2114
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:20:27 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id kt17so1828382ejb.11
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:20:27 -0700 (PDT)
+        with ESMTP id S230308AbjDJRWT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 13:22:19 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F226B26A6
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:22:16 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-504a131087aso900790a12.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 10:22:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681147226;
+        d=linaro.org; s=google; t=1681147335;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uiGkVZuP4SKipoXqig3t+i70oWcmpQUiQnrzBe9N9p8=;
-        b=XY9PmTQFGXLKphdbRxca8qtQziW/zeEMFu4EGtG/reD0qqja3WrlyFWkeoMPU5a2Bw
-         TqJSoG3DpY4mAdD1k9K/xerwkmuS+DN2fE/UZ7vq4iB0hr+D8Ix88jc4nTJfh+NGqHKw
-         geL4vh7/73w5K4RsJDWkjiMBncCxhx3AOHD7BjSzgfE2eB7ibfMgRBsE2K1OCD/MUL+y
-         5xgjU4Va1Shl9G0r9gbGU57yvf5LQKwZMBWbYjQSdrQxqSFEhR0t2cIKaeLGqFSAim7r
-         51KORrDgJfh5cxh881gvERllMEPan9rzpu3c2XzHJ5+8a3dFg5+DVC3HnDnqgjd/O9U6
-         O9tQ==
+        bh=aF4gu0RaNrTTFCvcYQcWRArSpPeebO9/4yLFj3PI3mY=;
+        b=fWCOpX7/SwjuHyqJLAqClg3voZ5jnOfmERlA2t3+Wdt9T0LUdPTYVjAYkiEPr99UP2
+         Nx8wnItxxh0CdR0zx6rkW0veQhlk7VxWS5zTmRO0dzt7ojT1RYshEkgPSquRabUVM+Ya
+         dHJ7o4zREoGZ/ccqzPge9HqhFAOi/MIsI4QoXEWtHuUxBiKXcnhN3unjMjlv356KPCEu
+         PJii2cjj5EbSPOeVYME5nVy2k0DoyEcMbWlniNuwM5+ttHHgciawikdWbFw3uZUd1vlZ
+         w8rE6Ep82LRdkZkdxQRb5K/92nPikFsWfYi41qGwZC1PTvf0dWBevYf8xjGNnFTdhEXo
+         3q4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681147226;
+        d=1e100.net; s=20210112; t=1681147335;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uiGkVZuP4SKipoXqig3t+i70oWcmpQUiQnrzBe9N9p8=;
-        b=Xzk83Oqv1AfAHNBl9VB0Q4TyWA+f2ppnOeXWDp2Io2Dv4Fb/qo7WOIsJaEZjnTVpe4
-         BTuzNrxu/7w4p/HarCFNi4S3pMmu/tieiS6ZWLLz3T8F12o4BEOfgBL+CLi0CNIbVagV
-         mhJ3d2jIVBH2DLa3t2eqg07+a5a0TdlPfjaEIHw66i12K7MOSgqyq/3y7IaiceqpK521
-         61537TpYYGsQam3ChGl3YM0k01dFrUMCUobIMOGfc7TB8tGXPz7zGb6+EhtcpzHTDcvF
-         Fr3HCcUdmmZBRU+oxP5SuLB4jstYjOYA0O/UDa3CNCfmNv5FTwEhrCm6HaoOAPgW2Aa9
-         zhvQ==
-X-Gm-Message-State: AAQBX9dzqURW+8OGUdQuxLjBavQrT88/9ld2e9lN187kDxKftlLiA78K
-        KHn5jcWlJ1DXSfUoqZ8aDPn/w+oc/eUl/Ab/bo/PfA==
-X-Google-Smtp-Source: AKy350ZSYPnunqjrFFEoIZOM1l/debS3IXgfIFfaJ7eZsVCrY2BwfQH1FGJj3rO11FgSMdyfagldCw==
-X-Received: by 2002:a17:906:3843:b0:93a:353d:e38b with SMTP id w3-20020a170906384300b0093a353de38bmr7223420ejc.37.1681147226436;
-        Mon, 10 Apr 2023 10:20:26 -0700 (PDT)
+        bh=aF4gu0RaNrTTFCvcYQcWRArSpPeebO9/4yLFj3PI3mY=;
+        b=blDxRBNPBHUlnV+Ai0vzuG5iza8EkGjimYPcHywChSWJY1HlTUXSKEE1y2nvCsEUPV
+         qH+Uyr5k0s48GIbHIJLHr3wGt7+gPrend1NfdpGZi+xc3oeCQiNKdwUkOpTKFpGY63DE
+         iH5zZ6jzHG6ryl6UZikFVQpROocNWNjndvyIOgoole93r4t/UJhTszZW+WZCxB7QtZt4
+         RIOClXfKrqL6dtpM4yghptFzToORw5mKWtm/kHF6RMYVMD02joAmP3cpo/VZIOkfO75K
+         yD7fd+XE/vGDhfug5PxNLDr7DZsEnbtPGAGRm54lNf2MjY8nv3rMS07y5wHHEeGPw2nw
+         OBww==
+X-Gm-Message-State: AAQBX9fx1ReBq/7X52swNun5MJtl9v/3DWHp44YMFLA7uKSwTU4L961V
+        8MlQv/PqwhBJISNBv94KapZ3ew==
+X-Google-Smtp-Source: AKy350aNsSC8fqZ/yvuVJrmsoq1jKWAOxaKpue1KeRo5d69Vg7dnLJrE0uJOHhunMzUrshZGuWOHOQ==
+X-Received: by 2002:aa7:d14f:0:b0:4be:b39b:ea8f with SMTP id r15-20020aa7d14f000000b004beb39bea8fmr6554535edo.2.1681147335445;
+        Mon, 10 Apr 2023 10:22:15 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:1a6c:6968:e633:48df? ([2a02:810d:15c0:828:1a6c:6968:e633:48df])
-        by smtp.gmail.com with ESMTPSA id e23-20020a170906375700b0094da6a90107sm302005ejc.73.2023.04.10.10.20.25
+        by smtp.gmail.com with ESMTPSA id h10-20020aa7de0a000000b005023ddb37eesm4875429edv.8.2023.04.10.10.22.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 10:20:25 -0700 (PDT)
-Message-ID: <5d264f46-b9e8-62ec-9bce-9d666fd1eaa8@linaro.org>
-Date:   Mon, 10 Apr 2023 19:20:25 +0200
+        Mon, 10 Apr 2023 10:22:14 -0700 (PDT)
+Message-ID: <5d5e5030-7db7-447e-e5a4-2157171d7575@linaro.org>
+Date:   Mon, 10 Apr 2023 19:22:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: support parameter
- passing in smc/hvc
+Subject: Re: [PATCH v7 1/3] dt-bindings: ufs: qcom: Add ICE phandle
 Content-Language: en-US
-To:     Nikunj Kela <quic_nkela@quicinc.com>, sudeep.holla@arm.com
-Cc:     cristian.marussi@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230409181918.29270-1-quic_nkela@quicinc.com>
- <20230409181918.29270-2-quic_nkela@quicinc.com>
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20230408214041.533749-1-abel.vesa@linaro.org>
+ <20230408214041.533749-2-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230409181918.29270-2-quic_nkela@quicinc.com>
+In-Reply-To: <20230408214041.533749-2-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -78,52 +93,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2023 20:19, Nikunj Kela wrote:
-> Currently, smc/hvc calls are made with smc-id only. The parameters are
-> all set to zeros. This patch defines two optional device tree bindings,
-> that can be used to pass parameters in smc/hvc calls.
+On 08/04/2023 23:40, Abel Vesa wrote:
+> Starting with SM8550, the ICE will have its own devicetree node
+> so add the qcom,ice property to reference it.
 > 
-> This is useful when multiple scmi instances are used with common smc-id.
-> 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml   | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 5824c43e9893..08c331a79b80 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -115,6 +115,22 @@ properties:
->      description:
->        SMC id required when using smc or hvc transports
->  
-> +  arm,smc32-params:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      An optional parameter list passed in smc32 or hvc32 calls
-> +    default: 0
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +  arm,smc64-params:
-> +    $ref: /schemas/types.yaml#/definitions/uint64-array
-> +    description:
-> +      An optional parameter list passed in smc64 or hvc64 calls
-> +    default: 0
-> +    minItems: 1
-> +    maxItems: 6
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-These do not look like hardware properties and the fact that you need
-two properties for the same also points that you tied it to specific SW
-interface.
-
-Why this should be board-specific? Actually better question - why this
-should be fixed per board? Doesn't my software want to have different
-parameters, depending on some other condition?
-
-You also did not provide any DTS user for this, so difficult to judge
-usefulness.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
