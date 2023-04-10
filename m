@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA6E6DCBE8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 22:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C95BD6DCBED
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 22:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbjDJUAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 16:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40658 "EHLO
+        id S229810AbjDJUAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 16:00:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbjDJUAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 16:00:20 -0400
+        with ESMTP id S229808AbjDJUAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 16:00:21 -0400
 Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 757F41FCD
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 13:00:18 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id b6so30800637ljr.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 13:00:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CF6D1FDB
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 13:00:19 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id be27so6387298ljb.12
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 13:00:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681156816;
+        d=linaro.org; s=google; t=1681156817;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TKRal6B5cFjvfNLZnlDYPlfZqeycJ2Ag6YtWR3USaN4=;
-        b=P0iaqi+sXRHVJpVW5FVejsNal4iFABhX3Kbx0GLK9SUxiLP86eIWpa8KyXXf4RRsqz
-         GplydGpC3R2YNJSs7MZbLy4bDn6uZdGf+FAUSLNpdCvm3bditKBymkzH0fT2lU/AB4pM
-         88jyrJ+EGkhdr2eTpYA2qvic581BXXSk7lNoj0+0S7esKQa0ChBXqMoz0Ab3fhP3O86w
-         IIGhkUvQh9qe2+39e9Dt5Gp59wEsZb7Nx6TwQAOwDNIeKQMS1fvek9+ibCdeQITGjtNp
-         hlJrZy+h/5KHSFKZwQGrEX0/Ec/viyzLCgwBWIlxAb2cef7W2ZHYBYX9yQnYGtbCmSR6
-         D8qw==
+        bh=PKmjFE2HtWohin9kxgOPiueeSHMo67vsdwgEdddjDs0=;
+        b=o/iGEuJFDfe+kganhwAuNdt6X+FutLQ0zOaKoGcV5P2PvxtMehmX4gq3h3471uS6XJ
+         khsgM0dhpcNBI/r4B34KlEGcYQENxT79ulXef5luFo6twYlMHe1IdwEW3Pqq1b5s4oOZ
+         VT3Uxwck94OVMVdZZf1iUhFY6UvevX2cEuzngU+vR3WYQ6ZpAIXcBdqjr9RbIMR98+wl
+         pJIy6pVPVBXz71jLUFmtqRLLDYMrRO+NSsUytuCI7VPkVf268kfEbgYkcFdCSsdICQZ1
+         WQ9IgWedfZVOLlFgIyzf1t120Z6oHCkH8SDo/t1iVrLNxgIiYbtNnxR3pCTyLv8R1447
+         qifQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681156816;
+        d=1e100.net; s=20210112; t=1681156817;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TKRal6B5cFjvfNLZnlDYPlfZqeycJ2Ag6YtWR3USaN4=;
-        b=GS01AzXHhTGuAFM+HiOQprQPUtGwAUWen6HdO00tVA+SUbT6/qtoawiCRMYmQ82zIU
-         QFnQb/iP4i5tSTnWXp75l73xcKE6MhE8dnayZ3TskDFtURpC6WtMZjK3tgEtLj2E2tC5
-         DGp/wUhmQ9KO+Yfb38ztb2C5TwgZAOVCfF0QtLhVy0YBbNCwvQ05FGZsZR8cSXIP+M77
-         06aKvwjFw0BjK5f8Q97HdXovkLDew2A9pwTHAGI7GOJcS/+YWuXRIX/Z5zZoWhYuodV3
-         4Bft0/4b/XenSzGqp+x4XtE4giW42+J5zHdovkWEs6BEQ+9N0vNv8K3ECSkhdNe+pjqk
-         BFCw==
-X-Gm-Message-State: AAQBX9dTglj0VVr/fq42SKKJHEm+m8TeisROlWsr32vyYICr8b55nFDG
-        Uo1uRfx05r6zMMntr0L6h7oOeQ==
-X-Google-Smtp-Source: AKy350Z6dxIZttINfw9deC1gaWfo9qG334+O8ZJFx4QOD1I5Nh9pg6hyE9Bb754U2Z8a7GVFprId8g==
-X-Received: by 2002:a2e:7015:0:b0:2a7:8a2e:3891 with SMTP id l21-20020a2e7015000000b002a78a2e3891mr68026ljc.43.1681156816640;
-        Mon, 10 Apr 2023 13:00:16 -0700 (PDT)
+        bh=PKmjFE2HtWohin9kxgOPiueeSHMo67vsdwgEdddjDs0=;
+        b=gXi7m6MO/BEd/FlhzVHZ8tB9D4I4PzUEuN2F1EIqztdj6wZ3jtJnNlXMM7teWm6iGE
+         KNj7ghcHOSfL2vRS5HIr69VZlcCzvTGBaQ/lsx9KOkDpmf7lZCSOsm8jAdbVT2Bc4jhz
+         SEtmEhSq9oRUsJ9EXXms2wocSRFR2em0f11eSoqz3UlBpmrxP5TTz8HUvW5U2yonQC1C
+         vi7axGhB+zHv3l18uQheq0rSk8txjmFhrlrFlJinbGbE+JXSTMZKN4WErgdKn7WrBD5f
+         WB9eNho4ApWv7kOqVRHBGX8nfIsV43z0pWhZY2IRzZ9d6pgasUIduhXqzbqO2UlJAh51
+         Mu0A==
+X-Gm-Message-State: AAQBX9dN4B6qz2zSHVW90WmdvKPFc3+Xc0Pziqn8TRdLlys/mzWkgDBj
+        ukMUVrxmFFfuYmbw1KvHAQJesg==
+X-Google-Smtp-Source: AKy350aXPgBLGmXGG0T2wx80lrUREkRJcYFdNpPklRDF2gScOTuZIP3gESBeeOlcltkINi4MKLXzIw==
+X-Received: by 2002:a2e:b0c7:0:b0:2a7:8301:a977 with SMTP id g7-20020a2eb0c7000000b002a78301a977mr662435ljl.49.1681156817362;
+        Mon, 10 Apr 2023 13:00:17 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z2-20020a2e8e82000000b002a7729eea3dsm973482ljk.88.2023.04.10.13.00.15
+        by smtp.gmail.com with ESMTPSA id z2-20020a2e8e82000000b002a7729eea3dsm973482ljk.88.2023.04.10.13.00.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 10 Apr 2023 13:00:16 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -58,11 +58,10 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 1/4] dt-bindings: interconnect/msm8996-cbf: add defines to be used by CBF
-Date:   Mon, 10 Apr 2023 23:00:11 +0300
-Message-Id: <20230410200014.432418-2-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 2/4] interconnect: add clk-based icc provider support
+Date:   Mon, 10 Apr 2023 23:00:12 +0300
+Message-Id: <20230410200014.432418-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230410200014.432418-1-dmitry.baryshkov@linaro.org>
 References: <20230410200014.432418-1-dmitry.baryshkov@linaro.org>
@@ -77,32 +76,249 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On msm8996 CBF interconnects power and performance CPU clusters. Add
-corresponding interconnect defines to be used in device trees.
+For some devices it is useful to export clocks as interconnect providers,
+if the clock corresponds to bus bandwidth.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+For example, on MSM8996 the cluster interconnect clock should be scaled
+according to the cluster frequencies. Exporting it as an interconnect
+allows one to properly describe this as the cluster bandwidth
+requirements.
+
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- include/dt-bindings/interconnect/qcom,msm8996-cbf.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 include/dt-bindings/interconnect/qcom,msm8996-cbf.h
+ drivers/interconnect/Kconfig     |   6 ++
+ drivers/interconnect/Makefile    |   2 +
+ drivers/interconnect/icc-clk.c   | 168 +++++++++++++++++++++++++++++++
+ include/linux/interconnect-clk.h |  22 ++++
+ 4 files changed, 198 insertions(+)
+ create mode 100644 drivers/interconnect/icc-clk.c
+ create mode 100644 include/linux/interconnect-clk.h
 
-diff --git a/include/dt-bindings/interconnect/qcom,msm8996-cbf.h b/include/dt-bindings/interconnect/qcom,msm8996-cbf.h
+diff --git a/drivers/interconnect/Kconfig b/drivers/interconnect/Kconfig
+index d637a89d4695..5faa8d2aecff 100644
+--- a/drivers/interconnect/Kconfig
++++ b/drivers/interconnect/Kconfig
+@@ -15,4 +15,10 @@ source "drivers/interconnect/imx/Kconfig"
+ source "drivers/interconnect/qcom/Kconfig"
+ source "drivers/interconnect/samsung/Kconfig"
+ 
++config INTERCONNECT_CLK
++	tristate
++	depends on COMMON_CLK
++	help
++	  Support for wrapping clocks into the interconnect nodes.
++
+ endif
+diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makefile
+index 97d393fd638d..5604ce351a9f 100644
+--- a/drivers/interconnect/Makefile
++++ b/drivers/interconnect/Makefile
+@@ -7,3 +7,5 @@ obj-$(CONFIG_INTERCONNECT)		+= icc-core.o
+ obj-$(CONFIG_INTERCONNECT_IMX)		+= imx/
+ obj-$(CONFIG_INTERCONNECT_QCOM)		+= qcom/
+ obj-$(CONFIG_INTERCONNECT_SAMSUNG)	+= samsung/
++
++obj-$(CONFIG_INTERCONNECT_CLK)		+= icc-clk.o
+diff --git a/drivers/interconnect/icc-clk.c b/drivers/interconnect/icc-clk.c
 new file mode 100644
-index 000000000000..aac5e69f6bd5
+index 000000000000..0db3b654548b
 --- /dev/null
-+++ b/include/dt-bindings/interconnect/qcom,msm8996-cbf.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++++ b/drivers/interconnect/icc-clk.c
+@@ -0,0 +1,168 @@
++/* SPDX-License-Identifier: GPL-2.0 */
 +/*
-+ * Copyright (C) 2023 Linaro Ltd. All rights reserved.
++ * Copyright (c) 2023, Linaro Ltd.
 + */
 +
-+#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_MSM8996_CBF_H
-+#define __DT_BINDINGS_INTERCONNECT_QCOM_MSM8996_CBF_H
++#include <linux/clk.h>
++#include <linux/device.h>
++#include <linux/interconnect-clk.h>
++#include <linux/interconnect-provider.h>
 +
-+#define MASTER_CBF_M4M		0
-+#define SLAVE_CBF_M4M		1
++struct icc_clk_node {
++	struct clk *clk;
++	bool enabled;
++};
++
++struct icc_clk_provider {
++	struct icc_provider provider;
++	int num_clocks;
++	struct icc_clk_node clocks[];
++};
++
++#define to_icc_clk_provider(_provider) \
++	container_of(_provider, struct icc_clk_provider, provider)
++
++static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
++{
++	struct icc_clk_node *qn = src->data;
++	int ret;
++
++	if (!qn || !qn->clk)
++		return 0;
++
++	if (!src->peak_bw) {
++		if (qn->enabled)
++			clk_disable_unprepare(qn->clk);
++		qn->enabled = false;
++
++		return 0;
++	}
++
++	if (!qn->enabled) {
++		ret = clk_prepare_enable(qn->clk);
++		if (ret)
++			return ret;
++		qn->enabled = true;
++	}
++
++	return clk_set_rate(qn->clk, icc_units_to_bps(src->peak_bw));
++}
++
++static int icc_clk_get_bw(struct icc_node *node, u32 *avg, u32 *peak)
++{
++	struct icc_clk_node *qn = node->data;
++
++	if (!qn || !qn->clk)
++		*peak = INT_MAX;
++	else
++		*peak = Bps_to_icc(clk_get_rate(qn->clk));
++
++	return 0;
++}
++
++/**
++ * icc_clk_register() - register a new clk-based interconnect provider
++ * @dev: device supporting this provider
++ * @first_id: an ID of the first provider's node
++ * @num_clocks: number of instances of struct icc_clk_data
++ * @data: data for the provider
++ *
++ * Registers and returns a clk-based interconnect provider. It is a simple
++ * wrapper around COMMON_CLK framework, allowing other devices to vote on the
++ * clock rate.
++ *
++ * Return: 0 on success, or an error code otherwise
++ */
++struct icc_provider *icc_clk_register(struct device *dev,
++				      unsigned int first_id,
++				      unsigned int num_clocks,
++				      const struct icc_clk_data *data)
++{
++	struct icc_clk_provider *qp;
++	struct icc_provider *provider;
++	struct icc_onecell_data *onecell;
++	struct icc_node *node;
++	int ret, i, j;
++
++	onecell = devm_kzalloc(dev, struct_size(onecell, nodes, 2 * num_clocks), GFP_KERNEL);
++	if (!onecell)
++		return ERR_PTR(-ENOMEM);
++
++	qp = devm_kzalloc(dev, struct_size(qp, clocks, num_clocks), GFP_KERNEL);
++	if (!qp)
++		return ERR_PTR(-ENOMEM);
++
++	qp->num_clocks = num_clocks;
++
++	provider = &qp->provider;
++	provider->dev = dev;
++	provider->get_bw = icc_clk_get_bw;
++	provider->set = icc_clk_set;
++	provider->aggregate = icc_std_aggregate;
++	provider->xlate = of_icc_xlate_onecell;
++	INIT_LIST_HEAD(&provider->nodes);
++	provider->data = onecell;
++
++	icc_provider_init(provider);
++
++	for (i = 0, j = 0; i < num_clocks; i++) {
++		qp->clocks[i].clk = data[i].clk;
++
++		node = icc_node_create(first_id + j);
++		if (IS_ERR(node)) {
++			ret = PTR_ERR(node);
++			goto err;
++		}
++
++		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_master", data[i].name);
++		node->data = &qp->clocks[i];
++		icc_node_add(node, provider);
++		/* link to the next node, slave */
++		icc_link_create(node, first_id + j + 1);
++		onecell->nodes[j++] = node;
++
++		node = icc_node_create(first_id + j);
++		if (IS_ERR(node)) {
++			ret = PTR_ERR(node);
++			goto err;
++		}
++
++		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_slave", data[i].name);
++		/* no data for slave node */
++		icc_node_add(node, provider);
++		onecell->nodes[j++] = node;
++	}
++
++	onecell->num_nodes = j;
++
++	ret = icc_provider_register(provider);
++	if (ret)
++		goto err;
++
++	return provider;
++
++err:
++	icc_nodes_remove(provider);
++
++	return ERR_PTR(ret);
++}
++
++/**
++ * icc_clk_unregister() - unregister a previously registered clk interconnect provider
++ * @provider: provider returned by icc_clk_register()
++ */
++void icc_clk_unregister(struct icc_provider *provider)
++{
++	struct icc_clk_provider *qp = container_of(provider, struct icc_clk_provider, provider);
++	int i;
++
++	icc_provider_deregister(&qp->provider);
++	icc_nodes_remove(&qp->provider);
++
++	for (i = 0; i < qp->num_clocks; i++) {
++		struct icc_clk_node *qn = &qp->clocks[i];
++
++		if (qn->enabled)
++			clk_disable_unprepare(qn->clk);
++	}
++}
+diff --git a/include/linux/interconnect-clk.h b/include/linux/interconnect-clk.h
+new file mode 100644
+index 000000000000..0cd80112bea5
+--- /dev/null
++++ b/include/linux/interconnect-clk.h
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2023, Linaro Ltd.
++ */
++
++#ifndef __LINUX_INTERCONNECT_CLK_H
++#define __LINUX_INTERCONNECT_CLK_H
++
++struct device;
++
++struct icc_clk_data {
++	struct clk *clk;
++	const char *name;
++};
++
++struct icc_provider *icc_clk_register(struct device *dev,
++				      unsigned int first_id,
++				      unsigned int num_clocks,
++				      const struct icc_clk_data *data);
++void icc_clk_unregister(struct icc_provider *provider);
 +
 +#endif
 -- 
