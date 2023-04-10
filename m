@@ -2,100 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF83F6DC6BA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 14:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD766DC6D6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 14:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbjDJMZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 08:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
+        id S229579AbjDJMpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 08:45:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjDJMZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 08:25:47 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3511B524C;
-        Mon, 10 Apr 2023 05:25:46 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4B83666015EC;
-        Mon, 10 Apr 2023 13:25:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681129544;
-        bh=/RVh0dF7TlKpEKSukKX6XhJ5f7HG7CyPyfJnYGJ2eq8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=n8Ma5Eku/5McQqNsu8IwFYxw9KnoVuC23Rj6LAtvNIsToqBsfeh0EUFCd/RWqEnwQ
-         i4qJQCTKRp1n6d/poomD2CDLmPg1CyS5APgoZYLfXybo50KhK47D7fUdEotp1WwIxn
-         Qfl++XOIdVvDwXxTV6YTO6/TBGuYdkbYWYtpqTuD1KWIrByMgUz1i1bHhotfQR+jDX
-         ZlWYpAr8oi8u6eUSd5j6H/g+mVk82Ujm4ESzZjwnyLO8vHX5xB6/LWSf5hMcXG3CLl
-         tc0pcpRzfS1C1oGS7iXJpQK+p8n3vHZU1wILmBTNtcfkLgYB0H/k+C2ue2DXRq0tMZ
-         PY9Eus4cb4YFw==
-Message-ID: <b6c315f7-cc14-4506-6102-e52413848f81@collabora.com>
-Date:   Mon, 10 Apr 2023 15:25:40 +0300
+        with ESMTP id S229672AbjDJMoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 08:44:44 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3534B5588
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 05:44:42 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id w21so4283919wra.4
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 05:44:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681130680; x=1683722680;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CeQWpKy8+NJXDpJHdtsTgj9dRfzdRMrlkZK72BPPZGE=;
+        b=poutZvt8NTIlxL4QYU+98F+kPPH3SiSQFVjddaHqftnTeaP7lx/j/MtR58NQdf1tQp
+         etB7RxBCwiKFOIkyurJjhEyuljvWf1ROFCTY2nIwcXI3aJ0VlYh2a5wkE7hFjL8I+Z3Q
+         7tlEKrChfdPjU3gy72qSjEqR2swie2NVAv4j222XIiyP20cEeQUtdnHL797QsCmHhPnd
+         oCzOkmqy6vbZEb5H4HsgMZSpyTXKejPu6Z3rDaY748dSSfGyl2BLmA+l3zyQ0Q/zB+y7
+         ETjx8xuRyCNYPCaGOuvU3WXV7YCwb4qUevlVs598RwNuBAWvhFfG8d8OsndmUAI4hhXJ
+         iG0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681130680; x=1683722680;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CeQWpKy8+NJXDpJHdtsTgj9dRfzdRMrlkZK72BPPZGE=;
+        b=lPEzCpe4724B0N/GvgCwM/l4FtupCLbOvgRQUEVzsOAkAjyfiE9rHkOsLmRM4rgXrT
+         dMW1o2W2iTaSVrTEzVcbhVH7MGkQYCQuFxbMUgx42RwEFGtZyIklzW43NdqCUYAFoPcL
+         dw77xSRj+uMo1wguZqPq0Tde3+AjM9FjJNHKtyiDc7bpXxtrP71umwmNctyXaYQ9w7ex
+         zXN3r3XpzKegB26x+m35FMFSX57s/r7Bu+GzGyQlYD73cX4CP8bqbYfcFFdI4DY4pA48
+         puvR3z8QPX32p2YnE/bt7HPwrpK5HATaCElqCbtYB32j2OThQPoIdyW0gS9trmn9SPhG
+         Yv5g==
+X-Gm-Message-State: AAQBX9ep7HnwPy1rQHWs3876qUJH9p+/J5v3EjF4UqRp8s9U0mHym260
+        rxKi/jc16+Nd/QFWKtvm6OxEyw==
+X-Google-Smtp-Source: AKy350bP2iMtSjzqZsBNOo+UEpuonp4bSfFS0XjcHtZlhUd3xlVhrfsH/nOuGeK6A4ysjF2R9W1gPg==
+X-Received: by 2002:adf:f887:0:b0:2cf:e74f:2957 with SMTP id u7-20020adff887000000b002cfe74f2957mr7219231wrp.33.1681130680673;
+        Mon, 10 Apr 2023 05:44:40 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id e17-20020adffc51000000b002ef2e148d59sm11054966wrs.16.2023.04.10.05.44.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Apr 2023 05:44:40 -0700 (PDT)
+Message-ID: <e10f7b87-0bc7-5e13-1757-bbf74c9cac86@linaro.org>
+Date:   Mon, 10 Apr 2023 13:44:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 06/10] riscv: dts: allwinner: d1: Switch dma-names
- order for snps,dw-apb-uart nodes
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
+ region as reserved
+Content-Language: en-US
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org, kernel@collabora.com
-References: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
- <20230321215624.78383-7-cristian.ciocaltea@collabora.com>
- <1945003.usQuhbGJ8B@jernej-laptop>
-Content-Language: en-US
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <1945003.usQuhbGJ8B@jernej-laptop>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230124182857.1524912-1-amit.pundir@linaro.org>
+ <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
+ <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
+ <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
+ <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
+ <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
+ <b2307e91-3373-539a-ecfb-e2542b9f83db@linaro.org>
+ <CAMi1Hd2xfH-=htvHFQRktdgtDwiXKKvFo+9hook4HCJCPY6ydA@mail.gmail.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CAMi1Hd2xfH-=htvHFQRktdgtDwiXKKvFo+9hook4HCJCPY6ydA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/23 15:36, Jernej Škrabec wrote:
-> Dne torek, 21. marec 2023 ob 22:56:20 CEST je Cristian Ciocaltea napisal(a):
->> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
->> dma-names properties") documented dma-names property to handle Allwinner
->> D1 dtbs_check warnings, but relies on the rx->tx ordering, which is the
->> reverse of what a bunch of different boards expect.
+On 10/04/2023 09:54, Amit Pundir wrote:
+> On Thu, 9 Feb 2023 at 16:33, Bryan O'Donoghue
+> <bryan.odonoghue@linaro.org> wrote:
 >>
->> The initial proposed solution was to allow a flexible dma-names order in
->> the binding, due to potential ABI breakage concerns after fixing the DTS
->> files. But luckily the Allwinner boards are not affected, since they are
->> using a shared DMA channel for rx and tx.
+>> On 09/02/2023 09:05, Amit Pundir wrote:
+>>> Hi, So what is the verdict on this patch?
+>>>
+>>> I submitted this fix to make sure UFS don't map and crash on it, which
+>>> I have seen happening occassionaly on db845c and Caleb reported
+>>> similar issues on his sdm845 device iirc. I should have probably put
+>>> that in my commit message as well.
+>>>
+>>> Regards,
+>>> Amit Pundir
 >>
->> Hence, the first step in fixing the inconsistency was to change
->> dma-names order in the binding to tx->rx.
->>
->> Do the same for the snps,dw-apb-uart nodes in the DTS file.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> So the memory _is_ being used by ... continuous splash on an Android
+>> image, i.e. your Android ? limited to Android - image continues on with
+>> the splash but other blocks erroneously reuse the memory then, UFS as an
+>> example ?
 > 
-> Applied patches 2-6, thanks!
+> Hi Bryan,
+> 
+> Yes UFS (reported only on v5.10) tries to map this reserved memory and
+> system crash and reboot. Plan is to backport this patch to v5.10.y.
+> 
+> Regards,
+> Amit Pundir
+> 
+>>
+>> ---
+>> bod
 
-Hi Jernej,
+Personally I'm fine with this patch on the proviso we somehow associate 
+it the memory MDP - even if its just a comment in the dts with the MDP.
 
-Please note the patches have been already picked by Greg and were merged
-in next-20230331.
+i.e. if we run headless we want to be able to use that RAM for something.
 
-Regards,
-Cristian
+A dts comment would do
+
+---
+bod
