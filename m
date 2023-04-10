@@ -2,114 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D263C6DC972
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 18:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA216DC987
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 18:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjDJQlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 12:41:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48218 "EHLO
+        id S229952AbjDJQwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 12:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjDJQlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 12:41:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531E4E56;
-        Mon, 10 Apr 2023 09:41:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E201761D03;
-        Mon, 10 Apr 2023 16:41:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EB39C433D2;
-        Mon, 10 Apr 2023 16:41:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681144869;
-        bh=zz8rVoloOKCPdCyFenJt8RAA9ls+uQJna7oAZHgsD9Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YQRgGe/HZZXRBjj3tFQYBBklu/9e3YmhJ1Pt1l/aornMes8Hx8Y11OfM6V6V6M6r/
-         drh+NIPlojIbSsPm7Sht1YpA22EF62hchPoGv6PJnmjyrruFwiT4KeSl7cIULX7MxS
-         30PuglPFIEacD4MIthT4vM5mZS2LAdvXdqMEOd4JH1o81eBCr57VWj7tiLGwd0vPA7
-         9YP+gWi90lW19MvExGBfE+I1sBz/rwVlfvHAeGCvlm5UBbUqrmP09OtPgoR2NW8ITi
-         Ij3TDHVUbSdPCI8r0XxZ5DpuuckwxglXmol4JBUdrxW48cVL1KYEpnZIfSY0BFZ9nY
-         RUIC98mkikC4Q==
-Date:   Mon, 10 Apr 2023 19:40:54 +0300
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Lucas Tanure <tanure@linux.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, jbrunet@baylibre.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-        stefan@agner.ch
-Subject: Re: [PATCH v2 1/1] of: fdt: Scan /memreserve/ last
-Message-ID: <ZDQ8FpOtO7UINuFn@kernel.org>
-References: <20230410120017.41664-1-tanure@linux.com>
- <20230410120017.41664-2-tanure@linux.com>
+        with ESMTP id S229884AbjDJQwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 12:52:34 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCCCF1BC1
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 09:52:32 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id sg7so25261835ejc.9
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 09:52:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681145551;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eBs67X9hTZahV0d5thlLTSsdpyjHcz4nvl7+G074hsI=;
+        b=R6FF3Mk4AuqNRvUgA2tp9Qp7r7oxi9Ro88Kkze80fE4X1A7J+oDZidRFzIIJMGJMJF
+         o9FHxSQEm8H8skEaCy0tYUxJpKErpAnSaTB9VflmajV+LWoe8LT//noZ+w8TpXZ+tG4p
+         Gvd6Lt8WrI9BAmxKjtXL8P6p0GrT7qGEY3BFfMwDNNFbNjQ9U1qKNhGp0PcU92TpRpYD
+         jCQZNXoCHqcgrDdPVudNWeX+J6QLKirjk2YbfRnvKYyuZ8uobhoP2/fYkktqIvC+MMk2
+         PIkK6KFByIQ3ivqjy4Nk/RrEQRCmMg8mrjcMXw2/SQ96K1F/y3cpapk6gcJKJS2yG530
+         L0/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681145551;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eBs67X9hTZahV0d5thlLTSsdpyjHcz4nvl7+G074hsI=;
+        b=JezD/LT+CKeodcC+cjhgccUSmp7yfvBguDVmxDBmbnQBueis3ggIV5/Olr1NEjysfR
+         5xlynnqu9pRmMF+RRNPHVSU4xVaal1wHA1wxdCjo3M8c0QTeABLymOorP03vf4FBj/EN
+         whNPItcNxFcwPYkT5G5e9FyVeu+IGIan/J5XHJDuHpAgJKR9mDa4tzC1ydJt86fIHZz7
+         QW0HTUPL3Skc5so1amKV+Ay/Ii4KNPmA3yAeBi8K8tnQwjc3PWa5C80D1DE+Qk1E7WcW
+         Ht/LqcxoHPPbyLxpGc3msZ4aAiODW914SKwFP+R1tEg+nly4Aup/ZLH84fpbjUOvW2Sz
+         Lj4Q==
+X-Gm-Message-State: AAQBX9dtMvHVpsLId4SWSStWGjDsJjaB+oMEjV4mBbQHkWcQ0S/JNXAu
+        bFB8KTSwS0KlZM60OP2BPQ89Ow==
+X-Google-Smtp-Source: AKy350ZguZqgdbZKMiOGO2jF6+EokSfXRDYG2x5kIv2H/AlfFVrHUXhtcqwNTQA5txtCoJxknPbwEA==
+X-Received: by 2002:a17:906:234f:b0:94a:798c:712f with SMTP id m15-20020a170906234f00b0094a798c712fmr4375005eja.49.1681145551413;
+        Mon, 10 Apr 2023 09:52:31 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:1a6c:6968:e633:48df? ([2a02:810d:15c0:828:1a6c:6968:e633:48df])
+        by smtp.gmail.com with ESMTPSA id ck13-20020a170906c44d00b0094a8b47d360sm1179864ejb.177.2023.04.10.09.52.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Apr 2023 09:52:30 -0700 (PDT)
+Message-ID: <81e9f590-4814-3b56-5cbf-8f22fb97275f@linaro.org>
+Date:   Mon, 10 Apr 2023 18:52:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230410120017.41664-2-tanure@linux.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 2/4] iterconnect: add clk-based icc provider support
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230408234932.2363302-1-dmitry.baryshkov@linaro.org>
+ <20230408234932.2363302-3-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230408234932.2363302-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 10, 2023 at 08:00:17AM -0400, Lucas Tanure wrote:
-> Change the order of scanning /memreserve/ and /reserved-memory node.
-> /reserved-memory node should go first, as it has a more updated
-> description of the memory regions and it can apply flags, like nomap.
-> Also, /memreserve/ should avoid reserving regions described in
-> /reserved-memory node.
-> 
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  drivers/of/fdt.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index d1a68b6d03b3..26e608d8025d 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -635,16 +635,21 @@ void __init early_init_fdt_scan_reserved_mem(void)
->  	if (!initial_boot_params)
->  		return;
->  
-> +	fdt_scan_reserved_mem();
-> +	fdt_reserve_elfcorehdr();
-> +
->  	/* Process header /memreserve/ fields */
->  	for (n = 0; ; n++) {
->  		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
->  		if (!size)
->  			break;
-> +		if (memblock_overlaps_region(&memblock.memory, base, size) &&
-> +		    memblock_is_region_reserved(base, size))
-> +			break;
+On 09/04/2023 01:49, Dmitry Baryshkov wrote:
+> For some devices it is useful to export clocks as interconect providers,
 
-I don't think this is really needed, it's ok to reserve the same ranges
-multiple times.
-Both checks are not cheap, so it'll be better to just reserve everything
-both from performance and simplicity points of view.
+typo
 
-> +
->  		memblock_reserve(base, size);
->  	}
->  
-> -	fdt_scan_reserved_mem();
-> -	fdt_reserve_elfcorehdr();
->  	fdt_init_reserved_mem();
->  }
->  
-> -- 
-> 2.40.0
+> if the clock corresponds to bus bandwidth.
 > 
+> For example, on MSM8996 the cluster interconnect clock should be scaled
+> according to the cluster frequencies. Exporting it as an interconnect
+> allows one to properly describe this as the cluster bandwidth
+> requirements.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
--- 
-Sincerely yours,
-Mike.
+Subject: also typo
+
+Best regards,
+Krzysztof
+
