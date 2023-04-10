@@ -2,61 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2D16DCD3D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 00:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 020036DCD45
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 00:09:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjDJWDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 18:03:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
+        id S229789AbjDJWJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 18:09:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbjDJWDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 18:03:48 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6851BCE
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 15:03:47 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 72so6225866ybe.6
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 15:03:47 -0700 (PDT)
+        with ESMTP id S229932AbjDJWJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 18:09:34 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A1910E2
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 15:09:32 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-54f64b29207so16476237b3.8
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 15:09:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681164226;
+        d=linaro.org; s=google; t=1681164572;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gonmadpJiz7vDQBbBMJgStyxiOMmKUV5aqE1rLom+i0=;
-        b=tXZjrUsIrgj6yHapA7bCU6CUurdcsV7l4BThTxjlCa4ds+Oge3e/7Rc3jiPy7LTqQR
-         Ni1i0azeF4v9hr1QADOvQUCPTva/na7CsK/SRQuT4O9XDUy3S+clSX/CIPgSKJ/p0OCV
-         OLImCONongy9VZyqCjiMGS7PzHbF9gcpVITNFe+O3xCGw8U7GohL9Ysh3B5oPJokOMnC
-         sgUCGjcObDO7bBJ8AYAnxZa0a11H3OT6FOTzZhkSrpmepfA5oq3E0q50BhkNgfb0u2lx
-         sxdJX6OWgeKLEk7hNnaMVGnIa4IaYb6veOfCpnWaJ+N2qUcdeq8ZAKgYiSrHMn5v7vLN
-         Tq7w==
+        bh=ExqCcoy3bWj9jdGV9Q3NacWOqs4Dtk8vHL8H1J12RJY=;
+        b=BKqvHMuHlRPIU7wXVr5olsFhIZQX++5QDybdKhcnOhN4x4kl0/zeY+UqXC+V8SjSiG
+         jruquk5A1NRODV6/T+RII1S8IJ+qQAEVFbsKDjCQuadaVc8MC0d7fOIH2mzsShe1SHne
+         niX+lSoCCi9RrDLsYAqtH4S98S9BKsDGPhfhCOhqgE1QjGuHBarkz9zCOFBKjkba+zDO
+         ZAg5AY1YZPOFE5zCKJxCQlUa7nQzZr9GSrziAkjpr6RZetzTNZVqCSQhhE9MxuabRnvX
+         LSPqpT9Ua+N+xcIpy/Dtc4Kd+jDSogAAt597r+bscFQ3DGoCFEPhE6hqHWNNiOX659sg
+         4bgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681164226;
+        d=1e100.net; s=20210112; t=1681164572;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gonmadpJiz7vDQBbBMJgStyxiOMmKUV5aqE1rLom+i0=;
-        b=L7A0hPuSzoUSweigvYExSL+Hy18nPoXbIOlIIVE1EqG5tz1eYJCjmrAQkPgZZTQ4Pq
-         dqkE5Vpk9N0BHardC6FKsLwfcD3g+MENQJEKWqWNJ+LxSuxkXhMqgY3SFLL+MzrOkalM
-         9e0YNCZrpmydUgaXiH41mvI8/+x2xltKYy3N1E8vcydyXQP65/e2Yd9VsU/rDDWXJzNs
-         VXAeAX5Wi1mUXLaAWOEGvPFlcK/Z97plKQksQ1WDRhOmpHezZv91SpzQbkhMKx0qLH4n
-         mpOd65jSrWr/cfVgUUr/mBaTbT8StQu7f4WqHccVym94b6C18XkVCf81hKEubnTMZqFY
-         HnUA==
-X-Gm-Message-State: AAQBX9e0MAFuPr3h2BaJsRksEGveZUwKG4lQJ8624FOhVT8DaY9GMLmt
-        qT1rGBd/EVQlhWxHsXftqT2T8dSR0jPdSY5WYjgYaw==
-X-Google-Smtp-Source: AKy350YnwAqoK+Qr/Ms8tC4pdwnZLuaBcI3cWECw5wAm3u/Sy8KK73q1WklHDUiuOZMFGUP8l861SzX9BkmMga/k7HI=
-X-Received: by 2002:a25:d994:0:b0:b8e:fbcb:d6ef with SMTP id
- q142-20020a25d994000000b00b8efbcbd6efmr2623661ybg.4.1681164226298; Mon, 10
- Apr 2023 15:03:46 -0700 (PDT)
+        bh=ExqCcoy3bWj9jdGV9Q3NacWOqs4Dtk8vHL8H1J12RJY=;
+        b=klS6vRQfqAI46j1Au+1RI/oGdVsbzTi2YWRUpDv2uZPATXUW7kRjZNODkbuSFlzKbS
+         9qC6Oq47N5ZUW2EALqAIxwNkTA6CgdQc+DpiNtP2f0icL0gY1w2+4qKgvwOpiW0n9gZ3
+         h2lWQsodOvYtC9drwwnXl+DeYB+0DE9lDKjybKsi35NT37fSYnamUhyIW7uVYyDn/Sxw
+         LeJje+glJWwgODrkofb3k2e9vD+JysIXuKqUTKhTmqWZWi73GP7hDnf7oWoEktIB7PNf
+         t44+SmXLteT1j+doJNZU0Gi0HlKzmYzbKadNY3D/XpUYF1awgAw/FZcHrVnbJOTt0dt5
+         +2Ow==
+X-Gm-Message-State: AAQBX9dSCl3W5JVUuafv/0aMVzD0jMyMxfHIUox5Rf2O4lv0BpRZbVcb
+        WwGxHHWdeXJSxann/5HdR1WCaNL6wfUCwWuP2PYM5w==
+X-Google-Smtp-Source: AKy350a26EOdXNrw4MlpwtY9Dz/Z+hhGFiC4d9G8eVMorvZSwWjglGmlnnmKRrMbFTj8viOMnnU18qFJFz1Fh/3VdYo=
+X-Received: by 2002:a81:c904:0:b0:534:d71f:14e6 with SMTP id
+ o4-20020a81c904000000b00534d71f14e6mr6436772ywi.9.1681164572146; Mon, 10 Apr
+ 2023 15:09:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230407162504.1683422-1-festevam@gmail.com>
-In-Reply-To: <20230407162504.1683422-1-festevam@gmail.com>
+References: <20230327125316.210812-1-brgl@bgdev.pl> <20230327125316.210812-13-brgl@bgdev.pl>
+ <CACRpkdaYHaJMn7w_q12V3Q0WW71-U_kb+XsR1tNsirF35xYEoQ@mail.gmail.com> <CAMRc=Mf3d+ZmRs+Rj2HeWifoL0Vqzszxh_hUFDFq4eyvfgKQ4w@mail.gmail.com>
+In-Reply-To: <CAMRc=Mf3d+ZmRs+Rj2HeWifoL0Vqzszxh_hUFDFq4eyvfgKQ4w@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 11 Apr 2023 00:03:35 +0200
-Message-ID: <CACRpkdaF7jy0anwVYZVJaEzVgu5BfCO62k47r6cxcwq=LUurzQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nomadik: Replace deprecated spi-gpio properties
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
+Date:   Tue, 11 Apr 2023 00:09:20 +0200
+Message-ID: <CACRpkdYZj69yVitTGV9h5ytec5pFKKQwGbhPu1Ahc2HBfsqp1Q@mail.gmail.com>
+Subject: Re: [PATCH v3 12/18] dt-bindings: pinctrl: qcom,pmic-gpio: add
+ compatible for pmm8654au-gpio
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -68,19 +76,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 7, 2023 at 6:25=E2=80=AFPM Fabio Estevam <festevam@gmail.com> w=
-rote:
+On Thu, Apr 6, 2023 at 4:09=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
+wrote:
+> On Tue, Mar 28, 2023 at 3:24=E2=80=AFPM Linus Walleij <linus.walleij@lina=
+ro.org> wrote:
+> > On Mon, Mar 27, 2023 at 2:53=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev=
+.pl> wrote:
+> >
+> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > Add a new compatible for the GPIO controller on the pm8654au PMIC. It
+> > > has 12 pins with no holes.
+> > >
+> > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > Acked-by: Rob Herring <robh@kernel.org>
+> >
+> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> >
+> > Counting on Bjorn to pick this up.
+> >
+> > Yours,
+> > Linus Walleij
+>
+> Linus,
+>
+> Bjorn picked up the arm64 patches but these two were skipped. Can you
+> take it through the pinctrl tree?
 
-> From: Fabio Estevam <festevam@denx.de>
->
-> As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
-> 'gpio-mosi' and 'gpio-sck' are deprecated properties.
->
-> Use the recommeded 'mosi-gpios' and 'sck-gpios' instead.
->
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-
-Patch applied and forwarded to the SoC tree.
+OK patches 12 and 13 applied to the pinctrl tree!
 
 Yours,
 Linus Walleij
