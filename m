@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 360266DC2C1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 04:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB226DC32C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 06:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbjDJCay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Apr 2023 22:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46126 "EHLO
+        id S229485AbjDJErd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 00:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjDJCas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Apr 2023 22:30:48 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8C92707;
-        Sun,  9 Apr 2023 19:30:47 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-632cf805762so353551b3a.3;
-        Sun, 09 Apr 2023 19:30:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1681093847;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=91oVa4U4E752SRKAZUiXCqWTpRWldtV5m/eQGoWFvDo=;
-        b=GvjyKFfrXQTDTegaGVK2x3sG0Ip6I3hXwmxFfOJmMEaHR3FIpZXlAWKenZDLqvBSPu
-         puqcCBoYi4yqP7Q2ciPTlbPkpHDluTpkF7hud2O5kOk4VFK2ULK9zwJttHL/uKGfaGog
-         BKABVer4EjKFxgiupm7RulsPxONmCa7ZRqa0D35uiB3BGDbX6SGxzSuYFXegS87cEUq5
-         3+hAyEhRKhiMtgQrVBGdxi22HvKUi10Z4RUlTyIkSxrwpL7FlqeB3Bh7ZTseIp/AOAI0
-         PAdtNlIAJSxK2ziOqKUNi8wXjnbEcUV5LaFA8ruWLlrtsFeobb1d+bArks5aVsd+sCy9
-         mttg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681093847;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=91oVa4U4E752SRKAZUiXCqWTpRWldtV5m/eQGoWFvDo=;
-        b=vX92haYdFAOd9Mp+G6LvbvfI517iqTfdy10Ef5vWI/JtaYP0oemAJGOY/ebf4bEhml
-         11ORY7PJLJtOa2gvQ2e7PDCniAuaXUyjM/khlf448c4MMoKCw+1ZZ2jGNsMBtl9dJJVg
-         OAgl5EcOSfH0PWE0b5B0iS9gdUDgtejtlfThLivtOg+b62nQrWK4fj1t1ZR8BKqx93h7
-         uUz5gHHQMIzpVwTrcBiSEv2LDLU+ANUgs7Y4fRNzABPKqfIJQsvvzbiA1eXWlyhQOU6x
-         FbzV1ygEqubzQvqTQqvPIrRIsEPBehtRxiXJLaKEi52k11GDQxxwMUJ9mjpLr+AnxHbA
-         bO3Q==
-X-Gm-Message-State: AAQBX9fUoAfG+Q5yJBjMz/lahOcV8+uZtgB6AYOW190i20/Ril9af7Oa
-        r8YGAGrviPPDKuY8BMK5GGQ=
-X-Google-Smtp-Source: AKy350arnos9p4x6ClCP16vCSb7Y1qpCkhOMhsM+5TChYcKYrgNgkdmDap4qv4y7/IEV5piWIUV7pg==
-X-Received: by 2002:a62:1d4d:0:b0:625:fe95:f120 with SMTP id d74-20020a621d4d000000b00625fe95f120mr6471688pfd.8.1681093846702;
-        Sun, 09 Apr 2023 19:30:46 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:803c:4683:913e:ce04])
-        by smtp.gmail.com with ESMTPSA id i22-20020aa79096000000b005e0699464e3sm6614117pfa.206.2023.04.09.19.30.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Apr 2023 19:30:45 -0700 (PDT)
-Date:   Sun, 9 Apr 2023 19:30:42 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, aisheng.dong@nxp.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 2/2] input: imx_sc_key: add wakeup support
-Message-ID: <ZDN00vwyCOzFrDYt@google.com>
-References: <20230323093141.4070840-1-peng.fan@oss.nxp.com>
- <20230323093141.4070840-2-peng.fan@oss.nxp.com>
+        with ESMTP id S229475AbjDJErc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 00:47:32 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC1E30C6;
+        Sun,  9 Apr 2023 21:47:30 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33A4lBoH101478;
+        Sun, 9 Apr 2023 23:47:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681102031;
+        bh=Ytx9fQ9Ub8uG529ZrD4BPGXjS5WsbtxTltwVymlI5EY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=di9uad7g8o6mc+SUeEMjwQE0pHDJHpuClOwJxovDPrJkU0RjNyL39zYmd+1QdurFL
+         fS7jwdU5OjbhyxeObxRDj5eVQ4ORkuQJ5Ww2Y8D40ygmfPnSKtWkO1I6jF1ykeoRKU
+         3PCJPNZLIdG6swmUz59g7BAks0ZhZSBsF9+bgZcQ=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33A4lBhe020480
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 9 Apr 2023 23:47:11 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 9
+ Apr 2023 23:47:10 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sun, 9 Apr 2023 23:47:10 -0500
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33A4l5pl079918;
+        Sun, 9 Apr 2023 23:47:06 -0500
+Message-ID: <08c07263-f4d4-1264-dd67-b377c3b6a048@ti.com>
+Date:   Mon, 10 Apr 2023 10:17:05 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230323093141.4070840-2-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [EXTERNAL] Re: [PATCH v7 0/4] Introduce PRU platform consumer API
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <20230404115336.599430-1-danishanwar@ti.com>
+ <86ee5333-6d65-d28b-0dd5-40dfe485d48b@ti.com>
+ <CANLsYkyrvAcVa8VNkbsrxyAC-60fyGYoXVS=fqwLcsMverzNcg@mail.gmail.com>
+Content-Language: en-US
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <CANLsYkyrvAcVa8VNkbsrxyAC-60fyGYoXVS=fqwLcsMverzNcg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,37 +78,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 23, 2023 at 05:31:41PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add support for waking up from system wide suspend.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/input/keyboard/imx_sc_key.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/input/keyboard/imx_sc_key.c b/drivers/input/keyboard/imx_sc_key.c
-> index d18839f1f4f6..234f23cf9990 100644
-> --- a/drivers/input/keyboard/imx_sc_key.c
-> +++ b/drivers/input/keyboard/imx_sc_key.c
-> @@ -151,6 +151,8 @@ static int imx_sc_key_probe(struct platform_device *pdev)
->  	priv->input = input;
->  	platform_set_drvdata(pdev, priv);
->  
-> +	device_init_wakeup(&pdev->dev, device_property_read_bool(&pdev->dev, "wakeup-source"));
-> +
 
-I wonder - could we move this to the device core?
 
->  	error = imx_scu_irq_group_enable(SC_IRQ_GROUP_WAKE, SC_IRQ_BUTTON,
->  					 true);
->  	if (error) {
-> -- 
-> 2.37.1
+On 06/04/23 18:45, Mathieu Poirier wrote:
+> On Thu, 6 Apr 2023 at 00:54, Md Danish Anwar <a0501179@ti.com> wrote:
+>>
+>> On 04/04/23 17:23, MD Danish Anwar wrote:
+>>> Hi All,
+>>> The Programmable Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS
+>>> or simply PRUSS) on various TI SoCs consists of dual 32-bit RISC cores
+>>> (Programmable Real-Time Units, or PRUs) for program execution.
+>>>
+>>> There are 3 foundation components for TI PRUSS subsystem: the PRUSS platform
+>>> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All of them have
+>>> already been merged and can be found under:
+>>> 1) drivers/soc/ti/pruss.c
+>>>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>> 2) drivers/irqchip/irq-pruss-intc.c
+>>>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+>>> 3) drivers/remoteproc/pru_rproc.c
+>>>    Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>>>
+>>> The programmable nature of the PRUs provide flexibility to implement custom
+>>> peripheral interfaces, fast real-time responses, or specialized data handling.
+>>> Example of a PRU consumer drivers will be:
+>>>   - Software UART over PRUSS
+>>>   - PRU-ICSS Ethernet EMAC
+>>>
+>>> In order to make usage of common PRU resources and allow the consumer drivers
+>>> to configure the PRU hardware for specific usage the PRU API is introduced.
+>>>
+>>> This is the v7 of the old patch series [9].
+>>>
+>>
+>> Hi Mathieu, Can you please review this series. I have addressed comments made
+>> by you in v5. I have also addressed Simon's comment in v6 and removed redundant
+>> macros from pruss.h header file.
+>>
+> 
+> You are pushing me to review your code 19 hours after sending the last
+> revision?  Are you serious?
 > 
 
-Thanks.
+I am really sorry for this. Thursday was last working day last week (as Friday
+was holiday in India), so I thought I should ping you so that this series would
+be reviewed by Monday. From now on I would try to keep a gap a week (or
+whatever is appropriate) before pinging you for review.
+
+I am really sorry for this again.
+
+>>> Changes from v6 [9] to v7:
+>>> *) Addressed Simon's comment on patch 3 of this series and dropped unnecassary
+>>> macros from the patch.
+>>>
+>>> Changes from v5 [1] to v6:
+>>> *) Added Reviewed by tags of Roger and Tony to the patches.
+>>> *) Added Acked by tag of Mathieu to patch 2 of this series.
+>>> *) Added NULL check for @mux in pruss_cfg_get_gpmux() API.
+>>> *) Added comment to the pruss_get() function documentation mentioning it is
+>>> expected the caller will have done a pru_rproc_get() on @rproc.
+>>> *) Fixed compilation warning "warning: ‘pruss_cfg_update’ defined but not used"
+>>> in patch 3 by squashing patch 3 [7] and patch 5 [8] of previous revision
+>>> together. Squashed patch 5 instead of patch 4 with patch 3 because patch 5 uses
+>>> both read() and update() APIs where as patch 4 only uses update() API.
+>>> Previously pruss_cfg_read()/update() APIs were intoroduced in patch 3
+>>> and used in patch 4 and 5. Now these APIs are introduced as well as used in
+>>> patch 3.
+>>>
+>>
+>>
+>> --
+>> Thanks and Regards,
+>> Danish.
 
 -- 
-Dmitry
+Thanks and Regards,
+Danish.
