@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB836DC882
-	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D756DC886
+	for <lists+devicetree@lfdr.de>; Mon, 10 Apr 2023 17:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229876AbjDJPah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Apr 2023 11:30:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44938 "EHLO
+        id S229801AbjDJPbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Apr 2023 11:31:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbjDJPag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:30:36 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8179F5585
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:30:35 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id jg21so12969821ejc.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:30:35 -0700 (PDT)
+        with ESMTP id S229688AbjDJPbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Apr 2023 11:31:08 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A98532724
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:31:07 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id dm2so13420197ejc.8
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 08:31:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681140634;
+        d=linaro.org; s=google; t=1681140666;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Itkfx/SKWmTgvLKHAD1AdOCobJxj9e9oDbXIhOz5Grk=;
-        b=Soklrh6KjQhWPbFfaBnFO5reP5hGWsaazUyTUoMePLaBh/KHj/BM2NMXEUvbGQzM4Y
-         mul5E1svfxf+7g85Kpf5DWc2ug5mnF9wTntDKgl37P4tfS5PC09gC6M3drJmNHiYA+ek
-         nLHQD77Gk4Ge4LusG7Wgg2layKERLzNbdfpW1C7s8DUpRcl1zTzN1Dzc9XLopAytsyPH
-         y6QT2mDvRSuWNkCwnqpFvNY/PgknOVasHcfZzTLUdnta+zOrMBZ3vjctjVJGMkMjHKx0
-         isGhGs2gB4rZFbUuNDKJIsO+LzlBLU9CCjciSE+lbJAwfwk5uT8YZb37Zf9m8CNZZWXK
-         CEcA==
+        bh=IBdfhAiuCEqD7RtTx8Ci52s2HURcnZu6d3ip+Anq2OE=;
+        b=P0GdGNeiMWHlHtdDH9sRbF6cNkJ2IzbEXTzFv5b2eukJiSBZjwCwyQgrTq8JYy+zaz
+         znD8Vl8cn3JY/F+scx1nzPxlm7RJU7ekeKesAD3i2b2JzVAFX2EnirPq/84SZ9gppmHd
+         SiC0OZQyrjilj32CPrINCHCIA7DhcmQu7uPD9Yi9N79gaBmWSydNmwyXfs+590vnZVOR
+         ftSTylYI0NNSG+CdT5BViFTJ1tLvhypAH6T1tXivxJq6D4nlFXlDRQL2v1BnmFXLDdR6
+         f2GG1uT5pT9RODLOblIitxoM+5m57LULhegr31dfxYf9QHBMEc1xMEQiwd9HsKyfvo+2
+         b/Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681140634;
+        d=1e100.net; s=20210112; t=1681140666;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Itkfx/SKWmTgvLKHAD1AdOCobJxj9e9oDbXIhOz5Grk=;
-        b=pBz5kwdASeM4y0xR92tU26ykAFmtTGk/NnZl4Qc7HwTEuKt778xcvGDF32gscaz69P
-         syJrNK+QbAFIcpeYco6D2u7zjO/FEs9tfOE6otZMqsOrJCV60Ih74zCS/gQfOBNcP2iO
-         90Vd3iTMaDBaFS6BbirnQ3nmm4U5ErTucQDh2aXunR4iknvG0ithDtVpxiphLT0+dPbX
-         qNmB+zosCxniKodl4qSyMmn4I1NvzXUEp9UjfK4Fsrj3ebTPBvxJ9/FPWob5IGjtdD3x
-         7PwMQ07oPgkj9w1kvscDEXkWEzttRXqSrAfpNDDpgRJMXoh8GwsnYIojaSLeUsjg5hS6
-         cU2g==
-X-Gm-Message-State: AAQBX9eXWN1npfi5DfL45pm/S0gAvEDjAhdwC31aBh6sO5cT17qwtrM/
-        RdG78q/UN+RQAKzXgbAZJUHS1g==
-X-Google-Smtp-Source: AKy350YOl6LmnKef1jR9aqU4sERFWWSnDuFwHk4cC7wGrdApNE4eG/tOeHTBsxeVq5DBEqq0wJL0AA==
-X-Received: by 2002:a17:907:a395:b0:94a:6e08:fec5 with SMTP id se21-20020a170907a39500b0094a6e08fec5mr4377644ejc.29.1681140633994;
-        Mon, 10 Apr 2023 08:30:33 -0700 (PDT)
+        bh=IBdfhAiuCEqD7RtTx8Ci52s2HURcnZu6d3ip+Anq2OE=;
+        b=7TBB+XuTGTbu/Du6nC5AB0SxzBN/FPiRz/hTU48MNoDGPD3qkQC5DmR+QGx/nn077f
+         SDKkiOjovM3Fs6bgDcDgog3xYnCvJ/WdxADOlBsKI6xybwPPo/7v3v3ihA62kXDd46+S
+         KjRgF9CKenh+K2Z522SoNGlsqtLFswodHhpHFUgV2+6wmgLurXDzaQ7984ljCZxrYvRF
+         Anebia7L36pZTvUOu8ZywnfVFKQSY3/EwvDKoRSxs2+AYrhnKgrOBbTUnwtS6AAscFik
+         x6TCPsNFk/B6HCwiBa17okDGy6BBjC5O6F7z8uqnoy9asazYy7OWzVb9MjeIio7XNOJC
+         TMVQ==
+X-Gm-Message-State: AAQBX9fdBsQqqHrn0OvNkHuaWjqELeXS/jFs+yjSlm+SQLeqPHl+oQSC
+        /9PzNRu/Kd1cfjFR1GHSrKjprg==
+X-Google-Smtp-Source: AKy350YzJjMIz0pn/8a10YREbTWl5he8HuqP0ckjnl5NSVi0xhbBIimcqLpyUlXGQva5k5cG3pl/Iw==
+X-Received: by 2002:a17:906:2a48:b0:93b:1c78:5796 with SMTP id k8-20020a1709062a4800b0093b1c785796mr6165570eje.43.1681140666219;
+        Mon, 10 Apr 2023 08:31:06 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:eacd:ffa4:1df7:3870? ([2a02:810d:15c0:828:eacd:ffa4:1df7:3870])
-        by smtp.gmail.com with ESMTPSA id s27-20020a1709060c1b00b009475bd8f441sm5168414ejf.60.2023.04.10.08.30.32
+        by smtp.gmail.com with ESMTPSA id rk18-20020a170907215200b0094a77168584sm1474667ejb.125.2023.04.10.08.31.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 08:30:33 -0700 (PDT)
-Message-ID: <92f8fa5c-7753-865a-83a3-2a53c2c3a8f6@linaro.org>
-Date:   Mon, 10 Apr 2023 17:30:31 +0200
+        Mon, 10 Apr 2023 08:31:05 -0700 (PDT)
+Message-ID: <874277fe-92a6-2bed-eccf-15fc90d8574a@linaro.org>
+Date:   Mon, 10 Apr 2023 17:31:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 4/7] dt-bindings: iommu: arm,smmu: enable clocks for
- sa8775p
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mtk-xhci: add an optional frame
+ count clock
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230406200723.552644-1-brgl@bgdev.pl>
- <20230406200723.552644-5-brgl@bgdev.pl>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Tianping Fang <tianping.fang@mediatek.com>
+References: <20230407062406.12575-1-chunfeng.yun@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406200723.552644-5-brgl@bgdev.pl>
+In-Reply-To: <20230407062406.12575-1-chunfeng.yun@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -90,15 +84,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 22:07, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 07/04/2023 08:24, Chunfeng Yun wrote:
+> Add optional clock 'frmcnt_ck' used on 4nm or advanced process SoC
 > 
-> The KGSL iommu will require the clocks property to be set. Enable it for
-> sa8775p in the bindings.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 5 +++--
+> v2: based the patch:
+>     https://patchwork.kernel.org/project/linux-mediatek/patch/20230403191850.374839-1-krzysztof.kozlowski@linaro.org/
+> ---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
