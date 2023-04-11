@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 287A56DE1B7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D48BF6DE1DA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:07:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjDKRAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 13:00:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43450 "EHLO
+        id S229670AbjDKRH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 13:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbjDKRAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:00:16 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06A9A5B96;
-        Tue, 11 Apr 2023 09:59:56 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id ud9so21890346ejc.7;
-        Tue, 11 Apr 2023 09:59:56 -0700 (PDT)
+        with ESMTP id S229504AbjDKRHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:07:25 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9E611F
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 10:07:23 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id qb20so21726281ejc.6
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 10:07:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1681232395;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vGiYwUojezuY+RxgL04VGSeCZx3NAMwWwAXac6CUEj4=;
-        b=DOAGbpdR8fzZ9Gbbh7RUCSNW8UQIyEyKCkF2XEomSySEKliCZYU0I0ZXcq4Fe27va4
-         ORMmfWHTLGSvcd14rBdrvYZUymX3QMl1nzwoIJNEoMdMrZwWIvWhl0/IYnxKerFm7oXE
-         mL4cbApBYeVNCmycJghTPN4+Fc5oe0b+zqNNBEf3HW76LmEPGmY9rcm9g1AAcPD6TIA7
-         Drl/+PS9CmF0Uoui4ZzE4+6g3G6Q1G8oNT9ULpSasBmZJYP0FbFMr2To7TWyzAax8FW8
-         Ne/Pwu3o5nHngHK93n+tX8viY7vOK5+u6ziHAbJt+UH3EOxpFFkONo56THp75xj1Oy+K
-         P91g==
+        d=linaro.org; s=google; t=1681232842;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XdfzJIKkFxIWGY1rkF0F0muLgVM5DAQIuMkjMd6tTQw=;
+        b=HSvS5GsLxSDwYhUMkn8c5rNLPwwT8unZWVQGHgnG0LcXiufU5iO5BySuWj7sVjuP/9
+         8kyBwgbW36zuTom5JtFLIHG8Yn2PLYphgV8BD1RbEQsD2+wewb8EHqEamtsSBEjx/smJ
+         zLgsllKhpG6UEYfW50c86I7PIrhW4qG0qX0E4J3Q9+ttfxfsNLZpqEvACeS753WDd06E
+         X/IxFfINba8DTpM8hNRzfVGiTy28UkOg16gY9paSub5NGBnaV7eYb8k4T2ZtzCV5g/d5
+         o1EdlCGkceESd7bfe9OrKSBPHYZ9a/DTfoRGhcfw2gZito5pMR+xxPNw7XDLrdnNoivS
+         X1wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681232395;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vGiYwUojezuY+RxgL04VGSeCZx3NAMwWwAXac6CUEj4=;
-        b=HvvgNPS7kADUbatAxIF0CxeXwlsi6jJ0oezNwVMX/PCJBhd2k5nP16yqxfzjShRxuv
-         KX3SKEC7Q0wF/WsCWWP87Q0guDOecqY7wJYGE6QLI85/3nXapyXGEVSJsr5Yu+85PO7x
-         zJMqIPB7I/QaIbb3jiR8l6eJkQSL0vKBWCuavu6NOthjuQRSX7fPcoSDiAM4ybNVBIQM
-         T135U3tUFPP9o7l3mo5n6W/4AzWG+hZhLATtpAo0VpeN44ovnMkuyGV8L+lQFHqRgfS4
-         CTnc+U6zmq1LVjBrPlLuAtWnMRxvUpR3kusaYI/caf7fBWDSsQJINQZ1eefAi4Q9kuOJ
-         Cg0g==
-X-Gm-Message-State: AAQBX9dzWM4xESM7bxKLu6tG4vlipDGFEzcgij7B3w69GeJdr+vdrkPF
-        ghfAtw9R3LV9uFp+8m5F8GmsdzkTReC7mA==
-X-Google-Smtp-Source: AKy350a5SgWGjIHXpkAStyJFnVJ5KpXf1ETC00q63RutMcZw80dQpaUSiqlTZh8An7yLdQfENLRrfQ==
-X-Received: by 2002:a17:906:d29a:b0:94a:826c:df57 with SMTP id ay26-20020a170906d29a00b0094a826cdf57mr8234940ejb.39.1681232395197;
-        Tue, 11 Apr 2023 09:59:55 -0700 (PDT)
-Received: from localhost ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with UTF8SMTPSA id sg35-20020a170907a42300b0092b8c1f41ebsm6299061ejc.24.2023.04.11.09.59.54
+        d=1e100.net; s=20210112; t=1681232842;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XdfzJIKkFxIWGY1rkF0F0muLgVM5DAQIuMkjMd6tTQw=;
+        b=jBI3e4JYHKGVHcywzApeYf1gVP2PaieRuhhWXn/6/aX3G38+B4l47TvxqWTuYe2+Z+
+         VVy5n0F0D47qqrJfSR+ldYV3x7RfcZ+Zz+vxMoZWDVxz/9+2SSuW7QTPOF8hoXoRtqkc
+         NCyzHZ0Z5JUYHhdIJshSRSC6/9KTYe4H11stW1U0QyNob1V6FwK7+XEu/zu+TfGadLrK
+         FZAKpHgoFI/wy9xNVWxv49pklcEwlgZ+iXCebRHh9M9bwg9daQQBhitK2IhSDOL1/4Gu
+         bE5SXGn/WQOsOd1RTE8J6xPNxZFFtBAlOGQOG434IdPYWBlynexX4FwsB4pzPgOOTPPQ
+         RP8A==
+X-Gm-Message-State: AAQBX9c1K3oOGlpvxw7LtXkMmwSECV3TUElK37/XjWC2NgjgajkSn4X7
+        /QZlfdQv5UBZR82Ht6802vK6wQ==
+X-Google-Smtp-Source: AKy350YUHA8noLFxB77M1WrwMp3h3S22CgVFDg9e5wFnchjY210tZ+OCaYJzVNhF67XiuxFuudOouA==
+X-Received: by 2002:a17:906:2a48:b0:933:4d37:82b2 with SMTP id k8-20020a1709062a4800b009334d3782b2mr10790107eje.57.1681232842328;
+        Tue, 11 Apr 2023 10:07:22 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:f1da:c117:3657:c8a? ([2a02:810d:15c0:828:f1da:c117:3657:c8a])
+        by smtp.gmail.com with ESMTPSA id u10-20020a17090657ca00b0094a64f6b78fsm2902162ejr.20.2023.04.11.10.07.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 09:59:54 -0700 (PDT)
-From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        Tue, 11 Apr 2023 10:07:21 -0700 (PDT)
+Message-ID: <b7c9ac38-6f9b-8d05-39c6-fee9058209a9@linaro.org>
+Date:   Tue, 11 Apr 2023 19:07:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 05/10] arm64: dts: qcom: sc8280xp: remove superfluous
+ "input-enable"
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Nikita Shubin <nikita.shubin@maquefel.me>
-Subject: [PATCH v3 2/2] ASoC: ep93xx: Add OF support
-Date:   Tue, 11 Apr 2023 18:59:51 +0200
-Message-Id: <20230411165951.2335899-2-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230411165951.2335899-1-alexander.sverdlin@gmail.com>
-References: <20230411165951.2335899-1-alexander.sverdlin@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230407175807.124394-1-krzysztof.kozlowski@linaro.org>
+ <20230407175807.124394-5-krzysztof.kozlowski@linaro.org>
+ <ZDVq1b0TjXH5LTYx@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZDVq1b0TjXH5LTYx@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,51 +82,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new cirrus,ep9301-ac97 and cirrus,ep9301-i2s compatibles.
+On 11/04/2023 16:12, Johan Hovold wrote:
+> On Fri, Apr 07, 2023 at 07:58:02PM +0200, Krzysztof Kozlowski wrote:
+>> Pin configuration property "input-enable" was used with the intention to
+>> disable the output, but this is done by default by Linux drivers.  Since
+>> patch ("dt-bindings: pinctrl: qcom: tlmm should use output-disable, not
+>> input-enable") the property is not accepted anymore.
+> 
+> This description does not seem to match the pin configurations that you
+> are changing below which use the "qcom,sc8280xp-lpass-lpi-pinctrl"
+> binding for which 'input-enable' is still accepted AFAICT.
+> 
+> Perhaps you can fix up the lpass bindings (and driver?) to match?
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
-Changelog:
-v3:
-- rebased onto
- https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-v2:
- - Dropped AC97 (deleted from the tree)
+Thanks for spotting this. This change is wrong.
 
- sound/soc/cirrus/ep93xx-i2s.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/sound/soc/cirrus/ep93xx-i2s.c b/sound/soc/cirrus/ep93xx-i2s.c
-index 2abd1bce2290..afc6b5b570ea 100644
---- a/sound/soc/cirrus/ep93xx-i2s.c
-+++ b/sound/soc/cirrus/ep93xx-i2s.c
-@@ -15,6 +15,7 @@
- #include <linux/slab.h>
- #include <linux/clk.h>
- #include <linux/io.h>
-+#include <linux/of.h>
- 
- #include <sound/core.h>
- #include <sound/dmaengine_pcm.h>
-@@ -514,11 +515,18 @@ static void ep93xx_i2s_remove(struct platform_device *pdev)
- 	clk_put(info->mclk);
- }
- 
-+static const struct of_device_id ep93xx_i2s_of_ids[] = {
-+	{ .compatible = "cirrus,ep9301-i2s" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ep93xx_i2s_of_ids);
-+
- static struct platform_driver ep93xx_i2s_driver = {
- 	.probe	= ep93xx_i2s_probe,
- 	.remove_new = ep93xx_i2s_remove,
- 	.driver	= {
- 		.name	= "ep93xx-i2s",
-+		.of_match_table = ep93xx_i2s_of_ids,
- 	},
- };
- 
--- 
-2.40.0
+Best regards,
+Krzysztof
 
