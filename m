@@ -2,121 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41E656DDCC3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6741E6DDCD9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:55:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230480AbjDKNt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 09:49:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
+        id S230451AbjDKNzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 09:55:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbjDKNt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:49:26 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12CE71FE2
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 06:49:24 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id o1so10518755lfc.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 06:49:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681220963;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uHtWgJFHIhaJVA6LiMJBMJU0hICshc5Lm8ByCpWkf/w=;
-        b=KTJSSGL0yuAsLkW0Ws8NUpXCYKloY0mQEaB9RREuwahxQ72lqe2vz2ZgsA4rN2PDCi
-         U3EdyCjvIApkBpmw/N6jiPlbQN3vlPbj+cOHBWRLwDfVTlaMIgCQzT02Ou23ulJ/E2s6
-         WCEhVNbO/4n6xEE5D+PtHlCaVwkiErKQ/HfTs6F0ze/tpwzQG6jXG4cW40WDxQmKgMWK
-         4g+kt8TpB45+HnkbMBLolAp3n3GNlVI5tvYdx8XIpMG3tCu2pcUP/87UTnZK7EEun+Ck
-         UUvcofYFie8GlkisWxghfczBwgxtSK4xr+55NCftBZ/vPt33SQ3Jh/0FqqVcA42J5wxB
-         mV6w==
+        with ESMTP id S229957AbjDKNzV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:55:21 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB15210FE;
+        Tue, 11 Apr 2023 06:55:20 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id bx42so21879299oib.6;
+        Tue, 11 Apr 2023 06:55:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681220963;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uHtWgJFHIhaJVA6LiMJBMJU0hICshc5Lm8ByCpWkf/w=;
-        b=ZM6t2yvJoG1e6ht5AZhVph4ITDLDIVB2POcHAvYWUH9GO+nc2cZWjdS+KfSExs94df
-         9j7p4Qgnli2nFO9QrOcbfu4B8bQeeiHL/oX1SrYRma7syyGlIZ0qtN4t80Y1rApFUYfZ
-         WO+HXDdZ772qTJBPBFslKE7q9u5CBX02e0PlKCPgbYktc1tUNc/yJjzmvm5DnuD0B5q6
-         16LEiVDEDNFTu1eTGn75JkwJ2DFo2Vp/DOw9WgGk6TzsKg9jNHdtl6G8ZxfbvjzCJaEw
-         kdFqrJd696qCJ+jDithesOJxdpbbF2mG6NfbXcMvfTlpPQb8ngdd6y8/Tf600TbnHJMh
-         WLcw==
-X-Gm-Message-State: AAQBX9ffHXtrF2PuLKYOszOD7NfsRoVtF6/iEnQdn99/vOI0VT6G7gm8
-        xUzwCVrgDhLGCQ7XAOTIZS7FeA==
-X-Google-Smtp-Source: AKy350a1PFzOwUfLsdcxQQ1pdCVrf7WhWBjcq5r1wi0ojAgjZbb9DJfubVyraaH/otwwY4xiVBUUow==
-X-Received: by 2002:ac2:4c81:0:b0:4e9:6097:add3 with SMTP id d1-20020ac24c81000000b004e96097add3mr4731332lfl.61.1681220963648;
-        Tue, 11 Apr 2023 06:49:23 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id y9-20020ac255a9000000b004eb2d6160a4sm2563707lfg.32.2023.04.11.06.49.22
+        d=1e100.net; s=20210112; t=1681221320; x=1683813320;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4ZO7ezzSE2J/Q6kfu0V6nhJj8JV4tY/GZHsr0viCIQg=;
+        b=c++ag5pBCNz4L1Tgzj30Xtv9a9hOOu+kxW4Dnazck9f0YT2ZqmmKIf/RwWiGJRz+0Y
+         jUh8BSZ4tPm4nmUUhBbi9kllgKjGND48nYlpcjsVj/yhdFndwmqIr6QjmQTnCjwlMvG+
+         YyKL7WT+ArZAOjaBULRs1zVPn5e4u6Wvak/UVr6Y6OAaIgvrIg5mvLIGAD6jKzJ0vIfW
+         wWS3b2cL5mBX6IN/yqCL94Lr7OfLPzx3nL49v3z4qjS4ejIoWdB9avfrOQssV0nMi2QS
+         1xqItxnnJ4pOVw2CsIeaIh5V6QtQ0xPrMe1YnxWCI/1DFv8TKP8ikLzyeuShmnjqXYpg
+         yr7Q==
+X-Gm-Message-State: AAQBX9cCzeKHwyuZAoxX5JFgzvT+Qwvg5wO/GbIgvd3vTp+lBvqIIEuE
+        5wcYsfW9EkJV/bieZr32eQ==
+X-Google-Smtp-Source: AKy350Zknu9XdcP66k0cfxAwCQD/B6DUAgh2awz+0hWaJCNQBE/oSeXwvEvVidCKbiEVzCNEA+x/Kg==
+X-Received: by 2002:a05:6808:8e:b0:387:2075:59c with SMTP id s14-20020a056808008e00b003872075059cmr5793228oic.37.1681221320010;
+        Tue, 11 Apr 2023 06:55:20 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i128-20020acaea86000000b00386eff32f58sm5587706oih.13.2023.04.11.06.55.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 06:49:23 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 11 Apr 2023 15:49:18 +0200
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8150-kumano: Enable SDHCI2
+        Tue, 11 Apr 2023 06:55:19 -0700 (PDT)
+Received: (nullmailer pid 2960222 invoked by uid 1000);
+        Tue, 11 Apr 2023 13:55:18 -0000
+Date:   Tue, 11 Apr 2023 08:55:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Brad Larson <blarson@amd.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        samuel@sholland.org, fancer.lancer@gmail.com,
+        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
+        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
+        ulf.hansson@linaro.org, vaishnav.a@ti.com, will@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v13 08/15] arm64: dts: Add AMD Pensando Elba SoC support
+Message-ID: <20230411135518.GA2952600-robh@kernel.org>
+References: <20230410184526.15990-1-blarson@amd.com>
+ <20230410184526.15990-9-blarson@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230315-topic-kumano_dts0-v1-4-f1852c2a2378@linaro.org>
-References: <20230315-topic-kumano_dts0-v1-0-f1852c2a2378@linaro.org>
-In-Reply-To: <20230315-topic-kumano_dts0-v1-0-f1852c2a2378@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681220957; l=921;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=gxjJ6YGpLan1OIOLNTh/xyzJg8bMee6dGyJiV+tpg98=;
- b=rqX9idewh+MKrObT4whA4e2QmK0L5hgfn542WlrlHCE88WamDPMQBItmcIGikS3F7gpmkSdLyX50
- oVjpPCV7A6mwC5Lc5Ol9Mj6CSzoRXfRHakxaTIelrmZ2GCNGbOuo
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230410184526.15990-9-blarson@amd.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konrad Dybcio <konrad.dybcio@somainline.org>
+On Mon, Apr 10, 2023 at 11:45:19AM -0700, Brad Larson wrote:
+> Add AMD Pensando common and Elba SoC specific device nodes
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> ---
+> 
+> v11 changes:
+> - Delete reset-names
+> - Fix spi0 compatible to be specific 'amd,pensando-elba-ctrl'
+> 
+> v9 changes:
+> - Single node for spi0 system-controller and squash
+>   the reset-controller child into parent
 
-Set up and enable SDHCI2 to enable the microSD slot on Kumano
-devices.
+Have you run this thru 'make dtbs_check'? I see at least one issue that 
+should report.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> ---
+>  arch/arm64/boot/dts/amd/Makefile              |   1 +
+>  arch/arm64/boot/dts/amd/elba-16core.dtsi      | 189 +++++++++++++++++
+>  arch/arm64/boot/dts/amd/elba-asic-common.dtsi |  80 ++++++++
+>  arch/arm64/boot/dts/amd/elba-asic.dts         |  28 +++
+>  arch/arm64/boot/dts/amd/elba-flash-parts.dtsi | 106 ++++++++++
+>  arch/arm64/boot/dts/amd/elba.dtsi             | 191 ++++++++++++++++++
+>  6 files changed, 595 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-16core.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-asic-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-asic.dts
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amd/elba.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/amd/Makefile b/arch/arm64/boot/dts/amd/Makefile
+> index 68103a8b0ef5..8502cc2afbc5 100644
+> --- a/arch/arm64/boot/dts/amd/Makefile
+> +++ b/arch/arm64/boot/dts/amd/Makefile
+> @@ -1,2 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_PENSANDO) += elba-asic.dtb
+>  dtb-$(CONFIG_ARCH_SEATTLE) += amd-overdrive-rev-b0.dtb amd-overdrive-rev-b1.dtb
+> diff --git a/arch/arm64/boot/dts/amd/elba-16core.dtsi b/arch/arm64/boot/dts/amd/elba-16core.dtsi
+> new file mode 100644
+> index 000000000000..37aadd442db8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amd/elba-16core.dtsi
+> @@ -0,0 +1,189 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +/*
+> + * Copyright 2020-2022 Advanced Micro Devices, Inc.
+> + */
+> +
+> +/ {
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 { cpu = <&cpu0>; };
+> +				core1 { cpu = <&cpu1>; };
+> +				core2 { cpu = <&cpu2>; };
+> +				core3 { cpu = <&cpu3>; };
+> +			};
+> +
+> +			cluster1 {
+> +				core0 { cpu = <&cpu4>; };
+> +				core1 { cpu = <&cpu5>; };
+> +				core2 { cpu = <&cpu6>; };
+> +				core3 { cpu = <&cpu7>; };
+> +			};
+> +
+> +			cluster2 {
+> +				core0 { cpu = <&cpu8>; };
+> +				core1 { cpu = <&cpu9>; };
+> +				core2 { cpu = <&cpu10>; };
+> +				core3 { cpu = <&cpu11>; };
+> +			};
+> +
+> +			cluster3 {
+> +				core0 { cpu = <&cpu12>; };
+> +				core1 { cpu = <&cpu13>; };
+> +				core2 { cpu = <&cpu14>; };
+> +				core3 { cpu = <&cpu15>; };
+> +			};
+> +		};
+> +
+> +		/* CLUSTER 0 */
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x0>;
+> +			next-level-cache = <&l2_0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x1>;
+> +			next-level-cache = <&l2_0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x2>;
+> +			next-level-cache = <&l2_0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x3>;
+> +			next-level-cache = <&l2_0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		l2_0: l2-cache0 {
+> +			compatible = "cache";
+> +		};
+> +
+> +		/* CLUSTER 1 */
+> +		cpu4: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x100>;
+> +			next-level-cache = <&l2_1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu5: cpu@101 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x101>;
+> +			next-level-cache = <&l2_1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu6: cpu@102 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x102>;
+> +			next-level-cache = <&l2_1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu7: cpu@103 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a72";
+> +			reg = <0 0x103>;
+> +			next-level-cache = <&l2_1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		l2_1: l2-cache1 {
+> +			compatible = "cache";
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-index 5fa0a83a4b2c..9dca22cf3eb6 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-@@ -618,6 +618,17 @@ &qupv3_id_1 {
- 	status = "okay";
- };
- 
-+&sdhc_2 {
-+	vmmc-supply = <&vreg_l9c_2p9>;
-+	vqmmc-supply = <&vreg_l6c_2p9>;
-+	cd-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-emmc;
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <126 4>;
- 	gpio-line-names = "NFC_ESE_SPI_MISO", /* GPIO_0 */
+This is missing properties. If you don't see warnings, update dtschema.
 
--- 
-2.40.0
-
+Rob
