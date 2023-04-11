@@ -2,141 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB5F6DD6FC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 11:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9BC6DD6F6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 11:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjDKJgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 05:36:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55536 "EHLO
+        id S230257AbjDKJfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 05:35:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjDKJfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 05:35:36 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF07449CB;
-        Tue, 11 Apr 2023 02:34:53 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id b15so2755930qkj.0;
-        Tue, 11 Apr 2023 02:34:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1681205692;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p1nO+Cpgpb/TzGbvoOZXWjSbOjtnB5mkQYr/7rdByO0=;
-        b=KhjZm3BrvPkpDHCOJfSuNUC/eJXL0i2UmUI2trMxgQihk6wGAq5eukbk+7sjjjxMay
-         FuuKa39M39Xtn1QEDOe88VGIgado8Ua+FMZg/bEVNHnhJPSiRE3AMrDnQa7Ay1gX6i1t
-         aA9OpAWWvanhx9LuSapYuHgcAz94GH1KrB6xIcu4wpuRz5dujhBZ0ZJ44qQST3IHLGyr
-         oHJD29h2f5uYr5zqa1DA8dJyDOdSIyLqUhNQYu5Mrcq6fkyR5Gxiw1xHz3vyoO/uKiS8
-         Wcir+VDIPSsfOdHH7BILVKmiiUDUhTY24b/gAStq50wFiVPUDLHNYK6jLBpZUELzV5KN
-         zUBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681205692;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p1nO+Cpgpb/TzGbvoOZXWjSbOjtnB5mkQYr/7rdByO0=;
-        b=ecpBf6HCUpR1U+J5qBY4tJtfitT5qayRb5Um7fnIf7tioFj5scRuExP6Aq+hFGmdmF
-         i9+dX82mTrhaf+H3Lgvi2rxgrLHBqrbnDh3Mk5H2SQ/VRNxq8YrzuK12OSXyYsYzjr3I
-         kXCxZXb2btJfqjQnPcHJ8SGeeLP4e1dL1cxdooFzk4z2zCK3suuiU6t7Og0fHyadY3qo
-         ex1xN8HVp09u5FbKlEpTnb7UeQIBTysDy9p0lTZLQyqzrY9NYzhLubKFPtE0bDKHRmjc
-         kdRnPbVWa6MEKurI7afMdsMbHdmYT/uhW/slGH5UsayHvue9iuBRfcsn0elVqEY0/DfU
-         np7A==
-X-Gm-Message-State: AAQBX9enJnmPsfelhHOIOzUGJKCu0oWCyjRCksFKL6yRWvbk7G4BknVK
-        ei/vbcNuVk7QIRcRH/ciozh1t+s2vQ8F8BdKAm4=
-X-Google-Smtp-Source: AKy350Yi7o7NxrVNJ1sgjEuPPNgFp1lYeet38OY5N2fnMdfU5j4Ves7rO3R76tP0fEqty4gWGGvXOnCr86f6tILvgGg=
-X-Received: by 2002:a05:620a:c46:b0:743:6092:91b4 with SMTP id
- u6-20020a05620a0c4600b00743609291b4mr4334915qki.14.1681205692111; Tue, 11 Apr
- 2023 02:34:52 -0700 (PDT)
+        with ESMTP id S229572AbjDKJfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 05:35:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF3F44B5;
+        Tue, 11 Apr 2023 02:34:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D9DF62354;
+        Tue, 11 Apr 2023 09:34:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A31E2C4339B;
+        Tue, 11 Apr 2023 09:34:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681205669;
+        bh=XiRL1XsjOgYxxmz+rJpn/mTqJrArcWXq2XQJOxr8tzY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Fgvbi951V+gZAC7GnkKC3fwbtNuibkxLU74LnmFv0R27BRYB93FAlU0zIKLqN2oiy
+         cZG2545AXwJEJfLFCddbtGWvB2GVZaG7OPbkepSMmYMXDXGL04Nb7Z02hzb9niUZIv
+         mqR16OxIcvsz8F6HeOpiHTPHzQhB9bj6qbJUP6Tp9wCu0K+TF0SinatKUxDpps624H
+         2G8GhaSUmAaYqPxmN23Gooq69EeI/p0wvmfCOZTtkD7j72RT2d/AIryOcpiDy0aRUT
+         iB8hVQkvKY9orRfdxCz747U3mTLRVisLsUxV+OPDuDKzWiV/Tf3P6EQl8j2NbRBYgv
+         f/i9Tr3H25Y7Q==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     andersson@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: (subset) [PATCH v5 00/19] Qcom PCIe cleanups and improvements
+Date:   Tue, 11 Apr 2023 11:34:23 +0200
+Message-Id: <168120564704.14983.16177525029938219266.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230316081117.14288-1-manivannan.sadhasivam@linaro.org>
+References: <20230316081117.14288-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
- <ZDBnnKy7QF0KZuZd@surfacebook> <3231223.aeNJFYEL58@steina-w>
-In-Reply-To: <3231223.aeNJFYEL58@steina-w>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 11 Apr 2023 12:34:16 +0300
-Message-ID: <CAHp75VeR5R_CqWNT=Fpbyp-YSeo+3QXBnR62C=K_tyr-qQ2MVw@mail.gmail.com>
-Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 11, 2023 at 10:19=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
-> Am Freitag, 7. April 2023, 20:57:32 CEST schrieb andy.shevchenko@gmail.co=
-m:
-> > Thu, Apr 06, 2023 at 11:33:41AM +0200, Alexander Stein kirjoitti:
+On Thu, 16 Mar 2023 13:40:58 +0530, Manivannan Sadhasivam wrote:
+> This series brings in several code cleanups and improvements to the
+> Qualcomm PCIe controller drivers (RC and EP). The cleanup part mostly
+> cleans up the bitfield definitions and transitions to bulk APIs for clocks,
+> and resets. The improvement part adds the debugfs entries to track link
+> transition counts in RC driver.
+> 
+> Testing
+> -------
+> 
+> [...]
 
-...
+Applied to controller/qcom, thanks!
 
-> > > thanks for the feedback I've received. This is the first non-RFC seri=
-es
-> > > for
-> > > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs=
-.
-> > >
-> > > Changes compared to RFC v2 are mentioned in each patch.
-> >
-> > Reading the (poor?) documentation does not clarify the use case.
-> > Looking at them I think that this can be implemented as debounce.
->
-> Debounce for GPIOs? There is nothing like that yet.
+[01/19] PCI: qcom: Fix the incorrect register usage in v2.7.0 config
+        https://git.kernel.org/pci/pci/c/2542e16c3925
+[02/19] PCI: qcom: Remove PCIE20_ prefix from register definitions
+        https://git.kernel.org/pci/pci/c/39171b33f652
+[03/19] PCI: qcom: Sort and group registers and bitfield definitions
+        https://git.kernel.org/pci/pci/c/769e49d87b15
+[04/19] PCI: qcom: Use bitfield definitions for register fields
+        https://git.kernel.org/pci/pci/c/57eddec8dc30
+[05/19] PCI: qcom: Add missing macros for register fields
+        https://git.kernel.org/pci/pci/c/17804668ca54
+[06/19] PCI: qcom: Use lower case for hex
+        https://git.kernel.org/pci/pci/c/94ebd232dbc8
+[07/19] PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.1.0
+        https://git.kernel.org/pci/pci/c/383215dd2fd7
+[08/19] PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 1.0.0
+        https://git.kernel.org/pci/pci/c/5d4ffe5ec5e9
+[09/19] PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 2.3.2
+        https://git.kernel.org/pci/pci/c/5329bcc4a1e7
+[10/19] PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 2.3.3
+        https://git.kernel.org/pci/pci/c/b699ed9b03de
+[11/19] PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.3.3
+        https://git.kernel.org/pci/pci/c/157fecca3558
+[12/19] PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.4.0
+        https://git.kernel.org/pci/pci/c/fb0eacb2972e
+[13/19] PCI: qcom: Use macros for defining total no. of clocks & supplies
+        https://git.kernel.org/pci/pci/c/656a08820e7b
+[14/19] PCI: qcom: Rename qcom_pcie_config_sid_sm8250() to reflect IP version
+        https://git.kernel.org/pci/pci/c/1f70939871b2
+[15/19] dt-bindings: PCI: qcom: Add "mhi" register region to supported SoCs
+        https://git.kernel.org/pci/pci/c/0f80edf8447d
+[19/19] PCI: qcom: Expose link transition counts via debugfs
+        https://git.kernel.org/pci/pci/c/05f464640962
 
-At least that what we have already done in the code, you can just
-provide a similar feature to the output pins, no?
-
-> > Also I have no clue why it's so important that we _need_ to have a
-> > driver for this. We have plenty of consumer drivers that implement
-> > delays on ramping up or down or whatever if they need.
->
-> But this delay I am dealing with is actually not consumer dependent, e.g.=
- a
-> power-on delay specified in a datasheet. Instead this driver deals with a
-> platform-specific curiosity, e.g. RC-circuit on an open-drain output. So =
-this
-> is something which sits inbetween ICs.
-> In the RFC we came to the conclusion to not adjust (each) consumer to dea=
-l
-> with this, given this will be rarely used. Instead provide a generic way =
-for
-> specifying this delay.
-
-So, taking the above into consideration, why is it GPIO property to
-begin with? This is PCB property of the certain platform design that
-needs to be driven by a specific driver, correct?
-At the very least this is pin configuration (but external to the SoC),
-so has to be a _separate_ pin control in my opinion.
-
-> > Which part(s) did I got wrong?
->
-> Maybe there needs to be an explicit example in the bindings document what=
-'s
-> the actual issue to deal with.
-> Right now if a GPIO is set, it is expected the signal on the receiver sid=
-e has
-> changed as well within a negligible time as well. But due to external rea=
-sons
-> (see RC_curcuit above) the change on the receiver side can occur much lat=
-er,
-> >100ms in my case.
-
-I still don't understand why it is a problem. If each signal is
-delayed then the caller should be aware of the delay, no?
-
-
---
-With Best Regards,
-Andy Shevchenko
+Thanks,
+Lorenzo
