@@ -2,177 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47AB56DE833
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 01:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92D766DE837
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 01:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjDKXnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 19:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39620 "EHLO
+        id S229493AbjDKXoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 19:44:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjDKXnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 19:43:20 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0948246BE;
-        Tue, 11 Apr 2023 16:42:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681256569; x=1712792569;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=7Vk9EzIv30HkPnigih7IlZ6Iq+GfdqLTKjIkrPa1UEg=;
-  b=eBIcvShLiyoSO3HXYrYr4ODkIqx3laBXfloMutol+R3SYn3k/a7e9cSD
-   /j4DyJ0Ba5hi7eJKkW9qCft9wYClCmp/+IiVOQxeLHEFhomYvTPNBTDAv
-   fPgK4rnsQ3OH8enP9nqRgIOf9V13hrwI3OIdR5cw2u9rLaq1sbe73w8fj
-   JD6OIdJHl6y8HZ4XrwnMJ51d0rOhrq1hhQ+td4UPZ0OXdDp25EDvkAqcc
-   TEHNzmwD7I61S8AcIJi1g7d3L2i1v6weW2qoIye2WeEMTevRBE2YBwLjT
-   Dwni7fnstsJgtdalbZd5E3qdUXg/9fXFcIcwNANbtrHVhN9c5E73Jgqu+
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="406586619"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; 
-   d="scan'208";a="406586619"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2023 16:42:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="812770877"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; 
-   d="scan'208";a="812770877"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
-  by orsmga004.jf.intel.com with ESMTP; 11 Apr 2023 16:42:47 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 11 Apr 2023 16:42:47 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 11 Apr 2023 16:42:46 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 11 Apr 2023 16:42:46 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 11 Apr 2023 16:42:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mqb4oARC/JMLPNM2JehOmiMUizvy6127s2iK+L8yL7kuzLiN96xLHTMH9n1MWjbXpZC5502YSKQdNFV35w+KRW6ovxsAXpLODu88ZPkVCinEL21RPEccsjQy4W3jKKW6VNw6YzucOMfV9DyVHXmPN8UFnqvQwzKQZxMbc21bgG4eCkCKjww99WgBXPTRo6IJkdmTYr9NqZc3ibt2L+6ssYlYJM9Qeqn6d6tsUcvOTLVmSvRhq+CZk2M+kKevGsxHYGm6u07IGklfskTmpXlnPNehKFVtXsGi9XRPrP51zb8QygXf9nNBZTbIl/8haaMfWS+9nwihPzEGz2Q5osi95g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S4R+f1LPI3hQ+0Ybnj5yBLaw6C/OINJaGEO/AokY1Zg=;
- b=nrKjVym1C2imm4WB3QKDuRUvmoVSMRjq7EVlYhQgJuMYtw0CcHTj++QZ35F+ItNM/xGKu+r4p2tc5L/bOc5WrK8Ro4/ig6iyvjuBN3PBfNnp+VxvEayhTNCD5j7gyB2Eb+w2d21tPplU2Xy330VTaYsE+EhtnjyUTTSBX13u6O2jRoUtQOPAdr4AJCxvFUOD/+PxgYhF8IMBO9Uz/EkiCkUxSWKlyunAr0bsMh6PKuHWWIbShEAtBrX1L66oM1tM9JmEDi8+0YmF5to/+cQdGxQtBhospu21/U3ueKVh0tEmAH2NXsM75aMCpOzrU+PMMVmy1Y38nMn2TDz3nt6lHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4914.namprd11.prod.outlook.com (2603:10b6:303:90::24)
- by SN7PR11MB7044.namprd11.prod.outlook.com (2603:10b6:806:29b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Tue, 11 Apr
- 2023 23:42:39 +0000
-Received: from CO1PR11MB4914.namprd11.prod.outlook.com
- ([fe80::c7d6:3545:6927:8493]) by CO1PR11MB4914.namprd11.prod.outlook.com
- ([fe80::c7d6:3545:6927:8493%7]) with mapi id 15.20.6277.038; Tue, 11 Apr 2023
- 23:42:39 +0000
-Message-ID: <f2acb0ea-90ea-dfbf-6367-c3d44f0e8436@intel.com>
-Date:   Tue, 11 Apr 2023 16:42:35 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Subject: Re: [PATCH net-next v4 10/12] net: stmmac: dwmac-qcom-ethqos: Respect
- phy-mode and TX delay
-Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <davem@davemloft.net>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vkoul@kernel.org>, <bhupesh.sharma@linaro.org>, <wens@csie.org>,
-        <jernej.skrabec@gmail.com>, <samuel@sholland.org>,
-        <mturquette@baylibre.com>, <peppe.cavallaro@st.com>,
-        <alexandre.torgue@foss.st.com>, <joabreu@synopsys.com>,
-        <mcoquelin.stm32@gmail.com>, <richardcochran@gmail.com>,
-        <linux@armlinux.org.uk>, <veekhee@apple.com>,
-        <tee.min.tan@linux.intel.com>, <mohammad.athari.ismail@intel.com>,
-        <jonathanh@nvidia.com>, <ruppala@nvidia.com>, <bmasney@redhat.com>,
-        <andrey.konovalov@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <ncai@quicinc.com>,
-        <jsuraj@qti.qualcomm.com>, <hisunil@quicinc.com>,
-        <echanude@redhat.com>
-References: <20230411200409.455355-1-ahalaney@redhat.com>
- <20230411200409.455355-11-ahalaney@redhat.com>
-From:   Jesse Brandeburg <jesse.brandeburg@intel.com>
-In-Reply-To: <20230411200409.455355-11-ahalaney@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0P220CA0008.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::17) To CO1PR11MB4914.namprd11.prod.outlook.com
- (2603:10b6:303:90::24)
+        with ESMTP id S229485AbjDKXox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 19:44:53 -0400
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 429C4D8;
+        Tue, 11 Apr 2023 16:44:52 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id l13-20020a0568302b0d00b006a416ec44ccso609247otv.2;
+        Tue, 11 Apr 2023 16:44:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681256691; x=1683848691;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bhO8R9GioOCOagQ6Y9fLjNmhaghaaAAsdr3nkk8G91Q=;
+        b=pffI9SjDBnzLY/ZEl7AYtbcNLcAGOeW2FqebwEUsP07kEREEoqEFU6EFTauSG8QyNH
+         7v99HQ2Ma43QycLUixCTBTjxnxp5mju7zkArPkM/dNK3BZhJ7NicLJkaV3tZS5aHnIMD
+         cTT0igm1i8Uw5lUULhz8lfmAOiseFq3fEenlBUjwzyMJQ7mGdtDG2lFu2Mn8KIqz28bW
+         woMTVOTaLDgKw9WBpvX22H0p8wGrTp1IuNcndPX9oB35xv1NXeZ1ed0fh94Vy26No8f3
+         P8th/jitUdKLaUM2pDYXj6+RRQPjByGrlD7MBMbSQW+bgWJAi6LqcwCP7kYAcSybtRhN
+         zl4Q==
+X-Gm-Message-State: AAQBX9fMzHVeMk1XfyAq/meKV/NIxINTJnT7qyP8iXbESC2YRM4MlFjW
+        qj8X01o5gm8IJZL1398ExFS3FXj5fQ==
+X-Google-Smtp-Source: AKy350Y4GC3JdkRk79jMyBG3SpXIy4yOATtALC36XtJb/GoPcjog7NeXxd7pXFccoDWD6Pn4a81+Jg==
+X-Received: by 2002:a9d:7e98:0:b0:6a4:1980:2a93 with SMTP id m24-20020a9d7e98000000b006a419802a93mr294955otp.29.1681256691465;
+        Tue, 11 Apr 2023 16:44:51 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m13-20020a0568301e6d00b0069faa14e99fsm5897068otr.10.2023.04.11.16.44.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 16:44:50 -0700 (PDT)
+Received: (nullmailer pid 60808 invoked by uid 1000);
+        Tue, 11 Apr 2023 23:44:49 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4914:EE_|SN7PR11MB7044:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6179e9b3-b3fd-4570-ca40-08db3ae66f49
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2ns/3IwpvQQdc3UZ57OKkkinnBu7kAdMvecpwdfc0In7SIwOC36+DVJ+Sv0E3wdQsGuvZgQXu1i9TtYueDhEVyulWlhSzJAyURXNvd8Qub7yTA04sbkLl9kf7Ht8pFE2TWHOeS9l9YZmXE2ApqkJ/HM9k8t+83jsMceh3GutUl5QZ9m1cbgF8EL5Ru16ZnLV0xtWypHxIerX8agqJiSlctlNCTkwhOclavt09NBKP0M4eCjTH00J/7+zxg6gcpmW6+mlAvkeglU3QJV24WjL9JNz9k4k/yHY1Cbaln8L8jU/eXJhZEygfJJX2vKKUVE8c5PYGG5X/yijJzU2mc+Tv2/Q9e0yYMKtOSJoovHTKzNewJfbvEglvMmu+mHPMjLTaqXUb1IX+QMVbJtQwy/VBvm80ZbeshPOxSeIaZZQNbHDpYoUNdnV5tN2gi4wssReLAxujo0KvFKlcLot3cR1rJ8chJ+feikRX2GwLRzDXsTcU8iCVZqG9JPWSJTYOiXPuDs3aK8z1mA267qasHrQ5xbXzojYX8m6krvyaskADI6Q/W9gC0G7AK3JDeTs2leRttB5NjrEO8LLkbNaR9+HudxlrSUvqQS+5koVRa5ulKtrh51YfRRXHuOJ062ofNGVtWiRkcMikWYnMsRqXULKNQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4914.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39860400002)(136003)(396003)(376002)(346002)(366004)(451199021)(4326008)(86362001)(2906002)(7416002)(7406005)(5660300002)(31696002)(31686004)(66556008)(2616005)(4744005)(66476007)(66946007)(186003)(44832011)(82960400001)(53546011)(26005)(6506007)(6512007)(6666004)(6486002)(36756003)(38100700002)(316002)(8936002)(8676002)(41300700001)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RWREWGNBek9XV0hraEd0RjlKWmt4aDhuRXBxK2lxRXp5aGIzRmFBZWZkVlla?=
- =?utf-8?B?ZFYxK0VSNWNKMkp3WkI5L3JBTkppSzUvR1lLNkg1QjdDVEhsY1NGd1ErY2xB?=
- =?utf-8?B?R1NRNW5WWngydkZrbHVQMXF2U2xEaVZLMmZQM0p3S3BtajgrQy9tVmU4cnox?=
- =?utf-8?B?OUV0Sjk0cGpXVVhTQmcySVRyV21POFJHWjEzOXJLZHA5dUhnSXorL2kwRVpX?=
- =?utf-8?B?dkZlRlRra2tOVUhzM2RxeFJCK0E0NTRzSVYvUnVSbElrMXQzL0svb3NOWlg2?=
- =?utf-8?B?aHFFS2ZYWjBHMG8vTTFkcmpJU3RkOGhRZXc0bnAyQ2tXcUl5Tm04QWdRR0lw?=
- =?utf-8?B?eit3UlQ2azh3aGtyNDN1OVFIWGt5REVVcTVtWUxKdGYrUldzOGw4dGcxU0ky?=
- =?utf-8?B?VG8rK2V0WUZGdXBIOWxwS1lvOWFFdWdPbzRSaVVEWGJlSHo2MGQ5UW1tOExt?=
- =?utf-8?B?ZUh6NDZhZVJzTXFsa05wd2dkei9tVlczSkw0RXREVDFMVjVlRDBmYkRzWkli?=
- =?utf-8?B?aFByVHlyTWdwOFV2cGFtbGhEOWhVWGRGeHVOOWEveldlNWd3MjVPZ0x4STAw?=
- =?utf-8?B?NU1GWTA0aVNMWWIvMjlZUVJEZkM0ZG1lV052NmxpZXdXZ29Cc1BzMWV0cEhp?=
- =?utf-8?B?SXRwWDFNcHp5KzBSME9LVjFUaGF6eXdjOXVPWnl5Y1BWdmYrQXZoMzRnbGpE?=
- =?utf-8?B?WjZ2d1dkOEhPd1EzYy9OTmMraU5WQ1pTNElPbWE0WjRGKzlic05yK2RvbklL?=
- =?utf-8?B?YmFzS0lzQ2YrR0pPSFNpbWdITFpuSzY5WktsUlZnb3JqVHhoVkpZdmUxYTVl?=
- =?utf-8?B?cFZCK1NudmNLaHVWcXZoejRydy9ncWxBOFNMMmxSQmFiWk1oeHBBSjcxekRs?=
- =?utf-8?B?MDZWdHBRRjFqVHUwd0NEd2REZXlZWHJ1TnRhVHJOcUoxSzVZV1R0dnh4QzBQ?=
- =?utf-8?B?eDRXbEVOMWJyTnc2eEdrQmhUSDVidTBlU2l2WG4yNVUwMHRQTHlTV2VURzVE?=
- =?utf-8?B?YU1sOVZuRHhyRlVTZ2V5dzZVcUtWQ1dMczVsWlJSalhUOHMxYzZYRHUraU1q?=
- =?utf-8?B?TUE4TVZsaDRCS3RYYVYwcWdsMHFCdlBzemJvSHFMTzhXb1M4Mkw1RVNCT1Jx?=
- =?utf-8?B?cDNEUDd2WlJqT1QrczNvcUsycmRHbWNxYU0rMEJQbHo0N1g4SFFFM1JIS083?=
- =?utf-8?B?dGp2UWNEK3JKNTBNU1o3Z3pVVmZFa003UVppN1IrLzk5NWxuTno3SmhRYmtI?=
- =?utf-8?B?S055bEZ5NWZjWExLVFZTeWNTK3laNGhPL2RuWExidWw0WU5zSFgxelY0c0k1?=
- =?utf-8?B?UnZ0VE1MQlFDaGtMSk9qZ2FHT1ZzZnMwb2dpdFBwLzM5Yi9ubWRpVk1veWpG?=
- =?utf-8?B?aTlCQXdoN1Z6TDEyRlNLaDNsVUpLYlRqK3hJWXBxK1lyek03cDB3QmZBZVkv?=
- =?utf-8?B?Z1FKYTNKOERVUzdVdHM3ZXhTUXppbk9lUTlNNFdUNmh6M1V0SUZqUTRYWDdj?=
- =?utf-8?B?RmozZ0FGY3ZZMWNVbVFzcW52S1dWOGRJL2VkUnFZQS9ZejNrSHQ2Q01pWWZh?=
- =?utf-8?B?T2RzMEorS2Zxclp6MkRhUWZJR1dBRHVhOUk0S0FlWGJnT0g5WHJHSGR4VVo2?=
- =?utf-8?B?c0RDNlJlNjB2MzlIOXFiZVVabUFVM2poSGRCajM3Y3JMb1lMSWxaT011N1lH?=
- =?utf-8?B?djJQZ0dFWTY3bUZ5YThJWE1TRHk1VWVNU1hPOXZyR1puYTVSRE5vcDRIWlRo?=
- =?utf-8?B?Tk5mRFFNdXVjU3RUQTlCUW1mR1R6S0QyN0VZUEM5NjdJVmd0djA3UmtGbm1S?=
- =?utf-8?B?bC9YL0lrQWdIWDF5amtBczExbmplOEV3NDc0cWJKcVNFd3UxNGtrNnYyblVn?=
- =?utf-8?B?MlNTbWZvbDduSzVJcWcvcVJhQzhETktLWkRPeFBBY1Z0ZjlWWENHaWFDTlhx?=
- =?utf-8?B?R21XR2dzcGF4S242U21iUWsrU2YwMWNGSFFTWHd5NitybDlkZWxnbWNqK1Ew?=
- =?utf-8?B?dGtyRVpLS2pKek9KbWVjcEYyWDFaRnR2QTZqdWJLMlk1ZUxod1BVb0JRN3py?=
- =?utf-8?B?anZhbmljNGFLd09jWGdNZXBKWEkxZzlaaHBhYnVaM2NWVmdWcXVSc2hBSWhS?=
- =?utf-8?B?OEV6OXBUSXp5ZXJYaGFwdmNlQzNZKzBlR1V5T3lvUmdqN0QvOE56UWV0MTlj?=
- =?utf-8?B?VUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6179e9b3-b3fd-4570-ca40-08db3ae66f49
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4914.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2023 23:42:38.9858
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eCDnL9mN9JJO8PTx94wwYQY7ccijzT9+mCLYsUPN66IsFbbfirpgJEHNFnZ1HTxwDe+XGkFIIc4e76AiiurlSfJOy9XGmVuf4SXHKok6/5s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7044
-X-OriginatorOrg: intel.com
-X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        =?utf-8?q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+In-Reply-To: <20230411184313.3679145-4-sean.anderson@seco.com>
+References: <20230411184313.3679145-1-sean.anderson@seco.com>
+ <20230411184313.3679145-4-sean.anderson@seco.com>
+Message-Id: <168125645190.55087.12770846806127473997.robh@kernel.org>
+Subject: Re: [PATCH v13 03/15] dt-bindings: Convert gpio-mmio to yaml
+Date:   Tue, 11 Apr 2023 18:44:49 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -180,14 +77,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/2023 1:04 PM, Andrew Halaney wrote:
-> The driver currently sets a MAC TX delay of 2 ns no matter what the
-> phy-mode is. If the phy-mode indicates the phy is in charge of the
-> TX delay (rgmii-txid, rgmii-id), don't do it in the MAC.
+
+On Tue, 11 Apr 2023 14:43:00 -0400, Sean Anderson wrote:
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, and some registers may be omitted. Because of this, reg-names
+> is mandatory, and no order is specified.
 > 
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
+> has moved.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> Linus or Bartosz, feel free to pick this up as the rest of this series
+> may not be merged any time soon.
+> 
+> Changes in v13:
+> - Fix references to brcm,bcm63xx-gpio.yaml (neé brcm,bcm6345-gpio)
+> 
+> Changes in v12:
+> - Put compatible first
+> - Keep gpio-controller to one line
+> - Add little-endian property
+> - Alphabetize compatibles
+> - Remove some comments
+> - Remove some examples with insufficient novelty
+> 
+> Changes in v11:
+> - Keep empty (or almost-empty) properties on a single line
+> - Don't use | unnecessarily
+> - Use gpio as the node name for examples
+> - Rename brcm,bcm6345-gpio.yaml to brcm,bcm63xx-gpio.yaml
+> 
+> Changes in v10:
+> - New
+> 
+>  ...m6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} |  16 +--
+>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 117 ++++++++++++++++++
+>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 ------
+>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 ------
+>  .../mfd/brcm,bcm6318-gpio-sysctl.yaml         |   4 +-
+>  .../mfd/brcm,bcm63268-gpio-sysctl.yaml        |   4 +-
+>  .../mfd/brcm,bcm6328-gpio-sysctl.yaml         |   4 +-
+>  .../mfd/brcm,bcm6358-gpio-sysctl.yaml         |   4 +-
+>  .../mfd/brcm,bcm6362-gpio-sysctl.yaml         |   4 +-
+>  .../mfd/brcm,bcm6368-gpio-sysctl.yaml         |   4 +-
+>  10 files changed, 130 insertions(+), 103 deletions(-)
+>  rename Documentation/devicetree/bindings/gpio/{brcm,bcm6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} (78%)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> 
 
-Reviewed-by: Jesse Brandeburg <jesse.brandeburg@intel.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/gpio/brcm,bcm63xx-gpio.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.example.dtb: syscon@10000080: gpio@0: False schema does not allow {'compatible': ['brcm,bcm6318-gpio'], 'reg-names': ['dirout', 'dat'], 'reg': [[0, 8], [8, 8]], 'gpio-controller': True, 'gpio-ranges': [[1, 0, 0, 50]], '#gpio-cells': [[2]]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.example.dtb: syscon@100000c0: gpio@0: False schema does not allow {'compatible': ['brcm,bcm63268-gpio'], 'reg-names': ['dirout', 'dat'], 'reg': [[0, 8], [8, 8]], 'gpio-controller': True, 'gpio-ranges': [[1, 0, 0, 52]], '#gpio-cells': [[2]]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.example.dtb: syscon@10000080: gpio@0: False schema does not allow {'compatible': ['brcm,bcm6362-gpio'], 'reg-names': ['dirout', 'dat'], 'reg': [[0, 8], [8, 8]], 'gpio-controller': True, 'gpio-ranges': [[1, 0, 0, 48]], '#gpio-cells': [[2]]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.example.dtb: syscon@10000080: gpio@0: False schema does not allow {'compatible': ['brcm,bcm6328-gpio'], 'reg-names': ['dirout', 'dat'], 'reg': [[0, 8], [8, 8]], 'gpio-controller': True, 'gpio-ranges': [[1, 0, 0, 32]], '#gpio-cells': [[2]]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.example.dtb: syscon@fffe0080: gpio@0: False schema does not allow {'compatible': ['brcm,bcm6358-gpio'], 'reg-names': ['dirout', 'dat'], 'reg': [[0, 8], [8, 8]], 'gpio-controller': True, 'gpio-ranges': [[1, 0, 0, 40]], '#gpio-cells': [[2]]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.example.dtb: syscon@10000080: gpio@0: False schema does not allow {'compatible': ['brcm,bcm6368-gpio'], 'reg-names': ['dirout', 'dat'], 'reg': [[0, 8], [8, 8]], 'gpio-controller': True, 'gpio-ranges': [[1, 0, 0, 38]], '#gpio-cells': [[2]]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230411184313.3679145-4-sean.anderson@seco.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
