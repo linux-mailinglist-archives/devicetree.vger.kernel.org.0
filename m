@@ -2,147 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 280876DE1AD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 18:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1F6D6DE1B6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjDKQ7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 12:59:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41794 "EHLO
+        id S229742AbjDKRAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 13:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbjDKQ7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 12:59:31 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 337071BC0;
-        Tue, 11 Apr 2023 09:59:28 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-63397c54c5aso1194882b3a.3;
-        Tue, 11 Apr 2023 09:59:28 -0700 (PDT)
+        with ESMTP id S229793AbjDKRAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:00:15 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86B061B1;
+        Tue, 11 Apr 2023 09:59:55 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id kt17so9901323ejb.11;
+        Tue, 11 Apr 2023 09:59:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1681232367; x=1683824367;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QLWqkwPyAaDungSe3XNUQGsoacGsQAY/ebZXfHlHpHM=;
-        b=CxYeSnLq9uTKW6PNYtsC+srxJtyl2y98bsXC3HhdiZPMt0harzTTMRHdIeMmCY4pSv
-         1IITqNIl7SYKjY1VWZaoF0G7FXkulptaLcfy7KeV5njuReLK98DOlk6OjYWyDYh0+7ri
-         EN7wN+2LCrqvc78QddOeMMdVZ9QuVl5k4hSX398BtmgwvO4KHcbQsT9wNMJwaXyP2aa1
-         fQcupS7JVZoYQJYkgnWgVww88CayYagM10O4YhfJeiKICRznxIxPWcIJvKgV0AwwC12i
-         ifSkbf2YFR4p/yXb82xtVTlcbuEPyaUcZwPeZDuedNP01/qxSMyKOPu8Z7SptmSLL4T6
-         +yLA==
+        d=gmail.com; s=20210112; t=1681232394;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=grPBE8/AW9duwaajeZP7b+dDjiUP9gDZ3cyS7x0Oihs=;
+        b=pWToz4U61+BWTGI5jLpq8P1+fo6sLD5Mc/Gm+nUGDHeZB85cL9TEcmjA71LiSsFhWM
+         /LE6IZuzJQVl5jhgetzdMZH0EU1tw1CcVSH16vrzAH+2koLWvj3uQDowXRoNcslhclGR
+         zIiSC3z5m208ODU+CkmFwNhve/hRTfUQVFsc4b4D2C7wst4Og4uuCwfntHCIgvznFWWi
+         NcAiRG0zJDETKSze5g2tJ8GH0IxnRjGSRy84eHTCIQ+0CI+NeUECNUfTF4L5JdBlf6FD
+         sF9R2Cz8dpCc8byPfs9qG8vfK8RMARjxOpIVSvoZAEQ7ejIsDlDajiG12WHq4wV1smGf
+         jLFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681232367; x=1683824367;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QLWqkwPyAaDungSe3XNUQGsoacGsQAY/ebZXfHlHpHM=;
-        b=N6V31KMd8b8i2IU17r4onkQ1KKInrI1p3c9+VIeujgEk4vHySjUvJYlj+AYaR7Hoyd
-         jDx8evlm/+FJSiTG78+jbKXbYsW++74LQmKOlKZSgv7g2x/S8nq+vT3aqDsMgbLIgEBv
-         OTtDSdoVIkHQ82z3iv0FTm7SWBZIACU1AvT4a4aTUAVxJQtSB/X39jHATr+P7UZ7Lmfs
-         tVUSvNoxCwk/hMp/tsol+AXE/1b+5CRQHanpvpY5hcDwtFeb+J1ZI2PuodVL7ZY3SxSw
-         pl5QreYQEzUi4hJb8w0yrH6k5jfs0VmnmCui/GAD9aCmYWyw4oEH8i6vvfbIYowUFVbN
-         7OUQ==
-X-Gm-Message-State: AAQBX9dUtJxkWFCAYQhYB86rliFM4oq7S1eJp4WIbIRLCDlkaxu82gko
-        7AByRvPI7DUWS74eCctaOaAbC9mTlTQ=
-X-Google-Smtp-Source: AKy350Y1iWodMhWMKjTVKI+jACxjchJoEQj8AoSrxrW9+8KHznK4dlbBUoeYX+WelG/T8rVdmzN9Xw==
-X-Received: by 2002:a62:4e83:0:b0:5a8:8535:18b with SMTP id c125-20020a624e83000000b005a88535018bmr12127787pfb.11.1681232367455;
-        Tue, 11 Apr 2023 09:59:27 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id m6-20020aa79006000000b0063989aab89fsm3484519pfo.23.2023.04.11.09.59.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 09:59:27 -0700 (PDT)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+        d=1e100.net; s=20210112; t=1681232394;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=grPBE8/AW9duwaajeZP7b+dDjiUP9gDZ3cyS7x0Oihs=;
+        b=bjU6KwLx70L9Dow0F5+Dljr8NukrSG4+1pfgDWOAEeI5zxFSkKVelMgB3mUZEuk45W
+         hdSpnJtv0t8LWfSv88Rlg0Dalz3N83cvlj1S84EmJHfSf4gK2GCPlxAmwJLhrwYAbG3C
+         I2CNMP08YcvTzpqN4CL+QywUw0Yy3RYCU+EY1AXD8nHvyKE3Xod52l79leHxZkSOtzaH
+         jfnjnriT+Endp2w+M0anTe9+g8iCkvpPpJW6GlE/jHo7tH48nPS8xGFZmsFFmYJgf0mo
+         Jm4VNC5WmV4wURoUNjnL9/zdYQTJN5GC9meqAxfDmsYoCedxkDwtsy89A0DQ3FgYWo+C
+         mZiw==
+X-Gm-Message-State: AAQBX9fU+jkE8Fpa5PvY3MjaSclowvMqxj2egRL72FQBnTD3Izxy++wD
+        bFPSlSRpjMJ+VgD4/X3KCX1gX7cbPUwZgg==
+X-Google-Smtp-Source: AKy350YDB905MTox0+gR/vwMshE99CJuQWK4JRRs7QS7l3CVsR5xDfIoYdMawlatVJnqlwj601ICVA==
+X-Received: by 2002:a17:906:3093:b0:932:20a5:5b with SMTP id 19-20020a170906309300b0093220a5005bmr8752336ejv.23.1681232394200;
+        Tue, 11 Apr 2023 09:59:54 -0700 (PDT)
+Received: from localhost ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with UTF8SMTPSA id m9-20020a170906848900b00947a97a42f2sm6337870ejx.103.2023.04.11.09.59.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Apr 2023 09:59:53 -0700 (PDT)
+From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 1/3] dt-bindings: PCI: brcmstb: Add two optional props
-Date:   Tue, 11 Apr 2023 12:59:16 -0400
-Message-Id: <20230411165919.23955-2-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230411165919.23955-1-jim2101024@gmail.com>
-References: <20230411165919.23955-1-jim2101024@gmail.com>
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Nikita Shubin <nikita.shubin@maquefel.me>
+Subject: [PATCH v3 1/2] dt-bindings: sound: ep93xx: Add I2S description
+Date:   Tue, 11 Apr 2023 18:59:50 +0200
+Message-Id: <20230411165951.2335899-1-alexander.sverdlin@gmail.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Regarding "brcm,enable-l1ss":
+Add device tree bindings for Cirrus Logic EP93xx internal SoCs' I2S
+controller.
 
-  The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-  requires the driver probe() to deliberately place the HW one of three
-  CLKREQ# modes:
-
-  (a) CLKREQ# driven by the RC unconditionally
-  (b) CLKREQ# driven by the EP for ASPM L0s, L1
-  (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
-
-  The HW+driver can tell the difference between downstream devices that
-  need (a) and (b), but does not know when to configure (c).  Further, the
-  HW may cause a CPU abort on boot if guesses wrong regarding the need for
-  (c).  So we introduce the boolean "brcm,enable-l1ss" property to indicate
-  that (c) is desired.  Setting this property only makes sense when the
-  downstream device is L1SS-capable and the OS is configured to activate
-  this mode (e.g. policy==superpowersave).
-
-  This property is already present in the Raspian version of Linux, but the
-  upstream driver implementaion that will follow adds more details and
-  discerns between (a) and (b).
-
-Regarding "brcm,completion-timeout-us"
-
-  Our HW will cause a CPU abort if the L1SS exit time is longer than the
-  PCIe transaction completion abort timeout.  We've been asked to make this
-  configurable, so we are introducing "brcm,completion-timeout-us".
-
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 ---
- .../devicetree/bindings/pci/brcm,stb-pcie.yaml   | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Changelog:
+v3:
+- rebased onto
+ https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+v2:
+ - Incorporated most of the suggestions from Krzysztof Kozlowski [1]
+ - Dropped AC97 (deleted from the tree)
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 7e15aae7d69e..f7fc2f6561bb 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -64,6 +64,22 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  brcm,enable-l1ss:
-+    description: Indicates that PCIe L1SS power savings
-+      are desired, the downstream device is L1SS-capable, and the
-+      OS has been configured to enable this mode.  Note that when
-+      in this mode, this particular HW may not meet the requirement
-+      that requires CLKREQ# assertion to clock active to be
-+      within 400ns.
-+    type: boolean
+[1]. https://lore.kernel.org/lkml/46d5b6af-23e1-4178-83bc-b4a435b1426e@linaro.org/
+
+ .../bindings/sound/cirrus,ep9301-i2s.yaml     | 66 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+new file mode 100644
+index 000000000000..453d493c941f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/cirrus,ep9301-i2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+  brcm,completion-timeout-us:
-+    description: Number of microseconds before PCI transaction
-+      completion timeout abort is signalled.
-+    minimum: 16
-+    default: 1000000
-+    maximum: 19884107
++title: Cirrus EP93xx I2S Controller
 +
-   brcm,scb-sizes:
-     description: u64 giving the 64bit PCIe memory
-       viewport size of a memory controller.  There may be up to
++description: |
++  The I2S controller is used to stream serial audio data between the external
++  I2S CODECs’, ADCs/DACs, and the ARM Core. The controller supports I2S, Left-
++  and Right-Justified DSP formats.
++
++maintainers:
++  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: cirrus,ep9301-i2s
++
++  '#sound-dai-cells':
++    const: 0
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: mclk
++      - const: sclk
++      - const: lrclk
++
++required:
++  - compatible
++  - '#sound-dai-cells'
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    i2s: i2s@80820000 {
++        compatible = "cirrus,ep9301-i2s";
++        #sound-dai-cells = <0>;
++        reg = <0x80820000 0x100>;
++        interrupt-parent = <&vic1>;
++        interrupts = <28>;
++        clocks = <&syscon 29>,
++                 <&syscon 30>,
++                 <&syscon 31>;
++        clock-names = "mclk", "sclk", "lrclk";
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e52938f962b5..b39ec6dbcdc9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2072,6 +2072,7 @@ M:	Alexander Sverdlin <alexander.sverdlin@gmail.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/adc/cirrus,ep9301-adc.yaml
++F:	Documentation/devicetree/bindings/sound/cirrus,ep9301-*
+ F:	arch/arm/boot/compressed/misc-ep93xx.h
+ F:	arch/arm/mach-ep93xx/
+ F:	drivers/iio/adc/ep93xx_adc.c
 -- 
-2.17.1
+2.40.0
 
