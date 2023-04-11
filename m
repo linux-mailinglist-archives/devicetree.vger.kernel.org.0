@@ -2,68 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471A56DE0D0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 18:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 205056DE0E9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 18:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbjDKQSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 12:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50118 "EHLO
+        id S229622AbjDKQYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 12:24:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbjDKQRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 12:17:51 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0492D53;
-        Tue, 11 Apr 2023 09:16:44 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id EF10F1BF203;
-        Tue, 11 Apr 2023 16:16:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1681229803;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=YN1HFAut0wlkhACR1rC7RVWyzDX8GM5pnpZhh86udRk=;
-        b=EKMDssOG843Uardxa6RwBGRbMOzfLVszXIbDuTnWbFZ1B3lncrlUZE++iYyTOzyeat48k7
-        c4g0LlKJTXV/PvvYYgj+aPv3Dw/18k+BqyvXe00AhM2XJV+U5SpZp4EkWwodhOpAISw3y2
-        L5BKZTltFS0CREQXmMmorn5Ya56DHqZJuzUK1SI5i6oezMRh5WOsaOBuuCeUVzoZ6RLJ5V
-        05WE03kqdDkEv0aL/PaqbQfJKN4fDObGcDiEKaMLd4r9anaug2ArnmRnZF/kWNdeGak3pn
-        OcaJh4DOFkxBCDztunLHiPOHVG5Au+YsFQ4ttteU5CeI3yDs0HVDpwwm8YAvTA==
-Date:   Tue, 11 Apr 2023 18:16:40 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229831AbjDKQYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 12:24:52 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94ED1999;
+        Tue, 11 Apr 2023 09:24:50 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33BFGqli003050;
+        Tue, 11 Apr 2023 16:24:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Nzq6IMaf+v4naZmcNk65CmHgfAB4uZmQQqrjKIoECSA=;
+ b=S8Q7FmernMvI6zcc6P6UjCJb5aHih8+6mpdyPCgaEqDcMYI2BYfXIxzUIFCpjXCNDooC
+ LYavpjJ3JP97w6VA5Tp5R9RWhcOPlUjNjNTc/ngz8CMIG4kuVtlMK9yxTx41+SIdp8YS
+ XTGrPrcm0zh5h/hqW3DN14QUmGVkhmXpML5zgfXMbhQKjVMwfgfs4o+GIjgB03dj63Ty
+ mgkuZ2DudCUZCx3p96u/dkWEtAByiYSux0K8t+bXn49bkFV2QiGTYqmzgUsOaUMXoQ4G
+ U3e0mFg38ep6RiDJrA9IOZt+JKlENov4Xhg5KGalDPQeQj68QO9E8W3DRHDmmlB7pg8q 3w== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pw9b9g952-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 16:24:22 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33BGO3M3026631
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 16:24:03 GMT
+Received: from [10.216.22.209] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 11 Apr
+ 2023 09:23:56 -0700
+Message-ID: <24804682-6ead-03b1-8b21-3ac413187c4a@quicinc.com>
+Date:   Tue, 11 Apr 2023 21:53:53 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2 5/7] arm64: dts: qcom: sa8775p: add the pcie smmu node
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Eric Chanudet <echanude@redhat.com>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
-Message-ID: <20230411181640.50c19d4e@bootlin.com>
-In-Reply-To: <20230405180023.4aebaa08@bootlin.com>
-References: <20230331094208.41ab4420@bootlin.com>
- <6d39e9c3-fb6a-4b2a-9889-8fe8d86716d5@linaro.org>
- <20230331141104.42445da9@bootlin.com>
- <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
- <20230331165904.4e7f46a1@bootlin.com>
- <20230403142822.GA8371@google.com>
- <20230404092036.2d1cd5d9@bootlin.com>
- <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
- <20230404100759.5bc9cd20@bootlin.com>
- <143754c2-9e37-4386-af92-174c0df2eb0a@linaro.org>
- <20230405135450.GF8371@google.com>
- <20230405180023.4aebaa08@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        Will Deacon <will@kernel.org>,
+        "Robin Murphy" <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
+        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
+        Parikshit Pareek <quic_ppareek@quicinc.com>
+References: <20230406200723.552644-1-brgl@bgdev.pl>
+ <20230406200723.552644-6-brgl@bgdev.pl>
+ <20230410201145.6e2qsl5gtwh7n3k7@echanude>
+ <CAMRc=MdSTqO0bW1=_it43K_pn7EuBWRPvBF29N1gdqsh3TpAcg@mail.gmail.com>
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+In-Reply-To: <CAMRc=MdSTqO0bW1=_it43K_pn7EuBWRPvBF29N1gdqsh3TpAcg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: LuM71LE-Ip_VE-JInf-pi73Ip0TTRoI9
+X-Proofpoint-ORIG-GUID: LuM71LE-Ip_VE-JInf-pi73Ip0TTRoI9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-11_11,2023-04-11_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
+ phishscore=0 priorityscore=1501 bulkscore=0 malwarescore=0 suspectscore=0
+ mlxlogscore=999 impostorscore=0 adultscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304110150
+X-Spam-Status: No, score=-3.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,153 +97,175 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
 
-On Wed, 5 Apr 2023 18:00:23 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
 
-> Hi Lee,
-> On Wed, 5 Apr 2023 14:54:50 +0100
-> Lee Jones <lee@kernel.org> wrote:
+On 4/11/2023 5:20 PM, Bartosz Golaszewski wrote:
+> On Mon, Apr 10, 2023 at 10:11 PM Eric Chanudet <echanude@redhat.com> wrote:
+>>
+>> On Thu, Apr 06, 2023 at 10:07:21PM +0200, Bartosz Golaszewski wrote:
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>
+>>> Add the PCIe SMMU node for sa8775p platforms.
+>>>
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 74 +++++++++++++++++++++++++++
+>>>   1 file changed, 74 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>>> index 2343df7e0ea4..9ab630c7d81b 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>>> @@ -809,6 +809,80 @@ apps_smmu: iommu@15000000 {
+>>>                                     <GIC_SPI 891 IRQ_TYPE_LEVEL_HIGH>;
+>>>                };
+>>>
+>>> +             pcie_smmu: iommu@15200000 {
+>>> +                     compatible = "qcom,sa8775p-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>>> +                     reg = <0x0 0x15200000 0x0 0x800000>;
+>>
+>> Testing on the board, applying on next-20230406:
+>> [    1.041869] arm-smmu 15200000.iommu: SMMU address space size (0x80000) differs from mapped region size (0x800000)!
+>>
+>> In the downstream sources, the size is 0x80000[1].
+>>
+>> On reboot, I also get a synchronous abort, but the second line, from the
+>> following output on the serial, could indicate the hypervisor is behind
+>> it:
+>>
+>> [   26.906206] arm-smmu 15200000.iommu: disabling translation
+>> 3      33.244434 Injecting instruction/data abort to VM 3, original ESR_EL2 = 0x93800047, fault VA = 0xffff80000a380000, fault IPA = 0x15200000, ELR_EL2 = 0xffffd064f70c9de8
+>> [   26.942083] Internal error: synchronous external abort: 0000000096000010 [#1] PREEMPT SMP
+>> [   26.948506] Modules linked in: nvmem_qcom_spmi_sdam qcom_pon spi_geni_qcom nvmem_reboot_mode crct10dif_ce i2c_qcom_geni phy_qcom_qmp_ufs gpucc_sa8775p ufs_qcom socinfo fuse ipv6
+>> [   26.966702] CPU: 3 PID: 1 Comm: systemd-shutdow Not tainted 6.3.0-rc5-next-20230406-00019-g9d08a3c17f54-dirty #134
+>> [   26.977315] Hardware name: Qualcomm SA8775P Ride (DT)
+>> [   26.982505] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>> [   26.989651] pc : arm_smmu_device_shutdown+0x88/0x1d8
+>> [   26.994773] lr : arm_smmu_device_shutdown+0x70/0x1d8
+>> [   26.999875] sp : ffff80000805bbf0
+>> [   27.003283] x29: ffff80000805bbf0 x28: ffff0e69400a0000 x27: 0000000000000000
+>> [   27.010608] x26: ffffd064f8130f38 x25: 0000000000000001 x24: ffffd064f8eac028
+>> [   27.017932] x23: ffff0e6940eeb490 x22: ffffd064f8f24f80 x21: ffff0e6940eeb410
+>> [   27.025254] x20: ffff0e6940808c80 x19: ffff0e6940eeb410 x18: 0000000000000006
+>> [   27.032579] x17: 0000000000000001 x16: 0000000000000014 x15: ffff80000805b5c0
+>> [   27.039903] x14: 0000000000000000 x13: ffffd064f8ac19a8 x12: 0000000000000606
+>> [   27.047226] x11: 0000000000000202 x10: ffffd064f8b199a8 x9 : ffffd064f8ac19a8
+>> [   27.054549] x8 : 00000000ffffefff x7 : ffffd064f8b199a8 x6 : 80000000fffff000
+>> [   27.061872] x5 : 000000000000bff4 x4 : 0000000000000000 x3 : 0000000000000000
+>> [   27.069195] x2 : 0000000000000000 x1 : ffff80000a380000 x0 : 0000000000000001
+>> [   27.076520] Call trace:
+>> [   27.079041]  arm_smmu_device_shutdown+0x88/0x1d8
+>> [   27.083787]  platform_shutdown+0x24/0x34
+>> [   27.087825]  device_shutdown+0x150/0x258
+>> [   27.091859]  kernel_restart+0x40/0xc0
+>> [   27.095632]  __do_sys_reboot+0x1f0/0x274
+>> [   27.099664]  __arm64_sys_reboot+0x24/0x30
+>> [   27.103786]  invoke_syscall+0x48/0x114
+>> [   27.107644]  el0_svc_common+0x40/0xf4
+>> [   27.111410]  do_el0_svc+0x3c/0x9c
+>> [   27.114822]  el0_svc+0x2c/0x84
+>> [   27.117969]  el0t_64_sync_handler+0xf4/0x120
+>> [   27.122357]  el0t_64_sync+0x190/0x194
+>> [   27.126126] Code: f9400404 b50008e4 f9400681 52800020 (b9000020)
+>> [   27.132385] ---[ end trace 0000000000000000 ]---
+>>
 > 
-> > On Tue, 04 Apr 2023, Krzysztof Kozlowski wrote:
-> >   
-> > > On 04/04/2023 10:07, Herve Codina wrote:
-> > >    
-> > > >>> So, the structure I have in mind:
-> > > >>> - pef2256.c (MFD)
-> > > >>>   implement and do the setup at probe()
-> > > >>>   Add the children at probe():
-> > > >>>     - pef2256-pinctrl (pinctrl) added using mfd_add_devices()
-> > > >>>     - pef2256-codec (ASoC codec) added using devm_of_platform_populate()
-> > > >>>
-> > > >>> Lee, with this in mind, can the core pef2256.c be a MFD driver ?    
-> > > >>
-> > > >> You do not use MFD here, so why do you want to keep it in MFD? If you
-> > > >> disagree, please tell me where is the MFD code in your patch?    
-> > > >
-> > > > I don't want to absolutely use MFD.
-> > > > I just want to put my driver somewhere and I don't know the right location
-> > > > between MFD and Misc.
-> > > >
-> > > > Basically, the driver needs to do (little simplified and error path removed):
-> > > >
-> > > >   static const struct mfd_cell pef2256_devs[] = {
-> > > >   	{ .name = "lantiq-pef2256-pinctrl", },
-> > > >   };
-> > > >
-> > > >   static int pef2256_probe(struct platform_device *pdev)
-> > > >   {
-> > > > 	struct pef2256 *pef2256;
-> > > > 	void __iomem *iomem;
-> > > > 	int ret;
-> > > > 	int irq;
-> > > >
-> > > > 	pef2256 = devm_kzalloc(&pdev->dev, sizeof(*pef2256), GFP_KERNEL);
-> > > > 	if (!pef2256)
-> > > > 		return -ENOMEM;
-> > > >
-> > > > 	pef2256->dev = &pdev->dev;
-> > > >
-> > > > 	iomem = devm_platform_ioremap_resource(pdev, 0);
-> > > >
-> > > > 	pef2256->regmap = devm_regmap_init_mmio(&pdev->dev, iomem,
-> > > > 						&pef2256_regmap_config);
-> > > >
-> > > > 	pef2256->mclk = devm_clk_get_enabled(&pdev->dev, "mclk");
-> > > > 	pef2256->sclkr = devm_clk_get_enabled(&pdev->dev, "sclkr");
-> > > > 	pef2256->sclkx = devm_clk_get_enabled(&pdev->dev, "sclkx");
-> > > >
-> > > > 	pef2256->reset_gpio = devm_gpiod_get_optional(&pdev->dev, "reset", GPIOD_OUT_LOW);
-> > > > 	if (pef2256->reset_gpio) {
-> > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 1);
-> > > > 		udelay(10);
-> > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 0);
-> > > > 		udelay(10);
-> > > > 	}
-> > > >
-> > > > 	pef2556_of_parse(pef2256, np);
-> > > >
-> > > > 	irq = platform_get_irq(pdev, 0);
-> > > > 	ret = devm_request_irq(pef2256->dev, irq, pef2256_irq_handler, 0, "pef2256", pef2256);
-> > > >
-> > > > 	platform_set_drvdata(pdev, pef2256);
-> > > >
-> > > > 	mfd_add_devices(pef2256->dev, PLATFORM_DEVID_NONE, pef2256_devs,
-> > > > 	      		ARRAY_SIZE(pef2256_devs), NULL, 0, NULL);    
-> > >
-> > > Wait, now you use MFD framework, so the driver is suitable for MFD.
-> > > Before there was nothing like that in your code.    
-> > 
-> > Agree, the above is suitable for MFD, since it does all the things I
-> > said your last one did not.  You *can* also use of_platform_populate()
-> > here, since you are *also* requesting and initialising shared resources.
-> > You cannot do *both* however.
-> >   
+> Adding Shazad
 > 
-> Thanks for having confirmed that this driver can be a MFD driver.
+> Eric: This is supposedly gone in the latest meta but I thought you're
+> already on the most recent release?
 > 
-> Related to of_platform_populate() / mfd_add_devices(), I wanted to use both
-> because:
-> - the pinctrl part does not have (and does not need to have) a specific node
->   with a specific compatible property. In order to instantiate the related
->   driver mfd_add_devices() is the only way I know.
-> - the audio component nodes have a compatible string and several components
->   (ie several nodes) can be present. of_platform_populate() call seems the
->   simple way to instantiate them.
+> Shazad, what version exactly should Eric test this on?
 > 
-> Is there a way to use mfd_add_devices() in this case without the need to
-> count the audio component nodes in order to allocate as much mfd_cell as
-> nodes having a matching compatible property ? Is there an other API to do
-> it ?
+> Bart
 > 
 
-I looked deeper for using mfd_add_devices() only and found an issue (related
-to my use-case).
+Hi Bart, We should use r00004.1 to verify this. Adding Parikshit to
+confirm on the same.
 
-mfd_add_devices() calls mfd_add_device() and in this function we have:
----- 8< ----
-	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
-		for_each_child_of_node(parent->of_node, np) {
-			if (of_device_is_compatible(np, cell->of_compatible)) {
-				/* Ignore 'disabled' devices error free */
-				if (!of_device_is_available(np)) {
-					of_node_put(np);
-					ret = 0;
-					goto fail_alias;
-				}
+-Shazad
 
-				ret = mfd_match_of_node_to_dev(pdev, np, cell);
-				if (ret == -EAGAIN)
-					continue;
-				of_node_put(np);
-				if (ret)
-					goto fail_alias;
-
-				break;
-			}
-		}
-
-		if (!pdev->dev.of_node)
-			pr_warn("%s: Failed to locate of_node [id: %d]\n",
-				cell->name, platform_id);
-	}
----- 8< ----
-
-My issue is related to the loop.
-The loop is aborted if the device is not available (typically 'Disabled' in the
-DT node).
-
-My full pef2256 node can have several pef2256 audio subnodes with compatible
-set to "lantiq,pef2256-codec" and some of them can have 'status = "Disabled";'
-As soon as one device (with my expected compatible) is found 'Disabled', there
-is no way to look at other children.
-
-Having 'continue' in case of device not available in the loop to look at the
-next child will change the behavior of mfd_add_device().
-Do you think that looking at next child if we find a 'not available' child
-can be correct for mfd_add_device() ?
-This probably will have impacts on other MFD drivers.
-
-Best regards,
-Hervé
+>> [1] https://git.codelinaro.org/clo/la/kernel/ark-5.14/-/blob/ES2/arch/arm64/boot/dts/qcom/lemans.dtsi#L3498
+>>
+>>> +                     #iommu-cells = <2>;
+>>> +                     #global-interrupts = <2>;
+>>> +
+>>> +                     interrupts = <GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 921 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 925 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 926 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 927 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 928 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 950 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 951 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 952 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 953 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 954 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 955 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 956 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 957 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 885 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 886 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 887 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 888 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 820 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 823 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 842 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 846 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 847 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 802 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 805 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 806 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 807 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 808 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 809 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 812 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 813 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 814 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 837 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 838 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 839 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 855 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 790 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 791 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 792 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 794 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 796 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                  <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
+>>> +             };
+>>> +
+>>>                intc: interrupt-controller@17a00000 {
+>>>                        compatible = "arm,gic-v3";
+>>>                        reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
+>>> --
+>>> 2.37.2
+>>>
+>>
+>> --
+>> Eric Chanudet
+>>
