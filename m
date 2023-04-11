@@ -2,139 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C0536DDBA9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C369F6DDBCD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbjDKNFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 09:05:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37624 "EHLO
+        id S230251AbjDKNMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 09:12:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbjDKNFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:05:06 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8D749FE
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 06:04:56 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id eo6-20020a05600c82c600b003ee5157346cso5985174wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 06:04:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1681218295;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jC6gWh/93zTyDqTCTM2LE5tDkTpbOI5ydojvv7gVZxA=;
-        b=FFCPUtV2Lhbi5fQvjeIDIR8Qg/uJ/rl9m+UeCwBQTVM4lkw1j9B+ZpUeZ6gDN9B0uS
-         5KYFuGOrfu30VupuAu3H3BT4zFFj2fo4YnCOMS94hGmzRtWbUaevbONsQYJhFZ2K4P9X
-         L/nKMZc4qzDqDbJSKMCbVwiT74/tyLf1IDhYwNoVGTBX3FfTleMUmDJ+X3a0/Ds+fXw8
-         6hXszRubOP119xDL6FbpP8/1iwy5ixar/TfWolzTcqPXDIGuUrUteyXffTqCwC/E32e0
-         flTv2fTqn2e4oht+v5shjskCYLvSETVjg+KpbnXDFJtk3DRy0oV4jCvdM/AIo9b0kCt8
-         xDiw==
+        with ESMTP id S230321AbjDKNMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:12:45 -0400
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F10040C5;
+        Tue, 11 Apr 2023 06:12:39 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id c2-20020a056830348200b006a3ab0ba8a2so8187651otu.1;
+        Tue, 11 Apr 2023 06:12:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681218295;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jC6gWh/93zTyDqTCTM2LE5tDkTpbOI5ydojvv7gVZxA=;
-        b=zowA39bU4sO19aBZYeuM3PUv3weQeRAF1wkTVctkqBt4KUUsuHroxAWuk5v6nP4lQa
-         t8Oaw1QvymiDgBklXadOERs2u4ueG7C2kEVSm2lk6HiQjbcKXV2qrnf2wVN3Jqdpyjz7
-         PL0lI/I8FudngtC0QfKTQzVMbWrCKcXRR6bqfNmDiNVUW1iJmmX9D65iKEQbBMYtX0kH
-         +xbfGkRjuxy8bocTEjdj0KsZmxiMWML8Asl99bAzkX883hfNtZj83kKBh+c+Xp8NfIDr
-         NZ8TNnQ9cQyooEPisQMH1WBMdTsapSzcTjhNGp9Y/F5/N6fdpzH48JjbCAC+x5VLCrDv
-         aQyA==
-X-Gm-Message-State: AAQBX9fsLeY5cxyo/xJUMR5ym0vefcGQjldENiJELK1P/suWn//r4aKr
-        QaAFuMaCY4x9Jlse6YkDZ6QT8w==
-X-Google-Smtp-Source: AKy350Z92G2IhtFFM8sPmnrWvnbsC166u3rxSYJBKLJmnUOC9WEFR1kTpLmES+RFg8ATH3kOBYYeCQ==
-X-Received: by 2002:a7b:c419:0:b0:3eb:2e32:72c3 with SMTP id k25-20020a7bc419000000b003eb2e3272c3mr10768600wmi.22.1681218294957;
-        Tue, 11 Apr 2023 06:04:54 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:a099:fc1d:c99a:bfc3])
-        by smtp.gmail.com with ESMTPSA id t6-20020a7bc3c6000000b003f04646838esm16921301wmj.39.2023.04.11.06.04.53
+        d=1e100.net; s=20210112; t=1681218758; x=1683810758;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2GW02L6nIApJNIdMW8NqTVwVWjewpMvs4/3n/QOH2X4=;
+        b=ZB+gNtTGLti9h/NJNIbitXOwbvqJS00FAQET94oPNO1eNlSS5KZyG/wrqB7N0LtHwn
+         tU//O4EDIennlVyYQULRsiOjcJ9OF2rw1CEOZhn/aUcL/JfhSK2rUQ7JSpx1bw7R+kdx
+         R/MeiZD7QvM6akxTk6kmhQMwiYDOe6zVIW5fakwUJQwqWgMOWNrLttEz2T0b7/jOIfxs
+         M6HE7gElx1IZZrTFa7xh6pnTJws7gwFe5H0osfxlUP4dHjIj4tyvJmsTLura7DzdVFhw
+         YoXZSuif3eaEbOf9mv2xFPnMxg2mgtRX+bXsKStkfemdnprhmq22FUt6dt1jDDlfSll6
+         bc6A==
+X-Gm-Message-State: AAQBX9ebOZyOIyzB3t20Crs9hOiz9NcSLtFFHibbz1EARCEnqkoOuhDt
+        c6o+LWrT9KZzWv617v+j4A==
+X-Google-Smtp-Source: AKy350YaRPQKn8t2rWkmO5BUPXazyXS/ThqJAn+M4vfd2ePh48L8+Fz+BWDh+3gbBbfgfTZluNGWlw==
+X-Received: by 2002:a05:6830:2016:b0:69b:cdd9:5216 with SMTP id e22-20020a056830201600b0069bcdd95216mr1267515otp.21.1681218758432;
+        Tue, 11 Apr 2023 06:12:38 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b14-20020a056830104e00b0069457b86060sm5479564otp.47.2023.04.11.06.12.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 06:04:54 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Tue, 11 Apr 2023 06:12:37 -0700 (PDT)
+Received: (nullmailer pid 2908359 invoked by uid 1000);
+        Tue, 11 Apr 2023 13:12:37 -0000
+Date:   Tue, 11 Apr 2023 08:12:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v3 5/5] arm64: dts: qcom: sa8775p-ride: enable UFS
-Date:   Tue, 11 Apr 2023 15:04:46 +0200
-Message-Id: <20230411130446.401440-6-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230411130446.401440-1-brgl@bgdev.pl>
-References: <20230411130446.401440-1-brgl@bgdev.pl>
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv1 1/3] dt-bindings: usb: Add RK3588 OHCI
+Message-ID: <20230411131237.GA2837061-robh@kernel.org>
+References: <20230406135552.23980-1-sebastian.reichel@collabora.com>
+ <20230406135552.23980-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230406135552.23980-2-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Thu, Apr 06, 2023 at 03:55:50PM +0200, Sebastian Reichel wrote:
+> Add compatible for RK3588 OHCI. As far as I know it's fully
+> compatible with generic-ohci.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../devicetree/bindings/usb/generic-ohci.yaml  | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> index a9ba7257b884..e116ed90471e 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> @@ -44,6 +44,7 @@ properties:
+>                - hpe,gxp-ohci
+>                - ibm,476gtr-ohci
+>                - ingenic,jz4740-ohci
+> +              - rockchip,rk3588-ohci
+>                - snps,hsdk-v1.0-ohci
+>            - const: generic-ohci
+>        - enum:
+> @@ -69,7 +70,7 @@ properties:
+>  
+>    clocks:
+>      minItems: 1
+> -    maxItems: 3
+> +    maxItems: 4
+>      description: |
+>        In case the Renesas R-Car Gen3 SoCs:
+>          - if a host only channel: first clock should be host.
+> @@ -147,6 +148,21 @@ allOf:
+>      then:
+>        properties:
+>          transceiver: false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3588-ohci
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
+> +          maxItems: 4
 
-Enable the UFS and its PHY on sa8775p-ride.
+Only need minItems here.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+> +    else:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
+> +          maxItems: 3
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index f238a02a5448..2bb001a3ea55 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
- #include "sa8775p.dtsi"
-@@ -20,6 +21,7 @@ aliases {
- 		serial2 = &uart17;
- 		i2c18 = &i2c18;
- 		spi16 = &spi16;
-+		ufshc1 = &ufs_mem_hc;
- 	};
- 
- 	chosen {
-@@ -426,6 +428,23 @@ &uart17 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l8a>;
-+	vcc-max-microamp = <1100000>;
-+	vccq-supply = <&vreg_l4c>;
-+	vccq-max-microamp = <1200000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l4a>;
-+	vdda-pll-supply = <&vreg_l1c>;
-+
-+	status = "okay";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <38400000>;
- };
--- 
-2.37.2
+Only need maxItems here.
 
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
