@@ -2,155 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84CC96DD13F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 06:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEDD56DD1AA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 07:34:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbjDKE4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 00:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
+        id S229701AbjDKFeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 01:34:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjDKE4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 00:56:42 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A85173E;
-        Mon, 10 Apr 2023 21:56:40 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33B4M6Il026832;
-        Tue, 11 Apr 2023 04:56:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CPnsQXa10tpoYv4jCyjrL4WFQ2AlyQmNvURMMyN3zqM=;
- b=aWLQ3+kY3lktc3angB+yKKmuiQMcXiBwq1m4PwcCzaMASh7cfSsNAthOhQ+RO6Z+1Jka
- usetRinXfV30iHgLAJPMafygaLB9UtYHLZG5U4O7fo/gAZM44TD736V4JD+b65Z/WKg2
- MZ/eD2SkJmsMZNibaaZvLDNpNdPudOKp9Mn2KYvFZg//ZB8M6Pu2AHChrNrCj4U5rMKl
- VGGMdY8YvIX+tTGbks4x9RAv1AbzFqb0hW8FcCX3qGxwY2mslAU7XZW/BWV9Ya88Gp7z
- gK9zZtnxwaskbFgCOg8Fr06zMfYBMaRAflkUu+xd9BMth5/DQqPV/I1v0j6zFL/w32vv IQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pvvux0fst-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Apr 2023 04:56:12 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33B4uAuH014550
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Apr 2023 04:56:10 GMT
-Received: from [10.50.52.2] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 10 Apr
- 2023 21:56:06 -0700
-Message-ID: <d4a8054c-443e-d9ba-9641-ff721254d254@quicinc.com>
-Date:   Tue, 11 Apr 2023 10:26:03 +0530
+        with ESMTP id S229933AbjDKFeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 01:34:02 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E357272B
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 22:34:00 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50489936a7bso1917509a12.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 22:34:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681191238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wkWD79ipH+po5ISBlzkaKK3V7RlQmj+WDbDZ6NA6eNE=;
+        b=OmfNA020h/697ESQhqcF3FPp8ZOviAEurDFUlaWkoytba+zXb7KDbxxmuSw3gjELed
+         1C1hoIpU3aImiqsA9V6R3YjB5AzeanBuv8k5z5bS5aXweQsHRiqFOV1MsU2tcfjf9872
+         Ha8AN5DuKDGzgUDagPA0D+kFmxVol1LGCqwj8RF32mEhoffjYC2sYiSAnUeWm3P0S2ts
+         5ti/lVMtNEC2MOQzzIFLPAEqbPU/f7e8LVNwim1GJIsLElEPa++33TAdqkOif2NvZ3gj
+         8tNaJNIIYzO0MFsRj9D0mWm1T8icbi6FuGNKh7FLmSvY6NdgMsYNDiCalXvbalk2yY92
+         HUWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681191238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wkWD79ipH+po5ISBlzkaKK3V7RlQmj+WDbDZ6NA6eNE=;
+        b=SH4+ZrGEg2wVWLs6ZhueICgJp30ZBgxp9R61cU92qlgNynL6J9MEyoTG/ia7kw1+Ip
+         6O4YyPtzXO3U6TgJ2wnvcL3ci+JGhczD2sGIq7aTod5eRYj80pt/8Y9Ju0gK0i3IhHdy
+         5AuxhIKZgweNWD23kx2aRPa50Su3k0FQo96qh9CRnIV9awboLNPNSda8tFO5G0z+hr4y
+         PvUox87JMAS4cE68Iemc1DeMQCwBvwrBdYI4xpRBx/ZmD3HNKbh2xlX28gWs/7yxd3Im
+         ugMD0hAc26bTjSPEZE/Ba/TPY2jxWGf/sM+rcqLBGu6ATjtZjDpwf/4yfpkD4Dg09kir
+         cXTA==
+X-Gm-Message-State: AAQBX9cWTHIwsNyPQZqziCt05wDsTuGSyVGVa0jaIxHS8aC+FMMk1x5g
+        5HnZzhpLfNGf32KmfnJauMXUCw==
+X-Google-Smtp-Source: AKy350bQYGlaHy4QryASpqvVadU3bZ30sQLxHLHpnwjSurrdvLijghPUlqa53Q/kk+9D0EPOXdUDwg==
+X-Received: by 2002:aa7:da17:0:b0:4fa:4810:95f9 with SMTP id r23-20020aa7da17000000b004fa481095f9mr11438378eds.34.1681191238596;
+        Mon, 10 Apr 2023 22:33:58 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:dad2:72b7:3626:af61? ([2a02:810d:15c0:828:dad2:72b7:3626:af61])
+        by smtp.gmail.com with ESMTPSA id b15-20020a50cccf000000b004c10b4f9ebesm5509934edj.15.2023.04.10.22.33.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Apr 2023 22:33:58 -0700 (PDT)
+Message-ID: <eca378d3-8743-a0c3-5f54-faf4ad37e9d1@linaro.org>
+Date:   Tue, 11 Apr 2023 07:33:56 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,gcc-sc7180: document CX
- power domain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v8 1/2] dt-bindings: phy: qcom,qmp-usb: Drop legacy
+ bindings and move to newer one (SM6115 & QCM2290)
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, kishon@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20230410171010.2561393-1-bhupesh.sharma@linaro.org>
+ <20230410171010.2561393-2-bhupesh.sharma@linaro.org>
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230408134820.76050-1-krzysztof.kozlowski@linaro.org>
- <20230408134820.76050-2-krzysztof.kozlowski@linaro.org>
- <4757c33c-7e71-262d-a51a-c5f9fb53ff41@linaro.org>
-From:   Rajendra Nayak <quic_rjendra@quicinc.com>
-In-Reply-To: <4757c33c-7e71-262d-a51a-c5f9fb53ff41@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230410171010.2561393-2-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: i6c5O3ZhfELru_es5pv8z-TwzCwHevvA
-X-Proofpoint-ORIG-GUID: i6c5O3ZhfELru_es5pv8z-TwzCwHevvA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-11_02,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1011 priorityscore=1501
- impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304110045
 X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 4/8/2023 7:33 PM, Konrad Dybcio wrote:
+On 10/04/2023 19:10, Bhupesh Sharma wrote:
+> 'qcom,msm8996-qmp-usb3-phy.yaml' defines bindings for several PHYs
+> which predate USB -> USB+DP migration. Since SM6115 and QCM2290
+> nodes for USB QMP phy are being added to dtsi files by followup patches,
+> move these bindings instead to the newer style
+> 'qcom,sc8280xp-qmp-usb3-uni-phy.yaml' file.
 > 
-> 
-> On 8.04.2023 15:48, Krzysztof Kozlowski wrote:
->> The GCC clock controller needs CX power domain, at least according to
->> DTS:
->>
->>    sc7180-trogdor-pompom-r3.dtb: clock-controller@100000: Unevaluated properties are not allowed ('power-domains' was unexpected)
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> +CC Rajendra (author of 5d6fc6321db1 ("arm64: dts: qcom:
-> sc7180: Add required-opps for USB"))
-> 
-> Rajendra, shouldn't SC7180 GCC have PM ops to make sure a vote
-> is only there when AP is active?
+> Since no device trees use these bindings presently, so we have no ABI breakages
+> with this patch.
 
-hmm, I am not quite sure why we would want the performance votes
-from peripherals dropped when CPUs go down in idle?
 
-> Are all GDSCs powered by CX?
-> If not, wouldn't this also need power-domain-names to
-> facilitate e.g. potential MX-powered ones?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-For sc7180 GCC, yes.
+Best regards,
+Krzysztof
 
-> 
-> Konrad
->>   .../devicetree/bindings/clock/qcom,gcc-sc7180.yaml         | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
->> index 06dce0c6b7d0..8bf9b6f49550 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
->> @@ -32,6 +32,10 @@ properties:
->>         - const: bi_tcxo_ao
->>         - const: sleep_clk
->>   
->> +  power-domains:
->> +    items:
->> +      - description: CX domain
->> +
->>   required:
->>     - compatible
->>     - clocks
->> @@ -45,6 +49,8 @@ unevaluatedProperties: false
->>   examples:
->>     - |
->>       #include <dt-bindings/clock/qcom,rpmh.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->>       clock-controller@100000 {
->>         compatible = "qcom,gcc-sc7180";
->>         reg = <0x00100000 0x1f0000>;
->> @@ -52,6 +58,7 @@ examples:
->>                  <&rpmhcc RPMH_CXO_CLK_A>,
->>                  <&sleep_clk>;
->>         clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
->> +      power-domains = <&rpmhpd SC7180_CX>;
->>         #clock-cells = <1>;
->>         #reset-cells = <1>;
->>         #power-domain-cells = <1>;
