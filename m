@@ -2,117 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D24DF6DE65E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 23:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D435B6DE678
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 23:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjDKVU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 17:20:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43220 "EHLO
+        id S229699AbjDKVdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 17:33:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbjDKVU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 17:20:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A66815FC0;
-        Tue, 11 Apr 2023 14:19:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 98812628A3;
-        Tue, 11 Apr 2023 21:19:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C98AC433EF;
-        Tue, 11 Apr 2023 21:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681247998;
-        bh=xYmomJOIpStQiY1yV+hCngqUM+Bx3dX+DeJaga9RHmM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rhhu/Cl5XMiHoIBrJ8flvp9biCJEEw+bFAY2Tfrd6WKtoMCdaN0XM7kf9Zddkvx9g
-         tOhd7zFD9dCfc+yOgSTxGks9FD5fdRn4gI24ko35zZGBMYVR43mu1kGcLI7fXEW4ah
-         edFiJ1xmHJy8zdo0CsDEX477PFOd1xenQmWk9A3dlASHOqDMdJ15IlGekOPGdV2U6L
-         GJt/+3xk8fqS/5CRpLc1agfzRWz+A+Vhd2+SicC88f6ropLraRixcdT8WE5XKXrmfp
-         j6yxmMv+s+6l70bbJVKEvoIBWQ8WzMPenMBdeWi8IbrjMlrqNnvrhSYgk2Ymp7A9OF
-         98rp+Z0eYgDKg==
-Date:   Tue, 11 Apr 2023 22:19:50 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v11 12/26] gunyah: vm_mgr: Add/remove user memory regions
-Message-ID: <20230411211940.GC23890@willie-the-truck>
-References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
- <20230304010632.2127470-13-quic_eberman@quicinc.com>
- <20230324183659.GB28266@willie-the-truck>
- <5d1c6160-6bc4-5246-2a0b-de5ddcbbc2c4@quicinc.com>
+        with ESMTP id S229527AbjDKVdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 17:33:45 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B690C2111
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 14:32:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1681248777;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+t+CxMKTyH/KF2IDw9V8sVAPX3jzq2X9B3VftBWKIM8=;
+        b=gH48M+opLawe0/89oj9NunkcejjKvK45ksCljkpUIBSAiW8gGnjHjY3+mV5TlqF0pRMoF/
+        eZdDmxQfedoSiYicy7n1qfby+59y8CusVcMhN8XUNtfm33tHrR/eF3dPeIycEDk8S3/nm8
+        VAh1ZwCMBoH4id7okK4CsSUvyHcTe6c=
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com
+ [209.85.167.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-365-UNdigOZuMkKSaQ67h5e0_Q-1; Tue, 11 Apr 2023 17:32:56 -0400
+X-MC-Unique: UNdigOZuMkKSaQ67h5e0_Q-1
+Received: by mail-oi1-f197.google.com with SMTP id p10-20020acaf10a000000b00388f0de0c51so2520308oih.12
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 14:32:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681248776;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+t+CxMKTyH/KF2IDw9V8sVAPX3jzq2X9B3VftBWKIM8=;
+        b=v3wCcs/yAel2rq6h3k3l9WdEjeu2tY17bqAEklwV7SepEMNN0szwRRRcHUczJPe3DU
+         BL5lKiyOX3x3QJs6nl4oARJTvII8w7QOtm7em3sWRTgcyouQVa8k+2jGXgl0NqTQrGoy
+         d4Pe1TmIM12vvZ/LjKMoXV2fUbUJwBcFejPseYIEGaJX+rl0LN8glQgmDlsN8Yyb3JSz
+         XuXZKUoQFMNytI+X6FkGu41xVfMEcR7QI3LQR/wY43EkORfrHCs97QgQMLanFMexYbm5
+         +mQr/nrRbqtlDftcYSkwm9M4sHL+Bt0xO6C85WWHJ1FeUhCR4mvBbtL9gRPrK4ibe5y5
+         QQ5g==
+X-Gm-Message-State: AAQBX9djk5FUOAYlj2oBqsyAbcLF8D6qQ851Rw9535XwelCynRFZx1g8
+        ZMyCiFmr3dvJb5gptn9J2iGHhs3a/4sOqPC4s79OLDd/WGy2qdQwo6Thppkz3+Z5dGBzOqvnx2K
+        28EyWvvV2wdWmdHoCZERIDw==
+X-Received: by 2002:a05:6870:968a:b0:17e:e1ac:2f09 with SMTP id o10-20020a056870968a00b0017ee1ac2f09mr7337636oaq.47.1681248775877;
+        Tue, 11 Apr 2023 14:32:55 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YKCSvz7scMdahh0PoFCkZ798gWjD4Hs7SmFZvehvpUk2bQfOgV9GhWwVgZIxZfad9VMP7s/g==
+X-Received: by 2002:a05:6870:968a:b0:17e:e1ac:2f09 with SMTP id o10-20020a056870968a00b0017ee1ac2f09mr7337629oaq.47.1681248775663;
+        Tue, 11 Apr 2023 14:32:55 -0700 (PDT)
+Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
+        by smtp.gmail.com with ESMTPSA id tl19-20020a0568718a1300b0017f84f81f3csm5506089oab.52.2023.04.11.14.32.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 14:32:55 -0700 (PDT)
+Date:   Tue, 11 Apr 2023 16:32:52 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sa8155p-adp: Make compatible the first
+ property
+Message-ID: <20230411213252.xdgt57msr5lwnbrf@halaney-x13s>
+References: <20230411203144.471192-1-ahalaney@redhat.com>
+ <88d41729-86be-95cb-2fda-1b809f07ed6b@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5d1c6160-6bc4-5246-2a0b-de5ddcbbc2c4@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <88d41729-86be-95cb-2fda-1b809f07ed6b@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 11, 2023 at 01:34:34PM -0700, Elliot Berman wrote:
-> On 3/24/2023 11:37 AM, Will Deacon wrote:
-> > On Fri, Mar 03, 2023 at 05:06:18PM -0800, Elliot Berman wrote:
-> > > +
-> > > +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
-> > > +					FOLL_WRITE | FOLL_LONGTERM, mapping->pages);
-> > > +	if (pinned < 0) {
-> > > +		ret = pinned;
-> > > +		mapping->npages = 0; /* update npages for reclaim */
-> > > +		goto reclaim;
-> > > +	} else if (pinned != mapping->npages) {
-> > > +		ret = -EFAULT;
-> > > +		mapping->npages = pinned; /* update npages for reclaim */
-> > > +		goto reclaim;
-> > > +	}
-> > 
-> > I think Fuad mentioned this on an older version of these patches, but it
-> > looks like you're failing to account for the pinned memory here which is
-> > a security issue depending on who is able to issue the ioctl() calling
-> > into here.
-> > 
-> > Specifically, I'm thinking that your kXalloc() calls should be using
-> > GFP_KERNEL_ACCOUNT in this function and also that you should be calling
-> > account_locked_vm() for the pages being pinned.
-> > 
+On Tue, Apr 11, 2023 at 10:44:36PM +0200, Konrad Dybcio wrote:
 > 
-> Added the accounting for the v12.
 > 
-> > Finally, what happens if userspace passes in a file mapping?
+> On 11.04.2023 22:31, Andrew Halaney wrote:
+> > As stated at the below link in another review, compatible is always the
+> > first property.
+> > 
+> > Follow suit here to avoid copying incorrectly in the future.
+> > 
+> > Link: https://lore.kernel.org/netdev/20230331215804.783439-1-ahalaney@redhat.com/T/#ma76b4116bbb9e49ee4bcf699e40935d80965b3f3
+> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> > ---
+> Thanks for this patch!
+> >  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 5 ++---
+> >  1 file changed, 2 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> > index 459384ec8f23..8c773b856eb1 100644
+> > --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> > @@ -351,19 +351,18 @@ &ethernet {
+> >  	max-speed = <1000>;
+> >  
+> >  	mdio {
+> > +		compatible = "snps,dwmac-mdio";
+> >  		#address-cells = <0x1>;
+> >  		#size-cells = <0x0>;
+> Since you're already touching this file, can you make the
+> -cells values decimal..
+> >  
+> > -		compatible = "snps,dwmac-mdio";
+> > -
+> >  		/* Micrel KSZ9031RNZ PHY */
+> >  		rgmii_phy: phy@7 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> >  			reg = <0x7>;
+> >  
+> >  			interrupt-parent = <&tlmm>;
+> ..remove the useless interrupt-parent..
 > 
-> Userspace will get EBADADDR (-14) back when trying to launch the VM
-> (pin_user_pages_fast returns this as you might have been expecting). We
-> haven't yet had any need to support file-backed mappings.
+> >  			interrupts-extended = <&tlmm 124 IRQ_TYPE_EDGE_FALLING>; /* phy intr */
+> ...and the similarly not very useful comment here?
+> 
+> Konrad
+> 
 
-Hmm, no, that's actually surprising to me. I'd have thought GUP would
-happily pin page-cache pages for file mappings, so I'm intrigued as to
-which FOLL_ flag is causing you to get an error code back. Can you
-enlighten me on where the failure originates, please?
+Gladly, I'll wait a few days in case someone points something else out
+before sending a v2 patch series tackling each of those little bits.
 
-Will
+Thanks,
+Andrew
+
+> >  			device_type = "ethernet-phy";
+> > -			compatible = "ethernet-phy-ieee802.3-c22";
+> >  		};
+> >  	};
+> >  };
+> 
+
