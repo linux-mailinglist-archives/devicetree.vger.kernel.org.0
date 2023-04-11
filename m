@@ -2,147 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819DE6DDBF8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 383DA6DDC1B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbjDKNWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 09:22:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32872 "EHLO
+        id S229848AbjDKNcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 09:32:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjDKNWI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:22:08 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F6E4C04;
-        Tue, 11 Apr 2023 06:22:07 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-18436e0b673so8895994fac.0;
-        Tue, 11 Apr 2023 06:22:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681219326; x=1683811326;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AhT76dWlGbZN1saBWhMJ1k3SMLFpUczlzkPHRiA3NAI=;
-        b=D73h0CKmfakbmG4DD1zpHHaOCHV8hNn6fZozRLS1fi7v6ue7q8qNfEgFFy7hiDiKX2
-         9a7wRW5cXJI1rNeeGKpiQ5HyQiWbXxck7Rnx49/pYzH7J8XT9RpB0aVtY260AtFLVuVG
-         nV06PiPkVFpHPNJUjICEe26JN/o+pXZCq00Zg7pI1FJVSle5jvgpEe+ZJG4TfKT5HIR/
-         /HDzQZiaD0SSf8jMrpDIFv2GoukDMgtg4bsQ+m42hnVSP+6dB/qDFnM1MByWtTmelP+E
-         cfy/Nn+OdAL5AXp+Ho1FdR3DCQg7AijsX3vOkhmYfjjQfebXMyeLd36c1dO9lnGJEwmS
-         HwYQ==
-X-Gm-Message-State: AAQBX9fXR5etXpX9YEfbqA1DqnclIZKhOdQUfWu0VGaHCaeSyLG+26rr
-        bno4+JgCF4SbJ4KwRoF1mJLNrdfv6Q==
-X-Google-Smtp-Source: AKy350ZMHvdKF48Cu62dwhIbauF39htYOgUbpv/Vdsk4LwA0SaPq24v7ep3XkOUrjpyJXJ31EkcTDA==
-X-Received: by 2002:a05:6870:40d0:b0:184:534f:5e7 with SMTP id l16-20020a05687040d000b00184534f05e7mr2757137oal.35.1681219326217;
-        Tue, 11 Apr 2023 06:22:06 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g4-20020a056870d20400b0018045663fc5sm5100803oac.48.2023.04.11.06.22.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 06:22:05 -0700 (PDT)
-Received: (nullmailer pid 2920199 invoked by uid 1000);
-        Tue, 11 Apr 2023 13:22:04 -0000
-Date:   Tue, 11 Apr 2023 08:22:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maarten Zanders <maarten.zanders@mind.be>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v7 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
-Message-ID: <20230411132204.GA2918042-robh@kernel.org>
-References: <20230407102324.42604-1-maarten.zanders@mind.be>
- <20230407102324.42604-2-maarten.zanders@mind.be>
+        with ESMTP id S229908AbjDKNcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:32:24 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81AF30C8;
+        Tue, 11 Apr 2023 06:32:22 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33BDRhR8022174;
+        Tue, 11 Apr 2023 13:31:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=HI26HJ+nhy557NuPmK18XT66TpCl4PjPLK6noy/iuYA=;
+ b=YOFjgl5N2ifK5Pm6jToFJvHLPydYldHMoZPI82M/ei2+foAWOX9yQYCstSj94vsvl7HR
+ 7vx8zX3LqwYi4qUsO1BSmY7sULD3kEYVyoPXeQyXQlao4PWPzxbOFTufb/Cd7j3jNV20
+ mbnB5q+D2UU4khElVCfRI/4le7V4cXIUkdEHTenKE8DZ8fijsIJ8s9li/KfjXUTAMO1Q
+ YHVsWyXpebbEFjK/BMNBdhuvO4Y+cA+0SKzX9tY/OSOqrzVukux8r/+VGR9lO5imjz9t
+ re0jyucfdiXCnXIMa8+AmuHWJD6R0kFePZ9rCOf4ohOazBeR9ZqyPUm2MpMPTKGlvWP8 Xw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pvu4sska3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 13:31:16 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33BDVFbY014469
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 13:31:15 GMT
+Received: from [10.50.52.2] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 11 Apr
+ 2023 06:31:10 -0700
+Message-ID: <2f9f9cdd-cfbe-ca22-7308-d6b1f0c1c455@quicinc.com>
+Date:   Tue, 11 Apr 2023 19:01:07 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230407102324.42604-2-maarten.zanders@mind.be>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,gcc-sc7180: document CX
+ power domain
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230408134820.76050-1-krzysztof.kozlowski@linaro.org>
+ <20230408134820.76050-2-krzysztof.kozlowski@linaro.org>
+ <4757c33c-7e71-262d-a51a-c5f9fb53ff41@linaro.org>
+ <d4a8054c-443e-d9ba-9641-ff721254d254@quicinc.com>
+ <c70c1a4d-50c5-2b50-18c9-7c46c3803cd4@linaro.org>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <c70c1a4d-50c5-2b50-18c9-7c46c3803cd4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4v96hJRii58BNbYeF6F_35vEHW-IkOzl
+X-Proofpoint-ORIG-GUID: 4v96hJRii58BNbYeF6F_35vEHW-IkOzl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-11_08,2023-04-11_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 suspectscore=0 phishscore=0
+ mlxlogscore=999 spamscore=0 bulkscore=0 clxscore=1015 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304110125
+X-Spam-Status: No, score=-3.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 07, 2023 at 12:23:23PM +0200, Maarten Zanders wrote:
-> Add a binding to configure the internal charge pump for lp55xx.
-> 
-> Signed-off-by: Maarten Zanders <maarten.zanders@mind.be>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> Notes:
->     v1: implement as bool to disable charge pump
->     v2: rewrite to use string configuration, supporting all modes
->     v3: simplification by replacing string option by u8 constant,
->         removing previous Reviewed-by tags as it's a complete
->         rewrite of the patch.
->     v4: added notes
->     v5: dual license, change property type to u32
->     v6: change license type for leds-lp-55xx.h to preferred tag
-> 
->  .../devicetree/bindings/leds/leds-lp55xx.yaml          |  8 ++++++++
->  include/dt-bindings/leds/leds-lp55xx.h                 | 10 ++++++++++
->  2 files changed, 18 insertions(+)
->  create mode 100644 include/dt-bindings/leds/leds-lp55xx.h
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> index ae607911f1db..ede9cb9ca175 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> @@ -66,6 +66,12 @@ properties:
->    '#size-cells':
->      const: 0
->  
-> +  ti,charge-pump-mode:
-> +    description:
-> +      Set the operating mode of the internal charge pump as defined in
-> +      <dt-bindings/leds/leds-lp55xx.h>. Defaults to auto.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Needs constraints:
-
-default: 3  # Auto
-maximum: 3
-
-> +
->  patternProperties:
->    '^multi-led@[0-8]$':
->      type: object
-> @@ -152,6 +158,7 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/leds/common.h>
-> +    #include <dt-bindings/leds/leds-lp55xx.h>
->  
->      i2c {
->          #address-cells = <1>;
-> @@ -164,6 +171,7 @@ examples:
->              reg = <0x32>;
->              clock-mode = /bits/ 8 <2>;
->              pwr-sel = /bits/ 8 <3>;	/* D1~9 connected to VOUT */
-> +            ti,charge-pump-mode = <LP55XX_CP_BYPASS>;
->  
->              led@0 {
->                  reg = <0>;
-> diff --git a/include/dt-bindings/leds/leds-lp55xx.h b/include/dt-bindings/leds/leds-lp55xx.h
-> new file mode 100644
-> index 000000000000..a4fb4567715d
-> --- /dev/null
-> +++ b/include/dt-bindings/leds/leds-lp55xx.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +#ifndef _DT_BINDINGS_LEDS_LP55XX_H
-> +#define _DT_BINDINGS_LEDS_LP55XX_H
-> +
-> +#define LP55XX_CP_OFF		0
-> +#define LP55XX_CP_BYPASS	1
-> +#define LP55XX_CP_BOOST		2
-> +#define LP55XX_CP_AUTO		3
-> +
-> +#endif /* _DT_BINDINGS_LEDS_LP55XX_H */
-> -- 
-> 2.37.3
+On 4/11/2023 4:57 PM, Konrad Dybcio wrote:
 > 
+> 
+> On 11.04.2023 06:56, Rajendra Nayak wrote:
+>>
+>>
+>> On 4/8/2023 7:33 PM, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 8.04.2023 15:48, Krzysztof Kozlowski wrote:
+>>>> The GCC clock controller needs CX power domain, at least according to
+>>>> DTS:
+>>>>
+>>>>     sc7180-trogdor-pompom-r3.dtb: clock-controller@100000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>> +CC Rajendra (author of 5d6fc6321db1 ("arm64: dts: qcom:
+>>> sc7180: Add required-opps for USB"))
+>>>
+>>> Rajendra, shouldn't SC7180 GCC have PM ops to make sure a vote
+>>> is only there when AP is active?
+> So IIUC, CX is never supposed to be shut down?
+
+Atleast sc7180 and sc7280 do not support full CX shutdown (or power
+collapse as its called), it only transitions to a Retention state
+and even that in the system-wide suspend path only
+
+> 
+> Konrad
+>>
+>> hmm, I am not quite sure why we would want the performance votes
+>> from peripherals dropped when CPUs go down in idle?
+>>
+>>> Are all GDSCs powered by CX?
+>>> If not, wouldn't this also need power-domain-names to
+>>> facilitate e.g. potential MX-powered ones?
+>>
+>> For sc7180 GCC, yes.
+>>
+>>>
+>>> Konrad
+>>>>    .../devicetree/bindings/clock/qcom,gcc-sc7180.yaml         | 7 +++++++
+>>>>    1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
+>>>> index 06dce0c6b7d0..8bf9b6f49550 100644
+>>>> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
+>>>> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
+>>>> @@ -32,6 +32,10 @@ properties:
+>>>>          - const: bi_tcxo_ao
+>>>>          - const: sleep_clk
+>>>>    +  power-domains:
+>>>> +    items:
+>>>> +      - description: CX domain
+>>>> +
+>>>>    required:
+>>>>      - compatible
+>>>>      - clocks
+>>>> @@ -45,6 +49,8 @@ unevaluatedProperties: false
+>>>>    examples:
+>>>>      - |
+>>>>        #include <dt-bindings/clock/qcom,rpmh.h>
+>>>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>>>> +
+>>>>        clock-controller@100000 {
+>>>>          compatible = "qcom,gcc-sc7180";
+>>>>          reg = <0x00100000 0x1f0000>;
+>>>> @@ -52,6 +58,7 @@ examples:
+>>>>                   <&rpmhcc RPMH_CXO_CLK_A>,
+>>>>                   <&sleep_clk>;
+>>>>          clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
+>>>> +      power-domains = <&rpmhpd SC7180_CX>;
+>>>>          #clock-cells = <1>;
+>>>>          #reset-cells = <1>;
+>>>>          #power-domain-cells = <1>;
