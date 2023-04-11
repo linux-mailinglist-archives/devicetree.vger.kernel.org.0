@@ -2,199 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 781D76DE04D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 18:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 471A56DE0D0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 18:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjDKQBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 12:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53810 "EHLO
+        id S229870AbjDKQSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 12:18:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbjDKQBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 12:01:24 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418E34ED6;
-        Tue, 11 Apr 2023 09:01:23 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:199e::580])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 83BCC66031E9;
-        Tue, 11 Apr 2023 17:01:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681228881;
-        bh=GPuBBOSRA5wCVbPAYkSCzya+oa0Nysghig9jCyrZUq8=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=S/KVvhWY0ks44waMOfNV/tWEuJVdN3t7YcSuShWxyNfusu12/f2f582HNLQ2/oCbA
-         uODIWFSuxRoyamrp5g/EgqRQbipyHLw7S1YdQjceLW++k4jGrLVx8rn2LVcYI5AwGQ
-         YztDpOZLVsZr3r8tGMt+wfjdv831T4ZVvdOYWXT+YkgtyKv4jBUH0mWtpAuC1YPCkH
-         +9pkn4gtKZls0e1DUBX+ec0smJGh8Clii4eOpVmwlSGQq5PCpGboOLALiiFar4AfU0
-         uWSSqaJkR+XvHsikHGrf2tn5+jcQDxAJrlv93duoOwSvSJn+F5Hl/Tq7KFYFLkV9Vc
-         P2cEKXt8QtbgQ==
-Message-ID: <d65a8a350a967e4a67636f0be8249e96d5be0d36.camel@collabora.com>
-Subject: Re: [PATCH v5 03/13] media: Add NV12_10LE40_4L4 pixel format
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        hverkuil-cisco@xs4all.nl
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Date:   Tue, 11 Apr 2023 12:01:11 -0400
-In-Reply-To: <2a39fb8f9fb658a12bda3779015e8cb2b976a965.camel@collabora.com>
-References: <20230330154043.1250736-1-benjamin.gaignard@collabora.com>
-         <20230330154043.1250736-4-benjamin.gaignard@collabora.com>
-         <2a39fb8f9fb658a12bda3779015e8cb2b976a965.camel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+        with ESMTP id S230115AbjDKQRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 12:17:51 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0492D53;
+        Tue, 11 Apr 2023 09:16:44 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EF10F1BF203;
+        Tue, 11 Apr 2023 16:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1681229803;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=YN1HFAut0wlkhACR1rC7RVWyzDX8GM5pnpZhh86udRk=;
+        b=EKMDssOG843Uardxa6RwBGRbMOzfLVszXIbDuTnWbFZ1B3lncrlUZE++iYyTOzyeat48k7
+        c4g0LlKJTXV/PvvYYgj+aPv3Dw/18k+BqyvXe00AhM2XJV+U5SpZp4EkWwodhOpAISw3y2
+        L5BKZTltFS0CREQXmMmorn5Ya56DHqZJuzUK1SI5i6oezMRh5WOsaOBuuCeUVzoZ6RLJ5V
+        05WE03kqdDkEv0aL/PaqbQfJKN4fDObGcDiEKaMLd4r9anaug2ArnmRnZF/kWNdeGak3pn
+        OcaJh4DOFkxBCDztunLHiPOHVG5Au+YsFQ4ttteU5CeI3yDs0HVDpwwm8YAvTA==
+Date:   Tue, 11 Apr 2023 18:16:40 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <20230411181640.50c19d4e@bootlin.com>
+In-Reply-To: <20230405180023.4aebaa08@bootlin.com>
+References: <20230331094208.41ab4420@bootlin.com>
+ <6d39e9c3-fb6a-4b2a-9889-8fe8d86716d5@linaro.org>
+ <20230331141104.42445da9@bootlin.com>
+ <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
+ <20230331165904.4e7f46a1@bootlin.com>
+ <20230403142822.GA8371@google.com>
+ <20230404092036.2d1cd5d9@bootlin.com>
+ <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
+ <20230404100759.5bc9cd20@bootlin.com>
+ <143754c2-9e37-4386-af92-174c0df2eb0a@linaro.org>
+ <20230405135450.GF8371@google.com>
+ <20230405180023.4aebaa08@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As we discussed in person:
+Hi Lee,
 
-Le mardi 11 avril 2023 =C3=A0 11:07 -0400, Nicolas Dufresne a =C3=A9crit=C2=
-=A0:
-> Le jeudi 30 mars 2023 =C3=A0 17:40 +0200, Benjamin Gaignard a =C3=A9crit=
-=C2=A0:
-> > NV12_10LE40_4L4 is the 10-bits per component version of
-> > NV12_4L4 pixel format.
+On Wed, 5 Apr 2023 18:00:23 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-NV12_10LE40 is a name I made up for GStreamer, but this is originally named=
- NV15
-by Rockchip, and was accepted under this name as DRM_FORMAT_NV15 in the gra=
-phic
-subsystem. So we agreed that for Linux, it will be more consistant to use t=
-he
-NV15 naming, renaming this one to NV15_4L4, with the plus side that its sho=
-rter.
-The linear form of this format was already proposed a while back along with=
- the
-pending RK HEVC driver. We will include the base format doc in here, and re=
--
-factor it in later branches.
+> Hi Lee,
+> On Wed, 5 Apr 2023 14:54:50 +0100
+> Lee Jones <lee@kernel.org> wrote:
+> 
+> > On Tue, 04 Apr 2023, Krzysztof Kozlowski wrote:
+> >   
+> > > On 04/04/2023 10:07, Herve Codina wrote:
+> > >    
+> > > >>> So, the structure I have in mind:
+> > > >>> - pef2256.c (MFD)
+> > > >>>   implement and do the setup at probe()
+> > > >>>   Add the children at probe():
+> > > >>>     - pef2256-pinctrl (pinctrl) added using mfd_add_devices()
+> > > >>>     - pef2256-codec (ASoC codec) added using devm_of_platform_populate()
+> > > >>>
+> > > >>> Lee, with this in mind, can the core pef2256.c be a MFD driver ?    
+> > > >>
+> > > >> You do not use MFD here, so why do you want to keep it in MFD? If you
+> > > >> disagree, please tell me where is the MFD code in your patch?    
+> > > >
+> > > > I don't want to absolutely use MFD.
+> > > > I just want to put my driver somewhere and I don't know the right location
+> > > > between MFD and Misc.
+> > > >
+> > > > Basically, the driver needs to do (little simplified and error path removed):
+> > > >
+> > > >   static const struct mfd_cell pef2256_devs[] = {
+> > > >   	{ .name = "lantiq-pef2256-pinctrl", },
+> > > >   };
+> > > >
+> > > >   static int pef2256_probe(struct platform_device *pdev)
+> > > >   {
+> > > > 	struct pef2256 *pef2256;
+> > > > 	void __iomem *iomem;
+> > > > 	int ret;
+> > > > 	int irq;
+> > > >
+> > > > 	pef2256 = devm_kzalloc(&pdev->dev, sizeof(*pef2256), GFP_KERNEL);
+> > > > 	if (!pef2256)
+> > > > 		return -ENOMEM;
+> > > >
+> > > > 	pef2256->dev = &pdev->dev;
+> > > >
+> > > > 	iomem = devm_platform_ioremap_resource(pdev, 0);
+> > > >
+> > > > 	pef2256->regmap = devm_regmap_init_mmio(&pdev->dev, iomem,
+> > > > 						&pef2256_regmap_config);
+> > > >
+> > > > 	pef2256->mclk = devm_clk_get_enabled(&pdev->dev, "mclk");
+> > > > 	pef2256->sclkr = devm_clk_get_enabled(&pdev->dev, "sclkr");
+> > > > 	pef2256->sclkx = devm_clk_get_enabled(&pdev->dev, "sclkx");
+> > > >
+> > > > 	pef2256->reset_gpio = devm_gpiod_get_optional(&pdev->dev, "reset", GPIOD_OUT_LOW);
+> > > > 	if (pef2256->reset_gpio) {
+> > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 1);
+> > > > 		udelay(10);
+> > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 0);
+> > > > 		udelay(10);
+> > > > 	}
+> > > >
+> > > > 	pef2556_of_parse(pef2256, np);
+> > > >
+> > > > 	irq = platform_get_irq(pdev, 0);
+> > > > 	ret = devm_request_irq(pef2256->dev, irq, pef2256_irq_handler, 0, "pef2256", pef2256);
+> > > >
+> > > > 	platform_set_drvdata(pdev, pef2256);
+> > > >
+> > > > 	mfd_add_devices(pef2256->dev, PLATFORM_DEVID_NONE, pef2256_devs,
+> > > > 	      		ARRAY_SIZE(pef2256_devs), NULL, 0, NULL);    
+> > >
+> > > Wait, now you use MFD framework, so the driver is suitable for MFD.
+> > > Before there was nothing like that in your code.    
+> > 
+> > Agree, the above is suitable for MFD, since it does all the things I
+> > said your last one did not.  You *can* also use of_platform_populate()
+> > here, since you are *also* requesting and initialising shared resources.
+> > You cannot do *both* however.
+> >   
+> 
+> Thanks for having confirmed that this driver can be a MFD driver.
+> 
+> Related to of_platform_populate() / mfd_add_devices(), I wanted to use both
+> because:
+> - the pinctrl part does not have (and does not need to have) a specific node
+>   with a specific compatible property. In order to instantiate the related
+>   driver mfd_add_devices() is the only way I know.
+> - the audio component nodes have a compatible string and several components
+>   (ie several nodes) can be present. of_platform_populate() call seems the
+>   simple way to instantiate them.
+> 
+> Is there a way to use mfd_add_devices() in this case without the need to
+> count the audio component nodes in order to allocate as much mfd_cell as
+> nodes having a matching compatible property ? Is there an other API to do
+> it ?
+> 
 
-> >=20
-> >=20
-> >=20
-> >=20
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > ---
-> >  Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst | 4 ++++
-> >  drivers/media/v4l2-core/v4l2-common.c                       | 1 +
-> >  drivers/media/v4l2-core/v4l2-ioctl.c                        | 1 +
-> >  include/uapi/linux/videodev2.h                              | 1 +
-> >  4 files changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rs=
-t b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> > index f1d5bb7b806d..8805213a75f8 100644
-> > --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> > +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> > @@ -270,6 +270,7 @@ of the luma plane.
-> >  .. _V4L2-PIX-FMT-NV12MT:
-> >  .. _V4L2-PIX-FMT-NV12MT-16X16:
-> >  .. _V4L2-PIX-FMT-NV12-4L4:
-> > +.. _V4L2-PIX-FMT-NV12-10LE40-4L4:
-> >  .. _V4L2-PIX-FMT-NV12-16L16:
-> >  .. _V4L2-PIX-FMT-NV12-32L32:
-> >  .. _V4L2-PIX-FMT-NV12M-8L128:
-> > @@ -306,6 +307,9 @@ tiles linearly in memory. The line stride and image=
- height must be
-> >  aligned to a multiple of 4. The layouts of the luma and chroma planes =
-are
-> >  identical.
-> > =20
-> > +``V4L2_PIX_FMT_NV12_10LE40_4L4`` is similar to ``V4L2_PIX_FMT_NV12_4L4=
-``
-> > +and stores 10 bits pixels in 4x4 tiles.
->=20
-> I think this is not enough, as it does not describe the NV12_10E40 pixel
-> packing. We don't have that as a linear format yet in V4L2 (unlike
-> DRM_FORMAT_NV15 on DRM side). So I'd suggest to drop the usual bit packin=
-g table
-> here for now. Please ping Sebastien Fricke, as he got that for (along wit=
-h
-> NV12_10LE40 base format) documented in his RKVDEC HEVC decoder work.
->=20
-> >=20
-> > +
-> >  ``V4L2_PIX_FMT_NV12_16L16`` stores pixels in 16x16 tiles, and stores
-> >  tiles linearly in memory. The line stride and image height must be
-> >  aligned to a multiple of 16. The layouts of the luma and chroma planes=
- are
-> > diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2=
--core/v4l2-common.c
-> > index 9cb0895dea1c..7f46c45982d6 100644
-> > --- a/drivers/media/v4l2-core/v4l2-common.c
-> > +++ b/drivers/media/v4l2-core/v4l2-common.c
-> > @@ -278,6 +278,7 @@ const struct v4l2_format_info *v4l2_format_info(u32=
- format)
-> > =20
-> >  		/* Tiled YUV formats */
-> >  		{ .format =3D V4L2_PIX_FMT_NV12_4L4, .pixel_enc =3D V4L2_PIXEL_ENC_Y=
-UV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 1, 2, 0, 0 }, .bpp_di=
-v =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
-> > +		{ .format =3D V4L2_PIX_FMT_NV12_10LE40_4L4, .pixel_enc =3D V4L2_PIXE=
-L_ENC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 },=
- .bpp_div =3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
->=20
-> As you will be doing v6, can you initiallized the forgotten "block" param=
-eters ?
->=20
->=20
-> >  		{ .format =3D V4L2_PIX_FMT_P010_4L4, .pixel_enc =3D V4L2_PIXEL_ENC_Y=
-UV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 2, 4, 0, 0 }, .bpp_di=
-v =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
-> > =20
-> >  		/* YUV planar formats, non contiguous variant */
-> > diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-=
-core/v4l2-ioctl.c
-> > index d2b905ba5240..5a0c5b3a6b0f 100644
-> > --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> > +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> > @@ -1351,6 +1351,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc =
-*fmt)
-> >  	case V4L2_PIX_FMT_NV12_4L4:	descr =3D "Y/UV 4:2:0 (4x4 Linear)"; brea=
-k;
-> >  	case V4L2_PIX_FMT_NV12_16L16:	descr =3D "Y/UV 4:2:0 (16x16 Linear)"; =
-break;
-> >  	case V4L2_PIX_FMT_NV12_32L32:   descr =3D "Y/UV 4:2:0 (32x32 Linear)"=
-; break;
-> > +	case V4L2_PIX_FMT_NV12_10LE40_4L4: descr =3D "10-bit YUV 4:2:0 (4x4 L=
-inear)"; break;
-> >  	case V4L2_PIX_FMT_P010_4L4:	descr =3D "10-bit Y/UV 4:2:0 (4x4 Linear)=
-"; break;
-> >  	case V4L2_PIX_FMT_NV12M:	descr =3D "Y/UV 4:2:0 (N-C)"; break;
-> >  	case V4L2_PIX_FMT_NV21M:	descr =3D "Y/VU 4:2:0 (N-C)"; break;
-> > diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videod=
-ev2.h
-> > index 8cdc7967cdea..93e300111ca1 100644
-> > --- a/include/uapi/linux/videodev2.h
-> > +++ b/include/uapi/linux/videodev2.h
-> > @@ -664,6 +664,7 @@ struct v4l2_pix_format {
-> >  #define V4L2_PIX_FMT_NV12_4L4 v4l2_fourcc('V', 'T', '1', '2')   /* 12 =
- Y/CbCr 4:2:0  4x4 tiles */
-> >  #define V4L2_PIX_FMT_NV12_16L16 v4l2_fourcc('H', 'M', '1', '2') /* 12 =
- Y/CbCr 4:2:0 16x16 tiles */
-> >  #define V4L2_PIX_FMT_NV12_32L32 v4l2_fourcc('S', 'T', '1', '2') /* 12 =
- Y/CbCr 4:2:0 32x32 tiles */
-> > +#define V4L2_PIX_FMT_NV12_10LE40_4L4 v4l2_fourcc('V', 'T', '1', '5')
-> >  #define V4L2_PIX_FMT_P010_4L4 v4l2_fourcc('T', '0', '1', '0') /* 12  Y=
-/CbCr 4:2:0 10-bit 4x4 macroblocks */
-> >  #define V4L2_PIX_FMT_NV12_8L128       v4l2_fourcc('A', 'T', '1', '2') =
-/* Y/CbCr 4:2:0 8x128 tiles */
-> >  #define V4L2_PIX_FMT_NV12_10BE_8L128  v4l2_fourcc_be('A', 'X', '1', '2=
-') /* Y/CbCr 4:2:0 10-bit 8x128 tiles */
->=20
+I looked deeper for using mfd_add_devices() only and found an issue (related
+to my use-case).
 
+mfd_add_devices() calls mfd_add_device() and in this function we have:
+---- 8< ----
+	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
+		for_each_child_of_node(parent->of_node, np) {
+			if (of_device_is_compatible(np, cell->of_compatible)) {
+				/* Ignore 'disabled' devices error free */
+				if (!of_device_is_available(np)) {
+					of_node_put(np);
+					ret = 0;
+					goto fail_alias;
+				}
+
+				ret = mfd_match_of_node_to_dev(pdev, np, cell);
+				if (ret == -EAGAIN)
+					continue;
+				of_node_put(np);
+				if (ret)
+					goto fail_alias;
+
+				break;
+			}
+		}
+
+		if (!pdev->dev.of_node)
+			pr_warn("%s: Failed to locate of_node [id: %d]\n",
+				cell->name, platform_id);
+	}
+---- 8< ----
+
+My issue is related to the loop.
+The loop is aborted if the device is not available (typically 'Disabled' in the
+DT node).
+
+My full pef2256 node can have several pef2256 audio subnodes with compatible
+set to "lantiq,pef2256-codec" and some of them can have 'status = "Disabled";'
+As soon as one device (with my expected compatible) is found 'Disabled', there
+is no way to look at other children.
+
+Having 'continue' in case of device not available in the loop to look at the
+next child will change the behavior of mfd_add_device().
+Do you think that looking at next child if we find a 'not available' child
+can be correct for mfd_add_device() ?
+This probably will have impacts on other MFD drivers.
+
+Best regards,
+Hervé
