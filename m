@@ -2,127 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80C6E6DE4E2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 21:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DC846DE4FC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 21:30:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbjDKTWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 15:22:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57050 "EHLO
+        id S229583AbjDKTad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 15:30:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbjDKTWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 15:22:16 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EE555B8
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 12:21:59 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id e127so9363193ybf.8
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 12:21:59 -0700 (PDT)
+        with ESMTP id S229565AbjDKTac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 15:30:32 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408F91B4;
+        Tue, 11 Apr 2023 12:30:31 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id ud9so22938129ejc.7;
+        Tue, 11 Apr 2023 12:30:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1681240919; x=1683832919;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=googlemail.com; s=20210112; t=1681241430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/UKK5UX1sxA/fn51ycSNCkY1kfW7huepZ1JtlF3gmCU=;
-        b=MODAKOLAe1mrFHbVLmSTy4tXpGrI6txQIJfm5HU7lN1WAtmS7oqJ7klQsvQAaLo3Mv
-         k8OMqRaomz/vkCR9BzzUkJJv28dzjJvu2nY8yN03/fbdeRP2ul5C3BOPODjVzN1fjkmK
-         /WmeqkGRYSOVzBsjuQZyqTqHPf3MZiaBOuQN0=
+        bh=/djvqI9JsJGvDn3SeW6vm5P6m42AvZNBj0jcHhZnRM4=;
+        b=AqRqt8mlFu1EZUsVr+zspOkJ4uOQ+yIr1IjZ1zhhq31AVvWsJDwCtAt3Zht1izog4M
+         JkAS3c3Dz882M05M0FLebvBd8mkPB2iX7vvxpWFUGyO03ytitNYxL8S1iEQoY2bj0ZDa
+         +T4YaBqXthOb6pr4NxBHo+qgGvGOWorR03SZYGEyN1T/qoHK/W5BJ4hY0OTAuGJ/HmSN
+         HqFG1yhc3jSWKxjZoVRVdB32QjkSHh7FhEbk042cb+w3iJEkjA938iglZ9DU3e0jrlRd
+         YPvE8VzoQZ0c0wj+7houxZYFRbJfVP/4b3uZ+8JbwAk6hWkGdhSrglTw1ggb6WmcG8LY
+         iqEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681240919; x=1683832919;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1681241430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/UKK5UX1sxA/fn51ycSNCkY1kfW7huepZ1JtlF3gmCU=;
-        b=QqmSFMo7NjRLqSWKnMcg7vIEojf9LDlJ1k1jijBgk74SknbJfLwLwA/cnS0JXWFFbF
-         aGLZxXVrAcYrWYdxKYq6sILHKiqmJsBOBsLELu7QVEykuPo9bI+saX5aU+wNdxvSfHSk
-         klfPQPadiMG3V1JFjV69nXwxbZfqgQvxirSyD8U69DO4g9QB3wdmFT3mz+a26q55wbtx
-         z5A7fTqPhMiUp3HmVv4YHamhmGcM9eZZa8xzhJwAhJDYqHinmvH7lSFvn0PAeUjLbfj2
-         6SJe9wDbOWY+a+WCPBGF+mMyfItZpLUl1UegHBElxZmB/YNhcNevkGA/Z01leOj3+qwT
-         iLXQ==
-X-Gm-Message-State: AAQBX9dxe+YG/FqS+xZwsdlMsVhC1zqrMTQsAJ2Dy/HSL2j7mvDqzKsU
-        z/AcfKt2dmkQKrs8/whCUbyXmA==
-X-Google-Smtp-Source: AKy350Y0AFVRCh26uZEEXl/caeeSKSUSmctYd6tMGvN9clthojK4HZRfhP/DRCF/UTqrV0O1hw6atA==
-X-Received: by 2002:a25:6d87:0:b0:b8e:e918:33ac with SMTP id i129-20020a256d87000000b00b8ee91833acmr5372721ybc.1.1681240919489;
-        Tue, 11 Apr 2023 12:21:59 -0700 (PDT)
-Received: from localhost ([2620:0:1035:15:2991:9b76:4e62:65bf])
-        by smtp.gmail.com with UTF8SMTPSA id u74-20020a25ab50000000b00b7767ca7485sm3834942ybi.34.2023.04.11.12.21.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 12:21:59 -0700 (PDT)
-From:   Mark Yacoub <markyacoub@chromium.org>
-X-Google-Original-From: Mark Yacoub <markyacoub@google.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     seanpaul@chromium.org, suraj.kandpal@intel.com,
-        dianders@chromium.org, dmitry.baryshkov@linaro.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org,
-        Mark Yacoub <markyacoub@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v9 09/10] arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
-Date:   Tue, 11 Apr 2023 15:21:33 -0400
-Message-Id: <20230411192134.508113-10-markyacoub@google.com>
-X-Mailer: git-send-email 2.40.0.577.gac1e443424-goog
-In-Reply-To: <20230411192134.508113-1-markyacoub@google.com>
-References: <20230411192134.508113-1-markyacoub@google.com>
+        bh=/djvqI9JsJGvDn3SeW6vm5P6m42AvZNBj0jcHhZnRM4=;
+        b=2YN5k/AKl1YLE+cRcbIPPBdhG2uY0jWOe53inFYmhZC5EW+6PfUxMRfh66m5Ad6wk6
+         jVyt8rbCB5WexRdN57+OasPzNpIwAC7tDIWWzK8Trt7yM/WBv9MYWXud1moBp2vs9dBa
+         jeCXD4bIdacc4puL1aTHc9zVluzMuLvaX7S6CJB4ChznACQHTGhr/IHweOywC0LLTadc
+         5TTOutUN1VTXLR+XB4FveIbKZUOsttqEII9itDXAwFWI03i5wmbnQ/L1JJtk+chw/5Hq
+         ZLrVjbM86Y4FcJQ/ChYcbJpYKdQT4YXAYatQxqhEDFsViJYCNsraoPcWDTZchpjmAH3L
+         K35w==
+X-Gm-Message-State: AAQBX9dg+b56x1D+LNA/pMAQqEIgXdkpMe+WA4AlUKMdiP8Cqzun6qyr
+        YatgSqKqjJpUnVxinCCwtWar1BJXDr7x2c9nC3c=
+X-Google-Smtp-Source: AKy350Z8La4docT1vMFuoXxvI/XsDKC+Hy4e6yD7JK7aCMklvTxvE8XQXPb50PEcBK/AIQfgVHJcGowSXtJlkVPio84=
+X-Received: by 2002:a17:907:ea5:b0:94a:972c:c28d with SMTP id
+ ho37-20020a1709070ea500b0094a972cc28dmr3782765ejc.6.1681241429546; Tue, 11
+ Apr 2023 12:30:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230410193048.31084-1-exkcmailist@inbox.lv> <20230410193048.31084-3-exkcmailist@inbox.lv>
+In-Reply-To: <20230410193048.31084-3-exkcmailist@inbox.lv>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 11 Apr 2023 21:30:18 +0200
+Message-ID: <CAFBinCCXYnChN8MfOxGEDSTm4HftpzuwwHwtqm7b1dPH6EdUsQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: meson-gxl: add support for Xiaomi
+ Mibox 3
+To:     Karl Chan <exkcmailist@inbox.lv>
+Cc:     linux-amlogic@lists.infradead.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Karl Chan <exxxxkc@getgoogleoff.me>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Paul <seanpaul@chromium.org>
+Hello Karl,
 
-Add the register ranges required for HDCP key injection and
-HDCP TrustZone interaction as described in the dt-bindings for the
-sc7180 dp controller.
+On Mon, Apr 10, 2023 at 9:31=E2=80=AFPM Karl Chan <exkcmailist@inbox.lv> wr=
+ote:
+>
+> From: "Karl Chan"  <exkcmailist@inbox.lv>
+>
+> The Xiaomi Mibox 3 is a TV box based on the Amlogic S905X chipset.
+I found various websites referring to this device as "Mi Box 3" (so
+space between Mi and Box).
+Do you know the official name that Xiaomi used?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> There are two variants:
+> - 2 GiB/8GIB
+> - 1 GiB/4GIB
+>
+> Both variants come with:
+> - 802.11a/b/g/n/ac wifi (BCM4345)
+> - HDMI , AV (CVBS) and S/PDIF optical output
+nit-pick: no space before the comma
 
----
-Changes in v3:
--Split off into a new patch containing just the dts change (Stephen)
--Add hdcp compatible string (Stephen)
-Changes in v4:
--Rebase on Bjorn's multi-dp patchset
-Changes in v5:
--Put the tz register offsets in trogdor dtsi (Rob C)
-Changes in v6:
--Rebased: Removed modifications in sc7180.dtsi as it's already upstream
-Changes in v7:
--Change registers offset
+> - 1x USB (utilizing both USB ports provided by the SoC)
+Can you please explain this in a bit more detail?
+My understanding is that this board has one USB 2.0 type A port. What
+do you mean by "utilizing both USB ports"?
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Also I'm curious: does the board come with eMMC or (raw/parallel) NAND
+flash? P212 typically means eMMC.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 423630c4d02c7..89d913fa6e3eb 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -822,6 +822,14 @@ &mdss_dp {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&dp_hot_plug_det>;
-+
-+	reg = <0 0x0ae90000 0 0x200>,
-+	      <0 0x0ae90200 0 0x200>,
-+	      <0 0x0ae90400 0 0xc00>,
-+	      <0 0x0ae91000 0 0x400>,
-+	      <0 0x0ae91400 0 0x400>,
-+	      <0 0x0aed1000 0 0x174>,
-+	      <0 0x0aee1000 0 0x2c>;
- };
- 
- &mdss_dp_out {
--- 
-2.40.0.577.gac1e443424-goog
+[...]
+> +/* This UART is brought out to the uart pad on the pcb*/
+nit-pick: missing space after "pcb"
+Are the UART pads obvious on the board (for example since they are
+labelled)? If not: maybe add a hint where to find it
 
+[...]
+> +&usb {
+> +       status =3D "okay";
+> +       dr_mode =3D "host";
+> +};
+This is already inherited from meson-gxl-s905x-p212.dtsi so removing
+it should result in the same .dtb
+
+
+Best regards,
+Martin
