@@ -2,101 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D48BF6DE1DA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 341D26DE1EA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjDKRH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 13:07:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
+        id S229883AbjDKRJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 13:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjDKRHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:07:25 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9E611F
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 10:07:23 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id qb20so21726281ejc.6
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 10:07:23 -0700 (PDT)
+        with ESMTP id S229501AbjDKRJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:09:46 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E774489
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 10:09:44 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94a34a0b531so212780866b.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 10:09:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681232842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XdfzJIKkFxIWGY1rkF0F0muLgVM5DAQIuMkjMd6tTQw=;
-        b=HSvS5GsLxSDwYhUMkn8c5rNLPwwT8unZWVQGHgnG0LcXiufU5iO5BySuWj7sVjuP/9
-         8kyBwgbW36zuTom5JtFLIHG8Yn2PLYphgV8BD1RbEQsD2+wewb8EHqEamtsSBEjx/smJ
-         zLgsllKhpG6UEYfW50c86I7PIrhW4qG0qX0E4J3Q9+ttfxfsNLZpqEvACeS753WDd06E
-         X/IxFfINba8DTpM8hNRzfVGiTy28UkOg16gY9paSub5NGBnaV7eYb8k4T2ZtzCV5g/d5
-         o1EdlCGkceESd7bfe9OrKSBPHYZ9a/DTfoRGhcfw2gZito5pMR+xxPNw7XDLrdnNoivS
-         X1wA==
+        d=linaro.org; s=google; t=1681232983;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y9SxlcmeObYzS8Fp2B5Ly5eIBlD9Df8fw8jDrfxuB2I=;
+        b=X1jxi9RoB5VaFZdoe3FRaxwMcnMHJbQQmtALVHDqPSFjX8nQM/tEgdzij9WWb/6kOn
+         PB6doZahYWV9ORUgw4XLvzdiwGd27JBMD3mQqZKCzwPtdsuJyiCejTXB/pkVWj+RB023
+         1X6e0N666IvvZvObQcEqkaeLeK4vZxa2HZMyiHLT75ehPG4Ofo4sKfM6bxJv50kDLNEX
+         Pg8u89ylk+nWuep05ujYV+DjCH/2yg7WwzhB0J6l7ME8N0gCXDqcjCMoYN7hEsfDrQPN
+         Nf+9PnhDcGWFVhdb9qsQnPkRZMnrSUZwXgzHUjUk5Nbxi72x8R7wRH37Onc/76uTMSFo
+         PG4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681232842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XdfzJIKkFxIWGY1rkF0F0muLgVM5DAQIuMkjMd6tTQw=;
-        b=jBI3e4JYHKGVHcywzApeYf1gVP2PaieRuhhWXn/6/aX3G38+B4l47TvxqWTuYe2+Z+
-         VVy5n0F0D47qqrJfSR+ldYV3x7RfcZ+Zz+vxMoZWDVxz/9+2SSuW7QTPOF8hoXoRtqkc
-         NCyzHZ0Z5JUYHhdIJshSRSC6/9KTYe4H11stW1U0QyNob1V6FwK7+XEu/zu+TfGadLrK
-         FZAKpHgoFI/wy9xNVWxv49pklcEwlgZ+iXCebRHh9M9bwg9daQQBhitK2IhSDOL1/4Gu
-         bE5SXGn/WQOsOd1RTE8J6xPNxZFFtBAlOGQOG434IdPYWBlynexX4FwsB4pzPgOOTPPQ
-         RP8A==
-X-Gm-Message-State: AAQBX9c1K3oOGlpvxw7LtXkMmwSECV3TUElK37/XjWC2NgjgajkSn4X7
-        /QZlfdQv5UBZR82Ht6802vK6wQ==
-X-Google-Smtp-Source: AKy350YUHA8noLFxB77M1WrwMp3h3S22CgVFDg9e5wFnchjY210tZ+OCaYJzVNhF67XiuxFuudOouA==
-X-Received: by 2002:a17:906:2a48:b0:933:4d37:82b2 with SMTP id k8-20020a1709062a4800b009334d3782b2mr10790107eje.57.1681232842328;
-        Tue, 11 Apr 2023 10:07:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:f1da:c117:3657:c8a? ([2a02:810d:15c0:828:f1da:c117:3657:c8a])
-        by smtp.gmail.com with ESMTPSA id u10-20020a17090657ca00b0094a64f6b78fsm2902162ejr.20.2023.04.11.10.07.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 10:07:21 -0700 (PDT)
-Message-ID: <b7c9ac38-6f9b-8d05-39c6-fee9058209a9@linaro.org>
-Date:   Tue, 11 Apr 2023 19:07:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 05/10] arm64: dts: qcom: sc8280xp: remove superfluous
- "input-enable"
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        d=1e100.net; s=20210112; t=1681232983;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y9SxlcmeObYzS8Fp2B5Ly5eIBlD9Df8fw8jDrfxuB2I=;
+        b=mdGam8myXdQZsLjOHYIRZf2O4mxWKPmodCM/ca1w7g39fSGexiDIu3LXJFSc1sBI9G
+         hxNH2KZiGMLC61kD6H0+ljFpyhJ+4nNAByRpNeeq0A5M2q6QXaCMMjWjIW8jecjcV+i6
+         Mnq3vQnmTcBtNdh3NSK+PWl9ddwKBwBYrxDajEwQkpfmibooWqz4C1SqCxI75PO0Gx1u
+         /sGS+YwJfutmDyQBDxNH7eQ0CshuyC6WAeiKvZcAZAmyECtIYClAzu3b+eQuCDKL0HaK
+         zG4JX+lz0FbdO0V1ZTEsIpxRY526h/AiJKDPth2GJk7gYMSnYzFOzvlp5/JfVXAaCPMu
+         9s/Q==
+X-Gm-Message-State: AAQBX9fqkH/WAhx/Q2dP72LcqQGFCK6ubQqvnm9SEHw7+gkjZmDYjvbj
+        a+4X+Ayd1qP+VFSOA0wwnZEFFA==
+X-Google-Smtp-Source: AKy350bsAUOhc4y4f5Ru3Vp1ZKmVGS5b/u0biKZd50s1bReuD1OcBZkGl0oncQXLLhDEN6HJBEJR+w==
+X-Received: by 2002:a05:6402:356:b0:500:3a14:82c1 with SMTP id r22-20020a056402035600b005003a1482c1mr9363234edw.41.1681232983342;
+        Tue, 11 Apr 2023 10:09:43 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:f1da:c117:3657:c8a])
+        by smtp.gmail.com with ESMTPSA id a22-20020a509b56000000b005048c1f37b4sm3544311edj.64.2023.04.11.10.09.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 10:09:42 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230407175807.124394-1-krzysztof.kozlowski@linaro.org>
- <20230407175807.124394-5-krzysztof.kozlowski@linaro.org>
- <ZDVq1b0TjXH5LTYx@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZDVq1b0TjXH5LTYx@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Johan Hovold <johan@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp: Revert "arm64: dts: qcom: sc8280xp: remove superfluous "input-enable""
+Date:   Tue, 11 Apr 2023 19:09:38 +0200
+Message-Id: <20230411170938.1657387-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2023 16:12, Johan Hovold wrote:
-> On Fri, Apr 07, 2023 at 07:58:02PM +0200, Krzysztof Kozlowski wrote:
->> Pin configuration property "input-enable" was used with the intention to
->> disable the output, but this is done by default by Linux drivers.  Since
->> patch ("dt-bindings: pinctrl: qcom: tlmm should use output-disable, not
->> input-enable") the property is not accepted anymore.
-> 
-> This description does not seem to match the pin configurations that you
-> are changing below which use the "qcom,sc8280xp-lpass-lpi-pinctrl"
-> binding for which 'input-enable' is still accepted AFAICT.
-> 
-> Perhaps you can fix up the lpass bindings (and driver?) to match?
+This reverts commit 87e1f7b1a041a37390bf4fa7913683fb4f8d00d8 because it
+removed input-enable from the LPASS TLMM, where it is still correct
+(both bindings and Linux driver parse it).
 
-Thanks for spotting this. This change is wrong.
+Reported-by: Johan Hovold <johan@kernel.org>
+Closes: https://lore.kernel.org/all/b7c9ac38-6f9b-8d05-39c6-fee9058209a9@linaro.org/T/#me6c2cc2d87c17c0f30f541e8161a84fdde69f5f5
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 7608a4800732..ef9bd6ab577d 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -2725,6 +2725,7 @@ data-pins {
+ 					pins = "gpio7";
+ 					function = "dmic1_data";
+ 					drive-strength = <8>;
++					input-enable;
+ 				};
+ 			};
+ 
+@@ -2742,6 +2743,7 @@ data-pins {
+ 					function = "dmic1_data";
+ 					drive-strength = <2>;
+ 					bias-pull-down;
++					input-enable;
+ 				};
+ 			};
+ 
+@@ -2757,6 +2759,7 @@ data-pins {
+ 					pins = "gpio9";
+ 					function = "dmic2_data";
+ 					drive-strength = <8>;
++					input-enable;
+ 				};
+ 			};
+ 
+@@ -2774,6 +2777,7 @@ data-pins {
+ 					function = "dmic2_data";
+ 					drive-strength = <2>;
+ 					bias-pull-down;
++					input-enable;
+ 				};
+ 			};
+ 
+-- 
+2.34.1
 
