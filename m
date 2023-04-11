@@ -2,89 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FA896DE293
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2906DE2AB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 19:35:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjDKReQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 13:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60680 "EHLO
+        id S229535AbjDKRf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 13:35:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbjDKReO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:34:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D3D65B5;
-        Tue, 11 Apr 2023 10:33:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DB646200A;
-        Tue, 11 Apr 2023 17:33:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFA6CC4339B;
-        Tue, 11 Apr 2023 17:33:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681234432;
-        bh=ScMA2ZLrRu9taa5IpwTR7DDfb0acMaFdpECEOOkl7Oc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=i7r9+z+qDXFqq8/KDKOj1TPB+VYfdv/2dvD2gi0kaQ61lxfdOObCaXkp3Di8VY9bG
-         u0geIPFCEgig+y/jEWpQmUNP1owtXZwKg7lRGCEd7KhDIgjRkxBtJ0yagyZn9NHT1n
-         FJ8pAD/+Yaxp2T3iT7M+UpguZsZcueVMAchD3ONqg4Rf+2pc2S7Foa8ncUQAFsdmzm
-         8SrfbZ1Y7q+X/b0ofHlQhDTtv5pnaJbMbnxg1s+lIevlCPdoHTiRKMys2waQENzo37
-         U6qJ2DPp++F2VzE4m5K4n4wgsRl5G4O5hWbF+cjYDHPKGOKSel1dPBE5eVrs4U5PGr
-         y1/hrMleBZ/OQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com,
-        Saalim Quadri <danascape@gmail.com>
-Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        with ESMTP id S229478AbjDKRf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 13:35:56 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D844C1D;
+        Tue, 11 Apr 2023 10:35:54 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1842e278605so10666540fac.6;
+        Tue, 11 Apr 2023 10:35:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681234554; x=1683826554;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lxRBAACOQmsDZVgDcPTJclqhGazIBd8TxXM9U+CJTBI=;
+        b=idMEK7tZ09SPnGFugX7F8nrxWzDaIGCsFSEqFTxpZGyD9vkvfwbFjE3JHsOjc9M5wr
+         ayRH7J5VMz9b9s91bbsh3ypE9oUpMtF2F8BrA2CJ60DCIQsrBs7lJpWLX3NGFZFjz0Nt
+         2ttVlUw4qrKLloBa80jI/8VYzSHDoG9Um8WXiq7xCt3HSUoNG9utY6g9ddIWMZeB6lcr
+         9FTl2bS0Uc+OJEAsGapnzK3yxnTsUZmC7kQTpokDaUGvHmhLP8k3saV8v47qGXji2uRO
+         MXfsfYTvWP49r+si1xHSAKmf3StXSTjZuWJkO9v3Y4So9ZkoH//stdu9w7MBE+Xs/T8X
+         yUSA==
+X-Gm-Message-State: AAQBX9f65OdIYWT+mT+9U3+9LSiHzaXCzXSFAsLLnYHLeDhHyFDSMVV1
+        sfLCafge2046A8STdidoiA==
+X-Google-Smtp-Source: AKy350aev31o0vgGv6uWzPdOHgbdJoRi/zmhZhoVmHDysdeBlPq+SlCNvhSStCjGd9NLZUXNevO6rw==
+X-Received: by 2002:a05:6870:8912:b0:179:95f2:56e8 with SMTP id i18-20020a056870891200b0017995f256e8mr9160035oao.3.1681234552427;
+        Tue, 11 Apr 2023 10:35:52 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t21-20020a9d5915000000b006a13dd5c8a2sm5582333oth.5.2023.04.11.10.35.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 10:35:52 -0700 (PDT)
+Received: (nullmailer pid 3418439 invoked by uid 1000);
+        Tue, 11 Apr 2023 17:35:50 -0000
+Date:   Tue, 11 Apr 2023 12:35:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Iskren Chernev <me@iskren.info>,
+        Martin Botka <martin.botka@somainline.org>,
+        Danila Tikhonov <danila@jiaxyga.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230405205820.6836-1-danascape@gmail.com>
-References: <20230405205820.6836-1-danascape@gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8711: Convert to dtschema
-Message-Id: <168123443056.491748.13637746465528590932.b4-ty@kernel.org>
-Date:   Tue, 11 Apr 2023 18:33:50 +0100
+Subject: Re: [PATCH 01/40] dt-bindings: pinctrl: qcom,ipq5332-tlmm: simplify
+ with unevaluatedProperties
+Message-ID: <20230411173550.GA3408186-robh@kernel.org>
+References: <20230407184546.161168-1-krzysztof.kozlowski@linaro.org>
+ <574d3aa5-21f4-014a-8cc7-7549df59ff3c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-00303
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <574d3aa5-21f4-014a-8cc7-7549df59ff3c@linaro.org>
+X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 Apr 2023 02:28:20 +0530, Saalim Quadri wrote:
-> Convert the WM8711 audio CODEC bindings to DT schema
+On Fri, Apr 07, 2023 at 08:54:43PM +0200, Krzysztof Kozlowski wrote:
+> On 07/04/2023 20:45, Krzysztof Kozlowski wrote:
+> > All Qualcomm SoC Top Level Mode Multiplexer pin controllers have similar
+> > capabilities regarding pin properties, thus we can just accept entire
+> > set provided by qcom,tlmm-common.yaml schema.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> 
+> Linus,
+> 
+> If you prefer I can send all these to you in a pull after getting some acks.
 > 
 > 
+> Rob,
+> 
+> Feel free to ack once for all of them.
 
-Applied to
+There's no cover letter to ack them all (and b4 to pick up), but I guess 
+that's your own problem in this case. For the series:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Acked-by: Rob Herring <robh@kernel.org>
 
-Thanks!
+IMO, this should just be 1 patch. It's 1 change for 1 platform family 
+for 1 subsystem. There's just no point when it's all the same people 
+that will review it and apply it.
 
-[1/1] ASoC: dt-bindings: wm8711: Convert to dtschema
-      commit: 25500613de4a867d16068b28faa963cd3ce0a11a
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Rob
