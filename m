@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B5C6DD573
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F066DD577
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbjDKI3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 04:29:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39398 "EHLO
+        id S229836AbjDKI3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 04:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230212AbjDKI2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:28:54 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393C0422A;
-        Tue, 11 Apr 2023 01:28:28 -0700 (PDT)
+        with ESMTP id S229602AbjDKI3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:29:34 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A96F09B;
+        Tue, 11 Apr 2023 01:29:33 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C4E2D66031E2;
-        Tue, 11 Apr 2023 09:28:19 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0687866003AD;
+        Tue, 11 Apr 2023 09:29:31 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681201700;
-        bh=zR5A2y0u1pon3797Cdyl90Wk9kLNd3D+9zTfEkqtCoo=;
+        s=mail; t=1681201772;
+        bh=bPE3j4UAbUHCaDfr9qUZkcXD11zOLf1fT0sAoWVI/qY=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GWjt4Vu09C8UQp7IpbPt2j2WrG7FzI/rvSbJo57LQJwS644ZOPOSl/C9kANZpJuPU
-         ZdC/yhUepN4nEL+ZY2JDENJc7VVIc571vsiQQX0rZyr9o/d/gt5xRH1nURnYt++W4p
-         rPv3JTnv3NXbocfpRqMschY6o+GvuyohuV9/KUUR/23YFsLy+UQB/YA0HACcMoE5X2
-         cg8owKl9K7flK/I0sOi1odVOg0nraS1ImtVvZ9F4xUYzHQG0ZToDYVAaPYzbo2jfdD
-         zQTkEzxP18pYYySxE/PoGxCxAHSm+Hq4GpZzxxh2+iUQXFiMDUrdPxslM1IsCKHm4H
-         BEu2FZgzJdvow==
-Message-ID: <ef108434-1956-d488-c6f6-535d66ba6603@collabora.com>
-Date:   Tue, 11 Apr 2023 10:28:16 +0200
+        b=Obp2BOCGT4IjC0VxutC9LsF+F1BUIk4hjWxDEwIifj+k8UkjL9lBBntJGhKEwQV2Q
+         9ZFtUfubR7dr86ocHI6T6TTiTC7wgbFqY2ORJQZhMZqZVSk1RYGl/7zs3sThlb8bNG
+         /aGZp4sviidyaMaWrESzyrdN2i9DnJd5XdT9HWXw2TtKV3w/0KCnvNelnzpMhsHIvh
+         Uvc5HjUIDiQiqo3ZIOlvEzjMhlCdGTQWwgW76L00vcndYs6JzRWIKFaMgFTVlYyR88
+         XW/UfbIk/3/mRV2D6vxV8XgJud6bH1ujCp+Be1wRQPkDOma1k10qV7xKaxLUUSUUDM
+         Yv0unvkvqqITQ==
+Message-ID: <be19f8d0-2a66-caf9-a505-772aecf3a62b@collabora.com>
+Date:   Tue, 11 Apr 2023 10:29:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/3] memory: mtk-smi: mt8365: Add SMI Support
+Subject: Re: [PATCH v2 2/3] dt-bindings: memory-controllers:
+ mediatek,smi-common: add mt8365
 Content-Language: en-US
 To:     Alexandre Mergnat <amergnat@baylibre.com>,
         Yong Wu <yong.wu@mediatek.com>,
@@ -46,10 +47,10 @@ To:     Alexandre Mergnat <amergnat@baylibre.com>,
 Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 References: <20230407-smi-driver-v2-0-8da6683cdb5c@baylibre.com>
- <20230407-smi-driver-v2-1-8da6683cdb5c@baylibre.com>
+ <20230407-smi-driver-v2-2-8da6683cdb5c@baylibre.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230407-smi-driver-v2-1-8da6683cdb5c@baylibre.com>
+In-Reply-To: <20230407-smi-driver-v2-2-8da6683cdb5c@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -62,11 +63,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Il 07/04/23 11:13, Alexandre Mergnat ha scritto:
-> Add MT8365 SMI common support.
+> Add binding description for mediatek,mt8365-smi-common
 > 
-> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-
+...but the bindings commits should come before the driver commits.
