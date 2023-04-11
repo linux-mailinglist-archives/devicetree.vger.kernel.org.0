@@ -2,306 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82FD06DDF84
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 17:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73F26DDF86
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 17:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbjDKPXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 11:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38124 "EHLO
+        id S229616AbjDKPYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 11:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbjDKPXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 11:23:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2A53AAA
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 08:23:19 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1pmFpj-0002KZ-Oq; Tue, 11 Apr 2023 17:22:59 +0200
-Message-ID: <2c6f4794540587ea308b976abbc9a2f58e7f28cb.camel@pengutronix.de>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
- properties
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     Jun Li <jun.li@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Bough Chen <haibo.chen@nxp.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Date:   Tue, 11 Apr 2023 17:22:32 +0200
-In-Reply-To: <PA4PR04MB9640611A4FF721349025BF1E899A9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-References: <20230405112118.1256151-1-j.zink@pengutronix.de>
-         <20230405112118.1256151-2-j.zink@pengutronix.de>
-         <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
-         <3f7257ee36dc44f162a87281c8279fd5bad91dea.camel@pengutronix.de>
-         <95b4afd4-c93e-628b-fd22-6fcbc1d1234e@linaro.org>
-         <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
-         <PA4PR04MB9640611A4FF721349025BF1E899A9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1+deb11u1 
+        with ESMTP id S229574AbjDKPYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 11:24:38 -0400
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86D8123
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 08:24:36 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2481058228D;
+        Tue, 11 Apr 2023 11:24:35 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Tue, 11 Apr 2023 11:24:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1681226675; x=1681233875; bh=BP
+        WBSjvAcd1HSqMD45GjKmJHtTH8tlrO7GGDHM65Ri8=; b=a3n7GwzNMqFa8yAL6k
+        H+5aWtMrbBPxrh6XmwN8I5seXb4Lz4GGXOU7DxShpdriF6BMiQ/j+mDom4vkPj79
+        X9Tl2Norm7tAQFzUCewZj8H8z3tNMiRA3EmUf3AuIznvJPDzA3Rv9LC1SN7TqyDq
+        +noyuFkF6IDvbN8AVO0jUpvNxVyJgAcZePBSx31NiTWRZaT9UvhCoLtGKKGPawgi
+        BCyA9ISjidUWvuBpXxGDLRXETJfwFazm0JR8EO7Qn36SILEB17n/3VuQEcgmI3VN
+        yPfrA3tANkVa5DaH6imfWesBud1VH1+Ug9PmgXbaJp/40HB5zroHtfOu8JYFe3kH
+        rc/Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1681226675; x=1681233875; bh=BPWBSjvAcd1HS
+        qMD45GjKmJHtTH8tlrO7GGDHM65Ri8=; b=UHD4xDNo9SUZPRJPS/kFdQMz9Sz/Z
+        qVY9GFmj7aU+l1+3qHr1jioS3kuAy/uaAlvOB63WO+MvKW7wUnwG5ED6aE8go73w
+        nXY1S+m2Ut8KGGI3QnFlVbecnYMOZuG9srp4M0b0KlToAFaLPGF+LrCuktAfc2zp
+        Kg8x/ZmpOY3dBMA8EztsZVJB6Zqtx4AYbXDDanm4tqb4DFNjQaFdEIYi/QeVoq3h
+        DEOmNwdjRms4Y+J/kp+EOZRi0/VXylWKxymxZ8518kLsdxG0vm2RYl9KqcZW+2C8
+        iadN1D0YuBqqfaL7kbuyINFHaV77FiqzTDAWTgmSwdvQiprJkZuJ4eH5A==
+X-ME-Sender: <xms:sXs1ZBx5mGwrOofZgPujDRdOk-RP8-d1uK4XuGl7h2uL0sJdNeCMmw>
+    <xme:sXs1ZBTVgG-a5jHUm0LUaN9HBPhQOvWH537TBO1jDzDzDzWVkSFpKKIeLEMvgOls9
+    66tlUFwU50NehCH2rU>
+X-ME-Received: <xmr:sXs1ZLUJG_fhs2kdFPgxvfoTOHlXM4RbmBozi6Rrdb1joXirSA1OwtSLf3Yj5a3FntCoaMN2MQhxl9L9s7ylJkNRA-uAZoQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdekgedgkeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtsfertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeeuveduheeutdekvefgudevjeeufedvvdevhfejgfelgfdtkeevueegteek
+    gfelfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:sXs1ZDgs-65LQ9SqnAPKMrRAqlL6dmEvsBdM5L-BP4k8mcfsgoqRtQ>
+    <xmx:sXs1ZDDoj7oZW2QtlPRVVdbeZuRbe36gP8Mz1QMS9Honc_QXWsgk4Q>
+    <xmx:sXs1ZMKYB-coT8gWaOx3eBuI-r5SLbkTQG1rddOmzm7VHkh2SBRZwA>
+    <xmx:s3s1ZIBr1wlhq7XfW51qbGdhOUpq4UrlhuUN5Yp6sHGxbD15xHER5A>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 11 Apr 2023 11:24:32 -0400 (EDT)
+Date:   Tue, 11 Apr 2023 17:24:30 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Cc:     airlied@gmail.com, andrzej.hajda@intel.com, daniel@ffwll.ch,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, jagan@amarulasolutions.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        maarten.lankhorst@linux.intel.com, marex@denx.de,
+        neil.armstrong@linaro.org, rfoss@kernel.org, robh+dt@kernel.org,
+        sam@ravnborg.org, samuel@sholland.org, tzimmermann@suse.de,
+        wens@csie.org
+Subject: Re: [PATCH 0/2] drm: sun4i/dsi: allow modeset helpers to manage
+ display
+Message-ID: <yaygghm3dovfe7h57en4eij37ixo2m5bzcvsrd3mmp6wlig6gw@hp5s7ppfnnvt>
+References: <20230410084750.164016-1-fusibrandon13@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="bjaocwkkzgz3ckfr"
+Content-Disposition: inline
+In-Reply-To: <20230410084750.164016-1-fusibrandon13@gmail.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jun,
 
-On Tue, 2023-04-11 at 14:59 +0000, Jun Li wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Johannes Zink <j.zink@pengutronix.de>
-> > Sent: Tuesday, April 11, 2023 10:23 PM
-> > To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
-> > vkoul@kernel.org; kishon@kernel.org; shawnguo@kernel.org;
-> > s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
-> > dl-linux-imx <linux-imx@nxp.com>; robh+dt@kernel.org;
-> > krzysztof.kozlowski+dt@linaro.org; Jun Li <jun.li@nxp.com>; Bough
-> > Chen
-> > <haibo.chen@nxp.com>; linux-phy@lists.infradead.org;
-> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org
-> > Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy
-> > tuning
-> > properties
-> > 
-> > Hi Krzystof,
-> > 
-> > thank you for your explanations. As I'm still quite new to writing
-> > bindings,
-> > I still have some questions:
-> > 
-> > On Fri, 2023-04-07 at 11:03 +0200, Krzysztof Kozlowski wrote:
-> > > On 05/04/2023 14:14, Johannes Zink wrote:
-> > > > Hi Krysztof,
-> > > > 
-> > > > thanks for your review, please find my questions below.
-> > > > 
-> > > > On Wed, 2023-04-05 at 13:51 +0200, Krzysztof Kozlowski wrote:
-> > > > > [snip]
-> > > > > >        A phandle to the regulator for USB VBUS.
-> > > > > > 
-> > > > > > +  fsl,phy-tx-vref-tune:
-> > > > > > +    description:
-> > > > > > +      HS DC Voltage level adjustment
-> > > > > 
-> > > > > "Level" in what units?
-> > > > > 
-> > > > 
-> > > > The datasheet just shows percent, ranging from -6 to +24%, in
-> > > > 2%
-> > > > increments. What unit would you suggest?
-> > > 
-> > > percent
-> > > 
-> > https://gith/
-> > > 
-> > ub.com%2Fdevicetree-org%2Fdt-
-> > schema%2Fblob%2Fmain%2Fdtschema%2Fschemas
-> > > %2Fproperty-
-> > > units.yaml&data=05%7C01%7Cjun.li%40nxp.com%7Ca2e1e5bb6a78
-> > 4
-> > > 
-> > de5941d08db3a9847d0%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63
-> > 816
-> > > 
-> > 8197947407580%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV
-> > 2lu
-> > > 
-> > MzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=kY4dXkOHRs
-> > 9k%
-> > > 2BeUQ5iixLYsNC8UotIgq6eOPGjbf01o%3D&reserved=0
-> > 
-> > I am still a bit confused how to use this properly. How can I
-> > restrict the
-> > values to multiples of 2 in order to avoid illegal values?
-> > 
-> > At the moment the only thing I could come up with is something like
-> > 
-> > fsl,phy-tx-vref-tune-percent:
-> >   description: |
-> >     Adjusts the high-speed DC level voltage
-> >   $ref: /schemas/types.yaml#/definitions/int32
-> >   minimum: -6
-> >   maximum: 24
-> >   default: 0
-> > 
-> > Does something like this work? I am not quite sure if I am on the
-> > right track
-> > here, especially as this requires a signed int, of which I have not
-> > seen
-> > many examples so far.
-> > 
-> > Also, as far as the description is concerned: This is almost the
-> > entire
-> > information I there is in the datasheet. As I try to upstream some
-> > of the
-> > vendor downstream patches, I do not have any additional
-> > information.
-> > 
-> > > 
-> > > > 
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-> > > > > > 14,
-> > > > > > 15,
-> > > > > > 16]
-> > > > > > +
-> > > > > > +  fsl,phy-tx-rise-tune:
-> > > > > > +    description:
-> > > > > > +      HS Transmitter Rise/Fall Time Adjustment
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > +    enum: [0, 1, 2, 3]
-> > > > > > +
-> > > > > > +  fsl,phy-tx-preemp-amp-tune:
-> > > > > > +    description:
-> > > > > > +      HS Transmitter Pre-Emphasis Current Control
-> > > > > 
-> > > > > If this is current then use standard unit suffixes.
-> > > > 
-> > > > According to the datasheet this is in "unit amonts" of 600uA,
-> > > > basically 0x600uA, 1x600uA etc. Should I just suffix it with uA
-> > > > then?
-> > > 
-> > > Yes
-> > > 
-> > > 
-> > https://gith/
-> > > 
-> > ub.com%2Fdevicetree-org%2Fdt-
-> > schema%2Fblob%2Fmain%2Fdtschema%2Fschemas
-> > > %2Fproperty-
-> > > units.yaml&data=05%7C01%7Cjun.li%40nxp.com%7Ca2e1e5bb6a78
-> > 4
-> > > 
-> > de5941d08db3a9847d0%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63
-> > 816
-> > > 
-> > 8197947407580%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV
-> > 2lu
-> > > 
-> > MzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=kY4dXkOHRs
-> > 9k%
-> > > 2BeUQ5iixLYsNC8UotIgq6eOPGjbf01o%3D&reserved=0
-> > > 
-> > > The register values can work sometimes fine but also do not scale
-> > > at
-> > > all. For any other variant all the meanings will differ. Any
-> > > other
-> > > IMX8
-> > > phy will need new bindings and new description/values for your
-> > > register-like-fields.
-> > 
-> > I think this particular property should work, probably its
-> > something like
-> > 
-> > fsl,phy-tx-preemp-amp-tune-microamps:
-> >   description: |
-> >     Transmitter Pre-Emphasis Current Control
-> >     Controls the amount of current sourced to DPn and DMn after a
-> > J-to-
-> > K or K-to-J transition.
-> >   $ref: /schemas/types.yaml#/definitions/uint32
-> >   minimum: 0
-> >   maximum: 1800
-> >   default: 0
-> > 
-> > What's the right way to communicate that the value is in multiples
-> > of 600uA
-> > and that this is only an approximate Value? Add some free-text to
-> > the
-> > description?
-> > 
-> > 
-> > For some other properties, such as fsl,phy-pcs-tx-swing-full or
-> > fsl,phy-pcs-tx-deemph-3p5db the datasheet provides no information
-> > at all,
-> > neither on the unit nor on a valid range. What is the proper way
-> > for something
-> > like them (I try to get some of the freescale downstream patches to
-> > mainline,
-> > but they did not even provide bindings for their
-> > driver...)
-> 
-> I will check with internal design team for those not well documented
-> properties.
-> 
+--bjaocwkkzgz3ckfr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That's great, thanks!
+Hi,
 
-Johannes
+On Mon, Apr 10, 2023 at 09:47:48AM +0100, Brandon Cheo Fusi wrote:
+> This change moves DSI PHY poweron/off from the encoder to the TCON.=20
+>=20
+> As a consequence enabling or disabling the DSI sink can be left to the
+> modeset helpers, and bridge support easily introduced without touching
+> the drm_encoder.bridge_chain or converting the encoder to a
+> drm_bridge.
 
-> Li Jun
-> > 
-> > 
-> > For fsl,phy-comp-dis-tune-percent, the actual values to not map
-> > well to
-> > integer amount of percent, but I have not found a permill in
-> > property- units.
-> > Also, as the steps appear quite arbitrary large, what is the
-> > correct way
-> > of restricting the values to valid values that the hardware can
-> > actually
-> > support? As reference, I have only seen stuff like the st,trim-hs-
-> > current
-> > in Documentation/devicetree/bindings/phy/phy-stm32-
-> > usbphyc.yaml so far...
-> > 
-> > Thanks for helping me and best regards
-> > Johannes
-> > 
-> > 
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > > 
-> > > 
-> > > 
-> > 
-> > --
-> > Pengutronix e.K.                | Johannes Zink                  |
-> > Steuerwalder Str. 21            |
-> > https://www.p/
-> > engutronix.de%2F&data=05%7C01%7Cjun.li%40nxp.com%7Ca2e1e5bb6a784de5
-> > 941d
-> > 08db3a9847d0%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638168197
-> > 9474
-> > 07580%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL
-> > CJBT
-> > iI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=Dq06I6tprUib5nOmp4p
-> > DFdY
-> > MgYULn8MLj5iHwVlQHMY%3D&reserved=0    |
-> > 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-> > Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-> 
-> 
-> 
+I guess this is related to the discussion we had a couple of weeks ago
+about being able to send DCS commands while in HS mode.
 
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+This just seems to workaround the issue entirely, breaking KMS
+abstractions in the process. We had some leads on how to fix it
+properly, so please follow them instead.
 
+Maxime
+
+--bjaocwkkzgz3ckfr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZDV7rgAKCRDj7w1vZxhR
+xbqXAQD6jcK+bSLPFLZQNjjdc3UwkM9NOt4AgwJUb23Y5RqlCwD9H96XoxcbNNeM
+R5ogIgLUdRWJ8njN1S+2Qtk73+9CGAQ=
+=peVk
+-----END PGP SIGNATURE-----
+
+--bjaocwkkzgz3ckfr--
