@@ -2,60 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5785F6DE624
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 23:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C316A6DE62B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 23:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjDKVG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 17:06:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32958 "EHLO
+        id S229642AbjDKVIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 17:08:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjDKVG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 17:06:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821194482;
-        Tue, 11 Apr 2023 14:06:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 13FBC625C3;
-        Tue, 11 Apr 2023 21:06:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3585AC433D2;
-        Tue, 11 Apr 2023 21:06:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681247215;
-        bh=P5kk+3HVor0otYo94Y9G9N4eNK+mWyQxWEUIOko/rMY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PbIKZGOCX/7fiRt1GpDSR+rtak3ggv7H77B2RxD/Hc77w1JmFPLR1dnH1REUEzfSQ
-         DN0CCuxfM4QR88K9qVp3NoXzkSupq9iGFP3Fu6K3DNBxGB9ACEN4n6orD+FJ26IuEG
-         oi2rdpOCAVYKY0n7TT4Yq9lTLW4F9anemxOGpe4/2cKSJXNV5gMPUs96t2v3y7Ebnb
-         V/64xUxcPEfnuwKOZMo0ntcSqZlQAJWcLXAdHRE7TYxqNZ48q0f1j95flV/dmAE0B0
-         0HuDa55MzfNfqHNSM9NCfu5ml/xYvLPFi1S3thPEfiy5O2VdqkLL5evp3Ma1938+S6
-         9i+u/0/r8KceQ==
-Date:   Tue, 11 Apr 2023 22:06:50 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 5/7] soc: starfive: Use call back to parse device tree
- resources
-Message-ID: <20230411-stimuli-reapprove-4659d50e5d2e@spud>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-6-changhuang.liang@starfivetech.com>
+        with ESMTP id S229572AbjDKVIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 17:08:00 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1EE5E3;
+        Tue, 11 Apr 2023 14:07:59 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33BKvXoR028304;
+        Tue, 11 Apr 2023 21:07:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=/xj7HPYZGxHBwE4GTRKTC1lKlTiFtAgk20punKScn+Y=;
+ b=cL3HLopZN2pZW6pZYW1mtN/dd2jgcpkHJJxT9VJNJRpu1HyhLkf0h6bdg2r+Idlqny0O
+ EhNr2twvF6VCADfWTSpuayKXTiod6z+xVyiQCaCht3byEJzBEyuAcRJTKV6gKU/XITZi
+ 3aLo6wo/ZM2YIw2r9mzjXj/OzRBDW3nefmq1ckNSjUxI9azu7JCQg+3Xq/hSKAJgANfl
+ fx8uOAS6nds3wmO0rtyN3FzARcHWnlaONPMGF6lztpvFcYuxhBl2mHeHcyh3DekMNqKw
+ hvrX8zs0tI+qUcfxbrKsLjVCCExF+saZN16/XYeBXoCf8L5qdGwcUh6PBCFNUrsNXSwa wQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pwchbrapx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 21:07:48 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33BL7lUs015163
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 21:07:47 GMT
+Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 11 Apr
+ 2023 14:07:46 -0700
+Message-ID: <bda10c5d-4577-a21b-0c43-aa97679162a5@quicinc.com>
+Date:   Tue, 11 Apr 2023 14:07:46 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bDUiOgF7hkvaIlrf"
-Content-Disposition: inline
-In-Reply-To: <20230411064743.273388-6-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v11 13/26] gunyah: vm_mgr: Add ioctls to support basic
+ non-proxy VM boot
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
+ <20230304010632.2127470-14-quic_eberman@quicinc.com>
+ <fa073ce7-a9ef-9e8e-8791-71578a0834bc@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <fa073ce7-a9ef-9e8e-8791-71578a0834bc@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pmt6w0DGjFne_pxkiPqMXdJsutip2zNX
+X-Proofpoint-GUID: pmt6w0DGjFne_pxkiPqMXdJsutip2zNX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-11_14,2023-04-11_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 mlxlogscore=732 suspectscore=0 adultscore=0 spamscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304110190
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,61 +100,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---bDUiOgF7hkvaIlrf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 10, 2023 at 11:47:41PM -0700, Changhuang Liang wrote:
-> Different compatible parse device tree resources work in different ways.
+On 3/21/2023 7:24 AM, Srinivas Kandagatla wrote:
 
-Right now there is only one compatible, so this commit message needs to
-be expanded on to provide more information on your motivation.
+> On 04/03/2023 01:06, Elliot Berman wrote:
+>> +
+>> +#define GH_VM_START        _IO(GH_IOCTL_TYPE, 0x3)
+> A comment here that this is going to *ONLY* start an un-authenticated VM 
+> would be useful to the users.
+> 
 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+There is only support for unauthenticated VM in the UAPI being proposed 
+and I'd like to re-use GH_VM_START ioctl for other VM types as well. Is 
+the comment really useful? I can easily see forgetting to remove the 
+comment and then being more confusing once the other VM types get added.
 
->  static int jh71xx_pmu_init_domain(struct jh71xx_pmu *pmu, int index)
->  {
->  	struct jh71xx_pmu_dev *pmd;
-> @@ -296,23 +325,20 @@ static int jh71xx_pmu_probe(struct platform_device =
-*pdev)
->  	if (!pmu)
->  		return -ENOMEM;
-> =20
-> -	pmu->base =3D device_node_to_regmap(np);
-> -	if (IS_ERR(pmu->base))
-> -		return PTR_ERR(pmu->base);
-> -
-> -	pmu->irq =3D platform_get_irq(pdev, 0);
-> -	if (pmu->irq < 0)
-> -		return pmu->irq;
-> -
-> -	ret =3D devm_request_irq(dev, pmu->irq, jh71xx_pmu_interrupt,
-> -			       0, pdev->name, pmu);
-> -	if (ret)
-> -		dev_err(dev, "failed to request irq\n");
-> +	spin_lock_init(&pmu->lock);
-> =20
->  	match_data =3D of_device_get_match_data(dev);
->  	if (!match_data)
->  		return -EINVAL;
-> =20
-> +	if (match_data->pmu_parse_dt) {
-
-How can this be false?
-
-Cheers,
-Conor.
-
---bDUiOgF7hkvaIlrf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDXL6gAKCRB4tDGHoIJi
-0hKsAQDfXKLTbzKOVFnOKyo4Q8rhO79dEC4uKOIjSEkTkNr0sAEAmTPcrqwT9S1J
-id3pUSxlo+QqgTZJtIAEFaPBifiRGg8=
-=MAxW
------END PGP SIGNATURE-----
-
---bDUiOgF7hkvaIlrf--
+Thanks,
+Elliot
