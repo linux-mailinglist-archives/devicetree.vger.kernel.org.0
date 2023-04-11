@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E9B6DE581
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DB7F6DE589
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229486AbjDKULI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 16:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56444 "EHLO
+        id S229656AbjDKUNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 16:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjDKULH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:11:07 -0400
+        with ESMTP id S229721AbjDKUN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:13:27 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD1EB559E;
-        Tue, 11 Apr 2023 13:10:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C1B109;
+        Tue, 11 Apr 2023 13:13:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B60E960FA2;
-        Tue, 11 Apr 2023 20:09:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E62F8C433EF;
-        Tue, 11 Apr 2023 20:09:39 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 537186277E;
+        Tue, 11 Apr 2023 20:13:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72034C433D2;
+        Tue, 11 Apr 2023 20:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681243782;
-        bh=PL0YCjrpk8wMnvPj0o2kokiqLnGSaS7cu9sqJvxA2r8=;
+        s=k20201202; t=1681244004;
+        bh=ZviwcxpDXgrZT/ibODx/e4RR16fW2UhiiAY8a0mCX/k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WLvo2IUWiVWwN+k7aEhcC8og0gthh8g1MjyBRUk8SSIE3PZr7W3GWIMdDtFvZXzgz
-         ZPVAN1JCvxH8AHLHLlBjLSWvcH9BqzAYEQxnrWuRuLUJk1w5H4kQu9mVW3drDkr0dj
-         yd5a1VG5/TlrqdsA8cJBBKDdmjgCbzobE23LPZTFw5HZvb78SvWHaVJFU5OWJSfWCY
-         aMm7J5doHsjkVEkEzNqNOfQuCUIfh8BbJkDZg/BSn5FzC5sLeOjIjQINu8XxBa4k4g
-         HjqPWBtjGzTvEGfvC/GTmH/ZfAuBB+aW5nYK5u3Z2Ki3Vo290SsnmP8jrMwE+fR6Uk
-         qDzLL4K4bqoTg==
-Date:   Tue, 11 Apr 2023 21:09:37 +0100
+        b=Fb7j/HV3N5lz+blyj9ONW8umWsdCHpIahlIQEArhLEBw5NK/DabCD+fnxocqJOXgg
+         WlF4oK6xnC/Pt4aDGT8exjZNlW1D3R3CNww08QYeNJDM8VxYgw45ZrG1wYs9s2knE+
+         ckfSl4N8DlzeD48puuYhvDlRAkxcXCjkOA+WPIsYhPgwL/bVo3RlCrhlvsGR1702LA
+         hCOiNg/5ySIz+mZGIN6g2T6F/o/usbTYxcj3+y/7KoMdx83GIW/v8Ms7TxWtOpKqNa
+         oyTLGY2xcVxdZY+oTx1QR03sWQ1q2BuDjtwoeeice8B6cNSOC5VEpbuNuURtdM0kE/
+         TU/yC9tbRBElw==
+Date:   Tue, 11 Apr 2023 21:13:19 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Changhuang Liang <changhuang.liang@starfivetech.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -43,14 +43,16 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Walker Chen <walker.chen@starfivetech.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 0/7] Add JH7110 DPHY PMU support
-Message-ID: <20230411-senator-clarity-7577b85884ad@spud>
+Subject: Re: [PATCH v1 1/7] dt-bindings: power: Constrain properties for
+ JH7110 PMU
+Message-ID: <20230411-vitality-exodus-f7e5d2e8576c@spud>
 References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+ <20230411064743.273388-2-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YamoAzPVhVpZIOuh"
+        protocol="application/pgp-signature"; boundary="woEVfFYCRgC7kFh0"
 Content-Disposition: inline
-In-Reply-To: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+In-Reply-To: <20230411064743.273388-2-changhuang.liang@starfivetech.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -61,83 +63,100 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---YamoAzPVhVpZIOuh
+--woEVfFYCRgC7kFh0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hey Walker,
+On Mon, Apr 10, 2023 at 11:47:37PM -0700, Changhuang Liang wrote:
+> When use "starfive,jh7110-pmu-dphy" compatible, do not need the reg and
+> interrupts properties.
 
-On Mon, Apr 10, 2023 at 11:47:36PM -0700, Changhuang Liang wrote:
-> This patchset adds mipi dphy power domain driver for the StarFive JH7110
-> SoC. It is used to turn on dphy power switch. The series has been tested
-> on the VisionFive 2 board.
+Please write a commit message explaining why this is needed.
+The commit message as-is is insufficient, but also IMO wrong incorrect.
+I think it would more accurately be "...: add jh7110 dphy pmu support" or
+similar & the body should explain why this particular PMU has no
+reg/interrupts.
 
-Could you review the driver changes here please.
-
-Thanks,
+Cheers,
 Conor.
 
 >=20
-> This patchset should be applied after the patchset [1]:
-> [1] https://lore.kernel.org/all/20230406103308.1280860-1-william.qiu@star=
-fivetech.com/
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  .../bindings/power/starfive,jh7110-pmu.yaml        | 14 ++++++++++++--
+>  include/dt-bindings/power/starfive,jh7110-pmu.h    |  3 +++
+>  2 files changed, 15 insertions(+), 2 deletions(-)
 >=20
-> Changhuang Liang (7):
->   dt-bindings: power: Constrain properties for JH7110 PMU
->   soc: starfive: Replace SOC_STARFIVE with ARCH_SATRFIVE
->   soc: starfive: Modify ioremap to regmap
->   soc: starfive: Add pmu type operation
->   soc: starfive: Use call back to parse device tree resources
->   soc: starfive: Add dphy pmu support
->   riscv: dts: starfive: Add dphy rx pmu node
->=20
->  .../bindings/power/starfive,jh7110-pmu.yaml   |  14 +-
->  MAINTAINERS                                   |   1 +
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   5 +
->  drivers/soc/starfive/Kconfig                  |   4 +-
->  drivers/soc/starfive/jh71xx_pmu.c             | 213 ++++++++++++++----
->  .../dt-bindings/power/starfive,jh7110-pmu.h   |   3 +
->  6 files changed, 187 insertions(+), 53 deletions(-)
->=20
->=20
-> base-commit: 197b6b60ae7bc51dd0814953c562833143b292aa
-> prerequisite-patch-id: 388b8adbb0fe2daf4d07a21eafd4f1bd50ce2403
-> prerequisite-patch-id: 1117ecaa40a353c667b71802ab34ecf9568d8bb2
-> prerequisite-patch-id: b00c6b21fbd0353d88b7c9b09093ba30b765f45b
-> prerequisite-patch-id: 08ec9027e8a5c6fdf201726833168c7464a9b94d
-> prerequisite-patch-id: fb5120248e48fe1faf053ae0b490c92507ec2b44
-> prerequisite-patch-id: 4b93d8d590b0a2abe7b4be5287232c494c35be4a
-> prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
-> prerequisite-patch-id: c09c4c68af017b8e5c97b515cb50b70c18a2e705
-> prerequisite-patch-id: 0df8ccb0e848c2df4c2da95026494bebecede92d
-> prerequisite-patch-id: 315303931e4b6499de7127a88113763f86e97e16
-> prerequisite-patch-id: 40cb8212ddb024c20593f73d8b87d9894877e172
-> prerequisite-patch-id: a1673a9e9f19d6fab5a51abb721e54e36636f067
-> prerequisite-patch-id: d57cc467fb036241b9276320ff076c4a30d376d6
-> prerequisite-patch-id: 6e563d68bc5dbf951d4ced17897f9cc4d56169fe
-> prerequisite-patch-id: 61ec2caa21fd0fc60e57977f7d16d3f72b135745
-> prerequisite-patch-id: 1387a7e87b446329dfc21f3e575ceae7ebcf954c
-> prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
-> prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
-> prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
-> prerequisite-patch-id: 9007c8610fdcd387592475949864edde874c20a2
-> prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
-> prerequisite-patch-id: 0a0ac5a8a90655b415f6b62e324f3db083cdaaee
-> prerequisite-patch-id: 7ff6864ac74df5392c8646fe756cadd584fcc813
-> prerequisite-patch-id: 284b5d1b95c6d68bca08db1e82ed14930c98b777
-> --
+> diff --git a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.=
+yaml b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> index 98eb8b4110e7..ffb4406c2e56 100644
+> --- a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> +++ b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> @@ -8,6 +8,7 @@ title: StarFive JH7110 Power Management Unit
+> =20
+>  maintainers:
+>    - Walker Chen <walker.chen@starfivetech.com>
+> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+> =20
+>  description: |
+>    StarFive JH7110 SoC includes support for multiple power domains which =
+can be
+> @@ -17,6 +18,7 @@ properties:
+>    compatible:
+>      enum:
+>        - starfive,jh7110-pmu
+> +      - starfive,jh7110-pmu-dphy
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -29,10 +31,18 @@ properties:
+> =20
+>  required:
+>    - compatible
+> -  - reg
+> -  - interrupts
+>    - "#power-domain-cells"
+> =20
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: starfive,jh7110-pmu
+> +then:
+> +  required:
+> +    - reg
+> +    - interrupts
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> diff --git a/include/dt-bindings/power/starfive,jh7110-pmu.h b/include/dt=
+-bindings/power/starfive,jh7110-pmu.h
+> index 132bfe401fc8..0bfd6700c144 100644
+> --- a/include/dt-bindings/power/starfive,jh7110-pmu.h
+> +++ b/include/dt-bindings/power/starfive,jh7110-pmu.h
+> @@ -14,4 +14,7 @@
+>  #define JH7110_PD_ISP		5
+>  #define JH7110_PD_VENC		6
+> =20
+> +#define JH7110_PD_DPHY_TX	0
+> +#define JH7110_PD_DPHY_RX	1
+> +
+>  #endif
+> --=20
 > 2.25.1
+>=20
 
---YamoAzPVhVpZIOuh
+--woEVfFYCRgC7kFh0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDW+gQAKCRB4tDGHoIJi
-0hNnAQC1KGXvowdmm9YQEJTQeXKxPfXriyg+RJhOctyiR1stjAEA3Cni1XQ7tv+c
-y6rF+267+XfMV52+KOBvM/ImGhaxtws=
-=KRno
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDW/XwAKCRB4tDGHoIJi
+0rfMAQCEY1sOSuX+9PUExrhZ16C87WAg2z6vDj6OdcqFSKbWtQEAhVtayEho0Gc3
+dyCQ/hZf9AkaJDiBG33vffX1VnYxaQk=
+=/A68
 -----END PGP SIGNATURE-----
 
---YamoAzPVhVpZIOuh--
+--woEVfFYCRgC7kFh0--
