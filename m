@@ -2,144 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CB76DD3EE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 09:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B8896DD419
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 09:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbjDKHTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 03:19:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40356 "EHLO
+        id S229789AbjDKH24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 03:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbjDKHTO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 03:19:14 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B57B2D5F;
-        Tue, 11 Apr 2023 00:19:05 -0700 (PDT)
+        with ESMTP id S229697AbjDKH2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 03:28:55 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAABE77
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 00:28:54 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id e13so6712040plc.12
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 00:28:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1681197545; x=1712733545;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cZXvDbQl28WDJ14V+pbr3auBRhAtraEXByP7krH+22w=;
-  b=OH5n7I0xofBq6b92yFit7gh4J3F5VOfyRTzTFbgdbYHaChOAYkpCUqaf
-   pPqK2I20kQfDQ6IqPlxLQSnxJUJHMrEYLTC0UoVMt8Tt9ZWy5qziiFBDs
-   bJr1gVs726a1X8+laQPGi/7Wns19G0hnhESJUeEoktAUuShroUyrDnk3F
-   wBp71Vhbw7GG6KQyX45Fp/dEfUDWQnmtlv1mLQuC7cKhLJ3wziBSHDybs
-   icZnic1Bu4BEVIDDOhcC+r+l14K+/pTC00MmBJft4fP901PawL+BqwAXn
-   AowmFP5JDDWJKpLj05sO2TL24F0eXKOIOzJzJHMmzZKstFwsa/FsQpzxx
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,336,1673910000"; 
-   d="scan'208";a="30238425"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 11 Apr 2023 09:19:03 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 11 Apr 2023 09:19:03 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 11 Apr 2023 09:19:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1681197543; x=1712733543;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cZXvDbQl28WDJ14V+pbr3auBRhAtraEXByP7krH+22w=;
-  b=mHqLQAIIzETjpZruemlbNjCIUNhvXfYXusdx26zUGGBneQUQbsVA2ii2
-   pSpKYbrf3XGr2QuLZntqHTIHjE4qIxlSFIw9MRNPnoFnhJWT9gf1MmZtJ
-   qiWTtG9Q13uFbB2TD74+VBqrUUpxL92AaiVECzNa6+6vWXsPfmCScxedC
-   ea2+W7Nv5u43AvA/PtPCsSuhc+Eix4KvodlM0KWPszi693gORbI9UYDgy
-   jc/gKJEedDm6u5gSkQDD4agJUAsgae4pQBsc7NID6TIYXVd98u8eAxTeb
-   lIAWMW6gUrg7aJa2ogPi9eSUISXbSR7/3dAI0bvQsUuAjlnuXA0PLRpjx
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,336,1673910000"; 
-   d="scan'208";a="30238424"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 11 Apr 2023 09:19:02 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A6132280072;
-        Tue, 11 Apr 2023 09:19:02 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     andy.shevchenko@gmail.com
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
-Date:   Tue, 11 Apr 2023 09:19:01 +0200
-Message-ID: <3231223.aeNJFYEL58@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <ZDBnnKy7QF0KZuZd@surfacebook>
-References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com> <ZDBnnKy7QF0KZuZd@surfacebook>
+        d=linaro.org; s=google; t=1681198134;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gYIzKSwGvXgmY04hGg8wntK0YcMOF3CTzRnRLf+lmfo=;
+        b=e6OfinFL6B6gdg/sJAGuLAhGXAyEHGQoZxFCxUIg+v9m0JVdVVaV9DIHI4uJiIHqkU
+         5lw43+apQZR1B7d/GX2LyV0NikJvmvv4D+MtE4GFcUagGspsqEdHY4ZkAgakMI1x5HEx
+         NnD2hGbX+okDo3T4dF0ALSiQr3ScWMnfEclK/VueuB1FngF2hgHcUzQysAG5oSNlAw/D
+         h1lJNs1JKLB3p1hzkohhHCg9HtDHzEpeePkD1IEou3QsRpWvoI6uo0Y6jUPGMqu7Pdqw
+         fVBOdLXMgRriDdfpJB4kWbf7ZZXKSn5cEBRVM8TRK/nKrG0s+7zy1rpFiR199UV26UbZ
+         rs5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681198134;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gYIzKSwGvXgmY04hGg8wntK0YcMOF3CTzRnRLf+lmfo=;
+        b=whExgTFUKIxQNqCuuEmDInZJiOdnum5GoyWNdIlopU+5rOCH1jH8QKQ7NAxVLpDoXb
+         Nrxm3D0JP5euaEFkG+Kux3OkRR3ft5dqGLdnKqMjO3S0uegvcKc9SqDLOmtSLLcUFYBE
+         hrq4FiIIHTNU+B8Xt1EtxhwZmCgKcv+mPXxGvsLy4R4oPsh6estLh8pNJt9HmYESO39R
+         3+g82/hiTeFauv7WIAk+BSR0nhJiutZtpZrfi2jqWadfTRgR9+GRZv0dy11mMqlrgTKt
+         7R5NG1w48/Cia0boZENpkbxq0S5MFucHYjJr3cThrE7Jczk2g6Bb8sK+MkRts7/hmpGt
+         Qq/Q==
+X-Gm-Message-State: AAQBX9dC2mK6Stl0VWF/5AB6TsRl1FuqxbRyna7wuG5lspJCFukhwbIc
+        6M2W1mxyilt+/ajclSw/euYpeQ==
+X-Google-Smtp-Source: AKy350ZJeDMak23Z7LaNvanfRFivkMlcjclZLWaRbaa7GoUajg5ks3HHywtS5GNqiNKPpeg5jf5QAw==
+X-Received: by 2002:a17:903:1c4:b0:1a0:7584:f46f with SMTP id e4-20020a17090301c400b001a07584f46fmr25167435plh.9.1681198133612;
+        Tue, 11 Apr 2023 00:28:53 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:6a11:8ba1:beba:def7:a4ae])
+        by smtp.gmail.com with ESMTPSA id s7-20020a170902988700b001a043e84bf0sm8946612plp.209.2023.04.11.00.28.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 00:28:53 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org
+Subject: [PATCH v3 0/3] arm64: dts: qcom: Add Qualcomm RB2 board dts
+Date:   Tue, 11 Apr 2023 12:58:37 +0530
+Message-Id: <20230411072840.2751813-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Changes since v2:
+-----------------
+- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230315210145.2221116-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Bjorn about load conditions for vmmc
+  ldos and added [PATCH 3/3] accordingly in v3.
+- Collected Krzysztof's Ack for [PATCH 1/3].
 
-Am Freitag, 7. April 2023, 20:57:32 CEST schrieb andy.shevchenko@gmail.com:
-> Thu, Apr 06, 2023 at 11:33:41AM +0200, Alexander Stein kirjoitti:
-> > Hello everyone,
-> >=20
-> > thanks for the feedback I've received. This is the first non-RFC series
-> > for
-> > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
-> >=20
-> > Changes compared to RFC v2 are mentioned in each patch.
->=20
-> Reading the (poor?) documentation does not clarify the use case.
-> Looking at them I think that this is can be implemented as debounce.
+Changes since v1:
+-----------------
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230314210828.2049720-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Konrad and fixed the board dts and also
+  added a new 'qcom,qrb4210' compatible.
+- Although Krzysztof provided an Ack for [PATCH 1/2] from the v1 series,
+  since this series introduces the new 'qcom,qrb4210' compatible, so I
+  have dropped the same for now.
+ 
+Add an initial device tree for Qualcomm RB2 board (see [1]).
+It is based on the Robotics version of the Snapdragon SM4250
+Soc, i.e. QRB4210.
 
-Debounce for GPIOs? There is nothing like that yet.
+Currently it enables:
+    - eMMC via SDHC1,
+    - uSD card via SDHC2,
+    - RPM regulators,
+    - Debug UART (via micro USB port).
 
-> Also I have no clue why it's so important that we _need_ to have a
-> driver for this. We have plenty of consumer drivers that implement
-> delays on ramping up or down or whatever if they need.
+Subsequent patchset(s) will add more peripherals like USB, etc.
 
-But this delay I am dealing with is actually not consumer dependent, e.g. a=
-=20
-power-on delay specified in a datasheet. Instead this driver deals with a=20
-platform-specific curiosity, e.g. RC-circuit on an open-drain output. So th=
-is=20
-is something which sits inbetween ICs.
-In the RFC we came to the conclusion to not adjust (each) consumer to deal=
-=20
-with this, given this will be rarely used. Instead provide a generic way fo=
-r=20
-specifying this delay.
+This patchset is dependent on the QRB4210 SocInfo patchset sent out
+earlier (see [2]).
 
-> Which part(s) did I got wrong?
+To get a successful boot run:
+    
+   $ cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/\
+    qrb4210-rb2.dtb > ./Image-adp.gz+dtb
 
-Maybe there needs to be an explicit example in the bindings document what's=
-=20
-the actual issue to deal with.
-Right now if a GPIO is set, it is expected the signal on the receiver side =
-has=20
-changed as well within a negligible time as well. But due to external reaso=
-ns=20
-(see RC_curcuit above) the change on the receiver side can occur much later=
-,=20
->100ms in my case.
+   $ mkbootimg --kernel ./Image-adp.gz+dtb \
+     --ramdisk ./some-initramfs-image.rootfs.img \
+     --output ./rb2-boot.img --pagesize 4096 \
+     --base 0x80000000 --cmdline 'SOME_CMDLINE'
+    
+   $ fastboot boot ./rb2-boot.img
 
-Best regards,
-Alexander
+[1]. https://www.qualcomm.com/products/internet-of-things/industrial/industrial-automation/qualcomm-robotics-rb2-platform#Overview
+[2]. https://lore.kernel.org/linux-arm-msm/20230315160151.2166861-1-bhupesh.sharma@linaro.org/
 
-> P.S. Are we going to have a _driver_ per each subtle feature like this?
+Bhupesh Sharma (3):
+  dt-bindings: arm: qcom: Document the Qualcomm qrb4210-rb2 board
+  arm64: dts: qcom: Add base qrb4210-rb2 board dts
+  arm64: dts: qcom: qrb4210-rb2: Increase load on l22 and l24 for uSD
+    and eMMC
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+ .../devicetree/bindings/arm/qcom.yaml         |   8 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts      | 227 ++++++++++++++++++
+ 3 files changed, 236 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
 
+-- 
+2.38.1
 
