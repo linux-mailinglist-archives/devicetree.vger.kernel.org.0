@@ -2,190 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21F236DDE47
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 16:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6746DDE52
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 16:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbjDKOmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 10:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60778 "EHLO
+        id S229515AbjDKOnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 10:43:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbjDKOmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 10:42:05 -0400
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7683530F6
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 07:42:02 -0700 (PDT)
-Received: by mail-vs1-xe33.google.com with SMTP id a9so7980319vsh.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 07:42:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1681224121;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0IsUqzAOOGwTdW6oKTQYTYQ5rspex3tOJ/uzBmQs6E4=;
-        b=m67XMiBjyE3LGndoYzB34x0EN0by382QLFad3fSrEBAfHC1Y1WMZ6keTHWmp9WJgXr
-         JKscIfMjwcVQhjeq3BE359R9ISZ+NRUl8RoVQSYQL7GJ3AlYEsS1Nrqz9vNQvyRFMQ7d
-         R2kAd04SmmVwd2yCelv7dr9h5y/MWOuA/OqYkr7nX0CTYo50QHcDmxuzNpQBE8nSv6xK
-         5fV5HCu9aLJLa8iWTNfegA4tAIawXp2LFCBwAK4ZnyszQ7gYkywcoH302ircJq1aqUjP
-         F5L3FjuFkOSrdpTkkhS1r3UhVTmIekMMQEsT4goBX8K3AQ87VtvGrkZooWkwaS33VEJ7
-         bwpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681224121;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0IsUqzAOOGwTdW6oKTQYTYQ5rspex3tOJ/uzBmQs6E4=;
-        b=5vV8taqXEdVEJCKQpOTqKyxq23YXrXj3lPQguEtN386KZqTdkG+x7BW9M0s1sBfs2W
-         C2qURMR3MXPMetjtaHjqfLD82cpPh12GCnMhuawDXR6+zuTBe+SbYo3aR+YwBGd8CKWu
-         EdnaY+HSxp33d//0FpbffAUXJYSVu9/1kL/yfTgODBwg6u4MQG0R5MGF5pYRgrj86PSz
-         XjU/mgzaJ5HcgAvJb3MaVYaAD2aZjuM3Yzdoh1+kTy9aO2f9BisXB/Bw2CDU7KHqSHRg
-         Z95dmSxxRRXLzN0JPmTDCWabDRT2/1h/yz3n7uZ97bpitg+ER9yk2Oh1R3OziZyZM3pA
-         zuQA==
-X-Gm-Message-State: AAQBX9cqUXzQtXMgSV2JpAv8FHKDNbiacfAsnjPw2iEol7HNSAsKC5EU
-        Hn2wMNkDc/zBw0y38dBz4DLjnurnlCSGvBqH9d58ZA==
-X-Google-Smtp-Source: AKy350a1MTHqScxDS1gDZ+TEOp6sZEA+LrjI4KfWxPLlXutjQPKll5t0VC5GNPpg/ojsniiIfjxnn+OWFZwBml1l9PA=
-X-Received: by 2002:a67:e0c4:0:b0:42c:515f:4a48 with SMTP id
- m4-20020a67e0c4000000b0042c515f4a48mr5688372vsl.0.1681224121594; Tue, 11 Apr
- 2023 07:42:01 -0700 (PDT)
+        with ESMTP id S229875AbjDKOnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 10:43:11 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014422100;
+        Tue, 11 Apr 2023 07:43:04 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33BE27HU001769;
+        Tue, 11 Apr 2023 14:42:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=DYrTTsi6pmN9A94wPsFhth7vjrkUJf81SgSUfgeVBE8=;
+ b=PPTXM4Jvkqm4uvWdgnTRGkVdpPur7zfgqYXkUzhh/7IdjJ498T0dy3hKKy2imiCqx+Ix
+ mSEJAX2Vw96PJvJuYyRIqo0hA6JwsUbHqUNFgP2QdRoWmlqJEI31vwiV7nWG57kx0PJB
+ au2sASskDWEMMf0Q/tZM2liQNu9KJGxzp/j6og+Qpvz8sy4104vCTcYko3rBhhTmdxt0
+ T/T+TyxoQSmzD91XTg7kI6ywqE7sevPGvriIy30XUBt23Bf7+ak4GM5XgNACd42eMUfd
+ 9fpliZaGxpydrtKC+8RIElSF3jRGhmG80/KEUXojsW9m2S+e5Qq9x+k8zSzrIIuJ9AlP zA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pw4usgjay-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 14:42:52 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33BEgpaf007689
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 14:42:51 GMT
+Received: from [10.110.88.83] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 11 Apr
+ 2023 07:42:51 -0700
+Message-ID: <ef3ae792-8900-d4c4-7fba-cbfc636a0315@quicinc.com>
+Date:   Tue, 11 Apr 2023 07:42:50 -0700
 MIME-Version: 1.0
-References: <20230411125910.401075-1-brgl@bgdev.pl> <20230411125910.401075-8-brgl@bgdev.pl>
- <6c75d434-bb5d-278f-a125-d096fd6b387d@linaro.org>
-In-Reply-To: <6c75d434-bb5d-278f-a125-d096fd6b387d@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 11 Apr 2023 16:41:50 +0200
-Message-ID: <CAMRc=MdLckYzUjDQzbNUaaviuABEDXcs0ctW6+-3fZiCbvfYQA@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] arm64: dts: qcom: sa8775p: add the GPU IOMMU node
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 0/2] Allow parameter in smc/hvc calls
+To:     Sudeep Holla <sudeep.holla@arm.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lkp@intel.com>
+References: <20230409181918.29270-1-quic_nkela@quicinc.com>
+ <20230410182058.8949-1-quic_nkela@quicinc.com>
+ <20230411130136.lkblyfg3jaeitzrt@bogus>
+Content-Language: en-US
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20230411130136.lkblyfg3jaeitzrt@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PU9PRoA4XNBy4Han5dNwok8o3_WkkY6X
+X-Proofpoint-ORIG-GUID: PU9PRoA4XNBy4Han5dNwok8o3_WkkY6X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-11_10,2023-04-11_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ clxscore=1015 lowpriorityscore=0 suspectscore=0 spamscore=0
+ mlxlogscore=999 mlxscore=0 adultscore=0 priorityscore=1501 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304110134
+X-Spam-Status: No, score=-3.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 11, 2023 at 3:16=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
->
->
->
-> On 11.04.2023 14:59, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add the Adreno GPU IOMMU for sa8775p-based platforms.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 37 +++++++++++++++++++++++++++
-> >  1 file changed, 37 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dt=
-s/qcom/sa8775p.dtsi
-> > index 191b510b5a1a..11f3d80dd869 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > @@ -7,6 +7,7 @@
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  #include <dt-bindings/clock/qcom,rpmh.h>
-> >  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
-> > +#include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
-> >  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
-> >  #include <dt-bindings/power/qcom-rpmpd.h>
-> >  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> > @@ -605,6 +606,42 @@ gpucc: clock-controller@3d90000 {
-> >                       #power-domain-cells =3D <1>;
-> >               };
-> >
-> > +             adreno_smmu: iommu@3da0000 {
-> > +                     compatible =3D "qcom,sa8775p-smmu-500", "qcom,adr=
-eno-smmu",
-> > +                                  "arm,mmu-500";
-> Err.. does it even boot like this? You dropped the qcom,smmu-500 compatib=
-le
-> which means it's getting bound to the generic SMMU driver (without
-> QC quirks). If that was a mistake, you should have had all 4
->
-> "qcom,sa8775p-smmu-500", qcom,adreno-smmu, "qcom,smmu-500", "arm,mmu-500"
->
-> Without falling into the qc-specific codepaths, the Adreno compat does
-> nothing.
->
 
-I did that initially, then noticed dtbs_check fails because the
-existing adreno GPUs implementing "arm,smmu-500" expect three
-compatibles like in this commit. I did that and the driver still
-probed the same so I assumed all's good. You're right of course, the
-adreno impl is not being assigned without "qcom,smmu-500". Are the
-bindings wrong in this case and should it be something like the
-following?
-
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index d966dc65ce10..cd1b052a7242 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -84,6 +84,7 @@ properties:
-               - qcom,sm8150-smmu-500
-               - qcom,sm8250-smmu-500
-           - const: qcom,adreno-smmu
-+          - const: qcom,smmu-500
-           - const: arm,mmu-500
-       - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
-         items:
-
-Bartosz
-
-> Konrad
-> > +                     reg =3D <0x0 0x03da0000 0x0 0x20000>;
-> > +                     #iommu-cells =3D <2>;
-> > +                     #global-interrupts =3D <2>;
-> > +                     dma-coherent;
-> > +                     power-domains =3D <&gpucc GPU_CC_CX_GDSC>;
-> > +                     clocks =3D <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> > +                              <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
-> > +                              <&gpucc GPU_CC_AHB_CLK>,
-> > +                              <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-> > +                              <&gpucc GPU_CC_CX_GMU_CLK>,
-> > +                              <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> > +                              <&gpucc GPU_CC_HUB_AON_CLK>;
-> > +                     clock-names =3D "gcc_gpu_memnoc_gfx_clk",
-> > +                                   "gcc_gpu_snoc_dvm_gfx_clk",
-> > +                                   "gpu_cc_ahb_clk",
-> > +                                   "gpu_cc_hlos1_vote_gpu_smmu_clk",
-> > +                                   "gpu_cc_cx_gmu_clk",
-> > +                                   "gpu_cc_hub_cx_int_clk",
-> > +                                   "gpu_cc_hub_aon_clk";
-> > +                     interrupts =3D <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
-> > +             };
-> > +
-> >               pdc: interrupt-controller@b220000 {
-> >                       compatible =3D "qcom,sa8775p-pdc", "qcom,pdc";
-> >                       reg =3D <0x0 0x0b220000 0x0 0x30000>,
+On 4/11/2023 6:01 AM, Sudeep Holla wrote:
+> On Mon, Apr 10, 2023 at 11:20:56AM -0700, Nikunj Kela wrote:
+>> Currently, smc/hvc calls are made with parameters set
+>> to zeros. We are using multiple scmi instances within
+>> a VM and hypervisor associates a tag with each instance
+>> and expects the tag in hvc calls from that instance, while
+>> sharing the same smc-id(func_id) among the instances.
+>>
+>> This patch series introduces new optional dtb bindings which
+>> can be used to pass parameters to smc/hvc calls.
+>>
+> Just to be sure that I understood the problem(as your 2 parameters confused
+> me), this is just to help hypervisor/secure side to identify the right
+> channel/shared memory when the same SMC/HVC function id is shared right ?
+that's somewhat correct. Our hypervisor allocates 64bit ids on every 
+boot for each scmi instance which it uses to identify the scmi instance. 
+Additionally, our hypervisor also categorizes events within each 
+instance by an event-id that gets passed to hvc call as second 
+parameter. So we can pass two parameters in addition to function_id.
+>
+> If that is the case, why can't we just pass the shmem address as the
+> parameter ? I would like to avoid fragmentation here with every vendor
+> trying to do different things to achieve the same.
+that's a good suggestion. Any solution you propose shouldn't just limit 
+to only one parameter. IMO, there should be some way to pass all 6 
+parameters since we do have a use case of at least two parameters.
+>
+> I would just change the driver to do that. Not sure if it breaks any existing
+> implementation or not. If it does, we can add another compatible to identify
+> one needing this fixed(shmem address) as additional parameter.
+>
+> Does that make sense at all ? Or am I missing some/all of the requirements
+> here ?
+The shmem proposal is fine however please also incorporate passing of 
+other parameters.
+>
