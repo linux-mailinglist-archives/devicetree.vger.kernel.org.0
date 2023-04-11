@@ -2,159 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE63D6DDAEC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 14:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7609F6DDB09
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 14:39:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjDKMd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 08:33:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54826 "EHLO
+        id S230077AbjDKMjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 08:39:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjDKMdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 08:33:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5675226BE;
-        Tue, 11 Apr 2023 05:33:54 -0700 (PDT)
+        with ESMTP id S230097AbjDKMjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 08:39:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A101FE4;
+        Tue, 11 Apr 2023 05:39:15 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E388861E22;
-        Tue, 11 Apr 2023 12:33:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF141C433D2;
-        Tue, 11 Apr 2023 12:33:50 +0000 (UTC)
-Message-ID: <42eefb17-6121-9cd0-4616-4af3045ec087@xs4all.nl>
-Date:   Tue, 11 Apr 2023 14:33:48 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC51061D98;
+        Tue, 11 Apr 2023 12:39:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7516DC433EF;
+        Tue, 11 Apr 2023 12:39:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681216752;
+        bh=WD5G8dd/ugfMV6qpUG9CIug356YcoMv3nLMJmwxq5Zs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=quqRXFEc/A8hl0a7talcM3w/aUNpdbuZ/BWrcwkOKU8zHrz2+MUDjywi/R9/UKr1d
+         MGjYiZDgL2iEPqa8Jw5Q2MCtRtwXeGdfne2IPNc6xMgJgtDvi2+55Jx1VfIVT1f2gg
+         rniRywNXVpsLeHRmQXkB9ASUx9ZRnpx/Q81BhtQp1tD4FZDi1AIC3LMDkTkWk/j9sL
+         d2wOS3oX/5iWtdRl+xr8ve26cv2kjiy8WeQJC+kPNtW+pG72XX3HROBudhR5K9/vSP
+         q7AtM1RvdeyPj0WGrlBXmjaoDinlXW+QTjTOgbmyck73QazZ8B+z5nDnmxev9Br4kI
+         YdFuFnNnhppPw==
+Date:   Tue, 11 Apr 2023 05:42:54 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: qrb4210-rb2: Increase load on
+ l22 and l24 for uSD and eMMC
+Message-ID: <20230411124254.r4sk7fn4wdrdt6qy@ripper>
+References: <20230411072840.2751813-1-bhupesh.sharma@linaro.org>
+ <20230411072840.2751813-4-bhupesh.sharma@linaro.org>
+ <ff5691b4-df1a-57a8-6e96-f997bbe340f4@linaro.org>
+ <CAH=2Ntytn2GnBJkiZ4+xBf1X-fUUTD4iHWv-Sv66Jp1ePUDV3A@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v5 09/13] media: verisilicon: Add Rockchip AV1 decoder
-Content-Language: en-US
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        nicolas.dufresne@collabora.com
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230330154043.1250736-1-benjamin.gaignard@collabora.com>
- <20230330154043.1250736-10-benjamin.gaignard@collabora.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230330154043.1250736-10-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAH=2Ntytn2GnBJkiZ4+xBf1X-fUUTD4iHWv-Sv66Jp1ePUDV3A@mail.gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benjamin,
-
-On 30/03/2023 17:40, Benjamin Gaignard wrote:
-> Implement AV1 stateless decoder for rockchip VPU981.
-> It decode 8 and 10 bits AV1 bitstreams.
-> AV1 scaling feature is done by the postprocessor.
+On Tue, Apr 11, 2023 at 05:43:51PM +0530, Bhupesh Sharma wrote:
+> On Tue, 11 Apr 2023 at 17:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >
+> >
+> >
+> > On 11.04.2023 09:28, Bhupesh Sharma wrote:
+> > > Increase the l22 and l24 load used for uSD and eMMC VMMC.
+> > > These need to be increased in order to prevent any voltage drop
+> > > issues due to limited current happening during specific operations
+> > > (e.g. write).
+> > >
+> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > ---
+> > You could have simply squashed this into the patch where
+> > you enabled the controllers, so that that commit works
+> > reliably for e.g. bisect
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->  drivers/media/platform/verisilicon/Makefile   |    1 +
->  .../media/platform/verisilicon/hantro_hw.h    |   64 +-
->  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2024 +++++++++++++++++
->  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++++
->  4 files changed, 2564 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+> Yes, but Bjorn asked me to send this separately (via irc).
+> I am fine with squashing this with the previous patch [PATCH 2/3] as
+> well, if Bjorn is OK with it.
 > 
 
-<snip>
+I was trying to say that I was fine with you just fixing the small thing
+I had asked for and then you could send a separate patch for this when
+you found the time.
 
-> +static void rockchip_vpu981_av1_dec_set_tile_info(struct hantro_ctx *ctx)
-> +{
-> +	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
-> +	struct hantro_av1_dec_ctrls *ctrls = &av1_dec->ctrls;
-> +	struct v4l2_av1_tile_info tile_info = ctrls->frame->tile_info;
-
-I get this warning:
-
-drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c: In function 'rockchip_vpu981_av1_dec_set_tile_info':
-drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:635:1: warning: the frame size of 1080 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-  635 | }
-      | ^
-
-The cause is this tile_info struct that is on the stack.
-
-Does this have to be a copy? Or can it be a pointer to ctrls->frame->tile_info?
-
-> +	const struct v4l2_ctrl_av1_tile_group_entry *group_entry =
-> +	    ctrls->tile_group_entry;
-> +	int context_update_y =
-> +	    tile_info.context_update_tile_id / tile_info.tile_cols;
-> +	int context_update_x =
-> +	    tile_info.context_update_tile_id % tile_info.tile_cols;
-> +	int context_update_tile_id =
-> +	    context_update_x * tile_info.tile_rows + context_update_y;
-> +	u8 *dst = av1_dec->tile_info.cpu;
-> +	struct hantro_dev *vpu = ctx->dev;
-> +	int tile0, tile1;
-> +
-> +	memset(dst, 0, av1_dec->tile_info.size);
-> +
-> +	for (tile0 = 0; tile0 < tile_info.tile_cols; tile0++) {
-> +		for (tile1 = 0; tile1 < tile_info.tile_rows; tile1++) {
-> +			int tile_id = tile1 * tile_info.tile_cols + tile0;
-> +			u32 start, end;
-> +			u32 y0 =
-> +			    tile_info.height_in_sbs_minus_1[tile1] + 1;
-> +			u32 x0 = tile_info.width_in_sbs_minus_1[tile0] + 1;
-> +
-> +			// tile size in SB units (width,height)
-> +			*dst++ = x0;
-> +			*dst++ = 0;
-> +			*dst++ = 0;
-> +			*dst++ = 0;
-> +			*dst++ = y0;
-> +			*dst++ = 0;
-> +			*dst++ = 0;
-> +			*dst++ = 0;
-> +
-> +			// tile start position
-> +			start = group_entry[tile_id].tile_offset - group_entry[0].tile_offset;
-> +			*dst++ = start & 255;
-> +			*dst++ = (start >> 8) & 255;
-> +			*dst++ = (start >> 16) & 255;
-> +			*dst++ = (start >> 24) & 255;
-> +
-> +			// # of bytes in tile data
-> +			end = start + group_entry[tile_id].tile_size;
-> +			*dst++ = end & 255;
-> +			*dst++ = (end >> 8) & 255;
-> +			*dst++ = (end >> 16) & 255;
-> +			*dst++ = (end >> 24) & 255;
-> +		}
-> +	}
-> +
-> +	hantro_reg_write(vpu, &av1_multicore_expect_context_update,
-> +			 !!(context_update_x == 0));
-> +	hantro_reg_write(vpu, &av1_tile_enable,
-> +			 !!((tile_info.tile_cols > 1) || (tile_info.tile_rows > 1)));
-> +	hantro_reg_write(vpu, &av1_num_tile_cols_8k, tile_info.tile_cols);
-> +	hantro_reg_write(vpu, &av1_num_tile_rows_8k, tile_info.tile_rows);
-> +	hantro_reg_write(vpu, &av1_context_update_tile_id,
-> +			 context_update_tile_id);
-> +	hantro_reg_write(vpu, &av1_tile_transpose, 1);
-> +	if (rockchip_vpu981_av1_tile_log2(tile_info.tile_cols) ||
-> +	    rockchip_vpu981_av1_tile_log2(tile_info.tile_rows))
-> +		hantro_reg_write(vpu, &av1_dec_tile_size_mag, tile_info.tile_size_bytes - 1);
-> +	else
-> +		hantro_reg_write(vpu, &av1_dec_tile_size_mag, 3);
-> +
-> +	hantro_write_addr(vpu, AV1_TILE_BASE, av1_dec->tile_info.dma);
-> +}
+I can squash the two while applying, unless anyone else have any
+concerns with the patches.
 
 Regards,
-
-	Hans
-
+Bjorn
