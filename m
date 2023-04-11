@@ -2,756 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DAD96DE3BA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 20:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86CB66DE3F5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 20:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbjDKSTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 14:19:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40734 "EHLO
+        id S229825AbjDKSdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 14:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjDKSTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 14:19:35 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76823AAA
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 11:19:31 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id a3so3901208ljr.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 11:19:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681237170;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jaA2PEVBQGAOZKSUasdJPlnGYgAo/S0uzSjvodVoZb0=;
-        b=C/ARrpLq3e6oKPE7sZNCY9K+iaHiqRdoxMHBgliuJBihhQHAi34BuxVFPPY07rNnBt
-         KQ+mCTnRvjr6I+Zs3NQT30xBkRmSFWC+QiSjdNeK+axWJomQjFI28hRdZHQ0K3i6Cw11
-         J1hFsxLKhRjq/CcE2t+IEl18GTU2RU54dd6uJESvvecXvi/BM1c/64eCWgZdRba2V1wL
-         VNoLO2ErvDZZDjJMkYWRuqWkHVg8bduqjI9xzDzQrM9W6IxYHfYJIoFUvMiS+P1amHlm
-         8u+1t9CNjUfxbeqg/m/lQVQI5ZHoxPXxBPJlvrSzRD3N22I8YBwhjEC7OQuhL8WU1GhH
-         HZRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681237170;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jaA2PEVBQGAOZKSUasdJPlnGYgAo/S0uzSjvodVoZb0=;
-        b=3sbHvG9UXSzkBT7A0HsCWDmw0QrnTkuDzBW0SuF+92VGpF6NiCyJw9FEMFLNr3EarE
-         rgNnhs2egVPbnr3xQbdGf91ew9QeFlEklkXoHV7w0Z45N/4tE60ruhF4AvvdVA5TnXAA
-         m53GeE4Xv5OzhXsiO0quKm5SECbXW/BZ7kZgTL1EWI4CL9qR4LtplRDX7LJewIovOO/f
-         geRpMbnFS+2cb6agMYa7abpIBfoPwbuIe7xY6iFSgECAkZmltxaBDHeCMPub5+3PQ1Sq
-         VxtWxdR6aNRL+j8bDJF/H+dMjBdZ+avvWpMBwAhEfROiNjd7dqwkuAZPO+JagUZMkLJH
-         pKLA==
-X-Gm-Message-State: AAQBX9dYY8DhXuO57pDiUS7V6NXmA5KNHWUS5I5IRbgLPSayPzABaZfD
-        vI92q7s41izL2KE97iS/Jvn5Uw==
-X-Google-Smtp-Source: AKy350YWVqUvTZmcgo1CZyXU25cUJjpgNqra+0jwNyhm9tB3vJlfQIsyqBWcQUaAB9QhtOuRdJagbA==
-X-Received: by 2002:a2e:c4a:0:b0:2a6:3b0b:3d3a with SMTP id o10-20020a2e0c4a000000b002a63b0b3d3amr3170944ljd.40.1681237169701;
-        Tue, 11 Apr 2023 11:19:29 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id v8-20020a2e9608000000b002a783f6395bsm742073ljh.120.2023.04.11.11.19.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 11:19:29 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 11 Apr 2023 20:19:22 +0200
-Subject: [PATCH v4] dt-bindings: net: Convert ATH10K to YAML
-MIME-Version: 1.0
+        with ESMTP id S229815AbjDKSdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 14:33:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E514C3D;
+        Tue, 11 Apr 2023 11:33:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E7E11621FD;
+        Tue, 11 Apr 2023 18:33:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 440C5C433D2;
+        Tue, 11 Apr 2023 18:33:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681238023;
+        bh=FgzA+wAQOhvwLPFEU0HXw3rNNZIT+sR+BkcnhuK0cso=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=M6b/gJ2gWuWAdiFoUnfld6Y/G5/BDCSCbnak0Pe+uP5BYjHpWF1iWwB9AxFmDXRce
+         kGFg5pOmvTzaOl2xDoXcb/LtV340BO9NXypXG00cOy4szlFYBVZifM7257F7CDYoMJ
+         bgZ2lYhwZr6wP0E3PKUo6EefvNV3zCPo+bo9XW7NlY7rK/SPR1cnkYjntmeSR2IHl0
+         HHjiZBdvZJxF7A7SowyfjaJyiHse7cpaSBZmFEd7MNjInr93CNlhclydTQaD2WbZiE
+         U5Niv8wxCQ7qscG5QTNWUngsBg21He/2V+jeuqZ8zhNUQ4x/2VmdBg401XIbg+dSKN
+         ioBbW6nJACBMQ==
+Message-ID: <683cbe934d1df9436e003466d2a419ef.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230406-topic-ath10k_bindings-v4-1-9f67a6bb0d56@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAKmkNWQC/43NTWrDMBAF4KsEraOiX1vJqvcooYxlyR5ipCA5p
- iX47h17V7JIlm+Y970Hq6FgqOx8eLASFqyYEwVzPDA/QhoCx54yU0JpYUTD53xDz2Eepbh+d5h
- 6TEPlJ4g2gtNGacuo20ENvCuQ/EjtdJ8mOt5KiPizj31dKI9Y51x+9+1FbtdXM4vkgssQpZPe0
- mvzOWGCkj9yGdhGLuotRhFjbRudM9DYXj4x+i1GEyOEO1mIvm0b849Z1/UPKRYelV4BAAA=
-To:     Kalle Valo <kvalo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230411135558.44282-8-xingyu.wu@starfivetech.com>
+References: <20230411135558.44282-1-xingyu.wu@starfivetech.com> <20230411135558.44282-8-xingyu.wu@starfivetech.com>
+Subject: Re: [PATCH v4 07/10] clk: starfive: Add StarFive JH7110 Video-Output clock driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+To:     Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681237167; l=21728;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=P2ApGUe9gm9nA0XjueOfHcpBhA1051AJQGlyedtxM40=;
- b=rclEkYmT7Cre7mLp9H3owYi0tzYErEx24SwL7GW+17tif0+4+PvBDVdScMcnGwFvvchO4AIPBubD
- 7RWZasnhB/Gfe8sFDniK52Yj/Te1g2/zkwbJJ5UZEwNW6RSvrJjQ
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Date:   Tue, 11 Apr 2023 11:33:41 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ATH10K bindings to YAML.
+Quoting Xingyu Wu (2023-04-11 06:55:55)
+> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-vout.c b/drivers/cl=
+k/starfive/clk-starfive-jh7110-vout.c
+> new file mode 100644
+> index 000000000000..4c6f5ae198cf
+> --- /dev/null
+> +++ b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
+> @@ -0,0 +1,239 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * StarFive JH7110 Video-Output Clock Driver
+> + *
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
 
-Dropped properties that are absent at the current state of mainline:
-- qcom,msi_addr
-- qcom,msi_base
+Include module.h, device.h, and kernel.h for things like ERR_PTR().
+Probably need to include a reset header as well for reset APIs.
 
-qcom,coexist-support and qcom,coexist-gpio-pin do very little and should
-be reconsidered on the driver side, especially the latter one.
+> +
+> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
+> +
+> +#include "clk-starfive-jh7110.h"
+> +
+> +/* external clocks */
+> +#define JH7110_VOUTCLK_VOUT_SRC                        (JH7110_VOUTCLK_E=
+ND + 0)
+> +#define JH7110_VOUTCLK_VOUT_TOP_AHB            (JH7110_VOUTCLK_END + 1)
+> +#define JH7110_VOUTCLK_VOUT_TOP_AXI            (JH7110_VOUTCLK_END + 2)
+> +#define JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK   (JH7110_VOUTCLK_END + 3)
+> +#define JH7110_VOUTCLK_I2STX0_BCLK             (JH7110_VOUTCLK_END + 4)
+> +#define JH7110_VOUTCLK_HDMITX0_PIXELCLK                (JH7110_VOUTCLK_E=
+ND + 5)
+> +#define JH7110_VOUTCLK_EXT_END                 (JH7110_VOUTCLK_END + 6)
+> +
+> +/* VOUT domian clocks */
+> +struct vout_top_crg {
+> +       struct clk_bulk_data *top_clks;
+> +       int top_clks_num;
 
-Somewhat based on the ath11k bindings.
+size_t?
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v3 -> v4:
-- Disallow interrupt-names for the SNoC variant (unused)
-- Remove unnecessary interrupt-names/minItems under qcom,ipq4019-wifi
-- Update the MAINTAINERS entry with the shiny new YAML file
-- Drop the dts patch, Bjorn picked it up
+> +       void __iomem *base;
+> +};
+> +
+> +static struct clk_bulk_data jh7110_vout_top_clks[] =3D {
+> +       { .id =3D "vout_src" },
+> +       { .id =3D "vout_top_ahb" }
+> +};
+> +
+> +static const struct jh71x0_clk_data jh7110_voutclk_data[] =3D {
+> +       /* divider */
+> +       JH71X0__DIV(JH7110_VOUTCLK_APB, "apb", 8, JH7110_VOUTCLK_VOUT_TOP=
+_AHB),
+> +       JH71X0__DIV(JH7110_VOUTCLK_DC8200_PIX, "dc8200_pix", 63, JH7110_V=
+OUTCLK_VOUT_SRC),
+> +       JH71X0__DIV(JH7110_VOUTCLK_DSI_SYS, "dsi_sys", 31, JH7110_VOUTCLK=
+_VOUT_SRC),
+> +       JH71X0__DIV(JH7110_VOUTCLK_TX_ESC, "tx_esc", 31, JH7110_VOUTCLK_V=
+OUT_TOP_AHB),
+> +       /* dc8200 */
+> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_AXI, "dc8200_axi", 0, JH7110_VO=
+UTCLK_VOUT_TOP_AXI),
+> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_CORE, "dc8200_core", 0, JH7110_=
+VOUTCLK_VOUT_TOP_AXI),
+> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_AHB, "dc8200_ahb", 0, JH7110_VO=
+UTCLK_VOUT_TOP_AHB),
+> +       JH71X0_GMUX(JH7110_VOUTCLK_DC8200_PIX0, "dc8200_pix0", 0, 2,
+> +                   JH7110_VOUTCLK_DC8200_PIX,
+> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
+> +       JH71X0_GMUX(JH7110_VOUTCLK_DC8200_PIX1, "dc8200_pix1", 0, 2,
+> +                   JH7110_VOUTCLK_DC8200_PIX,
+> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
+> +       /* LCD */
+> +       JH71X0_GMUX(JH7110_VOUTCLK_DOM_VOUT_TOP_LCD, "dom_vout_top_lcd", =
+0, 2,
+> +                   JH7110_VOUTCLK_DC8200_PIX0,
+> +                   JH7110_VOUTCLK_DC8200_PIX1),
+> +       /* dsiTx */
+> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_APB, "dsiTx_apb", 0, JH7110_VOUT=
+CLK_DSI_SYS),
+> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_SYS, "dsiTx_sys", 0, JH7110_VOUT=
+CLK_DSI_SYS),
+> +       JH71X0_GMUX(JH7110_VOUTCLK_DSITX_DPI, "dsiTx_dpi", 0, 2,
+> +                   JH7110_VOUTCLK_DC8200_PIX,
+> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
+> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_TXESC, "dsiTx_txesc", 0, JH7110_=
+VOUTCLK_TX_ESC),
+> +       /* mipitx DPHY */
+> +       JH71X0_GATE(JH7110_VOUTCLK_MIPITX_DPHY_TXESC, "mipitx_dphy_txesc"=
+, 0,
+> +                   JH7110_VOUTCLK_TX_ESC),
+> +       /* hdmi */
+> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_MCLK, "hdmi_tx_mclk", 0,
+> +                   JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK),
+> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_BCLK, "hdmi_tx_bclk", 0,
+> +                   JH7110_VOUTCLK_I2STX0_BCLK),
+> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_SYS, "hdmi_tx_sys", 0, JH7110_=
+VOUTCLK_APB),
+> +};
+> +
+> +static struct vout_top_crg *top_crg_from(void __iomem **base)
+> +{
+> +       return container_of(base, struct vout_top_crg, base);
+> +}
+> +
+> +static int jh7110_vout_top_crg_init(struct jh71x0_clk_priv *priv, struct=
+ vout_top_crg *top)
+> +{
+> +       struct reset_control *top_rst;
+> +       int ret;
+> +
+> +       top->top_clks =3D jh7110_vout_top_clks;
+> +       top->top_clks_num =3D ARRAY_SIZE(jh7110_vout_top_clks);
+> +       ret =3D devm_clk_bulk_get(priv->dev, top->top_clks_num, top->top_=
+clks);
+> +       if (ret)
+> +               return dev_err_probe(priv->dev, ret, "failed to get top c=
+locks\n");
+> +
+> +       /* The reset should be shared and other Vout modules will use its=
+. */
+> +       top_rst =3D devm_reset_control_get_shared(priv->dev, NULL);
+> +       if (IS_ERR(top_rst))
+> +               return dev_err_probe(priv->dev, PTR_ERR(top_rst), "failed=
+ to get top reset\n");
+> +
+> +       ret =3D clk_bulk_prepare_enable(top->top_clks_num, top->top_clks);
+> +       if (ret)
+> +               return dev_err_probe(priv->dev, ret, "failed to enable to=
+p clocks\n");
+> +
+> +       return reset_control_deassert(top_rst);
+> +}
+> +
+> +static struct clk_hw *jh7110_voutclk_get(struct of_phandle_args *clkspec=
+, void *data)
+> +{
+> +       struct jh71x0_clk_priv *priv =3D data;
+> +       unsigned int idx =3D clkspec->args[0];
+> +
+> +       if (idx < JH7110_VOUTCLK_END)
+> +               return &priv->reg[idx].hw;
+> +
+> +       return ERR_PTR(-EINVAL);
+> +}
+> +
+> +static int jh7110_voutcrg_probe(struct platform_device *pdev)
+> +{
+> +       struct jh71x0_clk_priv *priv;
+> +       struct vout_top_crg *top;
+> +       unsigned int idx;
+> +       int ret;
+> +
+> +       priv =3D devm_kzalloc(&pdev->dev,
+> +                           struct_size(priv, reg, JH7110_VOUTCLK_END),
+> +                           GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       top =3D devm_kzalloc(&pdev->dev, sizeof(*top), GFP_KERNEL);
+> +       if (!top)
+> +               return -ENOMEM;
+> +
+> +       spin_lock_init(&priv->rmw_lock);
+> +       priv->dev =3D &pdev->dev;
+> +       priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(priv->base))
+> +               return PTR_ERR(priv->base);
+> +
+> +       pm_runtime_enable(priv->dev);
 
-v3: https://lore.kernel.org/r/20230406-topic-ath10k_bindings-v3-0-00895afc7764@linaro.org
+Use devm_pm_runtime_enable()?
 
-v2 -> v3:
-- Ran dt_binding_check explicitly to uncover an issue with the
-  example - I had 2 levels of wifi-firmware{}.. Fixed that..
+> +       ret =3D pm_runtime_get_sync(priv->dev);
 
-I hope you folks don't mind me resending so quickly, but it was a
-trivial issue. Patch 2 unchanged.
+And use pm_runtime_resume_and_get() here?
 
-v2: https://lore.kernel.org/r/20230406-topic-ath10k_bindings-v2-0-557f884a65d1@linaro.org
+> +       if (ret < 0)
+> +               return dev_err_probe(priv->dev, ret, "failed to turn on p=
+ower\n");
+> +
+> +       ret =3D jh7110_vout_top_crg_init(priv, top);
+> +       if (ret)
+> +               goto err_clk;
+> +
+> +       top->base =3D priv->base;
+> +       dev_set_drvdata(priv->dev, (void *)(&top->base));
 
-v1 -> v2:
+See comment later about setting this to 'top' instead. Casting away
+iomem markings is not good hygiene.
 
-Dropped:
-- '|' in /description
-- /properties/resets/minItems
-- Unnecessary level of 'items:' in /properties/ext-fem-name
-- reserved-memory in examples
-- status in examples
-- labels in examples
+> +
+> +       for (idx =3D 0; idx < JH7110_VOUTCLK_END; idx++) {
+> +               u32 max =3D jh7110_voutclk_data[idx].max;
+> +               struct clk_parent_data parents[4] =3D {};
+> +               struct clk_init_data init =3D {
+> +                       .name =3D jh7110_voutclk_data[idx].name,
+> +                       .ops =3D starfive_jh71x0_clk_ops(max),
+> +                       .parent_data =3D parents,
+> +                       .num_parents =3D
+> +                               ((max & JH71X0_CLK_MUX_MASK) >> JH71X0_CL=
+K_MUX_SHIFT) + 1,
+> +                       .flags =3D jh7110_voutclk_data[idx].flags,
+> +               };
+> +               struct jh71x0_clk *clk =3D &priv->reg[idx];
+> +               unsigned int i;
+> +               const char *fw_name[JH7110_VOUTCLK_EXT_END - JH7110_VOUTC=
+LK_END] =3D {
+> +                       "vout_src",
+> +                       "vout_top_ahb",
+> +                       "vout_top_axi",
+> +                       "vout_top_hdmitx0_mclk",
+> +                       "i2stx0_bclk",
+> +                       "hdmitx0_pixelclk"
+> +               };
+> +
+> +               for (i =3D 0; i < init.num_parents; i++) {
+> +                       unsigned int pidx =3D jh7110_voutclk_data[idx].pa=
+rents[i];
+> +
+> +                       if (pidx < JH7110_VOUTCLK_END)
+> +                               parents[i].hw =3D &priv->reg[pidx].hw;
+> +                       else if (pidx < JH7110_VOUTCLK_EXT_END)
+> +                               parents[i].fw_name =3D fw_name[pidx - JH7=
+110_VOUTCLK_END];
 
-Added:
-- /properties/wifi-firmware/additionalProperties: false
-- /properties/wifi-firmware/properties/iommus
-- /properties/qcom,coexist-support/enum (and reworded the description)
-- wifi-firmware and supplies in the SNoC example
+Can you use .index instead?
 
-Patch 2 is unchanged, picked up rb.
+> +               }
+> +
+> +               clk->hw.init =3D &init;
+> +               clk->idx =3D idx;
+> +               clk->max_div =3D max & JH71X0_CLK_DIV_MASK;
+> +
+> +               ret =3D devm_clk_hw_register(&pdev->dev, &clk->hw);
+> +               if (ret)
+> +                       goto err_exit;
+> +       }
+> +
+> +       ret =3D devm_of_clk_add_hw_provider(&pdev->dev, jh7110_voutclk_ge=
+t, priv);
+> +       if (ret)
+> +               goto err_exit;
+> +
+> +       ret =3D jh7110_reset_controller_register(priv, "rst-vout", 4);
+> +       if (ret)
+> +               goto err_exit;
+> +
+> +       return 0;
+> +
+> +err_exit:
+> +       clk_bulk_disable_unprepare(top->top_clks_num, top->top_clks);
+> +err_clk:
+> +       pm_runtime_put_sync(priv->dev);
+> +       pm_runtime_disable(priv->dev);
+> +       return ret;
+> +}
+> +
+> +static int jh7110_voutcrg_remove(struct platform_device *pdev)
+> +{
+> +       void __iomem **base =3D dev_get_drvdata(&pdev->dev);
 
-v1: https://lore.kernel.org/r/20230406-topic-ath10k_bindings-v1-0-1ef181c50236@linaro.org
+Why not set the driver data to be vout_top_crg?
 
-This is my attempt at (finally) moving ATH10K to YAML.
-One inexistent dt property came out as part of that.
----
- .../bindings/net/wireless/qcom,ath10k.txt          | 215 -------------
- .../bindings/net/wireless/qcom,ath10k.yaml         | 358 +++++++++++++++++++++
- MAINTAINERS                                        |   2 +-
- 3 files changed, 359 insertions(+), 216 deletions(-)
+> +       struct vout_top_crg *top =3D top_crg_from(base);
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-deleted file mode 100644
-index b61c2d5a0ff7..000000000000
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-+++ /dev/null
-@@ -1,215 +0,0 @@
--* Qualcomm Atheros ath10k wireless devices
--
--Required properties:
--- compatible: Should be one of the following:
--	* "qcom,ath10k"
--	* "qcom,ipq4019-wifi"
--	* "qcom,wcn3990-wifi"
--
--PCI based devices uses compatible string "qcom,ath10k" and takes calibration
--data along with board specific data via "qcom,ath10k-calibration-data".
--Rest of the properties are not applicable for PCI based devices.
--
--AHB based devices (i.e. ipq4019) uses compatible string "qcom,ipq4019-wifi"
--and also uses most of the properties defined in this doc (except
--"qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-data"
--to carry pre calibration data.
--
--In general, entry "qcom,ath10k-pre-calibration-data" and
--"qcom,ath10k-calibration-data" conflict with each other and only one
--can be provided per device.
--
--SNOC based devices (i.e. wcn3990) uses compatible string "qcom,wcn3990-wifi".
--
--- reg: Address and length of the register set for the device.
--- reg-names: Must include the list of following reg names,
--	     "membase"
--- interrupts: reference to the list of 17 interrupt numbers for "qcom,ipq4019-wifi"
--	      compatible target.
--	      reference to the list of 12 interrupt numbers for "qcom,wcn3990-wifi"
--	      compatible target.
--	      Must contain interrupt-names property per entry for
--	      "qcom,ath10k", "qcom,ipq4019-wifi" compatible targets.
--
--- interrupt-names: Must include the entries for MSI interrupt
--		   names ("msi0" to "msi15") and legacy interrupt
--		   name ("legacy") for "qcom,ath10k", "qcom,ipq4019-wifi"
--		   compatible targets.
--
--Optional properties:
--- resets: Must contain an entry for each entry in reset-names.
--          See ../reset/reseti.txt for details.
--- reset-names: Must include the list of following reset names,
--	       "wifi_cpu_init"
--	       "wifi_radio_srif"
--	       "wifi_radio_warm"
--	       "wifi_radio_cold"
--	       "wifi_core_warm"
--	       "wifi_core_cold"
--- clocks: List of clock specifiers, must contain an entry for each required
--          entry in clock-names.
--- clock-names: Should contain the clock names "wifi_wcss_cmd", "wifi_wcss_ref",
--	       "wifi_wcss_rtc" for "qcom,ipq4019-wifi" compatible target and
--	       "cxo_ref_clk_pin" and optionally "qdss" for "qcom,wcn3990-wifi"
--	       compatible target.
--- qcom,msi_addr: MSI interrupt address.
--- qcom,msi_base: Base value to add before writing MSI data into
--		MSI address register.
--- qcom,ath10k-calibration-variant: string to search for in the board-2.bin
--				   variant list with the same bus and device
--				   specific ids
--- qcom,ath10k-calibration-data : calibration data + board specific data
--				 as an array, the length can vary between
--				 hw versions.
--- qcom,ath10k-pre-calibration-data : pre calibration data as an array,
--				     the length can vary between hw versions.
--- <supply-name>-supply: handle to the regulator device tree node
--			   optional "supply-name" are "vdd-0.8-cx-mx",
--			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
--			   and "vdd-3.3-ch1".
--- memory-region:
--	Usage: optional
--	Value type: <phandle>
--	Definition: reference to the reserved-memory for the msa region
--		    used by the wifi firmware running in Q6.
--- iommus:
--	Usage: optional
--	Value type: <prop-encoded-array>
--	Definition: A list of phandle and IOMMU specifier pairs.
--- ext-fem-name:
--	Usage: Optional
--	Value type: string
--	Definition: Name of external front end module used. Some valid FEM names
--		    for example: "microsemi-lx5586", "sky85703-11"
--		    and "sky85803" etc.
--- qcom,snoc-host-cap-8bit-quirk:
--	Usage: Optional
--	Value type: <empty>
--	Definition: Quirk specifying that the firmware expects the 8bit version
--		    of the host capability QMI request
--- qcom,xo-cal-data: xo cal offset to be configured in xo trim register.
--
--- qcom,msa-fixed-perm: Boolean context flag to disable SCM call for statically
--		       mapped msa region.
--
--- qcom,coexist-support : should contain eithr "0" or "1" to indicate coex
--			 support by the hardware.
--- qcom,coexist-gpio-pin : gpio pin number  information to support coex
--			  which will be used by wifi firmware.
--
--* Subnodes
--The ath10k wifi node can contain one optional firmware subnode.
--Firmware subnode is needed when the platform does not have TustZone.
--The firmware subnode must have:
--
--- iommus:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: A list of phandle and IOMMU specifier pairs.
--
--
--Example (to supply PCI based wifi block details):
--
--In this example, the node is defined as child node of the PCI controller.
--
--pci {
--	pcie@0 {
--		reg = <0 0 0 0 0>;
--		#interrupt-cells = <1>;
--		#size-cells = <2>;
--		#address-cells = <3>;
--		device_type = "pci";
--
--		wifi@0,0 {
--			reg = <0 0 0 0 0>;
--			qcom,ath10k-calibration-data = [ 01 02 03 ... ];
--			ext-fem-name = "microsemi-lx5586";
--		};
--	};
--};
--
--Example (to supply ipq4019 SoC wifi block details):
--
--wifi0: wifi@a000000 {
--	compatible = "qcom,ipq4019-wifi";
--	reg = <0xa000000 0x200000>;
--	resets = <&gcc WIFI0_CPU_INIT_RESET>,
--		 <&gcc WIFI0_RADIO_SRIF_RESET>,
--		 <&gcc WIFI0_RADIO_WARM_RESET>,
--		 <&gcc WIFI0_RADIO_COLD_RESET>,
--		 <&gcc WIFI0_CORE_WARM_RESET>,
--		 <&gcc WIFI0_CORE_COLD_RESET>;
--	reset-names = "wifi_cpu_init",
--		      "wifi_radio_srif",
--		      "wifi_radio_warm",
--		      "wifi_radio_cold",
--		      "wifi_core_warm",
--		      "wifi_core_cold";
--	clocks = <&gcc GCC_WCSS2G_CLK>,
--		 <&gcc GCC_WCSS2G_REF_CLK>,
--		 <&gcc GCC_WCSS2G_RTC_CLK>;
--	clock-names = "wifi_wcss_cmd",
--		      "wifi_wcss_ref",
--		      "wifi_wcss_rtc";
--	interrupts = <0 0x20 0x1>,
--		     <0 0x21 0x1>,
--		     <0 0x22 0x1>,
--		     <0 0x23 0x1>,
--		     <0 0x24 0x1>,
--		     <0 0x25 0x1>,
--		     <0 0x26 0x1>,
--		     <0 0x27 0x1>,
--		     <0 0x28 0x1>,
--		     <0 0x29 0x1>,
--		     <0 0x2a 0x1>,
--		     <0 0x2b 0x1>,
--		     <0 0x2c 0x1>,
--		     <0 0x2d 0x1>,
--		     <0 0x2e 0x1>,
--		     <0 0x2f 0x1>,
--		     <0 0xa8 0x0>;
--	interrupt-names = "msi0",  "msi1",  "msi2",  "msi3",
--			  "msi4",  "msi5",  "msi6",  "msi7",
--			  "msi8",  "msi9",  "msi10", "msi11",
--			  "msi12", "msi13", "msi14", "msi15",
--			  "legacy";
--	qcom,msi_addr = <0x0b006040>;
--	qcom,msi_base = <0x40>;
--	qcom,ath10k-pre-calibration-data = [ 01 02 03 ... ];
--	qcom,coexist-support = <1>;
--	qcom,coexist-gpio-pin = <0x33>;
--};
--
--Example (to supply wcn3990 SoC wifi block details):
--
--wifi@18000000 {
--		compatible = "qcom,wcn3990-wifi";
--		reg = <0x18800000 0x800000>;
--		reg-names = "membase";
--		clocks = <&clock_gcc clk_rf_clk2_pin>;
--		clock-names = "cxo_ref_clk_pin";
--		interrupts =
--			<GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
--		vdd-0.8-cx-mx-supply = <&pm8998_l5>;
--		vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
--		vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
--		vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
--		vdd-3.3-ch1-supply = <&vreg_l26a_3p3>;
--		memory-region = <&wifi_msa_mem>;
--		iommus = <&apps_smmu 0x0040 0x1>;
--		qcom,msa-fixed-perm;
--		wifi-firmware {
--			iommus = <&apps_iommu 0xc22 0x1>;
--		};
--};
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
-new file mode 100644
-index 000000000000..f09f224bcbd7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
-@@ -0,0 +1,358 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/qcom,ath10k.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies ATH10K wireless devices
-+
-+maintainers:
-+  - Kalle Valo <kvalo@kernel.org>
-+
-+description:
-+  Qualcomm Technologies, Inc. IEEE 802.11ac devices.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,ath10k # SDIO-based devices
-+      - qcom,ipq4019-wifi
-+      - qcom,wcn3990-wifi # SNoC-based devices
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    items:
-+      - const: membase
-+
-+  interrupts:
-+    minItems: 12
-+    maxItems: 17
-+
-+  interrupt-names:
-+    minItems: 12
-+    maxItems: 17
-+
-+  memory-region:
-+    maxItems: 1
-+    description:
-+      Reference to the MSA memory region used by the Wi-Fi firmware
-+      running on the Q6 core.
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+  resets:
-+    maxItems: 6
-+
-+  reset-names:
-+    items:
-+      - const: wifi_cpu_init
-+      - const: wifi_radio_srif
-+      - const: wifi_radio_warm
-+      - const: wifi_radio_cold
-+      - const: wifi_core_warm
-+      - const: wifi_core_cold
-+
-+  ext-fem-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of external front end module used.
-+    enum:
-+      - microsemi-lx5586
-+      - sky85703-11
-+      - sky85803
-+
-+  wifi-firmware:
-+    type: object
-+    additionalProperties: false
-+    description: |
-+      The ATH10K Wi-Fi node can contain one optional firmware subnode.
-+      Firmware subnode is needed when the platform does not have Trustzone.
-+    properties:
-+      iommus:
-+        maxItems: 1
-+    required:
-+      - iommus
-+
-+  qcom,ath10k-calibration-data:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description:
-+      Calibration data + board-specific data as a byte array. The length
-+      can vary between hardware versions.
-+
-+  qcom,ath10k-calibration-variant:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      Unique variant identifier of the calibration data in board-2.bin
-+      for designs with colliding bus and device specific ids
-+
-+  qcom,ath10k-pre-calibration-data:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description:
-+      Pre-calibration data as a byte array. The length can vary between
-+      hardware versions.
-+
-+  qcom,coexist-support:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    enum: [0, 1]
-+    description:
-+      Indicate coex support by the hardware.
-+
-+  qcom,coexist-gpio-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      COEX GPIO number provided to the Wi-Fi firmware.
-+
-+  qcom,msa-fixed-perm:
-+    type: boolean
-+    description:
-+      Whether to skip executing an SCM call that reassigns the memory
-+      region ownership.
-+
-+  qcom,smem-states:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: State bits used by the AP to signal the WLAN Q6.
-+    items:
-+      - description: Signal bits used to enable/disable low power mode
-+                     on WCN in the case of WoW (Wake on Wireless).
-+
-+  qcom,smem-state-names:
-+    description: The names of the state bits used for SMP2P output.
-+    items:
-+      - const: wlan-smp2p-out
-+
-+  qcom,snoc-host-cap-8bit-quirk:
-+    type: boolean
-+    description:
-+      Quirk specifying that the firmware expects the 8bit version
-+      of the host capability QMI request
-+
-+  qcom,xo-cal-data:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      XO cal offset to be configured in XO trim register.
-+
-+  vdd-0.8-cx-mx-supply:
-+    description: Main logic power rail
-+
-+  vdd-1.8-xo-supply:
-+    description: Crystal oscillator supply
-+
-+  vdd-1.3-rfa-supply:
-+    description: RFA supply
-+
-+  vdd-3.3-ch0-supply:
-+    description: Primary Wi-Fi antenna supply
-+
-+  vdd-3.3-ch1-supply:
-+    description: Secondary Wi-Fi antenna supply
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq4019-wifi
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 17
-+          maxItems: 17
-+
-+        interrupt-names:
-+          items:
-+            - const: msi0
-+            - const: msi1
-+            - const: msi2
-+            - const: msi3
-+            - const: msi4
-+            - const: msi5
-+            - const: msi6
-+            - const: msi7
-+            - const: msi8
-+            - const: msi9
-+            - const: msi10
-+            - const: msi11
-+            - const: msi12
-+            - const: msi13
-+            - const: msi14
-+            - const: msi15
-+            - const: legacy
-+
-+        clocks:
-+          items:
-+            - description: Wi-Fi command clock
-+            - description: Wi-Fi reference clock
-+            - description: Wi-Fi RTC clock
-+
-+        clock-names:
-+          items:
-+            - const: wifi_wcss_cmd
-+            - const: wifi_wcss_ref
-+            - const: wifi_wcss_rtc
-+
-+      required:
-+        - clocks
-+        - clock-names
-+        - interrupts
-+        - interrupt-names
-+        - resets
-+        - reset-names
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,wcn3990-wifi
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 1
-+          items:
-+            - description: XO reference clock
-+            - description: Qualcomm Debug Subsystem clock
-+
-+        clock-names:
-+          minItems: 1
-+          items:
-+            - const: cxo_ref_clk_pin
-+            - const: qdss
-+
-+        interrupts:
-+          items:
-+            - description: CE0
-+            - description: CE1
-+            - description: CE2
-+            - description: CE3
-+            - description: CE4
-+            - description: CE5
-+            - description: CE6
-+            - description: CE7
-+            - description: CE8
-+            - description: CE9
-+            - description: CE10
-+            - description: CE11
-+
-+        interrupt-names: false
-+
-+      required:
-+        - interrupts
-+
-+examples:
-+  # SNoC
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    wifi@18800000 {
-+      compatible = "qcom,wcn3990-wifi";
-+      reg = <0x18800000 0x800000>;
-+      reg-names = "membase";
-+      memory-region = <&wlan_msa_mem>;
-+      clocks = <&rpmcc RPM_SMD_RF_CLK2_PIN>;
-+      clock-names = "cxo_ref_clk_pin";
-+      interrupts = <GIC_SPI 413 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
-+      iommus = <&anoc2_smmu 0x1900>,
-+               <&anoc2_smmu 0x1901>;
-+      qcom,snoc-host-cap-8bit-quirk;
-+      vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
-+      vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-+      vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
-+      vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
-+      vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
-+
-+      wifi-firmware {
-+        iommus = <&apps_smmu 0x1c02 0x1>;
-+      };
-+    };
-+
-+  # AHB
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq4019.h>
-+
-+    wifi@a000000 {
-+        compatible = "qcom,ipq4019-wifi";
-+        reg = <0xa000000 0x200000>;
-+        resets = <&gcc WIFI0_CPU_INIT_RESET>,
-+                 <&gcc WIFI0_RADIO_SRIF_RESET>,
-+                 <&gcc WIFI0_RADIO_WARM_RESET>,
-+                 <&gcc WIFI0_RADIO_COLD_RESET>,
-+                 <&gcc WIFI0_CORE_WARM_RESET>,
-+                 <&gcc WIFI0_CORE_COLD_RESET>;
-+        reset-names = "wifi_cpu_init",
-+                      "wifi_radio_srif",
-+                      "wifi_radio_warm",
-+                      "wifi_radio_cold",
-+                      "wifi_core_warm",
-+                      "wifi_core_cold";
-+        clocks = <&gcc GCC_WCSS2G_CLK>,
-+                 <&gcc GCC_WCSS2G_REF_CLK>,
-+                 <&gcc GCC_WCSS2G_RTC_CLK>;
-+        clock-names = "wifi_wcss_cmd",
-+                      "wifi_wcss_ref",
-+                      "wifi_wcss_rtc";
-+        interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 33 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 37 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 39 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 40 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 41 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 42 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 43 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 45 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 46 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 47 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names =  "msi0",
-+                           "msi1",
-+                           "msi2",
-+                           "msi3",
-+                           "msi4",
-+                           "msi5",
-+                           "msi6",
-+                           "msi7",
-+                           "msi8",
-+                           "msi9",
-+                           "msi10",
-+                           "msi11",
-+                           "msi12",
-+                           "msi13",
-+                           "msi14",
-+                           "msi15",
-+                           "legacy";
-+      };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d4db8db8bca1..af5a812d5692 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17300,7 +17300,7 @@ S:	Supported
- W:	https://wireless.wiki.kernel.org/en/users/Drivers/ath10k
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
- F:	drivers/net/wireless/ath/ath10k/
--F:	Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-+F:	Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
- 
- QUALCOMM ATHEROS ATH11K WIRELESS DRIVER
- M:	Kalle Valo <kvalo@kernel.org>
+And get rid of this top_crg_from() API?
 
----
-base-commit: 8417c8f5007bf4567ccffda850a3157c7d905f67
-change-id: 20230406-topic-ath10k_bindings-9af5fa834235
+> +
+> +       clk_bulk_disable_unprepare(top->top_clks_num, top->top_clks);
+> +       pm_runtime_disable(&pdev->dev);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id jh7110_voutcrg_match[] =3D {
+> +       { .compatible =3D "starfive,jh7110-voutcrg" },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, jh7110_voutcrg_match);
+> +
+> +static struct platform_driver jh7110_voutcrg_driver =3D {
+> +       .probe =3D jh7110_voutcrg_probe,
+> +       .remove =3D jh7110_voutcrg_remove,
 
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
-
+Use remove_new please.
