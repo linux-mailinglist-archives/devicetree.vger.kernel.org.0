@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A4846DE571
+	by mail.lfdr.de (Postfix) with ESMTP id B03DC6DE572
 	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:07:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbjDKUHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 16:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51408 "EHLO
+        id S229971AbjDKUHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 16:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjDKUHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:07:11 -0400
+        with ESMTP id S229870AbjDKUHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:07:14 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EAE44A9
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:05:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883C25B97
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:05:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1681243526;
+        s=mimecast20190719; t=1681243528;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=FIepYQlnjXM9bxkwUBsKDpgLvRy+HeIo31cmLx81ItE=;
-        b=GBpnwHQfhnOXzLIhGqkLLX4GFpEs/w8GcIqHb96ed97Ywh2S5HPwfK3rDfpsmoUC1RQd/9
-        K3qchwEKXXyzPNxfaKDK+OaK6R6vgAotcWrmu7DibqBvfvkNaTopi5R97BaPmcfhnMBMwW
-        81ayotzsRK6vv9FCLMCW9N5x6CcOz7U=
-Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com
- [209.85.160.71]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=QM/JDn6zIGqyihwEr6VtdCtu+tgT+kE/dI0xjSGrnCs=;
+        b=B54gEAMBPN157b40CA8fqOHfKOdXwgxrpNPF5GJ8HCwzeJXlCnBlTukeqJpgAGnuiW/ubb
+        x2cM4jeySR7sqhGoWfkaRdK7QnRhR0jqaZgjXYYPQSuaGUA8Yz0/urRvpSuSa0wM/ZlynK
+        dzCsTnYloi80UruHUh7cMC25PHtL/os=
+Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
+ [209.85.161.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-63-seDQVJvfNKG_PGxOUFc9lQ-1; Tue, 11 Apr 2023 16:05:25 -0400
-X-MC-Unique: seDQVJvfNKG_PGxOUFc9lQ-1
-Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-184258b8a2eso5800558fac.21
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:05:25 -0700 (PDT)
+ us-mta-501-2uVezKT9OhiJ-TzhLQlmog-1; Tue, 11 Apr 2023 16:05:27 -0400
+X-MC-Unique: 2uVezKT9OhiJ-TzhLQlmog-1
+Received: by mail-oo1-f70.google.com with SMTP id y11-20020a4ad64b000000b0053e9b6b7ebfso10116388oos.11
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:05:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681243522;
+        d=1e100.net; s=20210112; t=1681243526;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FIepYQlnjXM9bxkwUBsKDpgLvRy+HeIo31cmLx81ItE=;
-        b=aNmGuwJ2O9E1fLXkmSLIeGIFeIatQauZKx0aLku/z/JLcTW+LeY9wEt/+2Rd3FIVsI
-         BxpTlkwJZ3oU87LZipyruRK3knU6qUnn1QuHYmSM4OSCogVdPMTk+CvfbpiKMNvjEolU
-         x6GTGb8q5VZYxf0rusKw9gn9bsaIgY1+cC65Q9knA4R4K/2L/K2+iR1daZvayMqPVbo5
-         n5G5KiKuV/dC2XTtvobXgWeCdydcdrqc+LcQK/d/G6mGyBIcVp0uRQXAR7OdCzAtvQ2W
-         POiJHtKo6lPi3A/1QByMkyyIbWmNfUg3RfXHdYsHlycYEOAkKwpkXuDRQsiBrY9rKbhR
-         UMMA==
-X-Gm-Message-State: AAQBX9eC4bVQ8DeCQ8mIyZilWL/gnWdylvsmZExDUStFxQJIymLagxr6
-        0LPpsdsNgA5UOkDads/SNw/LK4HfpDpidTCPhU6xMg4wkiaBE0Gq4LDiWnIXozbmGPZtWSBgoC7
-        mEcCXkEj7ChHsshkoA4HsQQ==
-X-Received: by 2002:a05:6808:1806:b0:387:7c32:f338 with SMTP id bh6-20020a056808180600b003877c32f338mr243380oib.5.1681243522193;
-        Tue, 11 Apr 2023 13:05:22 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bFfVeIffAZcncCUz+cjNx96vqEp+ZBkeJMvKBAJcNhepwMSVSsYLyODgnBNJh6wPQnVwCuQA==
-X-Received: by 2002:a05:6808:1806:b0:387:7c32:f338 with SMTP id bh6-20020a056808180600b003877c32f338mr243345oib.5.1681243521920;
-        Tue, 11 Apr 2023 13:05:21 -0700 (PDT)
+        bh=QM/JDn6zIGqyihwEr6VtdCtu+tgT+kE/dI0xjSGrnCs=;
+        b=OpV0Nf55mvBTEuFq6PCCEBD2snz6nlKPZit7LKTkdSN7BFzqGahYIavs3FfgMcC+G/
+         /hfXdSIWG7PhEW3x9nRBsnckUfsmRqEJiXW2zWxNVFtHoxYrYeYA2ggTz5pJCJdTLg7s
+         5Vcy/Ign1QdIY5xwGxjlCWHshoDhoRtlqJdbANQfr3TTdXi9cI5dvxe4jZX66AG1+C7l
+         6Bx1Y4X8vNTHxkcaQWQC3w+4stQbYIyyVricdyijyXXg9GP0fXbVMByKprIb+whvabKO
+         wOtZufhQ/EGWVUGEfbvR0abmTWFdD2ZpAXh4Zi617sMb1NyLZ5aQG267NIGLsuh9ZtrL
+         K/lQ==
+X-Gm-Message-State: AAQBX9ddcM3U8PdsJ7srBn2ixE3JyuY62b5v2W1fPwGHOcBiO9yNZx3+
+        id5R1TDK7WY4PYyt0eKMOBfGyhs1TdQRuSwh0cHSm1MBbU2qarjWFH9JrBPPxr6Gxdir7Y69vPu
+        JN2dtY7nxIeHSq5kdFRQk6w==
+X-Received: by 2002:aca:2316:0:b0:386:d4f7:6774 with SMTP id e22-20020aca2316000000b00386d4f76774mr1544022oie.37.1681243526121;
+        Tue, 11 Apr 2023 13:05:26 -0700 (PDT)
+X-Google-Smtp-Source: AKy350Z1td8m+pbS6VB16njtuvKIZOhEXboNsDvHucA6mRo2DZOE2mD1bKXLzpnPYcZ6w6Mo4TPSrg==
+X-Received: by 2002:aca:2316:0:b0:386:d4f7:6774 with SMTP id e22-20020aca2316000000b00386d4f76774mr1543980oie.37.1681243525830;
+        Tue, 11 Apr 2023 13:05:25 -0700 (PDT)
 Received: from halaney-x13s.attlocal.net (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id e20-20020a056808149400b00387764759a3sm5868545oiw.24.2023.04.11.13.05.19
+        by smtp.gmail.com with ESMTPSA id e20-20020a056808149400b00387764759a3sm5868545oiw.24.2023.04.11.13.05.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 13:05:21 -0700 (PDT)
+        Tue, 11 Apr 2023 13:05:25 -0700 (PDT)
 From:   Andrew Halaney <ahalaney@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -74,9 +74,9 @@ Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
         jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com,
         Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH net-next v4 10/12] net: stmmac: dwmac-qcom-ethqos: Respect phy-mode and TX delay
-Date:   Tue, 11 Apr 2023 15:04:07 -0500
-Message-Id: <20230411200409.455355-11-ahalaney@redhat.com>
+Subject: [PATCH net-next v4 11/12] net: stmmac: dwmac-qcom-ethqos: Use loopback_en for all speeds
+Date:   Tue, 11 Apr 2023 15:04:08 -0500
+Message-Id: <20230411200409.455355-12-ahalaney@redhat.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230411200409.455355-1-ahalaney@redhat.com>
 References: <20230411200409.455355-1-ahalaney@redhat.com>
@@ -93,78 +93,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver currently sets a MAC TX delay of 2 ns no matter what the
-phy-mode is. If the phy-mode indicates the phy is in charge of the
-TX delay (rgmii-txid, rgmii-id), don't do it in the MAC.
+It seems that this variable should be used for all speeds, not just
+1000/100.
+
+While at it refactor it slightly to be more readable, including fixing
+the typo in the variable name.
 
 Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 ---
 
-Changes since v3:
+Changes since v2/v3:
     * None
-
-Changes since v2:
-    * Fix spacing, reverse xmas tree (Jakub)
 
 Changes since v1:
     * Use a consistent subject prefix with other stmmac changes in series (myself)
 
- .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 20 ++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 36 +++++++++----------
+ 1 file changed, 17 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 32763566c214..abec6dd27992 100644
+index abec6dd27992..ec9e93147716 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -279,6 +279,17 @@ static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
+@@ -78,7 +78,7 @@ struct ethqos_emac_por {
+ struct ethqos_emac_driver_data {
+ 	const struct ethqos_emac_por *por;
+ 	unsigned int num_por;
+-	bool rgmii_config_looback_en;
++	bool rgmii_config_loopback_en;
+ };
  
- static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+ struct qcom_ethqos {
+@@ -91,7 +91,7 @@ struct qcom_ethqos {
+ 
+ 	const struct ethqos_emac_por *por;
+ 	unsigned int num_por;
+-	bool rgmii_config_looback_en;
++	bool rgmii_config_loopback_en;
+ };
+ 
+ static int rgmii_readl(struct qcom_ethqos *ethqos, unsigned int offset)
+@@ -183,7 +183,7 @@ static const struct ethqos_emac_por emac_v2_3_0_por[] = {
+ static const struct ethqos_emac_driver_data emac_v2_3_0_data = {
+ 	.por = emac_v2_3_0_por,
+ 	.num_por = ARRAY_SIZE(emac_v2_3_0_por),
+-	.rgmii_config_looback_en = true,
++	.rgmii_config_loopback_en = true,
+ };
+ 
+ static const struct ethqos_emac_por emac_v2_1_0_por[] = {
+@@ -198,7 +198,7 @@ static const struct ethqos_emac_por emac_v2_1_0_por[] = {
+ static const struct ethqos_emac_driver_data emac_v2_1_0_data = {
+ 	.por = emac_v2_1_0_por,
+ 	.num_por = ARRAY_SIZE(emac_v2_1_0_por),
+-	.rgmii_config_looback_en = false,
++	.rgmii_config_loopback_en = false,
+ };
+ 
+ static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
+@@ -281,6 +281,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
  {
-+	int phase_shift;
-+	int phy_mode;
-+
-+	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
-+	phy_mode = device_get_phy_mode(&ethqos->pdev->dev);
-+	if (phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
-+	    phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
-+		phase_shift = 0;
-+	else
-+		phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
-+
- 	/* Disable loopback mode */
+ 	int phase_shift;
+ 	int phy_mode;
++	int loopback;
+ 
+ 	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
+ 	phy_mode = device_get_phy_mode(&ethqos->pdev->dev);
+@@ -294,6 +295,12 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
  	rgmii_updatel(ethqos, RGMII_CONFIG2_TX_TO_RX_LOOPBACK_EN,
  		      0, RGMII_IO_MACRO_CONFIG2);
-@@ -300,9 +311,9 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
- 			      RGMII_CONFIG_PROG_SWAP, RGMII_IO_MACRO_CONFIG);
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_DATA_DIVIDE_CLK_SEL,
- 			      0, RGMII_IO_MACRO_CONFIG2);
+ 
++	/* Determine if this platform wants loopback enabled after programming */
++	if (ethqos->rgmii_config_loopback_en)
++		loopback = RGMII_CONFIG_LOOPBACK_EN;
++	else
++		loopback = 0;
 +
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN,
--			      RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN,
--			      RGMII_IO_MACRO_CONFIG2);
-+			      phase_shift, RGMII_IO_MACRO_CONFIG2);
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_RSVD_CONFIG15,
- 			      0, RGMII_IO_MACRO_CONFIG2);
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_RX_PROG_SWAP,
-@@ -336,8 +347,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_DATA_DIVIDE_CLK_SEL,
- 			      0, RGMII_IO_MACRO_CONFIG2);
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN,
--			      RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN,
--			      RGMII_IO_MACRO_CONFIG2);
-+			      phase_shift, RGMII_IO_MACRO_CONFIG2);
- 		rgmii_updatel(ethqos, RGMII_CONFIG_MAX_SPD_PRG_2,
- 			      BIT(6), RGMII_IO_MACRO_CONFIG);
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_RSVD_CONFIG15,
-@@ -375,7 +385,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_DATA_DIVIDE_CLK_SEL,
- 			      0, RGMII_IO_MACRO_CONFIG2);
- 		rgmii_updatel(ethqos, RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN,
--			      0, RGMII_IO_MACRO_CONFIG2);
-+			      phase_shift, RGMII_IO_MACRO_CONFIG2);
- 		rgmii_updatel(ethqos, RGMII_CONFIG_MAX_SPD_PRG_9,
- 			      BIT(12) | GENMASK(9, 8),
- 			      RGMII_IO_MACRO_CONFIG);
+ 	/* Select RGMII, write 0 to interface select */
+ 	rgmii_updatel(ethqos, RGMII_CONFIG_INTF_SEL,
+ 		      0, RGMII_IO_MACRO_CONFIG);
+@@ -326,12 +333,8 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+ 		rgmii_updatel(ethqos, SDCC_DDR_CONFIG_PRG_DLY_EN,
+ 			      SDCC_DDR_CONFIG_PRG_DLY_EN,
+ 			      SDCC_HC_REG_DDR_CONFIG);
+-		if (ethqos->rgmii_config_looback_en)
+-			rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
+-				      RGMII_CONFIG_LOOPBACK_EN, RGMII_IO_MACRO_CONFIG);
+-		else
+-			rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
+-				      0, RGMII_IO_MACRO_CONFIG);
++		rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
++			      loopback, RGMII_IO_MACRO_CONFIG);
+ 		break;
+ 
+ 	case SPEED_100:
+@@ -363,13 +366,8 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+ 		rgmii_updatel(ethqos, SDCC_DDR_CONFIG_EXT_PRG_RCLK_DLY_EN,
+ 			      SDCC_DDR_CONFIG_EXT_PRG_RCLK_DLY_EN,
+ 			      SDCC_HC_REG_DDR_CONFIG);
+-		if (ethqos->rgmii_config_looback_en)
+-			rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
+-				      RGMII_CONFIG_LOOPBACK_EN, RGMII_IO_MACRO_CONFIG);
+-		else
+-			rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
+-				      0, RGMII_IO_MACRO_CONFIG);
+-
++		rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
++			      loopback, RGMII_IO_MACRO_CONFIG);
+ 		break;
+ 
+ 	case SPEED_10:
+@@ -403,7 +401,7 @@ static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+ 			      SDCC_DDR_CONFIG_EXT_PRG_RCLK_DLY_EN,
+ 			      SDCC_HC_REG_DDR_CONFIG);
+ 		rgmii_updatel(ethqos, RGMII_CONFIG_LOOPBACK_EN,
+-			      RGMII_CONFIG_LOOPBACK_EN, RGMII_IO_MACRO_CONFIG);
++			      loopback, RGMII_IO_MACRO_CONFIG);
+ 		break;
+ 	default:
+ 		dev_err(&ethqos->pdev->dev,
+@@ -548,7 +546,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 	data = of_device_get_match_data(&pdev->dev);
+ 	ethqos->por = data->por;
+ 	ethqos->num_por = data->num_por;
+-	ethqos->rgmii_config_looback_en = data->rgmii_config_looback_en;
++	ethqos->rgmii_config_loopback_en = data->rgmii_config_loopback_en;
+ 
+ 	ethqos->rgmii_clk = devm_clk_get(&pdev->dev, "rgmii");
+ 	if (IS_ERR(ethqos->rgmii_clk)) {
 -- 
 2.39.2
 
