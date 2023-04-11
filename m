@@ -2,249 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D00AC6DE5B6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E136DE5C0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:32:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjDKU0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 16:26:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
+        id S229515AbjDKUch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 16:32:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjDKU0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:26:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8B399;
-        Tue, 11 Apr 2023 13:26:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A4B860FA2;
-        Tue, 11 Apr 2023 20:26:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23EF5C433EF;
-        Tue, 11 Apr 2023 20:26:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681244781;
-        bh=8C08BxU77JUv8mmpWOav5Tsv5cZUhSHIWXcmPnHUWHY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=krEFiQ17SNGsWnW5jv659a3Mia7qM1YvhByX3x/EeR+I/IdJvrVib1mxw9DNWNwKJ
-         koK3h09soCbNCudtki19VQr6iv2MAcd6+sGckC743zPV03cvWjraP8aYECfoIJXXXm
-         rErD/xQctp1s4C6QuvB3N3CsoLMRB6M7l201u4KS4vqFj1rol20c8aIsEJ0h/SeMgq
-         7K778arwYp6rspEb2IKldFhh50FObInyk3NZLEmGuQsRGx/IwtKKFQ6s44cj/yLi9u
-         eIdQrvmjLTnm6zzgUSZv6eykez8xKnFZn370nq8GGehk0GwNGFcIqsn2xaBtXHFUK9
-         uzqQHNQlhfbow==
-Date:   Tue, 11 Apr 2023 21:26:16 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 3/7] soc: starfive: Modify ioremap to regmap
-Message-ID: <20230411-sanctuary-impotent-92964df67a26@spud>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-4-changhuang.liang@starfivetech.com>
+        with ESMTP id S229490AbjDKUcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:32:36 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D5853584
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:31:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1681245112;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=8rS/z80Lu47QxYWJ46HnzDoO2h7E/RInGcHyWg9vKTQ=;
+        b=ecHDjXm/xm2BFwVtrnfIT21K4ryWKt1/GVW4+FoLFBqpjwyK0eTfPgUr8tSs2NZCPZY+e/
+        GSikiAXYNDqSjlJnFkU4FruH+pmWIadX3eN3ELUc33/MwfXjpir2wGsikLhfQt0GUaIaSb
+        m4HhTmPVQMTMLWF6xC8Df6l5lhx/6zs=
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
+ [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-416-oX66fPqCOaeqpT3kCZQtWA-1; Tue, 11 Apr 2023 16:31:51 -0400
+X-MC-Unique: oX66fPqCOaeqpT3kCZQtWA-1
+Received: by mail-ot1-f72.google.com with SMTP id l5-20020a9d7345000000b0069f96cb2758so2558381otk.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:31:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681245110;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8rS/z80Lu47QxYWJ46HnzDoO2h7E/RInGcHyWg9vKTQ=;
+        b=7ITAInMLlJxOVOR2nKVOmvfXpcsaGnpaeOndo2+iJu6i3SkElVwre/pfaSvRxPh0hE
+         OTy1puoOHNmTWD0P3YHAO5Qa70QTZ7fGqzj0acR3o6OfuWhOQ3Rr6Ngytf5LhydymDkz
+         1q1dTnMQLLAJZyWn24YoBeAEmclfYnwRTOXtIMCq9NfAfnC542beSkWRQrfw6bx5TWsR
+         P4Bk/NLu8YYXUWr+dCwhS2wXbfaGb6YPgRnXmVzW8PHVQiGDN07htLknc16NLQsjQjb8
+         0u9KwxvqfnJJUSOhm1KWMlJYaEbM9RLsHdMnuyFK1tRjwoXy6i+twmFALpopNf8lQ6dX
+         Y/+A==
+X-Gm-Message-State: AAQBX9c50e5pt+ly6PuBl9d45OSUNuvUD+l04E3J3O2JhSi+SiFBUq71
+        85qqHIY3092TS4Ui7FirpoPso8ELyk3bQYTduyACNY8ZlGXW3x8M3UN5qvoZdBHpYXtwzjUn/HG
+        6aqENrhLG4XUk8iWY/PKVpQ==
+X-Received: by 2002:a05:6870:ec8d:b0:17f:fa32:4509 with SMTP id eo13-20020a056870ec8d00b0017ffa324509mr2573841oab.0.1681245110315;
+        Tue, 11 Apr 2023 13:31:50 -0700 (PDT)
+X-Google-Smtp-Source: AKy350akI6FU8Ez5RoH8LUxzPI+e98pIg0YRV69XXPwsSFk4CCyUry4KMCIeRP3G70jbhzjIfRgOhg==
+X-Received: by 2002:a05:6870:ec8d:b0:17f:fa32:4509 with SMTP id eo13-20020a056870ec8d00b0017ffa324509mr2573827oab.0.1681245110100;
+        Tue, 11 Apr 2023 13:31:50 -0700 (PDT)
+Received: from halaney-x13s.attlocal.net (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
+        by smtp.gmail.com with ESMTPSA id zj18-20020a0568716c9200b00183f77dcdadsm5078029oab.33.2023.04.11.13.31.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 13:31:49 -0700 (PDT)
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andrew Halaney <ahalaney@redhat.com>
+Subject: [PATCH] arm64: dts: qcom: sa8155p-adp: Make compatible the first property
+Date:   Tue, 11 Apr 2023 15:31:44 -0500
+Message-Id: <20230411203144.471192-1-ahalaney@redhat.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5sQq71yDp6ZVer9U"
-Content-Disposition: inline
-In-Reply-To: <20230411064743.273388-4-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As stated at the below link in another review, compatible is always the
+first property.
 
---5sQq71yDp6ZVer9U
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Follow suit here to avoid copying incorrectly in the future.
 
-On Mon, Apr 10, 2023 at 11:47:39PM -0700, Changhuang Liang wrote:
-> Modify ioremap to regmap, easy to simplify code.
+Link: https://lore.kernel.org/netdev/20230331215804.783439-1-ahalaney@redhat.com/T/#ma76b4116bbb9e49ee4bcf699e40935d80965b3f3
+Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+---
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-This doesn't simplify anything, adding regmap to the mix actually makes
-it less obvious what is going on here & it's not even fewer LoC:
-1 file changed, 23 insertions(+), 20 deletions(-)
+diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+index 459384ec8f23..8c773b856eb1 100644
+--- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
++++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+@@ -351,19 +351,18 @@ &ethernet {
+ 	max-speed = <1000>;
+ 
+ 	mdio {
++		compatible = "snps,dwmac-mdio";
+ 		#address-cells = <0x1>;
+ 		#size-cells = <0x0>;
+ 
+-		compatible = "snps,dwmac-mdio";
+-
+ 		/* Micrel KSZ9031RNZ PHY */
+ 		rgmii_phy: phy@7 {
++			compatible = "ethernet-phy-ieee802.3-c22";
+ 			reg = <0x7>;
+ 
+ 			interrupt-parent = <&tlmm>;
+ 			interrupts-extended = <&tlmm 124 IRQ_TYPE_EDGE_FALLING>; /* phy intr */
+ 			device_type = "ethernet-phy";
+-			compatible = "ethernet-phy-ieee802.3-c22";
+ 		};
+ 	};
+ };
+-- 
+2.39.2
 
-Please write a commit message that explains the real motivation for
-this change.
-
-Thanks,
-Conor.
-
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  drivers/soc/starfive/jh71xx_pmu.c | 43 +++++++++++++++++--------------
->  1 file changed, 23 insertions(+), 20 deletions(-)
->=20
-> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh7=
-1xx_pmu.c
-> index 7d5f50d71c0d..306218c83691 100644
-> --- a/drivers/soc/starfive/jh71xx_pmu.c
-> +++ b/drivers/soc/starfive/jh71xx_pmu.c
-> @@ -6,13 +6,13 @@
->   */
-> =20
->  #include <linux/interrupt.h>
-> -#include <linux/io.h>
-> -#include <linux/iopoll.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
-> +#include <linux/regmap.h>
->  #include <dt-bindings/power/starfive,jh7110-pmu.h>
-> =20
->  /* register offset */
-> @@ -59,7 +59,7 @@ struct jh71xx_pmu_match_data {
->  struct jh71xx_pmu {
->  	struct device *dev;
->  	const struct jh71xx_pmu_match_data *match_data;
-> -	void __iomem *base;
-> +	struct regmap *base;
->  	struct generic_pm_domain **genpd;
->  	struct genpd_onecell_data genpd_data;
->  	int irq;
-> @@ -75,11 +75,14 @@ struct jh71xx_pmu_dev {
->  static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *pmd, u32 mask, bo=
-ol *is_on)
->  {
->  	struct jh71xx_pmu *pmu =3D pmd->pmu;
-> +	unsigned int val;
-> =20
->  	if (!mask)
->  		return -EINVAL;
-> =20
-> -	*is_on =3D readl(pmu->base + JH71XX_PMU_CURR_POWER_MODE) & mask;
-> +	regmap_read(pmu->base, JH71XX_PMU_CURR_POWER_MODE, &val);
-> +
-> +	*is_on =3D val & mask;
-> =20
->  	return 0;
->  }
-> @@ -130,7 +133,7 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev=
- *pmd, u32 mask, bool on)
->  		encourage_hi =3D JH71XX_PMU_SW_ENCOURAGE_DIS_HI;
->  	}
-> =20
-> -	writel(mask, pmu->base + mode);
-> +	regmap_write(pmu->base, mode, mask);
-> =20
->  	/*
->  	 * 2.Write SW encourage command sequence to the Software Encourage Reg =
-(offset 0x44)
-> @@ -140,21 +143,21 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_d=
-ev *pmd, u32 mask, bool on)
->  	 *   Then write the lower bits of the command sequence, followed by the=
- upper
->  	 *   bits. The sequence differs between powering on & off a domain.
->  	 */
-> -	writel(JH71XX_PMU_SW_ENCOURAGE_ON, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-> -	writel(encourage_lo, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-> -	writel(encourage_hi, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, JH71XX_PMU_SW_ENCOURAG=
-E_ON);
-> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, encourage_lo);
-> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, encourage_hi);
-> =20
->  	spin_unlock_irqrestore(&pmu->lock, flags);
-> =20
->  	/* Wait for the power domain bit to be enabled / disabled */
->  	if (on) {
-> -		ret =3D readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MO=
-DE,
-> -						val, val & mask,
-> -						1, JH71XX_PMU_TIMEOUT_US);
-> +		ret =3D regmap_read_poll_timeout_atomic(pmu->base, JH71XX_PMU_CURR_POW=
-ER_MODE,
-> +						      val, val & mask,
-> +						      1, JH71XX_PMU_TIMEOUT_US);
->  	} else {
-> -		ret =3D readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MO=
-DE,
-> -						val, !(val & mask),
-> -						1, JH71XX_PMU_TIMEOUT_US);
-> +		ret =3D regmap_read_poll_timeout_atomic(pmu->base, JH71XX_PMU_CURR_POW=
-ER_MODE,
-> +						      val, !(val & mask),
-> +						      1, JH71XX_PMU_TIMEOUT_US);
->  	}
-> =20
->  	if (ret) {
-> @@ -190,14 +193,14 @@ static void jh71xx_pmu_int_enable(struct jh71xx_pmu=
- *pmu, u32 mask, bool enable)
->  	unsigned long flags;
-> =20
->  	spin_lock_irqsave(&pmu->lock, flags);
-> -	val =3D readl(pmu->base + JH71XX_PMU_TIMER_INT_MASK);
-> +	regmap_read(pmu->base, JH71XX_PMU_TIMER_INT_MASK, &val);
-> =20
->  	if (enable)
->  		val &=3D ~mask;
->  	else
->  		val |=3D mask;
-> =20
-> -	writel(val, pmu->base + JH71XX_PMU_TIMER_INT_MASK);
-> +	regmap_write(pmu->base, JH71XX_PMU_TIMER_INT_MASK, val);
->  	spin_unlock_irqrestore(&pmu->lock, flags);
->  }
-> =20
-> @@ -206,7 +209,7 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void=
- *data)
->  	struct jh71xx_pmu *pmu =3D data;
->  	u32 val;
-> =20
-> -	val =3D readl(pmu->base + JH71XX_PMU_INT_STATUS);
-> +	regmap_read(pmu->base, JH71XX_PMU_INT_STATUS, &val);
-> =20
->  	if (val & JH71XX_PMU_INT_SEQ_DONE)
->  		dev_dbg(pmu->dev, "sequence done.\n");
-> @@ -220,8 +223,8 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void=
- *data)
->  		dev_err(pmu->dev, "p-channel fail event.\n");
-> =20
->  	/* clear interrupts */
-> -	writel(val, pmu->base + JH71XX_PMU_INT_STATUS);
-> -	writel(val, pmu->base + JH71XX_PMU_EVENT_STATUS);
-> +	regmap_write(pmu->base, JH71XX_PMU_INT_STATUS, val);
-> +	regmap_write(pmu->base, JH71XX_PMU_EVENT_STATUS, val);
-> =20
->  	return IRQ_HANDLED;
->  }
-> @@ -271,7 +274,7 @@ static int jh71xx_pmu_probe(struct platform_device *p=
-dev)
->  	if (!pmu)
->  		return -ENOMEM;
-> =20
-> -	pmu->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	pmu->base =3D device_node_to_regmap(np);
->  	if (IS_ERR(pmu->base))
->  		return PTR_ERR(pmu->base);
-> =20
-> --=20
-> 2.25.1
->=20
-
---5sQq71yDp6ZVer9U
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDXCaAAKCRB4tDGHoIJi
-0nNUAP9dxn5jSBbjcHeX8s96ct0sLLOaVQ8hzg7DhS1ZgVp1ugD/eC24zDTOc6J5
-dyl/DNgsTEYKRPf8mOQhYWXU+YjniAI=
-=AvFp
------END PGP SIGNATURE-----
-
---5sQq71yDp6ZVer9U--
