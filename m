@@ -2,152 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF4B06DDB43
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 14:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A22A6DDB49
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 14:54:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbjDKMxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 08:53:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45674 "EHLO
+        id S230254AbjDKMyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 08:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbjDKMx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 08:53:28 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E76E40FA
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 05:53:26 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-54bfa5e698eso309460937b3.13
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 05:53:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681217606;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fFv74P1KCayojYjxtK5/a2IFMIj+yPaoo8Ew1qIsSEg=;
-        b=sMWRCSjOMPVp5si/XP2v82kjVrx83Nszx7XXfiUQ+4WWfr+Aun0q5zNh0TbCkLLrmv
-         55qBvqAizK9Ib/ushXLC3pixTWaCqBTWRq2OghKIZKAO3c8aB4NXecWVCi46LhnivDh6
-         rEH/S76ZH7I/zoDt9n95RFEryypfxnLPpohemb+RndwF3uYLOUa10SqfseE95Ih5aFwL
-         J5cBuiYPpSO3NPLjGDX4umb2eLJqU+lzKEcPPkgYspNOJm9bDJduGJCQUHTYKyr1wo0i
-         FOvd8m51xCg7kwV16LK3iJ7VO4v2z5el1fDOH4sWMg3kSwSvmhHg/f+WnFhkFhOwmdxm
-         INqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681217606;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fFv74P1KCayojYjxtK5/a2IFMIj+yPaoo8Ew1qIsSEg=;
-        b=kMNBzn+spk94zAWF3PASQChv9gv43c26BnvY/LY12shPKXUKPOoI14yqP1aI9qWv89
-         bdilWyygs7OAmX+Z+rdZcnHfqlWKbjCRameixlf6tbPBO2YxXv8apro4AZgbjcndC6GP
-         cdiq+Fhg+nWk0gjxW356lEzdCqYNrBOLHZvdvcRTwGArQ5RNy6Qa0D5fNrNsf8Uf+OQd
-         zcg8MyhtWPtT7Y0QAdW13mibLTkbKC0pBJ6naKo3bOrlxh47zRJzNe3RFsoul/29zLnX
-         IXbnW9GBtNKGIGYEVtilOKwPY+91Yo6RJetItlEuwuluMb8Yhq7lSkNfvJb24XWu4NnB
-         vXcA==
-X-Gm-Message-State: AAQBX9cfr7zb2cmAS+k76xaU0xr1hlgqIuzzH/2x22YU19Tix4CxhYi1
-        RpSZ2d4FT2vzQKD1OW4G5KMQhYr7wS3isSrPlobgdQ==
-X-Google-Smtp-Source: AKy350Y4X7sWd/sMQ10PeBq1usb+QKgdwjKDQyYcRyuD5lp1mmERKPgxY9L+t5XfRBFRr6SmHLi0cZYny6S114tUDXA=
-X-Received: by 2002:a81:ca53:0:b0:54c:a67:90b with SMTP id y19-20020a81ca53000000b0054c0a67090bmr8186037ywk.5.1681217605731;
- Tue, 11 Apr 2023 05:53:25 -0700 (PDT)
+        with ESMTP id S230226AbjDKMyf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 08:54:35 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5AD9A4C1F;
+        Tue, 11 Apr 2023 05:54:24 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5BC46D75;
+        Tue, 11 Apr 2023 05:55:08 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBC5C3F6C4;
+        Tue, 11 Apr 2023 05:54:22 -0700 (PDT)
+Date:   Tue, 11 Apr 2023 13:54:20 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Nikunj Kela <quic_nkela@quicinc.com>
+Cc:     cristian.marussi@arm.com, robh+dt@kernel.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lkp@intel.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: support
+ parameter passing in smc/hvc
+Message-ID: <20230411125420.lymhjf5chxdr7if7@bogus>
+References: <20230409181918.29270-1-quic_nkela@quicinc.com>
+ <20230410182058.8949-1-quic_nkela@quicinc.com>
+ <20230410182058.8949-2-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-References: <20230410171010.2561393-1-bhupesh.sharma@linaro.org>
- <20230410171010.2561393-3-bhupesh.sharma@linaro.org> <1552aad0-4b84-b508-bc05-610edb3cccff@linaro.org>
- <CAH=2NtyP8zkOetnH-i8TLBGBQnjH4f569PxjzW_84HZXeCFGNw@mail.gmail.com>
-In-Reply-To: <CAH=2NtyP8zkOetnH-i8TLBGBQnjH4f569PxjzW_84HZXeCFGNw@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 11 Apr 2023 15:53:14 +0300
-Message-ID: <CAA8EJprCUSvtC4Os0X==E418ZyPB1sBDP18Z5Ng-zPE0=+1rXQ@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
-        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230410182058.8949-2-quic_nkela@quicinc.com>
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Apr 2023 at 15:18, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+On Mon, Apr 10, 2023 at 11:20:57AM -0700, Nikunj Kela wrote:
+> Currently, smc/hvc calls are made with smc-id only. The parameters are
+> all set to zeros. This patch defines two optional device tree bindings,
+> that can be used to pass parameters in smc/hvc calls.
 >
-> On Tue, 11 Apr 2023 at 13:17, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On 10/04/2023 20:10, Bhupesh Sharma wrote:
-> > > Add USB superspeed qmp phy node to dtsi.
-> > >
-> > > Make sure that the various board dts files (which include sm4250.dtsi file)
-> > > continue to work as intended.
-> > >
-> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > > ---
-> > >   .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
-> > >   arch/arm64/boot/dts/qcom/sm6115.dtsi          | 29 +++++++++++++++++--
-> > >   .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
-> > >   3 files changed, 33 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > > index a1f0622db5a0..75951fd439df 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > > @@ -242,6 +242,9 @@ &usb {
-> > >   &usb_dwc3 {
-> > >       maximum-speed = "high-speed";
-> > >       dr_mode = "peripheral";
-> > > +
-> > > +     phys = <&usb_hsphy>;
-> > > +     phy-names = "usb2-phy";
-> > >   };
-> > >
-> > >   &usb_hsphy {
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > > index 2505c815c65a..b2ea8f13e827 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > > @@ -651,6 +651,31 @@ usb_hsphy: phy@1613000 {
-> > >                       status = "disabled";
-> > >               };
-> > >
-> > > +             usb_qmpphy: phy@1615000 {
-> > > +                     compatible = "qcom,sm6115-qmp-usb3-phy";
-> > > +                     reg = <0x0 0x01615000 0x0 0x200>;
-> > > +
-> > > +                     clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
-> > > +                              <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> > > +                              <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> > > +                              <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > > +                     clock-names = "cfg_ahb",
-> > > +                                   "ref",
-> > > +                                   "com_aux",
-> > > +                                   "pipe";
-> > > +
-> > > +                     resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
-> > > +                              <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
-> > > +                     reset-names = "phy", "phy_phy";
-> > > +
-> > > +                     #clock-cells = <0>;
-> > > +                     clock-output-names = "usb3_phy_pipe_clk_src";
-> > > +
-> > > +                     #phy-cells = <0>;
-> > > +
-> > > +                     status = "disabled";
-> >
-> >
-> > Please excuse me if I'm wrong, but this will not work with the current
-> > PHY driver. It was not updated to handle new bindings. Please provide
-> > relevant driver patches too.
->
-> Oh.. from your previous emails, I got the feeling that you were
-> already reworking the existing PHY driver as part of enabling it for
-> newer bindings.
->
-> No issues, I will send the PHY patches as well in the next version.
 
-Then this dependency should have been declared in the cover letter.
+Why 2 values ?
 
+> This is useful when multiple scmi instances are used with common smc-id.
+>
+
+I really would like to avoid this binding. Because of lack of standard
+SMC/HVC FID for SCMI we had to add this binding. Extending for newer use
+case like this in a vendor specific way is something I would like to avoid.
+
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> ---
+>  .../devicetree/bindings/firmware/arm,scmi.yaml | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 5824c43e9893..ecf76b763c8c 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -115,6 +115,23 @@ properties:
+>      description:
+>        SMC id required when using smc or hvc transports
+>  
+> +  arm,smc32-params:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      An optional parameter list passed in smc32 or hvc32 calls
+> +    default: 0
+> +    minItems: 1
+> +    maxItems: 6
+> +
+> +  arm,smc64-params:
+> +    $ref: /schemas/types.yaml#/definitions/uint64-array
+> +    description:
+> +      An optional parameter list passed in smc64 or hvc64 calls.
+> +      This is valid only on ARM64 machines.
+> +    default: 0
+> +    minItems: 1
+> +    maxItems: 6
+> +
+
+Even if we end up adding(which I would very much like to avoid), I don't see
+the need for 32 and 64 bit params like this. There must be ways to avoid that
+used by some property in some other binding(I will look for one if we choose
+this path)
 
 -- 
-With best wishes
-Dmitry
+Regards,
+Sudeep
