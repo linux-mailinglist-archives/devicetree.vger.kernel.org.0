@@ -2,180 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AFEE6DD49B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 09:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DDE6DD4DE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjDKHrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 03:47:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39546 "EHLO
+        id S230211AbjDKIN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 04:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbjDKHrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 03:47:39 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D9D173E
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 00:47:33 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id d7so20325944lfj.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 00:47:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681199252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mg7sIU4syKVdSy8LOtYkilZC80DMuyLCGHqWZ1NEyKI=;
-        b=I8lZf6iR7StToEKVoaHAu+vZVEcFaXC5mSpr+Me1rg/+LkdH/e7eRZKPg5A4bnWsQZ
-         P8kQHxInoeJyf9IhagruXh5Ld/3bAmv0xXyRbhUApcnwtp50cvNtEyOMW3mQ9MClQwoL
-         etxkhG9pW0cPFO00Pkwfmv2Ny93UrAlG9RN0QEzB6Cw/OSvEWEgVgAlX5hS5Qa/URDf9
-         uzzfd4pyZFuXsz9U6UQz53Bioo3W87BjigJ0b+07P3N/JIQLRxnJWs0HWDcNd3P66Qas
-         uq37Vz6I5Hf5DdFZTEoA7FisnRXiL8l3xS7MGGKBLBdW8Jj6lxybA2qwsqcNZeEbz9Fi
-         Jwtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681199252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mg7sIU4syKVdSy8LOtYkilZC80DMuyLCGHqWZ1NEyKI=;
-        b=QOYViyga/6X+aig4PmNUUHh5MxmrcqAEO3G9mYJCOF0Foq1seHz68ljNOc7enpD+Li
-         lumBcHb8Brkep3qJGuNyuJu0YCseW+mwAIgv7eUfWTTcyZDi+wIjpMlhnHsDMqa5dota
-         tWe7MbFbxU6CKzAk7ZNpgvnpVqrrSh7NIzz/IXWH2wxzSK2TAvQTuVcRSSaLH3x0Zpp7
-         mOt3IcsYibWBHoAKa/8RgQeMgy7pMiuTYKBqVu2NOwQgwCNDXD+c2xUqO6JIq+MlAW8F
-         KVV5pa6zB/NGY+FEyCYNwV5zzco1KuNXwkpx1pL9LNdQ3+pf6oanaWy6tlgU2Y+X5hrX
-         3Zug==
-X-Gm-Message-State: AAQBX9eGfOIMIQ601sq6VQcW3zYh2uBhmJ1+16lzHeJVEW3cJX8zPdEo
-        2B0sc4JHD++tXsKpfpHt6s73fQ==
-X-Google-Smtp-Source: AKy350Z7/M6uSptsCaQyLk5cixXpi5u01LLvz6VhqVaoT7HRdgUV6kdsm7qDyb3IQISGHuruvPf5jA==
-X-Received: by 2002:a05:6512:2191:b0:4e9:8994:49bd with SMTP id b17-20020a056512219100b004e9899449bdmr4738898lft.3.1681199251896;
-        Tue, 11 Apr 2023 00:47:31 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id h22-20020a2eb0f6000000b0029aa0b6b41asm2660925ljl.115.2023.04.11.00.47.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 00:47:31 -0700 (PDT)
-Message-ID: <1552aad0-4b84-b508-bc05-610edb3cccff@linaro.org>
-Date:   Tue, 11 Apr 2023 10:47:30 +0300
+        with ESMTP id S230073AbjDKINr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:13:47 -0400
+Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C90713AA2
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 01:13:35 -0700 (PDT)
+Received: by mail.tryweryn.pl (Postfix, from userid 1002)
+        id D9393A260B; Tue, 11 Apr 2023 08:11:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
+        t=1681200760; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
+        h=Date:From:To:Subject:From;
+        b=L67H947X6r5HSk/oeN18KqWqOz/2G4+I4vYeEJH9fh4PT7WSRit3hW1M3GYkIZsaT
+         UNdkcsy4e6NEct54I7O+0j5pmS9SZUEyiDja/Ykh2ocplsBDrDm5q4Ez9bwQn29R9r
+         itzBX5xy8jqtbIhpWmdVY5rhk0Yn0quE/vfeBgcOhCMCUGU83bBdAl2YUpxQPKIESn
+         i6j13b+xfPrJy/AVRuC+0dWNZBoyIBlm/yaXOkKz/+CuHTiniQDkyzEVN6rDuxo07x
+         DBdE4KrL7lnc8g4XI02BfKim3mkpwv83B2tP5mjjn5Grg1JnKraDfsbirk6vFHexNm
+         QfaJOn3XU77Xg==
+Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 08:11:17 GMT
+Message-ID: <20230411075554-0.1.98.3cfeb.0.lq6n3ier4p@tryweryn.pl>
+Date:   Tue, 11 Apr 2023 08:11:17 GMT
+From:   "Karol Michun" <karol.michun@tryweryn.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.tryweryn.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-Content-Language: en-GB
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, bhupesh.linux@gmail.com,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, kishon@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20230410171010.2561393-1-bhupesh.sharma@linaro.org>
- <20230410171010.2561393-3-bhupesh.sharma@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230410171010.2561393-3-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/04/2023 20:10, Bhupesh Sharma wrote:
-> Add USB superspeed qmp phy node to dtsi.
-> 
-> Make sure that the various board dts files (which include sm4250.dtsi file)
-> continue to work as intended.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->   .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
->   arch/arm64/boot/dts/qcom/sm6115.dtsi          | 29 +++++++++++++++++--
->   .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
->   3 files changed, 33 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> index a1f0622db5a0..75951fd439df 100644
-> --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> @@ -242,6 +242,9 @@ &usb {
->   &usb_dwc3 {
->   	maximum-speed = "high-speed";
->   	dr_mode = "peripheral";
-> +
-> +	phys = <&usb_hsphy>;
-> +	phy-names = "usb2-phy";
->   };
->   
->   &usb_hsphy {
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 2505c815c65a..b2ea8f13e827 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -651,6 +651,31 @@ usb_hsphy: phy@1613000 {
->   			status = "disabled";
->   		};
->   
-> +		usb_qmpphy: phy@1615000 {
-> +			compatible = "qcom,sm6115-qmp-usb3-phy";
-> +			reg = <0x0 0x01615000 0x0 0x200>;
-> +
-> +			clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> +			clock-names = "cfg_ahb",
-> +				      "ref",
-> +				      "com_aux",
-> +				      "pipe";
-> +
-> +			resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
-> +				 <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
-> +			reset-names = "phy", "phy_phy";
-> +
-> +			#clock-cells = <0>;
-> +			clock-output-names = "usb3_phy_pipe_clk_src";
-> +
-> +			#phy-cells = <0>;
-> +
-> +			status = "disabled";
+Dzie=C5=84 dobry!
+
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
+
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
+
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
+
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
 
 
-Please excuse me if I'm wrong, but this will not work with the current 
-PHY driver. It was not updated to handle new bindings. Please provide 
-relevant driver patches too.
-
-> +		};
-> +
->   		qfprom@1b40000 {
->   			compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
->   			reg = <0x0 0x01b40000 0x0 0x7000>;
-> @@ -1101,8 +1126,8 @@ usb_dwc3: usb@4e00000 {
->   				compatible = "snps,dwc3";
->   				reg = <0x0 0x04e00000 0x0 0xcd00>;
->   				interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
-> -				phys = <&usb_hsphy>;
-> -				phy-names = "usb2-phy";
-> +				phys = <&usb_hsphy>, <&usb_ssphy>;
-> +				phy-names = "usb2-phy", "usb3-phy";
->   				iommus = <&apps_smmu 0x120 0x0>;
->   				snps,dis_u2_susphy_quirk;
->   				snps,dis_enblslpm_quirk;
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> index 10c9d338446c..d60cc024749b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> @@ -280,6 +280,9 @@ &usb {
->   &usb_dwc3 {
->   	maximum-speed = "high-speed";
->   	dr_mode = "peripheral";
-> +
-> +	phys = <&usb_hsphy>;
-> +	phy-names = "usb2-phy";
->   };
->   
->   &usb_hsphy {
-
--- 
-With best wishes
-Dmitry
-
+Pozdrawiam
+Karol Michun
