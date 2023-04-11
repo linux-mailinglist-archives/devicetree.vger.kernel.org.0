@@ -2,144 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADC36DD593
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA75B6DD595
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230376AbjDKIbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 04:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49244 "EHLO
+        id S230317AbjDKIbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 04:31:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230382AbjDKIbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:31:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D319B
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 01:31:12 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <s.trumtrar@pengutronix.de>)
-        id 1pm9PC-0005Nv-66; Tue, 11 Apr 2023 10:31:10 +0200
-From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To:     linux-stm32@st-md-mailman.stormreply.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v8 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
-Date:   Tue, 11 Apr 2023 10:30:45 +0200
-Message-Id: <20230411083045.2850138-11-s.trumtrar@pengutronix.de>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230411083045.2850138-1-s.trumtrar@pengutronix.de>
-References: <20230411083045.2850138-1-s.trumtrar@pengutronix.de>
+        with ESMTP id S230270AbjDKIb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:31:29 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6A0E58
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 01:31:27 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id v29so6680061wra.13
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 01:31:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1681201886; x=1683793886;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=221+rJPVRmTBicTd5002DBEZ4voZcS37Ga3RcOPXh88=;
+        b=0uN/cs3jya/FTvzSTyDnjUvs1o+XjEESTIuS+jlgfFdCDnY/fklJET+5dr4RyEtFuY
+         /h7g1vfcxcN0ODtKhx+G4eCJOiPNCSNVEJg36G5u83eB+xJ/TCuISpRj0vbqvzzkUTW2
+         3mvciNxV5LFTPE0eZnspSgllygfpe0g1dnDiFzKFjxik06T2TxBWf4RpPJo7X5XlFax9
+         zeTXmgzWXHRYxpRcOdu4iLRzthG5OoR9ERKNz/TkZRi2RiHIL3A8ecxx+aHDPjw37VPD
+         5zOx2Qfln6QpQffTr1Ql0YlMIZLo5RUWrKisGg/PXzt2DVy/1PvczE2xchdaBIcyL96p
+         RePA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681201886; x=1683793886;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=221+rJPVRmTBicTd5002DBEZ4voZcS37Ga3RcOPXh88=;
+        b=Zlc4m32Eyx4j6edWanOFrynHOGe7OgpGr5dFzpZAwZBf584OHAJ6dLiLcmWk3LNsoM
+         eam4TZRvFmESkqptww663b4KkdZECEdrZeiJyLbr287Cym/+IxTBJRvPeXXmfMMOlxa8
+         Otm/egpVINDP4BWeBbST8wfrDpt5s17SxSPgG97qggPozIz1zprudlAnd67I9rozITh/
+         zX3c/5ffgRTuFJlhSsR13ZSOu7M9rzj3Y+yQ8jt8IbDtVEiUgA7k1il599AlW2EgCWv9
+         EmWUsesQ9SSh5P68WNa5jzMUH8jT2DskU2c0Up8AwsTLqkc/YkmlKsrX87D+Qp0fnqTV
+         63lg==
+X-Gm-Message-State: AAQBX9f2ZtHkGfLUOIKlStlYrFOOZez9AGaXngXduqR5+zV4Axv6SqUk
+        6kIEINLqQxliqvIUfSGQnkKyAQ==
+X-Google-Smtp-Source: AKy350ZVJglFgq9ztOFGuYcic4YegavmAar2H7r8LrUhlD9XQnlViWEJTMf+UJFFQclfvouAtDmnwg==
+X-Received: by 2002:adf:f84f:0:b0:2ef:5066:7bd8 with SMTP id d15-20020adff84f000000b002ef50667bd8mr9648387wrq.43.1681201885845;
+        Tue, 11 Apr 2023 01:31:25 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id d9-20020adfef89000000b002d2f0e23acbsm13963408wro.12.2023.04.11.01.31.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Apr 2023 01:31:25 -0700 (PDT)
+Message-ID: <16cdc84a-a78b-0629-6c87-9056755b0dbf@baylibre.com>
+Date:   Tue, 11 Apr 2023 10:31:24 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 2/2] i2c: mediatek: add support for MT7981 SoC
+Content-Language: en-US
+To:     Daniel Golle <daniel@makrotopia.org>, linux-i2c@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sam Shih <sam.shih@mediatek.com>
+References: <cover.1680857025.git.daniel@makrotopia.org>
+ <7b5c6ba8da51ea6145fb71815a2f65a9e1d341c1.1680857025.git.daniel@makrotopia.org>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <7b5c6ba8da51ea6145fb71815a2f65a9e1d341c1.1680857025.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec
-stm32m157c-som.
+On 10/04/2023 18:19, Daniel Golle wrote:
+> Add support for the I2C units found in the MediaTek MT7981 and MT7988
+> SoCs. Just like other recent MediaTek I2C units that also uses v3
+> register offsets (which differ from v2 only by OFFSET_SLAVE_ADDR being
+> 0x94 instead of 0x4).
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
-
-Notes:
-    Changes since v7:
-       - remove secure-status for sdmmc
-
- arch/arm/boot/dts/Makefile                    |  3 +-
- .../dts/stm32mp157c-phycore-stm32mp1-3.dts    | 60 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index efe4152e5846d..dfa9a7477c825 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1252,7 +1252,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp157c-ev1.dtb \
- 	stm32mp157c-ev1-scmi.dtb \
- 	stm32mp157c-lxa-mc1.dtb \
--	stm32mp157c-odyssey.dtb
-+	stm32mp157c-odyssey.dtb \
-+	stm32mp157c-phycore-stm32mp1-3.dtb
- dtb-$(CONFIG_MACH_SUN4I) += \
- 	sun4i-a10-a1000.dtb \
- 	sun4i-a10-ba10-tvbox.dtb \
-diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-new file mode 100644
-index 0000000000000..28d7203264cea
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-@@ -0,0 +1,60 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
-+ * Author: Dom VOVARD <dom.vovard@linrt.com>.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+#include "stm32mp157c-phycore-stm32mp15-som.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
-+	compatible = "phytec,phycore-stm32mp1-3",
-+		     "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
-+
-+	aliases {
-+		mmc0 = &sdmmc1;
-+		mmc1 = &sdmmc2;
-+		mmc2 = &sdmmc3;
-+		serial0 = &uart4;
-+		serial1 = &usart3;
-+		serial2 = &usart1;
-+	};
-+};
-+
-+&cryp1 {
-+	status = "okay";
-+};
-+
-+&dts {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "disabled";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&i2c4_eeprom {
-+	status = "okay";
-+};
-+
-+&i2c4_rtc {
-+	status = "okay";
-+};
-+
-+&qspi {
-+	status = "okay";
-+};
-+
-+&sdmmc2 {
-+	status = "okay";
-+};
--- 
-2.39.1
-
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
