@@ -2,74 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D85906DD57A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0BF6DD586
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbjDKI36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 04:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
+        id S230303AbjDKIbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 04:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbjDKI3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:29:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF8B3C24;
-        Tue, 11 Apr 2023 01:29:40 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 289A366031E2;
-        Tue, 11 Apr 2023 09:29:39 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681201779;
-        bh=Ma2v3EyMsGkOmwNVpAiayuKQ7gD6/5OgGM3RlenFbQ8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=j7Fp0Vl4eeBCo7tuhT5NhwmGW0UPnULoNJPS6wK/5ow8+VVW528ehX3678+8ZSWEw
-         WIz18+faOuBxT80h3hi3RHEmPEcHgjbqK5EAXEeMCIGqpZ1BCwxj0kUFcMQfgMsIiK
-         D3meYwqQoC7tUlcX+PsM8LqbvTCJGNJ9NnbajrkAmc89EgXU44rI4L7D4Kw7MhqYXv
-         bSlZxB+SRXmL0K5uNJZKhqJpCW+9lDrv0tQZmyw7z8x069vmNJ7CLkm9mnMlIKHObk
-         fnj3SJA+5D1ylkCGIXUtJYnUd8xqo5K8ssRJUTHgYwBxYMmnbMTQX7PFzcw8INVGGj
-         fObUgexo41wNQ==
-Message-ID: <da270d1e-5c92-b8a8-7d85-e633c43809e7@collabora.com>
-Date:   Tue, 11 Apr 2023 10:29:36 +0200
+        with ESMTP id S230370AbjDKIbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:31:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7859E7B
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 01:31:07 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <s.trumtrar@pengutronix.de>)
+        id 1pm9P6-0005Nv-S2; Tue, 11 Apr 2023 10:31:04 +0200
+From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
+To:     linux-stm32@st-md-mailman.stormreply.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v8 00/10] ARM: stm32: add support for Phycore STM32MP1
+Date:   Tue, 11 Apr 2023 10:30:35 +0200
+Message-Id: <20230411083045.2850138-1-s.trumtrar@pengutronix.de>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 3/3] dt-bindings: memory-controllers:
- mediatek,smi-larb: add mt8365
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230407-smi-driver-v2-0-8da6683cdb5c@baylibre.com>
- <20230407-smi-driver-v2-3-8da6683cdb5c@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230407-smi-driver-v2-3-8da6683cdb5c@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/04/23 11:13, Alexandre Mergnat ha scritto:
-> Add binding description for mediatek,mt8365-smi-larb
-> 
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Hi,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+this is the eighth installement of my series for adding support for the
+Phytec STM32MP1-based SoM and board.
 
-...but the bindings commits should come before the driver commits.
+Phytec itself calls the board "Phycore STM32MP1-3" and has other
+endnumbers. I only have access to the "-3" and that's what this series
+adds.
 
+    Changes since v7:
+      - remove unused gpu_reservde memory range
+      - get rid of duplicate ethernet clock assignments
+      - remove secure-status for sdmmc
+    
+    Changes since v6:
+      - rename mdio0->mdio
+
+    Changes since v5:
+      - add reviewed/acked-by
+      - cleanup dt_bindings_check warnings
+
+    Changes since v4:
+      - cleanup usage of "status = okay|disabled"
+      - fix remaining non-generic node names
+      - rework sai nodes to not duplicate the existing settings in stm32mp151.dtsi
+
+    Changes since v3:
+      - cleanup board-compatible
+      - cleanup aliases
+      - rename nodes according to schema
+      - use interrupt flag
+
+Steffen Trumtrar (10):
+  ARM: dts: stm32: Add alternate pinmux for ethernet
+  ARM: dts: stm32: Add alternate pinmux for sai2b
+  ARM: dts: stm32: Add new pinmux for sdmmc1_b4
+  ARM: dts: stm32: Add new pinmux for sdmmc2_d47
+  ARM: dts: stm32: Add pinmux for USART1 pins
+  ARM: dts: stm32: Add idle/sleep pinmux for USART3
+  ARM: dts: stm32: Add sleep pinmux for SPI1 pins_a
+  dt-bindings: arm: stm32: Add Phytec STM32MP1 board
+  ARM: dts: stm32: add STM32MP1-based Phytec SoM
+  ARM: dts: stm32: add STM32MP1-based Phytec board
+
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      | 231 +++++++
+ .../dts/stm32mp157c-phycore-stm32mp1-3.dts    |  60 ++
+ .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 577 ++++++++++++++++++
+ 5 files changed, 876 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
+
+-- 
+2.39.1
 
