@@ -2,92 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFE976DDC17
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 315256DDC50
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbjDKNcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 09:32:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40174 "EHLO
+        id S229501AbjDKNjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 09:39:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjDKNcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:32:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90A32135;
-        Tue, 11 Apr 2023 06:32:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229490AbjDKNjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:39:12 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE1D128;
+        Tue, 11 Apr 2023 06:39:11 -0700 (PDT)
+Received: from [IPV6:2a01:e0a:120:3210:5d75:6627:8ce:212b] (unknown [IPv6:2a01:e0a:120:3210:5d75:6627:8ce:212b])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2C22961F74;
-        Tue, 11 Apr 2023 13:32:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 846CBC433EF;
-        Tue, 11 Apr 2023 13:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681219928;
-        bh=Qy/rBc6YUbkvkDPHSRKGpIkNfKxq2ZbKY7o9v2IVhz4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D45cB64+Za0ToL5Ty6Am/itkbcW3HQRXJuxy+3a2UIZh8IA+RVyANUvVZzdfU3sxk
-         w1o5jJP0YtTxBKVIcZrDWavfI4P6Gx6Mxx3f8PBprdGtCk5mU47eX+Z20F6jm4ByDt
-         jmB4CBIZv8Pj71Q8H0LDfwv/s2q9s3PifJ2OwzigyJt7DeZmpjprWGSv6K2zeJuvOd
-         OxdbvQw8KNYad/W9xVsg4iWGjdBRSc53djXYowfizz8MsQtpQCVdnOvEIQWdL3EbiM
-         duzW1qObQSdZzTTx0/J7ZN9hCTuE3Xcwox7poSubNQqggiUS5HdJEkCgOoojkh2e+h
-         YvYHaSG7dOJuw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pmE6P-0003rd-DQ; Tue, 11 Apr 2023 15:32:06 +0200
-Date:   Tue, 11 Apr 2023 15:32:05 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: Fix unit address of example root port
-Message-ID: <ZDVhVYZ838ksVMYP@hovoldconsulting.com>
-References: <20230317112019.9090-1-johan+linaro@kernel.org>
- <ZC1ZTHeRqtghwVBB@hovoldconsulting.com>
- <CAL_JsqJrhQA4dbU=bGioonqs6c=mZiGErcT9v9BxiGrNhmY6-w@mail.gmail.com>
+        (Authenticated sender: benjamin.gaignard)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 33FFA66031EA;
+        Tue, 11 Apr 2023 14:39:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681220349;
+        bh=IvXOXcWl9k7MjrKoovzSZQqL1dSbRoMytuSG9bvfh8c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=l0T16ZHa0JeqG1V9OEuyOkkJP++qoO3kbPXzWu47vcwguWCo0L2qyY3vteAant7ij
+         SAw+Oc1Nv2QRnFRZYLLvL2TcyIt/n0Xk9AoVOLC5hQ1fs09dkr6mBenxxO2vPYVTTg
+         ekLVlobRUgAMvLWc4NOpXg4++Ds+HxIAzg1QTubkWRfC5ff/VT8NUU5TOgT3UyOiAx
+         kSkgEM9HpUr6dlQ++KUhJPupDgh7wK+3Vrg5aUatOEwdQGtIIAOTboPZ8HyimXpqWE
+         pyK+Qd0slLFQTGNNyrkHowpXte+xqmhpNfnojVPqtIFVrO1w+dtS2D6YmjOSJPuZ08
+         j3kGPLa1cHauQ==
+Message-ID: <27722665-a7b9-0d49-443d-3da2a20405de@collabora.com>
+Date:   Tue, 11 Apr 2023 15:39:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v5 09/13] media: verisilicon: Add Rockchip AV1 decoder
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        nicolas.dufresne@collabora.com
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20230330154043.1250736-1-benjamin.gaignard@collabora.com>
+ <20230330154043.1250736-10-benjamin.gaignard@collabora.com>
+ <42eefb17-6121-9cd0-4616-4af3045ec087@xs4all.nl>
+Content-Language: en-US
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <42eefb17-6121-9cd0-4616-4af3045ec087@xs4all.nl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJrhQA4dbU=bGioonqs6c=mZiGErcT9v9BxiGrNhmY6-w@mail.gmail.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 05, 2023 at 08:38:29AM -0500, Rob Herring wrote:
-> On Wed, Apr 5, 2023 at 6:19 AM Johan Hovold <johan@kernel.org> wrote:
-> >
-> > On Fri, Mar 17, 2023 at 12:20:19PM +0100, Johan Hovold wrote:
-> > > Fix the unit address of the example root port which is identical to the
-> > > device number (i.e. 1).
-> > >
-> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > ---
-> >
-> > This one hasn't showed up in linux-next yet. Could you pick it up for
-> > 6.4, Lorenzo?
-> 
-> On 2nd thought, I think it's time to just remove this file. The schema
-> is just missing some descriptions and 1 property (external-facing).
-> I've added all that here[1].
 
-Sounds good to me. Will you send a patch?
+Le 11/04/2023 à 14:33, Hans Verkuil a écrit :
+> Hi Benjamin,
+>
+> On 30/03/2023 17:40, Benjamin Gaignard wrote:
+>> Implement AV1 stateless decoder for rockchip VPU981.
+>> It decode 8 and 10 bits AV1 bitstreams.
+>> AV1 scaling feature is done by the postprocessor.
+>>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> ---
+>>   drivers/media/platform/verisilicon/Makefile   |    1 +
+>>   .../media/platform/verisilicon/hantro_hw.h    |   64 +-
+>>   .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2024 +++++++++++++++++
+>>   .../verisilicon/rockchip_vpu981_regs.h        |  477 ++++
+>>   4 files changed, 2564 insertions(+), 2 deletions(-)
+>>   create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+>>   create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+>>
+> <snip>
+>
+>> +static void rockchip_vpu981_av1_dec_set_tile_info(struct hantro_ctx *ctx)
+>> +{
+>> +	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
+>> +	struct hantro_av1_dec_ctrls *ctrls = &av1_dec->ctrls;
+>> +	struct v4l2_av1_tile_info tile_info = ctrls->frame->tile_info;
+> I get this warning:
+>
+> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c: In function 'rockchip_vpu981_av1_dec_set_tile_info':
+> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:635:1: warning: the frame size of 1080 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+>    635 | }
+>        | ^
+>
+> The cause is this tile_info struct that is on the stack.
+>
+> Does this have to be a copy? Or can it be a pointer to ctrls->frame->tile_info?
 
-> I didn't add the example to the schema because the example here is
-> incomplete and won't validate.
+Using a pointer is a good solution.
+Thanks for the finding.
 
-Fair enough. Having a decent example in the tree would be helpful, but
-hopefully we can get the in-tree DT sources up to par at some point so
-that they can serve that purpose.
+I will include that in v6.
 
-Johan
+Regards,
+Benjamin
 
-> [1] https://github.com/robherring/dt-schema/commit/8445eb010e61496681e2504faf400e9fbc5b1acf
+>
+>> +	const struct v4l2_ctrl_av1_tile_group_entry *group_entry =
+>> +	    ctrls->tile_group_entry;
+>> +	int context_update_y =
+>> +	    tile_info.context_update_tile_id / tile_info.tile_cols;
+>> +	int context_update_x =
+>> +	    tile_info.context_update_tile_id % tile_info.tile_cols;
+>> +	int context_update_tile_id =
+>> +	    context_update_x * tile_info.tile_rows + context_update_y;
+>> +	u8 *dst = av1_dec->tile_info.cpu;
+>> +	struct hantro_dev *vpu = ctx->dev;
+>> +	int tile0, tile1;
+>> +
+>> +	memset(dst, 0, av1_dec->tile_info.size);
+>> +
+>> +	for (tile0 = 0; tile0 < tile_info.tile_cols; tile0++) {
+>> +		for (tile1 = 0; tile1 < tile_info.tile_rows; tile1++) {
+>> +			int tile_id = tile1 * tile_info.tile_cols + tile0;
+>> +			u32 start, end;
+>> +			u32 y0 =
+>> +			    tile_info.height_in_sbs_minus_1[tile1] + 1;
+>> +			u32 x0 = tile_info.width_in_sbs_minus_1[tile0] + 1;
+>> +
+>> +			// tile size in SB units (width,height)
+>> +			*dst++ = x0;
+>> +			*dst++ = 0;
+>> +			*dst++ = 0;
+>> +			*dst++ = 0;
+>> +			*dst++ = y0;
+>> +			*dst++ = 0;
+>> +			*dst++ = 0;
+>> +			*dst++ = 0;
+>> +
+>> +			// tile start position
+>> +			start = group_entry[tile_id].tile_offset - group_entry[0].tile_offset;
+>> +			*dst++ = start & 255;
+>> +			*dst++ = (start >> 8) & 255;
+>> +			*dst++ = (start >> 16) & 255;
+>> +			*dst++ = (start >> 24) & 255;
+>> +
+>> +			// # of bytes in tile data
+>> +			end = start + group_entry[tile_id].tile_size;
+>> +			*dst++ = end & 255;
+>> +			*dst++ = (end >> 8) & 255;
+>> +			*dst++ = (end >> 16) & 255;
+>> +			*dst++ = (end >> 24) & 255;
+>> +		}
+>> +	}
+>> +
+>> +	hantro_reg_write(vpu, &av1_multicore_expect_context_update,
+>> +			 !!(context_update_x == 0));
+>> +	hantro_reg_write(vpu, &av1_tile_enable,
+>> +			 !!((tile_info.tile_cols > 1) || (tile_info.tile_rows > 1)));
+>> +	hantro_reg_write(vpu, &av1_num_tile_cols_8k, tile_info.tile_cols);
+>> +	hantro_reg_write(vpu, &av1_num_tile_rows_8k, tile_info.tile_rows);
+>> +	hantro_reg_write(vpu, &av1_context_update_tile_id,
+>> +			 context_update_tile_id);
+>> +	hantro_reg_write(vpu, &av1_tile_transpose, 1);
+>> +	if (rockchip_vpu981_av1_tile_log2(tile_info.tile_cols) ||
+>> +	    rockchip_vpu981_av1_tile_log2(tile_info.tile_rows))
+>> +		hantro_reg_write(vpu, &av1_dec_tile_size_mag, tile_info.tile_size_bytes - 1);
+>> +	else
+>> +		hantro_reg_write(vpu, &av1_dec_tile_size_mag, 3);
+>> +
+>> +	hantro_write_addr(vpu, AV1_TILE_BASE, av1_dec->tile_info.dma);
+>> +}
+> Regards,
+>
+> 	Hans
+>
