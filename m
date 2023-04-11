@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4D046DDB70
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 14:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1C0F6DDB7B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjDKM7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 08:59:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
+        id S230081AbjDKM74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 08:59:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbjDKM7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 08:59:32 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13C149DC
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 05:59:21 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id eo6-20020a05600c82c600b003ee5157346cso5973586wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 05:59:21 -0700 (PDT)
+        with ESMTP id S230166AbjDKM7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 08:59:35 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1244EE8
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 05:59:22 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id j1-20020a05600c1c0100b003f04da00d07so740336wms.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 05:59:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1681217960;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1681217961;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2RxXk1daPTunKtbomjZDgpJNAfBR2cR6YhtK/lfK/SI=;
-        b=jkNhgbAqj8TzggObBJHle31q6oTTOf6YNouhVEYNpiAFkPPJUDhi13yN2zkBMTkbCb
-         Jd5LL4XnPSRxsSDR69wQwpMJgD4zo34dsiqtuEAPt4NiF2NT8t/t7DCs99RsrV+B6dS6
-         5XiY/o/CZc+jl2jpa03WzBu9VUtl5mHZTBkr2+XDyGBBUdMDrxh8TWrj+MjV5qD6VCxA
-         XbQaYuCghyZbRe+1pp9Zjjh2rkBoR2uj7oMsy3rtP21ly1JHx3AbPkhmLGsIinwE6795
-         Oozk32Misl05fmnPFUTsf3I1UAbdm/7vd8B8DNMN5DXqVFhGJ4vh6P5BmQZnX4a9AP3W
-         h0ng==
+        bh=h5SvLGWiNz4qmlRx78+7Ty5fH+kaR1oDoC8UPKZhMno=;
+        b=D/9uWMyGk1Hrj+4toN4XStrE8KQKPdXCs1L8wJLAHIIYSv8bWwKpaiXQWgOxKzpsza
+         Eb6qrR7gyKM7gdceNdyi36w0lcrlkUXfM/GTW+57U5c/sYDtGFnDei4eV8UyR3FUyBdE
+         Bsyvk3AoMODLaeR1Dmjbg6+FAqfZH2stDgfZaVJBU8DcWabCsMbYevxGaVyrGwXsTHxr
+         W2hBEZ9lvssrTFnR4pi5nym46WbNcSOAjbixq+SFxPdXMI6N06DiztlF+H/6+BSjraT0
+         8sJAfVnTjMq7zyhgCx4xSfMXm8XW49KVq7tTKO6Fcu5nzEuzaZfqbuJrva+slA2f4dMc
+         JStw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681217960;
+        d=1e100.net; s=20210112; t=1681217961;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2RxXk1daPTunKtbomjZDgpJNAfBR2cR6YhtK/lfK/SI=;
-        b=LrX2MGQVHQlI9UisBQzx/9zdxRAkPMPig3AOf5hIHOScl75AUnHcVmjFnQRor06eKM
-         9wQ42GlH2Q8m2G8OipggCXY7z6oZPKzFegtA5mWzWLer0FisfmH+D3KVKHC8ll+bGbPR
-         glsE/q1LZOZEK3JAnoprCbeZDTOVmj9bYV6LNejxuTlHv8yP5vP0qDgE/pYTW/eJ3qwH
-         ZPkfPPvrT1CNSymJQJeKWF2ccqLVoV0hbUdKfGkWMUvQsjOfGPzRl5Q/3Ahw+ZOwpzJS
-         ZqpcFAro5B8RQXiZM2OMjgKuNtz6TyGQMWvYwgf0jTgQl1ynO2jILcIVmn7S4pD+lztU
-         CB5w==
-X-Gm-Message-State: AAQBX9fkNWLzZqb6Q7wF7f8LNKwW+MFytvUw4G8YIsYoRebp1olGZoni
-        qGzhfm2c7G/MMwJC7wb4GeJtXg==
-X-Google-Smtp-Source: AKy350YjbZY7jeWKHHTUtlE+U08TBjTTL9TQeEw/gUMD0lhQNwkuZRGNiz34nBSlMwOKYeudFtovUA==
-X-Received: by 2002:a05:600c:4e44:b0:3ed:de03:7f0a with SMTP id e4-20020a05600c4e4400b003edde037f0amr9427917wmq.10.1681217960343;
-        Tue, 11 Apr 2023 05:59:20 -0700 (PDT)
+        bh=h5SvLGWiNz4qmlRx78+7Ty5fH+kaR1oDoC8UPKZhMno=;
+        b=pFTwQ4lu4RwZLbXQ2vvdJRtS59ElQd6f7HIqfhgvvwQPxJDRJeM+mWQjTON2VYhaIM
+         uOBnt/YRo7VlO+ENE7MM9JzjRD8GSRJWnnRss3qfYucWdAVJ63QAVCOT4Whrt03LhLHP
+         iwYQk+UqUtQZJXFrb4Oc+a88hp330RQPAcETSTHOF7ZaH70FhxuUcziAxnPwvVMm/b0x
+         TIJiApRUok5LRoJeZcZV+E/lkhet5JI6mPYgZIFveyJyLkxlwjTr6qXGxgT1gONI8JsI
+         xh4e2UX3zIM7jsPPtFL78LcfcgBTcY0qgufCbnamXlFBFXRjFXLL4XV8E8bMHi0YiXDW
+         ozLg==
+X-Gm-Message-State: AAQBX9dZN9/9sHFaOdfCcmgShIPSriKuWeJChwBs5nlp2FE/pJogywu9
+        IlHPNkHNKYonpXhJDbgaizYI/w==
+X-Google-Smtp-Source: AKy350bBD2bgvD4lyvkS8LWoDViy8rkoWZiSH6bPVKfr7CifLxmGkc8oIQN02kxSR+VYq1YUYtM15g==
+X-Received: by 2002:a05:600c:2214:b0:3eb:2e1e:beae with SMTP id z20-20020a05600c221400b003eb2e1ebeaemr6773198wml.25.1681217961408;
+        Tue, 11 Apr 2023 05:59:21 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:a099:fc1d:c99a:bfc3])
-        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b003eae73f0fc1sm16944591wme.18.2023.04.11.05.59.19
+        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b003eae73f0fc1sm16944591wme.18.2023.04.11.05.59.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 05:59:19 -0700 (PDT)
+        Tue, 11 Apr 2023 05:59:21 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Bjorn Andersson <andersson@kernel.org>,
         Andy Gross <agross@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v3 5/7] arm64: dts: qcom: sa8775p: add the GPU clock controller node
-Date:   Tue, 11 Apr 2023 14:59:08 +0200
-Message-Id: <20230411125910.401075-6-brgl@bgdev.pl>
+Subject: [PATCH v3 6/7] dt-bindings: iommu: arm,smmu: enable clocks for sa8775p Adreno SMMU
+Date:   Tue, 11 Apr 2023 14:59:09 +0200
+Message-Id: <20230411125910.401075-7-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230411125910.401075-1-brgl@bgdev.pl>
 References: <20230411125910.401075-1-brgl@bgdev.pl>
@@ -85,39 +85,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add the GPUCC node for sa8775p platforms.
+The GPU SMMU will require the clocks property to be set so put the
+relevant compatible into the adreno if-then block.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index a23175352a20..191b510b5a1a 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -591,6 +591,20 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		gpucc: clock-controller@3d90000 {
-+			compatible = "qcom,sa8775p-gpucc";
-+			reg = <0x0 0x03d90000 0x0 0xa000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+			clock-names = "bi_tcxo",
-+				      "gcc_gpu_gpll0_clk_src",
-+				      "gcc_gpu_gpll0_div_clk_src";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sa8775p-pdc", "qcom,pdc";
- 			reg = <0x0 0x0b220000 0x0 0x30000>,
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 807cb511fe18..d966dc65ce10 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -79,6 +79,7 @@ properties:
+       - description: Qcom Adreno GPUs implementing "arm,smmu-500"
+         items:
+           - enum:
++              - qcom,sa8775p-smmu-500
+               - qcom,sc7280-smmu-500
+               - qcom,sm8150-smmu-500
+               - qcom,sm8250-smmu-500
+@@ -317,7 +318,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: qcom,sc7280-smmu-500
++            enum:
++              - qcom,sa8775p-smmu-500
++              - qcom,sc7280-smmu-500
+     then:
+       properties:
+         clock-names:
+@@ -375,7 +378,6 @@ allOf:
+               - nvidia,smmu-500
+               - qcom,qcm2290-smmu-500
+               - qcom,qdu1000-smmu-500
+-              - qcom,sa8775p-smmu-500
+               - qcom,sc7180-smmu-500
+               - qcom,sc8180x-smmu-500
+               - qcom,sc8280xp-smmu-500
 -- 
 2.37.2
 
