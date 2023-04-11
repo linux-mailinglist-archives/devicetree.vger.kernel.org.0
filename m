@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C2C6DD55D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9146DD561
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 10:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbjDKI02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 04:26:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
+        id S230290AbjDKI1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 04:27:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbjDKI0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:26:03 -0400
+        with ESMTP id S230172AbjDKI1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 04:27:23 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD4140E3;
-        Tue, 11 Apr 2023 01:24:42 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDFDC4C0A;
+        Tue, 11 Apr 2023 01:26:07 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 290E066031E8;
-        Tue, 11 Apr 2023 09:24:40 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0A4E666031E2;
+        Tue, 11 Apr 2023 09:26:05 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681201481;
-        bh=cY3W9hAeKubu0XqrsJSQf99ttpw/QtGoPgsok23jKA0=;
+        s=mail; t=1681201566;
+        bh=XuOTH3cHEPlON9QnLhoyvLswIctTTjWgzKO4CZvmkes=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HIi6i2AyTaHO1NtWWauC1ngQPUMjg/IqKMrNKLHXyWua1NMYdbTBFdozTuYd6YUEW
-         E1sbijD1hagTl7JiBfyZyEIxZxvPIHdUvrnsAIK8zDvjt1pLWZihs0bOpkGlQvqync
-         B39xRinP8sJbdBQLaintNi8GtgGDOnbF//gp7HmTPAFznNgnga6x5Q8602dznA7hbR
-         8LeLeBszRH9tGmxa1zIvi+R/K9FeOqp6BIteVpF0tygqyUT+ow3UrdBbnTi28HJBKW
-         6BTYMip/4uY7aw3OjVgnEsVbX8IhyxfjF8GMOP2zD/m9bFBMxtiU7LJ7dG6S+UuEPQ
-         DBGjYxEkdPtjQ==
-Message-ID: <ad4933b3-c4c9-ccf5-87e1-cd69610accfe@collabora.com>
-Date:   Tue, 11 Apr 2023 10:24:37 +0200
+        b=Edc9DbRKhBpaEXqrP8ICK2TJ3Y89+56BkJ8a1lCfkCbZpa9B0R9uYWVXktu8RLQDK
+         X17rYU65MQHvone0pf9E2HEI9fxeasyxrS2wITpgxpDuVOOPYSLJj76Fwv7zqCcgyx
+         HrmIU+Bd7nhVlQAJt5I8pNTQOVG1omkYnORVzx9bto6sGUaf++Rv4CTsiKtMn6LRXr
+         MdbSOYlPHLFIhD8zvUNaBNOfAGMM0JrJ4AxRvdHCt4xzwHiJLH69OWDBvMYIpTJ6Bi
+         AUUgSFLNqUa0Z3jMmOX6s+fcTIs1yVsCqmNpspKGhB+ZWWvhJJlb7mDjfmzcD14fJo
+         5KzBrgxXllVbg==
+Message-ID: <a62c279e-80be-9450-5891-74b4b3994dd8@collabora.com>
+Date:   Tue, 11 Apr 2023 10:26:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v5 10/12] arm64: dts: mediatek: add OPP support for mt8365
+Subject: Re: [PATCH v3 1/7] arm64: dts: mediatek: add mmsys support for mt8365
  SoC
 Content-Language: en-US
 To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
-References: <20230203-evk-board-support-v5-0-1883c1b405ad@baylibre.com>
- <20230203-evk-board-support-v5-10-1883c1b405ad@baylibre.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230207-iommu-support-v3-0-97e19ad4e85d@baylibre.com>
+ <20230207-iommu-support-v3-1-97e19ad4e85d@baylibre.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230203-evk-board-support-v5-10-1883c1b405ad@baylibre.com>
+In-Reply-To: <20230207-iommu-support-v3-1-97e19ad4e85d@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -74,12 +63,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/04/23 14:59, Alexandre Mergnat ha scritto:
-> In order to have cpufreq support, this patch adds generic Operating
-> Performance Points support.
+Il 07/04/23 11:34, Alexandre Mergnat ha scritto:
+> Multimedia subsystem (MMsys) contains multimedia controller, Multimedia
+> Data Path v2.0 (MDP 2.0) and Display (DISP). The multimedia controller
+> includes bus fabric control, Smart Memory Interface (SMI) control,
+> memory access second-level arbiter, and multimedia configuration. It
+> plays the key role in handling different handshakings between infra
+> subsystem, video subsystem, image subsystem and G3D subsystem.
+> 
+> For more detail, ask Mediatek for the MT8365 AIoT application processor
+> functional specification.
 > 
 > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
 
