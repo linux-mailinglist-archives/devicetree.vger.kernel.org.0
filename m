@@ -2,59 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C60BC6DE63E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 23:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1C26DE642
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 23:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjDKVPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 17:15:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37186 "EHLO
+        id S229712AbjDKVQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 17:16:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjDKVPx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 17:15:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCF8449A;
-        Tue, 11 Apr 2023 14:15:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E865B62B96;
-        Tue, 11 Apr 2023 21:15:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E05AC4339E;
-        Tue, 11 Apr 2023 21:15:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681247751;
-        bh=5utrGhW38HkoFEGqEf8o5TKntYH8lTNsjVLTn6Y7/CE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ADGZT1oAr0eMBerDMo2GwFSO6ntEnCVEi3CA6ynTF8RowoM3mxM21P0utx1ScKF58
-         qQCYUFaPDk/2fEAAmfzU5HoDp8G1D+wvmupqxzkbyRifxJCLpqD+LdjrizW8rBkmK/
-         0EPoJrD2zWTbUvWobpyNURCm2bdh8g2y4Msl7IgRbz3kXXAAYEK38Eez7YG+sYfgx9
-         v9/n27T3RC/Jf6oPcKYVAUkXkMvWhpcFy2UO/ECno1CmayFyVw5QVdMaHKtFrKfVZB
-         alXxAu17+KvG4h2zYUpz1AnTA66uwGgvtVl5rDn0aVHQo6Zc9JuEcA9AxEdW87GPm6
-         j9nKZLp7CJT/w==
-Date:   Tue, 11 Apr 2023 22:15:46 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 6/7] soc: starfive: Add dphy pmu support
-Message-ID: <20230411-iron-everybody-70b78e94aee5@spud>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-7-changhuang.liang@starfivetech.com>
+        with ESMTP id S229710AbjDKVQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 17:16:46 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2067630D0;
+        Tue, 11 Apr 2023 14:16:45 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33BLFJRk026861;
+        Tue, 11 Apr 2023 21:16:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=AqeZXbDuPPU1NM2ef0P3QOYcGlcGpgGNd5YIz4wkf1I=;
+ b=H5j4l0Am9Wn/nx1e4cbCGRftsLRN64BNTWjIb+7ZaCZ+xCPH6MJG89vWIMPJRkL9WrlM
+ ECy0bvvVa8DVPsdKiixDGVtBT+0YZzyfVhFp2YKOZb1aFQM6SnhRVh+B/b8oyWrYobr5
+ oxGfhCE5MxqyVyDGURmO8Z9M76ncqsg864RuLDXVx3FAiYhqt4MsuXdl/rBVFcz54DDC
+ LjZjMdtEfOw2Kt9QlfdRmXZFn3tabbbIiesVS7Q+cIuitxsHnJGDEaPbq8lTMyw6s2gZ
+ 4dDsfkktEx1jDHazFb3XVKn55fastipPJ2kTPDPXzj/qqC2xQP/ATY/0MfAQCq7T0EPR Rw== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pvvux2fh1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 21:16:30 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33BLGTji029549
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Apr 2023 21:16:29 GMT
+Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 11 Apr
+ 2023 14:16:28 -0700
+Message-ID: <d736d53b-e289-85ca-ee78-e1f77ccc08c6@quicinc.com>
+Date:   Tue, 11 Apr 2023 14:16:28 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Xr1omY7vI0HCAtOr"
-Content-Disposition: inline
-In-Reply-To: <20230411064743.273388-7-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v11 13/26] gunyah: vm_mgr: Add ioctls to support basic
+ non-proxy VM boot
+Content-Language: en-US
+To:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
+ <20230304010632.2127470-14-quic_eberman@quicinc.com>
+ <3271fdf5-57cd-d962-fd20-01f5a5447232@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <3271fdf5-57cd-d962-fd20-01f5a5447232@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PEYH6DlHNqcFCXzBIrr2VFnKQTkQ-SKy
+X-Proofpoint-ORIG-GUID: PEYH6DlHNqcFCXzBIrr2VFnKQTkQ-SKy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-11_14,2023-04-11_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304110191
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,193 +100,71 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Xr1omY7vI0HCAtOr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 10, 2023 at 11:47:42PM -0700, Changhuang Liang wrote:
-> Add dphy pmu to turn on/off the dphy power switch.
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  MAINTAINERS                       |  1 +
->  drivers/soc/starfive/jh71xx_pmu.c | 65 +++++++++++++++++++++++++++++++
->  2 files changed, 66 insertions(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0b2170e1e4ff..4d958f02403e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19944,6 +19944,7 @@ F:	include/dt-bindings/reset/starfive?jh71*.h
-> =20
->  STARFIVE JH71XX PMU CONTROLLER DRIVER
->  M:	Walker Chen <walker.chen@starfivetech.com>
-> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+On 3/31/2023 7:26 AM, Alex Elder wrote:
+> On 3/3/23 7:06 PM, Elliot Berman wrote:
+>> diff --git a/include/linux/gunyah_rsc_mgr.h 
+>> b/include/linux/gunyah_rsc_mgr.h
+>> index 88a429dad09e..8b0b46f28e39 100644
+>> --- a/include/linux/gunyah_rsc_mgr.h
+>> +++ b/include/linux/gunyah_rsc_mgr.h
+>> @@ -29,6 +29,12 @@ struct gh_rm_vm_exited_payload {
+>>   #define GH_RM_NOTIFICATION_VM_EXITED         0x56100001
+>>   enum gh_rm_vm_status {
+>> +    /**
+>> +     * RM doesn't have a state where load partially failed because
+>> +     * only Linux
+> 
+> I have no idea what the comment above means...  Please fix.
+> 
+> Several of the values below are never explicitly assigned,
+> and some are used but not assigned.  The others apparently
+> might come back from the resource manager?  Why, for
+> example, are the PAUSED, AUTH, and RESETTING statuses
+> defined if we don't use them?
+> 
 
-Unmentioned in the commit message, plus I would like an R-b or an Ack
-=66rom Walker.
+I ended up no longer needing VM_STATUS_LOAD_FAILED.
 
->  S:	Supported
->  F:	Documentation/devicetree/bindings/power/starfive*
->  F:	drivers/soc/starfive/jh71xx_pmu.c
-> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh7=
-1xx_pmu.c
-> index 990db6735c48..d4092ca4dccf 100644
-> --- a/drivers/soc/starfive/jh71xx_pmu.c
-> +++ b/drivers/soc/starfive/jh71xx_pmu.c
-> @@ -24,6 +24,9 @@
->  #define JH71XX_PMU_EVENT_STATUS		0x88
->  #define JH71XX_PMU_INT_STATUS		0x8C
-> =20
-> +/* DPHY pmu register offset */
-> +#define JH71XX_PMU_DPHY_SWITCH		0x00
-> +
->  /* sw encourage cfg */
->  #define JH71XX_PMU_SW_ENCOURAGE_EN_LO	0x05
->  #define JH71XX_PMU_SW_ENCOURAGE_EN_HI	0x50
-> @@ -94,6 +97,8 @@ static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *=
-pmd, u32 mask, bool *is_o
-> =20
->  	if (pmu->match_data->pmu_type =3D=3D JH71XX_PMU_GENERAL)
->  		offset =3D JH71XX_PMU_CURR_POWER_MODE;
-> +	else if (pmu->match_data->pmu_type =3D=3D JH71XX_PMU_DPHY)
+The other status values are defined by Gunyah resource manager. RM will 
+notify us about the state transitions.
 
-There are only two options for this "enum", so why `else if`?
+Some of the state transitions can be inferred by Linux directly. For 
+instance, gh_rm_vm_init() will transition the VM from 
+GH_RM_VM_STATUS_INIT to GH_RM_VM_STATUS_READY iff it returns 
+successfully. There is one instance where we wait for VM to exit during 
+the VM teardown as well.
 
-> +		offset =3D JH71XX_PMU_DPHY_SWITCH;
-> =20
->  	regmap_read(pmu->base, offset, &val);
-> =20
-> @@ -170,6 +175,23 @@ static int jh71xx_pmu_general_set_state(struct jh71x=
-x_pmu_dev *pmd, u32 mask, bo
->  	return 0;
->  }
-> =20
-> +static int jh71xx_pmu_dphy_set_state(struct jh71xx_pmu_dev *pmd, u32 mas=
-k, bool on)
-> +{
-> +	struct jh71xx_pmu *pmu =3D pmd->pmu;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&pmu->lock, flags);
-> +
-> +	if (on)
-> +		regmap_update_bits(pmu->base, JH71XX_PMU_DPHY_SWITCH, mask, mask);
-> +	else
-> +		regmap_update_bits(pmu->base, JH71XX_PMU_DPHY_SWITCH, mask, 0);
-> +
-> +	spin_unlock_irqrestore(&pmu->lock, flags);
-> +
-> +	return 0;
-> +}
-> +
->  static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bo=
-ol on)
->  {
->  	struct jh71xx_pmu *pmu =3D pmd->pmu;
-> @@ -191,6 +213,8 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev=
- *pmd, u32 mask, bool on)
-> =20
->  	if (pmu->match_data->pmu_type =3D=3D JH71XX_PMU_GENERAL)
->  		ret =3D jh71xx_pmu_general_set_state(pmd, mask, on);
-> +	else if (pmu->match_data->pmu_type =3D=3D JH71XX_PMU_DPHY)
-> +		ret =3D jh71xx_pmu_dphy_set_state(pmd, mask, on);
+Thanks,
+Elliot
 
-Perhaps I am verging on over-complication, but I dislike this carry on.
-Is this the only time we'll see a power domain provider coming out of
-a syscon, or are there likely to be more?
-Either way, I think having an ops struct w/ both parse_dt() and the
-set_state() implementations would be neater than what you have here.
-
-Very much open to dissenting opinions there though. Emil? Walker?
-
-Cheers,
-Conor.
-
-> =20
->  	return ret;
->  }
-> @@ -280,6 +304,25 @@ static int jh7110_pmu_general_parse_dt(struct platfo=
-rm_device *pdev,
->  	return 0;
->  }
-> =20
-> +static int jh7110_pmu_dphy_parse_dt(struct platform_device *pdev,
-> +				    struct jh71xx_pmu *pmu)
-> +{
-> +	struct device *parent;
-> +	struct device *dev =3D &pdev->dev;
-> +
-> +	parent =3D pdev->dev.parent;
-> +	if (!parent) {
-> +		dev_err(dev, "No parent for syscon pmu\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	pmu->base =3D syscon_node_to_regmap(parent->of_node);
-> +	if (IS_ERR(pmu->base))
-> +		return PTR_ERR(pmu->base);
-> +
-> +	return 0;
-> +}
-> +
->  static int jh71xx_pmu_init_domain(struct jh71xx_pmu *pmu, int index)
->  {
->  	struct jh71xx_pmu_dev *pmd;
-> @@ -409,10 +452,31 @@ static const struct jh71xx_pmu_match_data jh7110_pm=
-u =3D {
->  	.pmu_parse_dt =3D jh7110_pmu_general_parse_dt,
->  };
-> =20
-> +static const struct jh71xx_domain_info jh7110_dphy_power_domains[] =3D {
-> +	[JH7110_PD_DPHY_TX] =3D {
-> +		.name =3D "DPHY-TX",
-> +		.bit =3D 30,
-> +	},
-> +	[JH7110_PD_DPHY_RX] =3D {
-> +		.name =3D "DPHY-RX",
-> +		.bit =3D 31,
-> +	},
-> +};
-> +
-> +static const struct jh71xx_pmu_match_data jh7110_pmu_dphy =3D {
-> +	.num_domains =3D ARRAY_SIZE(jh7110_dphy_power_domains),
-> +	.domain_info =3D jh7110_dphy_power_domains,
-> +	.pmu_type =3D JH71XX_PMU_DPHY,
-> +	.pmu_parse_dt =3D jh7110_pmu_dphy_parse_dt,
-> +};
-> +
->  static const struct of_device_id jh71xx_pmu_of_match[] =3D {
->  	{
->  		.compatible =3D "starfive,jh7110-pmu",
->  		.data =3D (void *)&jh7110_pmu,
-> +	}, {
-> +		.compatible =3D "starfive,jh7110-pmu-dphy",
-> +		.data =3D (void *)&jh7110_pmu_dphy,
->  	}, {
->  		/* sentinel */
->  	}
-> @@ -429,5 +493,6 @@ static struct platform_driver jh71xx_pmu_driver =3D {
->  builtin_platform_driver(jh71xx_pmu_driver);
-> =20
->  MODULE_AUTHOR("Walker Chen <walker.chen@starfivetech.com>");
-> +MODULE_AUTHOR("Changhuang Liang <changhuang.liang@starfivetech.com>");
->  MODULE_DESCRIPTION("StarFive JH71XX PMU Driver");
->  MODULE_LICENSE("GPL");
-> --=20
-> 2.25.1
->=20
-
---Xr1omY7vI0HCAtOr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDXOAgAKCRB4tDGHoIJi
-0muRAQCRXx5SEVKeJdwy6ees0QA7i97tZDRPO26TmTzuFhmyagD/Xd0OesD2v+P9
-fzylrvgYbIioDk+jBC7VGTEeqry7/gg=
-=hxzn
------END PGP SIGNATURE-----
-
---Xr1omY7vI0HCAtOr--
+>> +     */
+>> +    GH_RM_VM_STATUS_LOAD_FAILED    = -1,
+>> +
+>>       GH_RM_VM_STATUS_NO_STATE    = 0,
+>>       GH_RM_VM_STATUS_INIT        = 1,
+>>       GH_RM_VM_STATUS_READY        = 2,
+>> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
+>> index a19207e3e065..d6abd8605a2e 100644
+>> --- a/include/uapi/linux/gunyah.h
+>> +++ b/include/uapi/linux/gunyah.h
+>> @@ -49,4 +49,17 @@ struct gh_userspace_memory_region {
+>>   #define GH_VM_SET_USER_MEM_REGION    _IOW(GH_IOCTL_TYPE, 0x1, \
+>>                           struct gh_userspace_memory_region)
+>> +/**
+>> + * struct gh_vm_dtb_config - Set the location of the VM's devicetree 
+>> blob
+>> + * @guest_phys_addr: Address of the VM's devicetree in guest memory.
+>> + * @size: Maximum size of the devicetree.
+>> + */
+>> +struct gh_vm_dtb_config {
+>> +    __u64 guest_phys_addr;
+>> +    __u64 size;
+>> +};
+>> +#define GH_VM_SET_DTB_CONFIG    _IOW(GH_IOCTL_TYPE, 0x2, struct 
+>> gh_vm_dtb_config)
+>> +
+>> +#define GH_VM_START        _IO(GH_IOCTL_TYPE, 0x3)
+>> +
+>>   #endif
+> 
