@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C07086DD25B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 08:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61C096DD260
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 08:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbjDKGGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 02:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49188 "EHLO
+        id S229981AbjDKGI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 02:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229692AbjDKGGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 02:06:45 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FBD18D
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 23:06:44 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id kt17so5333445ejb.11
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 23:06:44 -0700 (PDT)
+        with ESMTP id S229906AbjDKGI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 02:08:27 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9A010D9
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 23:08:25 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id kt17so5340679ejb.11
+        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 23:08:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681193203;
+        d=linaro.org; s=google; t=1681193304;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7RuGSEWbtWr4eU2VNJtutFDl4BvimrBoTwWCP7bAhk0=;
-        b=LKFCpFiVWPt1C2PyKHhOkH7cOWiD688f1yUkghusUy5JIgo952wJp2u6v0Dy1KNj6F
-         DyMahs4tzWfc02e3FBUKs+EQ9z0rD9ihCWBIiITUF5s954cQ+hjndy3F9Wo/D87sYtvk
-         IYgxmj/rncEgx2Cg2zsLtkFzP+dsqqRj6YJYJIr+H39wybcaAsmwpJ2Hacdcwgup6NgP
-         eu4GeHj8t8/cA+pr024H1r4By/bmdHfoHDGHL+DkPTTRtYyz7YLdfISkswf1AUEmwSGs
-         kLucvjWI+fyBCdcrPv5aJRvvlqdv4VqioJUSE1nT0sHLu6vekvENhZjaoB+QCHULSSlH
-         vZLQ==
+        bh=R7LX/86biFeuZ67y+mdjDqHPfY/k7PmtqCZCBZyXkP4=;
+        b=EpPkoOUiBYyrFvk5M9L4sWXQr/haccxnxqbhUGSe6NzQfsvTWoEjMjEvig2r9XGd4d
+         N3zFl8qWuo2a95Onoqvz436Z58A8hO8nMI/c6XpbWDLeDw5irsFDcsigeMvVhDJkjd3J
+         RwzbFCT4rbwhQozijl8mEHzOelsgNw5jKxCDWI8VoAzDRx2AtGIV7GDDaSicflo4Ig3C
+         vizu2SkXppErKkofE/Uib7bJynGLv9lL30DvLzyxaXkaHqKR5m9DblEovc62O/adAwm5
+         HeJeZ6hK+lnuULvECJgS4UH9MlCvjHGj+GZ0pkoB9TfdNxN+LmitNxOEKEv680w3gcwO
+         dmNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681193203;
+        d=1e100.net; s=20210112; t=1681193304;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7RuGSEWbtWr4eU2VNJtutFDl4BvimrBoTwWCP7bAhk0=;
-        b=C8zOp2nhjDOZ7SKfWE5Agg8S2LAxZPdXSDE+LV2OdK39nDmdRLnRoLPKDqJzr9mOyj
-         na2M4kyUf9oaNScwbHSQrgzW7OogVu97ULyFIchSWN0sU6XrgraTyzE4moXlLbnEDYJ+
-         VJ6gNTGsaey23gKC+LLnYulqqzkK/GT9y+fESAO5uv3fdGx/eJNte3apEYaz+qqCj0Ev
-         p4MASkPvGWaQROFfxWDZTcw7abJ0Zm4lGgrDNC9jUAGRwotnAF4dePGCHLExMF2LWoD2
-         UCqP1/e8C8pGhdq7kACMEVFdxPXikc7WEnsjei3smTDUEnBKmcUsTvYWL6Te4l30xrnG
-         f5jg==
-X-Gm-Message-State: AAQBX9dLckOCGqq1XpxmrDmS0Ka0pT7HU5TsDsEH6FKtZa3NkGNFbJ4t
-        2/nprfR8TycwgMw363+PScPwFA==
-X-Google-Smtp-Source: AKy350aeV2/Y/zgxEs+xA/fMLd5DYGuG+h/tpM4592P5SpvtiXVajRdKLOY/98oVgqi14AxHuKtM2g==
-X-Received: by 2002:a17:907:31cd:b0:94a:5d7e:d455 with SMTP id xf13-20020a17090731cd00b0094a5d7ed455mr7143926ejb.34.1681193202820;
-        Mon, 10 Apr 2023 23:06:42 -0700 (PDT)
+        bh=R7LX/86biFeuZ67y+mdjDqHPfY/k7PmtqCZCBZyXkP4=;
+        b=G1kLUr5YMerJYSQRih0hq3w6mxHiHNgVFkIxkJ6hCeoq1iMs1sd7DkrU0DnQxNjlrR
+         THswogARBTlplbZNitmK6t8YmVnHfVnTQ3ef6G41F9ZhGRT+oKvfrZIUX9QW8CuscXCM
+         kee9FoiOKgTdNKqaz8ujIEqwFtwLVkNgvbfVK7rQEkfHceCYaqSR0COJzjWggFWyJknO
+         tdDP6a9XHtmcNWH7osan2Znjzd01i6/xiusW/l73sESk9bxiaFYDR61bprQn5VjfQs04
+         PmfIERfia3La9GEB7g6x8n3RKF4O0X9TX14BhyKVCb8ePj2vqrNXhEowHWkZFjt5p2IL
+         9bLA==
+X-Gm-Message-State: AAQBX9eZCuM7q7FUPogCfNB/K/cpGko8Ylu2dv+nHiMZ7ybMqU48DrVe
+        I4gz47O/bSQbvoL7dhCX5GbHtA==
+X-Google-Smtp-Source: AKy350bDR9ld1RyHS4rvrZY101w3YSgLDpFWb+Z/8w7wrQ2vThed+0dViCJMdG2YCJaOnDgpVEGhTA==
+X-Received: by 2002:a17:906:f992:b0:934:2fe4:4921 with SMTP id li18-20020a170906f99200b009342fe44921mr1343036ejb.19.1681193304179;
+        Mon, 10 Apr 2023 23:08:24 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:dad2:72b7:3626:af61? ([2a02:810d:15c0:828:dad2:72b7:3626:af61])
-        by smtp.gmail.com with ESMTPSA id r14-20020a170906364e00b0094a82a236cbsm1860935ejb.129.2023.04.10.23.06.41
+        by smtp.gmail.com with ESMTPSA id kn3-20020a1709079b0300b008cecb8f374asm5735259ejc.0.2023.04.10.23.08.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 23:06:42 -0700 (PDT)
-Message-ID: <6ba8bbcf-0d72-4bb9-a014-85e9f3e22cdb@linaro.org>
-Date:   Tue, 11 Apr 2023 08:06:41 +0200
+        Mon, 10 Apr 2023 23:08:23 -0700 (PDT)
+Message-ID: <6e22615c-d9ab-358b-efa5-708c4362d8d0@linaro.org>
+Date:   Tue, 11 Apr 2023 08:08:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: Add no-hpd property
+Subject: Re: [PATCH v4 3/5] dt-bindings: thermal: Use generic ADC node name in
+ examples
 Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
-        jani.nikula@intel.com, tzimmermann@suse.de, javierm@redhat.com,
-        ville.syrjala@linux.intel.com, r-ravikumar@ti.com,
-        lyude@redhat.com, alexander.deucher@amd.com, sjakhade@cadence.com,
-        yamonkar@cadence.com, a-bhatia1@ti.com,
-        tomi.valkeinen@ideasonboard.com
-References: <20230405142440.191939-1-j-choudhary@ti.com>
- <20230405142440.191939-2-j-choudhary@ti.com>
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-pm@vger.kernel.org
+References: <20230410202917.247666-1-marijn.suijten@somainline.org>
+ <20230410202917.247666-4-marijn.suijten@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230405142440.191939-2-j-choudhary@ti.com>
+In-Reply-To: <20230410202917.247666-4-marijn.suijten@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -85,42 +96,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2023 16:24, Jayesh Choudhary wrote:
-> From: Rahul T R <r-ravikumar@ti.com>
+On 10/04/2023 22:29, Marijn Suijten wrote:
+> Update the examples to reflect a future requirement for the generic
+> `channel` node name on ADC channel nodes, while conveying the board name
+> of the channel in a label instead.
 > 
-> The mhdp bridge can work without its HPD pin hooked up to the connector,
-> but the current bridge driver throws an error when hpd line is not
-> connected to the connector. For such cases, we need an indication for
-> no-hpd, using which we can bypass the hpd detection and instead use the
-> auxiliary channels connected to the DP connector to confirm the
-> connection.
-> So add no-hpd property to the bindings, to disable hpd when not
-> connected or unusable.
-
-Your subject prefixes miss device specific part. You do not add no-hpd
-to all bridges.
-
-It's also not drm. It is a display directory.
-
-> 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
->  .../devicetree/bindings/display/bridge/cdns,mhdp8546.yaml   | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index c2b369456e4e..3a6c6d837593 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -57,6 +57,12 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  cdns,no-hpd:
 
-No improvements - use existing no-hpd name.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
