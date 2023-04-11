@@ -2,290 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 694C46DD9F9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 13:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 579276DDA11
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 13:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbjDKLpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 07:45:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56958 "EHLO
+        id S230014AbjDKLuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 07:50:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230123AbjDKLp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 07:45:28 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2D14546B1;
-        Tue, 11 Apr 2023 04:45:04 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.98,336,1673881200"; 
-   d="scan'208";a="155597457"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 11 Apr 2023 20:44:08 +0900
-Received: from localhost.localdomain (unknown [10.226.93.123])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D27234008C6C;
-        Tue, 11 Apr 2023 20:44:03 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v7 17/17] drm: rcar-du: Add rcar_du_lib_vsps_init()
-Date:   Tue, 11 Apr 2023 12:42:35 +0100
-Message-Id: <20230411114235.366042-18-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230411114235.366042-1-biju.das.jz@bp.renesas.com>
-References: <20230411114235.366042-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S229960AbjDKLun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 07:50:43 -0400
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09322D3
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 04:50:41 -0700 (PDT)
+Received: by mail-ua1-x92b.google.com with SMTP id l22so2767199uac.9
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 04:50:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1681213840;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6ABpILrsve0qKJe1rMKA0UqVkX+F1EsDxDxKGNDuqxY=;
+        b=KVatqVw52IhcfqXAGvQ6AjlQ/yo8uGrRN9sI3RW602XortnUT2neEdIsKww/J3pESI
+         q8VyhEI9l83LXxWinWmRr2Dx1rwUD+CP60tV4liiCOxXohXH8BKmR34+FG7Crskv7VfT
+         g0Br2FHi6ZEibqFxCokZ7e/WzFa25EuCF7XjU8DhOUGz2Ph1oRQ4SfJIIq2/ughG0yWu
+         syNKBSbZ8oJFgvETJXmEIuanWIcayd4ojVs2bXyfHs2mXGaWTl2KvVLF7YK8Xv2V64xc
+         GhoGH4ZmPPueePCpALN0ihgV5WxrHR7/8xz15A7FhAKBvTLPChGltfHBwlobxsKZQOzo
+         /AOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681213840;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6ABpILrsve0qKJe1rMKA0UqVkX+F1EsDxDxKGNDuqxY=;
+        b=15RjhGQ2TfCpottRxVroXx5o6bSeGV5ypV36YfO9Du60yS1WHJvY7EfmmcUwrUT3P2
+         0O447XtQANdlnlffWfzLg1+rqJbCWjA5M5L4ajptTIR2U3gsu50Htw49XZm0HXuVt0y/
+         kbs6alfk9Hwgvzb+Hy2RO0qaRGXNJvZR35/l7wK8xjRx9/I/qJmHKu/QtsPmvke6Y6CR
+         ulERhR+P3G69IWykWxflvmPr/PiZYN5f5bgy7FD2wbfSj04DmFFEuHAHFvvglysBNxzB
+         qxKLH/smK3s4iV0KpSH6ClHdLl9ypksLY/u3I/zPcYCP85fj2gxK8Eb84rx6Syhamy+t
+         zybA==
+X-Gm-Message-State: AAQBX9dk8i7TJQ3j5nifZNjd+Z34s3fR3Mk3pIODZJ5ZYh8xANn3CvXh
+        aMYJeWuT4iUkGR7T8SU5j+1FFKUTJNulTfsegKT9RQ==
+X-Google-Smtp-Source: AKy350ag+4vkSjC293eEA+Ezldj6pBfYQecQW+ykIdx4osj27F89whguE2mB4gHKphxIOhL2WeYzVkfq7A9AKhhY7TY=
+X-Received: by 2002:a9f:3014:0:b0:68a:6c1e:1aab with SMTP id
+ h20-20020a9f3014000000b0068a6c1e1aabmr8693102uab.2.1681213840148; Tue, 11 Apr
+ 2023 04:50:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230406200723.552644-1-brgl@bgdev.pl> <20230406200723.552644-6-brgl@bgdev.pl>
+ <20230410201145.6e2qsl5gtwh7n3k7@echanude>
+In-Reply-To: <20230410201145.6e2qsl5gtwh7n3k7@echanude>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 11 Apr 2023 13:50:29 +0200
+Message-ID: <CAMRc=MdSTqO0bW1=_it43K_pn7EuBWRPvBF29N1gdqsh3TpAcg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] arm64: dts: qcom: sa8775p: add the pcie smmu node
+To:     Eric Chanudet <echanude@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add rcar_du_lib_vsps_init() to RCar DU kms lib to handle both
-rcar_du_vsp_init() and rzg2l_du_vsp_init().
+On Mon, Apr 10, 2023 at 10:11=E2=80=AFPM Eric Chanudet <echanude@redhat.com=
+> wrote:
+>
+> On Thu, Apr 06, 2023 at 10:07:21PM +0200, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add the PCIe SMMU node for sa8775p platforms.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 74 +++++++++++++++++++++++++++
+> >  1 file changed, 74 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dt=
+s/qcom/sa8775p.dtsi
+> > index 2343df7e0ea4..9ab630c7d81b 100644
+> > --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> > @@ -809,6 +809,80 @@ apps_smmu: iommu@15000000 {
+> >                                    <GIC_SPI 891 IRQ_TYPE_LEVEL_HIGH>;
+> >               };
+> >
+> > +             pcie_smmu: iommu@15200000 {
+> > +                     compatible =3D "qcom,sa8775p-smmu-500", "qcom,smm=
+u-500", "arm,mmu-500";
+> > +                     reg =3D <0x0 0x15200000 0x0 0x800000>;
+>
+> Testing on the board, applying on next-20230406:
+> [    1.041869] arm-smmu 15200000.iommu: SMMU address space size (0x80000)=
+ differs from mapped region size (0x800000)!
+>
+> In the downstream sources, the size is 0x80000[1].
+>
+> On reboot, I also get a synchronous abort, but the second line, from the
+> following output on the serial, could indicate the hypervisor is behind
+> it:
+>
+> [   26.906206] arm-smmu 15200000.iommu: disabling translation
+> 3      33.244434 Injecting instruction/data abort to VM 3, original ESR_E=
+L2 =3D 0x93800047, fault VA =3D 0xffff80000a380000, fault IPA =3D 0x1520000=
+0, ELR_EL2 =3D 0xffffd064f70c9de8
+> [   26.942083] Internal error: synchronous external abort: 00000000960000=
+10 [#1] PREEMPT SMP
+> [   26.948506] Modules linked in: nvmem_qcom_spmi_sdam qcom_pon spi_geni_=
+qcom nvmem_reboot_mode crct10dif_ce i2c_qcom_geni phy_qcom_qmp_ufs gpucc_sa=
+8775p ufs_qcom socinfo fuse ipv6
+> [   26.966702] CPU: 3 PID: 1 Comm: systemd-shutdow Not tainted 6.3.0-rc5-=
+next-20230406-00019-g9d08a3c17f54-dirty #134
+> [   26.977315] Hardware name: Qualcomm SA8775P Ride (DT)
+> [   26.982505] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
+E=3D--)
+> [   26.989651] pc : arm_smmu_device_shutdown+0x88/0x1d8
+> [   26.994773] lr : arm_smmu_device_shutdown+0x70/0x1d8
+> [   26.999875] sp : ffff80000805bbf0
+> [   27.003283] x29: ffff80000805bbf0 x28: ffff0e69400a0000 x27: 000000000=
+0000000
+> [   27.010608] x26: ffffd064f8130f38 x25: 0000000000000001 x24: ffffd064f=
+8eac028
+> [   27.017932] x23: ffff0e6940eeb490 x22: ffffd064f8f24f80 x21: ffff0e694=
+0eeb410
+> [   27.025254] x20: ffff0e6940808c80 x19: ffff0e6940eeb410 x18: 000000000=
+0000006
+> [   27.032579] x17: 0000000000000001 x16: 0000000000000014 x15: ffff80000=
+805b5c0
+> [   27.039903] x14: 0000000000000000 x13: ffffd064f8ac19a8 x12: 000000000=
+0000606
+> [   27.047226] x11: 0000000000000202 x10: ffffd064f8b199a8 x9 : ffffd064f=
+8ac19a8
+> [   27.054549] x8 : 00000000ffffefff x7 : ffffd064f8b199a8 x6 : 80000000f=
+ffff000
+> [   27.061872] x5 : 000000000000bff4 x4 : 0000000000000000 x3 : 000000000=
+0000000
+> [   27.069195] x2 : 0000000000000000 x1 : ffff80000a380000 x0 : 000000000=
+0000001
+> [   27.076520] Call trace:
+> [   27.079041]  arm_smmu_device_shutdown+0x88/0x1d8
+> [   27.083787]  platform_shutdown+0x24/0x34
+> [   27.087825]  device_shutdown+0x150/0x258
+> [   27.091859]  kernel_restart+0x40/0xc0
+> [   27.095632]  __do_sys_reboot+0x1f0/0x274
+> [   27.099664]  __arm64_sys_reboot+0x24/0x30
+> [   27.103786]  invoke_syscall+0x48/0x114
+> [   27.107644]  el0_svc_common+0x40/0xf4
+> [   27.111410]  do_el0_svc+0x3c/0x9c
+> [   27.114822]  el0_svc+0x2c/0x84
+> [   27.117969]  el0t_64_sync_handler+0xf4/0x120
+> [   27.122357]  el0t_64_sync+0x190/0x194
+> [   27.126126] Code: f9400404 b50008e4 f9400681 52800020 (b9000020)
+> [   27.132385] ---[ end trace 0000000000000000 ]---
+>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v6->v7:
- * Rebased to drm-tip.
-v1->v6:
- * Rebased on drm-misc-next and DU-next.
-v1:
- * Created the lib suggested by Laurent.
-Ref:
- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220316131100.30685-6-biju.das.jz@bp.renesas.com/
----
- drivers/gpu/drm/rcar-du/rcar_du_kms.c     | 88 +---------------------
- drivers/gpu/drm/rcar-du/rcar_du_kms_lib.c | 89 +++++++++++++++++++++++
- drivers/gpu/drm/rcar-du/rcar_du_kms_lib.h |  5 ++
- 3 files changed, 95 insertions(+), 87 deletions(-)
+Adding Shazad
 
-diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-index 01ffe36f9d44..6f3352a6a264 100644
---- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-@@ -69,92 +69,6 @@ static const struct drm_mode_config_funcs rcar_du_mode_config_funcs = {
- 	.atomic_commit = drm_atomic_helper_commit,
- };
- 
--static int rcar_du_vsps_init(struct rcar_du_device *rcdu)
--{
--	const struct device_node *np = rcdu->dev->of_node;
--	const char *vsps_prop_name = "renesas,vsps";
--	struct of_phandle_args args;
--	struct {
--		struct device_node *np;
--		unsigned int crtcs_mask;
--	} vsps[RCAR_DU_MAX_VSPS] = { { NULL, }, };
--	unsigned int vsps_count = 0;
--	unsigned int cells;
--	unsigned int i;
--	int ret;
--
--	/*
--	 * First parse the DT vsps property to populate the list of VSPs. Each
--	 * entry contains a pointer to the VSP DT node and a bitmask of the
--	 * connected DU CRTCs.
--	 */
--	ret = of_property_count_u32_elems(np, vsps_prop_name);
--	if (ret < 0) {
--		/* Backward compatibility with old DTBs. */
--		vsps_prop_name = "vsps";
--		ret = of_property_count_u32_elems(np, vsps_prop_name);
--	}
--	cells = ret / rcdu->num_crtcs - 1;
--	if (cells > 1)
--		return -EINVAL;
--
--	for (i = 0; i < rcdu->num_crtcs; ++i) {
--		unsigned int j;
--
--		ret = of_parse_phandle_with_fixed_args(np, vsps_prop_name,
--						       cells, i, &args);
--		if (ret < 0)
--			goto error;
--
--		/*
--		 * Add the VSP to the list or update the corresponding existing
--		 * entry if the VSP has already been added.
--		 */
--		for (j = 0; j < vsps_count; ++j) {
--			if (vsps[j].np == args.np)
--				break;
--		}
--
--		if (j < vsps_count)
--			of_node_put(args.np);
--		else
--			vsps[vsps_count++].np = args.np;
--
--		vsps[j].crtcs_mask |= BIT(i);
--
--		/*
--		 * Store the VSP pointer and pipe index in the CRTC. If the
--		 * second cell of the 'renesas,vsps' specifier isn't present,
--		 * default to 0 to remain compatible with older DT bindings.
--		 */
--		rcdu->crtcs[i].vsp = &rcdu->vsps[j];
--		rcdu->crtcs[i].vsp_pipe = cells >= 1 ? args.args[0] : 0;
--	}
--
--	/*
--	 * Then initialize all the VSPs from the node pointers and CRTCs bitmask
--	 * computed previously.
--	 */
--	for (i = 0; i < vsps_count; ++i) {
--		struct rcar_du_vsp *vsp = &rcdu->vsps[i];
--
--		vsp->index = i;
--		vsp->dev = rcdu;
--
--		ret = rcar_du_vsp_init(vsp, vsps[i].np, vsps[i].crtcs_mask);
--		if (ret < 0)
--			goto error;
--	}
--
--	return 0;
--
--error:
--	for (i = 0; i < ARRAY_SIZE(vsps); ++i)
--		of_node_put(vsps[i].np);
--
--	return ret;
--}
--
- static int rcar_du_cmm_init(struct rcar_du_device *rcdu)
- {
- 	const struct device_node *np = rcdu->dev->of_node;
-@@ -326,7 +240,7 @@ int rcar_du_modeset_init(struct rcar_du_device *rcdu)
- 
- 	/* Initialize the compositors. */
- 	if (rcar_du_has(rcdu, RCAR_DU_FEATURE_VSP1_SOURCE)) {
--		ret = rcar_du_vsps_init(rcdu);
-+		ret = rcar_du_lib_vsps_init(rcdu, rcar_du_vsp_init);
- 		if (ret < 0)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.c b/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.c
-index 438a56c550f2..b9949dbd3c33 100644
---- a/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.c
-@@ -653,3 +653,92 @@ int rcar_du_properties_init(struct rcar_du_device *rcdu)
- 
- 	return 0;
- }
-+
-+int rcar_du_lib_vsps_init(struct rcar_du_device *rcdu,
-+			  int (*rcar_du_vsp_init_fn)(struct rcar_du_vsp *vsp,
-+						     struct device_node *np,
-+						     unsigned int crtcs))
-+{
-+	const struct device_node *np = rcdu->dev->of_node;
-+	const char *vsps_prop_name = "renesas,vsps";
-+	struct of_phandle_args args;
-+	struct {
-+		struct device_node *np;
-+		unsigned int crtcs_mask;
-+	} vsps[RCAR_DU_MAX_VSPS] = { { NULL, }, };
-+	unsigned int vsps_count = 0;
-+	unsigned int cells;
-+	unsigned int i;
-+	int ret;
-+
-+	/*
-+	 * First parse the DT vsps property to populate the list of VSPs. Each
-+	 * entry contains a pointer to the VSP DT node and a bitmask of the
-+	 * connected DU CRTCs.
-+	 */
-+	ret = of_property_count_u32_elems(np, vsps_prop_name);
-+	if (ret < 0) {
-+		/* Backward compatibility with old DTBs. */
-+		vsps_prop_name = "vsps";
-+		ret = of_property_count_u32_elems(np, vsps_prop_name);
-+	}
-+	cells = ret / rcdu->num_crtcs - 1;
-+	if (cells > 1)
-+		return -EINVAL;
-+
-+	for (i = 0; i < rcdu->num_crtcs; ++i) {
-+		unsigned int j;
-+
-+		ret = of_parse_phandle_with_fixed_args(np, vsps_prop_name,
-+						       cells, i, &args);
-+		if (ret < 0)
-+			goto error;
-+
-+		/*
-+		 * Add the VSP to the list or update the corresponding existing
-+		 * entry if the VSP has already been added.
-+		 */
-+		for (j = 0; j < vsps_count; ++j) {
-+			if (vsps[j].np == args.np)
-+				break;
-+		}
-+
-+		if (j < vsps_count)
-+			of_node_put(args.np);
-+		else
-+			vsps[vsps_count++].np = args.np;
-+
-+		vsps[j].crtcs_mask |= BIT(i);
-+
-+		/*
-+		 * Store the VSP pointer and pipe index in the CRTC. If the
-+		 * second cell of the 'renesas,vsps' specifier isn't present,
-+		 * default to 0 to remain compatible with older DT bindings.
-+		 */
-+		rcdu->crtcs[i].vsp = &rcdu->vsps[j];
-+		rcdu->crtcs[i].vsp_pipe = cells >= 1 ? args.args[0] : 0;
-+	}
-+
-+	/*
-+	 * Then initialize all the VSPs from the node pointers and CRTCs bitmask
-+	 * computed previously.
-+	 */
-+	for (i = 0; i < vsps_count; ++i) {
-+		struct rcar_du_vsp *vsp = &rcdu->vsps[i];
-+
-+		vsp->index = i;
-+		vsp->dev = rcdu;
-+
-+		ret = rcar_du_vsp_init_fn(vsp, vsps[i].np, vsps[i].crtcs_mask);
-+		if (ret < 0)
-+			goto error;
-+	}
-+
-+	return 0;
-+
-+error:
-+	for (i = 0; i < ARRAY_SIZE(vsps); ++i)
-+		of_node_put(vsps[i].np);
-+
-+	return ret;
-+}
-diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.h b/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.h
-index 50e92a19d98c..81bb38eadbe0 100644
---- a/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.h
-+++ b/drivers/gpu/drm/rcar-du/rcar_du_kms_lib.h
-@@ -53,4 +53,9 @@ int rcar_du_encoders_init(struct rcar_du_device *rcdu,
- 
- int rcar_du_properties_init(struct rcar_du_device *rcdu);
- 
-+int rcar_du_lib_vsps_init(struct rcar_du_device *rcdu,
-+			  int (*rcar_du_vsp_init_fn)(struct rcar_du_vsp *vsp,
-+						     struct device_node *np,
-+						     unsigned int crtcs));
-+
- #endif /* __RCAR_DU_KMS_LIB_H__ */
--- 
-2.25.1
+Eric: This is supposedly gone in the latest meta but I thought you're
+already on the most recent release?
 
+Shazad, what version exactly should Eric test this on?
+
+Bart
+
+> [1] https://git.codelinaro.org/clo/la/kernel/ark-5.14/-/blob/ES2/arch/arm=
+64/boot/dts/qcom/lemans.dtsi#L3498
+>
+> > +                     #iommu-cells =3D <2>;
+> > +                     #global-interrupts =3D <2>;
+> > +
+> > +                     interrupts =3D <GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 921 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 925 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 926 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 927 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 928 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 950 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 951 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 952 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 953 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 954 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 955 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 956 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 957 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 885 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 886 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 887 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 888 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 820 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 823 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 842 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 846 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 847 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 802 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 805 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 806 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 807 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 808 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 809 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 812 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 813 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 814 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 837 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 838 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 839 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 855 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 790 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 791 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 792 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 794 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 796 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
+> > +             };
+> > +
+> >               intc: interrupt-controller@17a00000 {
+> >                       compatible =3D "arm,gic-v3";
+> >                       reg =3D <0x0 0x17a00000 0x0 0x10000>,     /* GICD=
+ */
+> > --
+> > 2.37.2
+> >
+>
+> --
+> Eric Chanudet
+>
