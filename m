@@ -2,86 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C248A6DD788
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 12:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76136DD793
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 12:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbjDKKJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 06:09:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33450 "EHLO
+        id S229526AbjDKKMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 06:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjDKKJi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 06:09:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B152683;
-        Tue, 11 Apr 2023 03:09:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229452AbjDKKMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 06:12:53 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A404C172C;
+        Tue, 11 Apr 2023 03:12:51 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 60B3A623A3;
-        Tue, 11 Apr 2023 10:09:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8C6C433D2;
-        Tue, 11 Apr 2023 10:09:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681207772;
-        bh=4+yoX4M6EFzK4evMqyoDWLXKtr6ZMcsAr2nKxy77RRA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bVtG3bBiJFmwy+QRf5IN70L8M62cQvKnEFB5DKIAsEmZprmKpJlhlwqPCEfTnwrBg
-         DZvCkZWz6J1amjhEWP2rMTxkVIiKQM4xB6emPC/tKuqXQEMJALZ4PIZuy0VExHDIkp
-         BMyaBTP14uFC6YV8ADQ5K5qz0szbJLCXbs1es2RFn0XnUMliGunnAHl2l5UP8ao4tu
-         moTLCwshJ30L18CJVWZKK6WreiT373obdKtKtIIQ493ahOi/t0OYIj57tH8S3p7iyP
-         RDkm9Of6j7d+JviVUGNtskh20vSRZ+B9djn7MxvFPqpXUmJ/eMzqdJLcjZ3eZko6Rs
-         cwg4pzKK60FUw==
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     andersson@kernel.org, robh@kernel.org, kw@linux.com,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        konrad.dybcio@linaro.org, bhelgaas@google.com, kishon@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v3 00/13] Add PCIe RC support to Qcom SDX55 SoC
-Date:   Tue, 11 Apr 2023 12:09:24 +0200
-Message-Id: <168120775114.17750.6718927163638250633.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308082424.140224-1-manivannan.sadhasivam@linaro.org>
-References: <20230308082424.140224-1-manivannan.sadhasivam@linaro.org>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D541E66031AD;
+        Tue, 11 Apr 2023 11:12:48 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681207970;
+        bh=7bO4tViZQRTa3LySl3BcqbAkLa3ojxPZnEzjThu0RLs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=FV2jGoHZihXjn6OIA74MTm+LasrHy12N3+RKBJU5fyY1gXq/qDPetg8oYb5KHFq0P
+         eMHTpS9zXJ5mJ6X4Rsln83dO3l8WG9aMw2BHv59+QPhIYUTNtWVebVx7WFoRBNLk4F
+         Etj8Ba26wO1TrxaPc/60/yL1S22nzqliWYrTXIugnNsDDMsN4hd4xtabeRjVBD8QNq
+         tJQS4YEuVSP13KHkR7uMoQmkPwA6BGKPPZygJF6SJgZg53GkNcYHcqiOaz0HuBGJK5
+         0Hd8mvxc86OpZuBhiIU7suV6BoyHVYvbSA5gzfUZHCs1EFl2O0FgV1rAQ89SVREuXp
+         yD1LWR3HAGzig==
+Message-ID: <fb349fa3-b6c3-90c7-65c6-e5614d007ac8@collabora.com>
+Date:   Tue, 11 Apr 2023 12:12:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v7 10/14] media: mtk-jpegdec: Remove the setting for
+ dma_mask
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, nfraprado@collabora.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, Bin Liu <bin.liu@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.com>
+References: <20230411093144.2690-1-yong.wu@mediatek.com>
+ <20230411093144.2690-11-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230411093144.2690-11-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Mar 2023 13:54:11 +0530, Manivannan Sadhasivam wrote:
-> This series adds PCIe RC support to the Qcom SDX55 SoC. The PCIe controller
-> in SDX55 can act as both Root Complex and Endpoint but only one mode at a
-> time i.e., the mode cannot be switched during runtime.
+Il 11/04/23 11:31, Yong Wu ha scritto:
+> In order to simplify the masters to set their respective dma masks, MTK
+> IOMMU helps to centralize the processing. Because all the dma ranges is
+> set in IOMMU, IOMMU knows well the dma mask requirements of masters. After
+> this patch, the masters code does not need care
+> dma-ranges/dma_mask related information.
 > 
-> This series has been tested on Thundercomm T55 board having QCA6390 WLAN
-> chipset connected to the PCIe controller. For powering up the WLAN chipset,
-> an out-of-tree patch has been used since we do not have a proper driver in
-> mainline to handle the power supplies.
-> 
-> [...]
+> Cc: Bin Liu <bin.liu@mediatek.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
-Applied to controller/qcom, thanks!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-[01/13] dt-bindings: PCI: qcom: Update maintainers entry
-        https://git.kernel.org/pci/pci/c/2be28836b281
-[02/13] dt-bindings: PCI: qcom: Add iommu-map properties
-        https://git.kernel.org/pci/pci/c/3f5ec65040b1
-[03/13] dt-bindings: PCI: qcom: Add SDX55 SoC
-        https://git.kernel.org/pci/pci/c/e8ce1671127d
-[04/13] dt-bindings: PCI: qcom-ep: Fix the unit address used in example
-        https://git.kernel.org/pci/pci/c/f6e7fbbe5bca
-[13/13] PCI: qcom: Add support for SDX55 SoC
-        https://git.kernel.org/pci/pci/c/490789b12332
 
-Thanks,
-Lorenzo
