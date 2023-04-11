@@ -2,323 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22E896DE5AD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D00AC6DE5B6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 22:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjDKUWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 16:22:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35428 "EHLO
+        id S229525AbjDKU0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 16:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbjDKUWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:22:10 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5436E1701
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:20:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1681244444;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9CbNbfXQG0WclGD5BV599nJw4B75FNHTW0PN9HLKZOY=;
-        b=Cwc0WrEq7YwgmBfsyuZRrZPaP7UoK8xUjuZk4KyvEoruTKYA/aiq9eeOUy4BhanV5T8Iqb
-        t7yVU2HSqdN/5M76nc1vpGoNnr8VXDsBDBdQkbQHp2l6deBb+ajEOO8hbbf9g8ChmNmLro
-        FQtjdFZp5jN19VhB1YnySRwMSbRU8xI=
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com
- [209.85.167.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-263-rW7iB7utM-6XbBq02JRTjw-1; Tue, 11 Apr 2023 16:20:40 -0400
-X-MC-Unique: rW7iB7utM-6XbBq02JRTjw-1
-Received: by mail-oi1-f198.google.com with SMTP id db1-20020a056808408100b003873410ce73so2818810oib.21
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 13:20:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681244437;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9CbNbfXQG0WclGD5BV599nJw4B75FNHTW0PN9HLKZOY=;
-        b=lnvZXa94zydkv1O5myVzdxjELVzaIm6C82F+nTsOqQFnqUs3d0OPPuh/1xkn3zd/6I
-         +jT/IXRBI02euz5x1zlCt+JAhTaVjLo3ZSk1rPsZkVk4QrtOy+1X6Wpkj4tukWH1CQ7+
-         3bZHdIMqEB/N8lO/o272j9NFi2VorRh9AM/PPwXiev7V97n9ZnmPJkLku7W6UawvzfWC
-         LnnL0k97FCdeeEscY1uq6GJ1YLfYBwPfB5X5iedtPj9E9mVAJwUWJ3qSdT/mrOCiCJl5
-         CSNh8RGQXBjDuOqwTIn/oxreBKJZYPHhX8BHTMp09CKWTXlWuep5lMfQ2ZtDDMkKhvV/
-         ne9Q==
-X-Gm-Message-State: AAQBX9dTdhzHlYPT69i8yIdJadD8ou9O9XfARCJ3L40zYbGdQcECriqT
-        wLLKmnzStJtaIktkDALURTYc4rvmtUjM+lfIMaDG7DmfMK9NVi/KfpsRsASNjWpCHMPkEEe8k9U
-        2btgiqpkKXLxFtqmJkXB7NQ==
-X-Received: by 2002:a05:6808:128e:b0:386:9886:534d with SMTP id a14-20020a056808128e00b003869886534dmr5040840oiw.12.1681244437496;
-        Tue, 11 Apr 2023 13:20:37 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YXFMxrpFFGf7DO58T+7bmiaMO7le6Kc1zq448JrPjYDEvWHVjS9TtQOdK+m0R8jI6mN8Cf/g==
-X-Received: by 2002:a05:6808:128e:b0:386:9886:534d with SMTP id a14-20020a056808128e00b003869886534dmr5040828oiw.12.1681244437189;
-        Tue, 11 Apr 2023 13:20:37 -0700 (PDT)
-Received: from halaney-x13s.attlocal.net (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id a6-20020a056808120600b003874631e249sm5976710oil.36.2023.04.11.13.20.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 13:20:36 -0700 (PDT)
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        netdev@vger.kernel.org, bmasney@redhat.com, echanude@redhat.com,
-        ncai@quicinc.com, jsuraj@qti.qualcomm.com, hisunil@quicinc.com,
-        Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sa8540p-ride: Add ethernet nodes
-Date:   Tue, 11 Apr 2023 15:20:09 -0500
-Message-Id: <20230411202009.460650-4-ahalaney@redhat.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230411202009.460650-1-ahalaney@redhat.com>
-References: <20230411202009.460650-1-ahalaney@redhat.com>
+        with ESMTP id S229481AbjDKU0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 16:26:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8B399;
+        Tue, 11 Apr 2023 13:26:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A4B860FA2;
+        Tue, 11 Apr 2023 20:26:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23EF5C433EF;
+        Tue, 11 Apr 2023 20:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681244781;
+        bh=8C08BxU77JUv8mmpWOav5Tsv5cZUhSHIWXcmPnHUWHY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=krEFiQ17SNGsWnW5jv659a3Mia7qM1YvhByX3x/EeR+I/IdJvrVib1mxw9DNWNwKJ
+         koK3h09soCbNCudtki19VQr6iv2MAcd6+sGckC743zPV03cvWjraP8aYECfoIJXXXm
+         rErD/xQctp1s4C6QuvB3N3CsoLMRB6M7l201u4KS4vqFj1rol20c8aIsEJ0h/SeMgq
+         7K778arwYp6rspEb2IKldFhh50FObInyk3NZLEmGuQsRGx/IwtKKFQ6s44cj/yLi9u
+         eIdQrvmjLTnm6zzgUSZv6eykez8xKnFZn370nq8GGehk0GwNGFcIqsn2xaBtXHFUK9
+         uzqQHNQlhfbow==
+Date:   Tue, 11 Apr 2023 21:26:16 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 3/7] soc: starfive: Modify ioremap to regmap
+Message-ID: <20230411-sanctuary-impotent-92964df67a26@spud>
+References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+ <20230411064743.273388-4-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5sQq71yDp6ZVer9U"
+Content-Disposition: inline
+In-Reply-To: <20230411064743.273388-4-changhuang.liang@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable both the MACs found on the board.
 
-ethernet0 and ethernet1 both ultimately go to a series of on board
-switches which aren't managed by this processor.
+--5sQq71yDp6ZVer9U
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-ethernet0 is connected to a Marvell 88EA1512 phy via RGMII. That goes to
-the series of switches via SGMII on the "media" side of the phy.
-RGMII_SGMII mode is enabled via devicetree register descriptions.
-The switch on the "media" side has auto-negotiation disabled, so
-configuration from userspace similar to:
+On Mon, Apr 10, 2023 at 11:47:39PM -0700, Changhuang Liang wrote:
+> Modify ioremap to regmap, easy to simplify code.
 
-        ethtool -s eth0 autoneg off speed 1000 duplex full
+This doesn't simplify anything, adding regmap to the mix actually makes
+it less obvious what is going on here & it's not even fewer LoC:
+1 file changed, 23 insertions(+), 20 deletions(-)
 
-is necessary to get traffic flowing on that interface.
+Please write a commit message that explains the real motivation for
+this change.
 
-ethernet1 is in a mac2mac/fixed-link configuration going to the same
-series of switches directly via RGMII.
+Thanks,
+Conor.
 
-Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
----
+>=20
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  drivers/soc/starfive/jh71xx_pmu.c | 43 +++++++++++++++++--------------
+>  1 file changed, 23 insertions(+), 20 deletions(-)
+>=20
+> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh7=
+1xx_pmu.c
+> index 7d5f50d71c0d..306218c83691 100644
+> --- a/drivers/soc/starfive/jh71xx_pmu.c
+> +++ b/drivers/soc/starfive/jh71xx_pmu.c
+> @@ -6,13 +6,13 @@
+>   */
+> =20
+>  #include <linux/interrupt.h>
+> -#include <linux/io.h>
+> -#include <linux/iopoll.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+> +#include <linux/regmap.h>
+>  #include <dt-bindings/power/starfive,jh7110-pmu.h>
+> =20
+>  /* register offset */
+> @@ -59,7 +59,7 @@ struct jh71xx_pmu_match_data {
+>  struct jh71xx_pmu {
+>  	struct device *dev;
+>  	const struct jh71xx_pmu_match_data *match_data;
+> -	void __iomem *base;
+> +	struct regmap *base;
+>  	struct generic_pm_domain **genpd;
+>  	struct genpd_onecell_data genpd_data;
+>  	int irq;
+> @@ -75,11 +75,14 @@ struct jh71xx_pmu_dev {
+>  static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *pmd, u32 mask, bo=
+ol *is_on)
+>  {
+>  	struct jh71xx_pmu *pmu =3D pmd->pmu;
+> +	unsigned int val;
+> =20
+>  	if (!mask)
+>  		return -EINVAL;
+> =20
+> -	*is_on =3D readl(pmu->base + JH71XX_PMU_CURR_POWER_MODE) & mask;
+> +	regmap_read(pmu->base, JH71XX_PMU_CURR_POWER_MODE, &val);
+> +
+> +	*is_on =3D val & mask;
+> =20
+>  	return 0;
+>  }
+> @@ -130,7 +133,7 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev=
+ *pmd, u32 mask, bool on)
+>  		encourage_hi =3D JH71XX_PMU_SW_ENCOURAGE_DIS_HI;
+>  	}
+> =20
+> -	writel(mask, pmu->base + mode);
+> +	regmap_write(pmu->base, mode, mask);
+> =20
+>  	/*
+>  	 * 2.Write SW encourage command sequence to the Software Encourage Reg =
+(offset 0x44)
+> @@ -140,21 +143,21 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_d=
+ev *pmd, u32 mask, bool on)
+>  	 *   Then write the lower bits of the command sequence, followed by the=
+ upper
+>  	 *   bits. The sequence differs between powering on & off a domain.
+>  	 */
+> -	writel(JH71XX_PMU_SW_ENCOURAGE_ON, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
+> -	writel(encourage_lo, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
+> -	writel(encourage_hi, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
+> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, JH71XX_PMU_SW_ENCOURAG=
+E_ON);
+> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, encourage_lo);
+> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, encourage_hi);
+> =20
+>  	spin_unlock_irqrestore(&pmu->lock, flags);
+> =20
+>  	/* Wait for the power domain bit to be enabled / disabled */
+>  	if (on) {
+> -		ret =3D readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MO=
+DE,
+> -						val, val & mask,
+> -						1, JH71XX_PMU_TIMEOUT_US);
+> +		ret =3D regmap_read_poll_timeout_atomic(pmu->base, JH71XX_PMU_CURR_POW=
+ER_MODE,
+> +						      val, val & mask,
+> +						      1, JH71XX_PMU_TIMEOUT_US);
+>  	} else {
+> -		ret =3D readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MO=
+DE,
+> -						val, !(val & mask),
+> -						1, JH71XX_PMU_TIMEOUT_US);
+> +		ret =3D regmap_read_poll_timeout_atomic(pmu->base, JH71XX_PMU_CURR_POW=
+ER_MODE,
+> +						      val, !(val & mask),
+> +						      1, JH71XX_PMU_TIMEOUT_US);
+>  	}
+> =20
+>  	if (ret) {
+> @@ -190,14 +193,14 @@ static void jh71xx_pmu_int_enable(struct jh71xx_pmu=
+ *pmu, u32 mask, bool enable)
+>  	unsigned long flags;
+> =20
+>  	spin_lock_irqsave(&pmu->lock, flags);
+> -	val =3D readl(pmu->base + JH71XX_PMU_TIMER_INT_MASK);
+> +	regmap_read(pmu->base, JH71XX_PMU_TIMER_INT_MASK, &val);
+> =20
+>  	if (enable)
+>  		val &=3D ~mask;
+>  	else
+>  		val |=3D mask;
+> =20
+> -	writel(val, pmu->base + JH71XX_PMU_TIMER_INT_MASK);
+> +	regmap_write(pmu->base, JH71XX_PMU_TIMER_INT_MASK, val);
+>  	spin_unlock_irqrestore(&pmu->lock, flags);
+>  }
+> =20
+> @@ -206,7 +209,7 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void=
+ *data)
+>  	struct jh71xx_pmu *pmu =3D data;
+>  	u32 val;
+> =20
+> -	val =3D readl(pmu->base + JH71XX_PMU_INT_STATUS);
+> +	regmap_read(pmu->base, JH71XX_PMU_INT_STATUS, &val);
+> =20
+>  	if (val & JH71XX_PMU_INT_SEQ_DONE)
+>  		dev_dbg(pmu->dev, "sequence done.\n");
+> @@ -220,8 +223,8 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void=
+ *data)
+>  		dev_err(pmu->dev, "p-channel fail event.\n");
+> =20
+>  	/* clear interrupts */
+> -	writel(val, pmu->base + JH71XX_PMU_INT_STATUS);
+> -	writel(val, pmu->base + JH71XX_PMU_EVENT_STATUS);
+> +	regmap_write(pmu->base, JH71XX_PMU_INT_STATUS, val);
+> +	regmap_write(pmu->base, JH71XX_PMU_EVENT_STATUS, val);
+> =20
+>  	return IRQ_HANDLED;
+>  }
+> @@ -271,7 +274,7 @@ static int jh71xx_pmu_probe(struct platform_device *p=
+dev)
+>  	if (!pmu)
+>  		return -ENOMEM;
+> =20
+> -	pmu->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	pmu->base =3D device_node_to_regmap(np);
+>  	if (IS_ERR(pmu->base))
+>  		return PTR_ERR(pmu->base);
+> =20
+> --=20
+> 2.25.1
+>=20
 
-Changes since v3:
-    * Compatible goes first in node (Krzysztof)
+--5sQq71yDp6ZVer9U
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Changes since v1 and v2:
-    * None
+-----BEGIN PGP SIGNATURE-----
 
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 180 ++++++++++++++++++++++
- 1 file changed, 180 insertions(+)
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDXCaAAKCRB4tDGHoIJi
+0nNUAP9dxn5jSBbjcHeX8s96ct0sLLOaVQ8hzg7DhS1ZgVp1ugD/eC24zDTOc6J5
+dyl/DNgsTEYKRPf8mOQhYWXU+YjniAI=
+=AvFp
+-----END PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 40db5aa0803c..caad955969bc 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -28,6 +28,65 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <1>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <1>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -151,6 +210,67 @@ vreg_l8g: ldo8 {
- 	};
- };
- 
-+&ethernet0 {
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+
-+	max-speed = <1000>;
-+	phy-handle = <&rgmii_phy>;
-+	phy-mode = "rgmii-txid";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet0_default>;
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		/* Marvell 88EA1512 */
-+		rgmii_phy: phy@8 {
-+			reg = <0x8>;
-+
-+			interrupt-parent = <&tlmm>;
-+			interrupts-extended = <&tlmm 127 IRQ_TYPE_EDGE_FALLING>;
-+
-+			reset-gpios = <&pmm8540c_gpios 1 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <11000>;
-+			reset-deassert-us = <70000>;
-+
-+			device_type = "ethernet-phy";
-+
-+			/* Set to RGMII_SGMII mode and soft reset. Turn off auto-negotiation
-+			 * from userspace to talk to the switch on the SGMII side of things
-+			 */
-+			marvell,reg-init =
-+				/* Set MODE[2:0] to RGMII_SGMII */
-+				<0x12 0x14 0xfff8 0x4>,
-+				/* Soft reset required after changing MODE[2:0] */
-+				<0x12 0x14 0x7fff 0x8000>;
-+		};
-+	};
-+};
-+
-+&ethernet1 {
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+
-+	max-speed = <1000>;
-+	phy-mode = "rgmii-txid";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet1_default>;
-+
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_default>;
-@@ -316,6 +436,66 @@ &xo_board_clk {
- /* PINCTRL */
- 
- &tlmm {
-+	ethernet0_default: ethernet0-default-state {
-+		mdc-pins {
-+			pins = "gpio175";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		mdio-pins {
-+			pins = "gpio176";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-tx-pins {
-+			pins = "gpio183", "gpio184", "gpio185", "gpio186", "gpio187", "gpio188";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-rx-pins {
-+			pins = "gpio177", "gpio178", "gpio179", "gpio180", "gpio181", "gpio182";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+	};
-+
-+	ethernet1_default: ethernet1-default-state {
-+		mdc-pins {
-+			pins = "gpio97";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		mdio-pins {
-+			pins = "gpio98";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-tx-pins {
-+			pins = "gpio105", "gpio106", "gpio107", "gpio108", "gpio109", "gpio110";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-rx-pins {
-+			pins = "gpio99", "gpio100", "gpio101", "gpio102", "gpio103", "gpio104";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+	};
-+
- 	i2c0_default: i2c0-default-state {
- 		/* To USB7002T-I/KDXVA0 USB hub (SIP1 only) */
- 		pins = "gpio135", "gpio136";
--- 
-2.39.2
-
+--5sQq71yDp6ZVer9U--
