@@ -2,127 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 665746DDC68
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C07B6DDC81
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbjDKNmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 09:42:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56544 "EHLO
+        id S230031AbjDKNpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 09:45:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjDKNmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:42:46 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5038BAC;
-        Tue, 11 Apr 2023 06:42:44 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id ED9CB321;
-        Tue, 11 Apr 2023 15:42:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1681220560;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oZ/3AiR5wKOvx5Zl/F4+bP51DgLLVwlnzMNwvAPy1CM=;
-        b=JRXIX3av1txQH6nBKk+l7fk43DQP36KVMSlzvFEaiUWKu2M7sFHiVHpKwxMKFMxqZK+Ybv
-        QAFnNKqHU/pvR/nwvChB8iEptjlmqYzgEIWXmZUicfPeEXGDqNFn4My8HNlWU770qBqPnQ
-        Go+K8W1/+4aCTxs6Q5ctm5yrRgdu/4iZ3UYutMalFqw254D95FazcPwcKaegYGR7hGaotg
-        wvhanilmvNpkjKaxm9zmFVxDiVt05hCmfyAI+jmiZm0IpL4D6T90QNLV3pB6Neq5RcLZOZ
-        2fmeBZNuy1OfNhv4Jvf6IijarggOFr3+NF8vP0jL9tCGQb2TZswprqSqjJw1TA==
+        with ESMTP id S229817AbjDKNpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:45:16 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F2FE51
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 06:45:14 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id z8so12290830lfb.12
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 06:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681220713;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i8j4IUlVj3riTiWQmjJ2d73DxaHhOYBTiZKwAU5TtVk=;
+        b=Nmxt/npRMsGRl91Njy5uOxNJ5ZRJhRyCTrLxKD/Im/NDTaIgtmneBfPNbAruinun7N
+         3xxyphT+PJ3k1wYimkETsSUmNMrA0nkqltYApc7EPmzqLqKmimOf3dDLFlTM4R7PT4fu
+         JwYNREFqbZPPnfJlXWHla/k3hr1P9Dd98fOJpXLHwGlp/f6k42UgDXZzPyVcAPCswcWC
+         e6LAjm9WFUKcS1GHS3AM9u2vteWpjLxasAlp4WhwJSeGA/5BFkp8BWklwpXInYHZRTxF
+         lQfp2paWZX3THOc3prZdCfhTi3oWEwv6UR8hcziugtLy+siHknPG5CddfAhl364umhVU
+         xadA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681220713;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i8j4IUlVj3riTiWQmjJ2d73DxaHhOYBTiZKwAU5TtVk=;
+        b=OOjVZJDVhEpYqPTvreRS3oznlPlLFOgQPXTUTQ9En4FZyITnrDCZzRaPs5HL+vP6EZ
+         sCtAKNq0mGMaIhXPEc2Dv0nTyZq7+8czsLPlMckU+AJWGKaVJ/Bsk+EJkBW9KVqVto+p
+         wUilzMkHIUbG9iW0Ie8prXSAtqLlTasGrFFeJS8t+LmdgVTG2qxb8+psVVQTKGifx7b1
+         PrSqXx8+gYKbwZrONTvsfhbVJQqRlbDXR09E1iB+Hzpi6JXi5ESKIT9flJhFZf8mCauM
+         m1MKZT5lcLCSekItndCWYQ7zBoMcIPze2QOa90TgbYdYem97BJ8IRfLt+IXrjCGL5C3o
+         weGA==
+X-Gm-Message-State: AAQBX9cy7/F045P3gz60B9ta4tYF9KyvPLtYgcHJDHq7TO0vgPVtV9OK
+        43W4qAhX7HlUGb+AoWJtuvNw1w==
+X-Google-Smtp-Source: AKy350adz8ggqqAG288YMHm5u14GdIex1vPv1WF39fLVqGlUbAg65w3Uv4Sc4D2fh9YQ6CmM4Vqpfw==
+X-Received: by 2002:a05:6512:11ef:b0:4db:3847:12f0 with SMTP id p15-20020a05651211ef00b004db384712f0mr3366560lfs.50.1681220713146;
+        Tue, 11 Apr 2023 06:45:13 -0700 (PDT)
+Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
+        by smtp.gmail.com with ESMTPSA id r6-20020a056512102600b004e843d6244csm2569541lfr.99.2023.04.11.06.45.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Apr 2023 06:45:12 -0700 (PDT)
+Message-ID: <6406469d-289b-af4e-83f8-8259f5dcaf00@linaro.org>
+Date:   Tue, 11 Apr 2023 15:45:11 +0200
 MIME-Version: 1.0
-Date:   Tue, 11 Apr 2023 15:42:39 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     andy.shevchenko@gmail.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,gcc-sc7180: document CX
+ power domain
+Content-Language: en-US
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] gpio: ds4520: Add ADI DS4520 Regulator Support
-In-Reply-To: <MN2PR03MB516879DCD6600827AEE2BDC9E7949@MN2PR03MB5168.namprd03.prod.outlook.com>
-References: <20230327130010.8342-1-okan.sahin@analog.com>
- <20230327130010.8342-3-okan.sahin@analog.com>
- <CACRpkda5G5b+At5s1WFudpQBQ6LDQxhE3fZj7eBhkZ=thvnQhg@mail.gmail.com>
- <MN2PR03MB51682210CADA6E33FB99052CE7939@MN2PR03MB5168.namprd03.prod.outlook.com>
- <CACRpkdZJA0DyzgLxm9HFeHO03rqNUff=avuV=VrGuJkkOg6wNQ@mail.gmail.com>
- <25e1fda4b6df2d10444d7eca3cd0e387@walle.cc>
- <CACRpkdYKEid8-0-7sBECNgSyW3kMRCsv3DeBVUzxo4z6p+Grnw@mail.gmail.com>
- <ZDBivYlwJ6zgaFTg@surfacebook>
- <MN2PR03MB516879DCD6600827AEE2BDC9E7949@MN2PR03MB5168.namprd03.prod.outlook.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <a3ca3e705b5b8668cd511fc15681c75f@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+        Taniya Das <tdas@codeaurora.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230408134820.76050-1-krzysztof.kozlowski@linaro.org>
+ <20230408134820.76050-2-krzysztof.kozlowski@linaro.org>
+ <4757c33c-7e71-262d-a51a-c5f9fb53ff41@linaro.org>
+ <d4a8054c-443e-d9ba-9641-ff721254d254@quicinc.com>
+ <c70c1a4d-50c5-2b50-18c9-7c46c3803cd4@linaro.org>
+ <2f9f9cdd-cfbe-ca22-7308-d6b1f0c1c455@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <2f9f9cdd-cfbe-ca22-7308-d6b1f0c1c455@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2023-04-09 16:25, schrieb Sahin, Okan:
->> Fri, Apr 07, 2023 at 03:48:25PM +0200, Linus Walleij kirjoitti:
->>> On Wed, Apr 5, 2023 at 3:57 PM Michael Walle <michael@walle.cc> 
->>> wrote:
->>> 
->>> > OTOH I'm not sure the driver is doing it correctly, because it also
->>> > seems to switch the pullup resisters together with the direction.
->>> > I'm not sure that is correct. So there might be just one register
->>> > involved after all and the GPIO_REGMAP should work again.
->>> 
->>> I'm pretty sure that should be in the .set_config() callback.
->>> 
->>> > Also, according to the datasheet this has some nv memory (to set the
->>> > initial state of the GPIOs [?]). So it should really be a
->>> > multi-function device. I'm not sure if this has to be considered
->>> > right from the beginning or if the device support can start with
->>> > GPIO only and later be transitioned to a full featured MFD (probably with nvmem
->> support).
->>> 
->>> That's a bit of a soft definition.
->>> 
->>> If the chip is *only* doing GPIO and nvram it can be a GPIO-only
->>> device I think.
->>> 
->>> The precedent is a ton of ethernet drivers with nvram for storing 
->>> e.g.
->>> the MAC address. We don't make all of those into MFDs, as the nvram 
->>> is
->>> closely tied to the one and only function of the block.
->> 
->> I agree with Linus. This should be part of the actual (main) driver 
->> for the chip as many
->> do (like USB to serial adapters that have GPIO capability).
 
-You mean the gpio driver is calling nvmem_register()? Yeah I agree, that
-should work.
 
-> I think gpio_regmap is not suitable for this driver as Michael stated.
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ds4520.pdf
-> Please check block diagram. There are two input registers that control
-> gpio state
-> so gpio_regmap does not look ok for this. Am I missing something?
+On 11.04.2023 15:31, Rajendra Nayak wrote:
+> 
+> On 4/11/2023 4:57 PM, Konrad Dybcio wrote:
+>>
+>>
+>> On 11.04.2023 06:56, Rajendra Nayak wrote:
+>>>
+>>>
+>>> On 4/8/2023 7:33 PM, Konrad Dybcio wrote:
+>>>>
+>>>>
+>>>> On 8.04.2023 15:48, Krzysztof Kozlowski wrote:
+>>>>> The GCC clock controller needs CX power domain, at least according to
+>>>>> DTS:
+>>>>>
+>>>>>     sc7180-trogdor-pompom-r3.dtb: clock-controller@100000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> ---
+>>>> +CC Rajendra (author of 5d6fc6321db1 ("arm64: dts: qcom:
+>>>> sc7180: Add required-opps for USB"))
+>>>>
+>>>> Rajendra, shouldn't SC7180 GCC have PM ops to make sure a vote
+>>>> is only there when AP is active?
+>> So IIUC, CX is never supposed to be shut down?
+> 
+> Atleast sc7180 and sc7280 do not support full CX shutdown (or power
+> collapse as its called), it only transitions to a Retention state
+> and even that in the system-wide suspend path only
+And won't outstanding votes on that resource prevent the system
+from entering a system-wide low power state?
 
-You mean F8/F9? That will work as they are for different GPIOs. What
-doesn't work with gpio-regmap is when you need to modify two different
-registers for one GPIO. Have a look at gpio_regmap_get() and
-gpio_regmap_set(). If the default gpio_regmap_simple_xlate() doesn't 
-work
-you can use your own .xlate() op.
-
-> Also, at this point I am not planning to add nvmem support.
-
-That is a pity, because that is the whole use case for this gpio 
-expander,
-no? "Programmable Replacement for Mechanical Jumpers and Switches"
-
--michael
+Konrad
+> 
+>>
+>> Konrad
+>>>
+>>> hmm, I am not quite sure why we would want the performance votes
+>>> from peripherals dropped when CPUs go down in idle?
+>>>
+>>>> Are all GDSCs powered by CX?
+>>>> If not, wouldn't this also need power-domain-names to
+>>>> facilitate e.g. potential MX-powered ones?
+>>>
+>>> For sc7180 GCC, yes.
+>>>
+>>>>
+>>>> Konrad
+>>>>>    .../devicetree/bindings/clock/qcom,gcc-sc7180.yaml         | 7 +++++++
+>>>>>    1 file changed, 7 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
+>>>>> index 06dce0c6b7d0..8bf9b6f49550 100644
+>>>>> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sc7180.yaml
+>>>>> @@ -32,6 +32,10 @@ properties:
+>>>>>          - const: bi_tcxo_ao
+>>>>>          - const: sleep_clk
+>>>>>    +  power-domains:
+>>>>> +    items:
+>>>>> +      - description: CX domain
+>>>>> +
+>>>>>    required:
+>>>>>      - compatible
+>>>>>      - clocks
+>>>>> @@ -45,6 +49,8 @@ unevaluatedProperties: false
+>>>>>    examples:
+>>>>>      - |
+>>>>>        #include <dt-bindings/clock/qcom,rpmh.h>
+>>>>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>>>>> +
+>>>>>        clock-controller@100000 {
+>>>>>          compatible = "qcom,gcc-sc7180";
+>>>>>          reg = <0x00100000 0x1f0000>;
+>>>>> @@ -52,6 +58,7 @@ examples:
+>>>>>                   <&rpmhcc RPMH_CXO_CLK_A>,
+>>>>>                   <&sleep_clk>;
+>>>>>          clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
+>>>>> +      power-domains = <&rpmhpd SC7180_CX>;
+>>>>>          #clock-cells = <1>;
+>>>>>          #reset-cells = <1>;
+>>>>>          #power-domain-cells = <1>;
