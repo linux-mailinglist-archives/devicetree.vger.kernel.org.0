@@ -2,238 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6741E6DDCD9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A528D6DDCE1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 15:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230451AbjDKNzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 09:55:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44760 "EHLO
+        id S230507AbjDKN4O convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 11 Apr 2023 09:56:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229957AbjDKNzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:55:21 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB15210FE;
-        Tue, 11 Apr 2023 06:55:20 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id bx42so21879299oib.6;
-        Tue, 11 Apr 2023 06:55:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681221320; x=1683813320;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4ZO7ezzSE2J/Q6kfu0V6nhJj8JV4tY/GZHsr0viCIQg=;
-        b=c++ag5pBCNz4L1Tgzj30Xtv9a9hOOu+kxW4Dnazck9f0YT2ZqmmKIf/RwWiGJRz+0Y
-         jUh8BSZ4tPm4nmUUhBbi9kllgKjGND48nYlpcjsVj/yhdFndwmqIr6QjmQTnCjwlMvG+
-         YyKL7WT+ArZAOjaBULRs1zVPn5e4u6Wvak/UVr6Y6OAaIgvrIg5mvLIGAD6jKzJ0vIfW
-         wWS3b2cL5mBX6IN/yqCL94Lr7OfLPzx3nL49v3z4qjS4ejIoWdB9avfrOQssV0nMi2QS
-         1xqItxnnJ4pOVw2CsIeaIh5V6QtQ0xPrMe1YnxWCI/1DFv8TKP8ikLzyeuShmnjqXYpg
-         yr7Q==
-X-Gm-Message-State: AAQBX9cCzeKHwyuZAoxX5JFgzvT+Qwvg5wO/GbIgvd3vTp+lBvqIIEuE
-        5wcYsfW9EkJV/bieZr32eQ==
-X-Google-Smtp-Source: AKy350Zknu9XdcP66k0cfxAwCQD/B6DUAgh2awz+0hWaJCNQBE/oSeXwvEvVidCKbiEVzCNEA+x/Kg==
-X-Received: by 2002:a05:6808:8e:b0:387:2075:59c with SMTP id s14-20020a056808008e00b003872075059cmr5793228oic.37.1681221320010;
-        Tue, 11 Apr 2023 06:55:20 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i128-20020acaea86000000b00386eff32f58sm5587706oih.13.2023.04.11.06.55.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Apr 2023 06:55:19 -0700 (PDT)
-Received: (nullmailer pid 2960222 invoked by uid 1000);
-        Tue, 11 Apr 2023 13:55:18 -0000
-Date:   Tue, 11 Apr 2023 08:55:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Brad Larson <blarson@amd.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
-        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
-        samuel@sholland.org, fancer.lancer@gmail.com,
-        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
-        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
-        ulf.hansson@linaro.org, vaishnav.a@ti.com, will@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v13 08/15] arm64: dts: Add AMD Pensando Elba SoC support
-Message-ID: <20230411135518.GA2952600-robh@kernel.org>
-References: <20230410184526.15990-1-blarson@amd.com>
- <20230410184526.15990-9-blarson@amd.com>
+        with ESMTP id S230490AbjDKN4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 09:56:13 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94F5C10FE;
+        Tue, 11 Apr 2023 06:56:07 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id C9FA924E02F;
+        Tue, 11 Apr 2023 21:56:04 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 11 Apr
+ 2023 21:56:04 +0800
+Received: from localhost.localdomain (113.72.145.176) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 11 Apr
+ 2023 21:56:03 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v4 00/10] Add new partial clock and reset drivers for StarFive JH7110
+Date:   Tue, 11 Apr 2023 21:55:48 +0800
+Message-ID: <20230411135558.44282-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230410184526.15990-9-blarson@amd.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [113.72.145.176]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 10, 2023 at 11:45:19AM -0700, Brad Larson wrote:
-> Add AMD Pensando common and Elba SoC specific device nodes
-> 
-> Signed-off-by: Brad Larson <blarson@amd.com>
-> ---
-> 
-> v11 changes:
-> - Delete reset-names
-> - Fix spi0 compatible to be specific 'amd,pensando-elba-ctrl'
-> 
-> v9 changes:
-> - Single node for spi0 system-controller and squash
->   the reset-controller child into parent
+This patch serises are base on the basic JH7110 SYSCRG/AONCRG
+drivers and add new partial clock drivers and reset supports
+about System-Top-Group(STG), Image-Signal-Process(ISP)
+and Video-Output(VOUT) for the StarFive JH7110 RISC-V SoC. These
+clocks and resets could be used by DMA, VIN and Display modules.
 
-Have you run this thru 'make dtbs_check'? I see at least one issue that 
-should report.
+Patch 1 adds struct members to support STG/ISP/VOUT resets.
 
-> ---
->  arch/arm64/boot/dts/amd/Makefile              |   1 +
->  arch/arm64/boot/dts/amd/elba-16core.dtsi      | 189 +++++++++++++++++
->  arch/arm64/boot/dts/amd/elba-asic-common.dtsi |  80 ++++++++
->  arch/arm64/boot/dts/amd/elba-asic.dts         |  28 +++
->  arch/arm64/boot/dts/amd/elba-flash-parts.dtsi | 106 ++++++++++
->  arch/arm64/boot/dts/amd/elba.dtsi             | 191 ++++++++++++++++++
->  6 files changed, 595 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amd/elba-16core.dtsi
->  create mode 100644 arch/arm64/boot/dts/amd/elba-asic-common.dtsi
->  create mode 100644 arch/arm64/boot/dts/amd/elba-asic.dts
->  create mode 100644 arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
->  create mode 100644 arch/arm64/boot/dts/amd/elba.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/amd/Makefile b/arch/arm64/boot/dts/amd/Makefile
-> index 68103a8b0ef5..8502cc2afbc5 100644
-> --- a/arch/arm64/boot/dts/amd/Makefile
-> +++ b/arch/arm64/boot/dts/amd/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_PENSANDO) += elba-asic.dtb
->  dtb-$(CONFIG_ARCH_SEATTLE) += amd-overdrive-rev-b0.dtb amd-overdrive-rev-b1.dtb
-> diff --git a/arch/arm64/boot/dts/amd/elba-16core.dtsi b/arch/arm64/boot/dts/amd/elba-16core.dtsi
-> new file mode 100644
-> index 000000000000..37aadd442db8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amd/elba-16core.dtsi
-> @@ -0,0 +1,189 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +/*
-> + * Copyright 2020-2022 Advanced Micro Devices, Inc.
-> + */
-> +
-> +/ {
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 { cpu = <&cpu0>; };
-> +				core1 { cpu = <&cpu1>; };
-> +				core2 { cpu = <&cpu2>; };
-> +				core3 { cpu = <&cpu3>; };
-> +			};
-> +
-> +			cluster1 {
-> +				core0 { cpu = <&cpu4>; };
-> +				core1 { cpu = <&cpu5>; };
-> +				core2 { cpu = <&cpu6>; };
-> +				core3 { cpu = <&cpu7>; };
-> +			};
-> +
-> +			cluster2 {
-> +				core0 { cpu = <&cpu8>; };
-> +				core1 { cpu = <&cpu9>; };
-> +				core2 { cpu = <&cpu10>; };
-> +				core3 { cpu = <&cpu11>; };
-> +			};
-> +
-> +			cluster3 {
-> +				core0 { cpu = <&cpu12>; };
-> +				core1 { cpu = <&cpu13>; };
-> +				core2 { cpu = <&cpu14>; };
-> +				core3 { cpu = <&cpu15>; };
-> +			};
-> +		};
-> +
-> +		/* CLUSTER 0 */
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x0>;
-> +			next-level-cache = <&l2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x1>;
-> +			next-level-cache = <&l2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x2>;
-> +			next-level-cache = <&l2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x3>;
-> +			next-level-cache = <&l2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		l2_0: l2-cache0 {
-> +			compatible = "cache";
-> +		};
-> +
-> +		/* CLUSTER 1 */
-> +		cpu4: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x100>;
-> +			next-level-cache = <&l2_1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu5: cpu@101 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x101>;
-> +			next-level-cache = <&l2_1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu6: cpu@102 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x102>;
-> +			next-level-cache = <&l2_1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu7: cpu@103 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a72";
-> +			reg = <0 0x103>;
-> +			next-level-cache = <&l2_1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		l2_1: l2-cache1 {
-> +			compatible = "cache";
+Patches 2 and 3 are about the System-Top-Group clock and reset
+generator(STGCRG) part. The first patch adds docunmentation to
+describe STG bindings, and the second patch adds clock driver to
+support STG clocks and resets as auxiliary device for JH7110.
 
-This is missing properties. If you don't see warnings, update dtschema.
+Patches 4 and 5 are about the Image-Signal-Process clock and reset
+gennerator(ISPCRG) part. The first patch adds docunmentation to
+describe ISP bindings, and the second patch adds clock driver to
+support ISP clocks and resets as auxiliary device for JH7110.
+And ISP clocks should power on and enable the SYSCRG clocks first
+before registering.
 
-Rob
+Patches 6 and 7 are about the Video-Output clock and reset
+generator(VOUTCRG) part. The first patch adds docunmentation to
+describe VOUT bindings, and the second patch adds clock driver to
+support VOUT clocks and resets as auxiliary device for JH7110.
+And VOUT clocks also should power on and enable the SYSCRG clocks
+first before registering.
+
+Patch 8 adds the maintainer who take charge of the STGCRG/ISPCRG/VOUTCRG
+for JH7110.
+Patch 9 adds external clocks which ISP and VOUT clock driver need.
+Patch 10 adds device node about STGCRG, ISPCRG and VOUTCRG to JH7110 dts.
+
+Patches 1, 3, 5, 7 and 8 are dependent on the patchset [1] which
+is about JH71x0 clock and reset driver (Accepted and will merge).
+Patchdes 9 and 10 are dependent on the patchset [1] and [2] which is
+about JH7110 device tree and PMU node.
+This patchset should be applied after the patchset [1], [2]:
+[1] https://lore.kernel.org/all/20230401111934.130844-1-hal.feng@starfivetech.com/
+[2] https://lore.kernel.org/all/20230116074259.22874-4-walker.chen@starfivetech.com/
+
+Changes since v3:
+- Rebased on the lastest JH71X0 clock and reset driver of patchset[1]
+  and modified the parameters of the register reset functions.
+- The patch 1 combined three commits on STG/ISP/VOUT resets into one.
+  And Changed the auxiliary_device_id name from
+  "clk_starfive_jh71x0.reset-*" to "clk_starfive_jh7110_sys.rst-*".
+- Added a maintainer in STARFIVE JH71X0 CLOCK DRIVERS.
+
+v3: https://lore.kernel.org/all/20230314124404.117592-1-xingyu.wu@starfivetech.com/
+
+Changes since v2: 
+Patch 1:
+- Dropped the modification of maintainers.
+- Modified clock and reset names in the dt-bindings header files.
+Patch 3:
+- Added 'Emil Renner Berthing' as the author.
+- Used 'default m' in Kconfig file.
+- Changed the flags of 'CLK_IGNORE_UNUSED' to 0 or 'CLK_IS_CRITICAL'.
+Patch 4:
+- Dropped the 'reset-names' property.
+- Shortened the clock and reset names in the dt-bindings header files.
+Pacth 6:
+- Used 'default m' in Kconfig file.
+- Changed the flags of 'CLK_IGNORE_UNUSED' to 0.
+- Set reset_control struct to a local variable because it just is used
+  one time in probe.
+Pacth 7:
+- Dropped the 'reset-names' property.
+Patch 9:
+- Used 'default m' in Kconfig file.
+- Set reset_control struct to a local variable because it just is used
+  one time in probe.
+Patch 10:
+- Changed the order of externel clock in alphanumerical order.
+Patch 11:
+- Dropped the 'reset-names' property in ispcrg and voutcrg node.
+
+v2: https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
+
+Changes since v1:
+- Modified the binding and dropped the indentation.
+- Removed the useless header files in the drivers.
+- Used an array lookup instead of a pile of conditions about parent
+  clocks' name.
+- Added clocks operation on driver remove.
+
+v1: https://lore.kernel.org/all/20230120024445.244345-1-xingyu.wu@starfivetech.com/
+
+Emil Renner Berthing (1):
+  clk: starfive: Add StarFive JH7110 System-Top-Group clock driver
+
+Xingyu Wu (9):
+  reset: starfive: jh7110: Add StarFive STG/ISP/VOUT resets support
+  dt-bindings: clock: Add StarFive JH7110 System-Top-Group clock and
+    reset generator
+  dt-bindings: clock: Add StarFive JH7110 Image-Signal-Process clock and
+    reset generator
+  clk: starfive: Add StarFive JH7110 Image-Signal-Process clock driver
+  dt-bindings: clock: Add StarFive JH7110 Video-Output clock and reset
+    generator
+  clk: starfive: Add StarFive JH7110 Video-Output clock driver
+  MAINTAINERS: Update maintainer of JH71x0 clock drivers
+  riscv: dts: starfive: jh7110: Add DVP and HDMI TX pixel external
+    clocks
+  riscv: dts: starfive: jh7110: Add STGCRG/ISPCRG/VOUTCRG nodes
+
+ .../clock/starfive,jh7110-ispcrg.yaml         |  87 +++++++
+ .../clock/starfive,jh7110-stgcrg.yaml         |  82 ++++++
+ .../clock/starfive,jh7110-voutcrg.yaml        |  90 +++++++
+ MAINTAINERS                                   |   1 +
+ .../jh7110-starfive-visionfive-2.dtsi         |   8 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  67 +++++
+ drivers/clk/starfive/Kconfig                  |  33 +++
+ drivers/clk/starfive/Makefile                 |   3 +
+ .../clk/starfive/clk-starfive-jh7110-isp.c    | 232 +++++++++++++++++
+ .../clk/starfive/clk-starfive-jh7110-stg.c    | 175 +++++++++++++
+ .../clk/starfive/clk-starfive-jh7110-vout.c   | 239 ++++++++++++++++++
+ .../reset/starfive/reset-starfive-jh7110.c    |  30 +++
+ .../dt-bindings/clock/starfive,jh7110-crg.h   |  74 ++++++
+ .../dt-bindings/reset/starfive,jh7110-crg.h   |  60 +++++
+ 14 files changed, 1181 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-ispcrg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-stgcrg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-isp.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-stg.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-vout.c
+
+
+base-commit: 197b6b60ae7bc51dd0814953c562833143b292aa
+prerequisite-patch-id: 388b8adbb0fe2daf4d07a21eafd4f1bd50ce2403
+prerequisite-patch-id: 1117ecaa40a353c667b71802ab34ecf9568d8bb2
+prerequisite-patch-id: b00c6b21fbd0353d88b7c9b09093ba30b765f45b
+prerequisite-patch-id: 08ec9027e8a5c6fdf201726833168c7464a9b94d
+prerequisite-patch-id: fb5120248e48fe1faf053ae0b490c92507ec2b44
+prerequisite-patch-id: 4b93d8d590b0a2abe7b4be5287232c494c35be4a
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: c09c4c68af017b8e5c97b515cb50b70c18a2e705
+prerequisite-patch-id: 0df8ccb0e848c2df4c2da95026494bebecede92d
+prerequisite-patch-id: 315303931e4b6499de7127a88113763f86e97e16
+prerequisite-patch-id: 40cb8212ddb024c20593f73d8b87d9894877e172
+prerequisite-patch-id: a1673a9e9f19d6fab5a51abb721e54e36636f067
+prerequisite-patch-id: d57cc467fb036241b9276320ff076c4a30d376d6
+prerequisite-patch-id: 6e563d68bc5dbf951d4ced17897f9cc4d56169fe
+prerequisite-patch-id: 61ec2caa21fd0fc60e57977f7d16d3f72b135745
+prerequisite-patch-id: 1387a7e87b446329dfc21f3e575ceae7ebcf954c
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: 9007c8610fdcd387592475949864edde874c20a2
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 0a0ac5a8a90655b415f6b62e324f3db083cdaaee
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+-- 
+2.25.1
+
