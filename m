@@ -2,279 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5C66DD37B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 08:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71CB76DD3EE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Apr 2023 09:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbjDKGyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 02:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34530 "EHLO
+        id S229771AbjDKHTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 03:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbjDKGyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 02:54:06 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66EA4273D
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 23:53:56 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id qb20so17319488ejc.6
-        for <devicetree@vger.kernel.org>; Mon, 10 Apr 2023 23:53:56 -0700 (PDT)
+        with ESMTP id S229990AbjDKHTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 03:19:14 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B57B2D5F;
+        Tue, 11 Apr 2023 00:19:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681196035;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rPII2+7UcEqicluRqHsNqDQVwcTL5rcH00gYMa5rTCc=;
-        b=nRiErdd+Bpp90CF+yP//jHteWDqjnYMwpw/g+EQ1g6NVjh00v568TXH/gi3vpExcvB
-         htdeVyNS7UU4Wwi/nS2iynIkSWg8J/ixJvkcd8Lu+1aQypjFtojHsSoqJlpwsIPSjw2B
-         RvKirWYEP6deBZPpiBxBgI3VTSJ+1QFF+FXCzt5qb6VDCmPmlka48S1M8J6OjkdttPmu
-         NTyM2KOoGybd9gwUcytos/XmlRxseBSaygq2AjWeHG4X20V+7WGhKf2QBTxdth41sNE7
-         qgsDo1p9yECnyebOlvoQubjN1ahAMskCSIaJkMKN0156H9DjMVCeP9zAnmWAVs4Fo6/3
-         vu+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681196035;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rPII2+7UcEqicluRqHsNqDQVwcTL5rcH00gYMa5rTCc=;
-        b=31ZtJEiZRd7HqNq1bR1b+uLcInD26UogrTZ0qEyD62659vZRf1L4gDJfhdS3y94jXd
-         v5pFntdOQFivUIPxok05+nVwrhti6oIo70gr8Bd1bvhAeKqv7wVhGUYNAnaxNc2P7TQ4
-         vcJ/LnN14E9E2Tld13yecGyEN+mUyMWo42sHHOCCn+GIRBkMOWEiiw7sYhDC11uLpIW6
-         M0d6k5pErh484frMjI7h6ySkXz2WvD0YrHzgNIhmasVNhLtb3iAz+qWVUphADGbmRmRD
-         5u2te044VVESmeODkUPhc9FFDbSIjEVijgcEoawbStuekCz6AlOwjF5UoUiA0po1c0bX
-         q2NA==
-X-Gm-Message-State: AAQBX9dhjsQJotKOOeQj6kBECsIjRFnIiREYUVzvwcvwewPE/MBXQQR4
-        loZzvC4apZsCZec5Zh8wEdOBdl/nq8PaPBWAKTBrRQ==
-X-Google-Smtp-Source: AKy350bXP0CmXLGmI+Yl125Df9uD7iGcOyKtLb5Q644W9e+w6r4y4frohYTK896anzu/XGtJ+KT31g==
-X-Received: by 2002:a17:907:3ea3:b0:94a:62d3:ce1e with SMTP id hs35-20020a1709073ea300b0094a62d3ce1emr8538936ejc.40.1681196034752;
-        Mon, 10 Apr 2023 23:53:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:dad2:72b7:3626:af61? ([2a02:810d:15c0:828:dad2:72b7:3626:af61])
-        by smtp.gmail.com with ESMTPSA id xd4-20020a170907078400b0094a941ad8f0sm1577541ejb.193.2023.04.10.23.53.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 23:53:53 -0700 (PDT)
-Message-ID: <55a82f21-2cfe-cc75-58b3-c1bb96835582@linaro.org>
-Date:   Tue, 11 Apr 2023 08:53:52 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1681197545; x=1712733545;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=cZXvDbQl28WDJ14V+pbr3auBRhAtraEXByP7krH+22w=;
+  b=OH5n7I0xofBq6b92yFit7gh4J3F5VOfyRTzTFbgdbYHaChOAYkpCUqaf
+   pPqK2I20kQfDQ6IqPlxLQSnxJUJHMrEYLTC0UoVMt8Tt9ZWy5qziiFBDs
+   bJr1gVs726a1X8+laQPGi/7Wns19G0hnhESJUeEoktAUuShroUyrDnk3F
+   wBp71Vhbw7GG6KQyX45Fp/dEfUDWQnmtlv1mLQuC7cKhLJ3wziBSHDybs
+   icZnic1Bu4BEVIDDOhcC+r+l14K+/pTC00MmBJft4fP901PawL+BqwAXn
+   AowmFP5JDDWJKpLj05sO2TL24F0eXKOIOzJzJHMmzZKstFwsa/FsQpzxx
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,336,1673910000"; 
+   d="scan'208";a="30238425"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 11 Apr 2023 09:19:03 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 11 Apr 2023 09:19:03 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 11 Apr 2023 09:19:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1681197543; x=1712733543;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=cZXvDbQl28WDJ14V+pbr3auBRhAtraEXByP7krH+22w=;
+  b=mHqLQAIIzETjpZruemlbNjCIUNhvXfYXusdx26zUGGBneQUQbsVA2ii2
+   pSpKYbrf3XGr2QuLZntqHTIHjE4qIxlSFIw9MRNPnoFnhJWT9gf1MmZtJ
+   qiWTtG9Q13uFbB2TD74+VBqrUUpxL92AaiVECzNa6+6vWXsPfmCScxedC
+   ea2+W7Nv5u43AvA/PtPCsSuhc+Eix4KvodlM0KWPszi693gORbI9UYDgy
+   jc/gKJEedDm6u5gSkQDD4agJUAsgae4pQBsc7NID6TIYXVd98u8eAxTeb
+   lIAWMW6gUrg7aJa2ogPi9eSUISXbSR7/3dAI0bvQsUuAjlnuXA0PLRpjx
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,336,1673910000"; 
+   d="scan'208";a="30238424"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 11 Apr 2023 09:19:02 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A6132280072;
+        Tue, 11 Apr 2023 09:19:02 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     andy.shevchenko@gmail.com
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
+Date:   Tue, 11 Apr 2023 09:19:01 +0200
+Message-ID: <3231223.aeNJFYEL58@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <ZDBnnKy7QF0KZuZd@surfacebook>
+References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com> <ZDBnnKy7QF0KZuZd@surfacebook>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 2/5] dt-bindings: hwmon: intel: add hardware monitor
- bindings for SoCFPGA
-Content-Language: en-US
-To:     dinh.nguyen@linux.intel.com, linux-hwmon@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com, linux@roeck-us.net
-References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
- <20230410153314.27127-2-dinh.nguyen@linux.intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230410153314.27127-2-dinh.nguyen@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/04/2023 17:33, dinh.nguyen@linux.intel.com wrote:
-> From: Dinh Nguyen <dinh.nguyen@linux.intel.com>
-> 
-> Document the hardware monitoring bindings for SoCFPGA 64-bit platforms.
-> 
-> Signed-off-by: Dinh Nguyen <dinh.nguyen@linux.intel.com>
-> ---
->  .../bindings/hwmon/intel,socfpga-hwmon.yaml   | 241 ++++++++++++++++++
->  1 file changed, 241 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/intel,socfpga-hwmon.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/intel,socfpga-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/intel,socfpga-hwmon.yaml
-> new file mode 100644
-> index 000000000000..ec9d9eabdc37
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/intel,socfpga-hwmon.yaml
-> @@ -0,0 +1,241 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/intel,socfpga-hwmon.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel SoCFPGA Hardware monitor
-> +
-> +maintainers:
-> +  - Dinh Nguyen <dinh.nguyen@linux.intel.com>
-> +
-> +description: |
-> +  The Intel SoCFPGA hardware monitor unit provides on-chip voltage and
-> +  temperature sensors. You can use these sensors to monitor external
-> +  voltages and on-chip operating conditions such as internal power rails
-> +  and on-chip junction temperatures.
-> +
-> +  The specific sensor configurations vary for each device family and
-> +  each device within a family does not offer all potential sensor
-> +  options. The information below attempts to illustrate the super set of
-> +  possible sensor options that are potentially available within each
-> +  device family, but the user should check the documentation for the
-> +  specific device they are using to verify which sensor options it
-> +  actually provides.
-> +
-> +  Stratix 10 Device Family
-> +
-> +    Stratix 10 Voltage Sensors
-> +
-> +      page 0, channel 2 = 0.8V VCC
-> +      page 0, channel 3 = 1.0V VCCIO
-> +      page 0, channel 6 = 0.9V VCCERAM
-> +
-> +    Stratix 10 Temperature Sensors
-> +
-> +      page 0, channel 0 = main die
-> +      page 0, channel 1 = tile bottom left
-> +      page 0, channel 2 = tile middle left
-> +      page 0, channel 3 = tile top left
-> +      page 0, channel 4 = tile bottom right
-> +      page 0, channel 5 = tile middle right
-> +      page 0, channel 6 = tile top right
-> +      page 0, channel 7 = hbm2 bottom
-> +      page 0, channel 8 = hbm2 top
-> +
-> +  Agilex Device Family
-> +
-> +    Agilex Voltage Sensors
-> +
-> +      page 0, channel 2 = 0.8V VCC
-> +      page 0, channel 3 = 1.8V VCCIO_SDM
-> +      page 0, channel 4 = 1.8V VCCPT
-> +      page 0, channel 5 = 1.2V VCCRCORE
-> +      page 0, channel 6 = 0.9V VCCH
-> +      page 0, channel 7 = 0.8V VCCL
-> +
-> +    Agilex Temperature Sensors
-> +
-> +      page 0, channel 0 = main die sdm max
-> +      page 0, channel 1 = main die sdm 1
-> +
-> +      page 1, channel 0 = main die corner bottom left max
-> +      page 1, channel 1 = main die corner bottom left 1
-> +      page 1, channel 2 = main die corner bottom left 2
-> +
-> +      page 2, channel 0 = main die corner top left max
-> +      page 2, channel 1 = main die corner top left 1
-> +      page 2, channel 2 = main die corner top left 2
-> +
-> +      page 3, channel 0 = main die corner bottom right max
-> +      page 3, channel 1 = main die corner bottom right 1
-> +      page 3, channel 2 = main die corner bottom right 2
-> +
-> +      page 4, channel 0 = main die corner top right max
-> +      page 4, channel 1 = main die corner top right 1
-> +      page 4, channel 2 = main die corner top right 2
-> +
-> +      page 5, channel 0 = tile die bottom left max
-> +      page 5, channel 1 = tile die bottom left 1
-> +      page 5, channel 6..2 = tile die bottom left 6..2 R-tile only
-> +      page 5, channel 5..2 = tile die bottom left 5..2 F-tile only
-> +      page 5, channel 4..2 = tile die bottom left 4..2 E-tile only
-> +
-> +      page 7, channel 0 = tile die top left max
-> +      page 7, channel 1 = tile die top left 1
-> +      page 7, channel 6..2 = tile die top left 6..2 R-tile only
-> +      page 7, channel 5..2 = tile die top left 5..2 F-tile only
-> +      page 7, channel 4..2 = tile die top left 4..2 E-tile only
-> +
-> +      page 8, channel 0 = tile die bottom right max
-> +      page 8, channel 1 = tile die bottom right 1
-> +      page 8, channel 6..2 = tile die bottom right 6..2 R-tile only
-> +      page 8, channel 5..2 = tile die bottom right 5..2 F-tile only
-> +      page 8, channel 4..2 = tile die bottom right 4..2 E-tile only
-> +
-> +      page 10, channel 0 = tile die top right max
-> +      page 10, channel 1 = tile die top right 1
-> +      page 10, channel 6..2 = tile die top right 6..2 R-tile only
-> +      page 10, channel 5..2 = tile die top right 5..2 F-tile only
-> +      page 10, channel 4..2 = tile die top right 4..2 E-tile only
-> +
-> +  N5X Device Family
-> +
-> +    N5X Voltage Sensors
-> +
-> +      page 0, channel 2 = 0.8V VDD
-> +      page 0, channel 3 = 0.8V VDD_SDM
-> +      page 0, channel 4 = 1.8V VCCADC
-> +      page 0, channel 5 = 1.8V VCCPD
-> +      page 0, channel 6 = 1.8V VCCIO_SDM
-> +      page 0, channel 7 = 0.8V VDD_HPS
-> +
-> +    N5X Temperature Sensors
-> +
-> +      page 0, channel 0 = main die
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - intel,socfpga-hwmon
+Hi Andy,
 
-You should have SoC specific compatibles, followed by one specific or by
-generic.
+Am Freitag, 7. April 2023, 20:57:32 CEST schrieb andy.shevchenko@gmail.com:
+> Thu, Apr 06, 2023 at 11:33:41AM +0200, Alexander Stein kirjoitti:
+> > Hello everyone,
+> >=20
+> > thanks for the feedback I've received. This is the first non-RFC series
+> > for
+> > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
+> >=20
+> > Changes compared to RFC v2 are mentioned in each patch.
+>=20
+> Reading the (poor?) documentation does not clarify the use case.
+> Looking at them I think that this is can be implemented as debounce.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The sensor mapping address is denoted by the lower 16-bits being
-> +      the channel mask location that defines the channel number.
-> +      The upper 16-bits denotes the page number.
-> +      The bit mask of 0x1 represents channel 1. The supported
-> +      page and channel is dependent on the SoCFPGA variant.
-> +      Page number greater than 0 is only supported on the
-> +      temperature sensors.
-> +
-> +  temperature:
-> +    description:
-> +      Specifies the possible mappings of temperature sensors
-> +      diodes on the SoCFPGA main die and tile die.
+Debounce for GPIOs? There is nothing like that yet.
 
-What's this? No ref/type, not constraints?
+> Also I have no clue why it's so important that we _need_ to have a
+> driver for this. We have plenty of consumer drivers that implement
+> delays on ramping up or down or whatever if they need.
 
-> +
-> +  voltage:
-> +    description:
-> +      Specifies the possible mappings of the voltage sensors on the
-> +      SoCFPGA analog to digital converter of the Secure Device Manager
-> +      (SDM).
+But this delay I am dealing with is actually not consumer dependent, e.g. a=
+=20
+power-on delay specified in a datasheet. Instead this driver deals with a=20
+platform-specific curiosity, e.g. RC-circuit on an open-drain output. So th=
+is=20
+is something which sits inbetween ICs.
+In the RFC we came to the conclusion to not adjust (each) consumer to deal=
+=20
+with this, given this will be rarely used. Instead provide a generic way fo=
+r=20
+specifying this delay.
 
-Same here.
+> Which part(s) did I got wrong?
 
-> +
-> +  input:
-> +    description:
-> +      Specifies each sensor.
-
-And here.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    temp_volt {
-
-No underscores in node names.
-
-> +      compatible = "intel,socfpga-hwmon";
-> +      voltage {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-So this is object?
-
-
+Maybe there needs to be an explicit example in the bindings document what's=
+=20
+the actual issue to deal with.
+Right now if a GPIO is set, it is expected the signal on the receiver side =
+has=20
+changed as well within a negligible time as well. But due to external reaso=
+ns=20
+(see RC_curcuit above) the change on the receiver side can occur much later=
+,=20
+>100ms in my case.
 
 Best regards,
-Krzysztof
+Alexander
+
+> P.S. Are we going to have a _driver_ per each subtle feature like this?
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
