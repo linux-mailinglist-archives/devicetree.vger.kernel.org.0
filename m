@@ -2,286 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7816DF1CC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 12:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 505016DF1F5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 12:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231127AbjDLKSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 06:18:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33424 "EHLO
+        id S230371AbjDLKag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 06:30:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbjDLKSB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 06:18:01 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7965730FF;
-        Wed, 12 Apr 2023 03:17:59 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id qa44so27146136ejc.4;
-        Wed, 12 Apr 2023 03:17:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681294678;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PcDUlmxRY10X0YHmhy/Fi+Rk8z1h3TiNmSt5ErLw9W4=;
-        b=DGfPyUoDRTIQzp1lmPfZIF7Ok/pIl6tEBRG4Fz9fac09VFqNNEQFoztcxaUPunqdA0
-         iujWFxf9VBvUzff6T33wh6G7mrq3dZK54zcmaUMm5Oegj2OzfQSQpEinN2TLVu/3mOwY
-         TFQzRTk5YZ7kGXA6lYAG3D19pmHk/AabQrtra3tb5zlEDq0X8LeQV1u3x27KzokkTwra
-         XM0le3PAkgp7p8vbVMQmK/WhMDNCCAyd6rCQ20dso1NT0TPtmAucC43ilWNXMfyz+4I8
-         k6C48JpiFfJN9SG57JzH2O5iRRvx/HqqCcNFUnN2qjxgIuVjMZaOWYxbURmrBRjTQ8lw
-         vczw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681294678;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PcDUlmxRY10X0YHmhy/Fi+Rk8z1h3TiNmSt5ErLw9W4=;
-        b=jrm4Hf6BSGUku21QekAiYrrFpNkp8zgfi1gELUeW2zJkJBpy+EaDOrdUUblVSg2t8A
-         Ey0/S9mSf3DPj5s4O25e+KYqBWdfhMY83+eKDX6LcfN4mZPJQK/lNkyqPLJM9xSLQP3G
-         o/n9Ifcl4P8+7/VyI1iH+4cWchu92LtdniEVQZfxP9czedqz8HXnqagsaOFLCSrO/gBq
-         yNpl/RbafsMMrGREmlU66fJRU3t8MJYPhQMe1YO06v+wT8DQp7cquJ6ifMvwuEIGUUVN
-         BoQT5tQEtYttLZR6mfQeQt5MIjdkuoWob1kUK5Jew55rQbPyxesniPjGp7p5oLljaU3e
-         2JDg==
-X-Gm-Message-State: AAQBX9ete9IHQPTesDopQqbptlvV9/aOg71WbDtdbZbeCyWF+9PgeH1d
-        xr1lbHGIvTD7qP9ndKYRnWtq8MHpI23oJ+bujFg=
-X-Google-Smtp-Source: AKy350a/P8S0sd/XT625mO06xi/NHGq3G+kmgZqDIKpER/L+xgfhmjOBoRRCob3Y7jllm2lR+6dyFPfl1+c481gx7Hw=
-X-Received: by 2002:a17:906:9f0c:b0:949:87e1:5b32 with SMTP id
- fy12-20020a1709069f0c00b0094987e15b32mr2986699ejc.9.1681294677803; Wed, 12
- Apr 2023 03:17:57 -0700 (PDT)
+        with ESMTP id S229784AbjDLKa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 06:30:29 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118776E80;
+        Wed, 12 Apr 2023 03:30:25 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33CAUFws046650;
+        Wed, 12 Apr 2023 05:30:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681295415;
+        bh=0FzCz5eeJRH2yU9foXR8AIy2YrmkIhw88/pWp8ZrEDI=;
+        h=From:To:CC:Subject:Date;
+        b=nFRjoRiXkWRL1ujv2zYSW6eCJCNFujrW/ipxJw2otZ5dd+XXKjgOBx0ahesbK9+qb
+         LiCCWuAMOFrSIPkslnF5/T4nSkTHc7jm6M3lyKvc4bGFqfaJXg9REC0ojcmssPabYE
+         Ut9tze+oLxuSr0dwgqiotOhbgJhxXKMgdwTo4T9w=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33CAUF5Q008413
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Apr 2023 05:30:15 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 12
+ Apr 2023 05:30:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 12 Apr 2023 05:30:15 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33CAUEgs089881;
+        Wed, 12 Apr 2023 05:30:14 -0500
+Received: from localhost (uda0501179.dhcp.ti.com [10.24.69.114])
+        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 33CAUDJv028919;
+        Wed, 12 Apr 2023 05:30:14 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+Subject: [PATCH v8 0/4] Introduce PRU platform consumer API
+Date:   Wed, 12 Apr 2023 16:00:08 +0530
+Message-ID: <20230412103012.1754161-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230406111142.74410-1-minda.chen@starfivetech.com> <20230406111142.74410-2-minda.chen@starfivetech.com>
-In-Reply-To: <20230406111142.74410-2-minda.chen@starfivetech.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Wed, 12 Apr 2023 18:17:46 +0800
-Message-ID: <CAEUhbmVC6cx78G=-3FON8=B2rFOn4aU5z58gxeVY4t_U6k7eOA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-binding: pci: add JH7110 PCIe dt-binding documents.
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 6, 2023 at 7:59=E2=80=AFPM Minda Chen <minda.chen@starfivetech.=
-com> wrote:
->
-> Add PCIe controller driver dt-binding documents
-> for StarFive JH7110 SoC platform.
->
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../bindings/pci/starfive,jh7110-pcie.yaml    | 163 ++++++++++++++++++
->  1 file changed, 163 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110=
--pcie.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.y=
-aml b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
-> new file mode 100644
-> index 000000000000..fa4829766195
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
-> @@ -0,0 +1,163 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/starfive,jh7110-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 PCIe 2.0 host controller
-> +
-> +maintainers:
-> +  - Minda Chen <minda.chen@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-pcie
+Hi All,
+The Programmable Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS
+or simply PRUSS) on various TI SoCs consists of dual 32-bit RISC cores
+(Programmable Real-Time Units, or PRUs) for program execution.
 
-Since this is a PLDA IP that is likely to be reused by other vendors,
-should this indicate the PLDA in the string?
+There are 3 foundation components for TI PRUSS subsystem: the PRUSS platform
+driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All of them have
+already been merged and can be found under:
+1) drivers/soc/ti/pruss.c
+   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+2) drivers/irqchip/irq-pruss-intc.c
+   Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+3) drivers/remoteproc/pru_rproc.c
+   Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
 
-Or the file name should be renamed to something like the synopsis dw-pcie?
+The programmable nature of the PRUs provide flexibility to implement custom
+peripheral interfaces, fast real-time responses, or specialized data handling.
+Example of a PRU consumer drivers will be: 
+  - Software UART over PRUSS
+  - PRU-ICSS Ethernet EMAC
 
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: reg
-> +      - const: config
-> +
-> +  msi-parent: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: noc
-> +      - const: tl
-> +      - const: axi_mst0
-> +      - const: apb
-> +
-> +  resets:
-> +    items:
-> +      - description: AXI MST0 reset
-> +      - description: AXI SLAVE reset
-> +      - description: AXI SLAVE0 reset
-> +      - description: PCIE BRIDGE reset
-> +      - description: PCIE CORE reset
-> +      - description: PCIE APB reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: mst0
-> +      - const: slv0
-> +      - const: slv
-> +      - const: brg
-> +      - const: core
-> +      - const: apb
-> +
-> +  starfive,stg-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      items:
-> +        - description: phandle to System Register Controller stg_syscon =
-node.
-> +        - description: register0 offset of STG_SYSCONSAIF__SYSCFG regist=
-er for PCIe.
-> +        - description: register1 offset of STG_SYSCONSAIF__SYSCFG regist=
-er for PCIe.
-> +        - description: register2 offset of STG_SYSCONSAIF__SYSCFG regist=
-er for PCIe.
-> +        - description: register3 offset of STG_SYSCONSAIF__SYSCFG regist=
-er for PCIe.
-> +    description:
-> +      The phandle to System Register Controller syscon node and the offs=
-et
-> +      of STG_SYSCONSAIF__SYSCFG register for PCIe. Total 4 regsisters of=
-fset
-> +      for PCIe.
-> +
-> +  pwren-gpios:
-> +    description: Should specify the GPIO for controlling the PCI bus dev=
-ice power on.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  interrupt-controller:
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 0
-> +
-> +      '#interrupt-cells':
-> +        const: 1
-> +
-> +      interrupt-controller: true
-> +
-> +    required:
-> +      - '#address-cells'
-> +      - '#interrupt-cells'
-> +      - interrupt-controller
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +  - reg-names
-> +  - "#interrupt-cells"
-> +  - interrupts
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - msi-controller
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        pcie0: pcie@2B000000 {
-> +            compatible =3D "starfive,jh7110-pcie";
-> +            #address-cells =3D <3>;
-> +            #size-cells =3D <2>;
-> +            #interrupt-cells =3D <1>;
-> +            reg =3D <0x0 0x2B000000 0x0 0x1000000>,
-> +                  <0x9 0x40000000 0x0 0x10000000>;
-> +            reg-names =3D "reg", "config";
-> +            device_type =3D "pci";
-> +            starfive,stg-syscon =3D <&stg_syscon 0xc0 0xc4 0x130 0x1b8>;
-> +            bus-range =3D <0x0 0xff>;
-> +            ranges =3D <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0=
-x08000000>,
-> +                     <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x4=
-0000000>;
-> +            interrupt-parent =3D <&plic>;
-> +            interrupts =3D <56>;
-> +            interrupt-map-mask =3D <0x0 0x0 0x0 0x7>;
-> +            interrupt-map =3D <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
-> +                            <0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
-> +                            <0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
-> +                            <0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
-> +            msi-parent =3D <&pcie0>;
-> +            msi-controller;
-> +            clocks =3D <&syscrg 86>,
-> +                     <&stgcrg 10>,
-> +                     <&stgcrg 8>,
-> +                     <&stgcrg 9>;
-> +            clock-names =3D "noc", "tl", "axi_mst0", "apb";
-> +            resets =3D <&stgcrg 11>,
-> +                     <&stgcrg 12>,
-> +                     <&stgcrg 13>,
-> +                     <&stgcrg 14>,
-> +                     <&stgcrg 15>,
-> +                     <&stgcrg 16>;
-> +
-> +            pcie_intc0: interrupt-controller {
-> +                #address-cells =3D <0>;
-> +                #interrupt-cells =3D <1>;
-> +                interrupt-controller;
-> +            };
-> +        };
-> +    };
-> --
+In order to make usage of common PRU resources and allow the consumer drivers 
+to configure the PRU hardware for specific usage the PRU API is introduced.
 
-Regards,
-Bin
+This is the v8 of the old patch series [10].
+
+Changes from v7 [10] to v8:
+*) Addressed Mathieu's comments and moved pruss related API definitions to
+linux/pruss_driver.h
+*) Moved enum pruss_mem, pruss_gp_mux_sel, pruss_gpi_mode, pru_type and struct
+pruss_mem_region from remoteproc/pruss.h to linux/pruss_driver.h as asked by
+Mathieu.
+
+Changes from v6 [9] to v7:
+*) Addressed Simon's comment on patch 3 of this series and dropped unnecassary
+macros from the patch.
+
+Changes from v5 [1] to v6:
+*) Added Reviewed by tags of Roger and Tony to the patches.
+*) Added Acked by tag of Mathieu to patch 2 of this series.
+*) Added NULL check for @mux in pruss_cfg_get_gpmux() API.
+*) Added comment to the pruss_get() function documentation mentioning it is
+expected the caller will have done a pru_rproc_get() on @rproc.
+*) Fixed compilation warning "warning: ‘pruss_cfg_update’ defined but not used"
+in patch 3 by squashing patch 3 [7] and patch 5 [8] of previous revision
+together. Squashed patch 5 instead of patch 4 with patch 3 because patch 5 uses
+both read() and update() APIs where as patch 4 only uses update() API.
+Previously pruss_cfg_read()/update() APIs were intoroduced in patch 3
+and used in patch 4 and 5. Now these APIs are introduced as well as used in 
+patch 3.
+
+Changes from v4 [2] to v5:
+*) Addressed Roger's comment to change function argument in API 
+pruss_cfg_xfr_enable(). Instead of asking user to calcualte mask, now user
+will just provide the pru_type and mask will be calcualted inside the API.
+*) Moved enum pru_type from pru_rproc.c to include/linux/remoteproc/pruss.h
+in patch 4 / 5.
+*) Moved enum pruss_gpi_mode from patch 3/5 to patch 4/5 to introduce this
+enum in same patch as the API using it.
+*) Moved enum pruss_gp_mux_sel from patch 3/5 to patch 5/5 to introduce this
+enum in same patch as the API using it.
+*) Created new headefile drivers/soc/ti/pruss.h, private to PRUSS as asked by
+Roger. Moved all private definitions and pruss_cfg_read () / update ()
+APIs to this newly added headerfile.
+*) Renamed include/linux/pruss_driver.h to include/linux/pruss_internal.h as
+suggested by Andrew and Roger.
+
+Changes from v3 [3] to v4:
+*) Added my SoB tags in all patches as earlier SoB tags were missing in few
+patches.
+*) Added Roger's RB tags in 3 patches.
+*) Addressed Roger's comment in patch 4/5 of this series. Added check for 
+   invalid GPI mode in pruss_cfg_gpimode() API.
+*) Removed patch [4] from this series as that patch is no longer required.
+*) Made pruss_cfg_read() and pruss_cfg_update() APIs internal to pruss.c by
+   removing EXPORT_SYMBOL_GPL and making them static. Now these APIs are 
+   internal to pruss.c and PRUSS CFG space is not exposed.
+*) Moved APIs pruss_cfg_gpimode(), pruss_cfg_miirt_enable(), 
+   pruss_cfg_xfr_enable(), pruss_cfg_get_gpmux(), pruss_cfg_set_gpmux() to
+   pruss.c file as they are using APIs pruss_cfg_read / update. 
+   Defined these APIs in pruss.h file as other drivers use these APIs to 
+   perform respective operations.
+
+Changes from v2 to v3:
+*) No functional changes, the old series has been rebased on linux-next (tag:
+next-20230306).
+
+This series depends on another series which is already merged in the remoteproc
+tree [5] and is part of v6.3-rc1. This series and the remoteproc series form 
+the PRUSS consumer API which can be used by consumer drivers to utilize the 
+PRUs.
+
+One example of the consumer driver is the PRU-ICSSG ethernet driver [6],which 
+depends on this series and the remoteproc series [5].
+
+[1] https://lore.kernel.org/all/20230323062451.2925996-1-danishanwar@ti.com/
+[2] https://lore.kernel.org/all/20230313111127.1229187-1-danishanwar@ti.com/
+[3] https://lore.kernel.org/all/20230306110934.2736465-1-danishanwar@ti.com/
+[4] https://lore.kernel.org/all/20230306110934.2736465-6-danishanwar@ti.com/
+[5] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/#t
+[6] https://lore.kernel.org/all/20230210114957.2667963-1-danishanwar@ti.com/
+[7] https://lore.kernel.org/all/20230323062451.2925996-4-danishanwar@ti.com/
+[8] https://lore.kernel.org/all/20230323062451.2925996-6-danishanwar@ti.com/
+[9] https://lore.kernel.org/all/20230331112941.823410-1-danishanwar@ti.com/
+[10] https://lore.kernel.org/all/20230404115336.599430-1-danishanwar@ti.com/
+
+Thanks and Regards,
+Md Danish Anwar
+
+Andrew F. Davis (1):
+  soc: ti: pruss: Add pruss_{request,release}_mem_region() API
+
+Suman Anna (2):
+  soc: ti: pruss: Add pruss_cfg_read()/update(),
+    pruss_cfg_get_gpmux()/set_gpmux() APIs
+  soc: ti: pruss: Add helper functions to set GPI mode, MII_RT_event and
+    XFR
+
+Tero Kristo (1):
+  soc: ti: pruss: Add pruss_get()/put() API
+
+ drivers/remoteproc/pru_rproc.c |  15 --
+ drivers/soc/ti/pruss.c         | 258 +++++++++++++++++++++++++++++++++
+ drivers/soc/ti/pruss.h         |  88 +++++++++++
+ include/linux/pruss_driver.h   | 123 ++++++++++++++++
+ 4 files changed, 469 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/soc/ti/pruss.h
+
+-- 
+2.34.1
+
