@@ -2,82 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 883626DFCDF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31C5F6DFD21
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjDLRpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 13:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47242 "EHLO
+        id S229593AbjDLR6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:58:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjDLRpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:45:54 -0400
-Received: from sender3-op-o19.zoho.com (sender3-op-o19.zoho.com [136.143.184.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32DED4EEA;
-        Wed, 12 Apr 2023 10:45:49 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681321506; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=cNGVRv7eKsGOjCKvg2uYtWqlSufHiEoKNQywk8rTaf96M5CzDeCJxf/NUylHApDJLKNuL/TqixqBPpEMTFY6fFSU1sFOtq/mmtbna4viPksXbsKW8nH7le+RU1e0582J7RCmTpXp72lUFoL4h8e9MCVl7g+SoeLqIQLXOlOjMwQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1681321506; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=gBNrHe9ZW+eOs2pOSkknYiLXYHRJR067BuOYoakffbY=; 
-        b=jw4hdoKKoSHw75qQr8HDIkHBf8gOxDHvkLSVr1yHA3cD6EOSkSEEqfYZ1GOxUeY9QouVWNyGkf9rLqiBuntpdUzqJ++PBxZK7oISiiesNGJnI88lFrwy0lP0lp/XQ0dOyQh1PBFw+aRRQS5r0NhMUfUbvPUx0XbMJmQwPVAYgdw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1681321506;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=gBNrHe9ZW+eOs2pOSkknYiLXYHRJR067BuOYoakffbY=;
-        b=h1Rl3UUw+HsXoJklhYXycGX0FORTnzR/skaZI5oR/pVl9L5W2KIqwyEMuLP+cp+v
-        kqTV99QSOOMrGkDErsRO65t6Rn1tU20pYwk4xUF71NYnEPTgF3Hpz7m5Zoi14z/QCi8
-        zyA3K1J9/OLAPj2EMBcA//gsOPS09ZmADByWgNTM=
-Received: from [10.10.9.4] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1681321503790696.0069063619653; Wed, 12 Apr 2023 10:45:03 -0700 (PDT)
-Message-ID: <2b23a4bf-cacc-cb6c-f0a4-e71f640729cc@arinc9.com>
-Date:   Wed, 12 Apr 2023 20:44:53 +0300
+        with ESMTP id S229560AbjDLR6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:58:14 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE1D61A9
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:58:13 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6a4213bfbb2so26868a34.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:58:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681322292; x=1683914292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d2uw0pnbO7YgaFGMc7HjwyNcPXnRtQStNSMvy/NZNMw=;
+        b=CRINQtglWRDFKrsCRyvGOzktaOvab5x2F96gRppWJOzYoS862rqLvBuQGiHPG+vZRq
+         vWKFw1rYOoYQ/XnyCN69hnv6NBOlvUDUg0m7k7i4Z6B7jGmLDjBwKU7g8ev7GrJJ9cNY
+         gaNzzAUqG0xy5cDFqECC7IAlO3l01MACdBNdE8Y/a1DK0S715Ux/ROLM0WAprekl3R7N
+         2kANckd4+cjTPf1XrBspGHrQaZNJRus9y4WgSaYnOVPX96zthFOL+qEQ0FV7hwDb1V89
+         weGEq2rF7yq9rMALQ7BETyBpfn0/pFN59Ig+7aKhprypXJ/NiKtnxpua5xbG5qzKzxAw
+         bW3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681322292; x=1683914292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d2uw0pnbO7YgaFGMc7HjwyNcPXnRtQStNSMvy/NZNMw=;
+        b=Dd2AKjRvQQU5FeJvtpuoYf3TCQ6kqPkgrR24joaoY3I4w3fiszxnaHPhy/wQpkugbR
+         nfceA9OPRd57IXnEU2i4AwJIZzec7Bm0/CbI+hPgPmGd3DpCtfDdbZIW3FedEL+vNDIf
+         TbHxozHokLhsIVfF252DFtd8IY8SvK7liwSpucmFgZE84uLIDDAkZcFKEeuzfiif7ZTL
+         mSdEVb9q7X7hNmgq+K4xHhjq0FEw128LCvpDR8TCLaF/2ehfRf6aGsP2y/j5y4tqrZ4f
+         aGZsMDCCPZyBvldpz6aCfpIdi+4Nm4dIHaz6xCBUsBgYydWiQqdkbFOM/H+AGiyCeIxe
+         NtRg==
+X-Gm-Message-State: AAQBX9ccGotfjN1dJwre/UOGsbMcr+dm8UaBM69bE0FY/CLt8J657wVn
+        CwDttrMO+sMesieb00jYtSw=
+X-Google-Smtp-Source: AKy350abdyjnrVs0S69rq9Jb8RhHOVKQq6sbgPsExmOg+jtr0lPrDBjrMAIAi1t6JtCIT5V+Efd0gQ==
+X-Received: by 2002:a05:6870:a18a:b0:183:cf65:a4bd with SMTP id a10-20020a056870a18a00b00183cf65a4bdmr9607102oaf.5.1681322292431;
+        Wed, 12 Apr 2023 10:58:12 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:9b67:19cc:485f:3268])
+        by smtp.gmail.com with ESMTPSA id zh20-20020a0568716b9400b0017281100b75sm6323803oab.42.2023.04.12.10.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 10:58:11 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     dianders@chromium.org
+Cc:     neil.armstrong@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: drm/bridge: ti-sn65dsi86: Fix the video-interfaces.yaml references
+Date:   Wed, 12 Apr 2023 14:58:00 -0300
+Message-Id: <20230412175800.2537812-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/7] dt-bindings: net: dsa: mediatek,mt7530: add port
- bindings for MT7988
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230406080141.22924-1-arinc.unal@arinc9.com>
- <20230406080141.22924-3-arinc.unal@arinc9.com>
- <23c8c4b5-baaa-b72b-4103-b415d970acf2@linaro.org>
- <5b3a10ff-e960-1c6e-3482-cb25200c83c6@arinc9.com>
- <951841d3-59a4-fa86-5b45-46afdb2942dd@linaro.org>
- <5a92419c-4d2c-a169-687b-026dc6094cd8@arinc9.com>
- <153a5ed0-5f4f-4879-2677-e5bce5453634@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <153a5ed0-5f4f-4879-2677-e5bce5453634@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,79 +69,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.04.2023 19:39, Krzysztof Kozlowski wrote:
-> On 07/04/2023 11:46, Arınç ÜNAL wrote:
->> On 7.04.2023 12:07, Krzysztof Kozlowski wrote:
->>> On 06/04/2023 21:18, Arınç ÜNAL wrote:
->>>> On 6.04.2023 22:07, Krzysztof Kozlowski wrote:
->>>>> On 06/04/2023 10:01, arinc9.unal@gmail.com wrote:
->>>>>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>>>
->>>>>> The switch on MT7988 has got only port 6 as a CPU port. The only phy-mode
->>>>>> to be used is internal. Add this.
->>>>>>
->>>>>> Some bindings are incorrect for this switch now, so move them to more
->>>>>> specific places.
->>>>>>
->>>>>> Address the incorrect information of which ports can be used as a user
->>>>>> port. Any port can be used as a user port.
->>>>>>
->>>>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>>> ---
->>>>>>     .../bindings/net/dsa/mediatek,mt7530.yaml     | 63 ++++++++++++++-----
->>>>>>     1 file changed, 46 insertions(+), 17 deletions(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>>>> index 7045a98d9593..605888ce2bc6 100644
->>>>>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>>>> @@ -160,22 +160,6 @@ patternProperties:
->>>>>>           "^(ethernet-)?port@[0-9]+$":
->>>>>>             type: object
->>>>>>     
->>>>>> -        properties:
->>>>>> -          reg:
->>>>>> -            description:
->>>>>> -              Port address described must be 5 or 6 for CPU port and from 0 to 5
->>>>>> -              for user ports.
->>>>>> -
->>>>>> -        allOf:
->>>>>> -          - if:
->>>>>> -              required: [ ethernet ]
->>>>>> -            then:
->>>>>> -              properties:
->>>>>> -                reg:
->>>>>> -                  enum:
->>>>>> -                    - 5
->>>>>> -                    - 6
->>>>>> -
->>>>>
->>>>> I have doubts that the binding is still maintainable/reviewable. First,
->>>>> why do you need all above patterns after removal of entire contents?
->>>>
->>>> The 'type: object' item is still globally used. I'd have to define that
->>>> on each definitions, I suppose?
->>>
->>> Doesn't it come from dsa.yaml/dsa-port.yaml schema?
->>
->> It comes from dsa.yaml#/$defs/ethernet-ports which this schema already
->> refers to. I'll remove the patterns above.
->>
->> Though 'type: object' is not there for "^(ethernet-)?port@[0-9]+$". I
->> think I should add it there as the dsa-port.yaml schema defines the
->> properties of the DSA switch port object.
-> 
-> It has ref, which is enough.
-> 
->> So the value matching the
->> "^(ethernet-)?port@[0-9]+$" regular expression is expected to be an
->> object conforming to the structure defined in dsa-port.yaml.
->>
->> Does that make sense?
-> 
-> Hm, no, sorry, I still do not see what exactly is missing from
-> dsa.yaml/port that you need to define here.
+From: Fabio Estevam <festevam@denx.de>
 
-Nothing, I forgot defining either ref or type is enough.
+video-interface.txt does not exist anymore, as it has been converted
+to video-interfaces.yaml.
 
-Arınç
+Instead of referencing video-interfaces.yaml multiple times,
+pass it as a $ref to the schema.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Pass  video-interfaces.yaml as a $ref to the schema. (Rob)
+
+ .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml    | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+index 911564468c5e..6ec6d287bff4 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+@@ -90,7 +90,7 @@ properties:
+ 
+         properties:
+           endpoint:
+-            $ref: /schemas/graph.yaml#/$defs/endpoint-base
++            $ref: /schemas/media/video-interfaces.yaml#
+             unevaluatedProperties: false
+ 
+             properties:
+@@ -106,7 +106,6 @@ properties:
+                     description:
+                       If you have 1 logical lane the bridge supports routing
+                       to either port 0 or port 1.  Port 0 is suggested.
+-                      See ../../media/video-interface.txt for details.
+ 
+                   - minItems: 2
+                     maxItems: 2
+@@ -118,7 +117,6 @@ properties:
+                     description:
+                       If you have 2 logical lanes the bridge supports
+                       reordering but only on physical ports 0 and 1.
+-                      See ../../media/video-interface.txt for details.
+ 
+                   - minItems: 4
+                     maxItems: 4
+@@ -132,7 +130,6 @@ properties:
+                     description:
+                       If you have 4 logical lanes the bridge supports
+                       reordering in any way.
+-                      See ../../media/video-interface.txt for details.
+ 
+               lane-polarities:
+                 minItems: 1
+@@ -141,7 +138,6 @@ properties:
+                   enum:
+                     - 0
+                     - 1
+-                description: See ../../media/video-interface.txt
+ 
+             dependencies:
+               lane-polarities: [data-lanes]
+-- 
+2.34.1
+
