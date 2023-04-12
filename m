@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4EBB6DEC34
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E4C16DEC41
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:09:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjDLHDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 03:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36684 "EHLO
+        id S229598AbjDLHJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 03:09:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjDLHDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:03:39 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E503B5260
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:03:34 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id sg7so37703805ejc.9
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:03:34 -0700 (PDT)
+        with ESMTP id S229491AbjDLHJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:09:32 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C6482735
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:09:31 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id f26so20224035ejb.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:09:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681283013;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1681283370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7LzhE8XDEHN0mE13t9qLmnorPLOmISq2GFATJ1xxmIA=;
-        b=wRXFdRpdUxWsWOIZg8dikxSelGtuZLguzJn0hWsvIqkcFUtUQziNMcdzRVnTvDTqeH
-         FW97zIGDOupJLwsBG7wu+16HugtpMfJRuA63ySfBOo4QmMoOkFtLl4x0zG2pkePAmFaV
-         7MEYu/rYKgOjBgAdbqIhB6ZtzbSjMzMxwfH8rukdAsUdcD9n6oEXLe6cNtYH2batotpL
-         ZmvjAlvxfaR72zcfG8GQHB1X2DfsUFRKq97vnojoTMJBdbhSzU80rOImxi0TVMB4WPhC
-         SDDiT/qAngGcUhRjz7IrBjlGrwCwECBL+tGp1M7arv9qV/kTK09sfPeEDTeZA52Bo653
-         DTMg==
+        bh=n54EsJ6yBbWy+99Uq8T7kmBnGcEminZ4uU6Ei5e8CDw=;
+        b=Yqf1EPBTOZ6E/e8B3wH7y8kilH7wOx/YDPzcMYgkDkHg6XoH6we0FCCVeFIlJP6viL
+         xV0hggGkUu6ia9qBwd3YlRAGWezDlq/6taWf7xWR0RAPM/gj+fMp+/D1v+iG3RzeJn+C
+         cfnmuoDsobXw79fJEt2XgEhuteFqy9q4fLjdxDb28KR3L4uPInfgWZryIwboK1sIdTNc
+         UnSkvmVWQ9iqB1Gv3fHMrz4wD0eyEHdCnIxE4g0NxDvRgKUYo7UBE12iz9Wh9TEXoATo
+         QJAdMcJZiCy6QT1zK6y/MnV2x7h+U4uxkFcXpDczCQgmkauI6M9eVR68er3mv+qrEndG
+         SJfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681283013;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1681283370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7LzhE8XDEHN0mE13t9qLmnorPLOmISq2GFATJ1xxmIA=;
-        b=GzTJjiXfie4mwAyfGgP1VdHvobrzQkp/5ij7bFuAK3rktDmD7zT381nkZwETNzRQ4k
-         5Fbl574VBIP8DEmEZEjWLvKVvjYAorhWx8+1y5Ka6n0r/P+1i9adCJrJYyMDccrMdqGS
-         uxetZuon82QOEkCQwPBW3DVAORutL2K/QvSnKccqu1HC9UFYkI9oJX0gTyB/7vREBdOb
-         4s8riC8KWQjbMkWVhVIyKmS3vDacCtQDLQtM+upZfIlaIBgU3Fqr2OIxAFwzI2dGbFQn
-         ldE4s/PAGP09rAJTPSJZPUVVeCF45fRGqZVc1vkPwlVQWpPjkgrgzv8xeUTBK5pjduJO
-         XuIQ==
-X-Gm-Message-State: AAQBX9dwDcBpdB36UcnQFuj9UA6RrymZDMp1vf3lRkAD78oVY7BRAXhv
-        zXXupc/40fG0SG+FF4C/w6x7RQ==
-X-Google-Smtp-Source: AKy350bQSyb2tXwMQt2uxDvqWUUDBrt1x3Jjs+y34xcL4WKJrFQcvNsAaagC6xcfspRReV6mU5rwUQ==
-X-Received: by 2002:a17:906:2e85:b0:94d:a2c2:9aeb with SMTP id o5-20020a1709062e8500b0094da2c29aebmr6032088eji.49.1681283013345;
-        Wed, 12 Apr 2023 00:03:33 -0700 (PDT)
+        bh=n54EsJ6yBbWy+99Uq8T7kmBnGcEminZ4uU6Ei5e8CDw=;
+        b=Xn7UJEFoc2zurrS7qwmFiSJfX3V8BcXhvdqzyKmASijPM2zy5MCQ5F6EF4vmReC9Hq
+         S3zR5D9fpcR93c+aXyHNXI1rUCC43uFMyWB/UijEfFgNuwBcR6r2vtKWYfVzRtPaL6gp
+         fn959lYFmJBXiiBstpjQlaobiD75TXZHLExldO1TBJ9bvKf6uBrjZHHY152M0UeT3lYM
+         U13/xaTQvuOvZuGzv9+kzHGuXz58kT+iYPkOm+ryKC5FPlBh5y4LAQY066YNFzr9tIWJ
+         WdFvQepSHz74pui/iv8JiWwQEnoh9E88MEN+acelzwTyoUi/TSZC7l/V4yTCsSiEKOEw
+         HTLw==
+X-Gm-Message-State: AAQBX9fqKuOwhW06NuK9byzku8FKbvf0pfZmfqLK4JW13KW8pYF3o0NO
+        /91Um9eCxcC47uK2dPgbZ79cOg==
+X-Google-Smtp-Source: AKy350Z75v3DcpypUUDdq/iWgi36nW75fEQMK+FCrPEJatNrxQGr1LgsdyYrMIRldRFqYcXRwkfjqw==
+X-Received: by 2002:a17:906:4a0d:b0:94a:70f0:6321 with SMTP id w13-20020a1709064a0d00b0094a70f06321mr8674129eju.61.1681283370186;
+        Wed, 12 Apr 2023 00:09:30 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id 24-20020a170906319800b008e9c79ff14csm6864614ejy.96.2023.04.12.00.03.32
+        by smtp.gmail.com with ESMTPSA id xd4-20020a170907078400b0094a941ad8f0sm2667038ejb.193.2023.04.12.00.09.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 00:03:32 -0700 (PDT)
-Message-ID: <15e1d05f-b7e1-27bc-7363-aefd2d155eea@linaro.org>
-Date:   Wed, 12 Apr 2023 09:03:31 +0200
+        Wed, 12 Apr 2023 00:09:29 -0700 (PDT)
+Message-ID: <b4cfe598-f67c-23b4-8469-a5c487ae4e66@linaro.org>
+Date:   Wed, 12 Apr 2023 09:09:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-lenovo-thinkpad: correct pin
- drive-strength
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230407180710.128815-1-krzysztof.kozlowski@linaro.org>
- <ZDVtXkCON8DFUDjh@hovoldconsulting.com>
- <887eb9f6-9882-37c6-4332-ddae7a354187@linaro.org>
- <ZDZUiW+74rhhRAfS@hovoldconsulting.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: ROHM BD2606MVV LED driver
 Content-Language: en-US
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+References: <20230407050803.170773-1-andreas@kemnade.info>
+ <20230407050803.170773-2-andreas@kemnade.info>
+ <a16a8071-3c67-0f40-d7da-3459f7dc584d@linaro.org>
+ <20230411213044.4bf6dc89@aktux>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZDZUiW+74rhhRAfS@hovoldconsulting.com>
+In-Reply-To: <20230411213044.4bf6dc89@aktux>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 08:49, Johan Hovold wrote:
-> On Tue, Apr 11, 2023 at 06:58:33PM +0200, Krzysztof Kozlowski wrote:
->> On 11/04/2023 16:23, Johan Hovold wrote:
->>> On Fri, Apr 07, 2023 at 08:07:10PM +0200, Krzysztof Kozlowski wrote:
->>>> Fix typo in drive-strength property name.
->>>
->>> In the future, please try to use the established commit-summary prefix.
->>> In this case:
->>>
->>> 	arm64: dts: qcom: sc8280xp-x13s:
->>
->> Sure.
->>
->> commit ca1ce7207e53cfe69aee5002eb3795069668da53
->> Author: Johan Hovold <johan+linaro@kernel.org>
->> Date:   Fri Aug 5 11:23:17 2022 +0200
->>
->>     arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s: add alternate touchpad
+On 11/04/2023 21:30, Andreas Kemnade wrote:
+> On Mon, 10 Apr 2023 17:34:00 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> Yeah, we initially used a longer prefix (including "x13s" which was
-> missing in the Subject of this patch), but quite soon decided on using
-> the shorter
-> 
-> 	arm64: dts: qcom: sc8280xp-x13s:
-> 
-> instead.
+> [...]
+>>> +        led-controller@66 {
+>>> +            compatible = "rohm,bd2606mvv";
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +            reg = <0x66>;  
+>>
+>> reg is always second property in DTS.
+>>
+>>> +
+>>> +            led@0 {
+>>> +                color = <LED_COLOR_ID_RED>;
+>>> +                function = LED_FUNCTION_POWER;
+>>> +                reg = <0x0>;  
+>>
+>> Ditto
+>>
+> hmm, reg also second if no compatible first? I see it usually first in
+> such cases.
 
-Thanks. Do you know if this rule applies to other long-names? I was
-usually keeping full name or shortening them by cutting end, but maybe I
-should cut the middle?
-
-sm8250-sony-xperia-edo-pdx206
-sm8250-sony-xperia-edo
-sm8250-pdx206
+Right, then reg is first.
 
 Best regards,
 Krzysztof
