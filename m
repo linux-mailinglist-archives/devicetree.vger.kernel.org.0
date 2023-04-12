@@ -2,82 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F95D6DFEF7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 21:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 914616DFF40
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 21:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbjDLTsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 15:48:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37452 "EHLO
+        id S229521AbjDLT5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 15:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbjDLTr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 15:47:59 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDAC7A83
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:47:29 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id q26so3940836lfe.9
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:47:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681328845; x=1683920845;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HqG0pVW7OSa0fms1qxmeVYPhF6UJZQ18Q2XwjNeh0Vg=;
-        b=LHfEzIoOe/iboNkq3bxnP99FpIAXg6ZxIfA4WrkQsBjUYX1S2QeBgAvVzTB0DCb3lJ
-         EFdFd/ZvVx7V8muv863Tt/QXFSiXOnWdYq0iHa65tCOviUVX7znyeqC5URaHwg/MhR0C
-         JS2IlAJoV1wNlltRem7f08zZvexPpEm55cOoz4B11mUcQXmDFinKq3h++xw5t/q0KssS
-         kckmsEPg1p90inH73rZtoMvUA+Xp34NM+eqiE2Hw5LzriLloXpe1vCpDkSFnxgP0naOq
-         4sxo0/iJP/LV5c3aq3SJvhclk7ZiaHULmfBXiqgEgaBtLTb58ekVmk221oGvpjZJ73we
-         C4UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681328845; x=1683920845;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HqG0pVW7OSa0fms1qxmeVYPhF6UJZQ18Q2XwjNeh0Vg=;
-        b=DDF3ujkgn011Hy84k3tAwWVhUuw7BwZgU4A3LiSypo1Gj4VimccXl+J2WwncPrPc0M
-         tbXsGLL5FUfXeY0FWZECiASBWQFCqnKbLjrZI3QULUcG67sDJxlUl+KS8Pe7XiOwzWoH
-         NaxjAjhp9/l9Hbi49kT509qQx2HyQvZAgeDHnSv9VyiZfFTgCkCmVi3o8TOMXpcFmAmq
-         R6aQESTZiwpYJQrSKD2FuMxklgbVuVdHCfD9jV/a9suY9MoKgqyvNkQgNNr0uMt5XSiC
-         5Ua7HtyJZF+QlS2MjVCtzSTUPQ9iuvT93eyBT3hf8jJlmIzx+F/ztJfncBzonSMpAR5O
-         fDdA==
-X-Gm-Message-State: AAQBX9cj7qx+RMb4KOYr4q4jwDI9b43mCz71MNfMGiXrATmSbMnt0nAP
-        Uk/OGVGrtBmalsfI2xN1ZTdHdw==
-X-Google-Smtp-Source: AKy350ZmlaXPhl+Hu0r8dt+mPvo6tDuGnkFvWu/ESgMhieonZw2og/Ol6Ceo6m3w4XuqlwSpDFMp/A==
-X-Received: by 2002:ac2:418c:0:b0:4db:268a:4ec5 with SMTP id z12-20020ac2418c000000b004db268a4ec5mr10285lfh.52.1681328845201;
-        Wed, 12 Apr 2023 12:47:25 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id v30-20020a056512049e00b004e8508899basm3152061lfq.86.2023.04.12.12.47.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 12:47:24 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 12 Apr 2023 21:47:20 +0200
-Subject: [PATCH] arm64: dts: qcom: sm8250-elish-*: Fix panel compatibles
+        with ESMTP id S229536AbjDLT5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 15:57:14 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869A3172C;
+        Wed, 12 Apr 2023 12:57:12 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33CJuvOS026756;
+        Wed, 12 Apr 2023 14:56:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681329417;
+        bh=55PrKKkIhQxvxBSsvZXp9quQx6wpWtCaUKyGDu8YdYQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=D7sqeNeMjgmr2g37OFHpk0rMpmsOAaqGjTcLecZFyT5FNX3P6fkO/ClMYVp5grwO0
+         ETVqn4QUg/UmfZZ/i+bTjumm/lkIdnbA5fqaoMqQM/U6jQQ3v+SZu/jhrat4gAsXW+
+         f9H6mbqQ2Nx3WOlFusHyC7U3dTlVut4Zn8dV6puY=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33CJuvt4077086
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Apr 2023 14:56:57 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 12
+ Apr 2023 14:56:56 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 12 Apr 2023 14:56:56 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33CJuuLm074122;
+        Wed, 12 Apr 2023 14:56:56 -0500
+Date:   Wed, 12 Apr 2023 14:56:56 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Udit Kumar <u-kumar1@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <a-govindraju@ti.com>,
+        <kishon@ti.com>, <n-dasan@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-main: fix msmc node
+Message-ID: <20230412195656.a53nalvjuhelniz4@populace>
+References: <20230412173609.1307837-1-u-kumar1@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230412-topic-elish_compat-v1-1-4e03f95d5410@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAMcKN2QC/x2N0QqDMAwAf0XyvICtFtl+ZQypWbYGurY0bgjiv
- 1v2eAfH7aBchRVu3Q6Vf6KSUwNz6YCCT29GeTYG29uhH43FNRch5CgaZsqf4lecBhqdMVc3eQc
- tXLwyLtUnCi1N3xibLJVfsv1P98dxnJODqy15AAAA
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianhua Lu <lujianhua000@gmail.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681328843; l=1572;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=guEOBYs2F4QRT5xWcrhvLTzzjeo2J6/kxLNuJ4zGbDQ=;
- b=jP4om3LAubPcpOCEuYKH3tlVK6C7M9u5tHSAnFZJWrzIvKsxJPT4+bLHQnkCpVWAEjTmMrYFp33Y
- ahDa+JRKBmUd/5WzNiH7kXBeySd/FQHEvU2p80iLw6H6S75T9IFY
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230412173609.1307837-1-u-kumar1@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,48 +65,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The fallback compatible was missing, resulting in dtbs_check failing.
-Fix it.
+On 23:06-20230412, Udit Kumar wrote:
+> On J721S2 SOC, l3cache-sram size is configured as zero by
+> system firmware.
+> Also top 64K of msmc_ram (0x703F_0000 to 0x703F_FFFF) is used by system
+> firmware tifs-sram.
+> 
+> This patch removes l3cache-sram node and update range for tifs-sram.
+> 
+> Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
+> 
+> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index 2dd7865f7654..cbc784f915a9 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -17,13 +17,10 @@ atf-sram@0 {
+>  			reg = <0x0 0x20000>;
+>  		};
+>  
+> -		tifs-sram@1f0000 {
+> -			reg = <0x1f0000 0x10000>;
+> +		tifs-sram@3f0000 {
+> +			reg = <0x3f0000 0x10000>;
+>  		};
+>  
+> -		l3cache-sram@200000 {
+> -			reg = <0x200000 0x200000>;
+> -		};
+>  	};
+>  
+>  	gic500: interrupt-controller@1800000 {
+> -- 
+> 2.34.1
+> 
 
-Fixes: 51c4c2bd6f31 ("arm64: dts: qcom: sm8250-xiaomi-elish-boe: Add mdss and dsi panel")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-foo b4 requires i put something here
----
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Are you saying that j721s2 is incapable of l3 cache? say some level 1
+errata?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts
-index 8b2ae39950ff..de6101ddebe7 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-boe.dts
-@@ -13,6 +13,6 @@ / {
- };
- 
- &display_panel {
--	compatible = "xiaomi,elish-boe-nt36523";
-+	compatible = "xiaomi,elish-boe-nt36523", "novatek,nt36523";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts
-index a4d5341495cf..4cffe9c703df 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts
-@@ -13,6 +13,6 @@ / {
- };
- 
- &display_panel {
--	compatible = "xiaomi,elish-csot-nt36523";
-+	compatible = "xiaomi,elish-csot-nt36523", "novatek,nt36523";
- 	status = "okay";
- };
+or is it because, the chip is really capable of l3 cache and we are
+really setting it to 0?
 
----
-base-commit: 7d8214bba44c1aa6a75921a09a691945d26a8d43
-change-id: 20230412-topic-elish_compat-73c4511957a5
+https://git.ti.com/cgit/k3-image-gen/k3-image-gen/tree/soc/j721s2/evm/board-cfg.c#n71
 
-Best regards,
+unless the chip has an errata, you are supposed to fix it up based on
+configuration by using the API and this patch is a NAK
+https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/general/core.html#tisci-query-msmc
+
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
