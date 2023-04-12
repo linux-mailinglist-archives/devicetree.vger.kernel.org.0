@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B12B26DF95D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B11656DF951
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230009AbjDLPIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 11:08:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37064 "EHLO
+        id S231299AbjDLPFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 11:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231150AbjDLPIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:08:16 -0400
-X-Greylist: delayed 123 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 12 Apr 2023 08:08:14 PDT
-Received: from aer-iport-8.cisco.com (aer-iport-8.cisco.com [173.38.203.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC16E448E
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 08:08:14 -0700 (PDT)
+        with ESMTP id S230305AbjDLPFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:05:52 -0400
+Received: from alln-iport-8.cisco.com (alln-iport-8.cisco.com [173.37.142.95])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15ABEE6A;
+        Wed, 12 Apr 2023 08:05:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=4128; q=dns/txt; s=iport;
-  t=1681312095; x=1682521695;
+  d=cisco.com; i=@cisco.com; l=587; q=dns/txt; s=iport;
+  t=1681311951; x=1682521551;
   h=from:to:cc:subject:date:message-id:references:
    in-reply-to:content-id:content-transfer-encoding:
    mime-version;
-  bh=zk7qvVh8ZalSxAJ+ZHDBz6Au7iNujPqobhXXpigS29o=;
-  b=Md5n9Yn9AiL/dlW8yh8ublTmHGPUMpbyzYbDoHvwC8M1O+UUvV3qsY9M
-   yXDoHdjh0XWnIoOz1HkKPSFLUnfMx9c61mjs4Bl2NcAiw05T4skuaC9IW
-   jCffjZ4gxdX9ziuU6ePtKZabL58s6wYGP1VQ8Qv81kQupPoqSq2Dqj84g
-   g=;
-X-IPAS-Result: =?us-ascii?q?A0ABAgDmxzZklxbLJq1aHAEBAQEBAQcBARIBAQQEAQFAJ?=
- =?us-ascii?q?YEqgVxSc1spEkaIHgOFLogwA5Igi1CBEQNWDwEBAQ0BAUQEAQGFBgKFPSY4E?=
- =?us-ascii?q?wECAgIBAQEBAwIDAQEBAQEBAwEBBQEBAQIBBwQUAQEBAQEBAQE3BRA1hWgNh?=
- =?us-ascii?q?gQBAQEDEigGAQE3AQ8CAQgYHhAyJQIEDieCXIJdAwGffQGBPwKKIHiBNIEBg?=
- =?us-ascii?q?ggBAQYEBZ8hCRaBK5E6QoFJRIEVgTyBbz6CYgKBIz2GICKBDJk5CoE0doEgD?=
- =?us-ascii?q?oE8gQQCCQIRa4EQCGqBeUACDWQLDm+BSYMqBAIURzcDRB1AAwtwPzUUIAZYg?=
- =?us-ascii?q?RkkBQMLFSpHBAg4Bhs0EQIIDxIPBiZEDkI3MxMGXAEpCw4RA1CBRwQvgV0GA?=
- =?us-ascii?q?SYknnM4MisBJYEXCDQ3cwOSE7EnCoN+nWeDBk0TqS+Xc6d2AgQCBAUCDgEBB?=
- =?us-ascii?q?oF6I4FbcBWDIlIZD44gDA0Jg1CPeXU9AgcLAQEDCYtFAQE?=
-IronPort-PHdr: A9a23:weHmGBaCeunlOhPg4GGtEo7/LTDihN3EVzX9orIuhqgLdbys4NG/e
+  bh=ZsIcQTqI2jlj+q+1ASNCr/fgTMeYjUkWyBXRB6TaLk0=;
+  b=XRS74edicBMBwGth8SqiI9duOIgNi8LM4JoVapBRI5CqNigv68iEGVW/
+   rZPr9Gn93smgdqGNIRwL0I8SCoLRiUDs2id+aMxKeZNcn5y1KaNmTuOv3
+   uu4EyYeo22VC4SSOOjoGZeOI3FJSJ0pta8PZdSMts9wR4ONJ8PH3ZNinB
+   Y=;
+X-IPAS-Result: =?us-ascii?q?A0DAAADmxzZkmIwNJK1aHQEBAQEJARIBBQUBQCWBGQUBC?=
+ =?us-ascii?q?wGBW1JzAlkpEkaIHgOFLogzkiCMYQNWDwEBAQ0BATETBAEBhQYChTwCJTcGD?=
+ =?us-ascii?q?gECAgIBAQEBAwIDAQEBAQEBAwEBBQEBAQIBBwQUAQEBAQEBAQEeGQUOECeFa?=
+ =?us-ascii?q?A2GBAEBAQMSKAYBATcBDwIBCBgeEDIlAgQOBSKCXAGCXAMBn30BgT8CiiB4g?=
+ =?us-ascii?q?TSBAYIIAQEGBAWfIQkWgSsBkTknG4FJRIRAPoJiAoFghiAimkUKgTR2gSAOg?=
+ =?us-ascii?q?TyBBAIJAhFrgRAIaoF5QAINZAsOb4FJgyoEAhRHNwNEHUADC3A/NRQgBliBG?=
+ =?us-ascii?q?SQFAwsVKkcECDgGGzQRAggPEg8GJkQOQjczEwZcASkLDhEDUIFHBC+BXQYBJ?=
+ =?us-ascii?q?iSeCIFVgwnEAgqDfotylHtNE4NXgWijcJdzp3YCBAIEBQIOAQEGgXkkgVtwF?=
+ =?us-ascii?q?YMiCUkZD44gGYNZhUKKN3U9AgcLAQEDCYtFAQE?=
+IronPort-PHdr: A9a23:A0KnWxFak6xOGfzqHDwyU51Gfu4Y04WdBeZdwpMjj7QLdbys4NG/e
  kfe/v5qylTOWNaT5/FFjr/Ourv7ESwb4JmHuWwfapEESRIfiMsXkgBhSM6IAEH2NrjrOgQxH
  d9JUxlu+HToeVNNFpPGbkbJ6ma38SZUHxz+MQRvIeGgFofUjsmzyOma8JzIaAIOjz24Mvt+K
  RysplDJv9INyct6f78swwHApGdJfekeyWJzcFSUmRu9rsvl9594+CMWsPUkn/M=
-IronPort-Data: A9a23:ROY9XKO04Y2tRTnvrR2yl8FynXyQoLVcMsEvi/4bfWQNrUojhGADx
- jNLXWyHP/eJZWagett+b962p0wD7JfdzoNhS3M5pCpnJ55oRWUpJjg4wmPYZX76whjrFRo/h
- ykmQoCcaphyFBcwnz/1WlTbhSEUOZqgG/ytWIYoBggrHVU/EHt400o58wIEqtcAbeaRUlvlV
- eza+6UzCHf9s9KjGjtJg04rgEoHUMXa4Fv0jHRnDRx4lAO2e00uMX4qDfrZw00U7WVjNrXSq
- +7rlNlV945ClvsnIovNfr3TKiXmTlNOVOSDoiI+ZkSsvvRNjicR85sSFscmUnhWhG+sp/otk
- Nl/lpPlHG/FPoWU8AgcexBVCWR1OrdLveKBKnmkusvVxErDG5fu66wxVwdtbctCor0xWzsmG
- f8wcFjhajiPjuS3zbakQ8Fnh98oK4/gO4Z3VnRIkWuGUad5HPgvRY3S1ftx2hABlPkJOs3EZ
- OoecDdNdTnfNkgn1lA/UcJiw7jAamPEWzlZrk+F4Kk6+W7eyCRv37X3dtnYYNqHQYNShEnwj
- m7L4WXyDw0AOdG31zWI6DSvi/XJkCe9X5gdfIBU7dZjjUfWx3QUEgFTU1Kn5/K4kUW5HdlYL
- iT45xbCs4A5122WZ/vAZSaHoXHemyY2B4JcIc41vVTlJrXv3y6VAW0NTzhkYdMgtdMrSTFC6
- rNvt462bdCImODNIU9x5ot4vhvvYXBIfTNqiTssFFpUuIW5yG0mpkuXFo4LLUKjsjHiMQnUq
- 9xghAskjrYUkqbnPI3gpBWf22LESnThagMu/QjNFlqi6gp/aOaYi22UBbrzsK8owGWxFwfpU
- J04dy62t7Fm4XalznXlfQn1NOv1j8tpyRWF6bKVI7Ev9i6251modp1K7Td1KS9Ba5hUIGWyP
- x+I5FgPvPe/2UdGi4cpO+pd7Ox3ksDd+SjNDZg4k/IXOMEqLV/blM2QTR/MhggBb3TAYYlma
- cvELq5A/F4RCL9sy3KtVvwB3Lowrh3SNkuNLa0XOy+PiOLEDFbMEO9tGALXPogEAFas/Vy9H
- yB3bJDRlX2ykYTWP0HqzGLkBQ1TfShhXcuo96S6tIere2JbJY3oMNeIqZsJcI1+lKMTneDNl
- kxRkGcCoLYjrRUr8Tm3V00=
-IronPort-HdrOrdr: A9a23:H/mMea0mY/X5wXDHUBVBvwqjBetxeYIsimQD101hICG9Lfbo9P
+IronPort-Data: A9a23:WFuFwKgFPpR/2hwezZr9JLyoX161QxAKZh0ujC45NGQN5FlHY01je
+ htvCGrTO6mONmX1eot/bI7i9kIAvJOGzYBhQQFv/39kFyhjpJueD7x1DKtf0wB+jyHnZBg6h
+ ynLQoCYdKjYdleF+lH1dOKJQUBUjclkfJKkYAL/En03FF8MpBsJ00o5wLZl29Qw27BVPivU0
+ T/Mi5yHULOa82Yc3lI8s8pvfzs24ZweEBtB1rAPTagjUG32zhH5P7pDTU2FFEYUd6EPdgKMq
+ 0kv+5nilo/R109F5tpICd8XeGVSKlLZFVDmZna7x8FOjzAazhHe3JrXO9JEWF1KpzCgmul38
+ 8RUnJKoFyd5Oa/TzbF1vxlwS0mSPIVP/LvBZHO4q8HWkAvNcmDnxLNlC0Re0Y8wo7ksRzoQs
+ 6VDbmlRNnhvhMruqF6/YuVlgMUuKNbiFIgeoXpnizreCJ7KRLiSH/qVu44JjV/cgOgTMeTPf
+ NM4MwZKQxLhODpXM10MVI0hybLAan7XKm0E9w39SbAMy2zSyhFhlbvgKtzYfvSUSshP2EWVv
+ GTL+yL+GB5yHNCS1zuO/262i+Lngyz2QsQRGae++/osh0ecrlH/EzUfUV+95PK+kEP7BJRUK
+ lcf/Wwlqq1aGFGXosfVByyivVKBlxslXeFBCsQ08F+tmq3W/FPMboQbdQJpZNsjvc4wYDUl0
+ F6Vgt/kbQCDVpXIFhpxEZ/J9VuP1TgpwXwqPnVUEFdZizX3iMRi0E+eH44L/Lud1IWdJN3m/
+ 9ydQMHSbZ08hNQP3qO3lbwsq23x/sSSJuLZC/m+Y45Ixgp9YIjgbIuy5B2Eq/1BN42eCFKGu
+ RDoevRyDshQVflhdwTUH43h+Y1FAd7eb1UwZnY0Q/EcG8yFoSLLQGypyGgWyL1VGsgFYyT1R
+ 0TYpBlc4pReVFPzM/8uOdnuW593lva4fTgAahwyRoQWCnSWXFLYlByCmWbLt4wQuBF2yPpma
+ cvznTiEXCpDYUiY8NZGb75NjeB0rszP7WjSXpv8hw+2yqaTYWX9dFv2GAXmUwzN14vd+F+92
+ 48Gb6OikkwDOMWgOXO/2dBIcjg3wY0TWMqeRzp/LLDTe2KL2QgJVpfs/F/WU9E8z/QPzryWo
+ hlQmCZwkTLCuJEOEi3TAlhLY7L0VpE5pnU+VRHA937xs5T/Se5DNJsiSqY=
+IronPort-HdrOrdr: A9a23:qE3y762jRrD2pqM2uNpCegqjBetxeYIsimQD101hICG9Lfbo9P
  xGzc566farslcssSkb6KG90cm7Lk819fZOkPAs1S/LZnimhILaFvAT0WKE+UyhJ8SezJ8S6U
  4ESdkdNDSeNykGsS+X2njeLz9k+qj4zEnKv5ac854Od3AXV0gI1W4QYWz3fjwSNW177NgCZe
  WhD6F81kKdkAEsH76G7w4+LpP+TrPw5fTbiDc9dmwaAQ+14w+A2frfKVy1zx0eWzRAzfMJ6m
@@ -67,54 +66,54 @@ IronPort-HdrOrdr: A9a23:H/mMea0mY/X5wXDHUBVBvwqjBetxeYIsimQD101hICG9Lfbo9P
  yBa81T5f5zZ95Tabg4CPYKQMOxBGCISRXQMHiKKVCiEK0cIXrCp5P+/b1w7uC3f54Dyoc0hf
  36IR9lnH93f1irBdyF3ZVN/ByISGKhXS71wsUb/JR9sq2UfsuiDcRCciFmryKNmYRoPiSAYY
  fGBHt/OY6VEVfT
-X-Talos-CUID: 9a23:yeMgVW1hwYmw2Ud9pv/i4LxfEeMET1T/8U3rHE63U0NRYuHNRW2z9/Yx
-X-Talos-MUID: =?us-ascii?q?9a23=3Afy0dswxIcplTIvZV9U6/wDm1biaaqLyeLGkLtqQ?=
- =?us-ascii?q?Ugo6jDjZzGzCEgRaub5Byfw=3D=3D?=
+X-Talos-CUID: 9a23:sjcipWHqJZOLdze5qmI/xVQJNsUMd0Tb92bJCkGgV0Y5T7+KHAo=
+X-Talos-MUID: 9a23:RJ8KDQpuZ4rkrU0fGJEez2xOJtZz+oX0NGUil7RdnNGNPzcsJCjI2Q==
 X-IronPort-Anti-Spam-Filtered: true
-Received: from aer-iport-nat.cisco.com (HELO aer-core-5.cisco.com) ([173.38.203.22])
-  by aer-iport-8.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 12 Apr 2023 15:04:58 +0000
-Received: from aer-opgw-5.cisco.com (aer-opgw-5.cisco.com [173.38.212.137])
-        by aer-core-5.cisco.com (8.15.2/8.15.2) with ESMTPS id 33CF4wui110795
+Received: from alln-core-7.cisco.com ([173.36.13.140])
+  by alln-iport-8.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 12 Apr 2023 15:05:50 +0000
+Received: from alln-opgw-5.cisco.com (alln-opgw-5.cisco.com [173.37.147.253])
+        by alln-core-7.cisco.com (8.15.2/8.15.2) with ESMTPS id 33CF5kPB013124
         (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 12 Apr 2023 15:04:58 GMT
-Received: from mail-mw2nam10lp2104.outbound.protection.outlook.com (HELO NAM10-MW2-obe.outbound.protection.outlook.com) ([104.47.55.104])
-  by aer-opgw-5.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 15:04:58 +0000
-Received: from mail-mw2nam10lp2104.outbound.protection.outlook.com (HELO NAM10-MW2-obe.outbound.protection.outlook.com) ([104.47.55.104])
-  by aer-opgw-5.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 15:04:58 +0000
-Received: from mail-mw2nam10lp2104.outbound.protection.outlook.com (HELO NAM10-MW2-obe.outbound.protection.outlook.com) ([104.47.55.104])
-  by aer-opgw-5.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 15:04:58 +0000
-Authentication-Results: aer-opgw-5.cisco.com; dkim=pass (signature verified) header.i=@cisco.com; spf=Pass smtp.mailfrom=danielwa@cisco.com; dmarc=pass (p=quarantine dis=none) d=cisco.com
+        Wed, 12 Apr 2023 15:05:48 GMT
+Received: from mail-dm6nam12lp2172.outbound.protection.outlook.com (HELO NAM12-DM6-obe.outbound.protection.outlook.com) ([104.47.59.172])
+  by alln-opgw-5.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 15:05:46 +0000
+Received: from mail-dm6nam12lp2172.outbound.protection.outlook.com (HELO NAM12-DM6-obe.outbound.protection.outlook.com) ([104.47.59.172])
+  by alln-opgw-5.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 15:05:46 +0000
+Received: from mail-dm6nam12lp2172.outbound.protection.outlook.com (HELO NAM12-DM6-obe.outbound.protection.outlook.com) ([104.47.59.172])
+  by alln-opgw-5.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 15:05:46 +0000
+Authentication-Results: alln-opgw-5.cisco.com; dkim=pass (signature verified) header.i=@cisco.com; spf=Pass smtp.mailfrom=danielwa@cisco.com; dmarc=pass (p=quarantine dis=none) d=cisco.com
 X-IronPort-AV: E=Sophos;i="5.98,339,1673913600"; 
-   d="scan'";a="70539"
+   d="scan'";a="69468"
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=US1nd2Yh+S1TEJg9omqOpzRehTztkOKoWE0TDmyPz7vMfLK37VkMfkB6Y66TUGI1yucO+8LzCQEcfBGb3wyjHMzcGsspEl+yWQ0Sm9F7CsS0BhZoP2GCyBNgYJLxHbuJjIo2vW5VdElk/SOC6u44FyIY3kCJjPL4jCJZG7K5KFYMe3/oh7rgVs+GketZyVS/HYJBEa1OWSMbKJ/qMLC72bs+dK06DJyxKqgwWJLEbSRosMnZDiws8KJfS5U/cwkdpyKaRiVmX3falygrN4OZ2vPnH38LjzcmSe1xIUTlQ4fr4l/pVYe+Mt+nlz6NFQRvNNGwSr68R8KFn7aCAjsT2A==
+ b=UKibRvTj02edMznyBHJrpvez2zFSCRO2vABud2B9NSpZOZwCHBSxr7EGC/DDYd9wo+Mz7MWn8glXbdjkdqVix2X0vfzkmBjCs8FwMFVuOHc9DXK8DyaqFd0YO9irgYarezlNFolhvfOiR9u52gb7aAWxUJfcHB1+JvvsDRLUJ7gjZyNIprS3Djk8zExyF0t9WaZFzRHzkdhCGS2SHLcw0I575mmib0+tTLtyS4wYTMfasiQceiipIJ/TBGiFGoU081O1yzcics8mlFcRmWXcX2Zx+puZAMR6UkUJt7kE6r31zHs+WUbpRb6J+fQDjV4s5j1VZs6iBGJDjbBxxxLQjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U6F3dJ8K/B4t7CVDG45tQtGzyXK8zX/5SGvKyFRqFDo=;
- b=HiLU/FrJ4SASBvYWhTOHjOMfHSZOoD7LkBVHAlR5ApnaKdiACJ7hK0hEvxEuoPnpdd5xh3CyN27b1Zm9Myp+6ipAQJBbL1fWiAOwlgi5OnjAX4kWTIU7eHUfsSBSus0WiNc5S6UWWt/+u23NxvD6Fgmg6Q895uHtbnzmZLFifq17hWmMiXvRmmVDnMgsCma8eA97vALWyXjEaYYThOGhpxGqN9saY1GEwzqPyIOaiY90Eq5Lafv9NidBIIQVFznnbJNx+WCzAtGRX7H0wYXZZPcwlHYmoZdArwO7oSS8wpWvFYijruPJLugr6eL22HtfkNN0pgMOwyzhot5Zm4SufA==
+ bh=ZsIcQTqI2jlj+q+1ASNCr/fgTMeYjUkWyBXRB6TaLk0=;
+ b=KWyRtHv1DsuD1RCRCE9ImFDIIA6vJK4bqxItPm51y9Wo++NeM3eH3WqedCtREa0wAf1dl4iSINj9XXIWXRF5HHFhAhlHu9/zrXjyWfbDmZA4EUVvOl+LKtbTOlPnpSrc4WB2ZJykc4Zq1rkKNeLZ2R7UiQTa7pMhyEd47QlIm7tH1vhJ1LAubzbbug2DgnvPPBtQrsPntNaIWVyd5rnEGjNmLKt51duw680ugQhBi3GzcAH9hU399oWwHxTe/vlqOsobu5Xd3YsKV22u9Pn+xeNa9JkBxUhb3pztT3z07b3lle3sG5LC4X3LSBD+9tR+51/RClQ4Hge2gT2LiraeZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=cisco.com; dmarc=pass action=none header.from=cisco.com;
  dkim=pass header.d=cisco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U6F3dJ8K/B4t7CVDG45tQtGzyXK8zX/5SGvKyFRqFDo=;
- b=S/XQ+FYBhQnvl5mF+qNRmRMhJ7sT3eOHOhQ1IKIHcq4eprFq4ssBgRPyU9ZygpgXlstIyZYk/pagP4InknCgW1yYxeOhclcejSt74d+ZOYOQRMbv853+zbwdR0ZMdnJ4yZPuGYAhfXb6HC5H78FsBupEegx7vWO9w3n3WYOg1AM=
+ bh=ZsIcQTqI2jlj+q+1ASNCr/fgTMeYjUkWyBXRB6TaLk0=;
+ b=c5jauJ/4KUnYbu4sr1ifhYC8hnwQdoBLlp0xPc/iGKGUjbVu9BncbQvbOUBZXdpe0hDElk6PAjrFRZqLZ2L/k/zUe9ZO7zk8RS7I+UupvDGNbXUeEd0rgD62kwCXa7RxtqLuoao8z4SxjKGZ8us1MfDkhKimcP2WYTqprBIuFrQ=
 Received: from SJ0PR11MB5790.namprd11.prod.outlook.com (2603:10b6:a03:422::15)
- by DS0PR11MB7457.namprd11.prod.outlook.com (2603:10b6:8:140::18) with
+ by BL1PR11MB5415.namprd11.prod.outlook.com (2603:10b6:208:315::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.28; Wed, 12 Apr
- 2023 15:04:53 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.30; Wed, 12 Apr
+ 2023 15:05:42 +0000
 Received: from SJ0PR11MB5790.namprd11.prod.outlook.com
  ([fe80::66a3:de62:35f4:ad97]) by SJ0PR11MB5790.namprd11.prod.outlook.com
  ([fe80::66a3:de62:35f4:ad97%6]) with mapi id 15.20.6277.036; Wed, 12 Apr 2023
- 15:04:53 +0000
+ 15:05:42 +0000
 From:   "Daniel Walker (danielwa)" <danielwa@cisco.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh@kernel.org>
 CC:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
         "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
-        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
+        <mawierzb@cisco.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Daniel Walker <dwalker@fifo99.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
@@ -123,188 +122,94 @@ Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
  compatibles
 Thread-Topic: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
  compatibles
-Thread-Index: AQHZaWqYW/PiGCKJbkGjA/VaWrFw5w==
-Date:   Wed, 12 Apr 2023 15:04:53 +0000
-Message-ID: <20230412150452.GQ1391488@zorba>
+Thread-Index: AQHZbVA/W/PiGCKJbkGjA/VaWrFw5w==
+Date:   Wed, 12 Apr 2023 15:05:42 +0000
+Message-ID: <20230412150541.GR1391488@zorba>
 References: <20230405223028.1268141-2-danielwa@cisco.com>
- <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
- <20230407160413.GD1391488@zorba>
- <6af9effe-89c0-7630-9a72-a5a6351e0a95@linaro.org>
- <20230410170915.GE1391488@zorba> <20230410175054.GF1391488@zorba>
- <c1319685-49cc-9326-f4f9-1190ff633450@linaro.org>
-In-Reply-To: <c1319685-49cc-9326-f4f9-1190ff633450@linaro.org>
+ <20230412135050.GA2219534-robh@kernel.org>
+In-Reply-To: <20230412135050.GA2219534-robh@kernel.org>
 Accept-Language: en-GB, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR11MB5790:EE_|DS0PR11MB7457:EE_
-x-ms-office365-filtering-correlation-id: 71e06bea-b7a4-4065-b998-08db3b674559
+x-ms-traffictypediagnostic: SJ0PR11MB5790:EE_|BL1PR11MB5415:EE_
+x-ms-office365-filtering-correlation-id: 056d72a1-abb8-4fb3-18fe-08db3b676272
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +P630RrYK59E+K+7Op+R7bycwM9hDgrrQau7Dhe9OD/mNXVPCgUrG3wHTJccb2MEvfhgzbMi6tmV42rwcuaryueJ+ArMT+idZ+9FoGJ7Iix4DqfMr9ucEFSBJZADVgqtystn+i5U6NzyUG3zK3ADboY2jef0uV/ja3OjIvMTDZEGTiA3+sQgTyVZfLgTDJ7Ez2yySymkH8dS6TropDMuX8Nv3t46EcIvByPaz/3oCHvSjHvq2r0Pdn9cyN5B4lwbBCSXbDCR5OaghunRRQazj3DVLajkIL0C+DMhBEcTTRxRwQgHK2tTfCvQLrjqLOp6ZxsgFCwIR1RYAJj81lERiuqjrN4vtCFgztRRGbjVRU9zO6NfkdRNJ47SDrKtRzw+u9Ghns9SgT9/dcsNlDPSaXQeJmT0gvD+AruxFf4+CaCMwJ0ako0QD1f65FAYyB2R+kI4eoWpG4ZShYWG/OoEfdhaMrg9f/ghTQnNpR08/lmL8asA67ALLpM4U1UYJqgdgWWYh8Cl/oVWavxJqGqs//VVD5jesMgLeg1peGeSlhBR18zVKAbIOPoV8Lj2IxBNxueTAzIABn4EkX4+AFdi4gEL+qeh2Z7l5TYA8ZQfPP7fzNSE9Ll69wJuN1nZ6THu
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB5790.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(376002)(346002)(136003)(39860400002)(366004)(396003)(451199021)(4326008)(6916009)(54906003)(316002)(64756008)(66476007)(76116006)(66556008)(66946007)(6486002)(66446008)(6506007)(186003)(9686003)(1076003)(26005)(6512007)(38100700002)(53546011)(5660300002)(41300700001)(8936002)(8676002)(33716001)(478600001)(71200400001)(86362001)(33656002)(38070700005)(122000001)(2906002);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: loqTqaz2m0x1HmUupjVxl5BGfKPcB1l/gtJz7ulEJ2MWXQ5tTQM4eXQEkdwUIr4ayDUvxKNC04/g+z0n6GGw+buR+dIGux81/PGvQWBdIyeUa2NuHdVefY8KKfq0eiF9YzK2vYVRhtBCfAU+4kzl3uf6OABm9KsgLG3Ig/5PExOjwvY7a4Hv5FtFE7APW6Y40iX4r4vTdBRTAcu4y2YSjksOWAnup3JFH2Jxe4BsjHRLmUgvoWIfJOZKPGAcKT/a6USr32JC3IuhiaItNbDZG6KrzprDPp3F6kOMGLJGLPhYl6OueSuFf1vxZOp+Y/UqHMZRR+Iujj79FvoxtQOli6mDuhwmJocAIA2VNv2WFRaE674hNW1vGanBlRK+6mBILbeIAjuwrNmjXAKBt0qxM+DeZBOPTJLJjgr2YLqcGZ+SlI4H9fsVWx4DfPqbTTj/RmZi+C67ia2JzMytOzsjOHLu/vWuUePnGxxsG4iIRpT1c2euSuGUGqDpJjeYAFzJCoSosK+7ycQoG5fe3pksXlSRclkMSHyUHO4+m7F9J+b0IBQrsSPM3lLp4z+KH/CD7KaKBh0e0ny2owgOFE2QKFIGl/20u29EDvAsFNaJhxbWHFnLVTxdNi8B1MokHVvB
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB5790.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(396003)(39860400002)(366004)(376002)(136003)(346002)(451199021)(2906002)(4744005)(8676002)(76116006)(33656002)(478600001)(8936002)(5660300002)(41300700001)(316002)(66946007)(64756008)(66556008)(66446008)(66476007)(54906003)(6916009)(4326008)(38070700005)(86362001)(71200400001)(186003)(38100700002)(6486002)(1076003)(122000001)(6506007)(9686003)(26005)(6512007)(33716001);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0gexl3V00fW6UIZkITVlouPsPvLGD5lR/UkLj1fM1OJHsFsEnHFpvMLomtus?=
- =?us-ascii?Q?iQG5ufuvABKo1jDWh759fdCiHIyBoERLEYnP9W3Xi/kF1Frfb5g6W6MED/kB?=
- =?us-ascii?Q?CuNiSmnkG3RUztft1KimG4R4lc392OisxwhXIykRKNlTjHG9UV/J4cSnT7mG?=
- =?us-ascii?Q?E5q5CrZ+QMQuuLg9vfAmfurV6qiGwD2AMSaWjZyXSqupQtsQqfNbLIaWNCuU?=
- =?us-ascii?Q?Rt/Y/66nUwImzKMPaAb0Z1liO86BrVIynOrcxo7PwIvnIDFqHLUpwW/RI06R?=
- =?us-ascii?Q?LHB0dkE23oqRYxgXXirgfp+4WPKOpdPcrsraHXMRoji4U9W5ViwXRq8luNnG?=
- =?us-ascii?Q?I6hVS0VhSiIYJoQkHtoAXFSoIp8ru2oRNZ1v56E0cz8W6obAnpqLQmE+I7j8?=
- =?us-ascii?Q?oDgUcbyMT4JDKdFNua+uFb46jN2tr8WARg+mRn4qI55u29+uk22XnzW0CXPs?=
- =?us-ascii?Q?MxKj3XDx9mO4rxWAtrE4KTqAheR5hcKdijpa2RAUnyVa13bfzy2x6jvYRdMa?=
- =?us-ascii?Q?f1ftrZ71Tv04oTUHBsr2ICBobXTk/+5KmNM2Evbd2ZrSDyaAu1QFNYHEtVDB?=
- =?us-ascii?Q?wownVnfYJxV4ahL1ekMVhQLSJ5Znb5jEF2VB9/mGCSqgnrCk2FKRDbMY6mEx?=
- =?us-ascii?Q?M0eqHmKKgr1bXGKiOcGpjYc+lqZVKC6DG+bluJm60JBbFHvvCF8YVy6wXOXc?=
- =?us-ascii?Q?pZT5CDvg4yyJjn5nIgpEuiS5s3dITWNIH/cotJ7vsDeFETPkNK/sCHnPFU/s?=
- =?us-ascii?Q?tWi5IuzH2skrPhuXryvz1hdTTG3lbNbhCwnwUytDCB23i2YFM0qUzBQ2H6S9?=
- =?us-ascii?Q?mbcSdmrQXFR2eGHlkO7FznpRgm0zsc741O8HK2ZWn9mo9gq0iTpKE1zsjYfb?=
- =?us-ascii?Q?5luGD5BlQh5xolcul2DOgY/ynk2INf88Ahx5aXGDAXxcfL4d8fbNHhg4Febg?=
- =?us-ascii?Q?Sx8Cz8CLaIZ2l64DIAlkKi4A0Sb5Euvsg6QcGEy31S96JWu+H6E2ABmXnsgl?=
- =?us-ascii?Q?OiW+oLgtklNtNb2mGo6NNxQdOwprf09QiWMWbxoteH4mgnU7sRuuF8+dVvKE?=
- =?us-ascii?Q?2lnH0ZrMREtOoUhftImbIf9GNXfKBymU6fI67jJCAiKnAxaX7/S+DiAJRuZZ?=
- =?us-ascii?Q?3h0XMxGTxWU0VN1EZ8APQ+3WCjuquS4zgcQ020z9j+yCVEu6v1WT/FCMUjAd?=
- =?us-ascii?Q?NJE2fvUfTbvDxjMA6ikRl0Mmpyy5IZAKuxPENOai4uH1XI46kY6pY8D7kSUx?=
- =?us-ascii?Q?ciq25/R4N0vJiSoj0m5fY05CX6q9tVdiWccQUjd6ewh+kftHVDxNQSGr+qRB?=
- =?us-ascii?Q?QzsVPFnPe6ldOhQJLDQ8x3SHgrh2kIuTBBt5vRzgNL/ZY1OobIxRqQJVxbBf?=
- =?us-ascii?Q?revzxjA/fSIIX9akn06Sibnj9Vg/RpcfGlQeTrz2hLys2kUXUrkspTfL6wib?=
- =?us-ascii?Q?t6W12sb1eM3UsN/b3SsCS272KiunyqblDrSCCR9B1cTIGQTSaufChJw8bLRu?=
- =?us-ascii?Q?O82cRnjDniAfxwsKWiatfotb+WvRsIpHYQN123TzOOe/9F37ZWPD3jE1oIGg?=
- =?us-ascii?Q?bx52TWJb5+qu1Hb4uC4Ei3jlsvcXlR27U70On5twrv94Syl/V4SHADC9c36O?=
- =?us-ascii?Q?Bw=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?S1w+x13IQzpG0nBWiCDwPF0oJ3aR9wl4EUJhc0WRqqVPdNNt2ECayUAXQkz7?=
+ =?us-ascii?Q?t5PEu/Le9x+uP5ome97atXEcR2zkP3Dnl3NB5kVC7ES4uWKPX1fgdkVK55Tg?=
+ =?us-ascii?Q?jWiUuK5DeMfYqeXnZTV+jYy/s9Od91pn+qjiV7kz2yK6620t71S/G/RrAv9C?=
+ =?us-ascii?Q?YdwfaqEAfv2Rxbk4p+N9iMngCSAu6r9FQMNtC/NUBEhC1gYOMHyilkhVr7m+?=
+ =?us-ascii?Q?6f0vTgQq4plA1jjjem0OHlUqP8QEN+I1j5Iiv3AMtdGLm4QXSjJmlfrPrunn?=
+ =?us-ascii?Q?0vJjlKtK5bN7qi247jfzjwUT3wsfl46K5VVCBw7vuda1/zEa3QdHfLXmjU8f?=
+ =?us-ascii?Q?ojtpl3b0+h14L9np42znw8J0v0Rn2myhfEbaXDcBeGBCWJtLW4YYJchbEHqc?=
+ =?us-ascii?Q?FYBKT2nrA0QsazZrvL8ErgxwZEg3ar7p00B1Es5HCmLj+2o65v37ec5opWrs?=
+ =?us-ascii?Q?POcHDiFCMegLb58AY1kf322AQMdLUsqu3RJ5hcdzdR77A6Fr7HGYsFb0khXO?=
+ =?us-ascii?Q?YR3u7jDjAYjnaAw7xcKsMyLqCgCpY8hfUa6qXLGudhlyoyZGdRDwpEvF6XCl?=
+ =?us-ascii?Q?Wp4iX6+uZV37IgK1fhFEUaKne2kR9dDO2HZDee0E6fA7e5KGjF9i97cLVaOK?=
+ =?us-ascii?Q?2tILw0xU3Dr7jKUbSQjGEBuuXe4rS2CqaLMIIbDYzFoO2z1Urtc/YZzWCx2X?=
+ =?us-ascii?Q?+uN6Hx9qu+QA/O3LJqmTMYMVA1nUf7un4qYJkYU0xYS5SEDpdCp3yrmZkPoH?=
+ =?us-ascii?Q?prXcFsstgK3KELmNPE4TXnW2mk1ceVKF3qRLKI/Rfkmn+LWjsVAsZ51hezJ8?=
+ =?us-ascii?Q?dlJ2prd80+RyLzwdnLSlO7KDFEqBU7GukAV5fi+TL8glelNDo9v2MOyYAo7U?=
+ =?us-ascii?Q?6Uykj1fzzKOEWGBQKPcR4rw0JG8s8mkRvKti+G6VVH5BiuK57Moatt/DB8Az?=
+ =?us-ascii?Q?DL8r6mrpiV7nV7oVX6EIuQVf6ycOrEQS5NtQ2amq+gH2gJugj5+YIPq0vKun?=
+ =?us-ascii?Q?qrIz1j4L4Jl7B1y7/te609jDFA8tOKI1ypQzo6zqv5gJuYDv0VaQeQPjjZen?=
+ =?us-ascii?Q?D/ILagGoVrWyATwhPIsCWIxPt354JyFGTIe2ZtrK4UgfUulutKNC7VnyvfXe?=
+ =?us-ascii?Q?r5enDza5LeIxwhea2ozNl8QZPsDx/7uD3b/+eRDKS5Y7LNgmb3hwAztgdRNr?=
+ =?us-ascii?Q?mtZmT3cYanKwRJpTzOrvMw6JLtkC56JJ0iAl3DME+F4jBCB8sm6H0jJnnL5T?=
+ =?us-ascii?Q?yRFxwXX9yv9r4Oe5ZpVjC42Vby8ublQNMoK2PrAb5v6UwY65EIUj4IF2VTg5?=
+ =?us-ascii?Q?cKKcgzOJn0WJ0Ye5jLBxK5fOax0e7c+Q6fJqf6PjQXatA27WXDqaFn/81YY5?=
+ =?us-ascii?Q?rHzTPIGA3KwvBPNkINyYNY95rh5Bx4r1ZUoZauAqxHty0VnBbxfvmDnq51MJ?=
+ =?us-ascii?Q?iFzBWxIYz46umSJOuTJm4Pr3Z5XAGA1f92cmxTTgC07U5CCsbTfnHhapxGzQ?=
+ =?us-ascii?Q?YZNfh/XgSatU6lgkmGH1P/wr4cn+VIcTRs2NAXgphMWUZUH7mLlXY770sMtc?=
+ =?us-ascii?Q?isZvK2UDe1QW5w6MwGKQecqGDLAfDa3jBzpldTddWLzbDa5s+cHgLpE02TYa?=
+ =?us-ascii?Q?0g=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <FC6F0F94C0DC104DB56FF2453FDFE0DE@namprd11.prod.outlook.com>
+Content-ID: <04B912DD119C3E4F92975EAB8B910769@namprd11.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: cisco.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB5790.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71e06bea-b7a4-4065-b998-08db3b674559
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2023 15:04:53.3736
+X-MS-Exchange-CrossTenant-Network-Message-Id: 056d72a1-abb8-4fb3-18fe-08db3b676272
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2023 15:05:42.2312
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 5ae1af62-9505-4097-a69a-c1553ef7840e
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rV6YUKpfnPr7l2yyWPJn6D0+log+EmQSG7JrduIK9d1hEJQT4s0DxDr10OqiORuY1JLV8m8HaR7jsrb5lbYdeQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7457
-X-Outbound-SMTP-Client: 173.38.212.137, aer-opgw-5.cisco.com
-X-Outbound-Node: aer-core-5.cisco.com
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-MS-Exchange-CrossTenant-userprincipalname: js9kBWB3h1qMPam+IpZR2SM6DypKCaeTmBNRKbbWplgFith+xfM4NVokPGJTTsBLuo/QCzg6pkoZsz+RJtT/OQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5415
+X-Outbound-SMTP-Client: 173.37.147.253, alln-opgw-5.cisco.com
+X-Outbound-Node: alln-core-7.cisco.com
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED,USER_IN_DEF_DKIM_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED,USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 12, 2023 at 09:24:48AM +0200, Krzysztof Kozlowski wrote:
-> On 10/04/2023 19:51, Daniel Walker (danielwa) wrote:
-> > On Mon, Apr 10, 2023 at 05:09:15PM +0000, Daniel Walker (danielwa) wrot=
-e:
-> >> On Mon, Apr 10, 2023 at 05:28:03PM +0200, Krzysztof Kozlowski wrote:
-> >>> On 07/04/2023 18:04, Daniel Walker (danielwa) wrote:
-> >>>> On Thu, Apr 06, 2023 at 09:12:34AM +0200, Krzysztof Kozlowski wrote:
-> >>>>>> @@ -0,0 +1,27 @@
-> >>>>>> +# SPDX-License-Identifier: GPL-2.0-only
-> >>>>>
-> >>>>> Dual license.
-> >>>>>
-> >>>>
-> >>>> What are my choices here? I see this,
-> >>>>
-> >>>> # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>
-> >>> Yes, the one suggested by the checkpatch. Did you run it?
-> >> =20
-> >>  I don't recall if I did or not.
-> >>
-> >>>>
-> >>>> Which appears to be what your suggesting. I also see this,
-> >>>>
-> >>>> # SPDX-License-Identifier: GPL-2.0
-> >>>>
-> >>>> I'd rather use the later.
-> >>>
-> >>> Why? Bindings should be licensed under BSD, so what is the reason to
-> >>> make here exception?
-> >>
-> >> I'm sure I can re-license my submissions. I'd have to look into it.
+On Wed, Apr 12, 2023 at 08:50:50AM -0500, Rob Herring wrote:
+> On Wed, Apr 05, 2023 at 03:30:27PM -0700, Daniel Walker wrote:
+> > Describe the compatible properties for the Cisco CrayAR SoC.
 > >=20
-> > I'm _not_ sure.
+> > Cc: xe-linux-external@cisco.com
+> > Cc: Marcin Wierzbicki <mawierzb@cisco.com>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Daniel Walker <dwalker@fifo99.com>
 >=20
->=20
-> This is a new file - it did not exist in v1 - thus you had to write it.
-> If you wrote it, you (or your employer) hold all copyrights, so yes, you
-> (or your employer) can relicense it.
->=20
-> I cannot imagine the case why employer would not like to have dual
-> license here (it's beneficial to him, so employer would be acting
-> against himself), but if you need to convince him, you can just say,
-> that contributing to Open Source project means accepting the licenses in
-> that project. The license for new bindings in this project is (GPL-2.0
-> or BSD-2), like pointed by checkpatch.
+> checkpatch.pl complains that the author and Sob emails don't match.
 
-
-Yes, my employer holds the copyright. However, corporations don't work in t=
-he way
-you imagine. There is no one "owner" to speak to about re-licensing. The pe=
-ople
-who determine the license is an army of lawyers, with an extensive approval
-process.
-
-What benefit does a BSD license hold for my employer over GPL v2 ?
-
-Here the licenses currently used by the bindings,
-
-      1 # SPDX-License-Identifier: BSD-2-Clause
-      1 # SPDX-License-Identifier: (GPL-2.0-only)
-      1 # SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-      1 # SPDX-License-Identifier: (GPL-2.0-or-later)
-      3 # SPDX-License-Identifier: (GPL-2.0+ OR X11)
-      4 # SPDX-License-Identifier: GPL-2.0-or-later
-      4 # SPDX-License-Identifier: (GPL-2.0 OR MIT)
-      6 # SPDX-License-Identifier: (GPL-2.0)
-      7 # SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-      7 # SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-     11 # SPDX-License-Identifier: GPL-2.0+
-     12 # SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-     12 # SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-     33 # SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-     47 # SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-     56 # SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-    102 # SPDX-License-Identifier: GPL-2.0-only
-    350 # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-    511 # SPDX-License-Identifier: GPL-2.0
-    610 # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-   1570 # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-
-Can you explain why so many are allowed to use GPL v2 , but my company is n=
-ot
-allowed? Shouldn't these all be dual licensed if the project only allows du=
-al
-license?
-
-It's very likely that new bindings will be made by making a copy of other
-bindings, then make modifications. If my company copied bindings which are =
-GPL
-v2, then we are required to honor the license of the prior binding
-and that means we legally aren't allowed to relicense under BSD AFAIK.
-
-Also the documentation for the bindings here Documentation/devicetree/
-
-changesets.rst
-dynamic-resolution-notes.rst
-index.rst
-kernel-api.rst
-of_unittest.rst
-overlay-notes.rst
-usage-model.rst
-
-all the rst files are GPL v2 and not dual license.
+I'll address it , assuming I send another series.
 
 Daniel=
