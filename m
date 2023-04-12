@@ -2,135 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561316DF1B1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 12:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0E056DF1BB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 12:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230271AbjDLKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 06:10:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56664 "EHLO
+        id S230090AbjDLKL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 06:11:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbjDLKKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 06:10:01 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CDD2D57;
-        Wed, 12 Apr 2023 03:09:59 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33CA9rKv024565;
-        Wed, 12 Apr 2023 05:09:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681294193;
-        bh=E80AZRjPhpaeA6V+Y6L+cjipzRsu/DNp4SWm8kgDHCo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Petumi9fEbWzwk0CCoXyobrtVERS6yTYjk7UGkYiL/l8Z0NuxWakSoLkm1yke7wKT
-         Kv8Dx1/LphzKmVVE+15mbPNgk4BVO5r0p8gY3VP8H5USS+0bc+ElYagz/ZEUh6n8Fn
-         QrDk1ORFop+5BiP9N1ek+A+ygdEI2wYvDZWYnTTU=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33CA9rF4076081
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 Apr 2023 05:09:53 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 12
- Apr 2023 05:09:53 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 12 Apr 2023 05:09:53 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33CA9qBW010569;
-        Wed, 12 Apr 2023 05:09:53 -0500
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j784s4-evm: Add pinmux information for ADC
-Date:   Wed, 12 Apr 2023 15:39:49 +0530
-Message-ID: <20230412100949.850513-3-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230412100949.850513-1-b-kapoor@ti.com>
-References: <20230412100949.850513-1-b-kapoor@ti.com>
+        with ESMTP id S230368AbjDLKL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 06:11:28 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F33C2D73
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 03:11:22 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id d22-20020a17090a111600b0023d1b009f52so13968375pja.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 03:11:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681294282; x=1683886282;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=E8Dyl4+NdOephBJ8a5CGLrM2Bu7+ex2R8fnMkaTpqs4=;
+        b=mz5OpN3ySFLWfaIDtFk+QVy7GrbLBKNedf9Vu+hPa+TK0mu13m7MrIQ8OEe6pbJAWQ
+         fbNT7LpAG2fd4KTvtHfzUu6jof2ugDDGynUWoavd+e/Jt3PY6P5L+vYcwrabo+RSYWri
+         ILmzz2EOWH/mZlpfbeU2MtvwJUMnUsDeK0FDzNJtDxRnR6SbeaMGJil5T9RGDlncPbib
+         uAC5ZIexDvQORv2cI+I38V/ubGCDciwBgIFDqlFLf5Ia4SOWcFXnIYWEmKKQBgcIi/vy
+         c86DUgPPBy+nlDR9ZeEfbfqxyM6Y9R7QN+6mFnclLLmy/UjO/QlzcGXgQ3uMC2tgB3Ib
+         86NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681294282; x=1683886282;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E8Dyl4+NdOephBJ8a5CGLrM2Bu7+ex2R8fnMkaTpqs4=;
+        b=x+bPB9bJ2tdVTBqO+7yDwtJxxVhfQNDj/xp0/iSE9Jx4anCLfyIK/7RNHZ3w5WWsdG
+         o+i5QPTlLFAxk6X2n+OpQc08xNKYcAzUppVHDSPQUlnW0qTpan9dwVcKtIdycIRp/UJn
+         fGrd0DNN8Wyddwe0DLwwaRhC4y9fg5VqqJFKJVTHVdOzJs3OKZ6/nGS5GAWepYaEYr0V
+         Rj0Z5r/ZpHG7xlieV4wQeZXCEmw+OATKHm5NgSEBC3+J2FdDWEcZAbw/2ALJV3YQUqda
+         GfCWqJSi68TO1ikl3FGqCcZDd/eqXMv8zZ+IYnQk1b4gmTOMY5Ib2Tv3aC5VD5jV67Mk
+         vFFA==
+X-Gm-Message-State: AAQBX9doTo7DMH98YR0pkrkMoIVfJjHIyyycHsXmnMHHq7B0IFF36oAz
+        nwO2UZYOJeB1BmQWL783fHpe0MPdYBATOm5HAg==
+X-Google-Smtp-Source: AKy350ag0nT+T/UdRSRwoJJZyisBeaEREEvNiKolME4G238ayYlNBBq1ZXotsF5BB8/0cI9XV4UrbA==
+X-Received: by 2002:a17:902:ce86:b0:1a6:4532:1159 with SMTP id f6-20020a170902ce8600b001a645321159mr7580106plg.63.1681294281569;
+        Wed, 12 Apr 2023 03:11:21 -0700 (PDT)
+Received: from thinkpad ([117.216.120.128])
+        by smtp.gmail.com with ESMTPSA id iz15-20020a170902ef8f00b001a1dc2be791sm6121654plb.259.2023.04.12.03.11.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 03:11:21 -0700 (PDT)
+Date:   Wed, 12 Apr 2023 15:41:12 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bhelgaas@google.com,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "dt-bindings: PCI: qcom: Add iommu-map properties"
+Message-ID: <20230412101112.GA9463@thinkpad>
+References: <20230411121533.22454-1-manivannan.sadhasivam@linaro.org>
+ <20230411174742.GA3428751-robh@kernel.org>
+ <20230411184231.GA59982@thinkpad>
+ <ZDZouY0PEL64MT6N@lpieralisi>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <ZDZouY0PEL64MT6N@lpieralisi>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J784S4 has two instances of 8 channel ADCs in MCU domain. Add pinmux
-information for both ADC nodes.
+On Wed, Apr 12, 2023 at 10:15:53AM +0200, Lorenzo Pieralisi wrote:
+> On Wed, Apr 12, 2023 at 12:12:31AM +0530, Manivannan Sadhasivam wrote:
+> > On Tue, Apr 11, 2023 at 12:47:42PM -0500, Rob Herring wrote:
+> > > On Tue, Apr 11, 2023 at 05:45:33PM +0530, Manivannan Sadhasivam wrote:
+> > > > This reverts commit 6ebfa40b63ae65eac20834ef4f45355fc5ef6899.
+> > > > 
+> > > > "iommu-map" property is already documented in commit
+> > > 
+> > > Need the commit hash here.
+> > > 
+> > > > ("dt-bindings: PCI: qcom: Add SM8550 compatible") along with the "iommus"
+> > > > property.
+> > > 
+> > > Shouldn't there be a patch removing "iommus" as discussed?
+> > > 
+> > 
+> > Yeah, that was my intention after the dts patches were merged. And since the
+> > dts patches are in linux-next now, I could finally send the patch.
+> 
+> I don't understand what's the plan here. By the way, instead of merging
+> this revert I just dropped the commit that this patch is reverting from
+> the controller/qcom branch, please have a look to check if everything is
+> what you expect it to be there.
+> 
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 44 ++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+This is fine. The plan is to remove the "iommus" property from Qcom PCI binding
+since we have removed the usage of that property from devicetree [1]. Initially
+the iommu properties were not documented at all in the binding. But commit,
+"dt-bindings: PCI: qcom: Add SM8550 compatible" added them to the binding to
+satisfy dtbs check. But in parallel, the patch removing "iommus" property from
+dts got merged to qcom tree.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index f33815953e77..907a2153b41d 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -165,6 +165,32 @@ J784S4_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A36) MCU_MDIO0_MDC */
- 			J784S4_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
- 		>;
- 	};
-+
-+	mcu_adc0_pins_default: mcu-adc0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (P36) MCU_ADC0_AIN0 */
-+			J784S4_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (V36) MCU_ADC0_AIN1 */
-+			J784S4_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (T34) MCU_ADC0_AIN2 */
-+			J784S4_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (T36) MCU_ADC0_AIN3 */
-+			J784S4_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (P34) MCU_ADC0_AIN4 */
-+			J784S4_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (R37) MCU_ADC0_AIN5 */
-+			J784S4_WKUP_IOPAD(0x14c, PIN_INPUT, 0) /* (R33) MCU_ADC0_AIN6 */
-+			J784S4_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (V38) MCU_ADC0_AIN7 */
-+		>;
-+	};
-+
-+	mcu_adc1_pins_default: mcu-adc1-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x154, PIN_INPUT, 0) /* (Y38) MCU_ADC1_AIN0 */
-+			J784S4_WKUP_IOPAD(0x158, PIN_INPUT, 0) /* (Y34) MCU_ADC1_AIN1 */
-+			J784S4_WKUP_IOPAD(0x15c, PIN_INPUT, 0) /* (V34) MCU_ADC1_AIN2 */
-+			J784S4_WKUP_IOPAD(0x160, PIN_INPUT, 0) /* (W37) MCU_ADC1_AIN3 */
-+			J784S4_WKUP_IOPAD(0x164, PIN_INPUT, 0) /* (AA37) MCU_ADC1_AIN4 */
-+			J784S4_WKUP_IOPAD(0x168, PIN_INPUT, 0) /* (W33) MCU_ADC1_AIN5 */
-+			J784S4_WKUP_IOPAD(0x16c, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
-+			J784S4_WKUP_IOPAD(0x170, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
-+		>;
-+	};
- };
- 
- &main_uart8 {
-@@ -253,3 +279,21 @@ &mcu_cpsw_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&mcu_phy0>;
- };
-+
-+&tscadc0 {
-+	pinctrl-0 = <&mcu_adc0_pins_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	adc {
-+			ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
-+
-+&tscadc1 {
-+	pinctrl-0 = <&mcu_adc1_pins_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	adc {
-+			ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
+So now we have 2 options here:
+
+1. Amend the commit "dt-bindings: PCI: qcom: Add SM8550 compatible" to remove
+the "iommus" property.
+
+2. I will submit a separate patch removing that property.
+
+Lorenzo, let me know what works for you. Sorry for the mess! Confusion happened
+due to patches getting applied without sync.
+
+- Mani
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=6340b391e15094575911ab0d96bfff09deadafba
+
+> Lorenzo
+> 
+> > - Mani
+> > 
+> > > > 
+> > > > So let's revert the commit that just added "iommu-map" to avoid
+> > > > duplication.
+> > > > 
+> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 --
+> > > >  1 file changed, 2 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > > index 5d236bac99b6..a1318a4ecadf 100644
+> > > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > > @@ -78,8 +78,6 @@ properties:
+> > > >  
+> > > >    dma-coherent: true
+> > > >  
+> > > > -  iommu-map: true
+> > > > -
+> > > >    interconnects:
+> > > >      maxItems: 2
+> > > >  
+> > > > -- 
+> > > > 2.25.1
+> > > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
