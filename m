@@ -2,120 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 199DD6E0F7A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6DA6E02A1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 01:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231659AbjDMOBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 10:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35356 "EHLO
+        id S229634AbjDLXiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 19:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbjDMOBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:01:46 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBA211A;
-        Thu, 13 Apr 2023 07:01:45 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id v14-20020a05600c470e00b003f06520825fso13663741wmo.0;
-        Thu, 13 Apr 2023 07:01:45 -0700 (PDT)
+        with ESMTP id S229492AbjDLXiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 19:38:50 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276A11FE9
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 16:38:49 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-947abd74b10so551413366b.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 16:38:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681394504; x=1683986504;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=uOHTamwKNL40GhmSChgfj+zLAbo8CbA29L61cgq0bpE=;
-        b=G845KAhU6xI8AzEGleuaSgyKc/tkw+0l10Pgl2ql2iERI016euWl0ztj2Jtku9EWjE
-         XzgnPXYm2rJ5Z6MWj7nAYfC0TKlTVvu7bv4z2MqcWqrmetcjpIngUnp/cep2byHpZyYy
-         wlgwVKJvF7k2/EDrncZLO2rFwkZAogjbddoEBeGYvu6o0Qt2ztmcWk4RNW8DLOcKnIK3
-         wfWN5QSsuK82eE17Ihl+xdy7oZFgAyCUMSRmAUTwxWQ7A1LgOU7NiKfhUcyIPRxR7+WT
-         w79ZWayhGjAHDH+kh6FgI26OuDeliCOPiPiMeY81WyzZd8y0tmrAOQb0oo6BPUmj+3d6
-         OJ4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681394504; x=1683986504;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=kali.org; s=google; t=1681342727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uOHTamwKNL40GhmSChgfj+zLAbo8CbA29L61cgq0bpE=;
-        b=AthJ9/Sotjs+isjPGgkGbArTZNjrRsrD+9EBCQqbz+b5/KRqULw8Bkihm8OZMdckgr
-         qLGfvHVz4S87cBU3bUwWbA6WYmN5Xh7Qw5CQ3k1ixDDlNwQe40Plgp3tWGd6jVwV3rLy
-         kyW5nfe/k4KtcLRejrkAiDcxnRZQB92mQeCvEhVWXIb+e29Hk4L6ER5FODtm8vTyfMsO
-         trrQ1wg5O1OtZhpKidxtbk303ClWXZkh3SvWkHctDTvAnvcsVITSb0PT+UafeMPF5WCT
-         5TndlXBy6EK1AkwABqsy7ZILNmNSxhM01K6dJOdbgp5btEEW6ePLesOmso5g0kP9KHfI
-         356A==
-X-Gm-Message-State: AAQBX9c/O4odkYGUSvMy/hzMFeeNBCWBVlhxkJXCPTzMUmO4vLYqJnix
-        50uYQYFxFfQ1EqYbfF1onns=
-X-Google-Smtp-Source: AKy350aCOeLGVdCGwcMkMytZAVJF3k2hKosfOFGhq5NwBEjscTYcs49JjHc5JD4A851zKXAccyv3nw==
-X-Received: by 2002:a05:600c:2304:b0:3f0:7f07:e617 with SMTP id 4-20020a05600c230400b003f07f07e617mr1969779wmo.8.1681394503378;
-        Thu, 13 Apr 2023 07:01:43 -0700 (PDT)
-Received: from Ansuel-xps. (host-87-7-13-196.retail.telecomitalia.it. [87.7.13.196])
-        by smtp.gmail.com with ESMTPSA id k17-20020a7bc411000000b003f09fe8312csm1909489wmi.20.2023.04.13.07.01.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 07:01:42 -0700 (PDT)
-Message-ID: <64380b46.7b0a0220.978a.1eb4@mx.google.com>
-X-Google-Original-Message-ID: <ZDc6lf4+qd0Fm2j+@Ansuel-xps.>
-Date:   Thu, 13 Apr 2023 01:11:17 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <olteanv@gmail.com>,
+        bh=Cqi3F2DLTaK1XRD+XBhKe6ot1+wzOmTh1thtCJqRlgA=;
+        b=VV/BN1szRArbtzTWiRfhFDCLoYJM3RKfVv+GHRmlXJ9owwqzHhiDB8wMf0nrMmomLI
+         cXNiOprrIBUP5BAIMj4cfU2KJwoDAVE2BM3MvNMWBiTBF+/xE1lHtyAV4BMhBSWerrYH
+         r+he4F8RCcFcLdN0Bb9F/lVurdNIjtoKlZt5Qc7molk5iWChp5uhQvemYzAXvuFrKEgC
+         y9A5KJ1bR0JXbXDNUjtJi2jocfJTWlW4Hia0hiyHKytihdazhl9ndLNBFVRavyHowkGT
+         a8/f+eO9NkoUKrdws6mvUKkT/1rAFhYVQPPHQI2U1vdgaDmiE2tWr2tu6V3617uV7tex
+         /j9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681342727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cqi3F2DLTaK1XRD+XBhKe6ot1+wzOmTh1thtCJqRlgA=;
+        b=TCN+hZRLTPQYzjtf61dX+22qGI3sludhSue2691KPCFzwRiAI8LkHF3u1ivBWPJVrX
+         m0cFVaEIESiDF7b8jIx9+uhtD0TXJisQ8UbUo/yGsO6RmNIm1Zdyv4OmfhhlOjFJk++H
+         skE2PholgarqRfJBar19M3+Zw3d6AJ9oJKskouvVyfW0LIlZFh2vMRSPtcKkkloPZ8uo
+         ABQZEu4yFe6tzZZww9VlH0kxlaP2RUOFVY6sU856+rNPB2aXXjLxfBuyaITjIRoJV62I
+         ANxwsH+B0CG/VTwl1B/jh1JOwRL1TUKE6jznvFeZN5XXerF9U09Ab5vsbjOd7O+np/xu
+         f8TQ==
+X-Gm-Message-State: AAQBX9fCeohOq9IfOWpnpzfortlD9BhhbuddDVn2jB2qeVqmCUWfutnE
+        T/iRf950Nf7gp2lfZb/SeZCSfxyqSZYkr4NYmY6xCQ==
+X-Google-Smtp-Source: AKy350Ylw76zATlXqd22goKD6jZ1DfF1RaS1ReYl4pCHK9HRFt/rpX4TdFDVfYAqLNPyVH8aVC/lYmaBfyGXOk10SPU=
+X-Received: by 2002:a50:aa84:0:b0:506:4139:541f with SMTP id
+ q4-20020a50aa84000000b005064139541fmr190771edc.8.1681342727602; Wed, 12 Apr
+ 2023 16:38:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230326233812.28058-1-steev@kali.org> <20230326233812.28058-3-steev@kali.org>
+ <ZCVgMuSdyMQhf/Ko@hovoldconsulting.com> <CAKXuJqjJjd6SY1g3JW8w53rEVCqgDkJXQ=1iA3qXcF+C9qv1SQ@mail.gmail.com>
+ <CABBYNZKX9bixyy8GZ0VDFaeNeY0_MSVDDNvcTqiAXEx8zFXfbA@mail.gmail.com>
+In-Reply-To: <CABBYNZKX9bixyy8GZ0VDFaeNeY0_MSVDDNvcTqiAXEx8zFXfbA@mail.gmail.com>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Wed, 12 Apr 2023 18:38:36 -0500
+Message-ID: <CAKXuJqiZ9iQESFpVs-b5YLEF5cuPQf7tNtBYGerUxfEp3sj19Q@mail.gmail.com>
+Subject: Re: [PATCH v8 2/4] Bluetooth: hci_qca: Add support for QTI Bluetooth
+ chip wcn6855
+To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc:     Johan Hovold <johan@kernel.org>,
         "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [net-next PATCH v6 06/16] net: phy: phy_device: Call into the
- PHY driver to set LED brightness
-References: <20230327141031.11904-1-ansuelsmth@gmail.com>
- <20230327141031.11904-7-ansuelsmth@gmail.com>
- <202ae4b9-8995-474a-1282-876078e15e47@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202ae4b9-8995-474a-1282-876078e15e47@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>,
+        Tim Jiang <quic_tjiang@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 13, 2023 at 06:57:51AM -0700, Florian Fainelli wrote:
-> 
-> 
-> On 3/27/2023 7:10 AM, Christian Marangi wrote:
-> > From: Andrew Lunn <andrew@lunn.ch>
-> > 
-> > Linux LEDs can be software controlled via the brightness file in /sys.
-> > LED drivers need to implement a brightness_set function which the core
-> > will call. Implement an intermediary in phy_device, which will call
-> > into the phy driver if it implements the necessary function.
-> > 
-> > Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> 
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-> 
-> > +	int (*led_brightness_set)(struct phy_device *dev,
-> > +				  u32 index, enum led_brightness value);
-> 
-> I think I would have made this an u8, 4 billion LEDs, man, that's a lot!
+Hi Luiz,
 
-If andrew is ok we can still consider to reduce it. (but just to joke
-about it... A MAN CAN DREAM OF A FULL HD SCREEN ON THEIR OWN SPECIAL
-PORT)
+On Wed, Apr 12, 2023 at 3:00=E2=80=AFPM Luiz Augusto von Dentz
+<luiz.dentz@gmail.com> wrote:
+>
+> Hi Steev,
+>
+> On Thu, Mar 30, 2023 at 9:35=E2=80=AFAM Steev Klimaszewski <steev@kali.or=
+g> wrote:
+> >
+> > Hi Johan,
+> >
+> > On Thu, Mar 30, 2023 at 5:10=E2=80=AFAM Johan Hovold <johan@kernel.org>=
+ wrote:
+> > >
+> > > On Sun, Mar 26, 2023 at 06:38:10PM -0500, Steev Klimaszewski wrote:
+> > > > Add regulators, GPIOs and changes required to power on/off wcn6855.
+> > > > Add support for firmware download for wcn6855 which is in the
+> > > > linux-firmware repository as hpbtfw21.tlv and hpnv21.bin.
+> > > >
+> > > > Based on the assumption that this is similar to the wcn6750
+> > > >
+> > > > Tested-on: BTFW.HSP.2.1.0-00538-VER_PATCHZ-1
+> > > >
+> > > > Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> > > > Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> > > > Tested-by: Bjorn Andersson <andersson@kernel.org>
+> > > > ---
+> > > > Changes since v7:
+> > > >  * None
+> > >
+> > > Only noticed now when Luiz applied the patches, but why did you drop =
+my
+> > > reviewed-by and tested-by tags from this patch when submitting v8?
+> > >
+> > > For the record:
+> > >
+> > > Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> > > Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> > >
+> > Oops, that wasn't intentional! I only meant to drop it on the dts bits
+> > as that part I wanted to make sure I got right based on your comments,
+> > my apologies!
+> > --steev
+>
+> This one seems to be causing a new warning:
+>
+> drivers/bluetooth/hci_qca.c:18
+> 94:37: warning: unused variable 'qca_soc_data_wcn6855' [-Wunused-const-va=
+riable]
+>
+I had seen this as well and I just noticed that the others were marked
+as __maybe_unused and I forgot to.  Will send a fix up for that!
 
--- 
-	Ansuel
+
+> --
+> Luiz Augusto von Dentz
+-- steev
