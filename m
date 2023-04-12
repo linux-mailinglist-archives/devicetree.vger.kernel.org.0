@@ -2,118 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C14E16DEAB3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 06:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1FA76DEAC0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 06:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbjDLErG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 00:47:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58194 "EHLO
+        id S229508AbjDLEwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 00:52:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjDLErF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 00:47:05 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44BA30C0
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 21:46:56 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id pm7-20020a17090b3c4700b00246f00dace2so2411527pjb.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 21:46:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1681274816; x=1683866816;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+bx1peOWUY+EguIhN3+HEV80l+NpcfNfRNogKL9pYa8=;
-        b=TYD6k5TkH0f+f2VcgwjIMuLUw5PF7L9qlFK7nKXfGEzzYqg5yocLOj1NQcTK3AlAX8
-         7L49b8EJyccPPe9AEmNfHPbpp9gwhlxoNTDCh0SE1hZc6MyxITgRVf7vXAHMExP+UADL
-         dlSuONYrS5XVbWrjQ2wBV/vTEO137v89cT9dkfhh4QNwnjBK2IgJHRgEo+sMqHdnQIXb
-         J01mLe7aZYR537STAD/H0nm6pewLefxODOua1AMHGwSXynhqlckI5SFYTlRwMFWzpF+s
-         DjYo6pyAbx8fB4OIo6s1D7zEEreKB/Urtle6rqgWkKeAbOMUehI2F1eh3X8b6ZrwliIr
-         s5ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681274816; x=1683866816;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+bx1peOWUY+EguIhN3+HEV80l+NpcfNfRNogKL9pYa8=;
-        b=oMpox7hXNXL8avrVmW4CPTGs4I56EUC+PpyZ9EpdDHt29x13n/YQaV51wE4VOcXgwg
-         +xiDBBcisrdbAdijcK4rmXo2LNHbr32xfK6GDeS/9TNmD5ciH5TPf+RUQ60/kFcK0fJQ
-         nfyQED6Es6ujHdpa6Ovyb99r5bh66tjzce/aiAmWuvfphZZaAupCVbpfcwCjRdT0hvPn
-         4DnIniV01rwGTOLw2Psy221LFnz7p8UuIR4ec9vWnLcHQi4yebGYpRQCL23bZt5QadsK
-         fWJziiQfj0LZRqm5q3HqL1QE8AgUuGJEqQ+kwf+n5T7uCn2LKKN/pUuwId5f/fusFiJ4
-         Xjzg==
-X-Gm-Message-State: AAQBX9fFOv/J2WsVp7cX8ZFprSm+49gNEjCobduoDDKvis70dBu5dpuP
-        KuufmEmLPMVsUrd61rYut4SA9g==
-X-Google-Smtp-Source: AKy350bg2rc3G/bZAa2f5cAlYhqK3olpjYj+ekBeQ1nXB59cT5PADukrzvEam2VsqAsPQONrpjRcZw==
-X-Received: by 2002:a17:903:2943:b0:1a4:f156:a1e3 with SMTP id li3-20020a170903294300b001a4f156a1e3mr12911958plb.58.1681274816319;
-        Tue, 11 Apr 2023 21:46:56 -0700 (PDT)
-Received: from [10.240.2.163] ([124.148.245.238])
-        by smtp.gmail.com with ESMTPSA id f2-20020a170902860200b001a258041049sm5509039plo.32.2023.04.11.21.46.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 21:46:55 -0700 (PDT)
-Message-ID: <eefdbad5-35ed-04c6-0955-87c99a4d345d@tweaklogic.com>
-Date:   Wed, 12 Apr 2023 12:46:49 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 0/2] Support for Avago APDS9306 Ambient Light Sensor
-Content-Language: en-US
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229485AbjDLEwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 00:52:04 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D17DA3C31;
+        Tue, 11 Apr 2023 21:52:01 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxMMzwODZkjvQaAA--.41767S3;
+        Wed, 12 Apr 2023 12:52:00 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dxjb7qODZk+RogAA--.60030S2;
+        Wed, 12 Apr 2023 12:51:58 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>
-References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
- <20230411144031.000077c7@Huawei.com>
-From:   Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20230411144031.000077c7@Huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
+Date:   Wed, 12 Apr 2023 12:51:50 +0800
+Message-Id: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dxjb7qODZk+RogAA--.60030S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxWFy3Zr48trWrJw4UuFW5Awb_yoW5urWUpF
+        W5Cas8Kr4DtF4xArs3Jay7uFyrZ3yrXrZrXay3twsruryDZ34UZr1vqF15ZrZrAFsIvFyx
+        XFyvgrs5Ga4UZwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b78Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUGVWUXwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcxkI7VAKI48JMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxV
+        CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
+        6r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
+        WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG
+        6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_Gr
+        UvcSsGvfC2KfnxnUUI43ZEXa7IU1VWlDUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
-Thank you for getting back.
+Loongson platform support spi hardware controller and this series patch
+was to add spi driver and binding support.
 
-> Hi Subhajit,
-> 
-> No need to sign off a cover letter.  The content isn't captured in the
-> git tree anyway.
-> 
-> For an RFC, I'd expect to see a clear statement in the cover letter of
-> why it is an RFC rather than a formal patch submission.  What specifically
-> are you looking for comments on?
-> 
-> Point us in the right direction and we might answer the questions quicker.
-> 
-> Thanks,
-> 
-> Jonathan
-Thank you for clearing it up.
-Next version of RFC I will put specific reasons.
-Before submitting a formal patch I wanted to check if my implementation of
-single reads of ALS data raw values from userspace when interrupts are
-enabled is the right thing to do or not. Also wanted to check if my event
-related userspace ABI implementation is in line with IIO subsystem.
-I will put it into better words in the next cover letter.
+Change in v2:
+		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+	 	   https://
+		   lore.kernel.org/all/20230307115022.12846-1-zhuyinbo@loongson.cn/
+		2. Remove the clock-names in spi yaml file.
+		3. Add "loongson,ls7a-spi" compatible in spi yaml file.
+		4. Add an || COMPILE_TEST and drop && PCI then add some CONFIG_PCI
+		   macro to limit some pci code.
+		5. Make the spi driver top code comment block that use C++ style.
+		6. Drop spi->max_speed_hz.
+		7. Add a spin_lock for loongson_spi_setup.
+		8. Add a timeout and cpu_relax() in loongson_spi_write_read_8bit.
+		9. Add spi_transfer_one and drop transfer and rework entire spi
+		   driver that include some necessary changes.
+		10. Use module_init replace subsys_initcall.
+		11. About PM interface that I don't find any issue so I don't add
+		    any changes.
+Change in v3:
+		1. This [PATCH v3 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Drop the unused blank line in loongson,ls-spi.yaml file.
+		3. Replace clock minItems with clock maxItems in yaml file.
+		4. Separate spi driver into platform module, pci module and core
+		   module.
+		5. Replace DIV_ROUND_UP with DIV_ROUND_UP_ULL to fix compile error
+		   "undefined reference to `__aeabi_uldivmod'" and  "__udivdi3 undefined"
+		   that reported by test robot.
+		6. Remove the spin lock.
+		7. Clear the loongson_spi->hz and loongson_spi->mode in setup to fixup
+		   the issue that multiple spi device transfer that maybe cause spi was
+		   be misconfigured.
+Change in v4:
+		1. This [PATCH v4 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Add "#include <linux/io.h>" in spi-loongson-core.c for fix the compile
+		   issue which devm_ioremap no declaration.
+		3. Add "EXPORT_SYMBOL_GPL(loongson_spi_dev_pm_ops)" in
+		   spi-loongson-core.c for fix the compile issue which
+		   loongson_spi_dev_pm_ops undefined.
+Change in v5:
+		1. Get rid of the clock patch's dependency and open-code the clock IDs.
+		2. Fixup checkpatch issue that by installed ply and gitpython package
+		   locally, but this series of patch's code doesn't have any change.
+Change in v6:
+		1. Remove the "#include <dt-bindings/clock/loongson,ls2k-clk.h>" in
+		   yaml file.
+Change in v7:
+		1. Remove the "loongson,ls7a-spi" and change yaml file name as
+		   "loongson,ls2k-spi.yaml".
+		2. Use module_pci_driver and module_platform_driver to replace
+		   module_init and module_exit.
+		3. Drop ".owner	= THIS_MODULE" in spi platform driver.
+		4. Add devm_spi_alloc_master devm_spi_register_master to simplify code.
+		5. Add pci_disable_device() in loongson_spi_pci_unregister.
 
-Can you also help me out with the git tree I should use to format the
-patches? As per my understanding it is the subsystem maintainer tree
-and the main branch but the macros and functions which you have suggested
-in other reviews are available in Linux mainline.
+Yinbo Zhu (2):
+  dt-bindings: spi: add loongson spi
+  spi: loongson: add bus driver for the loongson spi controller
 
-Regards,
-Subhajit Ghosh
+ .../bindings/spi/loongson,ls2k-spi.yaml       |  41 +++
+ MAINTAINERS                                   |  10 +
+ drivers/spi/Kconfig                           |  31 ++
+ drivers/spi/Makefile                          |   3 +
+ drivers/spi/spi-loongson-core.c               | 292 ++++++++++++++++++
+ drivers/spi/spi-loongson-pci.c                |  72 +++++
+ drivers/spi/spi-loongson-plat.c               |  47 +++
+ drivers/spi/spi-loongson.h                    |  41 +++
+ 8 files changed, 537 insertions(+)
+
+-- 
+2.20.1
 
