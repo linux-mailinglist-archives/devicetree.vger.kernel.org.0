@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B92D66DEDDF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAD3A6DEDED
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230204AbjDLIgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 04:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39496 "EHLO
+        id S230144AbjDLIiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 04:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbjDLIfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:35:33 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4FF886A9
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:34:06 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id ga37so27158440ejc.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:34:06 -0700 (PDT)
+        with ESMTP id S230391AbjDLIhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:37:55 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F35696E9B
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:36:42 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id f26so20716318ejb.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681288366;
+        d=linaro.org; s=google; t=1681288508;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GXiGiAF3mJm/6hgfCTKaagk5zrHngr0ItbqxTgvmii8=;
-        b=C/51NnDG3cTMi1zIIBdXnNwtu+5/H+Te65ByqDIe1Dqfva8pHREGnFaHn/9lMjxBEu
-         sBZQiMhtPvgDpe2ZtVfYQRmIus4pbBZMnWTOl47ORd9oEJ8XGCAAb4XJ6I1AfdxS1ves
-         3+rkSCLvC3SAPC5fF4nON0+qETWahP3+Apns3D5IvEmCT5VlggcPsZ+nFCYwpkOnqRhd
-         cpvGtxqmHFHZV+eN4oyLUCCpVUKHXnHcKCbBe5zVImZzc10PVVSWz8bghARPUZX6iCFc
-         qCZwb2Igfu73AYiIuAe3MixuQgC8IE4Dir6LD/sBpy0RUjdPoO581HJvkuTLTT3Wsm/X
-         ehoQ==
+        bh=yoGluq/J5303QEsfmSr2iQw9kmdWUed7sT0pHVPfXtg=;
+        b=I3dy17S7m2Vab1t0U+AGdFNZsDwDtgsJFXI5Jlt8+Fq3CCTOSOk9aw+7wV4OLzQVE4
+         DSTZOLwPrSBUZOYzFkbXMKLUGC45las/eApfBkCzJUZ46gJITnmIbD5vKp2llVNKaWOD
+         LBZRzQCcPUG7/fRCEPBFHIedYZ+nfCHf4/2bJ/QAgVXi8GwaCoj8d9hury4TUpGzM0eQ
+         LD9XbLgPpHAgwDMv701nn5YDVckB5mXBZBlCvXDUSfBDrR8sugEegXnfO+cFlT7oEhd3
+         ZpbejePdOv5lU6rNSCeaozsMu50LVV9y5tSweiLThhzSwXkHrR/4sdrkalzk0D191TsK
+         Q9Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681288366;
+        d=1e100.net; s=20210112; t=1681288508;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GXiGiAF3mJm/6hgfCTKaagk5zrHngr0ItbqxTgvmii8=;
-        b=pxCUA9yjtJOc2L/kEl+fs8Lo55rmT3TtLP7qC5vLszAiqqN2WNgLRPjxVlb6i12xac
-         axfhK9pITbHYbVbf9HfR11Fz1xtxBrsX5hdJAGlBmjDA0NhOdGx8lwXfYnqV+SlrpktH
-         2OvALs1BA4/h6hDSHTsXj011aqKevXoQ/NdVIkmCl12JlwJEB+fLtTdGwIJTKavCjBqY
-         WsBMfYKxs8P35EXXPUKjESwVPt6HwLsSoEujPM9z+sQKat6sx1S4Ra2cbozTg60R8KPW
-         KLGs1YA7p9SrhVOPQqrPXM3nYSMCmql8BCHXvdpy2mXcTBt47uNlCm+DgKKz6bwSTtt0
-         3M5w==
-X-Gm-Message-State: AAQBX9d/hUwb8sfkN0vMYS7JNyvB16vOjPuPnP3I/RmbK6FWwXAF3gCh
-        6zWsGKoYp2zukHpLLCMkGvhFWA==
-X-Google-Smtp-Source: AKy350aonQuINRVoZBdNIRp5k/+iTxbe085iISMQDF1/o+RSzs78iZn4aQ4I9E5uICTAMMyjmj6qNw==
-X-Received: by 2002:a17:906:c78a:b0:947:eafc:a738 with SMTP id cw10-20020a170906c78a00b00947eafca738mr5025769ejb.60.1681288366167;
-        Wed, 12 Apr 2023 01:32:46 -0700 (PDT)
+        bh=yoGluq/J5303QEsfmSr2iQw9kmdWUed7sT0pHVPfXtg=;
+        b=wRec+w1N1/DmieYW8gacbTXoSEy4Rfkb5jJiSmOili/EN8Nny1mVJtTxjGAsRkelP8
+         DSYELlUkvxWk5owytTRrp8g2j6sM0OQY0svvYQQLaftDwiyFKWWAPGTrz/csU479aniL
+         Wuj4LlAM/zDKbd8UFG53flSIeAokQ+w83Mqun+AJvhs+VfcRgDcWEKAB6lPmYi1gEbb3
+         0ohMtRNLlHIOG/KGWyl8eUSsorE/S0SIyFPOy4o9YEHGq1bc5ev7OIJhX9pP2QIbCFTo
+         td13fFuLdW7GFOvt5GBl+PNi4kiwBXVBwvT0OZ74vQlmqTa4cqf8DmFNGQsCIJe6e7Ez
+         068A==
+X-Gm-Message-State: AAQBX9deg9vAgK4u6f0kwj50wIOP//fdYAHIEbYfxciBuWWzdeDmVo1F
+        eeo7oelBl5Zex5qN25VdZdf16Q==
+X-Google-Smtp-Source: AKy350ZF0tWwKgLIPhrVEdP4KEaeMRw0Kd5VxKsy15GudE93E4tkyqAIy7bUV5T2axpZPp5BerwaLw==
+X-Received: by 2002:a17:906:e2c6:b0:947:a6d7:e2b4 with SMTP id gr6-20020a170906e2c600b00947a6d7e2b4mr5434302ejb.8.1681288508144;
+        Wed, 12 Apr 2023 01:35:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id rv12-20020a1709068d0c00b0094e5fd589f9sm427786ejc.19.2023.04.12.01.32.44
+        by smtp.gmail.com with ESMTPSA id tg12-20020a1709078dcc00b0094a473988b9sm4173113ejc.27.2023.04.12.01.35.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 01:32:45 -0700 (PDT)
-Message-ID: <a22dff0a-56e6-be1b-10b2-ce3b31f420c5@linaro.org>
-Date:   Wed, 12 Apr 2023 10:32:44 +0200
+        Wed, 12 Apr 2023 01:35:07 -0700 (PDT)
+Message-ID: <cb97cf01-2dfd-7f93-2048-e05a806d468f@linaro.org>
+Date:   Wed, 12 Apr 2023 10:35:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v4 5/7] dt-bindings: usb: Add StarFive JH7110 USB Bindings
- YAML schemas
+Subject: Re: [PATCH v1 1/7] dt-bindings: power: Constrain properties for
+ JH7110 PMU
 Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-References: <20230406015216.27034-1-minda.chen@starfivetech.com>
- <20230406015216.27034-6-minda.chen@starfivetech.com>
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     Walker Chen <walker.chen@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+ <20230411064743.273388-2-changhuang.liang@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230406015216.27034-6-minda.chen@starfivetech.com>
+In-Reply-To: <20230411064743.273388-2-changhuang.liang@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,121 +84,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2023 03:52, Minda Chen wrote:
-> StarFive JH7110 platforms USB have a wrapper module around
-> the Cadence USBSS-DRD controller. Add binding information doc
-> for that.
-
-That's one of the most redundant subjects I saw. You basically used four
-words for one meaning. These are not exactly synonyms, but they all are
-either imprecise or meaning the same.
-
-Subject: drop second/last, redundant "Bindings YAML schemas". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-
-
+On 11/04/2023 08:47, Changhuang Liang wrote:
+> When use "starfive,jh7110-pmu-dphy" compatible, do not need the reg and
+> interrupts properties.
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Peter Chen <peter.chen@kernel.org>
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 > ---
->  .../bindings/usb/starfive,jh7110-usb.yaml     | 136 ++++++++++++++++++
->  1 file changed, 136 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+>  .../bindings/power/starfive,jh7110-pmu.yaml        | 14 ++++++++++++--
+>  include/dt-bindings/power/starfive,jh7110-pmu.h    |  3 +++
+>  2 files changed, 15 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> new file mode 100644
-> index 000000000000..c8b30b583854
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/starfive,jh7110-usb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controller
+> diff --git a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> index 98eb8b4110e7..ffb4406c2e56 100644
+> --- a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> +++ b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> @@ -8,6 +8,7 @@ title: StarFive JH7110 Power Management Unit
+>  
+>  maintainers:
+>    - Walker Chen <walker.chen@starfivetech.com>
+> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+>  
+>  description: |
+>    StarFive JH7110 SoC includes support for multiple power domains which can be
+> @@ -17,6 +18,7 @@ properties:
+>    compatible:
+>      enum:
+>        - starfive,jh7110-pmu
+> +      - starfive,jh7110-pmu-dphy
 
-What do you wrap here? Are you sure this is a wrapper? I think this is
-just USB controller?
+You do here much more than commit msg says.
 
-> +
-> +maintainers:
-> +  - Minda Chen <minda.chen@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-usb
-> +
-> +  reg:
-> +    items:
-> +      - description: OTG controller registers
-> +      - description: XHCI Host controller registers
-> +      - description: DEVICE controller registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: otg
-> +      - const: xhci
-> +      - const: dev
-> +
-> +  interrupts:
-> +    items:
-> +      - description: XHCI host controller interrupt
-> +      - description: Device controller interrupt
-> +      - description: OTG/DRD controller interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: host
-> +      - const: peripheral
-> +      - const: otg
-> +
-> +  clocks:
-> +    items:
-> +      - description: lpm clock
-> +      - description: stb clock
-> +      - description: apb clock
-> +      - description: axi clock
-> +      - description: utmi apb clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: lpm
-> +      - const: stb
-> +      - const: apb
-> +      - const: axi
-> +      - const: utmi_apb
-> +
-> +  resets:
-> +    items:
-> +      - description: PWRUP reset
-> +      - description: APB clock reset
-> +      - description: AXI clock reset
-> +      - description: UTMI_APB clock reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: pwrup
-> +      - const: apb
-> +      - const: axi
-> +      - const: utmi
-> +
-> +  starfive,stg-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      items:
+Isn'y DPHY a phy? Why is it in power?
 
-Same problem as for other patches.
+>  
+>    reg:
+>      maxItems: 1
+> @@ -29,10 +31,18 @@ properties:
+>  
+>  required:
+>    - compatible
+> -  - reg
+> -  - interrupts
+>    - "#power-domain-cells"
+>  
+> +if:
 
-> +        - description: phandle to System Register Controller stg_syscon node.
-> +        - description: register offset of STG_SYSCONSAIF__SYSCFG register for USB.
-> +    description:
-> +      The phandle to System Register Controller syscon node and the offset
-> +      of STG_SYSCONSAIF__SYSCFG register for USB.
+Put it under allOf (in this place). Will save you one re-indentation later.
+
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: starfive,jh7110-pmu
+> +then:
+> +  required:
+> +    - reg
+> +    - interrupts
 > +
-
+>  additionalProperties: false
+>  
+>  examples:
+> diff --git a/include/dt-bindings/power/starfive,jh7110-pmu.h b/include/dt-bindings/power/starfive,jh7110-pmu.h
+> index 132bfe401fc8..0bfd6700c144 100644
+> --- a/include/dt-bindings/power/starfive,jh7110-pmu.h
+> +++ b/include/dt-bindings/power/starfive,jh7110-pmu.h
+> @@ -14,4 +14,7 @@
+>  #define JH7110_PD_ISP		5
+>  #define JH7110_PD_VENC		6
+>  
+> +#define JH7110_PD_DPHY_TX	0
+> +#define JH7110_PD_DPHY_RX	1
+> +
+>  #endif
 
 Best regards,
 Krzysztof
