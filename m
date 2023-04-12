@@ -2,198 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EFAE6DF75F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 857316DF764
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjDLNiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 09:38:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41070 "EHLO
+        id S229523AbjDLNjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 09:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjDLNiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:38:04 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719491709;
-        Wed, 12 Apr 2023 06:38:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681306682; x=1712842682;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=pnUjDJ/xUCsHQjHZB7cPemWJJbBm5AuX1hvD8ONxtnY=;
-  b=BdkbXRm6HE3LEU7IkzTiyAOuUWq64mFlkicXZOFDUDqfw2AbzjIRlldq
-   R5OcaMj/05R1c0mCwLLMl9AoGdXq8oa/6+hL5+cxQfkKpQouGlg6gk/bg
-   icttqWGOlAo0UKLFb655agU+YiIldiURQ3Uyamou0IbQB701iRAndcTco
-   kEaY7Qqe2Fzwh7Jk66AW3DI+1SQ/sz87gUpdZlIWBsuq42B01K8YOQCgt
-   2RHiKBc5m5DCdCej3lvR8m9cMY5Ig4NyDO78CrTCZ9D2xvmv92wDbpvdJ
-   7LBWi/P8bZJIIV8dLlXnDVPUcxeiiTv2vRJr9oGrO2ENQQyUlqPTaV+bI
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="323520851"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; 
-   d="scan'208";a="323520851"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2023 06:38:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="1018745687"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; 
-   d="scan'208";a="1018745687"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP; 12 Apr 2023 06:37:58 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pmafc-00FxVI-2F;
-        Wed, 12 Apr 2023 16:37:56 +0300
-Date:   Wed, 12 Apr 2023 16:37:56 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Subject: Re: [RFC PATCH 2/2] iio: light: Add support for APDS9306 Light Sensor
-Message-ID: <ZDa0NIot/4aRJ0pI@smile.fi.intel.com>
-References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
- <20230411011203.5013-3-subhajit.ghosh@tweaklogic.com>
- <ZDVWB9xV9Cdbwyqd@smile.fi.intel.com>
- <ab1d9746-4d23-efcc-0ee1-d2b8c634becd@tweaklogic.com>
+        with ESMTP id S229521AbjDLNjY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:39:24 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C039A4222;
+        Wed, 12 Apr 2023 06:39:23 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1878504c22aso236410fac.8;
+        Wed, 12 Apr 2023 06:39:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681306763; x=1683898763;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wqTBOiXW+OSKCG/B6dEs6T+l192CJMJlj9OxbNQfKPY=;
+        b=L1TlGPs6PDO6NX1bYizu84xC5B6Xmw5AE5jjoLBHQr/xu2lrKJ9vwji5DW959ILI+6
+         Y0JdZwVaEF8RqOmEJiCMfbysS1kXvWoUVL0nVi0I7hdANChyrCTn5epz8B989HN4iTGq
+         EsXipFNBrHKbHrOURVtrBGj6/ZDxYWMYH6K8UgerP2TicxBHsWvAmF6BGJOMIV8Z2xeJ
+         obCuS4lv4aBR7VJmSB/yUmUBt1mMQwRuCFQeuauZZhXXTw2tMmPb2RRipYwRifVj3RG2
+         V/zfRSurjOfv17HrfYrGOdcaI4CkRc//HDtTHkJ0X8ruBk3PQzLj6uyPiiB+469ajhtl
+         WEMA==
+X-Gm-Message-State: AAQBX9cI/zHZpPUefl07lvovrbNbU9PU7xTi4TkyWQR5Iu/1lrtu4Bs1
+        97NCnbB5FF67A/N4yQNS03srTGraXQ==
+X-Google-Smtp-Source: AKy350ackMhPHZrmUsBkYtWkgvuVjprseT2ZSz58PZgTnUQvLVrAPQN80r7cK3FqlRLxKHggFOITwQ==
+X-Received: by 2002:a05:6870:f228:b0:17e:9798:6e34 with SMTP id t40-20020a056870f22800b0017e97986e34mr8351022oao.32.1681306762985;
+        Wed, 12 Apr 2023 06:39:22 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r17-20020a05687080d100b001726cfeea97sm6143360oab.29.2023.04.12.06.39.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 06:39:22 -0700 (PDT)
+Received: (nullmailer pid 2193869 invoked by uid 1000);
+        Wed, 12 Apr 2023 13:39:21 -0000
+Date:   Wed, 12 Apr 2023 08:39:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Johannes Zink <j.zink@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        vkoul@kernel.org, kishon@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        jun.li@nxp.com, haibo.chen@nxp.com, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
+ properties
+Message-ID: <20230412133921.GA2017891-robh@kernel.org>
+References: <20230405112118.1256151-1-j.zink@pengutronix.de>
+ <20230405112118.1256151-2-j.zink@pengutronix.de>
+ <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
+ <3f7257ee36dc44f162a87281c8279fd5bad91dea.camel@pengutronix.de>
+ <95b4afd4-c93e-628b-fd22-6fcbc1d1234e@linaro.org>
+ <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ab1d9746-4d23-efcc-0ee1-d2b8c634becd@tweaklogic.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 12, 2023 at 12:29:15PM +0800, Subhajit Ghosh wrote:
-
-...
-
-> > > +static const struct regmap_config apds9306_regmap = {
-> > > +	.name = "apds9306_regmap",
-> > > +	.reg_bits = 8,
-> > > +	.val_bits = 8,
-> > > +	.rd_table = &apds9306_readable_table,
-> > > +	.wr_table = &apds9306_writable_table,
-> > > +	.volatile_table = &apds9306_volatile_table,
-> > > +	.precious_table = &apds9306_precious_table,
-> > > +	.max_register = APDS9306_ALS_THRES_VAR,
-> > > +	.cache_type = REGCACHE_RBTREE,
-> > 
-> > Do you need an internal regmap lock? If so, why?
-> For event interface - interrupt enable, adaptive interrupt enable,
-> upper and lower threshold values, selection of clear or als
-> channels for interrupt, the mutex in the driver's private data structure
-> is not used.
-> I thought to use the regmap's internal locking mechanism for
-> mutual exclusion as the values are directly written to or read from
-> the device registers form the write_event(), read_event(),
-> write_event_config() and read_event_config().
-> What do you think?
-
-I didn't get. If you have a sequence of registers to be read/write/modified/etc
-in IRQ handler and/or elsewhere and at the same time in IRQ or elsewhere you
-have even a single IO access to the hardware you have to be sure that the IO
-ordering has no side effects. regmap API does not guarantee that. It only works
-on a simple read/write/modify of a _single_ register, or a coupled group of
-registers (like bulk ops), if your case is sparse, you on your own and probably
-lucky enough not to have an issue during the testing. So, take your time and
-think more about what you are doing in the driver and what locking schema
-should take place.
-
-...
-
-> > > +static int apds9306_power_state(struct apds9306_data *data,
-> > > +		enum apds9306_power_states state)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	/* Reset not included as it causes ugly I2C bus error */
-> > > +	switch (state) {
-> > > +	case standby:
-> > > +		return regmap_field_write(data->regfield_en, 0);
-> > > +	case active:
-> > > +		ret = regmap_field_write(data->regfield_en, 1);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +		/* 5ms wake up time */
-> > > +		usleep_range(5000, 10000);
-> > > +		break;
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > 
-> > > +	return 0;
-> > 
-> > Move that to a single user of this line inside the switch-case.
-> Sorry, I did not get you. Can you please elaborate?
-
-The user of this return is only one case in the switch. Instead of breaking
-the switch-case, just move this return statement to there.
-
-...
-
-> > > +	struct device *dev = &data->client->dev;
-> > 
-> > Why data contains I²C client pointer, what for?
-> I copied the implementation. It will be re-implemented.
-
-I mean, how client pointer is used in comparison to the plain pointer to the
-generic device object.
-
-...
-
-> > > +		while (retries--) {
-> > > +			ret = regmap_read(data->regmap, APDS9306_MAIN_STATUS,
-> > > +					&status);
-> > > +			if (ret) {
-> > > +				dev_err(dev, "read status failed: %d\n", ret);
-> > > +				return ret;
-> > > +			}
-> > > +			if (status & APDS9306_ALS_DATA_STAT_MASK)
-> > > +				break;
-> > > +			/*
-> > > +			 * In case of continuous one-shot read from userspace,
-> > > +			 * new data is available after sampling period.
-> > > +			 * Delays are in the range of 25ms to 2secs.
-> > > +			 */
-> > > +			fsleep(delay);
-> > > +		}
-> > 
-> > regmap_read_poll_timeout().
-> According to the regmap_read_poll_timeout() documentation, the maximum time
-> to sleep between reads should be less than ~20ms as it uses usleep_range().
+On Tue, Apr 11, 2023 at 04:22:37PM +0200, Johannes Zink wrote:
+> Hi Krzystof,
 > 
-> If userspace is doing continuous reads, then data is available after sampling
-> period (25ms to 2sec) or integration time (3.125ms to 400ms) whichever is
-> greater.
+> thank you for your explanations. As I'm still quite new to writing
+> bindings, I still have some questions:
 > 
-> The runtime_suspend() function is called after 5 seconds, so the device is
-> still active and running.
+> On Fri, 2023-04-07 at 11:03 +0200, Krzysztof Kozlowski wrote:
+> > On 05/04/2023 14:14, Johannes Zink wrote:
+> > > Hi Krysztof,
+> > > 
+> > > thanks for your review, please find my questions below.
+> > > 
+> > > On Wed, 2023-04-05 at 13:51 +0200, Krzysztof Kozlowski wrote:
+> > > > [snip]
+> > > > >        A phandle to the regulator for USB VBUS.
+> > > > >  
+> > > > > +  fsl,phy-tx-vref-tune:
+> > > > > +    description:
+> > > > > +      HS DC Voltage level adjustment
+> > > > 
+> > > > "Level" in what units?
+> > > > 
+> > > 
+> > > The datasheet just shows percent, ranging from -6 to +24%, in 2%
+> > > increments. What unit would you suggest?
+> > 
+> > percent
+> > https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 > 
-> If the ALS data bit is not set in status reg, it is efficient to sleep for
-> one sampling period rather than continuously checking the status reg
-> within ~20ms if we use regmap_read_poll_timeout().
+> I am still a bit confused how to use this properly. How can I restrict
+> the values to multiples of 2 in order to avoid illegal values?
 > 
-> Do you have any suggestions?
+> At the moment the only thing I could come up with is something like
+> 
+> fsl,phy-tx-vref-tune-percent:                 
+>   description: |                              
+>     Adjusts the high-speed DC level voltage   
+>   $ref: /schemas/types.yaml#/definitions/int32
 
-Yes, Use proposed API. It takes _two_ timeout parameters, one of which is the
-same as your delay. You may actually resplit it by multiplying retries and
-decreasing delay to satisfy the regmap_read_poll_timeout() recommendation.
+Note that with standard unit suffixes, you don't need a type.
 
--- 
-With Best Regards,
-Andy Shevchenko
+>   minimum: -6                                 
+>   maximum: 24                                 
+>   default: 0                                  
+> 
+> Does something like this work? I am not quite sure if I am on the right
+> track here, especially as this requires a signed int, of which I have
+> not seen many examples so far.
 
+We'd have to change the type for -percent to signed. That's possible, 
+but for vendor specific properties there's not much advantage to use 
+standard units instead of just using the register values directly.
 
+Rob
