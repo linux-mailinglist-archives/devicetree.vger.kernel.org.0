@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A6D6DF91E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE846DF929
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbjDLOzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 10:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53154 "EHLO
+        id S229769AbjDLO5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 10:57:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbjDLOzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:55:10 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B8D7D80;
-        Wed, 12 Apr 2023 07:54:54 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33CBlRdS008600;
-        Wed, 12 Apr 2023 14:54:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QmBxSPgpcmcK/QVNrjAI65RRMerHngfc1aqP8vuhlMo=;
- b=SP1BKJziS57ya2czGwuZjw849nivcTfA7+dUHnI8DnnTe8aK6c+z53pOTijqoMvNA72D
- QJmU/kd12yvZ4f94uoy3/oCYd1jXKUX8Bz0HiO3QGvNQM3Gcyab56nJ8QLJxVIOFnawc
- FgZ5AaqN2x3ZVhhGsQj0wn9pt85IcsF1aHx/Aj4WnMoW4U+XV/WKpy7sx9YTjxlbduyi
- jZ4WS7B2CXbsEd614XOXl50ekpp51FLsTZkAbRbSvxzqGhzUcxXABxMASLjAy/ICj5ZK
- 9UCJhOTjb4R7DlyW9hQj01XaNWkMd5H67LRcWQaxvRSYuYHlHMOk6j3cQw1USYVMD1S/ 5g== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pwsx68r4h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 14:54:46 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33CEsklD019579
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 14:54:46 GMT
-Received: from [10.110.84.106] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 12 Apr
- 2023 07:54:45 -0700
-Message-ID: <5e11d4ee-75dc-31b8-432d-9aef3a38d885@quicinc.com>
-Date:   Wed, 12 Apr 2023 07:54:45 -0700
+        with ESMTP id S229532AbjDLO5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:57:47 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC247696;
+        Wed, 12 Apr 2023 07:57:36 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id w19so7854941oiv.13;
+        Wed, 12 Apr 2023 07:57:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681311456; x=1683903456;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iMxXEh/refxEn2BVLKI2zG+gF/jaetDaYeI4Maspl7s=;
+        b=3V1ECEK4nUXZsIDs14ektY4ee1VpMmpa0cFA5BdoJnVXNsvEQA7uVA4l9UMiywkssm
+         X8+l9DFGfJ15LiZrZ1fkIO4HlD232eEzv648P1DKlmfO0fgliW7rci89O93NjsjL2Qrv
+         kH4704CUJhE3yGNM9QAG4wTfkpErnsBi5InGD9WIku4Hq1zGQK+TxVDKdBM2GK89bosJ
+         5fUJhld9Mnnaw8oULKjfbe5LSE2nuqq+VSvZxBiSVbj1wF5NRS2JT4WqdeBN9rqOfWS7
+         0H/rw6a4ZspvGOsYzC6S17NeVRT05uDRkdQmtSbwpdzhWJn+Qh9ryhCf/H/U3esQzDYT
+         qOXw==
+X-Gm-Message-State: AAQBX9ctcNnKzdWcbGOkkFURkNiPEaRXLJkjzSscXmg0GIfzraU/ALhW
+        kIMaub3aM4V11Q26wKiBMg==
+X-Google-Smtp-Source: AKy350aqIqgD6ZUzUetWYjloDIl1Z+9gM07oApCpq4K8/QG9Y/jPsecHAHyYaHOlNFpjRXG8NcayTw==
+X-Received: by 2002:a05:6808:281:b0:38b:a6be:7a57 with SMTP id z1-20020a056808028100b0038ba6be7a57mr3172426oic.28.1681311455736;
+        Wed, 12 Apr 2023 07:57:35 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o2-20020a0568080bc200b0038413a012dasm6677495oik.4.2023.04.12.07.57.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 07:57:35 -0700 (PDT)
+Received: (nullmailer pid 2357068 invoked by uid 1000);
+        Wed, 12 Apr 2023 14:57:34 -0000
+Date:   Wed, 12 Apr 2023 09:57:34 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-usb@vger.kernel.org,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        linux-remoteproc@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: media: qcom,sdm845-venus-v2: Allow
+ interconnect properties
+Message-ID: <168131145406.2357008.9122812908931031702.robh@kernel.org>
+References: <20230407-topic-msm_dtb-v1-0-6efb4196f51f@linaro.org>
+ <20230407-topic-msm_dtb-v1-1-6efb4196f51f@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 0/2] Allow parameter in smc/hvc calls
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <lkp@intel.com>
-References: <20230409181918.29270-1-quic_nkela@quicinc.com>
- <20230410182058.8949-1-quic_nkela@quicinc.com>
- <20230411130136.lkblyfg3jaeitzrt@bogus>
- <ef3ae792-8900-d4c4-7fba-cbfc636a0315@quicinc.com>
- <20230412083723.r4vnkl3c7ykauzps@bogus>
-Content-Language: en-US
-From:   Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20230412083723.r4vnkl3c7ykauzps@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uNETzF1YhKDaqCNrs_96gdohvaG2LGkJ
-X-Proofpoint-ORIG-GUID: uNETzF1YhKDaqCNrs_96gdohvaG2LGkJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-12_06,2023-04-12_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- impostorscore=0 bulkscore=0 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304120131
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230407-topic-msm_dtb-v1-1-6efb4196f51f@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,22 +79,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 4/12/2023 1:37 AM, Sudeep Holla wrote:
-> On Tue, Apr 11, 2023 at 07:42:50AM -0700, Nikunj Kela wrote:
->
->> that's a good suggestion. Any solution you propose shouldn't just limit to
->> only one parameter. IMO, there should be some way to pass all 6 parameters
->> since we do have a use case of at least two parameters.
-> Please elaborate on your use-case.
-Based on your comments below, we will change our hypervisor to make use 
-of shmem.
->
->> The shmem proposal is fine however please also incorporate passing of other
->> parameters.
-> You are missing the point here. SMC/HVC is just a doorbell and the main point
-> I made earlier is that there is no need for vendors to try colourful things
-> here if it is not necessary. So no, I don't want any extra bindings or more
-> than one param is that is not needed. I will wait for the reason as requested
-> above.
-ok, understood. In that case, we will change our hypervisor to use shmem 
-address as instance identifier. Please add support for one param, thanks!
+On Fri, 07 Apr 2023 15:28:31 +0200, Konrad Dybcio wrote:
+> Allow the interconnect properties, which have been in use for ages.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+
+Acked-by: Rob Herring <robh@kernel.org>
+
