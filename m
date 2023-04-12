@@ -2,149 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 538A36DED5D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3AC36DED67
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:19:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbjDLIRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 04:17:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56914 "EHLO
+        id S229486AbjDLITd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 04:19:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbjDLIRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:17:39 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C614E10DE
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:17:37 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id qb20so26296929ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:17:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681287456;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uPgzd/VLKqLuQj5VWjkLgmOErQ669vusy63km8xjmc0=;
-        b=hw2Z5wbeJQdY3oh8mBvw2eyn8C+jprPkv41i65KsCAH2305r4v0JTumhAzGsscjfKm
-         KZqo5Ya7PJUwvRywCHys4msGSo+c8TkRp+JxHo0jWDpCpGzohQFQhLw/xi8XQekvjMCh
-         8DaEjj5Gj9tE3dw261q+KOR7hzgnOHjw109v8nlbeR9J8TJGcRqAyMg0Y6iK8Y03nJ3+
-         TJt8hWQ2f0otq5Zo7u1W1WSOfjtKkZ6YBR0otNG/E6Mjl2z6YQtNpPWcOaK1OT5TJGud
-         x9oUFht7yqMPyC0Ma163LEIDoFTlKYSox8uTQSEP/VxKkZtTlvAQU3gCbQ/tVu7/WRFb
-         R/RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681287456;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uPgzd/VLKqLuQj5VWjkLgmOErQ669vusy63km8xjmc0=;
-        b=hjEa1vhoZWbyusMyAATFOPyi4XcmEDX3R1ixpDpolyR15pQmPXbl5bYilRZ798E235
-         af6H4rl3plMjnpmo7UHbl3I2KVaY/qOyH4Hf2+pNjCi+lGeCodmD2JyrzxI8vM1Zg/bZ
-         pAmBt8hbzmE58BC25SlF2oeQSAOyued7C2ij3gTFn/wtQMsepjOlvzNM6ODO2+enmRix
-         UP6l6qWSMvgcWLdIFregfK12/RzxtUZphDdPmtkzi+R10CphcYrqW4TkrrK8zHQzI2Ym
-         iL31SMgqZFDeFfyC15uHHlwbBIfBp+hibNvs4u8vretCXfOLHIxq8J6VsKy4Idrn8gfU
-         la1A==
-X-Gm-Message-State: AAQBX9fqodtHxD4cFC90lkqLBHo3B1dxkEgWHdlmEFLOCEMdDhBw7CPv
-        QEYBHoZYQkz4G9VMLSGFxlJ/Fw==
-X-Google-Smtp-Source: AKy350YZSgTTZrYnjgc/O2bMS7r2SCOzfHbjKd+xcTOqV+vdlaN3wNoKqYNeDOIj4dSGzcsZjKa8Rw==
-X-Received: by 2002:a17:907:8d01:b0:94a:7a0f:7851 with SMTP id tc1-20020a1709078d0100b0094a7a0f7851mr9406162ejc.41.1681287456296;
-        Wed, 12 Apr 2023 01:17:36 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id ww1-20020a170907084100b0094a44aa90ddsm4171525ejb.216.2023.04.12.01.17.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 01:17:35 -0700 (PDT)
-Message-ID: <7e180b96-6f47-6b25-8751-01b5186c8c71@linaro.org>
-Date:   Wed, 12 Apr 2023 10:17:34 +0200
+        with ESMTP id S229481AbjDLITd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:19:33 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00FA7C2;
+        Wed, 12 Apr 2023 01:19:30 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 3BBD824E1BE;
+        Wed, 12 Apr 2023 16:19:29 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 16:19:29 +0800
+Received: from [192.168.125.82] (113.72.145.176) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 16:19:28 +0800
+Message-ID: <68839732-2d3f-aafc-8744-550f4bfa27f0@starfivetech.com>
+Date:   Wed, 12 Apr 2023 16:19:27 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V2 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 6/7] soc: starfive: Add dphy pmu support
 Content-Language: en-US
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Conor Dooley <conor@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1680874520.git.quic_schowdhu@quicinc.com>
- <5eeeb46e9b3f61656a37cb77c2ad6a04e383c16d.1680874520.git.quic_schowdhu@quicinc.com>
- <20230407154132.dpguz24f6rukyujq@ripper>
- <8cf793df-b676-bbb4-0601-5647d58bb2b3@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8cf793df-b676-bbb4-0601-5647d58bb2b3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+ <20230411064743.273388-7-changhuang.liang@starfivetech.com>
+ <20230411-iron-everybody-70b78e94aee5@spud>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230411-iron-everybody-70b78e94aee5@spud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [113.72.145.176]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/04/2023 08:48, Souradeep Chowdhury wrote:
-> 
-> 
-> On 4/7/2023 9:11 PM, Bjorn Andersson wrote:
->> On Fri, Apr 07, 2023 at 07:34:36PM +0530, Souradeep Chowdhury wrote:
->>> All of Qualcomm's proprietary Android boot-loaders capture boot time
->>> stats, like the time when the bootloader started execution and at what
->>> point the bootloader handed over control to the kernel etc. in the IMEM
->>> region. This information is captured in a specific format by this driver
->>> by mapping a structure to the IMEM memory region and then accessing the
->>> members of the structure to print the information. This information is
->>> useful in verifying if the existing boot KPIs have regressed or not.
->>> A sample log in SM8450(waipio) device is as follows:-
->>>
->>> KPI: Pre ABL Time = 3s
->>> KPI: ABL Time = 14s
->>
->> Why are these in whole seconds?
-> 
-> This is to give a granular view of time.
-> 
->>
->>> KPI: Kernel MPM timestamp = 890206
->>
->> And why is this presented in cycles?
-> 
-> This timestamp is used as an intermediate value for calculating one of 
-> the KPIs. Can be changed to seconds as well for consistency.
-> 
->>
->>>
->>> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
->>> stage and the timestamp generated by the sleep counter is logged by
->>> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
->>> starts execution which is logged here as "Pre ABL Time" and the second
->>> when it is about to load the kernel logged as "ABL Time". Both are
->>> logged in the unit of seconds.
->>
->> We have a policy to not taint the kernel log with "useless" information,
->> for kernel developers this seems to add no value and for end users
->> there's no benefit to this.
->>
->>> The current kernel timestamp is
->>> printed by the boot_stats driver as well.
->>>
->>
->> Why?
-> 
-> Same as stated above.
 
-You did not answer. The question is "why do you think printing this
-during boot is suitable for wide usage?". I don't find answer "give a
-granular view of time" anyway related.
 
-Please come with rationale why such printing should be used in Linux
-kernel at all, given that as Bjorn said - we do not print
-debugging/profiling information.
+On 2023/4/12 5:15, Conor Dooley wrote:
+> On Mon, Apr 10, 2023 at 11:47:42PM -0700, Changhuang Liang wrote:
+>> Add dphy pmu to turn on/off the dphy power switch.
+[...]
+>> +
+>>  static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+>>  {
+>>  	struct jh71xx_pmu *pmu = pmd->pmu;
+>> @@ -191,6 +213,8 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+>>  
+>>  	if (pmu->match_data->pmu_type == JH71XX_PMU_GENERAL)
+>>  		ret = jh71xx_pmu_general_set_state(pmd, mask, on);
+>> +	else if (pmu->match_data->pmu_type == JH71XX_PMU_DPHY)
+>> +		ret = jh71xx_pmu_dphy_set_state(pmd, mask, on);
+> 
+> Perhaps I am verging on over-complication, but I dislike this carry on.
+> Is this the only time we'll see a power domain provider coming out of
+> a syscon, or are there likely to be more?
+> Either way, I think having an ops struct w/ both parse_dt() and the
+> set_state() implementations would be neater than what you have here.
+> 
 
-You should probably come with a debugfs interface for this.
+OK, I will use call back make here neater.
 
-Best regards,
-Krzysztof
-
+> Very much open to dissenting opinions there though. Emil? Walker?
+> 
+> Cheers,
+> Conor.
+> 
+>>  
+>>  	return ret;
+>>  }
+[...]
+>> -- 
+>> 2.25.1
+>>
