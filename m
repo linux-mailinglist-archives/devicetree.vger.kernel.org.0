@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31D186DE9A0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 04:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA8176DE9A4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 04:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbjDLCvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 22:51:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48064 "EHLO
+        id S229631AbjDLCwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 22:52:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjDLCvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 22:51:15 -0400
+        with ESMTP id S229485AbjDLCwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 22:52:17 -0400
 Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4191448A;
-        Tue, 11 Apr 2023 19:51:13 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D649C4C12;
+        Tue, 11 Apr 2023 19:52:15 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A679724E00A;
-        Wed, 12 Apr 2023 10:51:12 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
- 2023 10:51:12 +0800
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 88A2680ED;
+        Wed, 12 Apr 2023 10:52:14 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 10:52:14 +0800
 Received: from [192.168.125.82] (113.72.145.176) by EXMBX162.cuchost.com
  (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
- 2023 10:51:11 +0800
-Message-ID: <a2a90bfc-4dff-faaf-8b07-537bedbfb97f@starfivetech.com>
-Date:   Wed, 12 Apr 2023 10:51:10 +0800
+ 2023 10:52:13 +0800
+Message-ID: <7a8aac88-91e1-3c54-efa6-e71ddd0951b4@starfivetech.com>
+Date:   Wed, 12 Apr 2023 10:52:13 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/7] dt-bindings: power: Constrain properties for
- JH7110 PMU
+Subject: Re: [PATCH v1 2/7] soc: starfive: Replace SOC_STARFIVE with
+ ARCH_SATRFIVE
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+To:     Walker Chen <walker.chen@starfivetech.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-riscv@lists.infradead.org>
 References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-2-changhuang.liang@starfivetech.com>
- <20230411-vitality-exodus-f7e5d2e8576c@spud>
+ <20230411064743.273388-3-changhuang.liang@starfivetech.com>
+ <a3d5c666-c7c1-7a77-31ac-d3e686bdef59@starfivetech.com>
 From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230411-vitality-exodus-f7e5d2e8576c@spud>
+In-Reply-To: <a3d5c666-c7c1-7a77-31ac-d3e686bdef59@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [113.72.145.176]
@@ -65,27 +65,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/4/12 4:13, Conor Dooley wrote:
-> On Mon, Apr 10, 2023 at 11:47:37PM -0700, Changhuang Liang wrote:
->> When use "starfive,jh7110-pmu-dphy" compatible, do not need the reg and
->> interrupts properties.
+On 2023/4/12 10:11, Walker Chen wrote:
 > 
-> Please write a commit message explaining why this is needed.
-> The commit message as-is is insufficient, but also IMO wrong incorrect.
-> I think it would more accurately be "...: add jh7110 dphy pmu support" or
-> similar & the body should explain why this particular PMU has no
-> reg/interrupts.
 > 
-> Cheers,
-> Conor.
-> 
-
-OK, Thanks for your comments, I will reorganize the commit message more clarity.
-
+> On 2023/4/11 14:47, Changhuang Liang wrote:
+>> Using ARCH_FOO symbol is preferred than SOC_FOO.
 >>
 >> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 >> ---
->>  .../bindings/power/starfive,jh7110-pmu.yaml        | 14 ++++++++++++--
->>  include/dt-bindings/power/starfive,jh7110-pmu.h    |  3 +++
-[...]
+>>  drivers/soc/starfive/Kconfig | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
 >>
+>> diff --git a/drivers/soc/starfive/Kconfig b/drivers/soc/starfive/Kconfig
+>> index bdb96dc4c989..1e9b0c414fec 100644
+>> --- a/drivers/soc/starfive/Kconfig
+>> +++ b/drivers/soc/starfive/Kconfig
+>> @@ -3,8 +3,8 @@
+>>  config JH71XX_PMU
+>>  	bool "Support PMU for StarFive JH71XX Soc"
+>>  	depends on PM
+>> -	depends on SOC_STARFIVE || COMPILE_TEST
+>> -	default SOC_STARFIVE
+>> +	depends on ARCH_STARFIVE || COMPILE_TEST
+>> +	default ARCH_STARFIVE
+>>  	select PM_GENERIC_DOMAINS
+>>  	help
+>>  	  Say 'y' here to enable support power domain support.
+> 
+> The subject 'ARCH_SATRFIVE' spelling error.
+> 
+
+OK, will fix it.
+
+> Best regards,
+> Walker
