@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F6396DFC71
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAD366DFC90
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230445AbjDLRPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 13:15:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53750 "EHLO
+        id S231526AbjDLRS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:18:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjDLRPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:15:07 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB18526E
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:14:48 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id m18so12031589plx.5
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:14:48 -0700 (PDT)
+        with ESMTP id S231480AbjDLRS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:18:56 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2878D103
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:18:54 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id dm2so30795085ejc.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:18:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681319677;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O5AV7vfK/2nwKp0eVshwydhumuKVDn6U4uxG7E7tKMo=;
-        b=onAFA2dtpR1yA26nKlvTU+cGm5CAmVoVKOg2j5MyJBdEBXEbn5T6EsN78Mt7rK1aVR
-         qPEfbnFNUGoOFd3ljdpnEH+u3Krsy4M7vbcK0XZtM84O6YquQ8yhavldrwuRDLdaH2la
-         GrmW1SW9hWp9pI7F0s8Nh+vDR4sSJBO4a7EPQrX9re67No2HD2DcddCUioILebe6S9JW
-         //bB6cNcb9f9wiHH1mh1uFcYUUNFWWQsfR6xpLyxGouGYo4UAn7pKcch8afXDwQQBeX3
-         0BQojcWxFsJcQ8JHAKsIf0BUvHvbVFlDUbMmf/Pd8PXICOhf2F9oVRFmY9c3awZWzFqn
-         DB8A==
+        d=linaro.org; s=google; t=1681319932;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EPJEH3FoLa1rfORHEvQ5hjrz23haruAfnpdzErS1ai8=;
+        b=s2XGuKnZ2nJ/CbhNLWaF9g6Aw1AASjqRguCq/D6DA+klNrvJZIkgYlNc2EFnohENtg
+         QGTEkJnTpMRTX4q9xwPh9epf6chdYwTReYS4zPt/caqyyLW3frW/tqhxs4la3udTCSlQ
+         jmIuYycDtBM4FfkT14BrGTcj0Ix591OWbAWb0yIWQJecQze7rUYqBsZrDmROIYeR4xVP
+         EuMj6cafKkwtjvG0DfHNw2Z6H3VjCezbcWJCf6B4edaNx5G3LkEQQ1NyOEWfjVURJ6Oq
+         RceuXiSNIfta9YZYdPldBKrJ+xjeHs58nOvWd0pZ6IYMTc78ZDZjTIhQN5wgQH64SWam
+         nuvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681319677;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O5AV7vfK/2nwKp0eVshwydhumuKVDn6U4uxG7E7tKMo=;
-        b=Hg9OJ2N/jZ9hcN3Cc2d1C/hhDAOXF6bnZi7pUrTs3UbEC2H+XIWXbyaZi1XAxeyHGJ
-         39h7vEQoi30jhuWGnlXdBBlI+vsy4FrBEHsUO2sM89MSmKhPPGM5uloxURSiUr5SoPHd
-         8GY8+OMyVOvOEv6LsZW/Qg5OUYJR2u4PkolsKrNn8httL3yl6WZ15m29gz2Mx5nyI4Id
-         b+0iAjn/fFzcz88uF8SQ3MegpZH0TxtsXD7aLJGo0fVquspKuh7u5pPaSs2Mg5Ce1zAo
-         8CF1N/1Y+seboP1JvvwmJlbCHb3otHz12S1Mci9EU36k/jksTDT/MppGoqjNY3AiBget
-         luNA==
-X-Gm-Message-State: AAQBX9eMLYzKs3vFX7tUjZKa+aTRQUx7+LGJIOVAa/nxasaw8LQgtCBV
-        sUEL8FcYGq6lby71iC6WFB8KPw==
-X-Google-Smtp-Source: AKy350Y6z/wOIUG6uyTQ/FSrzhRtpYxYONNMgWFGAY9qjQkaKe/SkIXQ5Q16F4XUaZal8QsKuVGbEQ==
-X-Received: by 2002:a17:902:ced1:b0:19c:be03:d1ba with SMTP id d17-20020a170902ced100b0019cbe03d1bamr25995343plg.6.1681319677069;
-        Wed, 12 Apr 2023 10:14:37 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:1cd7:1135:5e45:5f77])
-        by smtp.gmail.com with ESMTPSA id jk2-20020a170903330200b001a63a1aed29sm6561362plb.303.2023.04.12.10.14.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 10:14:36 -0700 (PDT)
-Date:   Wed, 12 Apr 2023 11:14:34 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH v8 3/4] soc: ti: pruss: Add pruss_cfg_read()/update(),
- pruss_cfg_get_gpmux()/set_gpmux() APIs
-Message-ID: <20230412171434.GE86761@p14s>
-References: <20230412103012.1754161-1-danishanwar@ti.com>
- <20230412103012.1754161-4-danishanwar@ti.com>
- <20230412170654.GC86761@p14s>
+        d=1e100.net; s=20221208; t=1681319932;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EPJEH3FoLa1rfORHEvQ5hjrz23haruAfnpdzErS1ai8=;
+        b=j40F/0KaMkUDQuxnWz8jK1k87goBSnwe1XqkcTBhRSXK3JcGXI+ZyjKghpqM/SzRpE
+         KVy6CKy2nLmJFcoyCmAYGEUp3oE72BX5Ckk9LvQG8v5BKBHDNUVN2DJL1C5JmLIjZOij
+         Kc5+g8pDXFCar/6Yz2nEtoqmQNhojKM4FKQT9olcc12nmj2QFecGwEYFuaUl10ocQTyK
+         DU1gp3HRsmPjdDle6r/M91vY+nBkquxgHB5vs9fu42TBasjEdQFbv/hf+v0OiJUBcn7M
+         AbKY/ZXTReRBmLWvZr3KTSKZxmnogYL9wkwzOyMzGrCAgCR6wE7ln0WFceDvTM8BHsgY
+         811g==
+X-Gm-Message-State: AAQBX9fg6ZBaWKe34cXXWo2gCH4ZfZBK9QafLrNcNqnsVykqCqLGaWqI
+        rhb1u5MG4BbgqbF5xyTH/pY96A==
+X-Google-Smtp-Source: AKy350b2pPcG4c3cLsNSSyAIMbVMGJak6H/xG31Zx0n6zpMq7dL2KDnNzHOX21gVkB4uw41Husb0Pw==
+X-Received: by 2002:a17:906:7a44:b0:94e:4586:f135 with SMTP id i4-20020a1709067a4400b0094e4586f135mr4091908ejo.6.1681319932471;
+        Wed, 12 Apr 2023 10:18:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:938a:b3db:7c59:795e? ([2a02:810d:15c0:828:938a:b3db:7c59:795e])
+        by smtp.gmail.com with ESMTPSA id q11-20020a50aa8b000000b00504706aa54esm6654415edc.57.2023.04.12.10.18.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 10:18:52 -0700 (PDT)
+Message-ID: <b76b764d-79b2-2a83-33a4-b2bed5c25d69@linaro.org>
+Date:   Wed, 12 Apr 2023 19:18:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230412170654.GC86761@p14s>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
+ compatibles
+Content-Language: en-US
+To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>
+Cc:     "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
+        <mawierzb@cisco.com>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Walker <dwalker@fifo99.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230405223028.1268141-2-danielwa@cisco.com>
+ <6a9f041b-1c35-4691-8451-7119cd05ed17@linaro.org>
+ <20230407160413.GD1391488@zorba>
+ <6af9effe-89c0-7630-9a72-a5a6351e0a95@linaro.org>
+ <20230410170915.GE1391488@zorba> <20230410175054.GF1391488@zorba>
+ <c1319685-49cc-9326-f4f9-1190ff633450@linaro.org>
+ <20230412150452.GQ1391488@zorba>
+ <317c09a8-4df3-0a33-62b4-f5a496dfa0ca@linaro.org>
+ <20230412170111.GS1391488@zorba>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230412170111.GS1391488@zorba>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,267 +88,202 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 12, 2023 at 11:06:54AM -0600, Mathieu Poirier wrote:
-> On Wed, Apr 12, 2023 at 04:00:11PM +0530, MD Danish Anwar wrote:
-> > From: Suman Anna <s-anna@ti.com>
-> > 
-> > Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
-> > the PRUSS platform driver to read and program respectively a register
-> > within the PRUSS CFG sub-module represented by a syscon driver. These
-> > APIs are internal to PRUSS driver.
-> > 
-> > Add two new helper functions pruss_cfg_get_gpmux() & pruss_cfg_set_gpmux()
-> > to get and set the GP MUX mode for programming the PRUSS internal wrapper
-> > mux functionality as needed by usecases.
-> > 
-> > Various useful registers and macros for certain register bit-fields and
-> > their values have also been added.
-> > 
-> > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> > Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> > Reviewed-by: Roger Quadros <rogerq@kernel.org>
-> > Reviewed-by: Tony Lindgren <tony@atomide.com>
-> > Reviewed-by: Simon Horman <simon.horman@corigine.com>
-> > Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> > ---
-> >  drivers/soc/ti/pruss.c       | 45 ++++++++++++++++++
-> >  drivers/soc/ti/pruss.h       | 88 ++++++++++++++++++++++++++++++++++++
-> >  include/linux/pruss_driver.h | 32 +++++++++++++
-> >  3 files changed, 165 insertions(+)
-> >  create mode 100644 drivers/soc/ti/pruss.h
-> > 
-> > diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> > index 8ada3758b31a..34d513816a9d 100644
-> > --- a/drivers/soc/ti/pruss.c
-> > +++ b/drivers/soc/ti/pruss.c
-> > @@ -21,6 +21,7 @@
-> >  #include <linux/regmap.h>
-> >  #include <linux/remoteproc.h>
-> >  #include <linux/slab.h>
-> > +#include "pruss.h"
-> >  
-> >  /**
-> >   * struct pruss_private_data - PRUSS driver private data
-> > @@ -168,6 +169,50 @@ int pruss_release_mem_region(struct pruss *pruss,
-> >  }
-> >  EXPORT_SYMBOL_GPL(pruss_release_mem_region);
-> >  
-> > +/**
-> > + * pruss_cfg_get_gpmux() - get the current GPMUX value for a PRU device
-> > + * @pruss: pruss instance
-> > + * @pru_id: PRU identifier (0-1)
-> > + * @mux: pointer to store the current mux value into
-> > + *
-> > + * Return: 0 on success, or an error code otherwise
-> > + */
-> > +int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux)
-> > +{
-> > +	int ret = 0;
+On 12/04/2023 19:01, Daniel Walker (danielwa) wrote:
+>>
+>> Yes, I understand this. But also how corporations work should not really
+>> be my problem. Especially that many of them were able to relicense even
+>> existing work, not mentioning new work. New work is piece of cake
+>> comparing with army of lawyers for existing, released work! Yet they
+>> could...
+>>
+>>>
+>>> What benefit does a BSD license hold for my employer over GPL v2 ?
+>>
+>> As BSD is permissive, it does not force the employer or its customer to
+>> release the derived works to customers. GPL requires it (simplifying
+>> now). The employer and its customer have now choice. Dual license gives
+>> more choices. More choices is beneficial for the company or its
+>> customers, isn't?
 > 
-> Variable initialization is not needed.
-> 
-> > +	u32 val;
-> > +
-> > +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS || !mux)
-> 
-> If @pru_id is an enum, how can it be smaller than 0?
-> 
-> > +		return -EINVAL;
-> > +
-> > +	ret = pruss_cfg_read(pruss, PRUSS_CFG_GPCFG(pru_id), &val);
-> > +	if (!ret)
-> > +		*mux = (u8)((val & PRUSS_GPCFG_PRU_MUX_SEL_MASK) >>
-> > +			    PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL_GPL(pruss_cfg_get_gpmux);
-> > +
-> > +/**
-> > + * pruss_cfg_set_gpmux() - set the GPMUX value for a PRU device
-> > + * @pruss: pruss instance
-> > + * @pru_id: PRU identifier (0-1)
-> > + * @mux: new mux value for PRU
-> > + *
-> > + * Return: 0 on success, or an error code otherwise
-> > + */
-> > +int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux)
-> > +{
-> > +	if (mux >= PRUSS_GP_MUX_SEL_MAX ||
-> > +	    pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
-> 
-> Same
-> 
-> > +		return -EINVAL;
-> > +
-> > +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
-> > +				PRUSS_GPCFG_PRU_MUX_SEL_MASK,
-> > +				(u32)mux << PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
-> > +}
-> > +EXPORT_SYMBOL_GPL(pruss_cfg_set_gpmux);
-> > +
-> >  static void pruss_of_free_clk_provider(void *data)
-> >  {
-> >  	struct device_node *clk_mux_np = data;
-> > diff --git a/drivers/soc/ti/pruss.h b/drivers/soc/ti/pruss.h
-> > new file mode 100644
-> > index 000000000000..6c55987e0e55
-> > --- /dev/null
-> > +++ b/drivers/soc/ti/pruss.h
-> > @@ -0,0 +1,88 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * PRU-ICSS Subsystem user interfaces
-> > + *
-> > + * Copyright (C) 2015-2023 Texas Instruments Incorporated - http://www.ti.com
-> > + *	MD Danish Anwar <danishanwar@ti.com>
-> > + */
-> > +
-> > +#ifndef _SOC_TI_PRUSS_H_
-> > +#define _SOC_TI_PRUSS_H_
-> > +
-> > +#include <linux/bits.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +/*
-> > + * PRU_ICSS_CFG registers
-> > + * SYSCFG, ISRP, ISP, IESP, IECP, SCRP applicable on AMxxxx devices only
-> > + */
-> > +#define PRUSS_CFG_REVID         0x00
-> > +#define PRUSS_CFG_SYSCFG        0x04
-> > +#define PRUSS_CFG_GPCFG(x)      (0x08 + (x) * 4)
-> > +#define PRUSS_CFG_CGR           0x10
-> > +#define PRUSS_CFG_ISRP          0x14
-> > +#define PRUSS_CFG_ISP           0x18
-> > +#define PRUSS_CFG_IESP          0x1C
-> > +#define PRUSS_CFG_IECP          0x20
-> > +#define PRUSS_CFG_SCRP          0x24
-> > +#define PRUSS_CFG_PMAO          0x28
-> > +#define PRUSS_CFG_MII_RT        0x2C
-> > +#define PRUSS_CFG_IEPCLK        0x30
-> > +#define PRUSS_CFG_SPP           0x34
-> > +#define PRUSS_CFG_PIN_MX        0x40
-> > +
-> > +/* PRUSS_GPCFG register bits */
-> > +#define PRUSS_GPCFG_PRU_GPI_MODE_MASK           GENMASK(1, 0)
-> > +#define PRUSS_GPCFG_PRU_GPI_MODE_SHIFT          0
-> > +
-> > +#define PRUSS_GPCFG_PRU_MUX_SEL_SHIFT           26
-> > +#define PRUSS_GPCFG_PRU_MUX_SEL_MASK            GENMASK(29, 26)
-> > +
-> > +/* PRUSS_MII_RT register bits */
-> > +#define PRUSS_MII_RT_EVENT_EN                   BIT(0)
-> > +
-> > +/* PRUSS_SPP register bits */
-> > +#define PRUSS_SPP_XFER_SHIFT_EN                 BIT(1)
-> > +#define PRUSS_SPP_PRU1_PAD_HP_EN                BIT(0)
-> > +#define PRUSS_SPP_RTU_XFR_SHIFT_EN              BIT(3)
-> > +
-> > +/**
-> > + * pruss_cfg_read() - read a PRUSS CFG sub-module register
-> > + * @pruss: the pruss instance handle
-> > + * @reg: register offset within the CFG sub-module
-> > + * @val: pointer to return the value in
-> > + *
-> > + * Reads a given register within the PRUSS CFG sub-module and
-> > + * returns it through the passed-in @val pointer
-> > + *
-> > + * Return: 0 on success, or an error code otherwise
-> > + */
-> > +static int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val)
-> > +{
-> > +	if (IS_ERR_OR_NULL(pruss))
-> > +		return -EINVAL;
-> > +
-> > +	return regmap_read(pruss->cfg_regmap, reg, val);
-> > +}
-> > +
-> > +/**
-> > + * pruss_cfg_update() - configure a PRUSS CFG sub-module register
-> > + * @pruss: the pruss instance handle
-> > + * @reg: register offset within the CFG sub-module
-> > + * @mask: bit mask to use for programming the @val
-> > + * @val: value to write
-> > + *
-> > + * Programs a given register within the PRUSS CFG sub-module
-> > + *
-> > + * Return: 0 on success, or an error code otherwise
-> > + */
-> > +static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
-> > +			    unsigned int mask, unsigned int val)
-> > +{
-> > +	if (IS_ERR_OR_NULL(pruss))
-> > +		return -EINVAL;
-> > +
-> > +	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
-> > +}
-> > +
-> > +#endif  /* _SOC_TI_PRUSS_H_ */
-> > diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
-> > index c8f2e53b911b..c70e08c90165 100644
-> > --- a/include/linux/pruss_driver.h
-> > +++ b/include/linux/pruss_driver.h
-> > @@ -14,6 +14,24 @@
-> >  #include <linux/types.h>
-> >  #include <linux/err.h>
-> >  
-> > +/*
-> > + * enum pruss_gp_mux_sel - PRUSS GPI/O Mux modes for the
-> > + * PRUSS_GPCFG0/1 registers
-> > + *
-> > + * NOTE: The below defines are the most common values, but there
-> > + * are some exceptions like on 66AK2G, where the RESERVED and MII2
-> > + * values are interchanged. Also, this bit-field does not exist on
-> > + * AM335x SoCs
-> > + */
-> > +enum pruss_gp_mux_sel {
-> > +	PRUSS_GP_MUX_SEL_GP = 0,
-> 
-> Initialization not needed
->
+> I don't think we derive value from this because Cisco only sells chips internally, not
+> externally.
 
-With the above:
-Acked-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+My answer was generic: dual license is beneficial for a company. Not
+specific: dual license is beneficial for Cisco. It might be the case you
+do not have benefits from dual license, but you also do not loose anything.
 
-> > +	PRUSS_GP_MUX_SEL_ENDAT,
-> > +	PRUSS_GP_MUX_SEL_RESERVED,
-> > +	PRUSS_GP_MUX_SEL_SD,
-> > +	PRUSS_GP_MUX_SEL_MII2,
-> > +	PRUSS_GP_MUX_SEL_MAX,
-> > +};
-> > +
-> >  /*
-> >   * enum pruss_mem - PRUSS memory range identifiers
-> >   */
-> > @@ -66,6 +84,8 @@ int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
-> >  			     struct pruss_mem_region *region);
-> >  int pruss_release_mem_region(struct pruss *pruss,
-> >  			     struct pruss_mem_region *region);
-> > +int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux);
-> > +int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux);
-> >  
-> >  #else
-> >  
-> > @@ -89,6 +109,18 @@ static inline int pruss_release_mem_region(struct pruss *pruss,
-> >  	return -EOPNOTSUPP;
-> >  }
-> >  
-> > +static inline int pruss_cfg_get_gpmux(struct pruss *pruss,
-> > +				      enum pruss_pru_id pru_id, u8 *mux)
-> > +{
-> > +	return ERR_PTR(-EOPNOTSUPP);
-> > +}
-> > +
-> > +static inline int pruss_cfg_set_gpmux(struct pruss *pruss,
-> > +				      enum pruss_pru_id pru_id, u8 mux)
-> > +{
-> > +	return ERR_PTR(-EOPNOTSUPP);
-> > +}
-> > +
-> >  #endif /* CONFIG_TI_PRUSS */
-> >  
-> >  #endif	/* _PRUSS_DRIVER_H_ */
-> > -- 
-> > 2.34.1
-> > 
+Anyway, if SW release (for such chip) ever reaches external customer,
+then it matters. GPL compliance is for some lawyers huge pain and scary
+stuff, although should not be...
+
+> 
+>>
+>>>
+>>> Here the licenses currently used by the bindings,
+>>>
+>>>       1 # SPDX-License-Identifier: BSD-2-Clause
+>>>       1 # SPDX-License-Identifier: (GPL-2.0-only)
+>>>       1 # SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+>>>       1 # SPDX-License-Identifier: (GPL-2.0-or-later)
+>>>       3 # SPDX-License-Identifier: (GPL-2.0+ OR X11)
+>>>       4 # SPDX-License-Identifier: GPL-2.0-or-later
+>>>       4 # SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>>       6 # SPDX-License-Identifier: (GPL-2.0)
+>>>       7 # SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+>>>       7 # SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+>>>      11 # SPDX-License-Identifier: GPL-2.0+
+>>>      12 # SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+>>>      12 # SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>      33 # SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>>>      47 # SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>>>      56 # SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>>>     102 # SPDX-License-Identifier: GPL-2.0-only
+>>>     350 # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>     511 # SPDX-License-Identifier: GPL-2.0
+>>>     610 # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>    1570 # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>
+>>> Can you explain why so many are allowed to use GPL v2 , but my company is not
+>>> allowed? Shouldn't these all be dual licensed if the project only allows dual
+>>> license?
+>>
+>> The rule is for new bindings. All new bindings are forced to follow this
+>> rule. Why do you think we treat Cisco special? Who else was allowed? Can
+>> we be specific?
+>>
+>> Linking here existing bindings is not really an argument. What does it
+>> prove?
+> 
+> It shows the "rule" is not consistent. Sometime GPL v2 is ok, sometimes not.
+> 
+> Here's is the last GPL v2 only binding added,
+> 
+> commit f9b8556d5799b612404e19b21dd7624d551f71df
+> Author: Johan Jonker <jbx6244@gmail.com>
+> Date:   Thu Dec 22 15:28:53 2022 +0100
+> 
+>     dt-bindings: usb: convert fcs,fusb302.txt to yaml
+
+This is not a new binding. Read again the title.
+
+> 
+>     Convert fcs,fusb302.txt to yaml.
+> 
+>     Changed:
+>       Add vbus-supply property
+> 
+>     Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>     Reviewed-by: Rob Herring <robh@kernel.org>
+>     Link: https://lore.kernel.org/r/0336a3c4-4a43-c983-11d7-e2ae16187fc8@gmail.com
+>     Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> 
+> This was only a few months ago. It's a new yaml file with a new license line, made
+> from an existing text file. I can see how maybe this uses parts of the GPL v2
+> txt files so you could not relicense to BSD.
+
+It's not a new binding. The license was GPLv 2.0, so it would have to be
+relicensed with agreement of all copyright holders.
+
+> 
+> here's one less than a year ago,
+> 
+> commit bdeb3cf013d0d1d09ff3bf66ba139ab259dab3a4
+> Author: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Date:   Mon Jul 4 20:24:48 2022 +0300
+> 
+>     dt-bindings: clock: separate bindings for MSM8916 GCC device
+> 
+>     Separate bindings for GCC on Qualcomm MSM8916 platforms. This adds new
+>     clocks/clock-names properties to be used for clock links.
+> 
+>     Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>     Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+>     Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>     Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+>     Link: https://lore.kernel.org/r/20220704172453.838303-3-dmitry.baryshkov@linaro.org
+> 
+> 
+> uses one line from a text file that's GPL v2. 
+
+It was probably based on old binding (from which it separated) which was
+GPL-2.0. As derivative work it had to be also GPL-2.0.
+
+However that binding actually should be relicensed, because we have the
+right to do it for Qualcomm. Also mistakes happen, on submitters side
+and reviewers as well. Feel free to find all mistakes I did in review.
+There will be tons of them. Only the one who does not review, makes no
+mistakes.
+
+
+>>>
+>>> It's very likely that new bindings will be made by making a copy of other
+>>> bindings, then make modifications. If my company copied bindings which are GPL
+>>> v2, then we are required to honor the license of the prior binding
+>>> and that means we legally aren't allowed to relicense under BSD AFAIK.
+>>
+>> So copy some bindings which are dual-licensed... Since this is new work,
+>> you can do it.
+> 
+> Writing the binding is already done. It's hard to go back.
+
+You can go back any time. Just "rm -fr" and write again. Since there is
+no other copyright holder than you (and/or your employer), you can do
+pretty much anything you wish with it.
+
+> 
+> Is this dual license mandate documented someplace,
+
+Run checkpatch and do not send patches which fail.
+
+> because it seems like a
+> massive trap.
+
+Trap? Of what? Srsly... I heard GPL is a trap, but never about dual or
+BSD license.
+
+> 
+>>>
+>>> Also the documentation for the bindings here Documentation/devicetree/
+>>>
+>>> changesets.rst
+>>> dynamic-resolution-notes.rst
+>>> index.rst
+>>> kernel-api.rst
+>>> of_unittest.rst
+>>> overlay-notes.rst
+>>> usage-model.rst
+>>>
+>>> all the rst files are GPL v2 and not dual license.
+>>
+>> These are not bindings, so I do not understand your argument. What do
+>> you prove? That non-bindings do not have to use bindings rules? Yes,
+>> they are not bindings...
+>>
+>> Anyway, I feel like we are making some useless circles and wasting quite
+>> a lot of energy on trivial rule. I tried to explain it, but if you do
+>> not like it - it's your choice. It will be a NAK.
+> 
+> I'm pointing out that your dual license mandate has problems. Another issue is
+> you have dts files exclusively GPL v2,
+
+It's not a problem... but even if it was, why do you not want to
+dual-license them as well?
+
+> and the dt bindings have dts fragments
+> which then have to be relicensed under BSD.
+
+Point me to the DTS fragment in this patch. I could not find it.
+
+> 
+> Are you as well going to nak our dts files? Or are those ok without bindings ?
+
+1. All compatibles must be documented, so if your DTS does not follow
+this rule I will NAK.
+2. New platforms are supposed to have zero dtbs_check warnings, which is
+depending on above (1) plus enforces DT schema conversion.
+
+
+Best regards,
+Krzysztof
+
