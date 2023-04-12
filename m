@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F896DF148
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 11:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67E526DF188
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 12:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbjDLJ72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 05:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44974 "EHLO
+        id S230260AbjDLKET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 06:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbjDLJ70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 05:59:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376EC30CB;
-        Wed, 12 Apr 2023 02:59:25 -0700 (PDT)
+        with ESMTP id S230238AbjDLKER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 06:04:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8A37A9E;
+        Wed, 12 Apr 2023 03:04:16 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C7E3662D5C;
-        Wed, 12 Apr 2023 09:59:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEA01C433EF;
-        Wed, 12 Apr 2023 09:59:21 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CACC063283;
+        Wed, 12 Apr 2023 10:04:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29E94C4339B;
+        Wed, 12 Apr 2023 10:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681293564;
-        bh=/W6rfVmAoHdfAMN8rHOiddmSq8fFQpiYDiyXyTyXY4M=;
+        s=k20201202; t=1681293855;
+        bh=OrehFqW8/NTBq41+buEdl7J1qPg50LFC9ahWXbWfHL8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z60c+znf1e1oR2lhp7EgZE9McFZ6FvpBnQh3Z3STDZRc4tUuPJ9Pc6vJWDeU4uoPB
-         paNllylXyfhtWzj6V3XaAXuyzY+bkpritlqDiamD/QnWUN6Fks9UH0KGnoVwMj9ZgN
-         CQjmpFpigQHYb7KCxaa6LbETv7pGE/e4amFM5cZK++raW9cLWHc4EMhuf1zT00l/9g
-         iE1B0Eq1AscAq6yQKESyMuREANzI68UClfk5BvjsOR2TFzMJrapEERN6gWhySaaxiZ
-         d8IXtMweMMEsuAtJZnsOASD82Q62P9+FR99ZWVuVvb15XVQiSfyBFcdnvj0uuMFvNB
-         zNrw3W/V0RDoA==
-Date:   Wed, 12 Apr 2023 10:59:18 +0100
+        b=g4Z9/965eaQPtuSLS4ih4Sbt0T0+A81oGGb8DSGiMqueah9K6KQNOL2IHfo37QeyP
+         V6EQ41XvoDQ1YXrvyQFRdvIc7u1JlXXh3aKaPyR6PemQczLljoBRxhflyBqLodEtCb
+         DR0JybIjy5f22YW/9LXebGSVI3EgpehVNmWdBvxlWfq8pkHAMuAvPdkGO8e7WocFa9
+         y9ib62FVyf99KyvgiZ+gstK94X9NV6JVdGjsVJwEXo8dWt5s3bJLv9L+zlcu+OnJep
+         bsJZtWurhdbonr47xtnX7DXsiL/fJaMiz3ri81k9EQHoXv7rSHIw+gWF1vnxZBwtug
+         KaRMmc1bEDmHw==
+Date:   Wed, 12 Apr 2023 11:04:07 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     "Sahin, Okan" <Okan.Sahin@analog.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
-Message-ID: <20230412095918.GZ8371@google.com>
-References: <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
- <20230331165904.4e7f46a1@bootlin.com>
- <20230403142822.GA8371@google.com>
- <20230404092036.2d1cd5d9@bootlin.com>
- <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
- <20230404100759.5bc9cd20@bootlin.com>
- <143754c2-9e37-4386-af92-174c0df2eb0a@linaro.org>
- <20230405135450.GF8371@google.com>
- <20230405180023.4aebaa08@bootlin.com>
- <20230411181640.50c19d4e@bootlin.com>
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <20230412100407.GA8371@google.com>
+References: <20230307112835.81886-6-okan.sahin@analog.com>
+ <20230315175223.GI9667@google.com>
+ <20230315175257.GJ9667@google.com>
+ <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230329143615.GS2673958@google.com>
+ <MN2PR03MB51685B1F84AA679FB604E738E7929@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230403140950.GF548901@google.com>
+ <ZC0zA1bVsrg0XEld@smile.fi.intel.com>
+ <20230405133938.GD8371@google.com>
+ <MN2PR03MB51681CCFD911F63CE32E914AE7949@MN2PR03MB5168.namprd03.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230411181640.50c19d4e@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <MN2PR03MB51681CCFD911F63CE32E914AE7949@MN2PR03MB5168.namprd03.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,158 +82,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Apr 2023, Herve Codina wrote:
+On Sun, 09 Apr 2023, Sahin, Okan wrote:
 
+> >On Wed, 05 Apr 2023, Andy Shevchenko wrote:
+> >
+> >> On Mon, Apr 03, 2023 at 03:09:50PM +0100, Lee Jones wrote:
+> >> > On Mon, 03 Apr 2023, Sahin, Okan wrote:
+> >>
+> >> ...
+> >>
+> >>
+> >> > > In fact, one of the maintainers suggested assigning chip_info to data
+> >> > > instead of enumeration. Then I added chip_info and put devices into
+> >> > > sub-structure above. I will replace chip_info with id structure in max77541
+> >> > > device structure, right? I will use enumeration for data as I will assign
+> >> > > it to id, and distinguish different devices.
+> >> >
+> >> > Yes, that's correct.  Please remove chip_info altogether.
+> >>
+> >> Then it will provoke casting in the OF ID table which I believe is not what
+> >> we want. I would agree on your first suggestion to have a plain number in I²C
+> >> ID table, but I'm against it in OF and/or ACPI ID table.
+> >
+> >And I'm against passing MFD information through the OF/ACPI APIs.
+> >
+> >You can put through raw platform data or a device descriptor.
+> >
+> >Ref: git grep -A5 "struct of_device_id.*{" -- drivers/mfd
+> >
+> >--
+> >Lee Jones [李琼斯]
+>
 > Hi Lee,
 >
-> On Wed, 5 Apr 2023 18:00:23 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
+> Right now, as you suggested I rewrote code like below
+> For of_device_id,
+> 	. data = (void *)MAX77540,
+> 	.data = (void *)MAX77541,
+> For i2c_device_id,
+> 	.data  = MAX77540,
+> 	.data = MAX77541
+> I also rewrote other part as chip_info is excluded. I want to be sure before
+> sending new patch.
 >
-> > Hi Lee,
-> > On Wed, 5 Apr 2023 14:54:50 +0100
-> > Lee Jones <lee@kernel.org> wrote:
-> >
-> > > On Tue, 04 Apr 2023, Krzysztof Kozlowski wrote:
-> > >
-> > > > On 04/04/2023 10:07, Herve Codina wrote:
-> > > >
-> > > > >>> So, the structure I have in mind:
-> > > > >>> - pef2256.c (MFD)
-> > > > >>>   implement and do the setup at probe()
-> > > > >>>   Add the children at probe():
-> > > > >>>     - pef2256-pinctrl (pinctrl) added using mfd_add_devices()
-> > > > >>>     - pef2256-codec (ASoC codec) added using devm_of_platform_populate()
-> > > > >>>
-> > > > >>> Lee, with this in mind, can the core pef2256.c be a MFD driver ?
-> > > > >>
-> > > > >> You do not use MFD here, so why do you want to keep it in MFD? If you
-> > > > >> disagree, please tell me where is the MFD code in your patch?
-> > > > >
-> > > > > I don't want to absolutely use MFD.
-> > > > > I just want to put my driver somewhere and I don't know the right location
-> > > > > between MFD and Misc.
-> > > > >
-> > > > > Basically, the driver needs to do (little simplified and error path removed):
-> > > > >
-> > > > >   static const struct mfd_cell pef2256_devs[] = {
-> > > > >   	{ .name = "lantiq-pef2256-pinctrl", },
-> > > > >   };
-> > > > >
-> > > > >   static int pef2256_probe(struct platform_device *pdev)
-> > > > >   {
-> > > > > 	struct pef2256 *pef2256;
-> > > > > 	void __iomem *iomem;
-> > > > > 	int ret;
-> > > > > 	int irq;
-> > > > >
-> > > > > 	pef2256 = devm_kzalloc(&pdev->dev, sizeof(*pef2256), GFP_KERNEL);
-> > > > > 	if (!pef2256)
-> > > > > 		return -ENOMEM;
-> > > > >
-> > > > > 	pef2256->dev = &pdev->dev;
-> > > > >
-> > > > > 	iomem = devm_platform_ioremap_resource(pdev, 0);
-> > > > >
-> > > > > 	pef2256->regmap = devm_regmap_init_mmio(&pdev->dev, iomem,
-> > > > > 						&pef2256_regmap_config);
-> > > > >
-> > > > > 	pef2256->mclk = devm_clk_get_enabled(&pdev->dev, "mclk");
-> > > > > 	pef2256->sclkr = devm_clk_get_enabled(&pdev->dev, "sclkr");
-> > > > > 	pef2256->sclkx = devm_clk_get_enabled(&pdev->dev, "sclkx");
-> > > > >
-> > > > > 	pef2256->reset_gpio = devm_gpiod_get_optional(&pdev->dev, "reset", GPIOD_OUT_LOW);
-> > > > > 	if (pef2256->reset_gpio) {
-> > > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 1);
-> > > > > 		udelay(10);
-> > > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 0);
-> > > > > 		udelay(10);
-> > > > > 	}
-> > > > >
-> > > > > 	pef2556_of_parse(pef2256, np);
-> > > > >
-> > > > > 	irq = platform_get_irq(pdev, 0);
-> > > > > 	ret = devm_request_irq(pef2256->dev, irq, pef2256_irq_handler, 0, "pef2256", pef2256);
-> > > > >
-> > > > > 	platform_set_drvdata(pdev, pef2256);
-> > > > >
-> > > > > 	mfd_add_devices(pef2256->dev, PLATFORM_DEVID_NONE, pef2256_devs,
-> > > > > 	      		ARRAY_SIZE(pef2256_devs), NULL, 0, NULL);
-> > > >
-> > > > Wait, now you use MFD framework, so the driver is suitable for MFD.
-> > > > Before there was nothing like that in your code.
-> > >
-> > > Agree, the above is suitable for MFD, since it does all the things I
-> > > said your last one did not.  You *can* also use of_platform_populate()
-> > > here, since you are *also* requesting and initialising shared resources.
-> > > You cannot do *both* however.
-> > >
-> >
-> > Thanks for having confirmed that this driver can be a MFD driver.
-> >
-> > Related to of_platform_populate() / mfd_add_devices(), I wanted to use both
-> > because:
-> > - the pinctrl part does not have (and does not need to have) a specific node
-> >   with a specific compatible property. In order to instantiate the related
-> >   driver mfd_add_devices() is the only way I know.
-> > - the audio component nodes have a compatible string and several components
-> >   (ie several nodes) can be present. of_platform_populate() call seems the
-> >   simple way to instantiate them.
-> >
-> > Is there a way to use mfd_add_devices() in this case without the need to
-> > count the audio component nodes in order to allocate as much mfd_cell as
-> > nodes having a matching compatible property ? Is there an other API to do
-> > it ?
-> >
->
-> I looked deeper for using mfd_add_devices() only and found an issue (related
-> to my use-case).
->
-> mfd_add_devices() calls mfd_add_device() and in this function we have:
-> ---- 8< ----
-> 	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
-> 		for_each_child_of_node(parent->of_node, np) {
-> 			if (of_device_is_compatible(np, cell->of_compatible)) {
-> 				/* Ignore 'disabled' devices error free */
-> 				if (!of_device_is_available(np)) {
-> 					of_node_put(np);
-> 					ret = 0;
-> 					goto fail_alias;
-> 				}
->
-> 				ret = mfd_match_of_node_to_dev(pdev, np, cell);
-> 				if (ret == -EAGAIN)
-> 					continue;
-> 				of_node_put(np);
-> 				if (ret)
-> 					goto fail_alias;
->
-> 				break;
-> 			}
-> 		}
->
-> 		if (!pdev->dev.of_node)
-> 			pr_warn("%s: Failed to locate of_node [id: %d]\n",
-> 				cell->name, platform_id);
-> 	}
-> ---- 8< ----
->
-> My issue is related to the loop.
-> The loop is aborted if the device is not available (typically 'Disabled' in the
-> DT node).
->
-> My full pef2256 node can have several pef2256 audio subnodes with compatible
-> set to "lantiq,pef2256-codec" and some of them can have 'status = "Disabled";'
-> As soon as one device (with my expected compatible) is found 'Disabled', there
-> is no way to look at other children.
->
-> Having 'continue' in case of device not available in the loop to look at the
-> next child will change the behavior of mfd_add_device().
-> Do you think that looking at next child if we find a 'not available' child
-> can be correct for mfd_add_device() ?
-> This probably will have impacts on other MFD drivers.
+> Does it seem correct?
 
-Looks like a bug.  Encountering one disabled cell should not prevent the
-others from registering IMHO.
+This is one suitable method, yes.
 
 --
 Lee Jones [李琼斯]
