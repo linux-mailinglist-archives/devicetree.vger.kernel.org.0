@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F7C36DF5AA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:41:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CDC96DF5D3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjDLMlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 08:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56650 "EHLO
+        id S231653AbjDLMnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 08:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbjDLMlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:41:39 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD24B6E9A;
-        Wed, 12 Apr 2023 05:41:26 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id w24so1154894wra.10;
-        Wed, 12 Apr 2023 05:41:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681303285; x=1683895285;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AEHj125fFUHVqVSYxI2Iu4R8mwBu9xLsNlhlcbmp5rM=;
-        b=llEetynzd9UPHbqm2DuZ2+4h9Q3PCWFOLHFsb0vOSnJYPAfCAO1R3XNmoKZJMwhBQC
-         vILAF7oLkx35oAn4QQZ8feiPlgHUZyVqzYlVPvviSyOOaIXVD6/sdEW7kIDfuIu36t1Q
-         BV3+QEpyAceCpr/CqnR2DQTdlps3ia+YVy+hXsNBIjJNSOnwwno7+vnUilo8JJuidsOx
-         xF+jP1kAslYKyhJ65RH2Wh4UWQ0PDszOh+n7iT3D099hxVe/Dh5QPmuLZJA9ADqi/Egk
-         +t+fgzr6O2apGbnbPnFhV3cikLdph/xyWZXNgCgnQXK6rogqkwqP0NQ4UEO/PLWc0wmV
-         xnNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681303285; x=1683895285;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AEHj125fFUHVqVSYxI2Iu4R8mwBu9xLsNlhlcbmp5rM=;
-        b=Hgnd9GLyz1+RWCtNAwAN09m8xOxKv7KOf4Peh5us/gRq+g21Tg+L6I+gkMK844mJTa
-         mJMjR3XAHYCDU8LJ0ixGleNBJnsYctiC+BOiRfLuoD8V8LI6iRT2N8UKnQI5DNaSYgu0
-         SIq2WYTGKhTafgKbdAZcEo11IUEW5tiRwZkFIXAqlhCAo/MuHCf3S6HcSnBgXIl6VYEi
-         NSBraqVj1WaiNRgfPqOUdf2UxbC3ArnDPJphhm7wnw+B3cjuUeV98foeIGhJkXXOXPTS
-         +fogQ2vZx2iR2qBqGmGjPLKND+LlvC/kdaF/yj/hJuHZU4YKdHs8Mk+XVjoI93tXNY/r
-         +++Q==
-X-Gm-Message-State: AAQBX9ebdHiyZ+6NIV2krt7HBjxXReejLAFfe43DKY+DyADtRePip4EJ
-        oosAK+jhq1q/2O2cNCd1h3Q=
-X-Google-Smtp-Source: AKy350aT31kI3WrPlyJemwrlllp01mZSGvhWt0uUtaz7CCjWzacgDuOrFbxL5IdxxVlheLDNfhc0UA==
-X-Received: by 2002:a05:6000:11d1:b0:2f4:e8e3:ef62 with SMTP id i17-20020a05600011d100b002f4e8e3ef62mr1002128wrx.65.1681303285246;
-        Wed, 12 Apr 2023 05:41:25 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id u11-20020a5d514b000000b002cefcac0c62sm17220111wrt.9.2023.04.12.05.41.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 05:41:24 -0700 (PDT)
-Message-ID: <7466cf12-9411-cb35-8e8b-fa50f5efe492@gmail.com>
-Date:   Wed, 12 Apr 2023 14:41:22 +0200
+        with ESMTP id S231710AbjDLMnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:43:32 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612869EC9;
+        Wed, 12 Apr 2023 05:42:56 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4A87424E01A;
+        Wed, 12 Apr 2023 20:42:37 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 20:42:37 +0800
+Received: from [192.168.125.82] (113.72.145.176) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 20:42:36 +0800
+Message-ID: <eb47b7c7-bdbb-92d9-ba39-604ce487f297@starfivetech.com>
+Date:   Wed, 12 Apr 2023 20:42:34 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 22/27] arm64: dts: mediatek: mt6795: Copyright header
- additions
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
-        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, jitao.shi@mediatek.com,
-        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
-        kernel@collabora.com, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
- <20230412112739.160376-23-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230412112739.160376-23-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
+ <20230412084540.295411-2-changhuang.liang@starfivetech.com>
+ <8dd0dc63-e0df-8764-f756-da032d9d671c@linaro.org>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <8dd0dc63-e0df-8764-f756-da032d9d671c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.145.176]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,32 +67,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
-> I have added more than 800 lines to this devicetree: adding myself to
-> the copyright header.
+On 2023/4/12 19:34, Krzysztof Kozlowski wrote:
+> On 12/04/2023 10:45, Changhuang Liang wrote:
+>> StarFive SoCs like the jh7110 use a MIPI D-PHY RX controller based on
+>> a M31 IP. Add a binding for it.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
+> So this is D-PHY? Or the other patch is D-PHY? The naming is quite
+> confusing and your commit msgs are not helping here.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> index 29ca9a7bf0b3..a4c950b65006 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> @@ -2,6 +2,9 @@
->   /*
->    * Copyright (c) 2015 MediaTek Inc.
->    * Author: Mars.C <mars.cheng@mediatek.com>
-> + *
-> + * Copyright (C) 2023 Collabora Ltd.
-> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Also the power domain phandle here adds to the confusion.
+> 
 
-Indentation?
+Yes, this is DPHY, DPHY has rx and tx, and last version we are discussing that 
+use power domain replace syscon:
+https://lore.kernel.org/all/5dc4ddc2-9d15-ebb2-38bc-8a544ca67e0d@starfivetech.com/
 
-BTW from what I understand the copyright will be by your employer, Collabora not 
-you, but I'm not an legal expert :)
+>>
+>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>> ---
+>>  .../bindings/phy/starfive,jh7110-dphy-rx.yaml | 85 +++++++++++++++++++
+>>  1 file changed, 85 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+>>
+[...]
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  lane_maps:
+> 
+> Why did this appear? Underscores are not allowed. It looks like you
+> re-implement some standard property.
+> 
 
->    */
->   
->   #include <dt-bindings/interrupt-controller/irq.h>
+Will change to lane-maps.
+Yes, according to Vinod advice, lane mapping table use device tree
+to parse makes sense.
+
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    description:
+>> +      D-PHY rx controller physical lanes and logic lanes mapping table.
+>> +    items:
+>> +      - description: logic lane index point to physical lane clock lane 0
+>> +      - description: logic lane index point to physical lane data lane 0
+>> +      - description: logic lane index point to physical lane data lane 1
+>> +      - description: logic lane index point to physical lane data lane 2
+>> +      - description: logic lane index point to physical lane data lane 3
+>> +      - description: logic lane index point to physical lane clock lane 1
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
