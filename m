@@ -2,60 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8176DE9A4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 04:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C14536DE9B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 04:58:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbjDLCwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 22:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48718 "EHLO
+        id S229483AbjDLC6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 22:58:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjDLCwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 22:52:17 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D649C4C12;
-        Tue, 11 Apr 2023 19:52:15 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 88A2680ED;
-        Wed, 12 Apr 2023 10:52:14 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
- 2023 10:52:14 +0800
-Received: from [192.168.125.82] (113.72.145.176) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
- 2023 10:52:13 +0800
-Message-ID: <7a8aac88-91e1-3c54-efa6-e71ddd0951b4@starfivetech.com>
-Date:   Wed, 12 Apr 2023 10:52:13 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 2/7] soc: starfive: Replace SOC_STARFIVE with
- ARCH_SATRFIVE
-Content-Language: en-US
-To:     Walker Chen <walker.chen@starfivetech.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229493AbjDLC6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 22:58:00 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A18610FD;
+        Tue, 11 Apr 2023 19:57:59 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id cd20so436881oib.0;
+        Tue, 11 Apr 2023 19:57:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681268278; x=1683860278;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rBFq4BHhH/cjgo3hbq/bqAErrb/K3fGnq66n2iIKmYk=;
+        b=e1Q2jiqOH7wW3KWNsflgd8NjY+K4Ulk1rGHEeGeuGBrOrOGAcznh+FtudInqmiSSou
+         NHJCXgCDAS4d1ofWyqVuWF2ZK3ECZ9wtojyTP+O0NkpT42TpwtDj/iuvrKnIFsF0NttJ
+         9vfOYl3kHxQltIAM6WGQhlxVNEbjuYzwv0qfr9LXztTECT9t8moq+6BLSIJOWh4sNlrP
+         XwZPe5AU0Ht8PAMfK62fc5ConQ+orAm84obW762drf//P8TAYlQufS1pEF3Old8CCPah
+         koI+urtWwk7LAcxnOpkwetpOfjpkJ0fy08PCJvvexFENjYAWz1QI5Tt7JJMpcPCNHfEp
+         eeyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681268278; x=1683860278;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rBFq4BHhH/cjgo3hbq/bqAErrb/K3fGnq66n2iIKmYk=;
+        b=0DDURABNFMjFosA5EngiVoUyTfPgTsudjys3A7dxJDRmCf5QT3gYvqOZex95MMwhD6
+         HkuAIH5VxqBOKEU0Z/UwEDKVUlIOnaCsHEZ/fn6WoKqDA+AMJNSPY05tDWCDuGwYEKDj
+         wYcSXbsDRMj/1q+VgpXTmdEjhOME15ZHcPvvBK118cZVg7eT2yH4clfdXDaPRJswQeDm
+         sKV4dbvh8kpMsjgV/aLtkzFsa8bl5OHS39govMW3hcNMGMaZIpeNRE3e+/zl8ZpIjff4
+         8h6A8ZJt5YFsfMDU9/hWXONWB3jVnWG/dZg+3kWR/RmJEHYEIHscsAMhX6vUr4ah/8y5
+         ncEw==
+X-Gm-Message-State: AAQBX9e8DbheZ5tHSCIEAH58ZSnATnTQMtHI49+3kvh6X0cPHSb9+wwu
+        9z3FPUcceSxHh1FLRtdhXpQ=
+X-Google-Smtp-Source: AKy350ZL3k2HQ1msLFr3129WnolMPaBLSMdDj4Bc6jcq5S8BBlX+vDi4HsuaMTQpgJQUOhsM+goNjQ==
+X-Received: by 2002:a05:6808:8e:b0:387:2075:59c with SMTP id s14-20020a056808008e00b003872075059cmr249676oic.37.1681268278334;
+        Tue, 11 Apr 2023 19:57:58 -0700 (PDT)
+Received: from localhost.localdomain (76-229-100-169.lightspeed.irvnca.sbcglobal.net. [76.229.100.169])
+        by smtp.gmail.com with ESMTPSA id b124-20020aca3482000000b0038bc0cb5d52sm3013293oia.9.2023.04.11.19.57.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Apr 2023 19:57:57 -0700 (PDT)
+From:   Tony Dinh <mibodhi@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Tony Dinh <mibodhi@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-3-changhuang.liang@starfivetech.com>
- <a3d5c666-c7c1-7a77-31ac-d3e686bdef59@starfivetech.com>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <a3d5c666-c7c1-7a77-31ac-d3e686bdef59@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.176]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: [PATCH v2 0/2] Add support for Thecus N2350 board
+Date:   Tue, 11 Apr 2023 19:57:34 -0700
+Message-Id: <20230412025737.20280-1-mibodhi@gmail.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,38 +75,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Thecus N2350 is a NAS based on Marvell Armada 385 SoC.
 
-On 2023/4/12 10:11, Walker Chen wrote:
-> 
-> 
-> On 2023/4/11 14:47, Changhuang Liang wrote:
->> Using ARCH_FOO symbol is preferred than SOC_FOO.
->>
->> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->> ---
->>  drivers/soc/starfive/Kconfig | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/soc/starfive/Kconfig b/drivers/soc/starfive/Kconfig
->> index bdb96dc4c989..1e9b0c414fec 100644
->> --- a/drivers/soc/starfive/Kconfig
->> +++ b/drivers/soc/starfive/Kconfig
->> @@ -3,8 +3,8 @@
->>  config JH71XX_PMU
->>  	bool "Support PMU for StarFive JH71XX Soc"
->>  	depends on PM
->> -	depends on SOC_STARFIVE || COMPILE_TEST
->> -	default SOC_STARFIVE
->> +	depends on ARCH_STARFIVE || COMPILE_TEST
->> +	default ARCH_STARFIVE
->>  	select PM_GENERIC_DOMAINS
->>  	help
->>  	  Say 'y' here to enable support power domain support.
-> 
-> The subject 'ARCH_SATRFIVE' spelling error.
-> 
+Board Specification:
 
-OK, will fix it.
+	- Marvel MV88F6820 Dual Core at 1GHz
+	- 1 GiB DDR4 RAM
+	- 4MB Macronix mx25l3205d SPI flash
+	- 512MB Hynix H27U4G8F2DTR-BC NAND flash
+	- I2C
+	- 2x USB 3.0
+	- 1x GBE LAN port (PHY: Marvell 88E1510)
+	- 2x SATA (hot swap slots)
+	- 3x buttons
+	- 10x LEDS
+	- serial console
 
-> Best regards,
-> Walker
+Changes in v2:
+- Add marvell,38x.yaml. For now, add this binding to the Marvell
+directory to keep it consistent with other Marvell yaml files.
+At a later date and a separate patch, consolidate the Marvell
+yaml files into  marvell.yaml.
+- Fix various DT bindings conformance (too numerous to list)
+- Vendor prefix is not necessary, so remove it.
+
+Tony Dinh (2):
+  ARM: dts: mvebu: Add device tree binding for Marvell Armada 38x
+  ARM: dts: mvebu: add Thecus N2350 board DTS
+
+ .../bindings/arm/marvell/armada-38x.yaml      |  27 ++
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/armada-385-thecus-n2350.dts | 432 ++++++++++++++++++
+ 3 files changed, 460 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml
+ create mode 100644 arch/arm/boot/dts/armada-385-thecus-n2350.dts
+
+-- 
+2.30.2
+
