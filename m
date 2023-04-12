@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A20FE6DFC94
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0976DFCB0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231409AbjDLRVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 13:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59828 "EHLO
+        id S229508AbjDLR1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:27:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229963AbjDLRVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:21:21 -0400
+        with ESMTP id S229477AbjDLR1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:27:18 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CB9103;
-        Wed, 12 Apr 2023 10:21:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A1941BE4;
+        Wed, 12 Apr 2023 10:27:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B22D16114C;
-        Wed, 12 Apr 2023 17:21:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58756C433D2;
-        Wed, 12 Apr 2023 17:21:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 29E31637CA;
+        Wed, 12 Apr 2023 17:27:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 029ECC4339B;
+        Wed, 12 Apr 2023 17:27:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681320079;
-        bh=COLmtFFFGXo1TEHuoUhMSoBFRy+/CMiAjqIRNHb1FSM=;
+        s=k20201202; t=1681320436;
+        bh=BIUSRAdoy/Zus3h2K2WNnAQR/1nxAkSLeQxWV/R2Prg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oxw94zsuuI49tRofTO5ZzeKeONQqQBjSsxu9lKNJNtRtbOU+C/XKrMP/1+fbEVfa1
-         SONEudEhTB/64a9pPpan0kJ8PWfLMYWgwQzuhRPzFgNhJcIauaJcx8TomwxkqShv0y
-         2Cg7eDvM87lkAagRyKQ3TZ/C4+UquWyBvqCTJJWyAfM1CNOMnmHw5CT23dB5/ymKnT
-         pSCLiUvMnP+oZx1j0eA1xXYXVWnmJwpZOOsgi5SnV2ddJCKJucA/2l0Ts64FAt+bTu
-         PkfzJeZoBjKHDaBB1lkQkF06cbDVCQngPHFXBNRHtXE8icXcY31tEl+tQdgd58BSVx
-         WSDfYA3yuizDA==
-Date:   Wed, 12 Apr 2023 22:51:15 +0530
+        b=F/ioBuLjffehMYpwpQri/vITWx05lPbVtkI9SUbkww4WxGP9uVxoAp/Oha9QUBNAe
+         MuE4mxx/wP+/msRhy3ZCeLlXuSlOzaQ1BwB19DH3Nz62srJH8GLazKtDMz1Z00TJyX
+         ORUTZ+q0CMG1yP2htUMl3fZb/WJDcLsj+tcKwmUNeTTAf1SKm6mf26YFnYssakPaBf
+         K3aSjgkTBQtQDRDdFNSf4CgdZTSNa5Sl8M6do1sYWYSW5DUGbzTGN67mCkvIYVhz3C
+         HONJmc/Cw9iZoYuEve5kOG0K4kZglEtlZKUyf2KbviHlpafA8lD13nZNSAIU83ZlGs
+         7DTxR7btBwh2A==
+Date:   Wed, 12 Apr 2023 22:57:12 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+To:     Walker Chen <walker.chen@starfivetech.com>
+Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
         dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: dma: Drop unneeded quotes
-Message-ID: <ZDboi8vByBkrziF3@matsya>
-References: <20230331182141.1900348-1-robh@kernel.org>
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v6 0/4] Add DMA driver for StarFive JH7110 SoC
+Message-ID: <ZDbp8IVpIwFvNgFv@matsya>
+References: <20230322094820.24738-1-walker.chen@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230331182141.1900348-1-robh@kernel.org>
+In-Reply-To: <20230322094820.24738-1-walker.chen@starfivetech.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -57,11 +58,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-03-23, 13:21, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 22-03-23, 17:48, Walker Chen wrote:
+> Hello,
+> 
+> This patch series adds dma support for the StarFive JH7110 RISC-V
+> SoC. The first patch adds device tree binding. The second patch includes
+> dma driver. The last patch adds device node of dma to JH7110 dts.
+> 
+> The series has been tested on the VisionFive 2 board which equip with
+> JH7110 SoC and works normally.
 
-Applied, thanks
+Applied 1-3, thanks
 
 -- 
 ~Vinod
