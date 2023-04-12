@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E316DFEE3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 21:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7974B6DFEE5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 21:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjDLTqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 15:46:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34968 "EHLO
+        id S229708AbjDLTqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 15:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjDLTqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 15:46:12 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C99185
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:46:10 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id h12so11186762lfj.8
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:46:10 -0700 (PDT)
+        with ESMTP id S229660AbjDLTqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 15:46:14 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6110185
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:46:12 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id h12so11186867lfj.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:46:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681328769; x=1683920769;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NMipdxD21+cTBwwjF9nIXWkP9aMovr2x6cJ12UzFBGQ=;
-        b=ZUWzkEEhsAjbaZQgTj0rlwn/drPBU86OEIgej+DIOuQztUP30oyfgFyTzyzb8pnETi
-         zE4HD2x7r78lOZujlDTv+Kw3pcJu2eNFrOllAx3REOoXwI6C102WK4BMhxNWvwTe3pS7
-         pVLj0f9I354PlAOaXWCud94ORPNYywjFSPowjkp49I+2NzK60/5mvCo536L78mcxRiEt
-         fZoyx/Q+m0ntizaAncNgvtEQnkaYJ6jdYohhwU0cRmWLzVanvjC8pPtZxazbMqrY2ndE
-         zwok8WOXwTvbhtEr5RABBBxok5f3teVV4eU2igkZOYKxjlG2Z6EQ8J5XpOwIPjyznfIP
-         nVmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681328769; x=1683920769;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1681328771; x=1683920771;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NMipdxD21+cTBwwjF9nIXWkP9aMovr2x6cJ12UzFBGQ=;
-        b=izleIOqnHmMrDWLLJbdK80Exesc53uQvzhhLSTReoSFxvpdq+zDmWxlZ7lTKovrl2V
-         56zCSMazWwWSSP/Manxm0nkPeDmAr/YjefuH8hofcJf0j/FVhwKe2wIFfG7OjdkXGhwW
-         pfa1fGGfpc//6CmRo6qzTAlCW8ePqVNTOVHGyPheKVUAs5NLRkURseDPEHVdEWMvUJCZ
-         i3EaEaQ+k3GBfh4E89brIa432f0mMseGksbY5nxW1jIDULpM6Vlb5wbapkInehPoboU0
-         lA1hQ0Qt5EogFPa1zM5UqZrnf/UpcoupHACn4Vi1FnLI2SDOOb+fADxMfalu8T+9/Gdg
-         VqMg==
-X-Gm-Message-State: AAQBX9fz9laEQ+DkmebIQ9g+4VwHri8RxhAYUMaGcOj5Jav+ShpCAwjw
-        vn9x1NCHZyMFLYRfqrE1V+hI3Q==
-X-Google-Smtp-Source: AKy350b/GcDfUeo7sGLetepOSP0yU5RY//t78Kcc47q1fNwT7YY8CDV4bnc0kzUieVodM0Vf5Nky8Q==
-X-Received: by 2002:ac2:5985:0:b0:4ec:8853:136 with SMTP id w5-20020ac25985000000b004ec88530136mr14965lfn.12.1681328769085;
-        Wed, 12 Apr 2023 12:46:09 -0700 (PDT)
+        bh=DEAnat5PSJjsxQAWB7/SpZ+xwfK/Fj2JlbHtk3HNvoA=;
+        b=YXwiyLzg4ji60X8cpHNlrFIzDmyZJKGB81F6A+ebWz+GR6NY5Iw6oTV86QwTK8VLlE
+         6JFyxipHfmjVM1joCgbYab5wEgc/NJyR1AJYa6JO8xP9LPl+ocaSmy4rQnc+SdPbnh/C
+         8tyxBZkFJ+js6MrlXgfSsQzD7u7/idqTlgloJP5dzbipQLlNRkjMLXU3cGd0T8Nc2N/B
+         YuGgoV4RzSig1n7Rt3siwcaHYmf2mezeVij+xLS+fEPcYfcwznC2fX6aChJB27I6KJFt
+         DZQWDCkyPETH8zshyG34lInJ17jBpHrxZBLHCp5PYc6fWwVwkrwwPWOGXMK9lPsqAJ/x
+         8WRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681328771; x=1683920771;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DEAnat5PSJjsxQAWB7/SpZ+xwfK/Fj2JlbHtk3HNvoA=;
+        b=dYLyCCzRf+CTQGvojw5hvF1gOS24aJFRg3qMHDCXDLX+bysob2fcNZLF+mR1YT+sLm
+         tzuupzU152pKdnOUg0bFacVJhZ11qnPUH7nJeWMHLCFlGy440YIXmitwmaXLM3+PVsks
+         tGSRhSiG7sx9CcyTTbKlp9lxbwEaXukyzykyQ0FEe6vKfMd7VsSGMe68oosmuH3fX7ow
+         IQ+vAYuWvJSEucibH+88/G6Tu7hM1mUybxIqigWnmdKk4563PMSLk+O9+FM3dVsnOxM4
+         ndENdqAqyt74mdkUYbfKmch8K+4F0+jY/Wggk0IByNNLsjRz5VmKLtoC/wbGvX5wkU7b
+         CrXA==
+X-Gm-Message-State: AAQBX9cX+xI2peziX2coMqNR0eAzHm6lapgLpRjk+5VWARgllnLNmhjk
+        AuqHZ8GRxIrZjj8KFldmMDMNhg==
+X-Google-Smtp-Source: AKy350ZQO4wDtrSkqQilMkiMX1DJXlr0CW0RCxaddDxjo+a6jr9yxnIMURGU7xelCIuFm0ODAe3xcA==
+X-Received: by 2002:ac2:544c:0:b0:4ec:9f36:9b5c with SMTP id d12-20020ac2544c000000b004ec9f369b5cmr2723lfn.68.1681328771108;
+        Wed, 12 Apr 2023 12:46:11 -0700 (PDT)
 Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id x2-20020ac25dc2000000b004ec8de8ab3fsm1205865lfq.132.2023.04.12.12.46.05
+        by smtp.gmail.com with ESMTPSA id x2-20020ac25dc2000000b004ec8de8ab3fsm1205865lfq.132.2023.04.12.12.46.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 12:46:08 -0700 (PDT)
+        Wed, 12 Apr 2023 12:46:10 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH 0/5] Lenovo Tab P11 panel
-Date:   Wed, 12 Apr 2023 21:45:57 +0200
-Message-Id: <20230412-topic-lenovopanel-v1-0-00b25df46824@linaro.org>
+Date:   Wed, 12 Apr 2023 21:45:58 +0200
+Subject: [PATCH 1/5] dt-bindings: display: panel: nt36523: Allow 'port'
+ instead of 'ports'
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHUKN2QC/x2N0QqDMAwAf0XyvEBtJ8J+ZfgQa9RASUvrZCD++
- 8Ie7+C4CxpX4Qav7oLKpzTJatA/Oog76cYoizF454N79h6PXCRiYs1nLqSc0C2B3DByiD6AdTM
- 1xrmSxt1K/aRkslRe5fsfvaf7/gEEzIP1eAAAAA==
+Message-Id: <20230412-topic-lenovopanel-v1-1-00b25df46824@linaro.org>
+References: <20230412-topic-lenovopanel-v1-0-00b25df46824@linaro.org>
+In-Reply-To: <20230412-topic-lenovopanel-v1-0-00b25df46824@linaro.org>
 To:     Jianhua Lu <lujianhua000@gmail.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -70,45 +71,65 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681328765; l=935;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681328765; l=1187;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=kRg0hch6fi2xH37nEAUaLth9fudXwCTpRDD+mFHIEi4=;
- b=p9fFAxQHlWtrzOnMlWnUTK2o6ettidJSrzZB3UJBevjLz0bQ1QgEQ11kV9n6iT8HMHj0t19sIr4b
- u0wpt4HuBaMK56RyX0IUYlSq4PeKP3frYi2e/Z7cj3s0Z3bHwaD6
+ bh=FMgShhUTMaYzSy2Me7Gv1xSXp92sIQsWFZ0aqhhoJn8=;
+ b=9TbzELnlWNU1kmoa3o/rXyhwMOM4rjVKSxHPyH/watUFxTLNRkHx8vvXq4FZZfrwU4sEibR9V1Uw
+ 0SXo1Q/nB7+4KemAltiOcAA+ADHzcKumbeSaLNwxSdI89adYyaP2
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Continuation of:
-https://lore.kernel.org/lkml/20230217-topic-lenovo-panel-v2-0-2e2c64729330@linaro.org/
-
-I rolled back the versioning, as this has been remade from scratch.
+Using 'port' instead of 'ports' for single-DSI usecases allows for saving
+a couple of DTS LoC, including a level of indentation. Allow that.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Konrad Dybcio (5):
-      dt-bindings: display: panel: nt36523: Allow 'port' instead of 'ports'
-      dt-bindings: display: panel: nt36523: Add Lenovo J606F panel
-      drm/panel: nt36523: Add DCS backlight support
-      drm/panel: nt36523: Get orientation from OF
-      drm/panel: nt36523: Add Lenovo J606F panel
+ .../bindings/display/panel/novatek,nt36523.yaml           | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
- .../bindings/display/panel/novatek,nt36523.yaml    |  31 +-
- drivers/gpu/drm/panel/panel-novatek-nt36523.c      | 573 ++++++++++++++++++++-
- 2 files changed, 594 insertions(+), 10 deletions(-)
----
-base-commit: 7d8214bba44c1aa6a75921a09a691945d26a8d43
-change-id: 20230412-topic-lenovopanel-0d3a057e3c23
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+index 0039561ef04c..38f4f986aef1 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+@@ -33,15 +33,26 @@ properties:
+     description: regulator that supplies the I/O voltage
+ 
+   reg: true
+-  ports: true
+   backlight: true
+ 
++oneOf:
++  - allOf:
++      - properties:
++          ports: true
++      - required:
++          - ports
++
++  - allOf:
++      - properties:
++          port: true
++      - required:
++          - port
++
+ required:
+   - compatible
+   - reg
+   - vddio-supply
+   - reset-gpios
+-  - ports
+ 
+ unevaluatedProperties: false
+ 
 
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.40.0
 
