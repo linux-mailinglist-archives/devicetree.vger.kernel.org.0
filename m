@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 768D76DF019
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 11:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745226DF022
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 11:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbjDLJQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 05:16:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33946 "EHLO
+        id S229559AbjDLJT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 05:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjDLJQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 05:16:20 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDAB9619E;
-        Wed, 12 Apr 2023 02:16:17 -0700 (PDT)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5709A20010;
-        Wed, 12 Apr 2023 09:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1681290976;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=yu4VI5tu+VJnGQshuaF5A3h9LoTgJ1TFgqR+sIDIKMU=;
-        b=W7hdKL/Zd26EZLEDZarnsoarc6O3jhppN9xx3AGtCkU73+//W1zTReWuI1PZA5g+O/kA4s
-        vUm6UQq/btxMrhKsCpKTvPcNY19QPerl67DxziES9GrvWFoQkuAz0wlhiANGxY295gJHqi
-        Yu/l9N1gvwYbqrL6IFhIW4QVRT0vw/rNom8p2NMfJe1s0EtDCO6BeJEPe6FryI5WTHIzQ9
-        u9veYgC/mDBB7eHa50lq9jzaiq/lEXJU/3HH2HpS7BCSdh+otQ57mXRdmaQ3ejHHF9QN3B
-        tqPWW95kkfuEcPVxECWWwVGur5+qat0HY5YBQdoc4I3jwSXGp4Y/O8WcyH8QTQ==
-Date:   Wed, 12 Apr 2023 11:16:10 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-tegra@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [PATCH v5 00/20] Add Tegra20 parallel video input capture
-Message-ID: <20230412111610.2fbfdf7b@booty>
-In-Reply-To: <20230407133852.2850145-1-luca.ceresoli@bootlin.com>
-References: <20230407133852.2850145-1-luca.ceresoli@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229477AbjDLJT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 05:19:26 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ADEF10F1;
+        Wed, 12 Apr 2023 02:19:24 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33C9JDY8052195;
+        Wed, 12 Apr 2023 04:19:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681291153;
+        bh=B5KBTLGR0HvDGhIJ+R+6qhJ89Y456NUm7iSUklZXQuk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=YpC9wIbkV7gX3RMOG42yHGsFpwJhmXkJJjxsCANj47qJUtThmAUsGyzLxSoUkHGiO
+         rZ4/4LI71W5Onqg0fGkmgtWuDvdH0yHRtTPLvxPxKmbx6oCC59erAwGZaC0ZZyG/94
+         CN/NVxGsvmhbics+3GeAhlBD8NIuMOan1tvXxo0s=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33C9JDht048563
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Apr 2023 04:19:13 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 12
+ Apr 2023 04:19:13 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 12 Apr 2023 04:19:13 -0500
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33C9J8u0015809;
+        Wed, 12 Apr 2023 04:19:08 -0500
+Message-ID: <bfe1681c-9515-5c3c-6f9a-276e60d3db52@ti.com>
+Date:   Wed, 12 Apr 2023 14:49:07 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [EXTERNAL] Re: [PATCH v7 4/4] soc: ti: pruss: Add helper
+ functions to set GPI mode, MII_RT_event and XFR
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <20230404115336.599430-1-danishanwar@ti.com>
+ <20230404115336.599430-5-danishanwar@ti.com> <20230411175707.GE38361@p14s>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <20230411175707.GE38361@p14s>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,84 +78,234 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Hans,
+On 11/04/23 23:27, Mathieu Poirier wrote:
+> On Tue, Apr 04, 2023 at 05:23:36PM +0530, MD Danish Anwar wrote:
+>> From: Suman Anna <s-anna@ti.com>
+>>
+>> The PRUSS CFG module is represented as a syscon node and is currently
+>> managed by the PRUSS platform driver. Add easy accessor functions to set
+>> GPI mode, MII_RT event enable/disable and XFR (XIN XOUT) enable/disable
+>> to enable the PRUSS Ethernet usecase. These functions reuse the generic
+>> pruss_cfg_update() API function.
+>>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+>> Reviewed-by: Tony Lindgren <tony@atomide.com>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  drivers/remoteproc/pru_rproc.c   | 15 -------
+>>  drivers/soc/ti/pruss.c           | 74 ++++++++++++++++++++++++++++++++
+>>  include/linux/remoteproc/pruss.h | 51 ++++++++++++++++++++++
+>>  3 files changed, 125 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+>> index 4ddd5854d56e..a88861737dec 100644
+>> --- a/drivers/remoteproc/pru_rproc.c
+>> +++ b/drivers/remoteproc/pru_rproc.c
+>> @@ -81,21 +81,6 @@ enum pru_iomem {
+>>  	PRU_IOMEM_MAX,
+>>  };
+>>  
+>> -/**
+>> - * enum pru_type - PRU core type identifier
+>> - *
+>> - * @PRU_TYPE_PRU: Programmable Real-time Unit
+>> - * @PRU_TYPE_RTU: Auxiliary Programmable Real-Time Unit
+>> - * @PRU_TYPE_TX_PRU: Transmit Programmable Real-Time Unit
+>> - * @PRU_TYPE_MAX: just keep this one at the end
+>> - */
+>> -enum pru_type {
+>> -	PRU_TYPE_PRU = 0,
+>> -	PRU_TYPE_RTU,
+>> -	PRU_TYPE_TX_PRU,
+>> -	PRU_TYPE_MAX,
+>> -};
+>> -
+>>  /**
+>>   * struct pru_private_data - device data for a PRU core
+>>   * @type: type of the PRU core (PRU, RTU, Tx_PRU)
+>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+>> index 0e37fe142615..64a1880ba4ee 100644
+>> --- a/drivers/soc/ti/pruss.c
+>> +++ b/drivers/soc/ti/pruss.c
+>> @@ -213,6 +213,80 @@ int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux)
+>>  }
+>>  EXPORT_SYMBOL_GPL(pruss_cfg_set_gpmux);
+>>  
+>> +/**
+>> + * pruss_cfg_gpimode() - set the GPI mode of the PRU
+>> + * @pruss: the pruss instance handle
+>> + * @pru_id: id of the PRU core within the PRUSS
+>> + * @mode: GPI mode to set
+>> + *
+>> + * Sets the GPI mode for a given PRU by programming the
+>> + * corresponding PRUSS_CFG_GPCFGx register
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
+>> +		      enum pruss_gpi_mode mode)
+>> +{
+>> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
+>> +		return -EINVAL;
+>> +
+>> +	if (mode < 0 || mode > PRUSS_GPI_MODE_MAX)
+>> +		return -EINVAL;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
+>> +				PRUSS_GPCFG_PRU_GPI_MODE_MASK,
+>> +				mode << PRUSS_GPCFG_PRU_GPI_MODE_SHIFT);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pruss_cfg_gpimode);
+>> +
+>> +/**
+>> + * pruss_cfg_miirt_enable() - Enable/disable MII RT Events
+>> + * @pruss: the pruss instance
+>> + * @enable: enable/disable
+>> + *
+>> + * Enable/disable the MII RT Events for the PRUSS.
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
+>> +{
+>> +	u32 set = enable ? PRUSS_MII_RT_EVENT_EN : 0;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_MII_RT,
+>> +				PRUSS_MII_RT_EVENT_EN, set);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pruss_cfg_miirt_enable);
+>> +
+>> +/**
+>> + * pruss_cfg_xfr_enable() - Enable/disable XIN XOUT shift functionality
+>> + * @pruss: the pruss instance
+>> + * @pru_type: PRU core type identifier
+>> + * @enable: enable/disable
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +int pruss_cfg_xfr_enable(struct pruss *pruss, enum pru_type pru_type,
+>> +			 bool enable)
+>> +{
+>> +	u32 mask, set;
+>> +
+>> +	switch (pru_type) {
+>> +	case PRU_TYPE_PRU:
+>> +		mask = PRUSS_SPP_XFER_SHIFT_EN;
+>> +		break;
+>> +	case PRU_TYPE_RTU:
+>> +		mask = PRUSS_SPP_RTU_XFR_SHIFT_EN;
+>> +		break;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	set = enable ? mask : 0;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_SPP, mask, set);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pruss_cfg_xfr_enable);
+>> +
+>>  static void pruss_of_free_clk_provider(void *data)
+>>  {
+>>  	struct device_node *clk_mux_np = data;
+>> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+>> index 5641153459a7..b68ab8735247 100644
+>> --- a/include/linux/remoteproc/pruss.h
+>> +++ b/include/linux/remoteproc/pruss.h
+>> @@ -34,6 +34,33 @@ enum pruss_gp_mux_sel {
+>>  	PRUSS_GP_MUX_SEL_MAX,
+>>  };
+>>  
+>> +/*
+>> + * enum pruss_gpi_mode - PRUSS GPI configuration modes, used
+>> + *			 to program the PRUSS_GPCFG0/1 registers
+>> + */
+>> +enum pruss_gpi_mode {
+>> +	PRUSS_GPI_MODE_DIRECT = 0,
+>> +	PRUSS_GPI_MODE_PARALLEL,
+>> +	PRUSS_GPI_MODE_28BIT_SHIFT,
+>> +	PRUSS_GPI_MODE_MII,
+>> +	PRUSS_GPI_MODE_MAX,
+>> +};
+>> +
+>> +/**
+>> + * enum pru_type - PRU core type identifier
+>> + *
+>> + * @PRU_TYPE_PRU: Programmable Real-time Unit
+>> + * @PRU_TYPE_RTU: Auxiliary Programmable Real-Time Unit
+>> + * @PRU_TYPE_TX_PRU: Transmit Programmable Real-Time Unit
+>> + * @PRU_TYPE_MAX: just keep this one at the end
+>> + */
+>> +enum pru_type {
+>> +	PRU_TYPE_PRU = 0,
+>> +	PRU_TYPE_RTU,
+>> +	PRU_TYPE_TX_PRU,
+>> +	PRU_TYPE_MAX,
+>> +};
+>> +
+> 
+> These go in pruss_driver.h
+> 
+>>  /**
+>>   * enum pruss_pru_id - PRU core identifiers
+>>   * @PRUSS_PRU0: PRU Core 0.
+>> @@ -98,6 +125,11 @@ int pruss_release_mem_region(struct pruss *pruss,
+>>  			     struct pruss_mem_region *region);
+>>  int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux);
+>>  int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux);
+>> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
+>> +		      enum pruss_gpi_mode mode);
+>> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable);
+>> +int pruss_cfg_xfr_enable(struct pruss *pruss, enum pru_type pru_type,
+>> +			 bool enable);
+>>  
+>>  #else
+>>  
+>> @@ -133,6 +165,25 @@ static inline int pruss_cfg_set_gpmux(struct pruss *pruss,
+>>  	return ERR_PTR(-EOPNOTSUPP);
+>>  }
+>>  
+>> +static inline int pruss_cfg_gpimode(struct pruss *pruss,
+>> +				    enum pruss_pru_id pru_id,
+>> +				    enum pruss_gpi_mode mode)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>> +static inline int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>> +static inline int pruss_cfg_xfr_enable(struct pruss *pruss,
+>> +				       enum pru_type pru_type,
+>> +				       bool enable);
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+> 
+> So do these.
+> 
+> Thanks,
+> Mathieu
+> 
 
-On Fri,  7 Apr 2023 15:38:32 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+Sure, Mathieu. I'll move all these definitions and enums to
+linux/pruss_driver.h from linux/remoteproc/pruss.h accordingly and send next
+revision.
 
-> New in v5: dropped the patch that was removing lots of the logic behind
-> enum_format, after discussion with Hans. The rest is unmodified except for
-> rebasing and fixing a couple typos in comments.
-> 
-> Full details follow.
-> 
-> Tegra20 and other Tegra SoCs have a video input (VI) peripheral that can
-> receive from either MIPI CSI-2 or parallel video (called respectively "CSI"
-> and "VIP" in the documentation). The kernel currently has a staging driver
-> for Tegra210 CSI capture. This patch set adds support for Tegra20 VIP
-> capture.
-> 
-> Unfortunately I had no real documentation available to base this work on.
-> I only had a working downstream 3.1 kernel, so I started with the driver
-> found there and heavily reworked it to fit into the mainline tegra-video
-> driver structure. The existing code appears written with the intent of
-> being modular and allow adding new input mechanisms and new SoCs while
-> keeping a unique VI core module. However its modularity and extensibility
-> was not enough to add Tegra20 VIP support, so I added some hooks to turn
-> hard-coded behaviour into per-SoC or per-bus customizable code. There are
-> also a fix, some generic cleanups and DT bindings.
-> 
-> Quick tour of the patches:
-> 
->  * Device tree bindings
-> 
->    01. dt-bindings: display: tegra: add Tegra20 VIP
->    02. dt-bindings: display: tegra: vi: add 'vip' property and example
-> 
->  * Minor improvements to logging, comments, cleanups
-> 
->    03. staging: media: tegra-video: improve documentation of tegra_video_format fields
->    04. staging: media: tegra-video: document tegra_channel_get_remote_source_subdev
->    05. staging: media: tegra-video: fix typos in comment
->    06. staging: media: tegra-video: improve error messages
->    07. staging: media: tegra-video: slightly simplify cleanup on errors
->    08. staging: media: tegra-video: move private struct declaration to C file
->    09. staging: media: tegra-video: move tegra210_csi_soc to C file
->    10. staging: media: tegra-video: remove unneeded include
-> 
->  * Preparation to make the VI module generic enough to host Tegra20 and VIP
-> 
->    11. staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
->    12. staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc op
->    13. staging: media: tegra-video: move default format to soc-specific data
->    14. staging: media: tegra-video: move MIPI calibration calls from VI to CSI
->    15. staging: media: tegra-video: add a per-soc enable/disable op
->    16. staging: media: tegra-video: move syncpt init/free to a per-soc op
->    17. staging: media: tegra-video: add syncpts for Tegra20 to struct tegra_vi
->    18. staging: media: tegra-video: add hooks for planar YUV and H/V flip
->    19. staging: media: tegra-video: add H/V flip controls
-> 
->  * Implementation of VIP and Tegra20
-> 
->    20. staging: media: tegra-video: add support for Tegra20 parallel input
-> 
-> Enjoy!
-> 
-> Changed in v5:
-> - removed patch 3 as requested by Hans Verkuil; now the driver is kept
->   video-node-centric and the enum_format logic is unchanged
-> - rebased on top of that
-> - trivial fixes (typos)
-
-According to your review of v4, removing patch 3 was the only change
-required, and I didn't do anything else, and there have been no big
-changes since v1 anyway, so I was wondering whether this series has any
-hope to make it for 6.4...
-
-Best regards,
-Luca
+>>  #endif /* CONFIG_TI_PRUSS */
+>>  
+>>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>> -- 
+>> 2.25.1
+>>
 
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks and Regards,
+Danish.
