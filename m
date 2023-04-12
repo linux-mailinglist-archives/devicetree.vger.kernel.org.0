@@ -2,87 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 800606DFCB6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5467E6DFCD1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbjDLR2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 13:28:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37858 "EHLO
+        id S229711AbjDLRgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:36:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231233AbjDLR2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:28:02 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8DC30EE;
-        Wed, 12 Apr 2023 10:28:00 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33CGj4x7029053;
-        Wed, 12 Apr 2023 17:27:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=wGPH4wkOFbxr/rHutk4WUEXFrqfABAb1H+DTcel3+KM=;
- b=dKqxx6ahDP+Bjrg3nvC6lLcepPM4MeawEpr8y9UB9C2eishk1YFSAoY/W5nDapSN1OKH
- uQpMxRONkmrjUEG9MtdFdbS6FxSDr2lqXhtqDPJ4dDeoVxMGxTV8sU2hX2lRwAM7NUAi
- n1k/AZWw61MvtEdTnxs1Efp0sh8iKlAhIsWiGYdmP14P5jBvaoQLatWuWONfqahNW4NI
- E74T+22WdfymNR4F92o/UTlQrD55fiuPbc6wC3I6uNO+h6HVDO+ZNdd0WNfuFcPmPFb9
- zOr0n02X+Kgq4dgdSFMfqAGseohAGNwACo53HInZchttUOYinwzhWFr96THPa4Q8OJfg hQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pwqenseer-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 17:27:57 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33CHRvp6014816
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 17:27:57 GMT
-Received: from [10.216.35.198] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 12 Apr
- 2023 10:27:52 -0700
-Message-ID: <0eb8dbab-c76b-771f-5a99-3e548ec55731@quicinc.com>
-Date:   Wed, 12 Apr 2023 22:57:48 +0530
+        with ESMTP id S229498AbjDLRgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:36:44 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D5426BE;
+        Wed, 12 Apr 2023 10:36:43 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33CHaSQU040540;
+        Wed, 12 Apr 2023 12:36:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681320988;
+        bh=Gwn22cSL9LrtifAyT+aMZ04trXrV9XYL70h9w0kbhFg=;
+        h=From:To:CC:Subject:Date;
+        b=tOxk2sNbTqlgK5t23qzQcboJKrU0aIcUSjwWv6v+ULKeyYF7NjRgyQjW32TUJ6dOL
+         Ar0TdP6YLwJTItNEhmp8uSlZwdnP9tBAqOq718VFyjGGl7ZQZsAEA0BlvnW1car0oJ
+         Rv3Qh5eFClL8FRhVtVrfwMM2zGFmB7NWewdhSJq0=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33CHaSWQ082774
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Apr 2023 12:36:28 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 12
+ Apr 2023 12:36:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 12 Apr 2023 12:36:27 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33CHaOna082586;
+        Wed, 12 Apr 2023 12:36:25 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <a-govindraju@ti.com>, <kishon@ti.com>
+CC:     <n-dasan@ti.com>, Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721s2-main: fix msmc node
+Date:   Wed, 12 Apr 2023 23:06:09 +0530
+Message-ID: <20230412173609.1307837-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/2] spi: spi-qcom-qspi: Add DMA mode support
-Content-Language: en-CA
-To:     Mark Brown <broonie@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <quic_msavaliy@quicinc.com>, <dianders@chromium.org>,
-        <mka@chromium.org>, <swboyd@chromium.org>,
-        <quic_vtanuku@quicinc.com>
-References: <1680631400-28865-1-git-send-email-quic_vnivarth@quicinc.com>
- <1680631400-28865-3-git-send-email-quic_vnivarth@quicinc.com>
- <d784dab7-a1a6-4db7-aa13-e39e9904f342@sirena.org.uk>
- <0b182a36-0254-6720-4a35-f9e617c12797@quicinc.com>
- <92690348-21c3-45de-bdb1-d0977b859702@sirena.org.uk>
- <92f61ba4-a847-1ce3-f0c8-e9c0f0fafa0b@quicinc.com>
- <af2db163-9ab2-4efc-af55-933d2cc4c747@sirena.org.uk>
-From:   Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-In-Reply-To: <af2db163-9ab2-4efc-af55-933d2cc4c747@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Z5EfOODdVR1csUCQPV7k1vnp2OcQaS6Q
-X-Proofpoint-ORIG-GUID: Z5EfOODdVR1csUCQPV7k1vnp2OcQaS6Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-12_08,2023-04-12_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 adultscore=0 phishscore=0 clxscore=1015
- spamscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304120150
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,30 +64,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On J721S2 SOC, l3cache-sram size is configured as zero by
+system firmware.
+Also top 64K of msmc_ram (0x703F_0000 to 0x703F_FFFF) is used by system
+firmware tifs-sram.
 
-On 4/12/2023 9:42 PM, Mark Brown wrote:
-> On Wed, Apr 12, 2023 at 08:59:06PM +0530, Vijaya Krishna Nivarthi wrote:
->> On 4/6/2023 8:58 PM, Mark Brown wrote:
->>>>>> +	if (ctrl->xfer.dir == QSPI_READ)
->>>>>> +		byte_ptr = (uint8_t *)xfer->rx_buf;
->>>>>> +	else
->>>>>> +		byte_ptr = (uint8_t *)xfer->tx_buf;
->>>>> If we need to cast to or from void * there's some sort of problem.
->>>> the tx_buf is a const void*
->>>> in v2 I will cast for tx_buf only?
->>> Or just keep byte_ptr as const - we're not modifying it are we?
->> We are modifying it, hence did cast for tx_buf only
-> If it's being modified won't that upset the callers that thought it was
-> const and didn't expect the data to change?
+This patch removes l3cache-sram node and update range for tifs-sram.
 
-I believe callers wouldn't be upset.
+Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
 
-The byte_ptr is being modified (incremented)
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-It is initialised to tx_buf (a const*) and keeps getting incremented to 
-parse data.
-
-No data change.
-
-That should be ok?
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 2dd7865f7654..cbc784f915a9 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -17,13 +17,10 @@ atf-sram@0 {
+ 			reg = <0x0 0x20000>;
+ 		};
+ 
+-		tifs-sram@1f0000 {
+-			reg = <0x1f0000 0x10000>;
++		tifs-sram@3f0000 {
++			reg = <0x3f0000 0x10000>;
+ 		};
+ 
+-		l3cache-sram@200000 {
+-			reg = <0x200000 0x200000>;
+-		};
+ 	};
+ 
+ 	gic500: interrupt-controller@1800000 {
+-- 
+2.34.1
 
