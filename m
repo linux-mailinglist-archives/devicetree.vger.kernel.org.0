@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4C16DEC41
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8986DEC49
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbjDLHJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 03:09:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39702 "EHLO
+        id S229678AbjDLHMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 03:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjDLHJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:09:32 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C6482735
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:09:31 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id f26so20224035ejb.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:09:31 -0700 (PDT)
+        with ESMTP id S229514AbjDLHMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:12:31 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A7261B7
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:12:14 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id dm2so26454040ejc.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:12:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681283370;
+        d=linaro.org; s=google; t=1681283533;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n54EsJ6yBbWy+99Uq8T7kmBnGcEminZ4uU6Ei5e8CDw=;
-        b=Yqf1EPBTOZ6E/e8B3wH7y8kilH7wOx/YDPzcMYgkDkHg6XoH6we0FCCVeFIlJP6viL
-         xV0hggGkUu6ia9qBwd3YlRAGWezDlq/6taWf7xWR0RAPM/gj+fMp+/D1v+iG3RzeJn+C
-         cfnmuoDsobXw79fJEt2XgEhuteFqy9q4fLjdxDb28KR3L4uPInfgWZryIwboK1sIdTNc
-         UnSkvmVWQ9iqB1Gv3fHMrz4wD0eyEHdCnIxE4g0NxDvRgKUYo7UBE12iz9Wh9TEXoATo
-         QJAdMcJZiCy6QT1zK6y/MnV2x7h+U4uxkFcXpDczCQgmkauI6M9eVR68er3mv+qrEndG
-         SJfQ==
+        bh=20NxWQfu7PegmR8o2TW3jbG60xzKoW5JlKk1pLi3MVk=;
+        b=ifEb6C0R/XP32vAVfxk35tZQ5NEGs5Ujp8nvXHAWnyQmhEA1nhPNI+njR+Du2uqEKx
+         K9S6X8zj7ofPflCfF+S7KsKfdSBEbFzxsKyayAhNslmRbeJDD1AI4H9B3h1r6eeKAlMe
+         JT0OIiAqSJ/oQu++Pfm8WyUPzXPXbyOW1YSH5rVR3IxWb6y/D2nWuPjXb/OpRnRLkfoe
+         f6Y/2aoPonjexPDPAS7RgDh1Xqw9zrwsUxE7RZeXthRs3C2zEtgjljVt8FUI8UKIWWun
+         vKYVO7y5HuBnFwajYudTuMWVh6XQxMC8CqJxtSNQAv0Qa7wa8AO2i3ShZvVNRdpTC1t8
+         5G+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681283370;
+        d=1e100.net; s=20210112; t=1681283533;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n54EsJ6yBbWy+99Uq8T7kmBnGcEminZ4uU6Ei5e8CDw=;
-        b=Xn7UJEFoc2zurrS7qwmFiSJfX3V8BcXhvdqzyKmASijPM2zy5MCQ5F6EF4vmReC9Hq
-         S3zR5D9fpcR93c+aXyHNXI1rUCC43uFMyWB/UijEfFgNuwBcR6r2vtKWYfVzRtPaL6gp
-         fn959lYFmJBXiiBstpjQlaobiD75TXZHLExldO1TBJ9bvKf6uBrjZHHY152M0UeT3lYM
-         U13/xaTQvuOvZuGzv9+kzHGuXz58kT+iYPkOm+ryKC5FPlBh5y4LAQY066YNFzr9tIWJ
-         WdFvQepSHz74pui/iv8JiWwQEnoh9E88MEN+acelzwTyoUi/TSZC7l/V4yTCsSiEKOEw
-         HTLw==
-X-Gm-Message-State: AAQBX9fqKuOwhW06NuK9byzku8FKbvf0pfZmfqLK4JW13KW8pYF3o0NO
-        /91Um9eCxcC47uK2dPgbZ79cOg==
-X-Google-Smtp-Source: AKy350Z75v3DcpypUUDdq/iWgi36nW75fEQMK+FCrPEJatNrxQGr1LgsdyYrMIRldRFqYcXRwkfjqw==
-X-Received: by 2002:a17:906:4a0d:b0:94a:70f0:6321 with SMTP id w13-20020a1709064a0d00b0094a70f06321mr8674129eju.61.1681283370186;
-        Wed, 12 Apr 2023 00:09:30 -0700 (PDT)
+        bh=20NxWQfu7PegmR8o2TW3jbG60xzKoW5JlKk1pLi3MVk=;
+        b=viGQx2sTQHtHDVqNG1RgCwuMAGCXTU7loa8mShFA/8hNRXamihuW/gLAdTMncJ2TZL
+         TjBAC6b/hu+EXMbetVDdMEio8TmWsZn2lIZHK0wTlWUK6diT6dlemV9gkVPcNBq8h0xe
+         2WxjVQEUe3Y9MDsCkoonluDawIS4G9S3LKpyc2WNrTnB8Ga9HhVLQoO+XHsalCPFuPXp
+         GSNfLM7ZiqFoCDoKbrKThGdOjnp8pv11+78K7i11XeXrQ1J5wByc/SYrAdIVWBgYxyLU
+         3nKm9ZEKG8HbhCIhkQM5iatWhL3BTY2Fj+YLkUC3xGe2MZpzDf2gYezo9LLZ3Dn+Ayoc
+         xr+A==
+X-Gm-Message-State: AAQBX9dbncyFGBXNHRS+vmTuJ0ZrVBH1dMfsff7ElBp9aQkUgUvJcQoM
+        fivR25PolukN0EqwDGM+hWZRig==
+X-Google-Smtp-Source: AKy350YmkEI2tgNQNV4yU8eK/xvG2fPNOxH4v21/n+cYhBNKjefVMOQZN5nw5RA1THkfprKhX879kg==
+X-Received: by 2002:a17:907:8a24:b0:94a:3ff1:53ad with SMTP id sc36-20020a1709078a2400b0094a3ff153admr13430307ejc.75.1681283532867;
+        Wed, 12 Apr 2023 00:12:12 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id xd4-20020a170907078400b0094a941ad8f0sm2667038ejb.193.2023.04.12.00.09.29
+        by smtp.gmail.com with ESMTPSA id nd11-20020a170907628b00b0094e570909c7sm438648ejc.67.2023.04.12.00.12.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 00:09:29 -0700 (PDT)
-Message-ID: <b4cfe598-f67c-23b4-8469-a5c487ae4e66@linaro.org>
-Date:   Wed, 12 Apr 2023 09:09:28 +0200
+        Wed, 12 Apr 2023 00:12:12 -0700 (PDT)
+Message-ID: <7e98fefa-da9b-f07f-eafc-688b54011e64@linaro.org>
+Date:   Wed, 12 Apr 2023 09:12:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: leds: ROHM BD2606MVV LED driver
+Subject: Re: [RFC PATCH 1/2] dt-bindings: Document APDS9306 Light Sensor
+ bindings
 Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-References: <20230407050803.170773-1-andreas@kemnade.info>
- <20230407050803.170773-2-andreas@kemnade.info>
- <a16a8071-3c67-0f40-d7da-3459f7dc584d@linaro.org>
- <20230411213044.4bf6dc89@aktux>
+To:     Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
+ <20230411011203.5013-2-subhajit.ghosh@tweaklogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230411213044.4bf6dc89@aktux>
+In-Reply-To: <20230411011203.5013-2-subhajit.ghosh@tweaklogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,31 +80,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2023 21:30, Andreas Kemnade wrote:
-> On Mon, 10 Apr 2023 17:34:00 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
-> [...]
->>> +        led-controller@66 {
->>> +            compatible = "rohm,bd2606mvv";
->>> +            #address-cells = <1>;
->>> +            #size-cells = <0>;
->>> +            reg = <0x66>;  
->>
->> reg is always second property in DTS.
->>
->>> +
->>> +            led@0 {
->>> +                color = <LED_COLOR_ID_RED>;
->>> +                function = LED_FUNCTION_POWER;
->>> +                reg = <0x0>;  
->>
->> Ditto
->>
-> hmm, reg also second if no compatible first? I see it usually first in
-> such cases.
+On 11/04/2023 03:12, Subhajit Ghosh wrote:
+> Add devicetree bindings for Avago APDS9306 Ambient Light Sensor.
 
-Right, then reg is first.
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
+
 
 Best regards,
 Krzysztof
