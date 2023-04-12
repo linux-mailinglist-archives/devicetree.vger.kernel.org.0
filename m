@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8986DEC49
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02A8E6DEC4E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbjDLHMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 03:12:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41608 "EHLO
+        id S229602AbjDLHOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 03:14:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjDLHMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:12:31 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A7261B7
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:12:14 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id dm2so26454040ejc.8
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:12:14 -0700 (PDT)
+        with ESMTP id S229516AbjDLHOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:14:00 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CDE02708
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:13:59 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id sg7so37760861ejc.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 00:13:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681283533;
+        d=linaro.org; s=google; t=1681283638;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=20NxWQfu7PegmR8o2TW3jbG60xzKoW5JlKk1pLi3MVk=;
-        b=ifEb6C0R/XP32vAVfxk35tZQ5NEGs5Ujp8nvXHAWnyQmhEA1nhPNI+njR+Du2uqEKx
-         K9S6X8zj7ofPflCfF+S7KsKfdSBEbFzxsKyayAhNslmRbeJDD1AI4H9B3h1r6eeKAlMe
-         JT0OIiAqSJ/oQu++Pfm8WyUPzXPXbyOW1YSH5rVR3IxWb6y/D2nWuPjXb/OpRnRLkfoe
-         f6Y/2aoPonjexPDPAS7RgDh1Xqw9zrwsUxE7RZeXthRs3C2zEtgjljVt8FUI8UKIWWun
-         vKYVO7y5HuBnFwajYudTuMWVh6XQxMC8CqJxtSNQAv0Qa7wa8AO2i3ShZvVNRdpTC1t8
-         5G+A==
+        bh=SSb8+3GCZjbScMcwhrVNFlcYVQrPjCh+ouHXg2g6vWE=;
+        b=t8Xz7E9XCnpbOXwsyz8O03mqMBfcFwjo2T++uD1k1tMQBk9dKFNXnMGnukEG9HYhF/
+         1qi9GWSfbcc+9hH4qhyLqkp8FQ0JXB0np7ELNbdnONnU6t84N6OW0Gv3FOQgcq602yCL
+         WAJWZEg6Oq4JFPsDHPGu3hy2XteM3p8fIza8T7ZId+gvpejruoMew5pw3CHfNtehRLin
+         Gh6MWQfuTqJtRpVqa+6QfJHqjfA/8SomnkmlcjgDC8xR1jmC8NRn0BqRi95L+hyA0R5U
+         t86TwDKpHzTYRR0EWV8LREIdklHIKBiLRVQJDYJ13lyFY7Ot66wfsBB/rDiWnohhGbQO
+         jBOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681283533;
+        d=1e100.net; s=20210112; t=1681283638;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=20NxWQfu7PegmR8o2TW3jbG60xzKoW5JlKk1pLi3MVk=;
-        b=viGQx2sTQHtHDVqNG1RgCwuMAGCXTU7loa8mShFA/8hNRXamihuW/gLAdTMncJ2TZL
-         TjBAC6b/hu+EXMbetVDdMEio8TmWsZn2lIZHK0wTlWUK6diT6dlemV9gkVPcNBq8h0xe
-         2WxjVQEUe3Y9MDsCkoonluDawIS4G9S3LKpyc2WNrTnB8Ga9HhVLQoO+XHsalCPFuPXp
-         GSNfLM7ZiqFoCDoKbrKThGdOjnp8pv11+78K7i11XeXrQ1J5wByc/SYrAdIVWBgYxyLU
-         3nKm9ZEKG8HbhCIhkQM5iatWhL3BTY2Fj+YLkUC3xGe2MZpzDf2gYezo9LLZ3Dn+Ayoc
-         xr+A==
-X-Gm-Message-State: AAQBX9dbncyFGBXNHRS+vmTuJ0ZrVBH1dMfsff7ElBp9aQkUgUvJcQoM
-        fivR25PolukN0EqwDGM+hWZRig==
-X-Google-Smtp-Source: AKy350YmkEI2tgNQNV4yU8eK/xvG2fPNOxH4v21/n+cYhBNKjefVMOQZN5nw5RA1THkfprKhX879kg==
-X-Received: by 2002:a17:907:8a24:b0:94a:3ff1:53ad with SMTP id sc36-20020a1709078a2400b0094a3ff153admr13430307ejc.75.1681283532867;
-        Wed, 12 Apr 2023 00:12:12 -0700 (PDT)
+        bh=SSb8+3GCZjbScMcwhrVNFlcYVQrPjCh+ouHXg2g6vWE=;
+        b=IfHbx1ZCDs19rbmFc7w+9MauTkBl3i2gqaKv9q5YSZ9vqYflwaqALvEaSop8shljQN
+         ku7AltRXg9y6v5HjSW3u6HQzfoWIAhNRi+Im4z0HAbteLhYierf1rEGIZV9t7DkDNGQq
+         34/LcI0FO8LfUXJ4+gNo5vUNBakwemu9lOU0SL0SxpJ6YzNWGrV+XCxpioriDtADIV5b
+         HEFO+U7uThvCddgFJjroONC5hD8szl+NlPdLHhSEcGrREGrlSJydOPGMiOdbR1SXnIc3
+         JEmUKBofLQhy/5KMS16gUW1DBTRmb6yOfw4l5GKRWKQWn1t/Hkvj39Gty5Pqcb+MAysy
+         dfdA==
+X-Gm-Message-State: AAQBX9enzjZsijD9imjdNzdu4UAFw1y9sgJv1uS9ibiYD9kD+/bBUKoc
+        xJM1mRuIElEf8Ej96wXAw5PDCw==
+X-Google-Smtp-Source: AKy350YvNxNAcnAmDGZ1SZtTtgBgAJyImltMTkW5Dfa1JOksPBss0D9cjHcRM6QSzXZzwziyoC5owg==
+X-Received: by 2002:a17:907:1686:b0:930:f953:962c with SMTP id hc6-20020a170907168600b00930f953962cmr16169593ejc.1.1681283637718;
+        Wed, 12 Apr 2023 00:13:57 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id nd11-20020a170907628b00b0094e570909c7sm438648ejc.67.2023.04.12.00.12.11
+        by smtp.gmail.com with ESMTPSA id n14-20020a1709065dae00b009334219656dsm6900701ejv.56.2023.04.12.00.13.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 00:12:12 -0700 (PDT)
-Message-ID: <7e98fefa-da9b-f07f-eafc-688b54011e64@linaro.org>
-Date:   Wed, 12 Apr 2023 09:12:11 +0200
+        Wed, 12 Apr 2023 00:13:57 -0700 (PDT)
+Message-ID: <77cadd45-0b15-af1a-9eab-ebe0b3241473@linaro.org>
+Date:   Wed, 12 Apr 2023 09:13:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [RFC PATCH 1/2] dt-bindings: Document APDS9306 Light Sensor
- bindings
+Subject: Re: [PATCH v2 1/2] ARM: dts: mvebu: Add device tree binding for
+ Marvell Armada 38x
 Content-Language: en-US
-To:     Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Tony Dinh <mibodhi@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         linux-kernel@vger.kernel.org
-References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
- <20230411011203.5013-2-subhajit.ghosh@tweaklogic.com>
+References: <20230412025737.20280-1-mibodhi@gmail.com>
+ <20230412025737.20280-2-mibodhi@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230411011203.5013-2-subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20230412025737.20280-2-mibodhi@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +80,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2023 03:12, Subhajit Ghosh wrote:
-> Add devicetree bindings for Avago APDS9306 Ambient Light Sensor.
+On 12/04/2023 04:57, Tony Dinh wrote:
+> Add device tree binding for Marvell Armada 38x.
+> 
+> Signed-off-by: Tony Dinh <mibodhi@gmail.com>
 
 Use subject prefixes matching the subsystem (which you can get for
 example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
 your patch is touching).
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+This is not DTS. These are bindings.
+
+> ---
+> 
+> Changes in v2:
+> - Add marvell,38x.yaml. For now, add this binding to the Marvell
+> directory to keep it consistent with other Marvell yaml files.
+> At a later date and a separate patch, consolidate the Marvell
+> yaml files into  marvell.yaml.
+> 
+>  .../bindings/arm/marvell/armada-38x.yaml      | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml
+
+marvell,armada-38x.yaml
+
+Or just squash it with existing armada bindings... Keeping one binding
+per one SoC group is a bit a lot.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml
+> new file mode 100644
+> index 000000000000..096bd46d932a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/marvell/marvell,38x.yaml#
+
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
 
 Best regards,
