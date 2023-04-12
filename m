@@ -2,117 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 306296DFBD8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 18:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44ED86DFBE5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 18:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231609AbjDLQvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 12:51:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52132 "EHLO
+        id S229785AbjDLQya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 12:54:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbjDLQvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 12:51:14 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0114EDB;
-        Wed, 12 Apr 2023 09:50:48 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33CGj4w8029053;
-        Wed, 12 Apr 2023 16:49:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=Hb+1ofwDe8tPgBwB5flRxmCp0ulTxVP43RknkDd2Gj4=;
- b=m1ZgSXL0rpHd8WN5E670YQZKwc0OBIeLUDefJ9DuSIYaed0RmSo9Aef4eCI1q8oF2BI2
- KgrRnZtmINBfkfUbdC/4+l0Zf0Wz6dZ2M/UvsunwVV9UwOq0qJDdA+vgf8FRcpsXaxH/
- 1QcrWRpdRHny1PGkW3QmJDsBTxXf7VgYNMcfvweDFqGjicg6XTMO3lhM9QeoxHdolPZb
- TK31Ij4pYOy6SFmcw+IArFB8ey+lO+gNTtf8j+bymi/V0egp5kjomMc7f3X2iOBEsGwe
- ReQNPTgyYCUw4Q6UkBBqjB1FLeL2km3IKuAcJVvQQL5J3wqnM8Ml6PoCQ1coSrKk+wQv RA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pwqensbnr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 16:49:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33CGnm49023344
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 16:49:48 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 12 Apr 2023 09:49:45 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: ipq5332: add few more reserved memory region
-Date:   Wed, 12 Apr 2023 22:19:20 +0530
-Message-ID: <20230412164920.21862-4-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230412164920.21862-1-quic_kathirav@quicinc.com>
-References: <20230412164920.21862-1-quic_kathirav@quicinc.com>
+        with ESMTP id S229602AbjDLQy3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 12:54:29 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B03F8698
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 09:53:55 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id qb20so30070404ejc.6
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 09:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681318394;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kG5Bp9G8GHRtnaihhtMcFrai7auGDwatUysUi5rRPM4=;
+        b=t3PMe32EZJV9cCoDIkveen1Mt0ZXC8V8Nwx01NlHfKa11Vx+CgCN03HLEdyF8L8B5N
+         oxOXpHaRyvfb6AHDx289+vJStY+EJwIsxz2SoGGR9JMf7YslsfW4HNlOOoo+dKnwip6n
+         n4ama1PFbDfxjtqwO9pD3cphtlWR6ziTaHcEeMg+nZ3IlSDCV/4n3PbMXeNk4kQBLG5j
+         HyJ10opdEQ2AkrTWCC35fBqxipAajjYHeKzzyPpWbYjyiLh5Q521hbEOmgX8gzX8F7cB
+         bjzUidW9notC7XkN9Ge7pxmkLJbN2txGTjI6U5bpvpvlXMT7gUpenEbW7xSWjhcUiFps
+         FqOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681318394;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kG5Bp9G8GHRtnaihhtMcFrai7auGDwatUysUi5rRPM4=;
+        b=QrwIdZwqJG2g4CuF+boZcpvEjQPv1UjIwN9+TRQiA4uECjVocUNiQsN9N19NuSiN81
+         HbsOu0Xliebt3A8k6fEP+FGNQ12TLvn4ZbuS/0dshvXeSPsrg2w97SUMricNV23hFcog
+         xkzVyVmGVeyGVFtfFpdIxQG4zPWC6xGJDBkxOkcSEPih6Gduwg/aQZl+9v4Vm3afvMoW
+         +nC1tYIQ8inhh+GwYui6pz04hf/hn6j/8r+rniX7KTtktR7xMHXtm/NN2MLJ3rPDyS+8
+         +HTZ4GebKBIjsQP91RmD7RSscifVbcwIWzzb/qJ0Lt/4znlZGt7vucJgDioLQch0yMob
+         nQaw==
+X-Gm-Message-State: AAQBX9fIKlj8fy5yBYmOnRm5Vw+de64Tjg/HWVZQNX36vIC5zJId5x5b
+        DCntI7Q7QAv+SkEoMiqgRZvyGw==
+X-Google-Smtp-Source: AKy350ZUDGBcr74cMS/N8WuiTB3okSg9uQJyGCy/5y+jKVibXQJYbcWciy75St+Vcb18YTNBYHTENQ==
+X-Received: by 2002:a17:906:686:b0:931:ed:e379 with SMTP id u6-20020a170906068600b0093100ede379mr2931945ejb.67.1681318394546;
+        Wed, 12 Apr 2023 09:53:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:938a:b3db:7c59:795e? ([2a02:810d:15c0:828:938a:b3db:7c59:795e])
+        by smtp.gmail.com with ESMTPSA id ta20-20020a1709078c1400b0094770cf8b1fsm7455180ejc.5.2023.04.12.09.53.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 09:53:14 -0700 (PDT)
+Message-ID: <15f48b06-a6be-1295-5deb-d3594bce6699@linaro.org>
+Date:   Wed, 12 Apr 2023 18:53:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0xIDPXGuxARhHVvCN8zyF8JUmZKwY4jx
-X-Proofpoint-ORIG-GUID: 0xIDPXGuxARhHVvCN8zyF8JUmZKwY4jx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-12_07,2023-04-12_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 adultscore=0 phishscore=0 clxscore=1015
- spamscore=0 suspectscore=0 malwarescore=0 mlxlogscore=613 mlxscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304120146
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
+ RAM slice through phandle
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Cc:     Rob Herring <robh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
+ <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
+ <168069726278.2356075.14351594478003012447.robh@kernel.org>
+ <20230405134727.GA2461305-robh@kernel.org>
+ <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
+ <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
+ <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
+ <ZDAAToSzNLVo6le8@gerhold.net>
+ <198523f5-d06f-15cd-af6c-f391c02bcaa9@linaro.org>
+ <1f8fc036-380b-0a42-bb29-a3e275ed6a33@linaro.org>
+ <2e648a97-083e-8ee2-1695-4af299bb222a@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2e648a97-083e-8ee2-1695-4af299bb222a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In IPQ SoCs, U-boot will collect the system RAM contents upon crash for
-the post morterm analysis. If we don't reserve the memory region used by
-U-boot, obviously linux will consume it and upon next boot on crash, uboot
-will be loaded in the same region, which will lead to loose some of the
-data, sometimes we may miss out critical information. So lets reserve the
-region used by the U-boot.
+On 12/04/2023 14:09, Konrad Dybcio wrote:
+> 
+> 
+> On 12.04.2023 13:55, Krzysztof Kozlowski wrote:
+>> On 12/04/2023 13:47, Konrad Dybcio wrote:
+>>>> For unrelated reasons I actually have some patches for this, that switch
+>>>> the /smd top-level node to a "remoteproc-like" node dedicated to the
+>>>> RPM, similar to how WCNSS/ADSP/Modem/etc are represented. I need this to
+>>>> add additional (optional) properties like "resets" and "iommus" for the
+>>>> RPM, but it would allow adding arbitrary subnodes as well:
+>>>>
+>>>> https://github.com/msm8916-mainline/linux/commit/35231ac28703805daa8220f1233847c7df34589e
+>>>>
+>>>> I could finish those up and post them if that would help...
+>>> Krzysztof, what do you think?
+>>
+>> I don't know what is there in MSM8916 and how it should be represented.
+> Similarly to other Qualcomm SoCs, MSM8916 has a RPM (Cortex-M3) core,
+> which communicates over the SMD protocol (or G-LINK on >=8996).
+> 
+> The Qualcomm firmware loads the RPM fw blob and sets it up early in
+> the boot process, but msm8916-mainline folks managed to get TF-A
+> going and due to it being less.. invasive.. than the Qualcomm TZ,
+> RPM needs a bit more handling to be accessible.
+> 
+> The M3 core is wired up through the CNoC bus and we communicate
+> with it through the MSG RAM and the "APCS mailbox".
 
-Similarly SBL copies some data into the reserved region and it will be
-used in the crash scenario. So reserve 1MB for SBL as well.
+Thanks, that's actually good description. Yet I still do not know what
+is exactly the problem and the question. Linking some out of tree
+commits does not give me the answer, at least I cannot get that answer
+form the link.
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+For example what I don't understand is: why additional resources (like
+resets) can be provided only in new binding, but not in the old.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index c32217530b41..aec60840a2f0 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -114,6 +114,16 @@
- 		#size-cells = <2>;
- 		ranges;
- 
-+		uboot@4a100000 {
-+			reg = <0x0 0x4a100000 0x0 0x400000>;
-+			no-map;
-+		};
-+
-+		sbl@4a500000 {
-+			reg = <0x0 0x4a500000 0x0 0x100000>;
-+			no-map;
-+		};
-+
- 		tz_mem: tz@4a600000 {
- 			reg = <0x0 0x4a600000 0x0 0x200000>;
- 			no-map;
--- 
-2.17.1
+Best regards,
+Krzysztof
 
