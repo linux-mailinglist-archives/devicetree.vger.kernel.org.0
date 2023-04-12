@@ -2,99 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E83C46E0023
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1C9C6E005F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 23:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjDLUsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 16:48:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56810 "EHLO
+        id S230281AbjDLVEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 17:04:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbjDLUsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:48:31 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987EB61B4;
-        Wed, 12 Apr 2023 13:48:30 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33CJO0DL031517;
-        Wed, 12 Apr 2023 20:48:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=K4XHZz2aY2nW6NB6OBt9fcQ6aWSAEbS0apa/t/BVKUs=;
- b=LevbVUH1rieLvZEWkWcoRDCp6krorWyA4FNvBT59LI2AZnvOWMWziKuhsYguXG5PkDHA
- lIwkpgaqPqORzUtWvsf/GtHBiRMQiqHAuhnXiCKolAz5hWQbZb2yUuFJd2rp8vlOi/iv
- +bDCfDYTJD7UVmAa8pOBmwqRjoqg1DAZ05CfbVYaAtnKD+vrmvvsxf6aPilWQRwZYlEE
- tJ9Qepfmaoc/iSK3lXIn1bX4vPGjxgIga1LhD8fzjHxPVd/nnScXLWO7tt5iAGox/5Pd
- do4JndTeM1p+ck6TGEBJnlw0LGw0kLBmbU7FqkFloBn9B767W4pBz7zRSO2BBBMreZdA XA== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pwsx69en4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 20:48:09 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33CKm9nW009140
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Apr 2023 20:48:09 GMT
-Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 12 Apr
- 2023 13:48:08 -0700
-Message-ID: <67209a0d-1dc5-ce96-e916-85bfd8f6a7f8@quicinc.com>
-Date:   Wed, 12 Apr 2023 13:48:07 -0700
+        with ESMTP id S229949AbjDLVEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 17:04:01 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3B57D85;
+        Wed, 12 Apr 2023 14:03:56 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id bm45so2991434oib.4;
+        Wed, 12 Apr 2023 14:03:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681333435; x=1683925435;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+Q95Knbpjeo78pZINMZAvNZ8f1W6NvaHbQpZHgZ+DhU=;
+        b=jUTC+/hdRPUAJNg2SJoLrVPCwphEGcjwMOVjA+DuD9WtFL+SMCfBdnNhiI7jk3XAsW
+         eEzH/pZxv7vFmJgAs99LA6N3+rB3o86p6i6NoPyTzadRINpQLh8+bYSbyiuRg0zwjkap
+         0vaSOQOKENjm1NFGp3gF20mqr2Ix6LvrfvT2joHDF2q4CITIYbucovZBNtKUEKMwn79O
+         BR47ZDXv3LN8KOwzcq0G66Gk1gtdeacW+Hudy1MV76jo8V1BN2Lw6YykSAb+1jUpCYjR
+         QwdpotsY+J7GZDqNoWp8cnm4nWo+RSOdLGnl6JfAiLGwbpRxCU+uQy2E2TOzqIADwUcr
+         F0/Q==
+X-Gm-Message-State: AAQBX9dnaflsbPQEYn/KmBe1WejHAcDMQMPW0PkHerykGip+iB76yXzw
+        tXIaxMGzSQXcgCEbNK67wg==
+X-Google-Smtp-Source: AKy350ZAQUKENqZQK/BkT1GzRkK8etcW3v2rWKWM1oDiBBATLa6RSgxvv4SclTk2dvtCGsASeNojAw==
+X-Received: by 2002:a05:6808:4b:b0:387:12e5:543a with SMTP id v11-20020a056808004b00b0038712e5543amr7422991oic.29.1681333434837;
+        Wed, 12 Apr 2023 14:03:54 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i128-20020acaea86000000b00386eff32f58sm7148418oih.13.2023.04.12.14.03.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 14:03:54 -0700 (PDT)
+Received: (nullmailer pid 3200537 invoked by uid 1000);
+        Wed, 12 Apr 2023 21:03:44 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v11 12/26] gunyah: vm_mgr: Add/remove user memory regions
-To:     Will Deacon <will@kernel.org>
-CC:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Arnd Bergmann" <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Bagas Sanjaya" <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
- <20230304010632.2127470-13-quic_eberman@quicinc.com>
- <20230324183659.GB28266@willie-the-truck>
- <5d1c6160-6bc4-5246-2a0b-de5ddcbbc2c4@quicinc.com>
- <20230411211940.GC23890@willie-the-truck>
-Content-Language: en-US
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <20230411211940.GC23890@willie-the-truck>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aEoLzdQIFUpvDG41hNSkfTxWy3q6rP-_
-X-Proofpoint-ORIG-GUID: aEoLzdQIFUpvDG41hNSkfTxWy3q6rP-_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-12_11,2023-04-12_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- impostorscore=0 bulkscore=0 mlxlogscore=864 mlxscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304120176
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     thierry.reding@gmail.com, kishon@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-pwm@vger.kernel.org,
+        airlied@gmail.com, robh+dt@kernel.org, chunfeng.yun@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+        kernel@collabora.com, xinlei.lee@mediatek.com, ck.hu@mediatek.com,
+        linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
+        matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        p.zabel@pengutronix.de, jassisinghbrar@gmail.com,
+        chunkuang.hu@kernel.org, houlong.wei@mediatek.com,
+        jitao.shi@mediatek.com, daniel@ffwll.ch
+In-Reply-To: <20230412112739.160376-10-angelogioacchino.delregno@collabora.com>
+References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
+ <20230412112739.160376-10-angelogioacchino.delregno@collabora.com>
+Message-Id: <168133319583.3191294.4759319842761199183.robh@kernel.org>
+Subject: Re: [PATCH 09/27] dt-bindings: display: mediatek: color: Add
+ compatible for MediaTek MT6795
+Date:   Wed, 12 Apr 2023 16:03:44 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,51 +77,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 4/11/2023 2:19 PM, Will Deacon wrote:
-> On Tue, Apr 11, 2023 at 01:34:34PM -0700, Elliot Berman wrote:
->> On 3/24/2023 11:37 AM, Will Deacon wrote:
->>> On Fri, Mar 03, 2023 at 05:06:18PM -0800, Elliot Berman wrote:
->>>> +
->>>> +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
->>>> +					FOLL_WRITE | FOLL_LONGTERM, mapping->pages);
->>>> +	if (pinned < 0) {
->>>> +		ret = pinned;
->>>> +		mapping->npages = 0; /* update npages for reclaim */
->>>> +		goto reclaim;
->>>> +	} else if (pinned != mapping->npages) {
->>>> +		ret = -EFAULT;
->>>> +		mapping->npages = pinned; /* update npages for reclaim */
->>>> +		goto reclaim;
->>>> +	}
->>>
->>> I think Fuad mentioned this on an older version of these patches, but it
->>> looks like you're failing to account for the pinned memory here which is
->>> a security issue depending on who is able to issue the ioctl() calling
->>> into here.
->>>
->>> Specifically, I'm thinking that your kXalloc() calls should be using
->>> GFP_KERNEL_ACCOUNT in this function and also that you should be calling
->>> account_locked_vm() for the pages being pinned.
->>>
->>
->> Added the accounting for the v12.
->>
->>> Finally, what happens if userspace passes in a file mapping?
->>
->> Userspace will get EBADADDR (-14) back when trying to launch the VM
->> (pin_user_pages_fast returns this as you might have been expecting). We
->> haven't yet had any need to support file-backed mappings.
+On Wed, 12 Apr 2023 13:27:21 +0200, AngeloGioacchino Del Regno wrote:
+> Add a compatible string for MediaTek Helio X10 MT6795's COLOR block: this
+> is the same as MT8173.
 > 
-> Hmm, no, that's actually surprising to me. I'd have thought GUP would
-> happily pin page-cache pages for file mappings, so I'm intrigued as to
-> which FOLL_ flag is causing you to get an error code back. Can you
-> enlighten me on where the failure originates, please?
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,color.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Ah this ended up being an error on my part. Userspace was opening the 
-file as RO and Gunyah driver will unconditionally add FOLL_WRITE as part 
-of the gup flags. I got the flags aligned and seemed to be able to boot 
-the VM ok and it works as expected.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Thanks,
-Elliot
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230412112739.160376-10-angelogioacchino.delregno@collabora.com
+
+
+color@1400b000: 'power-domains' is a required property
+	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dtb
+	arch/arm/boot/dts/mt7623n-rfb-emmc.dtb
+
