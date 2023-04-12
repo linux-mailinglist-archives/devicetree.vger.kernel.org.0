@@ -2,149 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 738E06DF6D8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A5A6DF6D2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230024AbjDLNUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 09:20:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46898 "EHLO
+        id S231262AbjDLNSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 09:18:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbjDLNUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:20:43 -0400
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9875393C4;
-        Wed, 12 Apr 2023 06:20:24 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id u24-20020a9d7218000000b006a413c893c8so1661737otj.10;
-        Wed, 12 Apr 2023 06:20:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681305323; x=1683897323;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MFD7NhK2n6LRm3/Y/zZUZpldkUwIJ0dQh6NwA4X/4ww=;
-        b=aI8J/lKG7lcIvNHD+6PBF03S461ki22WKDo6ts3H57eEc2NMiQdbHQFtGTdVD9QfjJ
-         4weRe09ZHqJbCbVao0Xood3Vjy5Eei120mb/8+RGrhPn1Eugm116YKVOZufrvBK6nkLQ
-         mp9xCxqtEqI+/2xvH9CVH31HnMU2owOFrB4Y0tVnQVsg+uEs3DcqhVXqHZ/TP+skW7+E
-         sJPI1odrgA1Lj/v8zIER984SR7Y5XTVfRiAWmevYU9BQfIuH+Q/Ra92bduzIwyuBv3Ed
-         zj0H3mljmnuZhmWRhzuwcGVmYlGqLCnDvlNMqX8DzF7CPkIsMHbMt+a61ho5PZ9yWnb7
-         hGUg==
-X-Gm-Message-State: AAQBX9eg9M7RjvZuISsmn3lBvCRyTa4L8vvnqeGu6M+tBaHIHRiUBdpM
-        uk9WIBBk3U6i4J7Bz2ZVsg==
-X-Google-Smtp-Source: AKy350b0BHjuZKDnNLiWFaaVgnwX0CY+gcQNzPwHkH+YHkjo7NjmIWxl00hy3X6ub0x9YQkKf31V/g==
-X-Received: by 2002:a9d:7586:0:b0:69f:8e11:ff36 with SMTP id s6-20020a9d7586000000b0069f8e11ff36mr8704748otk.33.1681305322844;
-        Wed, 12 Apr 2023 06:15:22 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c17-20020a056830001100b006a2e9ccb42esm6413802otp.19.2023.04.12.06.15.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 06:15:22 -0700 (PDT)
-Received: (nullmailer pid 1917201 invoked by uid 1000);
-        Wed, 12 Apr 2023 13:15:21 -0000
-Date:   Wed, 12 Apr 2023 08:15:21 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Marussi <cristian.marussi@arm.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
-        Tushar.Khandelwal@arm.com, viresh.kumar@linaro.org,
-        jassisinghbrar@gmail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox : arm,mhuv2: Allow for more RX
- interrupts
-Message-ID: <20230412131521.GA1830888-robh@kernel.org>
-References: <20230329153936.394911-1-cristian.marussi@arm.com>
- <20230329153936.394911-2-cristian.marussi@arm.com>
- <20230329174431.yga3c233sazimane@bogus>
- <ZCVIVhtSLKTHs+to@e120937-lin>
+        with ESMTP id S230161AbjDLNSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:18:13 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112DA7ABF;
+        Wed, 12 Apr 2023 06:17:53 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B32D26603102;
+        Wed, 12 Apr 2023 14:17:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681305445;
+        bh=kWaXsEK0eZOcZEFNa/wRIg4Y8oDz609JLlK3U1zI9vs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ijaIa/bTYqS4pI+GbN0q3iYFpCbrjvFi6mUY+gW5iKphea997GuAq5lrjcRD4dTza
+         tsfwTtFjO03ygljQz7j1jlnUrvZCjOoNypSlvvVzlqgJukqvVTxoDEh5G5yS3K57xC
+         0bqqKhngFD/JBhIHW0lneWDqez/IW5GMilTqgZuJ9CxsIymlhk2BpW57dVN+qOKM5m
+         CYjeoILzbttz1wIyfZgfY1mXlrowZbETlVXM9edw3x4u+apT1BM81e7HHDOsuV/wAn
+         uzrqHv7YB8ffDzeX74DusX+jhOkc2dArNZhIcjQD222MBsqQEipgE9qHLCxCAxsG+k
+         wkAyrXEvCEwIw==
+Message-ID: <e129b3ff-90b1-3df7-871e-09fba0a960f4@collabora.com>
+Date:   Wed, 12 Apr 2023 15:17:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZCVIVhtSLKTHs+to@e120937-lin>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 02/27] dt-bindings: phy: mediatek,dsi-phy: Add compatible
+ for MT6795 Helio X10
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>, matthias.bgg@gmail.com
+Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
+        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
+        kernel@collabora.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
+ <20230412112739.160376-3-angelogioacchino.delregno@collabora.com>
+ <20684378-cf3e-0299-d390-287b7bafbda5@baylibre.com>
+ <eb770f19-ada5-81bb-5ea3-798edabca70f@collabora.com>
+ <7e53c0b1-3aed-da08-5c57-800ac2277bc6@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <7e53c0b1-3aed-da08-5c57-800ac2277bc6@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 09:29:23AM +0100, Cristian Marussi wrote:
-> On Wed, Mar 29, 2023 at 06:44:31PM +0100, Sudeep Holla wrote:
-> > On Wed, Mar 29, 2023 at 04:39:35PM +0100, Cristian Marussi wrote:
-> > > The ARM MHUv2 Receiver block can indeed support more interrupts, up to the
-> > > maximum number of available channels, but anyway no more than the maximum
-> > > number of supported interrupt for an AMBA device.
-> > > 
-> > > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> > > ---
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > 
-> > >  .../devicetree/bindings/mailbox/arm,mhuv2.yaml      | 13 +++++++++----
-> > >  1 file changed, 9 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > > index a4f1fe63659a..5a57f4e2a623 100644
-> > > --- a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > > @@ -69,10 +69,15 @@ properties:
-> > >  
-> > >    interrupts:
-> > >      description: |
-> > > -      The MHUv2 controller always implements an interrupt in the "receiver"
-> > > -      mode, while the interrupt in the "sender" mode was not available in the
-> > > -      version MHUv2.0, but the later versions do have it.
-> > > -    maxItems: 1
-> > > +      The MHUv2 controller always implements at least an interrupt in the
-> > > +      "receiver" mode, while the interrupt in the "sender" mode was not
-> > > +      available in the version MHUv2.0, but the later versions do have it.
-> > > +      In "receiver" mode, beside a single combined interrupt, there could be
-> > > +      multiple interrupts, up to the number of implemented channels but anyway
-> > > +      no more than the maximum number of interrupts potentially supported by
-> > > +      AMBA.
-> > > +    minItems: 1
-> > > +    maxItems: 9
-> > 
+Il 12/04/23 15:12, Alexandre Mergnat ha scritto:
+> On 12/04/2023 15:03, AngeloGioacchino Del Regno wrote:
+>> Il 12/04/23 14:59, Alexandre Mergnat ha scritto:
+>>> On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
+>>>> Add a compatible string for MediaTek Helio X10 MT6795: this SoC uses
+>>>> the same DSI PHY as MT8173.
+>>>>
+>>>> Signed-off-by: AngeloGioacchino Del Regno 
+>>>> <angelogioacchino.delregno@collabora.com>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 4 ++++
+>>>>   1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml 
+>>>> b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+>>>> index 26f2b887cfc1..a9f78344efdb 100644
+>>>> --- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+>>>> +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+>>>> @@ -24,6 +24,10 @@ properties:
+>>>>             - enum:
+>>>>                 - mediatek,mt7623-mipi-tx
+>>>>             - const: mediatek,mt2701-mipi-tx
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - mediatek,mt6795-mipi-tx
+>>>> +          - const: mediatek,mt8173-mipi-tx
+>>>
+>>> AFAIK, it should be:
+>>>        - items:
+>>>            - const: mediatek,mt6795-mipi-tx
+>>>            - const: mediatek,mt8173-mipi-tx
+>>>
+>>> Since it isn't respected above for mt7623, it may be tolerated.
+>>> Please, take this comment as a suggestion, isn't a NAK from me.
+>>>
+>>
+>> First of all, Thanks!
+>> I want to explain, though, the reason for that.
+>>
+>> If you check all the commits, on some I did it as you just proposed, while
+>> on some others I did it with an enum before const: that's simply because I
+>> *totally expect* some to grow, while others (const - const) I was either
+>> unsure, or totally *not* expecting them to grow soon!
 > 
-> Hi,
 > 
-> > I am not sure 9 is the correct value here. IIUC it is just what Linux defines
-> > as AMBA_NR_IRQS. Looking at the history it was bumped from 2 to 9 for use
-> > by PL330 DMA driver. I couldn't find anything to relate this 9 in any
-> > AMBA or other related specification.
-> > 
+> That's what I thought. IMHO, if someone add another compat later, he will be on 
+> charge to change the const by enum front of your "mediatek,mt6795-mipi-tx". But my 
+> opinion is probably not the most popular.
 > 
-> Yes, I could not find either where the 9 comes from, but it is what
-> currently each amba device is limited to, at the software level, in terms of
-> interrupts that can be detected.
+> I will not make the same feedback for the other patches in this series.
+> 
 
-IIRC, the PL330 can have an interrupt per context with up to 8 contexts 
-and then 1 global interrupt.
+I honestly don't know what's the most popular opinion about that... but whatever,
+in any case... just want to make sure to communicate that I don't really have
+strong opinions about doing it one way or the other.
 
-> 
-> > Ideally I would say we don't know what the max here. We just have a platform
-> > implementing 2 interrupts now. Do we for with 2 for now and change it if some
-> > new users require more in the future ?
-> > 
-> 
-> By the spec seems to me that the maximum number of interrupts are equal to
-> the maximum possible channels (124), or one combined interrupt.
-> 
-> But these in turn, as said, are capped by the AMBA_NR_IRQS and I have
-> only seen one system using 2. (for which I need this series to work)
-> 
-> > I will leave that to the DT maintainers but 9 is simply random based on Linux
-> > code so I would rather choose some other random number with a better reasoning
-> > than 9 as AMBA code in the kernel is limiting it to 9.
-> > 
-> 
-> Agreed. Aiming to describe any possible hw in the DT, I would say 124 at
-> this point. (even though implausible not to use the combined interrupt
-> at that point...)
+The arguments in favor and against that are probably 1:1... :-D
 
-Then use 124, but please describe how you get that in the description.
-
-Rob
+Cheers!
+Angelo
