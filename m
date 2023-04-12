@@ -2,77 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B936DFC43
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 990E56DFC4D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbjDLRHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 13:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45062 "EHLO
+        id S229764AbjDLRKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbjDLRHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:07:04 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B04E10CC
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:06:58 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-517bb01bac9so518826a12.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:06:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681319217;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bl/q3ahu5Bkb3irpxh7uWIDvMDi+ioe/v3wW/XN3NDg=;
-        b=Xp22v0oFcp5f4b4T5Qg8PkGeILDp9MvhVFxaARLPcPhR3QoRdKvvHz0mmVs0qVFPru
-         8frjaAremTyUm/woKk2rzLLSEFVrd9fqP8OB/SKox72lGamZZrqFpQtz/VLra+kpzcBD
-         UIf2oPuvgjNr/ZOS2k+DfwOi1sFlfK0J5/i5sy4UOHtEK3Smd2V9JJGnrValJrlwNsZk
-         z4OXi/CbCWbu/DDOYad4cDw+z1bWD/6DVIhJngCeYKUf1/CLkum2kSSftNfMHqluIxMK
-         0QZyGq7oENrJ31gV0OMixa/EukWAyD+ocnngMfW0XhTmHC8srcGfKawh9543o4g+6AIR
-         cqTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681319217;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bl/q3ahu5Bkb3irpxh7uWIDvMDi+ioe/v3wW/XN3NDg=;
-        b=aOc8datTJIzejtvyJISmStm6InXdlYXcUzFT27YvyUrTm7eaOolibvUHKoA8iHwR3p
-         S1Q+A2d/58KhWcnViOSmFlWIjYPK1ghUIRwaq8RxqpDGdBWhy5gKEbBgLoEm7rTQLWTh
-         ZSK44sW3hYVZZIxhLp4wZ4YcZ/AxhZjAjHWKp0ZoP7ayQwsLjvwY76cN9Hwiam/m0VAu
-         7W49fEyiIBr7o2XSw8YaGolI6TjiP1XmUavkSOnWL3StsqxPfQ6qPkso8KJz7ClSvEKx
-         XIYwU+bAaxKwAUFpQz+Dsr8dU7MZoCM5+5JD2jke8J1oTZDCIR0+f6M0pCZtdZf+r/bW
-         Errw==
-X-Gm-Message-State: AAQBX9dvYK4LRui78ZDnoMmrUzU8WEFGKMKchyQflxQvBM9tX21XSWyh
-        bvY2YThtgrrdJMZmoYVAjoR57Q==
-X-Google-Smtp-Source: AKy350YTAqLwxkoHwPIzj4y6fcjF1WPuF4FYRU9iAiFE9MrcuQ0Aksf7evAPKQkJB4hBrPQVNxrA+Q==
-X-Received: by 2002:a05:6a00:179c:b0:63b:2102:a1c8 with SMTP id s28-20020a056a00179c00b0063b2102a1c8mr1474973pfg.12.1681319217432;
-        Wed, 12 Apr 2023 10:06:57 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:1cd7:1135:5e45:5f77])
-        by smtp.gmail.com with ESMTPSA id x5-20020aa79185000000b006260526cf0csm11969403pfa.116.2023.04.12.10.06.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 10:06:57 -0700 (PDT)
-Date:   Wed, 12 Apr 2023 11:06:54 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH v8 3/4] soc: ti: pruss: Add pruss_cfg_read()/update(),
- pruss_cfg_get_gpmux()/set_gpmux() APIs
-Message-ID: <20230412170654.GC86761@p14s>
-References: <20230412103012.1754161-1-danishanwar@ti.com>
- <20230412103012.1754161-4-danishanwar@ti.com>
+        with ESMTP id S229564AbjDLRKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:10:45 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on20601.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::601])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0973118;
+        Wed, 12 Apr 2023 10:10:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VZ+Phni+HA/VcuEOvw7SVigOjxtFQfd9YDsgG3MxLqCZiqpsPXwKhMVU01f+XwFDJmQZ+wugiiZa0XK+XevHuUqGVwJlQIqN7q8ODeLP9mYXA/L+yFDJkvY3bifntl2TzifTyCZ6XYpcRCNt5DkV1e7GUgwp27AbsHrSuesPix+qS7gmt/tywfV5DLljqotLPp9mFkyJW46ync9eKS9zIovPHHl3O8ObQuAjgt3LqspxDC/4THFjb9vKnRzi/nWLGQNHq/BIUJV1nG2XX8Y8w8mb1SO4WW2yFKmJ5MSFnvlIPJmv0PeSxlhQoextvnRKoK94C74GLjbF//1258qtvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6q5NYrVN4YRUWNMiIoWaR5gQkSuuPEDXslDnU52cNQk=;
+ b=NlijC2cpW1/jHB9rS9XPSAuz9UXHCCkvASHNXW6YBXtw0LuEpTwY2eXggQLq7Jiedd/AYV6Kz1ogucgJruGv7EYa6L4dIn8k8pE0gcPWq0HUL9FmVkLPDp7lD+RXsVHTFfxlFQugO8KNekknHeCKv4L4Puyjq88KJD7HcPRzgQaSuPYSYSXSsshKgp5Ft068pCgOzf5B1t2KaXiWd73eJBdSZAZ+ckuDvs45BlOsFJmpUHDR0w53qFoDqOD2hyAz+Bz9FHU9fq0HHaonO7QbwIJ7hb7+WZJAb37jXIwxrJML3u5zFtBFE+LwFJoYPm9pe4Kuk7eh7kwaEjZphUludA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6q5NYrVN4YRUWNMiIoWaR5gQkSuuPEDXslDnU52cNQk=;
+ b=TggoZwNRLn7pvmDNU5+/o03+85j6vlomCUxOG7gG0f25d3y4DSGyDKAJQ8IJzBjKqO+CZsDFZW0/IfgSFbeD+agaKiT5XEceYNCHU33FESvb1vrfnquVH+eIQf1IqlP6JBQYNh/gpAug/M9AI9G5QpIRZRZDdtg9BRPnSf5xSmKl1NpIc5UE04195/+JV0VYO166qAYRPF2fAC+Uw5XJXkgRZlrHGk8xbDlBzqeyVt6M13Cbgyj774EcZ99bdR5pdmQanuYckQ3CL+7d2bIEnQPzxuRCDzkHW1WAvf1cgsGOCIdiPhuSxdfmIBTsesEJR2fHId+GCuzKzPTgYEVmXw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
+ by DM4PR12MB5891.namprd12.prod.outlook.com (2603:10b6:8:67::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Wed, 12 Apr
+ 2023 17:10:40 +0000
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::265:64aa:fb3e:288]) by IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::265:64aa:fb3e:288%5]) with mapi id 15.20.6277.034; Wed, 12 Apr 2023
+ 17:10:40 +0000
+Message-ID: <2c02147c-827a-030c-5aab-15b53e25e4c7@nvidia.com>
+Date:   Wed, 12 Apr 2023 10:10:34 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.1
+Subject: Re: [V5 04/10] dt-bindings: timestamp: Add nvidia,gpio-controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230406171837.11206-1-dipenp@nvidia.com>
+ <20230406171837.11206-5-dipenp@nvidia.com>
+ <20230412142903.GA2313008-robh@kernel.org>
+Content-Language: en-US
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+In-Reply-To: <20230412142903.GA2313008-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0203.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::28) To IA1PR12MB6604.namprd12.prod.outlook.com
+ (2603:10b6:208:3a0::7)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230412103012.1754161-4-danishanwar@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6604:EE_|DM4PR12MB5891:EE_
+X-MS-Office365-Filtering-Correlation-Id: db83e991-af1d-4006-2c4c-08db3b78d77a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +zCghiKSEJ6yDu047FxMCxvQx89piyh/45G7Ht+gxAK4GHZTlP/Mtd5sgWCt30S6nkg9ZVRYCXf5yoJX3GwM8IdoF/kuobbBZJHLZFbjts+3/rQ/As7UMBNUVmC+k8jc2AlRfU7F0Uz3pUUmHr/RjxQ5NAm0lFFESZZryo+lk7+F7Rhj4d1lYxNBMfYmjnW4ywSVuwut/Ner+U8Sm8PHcIsiTSxp4xigU0ECwhjVjwTqp9P5E8hY3ghg+/uN1VPIBZeanWY5+z6p0KYanZXMxqKrqx12AmIX42p/pAoIJH+agPkf6S6+QjeibqYlFhuVZqEdj31d9A5haR/15f11wXiWAm/cWY2EjJXv1IAQ2GICtXW8KcKYKqRZEkSKszrFw2J6OfnSukqej+IL9QW+TdxVKAyRGWxsxL+q5so1TYFy2sqNSvwf9tH33KJc9BLQmwQV2RLLChknmqaJ7hqraFle9R8NUnB5tO2iERagd3UNmEw8SKoi3Jytw5nrzptPd7voC5nYzXeuCvI1DNs09jBZlVz1oIqL/frIJrGdy+pLcLVzaxld5NZvKzhVJqFJqD5OCZ3pJDxmOLAroLQnqdl25vJ6KQdlHkdSjGjWO9bpS7jav6UlU8YlORRpaUi8w96ZnFiHIoqIcC1GAl3AeA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB6604.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(451199021)(31686004)(478600001)(6512007)(83380400001)(36756003)(31696002)(2616005)(86362001)(38100700002)(316002)(2906002)(53546011)(6506007)(26005)(186003)(5660300002)(6486002)(66476007)(6666004)(6916009)(66556008)(8936002)(41300700001)(8676002)(7416002)(66946007)(4326008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWJ5a1ZKaDZoQ1RqbWlrdnZLT1pNbFBaelZha1BtcDA2bmFSUHhlVmVqdlBa?=
+ =?utf-8?B?cTJMVTBtWFBobHVLTGpUTHdnUm12Wm9UVlhLVkJVNXBjUnFQaTd0bXR1VHM2?=
+ =?utf-8?B?Zm40K0ZHQkk2RDY4TVprV3VhZnczOGRHSGsxUWd1eHBFMk5yRmhYZWJwT1BQ?=
+ =?utf-8?B?VVRsWTI4MVpUU3doVCtSMlB1MEd5YStHZVo2WnBUdEJ0QUUxWmFsS0tPWWVr?=
+ =?utf-8?B?NU02b2dnMXhQWHBiUHFUTEtYRG9LOVVZZVIwUzlmbmM2Y3FDLzI4V2tnRHFv?=
+ =?utf-8?B?dllXSjArQkpxYkNFcTdiUDBOemZ5TVVUV09NM29XOHozUldUekVGL0JINS8w?=
+ =?utf-8?B?UkJRUm9BN1NISTZ4Y0xJWlhCS1V2Z0tURjd1bFlSRU9nT0VhQmNvNjB6ZnJj?=
+ =?utf-8?B?NVFQMEh5aE05OVFSYW9iR0VOeXVJNzd2ZGt6K1ZURXZZdDVWSTVGMVlFOWYx?=
+ =?utf-8?B?MGF1TEFtTXdOaEZ0b09QeVdNMTdlWlNHdmhmTmtNbWpLNG4rYWtkUzFvQm9S?=
+ =?utf-8?B?L2hmb1ZqbEdwUUVFYjZwY0QvTFhjWlJybzlwNHp4Z2JuMnlWODFEenIzVHlp?=
+ =?utf-8?B?VXpSRy96cnNUMnZLNVM3REdlMTVFWVczSnBNd0pUN3NHaDlncytreHJBUU55?=
+ =?utf-8?B?bmNMVGR3dDF2WVc3RmhqL1BEK3ZLdHRjSlEvK2hSVDMxbkhqMytUaHpJR0N5?=
+ =?utf-8?B?MCtVZmhKdWZLeXBiMTlTdmdBRFc2SlB5SVNjajJaNE1zWlBvUlRGL3FWcTlW?=
+ =?utf-8?B?eUJaVWdodVVoOUlNUHhXYkFOY3dqM0dHQXY3MjAwUHZncnBpOThCeGtuUGR1?=
+ =?utf-8?B?ZklNQmJ5NUx0UVEyQmV0UjA2NEc2ZGVBQzNtSW11eW56WjNnRlY2ZW5zbnVD?=
+ =?utf-8?B?TnVtRVp3ZGVjMm1LWlRjbTBkNG9WNlNTNXhXRVNEbXljN0N0ZzNGdXpFT01V?=
+ =?utf-8?B?TDlURkJsMGdMRmZ2N01aaEZYWTFqUktYNXFLVE1xdExkYTZ6QllaUU1xNzZJ?=
+ =?utf-8?B?TkxKa05OZmhZN3VmWDBnd1Y1ZUZILzVwZWJFd2haczhTM2NEakk2eVVRN05E?=
+ =?utf-8?B?VEFhTlQxNnVhWURUTlFYLzBTZ2xMaXBDWGZTRHdPendsRk9jWGttdkorYVlU?=
+ =?utf-8?B?WEdTQU91MWZGUFFVbnc3SHVJL0VkS1ZUYWpUSVpUeStVaEpHNkNzS2RxNXRr?=
+ =?utf-8?B?dDNGT0JMb0thR2JuY0kzck0vMk9LSzNYYTFOUkx1NG1CRm1zbk5GdDdZS0h0?=
+ =?utf-8?B?d21TcEdaN0ViM1JaOGJXanEvMTdsRURVcjVxVFNCL1l5QWZ1R1Y5YlRFWDdy?=
+ =?utf-8?B?ZmY2cHBwWS9NQUtWQWdaMFZtbFpuK2hpK2N5SGJLL1hiejcycitRdGtIRmtF?=
+ =?utf-8?B?dFhiZUZOWS9UdUFpZW1JaDlhZUZqNmV4WXh4QVROYitZeXJudEJxdFBZUW5Y?=
+ =?utf-8?B?U3lqMnlFT3RJVTlWUzFRSGxQNlYySHdtQkF1TkMvNmUwcFR2aEpNQVUyVmVv?=
+ =?utf-8?B?SFNZMUQwbGJIV1JkWEI0NFgwVG44SkhSL2trNXNoalM2RFJhKzVCQXhaK3Bi?=
+ =?utf-8?B?MmpPTGpOay82K3d0emRaR1A2eXFQUEV2cnBEWXY2WCtyMW11RVB5UWdpdUpK?=
+ =?utf-8?B?QjhmU216TnI1NThmL1c5Q2wyakI3NzJzcWtzd3NZY21YakEyYzlUbW1UaEFx?=
+ =?utf-8?B?WWhwaGJES042Y0hnZlA4c0VIM2NpNXNKcEtpaUNxc25PU0haTVpPaWd6Z3lG?=
+ =?utf-8?B?V2RYVGlXK3c5TWdiM3IrOEJsLzJ3TjlKYS9JMXpQcFk2UjR4TlQ4bjlqTHNq?=
+ =?utf-8?B?VnZhMXJuTnpmSkVIOWQvY1NxcEdSZWNQcWR3a2FxU05WUmFGMmNjTW5kOGYw?=
+ =?utf-8?B?QjA2V05EaGJ4V1lQQnRHRG03UVZLa2FoTFFjd29zQ2hHZGdQckxIVEVEaGkz?=
+ =?utf-8?B?U3U2djBjQ1pPSUplTHpzSzFocHhROU5GelN3SlFFVjE5L0tuaGUzUHNuZU1h?=
+ =?utf-8?B?UXovZmZPSEdJY0lCOGNIa3FmeG9Pa3RRMUlUT29UTXlHQmtjRDBGNTd5SWFM?=
+ =?utf-8?B?NGx2UTlmT2ZISWRJU2tGcEQ2bEszQThkOHZxZzZoTmJtQSt5Kzhqck5NbUtT?=
+ =?utf-8?Q?i4rr/Cygy0yMC69T/VgwezzBf?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db83e991-af1d-4006-2c4c-08db3b78d77a
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6604.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2023 17:10:40.4003
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T6CVweztjhWl/lmVr8/X4KX2gd6TClK1UFDDj8moNsrlV7pUK/cqBDKgB39697+o663/q43t80zK/iFrRyNjLg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5891
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,262 +131,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 12, 2023 at 04:00:11PM +0530, MD Danish Anwar wrote:
-> From: Suman Anna <s-anna@ti.com>
+On 4/12/23 7:29 AM, Rob Herring wrote:
+> On Thu, Apr 06, 2023 at 10:18:31AM -0700, Dipen Patel wrote:
+>> The tegra always-on (AON) GPIO HTE/GTE provider depends on the AON
+>> GPIO controller where it needs to do namespace conversion between GPIO
+>> line number (belonging to AON GPIO controller instance) and the GTE
+>> slice bits. The patch introduces nvidia,gpio-controller property to
+>> represent that dependency.
+>>
+>> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> ---
+>>  .../timestamp/nvidia,tegra194-hte.yaml        | 36 ++++++++++++++++---
+>>  1 file changed, 31 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> index 855dad3f2023..66eaa3fab8cc 100644
+>> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> @@ -51,6 +51,12 @@ properties:
+>>        LIC instance has 11 slices and Tegra234 LIC has 17 slices.
+>>      enum: [3, 11, 17]
+>>  
+>> +  nvidia,gpio-controller:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      The phandle to AON gpio controller instance. This is required to handle
+>> +      namespace conversion between GPIO and GTE.
+>> +
+>>    '#timestamp-cells':
+>>      description:
+>>        This represents number of line id arguments as specified by the
+>> @@ -59,6 +65,12 @@ properties:
+>>        mentioned in the nvidia GPIO device tree binding document.
+>>      const: 1
+>>  
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - "#timestamp-cells"
+>> +
+>>  allOf:
+>>    - if:
+>>        properties:
+>> @@ -94,11 +106,15 @@ allOf:
+>>          nvidia,slices:
+>>            const: 17
+>>  
+>> -required:
+>> -  - compatible
+>> -  - reg
+>> -  - interrupts
+>> -  - "#timestamp-cells"
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - nvidia,tegra234-gte-aon
+>> +    then:
+>> +      required:
+>> +        - nvidia,gpio-controller
 > 
-> Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
-> the PRUSS platform driver to read and program respectively a register
-> within the PRUSS CFG sub-module represented by a syscon driver. These
-> APIs are internal to PRUSS driver.
+> Adding a new required property is an ABI break. But you just added this 
+> in patch 2. If this is required as part of nvidia,tegra234-gte-aon 
+> support, then it should all be 1 patch.
+Ok, will move this to one patch. For the ABI break, I have added appropriate
+code in the concerned driver to continue to be backward compatible.
+
 > 
-> Add two new helper functions pruss_cfg_get_gpmux() & pruss_cfg_set_gpmux()
-> to get and set the GP MUX mode for programming the PRUSS internal wrapper
-> mux functionality as needed by usecases.
+>>  
+>>  additionalProperties: false
+>>  
+>> @@ -112,6 +128,16 @@ examples:
+>>                #timestamp-cells = <1>;
+>>      };
+>>  
+>> +  - |
+>> +    tegra234_hte_aon: timestamp@c1e0000 {
+>> +              compatible = "nvidia,tegra234-gte-aon";
+>> +              reg = <0xc1e0000 0x10000>;
+>> +              interrupts = <0 13 0x4>;
+>> +              nvidia,int-threshold = <1>;
+>> +              nvidia,gpio-controller = <&gpio_aon>;
+>> +              #timestamp-cells = <1>;
+>> +    };
+>> +
 > 
-> Various useful registers and macros for certain register bit-fields and
-> their values have also been added.
+> Really need a whole other example for 1 property?
+The property affects Tegra234 Soc and beyond, This example is provided
+to showcase that and it also implies that old SoC Tegra194 is not affected
+by this new property. Havind said, that I have not issue removing this example. 
+
 > 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> Reviewed-by: Roger Quadros <rogerq@kernel.org>
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
-> Reviewed-by: Simon Horman <simon.horman@corigine.com>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
->  drivers/soc/ti/pruss.c       | 45 ++++++++++++++++++
->  drivers/soc/ti/pruss.h       | 88 ++++++++++++++++++++++++++++++++++++
->  include/linux/pruss_driver.h | 32 +++++++++++++
->  3 files changed, 165 insertions(+)
->  create mode 100644 drivers/soc/ti/pruss.h
-> 
-> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> index 8ada3758b31a..34d513816a9d 100644
-> --- a/drivers/soc/ti/pruss.c
-> +++ b/drivers/soc/ti/pruss.c
-> @@ -21,6 +21,7 @@
->  #include <linux/regmap.h>
->  #include <linux/remoteproc.h>
->  #include <linux/slab.h>
-> +#include "pruss.h"
->  
->  /**
->   * struct pruss_private_data - PRUSS driver private data
-> @@ -168,6 +169,50 @@ int pruss_release_mem_region(struct pruss *pruss,
->  }
->  EXPORT_SYMBOL_GPL(pruss_release_mem_region);
->  
-> +/**
-> + * pruss_cfg_get_gpmux() - get the current GPMUX value for a PRU device
-> + * @pruss: pruss instance
-> + * @pru_id: PRU identifier (0-1)
-> + * @mux: pointer to store the current mux value into
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux)
-> +{
-> +	int ret = 0;
+>>    - |
+>>      tegra_hte_lic: timestamp@3aa0000 {
+>>                compatible = "nvidia,tegra194-gte-lic";
+>> -- 
+>> 2.17.1
+>>
 
-Variable initialization is not needed.
-
-> +	u32 val;
-> +
-> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS || !mux)
-
-If @pru_id is an enum, how can it be smaller than 0?
-
-> +		return -EINVAL;
-> +
-> +	ret = pruss_cfg_read(pruss, PRUSS_CFG_GPCFG(pru_id), &val);
-> +	if (!ret)
-> +		*mux = (u8)((val & PRUSS_GPCFG_PRU_MUX_SEL_MASK) >>
-> +			    PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_get_gpmux);
-> +
-> +/**
-> + * pruss_cfg_set_gpmux() - set the GPMUX value for a PRU device
-> + * @pruss: pruss instance
-> + * @pru_id: PRU identifier (0-1)
-> + * @mux: new mux value for PRU
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux)
-> +{
-> +	if (mux >= PRUSS_GP_MUX_SEL_MAX ||
-> +	    pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
-
-Same
-
-> +		return -EINVAL;
-> +
-> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
-> +				PRUSS_GPCFG_PRU_MUX_SEL_MASK,
-> +				(u32)mux << PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_set_gpmux);
-> +
->  static void pruss_of_free_clk_provider(void *data)
->  {
->  	struct device_node *clk_mux_np = data;
-> diff --git a/drivers/soc/ti/pruss.h b/drivers/soc/ti/pruss.h
-> new file mode 100644
-> index 000000000000..6c55987e0e55
-> --- /dev/null
-> +++ b/drivers/soc/ti/pruss.h
-> @@ -0,0 +1,88 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * PRU-ICSS Subsystem user interfaces
-> + *
-> + * Copyright (C) 2015-2023 Texas Instruments Incorporated - http://www.ti.com
-> + *	MD Danish Anwar <danishanwar@ti.com>
-> + */
-> +
-> +#ifndef _SOC_TI_PRUSS_H_
-> +#define _SOC_TI_PRUSS_H_
-> +
-> +#include <linux/bits.h>
-> +#include <linux/regmap.h>
-> +
-> +/*
-> + * PRU_ICSS_CFG registers
-> + * SYSCFG, ISRP, ISP, IESP, IECP, SCRP applicable on AMxxxx devices only
-> + */
-> +#define PRUSS_CFG_REVID         0x00
-> +#define PRUSS_CFG_SYSCFG        0x04
-> +#define PRUSS_CFG_GPCFG(x)      (0x08 + (x) * 4)
-> +#define PRUSS_CFG_CGR           0x10
-> +#define PRUSS_CFG_ISRP          0x14
-> +#define PRUSS_CFG_ISP           0x18
-> +#define PRUSS_CFG_IESP          0x1C
-> +#define PRUSS_CFG_IECP          0x20
-> +#define PRUSS_CFG_SCRP          0x24
-> +#define PRUSS_CFG_PMAO          0x28
-> +#define PRUSS_CFG_MII_RT        0x2C
-> +#define PRUSS_CFG_IEPCLK        0x30
-> +#define PRUSS_CFG_SPP           0x34
-> +#define PRUSS_CFG_PIN_MX        0x40
-> +
-> +/* PRUSS_GPCFG register bits */
-> +#define PRUSS_GPCFG_PRU_GPI_MODE_MASK           GENMASK(1, 0)
-> +#define PRUSS_GPCFG_PRU_GPI_MODE_SHIFT          0
-> +
-> +#define PRUSS_GPCFG_PRU_MUX_SEL_SHIFT           26
-> +#define PRUSS_GPCFG_PRU_MUX_SEL_MASK            GENMASK(29, 26)
-> +
-> +/* PRUSS_MII_RT register bits */
-> +#define PRUSS_MII_RT_EVENT_EN                   BIT(0)
-> +
-> +/* PRUSS_SPP register bits */
-> +#define PRUSS_SPP_XFER_SHIFT_EN                 BIT(1)
-> +#define PRUSS_SPP_PRU1_PAD_HP_EN                BIT(0)
-> +#define PRUSS_SPP_RTU_XFR_SHIFT_EN              BIT(3)
-> +
-> +/**
-> + * pruss_cfg_read() - read a PRUSS CFG sub-module register
-> + * @pruss: the pruss instance handle
-> + * @reg: register offset within the CFG sub-module
-> + * @val: pointer to return the value in
-> + *
-> + * Reads a given register within the PRUSS CFG sub-module and
-> + * returns it through the passed-in @val pointer
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +static int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val)
-> +{
-> +	if (IS_ERR_OR_NULL(pruss))
-> +		return -EINVAL;
-> +
-> +	return regmap_read(pruss->cfg_regmap, reg, val);
-> +}
-> +
-> +/**
-> + * pruss_cfg_update() - configure a PRUSS CFG sub-module register
-> + * @pruss: the pruss instance handle
-> + * @reg: register offset within the CFG sub-module
-> + * @mask: bit mask to use for programming the @val
-> + * @val: value to write
-> + *
-> + * Programs a given register within the PRUSS CFG sub-module
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
-> +			    unsigned int mask, unsigned int val)
-> +{
-> +	if (IS_ERR_OR_NULL(pruss))
-> +		return -EINVAL;
-> +
-> +	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
-> +}
-> +
-> +#endif  /* _SOC_TI_PRUSS_H_ */
-> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
-> index c8f2e53b911b..c70e08c90165 100644
-> --- a/include/linux/pruss_driver.h
-> +++ b/include/linux/pruss_driver.h
-> @@ -14,6 +14,24 @@
->  #include <linux/types.h>
->  #include <linux/err.h>
->  
-> +/*
-> + * enum pruss_gp_mux_sel - PRUSS GPI/O Mux modes for the
-> + * PRUSS_GPCFG0/1 registers
-> + *
-> + * NOTE: The below defines are the most common values, but there
-> + * are some exceptions like on 66AK2G, where the RESERVED and MII2
-> + * values are interchanged. Also, this bit-field does not exist on
-> + * AM335x SoCs
-> + */
-> +enum pruss_gp_mux_sel {
-> +	PRUSS_GP_MUX_SEL_GP = 0,
-
-Initialization not needed
-
-> +	PRUSS_GP_MUX_SEL_ENDAT,
-> +	PRUSS_GP_MUX_SEL_RESERVED,
-> +	PRUSS_GP_MUX_SEL_SD,
-> +	PRUSS_GP_MUX_SEL_MII2,
-> +	PRUSS_GP_MUX_SEL_MAX,
-> +};
-> +
->  /*
->   * enum pruss_mem - PRUSS memory range identifiers
->   */
-> @@ -66,6 +84,8 @@ int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->  			     struct pruss_mem_region *region);
->  int pruss_release_mem_region(struct pruss *pruss,
->  			     struct pruss_mem_region *region);
-> +int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux);
-> +int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux);
->  
->  #else
->  
-> @@ -89,6 +109,18 @@ static inline int pruss_release_mem_region(struct pruss *pruss,
->  	return -EOPNOTSUPP;
->  }
->  
-> +static inline int pruss_cfg_get_gpmux(struct pruss *pruss,
-> +				      enum pruss_pru_id pru_id, u8 *mux)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
-> +static inline int pruss_cfg_set_gpmux(struct pruss *pruss,
-> +				      enum pruss_pru_id pru_id, u8 mux)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
->  #endif /* CONFIG_TI_PRUSS */
->  
->  #endif	/* _PRUSS_DRIVER_H_ */
-> -- 
-> 2.34.1
-> 
