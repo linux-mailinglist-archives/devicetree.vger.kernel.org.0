@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC23B6DF9F6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A1E6DF9FA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:28:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjDLP1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 11:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57908 "EHLO
+        id S231239AbjDLP2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 11:28:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbjDLP1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:27:41 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B3E30C7;
-        Wed, 12 Apr 2023 08:27:36 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id bm45so2245528oib.4;
-        Wed, 12 Apr 2023 08:27:36 -0700 (PDT)
+        with ESMTP id S229939AbjDLP2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:28:17 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0238511A
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 08:28:14 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id sh8so29764046ejc.10
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 08:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681313293; x=1683905293;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w/f8fWx95RPy53FPFSPsxhx2yeOjkbYiJk0FpqalEok=;
+        b=vwS4hlPbleuafP0JkJ+DqcRIjQtLA+RHSlatsgZN0E376IXiO3XOWyduiOswxM5yrG
+         EOYE7gyWI4GRdYBJe2ZGle0t8VTVfYdZr5a4EcY1+d0+NWJEhhbljBOfUFU/j5hs194W
+         yIMPj/UVYbEyoIZZq1p63Zi8hmR5O3+TBYrPQoYhafZu4FQ3Hl02NXQHHOYSImfMDHIU
+         qujYUuPaY6WTqd7i0LMv41bkm4I5GjqJrFoGmjk4aMBBnTenWTLbUCqIjA/1rboQbFoV
+         UaIuhCa1UCxP8/3X7G3EeknkU3uofDWuG9a4/eA0rPrSAeCaoi9t+sGtcEW7GSe6oVf6
+         eKrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681313256; x=1683905256;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2tiFpq4sA6fF2BqfKkfUZ9e15UpII/FjS4nr1bHhOlg=;
-        b=cQL0ctZsOj8i3AZqM7OenCF61uKL2nLjq9tZRn/Bm2bSym5aNk24m6x1flVzKR8qUx
-         f2gW/Yft3Jl8ZGbv8Cv6GI1wHNoFpWd7uVo8UceQYzSUmGXDqSBqgm4PL948Rg1blzq9
-         Xb75iIUGRSnKjEmG+yiBMU8vW+4SMIqSj6We5EXDeCR8N18H1BzEFNbpg1qQULsOyA5y
-         WeVB56hxL8ChTE3b0YVuMa6ML7RGG+0kOgfYP/HNNma9y8d0T48lCfKm8OsTSE07K5QB
-         1UaE2KkLqaodIzvpYcrfocgLVdFyfeGka+/EbIAtsQG4OpOKPPbRCn0NGfK7gfAlwMyr
-         AwTg==
-X-Gm-Message-State: AAQBX9eZyalr3JOlM5543adlJZlNAcxdevdc9LCXgtE+uoke63cHJAGK
-        Mloy+szI1Q4w0KpwrEBgGzgvW3ljeQ==
-X-Google-Smtp-Source: AKy350YoAMV/LXroNkH2jnTpdDTQzSM2asaZ9ChKfH1V8B9f07g5rmSXyaEzhLtYdQjuxLfXEW9oWQ==
-X-Received: by 2002:a54:4615:0:b0:387:7651:e117 with SMTP id p21-20020a544615000000b003877651e117mr2925397oip.0.1681313255931;
-        Wed, 12 Apr 2023 08:27:35 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 4-20020a4a1404000000b005413e617935sm7178594ood.15.2023.04.12.08.27.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 08:27:35 -0700 (PDT)
-Received: (nullmailer pid 2465553 invoked by uid 1000);
-        Wed, 12 Apr 2023 15:27:34 -0000
-Date:   Wed, 12 Apr 2023 10:27:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Subject: Re: [PATCH v7 2/8] dt-bindings: display: renesas,rzg2l-du: Document
- RZ/V2L DU bindings
-Message-ID: <168131325440.2465494.3673756262949452214.robh@kernel.org>
-References: <20230411120810.368437-1-biju.das.jz@bp.renesas.com>
- <20230411120810.368437-3-biju.das.jz@bp.renesas.com>
+        d=1e100.net; s=20221208; t=1681313293; x=1683905293;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w/f8fWx95RPy53FPFSPsxhx2yeOjkbYiJk0FpqalEok=;
+        b=G67x2hPNl1ZVR0wiHxSqkr3Yb2OOdG8JQP50nQ1Fh06zKygwsRjiF5PNUpJT/6lkof
+         L9Hpu5mQahmvj28yq5ZfDXNs21NWVPxFaLggwuWr+N4R9BsJDlqUt3dYhIXbzFVL3oy+
+         0o2uGzw7QdE+6InpNfNDbO9oSD2Z8HCDFL4L7HlP7ygFvaW0bY9JN8UOwNVHKbny4xJX
+         x3CDlqwSFJtcS80cwTOc/LP5kkTiQJOEUEEwRq8f7aAPtKlg/vI3TJe3NrUQcfrLryOC
+         umpcMjHVe3c0xNXVaa08DK5zmxXrv+Qecgr47OOPZj5a/clIvhJDAP9S4Hibys/d5G95
+         V0LQ==
+X-Gm-Message-State: AAQBX9eu6VsHl7/f9BjimzrvpmDsJRQy5nDbzGx0+XZ5Dgk1P+SQCuZ7
+        BjCz1CuDZS8XUJQujyeQAEfxkQ==
+X-Google-Smtp-Source: AKy350YX5t8yue2OQEKwTNFVa2OOh6bs2nxsXA+6DD5d1N6SAjVTtGtqlOTDFST8C47ZXLf29jFHnw==
+X-Received: by 2002:a17:906:aac8:b0:94a:6f0d:389d with SMTP id kt8-20020a170906aac800b0094a6f0d389dmr7392883ejb.5.1681313293472;
+        Wed, 12 Apr 2023 08:28:13 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id e14-20020a50d4ce000000b00502b0b0d75csm7027802edj.46.2023.04.12.08.28.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 08:28:12 -0700 (PDT)
+Message-ID: <94590a79-cae3-7b88-8f02-0c356adf06b7@linaro.org>
+Date:   Wed, 12 Apr 2023 16:28:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230411120810.368437-3-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/7] dt-bindings: soundwire: qcom: add 16-bit sample
+ interval
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
+ <20230403132503.62090-3-krzysztof.kozlowski@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230403132503.62090-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,18 +88,72 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 11 Apr 2023 13:08:04 +0100, Biju Das wrote:
-> Document DU found in RZ/V2L SoC. The DU block is identical to RZ/G2L
-> SoC and therefore use RZ/G2L fallback to avoid any driver changes.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v7:
->  * New patch.
-> ---
->  .../devicetree/bindings/display/renesas,rzg2l-du.yaml    | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 03/04/2023 14:24, Krzysztof Kozlowski wrote:
+> The port sample interval was always 16-bit, split into low and high
+> bytes.  This split was unnecessary, although harmless for older devices
+> because all of them used only lower byte (so values < 0xff).  With
+> support for Soundwire controller on Qualcomm SM8550 and its devices,
+> both bytes will be used, thus add a new 'qcom,ports-sinterval' property
+> to allow 16-bit sample intervals.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../bindings/soundwire/qcom,soundwire.yaml    | 22 +++++++++++++++++--
+>   1 file changed, 20 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> index c283c594fb5c..883b8be9be1b 100644
+> --- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> +++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> @@ -86,7 +86,7 @@ properties:
+>     qcom,ports-sinterval-low:
+>       $ref: /schemas/types.yaml#/definitions/uint8-array
+>       description:
+> -      Sample interval low of each data port.
+> +      Sample interval (only lowest byte) of each data port.
+>         Out ports followed by In ports. Used for Sample Interval calculation.
+>         Value of 0xff indicates that this option is not implemented
+>         or applicable for the respective data port.
+> @@ -94,6 +94,19 @@ properties:
+>       minItems: 3
+>       maxItems: 16
+>   
+> +  qcom,ports-sinterval:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
+Should this not be ref: /schemas/types.yaml#/definitions/uint16-array ?
+
+
+--srini
+> +    description:
+> +      Sample interval of each data port.
+> +      Out ports followed by In ports. Used for Sample Interval calculation.
+> +      Value of 0xffff indicates that this option is not implemented
+> +      or applicable for the respective data port.
+> +      More info in MIPI Alliance SoundWire 1.0 Specifications.
+> +    minItems: 3
+> +    maxItems: 16
+> +    items:
+> +      maximum: 0xffff
+> +
+>     qcom,ports-offset1:
+>       $ref: /schemas/types.yaml#/definitions/uint8-array
+>       description:
+> @@ -219,10 +232,15 @@ required:
+>     - '#size-cells'
+>     - qcom,dout-ports
+>     - qcom,din-ports
+> -  - qcom,ports-sinterval-low
+>     - qcom,ports-offset1
+>     - qcom,ports-offset2
+>   
+> +oneOf:
+> +  - required:
+> +      - qcom,ports-sinterval-low
+> +  - required:
+> +      - qcom,ports-sinterval
+> +
+>   additionalProperties: false
+>   
+>   examples:
