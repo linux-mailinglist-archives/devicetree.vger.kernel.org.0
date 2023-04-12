@@ -2,160 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1445A6DF877
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E28B6DF886
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231167AbjDLO3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 10:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56624 "EHLO
+        id S231518AbjDLObt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 10:31:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230148AbjDLO3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:29:14 -0400
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF9A7EC9;
-        Wed, 12 Apr 2023 07:29:05 -0700 (PDT)
-Received: by mail-oo1-f54.google.com with SMTP id s19-20020a4adb93000000b00540fa505f2dso5152339oou.7;
-        Wed, 12 Apr 2023 07:29:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681309745; x=1683901745;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k176WWn9jx2u9/R85lUvqY1542CwXWfLfbsNq5SxUZA=;
-        b=WAEoo10EWeC1aTXu+75mqlZHrXkBVH3Cdzpy7HQP8NjHc+4BmggcstgyFrJFXssniZ
-         EFtMRmXE1Sxh4kVle0RkfWJdsNBNxJCSYzhr0CvzgotYS8d5FRoVBLIt9Br7pozWli+Y
-         07Zr821IdPWJlN9q4hB3jAfOBEW0n1dIbPUcdWJQAi9OIC8VazYraon+vyMO+Xk+NZ0m
-         gJVus5wcjadtrMaEJtSElHxge7IGk5CDQ6ls34wCeJ98j6KGf8o0294zhMuuW0KZQoGz
-         UHeHUMfia4ncVQIMfED+SaW+PS+O+bipddDD+kGByKkS/afgthPWNJC3/XN8mtMX0DaH
-         fyoQ==
-X-Gm-Message-State: AAQBX9eyT1TzmjPMKzl4MGTfcthrZFeO5BDVKsE4tHOZFsfEoPyg+dJD
-        KJJmadsQwk2q6aFfaPwEyA==
-X-Google-Smtp-Source: AKy350aF8ET7xIUWcuvk3rOrrw4hKxuH7IjNvt/FtHfQ6zrFgjNr7B6n7Hn/lJZWMWfntV16LOmy/w==
-X-Received: by 2002:a4a:8902:0:b0:541:f866:7548 with SMTP id f2-20020a4a8902000000b00541f8667548mr1040877ooi.1.1681309744774;
-        Wed, 12 Apr 2023 07:29:04 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j41-20020a4a88ac000000b0053b88b03e24sm7061927ooa.18.2023.04.12.07.29.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 07:29:04 -0700 (PDT)
-Received: (nullmailer pid 2318194 invoked by uid 1000);
-        Wed, 12 Apr 2023 14:29:03 -0000
-Date:   Wed, 12 Apr 2023 09:29:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-Subject: Re: [V5 04/10] dt-bindings: timestamp: Add nvidia,gpio-controller
-Message-ID: <20230412142903.GA2313008-robh@kernel.org>
-References: <20230406171837.11206-1-dipenp@nvidia.com>
- <20230406171837.11206-5-dipenp@nvidia.com>
+        with ESMTP id S230211AbjDLObs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:31:48 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9494B83DE;
+        Wed, 12 Apr 2023 07:31:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681309878; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=P7EFm3Wq2/ysbV2EMeWmp81wrbnIWKNF96itF9fODPoX1Ji/EUnmxN60FdGyOkIjC+l8d22euS6a0IW7oeGqzveIl4RGCOTJ96WO1mXUQ7uGBYpO9jGsFchiNZXk5daHyMYBousYnjMdnEdwZkKXczeVNnYW/+9Gw4oRTtWvU1M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1681309878; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=3c7CGkWjnzNRHL7qhiYM9MX8ZN0XNedfJlqVhIQAlA8=; 
+        b=GG69l+sMVB+ZMbOqIK1qp12g8Byj49xlNyaevj2FPiIIx6KW546KdIr5vQklTKfvwL9bEZIIY5OYQVMi49KVW0rA7K+zvi0DPopQpHSHF23xDLHLIDZ7PZo6G9Tao5Ap6plik98IGo8j89Zhpum64cHPKr+KNozxzSj4cQpEm9U=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1681309878;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=3c7CGkWjnzNRHL7qhiYM9MX8ZN0XNedfJlqVhIQAlA8=;
+        b=ZtEvAJKr+8NFnB/5n5uShBN2qHsvvFFzTSCeRXqIhscjxSRCSzZKcbd6nOP0bfnh
+        yAjq/bYUwqakWqnxUuGNhTE01Nf/FKkq7ffP7PAAJN1qARTXkK+hpam1+96prkHP1Qb
+        9lFntl424cEiToZPSUGq/m3SJTPkn/q6a0lFhUb0=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1681309875185877.4920617615047; Wed, 12 Apr 2023 07:31:15 -0700 (PDT)
+Message-ID: <703ad8a8-f84e-6404-4cce-5386bfaa2bd7@arinc9.com>
+Date:   Wed, 12 Apr 2023 17:31:10 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230406171837.11206-5-dipenp@nvidia.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: Aw: Re: Re: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs,
+ mt7530 switch, and add port@5
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
+References: <20230210182505.24597-1-arinc.unal@arinc9.com>
+ <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
+ <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
+ <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
+ <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53>
+ <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
+ <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
+ <fb96d8eb-2eb7-db19-1135-1a833294dd67@arinc9.com>
+ <trinity-899c01a6-0fc5-4900-aea8-2b43802c8329-1676814734826@3c-app-gmx-bs35>
+ <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 06, 2023 at 10:18:31AM -0700, Dipen Patel wrote:
-> The tegra always-on (AON) GPIO HTE/GTE provider depends on the AON
-> GPIO controller where it needs to do namespace conversion between GPIO
-> line number (belonging to AON GPIO controller instance) and the GTE
-> slice bits. The patch introduces nvidia,gpio-controller property to
-> represent that dependency.
+On 12.04.2023 15:49, Frank Wunderlich wrote:
+> Hi,
 > 
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../timestamp/nvidia,tegra194-hte.yaml        | 36 ++++++++++++++++---
->  1 file changed, 31 insertions(+), 5 deletions(-)
+> retested series on bananpi r2 on 6.3-rc6 (after throughput is fixed for mt7623/trgmii too) with additional patches:
 > 
-> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> index 855dad3f2023..66eaa3fab8cc 100644
-> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> @@ -51,6 +51,12 @@ properties:
->        LIC instance has 11 slices and Tegra234 LIC has 17 slices.
->      enum: [3, 11, 17]
->  
-> +  nvidia,gpio-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The phandle to AON gpio controller instance. This is required to handle
-> +      namespace conversion between GPIO and GTE.
-> +
->    '#timestamp-cells':
->      description:
->        This represents number of line id arguments as specified by the
-> @@ -59,6 +65,12 @@ properties:
->        mentioned in the nvidia GPIO device tree binding document.
->      const: 1
->  
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#timestamp-cells"
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -94,11 +106,15 @@ allOf:
->          nvidia,slices:
->            const: 17
->  
-> -required:
-> -  - compatible
-> -  - reg
-> -  - interrupts
-> -  - "#timestamp-cells"
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra234-gte-aon
-> +    then:
-> +      required:
-> +        - nvidia,gpio-controller
-
-Adding a new required property is an ABI break. But you just added this 
-in patch 2. If this is required as part of nvidia,tegra234-gte-aon 
-support, then it should all be 1 patch.
-
->  
->  additionalProperties: false
->  
-> @@ -112,6 +128,16 @@ examples:
->                #timestamp-cells = <1>;
->      };
->  
-> +  - |
-> +    tegra234_hte_aon: timestamp@c1e0000 {
-> +              compatible = "nvidia,tegra234-gte-aon";
-> +              reg = <0xc1e0000 0x10000>;
-> +              interrupts = <0 13 0x4>;
-> +              nvidia,int-threshold = <1>;
-> +              nvidia,gpio-controller = <&gpio_aon>;
-> +              #timestamp-cells = <1>;
-> +    };
-> +
-
-Really need a whole other example for 1 property?
-
->    - |
->      tegra_hte_lic: timestamp@3aa0000 {
->                compatible = "nvidia,tegra194-gte-lic";
-> -- 
-> 2.17.1
+> "net: dsa: implement preferred cpu port handling" by Vladimir Oltean to stay on gmac0 by default
+> "net: dsa: mt7530: add support for changing DSA master" by Richard van Schagen
 > 
+> looks good so far, but i have not managed how to change dsa master from the preferred port (eth0) to the second one...
+> any idea how the correct syntax is for iproute2?
+
+https://www.kernel.org/doc/html/latest/networking/dsa/configuration.html#affinity-of-user-ports-to-cpu-ports
+
+In short: ip link set lan0 type dsa conduit eth1
+
+> 
+> at least vladimirs patch should be included when applying this series
+
+I'm currently cleaning up the DSA driver, I'll get to this at some point.
+
+Arınç
