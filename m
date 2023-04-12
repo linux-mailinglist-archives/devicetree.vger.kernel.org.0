@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2B66DF9EC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D8B6DF9F1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:27:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbjDLP0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 11:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
+        id S229708AbjDLP1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 11:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230257AbjDLP0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:26:30 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6561CE8
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 08:25:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1681313140;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qYKh8FdFO1QSNtMcyFw/EOs8sZAgGQFCkTPMptXscZI=;
-        b=FayxsU/WujXgK+tZfyU0zpa9dSuM/yJ0tbpZRGPzOML61gtGY0GaJ0KnDF6tj5+QZZF7g1
-        cwoJUcTDoorP1lfWsNlNm7+EdXx7A9Rs6vMUXMAgpaeAegVFpXiUXRQRm4SU1rFcwJPi5w
-        uHElLLROGG023V3t4SqSyABq8403ppE=
-Received: from mail-yw1-f197.google.com (mail-yw1-f197.google.com
- [209.85.128.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-487-kYgHpPb5NjGD_Wdo7KHglw-1; Wed, 12 Apr 2023 11:25:39 -0400
-X-MC-Unique: kYgHpPb5NjGD_Wdo7KHglw-1
-Received: by mail-yw1-f197.google.com with SMTP id 00721157ae682-54c17fb245dso177498557b3.21
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 08:25:39 -0700 (PDT)
+        with ESMTP id S229840AbjDLP1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:27:19 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F612FA;
+        Wed, 12 Apr 2023 08:27:16 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id w11so11772576plp.13;
+        Wed, 12 Apr 2023 08:27:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681313236; x=1683905236;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1ZzLhw5r59w752+4gsnm5gNIBG3OWAxPR3Xh7ehPlJs=;
+        b=Bw/qF1kdIzRP+TAtzg9UFqbZ8CAeUCiVfG871IF4BpjUf8CIMjDSu4/wDEMAfUTv43
+         GlqruwD+y+T3aXkxgzhMFJUp4fSQnz9EP2L2kzaxclKfTpm+QIteqhCcAsPq+5RkS8Ha
+         xnjO2bPApUeNt3aVTqnrnNz0/JgpbzFUIsAdeC4/G3cmWSkoCtArFZ+2kTWriuNBNnvE
+         qjLNzPqXWrjtwvdg5qh2ZSETRG+IywmKrdHjancd28RDC7QPgGa2tyGzkfxBBx4UrV61
+         P1vXRLx52MWwciYfqu/+1Vy32zLbtbB2hknvz8/yyzJMJBKHx+RFZ3CpTtnFDLivLmck
+         oJtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681313139;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1681313236; x=1683905236;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qYKh8FdFO1QSNtMcyFw/EOs8sZAgGQFCkTPMptXscZI=;
-        b=pvnsF/9g8rxA9cZaqK59Dty+Aog7ag6nRgqXOMOviwO+jTMVB+qv1RGh3GWDoi96+B
-         4dMmtpxtAfsXvRaza3rUXstDYuUWX8UN2pY38PB5W0UwY8ZXHoSx4gEY4LTHW0MKu8S/
-         geEThAxcfuxKD43sW8TMpKrabyrF+6SahOtXbBPNBPbg2IN7Kd8TVLOxNYlo7zJIp88V
-         QExLDOqprTvwurHunzA62HIcN9dpU6TpFPOYfG6+qRxkmMdIMlKsUU3OPqmaPLS7F9hX
-         mq11jVMLNVlsqMq54Hfw9+SaAzyLwzwtRZpMO7ubXM7nds9JNlI0+O6g+S/Ojp4xeUok
-         sB6A==
-X-Gm-Message-State: AAQBX9d1F6EDUIgUJHUX1gzDQWKwMncOfHh64XaaRsXquaeqnDtHeDUa
-        LfMfIcWL/ohglP3nBtifM5zPniY7/pfTnmAI+9xpD54rvkGbd5Ec3gvbB+sXE/pRIdTbUJ7uyvF
-        7hP4Tz9EcfIjujRqJLI0Fpw==
-X-Received: by 2002:a0d:e543:0:b0:536:eace:3a77 with SMTP id o64-20020a0de543000000b00536eace3a77mr5537539ywe.40.1681313139013;
-        Wed, 12 Apr 2023 08:25:39 -0700 (PDT)
-X-Google-Smtp-Source: AKy350aQJ4oa7t3dVS8AqwS5Qn+O71awkukNvK/6B1mDWaGqRW2D1r9R25FsfDQKlgi+zts06ET0Cg==
-X-Received: by 2002:a0d:e543:0:b0:536:eace:3a77 with SMTP id o64-20020a0de543000000b00536eace3a77mr5537524ywe.40.1681313138788;
-        Wed, 12 Apr 2023 08:25:38 -0700 (PDT)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id q63-20020a81b242000000b0054c0c9e4043sm4252004ywh.95.2023.04.12.08.25.36
+        bh=1ZzLhw5r59w752+4gsnm5gNIBG3OWAxPR3Xh7ehPlJs=;
+        b=dMh2Af+73GuKCOdJGcLhWMN/n1qpLYDG7KxLrthU2AH/Gf63VnqKSjbctiAB4wKFiX
+         e79zam8p973aBg2R+m+8zREvhDppPN6F8muhUH2h2tUIRElFPMsjvv0Grq/dQ0+IV5xI
+         NSpqpufK3j7qklsho+4fKJJUWuNWQ/x3l3De5K3VJQ7i6gEW8aOSJvUloIHbbehJ+eJN
+         dycjWi9lVT104E1oXtnUrhOPvnTfV9ckIXqJu26oH0FLTomh3arcPVZV2L6g50olWUwb
+         /M8+D64v9dZonrF6hwNw3nvOl9sZUz3+M+P58yaS+RZiQWh372MCdBe4s56pjtWNCmnm
+         yvLg==
+X-Gm-Message-State: AAQBX9cijclb0+z4063REOeNbCMSc+bepKSYY00WtgwOE/83ftfthkAX
+        g6P78NWuB45J2k0VuXkN6/U=
+X-Google-Smtp-Source: AKy350YUSRIsw+uPXbzHk3vsNg0yWOTUwjEnGDvPeDUnIplgLl7SPP4EQ9PW+H+635Sp/MCIYaXPFA==
+X-Received: by 2002:a17:90b:3841:b0:246:63c8:6abf with SMTP id nl1-20020a17090b384100b0024663c86abfmr20106507pjb.20.1681313236031;
+        Wed, 12 Apr 2023 08:27:16 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d12-20020a17090abf8c00b002465ff5d829sm1632719pjs.13.2023.04.12.08.27.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 08:25:38 -0700 (PDT)
-Date:   Wed, 12 Apr 2023 11:25:36 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, richardcochran@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org,
-        echanude@redhat.com, ncai@quicinc.com, jsuraj@qti.qualcomm.com,
-        hisunil@quicinc.com
-Subject: Re: [PATCH v4 0/3] Add EMAC3 support for sa8540p-ride
- (devicetree/clk bits)
-Message-ID: <ZDbNcDGIbJrm/x6L@x1>
-References: <20230411202009.460650-1-ahalaney@redhat.com>
+        Wed, 12 Apr 2023 08:27:15 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 12 Apr 2023 08:27:14 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Cc:     robh+dt@kernel.org, jdelvare@suse.com,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 0/5] hwmon: (pmbus/acbel-fsg032) Add Acbel power supply
+Message-ID: <b32aacbb-9f5c-4db9-bd93-d3f96aa1e6a9@roeck-us.net>
+References: <20230412052305.1369521-1-lakshmiy@us.ibm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230411202009.460650-1-ahalaney@redhat.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+In-Reply-To: <20230412052305.1369521-1-lakshmiy@us.ibm.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,26 +75,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 11, 2023 at 03:20:06PM -0500, Andrew Halaney wrote:
-> This is a forward port / upstream refactor of code delivered
-> downstream by Qualcomm over at [0] to enable the DWMAC5 based
-> implementation called EMAC3 on the sa8540p-ride dev board.
+On Wed, Apr 12, 2023 at 12:23:00AM -0500, Lakshmi Yadlapati wrote:
+> Adding new acbel,fsg032 driver and documentation updates.
 > 
-> From what I can tell with the board schematic in hand,
-> as well as the code delivered, the main changes needed are:
-> 
->     1. A new address space layout for dwmac5/EMAC3 MTL/DMA regs
->     2. A new programming sequence required for the EMAC3 base platforms
-> 
-> This series addresses the devicetree and clock changes to support this
-> hardware bringup.
-> 
-> As requested[1], it has been split up by compile deps / maintainer tree.
-> The associated v4 of the netdev specific changes can be found at [2].
-> Together, they result in the ethernet controller working for
-> both controllers on this platform.
+> Changes since V5:
+> Add symlink from manufacturer serial number to ccin since ccin is not
+> available in acbel-fsg032 power supply driver.
 
-Looks good to me!
+Sorry, I fail to understand this change, and I am not inclined
+to accept it. There is no "as required by hwmon".
 
-Tested-by: Brian Masney <bmasney@redhat.com>
+Guenter
 
+> 
+> Lakshmi Yadlapati (5):
+>   dt-bindings: vendor-prefixes: Add prefix for acbel
+>   dt-bindings: trivial-devices: Add acbel,fsg032
+>   hwmon: (pmbus/acbel-fsg032) Add Acbel power supply
+>   docs: hwmon: Add documentaion for acbel-fsg032 PSU
+>   ARM: dts: aspeed: p10bmc: Change power supply info
+> 
+>  .../devicetree/bindings/trivial-devices.yaml  |  2 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  Documentation/hwmon/acbel-fsg032.rst          | 80 ++++++++++++++++
+>  Documentation/hwmon/index.rst                 |  1 +
+>  arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts  | 12 +--
+>  drivers/hwmon/pmbus/Kconfig                   |  9 ++
+>  drivers/hwmon/pmbus/Makefile                  |  1 +
+>  drivers/hwmon/pmbus/acbel-fsg032.c            | 95 +++++++++++++++++++
+>  8 files changed, 196 insertions(+), 6 deletions(-)
+>  create mode 100644 Documentation/hwmon/acbel-fsg032.rst
+>  create mode 100644 drivers/hwmon/pmbus/acbel-fsg032.c
+> 
+> -- 
+> 2.37.2
+> 
