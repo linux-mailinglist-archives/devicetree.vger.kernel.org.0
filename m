@@ -2,101 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDCD6DEBDF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 08:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8146DEC00
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 08:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbjDLGhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 02:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50540 "EHLO
+        id S229784AbjDLGmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 02:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjDLGhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 02:37:19 -0400
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9B23ABC;
-        Tue, 11 Apr 2023 23:37:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681281401; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=MPx172HnOIejQDyL0d/0DUdOEHO0rjgD6Oa6glZ3HE1iJOzYBJScCGQwiUPBWcUfB7qTQ1oWbuOxkpSrSKivIIeG4C7/KvdrHEPIK38DvN3oDFTKMZMuGsBwVOdYHx7ZmdUQfqJfsbwG1d3DuNlDRsdUCWZf448dtEaqOpj7yzc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1681281401; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=2CUzAZVNmhEddWbv5po9+adEHLn5WWCOxoPTdFXS6l4=; 
-        b=hO8QKIOywiaIoS0G/klCObI81udy+loHkZMRlNb27Q2pVFh1KmoK4BC4D+kD3tApqyntKxoFc6u297ewZkyN8roixqL5TpQ9MzCzXJVxyVfb9sGa8Jm+hSwIvRwJqWT+e02yoO7HvbckJ/UM4c0MqgRGdjbrag1pegsgCOE71BM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1681281401;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=2CUzAZVNmhEddWbv5po9+adEHLn5WWCOxoPTdFXS6l4=;
-        b=HU8zdvcDb/wiOXq/4JV9AcKkkkg4J778VwuzUb1bK4CSUeyllHOJNYeeW2jEJaRC
-        /2hett5Z85bMYasKfsrUdc30njoAPbVB9V0huiyEOkqkuXlfCqRPQO1XJvm3hckcxtI
-        w2jmcP4gc7nUSenhjPrSN092MUzCsPvyDKyemgjU=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1681281399656135.19981499513426; Tue, 11 Apr 2023 23:36:39 -0700 (PDT)
-Message-ID: <80d4a841-db7c-fa2b-e50d-84317ee54a40@arinc9.com>
-Date:   Wed, 12 Apr 2023 09:36:32 +0300
+        with ESMTP id S229761AbjDLGmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 02:42:50 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB4359FC;
+        Tue, 11 Apr 2023 23:42:46 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id CE4CB7F98;
+        Wed, 12 Apr 2023 14:42:43 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 14:42:43 +0800
+Received: from [192.168.125.82] (113.72.145.176) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
+ 2023 14:42:42 +0800
+Message-ID: <1e3e917a-17ff-2a06-e127-e0d43b731301@starfivetech.com>
+Date:   Wed, 12 Apr 2023 14:42:40 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: net: dsa: mediatek,mt7530: correct
- brand name
+Subject: Re: [PATCH v1 4/7] soc: starfive: Add pmu type operation
 Content-Language: en-US
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Conor Dooley <conor@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230407125008.42474-1-arinc.unal@arinc9.com>
- <20230411235749.xbghzt7w77swvhnz@skbuf>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230411235749.xbghzt7w77swvhnz@skbuf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+ <20230411064743.273388-5-changhuang.liang@starfivetech.com>
+ <20230411-flavoring-sternness-a3b6cdee9fcb@spud>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230411-flavoring-sternness-a3b6cdee9fcb@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.176]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.04.2023 02:57, Vladimir Oltean wrote:
-> Hi Arınç,
+
+
+On 2023/4/12 4:52, Conor Dooley wrote:
+> Hey Changhuang Liang,
 > 
-> On Fri, Apr 07, 2023 at 03:50:03PM +0300, arinc9.unal@gmail.com wrote:
->> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+> On Mon, Apr 10, 2023 at 11:47:40PM -0700, Changhuang Liang wrote:
+>> Add pmu type, make a distinction between different PMU.
+> 
+> Please write more detailed commit messages, thanks.
+> 
+
+OK, will write more detail for it.
+
 >>
->> The brand name is MediaTek, change it to that.
->>
->> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->> Acked-by: Daniel Golle <daniel@makrotopia.org>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 >> ---
+>>  drivers/soc/starfive/jh71xx_pmu.c | 55 ++++++++++++++++++++++---------
+>>  1 file changed, 39 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh71xx_pmu.c
+>> index 306218c83691..98f6849d61de 100644
+>> --- a/drivers/soc/starfive/jh71xx_pmu.c
+>> +++ b/drivers/soc/starfive/jh71xx_pmu.c
+>> @@ -45,6 +45,12 @@
+>>   */
+>>  #define JH71XX_PMU_TIMEOUT_US		100
+>>  
+>> +/* pmu type */
 > 
-> It is good practice for series larger than 2 patches to create a cover
-> letter, which gives the overview for the changes. Its contents gets used
-> as the merge commit description when the series is accepted.
+> Delete this comment, it's obvious.
+> 
 
-Ok, will do on the next version. I'll also split the schema while at it.
+OK, will delete this line.
 
-Arınç
+>> +enum pmu_type {
+>> +	JH71XX_PMU_GENERAL,
+> 
+> I'm really not sold on GENERAL as a name.
+> Why not name these after the compatibles?
+>
+
+OK, will change to "JH71XX_PMU".
+ 
+>> +	JH71XX_PMU_DPHY,
+>> +};
+>> +
+>>  struct jh71xx_domain_info {
+>>  	const char * const name;
+>>  	unsigned int flags;
+>> @@ -54,6 +60,7 @@ struct jh71xx_domain_info {
+>>  struct jh71xx_pmu_match_data {
+>>  	const struct jh71xx_domain_info *domain_info;
+>>  	int num_domains;
+>> +	u8 pmu_type;
+> 
+> This is an enum, not a u8?
+> 
+
+OK, will fix it.
+
+> Thanks,
+> Conor.
+> 
