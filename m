@@ -2,114 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 677176DFFB3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A296DFFB9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbjDLUZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 16:25:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39366 "EHLO
+        id S229630AbjDLUZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 16:25:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjDLUZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:25:06 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF2AE30E0
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 13:24:54 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id r27so16328909lfe.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 13:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681331093; x=1683923093;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EQpLZPwYAr7J4pjpU+otFF+825ZuxpGaiQlHVDDWCrA=;
-        b=f4ceRHJKPg31tbTgwQ7jSj8xYhhxnW5hdMh20vb9jcVgF9G7dAkytBlQ1/RvDXfJSB
-         OUB0Bdqgoqt4L+6CvMLtEmDrq/78ckm9Fk5M6+lZts3l5kNzn+CGF3Dt/gr3w/byKwxq
-         bzh97ycBqdF8Q0KQDU/7tfCK1wlKt5iyk210iUQKUFjSWWgXKYNvr76LgZbhdK37uCWT
-         +pp2i1rTbuxzpVJ3+n8kpzBneOvmsgnw86VSLbJ53HK7gtXMmZsTahUvTA6ibLTaANpB
-         siasp89Jc8mSQuAT8SUVav/lTmv48yFNcyVNftLwCq+u0b39xpMcISfIBb5eGadn8wS8
-         umKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681331093; x=1683923093;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EQpLZPwYAr7J4pjpU+otFF+825ZuxpGaiQlHVDDWCrA=;
-        b=BwyXy5vrIPa7cwp1gAIi8tA4WVzBSsX5nINmHMdCkTzdSOduk8vYzH6p+2H6EIwJzi
-         day5Ub0irwsP58C7BGs9NMJlYSxtcwsb9wfvKHlZdOhWJy8WH7f8apvVH1p8BRN9KYYy
-         ArOHuhoWZ3fx4lbV3KvD6eblHxVstrtN4IbuQ7tHGiKtbRHsBBAf1KY6xKEW5/V/JQ9Y
-         W/41QSpJQLRULcMTG2b5B+QusNjGnVLDBGFy6ht2T1T+ETynfKdcYTZUXWSDk+fHe9Rj
-         So8tnR3yaG+oZrTU+pG+PP714csL8o4JiR3Xo9I9vYRZUUuG5EUaVcVcGW5shoSYi52E
-         zdVg==
-X-Gm-Message-State: AAQBX9dwWm/IlhqvrneNQkz+AVm08m3ucfsMtirwc+7SZFSdKqOCeqk9
-        Gyk7o2R9gE/58N1muBhuaThY4w==
-X-Google-Smtp-Source: AKy350a/Hfc+0A3kfMGztZS4FUJ+0O90lFYaVyvpHvn74jjpVYDhJNWb8JxhbQR+RaD01hXSO2Vlxg==
-X-Received: by 2002:ac2:4c3b:0:b0:4eb:1495:44ee with SMTP id u27-20020ac24c3b000000b004eb149544eemr26950lfq.48.1681331093088;
-        Wed, 12 Apr 2023 13:24:53 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id r9-20020ac25a49000000b004db44babad7sm3139096lfn.260.2023.04.12.13.24.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 13:24:52 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 12 Apr 2023 22:24:51 +0200
-Subject: [PATCH] arm64: dts: qcom: sm8250-edo: Enable Venus
+        with ESMTP id S229603AbjDLUZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:25:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5B7127;
+        Wed, 12 Apr 2023 13:25:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0AB0D6253E;
+        Wed, 12 Apr 2023 20:25:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE0ECC433EF;
+        Wed, 12 Apr 2023 20:25:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681331141;
+        bh=MYt26nkMk28C8Dep5RjxXwR1W/oFQn7l+oHGVIFlZrs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fIXflFpsGkpR0OsTqPXnYJ3jEyzp4CyaUC0F17h/h2qpKogGafmajc3Efp9cCxjc7
+         r9kCtDkUJRJ0QyYdQtowC8oBOHy/NAE0w0qHoIEhtg4G9AQ6sqrlkkawCR9KxaHDVI
+         t8e98AOwR8ghHEKpS+a8FdJiLvvY97MlN+EjgPMPJyMuGdxY60PDQy1/N0xPtmrS7d
+         SymnKgWYhW2yFVhGpzh1IxMSSFlBck5WEnY7Nm34Bqn4Ny/Nz7zEp+tGSSIZp46C09
+         iUwQru+J9GFXbBvzjXPS26HXpS7ZckldhtTeg9Epu1BZN0vjlC4yAL1MEgN0W2vwPx
+         pT1VYON/dk/Eg==
+Date:   Wed, 12 Apr 2023 21:25:34 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v8 5/7] cache: Add L2 cache management for Andes AX45MP
+ RISC-V core
+Message-ID: <20230412-cheddar-prune-5ce03ccf5581@spud>
+References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230412110900.69738-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230412-edo_venus-v1-1-bcfc82e0efc3@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAJITN2QC/x2NUQqDMBAFryL73UCMRUqvUkrZJM+6IGvJohTEu
- 3fp5zzmMQcZmsDo3h3UsIvJqg79paMys74RpDpTimmI1z4F1PW1QzcL8TYOjFpj4UzuZzaE3Fj
- L7A/dlsXHT8Mk33/g8TzPH2X6NUNwAAAA
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681331092; l=896;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=L4L5+07v1olBlp7mF4ECTmmAxe+VWZ1bMvL1gyV6LrE=;
- b=ZudwdKueUh7hYGWe3+JACwuvs1+aDkWJ5nNHuHnOIzYa0KB8oCtC5bppg1L2TbfmI8A5spFCGP6I
- Gmo84BXZDiSIgJcocBx9bC1bXoauQEVsKHXVAM4Do6s1vWEXNsZT
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Iciv3G30UNRrqpwP"
+Content-Disposition: inline
+In-Reply-To: <20230412110900.69738-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Venus on Edo phones. The firmware is signed, as per usual.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+--Iciv3G30UNRrqpwP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index 2f22d348d45d..8d4352c8c543 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -672,3 +672,8 @@ &usb_1_qmpphy {
- 	vdda-phy-supply = <&vreg_l9a_1p2>;
- 	vdda-pll-supply = <&vreg_l18a_0p9>;
- };
-+
-+&venus {
-+	firmware-name = "qcom/sm8250/Sony/edo/venus.mbn";
-+	status = "okay";
-+};
+On Wed, Apr 12, 2023 at 12:08:58PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> I/O Coherence Port (IOCP) provides an AXI interface for connecting
+> external non-caching masters, such as DMA controllers. The accesses
+> from IOCP are coherent with D-Caches and L2 Cache.
+>=20
+> IOCP is a specification option and is disabled on the Renesas RZ/Five
+> SoC due to this reason IP blocks using DMA will fail.
+>=20
+> The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> block that allows dynamic adjustment of memory attributes in the runtime.
+> It contains a configurable amount of PMA entries implemented as CSR
+> registers to control the attributes of memory locations in interest.
+> Below are the memory attributes supported:
+> * Device, Non-bufferable
+> * Device, bufferable
+> * Memory, Non-cacheable, Non-bufferable
+> * Memory, Non-cacheable, Bufferable
+> * Memory, Write-back, No-allocate
+> * Memory, Write-back, Read-allocate
+> * Memory, Write-back, Write-allocate
+> * Memory, Write-back, Read and Write-allocate
+>=20
+> More info about PMA (section 10.3):
+> Link: http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Da=
+tasheet.pdf
+>=20
+> As a workaround for SoCs with IOCP disabled CMO needs to be handled by
+> software. Firstly OpenSBI configures the memory region as
+> "Memory, Non-cacheable, Bufferable" and passes this region as a global
+> shared dma pool as a DT node. With DMA_GLOBAL_POOL enabled all DMA
+> allocations happen from this region and synchronization callbacks are
+> implemented to synchronize when doing DMA transactions.
+>=20
+> Example PMA region passes as a DT node from OpenSBI:
+>     reserved-memory {
+>         #address-cells =3D <2>;
+>         #size-cells =3D <2>;
+>         ranges;
+>=20
+>         pma_resv0@58000000 {
+>             compatible =3D "shared-dma-pool";
+>             reg =3D <0x0 0x58000000 0x0 0x08000000>;
+>             no-map;
+>             linux,dma-default;
+>         };
+>     };
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v7 -> v8
+> * Dropped function pointer usage
+> * Now exporting the functions for clean/inval/flush
+> * Switched to using early_initcall instead of arch_initcall
+> * Dropped entry for "include/cache" from MAINTAINERS
+> * Dropped dependency of RISCV on AX45MP_L2_CACHE
+> * Returning error in case of cache line mismatch
 
----
-base-commit: 7d8214bba44c1aa6a75921a09a691945d26a8d43
-change-id: 20230412-edo_venus-0863aedd0cab
+> * Renamed clean/inval/flush functions
 
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+I kinda screwed you with that request given Hellwig's NAK on the
+function pointer based stuff. Ah well, I prefer matching the proposed
+naming of the dma core to what RVI chose for the instructions.
 
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+I suppose this will need a resubmission once Arnd's stuff gets applied,
+but I would like to see it have a run through the build bots etc.
+
+Cheers,
+Conor.
+
+--Iciv3G30UNRrqpwP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDcTvgAKCRB4tDGHoIJi
+0jm2AP0YgQJnFST7Z3utDHv2NJyppFGo3WLAjdFhiQwZ0kuywQEAiJ7v4SpH6NxH
+kzbHISM+zZS6r9HK80VLYHDzthtNOQI=
+=LAzK
+-----END PGP SIGNATURE-----
+
+--Iciv3G30UNRrqpwP--
