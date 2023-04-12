@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7097A6DF7AE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A57536DF7C7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:55:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbjDLNuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 09:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53132 "EHLO
+        id S229964AbjDLNz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 09:55:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbjDLNux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:50:53 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3303710FA;
-        Wed, 12 Apr 2023 06:50:52 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id e9so7660226oig.7;
-        Wed, 12 Apr 2023 06:50:52 -0700 (PDT)
+        with ESMTP id S229831AbjDLNz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:55:27 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995F8106;
+        Wed, 12 Apr 2023 06:55:23 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id ec6so1019231oib.8;
+        Wed, 12 Apr 2023 06:55:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681307451; x=1683899451;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jwAXpbEfRmXIDKyTi3ZF6YzD+QDSgDNiHTH3bIpWqzg=;
-        b=znOXd/GLXOUsQqvBSpanxhKC4McwisSJIy0hhS/fWOiHTmvgn1YPd6l+mU+96+4hLQ
-         97IqhSGHUyCUtm7F1HaOszxWRXNG6ubnji/3KW8vgqnqpGY8ussDHb4iuKonXt1Vp8uA
-         CxFV7eEU93uLzZmiuyg4HlthaoBGIIrxRRl5IcJbmvoqRn1L8+cHzOWcKoNoIG0l0Tie
-         22yY5Os1/94m7Camq3KwkYHTEO7MyPhX1gI0D0OeVGUWYEO5J7Xfl+PwJxCp6rfIMlLf
-         cAUn+hC+qKu/Oi3A7/ZWYMpRiVAp7HBcBP5nXkQnTj3NVm4MJKpExYTlsvGZUpkduow5
-         DPqQ==
-X-Gm-Message-State: AAQBX9e3Ef6sQFJcIXFGkOc5LiqSRuSbXmDfcta5SmmmtBwWdrOv7QoR
-        P4qsqcaoO+fuOCPHdpFNxg==
-X-Google-Smtp-Source: AKy350bxKmOEWrJ6ncOQp1r20edwr0Xo47a81S5dea4KzWyycCb1UJas3zTPVl2emUvfB/wxNwjLTQ==
-X-Received: by 2002:a05:6808:634a:b0:386:d629:81a1 with SMTP id eb10-20020a056808634a00b00386d62981a1mr3244814oib.35.1681307451399;
-        Wed, 12 Apr 2023 06:50:51 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1681307723; x=1683899723;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KqL7X4+EJrGtGtNS3rKAzHWSwh1aMiX2aKtEdeGVs4c=;
+        b=KKI7c4jOMG8mOq2CrwZj4SCusFUxLT2PQWzgHtyb7nLTyfA5hbYyHHH3+lGLNQlV+8
+         Yku0JEVCGkRT0TMDIhgOsHkvpaPHhCl8KHvadkvwSYMw0M6mj4/37OwMZwViEOJKnOkc
+         VkEDeLzdsY5A43n7usUV1XmghAnjBx7tnrAf8cqmqPhwK4w5v4MIBTmQ1TXp/c7peAHy
+         bQgJCgcJ7M3ho1GtCHkAgA/vb6CIHs3afTTI8bqANKyNgYAMlT9KgwBPCyBBG93mQYCh
+         xbbyXClfq5HsLidg4QaTZUtAGc6Va/sGmuLV8OH8hbh7rOHrf8dvesYt00yeZh6O6UhQ
+         ey5A==
+X-Gm-Message-State: AAQBX9deihivE4tjyljKNlZLLj6EtNX9p2GKSxzDWpWpUFl2+PwIymGf
+        onMipDIcTxdlz4HVgPk7hA==
+X-Google-Smtp-Source: AKy350bNThrMnjQw8e+apoSf+oXZXTPecnCRU/DA1smWGccLMV/ckiI5HGb704PFtg7OfRqAvZt5sA==
+X-Received: by 2002:a05:6808:2b0c:b0:386:a88f:780c with SMTP id fe12-20020a0568082b0c00b00386a88f780cmr7406065oib.4.1681307722845;
+        Wed, 12 Apr 2023 06:55:22 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o184-20020acabec1000000b0038998fa6c2bsm6749956oif.33.2023.04.12.06.50.50
+        by smtp.gmail.com with ESMTPSA id o184-20020acabec1000000b0038998fa6c2bsm6754530oif.33.2023.04.12.06.55.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 06:50:51 -0700 (PDT)
-Received: (nullmailer pid 2223659 invoked by uid 1000);
-        Wed, 12 Apr 2023 13:50:50 -0000
-Date:   Wed, 12 Apr 2023 08:50:50 -0500
+        Wed, 12 Apr 2023 06:55:22 -0700 (PDT)
+Received: (nullmailer pid 2230118 invoked by uid 1000);
+        Wed, 12 Apr 2023 13:55:21 -0000
+Date:   Wed, 12 Apr 2023 08:55:21 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Walker <danielwa@cisco.com>
-Cc:     - <xe-linux-external@cisco.com>,
-        Marcin Wierzbicki <mawierzb@cisco.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Daniel Walker <dwalker@fifo99.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: cisco: document the CrayAR
- compatibles
-Message-ID: <20230412135050.GA2219534-robh@kernel.org>
-References: <20230405223028.1268141-2-danielwa@cisco.com>
+To:     =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        James Tai =?utf-8?B?W+aItOW/l+WzsF0=?= <james.tai@realtek.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: realtek: Add Realtek Pym
+ Particles EVB
+Message-ID: <20230412135521.GA2228687-robh@kernel.org>
+References: <cc3c64023eb847ed86554971de2dbf39@realtek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230405223028.1268141-2-danielwa@cisco.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cc3c64023eb847ed86554971de2dbf39@realtek.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,13 +71,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 05, 2023 at 03:30:27PM -0700, Daniel Walker wrote:
-> Describe the compatible properties for the Cisco CrayAR SoC.
+On Thu, Apr 06, 2023 at 07:18:49AM +0000, CY_Huang[黃鉦晏] wrote:
+> Define a compatible string for Realtek RTD1319 Pym Particles eval board.
 > 
-> Cc: xe-linux-external@cisco.com
-> Cc: Marcin Wierzbicki <mawierzb@cisco.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Daniel Walker <dwalker@fifo99.com>
+> Signed-off-by: cy.huang <cy.huang@realtek.com>
 
-checkpatch.pl complains that the author and Sob emails don't match.
+checkpatch.pl complains that the author and Sob names don't match.
