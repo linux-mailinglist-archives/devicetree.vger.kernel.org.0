@@ -2,100 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D0A6DE8B2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 03:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C99016DE906
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 03:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbjDLBN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Apr 2023 21:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36598 "EHLO
+        id S229658AbjDLBi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Apr 2023 21:38:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjDLBN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 21:13:27 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B743A90
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 18:13:25 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-632384298b3so4828531b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 18:13:25 -0700 (PDT)
+        with ESMTP id S229655AbjDLBi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Apr 2023 21:38:28 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27867E6E
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 18:38:27 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id q15so6761641ljp.5
+        for <devicetree@vger.kernel.org>; Tue, 11 Apr 2023 18:38:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1681262005; x=1683854005;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=47JWytzW6tKcdWIVgQfUOvNuOZmwQBfMnKJsin47bkg=;
-        b=MA7Xut+0Mx6aNBeny0ChuyEDSPMfHi4bBteGpR0FVrMUlIeSDOoE2V1p/Przhl8kBn
-         8dOrZJtNGjmE3lIVZTbDkNsSl9LKyS31+761JHBkS1OnU8o4RGHS6Y9s8S9MfpSudTPX
-         yWBWlEznDjV/a9FKMC04LXhYMTqogkqtJ+VWhEE+84nxJZUfEV6I7c4Z80I+NRrA4Wj0
-         dhGVwqewj8eZk1xccDBRZJrlRZRmK/JOZB+rEHy9gthdSUsaTfs25QUrww6YZ8WHnJ4V
-         TA9Afs7LV3R05TRTruJM5dXM3JMg8fF0+ovVPPsCF2FdlPX5d+q5EmL+7rXbLR3+7q42
-         6IBQ==
+        d=chromium.org; s=google; t=1681263505; x=1683855505;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x4I7A7fTrqw2RjiH+FANl1pHUb1mo4v70F1ZP1YYmH0=;
+        b=eddehjaxa279W/YrUOmm1WgvC8vDX4Tc3sYAKlXKYyV36fw4dQ/qyq+r8+UTYIVkmA
+         9+nD3VH5DqzPAN3u0aJka1TzhZNJ0Mozj2KrChdbZxyRaHskhIAL2Yl4+XW3MpxGifyX
+         TewzYAl4ZckxEtP5KKFLTI/6fnR6+sgtt05Cw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681262005; x=1683854005;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=47JWytzW6tKcdWIVgQfUOvNuOZmwQBfMnKJsin47bkg=;
-        b=wnbD1igJFEwLu2kVUXxib25xPLTpfzJaz/xzMkOh/CPXn4pY83xgMH1Y6frUliZxl0
-         167e3+xswxrrOiWfsRYWKvcDPSwlAana1sWzeD/XWde27ZS/4g3eHxp8GMGyeJoWvIGn
-         bQMFWUQNMKQdymfrfcO6AIhmYDclvsbXIpoJfpKOCVs4aaBJvNJwo2MUxCmNZIgoq4pg
-         EiFmvjRG1zeBEDypTr+mfSDamS6OzuciStFfn5u5Kz4mVlV3y0iGNF9H7ZW2U7DOMZz1
-         vW9Do01+Dk68amzBCCF9uU0Rj3JPBS4dM0Zxlit5cpByAaa638eWuW3ZwMs/jNJ8+cl6
-         CL6w==
-X-Gm-Message-State: AAQBX9cLW05CAEl0VnBxysPih2oHYPryE2FrQGwUP75FXquK0cSn29O/
-        V9pKSxRg7Ltmakmy0dwqLCxKqv0TdnfULSf3sBE8GQ==
-X-Google-Smtp-Source: AKy350Z9WFanmSoSkJqt7MLlD83/KpDYo/Iu5TMx9ojeYnlRK6Z+dRcaNpYIucUkKTPdWYL5a0/oUQ==
-X-Received: by 2002:a05:6a00:26ee:b0:63a:4ef:ae31 with SMTP id p46-20020a056a0026ee00b0063a04efae31mr1189875pfw.3.1681262005255;
-        Tue, 11 Apr 2023 18:13:25 -0700 (PDT)
-Received: from [192.168.1.105] ([124.148.71.115])
-        by smtp.gmail.com with ESMTPSA id y20-20020aa78054000000b00593e4e6516csm10410332pfm.124.2023.04.11.18.13.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 18:13:24 -0700 (PDT)
-Message-ID: <f623ae8c-8821-9552-7fb7-06f6cc200200@tweaklogic.com>
-Date:   Wed, 12 Apr 2023 09:13:18 +0800
+        d=1e100.net; s=20210112; t=1681263505; x=1683855505;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x4I7A7fTrqw2RjiH+FANl1pHUb1mo4v70F1ZP1YYmH0=;
+        b=Qiq3FVp03deW5eISzQnInLYF1t6FSaDY/XlnseOcKPqkeYGixd6ZHUSK0fBdHTL79G
+         D7mvFbDWfxTWVdoTOoBoZU4b8kUfDi6U0SC78nfruP5xOcbRWY/WMfwvzgt/iO84CWT5
+         uoNaZ5Kx8jGRH+C+XaiPOp6knMAIKEHhvz76sC4VLZ/qKx97jkup92H7CbGGyy5ggora
+         iuCFnEFIsI55leCuAkJd1Y1GVEYjm3St+ThyygIc1oEtRyoqoAt3gbSLN5yex13OdE8A
+         8wa/XsJHrrPMWBL0Qv9GHGeVCZGqL12t8W+xQ+CiEiUrOaMQp+xvlVSwOvcQofngfsyT
+         sbrQ==
+X-Gm-Message-State: AAQBX9fKXQXZrxdjjA1mPWkiaDEmbsdE0PWo1qJnKYAhY9DmRf+46Th4
+        H7wWhTUL4SuXzWl8PMBj2+oyJm+gqKoddPENzAiJ/g==
+X-Google-Smtp-Source: AKy350ZrQD2Vb2BW3i4nlZswnqh11mfvwRG/pRKEBtPfKm06ImQY4Wy4cFsAYomIBa6rGCRvOo5AoNfsAyZRUXeax+8=
+X-Received: by 2002:a2e:8e96:0:b0:2a7:8402:c934 with SMTP id
+ z22-20020a2e8e96000000b002a78402c934mr1460102ljk.10.1681263505347; Tue, 11
+ Apr 2023 18:38:25 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 11 Apr 2023 18:38:24 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 1/2] dt-bindings: Document APDS9306 Light Sensor
- bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        devicetree@vger.kernel.org,
+In-Reply-To: <20230331091145.737305-5-treapking@chromium.org>
+References: <20230331091145.737305-1-treapking@chromium.org> <20230331091145.737305-5-treapking@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 11 Apr 2023 18:38:24 -0700
+Message-ID: <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
+Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
+ mode-switch support
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Benson Leung <bleung@chromium.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
- <20230411011203.5013-2-subhajit.ghosh@tweaklogic.com>
- <168121603157.2780605.18056732208268371049.robh@kernel.org>
-Content-Language: en-US
-From:   Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <168121603157.2780605.18056732208268371049.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-Thank you very much for reviewing the patch.
+Quoting Pin-yen Lin (2023-03-31 02:11:39)
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> index b42553ac505c..604c7391d74f 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> @@ -12,7 +12,8 @@ maintainers:
+>
+>  description: |
+>    The ANX7625 is an ultra-low power 4K Mobile HD Transmitter
+> -  designed for portable devices.
+> +  designed for portable devices. Product brief is available at
+> +  https://www.analogix.com/en/system/files/AA-002291-PB-6-ANX7625_ProductBrief.pdf
+>
+>  properties:
+>    compatible:
+> @@ -112,9 +113,40 @@ properties:
+>                data-lanes: true
+>
+>        port@1:
+> -        $ref: /schemas/graph.yaml#/properties/port
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>          description:
+> -          Video port for panel or connector.
+> +          Video port for panel or connector. Each endpoint connects to a video
+> +          output downstream, and the "data-lanes" property is used to describe
+> +          the pin connections. 0, 1, 2, 3 in "data-lanes" maps to SSRX1, SSTX1,
+> +          SSRX2, SSTX2, respectively.
+> +
+> +        patternProperties:
+> +          "^endpoint@[01]$":
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            properties:
+> +              reg: true
+> +
+> +              remote-endpoint: true
+> +
+> +              data-lanes:
+> +                oneOf:
+> +                  - items:
+> +                      - enum: [0, 1, 2, 3]
+> +
+> +                  - items:
+> +                      - const: 0
+> +                      - const: 1
+> +
+> +                  - items:
+> +                      - const: 2
+> +                      - const: 3
+> +
+> +              mode-switch:
 
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
-Thank you for the above steps, I did not perform them. It will
-be fixed in the next revision.
+Is it possible to not have this property? Can we have the driver for
+this anx device look at the remote-endpoint and if it sees that it is
+not a drm_bridge or panel on the other end, or a DP connector, that it
+should register a typec mode switch (or two depending on the number of
+endpoints in port@1)? Is there any case where that doesn't hold true?
 
-Regards,
-Subhajit Ghosh
+I see these possible scenarios:
+
+1. DPI to DP bridge steering DP to one of two usb-c-connectors
+
+In this case, endpoint@0 is connected to one usb-c-connector and
+endpoint@1 is connected to another usb-c-connector. The input endpoint
+is only connected to DPI. The USB endpoint is not present (although I
+don't see this described in the binding either, so we would need a
+port@2, entirely optional to describe USB3 input). The driver will
+register two mode switches.
+
+2. DPI to DP bridge with USB3 to one usb-c-connector
+
+In this case, endpoint@1 doesn't exist. The SSTX1/2 and SSRX1/2 pins are
+all connected to a usb-c-connector node. The input ports (0 and 2) are
+connected to both DPI and USB. The device acts as both a mode-switch and
+an orientation-switch. It registers both switches. I wonder if there is
+any benefit to describing SBU connections or CC connections? Maybe we
+don't register the orientation-switch if the SBU or CC connection isn't
+described?
+
+3. DPI to DP bridge connected to eDP panel
+
+In this case, endpoint@1 doesn't exist. The USB endpoint is not present
+(port@2). Depending on how the crosspoint should be configured, we'll
+need to use data-lanes in the port@1 endpoint to describe which SSTRX
+pair to use (1 or 2). Or we'll have to use the endpoint's reg property
+to describe which pair to drive DP on. Presumably the default
+configuration is SSRX2/SSTX2 providing 2 lanes of DP to an eDP panel.
+The endpoint@0 in port@1 will be connected to a drm_panel, and the
+driver will be able to detect this properly by checking for the
+existence of an aux-bus node or the return value of
+of_dp_aux_populate_bus().
+
+4. DPI to DP bridge connected to DP connector
+
+This is similar to the eDP panel scenario #3. In this case, endpoint@1
+doesn't exist. The USB endpoint is not present (port@2). Same story
+about port@1 and lane configuration, but we don't have an aux-bus node.
+In this case, the drivers/gpu/drm/bridge/display-connector.c driver will
+probe for the dp-connector node and add a drm_bridge. This anx driver
+will similarly add a drm_bridge, but it needs to look at the node
+connected on port@1:endpoint@0 with drm_of_get_bridge() and check if it
+is a drm_bridge (DP connector) or if it is some type-c thing (connector
+or orientation-switch).
+
+I think having this mode-switch property here lets us avoid calling
+drm_of_get_bridge() unconditionally in anx7625_parse_dt().
+drm_of_get_bridge() will always return -EPROBE_DEFER when this is the
+last drm_bridge in the chain and the other side of the endpoint is a
+type-c thing (scenarios #1 and #2). Maybe we should teach
+drm_of_get_bridge() that a drm_bridge might be connected to a type-c
+device and have it not return -EPROBE_DEFER in that case. Or make some
+new API like drm_of_get_bridge_typec() that checks if the typec
+framework knows about the endpoint in question (as either a typec switch
+or a connector) and returns a NULL bridge pointer. If we had that then I
+think this property is not necessary.
+
+Hopefully the usb-c-connector can always be registered with the typec
+framework? I'm worried that the driver that registers the
+usb-c-connector node may want to form a struct typec_port with
+typec_register_port() and that will get stuck in a similar -EPROBE_DEFER
+loop waiting for this mode-switch to appear. So having this property
+also avoids that problem by telling typec framework to wait until this
+driver can register a mode-switch.
+
+TL;DR: Is this mode-switch property a workaround for probe defer? Can we
+figure out where the mode switch is in software and not have the
+property in DT? If we can it would certainly improve things because
+forgetting to add the property can lead to broken behavior, and we don't
+do anything like this for chains of drm_bridge devices. We just describe
+the display chain and let the kernel figure out which bridge should
+handle hpd, edid reading, or mode detection, etc.
