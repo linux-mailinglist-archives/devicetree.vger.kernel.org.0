@@ -2,140 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 778836DFE89
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 21:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E316DFEE3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 21:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjDLTOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 15:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50438 "EHLO
+        id S229535AbjDLTqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 15:46:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjDLTOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 15:14:34 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA8505BB1;
-        Wed, 12 Apr 2023 12:14:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1681326839; i=j.neuschaefer@gmx.net;
-        bh=T3r05AvByQ78pgr1f+lKaqtb69c4CJPLVX+ymwewCz0=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=BMDmPowP9+uvcrSgaSX3EcRgQBsMoAV4dSlY2URUK6PSdUTENrBQ3WVLDpyKF+I7e
-         sD6cUSF3TqA3yddz9KCUrVUQXlx50ilGMnA2JLiHcPzjLUM6JRCzPXrvEU2JmWtkB1
-         oVoQALEjco2fA7BFx4SvPtC2PbH1r8O8Ya2oicg2mBZYWDN1pMG82+6Cq705JjJPm7
-         sKTGbLNlXQ3vEIRvWl5y2nnhv/M6vWKXAZmyjQ8R86tJGymBi/IWzaFrIysn2L0ce9
-         4ZJqapG0/788qtp8tTcRnVyhuikYCCyI0DvuDsPoS8oJnCniaStsHqY5Pj9KTpAIWu
-         henKw6Jdd+H3Q==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([185.66.193.41]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M4s4r-1pkklt3ghD-0022df; Wed, 12
- Apr 2023 21:13:59 +0200
-Date:   Wed, 12 Apr 2023 21:13:56 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v5 3/6] dt-bindings: clock: Add Nuvoton WPCM450
- clock/reset controller
-Message-ID: <ZDcC9JBidzfu94NW@probook>
-References: <20221104161850.2889894-1-j.neuschaefer@gmx.net>
- <20221104161850.2889894-4-j.neuschaefer@gmx.net>
- <20221209202120.0AFACC433D2@smtp.kernel.org>
+        with ESMTP id S229469AbjDLTqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 15:46:12 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C99185
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:46:10 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id h12so11186762lfj.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 12:46:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681328769; x=1683920769;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NMipdxD21+cTBwwjF9nIXWkP9aMovr2x6cJ12UzFBGQ=;
+        b=ZUWzkEEhsAjbaZQgTj0rlwn/drPBU86OEIgej+DIOuQztUP30oyfgFyTzyzb8pnETi
+         zE4HD2x7r78lOZujlDTv+Kw3pcJu2eNFrOllAx3REOoXwI6C102WK4BMhxNWvwTe3pS7
+         pVLj0f9I354PlAOaXWCud94ORPNYywjFSPowjkp49I+2NzK60/5mvCo536L78mcxRiEt
+         fZoyx/Q+m0ntizaAncNgvtEQnkaYJ6jdYohhwU0cRmWLzVanvjC8pPtZxazbMqrY2ndE
+         zwok8WOXwTvbhtEr5RABBBxok5f3teVV4eU2igkZOYKxjlG2Z6EQ8J5XpOwIPjyznfIP
+         nVmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681328769; x=1683920769;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NMipdxD21+cTBwwjF9nIXWkP9aMovr2x6cJ12UzFBGQ=;
+        b=izleIOqnHmMrDWLLJbdK80Exesc53uQvzhhLSTReoSFxvpdq+zDmWxlZ7lTKovrl2V
+         56zCSMazWwWSSP/Manxm0nkPeDmAr/YjefuH8hofcJf0j/FVhwKe2wIFfG7OjdkXGhwW
+         pfa1fGGfpc//6CmRo6qzTAlCW8ePqVNTOVHGyPheKVUAs5NLRkURseDPEHVdEWMvUJCZ
+         i3EaEaQ+k3GBfh4E89brIa432f0mMseGksbY5nxW1jIDULpM6Vlb5wbapkInehPoboU0
+         lA1hQ0Qt5EogFPa1zM5UqZrnf/UpcoupHACn4Vi1FnLI2SDOOb+fADxMfalu8T+9/Gdg
+         VqMg==
+X-Gm-Message-State: AAQBX9fz9laEQ+DkmebIQ9g+4VwHri8RxhAYUMaGcOj5Jav+ShpCAwjw
+        vn9x1NCHZyMFLYRfqrE1V+hI3Q==
+X-Google-Smtp-Source: AKy350b/GcDfUeo7sGLetepOSP0yU5RY//t78Kcc47q1fNwT7YY8CDV4bnc0kzUieVodM0Vf5Nky8Q==
+X-Received: by 2002:ac2:5985:0:b0:4ec:8853:136 with SMTP id w5-20020ac25985000000b004ec88530136mr14965lfn.12.1681328769085;
+        Wed, 12 Apr 2023 12:46:09 -0700 (PDT)
+Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
+        by smtp.gmail.com with ESMTPSA id x2-20020ac25dc2000000b004ec8de8ab3fsm1205865lfq.132.2023.04.12.12.46.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 12:46:08 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/5] Lenovo Tab P11 panel
+Date:   Wed, 12 Apr 2023 21:45:57 +0200
+Message-Id: <20230412-topic-lenovopanel-v1-0-00b25df46824@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NpfuWbq9gkMhlu2M"
-Content-Disposition: inline
-In-Reply-To: <20221209202120.0AFACC433D2@smtp.kernel.org>
-X-Provags-ID: V03:K1:jUhIJfNgdC6wpEPx0keI2q2HMSs6qQtOBLXprOGbFfn5tkVL2Le
- D4mUx7y9IdovWAByCWzmeqOc/Jda5pRaQeNLOBlbXCyJ6kfiuhlK136i0yzPEdWy+PmdHQA
- g/YcNZCdyosbqrpM8xaMk6vPRgapkJSGCNbZQpbn6mo1XziL7xFM2Q/LtrGcXz7LtLQJZqb
- i9OAiRhoyf+BgC8bGgFWQ==
-UI-OutboundReport: notjunk:1;M01:P0:aCI64BL1rgk=;TL2u7xYyP8bK5xqtVfvB7EBtY5T
- Gw7znmdjLs8JpkvMQFwfxDU8G8fLi47mDtkSmJzJtYQoSFOlRTgLOILJduh01l4p/hf5Ypi4P
- sxF5bGN4WfEhhaGfnuFIT2pcQJkaHqygv+MLvRXEeUT4yOx7NiZeUpOqNF9nKfoUGn4m8PB8u
- qWIzHFJyarkEcZGRgEY/gDbR93z8LW73zNWiXkJjDWdI62izJ/pm7ZxZEeaGl2uK7XH9BLH2Z
- fFFMcjQnVxgj2N8xfeuK8pbbp5++95p2HOPPHlnBnZuqql8e+XzkPljyFRtulxIrR6L7G5phy
- teL9XySDInzWUojCzPLV9TC3QyOKtCQ/yt5uXjFEcbo4U5zLCAW9ys6YYnfQ1EviXCc2GoOru
- S2cXsa7diI0rAGPyVhNVMqZUK3SozdU/XlM6MhN23EQA7OdoJmnrLhhGeUinwfVZJmBlHgT8b
- +TUQlKpPp7ZCZ0sBcKSDatfAF+fyKi5DweIw4IxSutCtmavrh3BE3s7y6eAW7IEmlJliJwOXW
- gwa5kSbNvP879KKFDngK8OpGoneGx0N40FmM4ICEuJcbIPcWg2UActy442702QD29EpZj5qAW
- 1UiVCrOVNBJrvFsdSdhVnNvUiu2jxy7ixO8Dv/O7OPcUBg0JOX70p1UNKdqxYaj6PjH9LDSjt
- V8ueMb/dmvvAWQlIJQBGL/02JdlmVI99vDvmg0BMNsdM+aHx2VCg9PVEEie0amBJdUNj/Xnol
- DIRdCLxnpcjIBfgxZA/MmQhuw/dhQuI6HuL68HCvY10EZ5o2RxUBsWWQBTMLypUVy2AilStJc
- vjgsgtuNSMQE7YwPjY+4R/m1cYln8xsO8Ztm/XSg/iFDoGeowZXZ0Ztx6Ng8LOgtut+3/0zIw
- tH+jWbCo3nO0udRfne7yiuwrAWHNnaksJzBFRmVXfEWabRJkRqpIj1tqOSaW9Qjf7X9BOIHdj
- I5jfaQ==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHUKN2QC/x2N0QqDMAwAf0XyvEBtJ8J+ZfgQa9RASUvrZCD++
+ 8Ie7+C4CxpX4Qav7oLKpzTJatA/Oog76cYoizF454N79h6PXCRiYs1nLqSc0C2B3DByiD6AdTM
+ 1xrmSxt1K/aRkslRe5fsfvaf7/gEEzIP1eAAAAA==
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681328765; l=935;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=kRg0hch6fi2xH37nEAUaLth9fudXwCTpRDD+mFHIEi4=;
+ b=p9fFAxQHlWtrzOnMlWnUTK2o6ettidJSrzZB3UJBevjLz0bQ1QgEQ11kV9n6iT8HMHj0t19sIr4b
+ u0wpt4HuBaMK56RyX0IUYlSq4PeKP3frYi2e/Z7cj3s0Z3bHwaD6
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Continuation of:
+https://lore.kernel.org/lkml/20230217-topic-lenovo-panel-v2-0-2e2c64729330@linaro.org/
 
---NpfuWbq9gkMhlu2M
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I rolled back the versioning, as this has been remade from scratch.
 
-Hi,
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (5):
+      dt-bindings: display: panel: nt36523: Allow 'port' instead of 'ports'
+      dt-bindings: display: panel: nt36523: Add Lenovo J606F panel
+      drm/panel: nt36523: Add DCS backlight support
+      drm/panel: nt36523: Get orientation from OF
+      drm/panel: nt36523: Add Lenovo J606F panel
 
-On Fri, Dec 09, 2022 at 12:21:17PM -0800, Stephen Boyd wrote:
-> Quoting Jonathan Neusch=C3=A4fer (2022-11-04 09:18:47)
-> > The Nuvoton WPCM450 SoC has a combined clock and reset controller.
-> > Add a devicetree binding for it, as well as definitions for the bit
-> > numbers used by it.
-> >=20
-> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
->=20
-> Applied to clk-next
-
-I don't see this patch in clk/linux.git's clk-next branch. Did it get
-lost somehow?
-
+ .../bindings/display/panel/novatek,nt36523.yaml    |  31 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36523.c      | 573 ++++++++++++++++++++-
+ 2 files changed, 594 insertions(+), 10 deletions(-)
+---
+base-commit: 7d8214bba44c1aa6a75921a09a691945d26a8d43
+change-id: 20230412-topic-lenovopanel-0d3a057e3c23
 
 Best regards,
-Jonathan
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
---NpfuWbq9gkMhlu2M
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmQ3AtAACgkQCDBEmo7z
-X9sIKRAAiN2ZmLRYACFaEh3bwfcujm/d3XGjZwlH08eGmyruyMebk/PfHKBWvAkT
-Fy4gl2t3YBljBGEK/T/TXymbEYALVNV2hIubLWjy35GCj+q/be0a1Ko3zIQTJY7P
-xG6ldUH6deZOCSeyVc5VB/z+fZY1x5rMB3ZJJCLxYj6SQPjcxBuLVdIfkQExTmp6
-uNf8Uxc7LMAZJ1IBfUoyTnfCgJZ5rNwSOhUQ9sDYwBKdi8lJHVR7ZQtGZPg3tKMx
-BK/PP04jvsV/1BlncBsp7WVemVjaMRdJRG71mMU+Rm5Gl5//ZyyBdx1bxouPXqMZ
-+hpDpvXXJ8CDGVprURGaM3U9zcR6P43RfldCwocHqNLnz4b3a11ONboiN18mujds
-bB5XTWXBC7LeN+q0WC7Pv6soVK0EnQzaze+ts8Bf0DoPpTFvphwTvLlEMLYwSFeP
-w2y7iH8nxWDQjxSpgrly1YdR6/ivLbnqzTWAgPEInJAT1jsVdDJM/ARza3T/WGaB
-0wVAJR8A2fJz3iAwR54/LQ5av90kGQMT+Vmslzmpfrye0EW0gIuOY2iiWidcUlcz
-q3kAwaN6iAILBRhko5ihBznj7fTGBBRd6//0aaP6Cr39c+N+e7dmq0cLSqgjRZjI
-lL64RXXcalaOanGUa1C7lVLR8lt4pmwnNWx1GUdJonrZwTvomLA=
-=diBx
------END PGP SIGNATURE-----
-
---NpfuWbq9gkMhlu2M--
