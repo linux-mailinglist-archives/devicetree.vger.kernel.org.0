@@ -2,127 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA92C6DF2A1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 13:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B5776DF2AE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 13:11:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjDLLJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 07:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
+        id S229663AbjDLLLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 07:11:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229917AbjDLLJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 07:09:42 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 946D81BD;
-        Wed, 12 Apr 2023 04:09:34 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id v27so1261560wra.13;
-        Wed, 12 Apr 2023 04:09:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681297773; x=1683889773;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xOfHS7Qab7COf5GtysXp/s/EeUshZZGs99cMnoHWLN8=;
-        b=KXkT36kIhH4+z8eGdY1Vra7SGQyCjqqO7jEbK/xNa8WLTRmZxCxMGGiGyMQ6gpA97u
-         efp5NuCBLFuiXo+jIebfDuwK63r3dAAC4uMXqh+SWA0HAbJHnNw4aq153+CJQ4kKYlmM
-         kBDD/zPnQOrNJIwgtYq8QXM6UhJmYDfyeFlF9HUjyhGzfik5nIrg+qDYXt5y3CRljPzV
-         8OwCk2AahtWm6gDqqoujS0q9WJ3SuyzZW7noF+gPzsi3GYaz6WANuq/6aBM4CoITESkD
-         GXy7Wmf+QkYZWxe5xEqv+ipQKVRSDMd7IR7QPzK6HLX8s9Jr9dT0Bt52El8DNtVLtOow
-         DWGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681297773; x=1683889773;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xOfHS7Qab7COf5GtysXp/s/EeUshZZGs99cMnoHWLN8=;
-        b=Nyj8+m/AD8UN50cu/cveEXKpQCnQzx1j7jK4S23EeXsBuhPf299lgYXyrM/hfJ/OA7
-         3lzHlfNBmpFLlY++2UKku8NF9jxqjMxETYdMq4Banbq6LLCGTLR0RylvqzxaPaZc6PtZ
-         D2xl7SUXXsqYOhHpcSaiG0K3zjXPVdoCFgmdXNk/U6zSTVdBhzPm+87HA8yIbQnwUSgT
-         sAkMK4wHsAtf7gssO5m00iLTctSOTAc2JS4/aFYo9QdaSuUaNL18828AGEV/RwglEzSf
-         PE4vrcN/q7cDjs3X6kKBpXmtP++q07tlw8bhZjKdi3/m0kP9hfG9H17s0RWjXTsewS1C
-         os3Q==
-X-Gm-Message-State: AAQBX9dRzet/FmSJ4R5eULvOIsyfolCttfg8sBzaohf77XOp5GNvN5u3
-        k++aNaK4dUMnJi6JMwRtyxU=
-X-Google-Smtp-Source: AKy350YtiZRV0yRO7dsna9ACipGa4QgFSL7APwLjXNb9K94TAKrkV3vUnAuEzMQUiL3+mG1FFgSc/Q==
-X-Received: by 2002:a5d:62d2:0:b0:2e2:730a:c7e0 with SMTP id o18-20020a5d62d2000000b002e2730ac7e0mr1857235wrv.3.1681297772582;
-        Wed, 12 Apr 2023 04:09:32 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:783d:9280:20c4:db22])
-        by smtp.gmail.com with ESMTPSA id l13-20020a5d668d000000b002e61e002943sm16863582wru.116.2023.04.12.04.09.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 04:09:32 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v8 7/7] soc: renesas: Kconfig: Select the required configs for RZ/Five SoC
-Date:   Wed, 12 Apr 2023 12:09:00 +0100
-Message-Id: <20230412110900.69738-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229562AbjDLLLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 07:11:43 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA127EC2;
+        Wed, 12 Apr 2023 04:11:14 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33CB9kHeA001894, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33CB9kHeA001894
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Wed, 12 Apr 2023 19:09:46 +0800
+Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Wed, 12 Apr 2023 19:10:07 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Wed, 12 Apr 2023 19:10:07 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::b4a2:2bcc:48d1:8b02]) by
+ RTEXMBS04.realtek.com.tw ([fe80::b4a2:2bcc:48d1:8b02%5]) with mapi id
+ 15.01.2375.007; Wed, 12 Apr 2023 19:10:07 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add 'snps,parkmode-disable-hs-quirk' quirk
+Thread-Topic: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add
+ 'snps,parkmode-disable-hs-quirk' quirk
+Thread-Index: AQHZbDd6gxCuA7crRky4J7/Z72smRa8m+xOAgACJj2A=
+Date:   Wed, 12 Apr 2023 11:10:07 +0000
+Message-ID: <f775fb3674d446feab7dbfeb04e3987a@realtek.com>
+References: <20230411053550.16360-1-stanley_chang@realtek.com>
+ <20230411053550.16360-2-stanley_chang@realtek.com>
+ <42476475-3de1-49e8-4cfe-a9b3d98df8be@kernel.org>
+In-Reply-To: <42476475-3de1-49e8-4cfe-a9b3d98df8be@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS01.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Explicitly select the required Cache management and Errata configs
-required for the RZ/Five SoC.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v7->v8
-* Included RB tag from Geert
-
-v6->v7
-* Included RB tag from Conor
-
-v5->v6
-* New patch
----
- drivers/soc/renesas/Kconfig | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index de31589ed054..67604f24973e 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -334,6 +334,10 @@ if RISCV
- config ARCH_R9A07G043
- 	bool "RISC-V Platform support for RZ/Five"
- 	select ARCH_RZG2L
-+	select AX45MP_L2_CACHE
-+	select DMA_GLOBAL_POOL
-+	select ERRATA_ANDES
-+	select ERRATA_ANDES_CMO
- 	help
- 	  This enables support for the Renesas RZ/Five SoC.
- 
--- 
-2.25.1
-
+PiBPbiAxMS8wNC8yMDIzIDA3OjM1LCBTdGFubGV5IENoYW5nIHdyb3RlOg0KPiA+IEFkZCBhIG5l
+dyAnc25wcyxwYXJrbW9kZS1kaXNhYmxlLWhzLXF1aXJrJyBEVCBxdWlyayB0byBkd2MzIGNvcmUg
+Zm9yDQo+ID4gZGlzYWJsZSB0aGUgaGlnaC1zcGVlZCBwYXJrbW9kZS4NCj4gPg0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IFN0YW5sZXkgQ2hhbmcgPHN0YW5sZXlfY2hhbmdAcmVhbHRlay5jb20+DQo+ID4g
+LS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2Ivc25wcyxkd2Mz
+LnlhbWwgfCA1ICsrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4g
+DQo+IE5BSywgc28gR3JlZyB3b24ndCBwaWNrIGl0IHVwIHRvbyBmYXN0LiA6KQ0KPiANCj4gUGxl
+YXNlIHVzZSBzY3JpcHRzL2dldF9tYWludGFpbmVycy5wbCB0byBnZXQgYSBsaXN0IG9mIG5lY2Vz
+c2FyeSBwZW9wbGUgYW5kIGxpc3RzDQo+IHRvIENDLiAgSXQgbWlnaHQgaGFwcGVuLCB0aGF0IGNv
+bW1hbmQgd2hlbiBydW4gb24gYW4gb2xkZXIga2VybmVsLCBnaXZlcw0KPiB5b3Ugb3V0ZGF0ZWQg
+ZW50cmllcy4gIFRoZXJlZm9yZSBwbGVhc2UgYmUgc3VyZSB5b3UgYmFzZSB5b3VyIHBhdGNoZXMg
+b24NCj4gcmVjZW50IExpbnV4IGtlcm5lbC4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6
+dG9mDQo+IA0KDQpDQyBtb3JlIG1haW50YWluZXJzIGJ5IHVzaW5nIHNjcmlwdHMvZ2V0X21haW50
+YWluZXJzLnBsDQoNClRoYW5rcywNClN0YW5sZXkNCg==
