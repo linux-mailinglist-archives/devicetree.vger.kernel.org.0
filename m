@@ -2,221 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B15D6E0006
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:41:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4ECB6E0011
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjDLUlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 16:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53128 "EHLO
+        id S229634AbjDLUoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 16:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjDLUlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:41:20 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B618855AB
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 13:41:17 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id q15so9661820ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 13:41:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681332076; x=1683924076;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qlLoupxyOcbuZO1f+pTlXDNuIDRKQGPW1F/qouBF8z8=;
-        b=ewmAYjyP9GCb8dcY0pY/L7s2ETYui0zcjujMCJVK5EmP2/B20ECQ+YB/XLQ/ttRmCk
-         gfZwZb0Lht1LEx2+n3eGt3vOod8swCR0sGPHCYlQ3X3hAirjveH5ZvysrKO2XQS9n8qG
-         +VXZWLzo+3mA7ftCaVOW5w5BF51/ZZ05pAqFRpJIFuHsRL1OfYrRodpH6vHNEN/1/YNo
-         pAofdCzPJaOn4SxLopFffXMAGwQ6km9/YCz4sge9tUtHtfmyjH0FLDQ7u4m5sTA9WXWr
-         wZClh3kEbQ3iH8ODuagOK2MMjpey1sIAUGddkOT/s9HURIfxACkOG703suU2pfQZop2n
-         g2EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681332076; x=1683924076;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qlLoupxyOcbuZO1f+pTlXDNuIDRKQGPW1F/qouBF8z8=;
-        b=Jjk09HRXxu1eH/aczogVSI+6IA9JG7dl36+r7ExhoTcB1fKXvHy80aCdvlsZvJ2II/
-         vJvpSz0vDburjKk47iEhYkOaIwomwHOU4pv2KlaLkV9V5EkF3V5F9lZ41aLVd+c7Lj2w
-         X7O+QCmZM8xsENMYphNyj/Z4qjdlVKOEoXIJrvcIW+YKCiTWR7ReSdeHl2LinI7DN0ig
-         6Vge9iEj5rYBYHl3mi3PfsOCGdWYXv8z4NZyEu1qzbUxpAPUiBS6mwbnvtgZA7Kt0G9z
-         HfRsVlAi7Tcb51hIXNKJD/6ciQVEdwx8Myoomheso9PEDHqy29P68t8lJbTpHu1Nu0TL
-         GGKg==
-X-Gm-Message-State: AAQBX9d+BRnVkruE3a6hqWySqHqRfuP3tnSHXnwPFXAlWHKjoqLmwY4t
-        lBAEk9POqW/wW5FVMNt/7AZE8w==
-X-Google-Smtp-Source: AKy350b6lNRcBYDdrNH+7OvXajk7bbZMKS+WlFCqcfJS/3UIVNaizilzXlj35ezuCgvq8fHqTYplmw==
-X-Received: by 2002:a2e:9602:0:b0:2a6:1e50:ba42 with SMTP id v2-20020a2e9602000000b002a61e50ba42mr5612018ljh.48.1681332075959;
-        Wed, 12 Apr 2023 13:41:15 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id x28-20020a05651c105c00b0029ab1f2b196sm3417678ljm.24.2023.04.12.13.41.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 13:41:15 -0700 (PDT)
-Message-ID: <6aba6924-18c4-fb2d-68ce-65fae07018ab@linaro.org>
-Date:   Wed, 12 Apr 2023 22:41:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v5 3/4] clk: qcom: cbf-msm8996: scale CBF clock according
- to the CPUfreq
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S229520AbjDLUoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:44:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5987E4EC5;
+        Wed, 12 Apr 2023 13:44:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E89AD622CC;
+        Wed, 12 Apr 2023 20:44:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06C8BC433EF;
+        Wed, 12 Apr 2023 20:44:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681332247;
+        bh=aoAHy7DEiYr/xln2kAunwsb8zReQcW/Oo/qN/Fl7/8k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VDKWuY8vNj6YxhcCZ+ic86Utd60bh/CErc5li9e+X7YBlPXuQHxBoOIAX9RBDBL6u
+         qSJoAisF4GNfADV3HeQznFPynj3k8PoLmxZb4mvepSgi52FtL6x0yFYiOBNfVQlRwE
+         5awcIAvR64OUZP2q6prjoJZvh+BOg/YFkeuPqJMMlewGLEHf6nwKjUwFNuFhJxWM14
+         o+XlU7sxPeRxGpuAKmxX/IycKhfxqmfNficR3WZpSR6+1sop50DL/gyoidBjwMxpEP
+         oQngrjxAkCUV46Hx5oiWm7EK8FvKl1gakHTBxpIh/wC3ydVliozftnvDfBoqu44HkM
+         DtVzz6YWRI19Q==
+Date:   Wed, 12 Apr 2023 21:44:03 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230410200014.432418-1-dmitry.baryshkov@linaro.org>
- <20230410200014.432418-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230410200014.432418-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Subject: Re: [RFC PATCH 0/2] Support for Avago APDS9306 Ambient Light Sensor
+Message-ID: <20230412214403.5c053ed6@jic23-huawei>
+In-Reply-To: <eefdbad5-35ed-04c6-0955-87c99a4d345d@tweaklogic.com>
+References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
+        <20230411144031.000077c7@Huawei.com>
+        <eefdbad5-35ed-04c6-0955-87c99a4d345d@tweaklogic.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 12 Apr 2023 12:46:49 +0800
+Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
 
-
-On 10.04.2023 22:00, Dmitry Baryshkov wrote:
-> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
-> according to CPU frequencies.
+> Hi Jonathan,
+> Thank you for getting back.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/clk/qcom/Kconfig        |  1 +
->  drivers/clk/qcom/clk-cbf-8996.c | 59 ++++++++++++++++++++++++++++++++-
->  2 files changed, 59 insertions(+), 1 deletion(-)
+> > Hi Subhajit,
+> > 
+> > No need to sign off a cover letter.  The content isn't captured in the
+> > git tree anyway.
+> > 
+> > For an RFC, I'd expect to see a clear statement in the cover letter of
+> > why it is an RFC rather than a formal patch submission.  What specifically
+> > are you looking for comments on?
+> > 
+> > Point us in the right direction and we might answer the questions quicker.
+> > 
+> > Thanks,
+> > 
+> > Jonathan  
+> Thank you for clearing it up.
+> Next version of RFC I will put specific reasons.
+> Before submitting a formal patch I wanted to check if my implementation of
+> single reads of ALS data raw values from userspace when interrupts are
+> enabled is the right thing to do or not. Also wanted to check if my event
+> related userspace ABI implementation is in line with IIO subsystem.
+> I will put it into better words in the next cover letter.
 > 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 449bc8314d21..475f4997d79f 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -48,6 +48,7 @@ config QCOM_CLK_APCS_MSM8916
->  config QCOM_CLK_APCC_MSM8996
->  	tristate "MSM8996 CPU Clock Controller"
->  	select QCOM_KRYO_L2_ACCESSORS
-> +	select INTERCONNECT_CLK if INTERCONNECT
->  	depends on ARM64
->  	help
->  	  Support for the CPU clock controller on msm8996 devices.
-> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8996.c
-> index cfd567636f4e..1bb2cd956d68 100644
-> --- a/drivers/clk/qcom/clk-cbf-8996.c
-> +++ b/drivers/clk/qcom/clk-cbf-8996.c
-> @@ -5,11 +5,15 @@
->  #include <linux/bitfield.h>
->  #include <linux/clk.h>
->  #include <linux/clk-provider.h>
-> +#include <linux/interconnect-clk.h>
-> +#include <linux/interconnect-provider.h>
->  #include <linux/of.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  
-> +#include <dt-bindings/interconnect/qcom,msm8996-cbf.h>
-> +
->  #include "clk-alpha-pll.h"
->  #include "clk-regmap.h"
->  
-> @@ -223,6 +227,48 @@ static const struct regmap_config cbf_msm8996_regmap_config = {
->  	.val_format_endian	= REGMAP_ENDIAN_LITTLE,
->  };
->  
-> +#ifdef CONFIG_INTERCONNECT
-> +
-> +/* Random ID that doesn't clash with main qnoc and OSM */
-> +#define CBF_MASTER_NODE 2000
-Man, this clearly should have been equal 8996 :P
+> Can you also help me out with the git tree I should use to format the
+> patches? As per my understanding it is the subsystem maintainer tree
+> and the main branch but the macros and functions which you have suggested
+> in other reviews are available in Linux mainline.
 
-> +
-> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev, struct clk_hw *cbf_hw)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct clk *clk = devm_clk_hw_get_clk(dev, cbf_hw, "cbf");
-> +	const struct icc_clk_data data[] = {
-> +		{ .clk = clk, .name = "cbf", },
-> +	};
-> +	struct icc_provider *provider;
-> +
-> +	provider = icc_clk_register(dev, CBF_MASTER_NODE, ARRAY_SIZE(data), data);
-> +	if (IS_ERR(provider))
-> +		return PTR_ERR(provider);
-> +
-> +	platform_set_drvdata(pdev, provider);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_msm8996_cbf_icc_remove(struct platform_device *pdev)
-> +{
-> +	struct icc_provider *provider = platform_get_drvdata(pdev);
-> +
-> +	icc_clk_unregister(provider);
-> +
-> +	return 0;
-> +}
-> +#else
-> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev,  struct clk_hw *cbf_hw)
-> +{
-> +	dev_warn(&pdev->dev, "interconnects support is disabled, CBF clock is fixed\n");
-s/interconnects/interconnect
+For a new driver it rarely matters and I'd advise simply using
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+which is the mainline tree.  Please base either on the previous
+release (currently 6.2) or rc1 of the current release (v6.3-rc1)
+if doing this.
 
-or
+If you need a feature that has only been applied in the same cycle, or
+are building on recent work that has been applied to the iio tree then
+for fixes you want:
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git fixes-togreg
+for new stuff you want:
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
 
-s/interconnects support/CONFIG_INTERCONNECT
+The IIO tree routes through Greg KH's char-misc tree so will see the togreg
+branch move forwards to be based on that as Greg takes pull requests from me.
+Usually this happens once or twice a kernel cycle.  Don't worry too much about
+this. If it should affect a patch because some changes crossed I'll generally
+fix it up whilst applying whichever gets applied second and ask the
+authors to check I didn't make a mistake.
 
-> +
-> +	return 0;
-> +}
-> +#define qcom_msm8996_cbf_icc_remove(pdev) (0)
-> +#define qcom_msm8996_cbf_icc_sync_state(dev) (0)
-> +#endif
-> +
->  static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
->  {
->  	void __iomem *base;
-> @@ -281,7 +327,16 @@ static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
-> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return qcom_msm8996_cbf_icc_register(pdev, &cbf_mux.clkr.hw);
-> +}
-> +
-> +static int qcom_msm8996_cbf_remove(struct platform_device *pdev)
-> +{
-> +	return qcom_msm8996_cbf_icc_remove(pdev);
->  }
->  
->  static const struct of_device_id qcom_msm8996_cbf_match_table[] = {
-> @@ -292,9 +347,11 @@ MODULE_DEVICE_TABLE(of, qcom_msm8996_cbf_match_table);
->  
->  static struct platform_driver qcom_msm8996_cbf_driver = {
->  	.probe = qcom_msm8996_cbf_probe,
-> +	.remove = qcom_msm8996_cbf_remove,
-.remove_new?
+Joanthan
+> 
+> Regards,
+> Subhajit Ghosh
+> 
 
-With that:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  	.driver = {
->  		.name = "qcom-msm8996-cbf",
->  		.of_match_table = qcom_msm8996_cbf_match_table,
-> +		.sync_state = icc_sync_state,
->  	},
->  };
->  
