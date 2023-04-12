@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B13A06DF937
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB6D36DF94A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 17:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbjDLPAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 11:00:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59124 "EHLO
+        id S230502AbjDLPED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 11:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229927AbjDLPAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:00:36 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3515E6A;
-        Wed, 12 Apr 2023 08:00:28 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id v9-20020a05683024a900b006a42896c456so598219ots.8;
-        Wed, 12 Apr 2023 08:00:28 -0700 (PDT)
+        with ESMTP id S230423AbjDLPEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 11:04:00 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601486A6D;
+        Wed, 12 Apr 2023 08:03:52 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id l13-20020a0568302b0d00b006a416ec44ccso1542741otv.2;
+        Wed, 12 Apr 2023 08:03:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681311628; x=1683903628;
+        d=1e100.net; s=20210112; t=1681311831; x=1683903831;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EBMZhaY83xymj5F7/BlB7Ny2DX8/Qy/kIs0QCA62b9Q=;
-        b=gZu3a73tSctB3gIXYZCDqOWWSjlQHMtuaCdN1WIl2lv74zRBOMzxnmfKGSJsacTiPZ
-         E2jhRJAEJ3BH/m0C8Nmrv0SyLCWVHgRvPiEqeGUssFcwP9Q+G2AfmRHcMYHArLHBgNGd
-         BU0PvI0FPmYAGGgenqOj6KT3UpxE84EeiLLJLIKfOyqhmra0LK07xFgIsQOe+A+GIN/Q
-         7guQPIOiaz1QvRBj7XlnXzdZVYcb60gQ12AKhAD1nWjlQ3RyYe3hXtxDqdmbSTXQ9ybx
-         FbyAiBjvY5I5F2n/TR1gX+Agh7yRMncsugMthwKO20XT4J+vcJu2JiyjkoiqfNCwswOv
-         bP6g==
-X-Gm-Message-State: AAQBX9fcMUtT+h0SGhK5d5r/zfwYHJdmB1Lh8GaOKJnvST7fkVxMfRdF
-        p7EUJllh4WJKQS2925ToiQ==
-X-Google-Smtp-Source: AKy350ahlmVSiwp7FG1xKGZNzu7vJjWneYgychGJ+F3aGGp0Y7040kEhN0CWo57q96lllDT4cSrbbw==
-X-Received: by 2002:a9d:6ad9:0:b0:69c:dd41:563b with SMTP id m25-20020a9d6ad9000000b0069cdd41563bmr1397566otq.15.1681311628006;
-        Wed, 12 Apr 2023 08:00:28 -0700 (PDT)
+        bh=9Sli1ujJHYCJfuFT3afLYp4TXGvKZ5csEjqsQF+EWkM=;
+        b=esc8pROxOKqvOjYWsCs691+DTVfJCyF5znlpu5aafaq3N0hw3WWXmOazCizYywCGzK
+         3rPYsRNI28k03AOSBfxPhWdoo7RqMeUX8vrFPamVk9EvdaI0qGBN+pGD/qVStO3ev/Zo
+         q02bqMbYsR4DAPrZ0MXEI7/qlmVFBJ5RZfA85AA8pkwFZf2aysyVANq3JF0AtWhCbVLK
+         a7P6DQ+KTGbrVSqvxm3H6icdWQvwe3clI39Pn48T6GQGWNcvRgAYLwdrHCBesJOgF6PS
+         9m1kpriOvnHheGQl6wKSzH3Nzm6FyzvfTarQmphth7dq/GSo2URPe4sVGbU3t8iR/lbG
+         nVgA==
+X-Gm-Message-State: AAQBX9eI6k4JOG1oyq43HR0ViADGuIIg+pQ7gWnYx4NclUIsRqdhXPtI
+        kKZ9Pz+I+8L+MNdEidLDG+IAUJfvVw==
+X-Google-Smtp-Source: AKy350Zwe/o1P0qbgECgXkd6AaWJzSa0pHXPD83+bo8PJc2hRV6u+FN474DAvwV32gL3QcZhJuBjKA==
+X-Received: by 2002:a05:6830:195:b0:6a4:2d62:d3c9 with SMTP id q21-20020a056830019500b006a42d62d3c9mr37626ota.10.1681311831372;
+        Wed, 12 Apr 2023 08:03:51 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v21-20020a9d5a15000000b00684152e9ff2sm6605779oth.0.2023.04.12.08.00.27
+        by smtp.gmail.com with ESMTPSA id l9-20020a9d7349000000b006a2ddc13c46sm6441097otk.78.2023.04.12.08.03.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 08:00:27 -0700 (PDT)
-Received: (nullmailer pid 2361155 invoked by uid 1000);
-        Wed, 12 Apr 2023 15:00:26 -0000
-Date:   Wed, 12 Apr 2023 10:00:26 -0500
+        Wed, 12 Apr 2023 08:03:50 -0700 (PDT)
+Received: (nullmailer pid 2369790 invoked by uid 1000);
+        Wed, 12 Apr 2023 15:03:50 -0000
+Date:   Wed, 12 Apr 2023 10:03:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: ina2xx: add supply property
-Message-ID: <168131162651.2361092.17375907489297100764.robh@kernel.org>
-References: <20230407160508.20479-1-clamor95@gmail.com>
- <20230407160508.20479-2-clamor95@gmail.com>
+To:     Patrick Delaunay <patrick.delaunay@foss.st.com>
+Cc:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH] dt-bindings: mfd: stm32: Fix STM32F4 DT include file
+Message-ID: <20230412150350.GA2361252-robh@kernel.org>
+References: <20230407201235.1.I483a676579cc7e3ac07e1db649091553743fecc8@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230407160508.20479-2-clamor95@gmail.com>
+In-Reply-To: <20230407201235.1.I483a676579cc7e3ac07e1db649091553743fecc8@changeid>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -65,15 +67,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Apr 07, 2023 at 08:12:43PM +0200, Patrick Delaunay wrote:
+> Minor cosmetic change, aligned with file in U-Boot:
+> - remove extra space
 
-On Fri, 07 Apr 2023 19:05:07 +0300, Svyatoslav Ryhel wrote:
-> Add vs-supply property.
+extra blank line really.
+
+Please make the subject reflect what the change is. This doesn't really 
+'Fix' anything and it's so generic it could be any change. Just 'Remove 
+double blank line' would be much better and defines the exact change.
+
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 > ---
->  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
 > 
-
-Acked-by: Rob Herring <robh@kernel.org>
-
+>  include/dt-bindings/mfd/stm32f4-rcc.h | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/mfd/stm32f4-rcc.h b/include/dt-bindings/mfd/stm32f4-rcc.h
+> index 309e8c79f27b..36448a5619a1 100644
+> --- a/include/dt-bindings/mfd/stm32f4-rcc.h
+> +++ b/include/dt-bindings/mfd/stm32f4-rcc.h
+> @@ -34,7 +34,6 @@
+>  #define STM32F4_AHB1_RESET(bit) (STM32F4_RCC_AHB1_##bit + (0x10 * 8))
+>  #define STM32F4_AHB1_CLOCK(bit) (STM32F4_RCC_AHB1_##bit)
+>  
+> -
+>  /* AHB2 */
+>  #define STM32F4_RCC_AHB2_DCMI	0
+>  #define STM32F4_RCC_AHB2_CRYP	4
+> -- 
+> 2.25.1
+> 
