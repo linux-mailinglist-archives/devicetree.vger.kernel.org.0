@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC97B6DFFE5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB816DFFF0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbjDLUcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 16:32:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
+        id S230235AbjDLUeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 16:34:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbjDLUcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:32:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441C840C5;
-        Wed, 12 Apr 2023 13:32:40 -0700 (PDT)
+        with ESMTP id S230231AbjDLUeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:34:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A619546B7;
+        Wed, 12 Apr 2023 13:34:23 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5EDA36392C;
-        Wed, 12 Apr 2023 20:32:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21D97C433EF;
-        Wed, 12 Apr 2023 20:32:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EC5663072;
+        Wed, 12 Apr 2023 20:34:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A303C433D2;
+        Wed, 12 Apr 2023 20:34:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681331556;
-        bh=4f85G7qmQu0cjMFlLuwC+FY9Rzyah8PJLhITq+Oo0N8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h3T/1oUQsj4w/eU8173BXiV87rg7FOx+fMhXSd8zFkm53FoXzQz+c16PDffD4AHQO
-         mBDD995fCyBC/pFN0SKeSWuBjgsNg2/7BjS4ytqnS5Sh/vHjnGruOvIqBjnDTYYpoW
-         oBVixmrfZIOiAQ4b1CYEE/LKgydw1LUd18DZSl/9K3r1IXjztt+Km4+RNigSastq2t
-         5LMt53hqf29xBguA578w2mLkBlk76/roIM/CtGJ4lUv7NJq6TmIJbzI3UMGq+iKeie
-         O1kogLAgoJDQXd6fHPrCbyID0ESdxD9O+Mca7swAeTw+keHsBb9v4dHb5fmorGCxV6
-         BrPKqwPdn7UGQ==
-Date:   Wed, 12 Apr 2023 21:32:30 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v8 0/7] Add non-coherent DMA support for AX45MP
-Message-ID: <20230412-populate-busybody-4c6d7cfc4667@spud>
-References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        s=k20201202; t=1681331662;
+        bh=Q76Of0pAllESEGyCSS4s6jcXwtDMwOcUfZRJ4hvZ/Do=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=i4VfUNhGY6jKbPCIDleGIDNQdHk0VxtsssFv94x2/xevrGWuAq3VmWrXZMlPAp5Vu
+         ODpeAQwJBGVR8vNszEf40IqhFrgCJtxFF+drVFUZj3J4P9n5d/LKI2grKbRaVNF6/I
+         D/dFEyL9u/DUcapT6OYhuaDH4EHiPLcwmIEMsmXQYCNTLjoj95w1c7ifLG1JNCrE91
+         4cMI5CTwVZIq1bDjxqktyQYqMZcDumnnv9319Nq7CXE9YELcPcg+2Rs6UWH9ZcadyA
+         uBKS91uwX9K4Yq4vIc7mBSuFYIB2S15jFllJmT8UB7UD3DnvN+Tv8847jlyFT6vZA2
+         uYF1B9+t1ENwA==
+Message-ID: <ed34eacdb1d35be8b9b2c44944f828e7.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wokudRuMrcrR61tg"
-Content-Disposition: inline
-In-Reply-To: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZDcC9JBidzfu94NW@probook>
+References: <20221104161850.2889894-1-j.neuschaefer@gmx.net> <20221104161850.2889894-4-j.neuschaefer@gmx.net> <20221209202120.0AFACC433D2@smtp.kernel.org> <ZDcC9JBidzfu94NW@probook>
+Subject: Re: [PATCH v5 3/6] dt-bindings: clock: Add Nuvoton WPCM450 clock/reset controller
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To:     Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Date:   Wed, 12 Apr 2023 13:34:20 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,33 +71,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Jonathan Neusch=C3=A4fer (2023-04-12 12:13:56)
+> Hi,
+>=20
+> On Fri, Dec 09, 2022 at 12:21:17PM -0800, Stephen Boyd wrote:
+> > Quoting Jonathan Neusch=C3=A4fer (2022-11-04 09:18:47)
+> > > The Nuvoton WPCM450 SoC has a combined clock and reset controller.
+> > > Add a devicetree binding for it, as well as definitions for the bit
+> > > numbers used by it.
+> > >=20
+> > > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > ---
+> >=20
+> > Applied to clk-next
+>=20
+> I don't see this patch in clk/linux.git's clk-next branch. Did it get
+> lost somehow?
+>=20
 
---wokudRuMrcrR61tg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Apr 12, 2023 at 12:08:53PM +0100, Prabhakar wrote:
-
-> Note,
-> - This series requires testing on Cores with zicbom and T-Head SoCs
-
-As I said last time, I dunno what actual Zicbom stuff exists, other than
-perhaps the Ventana lads having something. I did some tyre kicking on my
-D1 and it was fine, although nothing has actually changed materially for
-either of them with this series in v8..
-
-Cheers,
-Conor.
-
---wokudRuMrcrR61tg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDcVXgAKCRB4tDGHoIJi
-0hcDAQDyjF067mLfUHvBJlvlHcRbETM+ZVvN06gg2JGFRQC2CQD+J6L/segmEeV0
-Gsgp3NcVV5niFc7YF5NTmNv/R4lEqAw=
-=4ZCG
------END PGP SIGNATURE-----
-
---wokudRuMrcrR61tg--
+Must have gotten lost. I don't see it in my branch history locally.
+Resend?
