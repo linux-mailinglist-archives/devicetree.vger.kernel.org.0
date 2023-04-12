@@ -2,161 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A296DFFB9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B45886DFFC0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjDLUZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 16:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40126 "EHLO
+        id S229901AbjDLU0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 16:26:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjDLUZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:25:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5B7127;
-        Wed, 12 Apr 2023 13:25:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0AB0D6253E;
-        Wed, 12 Apr 2023 20:25:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE0ECC433EF;
-        Wed, 12 Apr 2023 20:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681331141;
-        bh=MYt26nkMk28C8Dep5RjxXwR1W/oFQn7l+oHGVIFlZrs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fIXflFpsGkpR0OsTqPXnYJ3jEyzp4CyaUC0F17h/h2qpKogGafmajc3Efp9cCxjc7
-         r9kCtDkUJRJ0QyYdQtowC8oBOHy/NAE0w0qHoIEhtg4G9AQ6sqrlkkawCR9KxaHDVI
-         t8e98AOwR8ghHEKpS+a8FdJiLvvY97MlN+EjgPMPJyMuGdxY60PDQy1/N0xPtmrS7d
-         SymnKgWYhW2yFVhGpzh1IxMSSFlBck5WEnY7Nm34Bqn4Ny/Nz7zEp+tGSSIZp46C09
-         iUwQru+J9GFXbBvzjXPS26HXpS7ZckldhtTeg9Epu1BZN0vjlC4yAL1MEgN0W2vwPx
-         pT1VYON/dk/Eg==
-Date:   Wed, 12 Apr 2023 21:25:34 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v8 5/7] cache: Add L2 cache management for Andes AX45MP
- RISC-V core
-Message-ID: <20230412-cheddar-prune-5ce03ccf5581@spud>
-References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230412110900.69738-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229932AbjDLU0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:26:31 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE0A276BF
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 13:26:29 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id z26so12747856ljq.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 13:26:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681331188; x=1683923188;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8H9YKn/XNUDyg0V0IfHKOXTMiAPmo1dRrKHaJchsJUE=;
+        b=fsnNaJ3fMWvfqjnUgm9M5H+0D2TmDp4cyBYvzYOssEXvtbpAqLnOFds9jKCDvlhXAj
+         yimJGk7G9oSRZW5qj5ULdaoI5lT2Vl4CbUMuM6U0MjxfixGU7Z7WzDAA71R5mhRAv+07
+         P9TwXtH7Jz42ZeNPp3ZGtS85NR8lYNle7fUFx2LSA25aLyaXFjSi2tgg9REITXjWH0FD
+         KrhFFZandn+X/4pyYr36x2Du9HaTxfg/wlR/gxdjvFzZVQ1e5kFDQ5UnpZcB9H3WZXO4
+         9mnv4i3puJnsyrGzzu3i892UX+JYhhJVNx0SbyZfKhViPxWxYUxF/NHfzSeJI5W8FqhK
+         vT5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681331188; x=1683923188;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8H9YKn/XNUDyg0V0IfHKOXTMiAPmo1dRrKHaJchsJUE=;
+        b=ao3hx9JV76M5WDScKMnoE7YG/kVkHQfCUbJvl4opIRZdXcEXGo55Zf3K0o4XK/rD2i
+         ckgdkuysCMkNYnWgUdSIkC3h+NHKwD8ltPa4pmoijdAnh6SS/YAJ/C5yYgKDARPrzABM
+         TJeX0tVC+bqU3KJBoT14HAUMc9gKEGmuO1jcKtkPUtlxLXixfufqQprSczK3BW3ZKAaS
+         oTP2xkPD6VdChRhqNXCi4u6JsDfytgvgttYyXgwv07ufHhnfKt8+nVEldRKVTWGwuGHX
+         4n38c/8k4JCx8vdkJIWha2c+xY0g5YCXAclodxHkCppAcRxqyIbQTRjhJlaOjADqQ2jf
+         AuvA==
+X-Gm-Message-State: AAQBX9dYdwi1nSFEtBt7xO8apzhh2sG2Oud+YNsr83X5m78LmJMpHa9w
+        G47dVIBy3z6EaXoM16QEMusqSw==
+X-Google-Smtp-Source: AKy350aXEj5ixExfpIhCosCnRuDfPdFOXLUsw5Zw5migaoZNzQBU88qmsg7DFqP2/hBysnxxJCHFog==
+X-Received: by 2002:a05:651c:115:b0:2a7:a5a4:b878 with SMTP id a21-20020a05651c011500b002a7a5a4b878mr402560ljb.50.1681331187958;
+        Wed, 12 Apr 2023 13:26:27 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id r1-20020a2eb601000000b0029c36ebf89asm3411557ljn.112.2023.04.12.13.26.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 13:26:27 -0700 (PDT)
+Message-ID: <497d7ea1-6824-314b-7165-d72e0ce55027@linaro.org>
+Date:   Wed, 12 Apr 2023 23:26:26 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Iciv3G30UNRrqpwP"
-Content-Disposition: inline
-In-Reply-To: <20230412110900.69738-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: sm8150: turn first USB PHY into
+ USB+DP PHY
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        neil.armstrong@linaro.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org
+References: <20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
+ <20230324215550.1966809-4-dmitry.baryshkov@linaro.org>
+ <70957e67-e570-3800-e679-d7c291295999@linaro.org>
+ <cfa6af3e-c7bc-894a-119c-5c6c5ea82ec0@linaro.org>
+ <85d75550-66f4-2680-c6fe-9c575e916b40@linaro.org>
+ <6a545494-832b-d1d9-ad5a-9ed0a724703b@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <6a545494-832b-d1d9-ad5a-9ed0a724703b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/03/2023 13:52, Konrad Dybcio wrote:
+> 
+> 
+> On 27.03.2023 12:14, Dmitry Baryshkov wrote:
+>> On 27/03/2023 11:05, Neil Armstrong wrote:
+>>> On 27/03/2023 09:59, Neil Armstrong wrote:
+>>>> On 24/03/2023 22:55, Dmitry Baryshkov wrote:
+>>>>> The first USB PHY on the sm8150 platform is really the USB+DP combo
+>>>>> PHY. Add the DP part of the PHY.
+>>>>>
+>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/sm8150.dtsi | 17 +++++++++++++----
+>>>>>    1 file changed, 13 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>>>>> index 9491be4a6bf0..a618218f7b68 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>>>>> @@ -3392,20 +3392,19 @@ usb_2_hsphy: phy@88e3000 {
+>>>>>            };
+>>>>>            usb_1_qmpphy: phy@88e9000 {
+>>>>> -            compatible = "qcom,sm8150-qmp-usb3-phy";
+>>>>> +            compatible = "qcom,sm8150-qmp-usb3-dp-phy";
+>>>>>                reg = <0 0x088e9000 0 0x18c>,
+>>>>> -                  <0 0x088e8000 0 0x10>;
+>>>>> +                  <0 0x088e8000 0 0x38>,
+>>>>> +                  <0 0x088ea000 0 0x40>;
+>>>>>                status = "disabled";
+>>>>>                #address-cells = <2>;
+>>>>>                #size-cells = <2>;
+>>>>>                ranges;
+>>>>> -
+>>>>>                clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>>>>>                     <&rpmhcc RPMH_CXO_CLK>,
+>>>>>                     <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+>>>>>                     <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+>>>>>                clock-names = "aux", "ref_clk_src", "ref", "com_aux";
+>>>>> -
+>>>>>                resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+>>>>>                     <&gcc GCC_USB3_PHY_PRIM_BCR>;
+>>>>>                reset-names = "phy", "common";
+>>>>> @@ -3423,6 +3422,16 @@ usb_1_ssphy: phy@88e9200 {
+>>>>>                    clock-names = "pipe0";
+>>>>>                    clock-output-names = "usb3_phy_pipe_clk_src";
+>>>>>                };
+>>>>> +
+>>>>> +            usb_1_dpphy: phy@88ea200 {
+>>>>> +                reg = <0 0x088ea200 0 0x200>,
+>>>>> +                      <0 0x088ea400 0 0x200>,
+>>>>> +                      <0 0x088eaa00 0 0x200>,
+>>>>> +                      <0 0x088ea600 0 0x200>,
+>>>>> +                      <0 0x088ea800 0 0x200>;
+>>>>> +                #clock-cells = <1>;
+>>>>> +                #phy-cells = <0>;
+>>>>> +            };
+>>>>
+>>>> Is there a reason why the new flat bindings from qcom,sc8280xp-qmp-usb43dp-phy.yaml are not used instead ?
+>>>>
+>>>
+>>> Oh ok I see "phy: qcom-qmp-combo: convert to newer style of bindings" is the followup of this serie,
+>>> please specify it because it wasn't obvious...
+>>
+>> I thought that a note in the cover letter was good enough, but yeah, maybe it should be more explicit. Do you think it warrants v2? I can send one.
+> IMO it's unnecessary so long as both get in.
 
---Iciv3G30UNRrqpwP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+And so nobody responded with R-B :-)
 
-On Wed, Apr 12, 2023 at 12:08:58PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> I/O Coherence Port (IOCP) provides an AXI interface for connecting
-> external non-caching masters, such as DMA controllers. The accesses
-> from IOCP are coherent with D-Caches and L2 Cache.
->=20
-> IOCP is a specification option and is disabled on the Renesas RZ/Five
-> SoC due to this reason IP blocks using DMA will fail.
->=20
-> The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
-> block that allows dynamic adjustment of memory attributes in the runtime.
-> It contains a configurable amount of PMA entries implemented as CSR
-> registers to control the attributes of memory locations in interest.
-> Below are the memory attributes supported:
-> * Device, Non-bufferable
-> * Device, bufferable
-> * Memory, Non-cacheable, Non-bufferable
-> * Memory, Non-cacheable, Bufferable
-> * Memory, Write-back, No-allocate
-> * Memory, Write-back, Read-allocate
-> * Memory, Write-back, Write-allocate
-> * Memory, Write-back, Read and Write-allocate
->=20
-> More info about PMA (section 10.3):
-> Link: http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Da=
-tasheet.pdf
->=20
-> As a workaround for SoCs with IOCP disabled CMO needs to be handled by
-> software. Firstly OpenSBI configures the memory region as
-> "Memory, Non-cacheable, Bufferable" and passes this region as a global
-> shared dma pool as a DT node. With DMA_GLOBAL_POOL enabled all DMA
-> allocations happen from this region and synchronization callbacks are
-> implemented to synchronize when doing DMA transactions.
->=20
-> Example PMA region passes as a DT node from OpenSBI:
->     reserved-memory {
->         #address-cells =3D <2>;
->         #size-cells =3D <2>;
->         ranges;
->=20
->         pma_resv0@58000000 {
->             compatible =3D "shared-dma-pool";
->             reg =3D <0x0 0x58000000 0x0 0x08000000>;
->             no-map;
->             linux,dma-default;
->         };
->     };
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v7 -> v8
-> * Dropped function pointer usage
-> * Now exporting the functions for clean/inval/flush
-> * Switched to using early_initcall instead of arch_initcall
-> * Dropped entry for "include/cache" from MAINTAINERS
-> * Dropped dependency of RISCV on AX45MP_L2_CACHE
-> * Returning error in case of cache line mismatch
+-- 
+With best wishes
+Dmitry
 
-> * Renamed clean/inval/flush functions
-
-I kinda screwed you with that request given Hellwig's NAK on the
-function pointer based stuff. Ah well, I prefer matching the proposed
-naming of the dma core to what RVI chose for the instructions.
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-I suppose this will need a resubmission once Arnd's stuff gets applied,
-but I would like to see it have a run through the build bots etc.
-
-Cheers,
-Conor.
-
---Iciv3G30UNRrqpwP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDcTvgAKCRB4tDGHoIJi
-0jm2AP0YgQJnFST7Z3utDHv2NJyppFGo3WLAjdFhiQwZ0kuywQEAiJ7v4SpH6NxH
-kzbHISM+zZS6r9HK80VLYHDzthtNOQI=
-=LAzK
------END PGP SIGNATURE-----
-
---Iciv3G30UNRrqpwP--
