@@ -2,88 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 463236DF421
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 13:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3556F6DF42F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 13:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbjDLLsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 07:48:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54574 "EHLO
+        id S229506AbjDLLtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 07:49:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjDLLsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 07:48:07 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B5C49C7
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 04:47:56 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id z8so16133232lfb.12
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 04:47:56 -0700 (PDT)
+        with ESMTP id S230024AbjDLLts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 07:49:48 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A1BC1BF;
+        Wed, 12 Apr 2023 04:49:40 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-63397c54c5aso1471566b3a.3;
+        Wed, 12 Apr 2023 04:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681300075; x=1683892075;
+        d=gmail.com; s=20221208; t=1681300179; x=1683892179;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7PDRGxEShggzOR/Xl7EtJnVQmJ9Lo2xgV6jIShMWMhA=;
-        b=ca5oA4kEl5+/mD44LGcCDwGW3QVv1/zYr/QfZFtpDE12/3os2aUbsL5ri1hEH399HN
-         ro3mIL2K0pa26p3NsnOABz2or32+1JTSU/eBi+ahLqj08/kOVc9fZ5g68nxRsMbrwnPU
-         CT9TAl1tpBZVzpd/p5VsnDtt3GW0ox0ZGKFCPxvwWu4f8vIuHrdZx6DHxcUFcf4UMY17
-         t5b1kySo+mX2X07wjM41DBzfgMOPxkKy/FuB8MfPOdBw85s1g4Dpi20EUFDHKBsNKKiT
-         owCDjingQECnAOfpg/wGUtRIKMLjIeM0yqtXfEblW76rCtF1IqrvEPTD9Rp8KBeKCmrM
-         CLog==
+        bh=LU0NNrMj/8UlufToqKjMQMv6WJwb/IxRYgWWMch67x4=;
+        b=qQOOyq6X4rTR64+g/4bntpfaKV6cLyGhlNoOUbD064dkffw6SlmvZEHgDYzMo0FNZ8
+         OmaGl+MgxC1vMKI2HHaHwlpC2J3sCp1f1OlRQsQ9ripvMe607ZMF/SB7utiA6ohV/H83
+         UFABZfVVKKIM+ynX6b+uDbQB/3sTRtONtrbNvJhEJJEBP70mb5CckJM1jPV4HX6mI2ts
+         JH380mtDSf6WdKzJh2DfXaF7IsYP7GvT8f65g66c9H1cWNds1agqtGNFcW05IFUyIX8j
+         xYggBo4BWcCYfpMMYEyyAHfGg+N8BlNZUMEl42anHcwTU/8SnYJ9plb44rEZ6NtPJv5g
+         1uug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681300075; x=1683892075;
+        d=1e100.net; s=20210112; t=1681300179; x=1683892179;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7PDRGxEShggzOR/Xl7EtJnVQmJ9Lo2xgV6jIShMWMhA=;
-        b=0ZiyJ25lvOrQSb1Fihn/wh5HWTsesVXyKWPcwHyspsByFMCvsiQb8VLlUKS1yETQjQ
-         NHrtEfq7DiQys1zn6e7IO9Tlj3FY+2h5NzOK6P2s0e7zyiaR+6g4+SSHwzp9HCqFUhaz
-         tR7efjT0ZZs3+aiVn0ZU2wNEnIS7OsVnCJlMOrdhO00H1x4Art7TzGqElxXfpur16lIs
-         5u6l0KVC3nzjsBLB7X2ewDSa9qyq3NQw8zKuuFLpTPvByWxtn4FCYIlU/TA33+sE8+5o
-         SIGNZYG5MNvl66vUHpbLD+qu0xvQDDGbCVeorIIP4BbCN/jeriZccFpSlM5aQypzrqrs
-         xW7g==
-X-Gm-Message-State: AAQBX9dVBUEtNQEt2JwwVIrwY/PpPpTDglVtmyOjXJ/apGpRDHb4hdcd
-        ZkTrioQIdhLUGo49aiCJsNDIYw==
-X-Google-Smtp-Source: AKy350aUZ3CGJoUofIeVVJ4YAhyMxqUiZCUMEwpEb3JCUeppyK803LMkXw+XpWVL55zLVoq/SS8BKA==
-X-Received: by 2002:a05:6512:21aa:b0:4ec:9f24:3e57 with SMTP id c10-20020a05651221aa00b004ec9f243e57mr534056lft.3.1681300075131;
-        Wed, 12 Apr 2023 04:47:55 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id q10-20020ac2510a000000b004ec5229092dsm2907440lfb.34.2023.04.12.04.47.53
+        bh=LU0NNrMj/8UlufToqKjMQMv6WJwb/IxRYgWWMch67x4=;
+        b=JmxCdnV2ER/aD9sIHm8OtHSgENSu7rVVH5JZWaG08TQRxqlO781ZyC5El2Bj/OSGwh
+         l3lt4epy5dQD++PxhcGekGWMABvZIhSpkcOSb4ZeOTX/WgoPumH92X579+qhq/f17bVy
+         OysyqzZ7OmYJ0iGXwmQrVRaUSMNKEfPKTNTlkqVGxjZQLZamFQoXNSaee4//ISPIeeXg
+         K9r7qU9ZyvZo9I2ih0JGzEWKTtb+L3+POl7OqdKRplYHcYSrqeM3PNlqIZSHlghhl9RT
+         QwGrfFSIU4KxIK9VeKKydBIzukYr7v/3DXlR5bAChc8B/CZy3XnBnJI6qfVc+JJ9UFWs
+         g5Mg==
+X-Gm-Message-State: AAQBX9dwAYaUQ9d8MBZAA/bMP17fB7cNPiqeXhyYnT2lXGv9Le9lGISr
+        7VzQQBhtLNSRzoglf9rSoqk=
+X-Google-Smtp-Source: AKy350bFdYFz3IJL5nYzhZwjE0U1hAgIOeONbwcpftGqIbO4iVn75S8Kxf4U9HiU4tdSCCAdE1MDFg==
+X-Received: by 2002:a05:6a00:2da1:b0:63b:20f3:a8c9 with SMTP id fb33-20020a056a002da100b0063b20f3a8c9mr96761pfb.29.1681300179503;
+        Wed, 12 Apr 2023 04:49:39 -0700 (PDT)
+Received: from ?IPV6:2600:8802:b00:4a48:8589:ba50:9cee:d1f4? ([2600:8802:b00:4a48:8589:ba50:9cee:d1f4])
+        by smtp.gmail.com with ESMTPSA id c5-20020a62e805000000b0063b1d65cc6dsm441287pfi.127.2023.04.12.04.49.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 04:47:54 -0700 (PDT)
-Message-ID: <198523f5-d06f-15cd-af6c-f391c02bcaa9@linaro.org>
-Date:   Wed, 12 Apr 2023 13:47:53 +0200
+        Wed, 12 Apr 2023 04:49:38 -0700 (PDT)
+Message-ID: <78c18cdb-5757-8d30-e2a6-414f09505cc6@gmail.com>
+Date:   Wed, 12 Apr 2023 04:49:36 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: brcmstb: Add two optional props
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
         Rob Herring <robh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
- <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
- <168069726278.2356075.14351594478003012447.robh@kernel.org>
- <20230405134727.GA2461305-robh@kernel.org>
- <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
- <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
- <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
- <ZDAAToSzNLVo6le8@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZDAAToSzNLVo6le8@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20230411165919.23955-1-jim2101024@gmail.com>
+ <20230411165919.23955-2-jim2101024@gmail.com>
+ <5a28e520-63e4-dbcf-5b3e-e5097f02dea2@linaro.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <5a28e520-63e4-dbcf-5b3e-e5097f02dea2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -92,64 +95,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 7.04.2023 13:36, Stephan Gerhold wrote:
-> On Thu, Apr 06, 2023 at 09:55:40PM +0200, Konrad Dybcio wrote:
->> [...]
->> I don't really know what kind.. I can add something like:
+On 4/12/2023 1:09 AM, Krzysztof Kozlowski wrote:
+> On 11/04/2023 18:59, Jim Quinlan wrote:
+>> Regarding "brcm,enable-l1ss":
 >>
->> rpm {
->> 	compatible = "qcom,rpm", "simple-mfd";
+>>    The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
+>>    requires the driver probe() to deliberately place the HW one of three
+>>    CLKREQ# modes:
 >>
->> 	mpm: interrupt-controller {
->> 	...
->> };
+>>    (a) CLKREQ# driven by the RC unconditionally
+>>    (b) CLKREQ# driven by the EP for ASPM L0s, L1
+>>    (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
 >>
+>>    The HW+driver can tell the difference between downstream devices that
+>>    need (a) and (b), but does not know when to configure (c).  Further, the
+>>    HW may cause a CPU abort on boot if guesses wrong regarding the need for
+>>    (c).  So we introduce the boolean "brcm,enable-l1ss" property to indicate
+>>    that (c) is desired.  Setting this property only makes sense when the
+>>    downstream device is L1SS-capable and the OS is configured to activate
+>>    this mode (e.g. policy==superpowersave).
+>>
+>>    This property is already present in the Raspian version of Linux, but the
+>>    upstream driver implementaion that will follow adds more details and
 > 
-> IMO we should indeed add something like this, because the current
-> representation of the RPM below the top level /smd node is misleading.
-> "SMD" is not a device, bus, component or anything like that. It is just
-> the communication protocol. There should not be a top-level DT node for
-> this.
+> typo, implementation
 > 
-> Instead there should be a dedicated device tree node for the RPM like in
-> your example above, which will allow adding properties and subnodes to
-> it as needed.
+>>    discerns between (a) and (b).
+>>
+>> Regarding "brcm,completion-timeout-us"
+>>
+>>    Our HW will cause a CPU abort if the L1SS exit time is longer than the
+>>    PCIe transaction completion abort timeout.  We've been asked to make this
+>>    configurable, so we are introducing "brcm,completion-timeout-us".
+>>
+>> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
 > 
-> For unrelated reasons I actually have some patches for this, that switch
-> the /smd top-level node to a "remoteproc-like" node dedicated to the
-> RPM, similar to how WCNSS/ADSP/Modem/etc are represented. I need this to
-> add additional (optional) properties like "resets" and "iommus" for the
-> RPM, but it would allow adding arbitrary subnodes as well:
-> 
-> https://github.com/msm8916-mainline/linux/commit/35231ac28703805daa8220f1233847c7df34589e
-> 
-> I could finish those up and post them if that would help...
-Krzysztof, what do you think?
+> What happened here? Where is the changelog?
 
-On a note, the bindings check is gone with dtschema-2023.4
+It is in the cover letter:
 
-Konrad
-> 
-> Thanks,
-> Stephan
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index dcbc5972248b22..1c24b01bd268c8 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -310,10 +310,10 @@
->  		};
->  	};
->  
-> -	smd {
-> -		compatible = "qcom,smd";
-> +	rpm: remoteproc-rpm {
-> +		compatible = "qcom,msm8916-rpm-proc", "qcom,rpm-proc";
->  
-> -		rpm {
-> +		smd-edge {
->  			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
->  			qcom,ipc = <&apcs 8 0>;
->  			qcom,smd-edge = <15>;
-> 
-> 
+https://lore.kernel.org/all/20230411165919.23955-1-jim2101024@gmail.com/
+
+but it does not look like the cover letter was copied to you or Rob.
+-- 
+Florian
