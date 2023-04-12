@@ -2,87 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5397C6DF71E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B816DF713
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbjDLNZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 09:25:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49036 "EHLO
+        id S231335AbjDLNZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 09:25:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231613AbjDLNYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:24:51 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899259ED0;
-        Wed, 12 Apr 2023 06:24:23 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id w13so28228580oik.2;
-        Wed, 12 Apr 2023 06:24:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681305786; x=1683897786;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t7nW6mawiUuyYszKT+ZrkBThDfGBOABkC1FpPQVvJWI=;
-        b=XcT9DruApjzDiS139B4vZXzxQ2d/u4KE8o8WqcnOhetJ4P2o/23swtdE647D9AiSFN
-         cSkQZh6Z+lzgzKdGpkxeMRRbbbWexlA5bDqNuhFIr0uSd8eVqrieUmbjIocaH7C5UjH8
-         eK0HHldjlxWM958Tleh2nVDUjTq+VWypkAhR3CJKKhf4i8QTz0GwDviTpGp9IEmto5T1
-         aOmhkInlkM4TyGlk6W9l7BayBQAWmJ7XUo6IjA4gHm65h8xN+/5vKBiPmXUUPZanDGBm
-         DCnEVEaVRxv9bWn+HJ1vDQCFZYafIi4hyQ3IrGCxseT83RCIRYu0OehvSPMWMlSAtPXa
-         96dg==
-X-Gm-Message-State: AAQBX9enuxb3l1CMWGrIMzzsHITjRJnC8y9Mx/RIQCOiB85ZuoVw7xB1
-        8fnO6uQHJc89ZnxHU8ZpJ2xh3VxkuA==
-X-Google-Smtp-Source: AKy350Ze5ahkO+i51YqIaIv90DMIyhWWgOpcR5PQ65mfFvNAEbx1vXIzAmE9jG1S0P8ZzwcVpdix5g==
-X-Received: by 2002:a05:6808:3a7:b0:389:2d2b:4b05 with SMTP id n7-20020a05680803a700b003892d2b4b05mr6088608oie.5.1681305784977;
-        Wed, 12 Apr 2023 06:23:04 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id fe6-20020a0568082b0600b00387372f548asm6562499oib.16.2023.04.12.06.23.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 06:23:04 -0700 (PDT)
-Received: (nullmailer pid 2007502 invoked by uid 1000);
-        Wed, 12 Apr 2023 13:23:03 -0000
-Date:   Wed, 12 Apr 2023 08:23:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski@linaro.org,
-        neil.armstrong@linaro.org, djakov@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, rfoss@kernel.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org,
-        linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        vladimir.zapolskiy@linaro.org, konrad.dybcio@linaro.org,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH v6 05/11] dt-bindings: qcom-qce: Fix compatible
- combinations for SM8150 and IPQ4019 SoCs
-Message-ID: <168130578228.2007207.11606069055162808337.robh@kernel.org>
-References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
- <20230405072836.1690248-6-bhupesh.sharma@linaro.org>
+        with ESMTP id S231591AbjDLNYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:24:49 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1617EC1;
+        Wed, 12 Apr 2023 06:24:20 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 681776603102;
+        Wed, 12 Apr 2023 14:23:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681305836;
+        bh=C+NuJI3gJQOvg2W2Jt6ytwX+Z1SaqR9sW/KQiI2QbiI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Mbo9WZ5dvorklyrGK5QC93j7iWln5Nb1/0dZiovAp8HYc7dmf9gr1K3T6vJUTMDWF
+         KBjARKXpwJsIkz1QJ6vDHsZNtV8kVU8Jj0BV/XrzMCX1c1zsD2DUMe4viOORDcm+52
+         D80e6axsE5IlRNwR26L7uf7pl+V6gFyzIck6f29rFY9zvzhCBp1KiKmTBlTC9kQ/9M
+         nyf4m+rOp2OB3OrxR2uLA6qWo7Ku1L2tyeEtuX5E/XpQrCrk7x6GAIxCwcOCbvoPUc
+         8UrR0BepUKP3t0nKCa3Is6oXrI8kWwrNKpeDT69WR3iL8uathgheIz0FQheBvmzc8w
+         wAERQg2FZvT8g==
+Message-ID: <c66642f5-470f-9d39-19d8-e76f8b6288b3@collabora.com>
+Date:   Wed, 12 Apr 2023 15:23:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230405072836.1690248-6-bhupesh.sharma@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 22/27] arm64: dts: mediatek: mt6795: Copyright header
+ additions
+Content-Language: en-US
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
+        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
+        kernel@collabora.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
+ <20230412112739.160376-23-angelogioacchino.delregno@collabora.com>
+ <7466cf12-9411-cb35-8e8b-fa50f5efe492@gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <7466cf12-9411-cb35-8e8b-fa50f5efe492@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 12/04/23 14:41, Matthias Brugger ha scritto:
+> 
+> 
+> On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
+>> I have added more than 800 lines to this devicetree: adding myself to
+>> the copyright header.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi 
+>> b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+>> index 29ca9a7bf0b3..a4c950b65006 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+>> @@ -2,6 +2,9 @@
+>>   /*
+>>    * Copyright (c) 2015 MediaTek Inc.
+>>    * Author: Mars.C <mars.cheng@mediatek.com>
+>> + *
+>> + * Copyright (C) 2023 Collabora Ltd.
+>> + *                    AngeloGioacchino Del Regno 
+>> <angelogioacchino.delregno@collabora.com>
+> 
+> Indentation?
+> 
+> BTW from what I understand the copyright will be by your employer, Collabora not 
+> you, but I'm not an legal expert :)
+> 
 
-On Wed, 05 Apr 2023 12:58:30 +0530, Bhupesh Sharma wrote:
-> Currently the compatible list available in 'qce' dt-bindings does not
-> support SM8150 and IPQ4019 SoCs directly which may lead to potential
-> 'dtbs_check' error(s).
-> 
-> Fix the same.
-> 
-> Fixes: 00f3bc2db351 ("dt-bindings: qcom-qce: Add new SoC compatible strings for Qualcomm QCE IP")
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+The copyright *is* by my employer ... but at the same time I'm adding my name,
+because it's me performing the work.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I didn't write (c) myname, but (c) employer, myname - that's ok :-)
+
+Or was the comment about the commit description? Should that be reworded?
+
+Cheers,
+Angelo
 
