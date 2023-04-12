@@ -2,85 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5896DF601
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C09C26DF626
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231689AbjDLMqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 08:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
+        id S231699AbjDLMve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 08:51:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbjDLMpT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:45:19 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CA759000;
-        Wed, 12 Apr 2023 05:44:54 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id e7so681748wrc.12;
-        Wed, 12 Apr 2023 05:44:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681303489; x=1683895489;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KSYib968TlNgbrZtfYcfjByTNtcgxfB28BPrF3X4daM=;
-        b=MY99ceA8wW7QbNZeJ/UhL0jrqb2PDV0XkIO8PiE1B8pXUXYSBVMcBHlchVBx3ZlKSI
-         Trcl3JgQqyu1U7HJ74gMZWDscs3HoXaHyMQ735SDo9Fn5itRQ8EvLCVif5RzSRLu5zQ2
-         O/6M7+H/ztv7xPbiwep43pFqwS3TIdB4EEzdGvVvqiLYbT6MXYWNQnITM8CmTbtX/okK
-         Apf2oxWNTsasGFbHib6t1eqVM72eAnh0mbZ7vd68+8/MGhhAeJdPTebocQUPaTZOuYVu
-         fEb4EO7BCR4mny4FfkJKgcvkUyaRXqDHu0Kcc33XmjHrkPBTPJCA9MC4hEmmkp3RJydb
-         gBkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681303489; x=1683895489;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KSYib968TlNgbrZtfYcfjByTNtcgxfB28BPrF3X4daM=;
-        b=Ov3CaWSwd9/Tx9xUmFy5i1EBAtX99ptMT6VOdtDsusUv2n9bsBvKgLNe3u/2t6NrjV
-         XHGQboyNniwaOqfCTHuBTLVhFBInb9MMTgdUYHYNIuC2WgBEL1t7+UW/3BeXx/8Czmfz
-         XQJeAMG20BD/UIGsVIaSc061/as/rgnyM99jNLz5CPNYjS+RY8d6NzJ5uEHXW9efd3/U
-         V97Of5AqIpM3ZqWF41Kn4p+l5HjfOaWXEvVGj3dKrg0mye4ZnambMtuahnZBS1FLwinK
-         c7D9cp31T2UYxii04ThDRm0XLfny5Q9I6O5UhDA2urRUkOjcvBPBz69FYNuR3cbAsbHe
-         0MUg==
-X-Gm-Message-State: AAQBX9d4wKUwraB1iL2Qc0yKXtnxVVoq/s9SIYwE7rVZLXzV/Dq5the7
-        CVFn0qgX09miLXLZB08Daeg=
-X-Google-Smtp-Source: AKy350bqiWDrholWxeMJXdmA/F5ClDwfMvEqM4y0TIzuUBHgXU6/D61FCV64IYa31nkjoJetKcYdxQ==
-X-Received: by 2002:adf:dc07:0:b0:2e2:730a:c7de with SMTP id t7-20020adfdc07000000b002e2730ac7demr10112945wri.24.1681303488999;
-        Wed, 12 Apr 2023 05:44:48 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id f13-20020a5d50cd000000b002c71b4d476asm17054089wrt.106.2023.04.12.05.44.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 05:44:48 -0700 (PDT)
-Message-ID: <17cd35c1-aaa2-26d1-e372-06774e78514f@gmail.com>
-Date:   Wed, 12 Apr 2023 14:44:46 +0200
+        with ESMTP id S231720AbjDLMvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:51:23 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A085FEA;
+        Wed, 12 Apr 2023 05:50:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1681303779; i=frank-w@public-files.de;
+        bh=UyLMRZ7l6QPvBPSTkFg57mjxK4zHgNRbpfQN6gXBjUU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=sslBj3aE9iF2C7G1oH3NeKKwJuFLMUr4KaDZ/h8vGszrGHoHPBB19327aQVu7Q/dm
+         r4ERucD0/C3tFHtMky7htCuQR741VVcneeuHV1oqs9eUCCH8PLaolRzVjnJVriydqr
+         Liq4cnrQpyfnK/fBI3Ydu8FIb/GQomtSMA49XAKuDTdBsaWdah+avlubloQBI79Hmw
+         2ZB9KBRjIGqPqiQlA9ys4G7nVuSMYFFAFouWVBwLPwa8/186gWiIvy/2VjTpi4GwMh
+         crNXJ7YkxAzTkh2UUm3XjQTYFXH8FB6NN3aHL5TlBTggGl9bN3AlOVxG5kylMVudfE
+         nk/bWkyJG58FA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.157.203] ([217.61.157.203]) by web-mail.gmx.net
+ (3c-app-gmx-bap50.server.lan [172.19.172.120]) (via HTTP); Wed, 12 Apr 2023
+ 14:49:39 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 27/27] arm64: dts: mediatek: mt6795-xperia-m5: Add Bosch
- BMM050 Magnetometer
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
-        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, jitao.shi@mediatek.com,
-        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
-        kernel@collabora.com, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
- <20230412112739.160376-28-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230412112739.160376-28-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Message-ID: <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
+Subject: Aw: Re:  Re: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs,
+ mt7530 switch, and add port@5
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 12 Apr 2023 14:49:39 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <trinity-899c01a6-0fc5-4900-aea8-2b43802c8329-1676814734826@3c-app-gmx-bs35>
+References: <20230210182505.24597-1-arinc.unal@arinc9.com>
+ <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
+ <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
+ <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
+ <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53>
+ <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
+ <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
+ <fb96d8eb-2eb7-db19-1135-1a833294dd67@arinc9.com>
+ <trinity-899c01a6-0fc5-4900-aea8-2b43802c8329-1676814734826@3c-app-gmx-bs35>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:29b826fSfORpy+Qrstb1Vp5t1pfu/RkhsZDoqVqFLBbLiGanozYyp8mBL/se+ZpI2g9i4
+ K/T8ZDU5wYc8UvDKFjpv9j04igMgqHiMl53kpgrXWd92blZeJpJYR2xphqdfLURpZZy1KaJTw5ew
+ RoqcYBVfTn61rb2Bad1VGZ34ql4rH5eFOwGbtt6Zeny/G+DAo2LX1Fzj6iGTvaIgdtIk0iDj4yLu
+ GNtNog5O51tSwQSngbvFdTVyz2iwRYhfCUxQojB2Omt9A8frimBgYTiaddcmXAu+ydR0UXEUQunZ
+ 8U=
+UI-OutboundReport: notjunk:1;M01:P0:pGyeBCCJSc0=;0dql2H5OJQ9h6xPk73wJ5eNbtce
+ BfX759M9+hcfjsRBLxPc+QDOBT7h1S9/r27jDXKj3TNFuwYOcEXBFFt/CO4LlOiQcVHPzLlz+
+ S+3ilCWCXzfOYE/jvPxBj0CXP4xLnnD7AvlLU16XyXZ8XUA7GmedHsMStm9d0S9IuhtV7ioLP
+ EoI1DgdilEnzNMTJX+mqCy5KpjGQh62Sb8kmydX8RyKDRJUZbkgoYxAm5nZQB0py4DT16kJij
+ hsLa51BHbdTLJ2DE1itv2+gwg4noJSi5gOwXt5hMO1raAYfpWgDt1zsfhLNRLp8e93o/NQrr5
+ CspkIT7pDA5gUR2HsGBzDbLmhI+3owUk1z9rJMyk7yZ+dETmtarPl2hy6qnn7HkO/cB2P1pQJ
+ XriN8Q0BzOD/Ud/zpkoDJSsyS0Z4P6FUuX+IoFzaas5Ip3XTp7Kr7G7SqcraE6FmmUDcc/hz4
+ 4rhCorQT7XKKjtBu+ehcrl+XU60zpJ9dDKLWdklgujDrB9gUnTKZJlZ/7hf92oq+Mk9kgXyPx
+ 6Yeual7lxWR7IrUJazCY4Kn07v8vE2UPX9E/H5VkbjMFK4aHJHmVLhjRuQ7lfVMzIQ+tofVKs
+ xie/9fb+evS0QxVlkWpdesEK0MtRa6AWQxxNTCzAIg1oQc7WvtlvlQuVKIljj3AvO42NQ0wua
+ zDB2j4lZoWpLMcy0oVGuWMKvkNsUijq59I9rpDZASg6JPcH3SEGLMdhFuQtHGehxdDlfa9sHH
+ kjdOcm5SjNneu23FOcHXgyyJcfXmWRecLWsBq0c3Bslm27TR6+FkD2QNq0u5c4FUZnC4RpZ70
+ opwQb9h9aWHDxoio8Q0CDkcg==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,35 +87,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+retested series on bananpi r2 on 6.3-rc6 (after throughput is fixed for mt7623/trgmii too) with additional patches:
 
-On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
-> This smartphone features a Bosch BMM050 Magnetometer on I2C3: enable
-> it with the BMM150 binding, as that driver supports BMM050 as well.
-> For this sensor, there is no interrupt pin;
-> readings were validated in sysfs.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+"net: dsa: implement preferred cpu port handling" by Vladimir Oltean to stay on gmac0 by default
+"net: dsa: mt7530: add support for changing DSA master" by Richard van Schagen
 
-Applied :)
+looks good so far, but i have not managed how to change dsa master from the preferred port (eth0) to the second one...
+any idea how the correct syntax is for iproute2?
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
-> index 0b0519f6b2f1..b5746e6d0b15 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
-> @@ -75,6 +75,11 @@ accelerometer@10 {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&accel_pins>;
->   	};
-> +
-> +	magnetometer@12 {
-> +		compatible = "bosch,bmm150";
-> +		reg = <0x12>;
-> +	};
->   };
->   
->   &i2c2 {
+at least vladimirs patch should be included when applying this series
+
+regards Frank
