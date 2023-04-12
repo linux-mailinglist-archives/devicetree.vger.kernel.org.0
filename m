@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F1D6DFBF4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 18:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E2F6DFC19
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbjDLQ4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 12:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58796 "EHLO
+        id S229531AbjDLRAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjDLQ4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 12:56:21 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A559028
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 09:55:52 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id qb20so30085953ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 09:55:52 -0700 (PDT)
+        with ESMTP id S230362AbjDLRAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:00:43 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6774EDB
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:00:14 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id y11-20020a17090a600b00b0024693e96b58so11133308pji.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 10:00:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681318533;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mL1Dmw1t8cH96ZKM0Y0rJ8RmORlNySoRf2nYIAB9Jzo=;
-        b=d28p+fne4GmzRaXHcfIxScgVDg2XtPaJGzWNaeaYsnNrQP/mFYMAIAV3JVbIhWDMbu
-         Fa+/y0rOjrQPkLzfSI6ggc0jbtP9nYDqnOK077i5kTPh8kOdV3bpjER9aYcC8vx/sHXf
-         HdT2ny8s6RCRLIUyjNv7y+Ibx+zZyzkG8t5szrFkZzvxweU3bHSpAcmn+pNldAXxUH8d
-         p1ZhmAYs7zvjgQiOszonoIM3nAVZ/FLwjfVIHk9otAEY6sN0RaSz9SJ3uqwLgFyz5u8A
-         wEZkcdzxtdnDXXTnp4vMPvK7zFjOCAV86N8J/5DyF+XoPB3yX3zTK3yYn/4clac6Z2gG
-         bFMw==
+        d=linaro.org; s=google; t=1681318808;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+oanG2L1no3cfGxUr2f5jC5PPLghnpHBRMM+yz7rcqg=;
+        b=ETda2EF8CeXNpRP+t6JDEdQjQy9SuS5w1CFty3glJHeryif4TOjMLgsh61/0aNSX3l
+         WY1ZA7XUoVt89GbEf1jgCheNGw9MaytQLgyFBlcuxrJ+BaaNq6YZC3nyYAPwracjWBIX
+         AP7RHR/Gh4cWRg0sf645I9NV8n3Mjoxl6J3uaTWZzNxymh/wVr5dZ+jXvjqqYLj0x6/O
+         sJI4IlQoXsviOEiFA0c0IoPYmF1Yu5VmihBQsL/2pIJqwIIKXT1R6D+9wgANE3BD+Bku
+         nt9FbMEFzgJRnu08QofJrkWn+NBu7u5GbQ14Tqu+fUahxwRLIEX/5KBfYqjrytmtvEOB
+         MpAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681318533;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mL1Dmw1t8cH96ZKM0Y0rJ8RmORlNySoRf2nYIAB9Jzo=;
-        b=LDZwzqf0w1aTtt6IJFhf0QZb4pr/YJSBs1SHcllXWqjnGWdBkOgfqSwPmzVBDvhmfg
-         /7dzQ19ez0/BMEqHaBP/8fJtZB/MgwV5fe3Nh7H175RSAzWrgBRZy27GepZPfZX93jkW
-         O+h6N5HMq/gmi5RgsMZtQZLSKCUIRlrqwRwRtVypGFo0liRDPDtzIG6vpUJDavQ4b8wN
-         K7rok6aBWT2O9YWXEccFmaJctz8v7al7z59dbAGOeqepFeDYTuRQrEbSAh0/a5yZPYC+
-         xnFhaBxle6KZ+nurWPhgytkMrhFM3SUHrY7usPt0zWHVStnME0vj8oaIjaYsCfijfcib
-         VmOg==
-X-Gm-Message-State: AAQBX9fZ16QwDhGm1Bvj0aIIyhhCLAeg5qs8VsaB3ZeCIbRchAJrwFyZ
-        KuEgx4plIIeTPVLotpR5XbrIJw==
-X-Google-Smtp-Source: AKy350Z1Gn9hA8XdncuSMlmsY8g62jmSran04JCDS9kQw1y/M/VsEQjsDf8807x9ocMfcFbFGA7tSQ==
-X-Received: by 2002:a17:906:538d:b0:94a:582d:169f with SMTP id g13-20020a170906538d00b0094a582d169fmr12936153ejo.5.1681318532872;
-        Wed, 12 Apr 2023 09:55:32 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:938a:b3db:7c59:795e? ([2a02:810d:15c0:828:938a:b3db:7c59:795e])
-        by smtp.gmail.com with ESMTPSA id f9-20020aa7d849000000b00505034c27b9sm822863eds.28.2023.04.12.09.55.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 09:55:32 -0700 (PDT)
-Message-ID: <f6a4fb28-d635-4d99-44bb-d929cb41eef2@linaro.org>
-Date:   Wed, 12 Apr 2023 18:55:31 +0200
+        d=1e100.net; s=20221208; t=1681318808;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+oanG2L1no3cfGxUr2f5jC5PPLghnpHBRMM+yz7rcqg=;
+        b=FXhhRayPk9gH3vgKfj4VDntsKwQ/BLWL1VxiAE/7oZecwRWekwbMTfbYaSzjawcQTH
+         CuHea7lgt3llpGKQgEDSH5MmDd4coK9sf+SP68DgeIJbe2WLod9zAPXbVCEv0Usyt98i
+         hwHlNzWJYrEcUxOOhNSfweWBul+/jb+BKq/voD/WnytZnc+tftm3Kj1+Ivnox/ZbizhJ
+         DkPiuOZzbRIOL+qmWhLkxWhkf2f0s9aoXble53q7yobkUoeNIInpRx/+RHgdetvEBe2j
+         oNQGIBaprJCxqNV4ZxA/0SV20VAiLnvfF7sWrV9+8BwIyp94vALZZQJlBSAnbXObFncq
+         ct8Q==
+X-Gm-Message-State: AAQBX9cXRwhfrrrkI0b4YvK7pBDMqZAW0l2J6JTrrKSRoPUSXgf68OVE
+        77KI55VOuRc+2oxlnkBscPO3lQ==
+X-Google-Smtp-Source: AKy350ZyGAHpWAWIglbbCQpXeWBI+mmZnj2uqsJASDPZg4pKPfpA1jxJzKxrtxsUWwfHCkGWCv9/MA==
+X-Received: by 2002:a17:90a:b294:b0:246:fdad:28ca with SMTP id c20-20020a17090ab29400b00246fdad28camr2727902pjr.38.1681318807683;
+        Wed, 12 Apr 2023 10:00:07 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:1cd7:1135:5e45:5f77])
+        by smtp.gmail.com with ESMTPSA id l17-20020a170902eb1100b001a52dd51ff6sm7800419plb.269.2023.04.12.10.00.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 10:00:07 -0700 (PDT)
+Date:   Wed, 12 Apr 2023 11:00:04 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v8 1/4] soc: ti: pruss: Add pruss_get()/put() API
+Message-ID: <20230412170004.GA86761@p14s>
+References: <20230412103012.1754161-1-danishanwar@ti.com>
+ <20230412103012.1754161-2-danishanwar@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
-Content-Language: en-US
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Jack Zhu <jack.zhu@starfivetech.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
- <20230412084540.295411-2-changhuang.liang@starfivetech.com>
- <8dd0dc63-e0df-8764-f756-da032d9d671c@linaro.org>
- <eb47b7c7-bdbb-92d9-ba39-604ce487f297@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eb47b7c7-bdbb-92d9-ba39-604ce487f297@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230412103012.1754161-2-danishanwar@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,53 +79,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 14:42, Changhuang Liang wrote:
+On Wed, Apr 12, 2023 at 04:00:09PM +0530, MD Danish Anwar wrote:
+> From: Tero Kristo <t-kristo@ti.com>
 > 
+> Add two new get and put API, pruss_get() and pruss_put() to the
+> PRUSS platform driver to allow client drivers to request a handle
+> to a PRUSS device. This handle will be used by client drivers to
+> request various operations of the PRUSS platform driver through
+> additional API that will be added in the following patches.
 > 
-> On 2023/4/12 19:34, Krzysztof Kozlowski wrote:
->> On 12/04/2023 10:45, Changhuang Liang wrote:
->>> StarFive SoCs like the jh7110 use a MIPI D-PHY RX controller based on
->>> a M31 IP. Add a binding for it.
->>
->> So this is D-PHY? Or the other patch is D-PHY? The naming is quite
->> confusing and your commit msgs are not helping here.
->>
->> Also the power domain phandle here adds to the confusion.
->>
+> The pruss_get() function returns the pruss handle corresponding
+> to a PRUSS device referenced by a PRU remoteproc instance. The
+> pruss_put() is the complimentary function to pruss_get().
 > 
-> Yes, this is DPHY, DPHY has rx and tx, and last version we are discussing that 
-> use power domain replace syscon:
-> https://lore.kernel.org/all/5dc4ddc2-9d15-ebb2-38bc-8a544ca67e0d@starfivetech.com/
-
-The other patch - DPHY PMU - is confusing. Instead of writing short
-commits, explain more.
-
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Reviewed-by: Tony Lindgren <tony@atomide.com>
+> Reviewed-by: Simon Horman <simon.horman@corigine.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  drivers/soc/ti/pruss.c       | 62 ++++++++++++++++++++++++++++++++++++
+>  include/linux/pruss_driver.h | 18 +++++++++++
+>  2 files changed, 80 insertions(+)
 > 
->>>
->>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->>> ---
->>>  .../bindings/phy/starfive,jh7110-dphy-rx.yaml | 85 +++++++++++++++++++
->>>  1 file changed, 85 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
->>>
-> [...]
->>> +
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>> +  lane_maps:
->>
->> Why did this appear? Underscores are not allowed. It looks like you
->> re-implement some standard property.
->>
+
+Acked-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+
+> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+> index 6882c86b3ce5..3fac92df8790 100644
+> --- a/drivers/soc/ti/pruss.c
+> +++ b/drivers/soc/ti/pruss.c
+> @@ -6,6 +6,7 @@
+>   * Author(s):
+>   *	Suman Anna <s-anna@ti.com>
+>   *	Andrew F. Davis <afd@ti.com>
+> + *	Tero Kristo <t-kristo@ti.com>
+>   */
+>  
+>  #include <linux/clk-provider.h>
+> @@ -18,6 +19,7 @@
+>  #include <linux/pm_runtime.h>
+>  #include <linux/pruss_driver.h>
+>  #include <linux/regmap.h>
+> +#include <linux/remoteproc.h>
+>  #include <linux/slab.h>
+>  
+>  /**
+> @@ -30,6 +32,66 @@ struct pruss_private_data {
+>  	bool has_core_mux_clock;
+>  };
+>  
+> +/**
+> + * pruss_get() - get the pruss for a given PRU remoteproc
+> + * @rproc: remoteproc handle of a PRU instance
+> + *
+> + * Finds the parent pruss device for a PRU given the @rproc handle of the
+> + * PRU remote processor. This function increments the pruss device's refcount,
+> + * so always use pruss_put() to decrement it back once pruss isn't needed
+> + * anymore.
+> + *
+> + * This API doesn't check if @rproc is valid or not. It is expected the caller
+> + * will have done a pru_rproc_get() on @rproc, before calling this API to make
+> + * sure that @rproc is valid.
+> + *
+> + * Return: pruss handle on success, and an ERR_PTR on failure using one
+> + * of the following error values
+> + *    -EINVAL if invalid parameter
+> + *    -ENODEV if PRU device or PRUSS device is not found
+> + */
+> +struct pruss *pruss_get(struct rproc *rproc)
+> +{
+> +	struct pruss *pruss;
+> +	struct device *dev;
+> +	struct platform_device *ppdev;
+> +
+> +	if (IS_ERR_OR_NULL(rproc))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	dev = &rproc->dev;
+> +
+> +	/* make sure it is PRU rproc */
+> +	if (!dev->parent || !is_pru_rproc(dev->parent))
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	ppdev = to_platform_device(dev->parent->parent);
+> +	pruss = platform_get_drvdata(ppdev);
+> +	if (!pruss)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	get_device(pruss->dev);
+> +
+> +	return pruss;
+> +}
+> +EXPORT_SYMBOL_GPL(pruss_get);
+> +
+> +/**
+> + * pruss_put() - decrement pruss device's usecount
+> + * @pruss: pruss handle
+> + *
+> + * Complimentary function for pruss_get(). Needs to be called
+> + * after the PRUSS is used, and only if the pruss_get() succeeds.
+> + */
+> +void pruss_put(struct pruss *pruss)
+> +{
+> +	if (IS_ERR_OR_NULL(pruss))
+> +		return;
+> +
+> +	put_device(pruss->dev);
+> +}
+> +EXPORT_SYMBOL_GPL(pruss_put);
+> +
+>  static void pruss_of_free_clk_provider(void *data)
+>  {
+>  	struct device_node *clk_mux_np = data;
+> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
+> index ecfded30ed05..cb40c2b31045 100644
+> --- a/include/linux/pruss_driver.h
+> +++ b/include/linux/pruss_driver.h
+> @@ -9,7 +9,9 @@
+>  #ifndef _PRUSS_DRIVER_H_
+>  #define _PRUSS_DRIVER_H_
+>  
+> +#include <linux/remoteproc/pruss.h>
+>  #include <linux/types.h>
+> +#include <linux/err.h>
+>  
+>  /*
+>   * enum pruss_mem - PRUSS memory range identifiers
+> @@ -51,4 +53,20 @@ struct pruss {
+>  	struct clk *iep_clk_mux;
+>  };
+>  
+> +#if IS_ENABLED(CONFIG_TI_PRUSS)
+> +
+> +struct pruss *pruss_get(struct rproc *rproc);
+> +void pruss_put(struct pruss *pruss);
+> +
+> +#else
+> +
+> +static inline struct pruss *pruss_get(struct rproc *rproc)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +static inline void pruss_put(struct pruss *pruss) { }
+> +
+> +#endif /* CONFIG_TI_PRUSS */
+> +
+>  #endif	/* _PRUSS_DRIVER_H_ */
+> -- 
+> 2.34.1
 > 
-> Will change to lane-maps.
-> Yes, according to Vinod advice, lane mapping table use device tree
-> to parse makes sense.
-
-Hm, I have a feeling that I saw such property, so you should dig into
-existing and in-flight bindings.
-
-Best regards,
-Krzysztof
-
