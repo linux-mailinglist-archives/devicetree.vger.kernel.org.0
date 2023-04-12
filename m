@@ -2,93 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C68376DED00
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 09:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 341346DED2D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:04:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjDLHw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 03:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41554 "EHLO
+        id S229836AbjDLIEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 04:04:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjDLHwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 03:52:55 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA4E5FEF;
-        Wed, 12 Apr 2023 00:52:44 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 6484024DF03;
-        Wed, 12 Apr 2023 15:52:43 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
- 2023 15:52:43 +0800
-Received: from [192.168.125.82] (113.72.145.176) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Apr
- 2023 15:52:42 +0800
-Message-ID: <9f729ae6-8b20-e77c-18f7-cbe093f8a3b9@starfivetech.com>
-Date:   Wed, 12 Apr 2023 15:52:41 +0800
+        with ESMTP id S229477AbjDLIEI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:04:08 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD1985BAA
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:04:04 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id ga37so26990849ejc.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:04:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681286643;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7sCYQWmrIHjLodZCUEstj/wAUl8903bf+mCezIM9gIs=;
+        b=TG3HVhuvb+yHg3+UCrQWVrPaZhnVggB+RTvB0Pk09hNmrC2AYQz++koo4E4+CDrAOU
+         pPLu4b9mtg8xMwyxSv0ujdYIw/HzwYiN/TJeZLZD/8GKuGrL5i1+x166V2W1H0TqBPde
+         Z+LyeS8tth4XhHd7jdXS2Gsu3+qgmtwuSo9ncvGkxin3QOIkBuAE1R6L9ANkI4lf8ZFU
+         +3s4PCb0Xmk9+YoCb42tdD83/YeUZhzsDPybPBh13YPKEF7mXd08dRL9zdCh0ZDJNdV3
+         tGQbkY93qCRDW3kpUUKV+OXW297TqIFpSKHBYQ4qxCnzZz1oS1tw0BQgVmev7RsazY7s
+         VCIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681286643;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7sCYQWmrIHjLodZCUEstj/wAUl8903bf+mCezIM9gIs=;
+        b=PqkSzM60nQZ4IFkIhkWjbVRHJZ84LnUYJcjWXZ8CKhJFf70nJV5tJ+ep4BDJslt1Kt
+         Jt2kfcYnsgqP6EExaMsdlZqop4k9mA7zcGtRfaT2g7DQyznCbPXqjFrhJ4FRhIH0O8i5
+         vCV6TCOPZPgp+VLuGyH4ybeZwyMRiC3fJzroJKrGSWNzUJpAuQKfKhUwnMt2kA7AsVjp
+         4LSFmskZaB1g35VolBgib0dSb6SE0LTz/yTtE68NKYXB2shM9IVulzts05NpMr6AGQdS
+         Dp2qIfb1M2oZyP4SKsO5YkbcT+A1rae88VzkanddH2qUOqS/1naHylBkvEfik7wF1sHw
+         Egow==
+X-Gm-Message-State: AAQBX9czWyeydjZ5ol4GQ7BFKKzjH1jHWEwGtoXFNWBEQPacuO1Q/dfR
+        mlOxnjfGMBFeJOgxqi9NFlbnsw==
+X-Google-Smtp-Source: AKy350bqsn9FugkvkWfL/MPu3dTIMA0gp1RVfg+cMrbd9FUEsvEngyqRYlsTCIugeFcFo52sPdNCog==
+X-Received: by 2002:a17:906:8601:b0:948:6e3d:a030 with SMTP id o1-20020a170906860100b009486e3da030mr14441369ejx.42.1681286643266;
+        Wed, 12 Apr 2023 01:04:03 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
+        by smtp.gmail.com with ESMTPSA id sc40-20020a1709078a2800b0094a84462e5fsm2998603ejc.37.2023.04.12.01.04.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 01:04:02 -0700 (PDT)
+Message-ID: <848f5e3e-44ca-3648-2d6b-7e06ce7b5cda@linaro.org>
+Date:   Wed, 12 Apr 2023 10:04:00 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 5/7] soc: starfive: Use call back to parse device tree
- resources
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v13 03/15] dt-bindings: Convert gpio-mmio to yaml
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-6-changhuang.liang@starfivetech.com>
- <20230411-stimuli-reapprove-4659d50e5d2e@spud>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230411-stimuli-reapprove-4659d50e5d2e@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.176]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linuxppc-dev@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+References: <20230411184313.3679145-1-sean.anderson@seco.com>
+ <20230411184313.3679145-4-sean.anderson@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230411184313.3679145-4-sean.anderson@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/4/12 5:06, Conor Dooley wrote:
-> On Mon, Apr 10, 2023 at 11:47:41PM -0700, Changhuang Liang wrote:
->> Different compatible parse device tree resources work in different ways.
+On 11/04/2023 20:43, Sean Anderson wrote:
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, and some registers may be omitted. Because of this, reg-names
+> is mandatory, and no order is specified.
 > 
-> Right now there is only one compatible, so this commit message needs to
-> be expanded on to provide more information on your motivation.
+> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
+> has moved.
 > 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> Linus or Bartosz, feel free to pick this up as the rest of this series
+> may not be merged any time soon.
+> 
+> Changes in v13:
+> - Fix references to brcm,bcm63xx-gpio.yaml (neé brcm,bcm6345-gpio)
 
-OK, will add more commit message.
+You got some of the same errors as last time.
 
->> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> 
->>  static int jh71xx_pmu_init_domain(struct jh71xx_pmu *pmu, int index)
->>  {
-[...]
->>  
->>  	match_data = of_device_get_match_data(dev);
->>  	if (!match_data)
->>  		return -EINVAL;
->>  
->> +	if (match_data->pmu_parse_dt) {
-> 
-> How can this be false?
-> 
-> Cheers,
-> Conor.
+Test your patches before sending.
 
-Yes, it will not be false, I will delete this if condition
+Best regards,
+Krzysztof
+
