@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 341346DED2D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EE616DED3A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjDLIEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 04:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48638 "EHLO
+        id S229875AbjDLIJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 04:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjDLIEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:04:08 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD1985BAA
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:04:04 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id ga37so26990849ejc.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:04:04 -0700 (PDT)
+        with ESMTP id S229549AbjDLIJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:09:10 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32CFD4EE8
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:09:09 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5050491cb04so197236a12.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:09:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681286643;
+        d=linaro.org; s=google; t=1681286947;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7sCYQWmrIHjLodZCUEstj/wAUl8903bf+mCezIM9gIs=;
-        b=TG3HVhuvb+yHg3+UCrQWVrPaZhnVggB+RTvB0Pk09hNmrC2AYQz++koo4E4+CDrAOU
-         pPLu4b9mtg8xMwyxSv0ujdYIw/HzwYiN/TJeZLZD/8GKuGrL5i1+x166V2W1H0TqBPde
-         Z+LyeS8tth4XhHd7jdXS2Gsu3+qgmtwuSo9ncvGkxin3QOIkBuAE1R6L9ANkI4lf8ZFU
-         +3s4PCb0Xmk9+YoCb42tdD83/YeUZhzsDPybPBh13YPKEF7mXd08dRL9zdCh0ZDJNdV3
-         tGQbkY93qCRDW3kpUUKV+OXW297TqIFpSKHBYQ4qxCnzZz1oS1tw0BQgVmev7RsazY7s
-         VCIg==
+        bh=C/dGyY5TVITXQ9f4V3PWQDgLG26tGuInk2+5HFdtqR8=;
+        b=c+2NF6or5H/VIFSDJXyhSL+skI9ti8M2domvgV4yoDxz7yfc28S8trr32nb2BeOton
+         sRYRm54/JE9s0pd1E+K3QrhhEpSvioNkGpkDHuaAmwGE5XnKzc/oH2aJvvcnXi5QIXZR
+         3gTl1osfhP/7NvYulngudhiVVyKtASlOs2BD0ouCglCkguhiu9375QXPtZyt3aRu6gSX
+         6jcRErDcQ4Mwt0WVUczPRWufNVz/+yaeh2VvW2pK5jyP5xAlChaB1fMfMaF6R97ZbdrP
+         l4wmrrmMv5/qwVkFRTbiCUBzbgHaoVyrOmXLKsgGBQ+Vcd+Y0IiWSnHmo38sPBjOMsHC
+         deCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681286643;
+        d=1e100.net; s=20210112; t=1681286947;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7sCYQWmrIHjLodZCUEstj/wAUl8903bf+mCezIM9gIs=;
-        b=PqkSzM60nQZ4IFkIhkWjbVRHJZ84LnUYJcjWXZ8CKhJFf70nJV5tJ+ep4BDJslt1Kt
-         Jt2kfcYnsgqP6EExaMsdlZqop4k9mA7zcGtRfaT2g7DQyznCbPXqjFrhJ4FRhIH0O8i5
-         vCV6TCOPZPgp+VLuGyH4ybeZwyMRiC3fJzroJKrGSWNzUJpAuQKfKhUwnMt2kA7AsVjp
-         4LSFmskZaB1g35VolBgib0dSb6SE0LTz/yTtE68NKYXB2shM9IVulzts05NpMr6AGQdS
-         Dp2qIfb1M2oZyP4SKsO5YkbcT+A1rae88VzkanddH2qUOqS/1naHylBkvEfik7wF1sHw
-         Egow==
-X-Gm-Message-State: AAQBX9czWyeydjZ5ol4GQ7BFKKzjH1jHWEwGtoXFNWBEQPacuO1Q/dfR
-        mlOxnjfGMBFeJOgxqi9NFlbnsw==
-X-Google-Smtp-Source: AKy350bqsn9FugkvkWfL/MPu3dTIMA0gp1RVfg+cMrbd9FUEsvEngyqRYlsTCIugeFcFo52sPdNCog==
-X-Received: by 2002:a17:906:8601:b0:948:6e3d:a030 with SMTP id o1-20020a170906860100b009486e3da030mr14441369ejx.42.1681286643266;
-        Wed, 12 Apr 2023 01:04:03 -0700 (PDT)
+        bh=C/dGyY5TVITXQ9f4V3PWQDgLG26tGuInk2+5HFdtqR8=;
+        b=wxFfmyCoGDTxOHrG6DGIAXdNeJ+x4YOoRftthYAHOSDDei0W5fVoKbuOKLxiPSDzLt
+         NIJP02vy7lDKbNQP4yIc4XXy66XsqmrvFF4+44coItQIgKOpZ8eEBY0FM3eGhzYrTq9X
+         oTxa4lgPlu9qA6rlIL/Th7RS51Zm9L9MVx0pl/dClcMoaszCZtMPFIe4WvXt8BHV/IY8
+         WKzcgK7xPio90lqiKplLERuHVKnUbkJ0o2JbBNcYz/ysqTQ5hxB+EoM0aDtddvPUunIZ
+         jUkspDJfWeiavcWdKl0Jl8O4kUSpwKHC73zhUu0KTTv/WKxDVDMj1w5QCZQZrsy2MISZ
+         HV7g==
+X-Gm-Message-State: AAQBX9cnUlvB0WD+a9S0C9XKgmahd0DEa/nMvG71x455X+UI6KWvuolM
+        7ZhtTZxwv6sWAcs6d36Q6rANTNC1m2C1R/vaiJA=
+X-Google-Smtp-Source: AKy350bz0IrllROlyNxN4r5spnZP79yYjDpGswbEYI/n4wTyHF5BJPKSElpsgQxSPRBPFk8+VKgh3Q==
+X-Received: by 2002:a05:6402:1154:b0:504:c269:1497 with SMTP id g20-20020a056402115400b00504c2691497mr1462520edw.27.1681286947468;
+        Wed, 12 Apr 2023 01:09:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id sc40-20020a1709078a2800b0094a84462e5fsm2998603ejc.37.2023.04.12.01.04.01
+        by smtp.gmail.com with ESMTPSA id h2-20020a50c382000000b004ad601533a3sm6626809edf.55.2023.04.12.01.09.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 01:04:02 -0700 (PDT)
-Message-ID: <848f5e3e-44ca-3648-2d6b-7e06ce7b5cda@linaro.org>
-Date:   Wed, 12 Apr 2023 10:04:00 +0200
+        Wed, 12 Apr 2023 01:09:07 -0700 (PDT)
+Message-ID: <5a28e520-63e4-dbcf-5b3e-e5097f02dea2@linaro.org>
+Date:   Wed, 12 Apr 2023 10:09:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v13 03/15] dt-bindings: Convert gpio-mmio to yaml
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: brcmstb: Add two optional props
 Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org
-Cc:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        linux-gpio@vger.kernel.org
-References: <20230411184313.3679145-1-sean.anderson@seco.com>
- <20230411184313.3679145-4-sean.anderson@seco.com>
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20230411165919.23955-1-jim2101024@gmail.com>
+ <20230411165919.23955-2-jim2101024@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230411184313.3679145-4-sean.anderson@seco.com>
+In-Reply-To: <20230411165919.23955-2-jim2101024@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -89,29 +91,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2023 20:43, Sean Anderson wrote:
-> This is a generic binding for simple MMIO GPIO controllers. Although we
-> have a single driver for these controllers, they were previously spread
-> over several files. Consolidate them. The register descriptions are
-> adapted from the comments in the source. There is no set order for the
-> registers, and some registers may be omitted. Because of this, reg-names
-> is mandatory, and no order is specified.
+On 11/04/2023 18:59, Jim Quinlan wrote:
+> Regarding "brcm,enable-l1ss":
 > 
-> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
-> has moved.
+>   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
+>   requires the driver probe() to deliberately place the HW one of three
+>   CLKREQ# modes:
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> Linus or Bartosz, feel free to pick this up as the rest of this series
-> may not be merged any time soon.
+>   (a) CLKREQ# driven by the RC unconditionally
+>   (b) CLKREQ# driven by the EP for ASPM L0s, L1
+>   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
 > 
-> Changes in v13:
-> - Fix references to brcm,bcm63xx-gpio.yaml (neé brcm,bcm6345-gpio)
+>   The HW+driver can tell the difference between downstream devices that
+>   need (a) and (b), but does not know when to configure (c).  Further, the
+>   HW may cause a CPU abort on boot if guesses wrong regarding the need for
+>   (c).  So we introduce the boolean "brcm,enable-l1ss" property to indicate
+>   that (c) is desired.  Setting this property only makes sense when the
+>   downstream device is L1SS-capable and the OS is configured to activate
+>   this mode (e.g. policy==superpowersave).
+> 
+>   This property is already present in the Raspian version of Linux, but the
+>   upstream driver implementaion that will follow adds more details and
 
-You got some of the same errors as last time.
+typo, implementation
 
-Test your patches before sending.
+>   discerns between (a) and (b).
+> 
+> Regarding "brcm,completion-timeout-us"
+> 
+>   Our HW will cause a CPU abort if the L1SS exit time is longer than the
+>   PCIe transaction completion abort timeout.  We've been asked to make this
+>   configurable, so we are introducing "brcm,completion-timeout-us".
+> 
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+
+What happened here? Where is the changelog?
 
 Best regards,
 Krzysztof
