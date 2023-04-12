@@ -2,95 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0D136DFBB6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 18:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EC8F6DFC82
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 19:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbjDLQrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 12:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
+        id S231390AbjDLRQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 13:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbjDLQrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 12:47:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB027DB3;
-        Wed, 12 Apr 2023 09:47:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D88E76339A;
-        Wed, 12 Apr 2023 16:46:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5DFEC4339C;
-        Wed, 12 Apr 2023 16:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681317967;
-        bh=hUyUk0HVEmauyGnxF8rmJvXXqxDZnnR+L7bxIlBZgzA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=IWCHHZdqVbKsnt4g/P6d1WohBEW0XsZkZzwD6aN3vbjzbeSYVyfVRjwNqL0qYt64w
-         sXwE+SJDt4SUD/usBEDkUVBU+uesxwYQBRQrBuJ8Xh7BE/hb/EyhAqDlpRItlsGRxK
-         J/yFBdEqZfsfwi4muh16sMzAEGm54KObHWbW1T/dMO9V7SEqCg8z5/lS2Bli9CkkCE
-         06G6VGfoVduk//DuceYP8YIstvbghsdMxkoB9Olzm0nscr4b/yePmAaeyx/8o7cbi6
-         PJvtkyxBlu/aEKKtJGW5UtpQKUpPOT4+gnzo9Ol28bZZeEejOzJrPpqIw/W4fnlm6/
-         hHAC9Fc2SdeBQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc:     Hartley Sweeten <hsweeten@visionengravers.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Nikita Shubin <nikita.shubin@maquefel.me>
-In-Reply-To: <20230411165951.2335899-1-alexander.sverdlin@gmail.com>
-References: <20230411165951.2335899-1-alexander.sverdlin@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: sound: ep93xx: Add I2S description
-Message-Id: <168131796432.93781.16086400644681374069.b4-ty@kernel.org>
-Date:   Wed, 12 Apr 2023 17:46:04 +0100
+        with ESMTP id S229938AbjDLRQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 13:16:12 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA40A26E;
+        Wed, 12 Apr 2023 10:15:54 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33CFmsXn020907;
+        Wed, 12 Apr 2023 16:49:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=V4dEkYorey7By1tNXbbLfY/Q4S/geiqX8oTuMm20t2I=;
+ b=FgmU+8F2e+TwdvS6zwoibi5tUxJYQolJREE2/0lKl2KauBcBur4pPRhtOjdg/nkkW319
+ Cn17q6oUDaBIfLEyVaVrZmtNztGD307/8m9m5/n0jZqgp4s7lWJ1V+YWOBEqUxjMh37y
+ Xfrgv5B+W8ZfnlusxLJ3B2DHWwERJ74owQndIaAvc8BfUvqY4whIhQCQnyqqxMGXBV4G
+ vAMece6vSVUd7aiakTyXTFBolavHiIlw/i0i4IUcLxeguBdmUtTEI3/UO/oLxBKmXWlO
+ lrD6zp/BT4Kiuw+pOOPV2+zMG+gMbnudw7TktUG9nVyTIf0ZWHaJAgqUecngfwEARyAe kw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pwqnq1at1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Apr 2023 16:49:38 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33CGnbSb000440
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Apr 2023 16:49:37 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 12 Apr 2023 09:49:34 -0700
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH 0/3] Minor updates in the IPQ5332 DTS files
+Date:   Wed, 12 Apr 2023 22:19:17 +0530
+Message-ID: <20230412164920.21862-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-00303
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bgsgOs8qHbXt34oKDZDEatTwSo5z65rp
+X-Proofpoint-GUID: bgsgOs8qHbXt34oKDZDEatTwSo5z65rp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-12_08,2023-04-12_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 mlxscore=0
+ phishscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxlogscore=650
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304120145
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Apr 2023 18:59:50 +0200, Alexander Sverdlin wrote:
-> Add device tree bindings for Cirrus Logic EP93xx internal SoCs' I2S
-> controller.
-> 
-> 
+Rename the MI01.2 DTS after Reference Design Platform(RDP) number to align
+with ipq5332-rdp468.dts, add UART1 node and reserve memory for U-boot
+and SBL to avoid loosing the RAM contents which will be used in post
+morterm analysis.
 
-Applied to
+Bjorn, since these are minor updates, it would be great if you could
+possibly pick up this series for v6.4.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Kathiravan T (3):
+  arm64: dts: qcom: ipq5332: rename mi01.2 dts to rdp441
+  arm64: dts: qcom: ipq5332: define UART1
+  arm64: dts: qcom: ipq5332: add few more reserved memory region
 
-Thanks!
+ arch/arm64/boot/dts/qcom/Makefile             |  2 +-
+ ...{ipq5332-mi01.2.dts => ipq5332-rdp441.dts} |  0
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 20 +++++++++++++++++++
+ 3 files changed, 21 insertions(+), 1 deletion(-)
+ rename arch/arm64/boot/dts/qcom/{ipq5332-mi01.2.dts => ipq5332-rdp441.dts} (100%)
 
-[1/2] dt-bindings: sound: ep93xx: Add I2S description
-      commit: 13b1b95245a7c2dc959b06ed7f02f4832e401cd2
-[2/2] ASoC: ep93xx: Add OF support
-      commit: b599a4d7d905a8e8cf5c36ccae0b3dd97c956075
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.17.1
 
