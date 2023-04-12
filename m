@@ -2,127 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A79806DF6E4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5397C6DF71E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:25:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbjDLNVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 09:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48326 "EHLO
+        id S230362AbjDLNZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 09:25:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229917AbjDLNVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:21:52 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B493C9766;
-        Wed, 12 Apr 2023 06:21:24 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2599F6603102;
-        Wed, 12 Apr 2023 14:21:18 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681305679;
-        bh=BEatgd20PaT+FoAtz5LJF9JNJB6ziiidFfTfPNIX/YM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=fsD0pPPDgNntnWVZcg0I3MYaS53hmASFtfvk2zOkcJ9TJZiqgyjcdHRrgEqLsg32h
-         QpEOr5iKO0Ea1oRKd9TFMqf2RHhd0m5UjbO3GPw5vZh4WF19HkG6o3Zi2Giq7egCgN
-         9u4b/aW/K8IKCNgyJ2EdGPdlzlvp51x2AnsimSLEbc5Z5RZ9hIau+owIMC8ThfilW+
-         bVQ1xfnX8cu6G6PYHP/ZZiMRLmCTrOoLr+ZVHoV6gZY90ykb8E/LqSvsieF4Sg3zAy
-         ul7/TGTo6KI8Zv0auPlCa3hscCYQrEopSi478gvEP2mBehdLl0DAgHOTXBHEMUN0Ey
-         S3UbQhNG6eqAg==
-Message-ID: <8bc72da0-d872-53fb-6753-f826efa3a51b@collabora.com>
-Date:   Wed, 12 Apr 2023 15:21:16 +0200
+        with ESMTP id S231613AbjDLNYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:24:51 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899259ED0;
+        Wed, 12 Apr 2023 06:24:23 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id w13so28228580oik.2;
+        Wed, 12 Apr 2023 06:24:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681305786; x=1683897786;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t7nW6mawiUuyYszKT+ZrkBThDfGBOABkC1FpPQVvJWI=;
+        b=XcT9DruApjzDiS139B4vZXzxQ2d/u4KE8o8WqcnOhetJ4P2o/23swtdE647D9AiSFN
+         cSkQZh6Z+lzgzKdGpkxeMRRbbbWexlA5bDqNuhFIr0uSd8eVqrieUmbjIocaH7C5UjH8
+         eK0HHldjlxWM958Tleh2nVDUjTq+VWypkAhR3CJKKhf4i8QTz0GwDviTpGp9IEmto5T1
+         aOmhkInlkM4TyGlk6W9l7BayBQAWmJ7XUo6IjA4gHm65h8xN+/5vKBiPmXUUPZanDGBm
+         DCnEVEaVRxv9bWn+HJ1vDQCFZYafIi4hyQ3IrGCxseT83RCIRYu0OehvSPMWMlSAtPXa
+         96dg==
+X-Gm-Message-State: AAQBX9enuxb3l1CMWGrIMzzsHITjRJnC8y9Mx/RIQCOiB85ZuoVw7xB1
+        8fnO6uQHJc89ZnxHU8ZpJ2xh3VxkuA==
+X-Google-Smtp-Source: AKy350Ze5ahkO+i51YqIaIv90DMIyhWWgOpcR5PQ65mfFvNAEbx1vXIzAmE9jG1S0P8ZzwcVpdix5g==
+X-Received: by 2002:a05:6808:3a7:b0:389:2d2b:4b05 with SMTP id n7-20020a05680803a700b003892d2b4b05mr6088608oie.5.1681305784977;
+        Wed, 12 Apr 2023 06:23:04 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fe6-20020a0568082b0600b00387372f548asm6562499oib.16.2023.04.12.06.23.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 06:23:04 -0700 (PDT)
+Received: (nullmailer pid 2007502 invoked by uid 1000);
+        Wed, 12 Apr 2023 13:23:03 -0000
+Date:   Wed, 12 Apr 2023 08:23:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     andersson@kernel.org, krzysztof.kozlowski@linaro.org,
+        neil.armstrong@linaro.org, djakov@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, rfoss@kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        vladimir.zapolskiy@linaro.org, konrad.dybcio@linaro.org,
+        bhupesh.linux@gmail.com
+Subject: Re: [PATCH v6 05/11] dt-bindings: qcom-qce: Fix compatible
+ combinations for SM8150 and IPQ4019 SoCs
+Message-ID: <168130578228.2007207.11606069055162808337.robh@kernel.org>
+References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
+ <20230405072836.1690248-6-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 05/27] dt-bindings: display: mediatek: dsi: Add compatible
- for MediaTek MT6795
-Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
-        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, jitao.shi@mediatek.com,
-        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
-        kernel@collabora.com, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
- <20230412112739.160376-6-angelogioacchino.delregno@collabora.com>
- <b9424113-f812-2f2d-5068-b04bb789e0de@gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <b9424113-f812-2f2d-5068-b04bb789e0de@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230405072836.1690248-6-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 12/04/23 14:36, Matthias Brugger ha scritto:
+
+On Wed, 05 Apr 2023 12:58:30 +0530, Bhupesh Sharma wrote:
+> Currently the compatible list available in 'qce' dt-bindings does not
+> support SM8150 and IPQ4019 SoCs directly which may lead to potential
+> 'dtbs_check' error(s).
 > 
+> Fix the same.
 > 
-> On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
->> Add a compatible string for MediaTek Helio X10 MT6795, using the same
->> DSI block as MT8173.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../display/mediatek/mediatek,dsi.yaml        | 19 ++++++++++++-------
->>   1 file changed, 12 insertions(+), 7 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml 
->> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
->> index 4707b60238b0..12441b937684 100644
->> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
->> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
->> @@ -22,13 +22,18 @@ allOf:
->>   properties:
->>     compatible:
->> -    enum:
->> -      - mediatek,mt2701-dsi
->> -      - mediatek,mt7623-dsi
->> -      - mediatek,mt8167-dsi
->> -      - mediatek,mt8173-dsi
->> -      - mediatek,mt8183-dsi
->> -      - mediatek,mt8186-dsi
->> +    oneOf:
->> +      - enum:
->> +          - mediatek,mt2701-dsi
->> +          - mediatek,mt7623-dsi
->> +          - mediatek,mt8167-dsi
->> +          - mediatek,mt8173-dsi
->> +          - mediatek,mt8183-dsi
->> +          - mediatek,mt8186-dsi
->> +      - items:
->> +          - enum:
->> +              - mediatek,mt6795-dsi
->> +          - const: mediatek,mt8173-dsi
-> 
-> Same here, why not const?
+> Fixes: 00f3bc2db351 ("dt-bindings: qcom-qce: Add new SoC compatible strings for Qualcomm QCE IP")
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
-For both DPI and DSI: many other SoCs can work with the same handling
-as MT8173, that's all the ones from the same era, one example is MT6765,
-MT6755... as well as MT6752 and 67533 afaik.
-
-...that's why :-)
-
-Cheers,
-Angelo
-
->>     reg:
->>       maxItems: 1
-
+Acked-by: Rob Herring <robh@kernel.org>
 
