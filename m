@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBFC6DED4E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4D5F6DED51
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 10:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbjDLIOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 04:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54562 "EHLO
+        id S230000AbjDLIPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 04:15:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjDLIOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:14:32 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F6A7FC
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:14:27 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id d22-20020a17090a111600b0023d1b009f52so13735287pja.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:14:27 -0700 (PDT)
+        with ESMTP id S229992AbjDLIPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 04:15:07 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4E46101
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:15:05 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id ga37so27055724ejc.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 01:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1681287266; x=1683879266;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1681287304;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tdz7ziJAx1J5fOg+gUbjH9qYWYL3+Fjw0+c8dzkluac=;
-        b=Vc2BG658MmLcxZiSH+aVkLklMJRS85ZAoJWVikCJvOnk2fjH218RYLGRns6CHyX51k
-         tNZ37a3y/VY6WSBvmkS1eEGYJiWnMqMuWdZuKi38CJUvWLdgrXFnVmBh4wwAbYDStoDp
-         c5tJsxt5c11oDtB71H4cXXfc+TYD/acDORtRcQNbHqi35FVaiBWn8RTt84RmiIi8aJ9Y
-         mFYOygGkPm7nTZkpMbsK+a2LGV3QutyXsKGqjS2TJVL2LOau7hesBaQ3QVRBz0FZ4Lzn
-         8VqK/tjSbSKgVvoZ9QiVQWyQF70iYh8v6o1d7KNKf+AUCSybhSlXGKi8PTCvhsUyUhhb
-         OJJw==
+        bh=fFt2X04+gRJHM2+VI6ttu8hA+NrhkWSLmAUSA85EMys=;
+        b=Z6I6MrMH/lfo0t0Y0h6nvWLZnvjhnC6NwFLDT6uewKACghnLMh/GTj1v+inaNlz+Kl
+         wZ6na2RHpYTyWT781486puPTghs6mXJXOHSICprqmvDRjdYwykvupA3XID25f/nf6F1K
+         oUbO4bgP7K3rjUPhiLbcIDtHgLpEL9FFNzsDXZTHKUj5hE3YkoLANTGk6bH61+tEbAGR
+         x0IDS7wMevWHc/rOtJOTKoYkVrlXH+X5akkL+HXcioyVHDYsikBJSZ17zaFwMlAtWEkD
+         qLPqlTep0SpYlat+X9ZZOf/iVvD1wgfr1MUuns1XiI5imaP3LgX/Ls+Gfyw4UcVCQ1bR
+         XZlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681287266; x=1683879266;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1681287304;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tdz7ziJAx1J5fOg+gUbjH9qYWYL3+Fjw0+c8dzkluac=;
-        b=6HuGDIxY14LUy3aZPJpDJEasUgpaAculE841mm937IyRkZGmOy1c/HpuhUJRzn3lVV
-         5/OYIUOhbv3M4SeFmRQuxUdcRu7lJ/JIri8cp8sO+DYelp/nUkOr+9ZUpawIcjlbQR8x
-         P+ktiUsLLNXpmmhFWa0C/Kxl+KdIYMK0wAza39OodSKhpgCp1m7CVBfVNnTePncTd+hc
-         mLtYazg5wkXXCw/D9mwhaXn6mKGq5T1cq1A/7PO7KuCvdFMF5/7Ymq0F7ql6zP2wxidO
-         RpszKQA/5I1U4Q/nwvJlczIOarwz/SI5wTMUBv6ywrIADyu8d72yLbCrqtBYSiC1UGYH
-         1LJQ==
-X-Gm-Message-State: AAQBX9eKyVrMWw8EJoNceOTocctI4RAd0FeXy6aAyFDFd4ErnwqSONeG
-        JeVSr8KZfw4er0Yx5qXFacKMRw==
-X-Google-Smtp-Source: AKy350bwirretxOjUgXWQfxnpm13d+NcWFP7kvr4Zrrq4AGPa/W4fP/xWA+HmJTQRxjqvF+mtocsvQ==
-X-Received: by 2002:a17:902:ec83:b0:1a1:dd05:39fe with SMTP id x3-20020a170902ec8300b001a1dd0539femr19724889plg.4.1681287266615;
-        Wed, 12 Apr 2023 01:14:26 -0700 (PDT)
-Received: from [10.220.157.239] ([124.148.245.238])
-        by smtp.gmail.com with ESMTPSA id o17-20020a170902779100b001a19bac463fsm10978498pll.42.2023.04.12.01.14.22
+        bh=fFt2X04+gRJHM2+VI6ttu8hA+NrhkWSLmAUSA85EMys=;
+        b=LYW6T5eiiejc9J7hfWvX2tHWR7mnPSh7XYvXKIMAW4HKVDWPTPZnXXcYf554+FN/BY
+         Ua0jRR+BLBLIENbn+jnPicHCmGhepoaE1jH4QAW4nGaGQr7/QFDJYKV/Y7apFACd412L
+         rVqH24Vvk0mIWaZtXnfVveKkr4wQjD80CaDQS0zBevpLzmjFrT/D9MSHrzqQLcwRIzhq
+         bqbA5Mb8MrBeEwdsB7Xap1IGv9TSXrVNTNbvLw3gInVFsa71A0EGy5MLhsAyGvLi/hj2
+         0HlZ0g2zAVUV3g90o3Wn0pvn7/aB2W0HRdIA5hQjnBAOE7MsX1HEPwTGtBA1U5X4wyTt
+         VZsQ==
+X-Gm-Message-State: AAQBX9ffvClH+S182u5nrve67rcwbTUT7f67C/KYwdzskKB7RjtfW+a6
+        p3iRl+wHxKoL3Ju9vNgbA3jvjQ==
+X-Google-Smtp-Source: AKy350YN+rstwkL7t/fiU5nlz3Ynak5pPMW0pVAEUiLlmM3URy4db0+sE67ofxpCGhmf8BuykmLBKA==
+X-Received: by 2002:a17:906:6494:b0:94a:653b:ba40 with SMTP id e20-20020a170906649400b0094a653bba40mr1571344ejm.15.1681287304232;
+        Wed, 12 Apr 2023 01:15:04 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
+        by smtp.gmail.com with ESMTPSA id wt13-20020a170906ee8d00b0094a8115e148sm3103930ejb.87.2023.04.12.01.15.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 01:14:26 -0700 (PDT)
-Message-ID: <84dc7f75-8802-ef3c-8c61-b2e4e0bcfe04@tweaklogic.com>
-Date:   Wed, 12 Apr 2023 16:14:19 +0800
+        Wed, 12 Apr 2023 01:15:03 -0700 (PDT)
+Message-ID: <e1f83f5f-c139-c1b2-5e42-00fce804e548@linaro.org>
+Date:   Wed, 12 Apr 2023 10:15:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 1/2] dt-bindings: Document APDS9306 Light Sensor
- bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
- <20230411011203.5013-2-subhajit.ghosh@tweaklogic.com>
- <7e98fefa-da9b-f07f-eafc-688b54011e64@linaro.org>
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V2 1/3] dt-bindings: sram: qcom,imem: Add Boot Stat region
+ within IMEM
 Content-Language: en-US
-From:   Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <7e98fefa-da9b-f07f-eafc-688b54011e64@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1680874520.git.quic_schowdhu@quicinc.com>
+ <96601c1f9e433ef8fbc608d5ca09365b9c0d8132.1680874520.git.quic_schowdhu@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <96601c1f9e433ef8fbc608d5ca09365b9c0d8132.1680874520.git.quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -81,10 +83,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 07/04/2023 16:04, Souradeep Chowdhury wrote:
+> All Qualcomm bootloaders log useful timestamp information related
+> to bootloader stats in the IMEM region. Add the child node within
+> IMEM for the boot stat region containing register address and
+> compatible string.
+> 
+> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> ---
+>  .../devicetree/bindings/sram/qcom,imem.yaml         | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> index 665c06e..9998d65 100644
+> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - qcom,sdm845-imem
+>            - qcom,sdx55-imem
+>            - qcom,sdx65-imem
+> +          - qcom,sm8450-imem
+>        - const: syscon
+>        - const: simple-mfd
+>  
+> @@ -48,6 +49,26 @@ patternProperties:
+>      $ref: /schemas/remoteproc/qcom,pil-info.yaml#
+>      description: Peripheral image loader relocation region
+>  
+> +  "^boot-stat@[0-9a-f]+$":
 
-Thank you for the feedback.
-I will change the subject line.
+Konrad,
+Just like for RPM Master stats, didn't we want to call these just "stats"?
 
-Regards,
-Subhajit Ghosh
+https://lore.kernel.org/linux-arm-msm/20230405-topic-master_stats-v2-1-51c304ecb610@linaro.org/
+
+> +    type: object
+> +    description:
+> +      Imem region dedicated for storing timestamps related
+> +      information regarding bootstats.
+
+Description is okay, but you ignored the rest.
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+
+Best regards,
+Krzysztof
+
