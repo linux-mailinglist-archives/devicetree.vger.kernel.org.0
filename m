@@ -2,109 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35F4C6DF500
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7158B6DF51B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjDLMWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 08:22:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59976 "EHLO
+        id S229712AbjDLMZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 08:25:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbjDLMWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:22:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3047C6180;
-        Wed, 12 Apr 2023 05:22:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AA9DD61190;
-        Wed, 12 Apr 2023 12:22:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D07DCC433D2;
-        Wed, 12 Apr 2023 12:22:16 +0000 (UTC)
-Message-ID: <00a8fb79-580e-5389-f03f-abb7bba9f092@xs4all.nl>
-Date:   Wed, 12 Apr 2023 14:22:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [v9] media: mediatek: vcodec: support stateless AV1 decoder
-Content-Language: en-US
-To:     Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229948AbjDLMZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:25:06 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE1AE6B;
+        Wed, 12 Apr 2023 05:24:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=FpWgKUoiz0J1sZzx8HhIfaR+XN7FLVmHacJvZAr33Jo=; b=N5R6rI5YrQZVpNCySf3ccF+sYI
+        JxuS4/J4ZSEW/8avo6msR+jW90J8qYZueL0LUDRVE0zn+499ARxTzTVZukGvUFDNqPyBvFTCPrwcG
+        KXs222nLaxtAVuPEXFwYDOfHQeZV8vdGubPRqygDUdapCJFrTgitYvcL/pjMCBbdiEPg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pmZWf-00A5Mu-Vn; Wed, 12 Apr 2023 14:24:37 +0200
+Date:   Wed, 12 Apr 2023 14:24:37 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tony Dinh <mibodhi@gmail.com>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230412033022.7766-1-xiaoyong.lu@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230412033022.7766-1-xiaoyong.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: mvebu: add Thecus N2350 board DTS
+Message-ID: <eddb141e-6a8a-4473-b5e4-2e043d6f5197@lunn.ch>
+References: <20230412025737.20280-1-mibodhi@gmail.com>
+ <20230412025737.20280-3-mibodhi@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230412025737.20280-3-mibodhi@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 05:30, Xiaoyong Lu wrote:
-> Add mediatek av1 decoder linux driver which use the stateless API in
-> MT8195.
-> 
-> Signed-off-by: Xiaoyong Lu<xiaoyong.lu@mediatek.com>
-> Tested-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +/ {
+> +	model = "Thecus N2350";
+> +	compatible = "marvell,armada385";
 
-Hmm, I get this compile error:
+If you look at all the other armarda-385 .dts files, they all have a
+board compatible. It might not be needed now, but it could be useful
+in the future and allow backwards compatibility.
 
-drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c: In function ‘vdec_av1_slice_setup_uh’:
-drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c:48:58: error: ‘V4L2_AV1_FRAME_FLAG_UNIFORM_TILE_SPACING’ undeclared (first use in this function); did you mean
-‘V4L2_AV1_TILE_INFO_FLAG_UNIFORM_TILE_SPACING’?
-   48 | #define FH_FLAG(x, name)                (!!((x)->flags & V4L2_AV1_FRAME_FLAG_##name))
-      |                                                          ^~~~~~~~~~~~~~~~~~~~
-drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c:1322:41: note: in expansion of macro ‘FH_FLAG’
- 1322 |         uh->uniform_tile_spacing_flag = FH_FLAG(ctrl_fh, UNIFORM_TILE_SPACING);
-      |                                         ^~~~~~~
-drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c:48:58: note: each undeclared identifier is reported only once for each function it appears in
-   48 | #define FH_FLAG(x, name)                (!!((x)->flags & V4L2_AV1_FRAME_FLAG_##name))
-      |                                                          ^~~~~~~~~~~~~~~~~~~~
-drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c:1322:41: note: in expansion of macro ‘FH_FLAG’
- 1322 |         uh->uniform_tile_spacing_flag = FH_FLAG(ctrl_fh, UNIFORM_TILE_SPACING);
-      |                                         ^~~~~~~
+> +&mdio {
+> +	phy0: ethernet-phy@0 {
+> +		reg = <1>;
+> +	};
+> +};
 
-This flag was renamed from V4L2_AV1_FRAME_FLAG_UNIFORM_TILE_SPACING to
-V4L2_AV1_TILE_INFO_FLAG_UNIFORM_TILE_SPACING in v5 of the AV1 uAPI.
+Since you have ref = <1>, this should be ethernet-phy@1.
 
-So this suggests to me that you are testing with an old version of the AV1
-uAPI. The correct one is v7:
-
-https://patchwork.linuxtv.org/project/linux-media/patch/20230306161850.492072-1-daniel.almeida@collabora.com/
-
-You have to compile and test with that v7 patch since that's the version we
-want to merge.
-
-Regards,
-
-	Hans
