@@ -2,125 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51A9A6DF4B3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9AB6DF4CF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231560AbjDLMJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 08:09:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50958 "EHLO
+        id S230374AbjDLMOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 08:14:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231519AbjDLMJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:09:41 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D1649FD
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 05:09:36 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id z26so14277629lfj.11
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 05:09:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681301375; x=1683893375;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u3h3Qb1KatJSKEmGkyYMOlAl0W2Gj+Vwa3k7Pw9iuQc=;
-        b=ymGqYnFVBhofOGOwR5Qn/oIyKTYickjGrpi24ONt4lLyDsJ1ZrSBxT2macuyAsAJFP
-         hNjr+Cimvgd0WnNteNTfVwBV/sRR83sEftpMy8pgGuoMmTudyQ5nNdUGfVFSS8HPF+Kk
-         NySgC8kvT3AwWBvy8aynSZVGbMOGdAQlQzZ3VCa57lZwe89J0tlx0tHHwOQ1ySO0cgQ1
-         kK2vGDlTslhj/6Q1o0+u288CzgaVXOb8EuW+ZOY684p2eudsdE3F7cvzZv7gkgwoVbZu
-         IgzAuurhT0J3PBDtE+uitYQfjSSLi07EgpNdhS5PveseGSqYNIcH78ViLW8T+QWtZL/U
-         RDIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681301375; x=1683893375;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u3h3Qb1KatJSKEmGkyYMOlAl0W2Gj+Vwa3k7Pw9iuQc=;
-        b=JDNwBzprBI1sTHa4fSJZsgDZ3qgNeSFMsAmzPKY71MqHN5o879yRUqysRY5DRrhXYz
-         MpE8Wqng+46jxMOdSNT1xKFhVosqwqlVowdbA3j+JtGddTHvG+LFUfMhlVbMoAcOXGbl
-         df54ZZzVfQ9nztiCPV4OuaaJNcIDo9m//LR8Ok47ULaPLCPeBtP7h/hkwHXA5+z766TF
-         X59g/weULFYc2hGhKJUXzksuEejKZN2G2P9E2KpzqB1mXDb6BJ//C3hKcLzG9z6goLty
-         L0a5Qh08dclAD8jO2lQm0tZdVpC6Ev6kb8/jhU1BPu4/7286k4PmrZgYNf6q9GwGIGQj
-         reTw==
-X-Gm-Message-State: AAQBX9cVsP+S/GZpYg5X1ZCewaQsDc4nw8HSmCvLXA7ym+YHfwWPlgpx
-        WiQJJ/guZBfIlGx0jZYtaGW1FQ==
-X-Google-Smtp-Source: AKy350YwSJR4JPJ3GVRU7sQeWv9eVe45n1srxKzeDCdDhA6t33VQwsIYqWpVyCNt21TlBJSmZ8MLEQ==
-X-Received: by 2002:ac2:4d01:0:b0:4ec:7967:9e88 with SMTP id r1-20020ac24d01000000b004ec79679e88mr639622lfi.8.1681301375158;
-        Wed, 12 Apr 2023 05:09:35 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id l6-20020ac25546000000b004dd6c325311sm2993786lfk.248.2023.04.12.05.09.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 05:09:34 -0700 (PDT)
-Message-ID: <2e648a97-083e-8ee2-1695-4af299bb222a@linaro.org>
-Date:   Wed, 12 Apr 2023 14:09:33 +0200
+        with ESMTP id S230231AbjDLMOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:14:34 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF2CB4;
+        Wed, 12 Apr 2023 05:14:32 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33CCEGlq010655;
+        Wed, 12 Apr 2023 07:14:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681301656;
+        bh=ZBuHLpO3NAI8tZ1HCgNXx960GkgMPOfjXmyfDuODYTo=;
+        h=From:To:CC:Subject:Date;
+        b=Z73K8+NflhBrBfwxcxg7OATsIOtSBM+E8lXbvr6JW13iF5rhe2WggwEC+e6pI7IeL
+         yrZ9EZ9ANPeX8IE0xawQNFr5KmD0sORCq/33SXD89S2u9wk+MQnlNSKZbQgf78C8oh
+         JVNi1ZsTZ438Hm2SpmdkS5xEmF8bHbhObEGTg3+M=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33CCEGa8003059
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Apr 2023 07:14:16 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 12
+ Apr 2023 07:14:16 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 12 Apr 2023 07:14:16 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33CCEFil049647;
+        Wed, 12 Apr 2023 07:14:16 -0500
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <a-govindraju@ti.com>, <kishon@ti.com>, <kristo@kernel.org>,
+        <vigneshr@ti.com>, <nm@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-j721s2-main: Enable support for SDR104 speed mode
+Date:   Wed, 12 Apr 2023 17:44:15 +0530
+Message-ID: <20230412121415.860447-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
- <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
- <168069726278.2356075.14351594478003012447.robh@kernel.org>
- <20230405134727.GA2461305-robh@kernel.org>
- <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
- <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
- <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
- <ZDAAToSzNLVo6le8@gerhold.net>
- <198523f5-d06f-15cd-af6c-f391c02bcaa9@linaro.org>
- <1f8fc036-380b-0a42-bb29-a3e275ed6a33@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1f8fc036-380b-0a42-bb29-a3e275ed6a33@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+According to TRM for J721S2, SDR104 speed mode is supported by the SoC
+but its capabilities were masked in device tree. Remove sdhci-caps-mask
+to enable support for SDR104 speed mode for SD card in J721S2 SoC.
 
+[+] Refer to : section 12.3.6.1.1 MMCSD Features, in J721S2 TRM
+- https://www.ti.com/lit/zip/spruj28
 
-On 12.04.2023 13:55, Krzysztof Kozlowski wrote:
-> On 12/04/2023 13:47, Konrad Dybcio wrote:
->>> For unrelated reasons I actually have some patches for this, that switch
->>> the /smd top-level node to a "remoteproc-like" node dedicated to the
->>> RPM, similar to how WCNSS/ADSP/Modem/etc are represented. I need this to
->>> add additional (optional) properties like "resets" and "iommus" for the
->>> RPM, but it would allow adding arbitrary subnodes as well:
->>>
->>> https://github.com/msm8916-mainline/linux/commit/35231ac28703805daa8220f1233847c7df34589e
->>>
->>> I could finish those up and post them if that would help...
->> Krzysztof, what do you think?
-> 
-> I don't know what is there in MSM8916 and how it should be represented.
-Similarly to other Qualcomm SoCs, MSM8916 has a RPM (Cortex-M3) core,
-which communicates over the SMD protocol (or G-LINK on >=8996).
+Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+Changelog v1->v2:
+	- Modified Commit Message and Added Fixes tag
 
-The Qualcomm firmware loads the RPM fw blob and sets it up early in
-the boot process, but msm8916-mainline folks managed to get TF-A
-going and due to it being less.. invasive.. than the Qualcomm TZ,
-RPM needs a bit more handling to be accessible.
+Link to v1 : https://lore.kernel.org/all/20230404091245.336732-1-b-kapoor@ti.com/
 
-The M3 core is wired up through the CNoC bus and we communicate
-with it through the MSG RAM and the "APCS mailbox".
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-Konrad
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 8915132efcc1..95c6151ed10c 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -400,8 +400,6 @@ main_sdhci1: mmc@4fb0000 {
+ 		ti,clkbuf-sel = <0x7>;
+ 		ti,trm-icp = <0x8>;
+ 		dma-coherent;
+-		/* Masking support for SDR104 capability */
+-		sdhci-caps-mask = <0x00000003 0x00000000>;
+ 	};
+ 
+ 	main_navss: bus@30000000 {
+-- 
+2.34.1
+
