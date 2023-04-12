@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44ED86DFBE5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 18:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 788906DFC0E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 18:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbjDLQya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 12:54:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
+        id S230207AbjDLQ7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 12:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjDLQy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 12:54:29 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B03F8698
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 09:53:55 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id qb20so30070404ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 09:53:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681318394;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kG5Bp9G8GHRtnaihhtMcFrai7auGDwatUysUi5rRPM4=;
-        b=t3PMe32EZJV9cCoDIkveen1Mt0ZXC8V8Nwx01NlHfKa11Vx+CgCN03HLEdyF8L8B5N
-         oxOXpHaRyvfb6AHDx289+vJStY+EJwIsxz2SoGGR9JMf7YslsfW4HNlOOoo+dKnwip6n
-         n4ama1PFbDfxjtqwO9pD3cphtlWR6ziTaHcEeMg+nZ3IlSDCV/4n3PbMXeNk4kQBLG5j
-         HyJ10opdEQ2AkrTWCC35fBqxipAajjYHeKzzyPpWbYjyiLh5Q521hbEOmgX8gzX8F7cB
-         bjzUidW9notC7XkN9Ge7pxmkLJbN2txGTjI6U5bpvpvlXMT7gUpenEbW7xSWjhcUiFps
-         FqOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681318394;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kG5Bp9G8GHRtnaihhtMcFrai7auGDwatUysUi5rRPM4=;
-        b=QrwIdZwqJG2g4CuF+boZcpvEjQPv1UjIwN9+TRQiA4uECjVocUNiQsN9N19NuSiN81
-         HbsOu0Xliebt3A8k6fEP+FGNQ12TLvn4ZbuS/0dshvXeSPsrg2w97SUMricNV23hFcog
-         xkzVyVmGVeyGVFtfFpdIxQG4zPWC6xGJDBkxOkcSEPih6Gduwg/aQZl+9v4Vm3afvMoW
-         +nC1tYIQ8inhh+GwYui6pz04hf/hn6j/8r+rniX7KTtktR7xMHXtm/NN2MLJ3rPDyS+8
-         +HTZ4GebKBIjsQP91RmD7RSscifVbcwIWzzb/qJ0Lt/4znlZGt7vucJgDioLQch0yMob
-         nQaw==
-X-Gm-Message-State: AAQBX9fIKlj8fy5yBYmOnRm5Vw+de64Tjg/HWVZQNX36vIC5zJId5x5b
-        DCntI7Q7QAv+SkEoMiqgRZvyGw==
-X-Google-Smtp-Source: AKy350ZUDGBcr74cMS/N8WuiTB3okSg9uQJyGCy/5y+jKVibXQJYbcWciy75St+Vcb18YTNBYHTENQ==
-X-Received: by 2002:a17:906:686:b0:931:ed:e379 with SMTP id u6-20020a170906068600b0093100ede379mr2931945ejb.67.1681318394546;
-        Wed, 12 Apr 2023 09:53:14 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:938a:b3db:7c59:795e? ([2a02:810d:15c0:828:938a:b3db:7c59:795e])
-        by smtp.gmail.com with ESMTPSA id ta20-20020a1709078c1400b0094770cf8b1fsm7455180ejc.5.2023.04.12.09.53.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 09:53:14 -0700 (PDT)
-Message-ID: <15f48b06-a6be-1295-5deb-d3594bce6699@linaro.org>
-Date:   Wed, 12 Apr 2023 18:53:12 +0200
+        with ESMTP id S230313AbjDLQ7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 12:59:34 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8B786A8;
+        Wed, 12 Apr 2023 09:59:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1681318741; i=frank-w@public-files.de;
+        bh=fOcCePvOyVu5eqlb5sp+l70CGKrbBCGwfk0FK1UiB6A=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=PMxo+v/gXJCJnMg8GB4Ksdf+mxTowXgGzm4T1QjhQIF4wzcrh8hNJZbC2qiasq84x
+         Hi3ivkf2PaDzYH/S+/YlRqYsRYCL4JuKfFejRk1GFW2XKWKF0XJUdE2aajcO2ZcN2t
+         UYtcIfXX7yUXNMBAL60v7En9ZbE+eXZrATBlz8GC5rMf6ulLWKmpvXetp94OHlA07H
+         NWb+TFqqpXCrtAOpTWxAVp6Z/CObmyBWCB9kFjNvMdQlPuo+AhnEwhzz3Q5DS7vZAn
+         0aWJehF6hd6bkVcA9veb2dBDD2EUwAPj/dFqlj5Gp7IJ72exPYSlAltLtkN+XzuZ/T
+         FfUZRWThhrF4w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.157.203] ([217.61.157.203]) by web-mail.gmx.net
+ (3c-app-gmx-bap50.server.lan [172.19.172.120]) (via HTTP); Wed, 12 Apr 2023
+ 18:53:22 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+Message-ID: <trinity-990f3b28-d67c-49ef-9094-c3b7d2059e36-1681318402336@3c-app-gmx-bap50>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
- <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
- <168069726278.2356075.14351594478003012447.robh@kernel.org>
- <20230405134727.GA2461305-robh@kernel.org>
- <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
- <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
- <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
- <ZDAAToSzNLVo6le8@gerhold.net>
- <198523f5-d06f-15cd-af6c-f391c02bcaa9@linaro.org>
- <1f8fc036-380b-0a42-bb29-a3e275ed6a33@linaro.org>
- <2e648a97-083e-8ee2-1695-4af299bb222a@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2e648a97-083e-8ee2-1695-4af299bb222a@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
+Subject: Aw: Re:  Re: Re: Re: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate
+ gmacs, mt7530 switch, and add port@5
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Date:   Wed, 12 Apr 2023 18:53:22 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <0d242292-16b7-6837-7d1a-b70c41309e6b@arinc9.com>
+References: <20230210182505.24597-1-arinc.unal@arinc9.com>
+ <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
+ <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
+ <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
+ <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53>
+ <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
+ <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
+ <fb96d8eb-2eb7-db19-1135-1a833294dd67@arinc9.com>
+ <trinity-899c01a6-0fc5-4900-aea8-2b43802c8329-1676814734826@3c-app-gmx-bs35>
+ <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
+ <703ad8a8-f84e-6404-4cce-5386bfaa2bd7@arinc9.com>
+ <trinity-489cdc3b-e861-49d0-b1ec-e964f00388df-1681312277092@3c-app-gmx-bap50>
+ <0d242292-16b7-6837-7d1a-b70c41309e6b@arinc9.com>
+Content-Transfer-Encoding: quoted-printable
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:2TgEVklogIPN9QUAHc+I39F76U3lLe2ea2lWUGSEcJ3RvU2i5XuSHdQJ6pvi7JcepqiJp
+ i+kF1SQKfSGdpEKFDMk5JKhFry7q/xhTmS/ZbkqN3cyuS4s4+9iw1B4zxnWHYq2gUbFbIdfNs1YM
+ J3kaN74CFnKi5rybX+JCfH+SMqCSekk7oXbyLyBxLj/4jEc7Lo10H0LlBl4KB2w1OApUY2Zyn1xG
+ 41Fgfzzly9PIDY0Z581CNIHF2nkEJx/mTeozgGw7zpRjjtj34v2WjTHkMmdJRSEWGyizDGWy9a1g
+ mo=
+UI-OutboundReport: notjunk:1;M01:P0:7SjTWPIP+q0=;W0WRwi90fBs/Qt21MFyuovCZP2n
+ 5q2XvFgv8opMAzG20CGRTfZPJqT7pMHPmMhGdNEYX6EeVSzy2kKtOMjGB9+Gj3KNEwoZ+ro5W
+ 0FD1jz5/HJd0hsYJ99cZU4MPAzOilR37JhqtiajUypiTZOtH/qJ86/lzHAp7I1Q5bXTgHYh33
+ XcVe1nw42tZBtITlS9UVqnL8ipO+HCEdX529vh85yg/mBnH2oqtANY+Q6CtsC7O2gG9pu6LS6
+ YSRWxu+i67bmO2KHPEfTIUAkCtZ0GH+G8uVMo2q3DB5jzKVciECADR9oggZlQCAKtoQ92OGUK
+ bOBFDfh5/Gynx76q7yDw5LZuAk/d2v8MePFwUqW7ZeoEOCDjXhzsnT+BdnvRGJoWF+xO1jprH
+ jCgAGPnanzGrcSFhp8hcFO6X8Pef651yP6qNgCGU/5vk2XNQK0CoChZwOUSJkwP4F30TocWUu
+ Beg+q/BUngvOSH3XZ8IbFkh356XN/VobS7svY/f7+ZRt/mJ/fdRdMipLSsKtZ0u0MoY/zzf01
+ gUH+NNJlxYFjX+FFwy3VYWIzjwO0hggVR8vcjeiUJJOrxxOb+yiU5cQql2f3gM7OmWXz1KUWT
+ 7emAU2SFKYNfKh/htvBb/5iFQvAmtnRiSWIF8RXoYaSSFSg9Rw+rTD+4mRJwqiPJWMv+EphSV
+ /OIzT+cv9ldRiNq7IySENjKsQEO6JH8P0OS6JxuRU20oX5cu4/8OsaU3lun9/Sn4hbxxotYYY
+ ZGl1TOVuTNet193Q66cWcOc5MuB0coIvVZaSShxaU51jYeFu6RHzwL74uGEIVwtiZVT/mODPR
+ JbpDXu+ZaUOoS+Gi+siGgUZw==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,42 +91,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 14:09, Konrad Dybcio wrote:
-> 
-> 
-> On 12.04.2023 13:55, Krzysztof Kozlowski wrote:
->> On 12/04/2023 13:47, Konrad Dybcio wrote:
->>>> For unrelated reasons I actually have some patches for this, that switch
->>>> the /smd top-level node to a "remoteproc-like" node dedicated to the
->>>> RPM, similar to how WCNSS/ADSP/Modem/etc are represented. I need this to
->>>> add additional (optional) properties like "resets" and "iommus" for the
->>>> RPM, but it would allow adding arbitrary subnodes as well:
->>>>
->>>> https://github.com/msm8916-mainline/linux/commit/35231ac28703805daa8220f1233847c7df34589e
->>>>
->>>> I could finish those up and post them if that would help...
->>> Krzysztof, what do you think?
->>
->> I don't know what is there in MSM8916 and how it should be represented.
-> Similarly to other Qualcomm SoCs, MSM8916 has a RPM (Cortex-M3) core,
-> which communicates over the SMD protocol (or G-LINK on >=8996).
-> 
-> The Qualcomm firmware loads the RPM fw blob and sets it up early in
-> the boot process, but msm8916-mainline folks managed to get TF-A
-> going and due to it being less.. invasive.. than the Qualcomm TZ,
-> RPM needs a bit more handling to be accessible.
-> 
-> The M3 core is wired up through the CNoC bus and we communicate
-> with it through the MSG RAM and the "APCS mailbox".
+Hi
 
-Thanks, that's actually good description. Yet I still do not know what
-is exactly the problem and the question. Linking some out of tree
-commits does not give me the answer, at least I cannot get that answer
-form the link.
+> Gesendet: Mittwoch, 12=2E April 2023 um 18:21 Uhr
+> Von: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
+> > thanks, it changes the master when i upgrade iproute to 6=2E1 (from de=
+bian bullseye-backports), but i cannot do any traffic on it after switching=
+ to gmac1=2E=2E=2E
+> >=20
+> > 5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue =
+state UP group default qlen 1000
+> >      link/ether f2:d2:51:56:cd:3d brd ff:ff:ff:ff:ff:ff
+> >      inet 192=2E168=2E0=2E11/24 scope global wan
+> >         valid_lft forever preferred_lft forever
+> >=20
+> > see no p5-TX/gmac-rx
 
-For example what I don't understand is: why additional resources (like
-resets) can be provided only in new binding, but not in the old.
+> Did you apply the vlan and flooding fix patches from Richard?
 
-Best regards,
-Krzysztof
+have now applied all patches i've found from richard (which are all reject=
+ed):
 
+fe4495bb3cc2 2023-02-12 Fix setting up CPU and User ports to be in the cor=
+rect mode during setup and when toggling vlan_filtering on a bridge port=2E=
+  (HEAD -> 6=2E3-rc)
+b0641f3e1a69 2023-02-12 Fix Flooding: Disable by default on User ports and=
+ Enable on CPU ports=20
+cb04b3451524 2023-02-12 Do not add all User ports to the CPU by default=2E=
+ This will break Multi CPU when added a seperate patch=2E It will be overwr=
+itten by =2Eport_enable and since we are forcing output to a port via the S=
+pecial Tag this is not needed=2E
+
+and now it seems working and is clear ;)
+
+root@bpi-r2:~# ip l show wan
+5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue stat=
+e UP mode DEFAULT group default qlen 1000
+    link/ether f2:d2:51:56:cd:3d brd ff:ff:ff:ff:ff:ff
+
+iperf3
+[ ID] Interval           Transfer     Bitrate         Retr                =
+                                                                           =
+                        =20
+[  5]   0=2E00-10=2E00  sec  1=2E09 GBytes   940 Mbits/sec    0           =
+  sender                                                                   =
+                              =20
+[  5]   0=2E00-10=2E03  sec  1=2E09 GBytes   936 Mbits/sec                =
+  receiver                                                                 =
+                              =20
+
+
+iperf3 -R
+[ ID] Interval           Transfer     Bitrate         Retr                =
+                                                                           =
+                        =20
+[  5]   0=2E00-10=2E04  sec  1=2E09 GBytes   936 Mbits/sec    0           =
+  sender                                                                   =
+                              =20
+[  5]   0=2E00-10=2E00  sec  1=2E09 GBytes   938 Mbits/sec                =
+  receiver                                                                 =
+                              =20
+
+
+how do you deal with these patches? do you include them into your mt7530 f=
+ixes series? they (and vladimirs preferred cpu-port) need to be applied bef=
+ore these DTS-changes
+
+regards Frank
