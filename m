@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E4256DFFE0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC97B6DFFE5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 22:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbjDLUbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 16:31:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46134 "EHLO
+        id S229873AbjDLUcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 16:32:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbjDLUbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:31:50 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EECC19AF;
-        Wed, 12 Apr 2023 13:31:49 -0700 (PDT)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229932AbjDLUcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 16:32:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441C840C5;
+        Wed, 12 Apr 2023 13:32:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 86034203C2;
-        Wed, 12 Apr 2023 22:31:47 +0200 (CEST)
-Date:   Wed, 12 Apr 2023 22:31:46 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5EDA36392C;
+        Wed, 12 Apr 2023 20:32:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21D97C433EF;
+        Wed, 12 Apr 2023 20:32:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681331556;
+        bh=4f85G7qmQu0cjMFlLuwC+FY9Rzyah8PJLhITq+Oo0N8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h3T/1oUQsj4w/eU8173BXiV87rg7FOx+fMhXSd8zFkm53FoXzQz+c16PDffD4AHQO
+         mBDD995fCyBC/pFN0SKeSWuBjgsNg2/7BjS4ytqnS5Sh/vHjnGruOvIqBjnDTYYpoW
+         oBVixmrfZIOiAQ4b1CYEE/LKgydw1LUd18DZSl/9K3r1IXjztt+Km4+RNigSastq2t
+         5LMt53hqf29xBguA578w2mLkBlk76/roIM/CtGJ4lUv7NJq6TmIJbzI3UMGq+iKeie
+         O1kogLAgoJDQXd6fHPrCbyID0ESdxD9O+Mca7swAeTw+keHsBb9v4dHb5fmorGCxV6
+         BrPKqwPdn7UGQ==
+Date:   Wed, 12 Apr 2023 21:32:30 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] dt-bindings: iio: adc: Require generic `channel`
- name for channel nodes
-Message-ID: <c653un4emxud34gpo5np7jtnhsym5thpivjwcgpm2vsft2q2qj@s66thxonibjc>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
-        Jonathan Cameron <jic23@kernel.org>, phone-devel@vger.kernel.org, 
-        ~postmarketos/upstreaming@lists.sr.ht, 
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-        Martin Botka <martin.botka@somainline.org>, Jami Kettunen <jami.kettunen@somainline.org>, 
-        Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Andy Gross <agross@kernel.org>, 
-        Bjorn Andersson <andersson@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-        linux-arm-msm@vger.kernel.org
-References: <20230410202917.247666-1-marijn.suijten@somainline.org>
- <20230410202917.247666-6-marijn.suijten@somainline.org>
- <20230412212756.0b4b69f3@jic23-huawei>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v8 0/7] Add non-coherent DMA support for AX45MP
+Message-ID: <20230412-populate-busybody-4c6d7cfc4667@spud>
+References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wokudRuMrcrR61tg"
 Content-Disposition: inline
-In-Reply-To: <20230412212756.0b4b69f3@jic23-huawei>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-04-12 21:27:56, Jonathan Cameron wrote:
-> On Mon, 10 Apr 2023 22:29:17 +0200
-> Marijn Suijten <marijn.suijten@somainline.org> wrote:
-> 
-> > As discussed in [1] it is more convenient to use a generic `channel`
-> > node name for ADC channels while storing a friendly - board-specific
-> > instead of PMIC-specific - name in the label, if/when desired to
-> > overwrite the channel description already contained (but previously
-> > unused) in the driver [2].
-> > 
-> > The same `channel` node name pattern has also been set in
-> > iio/adc/adc.yaml, but this generic binding is not inherited as base for
-> > qcom,spmi-vadc bindings due to not having any other generic elements in
-> > common, besides the node name rule and reg property.
-> > 
-> > Replace the .* name pattern with the `channel` literal, but leave the
-> > label property optional for bindings to choose to fall back a channel
-> > label hardcoded in the driver [2] instead.
-> > 
-> > [1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
-> > [2]: https://lore.kernel.org/linux-arm-msm/20230116220909.196926-4-marijn.suijten@somainline.org/
-> > 
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> 
-> There are various ways we could pick up this patch set...
-> a) Binding changes via individual subsystem trees,
-> b) All in on go.
-> 
-> I think it's late to guarantee to land the changes from (a) in the coming merge window
-> so if someone else is willing to do (b) then
-> 
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> Otherwise we can do (a) early in next cycle.  Feel free to poke me if we are doing (b)
-> and I seem to have forgotten to pick up this patch!
 
-Thanks!  I hope we don't get many conflicts (+ new bindings adhering to
-the old(er) formats) otherwise I'll resend if we do (a).  Around what
-time would be good, rc2?
+--wokudRuMrcrR61tg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[..]
+On Wed, Apr 12, 2023 at 12:08:53PM +0100, Prabhakar wrote:
 
-- Marijn
+> Note,
+> - This series requires testing on Cores with zicbom and T-Head SoCs
+
+As I said last time, I dunno what actual Zicbom stuff exists, other than
+perhaps the Ventana lads having something. I did some tyre kicking on my
+D1 and it was fine, although nothing has actually changed materially for
+either of them with this series in v8..
+
+Cheers,
+Conor.
+
+--wokudRuMrcrR61tg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDcVXgAKCRB4tDGHoIJi
+0hcDAQDyjF067mLfUHvBJlvlHcRbETM+ZVvN06gg2JGFRQC2CQD+J6L/segmEeV0
+Gsgp3NcVV5niFc7YF5NTmNv/R4lEqAw=
+=4ZCG
+-----END PGP SIGNATURE-----
+
+--wokudRuMrcrR61tg--
