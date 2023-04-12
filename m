@@ -2,134 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08BB06DF5D6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD0B6DF5D8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 14:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230459AbjDLMoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 08:44:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
+        id S230045AbjDLMoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 08:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231470AbjDLMnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:43:53 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23B1093F4;
-        Wed, 12 Apr 2023 05:43:27 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id d8-20020a05600c3ac800b003ee6e324b19so6095472wms.1;
-        Wed, 12 Apr 2023 05:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681303405; x=1683895405;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cUF7LoitQw5OkHRbbbgY1vxHPcwK0X9aUiqFfbPiOwE=;
-        b=Ex9hVrKzu4VnZn/KwKympLWVqnLG00mRzfW1qoaZcqweDNRIjvzttcA6d175fMltO+
-         s+44KFje1bNbbW1gDNTtg3qY1PPlw3F6d9BWgDp5ictRbUsF4ftSM4bJjPQMO6OS7krV
-         WDqO6hovL/h7RbDXLeZqyLjg5Qml1ZqBKnYXAfpbj0yw6PJpcjNMTmPNNP+LuJE0Ksx4
-         f2a3OtOGJpRCwm0v1TC3plUl5VKW2RjLu5fJ8uFc1o42cl7iQU1v2I1Iyp5y54YckBNf
-         D0U3zJQ3MW5AoxCy1/Sr1gNtfHVX1dSBBiIJ4aSoCN9fzRfjxTDzAT7ZaF+BegoXfL2F
-         Eceg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681303405; x=1683895405;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cUF7LoitQw5OkHRbbbgY1vxHPcwK0X9aUiqFfbPiOwE=;
-        b=IR6M5EJx+qx5u16q0AY12d1dI8ZxGK0YsB66lZtWi6dXVvTxM/hdqeOmUeMo524qZT
-         e5BImHE+U0t6mPqhzkZzV1Ej47hB4hg2pNUGYRHAWulPJia2ntEb14n4qfV9c3jeBNc+
-         NE3Il/tZzUD0eJz5tJsutE9ow0Fr3bdmfDBfAPsMeCySUwJbvib6Ug18oiR/UWR7kkhE
-         F3uKEzIIu6gc4xlMK9qmZ+CLOEzTcxQDOpSnzptcjhMXXSByHwxOQcjaPUuQfvwjpO5u
-         H6fYCHQiU+Mad2ij69O6sSm+gv3gHB9L0rDi/Gari3FiSdwG+31aVXnXfYwfa0EWWW/k
-         MTUA==
-X-Gm-Message-State: AAQBX9dOHUxXXP1EQcncoZDUSVCYl2AracI/rT7LtMJ+veW782FKPxq/
-        zkaxB+r3YusoKCpjdu/3kS8=
-X-Google-Smtp-Source: AKy350aAVnydjEmaeKZAWvOiy1vncejnZ4Satpe9Geuus5lfYY1lSqu4hz+nbW5+onECFdEVwDSGCQ==
-X-Received: by 2002:a05:600c:c1:b0:3ed:9ce3:4a39 with SMTP id u1-20020a05600c00c100b003ed9ce34a39mr9980309wmm.26.1681303405450;
-        Wed, 12 Apr 2023 05:43:25 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id 6-20020a05600c028600b003ee0d191539sm2269003wmk.10.2023.04.12.05.43.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 05:43:24 -0700 (PDT)
-Message-ID: <95aec24f-b393-e36d-b4dd-4c0a228fc619@gmail.com>
-Date:   Wed, 12 Apr 2023 14:43:22 +0200
+        with ESMTP id S231229AbjDLMoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 08:44:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A893976F;
+        Wed, 12 Apr 2023 05:43:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 79B9A63443;
+        Wed, 12 Apr 2023 12:43:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D209C4339B;
+        Wed, 12 Apr 2023 12:43:31 +0000 (UTC)
+Message-ID: <2f946887-6d4b-782b-d186-13b184207be3@xs4all.nl>
+Date:   Wed, 12 Apr 2023 14:43:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 20/27] arm64: dts: mediatek: mt6795: Add tertiary PWM node
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 12/13] media: verisilicon: Enable AV1 decoder on rk3588
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
-        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, jitao.shi@mediatek.com,
-        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
-        kernel@collabora.com, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
- <20230412112739.160376-21-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230412112739.160376-21-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        nicolas.dufresne@collabora.com
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20230412115652.403949-1-benjamin.gaignard@collabora.com>
+ <20230412115652.403949-13-benjamin.gaignard@collabora.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230412115652.403949-13-benjamin.gaignard@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Benjamin,
 
-
-On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
-> The PWM at 0x11006000 is the tertiary PWM; unlike PWM0, PWM1, this is
-> not display specific and can be used as a generic PWM controller.
+On 12/04/2023 13:56, Benjamin Gaignard wrote:
+> Add rk3588 AV1 decoder to Hantro variant.
+> The hardware support image from 64x64 up to 7680x4320
+> by steps of 16 pixels.
 > 
-> This node is left disabled as usage is board-specific.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
 
-Applied, thanks!
+Nicolas reviewed this patch in v5. Is there a reason that tag was dropped,
+or did you just forget? If it is the latter, then I can add it back.
+
+Just checking.
+
+This series now passes my tests.
+
+Regards,
+
+	Hans
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
+>  .../media/platform/verisilicon/hantro_drv.c   |   1 +
+>  .../media/platform/verisilicon/hantro_hw.h    |   6 +
+>  .../platform/verisilicon/rockchip_vpu_hw.c    | 134 ++++++++++++++++++
+>  3 files changed, 141 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> index cf45cb4ad3d2..50d9276d18c6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> @@ -583,6 +583,25 @@ uart3: serial@11005000 {
->   			status = "disabled";
->   		};
->   
-> +		pwm2: pwm@11006000 {
-> +			compatible = "mediatek,mt6795-pwm";
-> +			reg = <0 0x11006000 0 0x1000>;
-> +			#pwm-cells = <2>;
-> +			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&topckgen CLK_TOP_PWM_SEL>,
-> +				 <&pericfg CLK_PERI_PWM>,
-> +				 <&pericfg CLK_PERI_PWM1>,
-> +				 <&pericfg CLK_PERI_PWM2>,
-> +				 <&pericfg CLK_PERI_PWM3>,
-> +				 <&pericfg CLK_PERI_PWM4>,
-> +				 <&pericfg CLK_PERI_PWM5>,
-> +				 <&pericfg CLK_PERI_PWM6>,
-> +				 <&pericfg CLK_PERI_PWM7>;
-> +			clock-names = "top", "main", "pwm1", "pwm2", "pwm3",
-> +				      "pwm4", "pwm5", "pwm6", "pwm7";
-> +			status = "disabled";
-> +		};
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+> index 71bd68e63859..aef1de20fc5e 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -713,6 +713,7 @@ static const struct of_device_id of_hantro_match[] = {
+>  	{ .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
+>  	{ .compatible = "rockchip,rk3568-vepu", .data = &rk3568_vepu_variant, },
+>  	{ .compatible = "rockchip,rk3568-vpu", .data = &rk3568_vpu_variant, },
+> +	{ .compatible = "rockchip,rk3588-av1-vpu", .data = &rk3588_vpu981_variant, },
+>  #endif
+>  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+>  	{ .compatible = "nxp,imx8mm-vpu-g1", .data = &imx8mm_vpu_g1_variant, },
+> diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/media/platform/verisilicon/hantro_hw.h
+> index e3d303cea7f6..7f33f7b07ce4 100644
+> --- a/drivers/media/platform/verisilicon/hantro_hw.h
+> +++ b/drivers/media/platform/verisilicon/hantro_hw.h
+> @@ -403,11 +403,13 @@ extern const struct hantro_variant rk3328_vpu_variant;
+>  extern const struct hantro_variant rk3399_vpu_variant;
+>  extern const struct hantro_variant rk3568_vepu_variant;
+>  extern const struct hantro_variant rk3568_vpu_variant;
+> +extern const struct hantro_variant rk3588_vpu981_variant;
+>  extern const struct hantro_variant sama5d4_vdec_variant;
+>  extern const struct hantro_variant sunxi_vpu_variant;
+>  
+>  extern const struct hantro_postproc_ops hantro_g1_postproc_ops;
+>  extern const struct hantro_postproc_ops hantro_g2_postproc_ops;
+> +extern const struct hantro_postproc_ops rockchip_vpu981_postproc_ops;
+>  
+>  extern const u32 hantro_vp8_dec_mc_filter[8][6];
+>  
+> @@ -444,6 +446,10 @@ void hantro_hevc_ref_init(struct hantro_ctx *ctx);
+>  dma_addr_t hantro_hevc_get_ref_buf(struct hantro_ctx *ctx, s32 poc);
+>  int hantro_hevc_add_ref_buf(struct hantro_ctx *ctx, int poc, dma_addr_t addr);
+>  
+> +int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx);
+> +void rockchip_vpu981_av1_dec_exit(struct hantro_ctx *ctx);
+> +int rockchip_vpu981_av1_dec_run(struct hantro_ctx *ctx);
+> +void rockchip_vpu981_av1_dec_done(struct hantro_ctx *ctx);
+>  
+>  static inline unsigned short hantro_vp9_num_sbs(unsigned short dimension)
+>  {
+> diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+> index 8de6fd2e8eef..816ffa905a4b 100644
+> --- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+> +++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+> @@ -13,9 +13,13 @@
+>  #include "hantro_g1_regs.h"
+>  #include "hantro_h1_regs.h"
+>  #include "rockchip_vpu2_regs.h"
+> +#include "rockchip_vpu981_regs.h"
+>  
+>  #define RK3066_ACLK_MAX_FREQ (300 * 1000 * 1000)
+>  #define RK3288_ACLK_MAX_FREQ (400 * 1000 * 1000)
+> +#define RK3588_ACLK_MAX_FREQ (300 * 1000 * 1000)
 > +
->   		i2c0: i2c@11007000 {
->   			compatible = "mediatek,mt6795-i2c", "mediatek,mt8173-i2c";
->   			reg = <0 0x11007000 0 0x70>, <0 0x11000100 0 0x80>;
+> +#define ROCKCHIP_VPU981_MIN_SIZE 64
+>  
+>  /*
+>   * Supported formats.
+> @@ -74,6 +78,37 @@ static const struct hantro_fmt rockchip_vpu1_postproc_fmts[] = {
+>  	},
+>  };
+>  
+> +static const struct hantro_fmt rockchip_vpu981_postproc_fmts[] = {
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_NV12,
+> +		.codec_mode = HANTRO_MODE_NONE,
+> +		.match_depth = true,
+> +		.postprocessed = true,
+> +		.frmsize = {
+> +			.min_width = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_width = FMT_UHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_P010,
+> +		.codec_mode = HANTRO_MODE_NONE,
+> +		.match_depth = true,
+> +		.postprocessed = true,
+> +		.frmsize = {
+> +			.min_width = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_width = FMT_UHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +};
+> +
+>  static const struct hantro_fmt rk3066_vpu_dec_fmts[] = {
+>  	{
+>  		.fourcc = V4L2_PIX_FMT_NV12,
+> @@ -277,6 +312,48 @@ static const struct hantro_fmt rk3399_vpu_dec_fmts[] = {
+>  	},
+>  };
+>  
+> +static const struct hantro_fmt rockchip_vpu981_dec_fmts[] = {
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_NV12_4L4,
+> +		.codec_mode = HANTRO_MODE_NONE,
+> +		.match_depth = true,
+> +		.frmsize = {
+> +			.min_width = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_width = FMT_UHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_NV15_4L4,
+> +		.codec_mode = HANTRO_MODE_NONE,
+> +		.match_depth = true,
+> +		.frmsize = {
+> +			.min_width = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_width = FMT_UHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_AV1_FRAME,
+> +		.codec_mode = HANTRO_MODE_AV1_DEC,
+> +		.max_depth = 2,
+> +		.frmsize = {
+> +			.min_width = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_width = FMT_UHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = ROCKCHIP_VPU981_MIN_SIZE,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +};
+> +
+>  static irqreturn_t rockchip_vpu1_vepu_irq(int irq, void *dev_id)
+>  {
+>  	struct hantro_dev *vpu = dev_id;
+> @@ -331,6 +408,24 @@ static irqreturn_t rockchip_vpu2_vepu_irq(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static irqreturn_t rk3588_vpu981_irq(int irq, void *dev_id)
+> +{
+> +	struct hantro_dev *vpu = dev_id;
+> +	enum vb2_buffer_state state;
+> +	u32 status;
+> +
+> +	status = vdpu_read(vpu, AV1_REG_INTERRUPT);
+> +	state = (status & AV1_REG_INTERRUPT_DEC_RDY_INT) ?
+> +		VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+> +
+> +	vdpu_write(vpu, 0, AV1_REG_INTERRUPT);
+> +	vdpu_write(vpu, AV1_REG_CONFIG_DEC_CLK_GATE_E, AV1_REG_CONFIG);
+> +
+> +	hantro_irq_done(vpu, state);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  static int rk3036_vpu_hw_init(struct hantro_dev *vpu)
+>  {
+>  	/* Bump ACLK to max. possible freq. to improve performance. */
+> @@ -346,6 +441,13 @@ static int rk3066_vpu_hw_init(struct hantro_dev *vpu)
+>  	return 0;
+>  }
+>  
+> +static int rk3588_vpu981_hw_init(struct hantro_dev *vpu)
+> +{
+> +	/* Bump ACLKs to max. possible freq. to improve performance. */
+> +	clk_set_rate(vpu->clocks[0].clk, RK3588_ACLK_MAX_FREQ);
+> +	return 0;
+> +}
+> +
+>  static int rockchip_vpu_hw_init(struct hantro_dev *vpu)
+>  {
+>  	/* Bump ACLK to max. possible freq. to improve performance. */
+> @@ -498,6 +600,14 @@ static const struct hantro_codec_ops rk3568_vepu_codec_ops[] = {
+>  	},
+>  };
+>  
+> +static const struct hantro_codec_ops rk3588_vpu981_codec_ops[] = {
+> +	[HANTRO_MODE_AV1_DEC] = {
+> +		.run = rockchip_vpu981_av1_dec_run,
+> +		.init = rockchip_vpu981_av1_dec_init,
+> +		.exit = rockchip_vpu981_av1_dec_exit,
+> +		.done = rockchip_vpu981_av1_dec_done,
+> +	},
+> +};
+>  /*
+>   * VPU variant.
+>   */
+> @@ -529,10 +639,18 @@ static const char * const rk3066_vpu_clk_names[] = {
+>  	"aclk_vepu", "hclk_vepu"
+>  };
+>  
+> +static const struct hantro_irq rk3588_vpu981_irqs[] = {
+> +	{ "vdpu", rk3588_vpu981_irq },
+> +};
+> +
+>  static const char * const rockchip_vpu_clk_names[] = {
+>  	"aclk", "hclk"
+>  };
+>  
+> +static const char * const rk3588_vpu981_vpu_clk_names[] = {
+> +	"aclk", "hclk", "aclk_vdpu_root", "hclk_vdpu_root"
+> +};
+> +
+>  /* VDPU1/VEPU1 */
+>  
+>  const struct hantro_variant rk3036_vpu_variant = {
+> @@ -678,3 +796,19 @@ const struct hantro_variant px30_vpu_variant = {
+>  	.clk_names = rockchip_vpu_clk_names,
+>  	.num_clocks = ARRAY_SIZE(rockchip_vpu_clk_names)
+>  };
+> +
+> +const struct hantro_variant rk3588_vpu981_variant = {
+> +	.dec_offset = 0x0,
+> +	.dec_fmts = rockchip_vpu981_dec_fmts,
+> +	.num_dec_fmts = ARRAY_SIZE(rockchip_vpu981_dec_fmts),
+> +	.postproc_fmts = rockchip_vpu981_postproc_fmts,
+> +	.num_postproc_fmts = ARRAY_SIZE(rockchip_vpu981_postproc_fmts),
+> +	.postproc_ops = &rockchip_vpu981_postproc_ops,
+> +	.codec = HANTRO_AV1_DECODER,
+> +	.codec_ops = rk3588_vpu981_codec_ops,
+> +	.irqs = rk3588_vpu981_irqs,
+> +	.num_irqs = ARRAY_SIZE(rk3588_vpu981_irqs),
+> +	.init = rk3588_vpu981_hw_init,
+> +	.clk_names = rk3588_vpu981_vpu_clk_names,
+> +	.num_clocks = ARRAY_SIZE(rk3588_vpu981_vpu_clk_names)
+> +};
+
