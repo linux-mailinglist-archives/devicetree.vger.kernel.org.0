@@ -2,111 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F9D6DF7ED
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 435BC6DF844
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbjDLODv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 10:03:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36318 "EHLO
+        id S231518AbjDLOVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 10:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbjDLODt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:03:49 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4584E49;
-        Wed, 12 Apr 2023 07:03:46 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id w13so28323187oik.2;
-        Wed, 12 Apr 2023 07:03:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681308226; x=1683900226;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XkKJbGcmCESOp5kGHyfKWXGMOOU/ouU4bAVhUJXQjqA=;
-        b=tl+5V09PvydyydndoVI67mjeSLhi3IhyuMMHX1eOjbKuOiKOfx4DWPvA0kmzJeOgQJ
-         LuW424x8hiu8YeTMSbZ9vhzsUsRR1jEpVHCuUSkbq0izVzrq78RDWOoGbt+Uctgx2/K5
-         GAmL4akCjBT7e2RfaXschMyXnNoizx0u1duPb0N1qpL2b0kEKSuVJZjiV1GJUJVnQrmu
-         0vz7SDptp6uG6/UMhlQQ2UdsTtXG+zWF/UW4p40vC+FoevH5Y7h0Zcp31IYYC5WjuwzK
-         LZU6nzpNP/aVue3TQAbQEvesJc9AeN7AhTf5kI0yetFR1N9F5hE2UJRyrGaD+kGPWBix
-         iJog==
-X-Gm-Message-State: AAQBX9em0ZNGAMXv2eacSULwseyAH/s04gBKXdlaJZUFq4hnFCpDctqF
-        8SBkyVvmOn+h+9ObTfaMZQ==
-X-Google-Smtp-Source: AKy350Y4tWN4Ri2Yf9zEZz08i2glwRo8Dr90/wmyCM6hmihMUWaqoNcTtQG0LOp2GloTALjDW2dmog==
-X-Received: by 2002:a05:6808:352:b0:38b:a4f9:2570 with SMTP id j18-20020a056808035200b0038ba4f92570mr3031262oie.16.1681308225748;
-        Wed, 12 Apr 2023 07:03:45 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p5-20020a4a95c5000000b0053a7aaa85a0sm7063881ooi.0.2023.04.12.07.03.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 07:03:45 -0700 (PDT)
-Received: (nullmailer pid 2248174 invoked by uid 1000);
-        Wed, 12 Apr 2023 14:03:44 -0000
-Date:   Wed, 12 Apr 2023 09:03:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "soc@kernel.org" <soc@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        James Cowgill <james.cowgill@blaize.com>,
-        Matt Redfearn <matthew.redfearn@blaize.com>,
-        Neil Jones <neil.jones@blaize.com>
-Subject: Re: [PATCH 5/5] arm64: Add initial support for Blaize BLZP1600 CB2
-Message-ID: <20230412140344.GA2234522-robh@kernel.org>
-References: <20230406102149.729726-1-nikolaos.pasaloukos@blaize.com>
- <20230406102149.729726-6-nikolaos.pasaloukos@blaize.com>
+        with ESMTP id S231522AbjDLOVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:21:15 -0400
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEA149C6
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 07:21:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1681308364; x=1683900364;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=WrFn9iDbaV5x+FOAg2G6WdULkedjfTsa5Xa3aWRozy8=;
+        b=ln7NV5u4bPOkbVIEo4bVSySZ1QkcNe16fZW1WSzLKfCNTcZ/pS57pIUyAATD23PO
+        lRD1Ki/V0SzbJ7c+jgBfQsPhM/G1pWbmXJBRrTOhxDgWRyW1KzIk0dQGwO5eB72s
+        QoUgO3c208CwvmNyc7799BVuGoGOMGo6n7NYaBpeQdE=;
+X-AuditID: ac14000a-917fe70000007ecb-cc-6436bacc0738
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id B4.6A.32459.CCAB6346; Wed, 12 Apr 2023 16:06:04 +0200 (CEST)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 12 Apr
+ 2023 16:06:19 +0200
+From:   Wadim Egorov <w.egorov@phytec.de>
+To:     <upstream@lists.phytec.de>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>
+CC:     <riku.voipio@iki.fi>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <lee@kernel.org>, <pavel@ucw.cz>
+Subject: [PATCH v3] dt-bindings: leds: Convert PCA9532 to dtschema
+Date:   Wed, 12 Apr 2023 16:05:51 +0200
+Message-ID: <20230412140552.451527-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230406102149.729726-6-nikolaos.pasaloukos@blaize.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.25.0.11]
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBLMWRmVeSWpSXmKPExsWyRpKBR/fMLrMUg3+TBSzmHznHatH34iGz
+        xY62hSwWl3fNYbPY+mYdo8XdU0fZLE5uuMRm0br3CLtF9zt1B06Pw18XsnhsWtXJ5nHn2h42
+        j/7uFlaPFau/s3t83iQXwBbFZZOSmpNZllqkb5fAlfF6zQfmgkWaFYu3NbM2MK6S72Lk5JAQ
+        MJGYu+IJUxcjF4eQwBImiX2XL7JDOE8YJSasmcACUsUmoC5xZ8M3VhBbRKBG4venX4wgNrNA
+        uUT7l5lADRwcwgJOElsOe4GEWQRUJTau7mMHsXkFLCTab+9jgVgmLzHz0neouKDEyZlPWCDG
+        yEs0b53NDGFLSBx88QLMFgKKv7i0HK532rnXzBB2qMTWL9uZJjAKzEIyahaSUbOQjFrAyLyK
+        USg3Mzk7tSgzW68go7IkNVkvJXUTIyj0RRi4djD2zfE4xMjEwXiIUYKDWUmE94eLaYoQb0pi
+        ZVVqUX58UWlOavEhRmkOFiVx3vs9TIlCAumJJanZqakFqUUwWSYOTqkGxlCO2ku3Mk0/fLFp
+        PrYyT2xKSOuFttO/PZ9N3L3hjAGfyOvjXf+PJMwwTdwZXOVj+oIv4V7/HbV9EsdeZpsuZT67
+        chPTRP2yFbV6LdvPfKrn+ZmwqNXC4vEX8SWTIyauWm1++dMSMYcbBk/UjPY9t19gtVM0fXJW
+        yKJ/d9j0b4vk7spSeGa18aQSS3FGoqEWc1FxIgDqLQHcawIAAA==
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 06, 2023 at 10:22:32AM +0000, Niko Pasaloukos wrote:
-> Adds support for the Blaize CB2 development board based on
-> BLZP1600 SoC. This consists of a Carrier-Board and a SoM.
-> 
-> The blaize-blzp1600.dtsi is the common part for the SoC,
-> blaize-blzp1600-som.dtsi is the common part for the SoM and
-> blaize-blzp1600-som-cb2.dts is the board specific file.
-> 
-> Co-developed-by: James Cowgill <james.cowgill@blaize.com>
-> Signed-off-by: James Cowgill <james.cowgill@blaize.com>
-> Co-developed-by: Matt Redfearn <matt.redfearn@blaize.com>
-> Signed-off-by: Matt Redfearn <matt.redfearn@blaize.com>
-> Co-developed-by: Neil Jones <neil.jones@blaize.com>
-> Signed-off-by: Neil Jones <neil.jones@blaize.com>
-> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-> ---
->  arch/arm64/Kconfig.platforms                  |   5 +
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/blaize/Makefile           |   2 +
->  .../dts/blaize/blaize-blzp1600-som-cb.dtsi    | 217 +++++
->  .../dts/blaize/blaize-blzp1600-som-cb2.dts    | 103 ++
->  .../boot/dts/blaize/blaize-blzp1600-som.dtsi  | 104 ++
->  .../boot/dts/blaize/blaize-blzp1600.dtsi      | 894 ++++++++++++++++++
->  arch/arm64/configs/defconfig                  |   1 +
->  8 files changed, 1327 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/blaize/Makefile
->  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600-som-cb.dtsi
->  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600-som-cb2.dts
->  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/blaize/blaize-blzp1600.dtsi
+Convert the PCA9532 LED Dimmer to dtschema.
+While at it, update the example to match recommended node names and
+the link to the product datasheet. Also add GPIO properties since
+the driver allows to use unused pins as GPIOs.
 
-New platforms should be free of warnings from 'make dtbs_check'. Please 
-run and fix if you have not, and confirm that in the commit message.
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+v3:
+  - Add gpio-controller & gpio-cells property, fixes
+    arch/arm/boot/dts/lpc3250-ea3250.dtb: pca9532@60: '#gpio-cells', 'gpio-controller'
+    do not match any of the regexes: '^led-[0-9a-z]+$', 'pinctrl-[0-9]+'
 
-Rob
+v2:
+  - Rename yaml file to match compatibles, nxp,pca953x.yaml
+  - Remove Jacek Anaszewski from maintainers list
+  - Remove color labels in example
+  - Restore labels/default-states from original example
+  - Drop reg description
+  - Add unevaluatedProperties to patternProperties scope
+  - Update description of type property & set default to 0
+  - Fix indentation in example
+---
+ .../devicetree/bindings/leds/leds-pca9532.txt | 49 ----------
+ .../devicetree/bindings/leds/nxp,pca953x.yaml | 90 +++++++++++++++++++
+ 2 files changed, 90 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-pca9532.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/nxp,pca953x.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-pca9532.txt b/Documentation/devicetree/bindings/leds/leds-pca9532.txt
+deleted file mode 100644
+index f769c52e3643..000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-pca9532.txt
++++ /dev/null
+@@ -1,49 +0,0 @@
+-*NXP - pca9532 PWM LED Driver
+-
+-The PCA9532 family is SMBus I/O expander optimized for dimming LEDs.
+-The PWM support 256 steps.
+-
+-Required properties:
+-	- compatible:
+-		"nxp,pca9530"
+-		"nxp,pca9531"
+-		"nxp,pca9532"
+-		"nxp,pca9533"
+-	- reg -  I2C slave address
+-
+-Each led is represented as a sub-node of the nxp,pca9530.
+-
+-Optional sub-node properties:
+-	- label: see Documentation/devicetree/bindings/leds/common.txt
+-	- type: Output configuration, see dt-bindings/leds/leds-pca9532.h (default NONE)
+-	- linux,default-trigger: see Documentation/devicetree/bindings/leds/common.txt
+-	- default-state: see Documentation/devicetree/bindings/leds/common.txt
+-	  This property is only valid for sub-nodes of type <PCA9532_TYPE_LED>.
+-
+-Example:
+-  #include <dt-bindings/leds/leds-pca9532.h>
+-
+-  leds: pca9530@60 {
+-    compatible = "nxp,pca9530";
+-    reg = <0x60>;
+-
+-    red-power {
+-      label = "pca:red:power";
+-      type = <PCA9532_TYPE_LED>;
+-    };
+-    green-power {
+-      label = "pca:green:power";
+-      type = <PCA9532_TYPE_LED>;
+-    };
+-    kernel-booting {
+-      type = <PCA9532_TYPE_LED>;
+-      default-state = "on";
+-    };
+-    sys-stat {
+-      type = <PCA9532_TYPE_LED>;
+-      default-state = "keep"; // don't touch, was set by U-Boot
+-    };
+-  };
+-
+-For more product information please see the link below:
+-http://nxp.com/documents/data_sheet/PCA9532.pdf
+diff --git a/Documentation/devicetree/bindings/leds/nxp,pca953x.yaml b/Documentation/devicetree/bindings/leds/nxp,pca953x.yaml
+new file mode 100644
+index 000000000000..edf6f55df685
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/nxp,pca953x.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/nxp,pca953x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCA9532 LED Dimmer
++
++maintainers:
++  - Riku Voipio <riku.voipio@iki.fi>
++
++description: |
++  The PCA9532 family is SMBus I/O expander optimized for dimming LEDs.
++  The PWM support 256 steps.
++
++  For more product information please see the link below:
++    https://www.nxp.com/docs/en/data-sheet/PCA9532.pdf
++
++properties:
++  compatible:
++    enum:
++      - nxp,pca9530
++      - nxp,pca9531
++      - nxp,pca9532
++      - nxp,pca9533
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++
++patternProperties:
++  "^led-[0-9a-z]+$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      type:
++        description: |
++          Output configuration, see include/dt-bindings/leds/leds-pca9532.h
++        $ref: /schemas/types.yaml#/definitions/uint32
++        default: 0
++        minimum: 0
++        maximum: 4
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/leds-pca9532.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@62 {
++            compatible = "nxp,pca9533";
++            reg = <0x62>;
++
++            led-1 {
++                label = "pca:red:power";
++                type = <PCA9532_TYPE_LED>;
++            };
++
++            led-2 {
++                label = "pca:green:power";
++                type = <PCA9532_TYPE_LED>;
++            };
++
++            led-3 {
++                type = <PCA9532_TYPE_LED>;
++                default-state = "on";
++            };
++
++            led-4 {
++                type = <PCA9532_TYPE_LED>;
++                default-state = "keep";
++            };
++        };
++    };
++
++...
+-- 
+2.25.1
+
