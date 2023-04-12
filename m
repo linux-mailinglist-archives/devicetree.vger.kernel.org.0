@@ -2,91 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD826DF785
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 154456DF795
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 15:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230458AbjDLNmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 09:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
+        id S229990AbjDLNqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 09:46:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbjDLNmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:42:03 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EAC7D9E
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 06:41:47 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id j1-20020a05600c1c0100b003f04da00d07so2260841wms.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 06:41:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1681306906; x=1683898906;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BxkSh9qGiNggOqM0IqW5ttMVYnP04di9hmJMdY7w8ec=;
-        b=B9d0pJGJszb/AtvGc1LSVISUvO3gkEB2r6axSkehkm6Wtb3x6EVZv/GnRNDTMvsDYA
-         BOiJtsEel1Gj1GBQZdHsQRzA2moZSHwuTofFQnpowXCkNui7+YHgFoFWWwsKgpkD5KnR
-         EIlJrioSvTxALhp4/bsKpFuPw6/AEaOIkVoMz2v1Aaehmw81SQM7CsGfQXoAKdYYVoeg
-         NeKC6fFqyF7y9uErvCuNqOVcgosikfVSwIZcVm1TriA74ZN7yEBDpIp/ojw0Ogv7wpJg
-         WB4ZnnTyjho3a91QqJBYE5I1G5789pzeJhkveCHJ74iimofE1AMERp2XzsRunQ/Wt8Mq
-         bkNg==
+        with ESMTP id S229758AbjDLNqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 09:46:22 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D142010DE;
+        Wed, 12 Apr 2023 06:46:17 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-18782426c4bso624926fac.9;
+        Wed, 12 Apr 2023 06:46:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681306906; x=1683898906;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BxkSh9qGiNggOqM0IqW5ttMVYnP04di9hmJMdY7w8ec=;
-        b=knSgIWRVCka5F5w62BQzsNLu/mYLLgH6lSdb/XJbVqLWfTpAh7a6ro68FOu/F+djp6
-         UhdI7rkmzyZcuXyxXhXr8tY/N9m1su6s4pEnilIy29f7365Q/tuS8wpHN1BWVgpvaocz
-         PVtwNOGN8raEB0LAwCXGFg2OYHajrtfKN//9o2dgNBKMGVjEBCwGgoO/zBgH7dVL802x
-         k4WMHQOHXWi4mVPEa+/5bo/HxTR+tTud77kWtbsNCbSIgl4LTbOMPdjXnGFklT85mfH+
-         VqEwmu2EDD1K6kMRFff9V8Cxi72KuwP9zZJQSz2t/KdvSUv3UyndrTdXBgNwfVmiKr64
-         ZDLg==
-X-Gm-Message-State: AAQBX9f5jw7eC1rgfedRJAxcjrC8FOXn2yg7vH3tVwAEXlqwyy6QrOJn
-        eJTqeNtgdvQ7tyYEC0G4E8hVQQ==
-X-Google-Smtp-Source: AKy350Yi7DLY8Lcdq0xFepDVOiGuUCd47//3OO0bGUu9eLXFeO7jdLZnBpmOcGhBfDnlwtlu+bd7Xw==
-X-Received: by 2002:a05:600c:22c2:b0:3ed:a82d:dffb with SMTP id 2-20020a05600c22c200b003eda82ddffbmr1949562wmg.40.1681306905383;
-        Wed, 12 Apr 2023 06:41:45 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id t15-20020a05600c198f00b003f0a007b802sm1434367wmq.12.2023.04.12.06.41.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 06:41:44 -0700 (PDT)
-Message-ID: <6aa48e26-31dd-cd7e-7a1c-f46d05c8e74f@baylibre.com>
-Date:   Wed, 12 Apr 2023 15:41:43 +0200
+        d=1e100.net; s=20210112; t=1681307177; x=1683899177;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e9LJNXi7ThfER3Q1hIKQ2Q7ZDEK5eNuLphLK92f+qek=;
+        b=h314+9TjN8iXFAG2xSugw92og+7SqLVq0GmU7Bim1foPPeCIVMJkTM2hJE/bMYCaib
+         /S5ofYFXa7Ke8VdrrcMkKqU0yjtqUoIzw7aTLB6xqokhfXOPSXKl71YABBrjr4LFtvzL
+         pL0LOA1B2dL+1+JoCeZjOVMdrhGauoekZNDAS0LiHtgeQQaQ5IWMCceMA6HXD7CF+mRF
+         BKuzGPiYrJq6acZOuh1HusN8BhRPYgVVFDC1MfM4ocilivjGV1xBvTaHnmXezy/xoOsx
+         KW07fNqbysafky9pxp1YEAXAsku7NmtrSQpr0FjlZgYk4t8s5V5DEbe79LgzPRQxM4Tn
+         Qdiw==
+X-Gm-Message-State: AAQBX9cEJMi4J0FbT47UHpO39AqWLrLyVUMFCMiuFVN9h9lXmWQ7b358
+        8HcKhL+8a6vYNqrqeU6Ozw==
+X-Google-Smtp-Source: AKy350bWdptJOMt5Rq/RspEgq7+COWs65y9hDkmpUsYoMkj/BLsWgSwRgWLmHLHU7QpMyjUQJT6+1g==
+X-Received: by 2002:a05:6870:9593:b0:15f:e044:23b2 with SMTP id k19-20020a056870959300b0015fe04423b2mr1550794oao.7.1681307177033;
+        Wed, 12 Apr 2023 06:46:17 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u4-20020a4a9e84000000b00524faf3d2d7sm6926840ook.41.2023.04.12.06.46.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Apr 2023 06:46:16 -0700 (PDT)
+Received: (nullmailer pid 2217552 invoked by uid 1000);
+        Wed, 12 Apr 2023 13:46:15 -0000
+Date:   Wed, 12 Apr 2023 08:46:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     mturquette@baylibre.com, jian.hu@amlogic.com, khilman@baylibre.com,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        jbrunet@baylibre.com, linux-kernel@vger.kernel.org,
+        kernel@sberdevices.ru, sboyd@kernel.org,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        rockosov@gmail.com, neil.armstrong@linaro.org,
+        martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH v13 3/6] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Message-ID: <168130717511.2217492.4753998979663647449.robh@kernel.org>
+References: <20230405195927.13487-1-ddrokosov@sberdevices.ru>
+ <20230405195927.13487-4-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 6/6] soc: mediatek: pwrap: Add support for MT6795 Helio
- X10
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        flora.fu@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230412131216.198313-1-angelogioacchino.delregno@collabora.com>
- <20230412131216.198313-7-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230412131216.198313-7-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230405195927.13487-4-ddrokosov@sberdevices.ru>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 15:12, AngeloGioacchino Del Regno wrote:
-> Add the necessary bits to support the MT6795 Helio X10 smartphone SoC:
-> this is always paired with a MT6331 PMIC, with MT6332 companion.
->
-> Signed-off-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+On Wed, 05 Apr 2023 22:59:24 +0300, Dmitry Rokosov wrote:
+> Add the documentation for Amlogic A1 PLL clock driver, and A1 PLL
+> clock controller bindings.
+> Also include new A1 clock controller dt bindings to MAINTAINERS.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 58 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  .../dt-bindings/clock/amlogic,a1-pll-clkc.h   | 20 +++++++
+>  3 files changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> 
 
-Regards,
-Alexandre
+Reviewed-by: Rob Herring <robh@kernel.org>
 
