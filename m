@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F2EC6DEBC8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 08:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDCD6DEBDF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 08:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjDLG10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 02:27:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45974 "EHLO
+        id S229531AbjDLGhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 02:37:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjDLG1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 02:27:25 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F739129;
-        Tue, 11 Apr 2023 23:27:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1681280842; x=1712816842;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0oFXd/j/ZCtmJRDoDRxJJvoLSwqd30a5/biS7X1TG58=;
-  b=gSv0gEmAOCuDh2waI2/8XWbK4KSBaOEnZGGIrgij7sh0H3dSgVH6El2q
-   ev7Iy4YOMbNsfiojj5kUL+JKgI7SPff9kojnI38HgunDJJrNC7FZfM+Q3
-   eEXuleZBUmucG/aBc0Trof8fosszldV0lgnqSKUVj5fqQ0HghLN12NSeq
-   Kp9VsWpPeGmRnhpc3+pufZC/F9bXCpnxP5mtKHPt3sZFmamcEqvXL09xB
-   zOCLDf1H3/FKhZYNFidTPpagNrfrrq0ReIWXBn548DPf5BqFj3V6OzYHe
-   bZrwZALF4+7mEfJ5JyCh0Y3zBJeo1gHdVxMvLJz+2R/tfV/KO8mFZ3JtT
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,338,1673938800"; 
-   d="asc'?scan'208";a="208721680"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Apr 2023 23:27:20 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 11 Apr 2023 23:27:20 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 11 Apr 2023 23:27:18 -0700
-Date:   Wed, 12 Apr 2023 07:27:03 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Walker Chen <walker.chen@starfivetech.com>
-CC:     Changhuang Liang <changhuang.liang@starfivetech.com>,
+        with ESMTP id S229458AbjDLGhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 02:37:19 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9B23ABC;
+        Tue, 11 Apr 2023 23:37:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681281401; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=MPx172HnOIejQDyL0d/0DUdOEHO0rjgD6Oa6glZ3HE1iJOzYBJScCGQwiUPBWcUfB7qTQ1oWbuOxkpSrSKivIIeG4C7/KvdrHEPIK38DvN3oDFTKMZMuGsBwVOdYHx7ZmdUQfqJfsbwG1d3DuNlDRsdUCWZf448dtEaqOpj7yzc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1681281401; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=2CUzAZVNmhEddWbv5po9+adEHLn5WWCOxoPTdFXS6l4=; 
+        b=hO8QKIOywiaIoS0G/klCObI81udy+loHkZMRlNb27Q2pVFh1KmoK4BC4D+kD3tApqyntKxoFc6u297ewZkyN8roixqL5TpQ9MzCzXJVxyVfb9sGa8Jm+hSwIvRwJqWT+e02yoO7HvbckJ/UM4c0MqgRGdjbrag1pegsgCOE71BM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1681281401;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=2CUzAZVNmhEddWbv5po9+adEHLn5WWCOxoPTdFXS6l4=;
+        b=HU8zdvcDb/wiOXq/4JV9AcKkkkg4J778VwuzUb1bK4CSUeyllHOJNYeeW2jEJaRC
+        /2hett5Z85bMYasKfsrUdc30njoAPbVB9V0huiyEOkqkuXlfCqRPQO1XJvm3hckcxtI
+        w2jmcP4gc7nUSenhjPrSN092MUzCsPvyDKyemgjU=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1681281399656135.19981499513426; Tue, 11 Apr 2023 23:36:39 -0700 (PDT)
+Message-ID: <80d4a841-db7c-fa2b-e50d-84317ee54a40@arinc9.com>
+Date:   Wed, 12 Apr 2023 09:36:32 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/7] dt-bindings: net: dsa: mediatek,mt7530: correct
+ brand name
+Content-Language: en-US
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v1 5/7] soc: starfive: Use call back to parse device tree
- resources
-Message-ID: <20230412-dwindling-tattoo-220650300f1f@wendy>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-6-changhuang.liang@starfivetech.com>
- <eeb7dadb-1cfd-d270-158b-5dd2e5f2bd1a@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5FwCN1gjD8flHocD"
-Content-Disposition: inline
-In-Reply-To: <eeb7dadb-1cfd-d270-158b-5dd2e5f2bd1a@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230407125008.42474-1-arinc.unal@arinc9.com>
+ <20230411235749.xbghzt7w77swvhnz@skbuf>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230411235749.xbghzt7w77swvhnz@skbuf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---5FwCN1gjD8flHocD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 12.04.2023 02:57, Vladimir Oltean wrote:
+> Hi Arınç,
+> 
+> On Fri, Apr 07, 2023 at 03:50:03PM +0300, arinc9.unal@gmail.com wrote:
+>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>
+>> The brand name is MediaTek, change it to that.
+>>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> Acked-by: Daniel Golle <daniel@makrotopia.org>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> 
+> It is good practice for series larger than 2 patches to create a cover
+> letter, which gives the overview for the changes. Its contents gets used
+> as the merge commit description when the series is accepted.
 
-On Wed, Apr 12, 2023 at 02:07:52PM +0800, Walker Chen wrote:
->=20
->=20
-> On 2023/4/11 14:47, Changhuang Liang wrote:
-> > Different compatible parse device tree resources work in different ways.
-> >=20
-> > Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->=20
-> I don't think it's necessary to submit multiple patches separately for th=
-e same .c file
-> unless it is very necessary. Because the disadvantage of separating multi=
-ple patches=20
-> is that some information lacks completeness and coherence.
+Ok, will do on the next version. I'll also split the schema while at it.
 
-Other than patches 4 & 6, which could be squashed, the breakdown here is
-fine IMO. Doing one thing per patch makes it obvious to the reader
-*what* is happening.
-
-There's just some missing boilerplate in the commit messages across the
-series that the DPHY PMU does not have a reg nor interrupts, and this
-work is being done to support that.
-
-Cheers,
-Conor.
-
---5FwCN1gjD8flHocD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDZPMwAKCRB4tDGHoIJi
-0htHAP9THN3zvMQq0pjNoX3Dm0EMizqv5U1cfly39UetP3sIRQD/SWUkFbuqhbQf
-U2JRE3tzABbWkjTYzBrcssVqkS2c5gA=
-=XK0O
------END PGP SIGNATURE-----
-
---5FwCN1gjD8flHocD--
+Arınç
