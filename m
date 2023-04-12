@@ -2,98 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E28B6DF886
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2842D6DF88D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 16:33:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231518AbjDLObt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 10:31:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58762 "EHLO
+        id S230148AbjDLOdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 10:33:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230211AbjDLObs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:31:48 -0400
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9494B83DE;
-        Wed, 12 Apr 2023 07:31:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681309878; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=P7EFm3Wq2/ysbV2EMeWmp81wrbnIWKNF96itF9fODPoX1Ji/EUnmxN60FdGyOkIjC+l8d22euS6a0IW7oeGqzveIl4RGCOTJ96WO1mXUQ7uGBYpO9jGsFchiNZXk5daHyMYBousYnjMdnEdwZkKXczeVNnYW/+9Gw4oRTtWvU1M=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1681309878; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=3c7CGkWjnzNRHL7qhiYM9MX8ZN0XNedfJlqVhIQAlA8=; 
-        b=GG69l+sMVB+ZMbOqIK1qp12g8Byj49xlNyaevj2FPiIIx6KW546KdIr5vQklTKfvwL9bEZIIY5OYQVMi49KVW0rA7K+zvi0DPopQpHSHF23xDLHLIDZ7PZo6G9Tao5Ap6plik98IGo8j89Zhpum64cHPKr+KNozxzSj4cQpEm9U=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1681309878;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=3c7CGkWjnzNRHL7qhiYM9MX8ZN0XNedfJlqVhIQAlA8=;
-        b=ZtEvAJKr+8NFnB/5n5uShBN2qHsvvFFzTSCeRXqIhscjxSRCSzZKcbd6nOP0bfnh
-        yAjq/bYUwqakWqnxUuGNhTE01Nf/FKkq7ffP7PAAJN1qARTXkK+hpam1+96prkHP1Qb
-        9lFntl424cEiToZPSUGq/m3SJTPkn/q6a0lFhUb0=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1681309875185877.4920617615047; Wed, 12 Apr 2023 07:31:15 -0700 (PDT)
-Message-ID: <703ad8a8-f84e-6404-4cce-5386bfaa2bd7@arinc9.com>
-Date:   Wed, 12 Apr 2023 17:31:10 +0300
+        with ESMTP id S230061AbjDLOdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 10:33:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B40D903A
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 07:32:51 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1pmbWS-0001es-VB; Wed, 12 Apr 2023 16:32:33 +0200
+Message-ID: <6953b608-973f-c603-f852-edf7ba183e64@pengutronix.de>
+Date:   Wed, 12 Apr 2023 16:32:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: Aw: Re: Re: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs,
- mt7530 switch, and add port@5
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
-References: <20230210182505.24597-1-arinc.unal@arinc9.com>
- <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
- <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
- <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
- <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53>
- <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
- <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
- <fb96d8eb-2eb7-db19-1135-1a833294dd67@arinc9.com>
- <trinity-899c01a6-0fc5-4900-aea8-2b43802c8329-1676814734826@3c-app-gmx-bs35>
- <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <trinity-3f46d325-bc45-4ee7-ae86-c8db4467aa94-1681303779505@3c-app-gmx-bap50>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
+ properties
+Content-Language: en-US, de-DE
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        vkoul@kernel.org, kishon@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        jun.li@nxp.com, haibo.chen@nxp.com, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230405112118.1256151-1-j.zink@pengutronix.de>
+ <20230405112118.1256151-2-j.zink@pengutronix.de>
+ <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
+ <3f7257ee36dc44f162a87281c8279fd5bad91dea.camel@pengutronix.de>
+ <95b4afd4-c93e-628b-fd22-6fcbc1d1234e@linaro.org>
+ <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
+ <20230412133921.GA2017891-robh@kernel.org>
+From:   Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <20230412133921.GA2017891-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.04.2023 15:49, Frank Wunderlich wrote:
-> Hi,
+Hi Rob,
+
+On 4/12/23 15:39, Rob Herring wrote:
+> On Tue, Apr 11, 2023 at 04:22:37PM +0200, Johannes Zink wrote:
+>> Hi Krzystof,
+>>
+>> thank you for your explanations. As I'm still quite new to writing
+>> bindings, I still have some questions:
+>>
+>> On Fri, 2023-04-07 at 11:03 +0200, Krzysztof Kozlowski wrote:
+>>> On 05/04/2023 14:14, Johannes Zink wrote:
+>>>> Hi Krysztof,
+>>>>
+>>>> thanks for your review, please find my questions below.
+>>>>
+>>>> On Wed, 2023-04-05 at 13:51 +0200, Krzysztof Kozlowski wrote:
+>>>>> [snip]
+>>>>>>         A phandle to the regulator for USB VBUS.
+>>>>>>   
+>>>>>> +  fsl,phy-tx-vref-tune:
+>>>>>> +    description:
+>>>>>> +      HS DC Voltage level adjustment
+>>>>>
+>>>>> "Level" in what units?
+>>>>>
+>>>>
+>>>> The datasheet just shows percent, ranging from -6 to +24%, in 2%
+>>>> increments. What unit would you suggest?
+>>>
+>>> percent
+>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+>>
+>> I am still a bit confused how to use this properly. How can I restrict
+>> the values to multiples of 2 in order to avoid illegal values?
+>>
+>> At the moment the only thing I could come up with is something like
+>>
+>> fsl,phy-tx-vref-tune-percent:
+>>    description: |
+>>      Adjusts the high-speed DC level voltage
+>>    $ref: /schemas/types.yaml#/definitions/int32
 > 
-> retested series on bananpi r2 on 6.3-rc6 (after throughput is fixed for mt7623/trgmii too) with additional patches:
+> Note that with standard unit suffixes, you don't need a type.
 > 
-> "net: dsa: implement preferred cpu port handling" by Vladimir Oltean to stay on gmac0 by default
-> "net: dsa: mt7530: add support for changing DSA master" by Richard van Schagen
+>>    minimum: -6
+>>    maximum: 24
+>>    default: 0
+>>
+>> Does something like this work? I am not quite sure if I am on the right
+>> track here, especially as this requires a signed int, of which I have
+>> not seen many examples so far.
 > 
-> looks good so far, but i have not managed how to change dsa master from the preferred port (eth0) to the second one...
-> any idea how the correct syntax is for iproute2?
-
-https://www.kernel.org/doc/html/latest/networking/dsa/configuration.html#affinity-of-user-ports-to-cpu-ports
-
-In short: ip link set lan0 type dsa conduit eth1
-
+> We'd have to change the type for -percent to signed. That's possible,
+> but for vendor specific properties there's not much advantage to use
+> standard units instead of just using the register values directly.
 > 
-> at least vladimirs patch should be included when applying this series
 
-I'm currently cleaning up the DSA driver, I'll get to this at some point.
+I don't have any objections to that, this is pretty much what I sent in 
+my v1 patch <20230405112118.1256151-2-j.zink@pengutronix.de>, but 
+Krzysztof requested to change the vendor specific properties to use 
+property-units.
 
-Arınç
+Would something along the lines of the st,trim-hs-current on 
+Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml be 
+acceptable (i.e. use an enum and annotate the meaning of the values in 
+the description)?
+
+I will, nevertheless, try to make the descriptions a bit more verbose in 
+my v2 (wherever the datasheet gives me proper informations), as 
+Krzysztof requested.
+
+Best regards
+Johannes
+
+> Rob
+> 
+
+-- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
