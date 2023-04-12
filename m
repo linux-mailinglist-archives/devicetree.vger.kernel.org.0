@@ -2,145 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82DA6DF464
-	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 13:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8596DF467
+	for <lists+devicetree@lfdr.de>; Wed, 12 Apr 2023 13:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbjDLL4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 07:56:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37626 "EHLO
+        id S231349AbjDLL5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 07:57:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjDLL4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 07:56:38 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68F55272
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 04:56:33 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-504a37baf98so2233507a12.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 04:56:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681300592;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=viozi8WsbH/DNbU6I8Kpp6YtafxtKSmvjW088VP7BVQ=;
-        b=Kn6u/ENoZ+oxbCROGKcAR6CGVFthkc7bgQ1xOWjxoHq7fMIHgBptias+YEhQzLgKOG
-         6GUdcL91fMKJRLw/pk7A14is6kWS0nXXBeVrD6KZsHQVyL/hR+73csTlodLSrWPlimso
-         91sMW38iuc3FnNQiONjMQpzDEu67Zjwi8x6eFZ/MLG+Q/NBeIhQ93VYu1BIvTGNL2DQV
-         MrJafhEdDQRR60jeofPYda8oAkAnhUGm1c3SSGOGgcrwhLg1MCacBWLXHXr/I8dWCxFt
-         WMs5S7XXwukMGZWyW8eSjO4bv9c+egekJDfVB7qxpi7uxVXyBXb1jSOqeiuh0RyZNSSt
-         CEjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681300592;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=viozi8WsbH/DNbU6I8Kpp6YtafxtKSmvjW088VP7BVQ=;
-        b=lrf5PnmmfgrMVP2cch/XTCJulpgocOCNs8REKGP5S1VdHZJmKIwx4e7zEqvTgrlzz0
-         w8NMgEwHmb5woTqkRWPyWuUmyEGxI2SnmS4ST79PUNZbIJlUd/UR1+2LHh7ZBQ1c+Pf3
-         5GM2mDBqPZB//I+N11bPlV049E+3EFLn1lY1/WJnKIalEOpwTQNVWrqOf+bGwWSllv82
-         B9TxBmwkbewCNeROJQa7Fqd1WoyWDsiC7e957j+lhkNYGljCluUMCA+EpVgzWVDmLeXt
-         4/wi38Yg2KXPv2tcXPFtgMDbfBuxLAkuZTcFy2ylkwOYs+jO5vJgIOgcdHp2DMA0go/F
-         w93g==
-X-Gm-Message-State: AAQBX9cAy4VhQyjcLiYSAvHoSwMWMPiJwzSUOtYim4yiT4AQUSkAsE2A
-        kT1CMGwmUmeixDOQ0XoFT7zMnw==
-X-Google-Smtp-Source: AKy350aiP1FqqXG9WgEtDAIm9FtFj3ZnLVTn/hVAgjhJD+CkVEs9E5WifMD2ZngCXeeyRHodV3LmFw==
-X-Received: by 2002:aa7:c2d2:0:b0:4fa:fcee:1727 with SMTP id m18-20020aa7c2d2000000b004fafcee1727mr13574263edp.13.1681300592394;
-        Wed, 12 Apr 2023 04:56:32 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:8fa0:9989:3f72:b14f? ([2a02:810d:15c0:828:8fa0:9989:3f72:b14f])
-        by smtp.gmail.com with ESMTPSA id i13-20020a50c3cd000000b004fa012332ecsm5383882edf.1.2023.04.12.04.56.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 04:56:31 -0700 (PDT)
-Message-ID: <66b7d0b9-9569-ddaf-89ca-5a0133074a17@linaro.org>
-Date:   Wed, 12 Apr 2023 13:56:30 +0200
+        with ESMTP id S229685AbjDLL5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 07:57:06 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F9BD4C1F;
+        Wed, 12 Apr 2023 04:57:05 -0700 (PDT)
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:c2e:89bd:4b8e:9e98])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 78FF966031FE;
+        Wed, 12 Apr 2023 12:57:03 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681300623;
+        bh=GzsQvxtEuTRAIMtYnr92LZ7z/pY+BM+oHtgGFb8KqOw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=K4fgicpSNwt9w5UkKDzZQmpnGSloYvQYabWMX9ckG4eTz0KWg55IAJczWHvFZhiaE
+         E0lvuKVevsFvx7KzvgSb3mp45/G4V2/Sn0ZcrbL+tftK9Et7K5Eo/ZpGakLpc+06A1
+         GH8VQ0MeoyRJqGzp+Yj5AgNHdwvx8CeA0LYVHXr3Xb+nFn8Y4qD6Xn/bMQSj0WgMAG
+         2+4X0ydoPKCIvqlVg801/SGZKRaQhtOsQPWPWnOrs4Xv5OlfGCwwIWisv56wQyH1CX
+         baIhmuxdiC1x2z/DGoXiKaRouM2tmFYgm13KzQVnOeISynlgwQpKrg2ntPVxp6B1Ss
+         N20pw7+PKCeXQ==
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        hverkuil-cisco@xs4all.nl, nicolas.dufresne@collabora.com
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v6 00/13] AV1 stateless decoder for RK3588
+Date:   Wed, 12 Apr 2023 13:56:39 +0200
+Message-Id: <20230412115652.403949-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: brcmstb: Add two optional props
-Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230411165919.23955-1-jim2101024@gmail.com>
- <20230411165919.23955-2-jim2101024@gmail.com>
- <5a28e520-63e4-dbcf-5b3e-e5097f02dea2@linaro.org>
- <78c18cdb-5757-8d30-e2a6-414f09505cc6@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <78c18cdb-5757-8d30-e2a6-414f09505cc6@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 13:49, Florian Fainelli wrote:
-> 
-> 
-> On 4/12/2023 1:09 AM, Krzysztof Kozlowski wrote:
->> On 11/04/2023 18:59, Jim Quinlan wrote:
->>> Regarding "brcm,enable-l1ss":
->>>
->>>    The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
->>>    requires the driver probe() to deliberately place the HW one of three
->>>    CLKREQ# modes:
->>>
->>>    (a) CLKREQ# driven by the RC unconditionally
->>>    (b) CLKREQ# driven by the EP for ASPM L0s, L1
->>>    (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
->>>
->>>    The HW+driver can tell the difference between downstream devices that
->>>    need (a) and (b), but does not know when to configure (c).  Further, the
->>>    HW may cause a CPU abort on boot if guesses wrong regarding the need for
->>>    (c).  So we introduce the boolean "brcm,enable-l1ss" property to indicate
->>>    that (c) is desired.  Setting this property only makes sense when the
->>>    downstream device is L1SS-capable and the OS is configured to activate
->>>    this mode (e.g. policy==superpowersave).
->>>
->>>    This property is already present in the Raspian version of Linux, but the
->>>    upstream driver implementaion that will follow adds more details and
->>
->> typo, implementation
->>
->>>    discerns between (a) and (b).
->>>
->>> Regarding "brcm,completion-timeout-us"
->>>
->>>    Our HW will cause a CPU abort if the L1SS exit time is longer than the
->>>    PCIe transaction completion abort timeout.  We've been asked to make this
->>>    configurable, so we are introducing "brcm,completion-timeout-us".
->>>
->>> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
->>
->> What happened here? Where is the changelog?
-> 
-> It is in the cover letter:
-> 
-> https://lore.kernel.org/all/20230411165919.23955-1-jim2101024@gmail.com/
-> 
-> but it does not look like the cover letter was copied to you or Rob.
+This series implement AV1 stateless decoder for RK3588 SoC.
+The hardware support 8 and 10 bits bitstreams up to 7680x4320.
+AV1 feature like film grain or scaling are done by the postprocessor.
+The driver can produce NV12_4L4, NV12_10LE40_4L4, NV12 and P010 pixels formats.
+Even if Rockchip have named the hardware VPU981 it looks like a VC9000 but 
+with a different registers mapping.
 
-As you said, I did not get it.
+The series is based on Hans's br-v6.4f branch + "media: Add AV1 uAPI"
+patch v7.
+The full branch can be found here:
+https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_decoder_v6
 
-Best regards,
-Krzysztof
+Fluster score is: 200/239 while testing AV1-TEST-VECTORS with GStreamer-AV1-V4L2SL-Gst1.0.
+The failing tests are:
+- the 2 tests with 2 spatial layers: few errors in luma/chroma values
+- tests with resolution < hardware limit (64x64)
+- 10bits film grain test: bad macroblocks while decoding, the same 8bits
+  test is working fine.
+
+Changes in v6:
+- Rename NV12_10LE40_4L4 pixel format into NV15_4L4.
+- Add defines for post-proc selection.
+- Change patch order as requested by Nicolas.
+- Fix frame-larger-than warning.
+
+Changes in v5:
+- Add a patch to initialize bit_depth field of V4L2_CTRL_TYPE_AV1_SEQUENCE
+  ioctl.
+
+Changes in v4:
+- Squash "Save bit depth for AV1 decoder" and "Check AV1 bitstreams bit
+  depth" patches.
+- Double motion vectors buffer size.
+- Fix the various errors reported by Hans.
+
+Changes in v3:
+- Fix arrays loops limites.
+- Remove unused field.
+- Reset raw pixel formats list when bit depth or film grain feature
+  values change.
+- Enable post-processor P010 support
+
+Changes in v2:
+- Remove useless +1 in sbs computation. 
+- Describe NV12_10LE40_4L4 pixels format.
+- Post-processor could generate P010.
+- Fix comments done on v1.
+- The last patch make sure that only post-processed formats are used when film
+  grain feature is enabled.
+
+Benjamin
+
+Benjamin Gaignard (12):
+  dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+  media: AV1: Make sure that bit depth in correctly initialize
+  media: Add NV15_4L4 pixel format
+  media: verisilicon: Get bit depth for V4L2_PIX_FMT_NV15_4L4
+  media: verisilicon: Add AV1 decoder mode and controls
+  media: verisilicon: Check AV1 bitstreams bit depth
+  media: verisilicon: Compute motion vectors size for AV1 frames
+  media: verisilicon: Add AV1 entropy helpers
+  media: verisilicon: Add Rockchip AV1 decoder
+  media: verisilicon: Add film grain feature to AV1 driver
+  media: verisilicon: Enable AV1 decoder on rk3588
+  media: verisilicon: Conditionally ignore native formats
+
+Nicolas Dufresne (1):
+  v4l2-common: Add support for fractional bpp
+
+ .../bindings/media/rockchip-vpu.yaml          |    1 +
+ .../media/v4l/pixfmt-yuv-planar.rst           |   16 +
+ drivers/media/platform/verisilicon/Makefile   |    3 +
+ drivers/media/platform/verisilicon/hantro.h   |    8 +
+ .../media/platform/verisilicon/hantro_drv.c   |   68 +-
+ .../media/platform/verisilicon/hantro_hw.h    |  102 +
+ .../platform/verisilicon/hantro_postproc.c    |    9 +-
+ .../media/platform/verisilicon/hantro_v4l2.c  |   67 +-
+ .../media/platform/verisilicon/hantro_v4l2.h  |    8 +-
+ .../verisilicon/rockchip_av1_entropymode.c    | 4424 +++++++++++++++++
+ .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+ .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+ .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+ .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2234 +++++++++
+ .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+ .../platform/verisilicon/rockchip_vpu_hw.c    |  134 +
+ drivers/media/v4l2-core/v4l2-common.c         |  150 +-
+ drivers/media/v4l2-core/v4l2-ctrls-core.c     |    5 +
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
+ include/media/v4l2-common.h                   |    2 +
+ include/uapi/linux/videodev2.h                |    1 +
+ 21 files changed, 8322 insertions(+), 97 deletions(-)
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.h
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.h
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+
+-- 
+2.34.1
 
