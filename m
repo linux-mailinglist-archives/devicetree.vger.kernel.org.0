@@ -2,93 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9F26E0502
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 05:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 506A66E0515
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 05:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjDMDD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 23:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38702 "EHLO
+        id S229578AbjDMDO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 23:14:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbjDMDD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 23:03:58 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F71F2D4E;
-        Wed, 12 Apr 2023 20:03:56 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33D33MnW4030161, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33D33MnW4030161
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Thu, 13 Apr 2023 11:03:22 +0800
-Received: from RTEXMBS02.realtek.com.tw (172.21.6.95) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Thu, 13 Apr 2023 11:03:44 +0800
-Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
- RTEXMBS02.realtek.com.tw (172.21.6.95) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 13 Apr 2023 11:03:44 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
- 15.1.2375.32 via Frontend Transport; Thu, 13 Apr 2023 11:03:44 +0800
-From:   Stanley Chang <stanley_chang@realtek.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     <linux-usb@vger.kernel.org>,
-        Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add 'snps,parkmode-disable-hs-quirk' quirk
-Date:   Thu, 13 Apr 2023 11:03:44 +0800
-Message-ID: <20230413030344.13483-1-stanley_chang@realtek.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230411053550.16360-2-stanley_chang@realtek.com>
-References: <20230411053550.16360-2-stanley_chang@realtek.com>
+        with ESMTP id S229571AbjDMDO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 23:14:57 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC3E526C
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 20:14:56 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-632cf805762so1057478b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 20:14:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tweaklogic.com; s=google; t=1681355695; x=1683947695;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ksLl+u3g5M94Rsp2MK2e3lIOyx7h9PvptQgecj9BoTs=;
+        b=Gwc1/xz7yShN3TYYeX9sg7dtV6rcV+AXuTmtXV2qSQxJ9mNMpgjDTBvYc13pXTwf3h
+         EaNxntcdLQCOiepCPK8AvvIkJO2YwtfpLc1+RDYxP1PS07L/AsIvPmgxmY9olkaBm3+0
+         zcXGemSUIeaDcM58mox7YLSUzVTmraa9ASvHSukTY25oyb/w+eI3v4bRRySV6s4WBXMd
+         PhkAbhEdW/eCc2LoEouApwITuS9iJauQUBuMhXlK0tV21idZ0FTwRsygJwADgS+UOC8g
+         8yZIbIzu3/+x3+c9JgUd6LI39uNn1I6tUbIONdxTaXKI6NbutLfOiQv0n3BrNFDfO3Dk
+         cupA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681355695; x=1683947695;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ksLl+u3g5M94Rsp2MK2e3lIOyx7h9PvptQgecj9BoTs=;
+        b=ecJkjEx0T8zhHBspOP3BODv8b5JyX9VG0JrlyXU/mzWss7ltQW5MNt6OjO3oBsN2Al
+         JbwF/hBI3K19AWZ9MFVWCk6AZ34hBGNgWQK5HNmCtZcIi4f3nW1E98E5qaYr1vyofqXR
+         Vv0S+5TKIrh1GgYBNr/tl+d+aKRcaPWi2ZhH9x9BR1LNu2JYt0l5EJ6b+55Ue5gwPSjv
+         37opfYtG4u88BaZ7Z6noFysX7Kmy/veIQ+uK0W3Dy0N+coZGURUtF2perTbH8XSsFw1K
+         LPBDnpqK8twPYCm+hKqkyfwaQVTyR2an/C2oYihxrMvFgvRZ8n3Y1+TJGKgQ/StXa0rD
+         sNig==
+X-Gm-Message-State: AAQBX9dH0s6pMohgK446HD72i7VV8fTocBI/vzBmx0QZPHJQtWVAkzz7
+        XzgwP/56lpjgTiS9RcHKisFoVA==
+X-Google-Smtp-Source: AKy350bPy6H99b3JztSvag1soTIs7MW/aHYKKmTTHwO5KMRlH67LS0BQqOcTH4IGMvZmFMPX9/vaqw==
+X-Received: by 2002:a05:6a00:1a0d:b0:636:f899:4696 with SMTP id g13-20020a056a001a0d00b00636f8994696mr1315927pfv.24.1681355695578;
+        Wed, 12 Apr 2023 20:14:55 -0700 (PDT)
+Received: from [10.240.2.163] ([124.148.245.238])
+        by smtp.gmail.com with ESMTPSA id p15-20020aa7860f000000b005810c4286d6sm211451pfn.0.2023.04.12.20.14.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 20:14:55 -0700 (PDT)
+Message-ID: <5270f8db-ad7e-e260-93b7-40a1a6e75f48@tweaklogic.com>
+Date:   Thu, 13 Apr 2023 11:14:47 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-KSE-ServerInfo: RTEXMBS02.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [RFC PATCH 0/2] Support for Avago APDS9306 Ambient Light Sensor
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>
+References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
+ <20230411144031.000077c7@Huawei.com>
+ <eefdbad5-35ed-04c6-0955-87c99a4d345d@tweaklogic.com>
+ <20230412214403.5c053ed6@jic23-huawei>
+Content-Language: en-US
+From:   Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20230412214403.5c053ed6@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new 'snps,parkmode-disable-hs-quirk' DT quirk to dwc3 core for
-disable the high-speed parkmode.
+>> Can you also help me out with the git tree I should use to format the
+>> patches? As per my understanding it is the subsystem maintainer tree
+>> and the main branch but the macros and functions which you have suggested
+>> in other reviews are available in Linux mainline.
+> 
+> For a new driver it rarely matters and I'd advise simply using
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+> which is the mainline tree.  Please base either on the previous
+> release (currently 6.2) or rc1 of the current release (v6.3-rc1)
+> if doing this.
+> 
+> If you need a feature that has only been applied in the same cycle, or
+> are building on recent work that has been applied to the iio tree then
+> for fixes you want:
+> https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git fixes-togreg
+> for new stuff you want:
+> https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+> 
+> The IIO tree routes through Greg KH's char-misc tree so will see the togreg
+> branch move forwards to be based on that as Greg takes pull requests from me.
+> Usually this happens once or twice a kernel cycle.  Don't worry too much about
+> this. If it should affect a patch because some changes crossed I'll generally
+> fix it up whilst applying whichever gets applied second and ask the
+> authors to check I didn't make a mistake.
+> 
+> Joanthan
+>>
+>> Regards,
+>> Subhajit Ghosh
+>>
+> 
+Thank you for the detailed information. Appreciate you help.
 
-Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index be36956af53b..45ca967b8d14 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -232,6 +232,11 @@ properties:
-       When set, all SuperSpeed bus instances in park mode are disabled.
-     type: boolean
- 
-+  snps,parkmode-disable-hs-quirk:
-+    description:
-+      When set, all HighSpeed bus instances in park mode are disabled.
-+    type: boolean
-+
-   snps,dis_metastability_quirk:
-     description:
-       When set, disable metastability workaround. CAUTION! Use only if you are
--- 
-2.34.1
-
+Regards,
+Subhajit Ghosh
