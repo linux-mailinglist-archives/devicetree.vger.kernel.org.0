@@ -2,80 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2823E6E1639
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 23:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E00CC6E1652
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 23:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbjDMVCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 17:02:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44090 "EHLO
+        id S229561AbjDMVGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 17:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbjDMVCW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 17:02:22 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CAAE93C0
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 14:01:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1681419693;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=W92tAQhl/8cqUTTacQVRda1DmbqU6Pauq8CJ+Pib2iE=;
-        b=Z02qatPA8il76Lsgdch6HzYFKGpaom2Bzh7y7UbsrjvP1uVUW1FjUWfqRdQ73bAjWQ3ZyO
-        q2OI9R3I1507pgWy1MlTnrx9Os0IPbbU42T8VIl+4a1amAKnEqrBmc2mp5C+PHF7zsqGZU
-        cJQTUGVSuPhFHQEIh0o87jlrquYsjEA=
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-486-vCxopOrCOV-2O0hfLv6c2w-1; Thu, 13 Apr 2023 17:01:32 -0400
-X-MC-Unique: vCxopOrCOV-2O0hfLv6c2w-1
-Received: by mail-ot1-f70.google.com with SMTP id w13-20020a9d638d000000b006a419a71f32so1490482otk.9
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 14:01:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681419690; x=1684011690;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S229625AbjDMVGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 17:06:34 -0400
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45B093C0;
+        Thu, 13 Apr 2023 14:06:33 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id d16so3620429iow.2;
+        Thu, 13 Apr 2023 14:06:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681419993; x=1684011993;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W92tAQhl/8cqUTTacQVRda1DmbqU6Pauq8CJ+Pib2iE=;
-        b=JlOGuJ7oAlhxzKRz4cFtKSsJH1nzvQ+AAoQhkqC36t0PPMw1tdqwS+PUCZ4D5OJeKX
-         Ns+udY/5w7OmU+YmJGE9v9P3jlPNqDD3s3d0Q1aJQglgB5ASyd1+8Qy027xpP1Nmxyix
-         yaKa453d1A25jR1O/vOCs6YlbgnQpT/4wkadtOO3cfGUled9iuilwfSHdXlemRdv4fwa
-         1Hx0Tgm7sQPXUXlJiFNQQE5NDi3K7LpeTBY1HAXYQ2IZ9sfrb/XUbsNdQ53DhULx3Tww
-         iYPAlpSBbvySecGlzTYAUWgdZ/ez9Hp/OCSKI0Kii2SXHNc2Ccjy1Ys07Cl9AIqawVIH
-         uBrA==
-X-Gm-Message-State: AAQBX9fsTpy7Hyp7ARQikjAoSUEklAwq8hLilL5O8S0taQDvb+NoxrPH
-        GyAa6sOIiNVKsja5YV07Es14ydU/+LoA0W6pvl4Y2xaK/RDOtu/u2gSkJH8zYM9DazFF9+R/u2W
-        2qeN13zSkPQ/yrMKpsxoq5A==
-X-Received: by 2002:a05:6870:9727:b0:184:53f3:ae08 with SMTP id n39-20020a056870972700b0018453f3ae08mr2604078oaq.9.1681419690528;
-        Thu, 13 Apr 2023 14:01:30 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZH6P610ghSZtZc+xDKjphUaJ8WCTJobw2CVv/rVDL061ZA5iqJT7QOooDI2ZwwFQwY5G4pgg==
-X-Received: by 2002:a05:6870:9727:b0:184:53f3:ae08 with SMTP id n39-20020a056870972700b0018453f3ae08mr2604056oaq.9.1681419690247;
-        Thu, 13 Apr 2023 14:01:30 -0700 (PDT)
-Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id q3-20020a056870e88300b001723f29f6e2sm1118333oan.37.2023.04.13.14.01.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 14:01:29 -0700 (PDT)
-Date:   Thu, 13 Apr 2023 16:01:27 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        netdev@vger.kernel.org, bmasney@redhat.com, echanude@redhat.com,
-        ncai@quicinc.com, jsuraj@qti.qualcomm.com, hisunil@quicinc.com
-Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: sa8540p-ride: Add ethernet nodes
-Message-ID: <20230413210127.s5dkek6adp5ndern@halaney-x13s>
-References: <20230413191541.1073027-1-ahalaney@redhat.com>
- <20230413191541.1073027-4-ahalaney@redhat.com>
- <a295939f0058373d1caf956749820c0d.sboyd@kernel.org>
+        bh=/SRchkl1detoLRdtvEPNw+w/WWg3qTy8HU5Uobm8Vwk=;
+        b=VRDisKIvUI6C/VKlm/axDEIrjWxjUxh0UpBHqLJoJVv6Z+MVEEpnwTnQguhH8Tnsus
+         8nXKRTYiq9IiT29tFVn+wPHKfrSsolbtq7w7L+ibWP6dYKpMvUPS1nvWASM6rsROveod
+         dsF84bz2dukGKVYQhE0Tz20adVD6ujgQI+gEpAD0IEJ/u6C73UzT6WOqqDRZn7cX6tgw
+         xbxMvwKIavXy0KbJCYeMw4kSo/drdQWZ0P1uzPpuB6HmlMYtnIiJM5mk4/L7tFcNViXW
+         BEP9cgByst4FjjymIy9VIVKUzfeBz9p/obFzcXR03LIrfs81ozW8QC8pw289RWBkykGk
+         ipJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681419993; x=1684011993;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/SRchkl1detoLRdtvEPNw+w/WWg3qTy8HU5Uobm8Vwk=;
+        b=dsA+eAkk/Y0JD4s9jp0RF4yn7b4RoKuQxAZimje74n44wYWgKLW1Q6S0peklPQ7JHP
+         xiiz0bZb11sqMgdqGraBwrthJ+DONlHl4HkilkEf9fwsUGeOdg0O0xoV34GGPeU9u4c5
+         NGCEiLy4mFsTgvru5jzOffeQoy2+rFaBtH9S+ZprulD/l8QpbBYSR/dhqezmtxTH8M3D
+         Wruu8HKFJMZZExzoQsL5wcq05xWKq7EmbZ8PpHbiIMmnLzujkgLFSSPsSk1NP8yQ7QeW
+         zvtbmIu7y59UxZPsQaH6EraHkB6b7AkbhTlrD9cVKT+rhV8Gbf4E06JJNx0kNhF/+7UO
+         VKFA==
+X-Gm-Message-State: AAQBX9eQhK959EBzAzZn0edfC08uh7UbDy+JFqqJx/D3KZiTUkIz59HZ
+        88rCv0i5OwjWOZ6L7ttrYlZEI/TVrYs9cTyPzRw=
+X-Google-Smtp-Source: AKy350aT652d/KwurFfw90Ox4CWRMRjX+PAvoseFaNyYXPjgTJvo2BjSO0kyWOLVZDQox7IFfzPWYCyvL17WareaCZE=
+X-Received: by 2002:a6b:680a:0:b0:760:c237:bdd7 with SMTP id
+ d10-20020a6b680a000000b00760c237bdd7mr468142ioc.1.1681419993239; Thu, 13 Apr
+ 2023 14:06:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a295939f0058373d1caf956749820c0d.sboyd@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230412110900.69738-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230412-cheddar-prune-5ce03ccf5581@spud> <20230413-aorta-unheated-c9bb35411fb2@wendy>
+ <CA+V-a8uksWMihUadYc_dCoef7vaC5ncOicX0oGpSP9HRnHgScw@mail.gmail.com> <20230413-staunch-superman-e71fd3303176@spud>
+In-Reply-To: <20230413-staunch-superman-e71fd3303176@spud>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 13 Apr 2023 22:06:06 +0100
+Message-ID: <CA+V-a8sGsbz5snMzc7JqFVktafzvEJTq3RNH+ndNBV6Fxj5bbQ@mail.gmail.com>
+Subject: Re: [PATCH v8 5/7] cache: Add L2 cache management for Andes AX45MP
+ RISC-V core
+To:     Conor Dooley <conor@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,38 +85,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 13, 2023 at 01:47:19PM -0700, Stephen Boyd wrote:
-> Quoting Andrew Halaney (2023-04-13 12:15:41)
-> >  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 179 ++++++++++++++++++++++
-> >  1 file changed, 179 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > index 40db5aa0803c..650cd54f418e 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > @@ -28,6 +28,65 @@ aliases {
-> >         chosen {
-> >                 stdout-path = "serial0:115200n8";
-> >         };
-> > +
-> > +       mtl_rx_setup: rx-queues-config {
-> 
-> Is there a reason why this isn't a child of an ethernet node?
-> 
-> 
+On Thu, Apr 13, 2023 at 7:46=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> > Is
+> > dma-noncoherent.c also valid for RISCV-32? If not then we can make
+> > pmem.c compile conditionally if DMA non-coherenet is enabled and we
+> > make DMA non-coherent depend on 64bit.
+>
+> Could you drop the {s,l}d in exchange for {s,l}w instead, or am I
+> progressing even further into braino territory?
+Just the direct exchange wont work in addition shifting + oring to
+take care of 64-bit will require. (Correct me if I'm wrong here)
 
-I debated if it was more appropriate to:
+I was wondering now if we need to store/restore the s0 and ra
+registers. I stumbled on an X86 implementation which has call [0] in
+the ALTERNATIVE_X() macro but here we dont store/restore the
+registers. Is the RISC-V implementation of ALT macro different
+compared to x86?
 
-    1. make a duplicate in each ethernet node (ethernet0/1)
-    2. Put it in one and reference from both
-    3. have it floating around independent like this, similar to what is
-       done in sa8155p-adp.dts[0]
+[0] https://elixir.bootlin.com/linux/latest/source/arch/x86/include/asm/uac=
+cess_64.h#L105
 
-I chose 3 as it seemed cleanest, but if there's a good argument for a
-different approach I'm all ears!
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sa8155p-adp.dts?id=de4664485abbc0529b1eec44d0061bbfe58a28fb#n50
-
-Thanks,
-Andrew
-
+Cheers,
+Prabhakar
