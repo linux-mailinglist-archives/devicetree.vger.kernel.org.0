@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 087576E0832
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 09:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C65CB6E083D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 09:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbjDMHtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 03:49:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32932 "EHLO
+        id S230073AbjDMHvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 03:51:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbjDMHtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 03:49:33 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE89893C8
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:49:07 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94a34a14a54so329758766b.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:49:07 -0700 (PDT)
+        with ESMTP id S230095AbjDMHvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 03:51:23 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB266199
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:51:06 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id sg7so46589924ejc.9
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:51:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681372144; x=1683964144;
+        d=linaro.org; s=google; t=1681372265; x=1683964265;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0c4wLhFBCiAcjjbeOa5jABwRP5DFI69Pbg7hP6byo5Y=;
-        b=BceMhjYoTf/jVj4ZdOfZAmdXc1J1JKQQg2gDJBriG6HwIgqQa+TXhTrSgKSZqoDwGB
-         fxxNkkFJzz3+LPIPCcTrTXKUzkxMJKM15KMVbrHVfbNBhCLcgfhYV1M10c+aUBsJSiCt
-         6By92BXEHv2K4uCb2yNV5AQowESEtaDAb106riHjBqPBR5dXnbMbxbS2R65tGyqVEUrI
-         yhvp/oQ2CTyQUzXofZPoMMGkZTiH398qKqWOrfWU5M2rj8Cj/GGsudekAFQtnto+GRWt
-         B7nJbvo5WYPQQjH38U2tCqAOXitUQPyyxU36VtV8LtG4it4DbZL5PnPdj6iIg8vvKzNJ
-         vE7A==
+        bh=5HjNjxnqb6hU+2+eJjfWkIy3VP2/PGK4AKKbOuWrfBk=;
+        b=VenKzUXum1WC8WhPJHgXJIgq+yV/KS+87msuPxRP/nzhzMZVWsVyhzTLktuOrfxMTA
+         PRfYFt5e/0L/8SoVulBkt2IwjHvK5fJ9Hu15cTdV+HZMSiFtKX1ctjFHtu6BZG+sNGQV
+         3mi2rGV9tH/BjX8S3jea9mAMJ6ikE5ZF1dFdoeZpjRFMZiIVhjQfy9Y8GaCZG4sXJDes
+         uCfiYL0NrCqY+DXazd2063DLYo5icIqx/+uWF4RS081+SY59hqSGn4wSNwdmQt6jRJ5B
+         jbdZaFjgmCNp+9d4gvs1+7617sBQLO9Zgm5ZDuZpvhe/WfADoWvKsa28L+Q/JwdcLwxd
+         1vwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681372144; x=1683964144;
+        d=1e100.net; s=20221208; t=1681372265; x=1683964265;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0c4wLhFBCiAcjjbeOa5jABwRP5DFI69Pbg7hP6byo5Y=;
-        b=NTAYjqCzJvQDAWmOwrgyeD8/L/Ddw7fHplMpzMCFwKuvAsdfzwrjwMGsNYKnVtawSb
-         hGJC9+DuwbwPugopo13pBrj1hA3Gci6ohmJVkLWikMmmAfQy1O+M9mlPbdB/i6hSFWLH
-         fQ1Su66cILUOcH0QZAGTu0N2qZLyOU0RT1uW18OsMl1jUwJWOKNoaUFa+xMpeXNWyE8m
-         zYpoPX2S6+N0ODsYcxYrPoNN6tya+lV66w5oZEj10cSR+5XaRiviUbO1TWfimizD9sYY
-         A+dDDL8HplHmCCfXU5W05GREjvPoTjHViSjeoR+0n99GdpFk9kC/E/B2aBfEQknoxjAK
-         B81g==
-X-Gm-Message-State: AAQBX9eW1JlqBN0LRZ5IUwT8506Two5AQKBe7nP84GGBRYh8mPlj3M71
-        mEV3ohlmID1RSrB4rQAVYnhClA==
-X-Google-Smtp-Source: AKy350YbuGbPy57eqcdQLbG1h6GrL64vwjvVuJuqM/r/TYOQUCL0VheUuXgUL2yMgaNE1GwSq69GUA==
-X-Received: by 2002:aa7:c2d4:0:b0:501:fe52:d301 with SMTP id m20-20020aa7c2d4000000b00501fe52d301mr1684934edp.23.1681372144162;
-        Thu, 13 Apr 2023 00:49:04 -0700 (PDT)
+        bh=5HjNjxnqb6hU+2+eJjfWkIy3VP2/PGK4AKKbOuWrfBk=;
+        b=TNumbrRdV8mZWZSb+1CBqAmzEplAbTPs7Ag/FIs/R7YhHnhCYyAuL7OYong+aKtsy9
+         mi7fljDp/4CEMYkhiqNgwj3CCybGrtL+Rp1k1ByzbAlary35ji5r7tOKYCvYbZWwfRbx
+         Vl8do+b3BUMA0F0ud9Rt5dDdcosNM/rvLa0AM86czmFzxgnRzGkm0d+3FuzAb1Won9vS
+         Km2fvO8IFGXToIhdBUZqN64/w9+19F9rMVWFfHJoxZv/9KRBHcNpPgNCyp+UeQHiuITn
+         s+i9n8VMJh9wHeqvaBaYkV7wa+SLEoAyT7g+J+pDVPDZPpWkVWRcPR9a3rOvNzKXTvK0
+         c0sA==
+X-Gm-Message-State: AAQBX9dS9+skoPIbZthOGHiwomDqtXKncx+YXzITq3/od7d6t3uDpGf4
+        eq3cw0VWSub7EWSUw+KcBe7rqA==
+X-Google-Smtp-Source: AKy350YBW9sE5WmTvAC/oPxE0mX3fMqjuszHzpvJwO6zlZqO//+M1QHYDIrC0O9MYxm2CAmwQ4putw==
+X-Received: by 2002:a17:907:6c11:b0:94e:afa6:5f4f with SMTP id rl17-20020a1709076c1100b0094eafa65f4fmr611716ejc.44.1681372265286;
+        Thu, 13 Apr 2023 00:51:05 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7? ([2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7])
-        by smtp.gmail.com with ESMTPSA id s2-20020aa7cb02000000b004bd6e3ed196sm463252edt.86.2023.04.13.00.49.03
+        by smtp.gmail.com with ESMTPSA id vv5-20020a170907a68500b008cecb8f374asm586500ejc.0.2023.04.13.00.51.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 00:49:03 -0700 (PDT)
-Message-ID: <342b3e6c-fd1b-d256-bcc2-2b9bda206b60@linaro.org>
-Date:   Thu, 13 Apr 2023 09:49:02 +0200
+        Thu, 13 Apr 2023 00:51:04 -0700 (PDT)
+Message-ID: <799bd591-0f9a-e8fc-85f6-093314b6af23@linaro.org>
+Date:   Thu, 13 Apr 2023 09:51:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] [PATCH v1 1/2] dt-bindings: hwmon: add MAX31827
+Subject: Re: [PATCH v2 1/2] ARM: dts: mvebu: Add device tree binding for
+ Marvell Armada 38x
 Content-Language: en-US
-To:     Daniel Matyas <daniel.matyas@analog.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Tony Dinh <mibodhi@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230412153334.181852-1-daniel.matyas@analog.com>
- <20230412153334.181852-2-daniel.matyas@analog.com>
+        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+References: <20230412025737.20280-1-mibodhi@gmail.com>
+ <20230412025737.20280-2-mibodhi@gmail.com>
+ <168130276446.1439316.3427548118074442016.robh@kernel.org>
+ <CAJaLiFxNbz+EygSy8OMKafZ667ingeiTw8Z17p3dwtPTpiH40g@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230412153334.181852-2-daniel.matyas@analog.com>
+In-Reply-To: <CAJaLiFxNbz+EygSy8OMKafZ667ingeiTw8Z17p3dwtPTpiH40g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,57 +82,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 17:33, Daniel Matyas wrote:
-> MAX31827 is a low-power temperature switch with I2C interface.
+On 12/04/2023 21:05, Tony Dinh wrote:
+> Hi Rob,
+> Hi Krzysztof,
 > 
-> The device is a ±1°C accuracy from -40°C to +125°C
-> (12 bits) local temperature switch and sensor with I2C/SM-
-> Bus interface. The combination of small 6-bump wafer-lev-
-> el package (WLP) and high accuracy makes this temper-
-> ature sensor/switch ideal for a wide range of applications.
+> On Wed, Apr 12, 2023 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
+>>
+>>
+>> On Tue, 11 Apr 2023 19:57:35 -0700, Tony Dinh wrote:
+>>> Add device tree binding for Marvell Armada 38x.
+>>>
+>>> Signed-off-by: Tony Dinh <mibodhi@gmail.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - Add marvell,38x.yaml. For now, add this binding to the Marvell
+>>> directory to keep it consistent with other Marvell yaml files.
+>>> At a later date and a separate patch, consolidate the Marvell
+>>> yaml files into  marvell.yaml.
+>>>
+>>>  .../bindings/arm/marvell/armada-38x.yaml      | 27 +++++++++++++++++++
+>>>  1 file changed, 27 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> ./Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml: $id: relative path/filename doesn't match actual path or filename
+>>         expected: http://devicetree.org/schemas/arm/marvell/armada-38x.yaml#
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230412025737.20280-2-mibodhi@gmail.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
+>>
 > 
-> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> ---
->  .../bindings/hwmon/adi,max31827.yaml          | 51 +++++++++++++++++++
->  MAINTAINERS                                   |  7 +++
->  2 files changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> Thanks for the reviews. After running make dt_binding_check for it
+> seems like hours (on a dual-core 1.8GHz ARM box), I got impatient and
+> used
+> make CHECK_DTBS=y armada-385-thecus-n2350.dtb
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
-> new file mode 100644
-> index 000000000000..37177eb9c039
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/adi,max31827.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch
-> +
-> +maintainers:
-> +  - Daniel Matyas <daniel.matyas@analog.com>
-> +
-> +description: |
-> +  Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch with
-> +  I2C Interface
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31827-MAX31829.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max31827
-> +      - adi,max31828
-> +      - adi,max31829
+> I'll move this to another faster box and run make dt_binding_check.
 
-Why suddenly these are all incompatible? This is not what I suggested.
+So many questions...
+1. Why do you have to run it on arm? Not on regular machine for work? No
+one of us does like that...
+2. You are now mixing now two different commands. You were asked to run
+DT_SCHEMA_FILES
+3. Read the provided guide how to speed it up. It runs within few seconds.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
 
 Best regards,
 Krzysztof
