@@ -2,86 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66FBE6E0AEF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 12:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06EA96E0B23
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 12:11:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbjDMKAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 06:00:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49828 "EHLO
+        id S230409AbjDMKLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 06:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbjDMKAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 06:00:07 -0400
-Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7FA8C976E;
-        Thu, 13 Apr 2023 03:00:01 -0700 (PDT)
-Received: from 8bytes.org (p200300c27714bc0086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7714:bc00:86ad:4f9d:2505:dd0d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.8bytes.org (Postfix) with ESMTPSA id 809C8242A7C;
-        Thu, 13 Apr 2023 11:59:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-        s=default; t=1681379998;
-        bh=n0QJW4lfoz67Y+PljUooZl3qQdKxzEidqXgT7gCTOns=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p7P++pYu0u5ZAUDr7m9Y3K32VnwYTUtaeIkOi+SP2qpJd3H1pIjv5fiKdGsvuICdP
-         oD9F5kPhUwZgRcFruMin1d5RaAe95EtzgwmWM9+hWaEt5xIc+LIvd7eXhfPoByVwoa
-         EspFxywwWpN8/ly+m+IzvyzMz5vH6RA6oQMKVYDjvDsr9AicYHV5Dpxbi7YIpJOrnw
-         wsx9UzHCjPQEHjd0a9yUAA/so51aftNC6agS//Yi+Xun3KR1pkXx+McsTN0kqnOo52
-         4KvehtZZb/UvV0qGtR3djbZOQGRLsfzF0PQXSo+UhyuzME5sTOti+cxDuoI6niMspr
-         hjvzH71h3XnDg==
-Date:   Thu, 13 Apr 2023 11:59:56 +0200
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230362AbjDMKL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 06:11:26 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2E09ED1;
+        Thu, 13 Apr 2023 03:10:50 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33DA9qNaA019713, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33DA9qNaA019713
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Thu, 13 Apr 2023 18:09:52 +0800
+Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Thu, 13 Apr 2023 18:09:15 +0800
+Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
+ RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 13 Apr 2023 18:09:14 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
+ 15.1.2507.17 via Frontend Transport; Thu, 13 Apr 2023 18:09:14 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, nfraprado@collabora.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
-        jianjiao.zeng@mediatek.com, Yunfei Dong <yunfei.dong@mediatek.com>,
-        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
-        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com
-Subject: Re: [PATCH v7 00/14] Adjust the dma-ranges for MTK IOMMU
-Message-ID: <ZDfSnOXqqVP3MNg4@8bytes.org>
-References: <20230411093144.2690-1-yong.wu@mediatek.com>
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 1/2] usb: dwc3: core: add support for disabling High-speed park mode
+Date:   Thu, 13 Apr 2023 18:09:13 +0800
+Message-ID: <20230413100914.7890-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230411093144.2690-1-yong.wu@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXMBS01.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 11, 2023 at 05:31:30PM +0800, Yong Wu wrote:
-> Yong Wu (14):
->   dt-bindings: media: mediatek,vcodec: Remove dma-ranges property
->   dt-bindings: media: mediatek,jpeg: Remove dma-ranges property
->   iommu/mediatek: Improve comment for the current region/bank
->   iommu/mediatek: Get regionid from larb/port id
->   iommu/mediatek: mt8192: Add iova_region_larb_msk
->   iommu/mediatek: mt8195: Add iova_region_larb_msk
->   iommu/mediatek: mt8186: Add iova_region_larb_msk
->   iommu/mediatek: Add a gap for the iova regions
->   iommu/mediatek: Set dma_mask for the master devices
->   media: mtk-jpegdec: Remove the setting for dma_mask
->   media: mediatek: vcodec: Remove the setting for dma_mask
->   arm64: dts: mt8195: Remove the unnecessary dma-ranges
->   arm64: dts: mt8195: Add dma-ranges for the parent "soc" node
->   arm64: dts: mt8186: Add dma-ranges for the parent "soc" node
+Setting the PARKMODE_DISABLE_HS bit in the DWC3_USB3_GUCTL1.
+When this bit is set to '1' all HS bus instances in park mode are disabled
 
-Applied, thanks.
+For some USB wifi devices, if enable this feature it will reduce the
+performance. Therefore, add an option for disabling HS park mode by
+device-tree.
+
+In Synopsys's dwc3 data book:
+In a few high speed devices when an IN request is sent within 900ns of the
+ACK of the previous packet, these devices send a NAK. When connected to
+these devices, if required, the software can disable the park mode if you
+see performance drop in your system. When park mode is disabled,
+pipelining of multiple packet is disabled and instead one packet at a time
+is requested by the scheduler. This allows up to 12 NAKs in a micro-frame
+and improves performance of these slow devices.
+
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+---
+v2 to v3 change:
+1. Add the comment message.
+2. cc the right maintainers.
+---
+ drivers/usb/dwc3/core.c | 5 +++++
+ drivers/usb/dwc3/core.h | 4 ++++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+index 476b63618511..8fbc92a5f2cb 100644
+--- a/drivers/usb/dwc3/core.c
++++ b/drivers/usb/dwc3/core.c
+@@ -1233,6 +1233,9 @@ static int dwc3_core_init(struct dwc3 *dwc)
+ 		if (dwc->parkmode_disable_ss_quirk)
+ 			reg |= DWC3_GUCTL1_PARKMODE_DISABLE_SS;
+ 
++		if (dwc->parkmode_disable_hs_quirk)
++			reg |= DWC3_GUCTL1_PARKMODE_DISABLE_HS;
++
+ 		if (DWC3_VER_IS_WITHIN(DWC3, 290A, ANY) &&
+ 		    (dwc->maximum_speed == USB_SPEED_HIGH ||
+ 		     dwc->maximum_speed == USB_SPEED_FULL))
+@@ -1555,6 +1558,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+ 				"snps,resume-hs-terminations");
+ 	dwc->parkmode_disable_ss_quirk = device_property_read_bool(dev,
+ 				"snps,parkmode-disable-ss-quirk");
++	dwc->parkmode_disable_hs_quirk = device_property_read_bool(dev,
++				"snps,parkmode-disable-hs-quirk");
+ 	dwc->gfladj_refclk_lpm_sel = device_property_read_bool(dev,
+ 				"snps,gfladj-refclk-lpm-sel-quirk");
+ 
+diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+index 4743e918dcaf..30907ffcb3ec 100644
+--- a/drivers/usb/dwc3/core.h
++++ b/drivers/usb/dwc3/core.h
+@@ -263,6 +263,7 @@
+ #define DWC3_GUCTL1_DEV_FORCE_20_CLK_FOR_30_CLK	BIT(26)
+ #define DWC3_GUCTL1_DEV_L1_EXIT_BY_HW		BIT(24)
+ #define DWC3_GUCTL1_PARKMODE_DISABLE_SS		BIT(17)
++#define DWC3_GUCTL1_PARKMODE_DISABLE_HS		BIT(16)
+ #define DWC3_GUCTL1_RESUME_OPMODE_HS_HOST	BIT(10)
+ 
+ /* Global Status Register */
+@@ -1102,6 +1103,8 @@ struct dwc3_scratchpad_array {
+  *			generation after resume from suspend.
+  * @parkmode_disable_ss_quirk: set if we need to disable all SuperSpeed
+  *			instances in park mode.
++ * @parkmode_disable_hs_quirk: set if we need to disable all HishSpeed
++ *			instances in park mode.
+  * @tx_de_emphasis_quirk: set if we enable Tx de-emphasis quirk
+  * @tx_de_emphasis: Tx de-emphasis value
+  *	0	- -6dB de-emphasis
+@@ -1318,6 +1321,7 @@ struct dwc3 {
+ 	unsigned		dis_tx_ipgap_linecheck_quirk:1;
+ 	unsigned		resume_hs_terminations:1;
+ 	unsigned		parkmode_disable_ss_quirk:1;
++	unsigned		parkmode_disable_hs_quirk:1;
+ 	unsigned		gfladj_refclk_lpm_sel:1;
+ 
+ 	unsigned		tx_de_emphasis_quirk:1;
+-- 
+2.34.1
+
