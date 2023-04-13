@@ -2,151 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 297226E0FA4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D16516E0F10
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbjDMOHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 10:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41476 "EHLO
+        id S231289AbjDMNne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:43:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjDMOHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:07:17 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D52E2;
-        Thu, 13 Apr 2023 07:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681394836; x=1712930836;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o3ui4+B9QONrA1DxR7CqtVx0f1GoF/Cuz8I+r7IyAkc=;
-  b=NPHSldpaqA+quQpdXwfcscHG2bdMX2MitIjReA2H4IiJWc8OiI2I1bUK
-   m2eOgy2nYfyfjhyYGRnxaRscVYpJntHRVyIjNKwTg/uPLvipMnuJykBr7
-   UcNySSudqCXuJ2pVWSXuGL1q3JMCi21AXt11ZUdQEZXUqOJxRLj3QxIZM
-   1lPXgM4hFsbsc1SAheKkvF4pyJM+JhLLiZIHjIImRgr4PWmrP61YIhiYE
-   wrl30KGotx8P4IxZeSoFB011Orq1CxXZpTdDlRGr9oGLlldinWKj4gcqg
-   nSqpiKabMcSRm/lH9KA7u+NW0cHillIa2ak3a1Y6dEsytzSH82rS32rQ8
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="409359221"
-X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; 
-   d="scan'208";a="409359221"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2023 06:34:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="833154339"
-X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; 
-   d="scan'208";a="833154339"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 13 Apr 2023 06:34:50 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pmx69-000YiI-2u;
-        Thu, 13 Apr 2023 13:34:49 +0000
-Date:   Thu, 13 Apr 2023 21:34:41 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yi-De Wu <yi-de.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yingshiuan Pan <yingshiuan.pan@mediatek.com>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Jades Shih <jades.shih@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Ivan Tseng <ivan.tseng@mediatek.com>,
-        My Chuang <my.chuang@mediatek.com>,
-        Shawn Hsiao <shawn.hsiao@mediatek.com>,
-        PeiLun Suei <peilun.suei@mediatek.com>,
-        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
-        Liju Chen <liju-clr.chen@mediatek.com>,
-        Yi-De Wu <yi-de.wu@mediatek.com>
-Subject: Re: [PATCH v1 6/6] soc: mediatek: virt: geniezone: Add irqfd support
-Message-ID: <202304132123.rrVq3AEP-lkp@intel.com>
-References: <20230413090735.4182-7-yi-de.wu@mediatek.com>
+        with ESMTP id S230312AbjDMNnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:43:18 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CD9AF2F
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:41:38 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id o6-20020a05600c4fc600b003ef6e6754c5so6199124wmq.5
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:41:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681393287; x=1683985287;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o/uJoEfdBrHkM8umj9Qzq6MjpEIPQ75HXLhRcJDJNhI=;
+        b=qSaoqkqkXL6KGFFgIvLODD2VAFqyodvQSgU3JqfWiN448FpeIYuzdy7SuHZZEsBeFR
+         Qj5dZ7MZ/gFqSKI5yYikfFNmI/SFl3LnEbdxO1Kh5l27EFL5y00P0ts79XVTatBUjxMd
+         X9PqfQqBaa0dp2JARMfHxT5hwo+Ru0T25lpk+MtMnJ1Gri/TqB+K4rck/fANnMKJGSDi
+         G11D7L8Ds7426Iya87fZYsH1rIFI0NwD5eoF9mUqkR70pO/hYdDGOuN1PWGQUnQw2q1i
+         zexerlbyF6t9bADh1BfBpoSK960IU68mOsrjJySi0NI44F5PMhX0837tf5z5l77jg+GJ
+         tBRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681393287; x=1683985287;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o/uJoEfdBrHkM8umj9Qzq6MjpEIPQ75HXLhRcJDJNhI=;
+        b=J2OteKFY7NWH7i8Lc8DxBy2unKEzTZBtUWEkMS7vJ1EeTCPDUWsSH1GdSSVSHC+2LD
+         YSYo+/HsUk2tJEvmP760NK+SNtrvwqNlGXwztjC+QbiO8fNoPGdvNtNax5ClyGUHvUyD
+         4tpogIXFr1sjKxcHYK4FXhSIJdRhW+tALu4wuaBe9c0FOG2PeiR0kcuc9VXkZRO8EHPQ
+         gsy2SiRIrljFPKFdhw8IwJbjibryBf6mp4Qjx9kOiYjnY+s0s+PJT2QJ/aJ0PaGwu/+f
+         SISLpq9I6+7lwXQKS8gOKKJ+/lu46MKMl+u+d/dzIp7EXJxGrboDuxFbt9opRunXYXzq
+         1dyA==
+X-Gm-Message-State: AAQBX9dI4AROt0bR8Ew5x3PGhKrmKyYZSLSULWhFAnEH+CkLA0Dh5dcq
+        ArU4/gDSMtiYpCB0qeeTQVhn9aehJ1y0nkUHa9w=
+X-Google-Smtp-Source: AKy350ZTQwiWfW3YM7pVVGvdZnslX3wudj8JovNDzaTTKOlXEzGpDqVhqmlxUMJSphB5wrVujBhi6w==
+X-Received: by 2002:a7b:cb06:0:b0:3f0:9564:f4f6 with SMTP id u6-20020a7bcb06000000b003f09564f4f6mr1908290wmj.1.1681393286675;
+        Thu, 13 Apr 2023 06:41:26 -0700 (PDT)
+Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id p8-20020a7bcc88000000b003f04f0c5a6fsm1837156wma.26.2023.04.13.06.41.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 06:41:26 -0700 (PDT)
+Message-ID: <f4ffb7ab-7f61-df0a-fca8-54585fca16d2@baylibre.com>
+Date:   Thu, 13 Apr 2023 15:41:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230413090735.4182-7-yi-de.wu@mediatek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 5/7] leds: leds-mt6323: Drop MT6323_ prefix from macros
+ and defines
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
+Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
+ <20230412153310.241046-6-angelogioacchino.delregno@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230412153310.241046-6-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yi-De,
+On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
+> This renames all definitions and macros to drop the MT6323_ prefix,
+> since it is now possible to easily add support to more PMICs in
+> this driver.
+> While at it, also fix related formatting where possible.
+> 
+> This commit brings no functional changes.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on krzk-dt/for-next arm64/for-next/core lwn/docs-next linus/master v6.3-rc6 next-20230412]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Regards,
+Alexandre
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230413-170932
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230413090735.4182-7-yi-de.wu%40mediatek.com
-patch subject: [PATCH v1 6/6] soc: mediatek: virt: geniezone: Add irqfd support
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230413/202304132123.rrVq3AEP-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/ae996a1c7d12837f16f28975712a8bf63525cac4
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230413-170932
-        git checkout ae996a1c7d12837f16f28975712a8bf63525cac4
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/soc/mediatek/virt/geniezone/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304132123.rrVq3AEP-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/soc/mediatek/virt/geniezone/gzvm_eventfd.c:463:6: warning: no previous prototype for 'gzvm_irqfd_release' [-Wmissing-prototypes]
-     463 | void gzvm_irqfd_release(struct gzvm *gzvm)
-         |      ^~~~~~~~~~~~~~~~~~
-
-
-vim +/gzvm_irqfd_release +463 drivers/soc/mediatek/virt/geniezone/gzvm_eventfd.c
-
-   458	
-   459	/*
-   460	 * This function is called as the gzvm VM fd is being released. Shutdown all
-   461	 * irqfds that still remain open
-   462	 */
- > 463	void gzvm_irqfd_release(struct gzvm *gzvm)
-   464	{
-   465		struct gzvm_kernel_irqfd *irqfd, *tmp;
-   466	
-   467		spin_lock_irq(&gzvm->irqfds.lock);
-   468	
-   469		list_for_each_entry_safe(irqfd, tmp, &gzvm->irqfds.items, list)
-   470			irqfd_deactivate(irqfd);
-   471	
-   472		spin_unlock_irq(&gzvm->irqfds.lock);
-   473	
-   474		/*
-   475		 * Block until we know all outstanding shutdown jobs have completed.
-   476		 */
-   477		flush_workqueue(irqfd_cleanup_wq);
-   478	}
-   479	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
