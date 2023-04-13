@@ -2,111 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16EE66E0C0D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 13:06:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 699B86E0C22
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 13:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjDMLGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 07:06:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42380 "EHLO
+        id S229885AbjDMLKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 07:10:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjDMLGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 07:06:32 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C901722;
-        Thu, 13 Apr 2023 04:06:31 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id E56251C0AB2; Thu, 13 Apr 2023 13:06:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1681383989;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=SXZ0PSYYEUSQM6MUSU71WkUYgkP2oLrJLIzkIBO8434=;
-        b=N6WXCJQDiINNrIEwT8U18KBjg96Szyb1Q95VOeDY0uA5RkJFYnQ16GsoiFqv7HyXn0/k5w
-        wIcvmF43g2konV7rwQ/43yfMAY0r/3nnVgqm6gvTQK+kZj3/w9Xj4h4AXJjJ9voKaQ3v3n
-        4ldD4oBPYcOzBgdCV02juaMF1i9vUno=
-Date:   Thu, 13 Apr 2023 13:06:29 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v2 7/7] leds: leds-mt6323: Add support for WLEDs and
- MT6332
-Message-ID: <ZDfiNSAs3Bc7xe1l@duo.ucw.cz>
-References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
- <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229913AbjDMLKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 07:10:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 683465FD4;
+        Thu, 13 Apr 2023 04:10:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 01C2060FDC;
+        Thu, 13 Apr 2023 11:10:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 441A6C433EF;
+        Thu, 13 Apr 2023 11:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681384221;
+        bh=047FHGu9Eh8p6igVsqOs4jlOjs1RHZPTczyCtqb9f/4=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=YXVm+OHaLTnqBfgcKFP4knXEdr5JTsUgTwsBhgF7TOKENOpQCuekM2c0EA/h+WIO+
+         YYGrz9UHaKjWR7pe5/O/f96cTWNM4/jIgCSJe6AqzAhHC2+3WjxmUtAMendPPL1PfL
+         ve/zg2SM8urW4HmGiHtPRvG3fv+fVB5FC1ieep42EfYzMrRnl0Yvi4I2jGws4XRNqi
+         MxfNbnB0tK0lkuJxFAQhgUdQj/m7ceHdXldw/uNJtR7fL6AUlvUyR1uloPdcBGmsNa
+         W2EtSA541g5l3/e6j5d9kV9KsKtz6mixNhqv+GtKD0dNCL3yXlxupt1uysCy8iyp6a
+         FndSwIFFyplDg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 1C284E52443;
+        Thu, 13 Apr 2023 11:10:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="CMT5ytgWM88tDRdu"
-Content-Disposition: inline
-In-Reply-To: <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v4 00/12] Add EMAC3 support for sa8540p-ride
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168138422111.3376.5659809856940118374.git-patchwork-notify@kernel.org>
+Date:   Thu, 13 Apr 2023 11:10:21 +0000
+References: <20230411200409.455355-1-ahalaney@redhat.com>
+In-Reply-To: <20230411200409.455355-1-ahalaney@redhat.com>
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        bhupesh.sharma@linaro.org, wens@csie.org, jernej.skrabec@gmail.com,
+        samuel@sholland.org, mturquette@baylibre.com,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        richardcochran@gmail.com, linux@armlinux.org.uk, veekhee@apple.com,
+        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
+        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
+        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
+        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
---CMT5ytgWM88tDRdu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-Hi!
+On Tue, 11 Apr 2023 15:03:57 -0500 you wrote:
+> This is a forward port / upstream refactor of code delivered
+> downstream by Qualcomm over at [0] to enable the DWMAC5 based
+> implementation called EMAC3 on the sa8540p-ride dev board.
+> 
+> From what I can tell with the board schematic in hand,
+> as well as the code delivered, the main changes needed are:
+> 
+> [...]
 
-> Add basic code to turn on and off WLEDs and wire up MT6332 support
-> to take advantage of it.
-> This is a simple approach due to to the aforementioned PMIC supporting
-> only on/off status so, at the time of writing, it is impossible for me
-> to validate more advanced functionality due to lack of hardware.
+Here is the summary with links:
+  - [net-next,v4,01/12] dt-bindings: net: snps,dwmac: Update interrupt-names
+    https://git.kernel.org/netdev/net-next/c/d554ba0ea03c
+  - [net-next,v4,02/12] dt-bindings: net: snps,dwmac: Add Qualcomm Ethernet ETHQOS compatibles
+    https://git.kernel.org/netdev/net-next/c/d70c215bdd17
+  - [net-next,v4,03/12] dt-bindings: net: qcom,ethqos: Convert bindings to yaml
+    https://git.kernel.org/netdev/net-next/c/02e98ce3db14
+  - [net-next,v4,04/12] dt-bindings: net: qcom,ethqos: Add Qualcomm sc8280xp compatibles
+    https://git.kernel.org/netdev/net-next/c/25926a703ec1
+  - [net-next,v4,05/12] net: stmmac: Remove unnecessary if statement brackets
+    https://git.kernel.org/netdev/net-next/c/7c6b942b81ca
+  - [net-next,v4,06/12] net: stmmac: Fix DMA typo
+    https://git.kernel.org/netdev/net-next/c/d638dcb52b09
+  - [net-next,v4,07/12] net: stmmac: Remove some unnecessary void pointers
+    https://git.kernel.org/netdev/net-next/c/0c3f3c4f4b15
+  - [net-next,v4,08/12] net: stmmac: Pass stmmac_priv in some callbacks
+    https://git.kernel.org/netdev/net-next/c/1d84b487bc2d
+  - [net-next,v4,09/12] net: stmmac: dwmac4: Allow platforms to specify some DMA/MTL offsets
+    https://git.kernel.org/netdev/net-next/c/33719b57f52e
+  - [net-next,v4,10/12] net: stmmac: dwmac-qcom-ethqos: Respect phy-mode and TX delay
+    https://git.kernel.org/netdev/net-next/c/164a9ebe9742
+  - [net-next,v4,11/12] net: stmmac: dwmac-qcom-ethqos: Use loopback_en for all speeds
+    https://git.kernel.org/netdev/net-next/c/030f1d5972aa
+  - [net-next,v4,12/12] net: stmmac: dwmac-qcom-ethqos: Add EMAC3 support
+    https://git.kernel.org/netdev/net-next/c/b68376191c69
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-> @@ -467,14 +590,24 @@ static int mt6323_led_probe(struct platform_device =
-*pdev)
->  			goto put_child_node;
->  		}
-> =20
-> +		is_wled =3D of_property_read_bool(child, "mediatek,is-wled");
-> +
-
-This needs documenting in the binding, no?
-
-> +static const struct mt6323_hwspec mt6332_spec =3D {
-> +	/* There are no LEDs in MT6332. Only WLEDs are present. */
-
-"Only WLED is present"?=20
-
-> +	.max_leds =3D 0,
-> +	.max_wleds =3D 1,
-> +	.max_brightness =3D 1024,
-> +};
-> +
-
-Is there chip with both LED and WLEDs? (I'm wondering if this makes
-sense in single driver).
-
-Best regards,
-								Pavel
-
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---CMT5ytgWM88tDRdu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZDfiNQAKCRAw5/Bqldv6
-8v6VAJ93zFWTkbyH0IbcZNqsmvmIBiG//gCgqu69T4ZeaIUzp48MojiPkugt8CQ=
-=AxkP
------END PGP SIGNATURE-----
-
---CMT5ytgWM88tDRdu--
