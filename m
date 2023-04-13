@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CCA66E1010
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B0C96E1040
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbjDMOfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 10:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60988 "EHLO
+        id S231286AbjDMOoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 10:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbjDMOfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:35:18 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 533B47ED8;
-        Thu, 13 Apr 2023 07:35:17 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-183f4efa98aso24209066fac.2;
-        Thu, 13 Apr 2023 07:35:17 -0700 (PDT)
+        with ESMTP id S231343AbjDMOoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:44:13 -0400
+Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7C9AF0F;
+        Thu, 13 Apr 2023 07:43:52 -0700 (PDT)
+Received: by mail-vs1-xe2b.google.com with SMTP id v10so13672863vsf.6;
+        Thu, 13 Apr 2023 07:43:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681396516; x=1683988516;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cP1l0y4cD5yKB1hePqZclJ5kk1fyrn0MXx0ITLwG3DY=;
-        b=lSjxDXA8pv9ruHAzrKSK+AgBNOx5sPVcSb1NuYft4l06BYSf+lducvV84LnIhGUf+n
-         URr/dzeEpv2R4bs+TgLnuMbMwkXEcBBKDMOAQTyoFcpF62Opu8kZ7vxMVoYoh+QIIc9P
-         Ke+iVPNT+W7F5Pv0f8A5xdPHZHe2gcNxfJJ2fM5XJ6jqteEznPgHxB5chSpOrf1Sib0m
-         aHejbNbD/2Bj5dEJ+p3zv4CpGN6PpilHrPrQP0w0SO1xiqB16zmPzJ5Kc9/P6iIdQ26b
-         SJfR4JaqFYoI++TxhE+W5GwdIjiNmBWZGbN8Y8b1dl/2qdRFVor1AJtwxqm9/3eeVUwL
-         wSuQ==
+        d=gmail.com; s=20221208; t=1681397023; x=1683989023;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Eeh91nWUJjVxzujFyKecjRMcqdUP/e5Kpsx1SGaM6Cg=;
+        b=kf21yXJX/BSobeW10Mv2MGkr+jeLgLiCNginPFYyQoPGG0QHXGsTDB3W5VVx02sHRP
+         Ycj16DbWdWF9JiYzqm+kh4en2OH26VocsjCtUaLLH2siIqu1i0ApWldQ3S377kvOIAoJ
+         jM/I3k8/RT38GFYD/eA7gSy3MBuRjqL0pFhXFXMeP1uWFLI1UHPo90aYFXoiz8oSEjLX
+         mmOCqQdhZouaMap8NwS7HEdVyUSmFJTVUa1JVJykt/FjGf+L9VjPJilPHE+98xB1Yojs
+         uZn88gu7Ec3w5nMiwrdw0qxuIOUqOkc3/1Z/UuFGhT4lLzrGHbj7NS1UCqRNWW9GCnde
+         Vsyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681396516; x=1683988516;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cP1l0y4cD5yKB1hePqZclJ5kk1fyrn0MXx0ITLwG3DY=;
-        b=MQ/fENaiyOmm0M+COysc8PJ72aqM3ArVBw+oL4A/JAvMEBO3Vmt0fUE9KflBYHCOPu
-         piO96+c6uqDpXdx0TB/aT1bJ/Gzzo4P6bUszHQ0fZyMKsSyHpsO3WDB58dh4Rspa3fSY
-         mXhxsvi9+V3YDQR0TUMtQTnKS44i29D7o3LZka7fZX/J87bQ6WdQHaJon26sIuXwzUkc
-         Tcn0DXcA4bwGwYMurRj5p85YiWvBAuUWjkp5cCBByUGZrAkt3f2DJ46Im+cGLl79pXlG
-         VfXEAGSlsvF1kKzRV8hHK2XUNDZvzOY7vAUfX+/e1a+DLORak0ZttWoGxLBE+S0o5TMB
-         rvdA==
-X-Gm-Message-State: AAQBX9c32bSNBJwLyNUVIh/gMYYgnko0bWHgm69IAGQuZkZiMTTGIMEi
-        cxEPjTk95ZSndFmoyNMSYb2M9FEWdCcAyDjHs+8=
-X-Google-Smtp-Source: AKy350ZifiwgVFIFHHCxOfDLu7eQ6z0WhZE63KnFK+OlGp74DjjsP6/VEb8ragWGy9qRyK+pT+WNCbaI7yCyE9KpaxY=
-X-Received: by 2002:a05:6870:3326:b0:17e:5bc4:9ac9 with SMTP id
- x38-20020a056870332600b0017e5bc49ac9mr1314902oae.10.1681396516540; Thu, 13
- Apr 2023 07:35:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <ecd09f27-b799-4741-2c5a-a2de99776c51@opensource.wdc.com> <CAAEEuhrk4cSC312UiAL3UwoDZ=urrdDcBThcNHd1dqnAuJTzAw@mail.gmail.com>
- <3c4ed614-f088-928f-2807-deaa5e4b668a@opensource.wdc.com> <CAAEEuhqk0scWd3wFbVb9fSgHxPBKotpEPNi+YPG4GD9vLO94mw@mail.gmail.com>
- <8392a7de-666a-bce6-dc9f-b60d6dd93013@opensource.wdc.com> <1e8184e9-7e0b-2598-cc5a-e46d6c2f152a@opensource.wdc.com>
- <CAAEEuhoB2LqL=B_BQ0X2T-E+Yt83kPUiv-R9dgU0O-f22ukcWg@mail.gmail.com>
- <CAAEEuhp5WTkaPDRLa8frc9Sc43A3HwApW647v-E9Bse6p5Df5Q@mail.gmail.com>
- <15208569-b3d7-b9f7-6676-9d9122cac84a@opensource.wdc.com> <ZDgIZmCgLoC/uieX@lpieralisi>
-In-Reply-To: <ZDgIZmCgLoC/uieX@lpieralisi>
-From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date:   Thu, 13 Apr 2023 16:34:40 +0200
-Message-ID: <CAAEEuhocJpmtAQPCxgnsEbkqe9yyK1-p0ZpwuZBJxHVbMukiYQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller driver
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1681397023; x=1683989023;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Eeh91nWUJjVxzujFyKecjRMcqdUP/e5Kpsx1SGaM6Cg=;
+        b=T+aA/OL2llb/WCZ/ZOjHhpXmzc0Y9pUUSwUkKE8d2A/XV+XkD71VM56pUCZlSxesGB
+         0HCl0q28/trFR+Yr4/43tIJ9dx4FUUQ5B7GFbD9swu/7QlemLLoxZFz2JdAUO1gNTwNf
+         F9a9RnDdi+lDqZRohQz/g0QYy8erk9s+pO982nxgSixWu3na1H8K1TtVo/wJKetxu6WQ
+         yvKWl769CbstE791PoDaT7qNnU4iNZjTTNEjfVoU8Hpm5d4STSGHr9bzL6qkbk5MY7uY
+         oaTUlIc4Ev0cS4cfga2amHZdpTjr8V+Ig+WowOwryQ+GyhvjMW9SEEPT55R0jW1U9e0Z
+         QJag==
+X-Gm-Message-State: AAQBX9dMI1VUBKq+kShmYs6q15YDJijuaC0tIgoG3hGLvlHen19O1jXf
+        G/ItcgKNxUGzO8EEeEG91jg=
+X-Google-Smtp-Source: AKy350ZavVP0wGsAyJ9u6DNYBZAMvG5os9XiGqZLvy2/rsOf464i5nwJTV0qpUWGIw0azEkyy8x+5w==
+X-Received: by 2002:a05:6102:3a70:b0:412:4816:6cc3 with SMTP id bf16-20020a0561023a7000b0041248166cc3mr932227vsb.17.1681397023495;
+        Thu, 13 Apr 2023 07:43:43 -0700 (PDT)
+Received: from localhost.localdomain ([98.58.151.237])
+        by smtp.googlemail.com with ESMTPSA id w14-20020ab05a8e000000b00771d1670401sm223637uae.35.2023.04.13.07.43.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Apr 2023 07:43:43 -0700 (PDT)
+From:   John Clark <inindev@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, Damien Le Moal <dlemoal@fastmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        John Clark <inindev@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add pinctrl gpio-ranges for rk356x
+Date:   Thu, 13 Apr 2023 10:43:16 -0400
+Message-Id: <20230413144316.4247-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -87,122 +71,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 13, 2023 at 3:49=E2=80=AFPM Lorenzo Pieralisi <lpieralisi@kerne=
-l.org> wrote:
->
-> On Fri, Mar 17, 2023 at 07:09:04AM +0900, Damien Le Moal wrote:
-> > On 3/17/23 01:34, Rick Wertenbroek wrote:
-> > >>> By the way, enabling the interrupts to see the error notifications,=
- I do see a
-> > >>> lot of retry timeout and other recoverable errors. So the issues I =
-am seeing
-> > >>> could be due to my PCI cable setup that is not ideal (bad signal, g=
-round loops,
-> > >>> ... ?). Not sure. I do not have a PCI analyzer handy :)
-> > >
-> > > I have enabled the IRQs and messages thanks to your patches but I don=
-'t get
-> > > messages from the IRQs (it seems no IRQs are fired). My PCIe link see=
-ms stable.
-> > > The main issue I face is still that after a random amount of time, th=
-e BARs are
-> > > reset to 0, I don't have a PCIe analyzer so I cannot chase config spa=
-ce TLPs
-> > > (e.g., host writing the BAR values to the config header), but I don't=
- think that
-> > > the problem comes from a TLP issued from the host. (it might be).
-> >
-> > Hmmm... I am getting lots of IRQs, especially the ones signaling "repla=
-y timer
-> > timed out" and "replay timer rolled over after 4 transmissions of the s=
-ame TLP"
-> > but also some "phy error detected on receive side"... Need to try to re=
-work my
-> > cable setup I guess.
-> >
-> > As for the BARs being reset to 0, I have not checked, but it may be why=
- I see
-> > things not working after some inactivity. Will check that. We may be se=
-eing the
-> > same regarding that.
-> >
-> > > I don't think it's a buffer overflow / out-of-bounds access by kernel
-> > > code for two reasons
-> > > 1) The values in the config space around the BARs is coherent and unc=
-hanged
-> > > 2) The bars are reset to 0 and not a random value
-> > >
-> > > I suspect a hardware reset of those registers issued internally in th=
-e
-> > > PCIe controller,
-> > > I don't know why (it might be a link related event or power state
-> > > related event).
-> > >
-> > > I have also experienced very slow behavior with the PCI endpoint test=
- driver,
-> > > e.g., pcitest -w 1024 -d would take tens of seconds to complete. It s=
-eems to
-> > > come from LCRC errors, when I check the "LCRC Error count register"
-> > > @0xFD90'0214 I can see it drastically increase between two calls of p=
-citest
-> > > (when I mean drastically it means by 6607 (0x19CF) for example).
-> > >
-> > > The "ECC Correctable Error Count Register" @0xFD90'0218 reads 0 thoug=
-h.
-> > >
-> > > I have tried to shorten the cabling by removing one of the PCIe exten=
-ders, that
-> > > didn't change the issues much.
-> > >
-> > > Any ideas as to why I see a large number of TLPs with LCRC errors in =
-them ?
-> > > Do you experience the same ? What are your values in 0xFD90'0214 when
-> > > running e.g., pcitest -w 1024 -d (note: you can reset the counter by =
-writing
-> > > 0xFFFF to it in case it reaches the maximum value of 0xFFFF).
-> >
-> > I have not checked. But I will look at these counters to see what I hav=
-e there.
->
-> Hi,
->
-> checking where are we with this thread and whether there is something to
-> consider for v6.4, if testing succeeds.
->
-> Thanks,
-> Lorenzo
+Add gpio-range properties to the pinctrl gpio nodes in rk356x.dtsi
 
-Hello,
-Thank you for considering this.
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-There is a V3 of this patch series [1|, that fixes the issues
-encountered with the V2.
-The debugging following this thread was discussed off-list with Damien Le M=
-oal.
-The V3 has been tested successfully by Damien Le Moal [2]
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 802fcc96384e..793dbcb981dc 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -1796,11 +1796,11 @@ usb2phy1_otg: otg-port {
+ 
+ 	pinctrl: pinctrl {
+ 		compatible = "rockchip,rk3568-pinctrl";
++		ranges;
+ 		rockchip,grf = <&grf>;
+ 		rockchip,pmu = <&pmugrf>;
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
+ 
+ 		gpio0: gpio@fdd60000 {
+ 			compatible = "rockchip,gpio-bank";
+@@ -1808,6 +1808,7 @@ gpio0: gpio@fdd60000 {
+ 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&pmucru PCLK_GPIO0>, <&pmucru DBCLK_GPIO0>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 0 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1819,6 +1820,7 @@ gpio1: gpio@fe740000 {
+ 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 32 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1830,6 +1832,7 @@ gpio2: gpio@fe750000 {
+ 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 64 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1841,6 +1844,7 @@ gpio3: gpio@fe760000 {
+ 			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 96 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1852,6 +1856,7 @@ gpio4: gpio@fe770000 {
+ 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 128 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+-- 
+2.39.2
 
-I will submit a V4 next week, since there are minor changes that were
-suggested in
-the threads for the V3 (mostly minor changes in code style, macros, comment=
-s).
-
-I hope it can be considered for v6.4, thank you.
-
-[1] https://lore.kernel.org/linux-pci/29a5ccc3-d2c8-b844-a333-28bc20657942@=
-fastmail.com/T/#mc8f2589ff04862175cb0c906b38cb37a90db0e42
-[2] https://lore.kernel.org/linux-pci/29a5ccc3-d2c8-b844-a333-28bc20657942@=
-fastmail.com/
-
-
-Notes on what was discovered off-list :
-
-The issues regarding BAR reset were due to power supply issues (PCI cable
-jumping host 3V3 supply to SoC 3V3 supply, and are fixed with proper cablin=
-g).
-a few LCRC errors are normal with PCIe, the number will depend on
-signal integrity
-at the physical layer (cabling).
-
-
-Best regards,
-Rick
