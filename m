@@ -2,97 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E4106E0E00
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 848516E0E2F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbjDMNGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:06:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37110 "EHLO
+        id S230289AbjDMNM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:12:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230153AbjDMNGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:06:37 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1128A93D1
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:06:29 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id i3so4870679wrc.4
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:06:28 -0700 (PDT)
+        with ESMTP id S230260AbjDMNM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:12:26 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4363DA266
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:11:52 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id sg7so48688830ejc.9
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:11:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681391187; x=1683983187;
+        d=linaro.org; s=google; t=1681391510; x=1683983510;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=THCBAFRMcXe9zpyJC9Q8PtfBGHTK+dcgnrUK69wvLYY=;
-        b=qLFVUy6NlUX9Ba60wSk1wWE3TDQdKaK3W3T1Wg2aeN5q5KebQPT4240XIBJ/sfygOZ
-         MvSb9gIjaYgqi+yijRN/1v8/5HkOg6dTeWeXADKL1zugJu2kSwlnUFwQWUsEiIIL9xaI
-         AmFZTZeC8v04x1IEuiGvOL8iZiiP40Tq1gfOQExFneF6povFX5d4b/Zqsi41MJlbEtty
-         8XAI7lzHT5i872DDJLxsoD32zTjiZ8tZIEiZqDgFBfRmEBj9u0fbWJqIMlR96D/ZiH/n
-         CrZLmHYZbaCaf/OBE2nccSfm8kaTM2pnkwewOGNPF0yIuV0Q3f7niNBQR2NjFSyIAZF0
-         VE6Q==
+        bh=XCWUaiaWVnGIwMXJ072+drdEdGoVEQpMTGC5dkuhkzs=;
+        b=pKe1wtCKukdjAUeqiiJ30c5MHJdrfgnitgsy+yO/yFvpSq2KRmKi7rdC0/TQRcYaI0
+         FXneFfT01FDEXFCzZ5PHJGJU/SQ8VQiahCJ6VBB4n1BOnjYuDrqgAyQ6/0JYQZgpS3Kd
+         CfuMskSgm1SrtjGLrgt+8JVNnOfXkvm75VIZE/f3SoEYW19DZKxloKyfXlSFqkNues9j
+         /UXHiYIQXJrfcS0UWkZDcO/RiHlmPTSiA03W9zmwiTQJGRecYs43u+rSBag5aIKDug/f
+         S88mPmOsJnfi4DVbRPP6PUjv8inuoHy2Gcc62kt2tqtRif36FQJQjrcDJi5uINHzRR3x
+         0uOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681391187; x=1683983187;
+        d=1e100.net; s=20221208; t=1681391510; x=1683983510;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=THCBAFRMcXe9zpyJC9Q8PtfBGHTK+dcgnrUK69wvLYY=;
-        b=TwAiZPXUqt4DT6BkOwsp3Mhn/79GpSenPF9YrsQh9mwWAYvui56dakOWPl5eB83KZI
-         4DcsoE0CnfV0hsy/3ybpExuAqvgFZ20Pc3gEhOjOw3FFzeAa9J5T8fxZXZc9fcIAIPes
-         pwhkhdFxj3kPkwpk4+sE25rmN246Iijzh8Rns3wgzt+tvQMBW3NbfbX8zD+hhxqS/I2P
-         LPkDqzWZ6NPGkQ94SZlZ0uhBmU7nkMW++12j2UHESNpi3N5Aw0ZbdyCHgi2gf3m414wY
-         vTGkDHLxFuRUMvpkZDY17AzFLj2Ho3odPwTtn8n6WfRs932JhwMkk5KYO6er6ORl6o68
-         T5Rw==
-X-Gm-Message-State: AAQBX9esEC8o4+LrIO3tTx6ICE9/HBk8AZ3Mothc8SJdfUwx2s9j63Ak
-        6Nfdf+T4o7khOYy5WeDVt3u7IA==
-X-Google-Smtp-Source: AKy350ZKJm0iav7HvUz7GTFakJ+tdrOILRQV0JiioSu+p4JJYjdTdnwsKypDNL7X7cITAJ2227b7Cw==
-X-Received: by 2002:a5d:6a11:0:b0:2cf:ea3a:2b9e with SMTP id m17-20020a5d6a11000000b002cfea3a2b9emr1570627wru.43.1681391187453;
-        Thu, 13 Apr 2023 06:06:27 -0700 (PDT)
-Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id r12-20020adff10c000000b002cfe685bfd6sm1255020wro.108.2023.04.13.06.06.26
+        bh=XCWUaiaWVnGIwMXJ072+drdEdGoVEQpMTGC5dkuhkzs=;
+        b=G9aCe+ZpqZiUv7jtJdWXM4xEFo29drk26AckSiwdkZnNhgKRscModzbYQFvz+Aaf7I
+         MlWYw+7eoOKUuZE7DgVScrpAe3DDUsihPfG4f/JAivGcuV19IDj1OhzdDiPqyw4E3b4v
+         faNqYs79evDp4RfLmj/eYw7+IY+tOtuUpTmU1ifBrHhbQDZZ/ITr7hmc0i/6Xd8N7G0N
+         F8ZdKaQcpc0Bs43x9PO87+fmmxY3u2aJ4oW67FOalf98nF3DIs36TTVPGj+MXXmcTfcW
+         MOIcHPC01xJC/5IUiOrTssDb8QqhdUHoUi6MWpSrgejAEwfpuVwFreZw8sugBCF1n8mQ
+         WNGQ==
+X-Gm-Message-State: AAQBX9dRXTU/gnxrRApLT6Fyb4AuClIwym8eaQRSxq4c7ufpNX3GSKP+
+        w7FMHNfWTywSuLMnZu7tQ6ts+w==
+X-Google-Smtp-Source: AKy350YJ3uLaEKYbCc3ihWijhwZDDaFIcsFka/6gnLknW+fWV2K5RQUvLCR1fAH6/lNXlxY0M+dGPA==
+X-Received: by 2002:a17:907:d042:b0:94e:c40d:18f4 with SMTP id vb2-20020a170907d04200b0094ec40d18f4mr382489ejc.1.1681391510693;
+        Thu, 13 Apr 2023 06:11:50 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id s24-20020a170906961800b0094dde59ad39sm969889ejx.79.2023.04.13.06.11.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 06:06:27 -0700 (PDT)
-Message-ID: <3ebf7c2b-f9fb-6c1c-308b-47f28ba04ead@baylibre.com>
-Date:   Thu, 13 Apr 2023 15:06:25 +0200
+        Thu, 13 Apr 2023 06:11:49 -0700 (PDT)
+Message-ID: <541e2684-9df6-b875-df2e-a33ceee7c780@linaro.org>
+Date:   Thu, 13 Apr 2023 14:11:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 4/7] leds: leds-mt6323: Open code and drop
- MT6323_CAL_HW_DUTY macro
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 7/7] soundwire: qcom: use tabs for indentation in
+ defines
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
-Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
- <20230412153310.241046-5-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230412153310.241046-5-angelogioacchino.delregno@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
+ <20230403132503.62090-8-krzysztof.kozlowski@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230403132503.62090-8-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
-> There is only one instance of using this macro and it's anyway not
-> simplifying the flow, or increasing the readability of this driver.
-> 
-> Drop this macro by open coding it in mt6323_led_set_blink().
-> 
-> No functional changes.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
--- 
-Regards,
-Alexandre
+On 03/04/2023 14:25, Krzysztof Kozlowski wrote:
+> Use consistently only tabs to indent the value in defines.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+
+--srini
+>   drivers/soundwire/qcom.c | 34 +++++++++++++++++-----------------
+>   1 file changed, 17 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index f2e1135ef113..77a5e4cbbe9b 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -58,9 +58,9 @@
+>   #define SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED		BIT(10)
+>   #define SWRM_INTERRUPT_STATUS_AUTO_ENUM_FAILED			BIT(11)
+>   #define SWRM_INTERRUPT_STATUS_AUTO_ENUM_TABLE_IS_FULL		BIT(12)
+> -#define SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2             BIT(13)
+> -#define SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2              BIT(14)
+> -#define SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP               BIT(16)
+> +#define SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2		BIT(13)
+> +#define SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2		BIT(14)
+> +#define SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP		BIT(16)
+>   #define SWRM_INTERRUPT_MAX					17
+>   #define SWRM_V1_3_INTERRUPT_MASK_ADDR				0x204
+>   #define SWRM_V1_3_INTERRUPT_CLEAR				0x208
+> @@ -125,20 +125,20 @@
+>   #define SWRM_REG_VAL_PACK(data, dev, id, reg)	\
+>   			((reg) | ((id) << 16) | ((dev) << 20) | ((data) << 24))
+>   
+> -#define MAX_FREQ_NUM		1
+> -#define TIMEOUT_MS		100
+> -#define QCOM_SWRM_MAX_RD_LEN	0x1
+> -#define QCOM_SDW_MAX_PORTS	14
+> -#define DEFAULT_CLK_FREQ	9600000
+> -#define SWRM_MAX_DAIS		0xF
+> -#define SWR_INVALID_PARAM 0xFF
+> -#define SWR_HSTOP_MAX_VAL 0xF
+> -#define SWR_HSTART_MIN_VAL 0x0
+> -#define SWR_BROADCAST_CMD_ID    0x0F
+> -#define SWR_MAX_CMD_ID	14
+> -#define MAX_FIFO_RD_RETRY 3
+> -#define SWR_OVERFLOW_RETRY_COUNT 30
+> -#define SWRM_LINK_STATUS_RETRY_CNT 100
+> +#define MAX_FREQ_NUM						1
+> +#define TIMEOUT_MS						100
+> +#define QCOM_SWRM_MAX_RD_LEN					0x1
+> +#define QCOM_SDW_MAX_PORTS					14
+> +#define DEFAULT_CLK_FREQ					9600000
+> +#define SWRM_MAX_DAIS						0xF
+> +#define SWR_INVALID_PARAM					0xFF
+> +#define SWR_HSTOP_MAX_VAL					0xF
+> +#define SWR_HSTART_MIN_VAL					0x0
+> +#define SWR_BROADCAST_CMD_ID					0x0F
+> +#define SWR_MAX_CMD_ID						14
+> +#define MAX_FIFO_RD_RETRY					3
+> +#define SWR_OVERFLOW_RETRY_COUNT				30
+> +#define SWRM_LINK_STATUS_RETRY_CNT				100
+>   
+>   enum {
+>   	MASTER_ID_WSA = 1,
