@@ -2,114 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EFD16E1552
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 21:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1840C6E15BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 22:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjDMTmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 15:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38890 "EHLO
+        id S229894AbjDMUWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 16:22:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjDMTmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 15:42:19 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3389D9EEE
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 12:41:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1681414889;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=pe0/oi4k+3plRUDjjra5Jf/XI2sf8St247Sf5O8j+8g=;
-        b=K4a2WduOJ0U5HM/GwlKgiDV+pwL7xXdFRrO2kTpX2h/fDbfGIiQcXihfVFtO8nFyIyikw2
-        ZvDK8oeIQNsp7GUn+Xu/4eGdX7Gv1O7Td1BUW4N6zrpWRBZuy0BsWMkQoaCozAK9L+OV6c
-        Ksq1c4VXOvnZpaHs7hj/pplJuA8+Etg=
-Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
- [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-449-qqItgR9QM1ai520IfYwrvQ-1; Thu, 13 Apr 2023 15:41:27 -0400
-X-MC-Unique: qqItgR9QM1ai520IfYwrvQ-1
-Received: by mail-ot1-f72.google.com with SMTP id x5-20020a9d6285000000b006a12c805a17so1761895otk.11
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 12:41:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681414886; x=1684006886;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pe0/oi4k+3plRUDjjra5Jf/XI2sf8St247Sf5O8j+8g=;
-        b=PWbeW7oT5ogXpj10VJUe7BjmdzOrnNtAqIH6b53eSNRX2qgS/9stN3kmzIxcZnMIl8
-         5dxWq4R82kXGJItICmvREaO0lCXIyXa3feuWgydRVhZhtKRM+dHXPle4JOmDJHSBb5F6
-         KZgbR4DmZ645EhJ55TVYcfEY/+WURxTo9nDctBxixFTzRTMx3yx3Y9puO6qgugvBCHTP
-         UqDw3E6xKWNJDfd/W81/3uA1YPRyYjDv7a5niB/wrQyiKgY384ota+S6hgcwT+r1l9ju
-         YiR6rIuBi756/3BHIEcBsu7JEdKWw7p8iqzV8zYHuT8+GMiNTs4GhTpOaeaYVcnbs7Gb
-         RCxg==
-X-Gm-Message-State: AAQBX9duY9OKDZIQ+uIGFlXlvCAGmZ3bc4StUVZSlBhJRK0Jnd3zUUAQ
-        Lvy3ZM8VlQYEhBcwIqVdtie5xZtronieV0qj79dTGcHIPExNeSdvE/cs9f1X0gGo71wRFI+lZ3p
-        cr5kPDd5hVaTNgBuD99TBmQ==
-X-Received: by 2002:a05:6808:9a2:b0:377:f784:3332 with SMTP id e2-20020a05680809a200b00377f7843332mr1567412oig.24.1681414886723;
-        Thu, 13 Apr 2023 12:41:26 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YlwdBnAy6xihkKJw9Nntu9FJ2LoTnC1J6rgKBnqrGWtgp/R0SrzSgYs1pLXe/uellQrAs7aw==
-X-Received: by 2002:a05:6808:9a2:b0:377:f784:3332 with SMTP id e2-20020a05680809a200b00377f7843332mr1567402oig.24.1681414886483;
-        Thu, 13 Apr 2023 12:41:26 -0700 (PDT)
-Received: from halaney-x13s.redhat.com (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id x19-20020a056808145300b003898bec0e01sm966140oiv.17.2023.04.13.12.41.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 12:41:26 -0700 (PDT)
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sa8155p-adp: Remove unneeded rgmii_phy information
-Date:   Thu, 13 Apr 2023 14:40:21 -0500
-Message-Id: <20230413194020.1077857-3-ahalaney@redhat.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230413194020.1077857-1-ahalaney@redhat.com>
-References: <20230413194020.1077857-1-ahalaney@redhat.com>
+        with ESMTP id S229571AbjDMUWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 16:22:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B6A7683;
+        Thu, 13 Apr 2023 13:22:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9D67860C47;
+        Thu, 13 Apr 2023 20:22:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C409FC433D2;
+        Thu, 13 Apr 2023 20:22:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681417321;
+        bh=wT93LLMw/VlZZKkI6SENc7F68/BQ6E1Wpn0wwbX9K7w=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=CuXWW0sd8gd3Z4Wmb9T9zCJwK7bGUrFVMpUJDgNsaTe2EYAorHXu4VuOQjJYTf5L6
+         jRphTbJuUa3md7DvLGaNTduV2uoyw+z+/9vNMcPx6wIrAp6m+9IpFTnq3fqThgM5jH
+         NVqnJKAjHTS7wSFVIfi/rxCm1qqcagzdkmcI8YmDwerL4nsOyPdj5jv75O5VKT6bS8
+         fX3SOxGLa3km1KNE/oNX9DrZ8pF6/dlYbvRCmCua3JnE/1lkd0/hytsgiTI6IC5l9p
+         xbLA21jAQni8OYNfauu5bS7enwZMRQEA1buPX7c/KaxxVc6u5kn9I/GryTFwot6DZP
+         S5E8HZWoOkhaQ==
+Message-ID: <7c11349662327534fc61477c5526a923.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230412053824.106-5-ychuang570808@gmail.com>
+References: <20230412053824.106-1-ychuang570808@gmail.com> <20230412053824.106-5-ychuang570808@gmail.com>
+Subject: Re: [PATCH v7 04/12] dt-bindings: reset: nuvoton: Document ma35d1 reset control
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+To:     Jacky Huang <ychuang570808@gmail.com>, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Date:   Thu, 13 Apr 2023 13:21:59 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using interrupts-extended already indicates what the interrupt-parent
-is, so drop the explicit interrupt-parent.
+Quoting Jacky Huang (2023-04-11 22:38:16)
+> diff --git a/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset=
+.yaml b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+> new file mode 100644
+> index 000000000000..3ce7dcecd87a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/nuvoton,ma35d1-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton MA35D1 Reset Controller
+> +
+> +maintainers:
+> +  - Chi-Fang Li <cfli0@nuvoton.com>
+> +  - Jacky Huang <ychuang3@nuvoton.com>
+> +
+> +description:
+> +  The system reset controller can be used to reset various peripheral
+> +  controllers in MA35D1 SoC.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nuvoton,ma35d1-reset
+> +      - const: syscon
 
-The comment about this being the phy-intr is not helpful either, since
-this is the only interrupt in the phy node.
-
-Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
----
-
-Changes since v1:
-    * New patch (Konrad)
-
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-index ac52a8dfeba1..b65e0203d783 100644
---- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-@@ -361,8 +361,7 @@ rgmii_phy: phy@7 {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			reg = <0x7>;
- 
--			interrupt-parent = <&tlmm>;
--			interrupts-extended = <&tlmm 124 IRQ_TYPE_EDGE_FALLING>; /* phy intr */
-+			interrupts-extended = <&tlmm 124 IRQ_TYPE_EDGE_FALLING>;
- 			device_type = "ethernet-phy";
- 		};
- 	};
--- 
-2.39.2
-
+Does it need to be a syscon anymore?
