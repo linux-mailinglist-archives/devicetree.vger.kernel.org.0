@@ -2,146 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 861A56E06BF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 08:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242426E06FE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 08:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbjDMGJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 02:09:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33842 "EHLO
+        id S229498AbjDMGbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 02:31:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229948AbjDMGJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 02:09:41 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 875E85B9E;
-        Wed, 12 Apr 2023 23:09:39 -0700 (PDT)
-X-UUID: c1501242d9c111edb6b9f13eb10bd0fe-20230413
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=cooVt/7DyMIfNymQDJe2zBqzAP0xjJRI2g2y8h0vqO4=;
-        b=Htq0n6dz1KPeMU5iAX/9cGoikK/kx3m4D/XzhZfCSL5MIA0vwEFH3nABRsd9FW2qUpVAsguGkbDzE0e9J/TjUqx2nNf98miWNyMWVLSBP8RLkLzO3v9o5j6gidu/OWJznM6Tpm4fw+QAqeD3I5+soXWSCqo1oIgOg5cIxZ8Aluk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:44ef7ec6-2e05-468f-94ad-4ddd4e851da6,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:120426c,CLOUDID:3a55e983-cd9c-45f5-8134-710979e3df0e,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: c1501242d9c111edb6b9f13eb10bd0fe-20230413
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 389169649; Thu, 13 Apr 2023 14:09:31 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Thu, 13 Apr 2023 14:09:29 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Thu, 13 Apr 2023 14:09:29 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <jitao.shi@mediatek.com>, <shuijing.li@mediatek.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: [PATCH 3/3] drm/mediatek: dsi: Add dsi cmdq_ctl to send panel initial code
-Date:   Thu, 13 Apr 2023 14:09:22 +0800
-Message-ID: <1681366162-4949-4-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1681366162-4949-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1681366162-4949-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S229492AbjDMGbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 02:31:15 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384505FD4;
+        Wed, 12 Apr 2023 23:31:12 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B34B4FF80B;
+        Thu, 13 Apr 2023 06:31:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1681367471;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=wFZjlYbqAXEdbzIOL/Z8LZvjFBauGqMFBal3K99vt78=;
+        b=NQMQq46Vn4bBbnwNQgUO5Euut2Wezby0IgtPuKGUC7b8AyOrmEpZtnxtZTjJ+XQznjvjj0
+        wVpiTMKGeUGMPsElUI9TZbd6ZDXmF46hqfK/eYuS0RvIB3RkNFXCHkR7dshNZXmFqTrNqC
+        /nrRuNgCUqX+bkBnX44RKoJItPIl2rg+TA+/uEx5UoWHmMxL+n8nJdEHE/ol0DrRP/Xyo1
+        aCZmaXekhzWpyXLSF7EVOZ7h2pfLzwckZqQ37J1LyFyFk1wxiq5MjUfFkFuzQNxaMQWg56
+        G/BiXhzPaJIfEtwqfqurv8Eo3Clao0B+4LQKmsxuprnTAo18hqF2Kat3OLWbMQ==
+Date:   Thu, 13 Apr 2023 08:31:09 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <20230413083109.5ad09d2a@bootlin.com>
+In-Reply-To: <20230412095918.GZ8371@google.com>
+References: <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
+        <20230331165904.4e7f46a1@bootlin.com>
+        <20230403142822.GA8371@google.com>
+        <20230404092036.2d1cd5d9@bootlin.com>
+        <f7ab2fcc-93fc-ce87-8767-579d33907225@linaro.org>
+        <20230404100759.5bc9cd20@bootlin.com>
+        <143754c2-9e37-4386-af92-174c0df2eb0a@linaro.org>
+        <20230405135450.GF8371@google.com>
+        <20230405180023.4aebaa08@bootlin.com>
+        <20230411181640.50c19d4e@bootlin.com>
+        <20230412095918.GZ8371@google.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xinlei Lee <xinlei.lee@mediatek.com>
+On Wed, 12 Apr 2023 10:59:18 +0100
+Lee Jones <lee@kernel.org> wrote:
 
-For mt8188, add dsi cmdq reg control to send long packets to panel initialization.
+> On Tue, 11 Apr 2023, Herve Codina wrote:
+> 
+> > Hi Lee,
+> >
+> > On Wed, 5 Apr 2023 18:00:23 +0200
+> > Herve Codina <herve.codina@bootlin.com> wrote:
+> >  
+> > > Hi Lee,
+> > > On Wed, 5 Apr 2023 14:54:50 +0100
+> > > Lee Jones <lee@kernel.org> wrote:
+> > >  
+> > > > On Tue, 04 Apr 2023, Krzysztof Kozlowski wrote:
+> > > >  
+> > > > > On 04/04/2023 10:07, Herve Codina wrote:
+> > > > >  
+> > > > > >>> So, the structure I have in mind:
+> > > > > >>> - pef2256.c (MFD)
+> > > > > >>>   implement and do the setup at probe()
+> > > > > >>>   Add the children at probe():
+> > > > > >>>     - pef2256-pinctrl (pinctrl) added using mfd_add_devices()
+> > > > > >>>     - pef2256-codec (ASoC codec) added using devm_of_platform_populate()
+> > > > > >>>
+> > > > > >>> Lee, with this in mind, can the core pef2256.c be a MFD driver ?  
+> > > > > >>
+> > > > > >> You do not use MFD here, so why do you want to keep it in MFD? If you
+> > > > > >> disagree, please tell me where is the MFD code in your patch?  
+> > > > > >
+> > > > > > I don't want to absolutely use MFD.
+> > > > > > I just want to put my driver somewhere and I don't know the right location
+> > > > > > between MFD and Misc.
+> > > > > >
+> > > > > > Basically, the driver needs to do (little simplified and error path removed):
+> > > > > >
+> > > > > >   static const struct mfd_cell pef2256_devs[] = {
+> > > > > >   	{ .name = "lantiq-pef2256-pinctrl", },
+> > > > > >   };
+> > > > > >
+> > > > > >   static int pef2256_probe(struct platform_device *pdev)
+> > > > > >   {
+> > > > > > 	struct pef2256 *pef2256;
+> > > > > > 	void __iomem *iomem;
+> > > > > > 	int ret;
+> > > > > > 	int irq;
+> > > > > >
+> > > > > > 	pef2256 = devm_kzalloc(&pdev->dev, sizeof(*pef2256), GFP_KERNEL);
+> > > > > > 	if (!pef2256)
+> > > > > > 		return -ENOMEM;
+> > > > > >
+> > > > > > 	pef2256->dev = &pdev->dev;
+> > > > > >
+> > > > > > 	iomem = devm_platform_ioremap_resource(pdev, 0);
+> > > > > >
+> > > > > > 	pef2256->regmap = devm_regmap_init_mmio(&pdev->dev, iomem,
+> > > > > > 						&pef2256_regmap_config);
+> > > > > >
+> > > > > > 	pef2256->mclk = devm_clk_get_enabled(&pdev->dev, "mclk");
+> > > > > > 	pef2256->sclkr = devm_clk_get_enabled(&pdev->dev, "sclkr");
+> > > > > > 	pef2256->sclkx = devm_clk_get_enabled(&pdev->dev, "sclkx");
+> > > > > >
+> > > > > > 	pef2256->reset_gpio = devm_gpiod_get_optional(&pdev->dev, "reset", GPIOD_OUT_LOW);
+> > > > > > 	if (pef2256->reset_gpio) {
+> > > > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 1);
+> > > > > > 		udelay(10);
+> > > > > > 		gpiod_set_value_cansleep(pef2256->reset_gpio, 0);
+> > > > > > 		udelay(10);
+> > > > > > 	}
+> > > > > >
+> > > > > > 	pef2556_of_parse(pef2256, np);
+> > > > > >
+> > > > > > 	irq = platform_get_irq(pdev, 0);
+> > > > > > 	ret = devm_request_irq(pef2256->dev, irq, pef2256_irq_handler, 0, "pef2256", pef2256);
+> > > > > >
+> > > > > > 	platform_set_drvdata(pdev, pef2256);
+> > > > > >
+> > > > > > 	mfd_add_devices(pef2256->dev, PLATFORM_DEVID_NONE, pef2256_devs,
+> > > > > > 	      		ARRAY_SIZE(pef2256_devs), NULL, 0, NULL);  
+> > > > >
+> > > > > Wait, now you use MFD framework, so the driver is suitable for MFD.
+> > > > > Before there was nothing like that in your code.  
+> > > >
+> > > > Agree, the above is suitable for MFD, since it does all the things I
+> > > > said your last one did not.  You *can* also use of_platform_populate()
+> > > > here, since you are *also* requesting and initialising shared resources.
+> > > > You cannot do *both* however.
+> > > >  
+> > >
+> > > Thanks for having confirmed that this driver can be a MFD driver.
+> > >
+> > > Related to of_platform_populate() / mfd_add_devices(), I wanted to use both
+> > > because:
+> > > - the pinctrl part does not have (and does not need to have) a specific node
+> > >   with a specific compatible property. In order to instantiate the related
+> > >   driver mfd_add_devices() is the only way I know.
+> > > - the audio component nodes have a compatible string and several components
+> > >   (ie several nodes) can be present. of_platform_populate() call seems the
+> > >   simple way to instantiate them.
+> > >
+> > > Is there a way to use mfd_add_devices() in this case without the need to
+> > > count the audio component nodes in order to allocate as much mfd_cell as
+> > > nodes having a matching compatible property ? Is there an other API to do
+> > > it ?
+> > >  
+> >
+> > I looked deeper for using mfd_add_devices() only and found an issue (related
+> > to my use-case).
+> >
+> > mfd_add_devices() calls mfd_add_device() and in this function we have:
+> > ---- 8< ----
+> > 	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
+> > 		for_each_child_of_node(parent->of_node, np) {
+> > 			if (of_device_is_compatible(np, cell->of_compatible)) {
+> > 				/* Ignore 'disabled' devices error free */
+> > 				if (!of_device_is_available(np)) {
+> > 					of_node_put(np);
+> > 					ret = 0;
+> > 					goto fail_alias;
+> > 				}
+> >
+> > 				ret = mfd_match_of_node_to_dev(pdev, np, cell);
+> > 				if (ret == -EAGAIN)
+> > 					continue;
+> > 				of_node_put(np);
+> > 				if (ret)
+> > 					goto fail_alias;
+> >
+> > 				break;
+> > 			}
+> > 		}
+> >
+> > 		if (!pdev->dev.of_node)
+> > 			pr_warn("%s: Failed to locate of_node [id: %d]\n",
+> > 				cell->name, platform_id);
+> > 	}
+> > ---- 8< ----
+> >
+> > My issue is related to the loop.
+> > The loop is aborted if the device is not available (typically 'Disabled' in the
+> > DT node).
+> >
+> > My full pef2256 node can have several pef2256 audio subnodes with compatible
+> > set to "lantiq,pef2256-codec" and some of them can have 'status = "Disabled";'
+> > As soon as one device (with my expected compatible) is found 'Disabled', there
+> > is no way to look at other children.
+> >
+> > Having 'continue' in case of device not available in the loop to look at the
+> > next child will change the behavior of mfd_add_device().
+> > Do you think that looking at next child if we find a 'not available' child
+> > can be correct for mfd_add_device() ?
+> > This probably will have impacts on other MFD drivers.  
+> 
+> Looks like a bug.  Encountering one disabled cell should not prevent the
+> others from registering IMHO.
+> 
 
-Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dsi.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Thanks for your confirmation.
+I will propose a fix in the next iteration of this series.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-index 500a3054282d..cbfe5df4647c 100644
---- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-@@ -86,6 +86,7 @@
- 
- #define DSI_CMDQ_SIZE		0x60
- #define CMDQ_SIZE			0x3f
-+#define CMDQ_SIZE_SEL			BIT(15)
- 
- #define DSI_HSTX_CKL_WC		0x64
- 
-@@ -178,6 +179,7 @@ struct mtk_dsi_driver_data {
- 	const u32 reg_cmdq_off;
- 	bool has_shadow_ctl;
- 	bool has_size_ctl;
-+	bool cmdq_long_packet_ctl;
- };
- 
- struct mtk_dsi {
-@@ -965,6 +967,11 @@ static u32 mtk_dsi_recv_cnt(u8 type, u8 *read_data)
- 	return 0;
- }
- 
-+static void mtk_dsi_cmd_packet_ctl(struct mtk_dsi *dsi)
-+{
-+	mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE_SEL, CMDQ_SIZE_SEL);
-+}
-+
- static void mtk_dsi_cmdq(struct mtk_dsi *dsi, const struct mipi_dsi_msg *msg)
- {
- 	const char *tx_buf = msg->tx_buf;
-@@ -996,6 +1003,8 @@ static void mtk_dsi_cmdq(struct mtk_dsi *dsi, const struct mipi_dsi_msg *msg)
- 
- 	mtk_dsi_mask(dsi, reg_cmdq_off, cmdq_mask, reg_val);
- 	mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE, cmdq_size);
-+	if (dsi->driver_data->cmdq_long_packet_ctl)
-+		mtk_dsi_cmd_packet_ctl(dsi);
- }
- 
- static ssize_t mtk_dsi_host_send_cmd(struct mtk_dsi *dsi,
-@@ -1200,18 +1209,21 @@ static const struct mtk_dsi_driver_data mt8183_dsi_driver_data = {
- 	.reg_cmdq_off = 0x200,
- 	.has_shadow_ctl = true,
- 	.has_size_ctl = true,
-+	.cmdq_long_packet_ctl = false,
- };
- 
- static const struct mtk_dsi_driver_data mt8186_dsi_driver_data = {
- 	.reg_cmdq_off = 0xd00,
- 	.has_shadow_ctl = true,
- 	.has_size_ctl = true,
-+	.cmdq_long_packet_ctl = false,
- };
- 
- static const struct mtk_dsi_driver_data mt8188_dsi_driver_data = {
- 	.reg_cmdq_off = 0xd00,
- 	.has_shadow_ctl = true,
- 	.has_size_ctl = true,
-+	.cmdq_long_packet_ctl = true,
- };
- 
- static const struct of_device_id mtk_dsi_of_match[] = {
--- 
-2.18.0
-
+Regards,
+Hervé
