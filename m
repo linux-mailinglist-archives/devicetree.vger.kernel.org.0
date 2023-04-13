@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C55E06E143C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 20:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3140F6E1475
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 20:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjDMSkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 14:40:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58224 "EHLO
+        id S229994AbjDMSph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 14:45:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjDMSkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 14:40:16 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331B240FD;
-        Thu, 13 Apr 2023 11:40:15 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id cm23so7113246qtb.3;
-        Thu, 13 Apr 2023 11:40:15 -0700 (PDT)
+        with ESMTP id S230133AbjDMSpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 14:45:35 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895E483FA
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 11:45:07 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id z8so22228104lfb.12
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 11:45:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681411214; x=1684003214;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rQtEpZle81hoaqTdpulwOdpw8KqXnAar/PVE+B9TICc=;
-        b=P474q5oP2LI987/DecEQ3/p0SMtL1fQBQYFgk1hLlcvQfcEkyPCwiuFQgKQJlJ8cv0
-         5RSQfJi4CHGciKswyoG/HMwMgJ1SnD9UG0/O/PZXmSvBnGFVniVUlFQhDN0mOpjLn3Xq
-         TFNkGhPUpB1JKX9bEzyx81ERg0NVLJGJ0q9LwENMjpqs0SB8Y+M5T+ZayRasX+2+62Bx
-         EKI7b/XXyjUDkQ2SazxkmzrgNIIePmygmmSiOMVk23108Qfzz8Jy6DtjDFwgvhA4DVGp
-         mOUvp5WnEzyh0hyRfkCSsVTEtQ3W46F3I8Nj3xReqXRyp/KCLnImi658/TiORcHtHbmL
-         gQDQ==
+        d=linaro.org; s=google; t=1681411502; x=1684003502;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C70yljSMkuFeZf8/ClCI7fC1wDnIxlSvZGT5yxn9eCQ=;
+        b=ZT6OQbajUX9t0AcbsC4F922+uUj7h+pIVA8gzO/JgNwT7mKFGkW/AOWvkrdWz9Bshk
+         fMhjZQar/Om25dsU+lptOJTeVVjGx4kUrM7vM51CaGu7WFILozfLol7ZKCEB3tSRc+2Z
+         3ClF4FKJ27khht+K6+JDnw5/a61UPa8rph0gnDlDFWZiKCAUOCrc6X12IuuzR1iKJWGt
+         Qmt6MI4KZr9gYTyrHCLX/LUWwjYyRGg6keX6e9N1tnlFpkJFvpSQpyKYLfLeNVrl0lpG
+         QID0iosAygedVY65JPcULEC5VpzwhBTrBqaJGACAjJ8IGmdcfT8C3oSdkaZmykIxD5Ot
+         N6Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681411214; x=1684003214;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rQtEpZle81hoaqTdpulwOdpw8KqXnAar/PVE+B9TICc=;
-        b=hrmJKC4hykmzuWcIemENb1jn4Arq3w5837iokm93plTxH8G8ptb1PQHMMIJK3dw0Ly
-         YEXeUH7NMm7DWfYaMFU9axG7C33yzqCbqcXAl/QEoZLRKw/0ex60oHOiy2aEyqsrZniz
-         4di0RYkVNstOw0KOFhWCFylL1eFr+8iJo7tZvBZAXlwsx0ZnuNawyIfDbblXZJSWhfmu
-         1owAZaDg48vrD0lM3CAQXLZWTk0ehP3P8cqV12Y1J5zvw5ZXt28Csdr+iZSImxEDlNz9
-         2CkvGzJkquVDJgBenSPN+NCgYcPgygu2njjI1B8stlc67BwmZ/t3B3XsvJDo1ZgzIvrr
-         jqpQ==
-X-Gm-Message-State: AAQBX9f5cReqsZCJFfCJt7Kw5cTFl4bwNCUkpuNYI/zw+jpiOwSOyr0I
-        MBBkURBiEo7vXMI2yqD+fnQ=
-X-Google-Smtp-Source: AKy350YwqLvGxuXkbQqYKS2m5/KfU0SKlQOgBQRBuWiZ05fsd0xL8BIuH7TjtWiwcrVwrdcZm5ozVw==
-X-Received: by 2002:ac8:5b87:0:b0:3ea:1206:b812 with SMTP id a7-20020ac85b87000000b003ea1206b812mr3703163qta.38.1681411214235;
-        Thu, 13 Apr 2023 11:40:14 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h18-20020a05620a285200b007425ef4cbc2sm654336qkp.100.2023.04.13.11.40.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 11:40:13 -0700 (PDT)
-Message-ID: <d53c10d6-6a9c-c941-a7ff-70d4b4172960@gmail.com>
-Date:   Thu, 13 Apr 2023 11:40:11 -0700
+        d=1e100.net; s=20221208; t=1681411502; x=1684003502;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C70yljSMkuFeZf8/ClCI7fC1wDnIxlSvZGT5yxn9eCQ=;
+        b=MdWOP+WYMZvjS0pMULBwF6ECNTNlEIzPN3NzXC/NdGsImxa6cVh1MywqTeBu0JYCHJ
+         k0+MnFTBeQDPgrLG0IASsCuIuMYAU2Mop7372paK8irubRyH1oEcFEaaXaEzWm2569qM
+         dZYUPSa5zPGtpewOEQQi2Co0QWH3k3Mbo8pgYhcxRzm8Cg5t8NmFKuJ+PBBbJDlKq6Fg
+         3YCJX8RtTSGN9LIWN23rMSUXDOaNkySeo8CE3bEcdPMeXV1AGO5SPasM/tyt59B2xenD
+         6p2owwIrHxfaNHLmdBsSedUHgY/IRtc2ldRnZag/j4p49Bqauv1J22n6itoyflF+LGQO
+         uchg==
+X-Gm-Message-State: AAQBX9fL0k50+IuuEebmH7q3UlMnaNfSealat5NzuBEGUrmPOFwTj8ZO
+        WGDLg79ZSx06FrzgS1u/okwaIA==
+X-Google-Smtp-Source: AKy350bmJCD5sWKiQ4SZYS5hYaua2Wj26P+QZB0+ing6iXln9ikXVan8Wj6rPz2lae2ZFyIDpFkUKA==
+X-Received: by 2002:ac2:532c:0:b0:4ec:8381:f8e6 with SMTP id f12-20020ac2532c000000b004ec8381f8e6mr1211763lfh.46.1681411502551;
+        Thu, 13 Apr 2023 11:45:02 -0700 (PDT)
+Received: from [192.168.1.101] (abyl123.neoplus.adsl.tpnet.pl. [83.9.31.123])
+        by smtp.gmail.com with ESMTPSA id r12-20020ac24d0c000000b004e95f53adc7sm419621lfi.27.2023.04.13.11.45.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Apr 2023 11:45:02 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/2] SM8350 VIDEOCC
+Date:   Thu, 13 Apr 2023 20:44:57 +0200
+Message-Id: <20230413-topic-lahaina_vidcc-v1-0-134f9b22a5b3@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 0/3] PCI: brcmstb: CLKREQ# accomodations of downstream
- device
-Content-Language: en-US
-To:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
-References: <20230411165919.23955-1-jim2101024@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230411165919.23955-1-jim2101024@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-B4-Tracking: v=1; b=H4sIAKlNOGQC/x2N0QqDMAwAf0XyvIDWymC/MsZI07gGSpV2ykD89
+ wUf7+C4A5pUlQaP7oAquzZdisFw64ATlY+gRmNwvRt7P4z4XVZlzJRIC713jcwYOFII/j5N3oG
+ VgZpgqFQ4WVu2nE2uVWb9Xavn6zz/bfSqO3oAAAA=
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681411500; l=885;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=3YoV3IyxC0BvdlMQpRUMigDv3i7BMAqeSVbYbEew8tU=;
+ b=eoAPSVadbEJXABNXYuptzQgIz8fTQKO7SYAAJLhv+2vYZ2+Tj0hjXG18KPeQEAdvoK0iF68WrfFp
+ Ir+QZXEpDyyWyHauVtKj1M1dbU8cDlWHa3JzkwDcpquTOVUkZ07b
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,93 +88,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/23 09:59, Jim Quinlan wrote:
-> v2 -- Changed binding property 'brcm,completion-timeout-msec' to
->        'brcm,completion-timeout-us'.  (StefanW for standard suffix).
->     -- Warn when clamping timeout value, and include clamped
->        region in message. Also add min and max in YAML. (StefanW)
->     -- Qualify description of "brcm,completion-timeout-us" so that
->        it refers to PCIe transactions. (StefanW)
->     -- Remvove mention of Linux specifics in binding description. (StefanW)
->     -- s/clkreq#/CLKREQ#/g (Bjorn)
->     -- Refactor completion-timeout-us code to compare max and min to
->        value given by the property (as opposed to the computed value).
-> 
-> v1 -- The current driver assumes the downstream devices can
->        provide CLKREQ# for ASPM.  These commits accomodate devices
->        w/ or w/o clkreq# and also handle L1SS-capable devices.
-> 
->     -- The Raspian Linux folks have already been using a PCIe RC
->        property "brcm,enable-l1ss".  These commits use the same
->        property, in a backward-compatible manner, and the implementaion
->        adds more detail and also automatically identifies devices w/o
->        a clkreq# signal, i.e. most devices plugged into an RPi CM4
->        IO board.
-> 
-> Jim Quinlan (3):
->    PCI: brcmstb: CLKREQ# accomodations of downstream device
->    PCI: brcmstb: Set PCIe transaction completion timeout
->    blah blah
+This serires brings support for SM8350 videocc and updates the
+related dt-bindings.
 
-Tested-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: clock: qcom,videocc: Add SM8350
+      clk: qcom: Introduce SM8350 VIDEOCC
 
-On a 7216 system test with:
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |  29 +-
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/videocc-sm8350.c                  | 575 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8350-videocc.h    |  35 ++
+ include/dt-bindings/reset/qcom,sm8350-videocc.h    |  18 +
+ 6 files changed, 666 insertions(+), 1 deletion(-)
+---
+base-commit: e3342532ecd39bbd9c2ab5b9001cec1589bc37e9
+change-id: 20230413-topic-lahaina_vidcc-bcdabb475542
 
-01:00.0 Network controller: Intel Corporation Wireless 7260 (rev 73)
-
-and on the CM4 I/O board with:
-
-01:00.0 Network controller: Intel Corporation Wireless 7260 (rev 73)
-
-01:00.0 Ethernet controller: Intel Corporation 82574L Gigabit Network 
-Connection
-
-01:00.0 Network controller: Broadcom Inc. and subsidiaries BCM43224 
-802.11a/b/g/n (rev 01)
-
-01:00.0 SATA controller: Marvell Technology Group Ltd. 88SE9125 PCIe 
-SATA 6.0 Gb/s controller (rev 11) (prog-if 01 [AHCI 1.0])
-
-01:00.0 Ethernet controller: Broadcom Inc. and subsidiaries NetXtreme 
-BCM5751 Gigabit Ethernet PCI Express (rev 21)
-
-01:00.0 PCI bridge: PLX Technology, Inc. PEX8112 x1 Lane PCI 
-Express-to-PCI Bridge (rev aa)
-02:00.0 Multiport serial controller: Pepperl+Fuchs RocketPort EXPRESS 
-8-port w/Octa Cable
-
-01:00.0 Ethernet controller: Qualcomm Atheros AR5008 Wireless Network 
-Adapter (rev 01)
-
-01:00.0 Network controller: Broadcom Inc. and subsidiaries BCM4311 
-802.11a/b/g (rev 01)
-
-01:00.0 Network controller: Broadcom Inc. and subsidiaries BCM4322 
-802.11a/b/g/n Wireless LAN Controller (rev 01)
-
-01:00.0 Network controller: Broadcom Inc. and subsidiaries BCM43602 
-802.11ac Wireless LAN SoC (rev 01)
-
-and finally with a 4 port switch:
-
--[0000:00]---00.0-[01-07]----00.0-[02-07]--+-01.0-[03]----00.0  Intel 
-Corporation 82574L Gigabit Network Connection
- 
-+-03.0-[04-05]----00.0-[05]----00.0  Pepperl+Fuchs RocketPort EXPRESS 
-8-port w/Octa Cable
-                                            +-05.0-[06]----00.0 
-Broadcom Inc. and subsidiaries NetXtreme BCM5751 Gigabit Ethernet PCI 
-Express
-                                            \-07.0-[07]----00.0  Intel 
-Corporation 82574L Gigabit Network Connection
-
-And than I ran out of devices that I could plug, the others were x4, x8 
-or x16.
-
-Most (all?) would previously fail, so definitively an improvement!
-
-Thanks!
+Best regards,
 -- 
--- 
-Florian
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
