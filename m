@@ -2,134 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1AC6E0F30
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9316E0F42
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:53:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbjDMNtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:49:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51746 "EHLO
+        id S231532AbjDMNxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:53:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbjDMNtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:49:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81BBE900F;
-        Thu, 13 Apr 2023 06:49:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F057463EB9;
-        Thu, 13 Apr 2023 13:49:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85363C433EF;
-        Thu, 13 Apr 2023 13:49:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681393776;
-        bh=PIQWxC9aTPIf5rBky0brQiHVlrCXX748Hlc0qxobWWk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ssbDb/ROcuAm1lbADBnLEOxZ36OxR1HvuPA7vufkKTMh7dVHBN21dNyd1wjTTlj9i
-         tIk1B1bFxpgUr77LDJ2BzuTsGKsS/KeI25HuF8pGbii4YJPTMl0w2pyKxZRfYBEFkA
-         n9zs07dhFigJJBJKJV9wL9AJLcigMIDtqBRlWyESwHs9JZD2UigsL06MFKUn4I1oFj
-         sPogYgWbE+6mLu9nac0AZAhuxmObCJ12UUPqfCGaz6lde1d36zuqsEhLq/QIwTnXt9
-         10BQnh+JOdJ35LsdtYzwMcA2KNui53jnvbGgpYYMbzucJTwPYsgICkfAl77oICevxB
-         TcJgwPClp/8mA==
-Date:   Thu, 13 Apr 2023 15:49:26 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-        alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231524AbjDMNxK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:53:10 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C85C9ED9;
+        Thu, 13 Apr 2023 06:53:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1681393985; x=1712929985;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RI5dxyny4pd6aZFj4Z1YM4GJ/8KIefexr1VJF7/pVbY=;
+  b=RkREgTExxJvehHtbjdlCpVYyXJqGDk9uQLbfhoOzhSFnTZFjZlN2/8jE
+   uVB4BFdVtquNSa3jspILzbz/w/YE1gh8Wy91p5SigOusEbgOs64vXvBBK
+   U8KhNrchxkVyyo0Iu5H00rbqV+Ygu2/0zIzj0ar731hXsAKK9Z9aA0cDr
+   4Gsv7PE+cALAvqBnX+KvaXuYJZeGI+bvihQN+/+RUoFgNZHh/mEDZVfCA
+   osqJoT/X5UiS5kJfnpY5IclUtuQrGA2YQZ7dwChzJ6UbgA+gEXL6l+CaA
+   rPdlSVkJnYVkzOHmJFcbeFwL+lROtaPndVOq4MrgRv8gr9VRLpoSwejwh
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.99,193,1677567600"; 
+   d="asc'?scan'208";a="208958686"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2023 06:53:03 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 13 Apr 2023 06:53:02 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 13 Apr 2023 06:53:00 -0700
+Date:   Thu, 13 Apr 2023 14:52:44 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+CC:     Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint
- controller driver
-Message-ID: <ZDgIZmCgLoC/uieX@lpieralisi>
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <ecd09f27-b799-4741-2c5a-a2de99776c51@opensource.wdc.com>
- <CAAEEuhrk4cSC312UiAL3UwoDZ=urrdDcBThcNHd1dqnAuJTzAw@mail.gmail.com>
- <3c4ed614-f088-928f-2807-deaa5e4b668a@opensource.wdc.com>
- <CAAEEuhqk0scWd3wFbVb9fSgHxPBKotpEPNi+YPG4GD9vLO94mw@mail.gmail.com>
- <8392a7de-666a-bce6-dc9f-b60d6dd93013@opensource.wdc.com>
- <1e8184e9-7e0b-2598-cc5a-e46d6c2f152a@opensource.wdc.com>
- <CAAEEuhoB2LqL=B_BQ0X2T-E+Yt83kPUiv-R9dgU0O-f22ukcWg@mail.gmail.com>
- <CAAEEuhp5WTkaPDRLa8frc9Sc43A3HwApW647v-E9Bse6p5Df5Q@mail.gmail.com>
- <15208569-b3d7-b9f7-6676-9d9122cac84a@opensource.wdc.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 07/10] clk: starfive: Add StarFive JH7110 Video-Output
+ clock driver
+Message-ID: <20230413-hardcover-ground-efbd862c5ec3@wendy>
+References: <20230411135558.44282-1-xingyu.wu@starfivetech.com>
+ <20230411135558.44282-8-xingyu.wu@starfivetech.com>
+ <683cbe934d1df9436e003466d2a419ef.sboyd@kernel.org>
+ <463ee23c-f617-bed0-27a8-56c6fb40d092@starfivetech.com>
+ <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="v0ip4bKAlPiDmbMW"
 Content-Disposition: inline
-In-Reply-To: <15208569-b3d7-b9f7-6676-9d9122cac84a@opensource.wdc.com>
+In-Reply-To: <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 07:09:04AM +0900, Damien Le Moal wrote:
-> On 3/17/23 01:34, Rick Wertenbroek wrote:
-> >>> By the way, enabling the interrupts to see the error notifications, I do see a
-> >>> lot of retry timeout and other recoverable errors. So the issues I am seeing
-> >>> could be due to my PCI cable setup that is not ideal (bad signal, ground loops,
-> >>> ... ?). Not sure. I do not have a PCI analyzer handy :)
-> > 
-> > I have enabled the IRQs and messages thanks to your patches but I don't get
-> > messages from the IRQs (it seems no IRQs are fired). My PCIe link seems stable.
-> > The main issue I face is still that after a random amount of time, the BARs are
-> > reset to 0, I don't have a PCIe analyzer so I cannot chase config space TLPs
-> > (e.g., host writing the BAR values to the config header), but I don't think that
-> > the problem comes from a TLP issued from the host. (it might be).
-> 
-> Hmmm... I am getting lots of IRQs, especially the ones signaling "replay timer
-> timed out" and "replay timer rolled over after 4 transmissions of the same TLP"
-> but also some "phy error detected on receive side"... Need to try to rework my
-> cable setup I guess.
-> 
-> As for the BARs being reset to 0, I have not checked, but it may be why I see
-> things not working after some inactivity. Will check that. We may be seeing the
-> same regarding that.
-> 
-> > I don't think it's a buffer overflow / out-of-bounds access by kernel
-> > code for two reasons
-> > 1) The values in the config space around the BARs is coherent and unchanged
-> > 2) The bars are reset to 0 and not a random value
-> > 
-> > I suspect a hardware reset of those registers issued internally in the
-> > PCIe controller,
-> > I don't know why (it might be a link related event or power state
-> > related event).
-> > 
-> > I have also experienced very slow behavior with the PCI endpoint test driver,
-> > e.g., pcitest -w 1024 -d would take tens of seconds to complete. It seems to
-> > come from LCRC errors, when I check the "LCRC Error count register"
-> > @0xFD90'0214 I can see it drastically increase between two calls of pcitest
-> > (when I mean drastically it means by 6607 (0x19CF) for example).
-> > 
-> > The "ECC Correctable Error Count Register" @0xFD90'0218 reads 0 though.
-> > 
-> > I have tried to shorten the cabling by removing one of the PCIe extenders, that
-> > didn't change the issues much.
-> > 
-> > Any ideas as to why I see a large number of TLPs with LCRC errors in them ?
-> > Do you experience the same ? What are your values in 0xFD90'0214 when
-> > running e.g., pcitest -w 1024 -d (note: you can reset the counter by writing
-> > 0xFFFF to it in case it reaches the maximum value of 0xFFFF).
-> 
-> I have not checked. But I will look at these counters to see what I have there.
+--v0ip4bKAlPiDmbMW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, Apr 12, 2023 at 09:04:08PM -0700, Stephen Boyd wrote:
+> Quoting Xingyu Wu (2023-04-11 23:15:26)
+> > On 2023/4/12 2:33, Stephen Boyd wrote:
+> > > Quoting Xingyu Wu (2023-04-11 06:55:55)
 
-checking where are we with this thread and whether there is something to
-consider for v6.4, if testing succeeds.
+> > >> +       if (ret < 0)
+> > >> +               return dev_err_probe(priv->dev, ret, "failed to turn=
+ on power\n");
+> > >> +
+> > >> +       ret =3D jh7110_vout_top_crg_init(priv, top);
+> > >> +       if (ret)
+> > >> +               goto err_clk;
+> > >> +
+> > >> +       top->base =3D priv->base;
+> > >> +       dev_set_drvdata(priv->dev, (void *)(&top->base));
+> > >=20
+> > > See comment later about setting this to 'top' instead. Casting away
+> > > iomem markings is not good hygiene.
+> >=20
+> > JH7110 resets as the auxiliary device of clocks use the same iomem as t=
+he clocks
+> > and the iomem will be got by dev_get_drvdata() in the 7110 reset driver=
+s when registering reset.
+> > So I follow the basic 7110 reset driver and also set the iomem not top_=
+crg struct.
+>=20
+> Oh I totally missed that this is how it's been done for the other
+> starfive driver. It's still not good hygiene to stash the iomem pointer
+> that way because the iomem marking is lost and has to be recovered. Can
+> you make a wrapper struct, either for the adev or to pass in struct
+> device::platform_data?
 
-Thanks,
-Lorenzo
+FWIW, this did come up on an earlier version of the other starfive
+driver:
+https://lore.kernel.org/linux-clk/e0d8f9ba-5bf4-d7dd-5110-20d4196556f9@star=
+fivetech.com/
+
+I probably should've pushed Hal to use a struct, but evidently I didn't
+reply to his final message there, so apologies for that!
+
+
+--v0ip4bKAlPiDmbMW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDgJLAAKCRB4tDGHoIJi
+0grQAQD5cpctgc5Bq3S7CyFGTLA6byxDhiBh5Iyvw4xFI+lLdAD/SOinBHpjM3Vf
+npC+7trX9b+0Hc7eNQTp7L341SH1nAw=
+=b8hm
+-----END PGP SIGNATURE-----
+
+--v0ip4bKAlPiDmbMW--
