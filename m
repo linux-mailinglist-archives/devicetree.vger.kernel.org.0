@@ -2,105 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D513A6E129A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 18:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F14E6E12A2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 18:46:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbjDMQoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 12:44:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49878 "EHLO
+        id S229853AbjDMQqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 12:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbjDMQoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 12:44:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 355E99019;
-        Thu, 13 Apr 2023 09:44:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BA39F63FF8;
-        Thu, 13 Apr 2023 16:44:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A77BBC433D2;
-        Thu, 13 Apr 2023 16:44:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681404257;
-        bh=MEJrF4pyqtDAzKonc8kAzQeVxagPh+Fqh7RQBvWb4YQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UffXXbHRUvgS7TvoIA6M/muOyTbQUpPKO6fSESGydyNi9PikagA6CHIG/dPcp/yz2
-         f2ecYbJk4z1qKGbgP2OrpHPEwiM6UwvX3U0M9QegjvU9j77VvB7fKx7qJH+tcuh18Z
-         DurS01OxfjD/ytjWt7yRoYOYFYYs4Cs+akXei0Nf+T8Pm4p/chy1+SJ5AgEApmOT8G
-         xRcMPiBCQr9/N1mCdxTlpA/T5z16HOvyCoEo1cirU2MIltKakBCk+wQvI2T0v58M4j
-         ZaWeX/Uspl94hKEFYA4loAyNeyOC2y6GRp4iQVh60yPCgLnk5Hf29F4Hu5Cpmiswm5
-         2/9tH/MWHprCg==
-Date:   Thu, 13 Apr 2023 18:44:12 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] i2c: cadence: Add reset controller support
-Message-ID: <ZDgxXDZGy/Waz4ad@sai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230406154834.171577-1-lars@metafoo.de>
- <20230406154834.171577-2-lars@metafoo.de>
+        with ESMTP id S229797AbjDMQqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 12:46:11 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE9393C0
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:46:05 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id q23so29507492ejz.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:46:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681404364; x=1683996364;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DJjsgRCQD3nGxpiqV9+CyK3OuB9Sivj/PeOsh4G53K0=;
+        b=tbTLXzbzcv/o5pdEVu8hXh8qsR/QKdo5wTXCVHdcMPRA2kdNFcqA8au3eexDMx1JtQ
+         phFtLfgut2lwbhtF6krr/JIpgqpGdAI9Vmo5kwKuAJxPI9vgkzdknD9H4dX/2Yu7/5uM
+         gwc0sYHNp31yNLVSAa9s10Y8oEhrZcNAQXDH2XvPu0OYyFSQb15Ke44yPJ6t/PYj+Nfu
+         s9rXhfcULJiNnCnyFmB2A6KaXxGHn1DfCnSpj8qe4bPN+Vi3foSuqn1KP/BENfKWSYWq
+         vqpyNstVNGuFoJUGURqB6J3Nagl7KMU7xsUTqaQB/R4ReJL7qLuSnS1VqT8uB9wm7TAo
+         8u4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681404364; x=1683996364;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DJjsgRCQD3nGxpiqV9+CyK3OuB9Sivj/PeOsh4G53K0=;
+        b=KnNosUt2KSTCtgacgAE/sMDlvgIfYPL+k5lKVkyAY2ZzXvzrof49FFnWOwdVJX0ygY
+         FLEMosGkubCJX/wglx2y2GY4z3pCig90R7qfuhXmzIBT5cf2GH9KzcZNBykgtvF4l9AE
+         UgMNbN60hpV67S5KLlKzFHV1WB0XMwqtyBKooqZ7CuIXFLLhSDSomW7Koot5XkHrofsK
+         S6WvIwJZelMqTikhqxvV7cKAbzGk+7uq6/2WF/cLU6IXm26DpdjYjXA8bnIZVFtn5ICN
+         hnjkC8rco4OCcC0O+Ke1llPxO0Shh9Uz8pwnAMOFsqX7lnMbCPTTnB3pXi1XnOV4oEwl
+         cQzQ==
+X-Gm-Message-State: AAQBX9dPKtcfh/yYhkVg9Q0PiCdUgA1+6TIEVEFlGA4ZL15aiRlIUe32
+        8TXC4ZhqZdAawtdID5kFzg0atg==
+X-Google-Smtp-Source: AKy350b86CRvvHjujWrh5zEZaxFDPZ1LMnS6r8Jmu7VbtmHIdAhO4+sD9YnyfvCTt1v+etjXJVIQ2w==
+X-Received: by 2002:a17:907:3a03:b0:94c:784f:7569 with SMTP id fb3-20020a1709073a0300b0094c784f7569mr3282936ejc.30.1681404364433;
+        Thu, 13 Apr 2023 09:46:04 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5032:d2d4:ece5:b035? ([2a02:810d:15c0:828:5032:d2d4:ece5:b035])
+        by smtp.gmail.com with ESMTPSA id x6-20020a170906b08600b0094e6db4d4a1sm1198394ejy.186.2023.04.13.09.46.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 09:46:03 -0700 (PDT)
+Message-ID: <24c6d4fe-128a-2fe1-1e35-d124e5f9c265@linaro.org>
+Date:   Thu, 13 Apr 2023 18:46:03 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fUAUArd4fom54vN0"
-Content-Disposition: inline
-In-Reply-To: <20230406154834.171577-2-lars@metafoo.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3] dt-bindings: leds: Convert PCA9532 to dtschema
+Content-Language: en-US
+To:     Wadim Egorov <w.egorov@phytec.de>, upstream@lists.phytec.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org
+Cc:     riku.voipio@iki.fi, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, lee@kernel.org, pavel@ucw.cz
+References: <20230412140552.451527-1-w.egorov@phytec.de>
+ <20230412140552.451527-2-w.egorov@phytec.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230412140552.451527-2-w.egorov@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/04/2023 16:05, Wadim Egorov wrote:
+> Convert the PCA9532 LED Dimmer to dtschema.
+> While at it, update the example to match recommended node names and
+> the link to the product datasheet. Also add GPIO properties since
+> the driver allows to use unused pins as GPIOs.
+> 
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+> ---
 
---fUAUArd4fom54vN0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Thu, Apr 06, 2023 at 08:48:34AM -0700, Lars-Peter Clausen wrote:
-> The Cadence I2C controller has an external reset signal that needs to be
-> de-asserted before the I2C controller can be used.
->=20
-> Add support to the driver to be able to take the peripheral out of reset
-> using the reset controller API. The reset is optional in the driver for
-> compatibility to systems where the reset managed by the bootloader.
->=20
-> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
+Best regards,
+Krzysztof
 
-Applied to for-next, thanks!
-
-
---fUAUArd4fom54vN0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQ4MVwACgkQFA3kzBSg
-Kbb6jw//U1R9s146HmDnj14qmP7Z5rhSD2euR+AvFdYI8zxIMS7ThZ4+nfvdpNYa
-vrFNwLgJ5EWlfPI9f5zkcU2tIps1GFj0FoPnOcLA4eJQFwyarPPBipVq851taeWl
-5K6fYUpYb1oIB1SZmewDudumWnTdNVDMo6QVpgBYZFvkfS8qApao5qeUX1HTEMl9
-HgkTGp2WimJOzn2iCBOHjbxiQtF91aBm3H8s28OzDFj/ISDTKbjor+k9gmtxHTrN
-UHXRVpyFR9otD/o5TxN/aZbU/+1OZYFQVSMP2bfi2tExrKjiG1S6ITmSaiYX7D6+
-Pqb7tUdc3MUmRzaJzqB9tKlGLH4ZIDJYx+FNvWwIf3j/du2Yj0WcPqF+EyeBDCuW
-FPFD9/cVBMlaJSsFtHPNv2oRTErOP1RCXdExVRaW7zkx/eu/1ud6GXi/WgJQfoaz
-vQpK60Q5o9X/NAt+iQDokKsXo4ICQ6wtPhGMQ9b6sTgMdr3tp1bj+f7K67t3n9wg
-EKlVj5CAXi9u7WU9Sapzv8mWd96i03xin/NnQD9ErUvCe2TKZTgXGHXq2Mf7oQBm
-wBacPL51+sNI7F95wIwlErBiftq9locPdZTwLEnctZu5uLOeeA6OjaDZ4jzXrE78
-7sYtC41abL5OV+GWNybeYVKTH0ntWCPSktaEgaRGSmGbipSVurs=
-=qkyW
------END PGP SIGNATURE-----
-
---fUAUArd4fom54vN0--
