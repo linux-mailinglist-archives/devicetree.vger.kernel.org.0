@@ -2,145 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E6DA6E02A1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 01:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B8146E02F6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 02:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjDLXiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 19:38:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43040 "EHLO
+        id S229712AbjDMAEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 20:04:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjDLXiu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 19:38:50 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276A11FE9
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 16:38:49 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-947abd74b10so551413366b.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 16:38:49 -0700 (PDT)
+        with ESMTP id S229593AbjDMAEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 20:04:40 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C15E51FCF
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 17:04:38 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1a2104d8b00so166455ad.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 17:04:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1681342727;
+        d=google.com; s=20221208; t=1681344278; x=1683936278;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Cqi3F2DLTaK1XRD+XBhKe6ot1+wzOmTh1thtCJqRlgA=;
-        b=VV/BN1szRArbtzTWiRfhFDCLoYJM3RKfVv+GHRmlXJ9owwqzHhiDB8wMf0nrMmomLI
-         cXNiOprrIBUP5BAIMj4cfU2KJwoDAVE2BM3MvNMWBiTBF+/xE1lHtyAV4BMhBSWerrYH
-         r+he4F8RCcFcLdN0Bb9F/lVurdNIjtoKlZt5Qc7molk5iWChp5uhQvemYzAXvuFrKEgC
-         y9A5KJ1bR0JXbXDNUjtJi2jocfJTWlW4Hia0hiyHKytihdazhl9ndLNBFVRavyHowkGT
-         a8/f+eO9NkoUKrdws6mvUKkT/1rAFhYVQPPHQI2U1vdgaDmiE2tWr2tu6V3617uV7tex
-         /j9g==
+        bh=6TD8d5lr5MkiN2++oGGCJCsMVGJRbHc45GRZJ35kiN8=;
+        b=tkWR9F20ucPpo1lTciwCS1VaBcp6T1BGCSSSD9KrFtZ1Zwmb9oI1TiAedLL9atVPlD
+         7YjRO1VK2rB3tIouLTrc+g0MYG2nTZpI1vJWYLWbFGe1niObTtSPjfLv5OX+qPRUred0
+         xlUfHGCufknPpcmFybego7lDy/nGNJyBoO2PzGNsMYG1OZsFJ9jIDmd4IlSFBxWgNe35
+         /dGGPPpFksV4mW6ULY2dNeVksXks96kOFkWiyuNVZwZjP0/zbaHcRZ6nkTTYH/CA0wjz
+         BUv3YYo30efcJAv1sd7l6kjVaranKcmS2jxuRoQ3/0DfGcBdytqQ7J+5hXaC3Jlh3ktC
+         V3dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681342727;
+        d=1e100.net; s=20221208; t=1681344278; x=1683936278;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Cqi3F2DLTaK1XRD+XBhKe6ot1+wzOmTh1thtCJqRlgA=;
-        b=TCN+hZRLTPQYzjtf61dX+22qGI3sludhSue2691KPCFzwRiAI8LkHF3u1ivBWPJVrX
-         m0cFVaEIESiDF7b8jIx9+uhtD0TXJisQ8UbUo/yGsO6RmNIm1Zdyv4OmfhhlOjFJk++H
-         skE2PholgarqRfJBar19M3+Zw3d6AJ9oJKskouvVyfW0LIlZFh2vMRSPtcKkkloPZ8uo
-         ABQZEu4yFe6tzZZww9VlH0kxlaP2RUOFVY6sU856+rNPB2aXXjLxfBuyaITjIRoJV62I
-         ANxwsH+B0CG/VTwl1B/jh1JOwRL1TUKE6jznvFeZN5XXerF9U09Ab5vsbjOd7O+np/xu
-         f8TQ==
-X-Gm-Message-State: AAQBX9fCeohOq9IfOWpnpzfortlD9BhhbuddDVn2jB2qeVqmCUWfutnE
-        T/iRf950Nf7gp2lfZb/SeZCSfxyqSZYkr4NYmY6xCQ==
-X-Google-Smtp-Source: AKy350Ylw76zATlXqd22goKD6jZ1DfF1RaS1ReYl4pCHK9HRFt/rpX4TdFDVfYAqLNPyVH8aVC/lYmaBfyGXOk10SPU=
-X-Received: by 2002:a50:aa84:0:b0:506:4139:541f with SMTP id
- q4-20020a50aa84000000b005064139541fmr190771edc.8.1681342727602; Wed, 12 Apr
- 2023 16:38:47 -0700 (PDT)
+        bh=6TD8d5lr5MkiN2++oGGCJCsMVGJRbHc45GRZJ35kiN8=;
+        b=BYoKtKpk5/t3gmyL9q2W1NepGb8/Er3ieWf5NbjKbU1YAPMvDeskPiGtlx1yTsQjCx
+         Cz+bgrXdGJuM5yf9PuJ3jPf43J4LV4GJScdnxtJXdRQ+P3tWcxOt3KPH3at05+gkDXqN
+         onYpuQiWPzi7CcxoXAV2+ru/n1KRlsmHTC3OnXL4R7gQqxCsjvAFhNxz7W1k2546gkGh
+         XQzjMjb8jaAJKuhNMxVJbEPTbGXkM/bb1nbyb34y55ttggv82CEC6d5bByATtqZsNxmk
+         yDHQYl2jNPgee0mUXOkX15Bsb4YnMZlsH1CLMtJyTvfvGn2FsmIpKjd9ZUrnYCtKbcPP
+         qErA==
+X-Gm-Message-State: AAQBX9dvPMUonHE30qFJ1iKpTsN+XFZhZE7C0do1wBKLfwmFRtQYhjoX
+        sVyj6xZuHNsGB6I1q/1GnMmJfdhJqP/q/Ci9OTowJw==
+X-Google-Smtp-Source: AKy350aFp8aD8fS3GRkg+Ma4y3lVM9sfzyPJ+FDQtWAnxs5derdP3Ayk1ShdJ+4ob5RT0Xr4WW4vBVunwX7+cJuqMpE=
+X-Received: by 2002:a17:902:a515:b0:19f:3c83:e9fe with SMTP id
+ s21-20020a170902a51500b0019f3c83e9femr829013plq.14.1681344278084; Wed, 12 Apr
+ 2023 17:04:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230326233812.28058-1-steev@kali.org> <20230326233812.28058-3-steev@kali.org>
- <ZCVgMuSdyMQhf/Ko@hovoldconsulting.com> <CAKXuJqjJjd6SY1g3JW8w53rEVCqgDkJXQ=1iA3qXcF+C9qv1SQ@mail.gmail.com>
- <CABBYNZKX9bixyy8GZ0VDFaeNeY0_MSVDDNvcTqiAXEx8zFXfbA@mail.gmail.com>
-In-Reply-To: <CABBYNZKX9bixyy8GZ0VDFaeNeY0_MSVDDNvcTqiAXEx8zFXfbA@mail.gmail.com>
-From:   Steev Klimaszewski <steev@kali.org>
-Date:   Wed, 12 Apr 2023 18:38:36 -0500
-Message-ID: <CAKXuJqiZ9iQESFpVs-b5YLEF5cuPQf7tNtBYGerUxfEp3sj19Q@mail.gmail.com>
-Subject: Re: [PATCH v8 2/4] Bluetooth: hci_qca: Add support for QTI Bluetooth
- chip wcn6855
-To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc:     Johan Hovold <johan@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20230327222159.3509818-1-sboyd@kernel.org> <20230327222159.3509818-6-sboyd@kernel.org>
+In-Reply-To: <20230327222159.3509818-6-sboyd@kernel.org>
+From:   Daniel Latypov <dlatypov@google.com>
+Date:   Wed, 12 Apr 2023 17:04:26 -0700
+Message-ID: <CAGS_qxryWVOT9cBtKk28=NupbLP6_AiCj0P3np2GpMVKkyQOLg@mail.gmail.com>
+Subject: Re: [PATCH v3 05/11] of: Add a KUnit test for overlays and test
+ managed APIs
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Gow <davidgow@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>,
-        Tim Jiang <quic_tjiang@quicinc.com>
+        devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        kunit-dev@googlegroups.com, Maxime Ripard <maxime@cerno.tech>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luiz,
+On Mon, Mar 27, 2023 at 3:22=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wro=
+te:
+>
+> Test the KUnit test managed overlay APIs. Confirm that platform devices
+> are created and destroyed properly. This provides us confidence that the
+> test managed work correctly and can be relied upon to provide tests with
+> fake platform devices and device nodes via overlays compiled into the
+> kernel image.
+>
 
-On Wed, Apr 12, 2023 at 3:00=E2=80=AFPM Luiz Augusto von Dentz
-<luiz.dentz@gmail.com> wrote:
->
-> Hi Steev,
->
-> On Thu, Mar 30, 2023 at 9:35=E2=80=AFAM Steev Klimaszewski <steev@kali.or=
-g> wrote:
-> >
-> > Hi Johan,
-> >
-> > On Thu, Mar 30, 2023 at 5:10=E2=80=AFAM Johan Hovold <johan@kernel.org>=
- wrote:
-> > >
-> > > On Sun, Mar 26, 2023 at 06:38:10PM -0500, Steev Klimaszewski wrote:
-> > > > Add regulators, GPIOs and changes required to power on/off wcn6855.
-> > > > Add support for firmware download for wcn6855 which is in the
-> > > > linux-firmware repository as hpbtfw21.tlv and hpnv21.bin.
-> > > >
-> > > > Based on the assumption that this is similar to the wcn6750
-> > > >
-> > > > Tested-on: BTFW.HSP.2.1.0-00538-VER_PATCHZ-1
-> > > >
-> > > > Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> > > > Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> > > > Tested-by: Bjorn Andersson <andersson@kernel.org>
-> > > > ---
-> > > > Changes since v7:
-> > > >  * None
-> > >
-> > > Only noticed now when Luiz applied the patches, but why did you drop =
-my
-> > > reviewed-by and tested-by tags from this patch when submitting v8?
-> > >
-> > > For the record:
-> > >
-> > > Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> > > Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> > >
-> > Oops, that wasn't intentional! I only meant to drop it on the dts bits
-> > as that part I wanted to make sure I got right based on your comments,
-> > my apologies!
-> > --steev
->
-> This one seems to be causing a new warning:
->
-> drivers/bluetooth/hci_qca.c:18
-> 94:37: warning: unused variable 'qca_soc_data_wcn6855' [-Wunused-const-va=
-riable]
->
-I had seen this as well and I just noticed that the others were marked
-as __maybe_unused and I forgot to.  Will send a fix up for that!
+The discussion around kunit_cleanup() caught my eye below, so one
+small comment about that.
 
+<snip>
 
-> --
-> Luiz Augusto von Dentz
--- steev
+> +/* Test that of_overlay_apply_kunit() cleans up after the test is finish=
+ed */
+> +static void of_overlay_apply_kunit_cleanup(struct kunit *test)
+> +{
+> +       struct device *dev;
+> +       struct device_node *np;
+> +
+> +       KUNIT_ASSERT_EQ(test, 0,
+> +                       of_overlay_apply_kunit(test, kunit_overlay_test))=
+;
+> +
+> +       np =3D of_find_node_by_name(NULL, kunit_node_name);
+> +       of_node_put(np); /* Not derefing 'np' after this */
+> +       KUNIT_ASSERT_NOT_ERR_OR_NULL(test, np);
+> +
+> +       dev =3D bus_find_device(&platform_bus_type, NULL, np, bus_match_n=
+p);
+> +       put_device(dev); /* Not derefing 'device' after this */
+> +       KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
+> +
+> +       /* Remove overlay */
+> +       kunit_cleanup(test);
+
+Note: this cleans up *all* resources associated with `test`.
+Right now, it's probably fine, but this probably isn't the safest approach.
+
+Notably, two of the new/upcoming API changes rely on resource,
+kunit/static_stub.h and kunit_add_action() [1].
+Calling kunit_cleanup() undoes all the stubs and immediately triggers
+all the actions.
+
+Perhaps you can create your own local `struct kunit` like in [2]
+E.g.
+
+struct kunit subtest; // not sure what to call this...
+
+kunit_init_test(&subtest, "fake test", NULL);
+/* use subtest */
+kunit_cleanup(&subtest);
+
+There's also already-submitted code doing similar things in
+lib/kunit/kunit-test.c you can look at, but it's in init/exit funcs.
+See kunit_resource_test_init() and kunit_resource_test_exit().
+
+[1] https://lore.kernel.org/linux-kselftest/20230331080411.981038-2-davidgo=
+w@google.com/
+[2] https://lore.kernel.org/linux-kselftest/20230403201930.2019419-1-rmoar@=
+google.com/
+
+Daniel
