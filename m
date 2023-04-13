@@ -2,75 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9316E0F42
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2038E6E0F4E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbjDMNxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55810 "EHLO
+        id S229936AbjDMNzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:55:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231524AbjDMNxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:53:10 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C85C9ED9;
-        Thu, 13 Apr 2023 06:53:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1681393985; x=1712929985;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RI5dxyny4pd6aZFj4Z1YM4GJ/8KIefexr1VJF7/pVbY=;
-  b=RkREgTExxJvehHtbjdlCpVYyXJqGDk9uQLbfhoOzhSFnTZFjZlN2/8jE
-   uVB4BFdVtquNSa3jspILzbz/w/YE1gh8Wy91p5SigOusEbgOs64vXvBBK
-   U8KhNrchxkVyyo0Iu5H00rbqV+Ygu2/0zIzj0ar731hXsAKK9Z9aA0cDr
-   4Gsv7PE+cALAvqBnX+KvaXuYJZeGI+bvihQN+/+RUoFgNZHh/mEDZVfCA
-   osqJoT/X5UiS5kJfnpY5IclUtuQrGA2YQZ7dwChzJ6UbgA+gEXL6l+CaA
-   rPdlSVkJnYVkzOHmJFcbeFwL+lROtaPndVOq4MrgRv8gr9VRLpoSwejwh
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,193,1677567600"; 
-   d="asc'?scan'208";a="208958686"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2023 06:53:03 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 13 Apr 2023 06:53:02 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 13 Apr 2023 06:53:00 -0700
-Date:   Thu, 13 Apr 2023 14:52:44 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v4 07/10] clk: starfive: Add StarFive JH7110 Video-Output
- clock driver
-Message-ID: <20230413-hardcover-ground-efbd862c5ec3@wendy>
-References: <20230411135558.44282-1-xingyu.wu@starfivetech.com>
- <20230411135558.44282-8-xingyu.wu@starfivetech.com>
- <683cbe934d1df9436e003466d2a419ef.sboyd@kernel.org>
- <463ee23c-f617-bed0-27a8-56c6fb40d092@starfivetech.com>
- <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
+        with ESMTP id S229636AbjDMNzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:55:50 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5241734;
+        Thu, 13 Apr 2023 06:55:50 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id e3so3588013qtm.12;
+        Thu, 13 Apr 2023 06:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681394149; x=1683986149;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a9HePoc1byCaDvU+7cJGg3q4HHTE302VhN9dMxtjV28=;
+        b=IU3p539oEgXcSt7swb99qmrSMzBEaMueElgANoVE5v+GBN9XULkEkhWYM2x6lbZKR6
+         CFxt6BpeulxKzzSN0Q7QAsFOGupBBFuR9Get8bhVa584vxuXrjJS1DZjcGcpnQa3a61T
+         I8WyvwdzZF5y3hzj/0Dj4+EiGdDVIrKdq1znC5yC4ARC4b9j3dUW1Slry5dil2pphpXo
+         G6E6HWYohUaGXOvf6cB9YvWyz2YWFWLOOldEX7wbqC4QMyr7r2lPxfd3a2nVkqaN5Uyq
+         nHfjvGELVZdKXMWu5PGy965r7/W8KACQMaNscFGHKrEFwp3eiXthwzbGB9Xv3IFGSgkn
+         QO7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681394149; x=1683986149;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a9HePoc1byCaDvU+7cJGg3q4HHTE302VhN9dMxtjV28=;
+        b=Z9+tTc6UcQjMKsxNdHTOBijsgD2uiHfJctPxKM54oZ8Sc7xyh6po4XNre+KIa3Zby3
+         RhXFfkIcsynTncr+CgckekzZZ03x0yDlWsYjE80qMWUxlWYi8VL5/szIr6L8hiTv9mBr
+         dFPfmDaHfKuoSJMmWes8o5n7mla1mUXIqYSc648jRTbcghHZikZvwzzZyuAuzE0TkPJc
+         CCwx/Cm9dzUKfIj0ZXUwhE5wmvKFmyJ0ohLMCDAil+1wljFLBYh229QSmrXgHXx0N0rv
+         7Hvl0ApchhlxYd7ysXXtRSXZbrZWS9WsMuoRWAT7cca+tv2N7YlnNAJiFJBSK3uk4OJE
+         Gv1w==
+X-Gm-Message-State: AAQBX9dSmSzC/Fb6Wpct0DMNdtl7zM+JSKydHOfmYC+NKexbA9T/VZzT
+        mqrHlYBWkXTC0C1t86HQ4sg=
+X-Google-Smtp-Source: AKy350axQqcWdyjB+SucIWq7SiBVGiecJhizq+1cVRX/wBibDs0L/nrvkaMQ1InlqLOZeGrDIKdWXQ==
+X-Received: by 2002:a05:622a:2c5:b0:3e3:8a0b:8c80 with SMTP id a5-20020a05622a02c500b003e38a0b8c80mr3117294qtx.41.1681394149054;
+        Thu, 13 Apr 2023 06:55:49 -0700 (PDT)
+Received: from [192.168.1.105] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id bj9-20020a05620a190900b007487c780f5esm475802qkb.121.2023.04.13.06.55.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 06:55:48 -0700 (PDT)
+Message-ID: <81ebb6c3-ff6a-c8cd-ae5b-3a5594e9c9f9@gmail.com>
+Date:   Thu, 13 Apr 2023 06:55:44 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="v0ip4bKAlPiDmbMW"
-Content-Disposition: inline
-In-Reply-To: <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [net-next PATCH v6 07/16] net: phy: marvell: Add software control
+ of the LEDs
+Content-Language: en-US
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230327141031.11904-1-ansuelsmth@gmail.com>
+ <20230327141031.11904-8-ansuelsmth@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230327141031.11904-8-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,61 +94,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---v0ip4bKAlPiDmbMW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Apr 12, 2023 at 09:04:08PM -0700, Stephen Boyd wrote:
-> Quoting Xingyu Wu (2023-04-11 23:15:26)
-> > On 2023/4/12 2:33, Stephen Boyd wrote:
-> > > Quoting Xingyu Wu (2023-04-11 06:55:55)
-
-> > >> +       if (ret < 0)
-> > >> +               return dev_err_probe(priv->dev, ret, "failed to turn=
- on power\n");
-> > >> +
-> > >> +       ret =3D jh7110_vout_top_crg_init(priv, top);
-> > >> +       if (ret)
-> > >> +               goto err_clk;
-> > >> +
-> > >> +       top->base =3D priv->base;
-> > >> +       dev_set_drvdata(priv->dev, (void *)(&top->base));
-> > >=20
-> > > See comment later about setting this to 'top' instead. Casting away
-> > > iomem markings is not good hygiene.
-> >=20
-> > JH7110 resets as the auxiliary device of clocks use the same iomem as t=
-he clocks
-> > and the iomem will be got by dev_get_drvdata() in the 7110 reset driver=
-s when registering reset.
-> > So I follow the basic 7110 reset driver and also set the iomem not top_=
-crg struct.
->=20
-> Oh I totally missed that this is how it's been done for the other
-> starfive driver. It's still not good hygiene to stash the iomem pointer
-> that way because the iomem marking is lost and has to be recovered. Can
-> you make a wrapper struct, either for the adev or to pass in struct
-> device::platform_data?
-
-FWIW, this did come up on an earlier version of the other starfive
-driver:
-https://lore.kernel.org/linux-clk/e0d8f9ba-5bf4-d7dd-5110-20d4196556f9@star=
-fivetech.com/
-
-I probably should've pushed Hal to use a struct, but evidently I didn't
-reply to his final message there, so apologies for that!
 
 
---v0ip4bKAlPiDmbMW
-Content-Type: application/pgp-signature; name="signature.asc"
+On 3/27/2023 7:10 AM, Christian Marangi wrote:
+> From: Andrew Lunn <andrew@lunn.ch>
+> 
+> Add a brightness function, so the LEDs can be controlled from
+> software using the standard Linux LED infrastructure.
+> 
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Acked-by: Pavel Machek <pavel@ucw.cz>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZDgJLAAKCRB4tDGHoIJi
-0grQAQD5cpctgc5Bq3S7CyFGTLA6byxDhiBh5Iyvw4xFI+lLdAD/SOinBHpjM3Vf
-npC+7trX9b+0Hc7eNQTp7L341SH1nAw=
-=b8hm
------END PGP SIGNATURE-----
-
---v0ip4bKAlPiDmbMW--
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
