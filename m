@@ -2,70 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 387576E131A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7796E132F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjDMREd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 13:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36910 "EHLO
+        id S229612AbjDMRIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 13:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230111AbjDMREa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:04:30 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB017D8E;
-        Thu, 13 Apr 2023 10:04:28 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id t16so3265585ybi.13;
-        Thu, 13 Apr 2023 10:04:28 -0700 (PDT)
+        with ESMTP id S229575AbjDMRIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:08:49 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4011B4;
+        Thu, 13 Apr 2023 10:08:48 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id e7so4836966wrc.12;
+        Thu, 13 Apr 2023 10:08:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681405467; x=1683997467;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KYntzwA2QnPK9xOrgshDrAFUujV3P0eNxGswFpFhQIk=;
-        b=sM2sUKt9yEmz9cXYenp9w3rAdPtPDxXn5V00HanFFuNjensfF+Us6VTipZGJBgNVB5
-         L+ydky9CuQxAva8RGKpp5QmWSVhgLxHwWy9cF6bGzvFArG1+KpsNI8JRZlH1TIyyjADC
-         3YkYHxQwv8urME75tdYyX+pTuXz7C6qjwHzURon2oiUo9zx9HAoXTTyKAN1MkgS8Z+SG
-         J9YTiAqLCEKD2s9jduzRpcjsvNhqa6v7vru+zGfmy0Kj+B0tta95TurO4yzG5VpPNsS1
-         3A8BYGlILPiizjVPZBqcN14ZBXdClgpg70tYejRqqZ0KozFUUng55C7Z4rouWd/ZOqQS
-         rliw==
+        d=gmail.com; s=20221208; t=1681405727; x=1683997727;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vUAnBlFRSGBlwXwSQXAqm7P10EiEl+48o/NRTbPOIwI=;
+        b=HWYW8/RVFPxSHRWBcro0ZM0vclYoDzFo9NEifLGdrjORDSE6iDq9AwFwfenSd8GxEt
+         rfRXewl/Bk7aKC89XahV+cxJJK05ZfxJY1Dp8BnrMhAPCHXF7I83wXYNTPf2jfmZmVT1
+         GkUe8G3rSbx0xGKbSHUu3PI5f7NRRPzrcgUIA30sxCAzFKjb+37KblE4FEkktfMna2ja
+         nSI5tXZ/8XawREqOXVtRL81+F26lOMjqD1toA7oWuaBseU9a4dPlQTCmVx9ETv2rL7ub
+         EGOqzjQXE46D1peydsH0koKhuHs41ofPDUSD1Z7SIUAqvdyYrS5UTWfMYAfDE7RlNSCW
+         632w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681405467; x=1683997467;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KYntzwA2QnPK9xOrgshDrAFUujV3P0eNxGswFpFhQIk=;
-        b=J8qL2nQMoSZnzwu/VzCbH65BAwtsh2ImWwTe/EGdv4+PEPK72HO7zR6G9SWLzSkA4y
-         20ARex0Djrr5cbQ8iHAYdFjrBJzSHymSvsIHHBc9pir9kXP2Wv0p/A2gt51q6FhFdb0U
-         oQ5XjTXkhbMquJWq+LBLXgwAlvyplS/DmysgY2Cc0l9e8++0f8IR7WZqx0//ejc66pOc
-         2qxckWDPgQlwwQ3cN2xIweL9LXY30zKhGr9TKjw1l+R9tiLVyPDrvqlZh4Le3TT6dPZ4
-         B9BD+RJ06LTgQNR7awAM3Dw9IoosCO33X2LWPKSunjrZc6QOG2Zsjp2HQEv++uBGBU1V
-         IXgg==
-X-Gm-Message-State: AAQBX9cOL9YxzWHUbVItBKjBapDnBRa9OppmivxHSD21Cjrj1E5GQupa
-        /1fmQsGY8wTPK1PqWY7o10M=
-X-Google-Smtp-Source: AKy350b5fAtiBx82KDTxqb9UUWUZXaxIURJwS64DLKUDnQ189qF+erBNEuCZxSLRT5D8yFzEjrs5LQ==
-X-Received: by 2002:a25:2b4a:0:b0:b7d:d397:5c51 with SMTP id r71-20020a252b4a000000b00b7dd3975c51mr2557400ybr.17.1681405467692;
-        Thu, 13 Apr 2023 10:04:27 -0700 (PDT)
-Received: from localhost.localdomain ([98.58.151.237])
-        by smtp.googlemail.com with ESMTPSA id e189-20020a2537c6000000b00b8f46c4b4casm572591yba.20.2023.04.13.10.04.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 10:04:27 -0700 (PDT)
-From:   John Clark <inindev@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        John Clark <inindev@gmail.com>
-Subject: [v2] arm64: dts: rockchip: Add pinctrl gpio-ranges for rk356x
-Date:   Thu, 13 Apr 2023 13:03:37 -0400
-Message-Id: <20230413170337.6815-1-inindev@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230413144316.4247-1-inindev@gmail.com>
-References: <20230413144316.4247-1-inindev@gmail.com>
+        d=1e100.net; s=20221208; t=1681405727; x=1683997727;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vUAnBlFRSGBlwXwSQXAqm7P10EiEl+48o/NRTbPOIwI=;
+        b=Nb3s0eivY4JipZIF+kncI+IDPT7N/N5Wy72RATGSIwHbw39GuAd33VNJxnGK6l/OED
+         Bu0mAhwjRP89273hoLTjGs/CqWhik3eOzQZSyJ6Ttd9nCRi7iQFH9l4Fan62gAs9yGbe
+         VGH3Gc8vsJtNdZqgCt7b28bmX1ngb7ihjeaZNV1LBcSbOQEXBV4leHUDnIW0KmD81Xwb
+         UyVi+JHIpeg0PAScGutjYgS6XCHCSmbPcIUQKJgckSMZeb5aZLP6+M1k3Y17Dt34NqPF
+         OS0ltApbkqqbiWsOTLS8bYREg25hj1RM3I51CkuQjqY9saQYDYqUJN0ZXMpFdG4wcC6b
+         LGTQ==
+X-Gm-Message-State: AAQBX9eYqhqywrosyJJJtmwGnMBanm5M84ypf5SnHOGzYiI7fhRTFeqV
+        BMQab1dOCrL/5qj6VBNG+C/lq90i5V5ZGg==
+X-Google-Smtp-Source: AKy350arxfCCpaVx1w4hHZM1E1HpJLjfl+cRZdLDdeSnQNukXu4TUaQgzkTfOoR3xnpv2XCmUfu/vg==
+X-Received: by 2002:a5d:63c4:0:b0:2ef:f9d:6adf with SMTP id c4-20020a5d63c4000000b002ef0f9d6adfmr2154403wrw.35.1681405726957;
+        Thu, 13 Apr 2023 10:08:46 -0700 (PDT)
+Received: from [192.168.0.32] ([37.222.243.26])
+        by smtp.gmail.com with ESMTPSA id u8-20020a5d6ac8000000b002eaac3a9beesm1700208wrw.8.2023.04.13.10.08.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 10:08:45 -0700 (PDT)
+Message-ID: <5c1d69c8-d973-fa7b-1f14-c72729ff5594@gmail.com>
+Date:   Thu, 13 Apr 2023 19:08:41 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 3/6] soc: mediatek: virt: geniezone: Introduce
+ GenieZone hypervisor support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yi-De Wu <yi-de.wu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Jades Shih <jades.shih@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        My Chuang <my.chuang@mediatek.com>,
+        Shawn Hsiao <shawn.hsiao@mediatek.com>,
+        PeiLun Suei <peilun.suei@mediatek.com>,
+        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+        Liju Chen <liju-clr.chen@mediatek.com>
+References: <20230413090735.4182-1-yi-de.wu@mediatek.com>
+ <20230413090735.4182-4-yi-de.wu@mediatek.com>
+ <1aa701cc-92ca-71be-0663-df4bfae66c2f@linaro.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <1aa701cc-92ca-71be-0663-df4bfae66c2f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,57 +95,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio-range properties to the pinctrl gpio nodes in rk356x.dtsi
 
-Signed-off-by: John Clark <inindev@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 802fcc96384e..f62e0fd881a9 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -1808,6 +1808,7 @@ gpio0: gpio@fdd60000 {
- 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&pmucru PCLK_GPIO0>, <&pmucru DBCLK_GPIO0>;
- 			gpio-controller;
-+			gpio-ranges = <&pinctrl 0 0 32>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -1819,6 +1820,7 @@ gpio1: gpio@fe740000 {
- 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
- 			gpio-controller;
-+			gpio-ranges = <&pinctrl 0 32 32>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -1830,6 +1832,7 @@ gpio2: gpio@fe750000 {
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinctrl 0 64 32>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -1841,6 +1844,7 @@ gpio3: gpio@fe760000 {
- 			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
- 			gpio-controller;
-+			gpio-ranges = <&pinctrl 0 96 32>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -1852,6 +1856,7 @@ gpio4: gpio@fe770000 {
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
- 			gpio-controller;
-+			gpio-ranges = <&pinctrl 0 128 32>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
--- 
-2.39.2
+On 13/04/2023 14:55, Krzysztof Kozlowski wrote:
+> On 13/04/2023 11:07, Yi-De Wu wrote:
+>> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+>>
+>> GenieZone is MediaTek proprietary hypervisor solution, and it is running
+>> in EL2 stand alone as a type-I hypervisor. This patch exports a set of
+>> ioctl interfaces for userspace VMM (e.g., crosvm) to operate guest VMs
+>> lifecycle (creation, running, and destroy) on GenieZone.
+>>
+>> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+>> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
+>> ---
+>>   arch/arm64/include/uapi/asm/gzvm_arch.h       |  79 ++++
+>>   drivers/soc/mediatek/Kconfig                  |   2 +
+>>   drivers/soc/mediatek/Makefile                 |   1 +
+>>   drivers/soc/mediatek/virt/geniezone/Kconfig   |  17 +
+> 
+> Hypervisor drivers do not go to soc. Stop shoving there everything from
+> your downstream. Find appropriate directory, e.g. maybe drivers/virt.
 
+Acked, what is the reason you want to add this to drivers/soc instead of 
+drivers/virt?
+
+Regards,
+Matthias
+
+> See:
+> https://lore.kernel.org/all/20230304010632.2127470-1-quic_eberman@quicinc.com/
+> 
+> You should follow that discussion as well and be sure that all concerns
+> raised for Gunyah are solved also here.
+> 
+> Best regards,
+> Krzysztof
+> 
