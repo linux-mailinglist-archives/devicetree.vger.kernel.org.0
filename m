@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 404B76E09A1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 11:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CF486E09B4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 11:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjDMJDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 05:03:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57122 "EHLO
+        id S229870AbjDMJIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 05:08:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbjDMJDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 05:03:23 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B970193EF;
-        Thu, 13 Apr 2023 02:03:08 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A83E48067;
-        Thu, 13 Apr 2023 17:03:00 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Apr
- 2023 17:03:00 +0800
-Received: from [192.168.125.82] (183.27.97.249) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Apr
- 2023 17:02:59 +0800
-Message-ID: <0c94aadf-fac3-d05c-1c54-ae8337526849@starfivetech.com>
-Date:   Thu, 13 Apr 2023 17:02:58 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229482AbjDMJIQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 05:08:16 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2405319A9;
+        Thu, 13 Apr 2023 02:08:08 -0700 (PDT)
+X-UUID: b2acd338d9da11edb6b9f13eb10bd0fe-20230413
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IJBhdLEftjKd/RMnGVYFfq0WyqFuvFWPZWbwN8VhW4c=;
+        b=HwqLloYfiwgtmvMZMDgMYLc4fyc2ujG+zhEyhGIQWwmENIbDkPSwaH6mStqOcpoYVigSSywSUcD2/bO3EiKLn/ljTgqyGjEuU7uFoxLlpAPz27LWi+gn124PCq7P8NvkUfv45dHqp/u+A3gc4DGncNNlVEGaEvXdveLjf6pB75w=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:20c4eaad-0cfa-4d1a-b5ba-b0785c46c5a8,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:95
+X-CID-INFO: VERSION:1.1.22,REQID:20c4eaad-0cfa-4d1a-b5ba-b0785c46c5a8,IP:0,URL
+        :0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:95
+X-CID-META: VersionHash:120426c,CLOUDID:75cb34a1-8fcb-430b-954a-ba3f00fa94a5,B
+        ulkID:230413170805P1IX5SS6,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-UUID: b2acd338d9da11edb6b9f13eb10bd0fe-20230413
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yi-de.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1434903257; Thu, 13 Apr 2023 17:08:04 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Thu, 13 Apr 2023 17:08:02 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Thu, 13 Apr 2023 17:08:02 +0800
+From:   Yi-De Wu <yi-de.wu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
- <20230412084540.295411-2-changhuang.liang@starfivetech.com>
- <8dd0dc63-e0df-8764-f756-da032d9d671c@linaro.org>
- <eb47b7c7-bdbb-92d9-ba39-604ce487f297@starfivetech.com>
- <f6a4fb28-d635-4d99-44bb-d929cb41eef2@linaro.org>
- <b34a8d59-34e4-8358-9d2b-367f4707ca7c@starfivetech.com>
- <f0d82428-aaa5-3dd4-bc29-f1057fe749bc@linaro.org>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <f0d82428-aaa5-3dd4-bc29-f1057fe749bc@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Jades Shih <jades.shih@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        My Chuang <my.chuang@mediatek.com>,
+        Shawn Hsiao <shawn.hsiao@mediatek.com>,
+        PeiLun Suei <peilun.suei@mediatek.com>,
+        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+        Liju Chen <liju-clr.chen@mediatek.com>,
+        Yi-De Wu <yi-de.wu@mediatek.com>
+Subject: [PATCH v1 0/6] GenieZone hypervisor drivers
+Date:   Thu, 13 Apr 2023 17:07:29 +0800
+Message-ID: <20230413090735.4182-1-yi-de.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,44 +82,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is based on linux-next, tag: next-20230412.
 
+GenieZone is MediaTek proprietary hypervisor solution, and it is running
+in EL2 stand alone as a type-I hypervisor. It is a pure EL2
+implementation which implies it does not rely any specific host VM, and
+this behavior improves GenieZone's security as it limits its interface.
 
-On 2023/4/13 16:41, Krzysztof Kozlowski wrote:
-> On 13/04/2023 04:34, Changhuang Liang wrote:
->>>>>> +  lane_maps:
->>>>>
->>>>> Why did this appear? Underscores are not allowed. It looks like you
->>>>> re-implement some standard property.
->>>>>
->>>>
->>>> Will change to lane-maps.
->>>> Yes, according to Vinod advice, lane mapping table use device tree
->>>> to parse makes sense.
->>>
->>> Hm, I have a feeling that I saw such property, so you should dig into
->>> existing and in-flight bindings.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> A standard property? Like "clocks" or "resets"?
-> 
-> Like lane-polarities now submitted to one MIPI.
-> 
-> Anyway it does not look like a property of a board. You said it is fixed
-> per SoC, so it should be implied from the compatible. Otherwise please
-> explain in description and provide some rationale.
-> 
-> Best regards,
-> Krzysztof
-> 
+To enable guest VMs running, a driver (gzvm) is provided for VMM (virtual
+machine monitor) to operate. Currently, the gzvm driver supports only
+crosvm.
 
-This property is the only one used for this IP, I have compared this IP with
-other DPHY rx module, DPHY modules form the other manufacturers not have this
-configure.
-And we also have a SoC called JH7100. It DPHY rx module is the same as JH7110.
-But we don't do the upstream work on it. If it use this lane-maps will be 
-configure as "lane_maps = /bits/ 8 <0 1 2 3 4 5>;".
-So what do you think? Can this configure be implemented into a property?
+This series supports ioctl interfaces for userspace VMM(eg., crosvm) to
+operate guest VMs lifecycle, irqchip for virtual interrupt handling,
+asynchronous notifcation mechanism for VMM.
+
+Yi-De Wu (6):
+  docs: geniezone: Introduce GenieZone hypervisor
+  dt-bindings: hypervisor: Add binding for MediaTek GenieZone hypervisor
+  soc: mediatek: virt: geniezone: Introduce GenieZone hypervisor support
+  soc: mediatek: virt: geniezone: Introduce irqchip for virtual
+    interrupt injection
+  soc: mediatek: virt: geniezone: Add ioeventfd support
+  soc: mediatek: virt: geniezone: Add irqfd support
+
+ .../bindings/hypervisor/mediatek,gzvm.yaml    |  30 +
+ Documentation/virt/geniezone/introduction.rst |  34 +
+ arch/arm64/include/uapi/asm/gzvm_arch.h       |  79 ++
+ drivers/soc/mediatek/Kconfig                  |   2 +
+ drivers/soc/mediatek/Makefile                 |   1 +
+ drivers/soc/mediatek/virt/geniezone/Kconfig   |  17 +
+ drivers/soc/mediatek/virt/geniezone/Makefile  |   5 +
+ drivers/soc/mediatek/virt/geniezone/gzvm.h    | 126 +++
+ .../mediatek/virt/geniezone/gzvm_eventfd.c    | 749 ++++++++++++++++++
+ .../soc/mediatek/virt/geniezone/gzvm_hyp.h    |  72 ++
+ .../mediatek/virt/geniezone/gzvm_irqchip.c    | 107 +++
+ .../soc/mediatek/virt/geniezone/gzvm_main.c   | 233 ++++++
+ .../soc/mediatek/virt/geniezone/gzvm_vcpu.c   | 296 +++++++
+ drivers/soc/mediatek/virt/geniezone/gzvm_vm.c | 551 +++++++++++++
+ include/uapi/linux/gzvm_common.h              | 291 +++++++
+ 15 files changed, 2593 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hypervisor/mediatek,gzvm.yaml
+ create mode 100644 Documentation/virt/geniezone/introduction.rst
+ create mode 100644 arch/arm64/include/uapi/asm/gzvm_arch.h
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/Kconfig
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/Makefile
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm.h
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm_eventfd.c
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm_hyp.h
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm_irqchip.c
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm_main.c
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm_vcpu.c
+ create mode 100644 drivers/soc/mediatek/virt/geniezone/gzvm_vm.c
+ create mode 100644 include/uapi/linux/gzvm_common.h
+
+-- 
+2.18.0
 
