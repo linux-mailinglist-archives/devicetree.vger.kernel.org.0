@@ -2,90 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4584F6E0E68
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43E656E0E6C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230225AbjDMNTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:19:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50386 "EHLO
+        id S230070AbjDMNUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:20:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230004AbjDMNTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:19:44 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA5210E3
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:19:23 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id k27-20020a05600c1c9b00b003f0a9f022beso644682wms.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:19:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681391961; x=1683983961;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3uZ2L6Z2WT9YlA2M5FGrOlxdAqlFCV2dHB/1lrAHpy8=;
-        b=Ov3hk06jdZM9d+LdbrIweTCN7GSwWPVPVn8K7uK0TKIk+ttnUmCxFAYbX4B6Qow0v+
-         3yxNPHKSoX2xPg9VEAaI3ryZWdl4wWd/HpP2FFf1eXrfTpZR4R0T+KRJvq+SAkW4ypn4
-         rmgp4zxq7aKbyPsofkCGIkZkYE/9WOE9S8AlekWZERnszbZxr3jypF8yuwgsit2BKiYG
-         wJZrp/pLgjCxK0TxZCADbqdMrY/1YuvexbDG5OEcrI5YL2x7RqFPzNKG/UEEGOT9mLe/
-         bhE4rgwiO9H+h5ViytfFeTrueDyueuH0RrL/moWptinT8DITBsTLuN+LUJ2b+22rugnl
-         oHDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681391961; x=1683983961;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3uZ2L6Z2WT9YlA2M5FGrOlxdAqlFCV2dHB/1lrAHpy8=;
-        b=ceo2c8Y4moq9+m+ueSBDURDovUR+F4CnJee+fTqU3iZwW0oY0PCrTQC38DZAktGQQd
-         p2/p5OvaYzWsNJuSMIXw4cl9jwzdTPXSsmR/AsnjY7RrEkw9yXEFxmQWEzmRKqTHimFE
-         46vExG7ibe0aHX/HxGvdcikXZ3nr9uRQlhpVWgqzPV/dEbqpW/HPu8kL5398JHovnVik
-         c3u4Vg9jDLaZtEUsclRpRCFlKKRRrWjL81pVG2X9aeJ23mOYHHkzua1k7Aa3qgiBYBfC
-         KlBHoHXx800J2jDpvZrkW37c1Krq0T3+DhW1+CZn2ayFzBFeEmzvuTTSIKReSjaWHwTi
-         rtrg==
-X-Gm-Message-State: AAQBX9fHgWxVKoQS4PybDDbpUYIXd+KVkybS57PY4e/ktj9R0ND3BR09
-        lW0SlbP0Fc5huo7frBW2PpKjXQ==
-X-Google-Smtp-Source: AKy350ahHJ2R0u9+ILirA6SYvVmLljxqBN6oqzCFoHvHTKwkDlxy0i7/480WgJIzYZwsrG2RkQgdPg==
-X-Received: by 2002:a7b:cd15:0:b0:3ed:c468:ab11 with SMTP id f21-20020a7bcd15000000b003edc468ab11mr1819189wmj.28.1681391960810;
-        Thu, 13 Apr 2023 06:19:20 -0700 (PDT)
-Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id m2-20020a05600c3b0200b003f0652084b8sm5463491wms.20.2023.04.13.06.19.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 06:19:20 -0700 (PDT)
-Message-ID: <32450a66-78ff-8ec8-2f31-6e5d91e38a5b@baylibre.com>
-Date:   Thu, 13 Apr 2023 15:19:19 +0200
+        with ESMTP id S231190AbjDMNUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:20:10 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0E84A24E;
+        Thu, 13 Apr 2023 06:20:01 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DBD726603218;
+        Thu, 13 Apr 2023 14:19:59 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681392000;
+        bh=zyLNmnfNyceNKY5LBE9mhScILY9Dbz+FbeLmTMBp8cI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cIUmClu7FHs9xjiZexEXmR0VU1d1P+tGwjVpRX4TWVwOZElm4SUn04vjhvZtr3nB2
+         RKOAO9gIeSpqAciIquSuCiAZvOIOQ5i6jBFabD15GZzyxsNO/ln1NrWMYBj5ibtT8i
+         A5zp7xgt/QP21zGOovUYf24THw2egu5cLb6sEE8+p08GGgG/ilL0PaY6in2022QgPr
+         BgENQvB70mbOOkS4n8eaW+DpvpqAxkNcZnkYOJYgVvWnhKJng0Uh49Yrn194vnEBgc
+         UFfkNGDGELPO2TI5fNikL3WgDAGJIzpcbhIRHt6UAtXYtOHITGyFHVvy0cqXhEj4mh
+         PzRyRSAaBpHdA==
+Message-ID: <23dea66b-27cd-dbeb-37f5-ad9566e50962@collabora.com>
+Date:   Thu, 13 Apr 2023 15:19:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 6/7] leds: leds-mt6323: Add support for MT6331 leds
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 6/7] ASoC: mediatek: mt8188: add bus protection
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
-Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
- <20230412153310.241046-7-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230412153310.241046-7-angelogioacchino.delregno@collabora.com>
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230413104713.7174-1-trevor.wu@mediatek.com>
+ <20230413104713.7174-7-trevor.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230413104713.7174-7-trevor.wu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
-> Add the register offsets for MT6331. The hwspec is the same as MT6323.
+Il 13/04/23 12:47, Trevor Wu ha scritto:
+> Add bus protection for reset controller.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Is MT8188 the only SoC that will ever use bus protection for reset, now and
+in the future?
+
+...otherwise, I think that the best solution here would be to implement that
+into the reset controller itself.
 
 Regards,
-Alexandre
-
+Angelo
