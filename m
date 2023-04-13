@@ -2,148 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D5CB6E0343
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 02:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9CE16E0362
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 02:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjDMAhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 20:37:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
+        id S229791AbjDMAv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Apr 2023 20:51:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjDMAho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 20:37:44 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 255D84EEC
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 17:37:43 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z8so18788358lfb.12
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 17:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681346261; x=1683938261;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5mkrhtaW8RsYbUQ5f7IhajN13a1zUBEoHVYcCAD4lt8=;
-        b=YAUQK6Uqc8xFn1mrCRoO2XRW2ReAsqji5eNZL0FBpz14vLPT6uViBgrDcVLKB7vCK9
-         qzZlBuNR9hs3yTwEdetkHvjy+0ge7awJERq9xpbZJx9asVdjnHEmhlYQpxQLXcV1+VOk
-         7U1rzfEl+cf5VuOKQARmoeUL0W3olCbQs/Ln0iJMsOyUyj2glO2REK42MwMrk6dfheOb
-         begKYhC0/wIQVs9nVImUHblAxR8c9n4SZS3RrVC+QDtnWmdJzjOqBDn/uYOuMzw8u9EA
-         nKV8/TR26Wcslx2+BnRFy66bRrccNZxgQSCcOwb6Cqgbr/IWV2QagXei2xcOXcehByE+
-         zPCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681346261; x=1683938261;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5mkrhtaW8RsYbUQ5f7IhajN13a1zUBEoHVYcCAD4lt8=;
-        b=YPpgcehlLCT6w3XY3u6V6XmPi5ju6mIAFGrCuy1cV5vwWAQG7BMhEkWtBCiV3DHbSY
-         uXPYqaTzcl+wQJ2ikUowzFFZnWahzsm1w52Ad+KXDNSMQDFldjJFjc4ED887MI3WVRZV
-         oWD+59T8dNiI6cJe3KQfxkDMkGvax2NSfLk98w0EE1zZ9w2xAvliALmKS2bqg5gB5kCA
-         YQmWhYuR8vXtWjpp59rK++92ldbwf89fhOLB7X8uybbsT6xAn9d/QKfnguJPCDbxh3n0
-         a29zsq7NnSrmETZksx1g4yfQE79UQRTjgr6jjgXyV3QsaEuxQN/oqd9u4SAsaXoIVEtd
-         jIcQ==
-X-Gm-Message-State: AAQBX9cv+3j+urZr85iXE6vSwtCzTsAuwUDf8wIV8cglEnItka9yM6iw
-        IAw/yQsdjZXhwKbR11d4MXUGNhnQOAM1BMqpQ+U=
-X-Google-Smtp-Source: AKy350Y3SDVjMmc9PlqIlyeh9f7wZCt13CLFaobUPByq17P4fvjyFCNsXA94jtRMwT1S0VjCVanJ5Q==
-X-Received: by 2002:ac2:5228:0:b0:4dc:828f:ef97 with SMTP id i8-20020ac25228000000b004dc828fef97mr236444lfl.60.1681346261169;
-        Wed, 12 Apr 2023 17:37:41 -0700 (PDT)
-Received: from [192.168.1.101] (abxj23.neoplus.adsl.tpnet.pl. [83.9.3.23])
-        by smtp.gmail.com with ESMTPSA id u6-20020ac243c6000000b004e7fa99f2b5sm48280lfl.186.2023.04.12.17.37.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Apr 2023 17:37:40 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 13 Apr 2023 02:37:36 +0200
-Subject: [PATCH] arm64: dts: qcom: msm8996-tone: Enable LPG LEDs
+        with ESMTP id S229685AbjDMAv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 20:51:57 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2059.outbound.protection.outlook.com [40.107.223.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04655768D;
+        Wed, 12 Apr 2023 17:51:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mJjmLT4C4c/996swhLDsPKF73MuVXzYDA5TAL58djn/kGYsCLWj/aeNfVS10imqulnuyP0E7pSWZALokI/fopLPkZlmeBxiSYqHfFh9tLrhWgqF+ygTrl7oTKnPuEmb3B+LgQ//X8ZHwsSFJ4iEXoWEAJq3Ja/zX8N7Qh4gr7Swijl9d1YsAzsC0mLWEMc6SIZQPCMpWt/4yHlZfvRX5DlezlTeIbqrDQV4xGsF6HCwf0GKhFHi9mmvarqx/CbqKVdXuNsA9iUyrLRW257HUqC0w/HNA0CjgZgEUUVvkazIFk38gppUhvraZxVrIgDOki2/kBFqlnhWrI89uSyF/dA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8MLusmjcGjP+39M7KJ7m84BNI+8wxd1cRnzSmqWvnhg=;
+ b=Kxf4Z+wF+QKroYnybeOk+HECFCvCFMZQwAlPKWTGSybTED0jQrBt5JR1wnJmBag1D+MDfSwUE/adEm/LLKwhovLDTjBFqvbljA7xCUH4D+o59S+MUrb//00rdtoumcBDmuz6gIFpAcku6K7ZV6RShakv/1C/T7+D56g1Q4GWZPO3Kt1R0HTQFIf3O+7fyBy/4QxtFbwoSVfZjFKTRj/tbdENd64U0R/Ntpyh1iHanYqK1pgAOVtkJa8miUTdGaV/rU+/pQTL8E8SNwIizilMITBqaEawrkAVku3WoWn7vKr21QS7uJQ/IWrk169e6d3pvmgZhnpKzx6y3qAOz5M5Tg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8MLusmjcGjP+39M7KJ7m84BNI+8wxd1cRnzSmqWvnhg=;
+ b=f1cVRKGcDuG/RCuZ1UA8+sBmH2L6q9sBldc2eAsvhvN8y+fvoBBm6K8pC0/O0AI1Qu61JE2/52kHbpfZzcrDrodvikWz2NBt7kcxlpGfzkxvNnITiGedDoRrNpt/rr7UTmiimWD1nVEuozojjEuMfgUJHUOevBnZatC31wTY8gI=
+Received: from BN0PR04CA0142.namprd04.prod.outlook.com (2603:10b6:408:ed::27)
+ by DM4PR12MB6661.namprd12.prod.outlook.com (2603:10b6:8:bb::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Thu, 13 Apr
+ 2023 00:51:51 +0000
+Received: from BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ed:cafe::33) by BN0PR04CA0142.outlook.office365.com
+ (2603:10b6:408:ed::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.30 via Frontend
+ Transport; Thu, 13 Apr 2023 00:51:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT064.mail.protection.outlook.com (10.13.176.160) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6298.31 via Frontend Transport; Thu, 13 Apr 2023 00:51:50 +0000
+Received: from platform-dev1.pensando.io (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 12 Apr 2023 19:51:47 -0500
+From:   Brad Larson <blarson@amd.com>
+To:     <robh@kernel.org>
+CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
+        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
+        <brendan.higgins@linux.dev>, <briannorris@chromium.org>,
+        <brijeshkumar.singh@amd.com>, <broonie@kernel.org>,
+        <catalin.marinas@arm.com>, <davidgow@google.com>,
+        <devicetree@vger.kernel.org>, <fancer.lancer@gmail.com>,
+        <gerg@linux-m68k.org>, <gsomlo@gmail.com>, <krzk@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <lee@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <p.yadav@ti.com>,
+        <p.zabel@pengutronix.de>, <piotrs@cadence.com>,
+        <rdunlap@infradead.org>, <samuel@sholland.org>,
+        <skhan@linuxfoundation.org>, <suravee.suthikulpanit@amd.com>,
+        <thomas.lendacky@amd.com>, <tonyhuang.sunplus@gmail.com>,
+        <ulf.hansson@linaro.org>, <vaishnav.a@ti.com>, <will@kernel.org>,
+        <yamada.masahiro@socionext.com>
+Subject: Re: [PATCH v13 08/15] arm64: dts: Add AMD Pensando Elba SoC support
+Date:   Wed, 12 Apr 2023 17:51:41 -0700
+Message-ID: <20230413005141.24632-1-blarson@amd.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230411135518.GA2952600-robh@kernel.org>
+References: <20230411135518.GA2952600-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230413-tone_led-v1-1-bc3c73393bfa@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAM9ON2QC/x2M0QpAQBBFf0XzbGuXRfkVSWsNprahXaTk300ez
- +3c80DCSJigzR6IeFGijQVMnoFfHS+oaBKGQheltqZUx8Y4BJxUbetqtkYb31Qg+ugSqjE69qs
- c+AxBxj3iTPff7/r3/QCzjKCXbwAAAA==
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681346259; l=1516;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=MrJT4mj6R582Z5U+PgPBwlwFZ2TPZnZ9vzzkyNUYHv0=;
- b=cbCGz68G8gQkNon6eTKu+JtLpOInN4sNKXzNSIhMtiBml/aps00bbZ+x/qwArs9VUZJbaz29BwgF
- oXYQXPgUBHP+kppjID6BqfQpOfUtOGKf0q+KO5T81/wxz7DTgTft
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT064:EE_|DM4PR12MB6661:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38a00faa-67d1-4710-38b0-08db3bb9447b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aUtr4RKa16428CXi34Gxrs+UUBSXBc6rUFTdJKXGFs3GuurKi5+YJ3jqjgNolVIaFlLLNLLjWdWusm9fEdypN0D6JpQsk2xNC920yagdus6hTNdT4l9KKFQA8dz+eGaxuSRnQkPVyobAFoj/8RC7xtftS/zC/2PsWrDW8E4JxZ8OEdKHMVN9p4vPtkKWz3lpRw357Q8WV9pAFl1pTru4lE0my1dFFLFtpZIazXIiHyPxqfeL1nLtD1WtQM4I/QbB/2HOJ+ElKLOjYXn5kNZ5kc9lPcpowW+LJnGCqFrt+lBRFqqLKiSnveJQIdn9n7uUkIyUZbzv1TtmGKIHi7QOW5iIDgFgK+7LXtq5xo/Wou3x79uce4RlBTWu2T/EFPavg/wT2JeSS9xPMBJMnP45pQpjdQDLIMTNMVCE9icP1HpGvpKl3vjIQ0pXdyod6JHZkXsHRRBfw+9mHeWBM6QBaip345hRGfWAjgTH2n7nVKkgmGhHIjJPalkE6tOHpEOaD2H/kaEHFYZog1fanmVfFdTSHRq0UIKixuuZHlNbDcnpKKCfFp0QPYd3zmRtNplwRY7fV0r63SPe4RgUX09Df2b1hw5Psk7j459YdLj7+3mpyC1f2Ml4d2+2NqJVWlOFCtiE+JGCu/G9PL+2LFCK8E328/mnGv2WxCJGjGqr5QADuAvYYTqgtb/xi94+j/68hFhGnZEYo9a9OlhA6UMUUSTPRqtdoEez16AIKydcZZA=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(376002)(346002)(136003)(451199021)(36840700001)(46966006)(40470700004)(6916009)(316002)(81166007)(26005)(82740400003)(186003)(53546011)(1076003)(6666004)(83380400001)(36860700001)(2616005)(47076005)(426003)(336012)(16526019)(8936002)(82310400005)(7416002)(5660300002)(7406005)(36756003)(2906002)(41300700001)(8676002)(40460700003)(356005)(478600001)(40480700001)(54906003)(70586007)(4326008)(70206006)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2023 00:51:50.6503
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38a00faa-67d1-4710-38b0-08db3bb9447b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6661
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the notification LED(s) wired up to the PMI8994(6) LPG.
+Hi Rob,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../boot/dts/qcom/msm8996-sony-xperia-tone.dtsi    | 29 ++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+On Tue, Apr 11, 2023 at 08:55:18, Rob Herring wrote:
+> On Mon, Apr 10, 2023 at 11:45:19AM -0700, Brad Larson wrote:
+>> Add AMD Pensando common and Elba SoC specific device nodes
+>> 
+>> Signed-off-by: Brad Larson <blarson@amd.com>
+>> ---
+>> 
+>> v11 changes:
+>> - Delete reset-names
+>> - Fix spi0 compatible to be specific 'amd,pensando-elba-ctrl'
+>> 
+>> v9 changes:
+>> - Single node for spi0 system-controller and squash
+>>   the reset-controller child into parent
+>
+> Have you run this thru 'make dtbs_check'? I see at least one issue that 
+> should report.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-index 7f4d493a55ff..b4b770a9277d 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-@@ -11,6 +11,7 @@
- #include "pmi8996.dtsi"
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
- 
-@@ -605,6 +606,34 @@ pm8994_s11: s11 {
- 	};
- };
- 
-+&pmi8994_lpg {
-+	qcom,power-source = <1>;
-+	status = "okay";
-+
-+	multi-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@3 {
-+			reg = <3>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+	};
-+};
-+
- &pmi8994_spmi_regulators {
- 	vdd_gfx:
- 	pmi8994_s2: s2 {
+Yes and no warnings or errors with these checks 
 
----
-base-commit: 7d8214bba44c1aa6a75921a09a691945d26a8d43
-change-id: 20230413-tone_led-6465f4101c75
+make ARCH=arm64 dtbs_check
+make DT_CHECKER_FLAGS=-m dt_binding_check 
 
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+but I did find a couple relevant packages have been updated
 
+dtschema Version: 2023.1  ==> 2023.4
+yamllint Version: 1.26.3  ==> 1.30.0
+
+and then running again I get below 
+
+$ make ARCH=arm64 dtbs_check 
+...
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache0: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache0: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache0: 'cache-unified' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache1: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache1: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache1: 'cache-unified' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache2: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache2: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache2: 'cache-unified' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache3: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache3: 'cache-level' is a required property
+/home/brad/linux.v13/arch/arm64/boot/dts/amd/elba-asic.dtb: l2-cache3: 'cache-unified' is a required property
+
+I'll fix this in the next spin.
+
+Regards,
+Brad
