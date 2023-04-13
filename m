@@ -2,135 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 252146E0E52
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E21B86E0E5E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbjDMNRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:17:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46670 "EHLO
+        id S229685AbjDMNSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:18:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230479AbjDMNRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:17:23 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27CA8125
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:22 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id w24so4621537wra.10
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681391840; x=1683983840;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T9pQrW38n6jH3lAaxTQPjhAzjBmtv9LEC6ladjD0geM=;
-        b=S7JJaJQUgf3JJMM3lkyNLH6OBAtESwaKX10aoRHX2UHUKIe7kHl71MFD9fMexZwcVm
-         js9oqmJK84FHyccqwePq0s81Xs5Llc99VqL3yJa89LysqOxb1TZ+o3XkJccAr7UM5kHg
-         uYE3J2LaMLkTIOlZ25D49b24vuz3tJIRIxgV9XhWFJ75pXshAWWjwVgi91cKDUm/QrTP
-         a6NajHr9w2FG23SQm9u5M7KCsaQRpXgGnKAgUi+Aq/dVSLzNFaWS/L3gwCXtc1mnvZCX
-         bWuEGGuYFy4SoBkZ/rla4B0v5bSJLjOwo7OhIiJXgHBsDJ7e4xKuw4iYhYHaWO/va+B9
-         RYCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681391840; x=1683983840;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=T9pQrW38n6jH3lAaxTQPjhAzjBmtv9LEC6ladjD0geM=;
-        b=SXTNrkWzZOtKRVZY18JuPpZiZdxyU+p8Potax7Z+Hqex/mVVC5/F9kbt1z3AebzV+w
-         etGw3ipz0KX2kweUOnJn/4An8+7SiulG7wxxFk+H6H6uf1k86WHj53opdNSo6BR0DKNV
-         JveBO1wEste7EswJEGhF3PLpd1MZqaV78kiN6n5iybA6INC4jKZlH63/aLd3GBxfwUNO
-         6pAiepSuGtfnqUB5xzgB3Hd1IxAlhSvJhMuRzJv4i+GBxUkq/Z7QTjTGoym3j1iDL027
-         cc2LfQRKiVNI/Izm9Ml2ARgE9cv3IwQ7v1/42KMn+YtLoEwmkjKUE/C7DQiJBXTfw/iK
-         YUkA==
-X-Gm-Message-State: AAQBX9cTK5TCvCZ9usyhHirPWZvK0cXTsu5xde65mjaFgJDBaTI71DzU
-        MiTrPrP+jw4A4jaqKo95coSmlA==
-X-Google-Smtp-Source: AKy350ZyvWh6DeTmvqd0RAb8r3WiahK7Z/XKVX0rCaM+oS4kQ7JeGN7DdSu52htk6753FAxZuxYjsQ==
-X-Received: by 2002:adf:f04c:0:b0:2cf:e34c:a229 with SMTP id t12-20020adff04c000000b002cfe34ca229mr1797769wro.8.1681391840666;
-        Thu, 13 Apr 2023 06:17:20 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:814c:fc8a:da02:39ad])
-        by smtp.gmail.com with ESMTPSA id v3-20020a1cf703000000b003f04646838esm1796400wmh.39.2023.04.13.06.17.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 06:17:20 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sa8775p: pmic: add the sdam_0 node
-Date:   Thu, 13 Apr 2023 15:17:05 +0200
-Message-Id: <20230413131705.3073911-5-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230413131705.3073911-1-brgl@bgdev.pl>
-References: <20230413131705.3073911-1-brgl@bgdev.pl>
+        with ESMTP id S229878AbjDMNSa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:18:30 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 095F52D44;
+        Thu, 13 Apr 2023 06:17:58 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7F5626603218;
+        Thu, 13 Apr 2023 14:17:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681391864;
+        bh=AKdwCtT8AfTALdA/zT12K56nin3cggmWrGxfMSOgZfU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YJVtAcCK0erupdx7mB0Yi+0evnU4PRAj7tacSem0um7VfGlqlvhRaRAD4yWjHmsQ4
+         f3sgHre/YRWFk2c5CxLvY7rqKMU4k0d8WON0H25AUVd3quopPamB7MniHkDSkAYbAu
+         IwglaX143kKSBm3a/T4fgG+eybIGrSXbMNkpjWVCDD7z3JxGF0Mw6AgSRvvdpad1DQ
+         1CXmFCfGfURTcyCokZKs4jk9z7CsjLB2i+G9KbMfrLZHFnRM0mnATSTRoD+N4pjoE1
+         oqBkCfpKQeTYKDUXvyEevV2FDXqDWmdrpGAheRQBijSKpb4UQjQU2w0a0l+eDyWQK7
+         AL7Vw7RWcPEuQ==
+Message-ID: <b59fd0d6-b08e-9c80-a2f0-6b6084038353@collabora.com>
+Date:   Thu, 13 Apr 2023 15:17:40 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/7] ASoC: mediatek: mt8188: remove supply AUDIO_HIRES
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230413104713.7174-1-trevor.wu@mediatek.com>
+ <20230413104713.7174-2-trevor.wu@mediatek.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230413104713.7174-2-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Parikshit Pareek <quic_ppareek@quicinc.com>
+Il 13/04/23 12:47, Trevor Wu ha scritto:
+> AUDIO_HIRES is not required in MT8188. Because top_audio_h is disabled
+> when hires clock is not used, set_parent is a redundant operation.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 
-Introduce sdam_0 node, which is to be used via nvmem for power on
-reasons during reboot. Add supported PoN reaons supported via sdam_0
-node.
-
-Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-index 5abdc239d3a6..49bf7b08f5b6 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-@@ -88,6 +88,14 @@ trip1 {
- 			};
- 		};
- 	};
-+
-+	reboot_reason {
-+		compatible = "nvmem-reboot-mode";
-+		nvmem-cells = <&reboot_reason>;
-+		nvmem-cell-names = "reboot-mode";
-+		mode-recovery = <0x01>;
-+		mode-bootloader = <0x02>;
-+	};
- };
- 
- &spmi_bus {
-@@ -133,6 +141,19 @@ pmm8654au_0_gpios: gpio@8800 {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		pmm8654au_0_sdam_0: nvram@7100 {
-+			compatible = "qcom,spmi-sdam";
-+			reg = <0x7100>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x7100 0x100>;
-+
-+			reboot_reason: reboot-reason@48 {
-+				reg = <0x48 0x1>;
-+				bits = <1 7>;
-+			};
-+		};
- 	};
- 
- 	pmm8654au_1: pmic@2 {
--- 
-2.37.2
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
