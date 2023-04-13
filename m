@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F1176E0CD4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 13:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E096E0CE7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 13:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjDMLku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 07:40:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42080 "EHLO
+        id S229772AbjDMLqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 07:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjDMLkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 07:40:49 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D56269D;
-        Thu, 13 Apr 2023 04:40:47 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id gw13so8281808wmb.3;
-        Thu, 13 Apr 2023 04:40:47 -0700 (PDT)
+        with ESMTP id S229516AbjDMLqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 07:46:11 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC9D9768;
+        Thu, 13 Apr 2023 04:45:58 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id o1so18757708lfc.2;
+        Thu, 13 Apr 2023 04:45:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681386046; x=1683978046;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=m66B/9uT9mWYOEyZbd8z/k+G4QiidL/7FmVJXlLVW/U=;
-        b=hgm6xnGddWYrtgZzDQB8etna94nRQacYpeJTqaTBRs2X9wUyIBAYpdgqeicJdE8TV3
-         b2yybhT0Thzptj/4EolAbcI84Be5Ya68gSXR7TSNBw85zqxkqtV52V52SMixWwVIYZD4
-         N7W3NJJRg38lcIGqzC6RDslvpx2jTP/QrQk1w+lDugmlLzaM6KvBd6aA6vBiHZ/LRklo
-         snZi8cpqcxE/Mv97b1pllp+Ybx6/907SOieY4D7n2p+jDiKb/UhfiRaogW+XdBLlEhTX
-         4C3hnFfeljzvcCW3g7LQzBbDKi8cHqMXYEncETC4yMe2wuhK9v1fo2oBteMmY/XKXVgc
-         8AQw==
+        d=gmail.com; s=20221208; t=1681386357; x=1683978357;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=H7H6EEWl/da78+Pg7xNj0IrBs7xeLiKGn3zRnzUagG8=;
+        b=kCIYnalT+WTO9slQRE7xgKUgeYq/TzsPQsxROt1i5/4rFyxunHIIjjN+6Rkm9gOQzP
+         lLGfFe0XbJ3MzVldIvpLyc+vbZUePjC0lfxRqr3Zb7DjHoISB28fR6kVWV/GVbQ0jDsR
+         OavePCCWvEd1BxSExJuy4X1xfmi8W5/zEkB16ECw9Nu+gDfeXoSCfKV4xLZCAfdCjc8u
+         DODk3LNWuy3Q39/rG0hhiUBcQJNg5Yg3yRPnLuLnl/UcQAhLg0ZI0enJmjpZ80PF8e39
+         qcLKtDRo6uku8+W3ixJMSnLSkBMsZKapqvbjGq0M/kqhql0+Vvl0M7n9t47wSwA4YItc
+         6jAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681386046; x=1683978046;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m66B/9uT9mWYOEyZbd8z/k+G4QiidL/7FmVJXlLVW/U=;
-        b=NZcDund7P73yrIUNID9KB5VA7H2TOSpCfqf7SZ3U+m75kOLB0FoDIKik1YsvZjgt6f
-         jgjJoT1tVrhv95IF6bgOTTyk9NndhYrOXiOYyE6r7eRUPFvilHtcooWHWDVbMR+GBu3O
-         amACGdkG1Cmtgj8QtYapyNAw0isZNFSvC0STFIK3YydDXwfar+VhD3UKLJKkiVCTOmaC
-         gab5GQxD2kgzhpsC2jMtoNtJbwQbPcOnLCJnALIZwpXtyle476WHLKEqtSbbNGXZJzGX
-         dIo36+2o7uosbmoaqJmAu9MDb9KabUEZ8wOxLA+5oO/eq+EWmkusm24tcJ7PYODzmxk4
-         H83w==
-X-Gm-Message-State: AAQBX9duXRP12WxC0Ly1a7p83y6V6iiCL3VDhmjlmAo6RwCcqLhv/Fpa
-        JhtgtFWHUc641kOc8Pz+4qc=
-X-Google-Smtp-Source: AKy350Z0/BBlkEGZm1T98jo0jsnaWp676sBKuaybDgOTY4zFNt2PUX0gexC0vOrdHlBAzmmDMc2nCg==
-X-Received: by 2002:a7b:c7d4:0:b0:3eb:39e0:3530 with SMTP id z20-20020a7bc7d4000000b003eb39e03530mr1517475wmk.41.1681386046105;
-        Thu, 13 Apr 2023 04:40:46 -0700 (PDT)
-Received: from localhost.localdomain (host81-136-160-130.in-addr.btopenworld.com. [81.136.160.130])
-        by smtp.gmail.com with ESMTPSA id k15-20020a05600c1c8f00b003ede2c59a54sm5272515wms.37.2023.04.13.04.40.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 04:40:45 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rg2lc-smarc: Enable CRU, CSI support
-Date:   Thu, 13 Apr 2023 12:40:16 +0100
-Message-Id: <20230413114016.16068-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20221208; t=1681386357; x=1683978357;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H7H6EEWl/da78+Pg7xNj0IrBs7xeLiKGn3zRnzUagG8=;
+        b=XWtxDbyjOCc3qyM981o+z9N1BRmu5mGTGM7RWCT3X7cYRv6onzVxyDMR65wb/EKD99
+         msM4v5H2YQ+6yZ/5TXZ19Wm2VkFp+iV2Nx8x48yg6xjGqxd/U5AEKeVZNq1vH9mpBmhF
+         9fkgZwCZx1X1Xq/+TdRqGirl+d6jHyeZXgAziFXMnPUFb2FA4H0Dj7KsaCJG9qXh+EMW
+         Q9I88g/ITMSR9MykL4xnabXucxmG8J27AAAffn2Pg9vPbwNh4ICeYLUOZseNTItKqQPe
+         vfUPKRfnyGj5oeSVqk8nQrsQ4ShduoPdHDr1w7HxL0pxLQ0Jzl6fv6qobpGdtq/Wb7Y9
+         Urmg==
+X-Gm-Message-State: AAQBX9eBuqnaV7t7JxxGPUtCzxOKbvhg1NA940gVIurEijLnNQFQshlC
+        hG13z1My90bdbNxnFNaua63B42bkTHM=
+X-Google-Smtp-Source: AKy350aIh+HynqigKv6iyR1AuPUVYAFjO4DeXYG+CDcEEbsm5Ewqp1LjQ74Ir9IGwS6TQpZnFD8K1A==
+X-Received: by 2002:a05:6512:1021:b0:4e8:4699:d01 with SMTP id r1-20020a056512102100b004e846990d01mr958752lfr.27.1681386356717;
+        Thu, 13 Apr 2023 04:45:56 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id f9-20020ac24e49000000b004eb018fac57sm274822lfr.191.2023.04.13.04.45.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 04:45:56 -0700 (PDT)
+Message-ID: <97379cbb-ea61-ee66-56bd-f2dbe3e282b9@gmail.com>
+Date:   Thu, 13 Apr 2023 14:45:55 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 2/2] leds: bd2606mvv: Driver for the Rohm 6 Channel i2c
+ LED driver
+To:     Andreas Kemnade <andreas@kemnade.info>, pavel@ucw.cz,
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230413110307.310944-1-andreas@kemnade.info>
+ <20230413110307.310944-3-andreas@kemnade.info>
+Content-Language: en-US, en-GB
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20230413110307.310944-3-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,57 +77,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 4/13/23 14:03, Andreas Kemnade wrote:
+> The device provides 6 channels which can be individually
+> turned off and on but groups of two channels share a common brightness
+> register.
+> 
+> Limitation: The GPIO to enable the device is not used yet.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 
-Enable CRU, CSI on RZ/G2LC SMARC EVK and tie the CSI to the OV5645 sensor
-using Device Tree overlay.
+Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../r9a07g044c2-smarc-cru-csi-ov5645.dtso     | 21 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044c2-smarc-cru-csi-ov5645.dtso
-
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index ebcbd66ba816..7114cbbd8713 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -79,6 +79,7 @@ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043-smarc-pmod.dtbo
- 
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
-+dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc-cru-csi-ov5645.dtbo
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc-cru-csi-ov5645.dtbo
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc-cru-csi-ov5645.dtso b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc-cru-csi-ov5645.dtso
-new file mode 100644
-index 000000000000..f983bdd3ea30
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc-cru-csi-ov5645.dtso
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree overlay for the RZ/G2LC SMARC EVK with
-+ * OV5645 camera connected to CSI and CRU enabled.
-+ *
-+ * Copyright (C) 2023 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+#define OV5645_PARENT_I2C i2c0
-+#include "rz-smarc-cru-csi-ov5645.dtsi"
-+
-+&ov5645 {
-+	enable-gpios = <&pinctrl RZG2L_GPIO(0, 1) GPIO_ACTIVE_HIGH>;
-+	reset-gpios = <&pinctrl RZG2L_GPIO(5, 2) GPIO_ACTIVE_LOW>;
-+};
 -- 
-2.25.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
