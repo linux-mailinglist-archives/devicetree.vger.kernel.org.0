@@ -2,232 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66BD86E1421
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 20:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C046E1434
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 20:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjDMS0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 14:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
+        id S229681AbjDMSgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 14:36:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjDMS0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 14:26:45 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F76D76B4;
-        Thu, 13 Apr 2023 11:26:29 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id e9e14a558f8ab-3294d582947so4098605ab.1;
-        Thu, 13 Apr 2023 11:26:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681410388; x=1684002388;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cYuEjEbEPDSMvvaHBlTko8UtitDT729rV6ITgl5m4LE=;
-        b=sjh8zKjZxASu4FTHtLDRNrfYwizf3MZtospmSwbv5dB9mcCLUpCkFoF3XwykJNnXtF
-         jDIhMTE14Pwqu3K6aUpWg7rFMr1Om6Ts2hSo0qX4Qncmv9JJLNZ0zWZtA5hall+FXGwz
-         PYXt00AJsqv/WG/wAU568nfG26iqUPGSMTgNif3Ci683Id16HQyl9VdveqkoZADMWX67
-         idZ20Dy5nVGJTX7qnHQA5V66rWq4JanEZMf4xl44hA8Ava8DaR1dbaABpbbHo+kp4KGM
-         UvCXn8GBvN7Nn07dO3/ocg+UCib+/L0RQ7K1MgJCTOz6K/hqGvuyCMlVg1vjYqGLmazD
-         pgmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681410388; x=1684002388;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cYuEjEbEPDSMvvaHBlTko8UtitDT729rV6ITgl5m4LE=;
-        b=R47uVIFwz7PFn8LdNAPbmqSOcbsgfNvv4KoN5wfbVLl9/IE+SQB+Rg7UNXQEMn8b6B
-         U+NIhCFotfxOQssRl+CIwgBVAvL9OiokgAyCs9xPsUywT3kIK2PsImhEb7tqzjaxu9VL
-         ZpTStwNq/LlqQCPMHnMGbIc4XhFfvmkO8yJa9ZOsl++MvDwZb057BzrbT5DzKTefg26x
-         HeIsh9g87l6T6gWHlbhqF0fF7EQbo1+yFLX8iaEkcrJixzuhLsjY3RhbnFVefvbLVQC2
-         NzDxi3yYJPNvJCOv+0lAal/H6kP8paDCVjGWGrJ67IkLsatdxOLX2TrBggA8XFp+VfP2
-         lPRw==
-X-Gm-Message-State: AAQBX9d+uwTNUpVtSFqr9Q9b2gyHt9xsRpziw2/Iq+ZMBh9cMfPfq0wX
-        wPOb/XABb61hx3JBmVZGTE9XEPup3iwQ1bR9yYY=
-X-Google-Smtp-Source: AKy350YLYttw68A/sm+q6B1DJJ42F6HN6f5sbUEbrfaKZ2y+94kIXikYs9CQu6mD1KoW818hYhctLYeH+Fb4I5i3Fa8=
-X-Received: by 2002:a92:4a03:0:b0:32a:9195:7374 with SMTP id
- m3-20020a924a03000000b0032a91957374mr354196ilf.1.1681410388569; Thu, 13 Apr
- 2023 11:26:28 -0700 (PDT)
+        with ESMTP id S229647AbjDMSgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 14:36:12 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C3AC76A2;
+        Thu, 13 Apr 2023 11:36:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681410971; x=1712946971;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=r97ETdLe83X1qhr3CYIugk6zwVDKsPmPWxIRW6Sbhmw=;
+  b=OnIrChrrF8Kgza2FRaYiTkJcsT5lWQu7nlxIS8DkCzN+vnhHiLQDDvpc
+   gOquhVSEJpKUBA6x/xLtwf5BpF5Kc84dgxfZNUgmTr8GHZKTXry2B+zdh
+   PFqIkEoZhmJis3gnumJ4wP/711ZBchDEVS5z+q2+Bb9Ah+AmTxFJhrzz/
+   JwupX31R9DJ0lNTuMutszEZgD5UenJ6Hqn9UEZjjOBHgZiXrU8U6LyPBJ
+   1COCMg+zG+t8078nXibqvDCxDrwy1a8iYGYZBVf4yGp1dxJekGNBxIwyg
+   efXpQuxCUJ+ydOyQRnZ/0DGcuIV4YxCQtSnvcfzuDOzB1beAbEsa6oqO9
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="328411521"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; 
+   d="scan'208";a="328411521"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2023 11:36:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="800906389"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; 
+   d="scan'208";a="800906389"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 13 Apr 2023 11:36:05 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pn1nb-000YsN-19;
+        Thu, 13 Apr 2023 18:35:59 +0000
+Date:   Fri, 14 Apr 2023 02:35:39 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        linux-rtc@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
+        zhaoxiao <zhaoxiao@uniontech.com>, keguang.zhang@gmail.com,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: Re: [PATCH V3 2/7] rtc: Add support for the Loongson-2K/LS7A RTC
+Message-ID: <202304140202.URh2nrLx-lkp@intel.com>
+References: <09f381f445cfbcf857845f61d10238452037b2e8.1681370153.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
-References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230412110900.69738-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230412-cheddar-prune-5ce03ccf5581@spud> <20230413-aorta-unheated-c9bb35411fb2@wendy>
-In-Reply-To: <20230413-aorta-unheated-c9bb35411fb2@wendy>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 13 Apr 2023 19:26:02 +0100
-Message-ID: <CA+V-a8uksWMihUadYc_dCoef7vaC5ncOicX0oGpSP9HRnHgScw@mail.gmail.com>
-Subject: Re: [PATCH v8 5/7] cache: Add L2 cache management for Andes AX45MP
- RISC-V core
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <09f381f445cfbcf857845f61d10238452037b2e8.1681370153.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Hi Binbin,
 
-On Thu, Apr 13, 2023 at 8:06=E2=80=AFAM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Wed, Apr 12, 2023 at 09:25:34PM +0100, Conor Dooley wrote:
-> > On Wed, Apr 12, 2023 at 12:08:58PM +0100, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > I/O Coherence Port (IOCP) provides an AXI interface for connecting
-> > > external non-caching masters, such as DMA controllers. The accesses
-> > > from IOCP are coherent with D-Caches and L2 Cache.
-> > >
-> > > IOCP is a specification option and is disabled on the Renesas RZ/Five
-> > > SoC due to this reason IP blocks using DMA will fail.
-> > >
-> > > The Andes AX45MP core has a Programmable Physical Memory Attributes (=
-PMA)
-> > > block that allows dynamic adjustment of memory attributes in the runt=
-ime.
-> > > It contains a configurable amount of PMA entries implemented as CSR
-> > > registers to control the attributes of memory locations in interest.
-> > > Below are the memory attributes supported:
-> > > * Device, Non-bufferable
-> > > * Device, bufferable
-> > > * Memory, Non-cacheable, Non-bufferable
-> > > * Memory, Non-cacheable, Bufferable
-> > > * Memory, Write-back, No-allocate
-> > > * Memory, Write-back, Read-allocate
-> > > * Memory, Write-back, Write-allocate
-> > > * Memory, Write-back, Read and Write-allocate
-> > >
-> > > More info about PMA (section 10.3):
-> > > Link: http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.=
-0-Datasheet.pdf
-> > >
-> > > As a workaround for SoCs with IOCP disabled CMO needs to be handled b=
-y
-> > > software. Firstly OpenSBI configures the memory region as
-> > > "Memory, Non-cacheable, Bufferable" and passes this region as a globa=
-l
-> > > shared dma pool as a DT node. With DMA_GLOBAL_POOL enabled all DMA
-> > > allocations happen from this region and synchronization callbacks are
-> > > implemented to synchronize when doing DMA transactions.
-> > >
-> > > Example PMA region passes as a DT node from OpenSBI:
-> > >     reserved-memory {
-> > >         #address-cells =3D <2>;
-> > >         #size-cells =3D <2>;
-> > >         ranges;
-> > >
-> > >         pma_resv0@58000000 {
-> > >             compatible =3D "shared-dma-pool";
-> > >             reg =3D <0x0 0x58000000 0x0 0x08000000>;
-> > >             no-map;
-> > >             linux,dma-default;
-> > >         };
-> > >     };
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> > > ---
-> > > v7 -> v8
-> > > * Dropped function pointer usage
-> > > * Now exporting the functions for clean/inval/flush
-> > > * Switched to using early_initcall instead of arch_initcall
-> > > * Dropped entry for "include/cache" from MAINTAINERS
-> > > * Dropped dependency of RISCV on AX45MP_L2_CACHE
-> > > * Returning error in case of cache line mismatch
-> >
-> > > * Renamed clean/inval/flush functions
-> >
-> > I kinda screwed you with that request given Hellwig's NAK on the
-> > function pointer based stuff. Ah well, I prefer matching the proposed
-> > naming of the dma core to what RVI chose for the instructions.
-> >
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > I suppose this will need a resubmission once Arnd's stuff gets applied,
-> > but I would like to see it have a run through the build bots etc.
->
-> So apparently my build bot did actually run against this series?
-> https://patchwork.kernel.org/project/linux-riscv/list/?series=3D739109
->
-> To be quite honest, I am not sure at all how it managed to apply the
-> series w/ Arnd's pre-reqs. Perhaps it has achieved some from of
-> sentience. There's a build failure for 32-bit that appeared on the final
-> patch, but is not really its fault:
-> ../arch/riscv/mm/dma-noncoherent.c: Assembler messages:
-> ../arch/riscv/mm/dma-noncoherent.c:104: Error: unrecognized opcode `sd s0=
-,0(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:105: Error: unrecognized opcode `sd ra=
-,8(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:110: Error: unrecognized opcode `ld ra=
-,8(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:111: Error: unrecognized opcode `ld s0=
-,0(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:111: Error: unrecognized opcode `sd s0=
-,0(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:112: Error: unrecognized opcode `sd ra=
-,8(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:117: Error: unrecognized opcode `ld ra=
-,8(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:118: Error: unrecognized opcode `ld s0=
-,0(sp)'
-> ../arch/riscv/mm/pmem.c: Assembler messages:
-> ../arch/riscv/mm/pmem.c:98: Error: unrecognized opcode `sd s0,0(sp)'
-> ../arch/riscv/mm/pmem.c:99: Error: unrecognized opcode `sd ra,8(sp)'
-> ../arch/riscv/mm/pmem.c:104: Error: unrecognized opcode `ld ra,8(sp)'
-> ../arch/riscv/mm/pmem.c:105: Error: unrecognized opcode `ld s0,0(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:138: Error: unrecognized opcode `sd s0=
-,0(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:139: Error: unrecognized opcode `sd ra=
-,8(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:144: Error: unrecognized opcode `ld ra=
-,8(sp)'
-> ../arch/riscv/mm/dma-noncoherent.c:145: Error: unrecognized opcode `ld s0=
-,0(sp)'
-> ../arch/riscv/mm/pmem.c:104: Error: unrecognized opcode `sd s0,0(sp)'
-> ../arch/riscv/mm/pmem.c:105: Error: unrecognized opcode `sd ra,8(sp)'
-> ../arch/riscv/mm/pmem.c:110: Error: unrecognized opcode `ld ra,8(sp)'
-> ../arch/riscv/mm/pmem.c:111: Error: unrecognized opcode `ld s0,0(sp)'
-> ../arch/riscv/mm/pmem.c:110: Error: attempt to move .org backwards
-> ../arch/riscv/mm/pmem.c:116: Error: attempt to move .org backwards
-> ../arch/riscv/mm/dma-noncoherent.c:116: Error: attempt to move .org backw=
-ards
-> ../arch/riscv/mm/dma-noncoherent.c:123: Error: attempt to move .org backw=
-ards
-> ../arch/riscv/mm/dma-noncoherent.c:150: Error: attempt to move .org backw=
-ards
-> make[4]: *** [../scripts/Makefile.build:252: arch/riscv/mm/pmem.o] Error =
-1
-> make[4]: *** [../scripts/Makefile.build:252: arch/riscv/mm/dma-noncoheren=
-t.o] Error 1
-> make[4]: Target 'arch/riscv/mm/' not remade because of errors.
-> make[3]: *** [../scripts/Makefile.build:494: arch/riscv/mm] Error 2
-> make[3]: Target 'arch/riscv/' not remade because of errors.
-> make[2]: *** [../scripts/Makefile.build:494: arch/riscv] Error 2
->
-> The simplest solution may to just be making the erratum depend on 64BIT?
->
-I dont think this will work, as pmem.c is compiled unconditionally. Is
-dma-noncoherent.c also valid for RISCV-32? If not then we can make
-pmem.c compile conditionally if DMA non-coherenet is enabled and we
-make DMA non-coherent depend on 64bit.
+kernel test robot noticed the following build warnings:
 
-Cheers,
-Prabhakar
+[auto build test WARNING on abelloni/rtc-next]
+[also build test WARNING on robh/for-next linus/master v6.3-rc6 next-20230412]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-rtc-Subdivision-of-LS2X-RTC-compatible/20230413-155906
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/09f381f445cfbcf857845f61d10238452037b2e8.1681370153.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH V3 2/7] rtc: Add support for the Loongson-2K/LS7A RTC
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230414/202304140202.URh2nrLx-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 9638da200e00bd069e6dd63604e14cbafede9324)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/30ef4691d0ab95241315bf9ba7cf20b7d549b071
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Binbin-Zhou/dt-bindings-rtc-Subdivision-of-LS2X-RTC-compatible/20230413-155906
+        git checkout 30ef4691d0ab95241315bf9ba7cf20b7d549b071
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/rtc/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304140202.URh2nrLx-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/rtc/rtc-ls2x.c:276:25: warning: cast to smaller integer type 'enum ls2x_pm_offset' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+           priv->pm_base = regs - (enum ls2x_pm_offset)device_get_match_data(dev);
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +276 drivers/rtc/rtc-ls2x.c
+
+   249	
+   250	static int ls2x_rtc_probe(struct platform_device *pdev)
+   251	{
+   252		int ret;
+   253		void __iomem *regs;
+   254		struct ls2x_rtc_priv *priv;
+   255		struct device *dev = &pdev->dev;
+   256	
+   257		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+   258		if (!priv)
+   259			return -ENOMEM;
+   260	
+   261		regs = devm_platform_ioremap_resource(pdev, 0);
+   262		if (IS_ERR(regs))
+   263			return dev_err_probe(dev, PTR_ERR(regs),
+   264					     "devm_platform_ioremap_resource failed\n");
+   265	
+   266		priv->regmap = devm_regmap_init_mmio(dev, regs,
+   267						     &ls2x_rtc_regmap_config);
+   268		if (IS_ERR(priv->regmap))
+   269			return dev_err_probe(dev, PTR_ERR(priv->regmap),
+   270					     "devm_regmap_init_mmio failed\n");
+   271	
+   272		device_init_wakeup(dev, 1);
+   273		spin_lock_init(&priv->lock);
+   274		platform_set_drvdata(pdev, priv);
+   275	
+ > 276		priv->pm_base = regs - (enum ls2x_pm_offset)device_get_match_data(dev);
+   277	
+   278		if (has_acpi_companion(dev))
+   279			acpi_install_fixed_event_handler(ACPI_EVENT_RTC,
+   280							 ls2x_rtc_handler, priv);
+   281	
+   282		priv->rtcdev = devm_rtc_allocate_device(dev);
+   283		if (IS_ERR(priv->rtcdev))
+   284			return dev_err_probe(dev, PTR_ERR(priv->rtcdev),
+   285					     "devm_rtc_allocate_device failed\n");
+   286	
+   287		priv->rtcdev->ops = &ls2x_rtc_ops;
+   288		priv->rtcdev->range_min = RTC_TIMESTAMP_BEGIN_2000;
+   289		priv->rtcdev->range_max = RTC_TIMESTAMP_END_2099;
+   290	
+   291		priv->irq = platform_get_irq(pdev, 0);
+   292		if (priv->irq < 0)
+   293			return dev_err_probe(dev, priv->irq, "platform_get_irq failed\n");
+   294	
+   295		ret = devm_request_irq(dev, priv->irq, ls2x_rtc_isr,
+   296				       IRQF_TRIGGER_RISING, "ls2x-alarm", priv);
+   297		if (ret < 0)
+   298			return dev_err_probe(dev, ret, "Unable to request irq %d\n",
+   299					     priv->irq);
+   300	
+   301		return devm_rtc_register_device(priv->rtcdev);
+   302	}
+   303	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
