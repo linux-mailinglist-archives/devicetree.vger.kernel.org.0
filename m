@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F14E6E12A2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 18:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93F576E12AE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 18:47:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbjDMQqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 12:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50632 "EHLO
+        id S230010AbjDMQro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 12:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbjDMQqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 12:46:11 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE9393C0
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:46:05 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id q23so29507492ejz.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:46:05 -0700 (PDT)
+        with ESMTP id S229913AbjDMQrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 12:47:43 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BD8AD0D
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:47:32 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id j17so29346706ejs.5
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:47:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681404364; x=1683996364;
+        d=linaro.org; s=google; t=1681404450; x=1683996450;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DJjsgRCQD3nGxpiqV9+CyK3OuB9Sivj/PeOsh4G53K0=;
-        b=tbTLXzbzcv/o5pdEVu8hXh8qsR/QKdo5wTXCVHdcMPRA2kdNFcqA8au3eexDMx1JtQ
-         phFtLfgut2lwbhtF6krr/JIpgqpGdAI9Vmo5kwKuAJxPI9vgkzdknD9H4dX/2Yu7/5uM
-         gwc0sYHNp31yNLVSAa9s10Y8oEhrZcNAQXDH2XvPu0OYyFSQb15Ke44yPJ6t/PYj+Nfu
-         s9rXhfcULJiNnCnyFmB2A6KaXxGHn1DfCnSpj8qe4bPN+Vi3foSuqn1KP/BENfKWSYWq
-         vqpyNstVNGuFoJUGURqB6J3Nagl7KMU7xsUTqaQB/R4ReJL7qLuSnS1VqT8uB9wm7TAo
-         8u4A==
+        bh=51DVCd/h3/cJO7cjSlyrYI32aoEqdT9dgNs9Eih2opE=;
+        b=nwu0GWON8U6TXZ3AT7gmRhnXNlY7lxqUiwgRLU2Uw3ieZXA+uUVn8nCJ7nbTT46IVu
+         wwLwRAaXeAkQoRk45Ctu06Gj5+w2VTE0sNRhlPVtvb+AVprqq6Mdk+suH2aNI6BYPsiB
+         6cNLN8+zEtGyNX/KyEoBvn46OtTtt2tlVT85GHip2cSO1/PBq/JhKMCRQNv9eIztyRY5
+         w0q2os13wwQcZx6p0frcHHUtOiYimZakYu6fNc8RLvh0Y24ZX/hjuJYP7ELV1yb5wJJC
+         25g8s6YrMZYnPPeLL4eVKHQqkfBw8CBaCSw83aYue3fTj6hcTSKEfMrhPzS81jXREH2C
+         PvUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681404364; x=1683996364;
+        d=1e100.net; s=20221208; t=1681404450; x=1683996450;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DJjsgRCQD3nGxpiqV9+CyK3OuB9Sivj/PeOsh4G53K0=;
-        b=KnNosUt2KSTCtgacgAE/sMDlvgIfYPL+k5lKVkyAY2ZzXvzrof49FFnWOwdVJX0ygY
-         FLEMosGkubCJX/wglx2y2GY4z3pCig90R7qfuhXmzIBT5cf2GH9KzcZNBykgtvF4l9AE
-         UgMNbN60hpV67S5KLlKzFHV1WB0XMwqtyBKooqZ7CuIXFLLhSDSomW7Koot5XkHrofsK
-         S6WvIwJZelMqTikhqxvV7cKAbzGk+7uq6/2WF/cLU6IXm26DpdjYjXA8bnIZVFtn5ICN
-         hnjkC8rco4OCcC0O+Ke1llPxO0Shh9Uz8pwnAMOFsqX7lnMbCPTTnB3pXi1XnOV4oEwl
-         cQzQ==
-X-Gm-Message-State: AAQBX9dPKtcfh/yYhkVg9Q0PiCdUgA1+6TIEVEFlGA4ZL15aiRlIUe32
-        8TXC4ZhqZdAawtdID5kFzg0atg==
-X-Google-Smtp-Source: AKy350b86CRvvHjujWrh5zEZaxFDPZ1LMnS6r8Jmu7VbtmHIdAhO4+sD9YnyfvCTt1v+etjXJVIQ2w==
-X-Received: by 2002:a17:907:3a03:b0:94c:784f:7569 with SMTP id fb3-20020a1709073a0300b0094c784f7569mr3282936ejc.30.1681404364433;
-        Thu, 13 Apr 2023 09:46:04 -0700 (PDT)
+        bh=51DVCd/h3/cJO7cjSlyrYI32aoEqdT9dgNs9Eih2opE=;
+        b=l1qVVz3qpLx45Ic0ERWD8zcAfL4wipGs4NdCrFLWoBHHWADMxG3dyk2QYFbiR6yAKW
+         FbUVHENCqbeoLOogjp7NSS0teK1v0wLv+BGbbBlu4OafhAmzBHwbFNZCqtlrZZ5LUipc
+         86aa/yV/4OlC7aprLpGZpZc1FMjJv2M0Ond4NwNP1gPND0xJk56NaUqP0fskoYYVwhm2
+         yNA26fBUV7mHpxKpz1gN5W45gP/UhucHKqHhZYPJQJ+GYV6M0ds0V/jMB8Fx1awIXmCZ
+         fTqbO8cowG97RVBAnZ2VD6G7OP+p86yjOEU0y00FC9Z5HlDmgVBuIcuyY6GmcOILlTsB
+         egzw==
+X-Gm-Message-State: AAQBX9dRoD2W7uyEKwcIodUHekcmYICxuzroSgJQP3II00J0U7M6TCB5
+        7QlMaLWRHI0nldFvhE54qkC93w==
+X-Google-Smtp-Source: AKy350b4Jz7APW0X824PXsHeC5e1sHTqjV9UgCwCrxjufPBWxBtgGffJCq1hAMMiXPCq9xLeN0mhEA==
+X-Received: by 2002:a17:907:3f16:b0:930:f953:962c with SMTP id hq22-20020a1709073f1600b00930f953962cmr4155726ejc.1.1681404450522;
+        Thu, 13 Apr 2023 09:47:30 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5032:d2d4:ece5:b035? ([2a02:810d:15c0:828:5032:d2d4:ece5:b035])
-        by smtp.gmail.com with ESMTPSA id x6-20020a170906b08600b0094e6db4d4a1sm1198394ejy.186.2023.04.13.09.46.03
+        by smtp.gmail.com with ESMTPSA id ka20-20020a170907991400b0094c67e537c8sm1208815ejc.38.2023.04.13.09.47.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 09:46:03 -0700 (PDT)
-Message-ID: <24c6d4fe-128a-2fe1-1e35-d124e5f9c265@linaro.org>
-Date:   Thu, 13 Apr 2023 18:46:03 +0200
+        Thu, 13 Apr 2023 09:47:29 -0700 (PDT)
+Message-ID: <d11b6acb-b072-9496-5ad6-0635357394f1@linaro.org>
+Date:   Thu, 13 Apr 2023 18:47:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v3] dt-bindings: leds: Convert PCA9532 to dtschema
+Subject: Re: [PATCH v7 05/12] dt-bindings: mfd: syscon: Add nuvoton,ma35d1-sys
+ compatible
 Content-Language: en-US
-To:     Wadim Egorov <w.egorov@phytec.de>, upstream@lists.phytec.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-leds@vger.kernel.org
-Cc:     riku.voipio@iki.fi, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lee@kernel.org, pavel@ucw.cz
-References: <20230412140552.451527-1-w.egorov@phytec.de>
- <20230412140552.451527-2-w.egorov@phytec.de>
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230412053824.106-1-ychuang570808@gmail.com>
+ <20230412053824.106-6-ychuang570808@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230412140552.451527-2-w.egorov@phytec.de>
+In-Reply-To: <20230412053824.106-6-ychuang570808@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,16 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 16:05, Wadim Egorov wrote:
-> Convert the PCA9532 LED Dimmer to dtschema.
-> While at it, update the example to match recommended node names and
-> the link to the product datasheet. Also add GPIO properties since
-> the driver allows to use unused pins as GPIOs.
+On 12/04/2023 07:38, Jacky Huang wrote:
+> From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
+> Add Nuvoton ma35d1 system registers compatible.
+> 
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What about the tag? Why did you ignore it?
+
+Also, wasn't this applied? Why do you resend (incorrect version)?
 
 Best regards,
 Krzysztof
