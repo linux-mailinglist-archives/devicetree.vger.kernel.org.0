@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A26866E088E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 10:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B83136E08FF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 10:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjDMIFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 04:05:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47028 "EHLO
+        id S229982AbjDMIfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 04:35:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbjDMIFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 04:05:11 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6E619A;
-        Thu, 13 Apr 2023 01:05:09 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33D84ZUQ0002708, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33D84ZUQ0002708
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Thu, 13 Apr 2023 16:04:35 +0800
-Received: from RTEXMBS06.realtek.com.tw (172.21.6.99) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Thu, 13 Apr 2023 16:04:57 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Thu, 13 Apr 2023 16:04:57 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::b4a2:2bcc:48d1:8b02]) by
- RTEXMBS04.realtek.com.tw ([fe80::b4a2:2bcc:48d1:8b02%5]) with mapi id
- 15.01.2375.007; Thu, 13 Apr 2023 16:04:57 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add 'snps,parkmode-disable-hs-quirk' quirk
-Thread-Topic: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add
- 'snps,parkmode-disable-hs-quirk' quirk
-Thread-Index: AQHZbDd6gxCuA7crRky4J7/Z72smRa8oCpIAgABLvACAAI03kA==
-Date:   Thu, 13 Apr 2023 08:04:56 +0000
-Message-ID: <30861bce0ef44bdea36b2c90ec033850@realtek.com>
-References: <20230411053550.16360-2-stanley_chang@realtek.com>
- <20230413030344.13483-1-stanley_chang@realtek.com>
- <2d058629-bd97-5e4d-8630-598cc22e5c58@kernel.org>
-In-Reply-To: <2d058629-bd97-5e4d-8630-598cc22e5c58@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS06.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229803AbjDMIfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 04:35:13 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3467F9004
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 01:35:08 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id i8-20020a05600c354800b003ee93d2c914so9265446wmq.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 01:35:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681374906; x=1683966906;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bgpZO9AIe8VGZCUKnUlH/UpTwMfShkzNFnZzlAbDLio=;
+        b=ByBF+Pah2Cf9Dw7TTELtEmi4QeLJUvfUQwiZWnhovu38hGZVegX3B8g0TQYPDqTWV/
+         Zfu53nju26Z+aw9vrigaoL3FNPNvf2t/hqxRcavJffON7yb/Z+RDgjSIwwr2Gv0g7hYT
+         9FOjlaDuvpSZpmIWYaDET1uDFRpmbeYIxxH2SpeHWO2mtxffwwVOPcsN7MU+Hs2MHbH1
+         uOXeR5foBmzEOk5l1VYxRu+KeMsOfKesYF+GBBQg6bWatvKNh0fA70YvPYxBa18aLRiE
+         QaZBfzFaSF3xH7oVE6AFCKYjqEbbeiD4rbUQgnorOXSaSlL6emOYNklczk4IyHNsqfEm
+         t2aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681374906; x=1683966906;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bgpZO9AIe8VGZCUKnUlH/UpTwMfShkzNFnZzlAbDLio=;
+        b=bDqGXnrYtmYs7RSayps2UdZnR3voi4NusUHUXozSsjQ/YvMu9FFkw1dogqOaQzvt7n
+         DxDlu91cbXXtjVfeYawAtrUziatoAiYD0St+mJGS6fij4oPYWgrH7iRP5VJdZ7UaF8+g
+         km6k5i4Th2N8RLh2XEf7f6QEZRDJnPbo+4v7aPXzhL17vxVY0XWrbEar9c4XmHlLzoQI
+         Twrz2cwqqKbFXbdFf3mBOiqYJmC1b/TQOwArWdFFtKV9RgjZ9YRTNRjRkns4c7f8ps9v
+         eeJdcEp8S6+WLocAYuS/qoqyI7wYXesOzOd+ev684M2iOZjf6yikVA4ynnz1W0D1Rxp7
+         //ng==
+X-Gm-Message-State: AAQBX9faz0dHnu7XkJk82+C4Ld1isvv20hlSlR/rZ63r0Vck7slLIiyG
+        woiVJfMhDggdao4wpHfFOisqCg==
+X-Google-Smtp-Source: AKy350YyIRH/26Jq8AL749rYqtIOUqj06Hs2snEnIripo+iwHCpV8X7IlqPvWdD8xla04mFPT4eT3A==
+X-Received: by 2002:a05:600c:348e:b0:3ee:93d2:c915 with SMTP id a14-20020a05600c348e00b003ee93d2c915mr821131wmq.6.1681374906602;
+        Thu, 13 Apr 2023 01:35:06 -0700 (PDT)
+Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id 7-20020a05600c028700b003f09a9503b5sm1182407wmk.23.2023.04.13.01.35.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 01:35:06 -0700 (PDT)
+Message-ID: <470d8376-6232-66a7-30f4-561245cf0c07@baylibre.com>
+Date:   Thu, 13 Apr 2023 10:35:04 +0200
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/7] dt-bindings: leds: leds-mt6323: Document mt6331
+ compatible
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
+Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
+ <20230412153310.241046-2-angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230412153310.241046-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQo+IE9uIDEzLzA0LzIwMjMgMDU6MDMsIFN0YW5sZXkgQ2hhbmcgd3JvdGU6DQo+ID4gQWRkIGEg
-bmV3ICdzbnBzLHBhcmttb2RlLWRpc2FibGUtaHMtcXVpcmsnIERUIHF1aXJrIHRvIGR3YzMgY29y
-ZSBmb3INCj4gPiBkaXNhYmxlIHRoZSBoaWdoLXNwZWVkIHBhcmttb2RlLg0KPiANCj4gUGxlYXNl
-IHVzZSBzY3JpcHRzL2dldF9tYWludGFpbmVycy5wbCB0byBnZXQgYSBsaXN0IG9mIG5lY2Vzc2Fy
-eSBwZW9wbGUgYW5kIGxpc3RzDQo+IHRvIENDLiAgSXQgbWlnaHQgaGFwcGVuLCB0aGF0IGNvbW1h
-bmQgd2hlbiBydW4gb24gYW4gb2xkZXIga2VybmVsLCBnaXZlcw0KPiB5b3Ugb3V0ZGF0ZWQgZW50
-cmllcy4gIFRoZXJlZm9yZSBwbGVhc2UgYmUgc3VyZSB5b3UgYmFzZSB5b3VyIHBhdGNoZXMgb24N
-Cj4gcmVjZW50IExpbnV4IGtlcm5lbC4NCj4gDQo+IEl0J3MgdGhlIHNlY29uZCB0aW1lIEkgYW0g
-d3JpdGluZyBpdC4gSSBkb24ndCB1bmRlcnN0YW5kIHdoeSB5b3Uga2VlcCBpZ25vcmluZw0KPiBp
-dC4NCg0KU29ycnkgZm9yIHRoZSBjb25mdXNpb24uDQpJbiB0aGUgYmVnaW5uaW5nIEkgZGlkbid0
-IGhhdmUgY2MgYWxsIG1haW50YWluZXJzLg0KSSdsbCByZXN1Ym1pdCBhIG5ldyByZXZpZXcgdGhy
-ZWFkLg0KUGxlYXNlIGlnbm9yZSB0aGlzIGVtYWlsLg0KDQo+IFlvdXIgY29tbWl0IG1zZyBkb2Vz
-IG5vdCBleHBsYWluIHdoeSBkbyB3ZSBuZWVkIGl0Lg0KDQpJIHdpbGwgYWRkIGl0IGF0IG5ldyBw
-YXRjaC4NCg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogU3RhbmxleSBDaGFuZyA8c3RhbmxleV9j
-aGFuZ0ByZWFsdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3VzYi9zbnBzLGR3YzMueWFtbCB8IDUgKysrKysNCj4gPiAgMSBmaWxlIGNoYW5n
-ZWQsIDUgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy91c2Ivc25wcyxkd2MzLnlhbWwNCj4gPiBiL0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2Ivc25wcyxkd2MzLnlhbWwNCj4gPiBpbmRleCBiZTM2
-OTU2YWY1M2IuLjQ1Y2E5NjdiOGQxNCAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvdXNiL3NucHMsZHdjMy55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9zbnBzLGR3YzMueWFtbA0KPiA+IEBAIC0yMzIs
-NiArMjMyLDExIEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICAgIFdoZW4gc2V0LCBhbGwgU3VwZXJT
-cGVlZCBidXMgaW5zdGFuY2VzIGluIHBhcmsgbW9kZSBhcmUgZGlzYWJsZWQuDQo+ID4gICAgICB0
-eXBlOiBib29sZWFuDQo+ID4NCj4gPiArICBzbnBzLHBhcmttb2RlLWRpc2FibGUtaHMtcXVpcms6
-DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAgV2hlbiBzZXQsIGFsbCBIaWdoU3Bl
-ZWQgYnVzIGluc3RhbmNlcyBpbiBwYXJrIG1vZGUgYXJlIGRpc2FibGVkLg0KPiANCj4gV2h5Pw0K
-PiANCg0KRm9yIHNvbWUgVVNCIHdpZmkgZGV2aWNlcywgaWYgZW5hYmxlIHRoaXMgZmVhdHVyZSBp
-dCB3aWxsIHJlZHVjZSB0aGUNCnBlcmZvcm1hbmNlLiBUaGVyZWZvcmUsIGFkZCBhbiBvcHRpb24g
-Zm9yIGRpc2FibGluZyBIUyBwYXJrIG1vZGUgYnkgZGV2aWNlLXRyZWUuDQoNClRoYW5rcywNClN0
-YW5sZXkNCg==
+On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
+> Add mediatek,mt6331-led compatible for the LED controller found
+> in the MT6331 PMIC.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
+> Acked-by: Krzysztof Kozlowski<krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+-- 
+Regards,
+Alexandre
+
