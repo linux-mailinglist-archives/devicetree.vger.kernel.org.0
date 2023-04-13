@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1BB76E0C9A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 13:35:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EED46E0C9C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 13:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230347AbjDMLfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 07:35:19 -0400
+        id S230294AbjDMLfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 07:35:20 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbjDMLfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 07:35:17 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD760A262
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 04:34:49 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id w24so4294218wra.10
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 04:34:49 -0700 (PDT)
+        with ESMTP id S230011AbjDMLfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 07:35:18 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1290D9ED6
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 04:34:51 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id s2so10624286wra.7
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 04:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681385683; x=1683977683;
+        d=linaro.org; s=google; t=1681385685; x=1683977685;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mot1s4oJJqHfzgUo3NAC8eaCnGWNaTZ4CyGiPVoRb5c=;
-        b=OQGV2qJUxkyKlwYfFWQP44tVqXSOrof8DNjnLytDDLR2WZzztC/9p0m2SvXokBXXLz
-         3Xs0WNbyQ+F7GIvJ4JCZBkztn+3bxA2jT9lCtPxTDAsL5HeX8QFE8pbay091GITYYhyk
-         9deGuOqy4y4PdkXLJqmFeIM6ExY6aQ7CzW+L7IM6wzTvid7Ou2DvtOx1xF1StZaB33eh
-         WlUbmW1exjvyzfO4mo2ps3lhQXw7c62KjhCZpaG1qc6SNteYj+xa6YTILdBjr/8DVhj9
-         Ttx7pXuWkVnVOO9yuHdwJQOJBssSKOdCpZ8guZ/rHQbj136hjSVYmgvmuqZ7B0kMiBDJ
-         QgLQ==
+        bh=9lSyNZ2HtWZEUWBo+n5QAmOJQC6AAMQbbNN6fuawseI=;
+        b=S85O+0n/rIuhvSBM9bIHQDStbL8bpUcvxknAk/vge3Zt0JnQ9iBlKFau5YkT6VTKpB
+         1PLdDXQwdbKkTfQ44urjf2kbD76P/umGmjSPAfS703By1cil4Pfga1Wa/JKzydd1WcIG
+         spDoPmN4+VaseH/U5fDCgGtLts63kaieoGx0wI+gvAdOBm8Jb7Y+k5CR8/YkYiGnDV9h
+         PnlRiiUdHY92nZIJ8R1zIIgFOuAJgrNs5oUplPA/dNyqpIUlR+ovrcaOimd1eZqI1nOC
+         Pa4UMzDIee+WJCZAl6kA6q+bp8bYWqwVAgLyt+ybCaRZQnA0zrQT7tWpauVHmHlfvSmb
+         Gd1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681385683; x=1683977683;
+        d=1e100.net; s=20221208; t=1681385685; x=1683977685;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Mot1s4oJJqHfzgUo3NAC8eaCnGWNaTZ4CyGiPVoRb5c=;
-        b=O4tMdZmsKpyfjXrR/9FQJ5Judw3DEFCCr5RgPDX0Ud6nr4ULBYJPuAtg+h/UBpvgBV
-         JXJiOIRYm+C9NSvwrb7yWlDN/Utn6vBJO0i1bsq73Y7RD8tWYbnR6guCFRbksnInxGOs
-         eykuXIqNDx2kluWLHpkI7fVV52QyEcE6oKNvRslTH0x85LjaRytMOjV92Dq1ZofaLB3K
-         bqtBLZHum7qNYjEXh9FmUqKncIpW5S75+50alhgWy5VpihaH1e4WDT6ntH2cqZRCQ42d
-         JtfV7m7ueqQmSMcSdShmTRaxUgAG2IDmVIJUUaP7eboczX7K/+cuc9B8Yy4pLKd4BSLV
-         4F/Q==
-X-Gm-Message-State: AAQBX9dsQXiUAwJ8aZsIR9kTSK+AOy1hqyrBS8QGvn+gN8eMax9dm8BZ
-        Z6UX02qOHzROX/VQsGayCfvFuw==
-X-Google-Smtp-Source: AKy350bjygdt0XDqdCpO7FC/55v0UWQWgzxyKdxtxl37exC8eLcq6MK1mSW8qs4b0RIBpiYdGyV5AQ==
-X-Received: by 2002:adf:f4d0:0:b0:2f5:fcb:c4a4 with SMTP id h16-20020adff4d0000000b002f50fcbc4a4mr1186830wrp.52.1681385683460;
-        Thu, 13 Apr 2023 04:34:43 -0700 (PDT)
+        bh=9lSyNZ2HtWZEUWBo+n5QAmOJQC6AAMQbbNN6fuawseI=;
+        b=BbWtKeE1IXR6+nFuOQlJhtiybzJgNuvQcYWzhh5yCvFyPlB5J0DGf4xRlXnf4BMWoK
+         sg/2A1U5np0fU2vToNreynu06P5Z6Wqirx26w+OzqEIG51L65HNXAnJdRRjRIbRGhgoZ
+         iUTWO5Yv3drZ9tgXMuoOvW/04p8BmwBmgHuN5RrW6MiAgrQjS7rgWfSHJpmqZ+KAzvxO
+         lK0bzW3K8J343qCpP5Qmz/0eLxoos0tZHjvz1J80BWpTvlu4Jw7sSvCVmlc7tzIlzmBt
+         hpIR3aZnanXgNUv0SUM7b/7Wxl7LVp4c1kKUHzzrh3LArFNtSPOn3GVYTjlaXCdRGvSt
+         N27w==
+X-Gm-Message-State: AAQBX9e8NlK0bS40CzQGdbz/MF5uPC/20hDL/Dw9QoufKpw+trIf66fZ
+        Ee9qy2+fa3GtVtFdGipvS/ebaw==
+X-Google-Smtp-Source: AKy350ZaM/KCN5TsZEDfIOJ7TwON5dPBA9y/Ba1Hi6gZFpiZqvja66eL5daBBaKwNswW3IlxVq6aKg==
+X-Received: by 2002:adf:e2cd:0:b0:2f5:9800:8d3e with SMTP id d13-20020adfe2cd000000b002f598008d3emr1137746wrj.47.1681385684860;
+        Thu, 13 Apr 2023 04:34:44 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id e16-20020a5d4e90000000b002f2782978d8sm1108877wru.20.2023.04.13.04.34.42
+        by smtp.gmail.com with ESMTPSA id e16-20020a5d4e90000000b002f2782978d8sm1108877wru.20.2023.04.13.04.34.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 04:34:43 -0700 (PDT)
+        Thu, 13 Apr 2023 04:34:44 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
         gregkh@linuxfoundation.org, andersson@kernel.org,
@@ -59,9 +59,9 @@ Cc:     caleb.connolly@linaro.org, bryan.odonoghue@linaro.org,
         konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
         robertom@qti.qualcomm.com,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 02/14] dt-bindings: regulator: qcom,usb-vbus-regulator: Mark regulator-*-microamp required
-Date:   Thu, 13 Apr 2023 12:34:26 +0100
-Message-Id: <20230413113438.1577658-3-bryan.odonoghue@linaro.org>
+Subject: [PATCH v5 03/14] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add orientation-switch as optional
+Date:   Thu, 13 Apr 2023 12:34:27 +0100
+Message-Id: <20230413113438.1577658-4-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
 References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
@@ -69,63 +69,51 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VBUS driver needs to know the regulator-min-microamp and
-regulator-max-microamp so they should both be marked as required.
+orientation-switch it the standard declaration to inform the Type-C mux
+layer that a remote-endpoint is capable of processing orientation change
+messages.
 
-regulator.yaml defines those two dependencies so include regulator.yaml.
-
-We need to change from additionalProperties: false to
-unevaluatedProperties: false.
+Add as an optional since not all versions of the dp-phy currently support
+the orientation-switch.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../bindings/regulator/qcom,usb-vbus-regulator.yaml      | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ .../bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml           | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
-index 7a3b59f836092..89c564dfa5db5 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
-@@ -14,6 +14,9 @@ description: |
-   regulator will be enabled in situations where the device is required to
-   provide power to the connected peripheral.
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+index 0ef2c9b9d4669..d307343388888 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+@@ -61,6 +61,10 @@ properties:
+   power-domains:
+     maxItems: 1
  
-+allOf:
-+  - $ref: regulator.yaml#
++  orientation-switch:
++    description: Flag the port as possible handler of orientation switching
++    type: boolean
 +
- properties:
-   compatible:
-     enum:
-@@ -26,8 +29,10 @@ properties:
- required:
-   - compatible
-   - reg
-+  - regulator-min-microamp
-+  - regulator-max-microamp
+   resets:
+     items:
+       - description: reset of phy block.
+@@ -251,6 +255,8 @@ examples:
+         vdda-phy-supply = <&vdda_usb2_ss_1p2>;
+         vdda-pll-supply = <&vdda_usb2_ss_core>;
  
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-@@ -37,6 +42,8 @@ examples:
-         pm8150b_vbus: usb-vbus-regulator@1100 {
-             compatible = "qcom,pm8150b-vbus-reg";
-             reg = <0x1100>;
-+            regulator-min-microamp = <500000>;
-+            regulator-max-microamp = <3000000>;
-         };
-      };
- ...
++        orientation-switch;
++
+         usb3-phy@200 {
+             reg = <0x200 0x128>,
+                   <0x400 0x200>,
 -- 
 2.39.2
 
