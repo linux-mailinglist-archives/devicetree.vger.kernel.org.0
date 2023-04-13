@@ -2,287 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D13226E0ECB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:35:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297226E0FA4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:07:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231434AbjDMNfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:35:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58870 "EHLO
+        id S231347AbjDMOHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 10:07:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231614AbjDMNes (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:34:48 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42592AF39;
-        Thu, 13 Apr 2023 06:32:49 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 7C5D124E1CE;
-        Thu, 13 Apr 2023 21:32:11 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Apr
- 2023 21:32:11 +0800
-Received: from [192.168.125.131] (183.27.97.249) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Apr
- 2023 21:32:10 +0800
-Message-ID: <4ed4d0e6-8da5-7eef-8713-44854b8d4a9b@starfivetech.com>
-Date:   Thu, 13 Apr 2023 21:31:12 +0800
+        with ESMTP id S230305AbjDMOHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:07:17 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D52E2;
+        Thu, 13 Apr 2023 07:07:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681394836; x=1712930836;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=o3ui4+B9QONrA1DxR7CqtVx0f1GoF/Cuz8I+r7IyAkc=;
+  b=NPHSldpaqA+quQpdXwfcscHG2bdMX2MitIjReA2H4IiJWc8OiI2I1bUK
+   m2eOgy2nYfyfjhyYGRnxaRscVYpJntHRVyIjNKwTg/uPLvipMnuJykBr7
+   UcNySSudqCXuJ2pVWSXuGL1q3JMCi21AXt11ZUdQEZXUqOJxRLj3QxIZM
+   1lPXgM4hFsbsc1SAheKkvF4pyJM+JhLLiZIHjIImRgr4PWmrP61YIhiYE
+   wrl30KGotx8P4IxZeSoFB011Orq1CxXZpTdDlRGr9oGLlldinWKj4gcqg
+   nSqpiKabMcSRm/lH9KA7u+NW0cHillIa2ak3a1Y6dEsytzSH82rS32rQ8
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="409359221"
+X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; 
+   d="scan'208";a="409359221"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2023 06:34:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="833154339"
+X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; 
+   d="scan'208";a="833154339"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 13 Apr 2023 06:34:50 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pmx69-000YiI-2u;
+        Thu, 13 Apr 2023 13:34:49 +0000
+Date:   Thu, 13 Apr 2023 21:34:41 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yi-De Wu <yi-de.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Jades Shih <jades.shih@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        My Chuang <my.chuang@mediatek.com>,
+        Shawn Hsiao <shawn.hsiao@mediatek.com>,
+        PeiLun Suei <peilun.suei@mediatek.com>,
+        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+        Liju Chen <liju-clr.chen@mediatek.com>,
+        Yi-De Wu <yi-de.wu@mediatek.com>
+Subject: Re: [PATCH v1 6/6] soc: mediatek: virt: geniezone: Add irqfd support
+Message-ID: <202304132123.rrVq3AEP-lkp@intel.com>
+References: <20230413090735.4182-7-yi-de.wu@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 07/10] clk: starfive: Add StarFive JH7110 Video-Output
- clock driver
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230411135558.44282-1-xingyu.wu@starfivetech.com>
- <20230411135558.44282-8-xingyu.wu@starfivetech.com>
- <683cbe934d1df9436e003466d2a419ef.sboyd@kernel.org>
- <463ee23c-f617-bed0-27a8-56c6fb40d092@starfivetech.com>
- <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230413090735.4182-7-yi-de.wu@mediatek.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/4/13 12:04, Stephen Boyd wrote:
-> Quoting Xingyu Wu (2023-04-11 23:15:26)
->> On 2023/4/12 2:33, Stephen Boyd wrote:
->> > Quoting Xingyu Wu (2023-04-11 06:55:55)
->> >> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-vout.c b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
->> >> new file mode 100644
->> >> index 000000000000..4c6f5ae198cf
->> >> --- /dev/null
->> >> +++ b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
->> >> @@ -0,0 +1,239 @@
->> >> +// SPDX-License-Identifier: GPL-2.0
->> >> +/*
->> >> + * StarFive JH7110 Video-Output Clock Driver
->> >> + *
->> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> >> + */
->> >> +
->> >> +#include <linux/clk.h>
->> >> +#include <linux/clk-provider.h>
->> >> +#include <linux/io.h>
->> >> +#include <linux/platform_device.h>
->> >> +#include <linux/pm_runtime.h>
->> >> +#include <linux/reset.h>
->> > 
->> > Include module.h, device.h, and kernel.h for things like ERR_PTR().
->> 
->> The local headfile 'clk-starfive-jh71x0.h' from the basic JH71x0 clock driver
->> already includes the device.h. 
->> And I found the module.h is included in device/driver.h file and then it is included
->> in the device.h file.
->> The kernel.h is included in the clk.h file.
->> So do I still need to list them?
-> 
-> Yes.
+Hi Yi-De,
 
-OK, will fix.
+kernel test robot noticed the following build warnings:
 
-> 
->> 
->> > Probably need to include a reset header as well for reset APIs.
->> 
->> The reset APIs like devm_reset_control_get_shared() and reset_control_deassert()
->> come from the reset.h file and I have included it.
-> 
-> Cool, I missed it.
-> 
->> 
->> > 
->> >> +
->> >> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
->> >> +
->> >> +#include "clk-starfive-jh7110.h"
->> >> +
->> >> +/* external clocks */
->> >> +#define JH7110_VOUTCLK_VOUT_SRC                        (JH7110_VOUTCLK_END + 0)
->> >> +#define JH7110_VOUTCLK_VOUT_TOP_AHB            (JH7110_VOUTCLK_END + 1)
->> >> +#define JH7110_VOUTCLK_VOUT_TOP_AXI            (JH7110_VOUTCLK_END + 2)
->> >> +#define JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK   (JH7110_VOUTCLK_END + 3)
->> >> +#define JH7110_VOUTCLK_I2STX0_BCLK             (JH7110_VOUTCLK_END + 4)
->> >> +#define JH7110_VOUTCLK_HDMITX0_PIXELCLK                (JH7110_VOUTCLK_END + 5)
->> >> +#define JH7110_VOUTCLK_EXT_END                 (JH7110_VOUTCLK_END + 6)
->> >> +
->> >> +/* VOUT domian clocks */
->> >> +struct vout_top_crg {
->> >> +       struct clk_bulk_data *top_clks;
->> >> +       int top_clks_num;
->> > 
->> > size_t?
->> 
->> Will modify to 'unsigned int'.
-> 
-> Why not size_t?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on krzk-dt/for-next arm64/for-next/core lwn/docs-next linus/master v6.3-rc6 next-20230412]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-OK,I will use size_t. 
+url:    https://github.com/intel-lab-lkp/linux/commits/Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230413-170932
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230413090735.4182-7-yi-de.wu%40mediatek.com
+patch subject: [PATCH v1 6/6] soc: mediatek: virt: geniezone: Add irqfd support
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230413/202304132123.rrVq3AEP-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/ae996a1c7d12837f16f28975712a8bf63525cac4
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230413-170932
+        git checkout ae996a1c7d12837f16f28975712a8bf63525cac4
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/soc/mediatek/virt/geniezone/
 
-> 
->> 
->> > 
->> >> +       if (ret < 0)
->> >> +               return dev_err_probe(priv->dev, ret, "failed to turn on power\n");
->> >> +
->> >> +       ret = jh7110_vout_top_crg_init(priv, top);
->> >> +       if (ret)
->> >> +               goto err_clk;
->> >> +
->> >> +       top->base = priv->base;
->> >> +       dev_set_drvdata(priv->dev, (void *)(&top->base));
->> > 
->> > See comment later about setting this to 'top' instead. Casting away
->> > iomem markings is not good hygiene.
->> 
->> JH7110 resets as the auxiliary device of clocks use the same iomem as the clocks
->> and the iomem will be got by dev_get_drvdata() in the 7110 reset drivers when registering reset.
->> So I follow the basic 7110 reset driver and also set the iomem not top_crg struct.
-> 
-> Oh I totally missed that this is how it's been done for the other
-> starfive driver. It's still not good hygiene to stash the iomem pointer
-> that way because the iomem marking is lost and has to be recovered. Can
-> you make a wrapper struct, either for the adev or to pass in struct
-> device::platform_data?
-> 
-> ---8<---
-> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
-> index 5ec210644e1d..851b93d0f371 100644
-> --- a/drivers/clk/starfive/clk-starfive-jh7110-sys.c
-> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
-> @@ -11,6 +11,9 @@
->  #include <linux/init.h>
->  #include <linux/io.h>
->  #include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#include <soc/starfive/reset-starfive-jh71x0.h>
->  
->  #include <dt-bindings/clock/starfive,jh7110-crg.h>
->  
-> @@ -335,26 +338,32 @@ static void jh7110_reset_unregister_adev(void *_adev)
->  	struct auxiliary_device *adev = _adev;
->  
->  	auxiliary_device_delete(adev);
-> +	auxiliary_device_uninit(adev);
->  }
->  
->  static void jh7110_reset_adev_release(struct device *dev)
->  {
->  	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> +	struct jh71x0_reset_adev *rdev = to_jh71x0_reset_adev(adev);
->  
-> -	auxiliary_device_uninit(adev);
-> +	kfree(rdev);
->  }
->  
->  int jh7110_reset_controller_register(struct jh71x0_clk_priv *priv,
->  				     const char *adev_name,
->  				     u32 adev_id)
->  {
-> +	struct jh71x0_reset_adev *rdev;
->  	struct auxiliary_device *adev;
->  	int ret;
->  
-> -	adev = devm_kzalloc(priv->dev, sizeof(*adev), GFP_KERNEL);
-> -	if (!adev)
-> +	rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304132123.rrVq3AEP-lkp@intel.com/
 
-Can there use 'devm_kzalloc'? Are you not using this because the struct is public and clock driver
-and reset driver both use it. But I think the both clock driver and reset driver are the same
-device and can use 'devm_kzalloc'.
+All warnings (new ones prefixed by >>):
 
-> +	if (!rdev)
->  		return -ENOMEM;
->  
-> +	rdev->base = priv->base;
-> +
-> +	adev = &rdev->adev;
->  	adev->name = adev_name;
->  	adev->dev.parent = priv->dev;
->  	adev->dev.release = jh7110_reset_adev_release;
-> diff --git a/drivers/reset/starfive/reset-starfive-jh7110.c b/drivers/reset/starfive/reset-starfive-jh7110.c
-> index c1b3a490d951..2d26ae95c8cc 100644
-> --- a/drivers/reset/starfive/reset-starfive-jh7110.c
-> +++ b/drivers/reset/starfive/reset-starfive-jh7110.c
-> @@ -7,6 +7,8 @@
->  
->  #include <linux/auxiliary_bus.h>
->  
-> +#include <soc/starfive/reset-starfive-jh71x0.h>
-> +
->  #include "reset-starfive-jh71x0.h"
->  
->  #include <dt-bindings/reset/starfive,jh7110-crg.h>
-> @@ -33,14 +35,15 @@ static int jh7110_reset_probe(struct auxiliary_device *adev,
->  			      const struct auxiliary_device_id *id)
->  {
->  	struct jh7110_reset_info *info = (struct jh7110_reset_info *)(id->driver_data);
-> -	void __iomem **base = (void __iomem **)dev_get_drvdata(adev->dev.parent);
-> +	struct jh71x0_reset_adev *rdev = to_jh71x0_reset_adev(adev);
-> +	void __iomem *base = rdev->base;
->  
->  	if (!info || !base)
->  		return -ENODEV;
->  
->  	return reset_starfive_jh71x0_register(&adev->dev, adev->dev.parent->of_node,
-> -					      *base + info->assert_offset,
-> -					      *base + info->status_offset,
-> +					      base + info->assert_offset,
-> +					      base + info->status_offset,
->  					      NULL,
->  					      info->nr_resets,
->  					      NULL);
-> diff --git a/include/soc/starfive/reset-starfive-jh71x0.h b/include/soc/starfive/reset-starfive-jh71x0.h
-> new file mode 100644
-> index 000000000000..47b486ececc5
-> --- /dev/null
-> +++ b/include/soc/starfive/reset-starfive-jh71x0.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef __SOC_STARFIVE_RESET_JH71X0_H
-> +#define __SOC_STARFIVE_RESET_JH71X0_H
-> +
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/compiler_types.h>
-> +#include <linux/container_of.h>
-> +
-> +struct jh71x0_reset_adev {
-> +	void __iomem *base;
-> +	struct auxiliary_device adev;
-> +};
-> +
-> +#define to_jh71x0_reset_adev(_adev) \
-> +	container_of((_adev), struct jh71x0_reset_adev, adev)
-> +
-> +#endif
+>> drivers/soc/mediatek/virt/geniezone/gzvm_eventfd.c:463:6: warning: no previous prototype for 'gzvm_irqfd_release' [-Wmissing-prototypes]
+     463 | void gzvm_irqfd_release(struct gzvm *gzvm)
+         |      ^~~~~~~~~~~~~~~~~~
 
-That's great. It don't need to set iomem to driver_data and I can set the struct data like 'top_crg'
-to driver_data in VOUTCRG and ISPCRG driver. I try to modify it in next patchset.
-Thanks for your suggestion.
 
-Best regards,
-Xingyu Wu
+vim +/gzvm_irqfd_release +463 drivers/soc/mediatek/virt/geniezone/gzvm_eventfd.c
 
+   458	
+   459	/*
+   460	 * This function is called as the gzvm VM fd is being released. Shutdown all
+   461	 * irqfds that still remain open
+   462	 */
+ > 463	void gzvm_irqfd_release(struct gzvm *gzvm)
+   464	{
+   465		struct gzvm_kernel_irqfd *irqfd, *tmp;
+   466	
+   467		spin_lock_irq(&gzvm->irqfds.lock);
+   468	
+   469		list_for_each_entry_safe(irqfd, tmp, &gzvm->irqfds.items, list)
+   470			irqfd_deactivate(irqfd);
+   471	
+   472		spin_unlock_irq(&gzvm->irqfds.lock);
+   473	
+   474		/*
+   475		 * Block until we know all outstanding shutdown jobs have completed.
+   476		 */
+   477		flush_workqueue(irqfd_cleanup_wq);
+   478	}
+   479	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
