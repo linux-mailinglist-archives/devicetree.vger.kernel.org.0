@@ -2,110 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02BA66E128A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 18:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 755A16E128D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 18:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbjDMQlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 12:41:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47042 "EHLO
+        id S229647AbjDMQlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 12:41:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbjDMQlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 12:41:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 347E1AD28;
-        Thu, 13 Apr 2023 09:40:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BA66D64015;
-        Thu, 13 Apr 2023 16:40:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF6EAC433D2;
-        Thu, 13 Apr 2023 16:40:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681404058;
-        bh=vGGwL9n4j9XBfhQxXlt7x2mowxQu7Cn68mznFVTPEG4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q4qbU++oL30gleJ1QlYq4GTotO8Lmvh6YytyVZCcRuR5s3IjDvF3uWhOhIyZLz/Mx
-         wNd7acKvpf6+VIvor+hSln8Y4FrVW9d1nIvQnXbfPBQUxMVCBJ+7QO72f7X0wSJRJu
-         s7BRD23eXgNPfOlzP0GFAVepvej/hRbj2YUmduUwJOEV2xFb0uTTiS1ZGiYljdi/l7
-         YDKnY9pDZEIE6CqO06G9fMrAwli+1ERQOSXOuvSsh2RwjycGzlsV+vIEtDWPJLmdQW
-         WCDJh+XnseI+rFyIqP5h0mmKBGBiM9ZGcMr+4Wvg9rxtIpZo/BX+ARRALfPBV1tS72
-         8G89xntCCgHyg==
-Date:   Thu, 13 Apr 2023 18:40:53 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     linux-i2c@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: Re: [PATCH v3 2/2] i2c: mediatek: add support for MT7981 SoC
-Message-ID: <ZDgwlY2kR9CCRV4h@sai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Daniel Golle <daniel@makrotopia.org>, linux-i2c@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sam Shih <sam.shih@mediatek.com>
-References: <cover.1680857025.git.daniel@makrotopia.org>
- <7b5c6ba8da51ea6145fb71815a2f65a9e1d341c1.1680857025.git.daniel@makrotopia.org>
+        with ESMTP id S229787AbjDMQlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 12:41:20 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD9CAF2E
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:41:13 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id dm2so39064145ejc.8
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 09:41:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681404072; x=1683996072;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wQYhwxmi55X7Z5hFzk1ISpkyBuA28S3CElCKdf9WBEY=;
+        b=TnPWS3sbZru+LUpEY9hC24v1uPSt976uz9ck+arSrMGp7Feu44wC258k0syTBRmq2j
+         YVZbFbGFvsZFtlfHwN3+v8AQAwf6PukERtgaorlWpxLRpD1DKTDaT2K3cSImf3EvqPnr
+         5e53sEcy35zSJc4TuJN2D8OB9NHYcSSnWuO12B2N3CtRN9DaLPQI4sZCl2JQciHBF3QE
+         ZoKolHoP9ErCaPu58a5GP6ou/wcp/JwCWfUrFut4jSOzVPwZ//wu2M1CU32vz6CvP8gR
+         lp5EoWoOh1hpQ6nUrvaRL6L4QPAwVQ0A5IXEEsdDn2/0lERcugXZo9s5IxfrQIRWR0T3
+         RHbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681404072; x=1683996072;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wQYhwxmi55X7Z5hFzk1ISpkyBuA28S3CElCKdf9WBEY=;
+        b=VZdlX8Ufm8o/FuLSSh5u5+QjwcwqiF/bqZ7AOeXOaiQyGsbRZniEEhOZCI2ZZTw2nU
+         pYeCjXfZrW8G3Pl7Q49B1njKMKJsKWsn6MoCV2xNz5/Rbs5QIIDKN2w09p4i7WN66W6i
+         JvuWWOyBB/K32AVuRUjhVojUGgx0m6i4qIbHqz1jQAQ2D8/efmTQzOJTD477lysrvWqZ
+         fYb4goA+ib0rNY2mpPl1VlNPaDBqLSMLTJVTlnj1ERxz1alrSGkunFig9ayq4NDoer3t
+         At6pjGbP/8JGLyy6777jmn3a1055qgNYDcqAQEQQQZllO1jbOGcXx0HalDcqg9bNiWhw
+         qeCQ==
+X-Gm-Message-State: AAQBX9cf9rEuYHfgjnujq1+ffUNX/A5rHjviOSOGXuy8sQ8lHBJPM4S1
+        v4ABGp2Sop0OZPs1BGy0JS7t6TqShhak7GMJE4w=
+X-Google-Smtp-Source: AKy350YNIupcubUhuSvWQHjQtt509aCIsOXZhDVvTPXxrk+F7HuI5Yv5fEJfugkTzWAus+6gCWGLjg==
+X-Received: by 2002:a17:907:1c89:b0:94a:a6cf:5ab2 with SMTP id nb9-20020a1709071c8900b0094aa6cf5ab2mr4618180ejc.18.1681404071799;
+        Thu, 13 Apr 2023 09:41:11 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5032:d2d4:ece5:b035? ([2a02:810d:15c0:828:5032:d2d4:ece5:b035])
+        by smtp.gmail.com with ESMTPSA id fy15-20020a1709069f0f00b0094a5b8791cfsm1194440ejc.109.2023.04.13.09.41.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 09:41:11 -0700 (PDT)
+Message-ID: <58bf68b4-dad4-64dc-6eee-9f6cc154c1ca@linaro.org>
+Date:   Thu, 13 Apr 2023 18:41:10 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SUToNKZpPJbTqz61"
-Content-Disposition: inline
-In-Reply-To: <7b5c6ba8da51ea6145fb71815a2f65a9e1d341c1.1680857025.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V3 1/3] dt-bindings: sram: qcom,imem: Add Boot Stat region
+ within IMEM
+Content-Language: en-US
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1681375949.git.quic_schowdhu@quicinc.com>
+ <0e48ef5a9558c0bab5c2918af3c15ed4425b07be.1681375949.git.quic_schowdhu@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0e48ef5a9558c0bab5c2918af3c15ed4425b07be.1681375949.git.quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/04/2023 11:28, Souradeep Chowdhury wrote:
 
---SUToNKZpPJbTqz61
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your patch. There is something to discuss/improve.
 
-On Mon, Apr 10, 2023 at 05:19:38PM +0100, Daniel Golle wrote:
-> Add support for the I2C units found in the MediaTek MT7981 and MT7988
-> SoCs. Just like other recent MediaTek I2C units that also uses v3
-> register offsets (which differ from v2 only by OFFSET_SLAVE_ADDR being
-> 0x94 instead of 0x4).
->=20
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> +  "^stats@[0-9a-f]+$":
+> +    type: object
+> +    description:
+> +      Imem region dedicated for storing timestamps related
+> +      information regarding bootstats.
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - qcom,sm8450-bootstats
+> +          - const: qcom,imem-bootstats
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +    additionalProperties: false
 
-Applied to for-next, thanks!
+The feedback about additionalProperties was given in different place. On
+purpose, because it is easier to read when it is placed before
+properties for indented cases. Therefore move it after description, how
+I originally asked.
 
+> +
+>  required:
+>    - compatible
+>    - reg
 
---SUToNKZpPJbTqz61
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQ4MJUACgkQFA3kzBSg
-KbZdHBAAjyez1DTIsDARrKzP/UbWCGoQjGTYY7501ZMxXITGsLlJbWBUic04H0Bg
-lQSbfeGUjbr2hE11zUxTyNN05JfrmaLuyHJzRnIyew3h0c1Hvj60Z6o5C1fPKaCY
-SO9Y+q3+vwU93/qitrfsv263+se3N90bjlZy9VBZy8hZqCRkEHRpQtUIoKbqIpds
-FVLazo5j/C/dY9J02Hti+Tdc7VcE8BOynIzRFuNVHD3aKFylPsBkYBllO407OSY1
-VaPWsz9gYUgssfaRx+b68r+Ao/lT6Dsr/lKuUDXHAUqK6gcSl2X+6L6CKSQgnyZ+
-Pfv+kSi/YfZmmiHT2Ym6o1AfO+vBh1tULOqWkkRYrFGy6gnWHxNGqaSUT4qKaJL6
-hHfra1uVuk6jiJbJw8AuAQJV2homfAaiy3IBSN//hkmEon5yAlxZaKdpy4ujX6/l
-QUR7QmJKDzNiqRnh40OrICT5J8LDJaiMwedvM1Ru4yuAz0qhEnANYLbsdvIHMVfR
-QJDP1fX9Pxui8TpZbS3ixThB35WLuz6fG6SntT8jIG6xO636d7LNFhIUVlprHxDn
-gUHMePhVPqcKWSAYSApp1qgSwOJRgcWMAiTMDVYVIFmcWgul66ynlVM0613plwco
-7wzfMvgh2HtW3vT1iCz0WI7E8AcJkiIIGtCSvfWcSVNw4SJTj70=
-=5gZL
------END PGP SIGNATURE-----
-
---SUToNKZpPJbTqz61--
