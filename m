@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 848516E0E2F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71ED36E0E4D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230289AbjDMNM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:12:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42984 "EHLO
+        id S229818AbjDMNRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbjDMNM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:12:26 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4363DA266
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:11:52 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id sg7so48688830ejc.9
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:11:52 -0700 (PDT)
+        with ESMTP id S230096AbjDMNRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:17:20 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2611F125
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:18 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id l16so7982319wms.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681391510; x=1683983510;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XCWUaiaWVnGIwMXJ072+drdEdGoVEQpMTGC5dkuhkzs=;
-        b=pKe1wtCKukdjAUeqiiJ30c5MHJdrfgnitgsy+yO/yFvpSq2KRmKi7rdC0/TQRcYaI0
-         FXneFfT01FDEXFCzZ5PHJGJU/SQ8VQiahCJ6VBB4n1BOnjYuDrqgAyQ6/0JYQZgpS3Kd
-         CfuMskSgm1SrtjGLrgt+8JVNnOfXkvm75VIZE/f3SoEYW19DZKxloKyfXlSFqkNues9j
-         /UXHiYIQXJrfcS0UWkZDcO/RiHlmPTSiA03W9zmwiTQJGRecYs43u+rSBag5aIKDug/f
-         S88mPmOsJnfi4DVbRPP6PUjv8inuoHy2Gcc62kt2tqtRif36FQJQjrcDJi5uINHzRR3x
-         0uOw==
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681391836; x=1683983836;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sor1o3lgx6pN6vl67a8PWbhrfGi3/hG81XlEFkcdfb0=;
+        b=Iqwvyv8WgfS/XE0vS+/Khekvvz+atOqobe2B05VzD6c9V4XTNqYTbaNPLU3uSae11V
+         x/vfpDhzg4pbnQmphl9Lo73JAQtNAb/rrjG7Js2FZK9kK7hHicKU3pP26s1qDEy31l2m
+         rl8UQ6wvZbhIDbrwgAA2tMLt5GVhLqA92Wh0fbBZ4s7NJFhUKI53q9uspaR5VdQx3xI9
+         7CPiD/EuATButGBOdaWftY9nx0sfXsGTuGZ756GXuSyYNNpgAVerskDcVbTXmV53Mv7W
+         F5uXlKEUbp5leKPi7slJbHbakGYxBa6cPZkcnwnwovHE0Zwy3NG+NkhOodwahqn497an
+         ZxEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681391510; x=1683983510;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XCWUaiaWVnGIwMXJ072+drdEdGoVEQpMTGC5dkuhkzs=;
-        b=G9aCe+ZpqZiUv7jtJdWXM4xEFo29drk26AckSiwdkZnNhgKRscModzbYQFvz+Aaf7I
-         MlWYw+7eoOKUuZE7DgVScrpAe3DDUsihPfG4f/JAivGcuV19IDj1OhzdDiPqyw4E3b4v
-         faNqYs79evDp4RfLmj/eYw7+IY+tOtuUpTmU1ifBrHhbQDZZ/ITr7hmc0i/6Xd8N7G0N
-         F8ZdKaQcpc0Bs43x9PO87+fmmxY3u2aJ4oW67FOalf98nF3DIs36TTVPGj+MXXmcTfcW
-         MOIcHPC01xJC/5IUiOrTssDb8QqhdUHoUi6MWpSrgejAEwfpuVwFreZw8sugBCF1n8mQ
-         WNGQ==
-X-Gm-Message-State: AAQBX9dRXTU/gnxrRApLT6Fyb4AuClIwym8eaQRSxq4c7ufpNX3GSKP+
-        w7FMHNfWTywSuLMnZu7tQ6ts+w==
-X-Google-Smtp-Source: AKy350YJ3uLaEKYbCc3ihWijhwZDDaFIcsFka/6gnLknW+fWV2K5RQUvLCR1fAH6/lNXlxY0M+dGPA==
-X-Received: by 2002:a17:907:d042:b0:94e:c40d:18f4 with SMTP id vb2-20020a170907d04200b0094ec40d18f4mr382489ejc.1.1681391510693;
-        Thu, 13 Apr 2023 06:11:50 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id s24-20020a170906961800b0094dde59ad39sm969889ejx.79.2023.04.13.06.11.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 06:11:49 -0700 (PDT)
-Message-ID: <541e2684-9df6-b875-df2e-a33ceee7c780@linaro.org>
-Date:   Thu, 13 Apr 2023 14:11:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 7/7] soundwire: qcom: use tabs for indentation in
- defines
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        d=1e100.net; s=20221208; t=1681391836; x=1683983836;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sor1o3lgx6pN6vl67a8PWbhrfGi3/hG81XlEFkcdfb0=;
+        b=T2wVwiORwWjOeMj8bWV38MulQoL1lGG/ugnJESv1/w7KtTBOWHJBEDllwa5IeE/OmL
+         5xlvD2ehpdpC4ENC0GHzkjv7MlXbAhGbXGM5mtQ/lGrlDGhpcdI7RRDGWCfIxfH9E0dC
+         VBTjNXG2xcoRkVvW0yJdkPsWdftHqzmkSFY3S9b0YA2M6hwr4aL1Wv6e7pgzHtUe3n3l
+         5pjsXFfHnF+EhZgqJWHujaKxHtAuA2bT2/m1jNpAAO/vqrbiqnQ+89ha39pFDGPGBSbL
+         qW+oG0cYuYPjAYWlJOzMgNKRlHWAu2vLr/tevBfN+a6Rx+ATca6zSC5VXuEkWB0ZtfLI
+         mS+w==
+X-Gm-Message-State: AAQBX9cxuwZA59zQwNux00BpeaorMThLhfEdrqkIMxPC+DBQKrq8hygm
+        etwWBCOq1dt9VfCytn4AOq5eoA==
+X-Google-Smtp-Source: AKy350bORanD31k3svyLmAj37J/UJ696aFUbqm7fguFemtr0h+CoOf62HMopl4I8dSifRLvkiQBx7A==
+X-Received: by 2002:a7b:c8d4:0:b0:3ef:6aa1:9284 with SMTP id f20-20020a7bc8d4000000b003ef6aa19284mr1729418wml.29.1681391836605;
+        Thu, 13 Apr 2023 06:17:16 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:814c:fc8a:da02:39ad])
+        by smtp.gmail.com with ESMTPSA id v3-20020a1cf703000000b003f04646838esm1796400wmh.39.2023.04.13.06.17.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Apr 2023 06:17:16 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     Patrick Lai <quic_plai@quicinc.com>
-References: <20230403132503.62090-1-krzysztof.kozlowski@linaro.org>
- <20230403132503.62090-8-krzysztof.kozlowski@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230403132503.62090-8-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,URIBL_BLOCKED
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 0/4] arm64: qcom: fix the reboot reason handling on sa8775p
+Date:   Thu, 13 Apr 2023 15:17:01 +0200
+Message-Id: <20230413131705.3073911-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,70 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
+SA8775P uses nvmem to pass the reboot reason magic value to the bootloader.
+Remove the reboot modes from the PON node and introduce an SDAM node passed
+to the nvmem-reboot-mode driver. While at it: convert the bindings for
+nvmem-reboot-mode to YAML and enable it for arm64 in defconfig.
 
-On 03/04/2023 14:25, Krzysztof Kozlowski wrote:
-> Use consistently only tabs to indent the value in defines.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+Bartosz Golaszewski (2):
+  arm64: defconfig: enable building the nvmem-reboot-mode module
+  dt-bindings: power: reset: convert nvmem-reboot-mode bindings to YAML
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Parikshit Pareek (2):
+  arm64: dts: qcom: sa8775p: pmic: remove the PON modes
+  arm64: dts: qcom: sa8775p: pmic: add the sdam_0 node
 
+ .../power/reset/nvmem-reboot-mode.txt         | 26 ----------
+ .../power/reset/nvmem-reboot-mode.yaml        | 52 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi   | 23 +++++++-
+ arch/arm64/configs/defconfig                  |  1 +
+ 4 files changed, 74 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.txt
+ create mode 100644 Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
 
---srini
->   drivers/soundwire/qcom.c | 34 +++++++++++++++++-----------------
->   1 file changed, 17 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index f2e1135ef113..77a5e4cbbe9b 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -58,9 +58,9 @@
->   #define SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED		BIT(10)
->   #define SWRM_INTERRUPT_STATUS_AUTO_ENUM_FAILED			BIT(11)
->   #define SWRM_INTERRUPT_STATUS_AUTO_ENUM_TABLE_IS_FULL		BIT(12)
-> -#define SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2             BIT(13)
-> -#define SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2              BIT(14)
-> -#define SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP               BIT(16)
-> +#define SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2		BIT(13)
-> +#define SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2		BIT(14)
-> +#define SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP		BIT(16)
->   #define SWRM_INTERRUPT_MAX					17
->   #define SWRM_V1_3_INTERRUPT_MASK_ADDR				0x204
->   #define SWRM_V1_3_INTERRUPT_CLEAR				0x208
-> @@ -125,20 +125,20 @@
->   #define SWRM_REG_VAL_PACK(data, dev, id, reg)	\
->   			((reg) | ((id) << 16) | ((dev) << 20) | ((data) << 24))
->   
-> -#define MAX_FREQ_NUM		1
-> -#define TIMEOUT_MS		100
-> -#define QCOM_SWRM_MAX_RD_LEN	0x1
-> -#define QCOM_SDW_MAX_PORTS	14
-> -#define DEFAULT_CLK_FREQ	9600000
-> -#define SWRM_MAX_DAIS		0xF
-> -#define SWR_INVALID_PARAM 0xFF
-> -#define SWR_HSTOP_MAX_VAL 0xF
-> -#define SWR_HSTART_MIN_VAL 0x0
-> -#define SWR_BROADCAST_CMD_ID    0x0F
-> -#define SWR_MAX_CMD_ID	14
-> -#define MAX_FIFO_RD_RETRY 3
-> -#define SWR_OVERFLOW_RETRY_COUNT 30
-> -#define SWRM_LINK_STATUS_RETRY_CNT 100
-> +#define MAX_FREQ_NUM						1
-> +#define TIMEOUT_MS						100
-> +#define QCOM_SWRM_MAX_RD_LEN					0x1
-> +#define QCOM_SDW_MAX_PORTS					14
-> +#define DEFAULT_CLK_FREQ					9600000
-> +#define SWRM_MAX_DAIS						0xF
-> +#define SWR_INVALID_PARAM					0xFF
-> +#define SWR_HSTOP_MAX_VAL					0xF
-> +#define SWR_HSTART_MIN_VAL					0x0
-> +#define SWR_BROADCAST_CMD_ID					0x0F
-> +#define SWR_MAX_CMD_ID						14
-> +#define MAX_FIFO_RD_RETRY					3
-> +#define SWR_OVERFLOW_RETRY_COUNT				30
-> +#define SWRM_LINK_STATUS_RETRY_CNT				100
->   
->   enum {
->   	MASTER_ID_WSA = 1,
+-- 
+2.37.2
+
