@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE3096E1387
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 115AD6E1405
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 20:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbjDMRcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 13:32:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55052 "EHLO
+        id S229804AbjDMSXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 14:23:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjDMRcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:32:01 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B17A93D6;
-        Thu, 13 Apr 2023 10:31:56 -0700 (PDT)
+        with ESMTP id S229580AbjDMSXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 14:23:54 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A165FDE;
+        Thu, 13 Apr 2023 11:23:52 -0700 (PDT)
 Received: from jupiter.universe (dyndsl-091-248-212-251.ewe-ip-backbone.de [91.248.212.251])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 994AD6603220;
-        Thu, 13 Apr 2023 18:31:54 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 64B11660321F;
+        Thu, 13 Apr 2023 19:23:51 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681407114;
-        bh=1HX2q50s8U1vNgOF8gk5ASQbFDGRk4cCN9NGA82a0vU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bi+9/zmKoof51M4Dah5MH5BJlj/mFWVpjOAhxNAD5wbB/W60/c9eVDOU7VwhLFzKN
-         3Uka0tTvR9v7/sV9Y6ow7qtcxRuLMdnlEFoIfMSGUEE1yhUkyYIFDaXpqHYDC2VzqU
-         HFvkRXqupaJG7ciX/eCRC9RCTjvtY8A6D0ZriIJhkD25f4uC1YHEsD+XCPqz298SvV
-         9D0vV2tsOPkD6muYchswVwwfjkd58Qc7jLg6pIMGK7LGu1jpkgL+By6wyUyZf65t9x
-         acoHhWeLmTYlXDMHdXfAJaaUKz4m+TzQ8kEwsiEY5JllF1lZAk32ooioOHBwVr8t6b
-         KnLFV4xWV10Bw==
+        s=mail; t=1681410231;
+        bh=ceCvJVoRaeOT7KtfXBOMzQenfXD9/YcDHtgkd0grO5I=;
+        h=From:To:Cc:Subject:Date:From;
+        b=V7dptM9E0HGv6p1NV98J9w4RK9Ya0ZECp3BZfgwBAI6ZXkHy+BswJiqcA1ruuNVr8
+         9GuybvbDaFC2+Jd2RsxTK1lsIAmqAjxkxSoql56znB+2eE1/T9Ru5EQR9wIMt9vlRh
+         tdAyw1bwnHZfDWrQ7RumJ3ncS6ov4lHh9qnvFdEH9d27+hhr/bPV5pi6M3gskuWXBS
+         7Xy/uv40SUvVjFZwliogCmO9pUCpIJ5MFKOTObDRbMK+670ka6XmKDDyFIJa/b2ynJ
+         Lv+JDFimRO/ymRIeOiRhafdAGgQEEZj+lCTwsBQuP96uwheTtzXz0W+vYacLp4Jh3O
+         gjXrv/TvSaIgg==
 Received: by jupiter.universe (Postfix, from userid 1000)
-        id CEB824807F0; Thu, 13 Apr 2023 19:31:51 +0200 (CEST)
+        id 8812A4807E2; Thu, 13 Apr 2023 20:23:48 +0200 (CEST)
 From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Alan Stern <stern@rowland.harvard.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Heiko Stuebner <heiko@sntech.de>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Sebastian Reichel <sebastian.reichel@collabora.com>,
         kernel@collabora.com
-Subject: [PATCHv4 3/3] usb: host: ohci-platform: increase max clock number to 4
-Date:   Thu, 13 Apr 2023 19:31:50 +0200
-Message-Id: <20230413173150.71387-4-sebastian.reichel@collabora.com>
+Subject: [PATCHv1 0/5] Add RK3588 SATA support
+Date:   Thu, 13 Apr 2023 20:23:40 +0200
+Message-Id: <20230413182345.92557-1-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230413173150.71387-1-sebastian.reichel@collabora.com>
-References: <20230413173150.71387-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -59,27 +61,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rockchip RK3588 OHCI requires 4 clocks to be enabled.
+Hi,
 
-Acked-by: Alan Stern <stern@rowland.harvard.edu>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- drivers/usb/host/ohci-platform.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This enables SATA support for RK3588.
 
-diff --git a/drivers/usb/host/ohci-platform.c b/drivers/usb/host/ohci-platform.c
-index a84305091c43..dec38a845cff 100644
---- a/drivers/usb/host/ohci-platform.c
-+++ b/drivers/usb/host/ohci-platform.c
-@@ -33,7 +33,7 @@
- #include "ohci.h"
- 
- #define DRIVER_DESC "OHCI generic platform driver"
--#define OHCI_MAX_CLKS 3
-+#define OHCI_MAX_CLKS 4
- #define hcd_to_ohci_priv(h) ((struct ohci_platform_priv *)hcd_to_ohci(h)->priv)
- 
- struct ohci_platform_priv {
+-- Sebastian
+
+Sebastian Reichel (5):
+  dt-bindings: soc: rockchip: add rk3588 pipe-phy syscon
+  dt-bindings: ata: ahci: add RK3588 AHCI controller
+  dt-bindings: phy: rockchip: rk3588 has two reset lines
+  arm64: dts: rockchip: rk3588: add combo PHYs
+  arm64: dts: rockchip: rk3588: add SATA support
+
+ .../bindings/ata/snps,dwc-ahci-common.yaml    |  6 +-
+ .../bindings/ata/snps,dwc-ahci.yaml           |  6 +-
+ .../phy/phy-rockchip-naneng-combphy.yaml      |  7 +-
+ .../devicetree/bindings/soc/rockchip/grf.yaml |  1 +
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      | 44 +++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 90 +++++++++++++++++++
+ 6 files changed, 149 insertions(+), 5 deletions(-)
+
 -- 
 2.39.2
 
