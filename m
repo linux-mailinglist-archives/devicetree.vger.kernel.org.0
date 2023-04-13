@@ -2,92 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6100E6E094F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 10:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDBA6E095A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 10:52:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjDMIuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 04:50:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
+        id S229961AbjDMIwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 04:52:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbjDMIuj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 04:50:39 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243258A5E
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 01:50:37 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-504eccc8fc8so1245315a12.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 01:50:36 -0700 (PDT)
+        with ESMTP id S229881AbjDMIwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 04:52:39 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D9293ED;
+        Thu, 13 Apr 2023 01:52:36 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id v10so1391981wmn.5;
+        Thu, 13 Apr 2023 01:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681375835; x=1683967835;
+        d=gmail.com; s=20221208; t=1681375955; x=1683967955;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=L6mAVmlSqBlK97GI+OBS2IQeOpH152LcbvquHB//CeQ=;
-        b=qBQKxSkg0B1ny6AKrI2JM4J00sV4tr5wSjLIsSLHqWeQQNThrxkz1/uKK/G9InUVv3
-         Mo9x25u7mcDVhg5j0KTpldXUooJrhuQMu9fWJRuU1TabACrIJAyhQc5mVRnL7X5Uoitm
-         P9QyyIG+y7m4LQKs9IOqTgK0s32MG7zK+bjkVAkIMlsuoZysL2zZJ69/62SRFxPsLe72
-         0574RRl69Mu0UlKDgx2dWy8U4pPdqpvFPrOZMnsDNhnHhbvg+ejuzIkwlo7RD98E1Zuy
-         guBIsYHfrix5W5BmScoNRt33NO+lBOC12YQofsDel11ibeE2tf9AlvIOe1YTH7tB32Q2
-         Olow==
+        bh=qbpMYUm2CE6fjv2A+zaOllAKnd6lk3Qd3AHGhhmkm+E=;
+        b=HnpySm5xmwPhooXdE/eWdYCyuS800PJRr0sF9uWCs073RxT9dO6p7iMXu6ILDLZ7zP
+         4d4E221WENcpoKtiiIM9zeUYH0DMw1AXa9WdXmx1n6w0fMixp23F1HBhkcDvvReyYbU/
+         QqfE2is2eHEHTcj0GysdXh7IaVfzLC4YVq8MjWSK0kg+tpCW3udF4NcPpz8NT9EazIsS
+         cD/Our85/CIKOO0lTgVqfVuRLzMAh8dkjo27ia6/HLhm0yIOPdIMtNp2Lubo+x9xQ2gX
+         eHO8Nz2s2R9eiM5qT2XBr+/lEdFPn3cCbKNE1i6m2dQtOb/wNmorAts0OIgKoKQqBuTu
+         qR8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681375835; x=1683967835;
+        d=1e100.net; s=20221208; t=1681375955; x=1683967955;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L6mAVmlSqBlK97GI+OBS2IQeOpH152LcbvquHB//CeQ=;
-        b=PAjLAxq3p14I5R0IHscB+8vP5asjy1Y5a1QrTovtk10W3Y5Ttb9KV6GQNng4yNUXv/
-         o1YS/3e7X0D6UaaXqy2SWVkZ5I8/eNyjk0M6UHY9DOA0gar/77oyWBh0x+UvrOKFNDxf
-         uz9aJNxTp3whbzyo2VxtGpmLbntKbbQyQZ4/Fug9LH/xO83jxkkgylUW7bi0PiiZIvKp
-         WtJnK5Nm6kLSRPs4rsoyxTsZImYitbSY5+KtOfF4RT5gqAd6QNIfBQLThRGhfGlszj+G
-         IK+zkQGgG6+vn5WoHkD7SwKn6Kj+0Df6YF9YqUD96DOE/gx3vu/OzZcYowAHRN0YS+2m
-         n5aQ==
-X-Gm-Message-State: AAQBX9clKn571HE93Y6upwT1jvqraYvb8PMh9e2eCpq5v7OeQ9CmuvBd
-        qeBdjx7XvWvHoj4Di3TpF3iXJg==
-X-Google-Smtp-Source: AKy350ams2Rhgtj5ld9eUc37t1b+SyClKLb5d8tFO/xWnlQN/71bN5uirU2rOp0PEk4y8rjT+Aca6A==
-X-Received: by 2002:aa7:d74d:0:b0:4fb:aa0a:5b72 with SMTP id a13-20020aa7d74d000000b004fbaa0a5b72mr1546251eds.5.1681375835504;
-        Thu, 13 Apr 2023 01:50:35 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7? ([2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7])
-        by smtp.gmail.com with ESMTPSA id v15-20020aa7dbcf000000b00501d51c23fbsm555672edt.6.2023.04.13.01.50.34
+        bh=qbpMYUm2CE6fjv2A+zaOllAKnd6lk3Qd3AHGhhmkm+E=;
+        b=KDCM8c+UMmG3AMuOs/ff8M8y/jwMiUCLFw4wAvYpmjc0OjpW5JeekL0Dupn53N1wbI
+         7x4tJN7Dx2m6iYLv9Ias03SWT401G3qrRk9zDaywisgz3lcy82F3xVbX4hHKLS/APX07
+         H+HmfXaE8JEWdXmiYoKtz9ALIdsqqpCHHG5l0JtyA8cLwmJeZYhYDTGQhTgV2iv5/Dmj
+         +VuAA6ZLnZL+SObBUkOhIS4gfRgGTXRbGKOl1Xic3wzEZBzTbRQTvVIOD6B45pdzs/pj
+         Ng7dsooxmc1ShknX+izI1G8Daylu3HM9JltujSFhexjyT8IkFgljWiUBhmzAoUphyykw
+         jFhA==
+X-Gm-Message-State: AAQBX9d+jWoL0V4zSPyKmUhRGmEZ4G9y7m3VvXsbDV1qEzXyrwDpLoHu
+        ET8DrDxBEm7kUVWtNU9SW4U=
+X-Google-Smtp-Source: AKy350bo2b5a9kvtAxKtfQWiGoPW5i8VySTNTjPFcwiTp3qfQEaU8P/r5OLKZVyAxMZ2gR/rW3SeaA==
+X-Received: by 2002:a1c:7701:0:b0:3ee:3d2d:841a with SMTP id t1-20020a1c7701000000b003ee3d2d841amr929838wmi.24.1681375954444;
+        Thu, 13 Apr 2023 01:52:34 -0700 (PDT)
+Received: from [192.168.0.32] ([37.222.243.26])
+        by smtp.gmail.com with ESMTPSA id l7-20020a05600c1d0700b003ee443bf0c7sm4870877wms.16.2023.04.13.01.52.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 01:50:34 -0700 (PDT)
-Message-ID: <6a9b1c25-2e17-a657-3a58-b2ff8d1c86d7@linaro.org>
-Date:   Thu, 13 Apr 2023 10:50:33 +0200
+        Thu, 13 Apr 2023 01:52:32 -0700 (PDT)
+Message-ID: <5c0bc1f2-5917-ab84-8b0b-f2adc48f8be7@gmail.com>
+Date:   Thu, 13 Apr 2023 10:52:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 01/27] dt-bindings: pwm: Add compatible for MediaTek
+ MT6795
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org>
- <20230328-topic-msgram_mpm-v2-1-e24a48e57f0d@linaro.org>
- <168069726278.2356075.14351594478003012447.robh@kernel.org>
- <20230405134727.GA2461305-robh@kernel.org>
- <1e6e2590-ac78-400b-35ce-321d5e52f385@linaro.org>
- <9df12111-ec84-c4f7-fbcb-bccaef91b048@linaro.org>
- <3ce9b5ec-8b02-537a-c663-c849e80cab66@linaro.org>
- <ZDAAToSzNLVo6le8@gerhold.net>
- <198523f5-d06f-15cd-af6c-f391c02bcaa9@linaro.org>
- <1f8fc036-380b-0a42-bb29-a3e275ed6a33@linaro.org>
- <2e648a97-083e-8ee2-1695-4af299bb222a@linaro.org>
- <15f48b06-a6be-1295-5deb-d3594bce6699@linaro.org>
- <ec32fc8e-56e0-51a5-dd96-c7cc8b9cf71f@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ec32fc8e-56e0-51a5-dd96-c7cc8b9cf71f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
+        kernel@collabora.com, chunkuang.hu@kernel.org,
+        linux-phy@lists.infradead.org, ck.hu@mediatek.com,
+        jitao.shi@mediatek.com, houlong.wei@mediatek.com,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        vkoul@kernel.org, chunfeng.yun@mediatek.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
+        xinlei.lee@mediatek.com, airlied@gmail.com,
+        u.kleine-koenig@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, thierry.reding@gmail.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        jassisinghbrar@gmail.com
+References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
+ <20230412112739.160376-2-angelogioacchino.delregno@collabora.com>
+ <168133318912.3190428.16120880490622098945.robh@kernel.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <168133318912.3190428.16120880490622098945.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,82 +91,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 19:06, Konrad Dybcio wrote:
+
+
+On 12/04/2023 23:03, Rob Herring wrote:
 > 
-> 
-> On 12.04.2023 18:53, Krzysztof Kozlowski wrote:
->> On 12/04/2023 14:09, Konrad Dybcio wrote:
->>>
->>>
->>> On 12.04.2023 13:55, Krzysztof Kozlowski wrote:
->>>> On 12/04/2023 13:47, Konrad Dybcio wrote:
->>>>>> For unrelated reasons I actually have some patches for this, that switch
->>>>>> the /smd top-level node to a "remoteproc-like" node dedicated to the
->>>>>> RPM, similar to how WCNSS/ADSP/Modem/etc are represented. I need this to
->>>>>> add additional (optional) properties like "resets" and "iommus" for the
->>>>>> RPM, but it would allow adding arbitrary subnodes as well:
->>>>>>
->>>>>> https://github.com/msm8916-mainline/linux/commit/35231ac28703805daa8220f1233847c7df34589e
->>>>>>
->>>>>> I could finish those up and post them if that would help...
->>>>> Krzysztof, what do you think?
->>>>
->>>> I don't know what is there in MSM8916 and how it should be represented.
->>> Similarly to other Qualcomm SoCs, MSM8916 has a RPM (Cortex-M3) core,
->>> which communicates over the SMD protocol (or G-LINK on >=8996).
->>>
->>> The Qualcomm firmware loads the RPM fw blob and sets it up early in
->>> the boot process, but msm8916-mainline folks managed to get TF-A
->>> going and due to it being less.. invasive.. than the Qualcomm TZ,
->>> RPM needs a bit more handling to be accessible.
->>>
->>> The M3 core is wired up through the CNoC bus and we communicate
->>> with it through the MSG RAM and the "APCS mailbox".
+> On Wed, 12 Apr 2023 13:27:13 +0200, AngeloGioacchino Del Regno wrote:
+>> Add a compatible string for MediaTek Helio X10 MT6795's display PWM
+>> block: this is the same as MT8173.
 >>
->> Thanks, that's actually good description. Yet I still do not know what
->> is exactly the problem and the question. Linking some out of tree
->> commits does not give me the answer, at least I cannot get that answer
->> form the link.
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
 >>
->> For example what I don't understand is: why additional resources (like
->> resets) can be provided only in new binding, but not in the old.
-> The old binding dictates that the rpm node (which in turn
-> holds all "devices" that only interface with RPM, like RPMCC) is
-> a child of smd{}, which does not make sense logically, as SMD is
-> a protocol (e.g. we don't place devices connected over i2c under
-> /i2c{}).
-
-We do. All devices connected over I2C are under i2c node which is the
-controller. The example is different than what you have here...
-
->  The rpm node lacks a compatible, as it's representing
-> an "smd channel", so there's no driver so there's no way to assert
-> resets etc.
-
-You have rpm-requests which has compatible. These are not its resources?
-
 > 
-> On newer SoCs that still implement SMD RPM (like 8996), we do
-> actually have a driver and a parent node which it binds to
-> (rpm-glink).
-
-You want to add RPM resets to rpm-glink node? This also does not look right.
-
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 > 
-> AFAIU:
-> In both cases, the "final" drivers (rpmcc, rpmpd..) are bound
-> after hitting a SMD/GLINK callback that tells Linux we're ready
-> to rock. That's an issue for Stephan, as these callbacks won't
-> ever happen if the RPM core is not initialized (and TF-A doesn't
-> do that).
 
-To me half or almost all of Qualcomm remote-proc-related bindings, like
-SMD, GLINK and associated processors, are difficult to read, half-baked
-and developed to match the current Linux/SW need. When the Linux drivers
-changed, new bindings were added... If you want to fix it, sure go
-ahead, but design everything to match something rational, not again to
-match one specific SW/FW implementation.
+These are not new warnings. I think we should address them in a different patch. 
+In my opinion it shouldn't block this patch. In the end it only add as 
+compatible here.
 
-Best regards,
-Krzysztof
+Regards,
+Matthias
 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230412112739.160376-2-angelogioacchino.delregno@collabora.com
+> 
+> 
+> pwm@1100e000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/mediatek/mt8183-evb.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-sku2.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dtb
+> 
+> pwm@1400a000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dtb
+> 	arch/arm/boot/dts/mt7623n-rfb-emmc.dtb
+> 
+> pwm@1401e000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-evb.dtb
+> 
+> pwm@1401f000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-evb.dtb
+> 
