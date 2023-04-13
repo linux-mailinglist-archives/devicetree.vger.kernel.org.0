@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 993786E0814
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 09:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 087576E0832
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 09:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230085AbjDMHqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 03:46:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57300 "EHLO
+        id S230235AbjDMHtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 03:49:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229999AbjDMHqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 03:46:42 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AEF45FC6
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:46:41 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id dm2so35278025ejc.8
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:46:41 -0700 (PDT)
+        with ESMTP id S230063AbjDMHtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 03:49:33 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE89893C8
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:49:07 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94a34a14a54so329758766b.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:49:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681372000; x=1683964000;
+        d=linaro.org; s=google; t=1681372144; x=1683964144;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uijb1uXkwk/VeMyOn96gYfBtO6LlBQttzcvm4ZtKChY=;
-        b=S2/3sC9+Ui2RNwCSNyZw8v7BFEan+m1/PyXi1WMCvxaxhnzOtR8QJtJBvqreeatKaO
-         tIocIb4k+Kzkp26C6sM/sI2E67qYGiCdpAnj1ywxBptBA/fFOUTQ4tSomjgMoDcxFQFb
-         1lB7EAp/YMnR4PaXw+GQMDhC04q5uUXEWDxb70UXcAbznPSG6qgHCPXEF99GPObOH79n
-         K2xybv+Bqaw9SnoxEXjcAin3A3c6IR5GbnvZv7Dla3CZXgKTJSrjLxfblOlLSsc+lKeP
-         oITxvhzyuNC4+pm96LgsKmroNCXXbsA6stK0EB9FT+273gWDugY6TT7mi5Wa+g0PZy/r
-         h1OA==
+        bh=0c4wLhFBCiAcjjbeOa5jABwRP5DFI69Pbg7hP6byo5Y=;
+        b=BceMhjYoTf/jVj4ZdOfZAmdXc1J1JKQQg2gDJBriG6HwIgqQa+TXhTrSgKSZqoDwGB
+         fxxNkkFJzz3+LPIPCcTrTXKUzkxMJKM15KMVbrHVfbNBhCLcgfhYV1M10c+aUBsJSiCt
+         6By92BXEHv2K4uCb2yNV5AQowESEtaDAb106riHjBqPBR5dXnbMbxbS2R65tGyqVEUrI
+         yhvp/oQ2CTyQUzXofZPoMMGkZTiH398qKqWOrfWU5M2rj8Cj/GGsudekAFQtnto+GRWt
+         B7nJbvo5WYPQQjH38U2tCqAOXitUQPyyxU36VtV8LtG4it4DbZL5PnPdj6iIg8vvKzNJ
+         vE7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681372000; x=1683964000;
+        d=1e100.net; s=20221208; t=1681372144; x=1683964144;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uijb1uXkwk/VeMyOn96gYfBtO6LlBQttzcvm4ZtKChY=;
-        b=bnFrN/hlEKgN/6M00OZSM9RcAPdgxxdyP8wmvcFfu5xH8fqsvOvSZrMC/5Y94B5lyw
-         BrQ1h+eUTJ0R/8iEXN5tdGLj8tkbNY3wRjFtDcqVPv+H1YWM+zztBPeQgJ2GJClDYWnU
-         FNvO7tsgpdnaC9oDKDPAz/i7ucb8O2OkwmWAIRsLIsZaQk5+IVwYxOB3kjpWsQNwbT8G
-         hvTVN9fmwaCtm5tHw45pRH3PkWSWMQzD/gfxnwr7BDhGvXSaesgu1kdjNdCQaM4hdwlw
-         m2V7R4wfxqxuRYcvcXKMZ2tJdHyscEVZ7ZdZ9/Xi2Pa4md/V7PuD5wyD7FFBvWEWvNic
-         WZ2w==
-X-Gm-Message-State: AAQBX9c6B6uzW2Pb3NVzkGEpx3f3tIoNkRFxyXeMLqmZV81YX0DWUoJt
-        pdROkccc21J1M9nsljPZPIiMTg==
-X-Google-Smtp-Source: AKy350YsRSZg5DBCeRNa2+QATFH6DFDUvoHjRWEdO6DKRqsBrBBzA3yXWW9bLLaKuzCdQcbcXG3/sA==
-X-Received: by 2002:a17:907:7054:b0:94e:23b:75e9 with SMTP id ws20-20020a170907705400b0094e023b75e9mr1868945ejb.43.1681371999907;
-        Thu, 13 Apr 2023 00:46:39 -0700 (PDT)
+        bh=0c4wLhFBCiAcjjbeOa5jABwRP5DFI69Pbg7hP6byo5Y=;
+        b=NTAYjqCzJvQDAWmOwrgyeD8/L/Ddw7fHplMpzMCFwKuvAsdfzwrjwMGsNYKnVtawSb
+         hGJC9+DuwbwPugopo13pBrj1hA3Gci6ohmJVkLWikMmmAfQy1O+M9mlPbdB/i6hSFWLH
+         fQ1Su66cILUOcH0QZAGTu0N2qZLyOU0RT1uW18OsMl1jUwJWOKNoaUFa+xMpeXNWyE8m
+         zYpoPX2S6+N0ODsYcxYrPoNN6tya+lV66w5oZEj10cSR+5XaRiviUbO1TWfimizD9sYY
+         A+dDDL8HplHmCCfXU5W05GREjvPoTjHViSjeoR+0n99GdpFk9kC/E/B2aBfEQknoxjAK
+         B81g==
+X-Gm-Message-State: AAQBX9eW1JlqBN0LRZ5IUwT8506Two5AQKBe7nP84GGBRYh8mPlj3M71
+        mEV3ohlmID1RSrB4rQAVYnhClA==
+X-Google-Smtp-Source: AKy350YbuGbPy57eqcdQLbG1h6GrL64vwjvVuJuqM/r/TYOQUCL0VheUuXgUL2yMgaNE1GwSq69GUA==
+X-Received: by 2002:aa7:c2d4:0:b0:501:fe52:d301 with SMTP id m20-20020aa7c2d4000000b00501fe52d301mr1684934edp.23.1681372144162;
+        Thu, 13 Apr 2023 00:49:04 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7? ([2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7])
-        by smtp.gmail.com with ESMTPSA id s13-20020a1709060c0d00b0094e729d333fsm547697ejf.222.2023.04.13.00.46.38
+        by smtp.gmail.com with ESMTPSA id s2-20020aa7cb02000000b004bd6e3ed196sm463252edt.86.2023.04.13.00.49.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 00:46:39 -0700 (PDT)
-Message-ID: <f698eaf5-963e-a40e-34b6-92693138b374@linaro.org>
-Date:   Thu, 13 Apr 2023 09:46:38 +0200
+        Thu, 13 Apr 2023 00:49:03 -0700 (PDT)
+Message-ID: <342b3e6c-fd1b-d256-bcc2-2b9bda206b60@linaro.org>
+Date:   Thu, 13 Apr 2023 09:49:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 2/4] dt-bindings: usb: dwc2: add utmi optional clock
+Subject: Re: [PATCH v2 1/2] [PATCH v1 1/2] dt-bindings: hwmon: add MAX31827
 Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, hminas@synopsys.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alexandre.torgue@foss.st.com
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        amelie.delaunay@foss.st.com
-References: <20230412151831.3069211-1-fabrice.gasnier@foss.st.com>
- <20230412151831.3069211-3-fabrice.gasnier@foss.st.com>
+To:     Daniel Matyas <daniel.matyas@analog.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org
+References: <20230412153334.181852-1-daniel.matyas@analog.com>
+ <20230412153334.181852-2-daniel.matyas@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230412151831.3069211-3-fabrice.gasnier@foss.st.com>
+In-Reply-To: <20230412153334.181852-2-daniel.matyas@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -79,34 +80,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 17:18, Fabrice Gasnier wrote:
-> utmi clock is typically provided by PHY output. Add this optional clock,
-> as the core could use other clocks depending on the SoC where it's used.
-> This is needed on stm32mp15, when using the integrated full-speed PHY.
+On 12/04/2023 17:33, Daniel Matyas wrote:
+> MAX31827 is a low-power temperature switch with I2C interface.
 > 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> The device is a ±1°C accuracy from -40°C to +125°C
+> (12 bits) local temperature switch and sensor with I2C/SM-
+> Bus interface. The combination of small 6-bump wafer-lev-
+> el package (WLP) and high accuracy makes this temper-
+> ature sensor/switch ideal for a wide range of applications.
+> 
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
 > ---
->  Documentation/devicetree/bindings/usb/dwc2.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  .../bindings/hwmon/adi,max31827.yaml          | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> index 371ba93f3ce5..6f3c2d319b9b 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> @@ -75,11 +75,14 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    clock-names:
->      items:
->        - const: otg
-> +      - const: utmi_clk
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> new file mode 100644
+> index 000000000000..37177eb9c039
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/adi,max31827.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch
+> +
+> +maintainers:
+> +  - Daniel Matyas <daniel.matyas@analog.com>
+> +
+> +description: |
+> +  Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch with
+> +  I2C Interface
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31827-MAX31829.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max31827
+> +      - adi,max31828
+> +      - adi,max31829
 
-Just: utmi
+Why suddenly these are all incompatible? This is not what I suggested.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
 
 Best regards,
 Krzysztof
