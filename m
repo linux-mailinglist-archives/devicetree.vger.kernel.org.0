@@ -2,90 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C676E05DB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 06:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE7DB6E05F4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 06:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbjDMER6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 00:17:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
+        id S229671AbjDMEZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 00:25:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbjDMERX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 00:17:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3E6172C;
-        Wed, 12 Apr 2023 21:15:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EDB5963439;
-        Thu, 13 Apr 2023 04:15:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C1C6C4339B;
-        Thu, 13 Apr 2023 04:15:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681359341;
-        bh=BmvSeStlY/3OFiQagQGoFed7dwR+A0UXBFPAOqd2MKE=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=JKK8FIPWTcONpK0kcAc1QD4p15wfvOgd0AKViIdWnl58ICoojmTPqU7gR0hgmw13h
-         byVx5WhdchdVQRvg4IhdZsQ2CAzBWKWKNUVw3x8Bokl+3qDhimaUntwxOoH5XVAaf7
-         jdzd2Sw348lkVTnzNxhyhJDgG2KY5h4B9owSJZgjsttVKdsjYqJrVWx1sDQYmp0d/o
-         lhw0YzSPX7mHtRHhY5A/oTwwDqjHdKHjGUQrWnFLtWWQekNKNbq/MqHr+xTM6Snd4e
-         YMm8ovBlGHMjoy3imd7EAZ3DqiBGb8YXS0e8htDa9mfmk/nvoo5GOOVtvuWFHVdyqy
-         +lefBsX3rS9UQ==
-Message-ID: <8c774af24fa89d44924998064a996a2c.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229679AbjDMEZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 00:25:17 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BABF8BB;
+        Wed, 12 Apr 2023 21:25:16 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33D4OgvnE024490, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33D4OgvnE024490
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Thu, 13 Apr 2023 12:24:42 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Thu, 13 Apr 2023 12:25:04 +0800
+Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
+ RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 13 Apr 2023 12:25:03 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
+ 15.1.2375.32 via Frontend Transport; Thu, 13 Apr 2023 12:25:03 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        <linux-usb@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>
+Subject: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add 'snps,global-regs-starting-offset' quirk
+Date:   Thu, 13 Apr 2023 12:25:03 +0800
+Message-ID: <20230413042503.4047-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230412033006.10859-2-stanley_chang@realtek.com>
+References: <20230412033006.10859-2-stanley_chang@realtek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1671601032-18397-2-git-send-email-quic_jprakash@quicinc.com>
-References: <1671601032-18397-1-git-send-email-quic_jprakash@quicinc.com> <1671601032-18397-2-git-send-email-quic_jprakash@quicinc.com>
-Subject: Re: [PATCH] spmi: Add a check for remove callback when removing a SPMI driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
-        Jishnu Prakash <quic_jprakash@quicinc.com>
-To:     Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
-        quic_subbaram@quicinc.com, robh+dt@kernel.org
-Date:   Wed, 12 Apr 2023 21:15:39 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXMBS04.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jishnu Prakash (2022-12-20 21:37:12)
-> When removing a SPMI driver, there can be a crash due to NULL pointer
-> dereference if it does not have a remove callback defined. This is
-> one such call trace observed when removing the QCOM SPMI PMIC driver:
->=20
->  dump_backtrace.cfi_jt+0x0/0x8
->  dump_stack_lvl+0xd8/0x16c
->  panic+0x188/0x498
->  __cfi_slowpath+0x0/0x214
->  __cfi_slowpath+0x1dc/0x214
->  spmi_drv_remove+0x16c/0x1e0
->  device_release_driver_internal+0x468/0x79c
->  driver_detach+0x11c/0x1a0
->  bus_remove_driver+0xc4/0x124
->  driver_unregister+0x58/0x84
->  cleanup_module+0x1c/0xc24 [qcom_spmi_pmic]
->  __do_sys_delete_module+0x3ec/0x53c
->  __arm64_sys_delete_module+0x18/0x28
->  el0_svc_common+0xdc/0x294
->  el0_svc+0x38/0x9c
->  el0_sync_handler+0x8c/0xf0
->  el0_sync+0x1b4/0x1c0
->=20
-> If a driver has all its resources allocated through devm_() APIs and
-> does not need any other explicit cleanup, it would not require a
-> remove callback to be defined. Hence, add a check for remove callback
-> presence before calling it when removing a SPMI driver.
->=20
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> ---
+Add a new 'snps,global-regs-starting-offset' DT to dwc3 core to remap
+the global register start address
 
-Applied to spmi-next
+The RTK DHC SoCs were designed the global register address offset at
+0x8100. The default address is at DWC3_GLOBALS_REGS_START (0xc100).
+Therefore, add the property of device-tree to adjust this start address.
+
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+---
+ v1 to v2 change:
+1. Change the name of the property "snps,global-regs-starting-offset".
+---
+ Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+index be36956af53b..5cbf3b7ded04 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+@@ -359,6 +359,13 @@ properties:
+     items:
+       enum: [1, 4, 8, 16, 32, 64, 128, 256]
+ 
++  snps,global-regs-starting-offset:
++    description:
++      value for remapping global register start address. For some dwc3
++      controller, the dwc3 global register start address is not at
++      default DWC3_GLOBALS_REGS_START (0xc100). This property is added to
++      adjust the address.
++
+   port:
+     $ref: /schemas/graph.yaml#/properties/port
+     description:
+-- 
+2.34.1
+
