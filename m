@@ -2,227 +2,391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 804EE6E0FB7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E57D6E0FC3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:15:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230209AbjDMONW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 10:13:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46250 "EHLO
+        id S231625AbjDMOPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 10:15:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbjDMONU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:13:20 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FBA2359D
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:13:18 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id j17so28133801ejs.5
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:13:18 -0700 (PDT)
+        with ESMTP id S231253AbjDMOPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:15:15 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBD73AAB
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:15:13 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id q6so2861316wrc.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:15:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681395197; x=1683987197;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681395311; x=1683987311;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XUg/Vhl4ma9csERVssXScNUtMrmvSNZoznhCnpPJffE=;
-        b=o3pqnoQR4q+ECIpxDAjZaH/4ZWbbQfmxWI6mJm3FRP3DH1F5T10tUc8vA+LQkAPG4U
-         IvrPmcpwx1owZ8nbuwzp309bofZsDRqgVggAMO3fC8hOfX0Rkj9v31IOD83GO/yNikat
-         n7X4vEP4prszZMluVSt81aL4wqkHgbJUq/eNKBqB59fmqjxEJwnChR7FfFvURf+nzBMH
-         TUXCZfE/EU9F4C52w5qHtJCetUCRleFf+IMG+aZIlkM2DmXtGdpNKnjqMR8xR/hVgb1C
-         9Z2iYsiutkweUPzWyxpxe3Ob9tyL5vmr+ffXHYpu8ZWbZWf9JrO4kd1I/xOXvgNLTGns
-         4hMg==
+        bh=MRfAy08dzFs9jrLzTP2yzZd0SgYGwdvqIMzg+AZsfrw=;
+        b=yZGhMppM2itR8z2kOIDEYtZO7EyMhZxDJLRDKFmrU6jReA8T/cjBRXwY8MX7eejWLa
+         zX3WgpISqyd1HoXJ6EJLJj92m7Bd3wp+f3dyWsj39cNX5BNW3c+xXMq3sEZd/V8Kx06k
+         at9l6cUW7kBsQJcPEwsUxNJCkbXHoCy6ly2nb/6M1LORIz/BxfJSliLpe3J4dyGsAm35
+         ZZ5GJhG+fJ3ZHAkz9X35T9DCxX64N4mrGZQRLwyFlF+xmBHAJ/fwew/iKMdq7BO0YQD0
+         u2KVUIuf1LqjlQA7VG8cCGkoeRjH5PTW6kJUSofVSjA6kR4363/RhVL5xha0zHVcoWJ9
+         fOoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681395197; x=1683987197;
+        d=1e100.net; s=20221208; t=1681395311; x=1683987311;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XUg/Vhl4ma9csERVssXScNUtMrmvSNZoznhCnpPJffE=;
-        b=RrSCGmn2mkofMwQflPTvCiYAtqvI9rycuOMc/y4fKEQAI6Eb8ojjHX8BbL42aCkywP
-         drs7BsjOonzNaeaugvWQmNTDl0cfkv93reeg9vmN/J/v+lwemgug5F048XAS1ccYoEtn
-         NhufKz8EtAzBg8SPPu0EZipGdq4sj+ZX/pqi0gn+OR4tl8AnfhXcWTceDIX8R+MevZb+
-         7Exn0pOKxamxVyKeTz67xMJb4vmUZpOC3ekbQRXPay0NaO4eyJWIQI9IR8rALCkN1Cou
-         rNPIXts4Ia5uw1NO0nOfnH+AmkAyFR3gAsIzFQufCqNiWklrcHJcQ/RkbDKe7d9IaVfC
-         B8ig==
-X-Gm-Message-State: AAQBX9dWDFcGWU81EWXPVaGGYyGWYeNBsBzJujD0W3JldVGqjiL/U7P7
-        kl5IQJ8kKjDqDGW4mtMUskcqKg==
-X-Google-Smtp-Source: AKy350bqaGf9G9UynCwnECkBk51iC6Y9ZmFekAq/MvRpTO/3kxt99/nMVf+P8TxZ4KgLopGpGReGLQ==
-X-Received: by 2002:a17:906:e25a:b0:94a:96c4:2361 with SMTP id gq26-20020a170906e25a00b0094a96c42361mr2684805ejb.73.1681395197078;
-        Thu, 13 Apr 2023 07:13:17 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5032:d2d4:ece5:b035? ([2a02:810d:15c0:828:5032:d2d4:ece5:b035])
-        by smtp.gmail.com with ESMTPSA id bi24-20020a170906a25800b0092f38a6d082sm999572ejb.209.2023.04.13.07.13.15
+        bh=MRfAy08dzFs9jrLzTP2yzZd0SgYGwdvqIMzg+AZsfrw=;
+        b=Sz4D6n2a4qtw8tJQ1NSPDw942t9IkPWnQZi0pa9x1NV3I185m8ZR3DU1NpT4G+plvA
+         CtvhyGmRxJdZjB5szDpqlaw8s8QOx0QTAoOSq6FYb1F41GmERwrRRGZXZcLVwTiMjhur
+         em/2XfTa7Z7rLV9+uh89v93P45yDVjGQH2hYZO5/VzXIHNt1vBh2cFhkexknjSjcgMn/
+         wTORL+2VGWk1vw4ojci6Ht+AtaXUbgggrjYtGjucRfkbzhysS8E7rCCbrr0qh+CiEoRI
+         J5o++txkwngb4TT6rc0aoffprif+jt0OeQRTFKOzkBHonAem397mPWlpcHCSxsHZVNXA
+         U2rA==
+X-Gm-Message-State: AAQBX9f406i6OnFbGWkV2OIzd4ywiYFXXUAV0QAnSmCDeX7OU7iaf43J
+        J6IkPr8UX024pXDqQWjnoq+EvA==
+X-Google-Smtp-Source: AKy350ZKcbVoL90ZeMzRxiOHGtnzEmpUBRa1+BVtdc7Jb+lSdMVUYkQumizo6lVe732La8+OX0Cetw==
+X-Received: by 2002:adf:dc8d:0:b0:2f5:83a8:a9a9 with SMTP id r13-20020adfdc8d000000b002f583a8a9a9mr1799903wrj.16.1681395311380;
+        Thu, 13 Apr 2023 07:15:11 -0700 (PDT)
+Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id x12-20020adff0cc000000b002d64fcb362dsm1364069wro.111.2023.04.13.07.15.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 07:13:16 -0700 (PDT)
-Message-ID: <5953bc83-9609-6d12-7e9b-ca5202151fb3@linaro.org>
-Date:   Thu, 13 Apr 2023 16:13:15 +0200
+        Thu, 13 Apr 2023 07:15:10 -0700 (PDT)
+Message-ID: <00c0b699-ba1a-951c-185a-ef8f09abf6f3@baylibre.com>
+Date:   Thu, 13 Apr 2023 16:15:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 0/7] Add JH7110 USB and USB PHY driver support
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 7/7] leds: leds-mt6323: Add support for WLEDs and
+ MT6332
 Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-References: <20230406015216.27034-1-minda.chen@starfivetech.com>
- <517670ca-ba2e-811e-3eb2-7f38011c9690@linaro.org>
- <985d0a57-1fc8-5725-4d3a-33dcc5d49d67@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <985d0a57-1fc8-5725-4d3a-33dcc5d49d67@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
+Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
+ <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 12:44, Minda Chen wrote:
+On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
+> Add basic code to turn on and off WLEDs and wire up MT6332 support
+> to take advantage of it.
+> This is a simple approach due to to the aforementioned PMIC supporting
+> only on/off status so, at the time of writing, it is impossible for me
+> to validate more advanced functionality due to lack of hardware.
 > 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   drivers/leds/leds-mt6323.c | 171 +++++++++++++++++++++++++++++++++++--
+>   1 file changed, 164 insertions(+), 7 deletions(-)
 > 
-> On 2023/4/12 16:26, Krzysztof Kozlowski wrote:
->> On 06/04/2023 03:52, Minda Chen wrote:
->>> This patchset adds USB driver and USB PHY for the StarFive JH7110 SoC.
->>> USB work mode is peripheral and using USB 2.0 PHY in VisionFive 2 board.
->>> The patch has been tested on the VisionFive 2 board.
->>>
->>> This patchset should be applied after the patchset [1], [2] and[3]:
->>> [1] https://patchwork.kernel.org/project/linux-riscv/cover/20230314124404.117592-1-xingyu.wu@starfivetech.com/
->>> [2] https://lore.kernel.org/all/20230315055813.94740-1-william.qiu@starfivetech.com/
->>> [3] https://patchwork.kernel.org/project/linux-phy/cover/20230315100421.133428-1-changhuang.liang@starfivetech.com/
->>>
->>> This patchset is base on v6.3-rc4
->>>
->>> patch 1 is usb phy dt-binding document.
->>> patch 2 is Pcie PHY dt-binding document.
->>> patch 3 is USB 2.0 PHY driver.
->>> patch 4 is PCIe PHY driver.
->>> patch 5 is usb dt-binding document.
->>> patch 6 is the wrapper module driver of Cadence USB3. USB controller IP is Cadence USB3.
->>> patch 7 is USB device tree configuration.
->>>
->>> previous version
->>> ---
->>> v1: https://patchwork.kernel.org/project/linux-usb/cover/20230306095212.25840-1-minda.chen@starfivetech.com/
->>> v2: https://patchwork.kernel.org/project/linux-usb/cover/20230308082800.3008-1-minda.chen@starfivetech.com/
->>
->> This is v2.
->>
->>> v3: https://patchwork.kernel.org/project/linux-usb/cover/20230315104411.73614-1-minda.chen@starfivetech.com/
->>>
->>> changes
->>> v4:
->>>   1. (patch 1) split PCIe PHY dt-binding doc to patch 2.
->>>   2. (patch 2) PCIe PHY add stg and sys con configuration to dt-binding doc.
->>>   3. (patch 3)
->>>      - split PCIe PHY driver to patch 4.
->>>      - replace dr_mode to phy mode in jh7110_usb2_phy.
->>>   4. (patch 4) 
->>>      - Makefile and Kconfig sorted by alphabet sequence.
->>>      - Add PCIe PHY stg and syscon PHY connection configuration
->>>        for USB 3.0.
->>>   5. (patch 5)
->>>      - commit message changed.
->>>      - merge wrapper dts node and cdns3 node in example.
->>>      - Add interrupts, reg, phy and dr_mode in property.
->>>      - Add reset-name in property example.
->>>   6. (patch 6)
->>>      - For dts node is merged, Using platform_device_alloc and
->>>        platform_device_add to generate cadence sub device.
->>>      - IOMEM and IRQ resource are passed to Cadence sub device.
->>>      - Add PHY ops process for PHY dts setting can not be passed to
->>>        Cadence USB driver.
->>>      - remove the stg and sys USB 3.0 PHY configuration.
->>>      - Change the suspend clock reset and clock enable sequence.
->>>      - Get all reset and clock resources before enable them in 
->>>        cdns_clk_rst_init.
->>>      - commit message changed.
->>>   7. (patch 7)
->>>      - merge wrapper dts node and cdns3 node in usb dts.
->>>      - move the stg and sys USB 3.0 PHY confiuration to
->>>        PCIe PHY dts node.
->>>      - commit message changed.
->>>      - Add reset-names dts.
->>>
->>> v3:
->>>   1. Add patch 1 - 4. Add USB PHY driver and dt-binding doc. 
->>>      USB PHY codes are moved to patch 3 and patch 4.
->>>   2. (patch 5)
->>>      - USB wrapper module dts document is moved to usb directory.
->>>      - Remove the 'dr_mode' and 'starfive,usb2-only' setting.
->>>      - Some dts format changes. dts binding check pass.
->>>   3. (patch 6)
->>>      - Remove the PHY codes. 
->>>      - Search 'dr_mode' and phy setting from Cadence subnode.
->>>   4. (patch 7)
->>>      - Add USB PHY dts configurion. 
->>>      - 'dr_mode' is moved to Cadence controller submode.
->>>
->>> v2:
->>>   1. (patch 5) dt-binding changes. The document example is the same as dts config.
->>>   2. (patch 6) using dev_err_probe and syscon_regmap_lookup_by_phandle_args function. Some formats changes
->>>   3. (patch 7) dts nodes sorted by the address after @
->>>
->>>
->>> Minda Chen (7):
->>>   dt-bindings: phy: Add StarFive JH7110 USB document
->>>   dt-bindings: phy: Add StarFive JH7110 PCIe document
->>>   phy: starfive: add JH7110 USB 2.0 PHY driver.
->>>   phy: starfive: add JH7110 PCIE 2.0 PHY driver.
->>>   dt-bindings: usb: Add StarFive JH7110 USB Bindings YAML schemas
->>>   usb: cdns3: add StarFive JH7110 USB driver.
->>>   riscv: dts: starfive: add USB dts configuration for JH7110
->>>
->>>  .../phy/starfive,jh7110-pcie-phy.yaml         |  58 +++
->>>  .../bindings/phy/starfive,jh7110-usb-phy.yaml |  50 +++
->>>  .../bindings/usb/starfive,jh7110-usb.yaml     | 136 +++++++
->>>  MAINTAINERS                                   |  16 +
->>>  .../jh7110-starfive-visionfive-2.dtsi         |   7 +
->>>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  44 ++
->>>  drivers/phy/starfive/Kconfig                  |  22 +
->>>  drivers/phy/starfive/Makefile                 |   2 +
->>>  drivers/phy/starfive/phy-jh7110-pcie.c        | 197 +++++++++
->>>  drivers/phy/starfive/phy-jh7110-usb.c         | 161 ++++++++
->>>  drivers/usb/cdns3/Kconfig                     |  11 +
->>>  drivers/usb/cdns3/Makefile                    |   1 +
->>>  drivers/usb/cdns3/cdns3-starfive.c            | 378 ++++++++++++++++++
->>>  drivers/usb/cdns3/core.h                      |   3 +
->>>  14 files changed, 1086 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-pcie-phy.yaml
->>>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
->>>  create mode 100644 Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
->>>  create mode 100644 drivers/phy/starfive/phy-jh7110-pcie.c
->>>  create mode 100644 drivers/phy/starfive/phy-jh7110-usb.c
->>>  create mode 100644 drivers/usb/cdns3/cdns3-starfive.c
->>>
->>>
->>> base-commit: 0ec57cfa721fbd36b4c4c0d9ccc5d78a78f7fa35
->>> prerequisite-patch-id: 24a6e3442ed1f5454ffb4a514cfd768436a87090
->>> prerequisite-patch-id: 55390537360f25c8b9cbfdc30b73ade004f436f7
->>
->> fatal: bad object 55390537360f25c8b9cbfdc30b73ade004f436f7
->>
->> What commits do you reference? How are they helpful?
->>
-> I use "git format-patch --base=(commit) to generate patchset.
-> Maybe I set the wrong base commit.
+> diff --git a/drivers/leds/leds-mt6323.c b/drivers/leds/leds-mt6323.c
+> index 5d95dbd9a761..202b38ac32f6 100644
+> --- a/drivers/leds/leds-mt6323.c
+> +++ b/drivers/leds/leds-mt6323.c
+> @@ -20,6 +20,11 @@
+>   #define RG_DRV_32K_CK_PDN		BIT(11)
+>   #define RG_DRV_32K_CK_PDN_MASK		BIT(11)
+>   
+> +/* 32K/1M/6M clock common for WLED device */
+> +#define RG_VWLED_1M_CK_PDN		BIT(0)
+> +#define RG_VWLED_32K_CK_PDN		BIT(12)
+> +#define RG_VWLED_6M_CK_PDN		BIT(13)
+> +
+>   /*
+>    * Register field for TOP_CKPDN2 to enable
+>    * individual clock for LED device.
+> @@ -73,7 +78,7 @@ struct mt6323_led {
+>   	int			id;
+>   	struct mt6323_leds	*parent;
+>   	struct led_classdev	cdev;
+> -	enum led_brightness	current_brightness;
+> +	unsigned int		current_brightness;
+>   };
+>   
+>   /**
+> @@ -86,6 +91,7 @@ struct mt6323_led {
+>    * @num_isink_con:	Number of ISINKx_CON registers
+>    * @isink_max_regs:	Number of ISINK[0..x] registers
+>    * @isink_en_ctrl:	Offset to ISINK_EN_CTRL register
+> + * @iwled_en_ctrl:	Offset to IWLED_EN_CTRL register
+>    */
+>   struct mt6323_regs {
+>   	const u16 *top_ckpdn;
+> @@ -96,18 +102,21 @@ struct mt6323_regs {
+>   	u8 num_isink_con;
+>   	u8 isink_max_regs;
+>   	u16 isink_en_ctrl;
+> +	u16 iwled_en_ctrl;
+>   };
+>   
+>   /**
+>    * struct mt6323_hwspec - hardware specific parameters
+>    * @max_period:		Maximum period for all LEDs
+>    * @max_leds:		Maximum number of supported LEDs
+> + * @max_wleds:		Maximum number of WLEDs
+>    * @max_brightness:	Maximum brightness for all LEDs
+>    * @unit_duty:		Steps of duty per period
+>    */
+>   struct mt6323_hwspec {
+>   	u16 max_period;
+>   	u8 max_leds;
+> +	u8 max_wleds;
+>   	u16 max_brightness;
+>   	u16 unit_duty;
+>   };
+> @@ -379,6 +388,117 @@ static int mt6323_led_set_brightness(struct led_classdev *cdev,
+>   	return ret;
+>   }
+>   
+> +static int mtk_wled_hw_on(struct led_classdev *cdev)
+> +{
+> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
+> +	struct mt6323_leds *leds = led->parent;
+> +	const struct mt6323_regs *regs = leds->pdata->regs;
+> +	struct regmap *regmap = leds->hw->regmap;
+> +	int ret;
+> +
+> +	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_32K_CK_PDN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_6M_CK_PDN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_1M_CK_PDN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(5000, 6000);
+> +
+> +	/* Enable WLED channel pair */
+> +	ret = regmap_set_bits(regmap, regs->iwled_en_ctrl, BIT(led->id));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_set_bits(regmap, regs->iwled_en_ctrl, BIT(led->id + 1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_wled_hw_off(struct led_classdev *cdev)
+> +{
+> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
+> +	struct mt6323_leds *leds = led->parent;
+> +	const struct mt6323_regs *regs = leds->pdata->regs;
+> +	struct regmap *regmap = leds->hw->regmap;
+> +	int ret;
+> +
+> +	ret = regmap_clear_bits(regmap, regs->iwled_en_ctrl, BIT(led->id + 1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_clear_bits(regmap, regs->iwled_en_ctrl, BIT(led->id));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_32K_CK_PDN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_6M_CK_PDN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_1M_CK_PDN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned int mt6323_get_wled_brightness(struct led_classdev *cdev)
+> +{
+> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
+> +	struct mt6323_leds *leds = led->parent;
+> +	const struct mt6323_regs *regs = leds->pdata->regs;
+> +	struct regmap *regmap = leds->hw->regmap;
+> +	unsigned int status;
+> +	int ret;
+> +
+> +	ret = regmap_read(regmap, regs->iwled_en_ctrl, &status);
+> +	if (ret)
+> +		return 0;
+> +
+> +	/* Always two channels per WLED */
+> +	status &= BIT(led->id) | BIT(led->id + 1);
+> +
+> +	return status ? led->current_brightness : 0;
+> +}
+> +
+> +static int mt6323_wled_set_brightness(struct led_classdev *cdev,
+> +				      unsigned int brightness)
+> +{
+> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
+> +	struct mt6323_leds *leds = led->parent;
+> +	int ret = 0;
+> +
+> +	mutex_lock(&leds->lock);
+> +
+> +	if (brightness) {
+> +		if (!led->current_brightness)
+> +			ret = mtk_wled_hw_on(cdev);
+> +		if (ret)
+> +			goto out;
+> +	} else {
+> +		ret = mtk_wled_hw_off(cdev);
+> +		if (ret)
+> +			goto out;
+> +	}
+> +
+> +	led->current_brightness = brightness;
+> +out:
+> +	mutex_unlock(&leds->lock);
+> +
+> +	return ret;
+> +}
+> +
+>   static int mt6323_led_set_dt_default(struct led_classdev *cdev,
+>   				     struct device_node *np)
+>   {
+> @@ -418,6 +538,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
+>   	int ret;
+>   	unsigned int status;
+>   	u32 reg;
+> +	u8 max_leds;
+>   
+>   	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
+>   	if (!leds)
+> @@ -428,6 +549,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
+>   	leds->pdata = device_get_match_data(dev);
+>   	regs = leds->pdata->regs;
+>   	spec = leds->pdata->spec;
+> +	max_leds = spec->max_leds + spec->max_wleds;
 
-How are they helpful if these are private commits?
+I haven't access to the datasheet so I have to ask you:
+Why the max leds value is the addition of max led and wled ?
 
-Best regards,
-Krzysztof
+IMO, the datasheed give you the max supported led OR wled on its bus 
+function to the maximum supplied current by the PMIC (I assume LED or 
+WLED have different need). Or the PMIC has 2 bus, one for led and 
+another for wled ?
+
+>   
+>   	/*
+>   	 * leds->hw points to the underlying bus for the register
+> @@ -447,6 +569,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
+>   
+>   	for_each_available_child_of_node(np, child) {
+>   		struct led_init_data init_data = {};
+> +		bool is_wled;
+>   
+>   		ret = of_property_read_u32(child, "reg", &reg);
+>   		if (ret) {
+> @@ -454,7 +577,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
+>   			goto put_child_node;
+>   		}
+>   
+> -		if (reg >= spec->max_leds || reg >= MAX_SUPPORTED_LEDS ||
+> +		if (reg >= max_leds || reg >= MAX_SUPPORTED_LEDS ||
+>   		    leds->led[reg]) {
+>   			dev_err(dev, "Invalid led reg %u\n", reg);
+>   			ret = -EINVAL;
+> @@ -467,14 +590,24 @@ static int mt6323_led_probe(struct platform_device *pdev)
+>   			goto put_child_node;
+>   		}
+>   
+> +		is_wled = of_property_read_bool(child, "mediatek,is-wled");
+> +
+>   		leds->led[reg] = led;
+>   		leds->led[reg]->id = reg;
+>   		leds->led[reg]->cdev.max_brightness = spec->max_brightness;
+> -		leds->led[reg]->cdev.brightness_set_blocking =
+> -					mt6323_led_set_brightness;
+> -		leds->led[reg]->cdev.blink_set = mt6323_led_set_blink;
+> -		leds->led[reg]->cdev.brightness_get =
+> -					mt6323_get_led_hw_brightness;
+> +
+> +		if (is_wled) {
+> +			leds->led[reg]->cdev.brightness_set_blocking =
+> +						mt6323_wled_set_brightness;
+> +			leds->led[reg]->cdev.brightness_get =
+> +						mt6323_get_wled_brightness;
+> +		} else {
+> +			leds->led[reg]->cdev.brightness_set_blocking =
+> +						mt6323_led_set_brightness;
+> +			leds->led[reg]->cdev.blink_set = mt6323_led_set_blink;
+> +			leds->led[reg]->cdev.brightness_get =
+> +						mt6323_get_led_hw_brightness;
+> +		}
+>   		leds->led[reg]->parent = leds;
+>   
+>   		ret = mt6323_led_set_dt_default(&leds->led[reg]->cdev, child);
+> @@ -542,6 +675,17 @@ static const struct mt6323_regs mt6331_registers = {
+>   	.isink_en_ctrl = 0x43a,
+>   };
+>   
+> +static const struct mt6323_regs mt6332_registers = {
+> +	.top_ckpdn = (const u16[]){ 0x8094, 0x809a, 0x80a0 },
+> +	.num_top_ckpdn = 3,
+> +	.top_ckcon = (const u16[]){ 0x80a6, 0x80ac },
+> +	.num_top_ckcon = 2,
+> +	.isink_con = (const u16[]){ 0x8cd4 },
+> +	.num_isink_con = 1,
+> +	.isink_max_regs = 12, /* IWLED[0..2, 3..9] */
+> +	.iwled_en_ctrl = 0x8cda,
+> +};
+> +
+>   static const struct mt6323_hwspec mt6323_spec = {
+>   	.max_period = 10000,
+>   	.max_leds = 4,
+> @@ -549,6 +693,13 @@ static const struct mt6323_hwspec mt6323_spec = {
+>   	.unit_duty = 3125,
+>   };
+>   
+> +static const struct mt6323_hwspec mt6332_spec = {
+> +	/* There are no LEDs in MT6332. Only WLEDs are present. */
+> +	.max_leds = 0,
+> +	.max_wleds = 1,
+> +	.max_brightness = 1024,
+> +};
+> +
+>   static const struct mt6323_data mt6323_pdata = {
+>   	.regs = &mt6323_registers,
+>   	.spec = &mt6323_spec,
+> @@ -559,9 +710,15 @@ static const struct mt6323_data mt6331_pdata = {
+>   	.spec = &mt6323_spec,
+>   };
+>   
+> +static const struct mt6323_data mt6332_pdata = {
+> +	.regs = &mt6332_registers,
+> +	.spec = &mt6332_spec,
+> +};
+> +
+>   static const struct of_device_id mt6323_led_dt_match[] = {
+>   	{ .compatible = "mediatek,mt6323-led", .data = &mt6323_pdata},
+>   	{ .compatible = "mediatek,mt6331-led", .data = &mt6331_pdata },
+> +	{ .compatible = "mediatek,mt6332-led", .data = &mt6332_pdata },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, mt6323_led_dt_match);
+
+-- 
+Regards,
+Alexandre
 
