@@ -2,391 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E57D6E0FC3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744D16E0FD0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 16:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231625AbjDMOPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 10:15:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47896 "EHLO
+        id S229709AbjDMOUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 10:20:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231253AbjDMOPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:15:15 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBD73AAB
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:15:13 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id q6so2861316wrc.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:15:12 -0700 (PDT)
+        with ESMTP id S229886AbjDMOTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 10:19:51 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5B77AB3
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:19:48 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id xd13so3928366ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 07:19:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681395311; x=1683987311;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MRfAy08dzFs9jrLzTP2yzZd0SgYGwdvqIMzg+AZsfrw=;
-        b=yZGhMppM2itR8z2kOIDEYtZO7EyMhZxDJLRDKFmrU6jReA8T/cjBRXwY8MX7eejWLa
-         zX3WgpISqyd1HoXJ6EJLJj92m7Bd3wp+f3dyWsj39cNX5BNW3c+xXMq3sEZd/V8Kx06k
-         at9l6cUW7kBsQJcPEwsUxNJCkbXHoCy6ly2nb/6M1LORIz/BxfJSliLpe3J4dyGsAm35
-         ZZ5GJhG+fJ3ZHAkz9X35T9DCxX64N4mrGZQRLwyFlF+xmBHAJ/fwew/iKMdq7BO0YQD0
-         u2KVUIuf1LqjlQA7VG8cCGkoeRjH5PTW6kJUSofVSjA6kR4363/RhVL5xha0zHVcoWJ9
-         fOoQ==
+        d=fairphone.com; s=fair; t=1681395587; x=1683987587;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pb/QYBj5DO4S8x7hRJ0EcLzAuGXstOMjS8bk47CPw2E=;
+        b=dyDQtEKltsETKHLJU2vVgS3MK1Rcnh25wvcXpQgWUSByyqk25whjbf5oto0PDg67/T
+         OsqN0Uc9VPtMaBArVcebe3sui5BpkY75PCO/8jZ9QvbYWKvHTgOi/rwFafeiYyK4ZV+d
+         f7z0v768dhv2YXfeA4baaWlHeK0Mp5Wave202UTpfyIhrLNewApYU5S1SY8Y06PKM5sx
+         qVHqy3AGNlag9CZ+/FaRWumtxKn55hBYS8ugWOo/rc07TnZJbo1md3L4fuBF45sg5+7J
+         UQbMD8vkNdbCvR8KPLJcIdAb7Alg3YyIRxXhgSJFv/QtpJLFSTqZ5KKSICQehKSlcvrj
+         56dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681395311; x=1683987311;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MRfAy08dzFs9jrLzTP2yzZd0SgYGwdvqIMzg+AZsfrw=;
-        b=Sz4D6n2a4qtw8tJQ1NSPDw942t9IkPWnQZi0pa9x1NV3I185m8ZR3DU1NpT4G+plvA
-         CtvhyGmRxJdZjB5szDpqlaw8s8QOx0QTAoOSq6FYb1F41GmERwrRRGZXZcLVwTiMjhur
-         em/2XfTa7Z7rLV9+uh89v93P45yDVjGQH2hYZO5/VzXIHNt1vBh2cFhkexknjSjcgMn/
-         wTORL+2VGWk1vw4ojci6Ht+AtaXUbgggrjYtGjucRfkbzhysS8E7rCCbrr0qh+CiEoRI
-         J5o++txkwngb4TT6rc0aoffprif+jt0OeQRTFKOzkBHonAem397mPWlpcHCSxsHZVNXA
-         U2rA==
-X-Gm-Message-State: AAQBX9f406i6OnFbGWkV2OIzd4ywiYFXXUAV0QAnSmCDeX7OU7iaf43J
-        J6IkPr8UX024pXDqQWjnoq+EvA==
-X-Google-Smtp-Source: AKy350ZKcbVoL90ZeMzRxiOHGtnzEmpUBRa1+BVtdc7Jb+lSdMVUYkQumizo6lVe732La8+OX0Cetw==
-X-Received: by 2002:adf:dc8d:0:b0:2f5:83a8:a9a9 with SMTP id r13-20020adfdc8d000000b002f583a8a9a9mr1799903wrj.16.1681395311380;
-        Thu, 13 Apr 2023 07:15:11 -0700 (PDT)
-Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x12-20020adff0cc000000b002d64fcb362dsm1364069wro.111.2023.04.13.07.15.10
+        d=1e100.net; s=20221208; t=1681395587; x=1683987587;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Pb/QYBj5DO4S8x7hRJ0EcLzAuGXstOMjS8bk47CPw2E=;
+        b=FZJOOtKEsM27rhdbuYtyhnyvbrDV+yHM8vmOAnSYn7sU5l0+QE2jAf3PoRCrJIET8d
+         kdiYAljH5cCvAKtinTZa4fyQvGOqiJTEoGuX4yXFJOA617vM2KAbkkhbVr61/iGIxGtT
+         yjvfc8jNih9mPt6WHSUQlV7t83/xHw8i+r4IHfa3pyReu2RqMLTtdKrTYWU4cOjujH6T
+         E0NS8CP+l2dcmaxbFOsKPDGUXKmkUHmzBsuWB8iwF5bPGc1YXRVApp1pEq2dvEW9eIPN
+         rf6KpiSeo3OghX6bmcZn0flVIK7BMz1Lw74ENtrVRC+P/QNksxTm1MQbQdzd3yG9Utfy
+         rYkw==
+X-Gm-Message-State: AAQBX9dihWwxkAlcMmlyhO3m1TVzcYy6NNdYTy9zcxeEWOgb1Jjap9qG
+        0PEXflCy4xS+j8VZP1kqwxUFkw==
+X-Google-Smtp-Source: AKy350ZG6s81Qaa8AkdJTOa6y49nPcMfc4Fhj7jq65G3njv0qEv5S7F0xk1OJWGovvDhtWWO1Dn1Gw==
+X-Received: by 2002:a17:906:6dc3:b0:94e:7bde:3108 with SMTP id j3-20020a1709066dc300b0094e7bde3108mr3684423ejt.27.1681395586705;
+        Thu, 13 Apr 2023 07:19:46 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id ov5-20020a170906fc0500b00931baabe36csm1048007ejb.63.2023.04.13.07.19.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 07:15:10 -0700 (PDT)
-Message-ID: <00c0b699-ba1a-951c-185a-ef8f09abf6f3@baylibre.com>
-Date:   Thu, 13 Apr 2023 16:15:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 7/7] leds: leds-mt6323: Add support for WLEDs and
- MT6332
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, pavel@ucw.cz
-Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
- <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Thu, 13 Apr 2023 07:19:46 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 13 Apr 2023 16:19:45 +0200
+Message-Id: <CRVOZOPMKBX4.2T7FOCWF0RKBJ@otso>
+Subject: Re: [PATCH v5 00/14] Add Qualcomm PMIC TPCM support
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
+        <gregkh@linuxfoundation.org>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     <caleb.connolly@linaro.org>, <konrad.dybcio@linaro.org>,
+        <subbaram@quicinc.com>, <jackp@quicinc.com>,
+        <robertom@qti.qualcomm.com>
+X-Mailer: aerc 0.14.0
+References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
-> Add basic code to turn on and off WLEDs and wire up MT6332 support
-> to take advantage of it.
-> This is a simple approach due to to the aforementioned PMIC supporting
-> only on/off status so, at the time of writing, it is impossible for me
-> to validate more advanced functionality due to lack of hardware.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   drivers/leds/leds-mt6323.c | 171 +++++++++++++++++++++++++++++++++++--
->   1 file changed, 164 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/leds/leds-mt6323.c b/drivers/leds/leds-mt6323.c
-> index 5d95dbd9a761..202b38ac32f6 100644
-> --- a/drivers/leds/leds-mt6323.c
-> +++ b/drivers/leds/leds-mt6323.c
-> @@ -20,6 +20,11 @@
->   #define RG_DRV_32K_CK_PDN		BIT(11)
->   #define RG_DRV_32K_CK_PDN_MASK		BIT(11)
->   
-> +/* 32K/1M/6M clock common for WLED device */
-> +#define RG_VWLED_1M_CK_PDN		BIT(0)
-> +#define RG_VWLED_32K_CK_PDN		BIT(12)
-> +#define RG_VWLED_6M_CK_PDN		BIT(13)
-> +
->   /*
->    * Register field for TOP_CKPDN2 to enable
->    * individual clock for LED device.
-> @@ -73,7 +78,7 @@ struct mt6323_led {
->   	int			id;
->   	struct mt6323_leds	*parent;
->   	struct led_classdev	cdev;
-> -	enum led_brightness	current_brightness;
-> +	unsigned int		current_brightness;
->   };
->   
->   /**
-> @@ -86,6 +91,7 @@ struct mt6323_led {
->    * @num_isink_con:	Number of ISINKx_CON registers
->    * @isink_max_regs:	Number of ISINK[0..x] registers
->    * @isink_en_ctrl:	Offset to ISINK_EN_CTRL register
-> + * @iwled_en_ctrl:	Offset to IWLED_EN_CTRL register
->    */
->   struct mt6323_regs {
->   	const u16 *top_ckpdn;
-> @@ -96,18 +102,21 @@ struct mt6323_regs {
->   	u8 num_isink_con;
->   	u8 isink_max_regs;
->   	u16 isink_en_ctrl;
-> +	u16 iwled_en_ctrl;
->   };
->   
->   /**
->    * struct mt6323_hwspec - hardware specific parameters
->    * @max_period:		Maximum period for all LEDs
->    * @max_leds:		Maximum number of supported LEDs
-> + * @max_wleds:		Maximum number of WLEDs
->    * @max_brightness:	Maximum brightness for all LEDs
->    * @unit_duty:		Steps of duty per period
->    */
->   struct mt6323_hwspec {
->   	u16 max_period;
->   	u8 max_leds;
-> +	u8 max_wleds;
->   	u16 max_brightness;
->   	u16 unit_duty;
->   };
-> @@ -379,6 +388,117 @@ static int mt6323_led_set_brightness(struct led_classdev *cdev,
->   	return ret;
->   }
->   
-> +static int mtk_wled_hw_on(struct led_classdev *cdev)
-> +{
-> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-> +	struct mt6323_leds *leds = led->parent;
-> +	const struct mt6323_regs *regs = leds->pdata->regs;
-> +	struct regmap *regmap = leds->hw->regmap;
-> +	int ret;
-> +
-> +	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_32K_CK_PDN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_6M_CK_PDN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_1M_CK_PDN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	usleep_range(5000, 6000);
-> +
-> +	/* Enable WLED channel pair */
-> +	ret = regmap_set_bits(regmap, regs->iwled_en_ctrl, BIT(led->id));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_set_bits(regmap, regs->iwled_en_ctrl, BIT(led->id + 1));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_wled_hw_off(struct led_classdev *cdev)
-> +{
-> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-> +	struct mt6323_leds *leds = led->parent;
-> +	const struct mt6323_regs *regs = leds->pdata->regs;
-> +	struct regmap *regmap = leds->hw->regmap;
-> +	int ret;
-> +
-> +	ret = regmap_clear_bits(regmap, regs->iwled_en_ctrl, BIT(led->id + 1));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_clear_bits(regmap, regs->iwled_en_ctrl, BIT(led->id));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_32K_CK_PDN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_6M_CK_PDN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_1M_CK_PDN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static unsigned int mt6323_get_wled_brightness(struct led_classdev *cdev)
-> +{
-> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-> +	struct mt6323_leds *leds = led->parent;
-> +	const struct mt6323_regs *regs = leds->pdata->regs;
-> +	struct regmap *regmap = leds->hw->regmap;
-> +	unsigned int status;
-> +	int ret;
-> +
-> +	ret = regmap_read(regmap, regs->iwled_en_ctrl, &status);
-> +	if (ret)
-> +		return 0;
-> +
-> +	/* Always two channels per WLED */
-> +	status &= BIT(led->id) | BIT(led->id + 1);
-> +
-> +	return status ? led->current_brightness : 0;
-> +}
-> +
-> +static int mt6323_wled_set_brightness(struct led_classdev *cdev,
-> +				      unsigned int brightness)
-> +{
-> +	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-> +	struct mt6323_leds *leds = led->parent;
-> +	int ret = 0;
-> +
-> +	mutex_lock(&leds->lock);
-> +
-> +	if (brightness) {
-> +		if (!led->current_brightness)
-> +			ret = mtk_wled_hw_on(cdev);
-> +		if (ret)
-> +			goto out;
-> +	} else {
-> +		ret = mtk_wled_hw_off(cdev);
-> +		if (ret)
-> +			goto out;
-> +	}
-> +
-> +	led->current_brightness = brightness;
-> +out:
-> +	mutex_unlock(&leds->lock);
-> +
-> +	return ret;
-> +}
-> +
->   static int mt6323_led_set_dt_default(struct led_classdev *cdev,
->   				     struct device_node *np)
->   {
-> @@ -418,6 +538,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
->   	int ret;
->   	unsigned int status;
->   	u32 reg;
-> +	u8 max_leds;
->   
->   	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
->   	if (!leds)
-> @@ -428,6 +549,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
->   	leds->pdata = device_get_match_data(dev);
->   	regs = leds->pdata->regs;
->   	spec = leds->pdata->spec;
-> +	max_leds = spec->max_leds + spec->max_wleds;
+Hi Bryan,
 
-I haven't access to the datasheet so I have to ask you:
-Why the max leds value is the addition of max led and wled ?
+On Thu Apr 13, 2023 at 1:34 PM CEST, Bryan O'Donoghue wrote:
+> V5:
+> - Amagamates into once device, Heikki, Rob
+>
+> - Takes feedback on usage form Luka and Jianhua on VSafeV state transitio=
+n detection
+>   dev_err() -> dev_warn()
+>
+> - Orientation graph example and general expected bindings
+>   I discussed offline with Bjorn the conclusions of the glink/sbu model.
+>   The expected orientation-switch path is
+>     connector/port@0 <-> phy/port@X <-> dp/port@0
+>   This can then be expanded to
+>     connector/port@0 <-> redriver/port@0 <-> phy/port@X <->  dp/port@0
+>
+>   - Rob, Bjorn, Krzysztof
+>
+> - Data role
+>   The data-role path is
+>     connector/port@0 <-> dwc3/port@Y=20
 
-IMO, the datasheed give you the max supported led OR wled on its bus 
-function to the maximum supplied current by the PMIC (I assume LED or 
-WLED have different need). Or the PMIC has 2 bus, one for led and 
-another for wled ?
+I believe I have adjusted my dts correctly for v5 compared to v4 but now
+the usb doesn't seem to work anymore in most cases.
 
->   
->   	/*
->   	 * leds->hw points to the underlying bus for the register
-> @@ -447,6 +569,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
->   
->   	for_each_available_child_of_node(np, child) {
->   		struct led_init_data init_data = {};
-> +		bool is_wled;
->   
->   		ret = of_property_read_u32(child, "reg", &reg);
->   		if (ret) {
-> @@ -454,7 +577,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
->   			goto put_child_node;
->   		}
->   
-> -		if (reg >= spec->max_leds || reg >= MAX_SUPPORTED_LEDS ||
-> +		if (reg >= max_leds || reg >= MAX_SUPPORTED_LEDS ||
->   		    leds->led[reg]) {
->   			dev_err(dev, "Invalid led reg %u\n", reg);
->   			ret = -EINVAL;
-> @@ -467,14 +590,24 @@ static int mt6323_led_probe(struct platform_device *pdev)
->   			goto put_child_node;
->   		}
->   
-> +		is_wled = of_property_read_bool(child, "mediatek,is-wled");
-> +
->   		leds->led[reg] = led;
->   		leds->led[reg]->id = reg;
->   		leds->led[reg]->cdev.max_brightness = spec->max_brightness;
-> -		leds->led[reg]->cdev.brightness_set_blocking =
-> -					mt6323_led_set_brightness;
-> -		leds->led[reg]->cdev.blink_set = mt6323_led_set_blink;
-> -		leds->led[reg]->cdev.brightness_get =
-> -					mt6323_get_led_hw_brightness;
-> +
-> +		if (is_wled) {
-> +			leds->led[reg]->cdev.brightness_set_blocking =
-> +						mt6323_wled_set_brightness;
-> +			leds->led[reg]->cdev.brightness_get =
-> +						mt6323_get_wled_brightness;
-> +		} else {
-> +			leds->led[reg]->cdev.brightness_set_blocking =
-> +						mt6323_led_set_brightness;
-> +			leds->led[reg]->cdev.blink_set = mt6323_led_set_blink;
-> +			leds->led[reg]->cdev.brightness_get =
-> +						mt6323_get_led_hw_brightness;
-> +		}
->   		leds->led[reg]->parent = leds;
->   
->   		ret = mt6323_led_set_dt_default(&leds->led[reg]->cdev, child);
-> @@ -542,6 +675,17 @@ static const struct mt6323_regs mt6331_registers = {
->   	.isink_en_ctrl = 0x43a,
->   };
->   
-> +static const struct mt6323_regs mt6332_registers = {
-> +	.top_ckpdn = (const u16[]){ 0x8094, 0x809a, 0x80a0 },
-> +	.num_top_ckpdn = 3,
-> +	.top_ckcon = (const u16[]){ 0x80a6, 0x80ac },
-> +	.num_top_ckcon = 2,
-> +	.isink_con = (const u16[]){ 0x8cd4 },
-> +	.num_isink_con = 1,
-> +	.isink_max_regs = 12, /* IWLED[0..2, 3..9] */
-> +	.iwled_en_ctrl = 0x8cda,
-> +};
-> +
->   static const struct mt6323_hwspec mt6323_spec = {
->   	.max_period = 10000,
->   	.max_leds = 4,
-> @@ -549,6 +693,13 @@ static const struct mt6323_hwspec mt6323_spec = {
->   	.unit_duty = 3125,
->   };
->   
-> +static const struct mt6323_hwspec mt6332_spec = {
-> +	/* There are no LEDs in MT6332. Only WLEDs are present. */
-> +	.max_leds = 0,
-> +	.max_wleds = 1,
-> +	.max_brightness = 1024,
-> +};
-> +
->   static const struct mt6323_data mt6323_pdata = {
->   	.regs = &mt6323_registers,
->   	.spec = &mt6323_spec,
-> @@ -559,9 +710,15 @@ static const struct mt6323_data mt6331_pdata = {
->   	.spec = &mt6323_spec,
->   };
->   
-> +static const struct mt6323_data mt6332_pdata = {
-> +	.regs = &mt6332_registers,
-> +	.spec = &mt6332_spec,
-> +};
-> +
->   static const struct of_device_id mt6323_led_dt_match[] = {
->   	{ .compatible = "mediatek,mt6323-led", .data = &mt6323_pdata},
->   	{ .compatible = "mediatek,mt6331-led", .data = &mt6331_pdata },
-> +	{ .compatible = "mediatek,mt6332-led", .data = &mt6332_pdata },
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, mt6323_led_dt_match);
+Only when having the phone already plugged in during boot in one
+orientation does USB come up, but also disappears once you replug the
+cable. I still see the same (or at least visually similar) messages when
+plugging in the USB cable or the USB stick but nothing more than that
+happens.
 
--- 
-Regards,
-Alexandre
+Not that v4 worked perfectly on pm7250b+sm7225(/sm6350) but at least it
+worked in most cases as described in the emails there. Since the driver
+structure changed quite a bit, git diff isn't helpful here
+unfortunately.
+
+Don't think it matters but worth mentioning that sm6350 uses the new
+qmpphy bindings as described in qcom,sc8280xp-qmp-usb43dp-phy.yaml (this
+was also the case when testing v4 of this).
+
+Any idea?
+
+Regards
+Luca
+
+>
+> Previous set:
+> https://lore.kernel.org/linux-arm-msm/20230318121828.739424-1-bryan.odono=
+ghue@linaro.org/
+>
+> Bootable:
+> https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-04=
+-12-pm8150b-tcpm-qcom-wrapper-typec-mux
+>   =20
+> V4:
+> - Per Rob's input the pdphy and type-c appear as stadalone blocks
+>   inside of the PMIC declaration which is a 1:1 mapping of PMIC hardware.
+>   The TCPM virtual device is declared at the top-level.
+>   https://lore.kernel.org/all/YY7p7jviA3ZG05gL@robh.at.kernel.org/
+>
+> - Squashes the removal of the old driver with the addition of the new. - =
+Heikki, Gunter
+>   https://lore.kernel.org/all/YYVHcHC1Gm92VxEM@kuha.fi.intel.com/
+>
+> - Reworked Dmitry's old patch for the QMP to account for file renames and
+>   very minimal code-drift in the interregnum.
+>
+> - New yaml checks drive update of PMIC VBUS yaml
+>
+> - Some housekeeping on the sc7180 yaml side. sc7180 is not supported yet.
+>
+> - Expands and fixes the examples being added in the PMIC tcpm examples.
+>
+> Previous set:
+> https://lore.kernel.org/all/20211105033558.1573552-1-bryan.odonoghue@lina=
+ro.org/
+>
+> Bootable:
+> https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/linux-next-23=
+-03-18-pm8150b-tcpm-qcom-wrapper-typec-mux
+>
+> V3:
+> Rob Herrings review
+>
+> - Drops use of remote-endpoint and ports to bind
+>   tcpm to pdphy and typec replacing with phandle
+>
+> - Drops pmic-pdphy-* and pmic-typec-* from interrupt names
+>   as suggested
+>
+> - Passes make dt_binding_check DT_CHECKER_FLAGS=3D-m
+>
+> BOD
+> - Noticed qcom_pmic_tcpm_pdphy_enable() was missing a
+>   regulator_disable in case of an error, added.
+>
+> - qcom_pmic_tcpm_pdphy_probe()
+>   devm_regulator_get() should come before regmap_get()
+>   as is the case in qcom_pmic_tcpm_typec_probe()
+>
+> - Fixes compatible name in qcom,pmic-typec.yaml should
+>   have read qcom,pm8150b-typec not qcom,pm8150b-usb-typec
+>
+> - Makes sure compat for core is "qcom,pm8150b-tcpm" in
+>   docs and driver
+>
+> - Drops redundant return in void qcom_pmic_tcpm_pdphy_reset_off()
+>
+> Kernel Robot
+> - Drops unused variable debounced in qcom_pmic_tcpm_typec_get_cc()
+>
+> - Drops unsused variable orientation in qcom_pmic_tcpm_typec_set_cc()
+>
+> Latest bootable series can be found here:
+> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=3Du=
+sb-next-04-11-21-pm8150b-tcpm-v3
+>
+> git diff usb-next-27-10-21-pm8150b-tcpm-v2 -- drivers/usb/typec/tcpm/qcom=
+/
+> git diff usb-next-27-10-21-pm8150b-tcpm-v2 -- Documentation/devicetree/bi=
+ndings/usb/qcom,pmic*
+>
+> Previous set:
+> Link: https://lore.kernel.org/linux-usb/20211028164941.831918-1-bryan.odo=
+noghue@linaro.org/T/#t
+>
+> V2 resend:
+> - Adding omitted devicetree mailing list
+>
+> V2:
+>
+> Guenter Roeck's review
+> - Converts suggested qcom_pmic_tcpm_core.c into one-liners
+>
+> - Adds comment on how polarity is set in set_polarity()
+>
+> - Removes optional set_current_limit()
+>
+> - regmap_read/regmap_write
+>   Reviwing other pm8150b/spmi drivers I then added in checks for all
+>   reamap_read()/regmap_write() calls.
+>
+> - Fixes (type =3D=3D TCPC_TX_CABLE_RESET || TCPC_TX_HARD_RESET)
+>   thanks I definitely had the blinkers on there and didn't see that at al=
+l
+>
+> - qcom_pmic_tcpm_pdphy_pd_transmit_payload()
+>   Treats regmap_read and read value as separate error paths
+>
+> - qcom_pmic_tcpm_pdphy_set_pd_rx()
+>   Replaces boolean if/else with !on as suggested
+>
+> - Returns -ENODEV not -EINVAL on dev_get_regmap() error
+>
+> - qcom_pmic_tcpm_pdphy_pd_receive()
+>   Guenter asks: "No error return ?"
+>   bod: No we are inside an ISR here if we read data we pass that off to T=
+CPM
+>        if somehow we don't read the data - it is "junk" there's no value =
+IMO
+>        in pushing an error upwards back to the handler.
+>
+> Heikki Krogerus' review
+> - Includes Makefile I missed adding to my git index
+>
+> - Removes old Kconfig entry for remove driver
+>
+> Randy Dunlap's review=20
+> - Rewords drivers/usb/typec/tcpm/Kconfig
+>
+> - Drops tautology "aggregates togther"
+>
+> - Corrects spelling typos
+>
+> BOD's own review
+> - Drops redundant include of regmap.h in qcom_pmic_tcpm_core.c
+>
+> - Propogates qcom_pmic_tcpm_pdphy_disable() error upwards
+>
+> - Propogates pmic_pdphy_reset() error upwards
+>
+> - Drops error prints in qcom_pmic_tcpm_pdphy_pd_transmit_payload()
+>   I had these in-place during development and don't recall them being
+>   triggered even once, they are redundant, remove.
+> =20
+> Differences between the two can be seen by
+> git diff usb-next-27-10-21-pm8150b-tcpm-v2..usb-next-25-10-21-pm8150b-tcp=
+m -- drivers/usb/typec/tcpm
+>
+> Latest bootable series can be found here:
+> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=3Du=
+sb-next-27-10-21-pm8150b-tcpm-v2
+>
+> Previous set:
+> Link: https://lore.kernel.org/all/20211025150906.176686-1-bryan.odonoghue=
+@linaro.org/T/#t
+>
+> V1:
+> This series adds a set of yaml and a driver to bind together the type-c a=
+nd
+> pdphy silicon in qcom's pm8150b block as a Linux type-c port manager.
+>
+> As part of that we retire the existing qcom-pmic-typec driver and fully
+> replicate its functionality inside of the new block with the additional
+> pdphy stuff along with it.
+>
+> An additional series will follow this one for the SoC and RB5 dtsi and dt=
+s
+> respectively.
+>
+> A bootable series can be found here
+>
+> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=3Du=
+sb-next-25-10-21-pm8150b-tcpm
+>
+> Bryan O'Donoghue (13):
+>   dt-bindings: regulator: qcom,usb-vbus-regulator: Mark reg as required
+>   dt-bindings: regulator: qcom,usb-vbus-regulator: Mark
+>     regulator-*-microamp required
+>   dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add orientation-switch
+>     as optional
+>   dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add ports as an
+>     optional
+>   dt-bindings: usb: Add Qualcomm PMIC Type-C YAML schema
+>   dt-bindings: mfd: qcom,spmi-pmic: Add typec to SPMI device types
+>   arm64: dts: qcom: sm8250: Define ports for qmpphy
+>     orientation-switching
+>   arm64: dts: qcom: pm8150b: Add a TCPM description
+>   arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
+>   arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM
+>   arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for
+>     usb_1
+>   arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for
+>     usb_1_qmpphy
+>   usb: typec: qcom: Add Qualcomm PMIC TCPM support
+>
+> Dmitry Baryshkov (1):
+>   phy: qcom-qmp: Register as a typec switch for orientation detection
+>
+>  .../bindings/mfd/qcom,spmi-pmic.yaml          |   4 +
+>  .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |  40 ++
+>  .../regulator/qcom,usb-vbus-regulator.yaml    |  10 +-
+>  .../bindings/usb/qcom,pmic-typec.yaml         | 169 ++++++
+>  MAINTAINERS                                   |  10 +
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  40 ++
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  57 +-
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  13 +
+>  drivers/phy/qualcomm/Kconfig                  |   8 +
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c     |  80 ++-
+>  drivers/usb/typec/Kconfig                     |  13 -
+>  drivers/usb/typec/Makefile                    |   1 -
+>  drivers/usb/typec/qcom-pmic-typec.c           | 261 --------
+>  drivers/usb/typec/tcpm/Kconfig                |  11 +
+>  drivers/usb/typec/tcpm/Makefile               |   1 +
+>  drivers/usb/typec/tcpm/qcom/Makefile          |   6 +
+>  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c | 362 +++++++++++
+>  .../typec/tcpm/qcom/qcom_pmic_typec_pdphy.c   | 528 +++++++++++++++++
+>  .../typec/tcpm/qcom/qcom_pmic_typec_pdphy.h   | 115 ++++
+>  .../typec/tcpm/qcom/qcom_pmic_typec_port.c    | 560 ++++++++++++++++++
+>  .../typec/tcpm/qcom/qcom_pmic_typec_port.h    | 194 ++++++
+>  21 files changed, 2202 insertions(+), 281 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec=
+.yaml
+>  delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
+>  create mode 100644 drivers/usb/typec/tcpm/qcom/Makefile
+>  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
+>  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
+>  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
+>  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+>  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h
+>
+> --=20
+> 2.39.2
 
