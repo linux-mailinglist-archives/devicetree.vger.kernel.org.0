@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B266E130A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BBAE6E1313
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:02:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjDMRBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 13:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34204 "EHLO
+        id S229732AbjDMRCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 13:02:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjDMRBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:01:51 -0400
+        with ESMTP id S229995AbjDMRCp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:02:45 -0400
 Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF02AD12
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 10:01:32 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94a342ef3beso295028466b.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 10:01:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E22F769C
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 10:02:34 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id c9so246926ejz.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 10:02:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681405290; x=1683997290;
+        d=linaro.org; s=google; t=1681405353; x=1683997353;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rdBERnTqK1roUhz4M48CjDijMxlhU9ynjjBVOpaKKeM=;
-        b=n+W2XGdtFMFTvQ5mKqxeIFE4wzQN0FAF+XlWI5pBX8A5jYFCiUOJEwYTZt3thO6+iv
-         zLt2GAAG2U29q6n9cfv35M+tNURW5y29EJxudLgrEHF/+ZA4f/KJaYEXJjvIjg68ez1s
-         D/Z6XH3QOTzG8QSsDRyYf+trkRW9pqrBgvGhipN6COdur483FqXveBe5DZVRXMgjiVjO
-         rIDINjEDPf74tpIIx78AJhSll+PNSomdpOlj3iFlYcY48ob2u2lhEYUk3K9ez9ozUEJv
-         fwgdCFI4vRhLqvpiGAs6IXTa/pUcOediBQEWNjYmvW8/D9vhPd+d1Jeb2muh3s0L3y9a
-         Y2uQ==
+        bh=XoOyNFPqJ0IyHX6n7ulD4YPnMEOQxBao9Ld8quonbJ0=;
+        b=JrwBIh8GEUkKj/EEowf3QZ6760qyjqgJUrSJyf2niCh3/BlzMBOVhNT3tk7HlzTFWD
+         mKOw2MYzHGqeoEIHIzRVcKd3l8WSnR4Rkgw+RrbfN6KBUQlLDnEZsVtSbR3/8p8yqix8
+         icmOuo3N7LZq/acKlzCJwcVf+a/SZMHk/aDcH9OcfHKgpoEH6bTsw/gWquwL6FXZjTa1
+         GSmFdUhaq/GIu4FUO3uufNUElRJ9gBobwAW+HvlJbrIezUW8Kis94QEV3SlxJH8GGtl0
+         X1fYHgmD2SGach4l9upERzUiq8J+1IiZZq7g1OtLDi+L/SB68L9qr7DbIS3cQFWSgnSu
+         Q/6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681405290; x=1683997290;
+        d=1e100.net; s=20221208; t=1681405353; x=1683997353;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rdBERnTqK1roUhz4M48CjDijMxlhU9ynjjBVOpaKKeM=;
-        b=XEXdQslRSC7ICnbqOymnSKrbadQF4X01cIi+U6qG1N4E0I3lrYDOC4nnQLMP/ZTw0z
-         0WcqPoELK8LenyZ6z02obpkGYnGLL7HtPtTIYt2AG2IpKAUa8sfNDCGIvLGmHKVZhRwd
-         QEZQqIPkt8j/RjXd7hs4gAD0LriLtHcvvhwx5N/NQPmpqud+NDCyP4pyDVMHGCzQG3Cg
-         PZ/Hx7W/H0hXJSNV7DGtsCGTYDzTh9gF7P7+QpWR1QPgWFniaJ+fAY8LsMlbDfvwRhGy
-         K1I3Ia5QP7YSKShGNywNkhaFVM5C8k2gaU8I8LtAQ2AsmE4/qT2LOVu57eJc/19JBGW5
-         TcVQ==
-X-Gm-Message-State: AAQBX9ctCF3vD7UMDyYo5AnQ6mC1pvTs2WmAWnMoFEdJ1Xz7gwrR7OEY
-        GeU80aQsYL2hFTjcaqu2BzBrEQ==
-X-Google-Smtp-Source: AKy350Ypvjtjph348wtuafD2AQwoYMfapNWNmvnPjLWTwvuRwjrgz0Ggd2TxQNw3M8d90qz68zxNLw==
-X-Received: by 2002:a05:6402:156:b0:506:6002:da69 with SMTP id s22-20020a056402015600b005066002da69mr3573577edu.15.1681405290494;
-        Thu, 13 Apr 2023 10:01:30 -0700 (PDT)
+        bh=XoOyNFPqJ0IyHX6n7ulD4YPnMEOQxBao9Ld8quonbJ0=;
+        b=V2S4oZSBVbp1affkejIw0NkXVaEZddJrCn2nNaJnwCr30i5fGTl/TsfVZybPcwvbLi
+         LrWFYXR1GXM+C+uyREwC8/xUQIpvTZ3op2g1F0dHAmja9JMtKykWk9UM+VYIFbWVBofT
+         6DuscicVBt61RckzzIna4VynZOTtDUEmSO8RShxdEZTfqr1lealDSTKkaOWZqUzx2eFk
+         P++wfI7uGFDpnMACZjDCF3LQ7652SWNxkS/ZcHg2hKVApGz6RmVPObGcPdkyzE36qbKt
+         uxcCSmk/ydooMvAYtZbSerPM79tHzhSBX1GRvCKKor90h80g+OQhC3PHsNF/h9KQ0Opn
+         Sb9Q==
+X-Gm-Message-State: AAQBX9dqi4haN0uMvIJv7FGly3H+OiFXEPSTrg7u0yMG10e8ChbtzMJU
+        HszmLW/xps6CVTbv5p6htWRtNQ==
+X-Google-Smtp-Source: AKy350ZLt3GH7UNpajQvUMD1ybmwTF1APpaR4GhQSaxH0pMgd2y3kkQxOLVjvBq0LE802ESeop9DeQ==
+X-Received: by 2002:a17:906:1447:b0:94a:6874:713d with SMTP id q7-20020a170906144700b0094a6874713dmr3300922ejc.56.1681405352314;
+        Thu, 13 Apr 2023 10:02:32 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5032:d2d4:ece5:b035? ([2a02:810d:15c0:828:5032:d2d4:ece5:b035])
-        by smtp.gmail.com with ESMTPSA id y2-20020aa7c242000000b00504937654f8sm1063485edo.21.2023.04.13.10.01.29
+        by smtp.gmail.com with ESMTPSA id w10-20020a170906b18a00b0094a8115e148sm1230751ejy.87.2023.04.13.10.02.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 10:01:29 -0700 (PDT)
-Message-ID: <241f6cb1-193f-d372-0eda-157946b15780@linaro.org>
-Date:   Thu, 13 Apr 2023 19:01:28 +0200
+        Thu, 13 Apr 2023 10:02:31 -0700 (PDT)
+Message-ID: <45e20583-c905-a611-f105-309097572648@linaro.org>
+Date:   Thu, 13 Apr 2023 19:02:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v7 12/12] MAINTAINERS: Add entry for NUVOTON MA35
+Subject: Re: [PATCH v7 1/2] dt-bindings: spi: add loongson spi
 Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230412053824.106-1-ychuang570808@gmail.com>
- <20230412053824.106-13-ychuang570808@gmail.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+ <20230412045152.4694-2-zhuyinbo@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230412053824.106-13-ychuang570808@gmail.com>
+In-Reply-To: <20230412045152.4694-2-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 07:38, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 12/04/2023 06:51, Yinbo Zhu wrote:
+> Add the Loongson platform spi binding with DT schema format using
+> json-schema.
 > 
-> Add entry for Nuvoton ma35d1 maintainer and files.
-> In addition, update board binding paths of NUVOTON NPCM.
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
 
->  ARM/NUVOTON NPCM ARCHITECTURE
->  M:	Avi Fishman <avifishman70@gmail.com>
->  M:	Tomer Maimon <tmaimon77@gmail.com>
-> @@ -2512,7 +2522,8 @@ L:	openbmc@lists.ozlabs.org (moderated for non-subscribers)
->  S:	Supported
->  F:	Documentation/devicetree/bindings/*/*/*npcm*
->  F:	Documentation/devicetree/bindings/*/*npcm*
-> -F:	Documentation/devicetree/bindings/arm/npcm/*
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-It is not a bisectable change.
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you do not know the process, here is a short
+explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tools like b4 can help
+here. However, there's no need to repost patches *only* to add the tags.
+The upstream maintainer will do that for acks received on the version
+they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
 Best regards,
 Krzysztof
