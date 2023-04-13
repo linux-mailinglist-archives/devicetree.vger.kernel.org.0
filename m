@@ -2,204 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D036E05B7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 06:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C676E05DB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 06:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjDMEH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 00:07:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36782 "EHLO
+        id S230182AbjDMER6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 00:17:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbjDMEG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 00:06:56 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A447687;
-        Wed, 12 Apr 2023 21:06:53 -0700 (PDT)
-X-UUID: 9bba2e70d9b011eda9a90f0bb45854f4-20230413
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=3KOKcXA4BrgWj4MAEjaQanirD/sgJJEqHU3KajlNX+A=;
-        b=KfV6nqa5P2i7gf9Od3z6U6XlRJMWR+LK8OeO/yeB7ZgWt4GVYPTrP7sUFTDCxJPJSBJQtOyX1wfN7VUNIUm/KeQOEUtRd+yT4x1fHuEIOmk2rfO65Lz6CPnBcJvnyEsNYzU56aukqT14jNlDLB81Wk/e3nll1VdYqHY5k5nJjsI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:df8592e8-5ba8-45a0-97cc-a791c0b31747,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-        ON:release,TS:70
-X-CID-INFO: VERSION:1.1.22,REQID:df8592e8-5ba8-45a0-97cc-a791c0b31747,IP:0,URL
-        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
-        ON:quarantine,TS:70
-X-CID-META: VersionHash:120426c,CLOUDID:bf222ba1-8fcb-430b-954a-ba3f00fa94a5,B
-        ulkID:230413120649TTNZIZNZ,BulkQuantity:0,Recheck:0,SF:17|19|48|38|29|28,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 9bba2e70d9b011eda9a90f0bb45854f4-20230413
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 16016973; Thu, 13 Apr 2023 12:06:46 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Thu, 13 Apr 2023 12:06:45 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Thu, 13 Apr 2023 12:06:45 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <jitao.shi@mediatek.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: [PATCH 2/2] drm/mediatek: dp: Add the audio control to mtk_dp_data struct
-Date:   Thu, 13 Apr 2023 12:06:25 +0800
-Message-ID: <1681358785-6930-3-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1681358785-6930-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1681358785-6930-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S230137AbjDMERX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 00:17:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3E6172C;
+        Wed, 12 Apr 2023 21:15:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EDB5963439;
+        Thu, 13 Apr 2023 04:15:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C1C6C4339B;
+        Thu, 13 Apr 2023 04:15:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681359341;
+        bh=BmvSeStlY/3OFiQagQGoFed7dwR+A0UXBFPAOqd2MKE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=JKK8FIPWTcONpK0kcAc1QD4p15wfvOgd0AKViIdWnl58ICoojmTPqU7gR0hgmw13h
+         byVx5WhdchdVQRvg4IhdZsQ2CAzBWKWKNUVw3x8Bokl+3qDhimaUntwxOoH5XVAaf7
+         jdzd2Sw348lkVTnzNxhyhJDgG2KY5h4B9owSJZgjsttVKdsjYqJrVWx1sDQYmp0d/o
+         lhw0YzSPX7mHtRHhY5A/oTwwDqjHdKHjGUQrWnFLtWWQekNKNbq/MqHr+xTM6Snd4e
+         YMm8ovBlGHMjoy3imd7EAZ3DqiBGb8YXS0e8htDa9mfmk/nvoo5GOOVtvuWFHVdyqy
+         +lefBsX3rS9UQ==
+Message-ID: <8c774af24fa89d44924998064a996a2c.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1671601032-18397-2-git-send-email-quic_jprakash@quicinc.com>
+References: <1671601032-18397-1-git-send-email-quic_jprakash@quicinc.com> <1671601032-18397-2-git-send-email-quic_jprakash@quicinc.com>
+Subject: Re: [PATCH] spmi: Add a check for remove callback when removing a SPMI driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+        Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+        quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
+        quic_subbaram@quicinc.com, robh+dt@kernel.org
+Date:   Wed, 12 Apr 2023 21:15:39 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xinlei Lee <xinlei.lee@mediatek.com>
+Quoting Jishnu Prakash (2022-12-20 21:37:12)
+> When removing a SPMI driver, there can be a crash due to NULL pointer
+> dereference if it does not have a remove callback defined. This is
+> one such call trace observed when removing the QCOM SPMI PMIC driver:
+>=20
+>  dump_backtrace.cfi_jt+0x0/0x8
+>  dump_stack_lvl+0xd8/0x16c
+>  panic+0x188/0x498
+>  __cfi_slowpath+0x0/0x214
+>  __cfi_slowpath+0x1dc/0x214
+>  spmi_drv_remove+0x16c/0x1e0
+>  device_release_driver_internal+0x468/0x79c
+>  driver_detach+0x11c/0x1a0
+>  bus_remove_driver+0xc4/0x124
+>  driver_unregister+0x58/0x84
+>  cleanup_module+0x1c/0xc24 [qcom_spmi_pmic]
+>  __do_sys_delete_module+0x3ec/0x53c
+>  __arm64_sys_delete_module+0x18/0x28
+>  el0_svc_common+0xdc/0x294
+>  el0_svc+0x38/0x9c
+>  el0_sync_handler+0x8c/0xf0
+>  el0_sync+0x1b4/0x1c0
+>=20
+> If a driver has all its resources allocated through devm_() APIs and
+> does not need any other explicit cleanup, it would not require a
+> remove callback to be defined. Hence, add a check for remove callback
+> presence before calling it when removing a SPMI driver.
+>=20
+> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+> ---
 
-Mainly add the following two flag:
-
-1.The audio packet arrangement function is to only arrange audio
-packets into the Hblanking area. In order to align with the HW
-default setting of g1200, this function needs to be turned off.
-
-2.Due to the difference of HW, different dividers need to be set.
-
-Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dp.c     | 32 ++++++++++++++++++++++++++-
- drivers/gpu/drm/mediatek/mtk_dp_reg.h |  5 +++++
- 2 files changed, 36 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index 767b71da31a4..65a9984eac81 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -139,6 +139,8 @@ struct mtk_dp_data {
- 	unsigned int smc_cmd;
- 	const struct mtk_dp_efuse_fmt *efuse_fmt;
- 	bool audio_supported;
-+	const bool arrange;
-+	const u8 audio_m_div2;
- };
- 
- static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
-@@ -646,8 +648,10 @@ static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp *mtk_dp,
- 
- static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
- {
-+	u8 div2_id = mtk_dp->data->audio_m_div2;
-+
- 	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
--			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+			   div2_id << AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_SHIFT,
- 			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
- }
- 
-@@ -1362,6 +1366,14 @@ static void mtk_dp_sdp_set_down_cnt_init_in_hblank(struct mtk_dp *mtk_dp)
- 			   SDP_DOWN_CNT_INIT_IN_HBLANK_DP_ENC1_P0_MASK);
- }
- 
-+static void mtk_dp_audio_sample_arrange(struct mtk_dp *mtk_dp)
-+{
-+	if (mtk_dp->data->arrange) {
-+		mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3374, 0, BIT(12));
-+		mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3374, 0, 0xFFF);
-+	}
-+}
-+
- static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
- {
- 	u32 sram_read_start = min_t(u32, MTK_DP_TBC_BUF_READ_START_ADDR,
-@@ -1371,6 +1383,7 @@ static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
- 				    MTK_DP_PIX_PER_ADDR);
- 	mtk_dp_set_sram_read_start(mtk_dp, sram_read_start);
- 	mtk_dp_setup_encoder(mtk_dp);
-+	mtk_dp_audio_sample_arrange(mtk_dp);
- 	mtk_dp_sdp_set_down_cnt_init_in_hblank(mtk_dp);
- 	mtk_dp_sdp_set_down_cnt_init(mtk_dp, sram_read_start);
- }
-@@ -2615,11 +2628,22 @@ static int mtk_dp_resume(struct device *dev)
- 
- static SIMPLE_DEV_PM_OPS(mtk_dp_pm_ops, mtk_dp_suspend, mtk_dp_resume);
- 
-+static const struct mtk_dp_data mt8188_dp_data = {
-+	.bridge_type = DRM_MODE_CONNECTOR_DisplayPort,
-+	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
-+	.efuse_fmt = mt8195_dp_efuse_fmt,
-+	.audio_supported = true,
-+	.arrange = true,
-+	.audio_m_div2 = 4,
-+};
-+
- static const struct mtk_dp_data mt8195_edp_data = {
- 	.bridge_type = DRM_MODE_CONNECTOR_eDP,
- 	.smc_cmd = MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
- 	.efuse_fmt = mt8195_edp_efuse_fmt,
- 	.audio_supported = false,
-+	.arrange = false,
-+	.audio_m_div2 = 5,
- };
- 
- static const struct mtk_dp_data mt8195_dp_data = {
-@@ -2627,9 +2651,15 @@ static const struct mtk_dp_data mt8195_dp_data = {
- 	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
- 	.audio_supported = true,
-+	.arrange = false,
-+	.audio_m_div2 = 5,
- };
- 
- static const struct of_device_id mtk_dp_of_match[] = {
-+	{
-+		.compatible = "mediatek,mt8188-dp-tx",
-+		.data = &mt8188_dp_data,
-+	},
- 	{
- 		.compatible = "mediatek,mt8195-edp-tx",
- 		.data = &mt8195_edp_data,
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-index 84e38cef03c2..4dc4f7cd0ef2 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-+++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-@@ -158,6 +158,7 @@
- #define MTK_DP_ENC0_P0_30A8			0x30a8
- #define MTK_DP_ENC0_P0_30BC			0x30bc
- #define ISRC_CONT_DP_ENC0_P0				BIT(0)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_SHIFT	8
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK	GENMASK(10, 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
-@@ -228,6 +229,10 @@
- 							 VIDEO_STABLE_CNT_THRD_DP_ENC1_P0 | \
- 							 SDP_DP13_EN_DP_ENC1_P0 | \
- 							 BS2BS_MODE_DP_ENC1_P0)
-+
-+#define MTK_DP_ENC1_P0_3374			0x3374
-+#define AU_ASP_PACKET_ONLY_IN_HBLANK_ENABLE_MASK	0x1000
-+
- #define MTK_DP_ENC1_P0_33F4			0x33f4
- #define DP_ENC_DUMMY_RW_1_AUDIO_RST_EN			BIT(0)
- #define DP_ENC_DUMMY_RW_1				BIT(9)
--- 
-2.18.0
-
+Applied to spmi-next
