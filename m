@@ -2,106 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BBAE6E1313
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 387576E131A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 19:04:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbjDMRCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 13:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35338 "EHLO
+        id S229636AbjDMREd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 13:04:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbjDMRCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:02:45 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E22F769C
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 10:02:34 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id c9so246926ejz.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 10:02:34 -0700 (PDT)
+        with ESMTP id S230111AbjDMREa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 13:04:30 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB017D8E;
+        Thu, 13 Apr 2023 10:04:28 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id t16so3265585ybi.13;
+        Thu, 13 Apr 2023 10:04:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681405353; x=1683997353;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XoOyNFPqJ0IyHX6n7ulD4YPnMEOQxBao9Ld8quonbJ0=;
-        b=JrwBIh8GEUkKj/EEowf3QZ6760qyjqgJUrSJyf2niCh3/BlzMBOVhNT3tk7HlzTFWD
-         mKOw2MYzHGqeoEIHIzRVcKd3l8WSnR4Rkgw+RrbfN6KBUQlLDnEZsVtSbR3/8p8yqix8
-         icmOuo3N7LZq/acKlzCJwcVf+a/SZMHk/aDcH9OcfHKgpoEH6bTsw/gWquwL6FXZjTa1
-         GSmFdUhaq/GIu4FUO3uufNUElRJ9gBobwAW+HvlJbrIezUW8Kis94QEV3SlxJH8GGtl0
-         X1fYHgmD2SGach4l9upERzUiq8J+1IiZZq7g1OtLDi+L/SB68L9qr7DbIS3cQFWSgnSu
-         Q/6w==
+        d=gmail.com; s=20221208; t=1681405467; x=1683997467;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KYntzwA2QnPK9xOrgshDrAFUujV3P0eNxGswFpFhQIk=;
+        b=sM2sUKt9yEmz9cXYenp9w3rAdPtPDxXn5V00HanFFuNjensfF+Us6VTipZGJBgNVB5
+         L+ydky9CuQxAva8RGKpp5QmWSVhgLxHwWy9cF6bGzvFArG1+KpsNI8JRZlH1TIyyjADC
+         3YkYHxQwv8urME75tdYyX+pTuXz7C6qjwHzURon2oiUo9zx9HAoXTTyKAN1MkgS8Z+SG
+         J9YTiAqLCEKD2s9jduzRpcjsvNhqa6v7vru+zGfmy0Kj+B0tta95TurO4yzG5VpPNsS1
+         3A8BYGlILPiizjVPZBqcN14ZBXdClgpg70tYejRqqZ0KozFUUng55C7Z4rouWd/ZOqQS
+         rliw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681405353; x=1683997353;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XoOyNFPqJ0IyHX6n7ulD4YPnMEOQxBao9Ld8quonbJ0=;
-        b=V2S4oZSBVbp1affkejIw0NkXVaEZddJrCn2nNaJnwCr30i5fGTl/TsfVZybPcwvbLi
-         LrWFYXR1GXM+C+uyREwC8/xUQIpvTZ3op2g1F0dHAmja9JMtKykWk9UM+VYIFbWVBofT
-         6DuscicVBt61RckzzIna4VynZOTtDUEmSO8RShxdEZTfqr1lealDSTKkaOWZqUzx2eFk
-         P++wfI7uGFDpnMACZjDCF3LQ7652SWNxkS/ZcHg2hKVApGz6RmVPObGcPdkyzE36qbKt
-         uxcCSmk/ydooMvAYtZbSerPM79tHzhSBX1GRvCKKor90h80g+OQhC3PHsNF/h9KQ0Opn
-         Sb9Q==
-X-Gm-Message-State: AAQBX9dqi4haN0uMvIJv7FGly3H+OiFXEPSTrg7u0yMG10e8ChbtzMJU
-        HszmLW/xps6CVTbv5p6htWRtNQ==
-X-Google-Smtp-Source: AKy350ZLt3GH7UNpajQvUMD1ybmwTF1APpaR4GhQSaxH0pMgd2y3kkQxOLVjvBq0LE802ESeop9DeQ==
-X-Received: by 2002:a17:906:1447:b0:94a:6874:713d with SMTP id q7-20020a170906144700b0094a6874713dmr3300922ejc.56.1681405352314;
-        Thu, 13 Apr 2023 10:02:32 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5032:d2d4:ece5:b035? ([2a02:810d:15c0:828:5032:d2d4:ece5:b035])
-        by smtp.gmail.com with ESMTPSA id w10-20020a170906b18a00b0094a8115e148sm1230751ejy.87.2023.04.13.10.02.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 10:02:31 -0700 (PDT)
-Message-ID: <45e20583-c905-a611-f105-309097572648@linaro.org>
-Date:   Thu, 13 Apr 2023 19:02:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v7 1/2] dt-bindings: spi: add loongson spi
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1681405467; x=1683997467;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KYntzwA2QnPK9xOrgshDrAFUujV3P0eNxGswFpFhQIk=;
+        b=J8qL2nQMoSZnzwu/VzCbH65BAwtsh2ImWwTe/EGdv4+PEPK72HO7zR6G9SWLzSkA4y
+         20ARex0Djrr5cbQ8iHAYdFjrBJzSHymSvsIHHBc9pir9kXP2Wv0p/A2gt51q6FhFdb0U
+         oQ5XjTXkhbMquJWq+LBLXgwAlvyplS/DmysgY2Cc0l9e8++0f8IR7WZqx0//ejc66pOc
+         2qxckWDPgQlwwQ3cN2xIweL9LXY30zKhGr9TKjw1l+R9tiLVyPDrvqlZh4Le3TT6dPZ4
+         B9BD+RJ06LTgQNR7awAM3Dw9IoosCO33X2LWPKSunjrZc6QOG2Zsjp2HQEv++uBGBU1V
+         IXgg==
+X-Gm-Message-State: AAQBX9cOL9YxzWHUbVItBKjBapDnBRa9OppmivxHSD21Cjrj1E5GQupa
+        /1fmQsGY8wTPK1PqWY7o10M=
+X-Google-Smtp-Source: AKy350b5fAtiBx82KDTxqb9UUWUZXaxIURJwS64DLKUDnQ189qF+erBNEuCZxSLRT5D8yFzEjrs5LQ==
+X-Received: by 2002:a25:2b4a:0:b0:b7d:d397:5c51 with SMTP id r71-20020a252b4a000000b00b7dd3975c51mr2557400ybr.17.1681405467692;
+        Thu, 13 Apr 2023 10:04:27 -0700 (PDT)
+Received: from localhost.localdomain ([98.58.151.237])
+        by smtp.googlemail.com with ESMTPSA id e189-20020a2537c6000000b00b8f46c4b4casm572591yba.20.2023.04.13.10.04.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Apr 2023 10:04:27 -0700 (PDT)
+From:   John Clark <inindev@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
- <20230412045152.4694-2-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230412045152.4694-2-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        John Clark <inindev@gmail.com>
+Subject: [v2] arm64: dts: rockchip: Add pinctrl gpio-ranges for rk356x
+Date:   Thu, 13 Apr 2023 13:03:37 -0400
+Message-Id: <20230413170337.6815-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230413144316.4247-1-inindev@gmail.com>
+References: <20230413144316.4247-1-inindev@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 06:51, Yinbo Zhu wrote:
-> Add the Loongson platform spi binding with DT schema format using
-> json-schema.
-> 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+Add gpio-range properties to the pinctrl gpio nodes in rk356x.dtsi
 
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you do not know the process, here is a short
-explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for acks received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 802fcc96384e..f62e0fd881a9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -1808,6 +1808,7 @@ gpio0: gpio@fdd60000 {
+ 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&pmucru PCLK_GPIO0>, <&pmucru DBCLK_GPIO0>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 0 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1819,6 +1820,7 @@ gpio1: gpio@fe740000 {
+ 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 32 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1830,6 +1832,7 @@ gpio2: gpio@fe750000 {
+ 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 64 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1841,6 +1844,7 @@ gpio3: gpio@fe760000 {
+ 			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 96 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -1852,6 +1856,7 @@ gpio4: gpio@fe770000 {
+ 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
+ 			gpio-controller;
++			gpio-ranges = <&pinctrl 0 128 32>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+-- 
+2.39.2
 
