@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 428BF6E0E4A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BF56E0E55
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 15:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230387AbjDMNRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 09:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
+        id S230479AbjDMNR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 09:17:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230315AbjDMNRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:17:20 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB7519B
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:19 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id n19-20020a05600c501300b003f064936c3eso13076146wmr.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:19 -0700 (PDT)
+        with ESMTP id S230413AbjDMNRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 09:17:21 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF621701
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:20 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id eo6-20020a05600c82c600b003ee5157346cso9981672wmb.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 06:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681391837; x=1683983837;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681391838; x=1683983838;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aESHnUR1O/61n5/lfPsi3I+Fy8BChJQIQxTnoiWBoZM=;
-        b=NPDKRqRhXu9gB7ad0+HipO+LO7EdyiPdFBX+cbn+ldIWVtVPPCcFpHknPNruo3Ieh8
-         8jDqsJFjadsfs1LNgvOtQGADuxSTFi75F70ITZ1dh3zd6WvL1bCQIAH88bqfvzsCG5CW
-         N/7uV3cxhXayOT7o225y4swYx/6OnLovSNig3tRePA9Bry8EVc59XaKjpeWQQgrWUWAC
-         JREEs84Lh0H8EYlccci+RqxNyDumE/veGS6XuRwDAgT7mlf55btS9Jhw+l8TnnYjK0xb
-         w2VUds0UzqLNlmWJwEmUzDLhNicsRolmmeKucRXMF+uONI/6xJwi/nf5EZWA5UdQSimO
-         1lGg==
+        bh=W5fFOxM2M8ye7OTBHtbOgOjz+8frsv+eTncE5p8viM8=;
+        b=T9BU71wavViVUYBMTDE+hcbRAc77asym97Q+vAZdeQ0/tt/SvQZu4WFosGI0lp1zDI
+         /4ZUBDyrIVTMjE9tZRT6DXigjhxwaxshTBOZkuxX5shKdEzjR53fag+SEEJARuwGTak1
+         Fpob0YAdn9wBMUDHq8H+x7isdAAo/tSUCRx2JSBbs51pOVNhyCvuJjH5fD2j180PtURV
+         mwKhNEaZwq55CodUwD1Qt/2Y67nDCt5ZEmuWdTEOdLAtKhMzHGDQfKEGIsaAaomw+Hkw
+         C/D67FQB/eQa9XS0sDhRSP74aOQwzSYh67IZLOFwQEOzY3eU20/cjfRnHK9OKBo2YZvA
+         t/4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681391837; x=1683983837;
+        d=1e100.net; s=20221208; t=1681391838; x=1683983838;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aESHnUR1O/61n5/lfPsi3I+Fy8BChJQIQxTnoiWBoZM=;
-        b=D27o0OR4Ff7MGss8kOM00m8IupbM6qljXZ29jJGOo33wvtQg759ox5yLWFucEebyVW
-         Kh7mgcEtxjfQYKHvpvqj+ATf6UtxJbjEmTTExRBCluhvowHNG87Y3EOsDVykwrXWiPvs
-         nPLKImVdOwr3LfSbB3SK1USOibc23zDwE0EDT88svuEq8hAWpbbUUOAoqAROO/vB4McI
-         FJs+QC69LCUwWy/R13U6kan8DRh4aXs4nHf9T73elZ7roNQ5GMLdbPTwfvmsnEpRT8Lp
-         DTBbrzVi9mvzTdK/xzf/Vz6Ti5h/eP9tex41/2XaZcef5IrfNtyoGOgfDn0TLvs2MLYS
-         sshA==
-X-Gm-Message-State: AAQBX9fFodI4ywfBvH/23GVI7c2lHrq9NuioPXAa/eszReCzOXz11ooX
-        Mb0CJxMqZMqQDaiHjylKTB6EpA==
-X-Google-Smtp-Source: AKy350bvrROxb1ZoO3jmn2mMCqa7Z7IQXD6ThE4Um58m/oLTMv+a7KPxPlbwn775JAYUjIu/cBs62g==
-X-Received: by 2002:a7b:c7cd:0:b0:3ed:a82d:dffb with SMTP id z13-20020a7bc7cd000000b003eda82ddffbmr1778585wmk.40.1681391837607;
-        Thu, 13 Apr 2023 06:17:17 -0700 (PDT)
+        bh=W5fFOxM2M8ye7OTBHtbOgOjz+8frsv+eTncE5p8viM8=;
+        b=fdksi4gLr7T2OrTdAZQQpmwyQgMEjUl266gNFREkEHaEUBdnPsnRNTsWJD33S+whwl
+         yap59QbRgMZTaiWVmZVOzX2teOj9rQp1PTLyOLhYph8pBBDixRaKoSt+u5HztGfUw30Q
+         QmrEwX3Tp6O+RG+lxI0sx2JsAbIxsuvaAvUS0auHoyngLiKkjfSVRAFwl6KDaKRBPsKY
+         /+vl91mnTP9H8ghZXbH1vEuer3AxrqVeXZ4oakG6v9ltCfo2fFQJg1Ph8rLptbX7WCAW
+         ZvbcGegsWKaWy3HmpoqcScpMd0geZBCTRE21N4WaEdWE32ud7daIS6KwM7JtaFtvuyTC
+         tcuw==
+X-Gm-Message-State: AAQBX9d6SCibkamaWoZUdIuYUuINXwSLOf7iL0n++q4x1EkWjGTXi8XA
+        CPSjy4hX23BKxvikpjg88/RUPQ==
+X-Google-Smtp-Source: AKy350YD+EK+uim1v734a2iSFmcFos4CRGtJzrjtuPy3971LpNkXMYN9/oHNtdckCkZvhe02C9ZFaw==
+X-Received: by 2002:a1c:7905:0:b0:3ef:5fe3:c57c with SMTP id l5-20020a1c7905000000b003ef5fe3c57cmr1420333wme.23.1681391838576;
+        Thu, 13 Apr 2023 06:17:18 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:814c:fc8a:da02:39ad])
-        by smtp.gmail.com with ESMTPSA id v3-20020a1cf703000000b003f04646838esm1796400wmh.39.2023.04.13.06.17.16
+        by smtp.gmail.com with ESMTPSA id v3-20020a1cf703000000b003f04646838esm1796400wmh.39.2023.04.13.06.17.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 06:17:17 -0700 (PDT)
+        Thu, 13 Apr 2023 06:17:18 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,11 +61,10 @@ To:     Sebastian Reichel <sre@kernel.org>,
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Parikshit Pareek <quic_ppareek@quicinc.com>,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 1/4] arm64: dts: qcom: sa8775p: pmic: remove the PON modes
-Date:   Thu, 13 Apr 2023 15:17:02 +0200
-Message-Id: <20230413131705.3073911-2-brgl@bgdev.pl>
+Subject: [PATCH 2/4] arm64: defconfig: enable building the nvmem-reboot-mode module
+Date:   Thu, 13 Apr 2023 15:17:03 +0200
+Message-Id: <20230413131705.3073911-3-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230413131705.3073911-1-brgl@bgdev.pl>
 References: <20230413131705.3073911-1-brgl@bgdev.pl>
@@ -80,31 +79,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Parikshit Pareek <quic_ppareek@quicinc.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Remove the power on reasons with reboot from the pmm8654au_0_pon.
-Instead, the PoN reaons should be part of different sdam_0 mode, to
-be interoduced.
+This module is used by the Qualcomm sa8775p platform for passing the
+reboot reason to the bootloader. Enable building it in the arm64
+defconfig as a module.
 
-Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-index 7602cca47bae..5abdc239d3a6 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-@@ -108,8 +108,6 @@ pmm8654au_0_pon: pon@1200 {
- 			compatible = "qcom,pmk8350-pon";
- 			reg = <0x1200>, <0x800>;
- 			reg-names = "hlos", "pbs";
--			mode-recovery = <0x1>;
--			mode-bootloader = <0x2>;
- 
- 			pmm8654au_0_pon_pwrkey: pwrkey {
- 				compatible = "qcom,pmk8350-pwrkey";
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index e1063ab32658..5bdc9cede807 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -614,6 +614,7 @@ CONFIG_POWER_RESET_QCOM_PON=m
+ CONFIG_POWER_RESET_XGENE=y
+ CONFIG_POWER_RESET_SYSCON=y
+ CONFIG_SYSCON_REBOOT_MODE=y
++CONFIG_NVMEM_REBOOT_MODE=m
+ CONFIG_BATTERY_SBS=m
+ CONFIG_BATTERY_BQ27XXX=y
+ CONFIG_BATTERY_MAX17042=m
 -- 
 2.37.2
 
