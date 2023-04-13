@@ -2,105 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E266C6E07DD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 09:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C36476E07EB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 09:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbjDMHhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 03:37:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49190 "EHLO
+        id S229642AbjDMHj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 03:39:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjDMHhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 03:37:08 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23B0083C1
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:37:07 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id f188so46187640ybb.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:37:07 -0700 (PDT)
+        with ESMTP id S229947AbjDMHj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 03:39:58 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 097AB83E5
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:39:57 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94e53ef6815so97589166b.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 00:39:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681371426; x=1683963426;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JrIOkoqNa4l7cqOirMtnXosK8aTIQGEDDZDGV4W2aNE=;
-        b=Kv2hZemh+4CLk2fHXoGEYgfSjsnRNVFLpK7CFGhNKYp4AKJkm1mDYkLPoLOcj4zDR+
-         kINv6htC+cTuBqBnzCSsD3Zjf+yT6zfeZpLwFnuYIxGKQ83M0XBCOpPIrK0nqkckbT3I
-         HRlpl6/T/rVxpuLmkFFXl1f3sCVD71jnM4VZJlVcke/EUP9ic9gZlN+CFmv0RhKI9bTj
-         e0l/WeB7d+Q1o5wPONr3Wr63lS/5C2nMWZ94MPWBUiljNd6dpmBxxZvCwn2wkLqZl89g
-         NDM34wLHEHxD/WU3H3aKsLLlIwoBp1WS0rMGs6LRMpA5z8M9cuh5eeP+UaiHaJm613x8
-         NpFw==
+        d=linaro.org; s=google; t=1681371595; x=1683963595;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cGy4HBarfM72hZTVhOjtXUdZ8TuFEu3oubw4vKdYByQ=;
+        b=qd9i/yVPGiDwt4BNJ51NNkUM7hBO+Cwq2lxUg6ukWGf4iBzouOOoFGM+kQH3gq6lD8
+         ZgWIesS2fGI1yAHeRFp/a0z4zzEAqIM1MVkmKh0A8yT6UF3XCE4wF8MaCS7BpWnRQrPX
+         spZaKlBicaZp3QVHr4rGUQQG8/zipwJieLinPUXxGCJ0SX1HcKr3MEDPmNiovC58URNW
+         na0HY/hoK7GDYQz4i5CSz/jJ+icMqCta2jpeF2yoLHhsYm5Vv0Hm+apfc8btXPBksHJg
+         66gsRMX4pOGm7TAYpJkC7pO07og3Q0FzkJnFpgjd83ManckJsw+EhY4eQq6drtm8LpGW
+         e85g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681371426; x=1683963426;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JrIOkoqNa4l7cqOirMtnXosK8aTIQGEDDZDGV4W2aNE=;
-        b=hp1csedNxzillnPEBO9d82LEg7VXLeAEgjlRj6iqpbCPTknPvKGbciRxqckUaBgicr
-         tr0BMhaiZZNyau4zZFD0fwKbyM4+ZdHsUb4yWxzOySdAJL2NkucBcwQknZj/61fE8P/L
-         IYnboRZ+DiMCzlQpfZ9ZH032CYzUjgFx4rwZC1gHR6pz+jwUf7VfdIDlGdtPV8RTUIyu
-         aST+9yQBhK1hrk4Im5ILd0yYwtSOwtXNlHAQCiwmGCXxabVliogyxxLu+DEPmLYt/8QW
-         8ETjqtrF+/lEhkMvz8oNdABdHKo3E4fmItxmYElEVKdg7W0C2eHBYTv5KYluJv0Y1JU2
-         dIqQ==
-X-Gm-Message-State: AAQBX9c5MmC1W7bct2AaHUQKBTPY0LNqbtYFZWbwA42ji6A2hFi/aAfn
-        4Q7plK34nZRU1icE5wEwJwDoJ3ldoLLxd7iLWfZ4qg==
-X-Google-Smtp-Source: AKy350a0L9E2liQ2C3VPt6HJwo9mVSSTy114EXniZeJn3aEl6VSxaTEvhE9/+HhS3MFl1vWVxXa2zYrCtjVFpbdGad4=
-X-Received: by 2002:a25:d6d4:0:b0:b8e:ec30:853e with SMTP id
- n203-20020a25d6d4000000b00b8eec30853emr663375ybg.4.1681371426300; Thu, 13 Apr
- 2023 00:37:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681371595; x=1683963595;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cGy4HBarfM72hZTVhOjtXUdZ8TuFEu3oubw4vKdYByQ=;
+        b=BLsW2HAYZDZnu+lAzx1fhuxMRr3uGVFe2cLVRVjBqjyVPZEZ4k9ptDjU61AvmE0a0x
+         zOOfSEz7OOFgDoRQyfW/ExwBuM4cf2UtfS/Ep8vdMPhgoVNsPmnrIvph9xcv2kuZcPtK
+         U8yy8OIaPCQtACjKxL1BBayJp7biwBHSO1HSwECLybY2q3llCVPZJnqKAZTsmwzom4pZ
+         Feu602VysIXwevd5Q5c7ESazOFO0BxGm9v28fFAo3WJdPZrDiwlXD+9l3iAPRwlzjAyk
+         ZfqMb9My5yy6Nl/Qv0Pkxq2WWAO3JVEqDMcgUUKmcR1cvMHvBRRBoIbVSm6DhWULlFzl
+         ukEw==
+X-Gm-Message-State: AAQBX9dAUjErfh69nu9PrT+fWKh83qEgcuLqMr/nCFcvocm9yazp3ksM
+        nmOUIoWC/Ircx/YBV+Wk8RYI5rLnVPlMbM7onwI=
+X-Google-Smtp-Source: AKy350YAwJxhiYk1fOtdU9gXgD7dFyWTc/2rPsmFguVv+T4riyUj4g0k+KvxuXDDRadeJKCjIxGJ4w==
+X-Received: by 2002:aa7:cb19:0:b0:502:6e48:65ea with SMTP id s25-20020aa7cb19000000b005026e4865eamr1130878edt.12.1681371595509;
+        Thu, 13 Apr 2023 00:39:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7? ([2a02:810d:15c0:828:ec6f:1b33:ab3f:bfd7])
+        by smtp.gmail.com with ESMTPSA id a19-20020a50e713000000b004fbdfbb5acesm453899edn.89.2023.04.13.00.39.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 00:39:55 -0700 (PDT)
+Message-ID: <6f9cfd54-c8cf-7395-e7bd-c350a06c8f16@linaro.org>
+Date:   Thu, 13 Apr 2023 09:39:53 +0200
 MIME-Version: 1.0
-References: <20230412-topic-lenovopanel-v1-0-00b25df46824@linaro.org> <20230412-topic-lenovopanel-v1-5-00b25df46824@linaro.org>
-In-Reply-To: <20230412-topic-lenovopanel-v1-5-00b25df46824@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 13 Apr 2023 09:36:54 +0200
-Message-ID: <CACRpkdbnAPGdQzJv9L9r0BtXyGHBxQ3SLktj+wUKRs7NuBVq=Q@mail.gmail.com>
-Subject: Re: [PATCH 5/5] drm/panel: nt36523: Add Lenovo J606F panel
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, csr@novatek.com.tw
-Cc:     Jianhua Lu <lujianhua000@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 tty-next 1/2] dt-bindings: serial: ni,ni16650: add
+ bindings
+To:     Brenda Streiff <brenda.streiff@ni.com>
+Cc:     ilpo.jarvinen@linux.intel.com,
+        Gratian Crisan <gratian.crisan@ni.com>,
+        Jason Smith <jason.smith@ni.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230329154235.615349-1-brenda.streiff@ni.com>
+ <20230410211152.94332-1-brenda.streiff@ni.com>
+ <20230410211152.94332-2-brenda.streiff@ni.com>
+ <b2f81c57-9b7c-9ad6-6ce6-cc94703599db@linaro.org>
+ <b92e2f18-4fd0-0510-4a85-36d7a200c9fe@ni.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b92e2f18-4fd0-0510-4a85-36d7a200c9fe@ni.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I added Novatek contact email to responders.
+On 13/04/2023 00:24, Brenda Streiff wrote:
+> On 4/11/23 00:44, Krzysztof Kozlowski wrote:
+>> On 10/04/2023 23:11, Brenda Streiff wrote:
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-frequency: true
+>>
+>> I missed it last time - why do you need this property? You do not have
+>> any clock input, so which clock's frequency is it?
+>>
+> 
+> This is the clock frequency of the UART; on our x86-based platforms this
+> comes from the LPC clock, on Zynq-7000 it's derived from a clock in the
+> FPGA. This is used to set struct uart_port::uartclk in the serial core,
+> as it is for other UARTs.
+> 
+> This clock frequency can vary based on board design (especially on the
+> x86 side, due to different LPC clocks) but for a given design is fixed-
+> frequency.
 
-Hi Novatek, can we have a public datasheet for NT36523?
-We are developing a Linux driver for NT36523-based displays
-and we need documentation. Thanks.
+So you must have clock input - clocks property. Once you add this, use
+assigned-clocks to get the rate you want.
 
-On Wed, Apr 12, 2023 at 9:46=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
+> 
+> Would you prefer this be documented further? I was following 8250.yaml's
+> lead here with the simple `true`.
 
-> Some Lenovo J606F tablets come with a 2K (2000x1200) 60Hz 11" 5:3
-> video mode display. Add support for these panels.
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I prefer to drop it. It is not correct and a legacy property. Without
+clock inputs how can you even configure some clock?
 
-Thanks for the best effort to use documented commands and best guesses
-for defines.
+Best regards,
+Krzysztof
 
-The rest we can detail if we ever run into a datasheet.
-
-Novatek doesn't have a single email address in the kernel
-log so no idea who I could mail about this, I think I even tried
-their webpage at one point, no answer. But I put their contact
-mail on the To-line let's see if someone answers!
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
