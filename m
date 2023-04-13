@@ -2,215 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 646586E054E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 05:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20A0E6E058C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 05:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjDMDer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Apr 2023 23:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50390 "EHLO
+        id S229506AbjDMDzy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Apr 2023 23:55:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjDMDeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 23:34:25 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C51159C3
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 20:34:04 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-63b145b3b03so1749259b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Apr 2023 20:34:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1681356844; x=1683948844;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rYVWcxpcEucFznKvw2ZBVZak6cYUtcRc61ABeJFVQ7M=;
-        b=JHKEcQScy8Klei//HSDNlHPcWWCemzx9Vrg9eQS1sTa0sPQ77CO/+dAz9YUYx00mPw
-         leVr0J2QaiGQaCg4j2763YDW1S2RX2rkhJYwSVAMLiO0l37h+ci5RJTQom5sLlDrxBH8
-         tYJoPsekLK5xxeU1NzK3VUhnD7Wqa3LqtJt+p0JXHLjF0rhLnuY5tjghMqcaVHcb1SAa
-         Cas23GlsY5XWNfcmMBmfu/UVxAARMadeTrgNmj19Jj9t2P26hGeioY3erD4Ot+ajF9WF
-         NWfSN1HRY0lseA07X7AicIn6pEGgEYun2z8Ijmf8RsUL940BpMzeCRUTRR2dZ7EbWvp4
-         LsFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681356844; x=1683948844;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rYVWcxpcEucFznKvw2ZBVZak6cYUtcRc61ABeJFVQ7M=;
-        b=HVkiX5+gQWOiWr0YIH9BJDTTzCgNkS/taDP7UtMNMB6Qev6w9d3yfLdtD7F9684E3x
-         n02YHgN2QeD7SXY7l3btWuLx/ShrTBECxOwS+1Wj1iDpyC868aGmc8gijBTd92vAMLbr
-         eFyqpsttwqwpAR+r/6WQxR+TPSn8IyGpwrsKSSigIC6jEM3SbfBzzHCEr+VnYCiiMAY0
-         AwOP2VcaE9uo1XtaU6RC23EU7E9nZmDcT2UJwY48QByi8ZBp+BmeZvW5QRUi2nYBfC+7
-         rsYybOExJE4p9BAq1cgy5uFL5M8xjv+/v20132bBfFD6N0Gr4w1AImnouE9TI3x5mcij
-         kfvg==
-X-Gm-Message-State: AAQBX9eY1sNB6NXfZpS5kg8wUmd4ADo76JvbJ/1sl7w3a3hKHW3BAsGL
-        5AlgUzUM5lKqcbiEFIeTH315BQ==
-X-Google-Smtp-Source: AKy350alQdFLNK6MZjc3VSgCVuvkguL3X4kzGdnrZjPbMaZNs2jMjwht877tYirA2PUWT0NefJbAPQ==
-X-Received: by 2002:a05:6a00:1386:b0:625:cf03:e8cb with SMTP id t6-20020a056a00138600b00625cf03e8cbmr455113pfg.4.1681356843903;
-        Wed, 12 Apr 2023 20:34:03 -0700 (PDT)
-Received: from [10.240.2.163] ([124.148.245.238])
-        by smtp.gmail.com with ESMTPSA id n25-20020aa78a59000000b006396be36457sm204069pfa.111.2023.04.12.20.33.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 20:34:03 -0700 (PDT)
-Message-ID: <8dd207d3-a9f0-2c06-795e-efed30656e35@tweaklogic.com>
-Date:   Thu, 13 Apr 2023 11:33:57 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 2/2] iio: light: Add support for APDS9306 Light Sensor
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229685AbjDMDzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Apr 2023 23:55:50 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606A16199;
+        Wed, 12 Apr 2023 20:55:49 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 1AF8B24E284;
+        Thu, 13 Apr 2023 11:55:42 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Apr
+ 2023 11:55:42 +0800
+Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Apr
+ 2023 11:55:42 +0800
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>
-References: <20230411011203.5013-1-subhajit.ghosh@tweaklogic.com>
- <20230411011203.5013-3-subhajit.ghosh@tweaklogic.com>
- <ZDVWB9xV9Cdbwyqd@smile.fi.intel.com>
- <ab1d9746-4d23-efcc-0ee1-d2b8c634becd@tweaklogic.com>
- <ZDa0NIot/4aRJ0pI@smile.fi.intel.com>
-From:   Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <ZDa0NIot/4aRJ0pI@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <jack.zhu@starfivetech.com>,
+        <changhuang.liang@starfivetech.com>
+Subject: [PATCH v4 0/8] Add StarFive Camera Subsystem driver
+Date:   Thu, 13 Apr 2023 11:55:33 +0800
+Message-ID: <20230413035541.62129-1-jack.zhu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/4/23 21:37, Andy Shevchenko wrote:
-> On Wed, Apr 12, 2023 at 12:29:15PM +0800, Subhajit Ghosh wrote:
-> 
-> ...
-> 
->>>> +static const struct regmap_config apds9306_regmap = {
->>>> +	.name = "apds9306_regmap",
->>>> +	.reg_bits = 8,
->>>> +	.val_bits = 8,
->>>> +	.rd_table = &apds9306_readable_table,
->>>> +	.wr_table = &apds9306_writable_table,
->>>> +	.volatile_table = &apds9306_volatile_table,
->>>> +	.precious_table = &apds9306_precious_table,
->>>> +	.max_register = APDS9306_ALS_THRES_VAR,
->>>> +	.cache_type = REGCACHE_RBTREE,
->>>
->>> Do you need an internal regmap lock? If so, why?
->> For event interface - interrupt enable, adaptive interrupt enable,
->> upper and lower threshold values, selection of clear or als
->> channels for interrupt, the mutex in the driver's private data structure
->> is not used.
->> I thought to use the regmap's internal locking mechanism for
->> mutual exclusion as the values are directly written to or read from
->> the device registers form the write_event(), read_event(),
->> write_event_config() and read_event_config().
->> What do you think?
-> 
-> I didn't get. If you have a sequence of registers to be read/write/modified/etc
-> in IRQ handler and/or elsewhere and at the same time in IRQ or elsewhere you
-> have even a single IO access to the hardware you have to be sure that the IO
-> ordering has no side effects. regmap API does not guarantee that. It only works
-> on a simple read/write/modify of a _single_ register, or a coupled group of
-> registers (like bulk ops), if your case is sparse, you on your own and probably
-> lucky enough not to have an issue during the testing. So, take your time and
-> think more about what you are doing in the driver and what locking schema
-> should take place.
-> 
-> ...
-Agree. I have to rethink and re-implement the locking mechanism.
+Hi,
 
-> 
->>>> +static int apds9306_power_state(struct apds9306_data *data,
->>>> +		enum apds9306_power_states state)
->>>> +{
->>>> +	int ret;
->>>> +
->>>> +	/* Reset not included as it causes ugly I2C bus error */
->>>> +	switch (state) {
->>>> +	case standby:
->>>> +		return regmap_field_write(data->regfield_en, 0);
->>>> +	case active:
->>>> +		ret = regmap_field_write(data->regfield_en, 1);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +		/* 5ms wake up time */
->>>> +		usleep_range(5000, 10000);
->>>> +		break;
->>>> +	default:
->>>> +		return -EINVAL;
->>>> +	}
->>>
->>>> +	return 0;
->>>
->>> Move that to a single user of this line inside the switch-case.
->> Sorry, I did not get you. Can you please elaborate?
-> 
-> The user of this return is only one case in the switch. Instead of breaking
-> the switch-case, just move this return statement to there.
-> 
-Ok. It will be done.
+This patch series adds support for the StarFive Camera Subsystem
+found on StarFive JH7110 SoC.
 
-> ...
-> 
->>>> +	struct device *dev = &data->client->dev;
->>>
->>> Why data contains I²C client pointer, what for?
->> I copied the implementation. It will be re-implemented.
-> 
-> I mean, how client pointer is used in comparison to the plain pointer to the
-> generic device object.
-> 
-> ...
-> 
->>>> +		while (retries--) {
->>>> +			ret = regmap_read(data->regmap, APDS9306_MAIN_STATUS,
->>>> +					&status);
->>>> +			if (ret) {
->>>> +				dev_err(dev, "read status failed: %d\n", ret);
->>>> +				return ret;
->>>> +			}
->>>> +			if (status & APDS9306_ALS_DATA_STAT_MASK)
->>>> +				break;
->>>> +			/*
->>>> +			 * In case of continuous one-shot read from userspace,
->>>> +			 * new data is available after sampling period.
->>>> +			 * Delays are in the range of 25ms to 2secs.
->>>> +			 */
->>>> +			fsleep(delay);
->>>> +		}
->>>
->>> regmap_read_poll_timeout().
->> According to the regmap_read_poll_timeout() documentation, the maximum time
->> to sleep between reads should be less than ~20ms as it uses usleep_range().
->>
->> If userspace is doing continuous reads, then data is available after sampling
->> period (25ms to 2sec) or integration time (3.125ms to 400ms) whichever is
->> greater.
->>
->> The runtime_suspend() function is called after 5 seconds, so the device is
->> still active and running.
->>
->> If the ALS data bit is not set in status reg, it is efficient to sleep for
->> one sampling period rather than continuously checking the status reg
->> within ~20ms if we use regmap_read_poll_timeout().
->>
->> Do you have any suggestions?
-> 
-> Yes, Use proposed API. It takes _two_ timeout parameters, one of which is the
-> same as your delay. You may actually resplit it by multiplying retries and
-> decreasing delay to satisfy the regmap_read_poll_timeout() recommendation.
-> 
-Yes, that can be done. I will re-write this function in the next patch.
+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+Camera sensor using V4L2 subdev interface in the kernel is supported.
 
-Thanks once again Andy for the detailed review.
+The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+GStreamer 1.18.5 with v4l2src plugin is supported.
 
-Regards,
-Subhajit Ghosh
+Changes since v3:
+Patch 1:
+- Modified port@0 and port@1 properties.
+- Extended the port@0 example with appropriate properties.
+- Added 'port@0' for 'required'
+Patch 2:
+- Modified spelling errors.
+Patch 3:
+- Merged patch 5 into the patch with an explanation for compatible in
+  commit msg.
+Patch 6:
+- Asserted pixel_rst[i] reset in the loop after the err_disable_pixclk
+  label.
+- Modified Code Style for getting sys_rst and p_rst.
+- Renamed clk_name to name and modified the relevant code.
+Patch 9:
+- Added static for stfcamss_get_mem_res function.
+- Added static for isp_close function.
+- Fixed implicit conversion warning for stf_vin_map_isp_pad function.
+- Dropped unused variables.
+
+  v3: https://lore.kernel.org/all/20230331121826.96973-1-jack.zhu@starfivetech.com/
+
+Changes since v2:
+- Rebased on v6.3-rc1.
+Patch 1:
+- Modified spelling errors.
+- Added port@0.
+- Modified '$ref' of port.
+- Added 'ports' to 'required'.
+- Dropped 'stfcamss' label in example.
+- Added port@0 in example.
+- Added MAINTAINERS file.
+Patch 2:
+- Split this patch into three new patches.
+- Modified compatible property.
+- Replaced clock names with the existing names.
+- Modified 'bus-type' and 'clock-lanes'
+- Added port@2 - port@4
+- Dropped 'csi2rx' label in example.
+Patch 3:
+- Updated rst and dot file as three pipelines were deleted.
+Patch 4:
+- Split this patch into three new patches.
+- Dropped .s_power() and .get_fmt().
+- Dropped CSI-2 DT support.
+- Dropped v4l2_device_register_subdev_nodes().
+- Used assigned-clock-rates in DT to set clk value.
+- Modified 'compatible' field.
+Patch 5:
+- Deleted three pipelines. 
+- Modified 'stfcamss_clocks'/'stfcamss_resets' struct.
+- Dropped stfcamss_find_sensor() function.
+- Removed redundant code from stfcamss_of_parse_endpoint_node().
+- Modified spelling errors.
+- Rewrote stfcamss_reg_media_subdev_node() function.
+- Modified stfcamss_subdev_notifier_bound().
+- Modified stfcamss_probe() function.
+- Dropped stfcamss_suspend() and stfcamss_resume().
+- Dropped dev_info() in stfcamss_remove() function.
+- Added 'stf_' prefix for enum subdev_type.
+- Moved all includes to the top in stf_camss.h file.
+- Dropped unused fields in stfcamss struct.
+- Replaced Custom logging macros with regular macros.
+- Rewrote register read and write functions.
+- Used lowercase for all hex constants.
+- Used macro to name registers.
+- Dropped unused ioctl and stf_isp_ioctl.h file.
+
+  v2: https://lore.kernel.org/all/20230310120553.60586-1-jack.zhu@starfivetech.com/
+
+Changes since v1:
+- Deleted starfive,jh7110-mipi-csi2.yaml.
+- Converted cdns,csi2rx.txt to cdns,csi2rx.yaml and added ‘resets’
+  properties.
+- Added ‘cdns,csi2rx.yaml’ in ‘CADENCE MIPI-CSI2 BRIDGES’ entry.
+- The following contents were modified in starfive,jh7110-camss.yaml:
+  dropped quotes from ’id’ and ‘schema’; dropped ‘|’ for ‘description’;
+  corrected the wrong or redundant words: ‘a ISP’, ‘PD ISP’;
+  dropped ‘minItems’ for ‘reg’, ‘clocks’, ‘resets’ and ‘interrupts’;
+  dropped the '_clk' and 'rst_' prefix about the 'clock-names' and
+  'reset-names';
+  changed ‘endpoint@1’ to ‘endpoint’; updated examples;
+- Updated Subject for some patches.
+- Merged patch 6, 7, 8, 9, 10, 11 into one patch.
+
+Jack Zhu (8):
+  media: dt-bindings: cadence-csi2rx: Convert to DT schema
+  media: dt-bindings: cadence-csi2rx: Add resets property
+  media: cadence: Add operation on reset
+  media: cadence: Add support for external dphy
+  media: cadence: Add support for JH7110 SoC
+  media: dt-bindings: Add bindings for JH7110 Camera Subsystem
+  media: admin-guide: Add starfive_camss.rst for Starfive Camera
+    Subsystem
+  media: starfive: Add Starfive Camera Subsystem driver
+
+ .../admin-guide/media/starfive_camss.rst      |   57 +
+ .../media/starfive_camss_graph.dot            |   16 +
+ .../admin-guide/media/v4l-drivers.rst         |    1 +
+ .../devicetree/bindings/media/cdns,csi2rx.txt |  100 --
+ .../bindings/media/cdns,csi2rx.yaml           |  201 +++
+ .../bindings/media/starfive,jh7110-camss.yaml |  164 +++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/cadence/cdns-csi2rx.c  |  107 +-
+ drivers/media/platform/starfive/Kconfig       |   18 +
+ drivers/media/platform/starfive/Makefile      |   14 +
+ drivers/media/platform/starfive/stf_camss.c   |  477 +++++++
+ drivers/media/platform/starfive/stf_camss.h   |  150 +++
+ drivers/media/platform/starfive/stf_common.h  |   18 +
+ drivers/media/platform/starfive/stf_isp.c     |  737 +++++++++++
+ drivers/media/platform/starfive/stf_isp.h     |  999 +++++++++++++++
+ .../media/platform/starfive/stf_isp_hw_ops.c  |  715 +++++++++++
+ drivers/media/platform/starfive/stf_video.c   |  989 ++++++++++++++
+ drivers/media/platform/starfive/stf_video.h   |   89 ++
+ drivers/media/platform/starfive/stf_vin.c     | 1138 +++++++++++++++++
+ drivers/media/platform/starfive/stf_vin.h     |  174 +++
+ .../media/platform/starfive/stf_vin_hw_ops.c  |  211 +++
+ 23 files changed, 6272 insertions(+), 115 deletions(-)
+ create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+ create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
+ delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+ create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+ create mode 100644 drivers/media/platform/starfive/Kconfig
+ create mode 100644 drivers/media/platform/starfive/Makefile
+ create mode 100644 drivers/media/platform/starfive/stf_camss.c
+ create mode 100644 drivers/media/platform/starfive/stf_camss.h
+ create mode 100644 drivers/media/platform/starfive/stf_common.h
+ create mode 100644 drivers/media/platform/starfive/stf_isp.c
+ create mode 100644 drivers/media/platform/starfive/stf_isp.h
+ create mode 100644 drivers/media/platform/starfive/stf_isp_hw_ops.c
+ create mode 100644 drivers/media/platform/starfive/stf_video.c
+ create mode 100644 drivers/media/platform/starfive/stf_video.h
+ create mode 100644 drivers/media/platform/starfive/stf_vin.c
+ create mode 100644 drivers/media/platform/starfive/stf_vin.h
+ create mode 100644 drivers/media/platform/starfive/stf_vin_hw_ops.c
+
+-- 
+2.34.1
 
