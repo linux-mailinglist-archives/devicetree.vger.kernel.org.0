@@ -2,178 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 003E26E14E8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 21:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0416E14FD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Apr 2023 21:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjDMTMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 15:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53300 "EHLO
+        id S229877AbjDMTQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 15:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjDMTMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 15:12:46 -0400
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D863C7D81;
-        Thu, 13 Apr 2023 12:12:45 -0700 (PDT)
-Received: by mail-ua1-x92d.google.com with SMTP id r10so2543808uat.6;
-        Thu, 13 Apr 2023 12:12:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681413165; x=1684005165;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rmZ0O+sn7kZQc+bw7Jf0vK7+WNBVnZzD5f3dYdmxU6w=;
-        b=DGBtb62pYjawglwT2CcAlDMdolYBtCrl1+AHi5BgemglSjjwFb+eQo1dZoBX+Ou6zU
-         1SJ8caR0vs4mmuLRd1ouTI9wc8jye7tkIMbMUAqnyA4+rTpUOHQvWV2Ty3FTxdKYqdCQ
-         1Vkfp6khPGY0gHDC5RtFBzGMirLgWSal4j6UNTFmA2konA4u59uTF5E0ZNTg/9q80UDu
-         fGJJnK8pM1Lx3EWyx/hQl7uydc3WwbNoHTkDjmFyOW4pfhDAHb9MRdV1FUX4+rkSk/9q
-         UMtGY4ON/vdR6WQ/omPq2ZCWrFe7wKog5F9S1+C8vL4LG059qmHTcXnrYGg+sDp6kmHB
-         l1yg==
+        with ESMTP id S229782AbjDMTQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 15:16:41 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF367ED7
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 12:15:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1681413351;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=CyFNTW2bH08UNfrtJb8ahm47RC7NlEjQsoGfNVxd6ws=;
+        b=BPLH+wVkNj0PneRQ6xoc3waU0H45q5KLYZY/BSswNZ01745/sXb3Ud/Z3VpcZTXE9nz9Z1
+        ANHJcq7y3YdlpLyyb9woXumzVj96BiP1i2q7rDBbXsqVJ+cItexNrJ7IOUIfB1QaqFlQvm
+        e0l1P+tFyAXv9FoPhk1MEM36E3E7IcU=
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
+ [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-189-aQdtwQ6EMwih3MxxDLbUKA-1; Thu, 13 Apr 2023 15:15:48 -0400
+X-MC-Unique: aQdtwQ6EMwih3MxxDLbUKA-1
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-54f8b46f399so70393657b3.10
+        for <devicetree@vger.kernel.org>; Thu, 13 Apr 2023 12:15:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681413165; x=1684005165;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rmZ0O+sn7kZQc+bw7Jf0vK7+WNBVnZzD5f3dYdmxU6w=;
-        b=KiTFWnSIEEkILsvjzoG4oEtgwhsPYcQL6sJsEKO/RmPB2B7YN8NZtmsoFDUBWJsy7I
-         NIySIGnxVQJA4hzTL7QxCvGUUu2REalCksZisq+aENZqBmLsF85W1oli49q12iKe4U57
-         iX+PCERuDA+Xfn6Eh7hSYHoLxhadRfoQsnKb9NhVpJL8f7c+KYJKdU9aFCuJjp5LruVL
-         Z/HNGGmsTGb33R0aFNG4xqFvfc0jlsMkshP7zRJoSzkDJvNE8Q2KRFiSfsJyqAp52xXN
-         Ix1KQEI4hYwY3QdCCUXODzkOo+MUAw6VaGSOgqkfpuNKIdr5O7hpQT6tSAQDDaqf1hT+
-         +uHQ==
-X-Gm-Message-State: AAQBX9dHYPCriH3TNsNvayKHUC9qaCda7yOthCjgd2UEWOMQpZ5abQjw
-        ylcA1Zq813bWrSJRbweJhyTDKtCnvXdmj/E+KFuu9AUN
-X-Google-Smtp-Source: AKy350adCRi60QJXZb5icO9EL7KmKwKPUNkUPxrzQUDIMbacwLKJJCempvcVFMPCJqrATmpMttviOkb1C1UBme69Zng=
-X-Received: by 2002:a1f:2957:0:b0:440:380f:fc20 with SMTP id
- p84-20020a1f2957000000b00440380ffc20mr1716539vkp.0.1681413164900; Thu, 13 Apr
- 2023 12:12:44 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681413348; x=1684005348;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CyFNTW2bH08UNfrtJb8ahm47RC7NlEjQsoGfNVxd6ws=;
+        b=fB/SzeMV2CtkDSr0j0jsM9MOvPvXjAIoealwK3HzLm9u9av+PO4bbwTEh3MvEDJV0S
+         a0nb0pE8DomcQ5g50vzIozCTVZtSdrb9qLCqNMCPqfliinf2DVMqtqjaBpOAB03EJrAz
+         6EVzBCT0eLFZZqzz+vqCyaerldIp51hrPaTtEzKpldujGDOlScQq80KcZirxbJAMjseZ
+         1Am0aESC78T43psKjIJFV49owsmFOLYNKVyb3uYH33Ol+tRvkb11MrTHrArL5usgdbva
+         vrpNdlvdxQ4/3udqKaFPD7Iy93AkYKTjfPONJ4XOBFQTIxMPmetFnsD0CnvkmDZHjKio
+         g/4A==
+X-Gm-Message-State: AAQBX9eAGIA3Us1fZfRR2+ztTzECm70jXscR5Qhqc2sdyBtqh/LpagzI
+        ex72Z30bBrusCdHnAp7FnPCwH8GFceT3OX/r2EENPiGrn3lZz260c5SHJQ/mSGcGv2H1IQ6Fle+
+        g8LZQc0bIBWR8xxGm3djxBQ==
+X-Received: by 2002:a0d:e294:0:b0:54f:d7af:dcd6 with SMTP id l142-20020a0de294000000b0054fd7afdcd6mr2199283ywe.46.1681413347949;
+        Thu, 13 Apr 2023 12:15:47 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bvf+9dFJiV7NYQfmxvquuPW7kwpw7eE2uZJXlwN9RCz9ZUirWDC0RIWTbAHjVvfF+Pfo+i5A==
+X-Received: by 2002:a0d:e294:0:b0:54f:d7af:dcd6 with SMTP id l142-20020a0de294000000b0054fd7afdcd6mr2199256ywe.46.1681413347695;
+        Thu, 13 Apr 2023 12:15:47 -0700 (PDT)
+Received: from halaney-x13s.redhat.com (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
+        by smtp.gmail.com with ESMTPSA id t11-20020a81780b000000b00545a4ec318dsm673203ywc.13.2023.04.13.12.15.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Apr 2023 12:15:47 -0700 (PDT)
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        netdev@vger.kernel.org, bmasney@redhat.com, echanude@redhat.com,
+        ncai@quicinc.com, jsuraj@qti.qualcomm.com, hisunil@quicinc.com,
+        Andrew Halaney <ahalaney@redhat.com>
+Subject: [PATCH v5 0/3] Add EMAC3 support for sa8540p-ride (devicetree/clk bits)
+Date:   Thu, 13 Apr 2023 14:15:38 -0500
+Message-Id: <20230413191541.1073027-1-ahalaney@redhat.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230412025737.20280-1-mibodhi@gmail.com> <20230412025737.20280-2-mibodhi@gmail.com>
- <168130276446.1439316.3427548118074442016.robh@kernel.org>
- <CAJaLiFxNbz+EygSy8OMKafZ667ingeiTw8Z17p3dwtPTpiH40g@mail.gmail.com> <799bd591-0f9a-e8fc-85f6-093314b6af23@linaro.org>
-In-Reply-To: <799bd591-0f9a-e8fc-85f6-093314b6af23@linaro.org>
-From:   Tony Dinh <mibodhi@gmail.com>
-Date:   Thu, 13 Apr 2023 12:12:33 -0700
-Message-ID: <CAJaLiFyqQumh4dnQ1UY0s5jqK+5pPYO50vPu+dGTtUC5UvhSTA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ARM: dts: mvebu: Add device tree binding for
- Marvell Armada 38x
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+This is a forward port / upstream refactor of code delivered
+downstream by Qualcomm over at [0] to enable the DWMAC5 based
+implementation called EMAC3 on the sa8540p-ride dev board.
 
-On Thu, Apr 13, 2023 at 12:51=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 12/04/2023 21:05, Tony Dinh wrote:
-> > Hi Rob,
-> > Hi Krzysztof,
-> >
-> > On Wed, Apr 12, 2023 at 5:36=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
-> >>
-> >>
-> >> On Tue, 11 Apr 2023 19:57:35 -0700, Tony Dinh wrote:
-> >>> Add device tree binding for Marvell Armada 38x.
-> >>>
-> >>> Signed-off-by: Tony Dinh <mibodhi@gmail.com>
-> >>> ---
-> >>>
-> >>> Changes in v2:
-> >>> - Add marvell,38x.yaml. For now, add this binding to the Marvell
-> >>> directory to keep it consistent with other Marvell yaml files.
-> >>> At a later date and a separate patch, consolidate the Marvell
-> >>> yaml files into  marvell.yaml.
-> >>>
-> >>>  .../bindings/arm/marvell/armada-38x.yaml      | 27 +++++++++++++++++=
-++
-> >>>  1 file changed, 27 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/arm=
-ada-38x.yaml
-> >>>
-> >>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_che=
-ck'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >>
-> >> dtschema/dtc warnings/errors:
-> >> ./Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml: $id: =
-relative path/filename doesn't match actual path or filename
-> >>         expected: http://devicetree.org/schemas/arm/marvell/armada-38x=
-.yaml#
-> >>
-> >> doc reference errors (make refcheckdocs):
-> >>
-> >> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202=
-30412025737.20280-2-mibodhi@gmail.com
-> >>
-> >> The base for the series is generally the latest rc1. A different depen=
-dency
-> >> should be noted in *this* patch.
-> >>
-> >> If you already ran 'make dt_binding_check' and didn't see the above
-> >> error(s), then make sure 'yamllint' is installed and dt-schema is up t=
-o
-> >> date:
-> >>
-> >> pip3 install dtschema --upgrade
-> >>
-> >> Please check and re-submit after running the above command yourself. N=
-ote
-> >> that DT_SCHEMA_FILES can be set to your schema file to speed up checki=
-ng
-> >> your schema. However, it must be unset to test all examples with your =
-schema.
-> >>
-> >
-> > Thanks for the reviews. After running make dt_binding_check for it
-> > seems like hours (on a dual-core 1.8GHz ARM box), I got impatient and
-> > used
-> > make CHECK_DTBS=3Dy armada-385-thecus-n2350.dtb
-> >
-> > I'll move this to another faster box and run make dt_binding_check.
->
-> So many questions...
-> 1. Why do you have to run it on arm? Not on regular machine for work? No
-> one of us does like that...
+From what I can tell with the board schematic in hand,
+as well as the code delivered, the main changes needed are:
 
-It's just more convenient for me to run on ARM (I also build ARM
-kernels natively with distcc). This is not work related, so I cannot
-use machines at work. I can use my personal 4-core laptop, though.
+    1. A new address space layout for dwmac5/EMAC3 MTL/DMA regs
+    2. A new programming sequence required for the EMAC3 base platforms
 
-> 2. You are now mixing now two different commands. You were asked to run
-> DT_SCHEMA_FILES
+This series addresses the devicetree and clock changes to support this
+hardware bringup.
 
-OK. As you can see, I have no experience with schema before.
+As requested[1], it has been split up by compile deps / maintainer tree.
+The associated v4 of the netdev specific changes can be found at [2].
+Together, they result in the ethernet controller working for
+both controllers on this platform.
 
-> 3. Read the provided guide how to speed it up. It runs within few seconds=
-.
+The netdev changes have been merged, so this series should be good to go
+assuming it passes review (with patch 3 being the only unexplicitly
+reviewed patch).
 
-Good to know there is a way. Thanks for the advice!
+[0] https://git.codelinaro.org/clo/la/kernel/ark-5.14/-/commit/510235ad02d7f0df478146fb00d7a4ba74821b17
+[1] https://lore.kernel.org/netdev/20230320202802.4e7dc54c@kernel.org/
+[2] https://lore.kernel.org/netdev/20230411200409.455355-1-ahalaney@redhat.com/T/#t
 
-All the best,
-Tony
+v4: https://lore.kernel.org/netdev/20230411202009.460650-1-ahalaney@redhat.com/
+v3: https://lore.kernel.org/netdev/20230331215804.783439-1-ahalaney@redhat.com/T/#m2f267485d215903494d9572507417793e600b2bf
+v2: https://lore.kernel.org/netdev/20230320221617.236323-1-ahalaney@redhat.com/
+v1: https://lore.kernel.org/netdev/20230313165620.128463-1-ahalaney@redhat.com/
 
->
->
-> Best regards,
-> Krzysztof
->
+Thanks,
+Andrew
+
+
+Andrew Halaney (3):
+  clk: qcom: gcc-sc8280xp: Add EMAC GDSCs
+  arm64: dts: qcom: sc8280xp: Add ethernet nodes
+  arm64: dts: qcom: sa8540p-ride: Add ethernet nodes
+
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts     | 179 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  60 ++++++
+ drivers/clk/qcom/gcc-sc8280xp.c               |  18 ++
+ include/dt-bindings/clock/qcom,gcc-sc8280xp.h |   2 +
+ 4 files changed, 259 insertions(+)
+
+-- 
+2.39.2
+
