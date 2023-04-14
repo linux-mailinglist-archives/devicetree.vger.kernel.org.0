@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AA1A6E236B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 14:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 802F36E236F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 14:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231165AbjDNMhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 08:37:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
+        id S231172AbjDNMhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 08:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbjDNMhO (ORCPT
+        with ESMTP id S230420AbjDNMhO (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 08:37:14 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C6C11C;
-        Fri, 14 Apr 2023 05:37:12 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-187bee46f9dso83544fac.11;
-        Fri, 14 Apr 2023 05:37:12 -0700 (PDT)
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77369113;
+        Fri, 14 Apr 2023 05:37:11 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-187a1387021so4137441fac.3;
+        Fri, 14 Apr 2023 05:37:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681475832; x=1684067832;
+        d=1e100.net; s=20221208; t=1681475831; x=1684067831;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=tif8NhdXDaYsKWyUG+spnxjaLJkK+6EAtIt8ttAcEs4=;
-        b=i+4joY4xSfcJWUGbb/QKqQhM6JAFGQGGC2hc8kjXcu+DFxMEumpHtzO+djsGYvUHGM
-         V+P6a26j383t68rtnfI5RZh59jhcACjD9qLDg9yy6J6AuxUX9/RgpKZu6ANNokstysIm
-         nn5xVbT2iT76xHF7EFmYwHwy1B5kObd/euSHWH6L4WjG1OK4qNkgXASzVEkY1BAZDU/B
-         rj3ie90JVqz2NjaQG0EwhYHW1OqfD4wuEoUNrP3Hcl17PFlbu48BcwPX65eIOksUFKm0
-         AubaGQ0aS0y0XWTTRfccFLfws77JxLR/DYNBzAV+iTNLa99ZyrzJxlk+tYpPiq+EMQA0
-         pIUQ==
-X-Gm-Message-State: AAQBX9ci6Dmh/0k6E7y4OnObJ2LoDSC5mslbh+zaC6Y5PMJaEAuf645h
-        UMkGnIk2mwvMfuv4U6e/qQ==
-X-Google-Smtp-Source: AKy350YtIiRkiMozbJSJbOls/JKKCcKXGbj0sXIIm/2Aub6PlAVIfCaR3m+eP4C5BMr98YW8rvXHAQ==
-X-Received: by 2002:a05:6870:c227:b0:177:b6ed:a154 with SMTP id z39-20020a056870c22700b00177b6eda154mr4230820oae.34.1681475832618;
-        Fri, 14 Apr 2023 05:37:12 -0700 (PDT)
+        bh=6z6SiSjyhsFruKlyCgEKdQS6ZzvvI8xprJYhm7mvty8=;
+        b=LF+DN9Gmo4MXx2w7MzNZ8KcDzonbl8TQRacKnTeYJQugt6ehCgpko+vNcC3M2IRGn8
+         ePx4TmcUOh7I1mjATbEwc0T57ufIwLtQbOxwHxdykq9C0zmpO/iOdbRlb9dWblm5J2QT
+         HwiRi3i7P2HJTPOU416xaA+NK6tM0RvNb4kF9aNya82h+tS344wS5cpPGjKmwdSVVI4A
+         1SMnM803aU5NCxTauVbJifAUQ8gMAJYraLHKjjoDR/tZbH7poy65+uVDFHEOOYz0IQxm
+         y3uftL1gBWwUoWPhiaSWAYD67l6s56tEQTAQLFVLbn2UBzFDTpEqCZFUTEpaMX2Xn3ip
+         lb3w==
+X-Gm-Message-State: AAQBX9cMiXptWn6rDZ7RVysBVM+KbS3nAakxzj+hzp0Gv/gDvuE4Xf5I
+        b12A5IjKinOzv+k+7g9DwQ==
+X-Google-Smtp-Source: AKy350YLDnEij/+RT5c4VrdY69H0Gh8fljimJpXny4beHt4miLXMxpH9HeP14Yzjux4b6P2LXQXbUg==
+X-Received: by 2002:a05:6870:32d5:b0:187:9718:4070 with SMTP id r21-20020a05687032d500b0018797184070mr2818930oac.39.1681475830703;
+        Fri, 14 Apr 2023 05:37:10 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eb8-20020a056870a88800b001777244e3f9sm1740074oab.8.2023.04.14.05.37.11
+        by smtp.gmail.com with ESMTPSA id s6-20020acadb06000000b00383eaf88e75sm1629875oig.39.2023.04.14.05.37.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 05:37:11 -0700 (PDT)
-Received: (nullmailer pid 3600812 invoked by uid 1000);
+        Fri, 14 Apr 2023 05:37:09 -0700 (PDT)
+Received: (nullmailer pid 3600816 invoked by uid 1000);
         Fri, 14 Apr 2023 12:37:05 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     kishon@kernel.org, linux-renesas-soc@vger.kernel.org,
-        robh+dt@kernel.org, bhelgaas@google.com,
-        gustavo.pimentel@synopsys.com, mani@kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        fancer.lancer@gmail.com, marek.vasut+renesas@gmail.com,
-        kw@linux.com, lpieralisi@kernel.org, jingoohan1@gmail.com
-In-Reply-To: <20230414061622.2930995-15-yoshihiro.shimoda.uh@renesas.com>
-References: <20230414061622.2930995-1-yoshihiro.shimoda.uh@renesas.com>
- <20230414061622.2930995-15-yoshihiro.shimoda.uh@renesas.com>
-Message-Id: <168147484959.3576429.13497930996151330300.robh@kernel.org>
-Subject: Re: [PATCH v12 14/19] dt-bindings: PCI: renesas: Add R-Car Gen4
- PCIe Host
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc:     Nitheesh Sekar <quic_nsekar@quicinc.com>, mturquette@baylibre.com,
+        konrad.dybcio@linaro.org, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Varadarajan Narayanan <quic_varada@quicinc.com>,
+        krzysztof.kozlowski+dt@linaro.org, will@kernel.org,
+        linus.walleij@linaro.org, agross@kernel.org,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        catalin.marinas@arm.com, sboyd@kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        andersson@kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <1681468167-11689-4-git-send-email-quic_srichara@quicinc.com>
+References: <1681468167-11689-1-git-send-email-quic_srichara@quicinc.com>
+ <1681468167-11689-4-git-send-email-quic_srichara@quicinc.com>
+Message-Id: <168147485085.3576485.2274318981675565621.robh@kernel.org>
+Subject: Re: [PATCH V3 3/9] dt-bindings: pinctrl: qcom: Add support for
+ ipq5018
 Date:   Fri, 14 Apr 2023 07:37:05 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,17 +73,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 14 Apr 2023 15:16:17 +0900, Yoshihiro Shimoda wrote:
-> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-> PCIe host module.
+On Fri, 14 Apr 2023 15:59:21 +0530, Sricharan Ramabadhran wrote:
+> Add device tree binding Documentation details for ipq5018
+> pinctrl driver.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> Co-developed-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > ---
->  .../bindings/pci/rcar-gen4-pci-host.yaml      | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+>  [v3] Fixed review comments and DTS schema warnings
+> 
+>  .../bindings/pinctrl/qcom,ipq5018-tlmm.yaml        | 129 +++++++++++++++++++++
+>  1 file changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-tlmm.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -88,16 +96,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.example.dtb: pcie@e65d0000: reg: [[0, 3864854528, 0, 4096], [0, 3864862720, 0, 2048], [0, 3864866816, 0, 8192], [0, 3864875008, 0, 4608], [0, 3864879616, 0, 3584], [0, 4261412864, 0, 4194304]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.example.dtb: pcie@e65d0000: reg-names: ['dbi', 'dbi2', 'atu', 'dma', 'app', 'config'] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.example.dtb: pcie@e65d0000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'dma-ranges', 'interrupt-map', 'interrupt-map-mask', 'ranges', 'snps,enable-cdm-check' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-tlmm.example.dtb: pinctrl@1000000: uart2-state: 'oneOf' conditional failed, one must be fixed:
+	'bias-pull-down', 'drive-strength', 'function', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	'blsp2_uart' is not one of ['atest_char', 'audio_pdm0', 'audio_pdm1', 'audio_rxbclk', 'audio_rxd', 'audio_rxfsync', 'audio_rxmclk', 'audio_txbclk', 'audio_txd', 'audio_txfsync', 'audio_txmclk', 'blsp0_i2c', 'blsp0_spi', 'blsp0_uart0', 'blsp0_uart1', 'blsp1_i2c0', 'blsp1_i2c1', 'blsp1_spi0', 'blsp1_spi1', 'blsp1_uart0', 'blsp1_uart1', 'blsp1_uart2', 'blsp2_i2c0', 'blsp2_i2c1', 'blsp2_spi', 'blsp2_spi0', 'blsp2_spi1', 'btss', 'burn0', 'burn1', 'cri_trng', 'cri_trng0', 'cri_trng1', 'cxc_clk', 'cxc_data', 'dbg_out', 'eud_gpio', 'gcc_plltest', 'gcc_tlmm', 'gpio', 'led0', 'led2', 'mac0', 'mac1', 'mdc', 'mdio', 'pcie0_clk', 'pcie0_wake', 'pcie1_clk', 'pcie1_wake', 'pll_test', 'prng_rosc', 'pwm0', 'pwm1', 'pwm2', 'pwm3', 'qdss_cti_trig_in_a0', 'qdss_cti_trig_in_a1', 'qdss_cti_trig_in_b0', 'qdss_cti_trig_in_b1', 'qdss_cti_trig_out_a0', 'qdss_cti_trig_out_a1', 'qdss_cti_trig_out_b0', 'qdss_cti_trig_out_b1', 'qdss_traceclk_a', 'qdss_traceclk_b', 'qdss_tracectl_a', 'qdss_tracectl_b', 'qdss_trac
+ edata_a', 'qdss_tracedata_b', 'qspi_clk', 'qspi_cs', 'qspi_data', 'reset_out', 'sdc1_clk', 'sdc1_cmd', 'sdc1_data', 'wci_txd', 'wci_rxd', 'wsa_swrm', 'wsi_clk3', 'wsi_data3', 'wsis_reset', 'xfem']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-tlmm.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230414061622.2930995-15-yoshihiro.shimoda.uh@renesas.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1681468167-11689-4-git-send-email-quic_srichara@quicinc.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
