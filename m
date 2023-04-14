@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C99FC6E1D72
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7FA6E1D87
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjDNHrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:47:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37180 "EHLO
+        id S229888AbjDNHwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:52:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbjDNHq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:46:59 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CEEB1724
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:57 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id xd13so9581983ejb.4
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:56 -0700 (PDT)
+        with ESMTP id S229881AbjDNHwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:52:44 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF1265BD
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:52:42 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id jg21so43182656ejc.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:52:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681458415; x=1684050415;
+        d=linaro.org; s=google; t=1681458760; x=1684050760;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dt+A98jlqtbpeel2naOzylBvCk3G6/Q++nwH3epknTU=;
-        b=gfgztzkwvm4gf2aIWjlZL3RjZrGc0EZbhfb1YHOpNB6u39HnCow+CWMOaNCQj4TGd0
-         BTuA5kO/54Nu9izUwi6RyrymuJS0Ulvplwl/7s+cbRW3E+SCyuxEkIoIOw+Xabo7hDPB
-         o31RWBIw3tMXtjlbuW51hsEkS6eW+aSOOcF0xuUA1HpAmaxXvR6UGkgl1+sR0q2uIUnZ
-         lkslhm+GNb6ZoIrlae0uYFI2+SL2COzOKo4aw7LzzTdPvXPSTppDOz6QbhmkZ2MtBRpP
-         Y4XONL446Ax/S2IH7glLnIimLeeiPa+RKmfqp1nsSD6GjhkfTNucg3tQEtg7Koj4HygL
-         3BpQ==
+        bh=5fmp8ZchOpiNG2bgVM43cfy9xBWr8LX0uUR8ohtYJtM=;
+        b=NhTG8MUt4iHQzYV6YPU7qTPMofyphuSSGfhtCRTm04PdA21nzE3WKgV7lTo8RvLHT/
+         shbLR4LH7iSxoJ4P6+DPJiNCp63R9ttGSrGPP9Y5fERIoFW3dKpeyvEIrzpiljn67qWa
+         JQYWYuKcqaH6p9+i6hAbeobR3eNWvRlxfK0faxtqfvZgzpu0QoPVVrxuV7tEivsD6GXg
+         k1AiMYpviS7qw3F64GKi1/KUdpk6k6qMvec6dviOfnnmzIk+AeuW+AMJTWPZ6AuUDwfz
+         MrswjXWz7fujQRjuRbYOChHhJPIkxgSs+ckj2mXX9CaF2jmcb3xzPLJJUFKg92/bfG3O
+         hIJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681458415; x=1684050415;
+        d=1e100.net; s=20221208; t=1681458760; x=1684050760;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dt+A98jlqtbpeel2naOzylBvCk3G6/Q++nwH3epknTU=;
-        b=X+ynV2laRMGBh4C1XfRMgNzdwQdKZyOSq9eXe89pblegpQ8qnbOOo/MymriaQgYIl3
-         5PhgIkGVVYfeS05zDuNbK+qkDA5SwNgvqihhA7v5KZzdp7aaEc8F561irZk/jH3N2qKm
-         qTLb78qriDEKB8E/RszynipWYOvuA31sLh5sJErSdCUl+1HY0PyqN1hEZCVeQdJBS1Qs
-         1qKAS85OY8L3IQTIVZ0mxFNAogEBL9I+kNtiThYKYY9SXBJ9xMjnnW4czdwGHe1PY+QK
-         46Yybmqk29djIy9wKV64F4pRdViCHCQ0Lk30qMC0U5KaHyMVM2BHA78LsZt363ylwmOo
-         ZXjQ==
-X-Gm-Message-State: AAQBX9dSnaaQv6VYn/NCI1gX9IHaopOs5zD3zKsKZeYHNInw53OpGbwg
-        3urH32jw+5ftDoYPACMiFzwPfA==
-X-Google-Smtp-Source: AKy350bLBmexUEFzr5LRWNNM6G7YHG2r1iyM3NyfBneNEodYOJT8tqYAQv0G0zNqUi4S+WfZ7YXsOw==
-X-Received: by 2002:a17:906:e2c7:b0:94e:e049:6d2a with SMTP id gr7-20020a170906e2c700b0094ee0496d2amr1504414ejb.66.1681458415547;
-        Fri, 14 Apr 2023 00:46:55 -0700 (PDT)
+        bh=5fmp8ZchOpiNG2bgVM43cfy9xBWr8LX0uUR8ohtYJtM=;
+        b=MkZ6a64nDvwtnZbFtrYwk+0M9U99rztWXQmYXrtoyINC853oxk9bg6VGbdhfkRYNI9
+         vgVanRQel6SGQDAVNgsf04Tcxjw1VTbUl/uzGuXSxNQg/7PlvljsTEDki84u8Jc8V7UQ
+         N8asMLMCdHt/EzUCOwb53Wxs0T1AH8ZPU+b5zBdosdGCeqGbXdQKKrr8krH/kr28iIJi
+         oGxZ7ruW3t6rVsZwwUU+ulY0SRHyg5nr1jtMjSXrDXStR3KEkDK5nTVrJmDGXOgIX3Xe
+         pcr/4KDccxONNys2PkmqXjtpyedH1J1dxpK598ZXDR31sR5oB6tijisBen/mv5n4yCgQ
+         kVkg==
+X-Gm-Message-State: AAQBX9eExc9U/o+2NkESOrkMPOMaRB75FrCpaI+sSn9x16SPIP0QwUp8
+        X02N3qAUiaS4SoFQkcUGOiZnNg==
+X-Google-Smtp-Source: AKy350YRsKtcInsagYhjMIH/3kqN+TRsFF3Y3YqqByEyRxT3vMGvMkCd8dpb/v4jEQkCj6iATO+xUw==
+X-Received: by 2002:a17:906:3a42:b0:947:a6d7:e2b4 with SMTP id a2-20020a1709063a4200b00947a6d7e2b4mr5115571ejf.8.1681458760511;
+        Fri, 14 Apr 2023 00:52:40 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id e2-20020a170906314200b0094bb4c75695sm2023228eje.194.2023.04.14.00.46.54
+        by smtp.gmail.com with ESMTPSA id z10-20020a1709063a0a00b0094a6cf3b642sm2076345eje.142.2023.04.14.00.52.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:46:55 -0700 (PDT)
-Message-ID: <4b9a0f13-d03a-8496-a400-8621b8d7c98a@linaro.org>
-Date:   Fri, 14 Apr 2023 09:46:53 +0200
+        Fri, 14 Apr 2023 00:52:40 -0700 (PDT)
+Message-ID: <7f2716c6-ea0c-d55b-490c-7fe0e0a14c65@linaro.org>
+Date:   Fri, 14 Apr 2023 09:52:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v7 12/12] MAINTAINERS: Add entry for NUVOTON MA35
+Subject: Re: [PATCH 1/3] dt-bindings: iio: pressure: Support Honeywell mpr
+ sensors
 Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230412053824.106-1-ychuang570808@gmail.com>
- <20230412053824.106-13-ychuang570808@gmail.com>
- <241f6cb1-193f-d372-0eda-157946b15780@linaro.org>
- <91861072-dc2d-46d3-dc0d-26d17a3693c7@gmail.com>
+To:     Andreas Klinger <ak@it-klinger.de>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+References: <20230401185717.1b971617@jic23-huawei>
+ <27a1d0f4-3a02-c7fd-36a0-07729a136e20@linaro.org> <ZDkAYZV9z6cKCZQo@arbad>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <91861072-dc2d-46d3-dc0d-26d17a3693c7@gmail.com>
+In-Reply-To: <ZDkAYZV9z6cKCZQo@arbad>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -82,41 +81,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 03:22, Jacky Huang wrote:
-> Dear Krzysztof,
+On 14/04/2023 09:27, Andreas Klinger wrote:
+> Hi Krzysztof,
 > 
-> 
-> On 2023/4/14 上午 01:01, Krzysztof Kozlowski wrote:
->> On 12/04/2023 07:38, Jacky Huang wrote:
->>> From: Jacky Huang <ychuang3@nuvoton.com>
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> schrieb am Sa, 01. Apr 11:42:
+>> On 01/04/2023 11:09, Andreas Klinger wrote:
+>>> Honeywell mpr is a pressure sensor family. There are many different
+>>> types with different pressure ranges. The range needs to be set up in
+>>> the dt. Therefore new properties honeywell,pmin and honeywell,pmax are
+>>> introduced.
 >>>
->>> Add entry for Nuvoton ma35d1 maintainer and files.
->>> In addition, update board binding paths of NUVOTON NPCM.
+>>> Add dt-bindings.
+>>>
+>>> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+>>> ---
+>>>  .../bindings/iio/pressure/honeywell,mpr.yaml  | 74 +++++++++++++++++++
+>>>  1 file changed, 74 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mpr.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mpr.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mpr.yaml
+>>> new file mode 100644
+>>> index 000000000000..d6fad6f841cf
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mpr.yaml
+>>> @@ -0,0 +1,74 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iio/pressure/honeywell,mpr.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Honeywell mpr pressure sensor
+>>> +
+>>> +maintainers:
+>>> +  - Andreas Klinger <ak@it-klinger.de>
+>>> +
+>>> +description: |
+>>> +  Honeywell pressure sensor of type mpr. This sensor has an I2C and SPI interface. Only the I2C
 >>
->>>   ARM/NUVOTON NPCM ARCHITECTURE
->>>   M:	Avi Fishman <avifishman70@gmail.com>
->>>   M:	Tomer Maimon <tmaimon77@gmail.com>
->>> @@ -2512,7 +2522,8 @@ L:	openbmc@lists.ozlabs.org (moderated for non-subscribers)
->>>   S:	Supported
->>>   F:	Documentation/devicetree/bindings/*/*/*npcm*
->>>   F:	Documentation/devicetree/bindings/*/*npcm*
->>> -F:	Documentation/devicetree/bindings/arm/npcm/*
->> It is not a bisectable change.
+>> Doesn't look wrapped according to Linux coding style (see Coding style).
 >>
->> Best regards,
->> Krzysztof
+>>> +  interface is implemented.
+>>> +
+>>> +  There are many subtypes with different pressure ranges available. Therefore the minimum and
+>>> +  maximum pressure values of the specific sensor needs to be specified in Pascal.
+>>> +
+>>> +  Specifications about the devices can be found at:
+>>> +    https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/  \
+>>> +      pressure-sensors/board-mount-pressure-sensors/micropressure-mpr-series/documents/          \
+>>> +      sps-siot-mpr-series-datasheet-32332628-ciid-172626.pdf
 >>
+>> Lines are not continued, so drop \
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: honeywell,mpr
+>>
+>> You need device specific compatible, not some generic one. Rename also
+>> then the filename (should match the compatible).
+>>
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-gpios:
+>>> +    description:
+>>> +      Optional GPIO for resetting the device. If not present the device is not resetted.
+>>
+>> Are you sure it is wrapped properly?
+>>
+>>> +    maxItems: 1
+>>> +
+>>> +  honeywell,pmin:
+>>> +    description:
+>>> +      Minimum pressure value the sensor can measure in pascal.
+>>
+>> Use standard unit suffix:
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 > 
-> F:    Documentation/devicetree/bindings/*/*/*npcm*
-> F:    Documentation/devicetree/bindings/*/*npcm*
-> F:    Documentation/devicetree/bindings/arm/nuvoton/*npcm*    <-- remove 
-> this
-> F:    Documentation/devicetree/bindings/soc/nuvoton/*npcm* <-- remove this
+> There are only kilopascal as standard unit suffix. But with kilopascal as
+> integer the accuracy of the driver is very rough. Therefore I would like to use
+> pascal. E. g.:
 > 
-> Yes, the two statements at the bottom seem redundant. I will remove them.
+> honeywell,pmin-pascal
+> 
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +
+>>> +  honeywell,pmax:
+>>> +    description:
+>>> +      Maximum pressure value the sensor can measure in pascal.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>
+>> Same.
+>>
+>> Why these values are suitable for DT?
+> 
+> Technically from the software perspective the sensors are identical with the
+> only difference of having different pressure ranges, measurement units and
+> transfer functions.
+> 
+> If we omit the pressure values and transfer function we'll need 96 compatibles
+> and also 96 I2C ids.
 
-I did not comment about "redundant". I used the word "bisectable". git
-help bisect.
+Compatibles are expected to be specific. You used something generic, so
+not correct, although I understand the reason behind.
+
+If we go with generic compatible, do you guarantee that all Honeywell
+mpr sensors - now and in 50 years - will be 100% compatible with this
+set here?
+
+Your description calls it "type mpr", not "model mpr", so I assume you
+can have entirely different sensors coming soon which will not be
+compatible.
+
+> 
+> But there are also custom sensor types. For covering them we'll need another
+> compatible and just for this case the pressure values and transfer function.
+
+OK, but isn't this the case in all devices? I could accept family of
+identical devices with identical programming model where difference in
+supported measurement range is described via this property.
+
+Unfortunately you did not model it that way. Instead it represents all
+possible devices even with incompatible programming model.
 
 Best regards,
 Krzysztof
