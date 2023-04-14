@@ -2,132 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B596E2606
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE1F6E2655
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbjDNOoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 10:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
+        id S230179AbjDNPAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 11:00:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjDNOoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:44:39 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8FCE55;
-        Fri, 14 Apr 2023 07:44:34 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33EEi6c3101852;
-        Fri, 14 Apr 2023 09:44:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681483446;
-        bh=pV5IAjekorg5JVSq5+Motl8Ut+WnU2xVcZQwXYPd5ZU=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=G+Wr53EGSewSYrWUbhNpzsERWUORrZM7+6WsPkMVNyb1Hk48T4XgC2CL0EtmwRIr9
-         +IKh0ntDOBJyNcuMprxOuh+uyOa2WUjiw2BUx1THJ66sZUovtt/bXJAuI+QjS2gIGu
-         IvHl34x92EDeGdOEJkIzppaV9MRA9w/xUAnY6zFA=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33EEi69n011416
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Apr 2023 09:44:06 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 14
- Apr 2023 09:44:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 14 Apr 2023 09:44:06 -0500
-Received: from [172.24.145.152] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33EEhwaT115354;
-        Fri, 14 Apr 2023 09:43:59 -0500
-Message-ID: <2a6393d4-47e6-1526-d68b-f34394b1dca4@ti.com>
-Date:   Fri, 14 Apr 2023 20:13:58 +0530
+        with ESMTP id S229705AbjDNPAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:00:01 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C3E2C654
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:58:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1681484330;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=k9tZKbJ5qs0aTJOWbxa+ntg7JuywwVnLOpTSJzXLREE=;
+        b=i03dtAXzmbCKTBrbGZne4sySAR62j0LFm+Ph87twj7Qw4XhEf0iDoJP7ad8CnEKS7NJ9Uc
+        Ak0RDq3JyVl3CisOZKpzK7XEZTAPvaFJXC7KIEqaWYrUqfPvn0PUtEbmiWko2DwKFPZrnV
+        W9UvoKTwGaadvjI0Upqx3/yV28zSE2A=
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com
+ [209.85.167.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-230-YPNoCrfjOcmE3xuKhueQpQ-1; Fri, 14 Apr 2023 10:58:49 -0400
+X-MC-Unique: YPNoCrfjOcmE3xuKhueQpQ-1
+Received: by mail-oi1-f197.google.com with SMTP id w83-20020acadf56000000b0038c0db69f66so1805872oig.18
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:58:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681484328; x=1684076328;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k9tZKbJ5qs0aTJOWbxa+ntg7JuywwVnLOpTSJzXLREE=;
+        b=jmbzR73n/4Qrpl4PZhniVMfPjWxd8D0iALPqYriT5X3DBQ3bNb46BMyqC2HghDWXD3
+         3zydzGFvvz9auPFSm+whZaOR0gKFvZHOElcM2rUx6WDXIVx8TvC/ObCoz8ZlWM4rLmwP
+         TvRq6jb3WZfnJXegRXBvdpKBHbzkLnluqTZqREqPMyxaxiQfxjLs60p9lsviMI7v+Ycg
+         AHsOfff5M0eSf6g5pRM4kX4Vp3Yv/2J9en53hiElnqL6FoqpvsqWmO3W3CPvd66ziU0N
+         mSWLNIXh+tZ6eY517o76F2WUGK0CUwxWrEC20yfXLeysriKkmguneJPWIZPgKOJBJy6/
+         IoZw==
+X-Gm-Message-State: AAQBX9dV0A15AI04XipCA6pd5SE5/mZThZgO0ahL8iHfI0Ut0hT2uS3M
+        FSuVgoxowIxTGe95QpQ8aYvicfjmqviV5d3+XxYf2lJVwF8pdpZZ7KRd4yaf09mKIhY2c2D7S3V
+        0fDU2mYdI/kbB/dWJXskPKQ==
+X-Received: by 2002:a54:4594:0:b0:389:7d66:131a with SMTP id z20-20020a544594000000b003897d66131amr2571652oib.0.1681484328418;
+        Fri, 14 Apr 2023 07:58:48 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bkRH9KaOHjyXtwFRXXzVwyZiRQ/axbyA+HWVFGo3S3BIN+ZZccIIJ8MK7vkdCqMcmg6iiLag==
+X-Received: by 2002:a54:4594:0:b0:389:7d66:131a with SMTP id z20-20020a544594000000b003897d66131amr2571637oib.0.1681484328154;
+        Fri, 14 Apr 2023 07:58:48 -0700 (PDT)
+Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
+        by smtp.gmail.com with ESMTPSA id n84-20020acaef57000000b0038bb2f60064sm1737277oih.30.2023.04.14.07.58.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Apr 2023 07:58:47 -0700 (PDT)
+Date:   Fri, 14 Apr 2023 09:58:44 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        netdev@vger.kernel.org, bmasney@redhat.com, echanude@redhat.com,
+        ncai@quicinc.com, jsuraj@qti.qualcomm.com, hisunil@quicinc.com
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: sa8540p-ride: Add ethernet nodes
+Message-ID: <20230414145844.wyg6pt623pzqwh5l@halaney-x13s>
+References: <20230413191541.1073027-1-ahalaney@redhat.com>
+ <20230413191541.1073027-4-ahalaney@redhat.com>
+ <a295939f0058373d1caf956749820c0d.sboyd@kernel.org>
+ <20230413210127.s5dkek6adp5ndern@halaney-x13s>
+ <7b2b2eefb4b7b6ef8ac2a3176286a97b.sboyd@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: Add no-hpd property
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
-        <jani.nikula@intel.com>, <tzimmermann@suse.de>,
-        <javierm@redhat.com>, <ville.syrjala@linux.intel.com>,
-        <r-ravikumar@ti.com>, <lyude@redhat.com>,
-        <alexander.deucher@amd.com>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>, <a-bhatia1@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>
-References: <20230405142440.191939-1-j-choudhary@ti.com>
- <20230405142440.191939-2-j-choudhary@ti.com>
- <20230406014032.GN9915@pendragon.ideasonboard.com>
-Content-Language: en-US
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <20230406014032.GN9915@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7b2b2eefb4b7b6ef8ac2a3176286a97b.sboyd@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 06/04/23 07:10, Laurent Pinchart wrote:
-> Hi Jayesh,
+On Thu, Apr 13, 2023 at 03:05:26PM -0700, Stephen Boyd wrote:
+> Quoting Andrew Halaney (2023-04-13 14:01:27)
+> > On Thu, Apr 13, 2023 at 01:47:19PM -0700, Stephen Boyd wrote:
+> > > Quoting Andrew Halaney (2023-04-13 12:15:41)
+> > > >  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 179 ++++++++++++++++++++++
+> > > >  1 file changed, 179 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > > > index 40db5aa0803c..650cd54f418e 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > > > +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > > > @@ -28,6 +28,65 @@ aliases {
+> > > >         chosen {
+> > > >                 stdout-path = "serial0:115200n8";
+> > > >         };
+> > > > +
+> > > > +       mtl_rx_setup: rx-queues-config {
+> > > 
+> > > Is there a reason why this isn't a child of an ethernet node?
+> > > 
+> > > 
+> > 
+> > I debated if it was more appropriate to:
+> > 
+> >     1. make a duplicate in each ethernet node (ethernet0/1)
+> >     2. Put it in one and reference from both
+> >     3. have it floating around independent like this, similar to what is
+> >        done in sa8155p-adp.dts[0]
+> > 
+> > I chose 3 as it seemed cleanest, but if there's a good argument for a
+> > different approach I'm all ears!
 > 
-> Thank you for the patch.
+> I wonder if it allows the binding checker to catch bad properties by
+> having it under the ethernet node? That's the only thing I can think of
+> that may be improved, but I'll let binding reviewers comment here.
 > 
-> On Wed, Apr 05, 2023 at 07:54:39PM +0530, Jayesh Choudhary wrote:
->> From: Rahul T R <r-ravikumar@ti.com>
->>
->> The mhdp bridge can work without its HPD pin hooked up to the connector,
->> but the current bridge driver throws an error when hpd line is not
->> connected to the connector. For such cases, we need an indication for
->> no-hpd, using which we can bypass the hpd detection and instead use the
->> auxiliary channels connected to the DP connector to confirm the
->> connection.
->> So add no-hpd property to the bindings, to disable hpd when not
->> connected or unusable.
->>
->> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>   .../devicetree/bindings/display/bridge/cdns,mhdp8546.yaml   | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->> index c2b369456e4e..3a6c6d837593 100644
->> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->> @@ -57,6 +57,12 @@ properties:
->>     interrupts:
->>       maxItems: 1
->>   
->> +  cdns,no-hpd:
->> +    type: boolean
->> +    description:
->> +      Set if the HPD line on the bridge isn't hooked up to anything or is
->> +      otherwise unusable.
-> 
-> I'm fine with the non connected part, but concerned with "otherwise
-> unusable". It's very vague and could thus be abused. Do you have
-> particular use cases in mind for this ? If so, restricting this to those
-> use cases, or at least giving examples, would help.
 
-Okay. Will do that in next version.
+Thanks, I was curious so I played around to answer the question via
+testing, and you're right... rx-queues-config/tx-queues-config aren't
+evaluated unless they sit under the node with the compatible (i.e. it
+doesn't just follow the phandle and evaluate). That makes sense to me I
+suppose.
 
-Thanks.
+So, I guess, would maintainers prefer to see option (1) or (2) above? I
+want that thing evaluated.
 
-> 
->> +
->>     ports:
->>       $ref: /schemas/graph.yaml#/properties/ports
->>   
-> 
+Option 1., above, has duplicated configuration, but is probably a more accurate
+representation of the hardware description.
+
+Option 2., above, doesn't duplicate rx-queues-config/tx-queues-config,
+but is a weirder representation of hardware description, and only
+complains once (which is fine since it's shared) when the binding checker
+runs (i.e. only the etherent parent containing rx-queues-config yells).
+
+In the below example you can see what I mean by the "only complains
+once" comment as well as illustration that the patchset as is doesn't
+allow rx-queues-config/tx-queues-config to be validated by dt-binding
+checks:
+
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % # Purposely introduce a dt-binding error on top of the current patchset                                                                                          :(
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % git diff                                                                                                                                                         :(
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index 650cd54f418e..ecb0000db4e2 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -54,7 +54,7 @@ queue2 {
+ 
+                queue3 {
+                        snps,avb-algorithm;
+-                       snps,map-to-dma-channel = <0x3>;
++                       snps,map-to-dma-channel = "not-correct";
+                        snps,priority = <0xc>;
+                };
+        };
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sa8540p-ride.dtb
+  DTC_CHK arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % # That should have failed
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % # Move the whole node under ethernet0, have ethernet1 reference via phandle only still
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % git diff | cat
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index 650cd54f418e..451246936731 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -29,35 +29,6 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	mtl_rx_setup: rx-queues-config {
+-		snps,rx-queues-to-use = <1>;
+-		snps,rx-sched-sp;
+-
+-		queue0 {
+-			snps,dcb-algorithm;
+-			snps,map-to-dma-channel = <0x0>;
+-			snps,route-up;
+-			snps,priority = <0x1>;
+-		};
+-
+-		queue1 {
+-			snps,dcb-algorithm;
+-			snps,map-to-dma-channel = <0x1>;
+-			snps,route-ptp;
+-		};
+-
+-		queue2 {
+-			snps,avb-algorithm;
+-			snps,map-to-dma-channel = <0x2>;
+-			snps,route-avcp;
+-		};
+-
+-		queue3 {
+-			snps,avb-algorithm;
+-			snps,map-to-dma-channel = <0x3>;
+-			snps,priority = <0xc>;
+-		};
+-	};
+ 
+ 	mtl_tx_setup: tx-queues-config {
+ 		snps,tx-queues-to-use = <1>;
+@@ -223,6 +194,36 @@ &ethernet0 {
+ 
+ 	status = "okay";
+ 
++	mtl_rx_setup: rx-queues-config {
++		snps,rx-queues-to-use = <1>;
++		snps,rx-sched-sp;
++
++		queue0 {
++			snps,dcb-algorithm;
++			snps,map-to-dma-channel = <0x0>;
++			snps,route-up;
++			snps,priority = <0x1>;
++		};
++
++		queue1 {
++			snps,dcb-algorithm;
++			snps,map-to-dma-channel = <0x1>;
++			snps,route-ptp;
++		};
++
++		queue2 {
++			snps,avb-algorithm;
++			snps,map-to-dma-channel = <0x2>;
++			snps,route-avcp;
++		};
++
++		queue3 {
++			snps,avb-algorithm;
++			snps,map-to-dma-channel = "not-correct";
++			snps,priority = <0xc>;
++		};
++	};
++
+ 	mdio {
+ 		compatible = "snps,dwmac-mdio";
+ 		#address-cells = <1>;
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sa8540p-ride.dtb
+  DTC_CHK arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+/home/ahalaney/git/redhat/stmmac/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: ethernet@20000: rx-queues-config:queue3:snps,map-to-dma-channel:0: [1852797997, 1668248178, 1701016576] is too long
+	From schema: /home/ahalaney/git/redhat/stmmac/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+/home/ahalaney/git/redhat/stmmac/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: ethernet@20000: Unevaluated properties are not allowed ('max-speed', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,tso', 'tx-fifo-depth' were unexpected)
+	From schema: /home/ahalaney/git/redhat/stmmac/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % # That warned as expected, since snps,dwmac.yaml failed on rx-queues-config it warns, \
+									and since part of the schema failed its not inherited (hence the Unevaluated properties warning following) \
+									also note how only ethernet0 (@20000) is evaluating rx-queues-config since that's where the rx-queues-config node lives
+(dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
+
+Thanks for the review!
+ - Andrew
+
