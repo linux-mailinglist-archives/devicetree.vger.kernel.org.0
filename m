@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B02566E1E3E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 10:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA1E6E1E51
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 10:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbjDNI2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 04:28:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37764 "EHLO
+        id S229841AbjDNIbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 04:31:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230161AbjDNI1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 04:27:54 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83DE265BA;
-        Fri, 14 Apr 2023 01:27:20 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-2470e93ea71so389614a91.0;
-        Fri, 14 Apr 2023 01:27:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681460838; x=1684052838;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zzKR2LyQ2p4nmkCMjGPaXnh+dnHbOHXDFbLSWiv9aKI=;
-        b=pM63Dvia+E1GA/XPoR8yqc3McXi+HI6vownSSu1Fi6nTFmNoACVjzvBTn9oCiSrMUV
-         hb2DVaTgQA/i7bGsF9dq8MVSYOoATnHkoIkzB1aJE6WxuVAiVpdecoftLep5KtY+ekzn
-         eFPyeQlxM2pzEe05qrBWCDhy0eFjlskEgA4Zl+cSJIiGAFyfy2tOens5i6mL3vu3DXCs
-         ZZh2uAuH9p2T7bv2IW0X1Yh9jeNlW/bfFSBnoqblxRwg/Ait2pkzw+hjyg2zQTuRsaH6
-         D/JebzTPtPTERsPhssTCBbDhOXhdzXqRmc2aG9y2S/TnTuV1907FQdJcLTr73xSNO6R1
-         KgcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681460838; x=1684052838;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zzKR2LyQ2p4nmkCMjGPaXnh+dnHbOHXDFbLSWiv9aKI=;
-        b=d3sjl2p18rNbTQNsRe5JhiRqR8Km8b8NFZArcMLImrSf8db6BcpjVKdSAuepJCF3Id
-         4vKU1zwc8Ce64qjfUqiDvRggykAMVtVEJfy3S9BHiStCkfZ12v9HLAyKnIsDRd1qoRmd
-         EmnDB3WmU7/GNR0TdTOzaIuUHTdxoG7AwqLlOzn/JGEPhv7Lz4Q/PkH37ClIQuuhEt4b
-         od1U+91Y22NBWugWI0ZtoZv7yVCrzvQWtSV+7qN/ZFKsawNe3ztiJKt1sd8ro1378MZf
-         grmbTp7OiqzcTEnbDmHJFAsrcrFDeCkWA8NMwkoB+inygDV4Z2bj4hIAkezC01fi2VXK
-         RdZw==
-X-Gm-Message-State: AAQBX9e8LXVGIQD1b7CeMEVi9J4KX08QkxH2WJUJXvttVwR5Fu4ZKeyE
-        HpsPGGHew7Raug3+ts47mQE=
-X-Google-Smtp-Source: AKy350YkpGycY5TWD4lm+/xAK9z9lP/zyakLMPoDbXGP17+eOwwTeByNHA52Oc58U1QToDT7OJpGjg==
-X-Received: by 2002:a05:6a00:1744:b0:63a:d2e4:cc35 with SMTP id j4-20020a056a00174400b0063ad2e4cc35mr8012882pfc.31.1681460838532;
-        Fri, 14 Apr 2023 01:27:18 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id 23-20020aa79257000000b0062df30c7e7esm2537400pfp.136.2023.04.14.01.27.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 01:27:18 -0700 (PDT)
-Message-ID: <7396daa9-e697-5fd6-2e7d-0164302070dc@gmail.com>
-Date:   Fri, 14 Apr 2023 16:27:14 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v7 04/12] dt-bindings: reset: nuvoton: Document ma35d1
- reset control
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S230122AbjDNIay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 04:30:54 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50743C3A
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 01:30:51 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pnEp5-0004l4-Vm; Fri, 14 Apr 2023 10:30:24 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pnEp2-00B9ki-OF; Fri, 14 Apr 2023 10:30:20 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pnEp1-00D6uj-Ur; Fri, 14 Apr 2023 10:30:19 +0200
+Date:   Fri, 14 Apr 2023 10:30:19 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230412053824.106-1-ychuang570808@gmail.com>
- <20230412053824.106-5-ychuang570808@gmail.com>
- <874a1e5c-f82e-68d7-3617-042deb928071@linaro.org>
- <41807e8d-b081-6c91-3fc8-f273770ea493@gmail.com>
- <5a59485e-5421-0cd9-ce51-79cf0fd6da79@linaro.org>
-Content-Language: en-US
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <5a59485e-5421-0cd9-ce51-79cf0fd6da79@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        jassisinghbrar@gmail.com, chunfeng.yun@mediatek.com,
+        vkoul@kernel.org, kishon@kernel.org, thierry.reding@gmail.com,
+        chunkuang.hu@kernel.org, ck.hu@mediatek.com,
+        jitao.shi@mediatek.com, xinlei.lee@mediatek.com,
+        houlong.wei@mediatek.com, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
+        kernel@collabora.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 01/27] dt-bindings: pwm: Add compatible for MediaTek
+ MT6795
+Message-ID: <20230414083019.cpomx37tax4ibe5u@pengutronix.de>
+References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
+ <20230412112739.160376-2-angelogioacchino.delregno@collabora.com>
+ <aaeeb18d-f8e8-d6c1-1272-e5b797554b9e@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="meuxombxxc4zwoxv"
+Content-Disposition: inline
+In-Reply-To: <aaeeb18d-f8e8-d6c1-1272-e5b797554b9e@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,60 +68,69 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--meuxombxxc4zwoxv
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2023/4/14 下午 03:46, Krzysztof Kozlowski wrote:
-> On 14/04/2023 02:55, Jacky Huang wrote:
->> Dear Krzysztof,
->>
->>
->> On 2023/4/14 上午 12:58, Krzysztof Kozlowski wrote:
->>> On 12/04/2023 07:38, Jacky Huang wrote:
->>>> From: Jacky Huang <ychuang3@nuvoton.com>
->>>>
->>>> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
->>>> between the reset controller and reset references in the dts.
->>>> Add documentation to describe nuvoton ma35d1 reset driver.
->>>>
->>>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>>
->>> This is an automated instruction, just in case, because many review tags
->>> are being ignored. If you do not know the process, here is a short
->>> explanation:
->>>
->>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->>> versions, under or above your Signed-off-by tag. Tools like b4 can help
->>> here. However, there's no need to repost patches *only* to add the tags.
->>> The upstream maintainer will do that for acks received on the version
->>> they apply.
->>>
->>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
->>>
->>> Best regards,
->>> Krzysztof
->>>
->> Thank you for your explanation. I was not aware of the rules for adding
->> tags, and it was my mistake.
->> I thought that it was necessary for the reviewer to proactively add the
->> "reviewed-by" tag to the patch
-> I proactively added the tag last time. You expect me to review it every
-> time and every time add my tag? You know, we all have better things to do...
->
-> Best regards,
-> Krzysztof
->
+On Fri, Apr 14, 2023 at 10:21:05AM +0200, Krzysztof Kozlowski wrote:
+> On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
+> > Add a compatible string for MediaTek Helio X10 MT6795's display PWM
+> > block: this is the same as MT8173.
+> >=20
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> > ---
+> >  Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.ya=
+ml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+> > index 0088bc8e7c54..153e146df7d4 100644
+> > --- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+> > +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+> > @@ -22,7 +22,9 @@ properties:
+> >            - mediatek,mt8173-disp-pwm
+> >            - mediatek,mt8183-disp-pwm
+> >        - items:
+> > -          - const: mediatek,mt8167-disp-pwm
+> > +          - enum:
+> > +              - mediatek,mt6795-disp-pwm
+> > +              - mediatek,mt8167-disp-pwm
+>=20
+> This does not look correct. You do not add compatible, you replace
+> breaking all mt8167-disp-pwm. At least it looks like this from context.
 
-Dear Krzysztof,
+I thought the old semantic to be:
 
+	"mediatek,mt8167-disp-pwm"
 
-Got it, I will make sure to add review tags for this patch in all 
-subsequent versions.
-Of course, other patches that have received review tags should also be 
-included.
+and the new
 
+	"mediatek,mt6795-disp-pwm" or "mediatek,mt8167-disp-pwm"
 
-Best regards,
-Jacky Huang
+=2E What am I missing?
 
+Best regards
+Uwe
 
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--meuxombxxc4zwoxv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmQ5DxoACgkQj4D7WH0S
+/k4b0gf/XGg5FqG1Mgkx3HAKSgi3PZuY2KSNIop4uRKh9jD6sSxX8ZOB5wNtwFbz
+OwOpF/4bmEy9R4vW++134sQENrXwVv2QR8aMaolP298zl6s+qqTm1/8USwc3TVep
+kTXMWWKuKFTBbj2viZrKSJUBT7C7I+VPcblxqtQnYe9AUZYJRCtLalvkECL+FgiZ
+EbKGM99/7nbD7NPk33LTt0uEiaBrWoe7p4ehasD9uVW/7dhZAs44xQLFOR+XiT4U
+Upy4cMJQtRqfISF44KBNw0Bm2Rm+Tqw3NoKTtPOQ1C36xzTHBnC+hp8ZoPFR/dYo
+T9uMy4x52AKlzE9EAH2T/lOj/Rs5uQ==
+=6UO4
+-----END PGP SIGNATURE-----
+
+--meuxombxxc4zwoxv--
