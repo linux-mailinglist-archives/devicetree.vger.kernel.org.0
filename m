@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53B1F6E1D95
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1BC06E1D9D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbjDNHz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:55:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42006 "EHLO
+        id S229938AbjDNH4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbjDNHz5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:55:57 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700A46E91
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:55:56 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id qb20so43139038ejc.6
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:55:56 -0700 (PDT)
+        with ESMTP id S229935AbjDNH4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:56:13 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAF4E7280
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:56:10 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id xd13so9632897ejb.4
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:56:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681458955; x=1684050955;
+        d=linaro.org; s=google; t=1681458969; x=1684050969;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=syaimoY1CeMz3j1GQljmX0s2rTTrm4sDqwOqzOB2bDk=;
-        b=aMKEHU4W8BPj4JRuUktionnuCb3sDqW+/xngj1wmFIHmfAJXre2xbeYVGDXasuvH+P
-         sTiY7M7yNgjDc7iiy3VAmW1RvTuQp/cL+Hn7hOxXQMf5C4AurjrqYrzaEP6ioPlu5Keo
-         vBkBc8BEt6G2ziEjhZHYtoKd/CYzodmcMNnYXA8XdXuUhA6v522SP943jQaj6tg6OG19
-         7fz8O+H3UADvhZIvH+la3f+Hs2agd6n16PJ/YyUmNPwLyEXPmuibUfFqJhRWUY3g8b2W
-         4FLqg5j0YmaNnrQIx9RkQCdJc4COKjcn/MoBJR3nxntfVIX7wM379uvFan7ybFA381z4
-         nsbg==
+        bh=jO+txe0/tju7TBj8YyUNP1mhhIUo+JM8IABYNNwZkrU=;
+        b=P2p1Pab0C8LFNjEyySM/Keqgkei3qF4Z8GHYSoWA8GmQTkzPhxJa/4AklwidKiap4I
+         r6NjChvpg3OHYZzdwfzPIFKnH/nzDlAmzMzGOdeWIkKcRLQCH4juzGJOad/vqsqGBlqk
+         nlyPEvpzhirFoLSut2BvpV0i3iMt5Hsn3wSzMq7Wf4cWzuW6ytOcBAn5+lYTiHLVDEXG
+         vAv6Ghskc1agCXPWAyV5dlu80Ejxzf9nhb20cm6H7fOi6Z2Vrddg6T4Q0IfA34DVyraj
+         o1n23Hp/P8hRMQxhmKeXkFquKOF42bCFTozbjEI/7MeqhWtKPhF5SHB5mAFeGsNPsmvt
+         gONw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681458955; x=1684050955;
+        d=1e100.net; s=20221208; t=1681458969; x=1684050969;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=syaimoY1CeMz3j1GQljmX0s2rTTrm4sDqwOqzOB2bDk=;
-        b=TbYBrM54n6w25H6GgvnXH9Nu/t5rxWURKIvFaB7Us/MLCLh6n0p5Ztj/8GzW+d9YUW
-         0rOZUhwmFqIeLUVYq5StczCt3vo6cApZ3yLVfHJ8y8Ff5euCzVAcXYdx534BcMZq2wm5
-         UKv/Vk0C0y8PpJeSrlhIQXYG0NEFH7V6MF4m0SgjBIBXICigk0DTCGMjdXm7GSRu3Wpp
-         dmYrQBt/+XqNid8iQZx8UwubkwFrbkmAvSHj0etwkhBrs5+XXBbNPjzcyK19AwbcKMMt
-         ylwgH9UhKIsr17lbb7jzfP6cqFMt1YjOMbD1ok52tz+c4V32PaAnQ2kt5KeGj+U9of7z
-         1clw==
-X-Gm-Message-State: AAQBX9dNALwkDIJ4hKy9cBdQkVQV40X/KeV2uV1gsVPl8/XdqEoEluHY
-        iAAam8bpjF6X4p1QSqSW4FdXxA==
-X-Google-Smtp-Source: AKy350YEkKeUBW3ili1/m7SH/lApxnbxMQneIpNg+EJow4S//Z5+6f9wtWSfxtIlV4kBKhAQpgt0Qg==
-X-Received: by 2002:a17:906:6b0e:b0:932:cec7:6801 with SMTP id q14-20020a1709066b0e00b00932cec76801mr5001716ejr.54.1681458955055;
-        Fri, 14 Apr 2023 00:55:55 -0700 (PDT)
+        bh=jO+txe0/tju7TBj8YyUNP1mhhIUo+JM8IABYNNwZkrU=;
+        b=C2gqDbyhlKNNAsrq96WPK8rf3wVeMLA4oGHLXvoPqYaKTyQNAS+aBObYmnimQKbnzw
+         yak7mChNKuaT7zci9IfDeMDqVgMIu0SsjGjKeuf5gb2/fmbtvkoJH4Mu1ML67JgZQrMr
+         7weilTo08f4QgVoywyNGjCrPGG51o9MIciB3+UnQr/pZxQMoDzzZjFToPz24Ny/hWYI2
+         kZ4IomfyCz7+w0OEnbuSBVVhh3PcoWfZw4XE+M97BZ/REYfr+IWZ7k0xaJVv4pBeaAfn
+         flwkhmV41+ZJeWdm9CcGs+EIrfwIxf/wnmxMzATJ3t+4nG+fsEmbPPoMR/PGpxaFKeXG
+         mGhA==
+X-Gm-Message-State: AAQBX9f8ZqzqOeHN8wKxlgBFN9Uw+kEPD177P+nE/xWjMXEUGlAg6GVv
+        DmfZ+xDI1apHT+6oNyfiRjzSXA==
+X-Google-Smtp-Source: AKy350ZgBFckEN9fwytkjaYI9qzUHXg8J2Y+dj5ceEZhD0V/5bXD+O4dL45kZIF0pZIK7aNwp2tMlA==
+X-Received: by 2002:a17:906:2449:b0:94a:8f3a:1a77 with SMTP id a9-20020a170906244900b0094a8f3a1a77mr5107342ejb.8.1681458969092;
+        Fri, 14 Apr 2023 00:56:09 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id gn42-20020a1709070d2a00b00930525d89e2sm2088224ejc.89.2023.04.14.00.55.53
+        by smtp.gmail.com with ESMTPSA id 7-20020a170906328700b0094e1344ddfdsm2073873ejw.34.2023.04.14.00.56.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:55:54 -0700 (PDT)
-Message-ID: <e6d3fbd9-09bb-6694-60db-881c41e828de@linaro.org>
-Date:   Fri, 14 Apr 2023 09:55:53 +0200
+        Fri, 14 Apr 2023 00:56:08 -0700 (PDT)
+Message-ID: <577ecd98-94eb-3795-4859-ffad03192f89@linaro.org>
+Date:   Fri, 14 Apr 2023 09:56:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 3/8] dt-bindings: leds: qcom-lpg: Add compatible for
- PMI632 LPG block
+Subject: Re: [PATCH 5/8] dt-bindings: iio: adc: qcom,spmi-vadc: Allow 1/16 for
+ pre-scaling
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
         phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
@@ -72,14 +72,15 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-leds@vger.kernel.org, linux-iio@vger.kernel.org
 References: <20230414-pmi632-v1-0-fe94dc414832@z3ntu.xyz>
- <20230414-pmi632-v1-3-fe94dc414832@z3ntu.xyz>
+ <20230414-pmi632-v1-5-fe94dc414832@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414-pmi632-v1-3-fe94dc414832@z3ntu.xyz>
+In-Reply-To: <20230414-pmi632-v1-5-fe94dc414832@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,11 +88,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/04/2023 01:17, Luca Weiss wrote:
-> Document the availability of an LPG configuration for the PMI632 PMIC in
-> the Qualcomm Light Pulse Generator driver.
+> The channel ADC5_USB_IN_V_16 is using 1/16 pre-scaling on at least
+> pm7250b and pmi632. Allow that in the schema.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
+>  Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
