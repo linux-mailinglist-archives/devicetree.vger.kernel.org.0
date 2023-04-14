@@ -2,130 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 237BB6E1D68
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 089066E1D6D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbjDNHoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:44:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
+        id S229749AbjDNHq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:46:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbjDNHoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:44:16 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D004C22
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:44:14 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id jg21so43136933ejc.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:44:14 -0700 (PDT)
+        with ESMTP id S229791AbjDNHqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:46:17 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE681A1
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:16 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id dm2so43613079ejc.8
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681458252; x=1684050252;
+        d=linaro.org; s=google; t=1681458375; x=1684050375;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xggPyA5Loe1PP8kK256jqhC93KUTQ15DwlgDEOkunfA=;
-        b=lfChVG0kCG4fpYP4QhuqIz/B3aGDMndQAyK5F34Aw9DcYHwWZj2sxxsAdDoUMyECtw
-         Waao+Y7Of9MwB+er1zwTwdFcMR81qJMZsNo5eJUy1aOPd7lunlBS4k1Jjxexk55HxqTh
-         cxicVe6SJ+Aui9RRgVdj1g2YOrgboXSiIJ3zQL0baMb9mCrRbXs3QIWihfEfcondhNS/
-         qdPMG4B+/0gy7av2wtoBx5ubpbcsDWGCUFKAWvcvD6DlAEDYSqM4ahmtk4j0sjeUgKnm
-         bl0NS9l8VgnoMPzgpJBQc0om3NPsuZlkIJdOEm3u90Dw77vUiTJjdlmt54iQBIVSVG7U
-         ltKA==
+        bh=uJMpHJ9Id0D2MrYTYA9hknAdsv0k6501D9t8I/C7d9M=;
+        b=txlFOjH8fFM6V0K2iqGzmAMMCIm43mrgAtn5O23gUflpUzNV2Rpgqzyj34lkHelagh
+         3Z9I7b94i2jt6d7RpXZOQITxQjp+vvYbZP40/eRiJ5v33/skX6S2k2uc4E3SstTfxI18
+         sZA7P+JpURGiE2tCWB04WomqYjwXeRzI8nmK3m2Of569r+/GB45NMjRc1lU3+fW5aaQY
+         oLQgQ/MMNAsRgt5L7XpdVpwiXp6+n/gBS6y4S0KYEH+x0gHcih330c1HDX4hLyWawHKs
+         bgurP0rC3kXMr3wOevYaMkVAXhnctMSAzTqaUSSkrYMFod8sxeHuzQKI2cjbhhIXGC2e
+         uVLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681458252; x=1684050252;
+        d=1e100.net; s=20221208; t=1681458375; x=1684050375;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xggPyA5Loe1PP8kK256jqhC93KUTQ15DwlgDEOkunfA=;
-        b=kZFHSIPzFP6M/mYQxag0POap4kxEHaIGUZu4j/15Hx5OgqBFVAId8fxcVpKqjCaF6R
-         MAFcNXcj7glq9ZwYI5450tslbXBrTOQm3SMj7BnqWFHaP4CK3GhN9wIK5eV9E/BzQo8m
-         be+1IbTitiS1UjZEtZQK9rRR6RzWrW7fq3NYt+p+eqfQ12Gnam/3JAbRdbFWrKvndxk2
-         xIMNOBchELklXj7RKlUxZKXfXnQPYY/i13kLMiGbmCDkrI1E0H69wTZbtlZu0jCXbqq9
-         HsrY0dpM8L6trWBHQDucVbAP0Xgic7Worjb2ye6kWv6rETofV7+U0EK/u6NSKhZ82Z44
-         Gbxw==
-X-Gm-Message-State: AAQBX9c6irFUFzjR0YfLifkcyILazR1lwiANjlp1Yq2wd0EVgux6D9VJ
-        KBVbthCq3Rrz8nFFjqqPWF6TrA==
-X-Google-Smtp-Source: AKy350YPcZ3BLKpDrlII+wqnI5EW6oBxcl0fHOpJPCrNIqmVgoO5mmHwNDo4YKuiP7xHtB3sEAX9hQ==
-X-Received: by 2002:a17:907:7810:b0:8b1:7ae9:647 with SMTP id la16-20020a170907781000b008b17ae90647mr5407027ejc.76.1681458252561;
-        Fri, 14 Apr 2023 00:44:12 -0700 (PDT)
+        bh=uJMpHJ9Id0D2MrYTYA9hknAdsv0k6501D9t8I/C7d9M=;
+        b=ENUuFBJD5C4sw+He51a9I+XbqDJ/x9QBprKYZ2OqCJL3zo/FpandQiVJ42NqLPBRZ+
+         RxzmNg5pbmiNcsVOZV8NlKVZWGQwR/RR8rWX8HJzPLUZQqNFxId2cM1EHz/XISMOGMwv
+         SaUE9GFN9E4MNRVcGdRMhv9qQRA8aVK/B6DE7X2taPjZiJ6m3Qr8R/hyTaxBfPHhMZqj
+         +61I3eM4SxiWjIz8mfBPtbDknRjd2pNsDzJ1z5Ry4MGt7alMhNQ1ysz2RONXw+8KtV/0
+         pzfgbrqpFQQ+FMn4tF/hIKDPDo62WGtQKzytkbxOOzmw3uY+OY31CZj8GEDjd26/8cUY
+         D0Pw==
+X-Gm-Message-State: AAQBX9dydts2AAk/cq40LiRWIrncqSgrsXxAfz+oQOu+frSFqBJpHUz/
+        0Yl3UpisS3mY5jjZQGQbhU4vwQ==
+X-Google-Smtp-Source: AKy350boGKzFJ21zxd7dL/1s/qxBNhWGZUduYhPtCkpcSN3V6n/4aQoosh6V9eTJuVzLb50Doxr4Vg==
+X-Received: by 2002:a17:907:20aa:b0:94a:93cf:6b11 with SMTP id pw10-20020a17090720aa00b0094a93cf6b11mr3725931ejb.27.1681458375074;
+        Fri, 14 Apr 2023 00:46:15 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id gv16-20020a1709072bd000b0094a785e362dsm2118002ejc.141.2023.04.14.00.44.11
+        by smtp.gmail.com with ESMTPSA id tg4-20020a1709078dc400b0094ea3a32694sm1969651ejc.190.2023.04.14.00.46.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:44:12 -0700 (PDT)
-Message-ID: <046eac79-b97e-9f95-8a2f-05cf00a00f81@linaro.org>
-Date:   Fri, 14 Apr 2023 09:44:10 +0200
+        Fri, 14 Apr 2023 00:46:14 -0700 (PDT)
+Message-ID: <5a59485e-5421-0cd9-ce51-79cf0fd6da79@linaro.org>
+Date:   Fri, 14 Apr 2023 09:46:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/5] dt-bindings: input: touchscreen: add bindings for
- focaltech,fts5452
+Subject: Re: [PATCH v7 04/12] dt-bindings: reset: nuvoton: Document ma35d1
+ reset control
 Content-Language: en-US
-To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        Job Noorman <job@noorman.info>,
-        Alistair Francis <alistair@alistair23.me>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230410160200.57261-1-joelselvaraj.oss@gmail.com>
- <20230410160200.57261-2-joelselvaraj.oss@gmail.com>
- <f9552bb6-ea73-93b4-f15d-d5d7c326c708@linaro.org>
- <b89c39af-da87-8138-9899-fb631ebe76e1@gmail.com>
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230412053824.106-1-ychuang570808@gmail.com>
+ <20230412053824.106-5-ychuang570808@gmail.com>
+ <874a1e5c-f82e-68d7-3617-042deb928071@linaro.org>
+ <41807e8d-b081-6c91-3fc8-f273770ea493@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b89c39af-da87-8138-9899-fb631ebe76e1@gmail.com>
+In-Reply-To: <41807e8d-b081-6c91-3fc8-f273770ea493@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 02:32, Joel Selvaraj wrote:
-> Hi Krzysztof Kozlowski,
+On 14/04/2023 02:55, Jacky Huang wrote:
+> Dear Krzysztof,
 > 
-> Konrad Dybcio suggested to use interrupts-extended instead interrupts.
-
-Sorry,
-
-I have no idea what this email is about.
-
-There is no context here, no reply, it just appeared alone in my inbox
-without any reference. Please respond inline to existing messages,
-keeping necessary context you are replying to.
-
-> So in my WIP v3, I have updated it in the dts and bindings example.
-> However, I am confused if I should replace the "interrupts" with
-> "interrupts-extended" property in the schema too? I see a lot of schemas
-
-No.
-
-> specifying "interrupts", with examples using "interrupts" or
-> "interrupts-extended". At the same time, I see some specifying both
-> "interrupts" and "interrupts-extended" (like one of these two) and very
-> few others specify only "interrupts-extended" in the schema. Which is
-> the currently recommended way to do this?
 > 
-> In between, the interrupt property should be a required property as the
-> driver will not function without an interrupt. I will fix that in v3.
+> On 2023/4/14 上午 12:58, Krzysztof Kozlowski wrote:
+>> On 12/04/2023 07:38, Jacky Huang wrote:
+>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>
+>>> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
+>>> between the reset controller and reset references in the dts.
+>>> Add documentation to describe nuvoton ma35d1 reset driver.
+>>>
+>>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>>
+>> This is an automated instruction, just in case, because many review tags
+>> are being ignored. If you do not know the process, here is a short
+>> explanation:
+>>
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions, under or above your Signed-off-by tag. Tools like b4 can help
+>> here. However, there's no need to repost patches *only* to add the tags.
+>> The upstream maintainer will do that for acks received on the version
+>> they apply.
+>>
+>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Thanks,
-> Joel Selvaraj
+> Thank you for your explanation. I was not aware of the rules for adding 
+> tags, and it was my mistake.
+> I thought that it was necessary for the reviewer to proactively add the 
+> "reviewed-by" tag to the patch
+
+I proactively added the tag last time. You expect me to review it every
+time and every time add my tag? You know, we all have better things to do...
 
 Best regards,
 Krzysztof
