@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34DE86E1D48
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CA86E1D53
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjDNHfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:35:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56926 "EHLO
+        id S229791AbjDNHgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjDNHfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:35:05 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E9C6A70
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:34:44 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id rp27so6425901ejb.12
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:34:44 -0700 (PDT)
+        with ESMTP id S229793AbjDNHgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:36:40 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C827F558B
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:36:20 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id z9so16412577ejx.11
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:36:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681457676; x=1684049676;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1681457776; x=1684049776;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R+rh3tDvh6WkK7g8h9KApr2CJ8l25rqXWTlNAb5p0pY=;
-        b=p3fXroZpOQkazJL/kjoMSRniuPA4fAGPsUR3lrGrgN306Q6HTfNnzTmfz3zOofY2Eq
-         0izO5J5X/Fy94Y2sCAERvKKyInONDCnHlJ+7gvHjOl946qu2TicB4L0AQRRJMONqRHDJ
-         dGzVGJcdmD39i6WI1+KNGYGJZIQfGBrnDVZkeWESjfDyluYYrzCICF+er2Jg/RwsWtW2
-         mg+LWjrBnPFL9jN2fPgt2LRTDKRuYb6PheaZOe7lWsU3VO9AAwdW/c5oIbpj9NQmJBtr
-         pslTev0VbDyx7JkbEm5g7yN5L3Sf288U6MypPefNgbzOIBBxioUqzv+j4gKzZ3vXQIMr
-         /jTQ==
+        bh=6BIZm7OVoNPgP6hAJjegDQgkQsNI+ED4GT7hk/PWCTI=;
+        b=KLRG03aT3upNVPSBhBy9mK+wVYK0Rg+7gOcMpROGPKro/27CtNuIHLDXg0n/BZo+cx
+         n1krkAKd10ib4EXHQ/9eKJKZWDylSuNY/OwMo0kvsaFT1o4WSAUJ56FUILTJBBm5Tm9m
+         eW7gEFThJZ9ZsOp3TsxQRBvT9TOT/hbGgW+R9H3uNxgkeJypfJSv4QzqCFJS1hCk9n/a
+         aYfb0fz4CfhE7SHunCg/qCYgYUXB6D1j5qykim9mzN4uaIMT4wKi8hg3fp7HM5JHcmEF
+         lCZy5tsEHnECWiUWdov0ES0MDacOf0aY+/Rm/rdJn0W68Gtwdj5U2jwRVaKiFWMxEcST
+         vcqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681457676; x=1684049676;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1681457776; x=1684049776;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R+rh3tDvh6WkK7g8h9KApr2CJ8l25rqXWTlNAb5p0pY=;
-        b=l+pD0R4Zgr8ewYLghb2XntZ20b70sLIsNfTm61inn93OG6GGMhCgGv4ssuCHM5pgDr
-         AdtUwsNeL82JF5mn8++rvQY7qQZV51LGcQzmkvN7kuXRybww0T/7NGmuGC7ylLDAmteA
-         4/oyVF/nJ6K035elcbCLKmz622kmTNRiD1wxk9KylTAsj0ukFj931UXUzSY0AhoGU5MY
-         B91r5tq1wkkzgfunwSHGS6Mbwy17+2+pH/iaspgtdFSo3kwSHogChFlIEKV0HnqbDWRN
-         jIxSzIoOGmK2dDLt6CDkInpQpjtYvX2PkLTXLx6qw142vutiiOjruK8kissHOSSASz7J
-         7Srw==
-X-Gm-Message-State: AAQBX9f1o7uvK5dUtilUlq5PzzF40t6e8hXCG3waHHTHTkS9kvYhZuxI
-        sW+Gm1rrNBodr2uLZwC6bZ4cUg==
-X-Google-Smtp-Source: AKy350arUjQBSNqUUBjSuVfoDP8zc1vyW/pMS/UxUoiUXdFN6JUn2vgJa2VEVtjwqNN1gsEkfBgebg==
-X-Received: by 2002:a17:906:a4b:b0:94e:4700:7a66 with SMTP id x11-20020a1709060a4b00b0094e47007a66mr9163112ejf.6.1681457675818;
-        Fri, 14 Apr 2023 00:34:35 -0700 (PDT)
+        bh=6BIZm7OVoNPgP6hAJjegDQgkQsNI+ED4GT7hk/PWCTI=;
+        b=WltBK/yDCFYzBJYTuAVjF/Egw3M0o83DOJ0W7WtpnH2AQRSz0jlmrp+5gp7qg74sfQ
+         ayQbNajWk7MYDxTUTtJXi0x6YC14b9aTybrgLQR6yswKj5hKOdCaDKvrPA8tzkD5/F6x
+         2CTUezjLyryT1uB12dxve2kX0vDV0P/mnyaDX0gPaoGyc3NkeMBo1p8s3tB7M8TUUcQU
+         KzlFCRME+7bP4pEsWxfdzdjV3pIfB/xGIwhDiMvBrLpahbyLTTyfgWBWA+d7sozn+My6
+         MfU+TeycJsqlkUYRfYuUbSELDPIJ4HaBHupbPfEHNOmcnqDwQnqkTQsy2mnFCI0cZrRr
+         XNNg==
+X-Gm-Message-State: AAQBX9fnZdXotktYLxsG2DJvnlqrv3Iek3rF6oEFjyG75+ZCgSFq56od
+        fAuYinCfNZ+R8yGuvFGs89XxvA==
+X-Google-Smtp-Source: AKy350ataZ2VxRZLVqcOMSGN9yHYPp2N5iuran36ny+AQ/gi+UjSIj45G6llauYBbyVOYStGbZPi3w==
+X-Received: by 2002:a17:906:2788:b0:94a:90e5:b2b6 with SMTP id j8-20020a170906278800b0094a90e5b2b6mr4995448ejc.58.1681457776525;
+        Fri, 14 Apr 2023 00:36:16 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id d16-20020a17090648d000b0094bcf409ec9sm2050595ejt.49.2023.04.14.00.34.34
+        by smtp.gmail.com with ESMTPSA id j25-20020a170906095900b0094a70a89bffsm2018786ejd.205.2023.04.14.00.36.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:34:35 -0700 (PDT)
-Message-ID: <9ceba633-cf36-efd3-6889-1bbe6755b398@linaro.org>
-Date:   Fri, 14 Apr 2023 09:34:34 +0200
+        Fri, 14 Apr 2023 00:36:16 -0700 (PDT)
+Message-ID: <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
+Date:   Fri, 14 Apr 2023 09:36:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCHv4 1/3] dt-bindings: usb: Add RK3588 OHCI
+Subject: Re: [V6 0/9] Add Tegra234 HTE support
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Rob Herring <robh@kernel.org>
-References: <20230413173150.71387-1-sebastian.reichel@collabora.com>
- <20230413173150.71387-2-sebastian.reichel@collabora.com>
+To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230414004455.19275-1-dipenp@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230413173150.71387-2-sebastian.reichel@collabora.com>
+In-Reply-To: <20230414004455.19275-1-dipenp@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,73 +78,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 19:31, Sebastian Reichel wrote:
-> Add compatible for RK3588 OHCI. As far as I know it's fully
-> compatible with generic-ohci.
+On 14/04/2023 02:44, Dipen Patel wrote:
+> This patch series mainly adds support for the Tegra234 HTE provider. In
+> addition, it addresses dt binding comments which prompted code
+> changes in the existing HTE provider driver without breaking the
+> Tegra194 provider. The comments raised concern how existing code
+> retrieves gpio controller node
+> (the node is used to help namespace conversion between HTE and GPIOLIB).
+> To help simplify that process, new DT property is suggested which adds
+> gpio controller node in the HTE provider binding as phandle property. To
+> conlude this patch series:
+> - adds Tegra234 HTE provider
+> - modifies existing provider code to address new dt binding for Tegra234
+> without breaking it for the Tegra194 chip.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> The V1 patch series:
+> - Adds tegra Tegra234 HTE(timestamp) provider supports.
+> - Updates MAINTAINERS file for git tree, mail list fields.
+> - Updates devicetree and API documentations.
+> - Enables HTE subsystem, Tegra194 and Tegra234 HTE providers
+> by default in arm64 defconfig and dts files.
 
-Sebastian,
-
-Can you fix PATCH subject part in all your submissions? There should be
-a space between PATCH and v. Just like `git format-patch` creates. If
-you use other tools for this, fix them so they don't create other format.
-
-You also need to rebase your patches - this is something old and cannot
-be applied.
-
-> ---
->  .../devicetree/bindings/usb/generic-ohci.yaml    | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> index a9ba7257b884..4feb993af53b 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> @@ -44,6 +44,7 @@ properties:
->                - hpe,gxp-ohci
->                - ibm,476gtr-ohci
->                - ingenic,jz4740-ohci
-> +              - rockchip,rk3588-ohci
->                - snps,hsdk-v1.0-ohci
->            - const: generic-ohci
->        - enum:
-> @@ -69,7 +70,7 @@ properties:
->  
->    clocks:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 4
->      description: |
->        In case the Renesas R-Car Gen3 SoCs:
->          - if a host only channel: first clock should be host.
-> @@ -147,6 +148,19 @@ allOf:
->      then:
->        properties:
->          transceiver: false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-ohci
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +    else:
-> +      properties:
-> +        clocks:
-
-Please test the patches before sending. If you tested, you would see
-warnings here.
-
-You need minItems: 1.
-
-> +          maxItems: 3
->  
->  additionalProperties: false
->  
+All your emails miss PATCH prefix. Use `git format-patch` to generate
+proper versioned patch. Stripping important part messes up with our
+filters. We have quite a lot of emails, so proper filtering is important.
 
 Best regards,
 Krzysztof
