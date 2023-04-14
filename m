@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F23B96E21EE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92ABC6E21F9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjDNLVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 07:21:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54114 "EHLO
+        id S229962AbjDNL0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 07:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbjDNLVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:21:38 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1614B198B
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:21:37 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50674656309so1031065a12.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:21:37 -0700 (PDT)
+        with ESMTP id S229911AbjDNL0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:26:15 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F3A83CF
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:26:12 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id i6so11215354lfp.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:26:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681471295; x=1684063295;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hWP16bG6uUr4pZjxU30nkO7zZOcUfB3YuG/344uIKNQ=;
-        b=RS8Qhvt0joORbhPMbnrHe/IfmdjZ0uOTbrgCAmyBIgJ5m26eaqgonnlIyIeCxGL9Ry
-         Sl5gOj9wsiAhkE1cmGC6DaE34pv5pyCSiV/ZeNaM0JMVh1ECH85kt4poSz76UCYPNF1O
-         HI74UMYeOXFuaN5HwrTSGIMBX6C1tsDTKffPckyIBy4eNsgM3gfRRVmcd2Q9PfPUs9Ly
-         nf0LEgk3MucrjFbylGBnuuPseNh6ewCWhS8Q25+/VTqwf6eo3Eex062iKP4pMjEq1AVQ
-         z8DaOgVsAh1uAMsr4HY5m+nIVMOF7FyVIcgoLkMSxKQfSthOyXohvPvW/gSwIQMb0TzF
-         TN5w==
+        d=linaro.org; s=google; t=1681471570; x=1684063570;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZXayIhb48rpICvZhgV0WpLpWTGJfP5YGp0OUVXORCrU=;
+        b=B+aAH7iwOvmQOPM5kAGyXrKGDpG3EgfK7vClDXgy1uEk2I98f/mWfScR07a1scB4fz
+         NTjQ56u04nweoPFEM89XzKAkO3xZmFOcRFY0RbCaRTh2qSFhpId5RyZ/kmqSgNwJ0nNd
+         QWp2sVBBuQYQaPb/BK3eWNhyNGrL0t86GFMYbQRQV5qFTOA9PhrRyMq9lBj7ZQAzJ7el
+         NsGzuADabwE14EL52awSsYbyvUhMPCTuzucA4MH0vY/JKVdMdciB6hXkgRbEgyXPrXYs
+         WBJrjGmnRIF4TNgqSRpo1086F9agmwjywSRuBZzdMIaDDKy1nuzBVPsQk2jve81DJhk8
+         rONw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681471295; x=1684063295;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hWP16bG6uUr4pZjxU30nkO7zZOcUfB3YuG/344uIKNQ=;
-        b=JfRWgkNqomCli+GvgS5BqIaiMx/FB3mJy/WJqRhAcqDUY1zrbsBAUb2Xs/yCNf3Lw8
-         jv/NTcVDlLyHNomKS5QwkHEgJzZctA+hnj30sogcx2QdS+11o3JLV/HNyGaTvtXtCRwv
-         BfVOqtqgzyWIAV6Sy1PMAELL7a4H7ZV7n5nMIjbnMnZJ/OikM8DPM8Oc/D3kYNYZ7z19
-         0WoCW/cYgr0uIKOtxHGZY4nd+39WKG/eyYcSQ/+2GOee+SeqgeObv0zAJfaCOy+PlwkL
-         Y5uNEL6ufxQCsQe/gAl9JR4qHqx9axiO2tJ6tqpz5th59CC6XOSSX2k3shF76Ad37x4N
-         uuKQ==
-X-Gm-Message-State: AAQBX9dajV4sa50c9z/I8g4XyuGAaZZ+zS9iegMcfuksdrSsZK+jBlLo
-        PKgDff4XiF0rQ1ctj0ZwKn/hOA==
-X-Google-Smtp-Source: AKy350aEZXq5vhpbcuIVMGc02L1mtWNHGPAkZUnP5pk7APNWBHnrMhr1AOTOpXrDzGDBYgbb0dLnkA==
-X-Received: by 2002:a50:ec84:0:b0:506:74d6:45aa with SMTP id e4-20020a50ec84000000b0050674d645aamr5212418edr.24.1681471295533;
-        Fri, 14 Apr 2023 04:21:35 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:40b9:8c57:b112:651d? ([2a02:810d:15c0:828:40b9:8c57:b112:651d])
-        by smtp.gmail.com with ESMTPSA id b11-20020a17090636cb00b00930aa50372csm2326194ejc.43.2023.04.14.04.21.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 04:21:35 -0700 (PDT)
-Message-ID: <a5aa1be1-f98d-af04-9879-b924a5bcb14c@linaro.org>
-Date:   Fri, 14 Apr 2023 13:21:34 +0200
+        d=1e100.net; s=20221208; t=1681471570; x=1684063570;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZXayIhb48rpICvZhgV0WpLpWTGJfP5YGp0OUVXORCrU=;
+        b=BHxQHEFnEr7NLZrQy1rpOfWYZrFfZDyFF4D+k9SLMxpGd5/e4i0F9dOixSH4oJ3OmL
+         YyedP4Y/56+GFWTpf2vyGtf+cCpG0bp7GEDMI/0VBeqIvywa8/Pto1x6ENom+Uu7scgX
+         EYW6AvdKNL5gs+foYs3qHUXUg8mQ2Q5MpaQBIR8Lr0s+tmhuZS+ibAy3pNKjRNaeI4ST
+         puvVNkB9kuotXi4prOfd67i6P9zoU1xd4JKDQoApMg4M+WAahPl3kjGx7BIa11kr032t
+         bpKPLq2Tjz/vf5kwh+Iyz/TDueCXBp7RqMFRSE4V7g5KHLJCgpqqListwishMbQ7vmDt
+         kWrQ==
+X-Gm-Message-State: AAQBX9dCmx0F0SbCmWGdDhuUw4Ds6Mn572k2ss/pEaor5diHgE4+taC8
+        onioMxq7GWz4k/fMySVcCN+XyQ==
+X-Google-Smtp-Source: AKy350YCD/gqeoFDnTa2Hdfa7XhbQnXeWkA78wnWZoK8ZEzi0mDfNEObzPujJARrty7gF92OloRWSQ==
+X-Received: by 2002:ac2:5a4f:0:b0:4cb:4362:381d with SMTP id r15-20020ac25a4f000000b004cb4362381dmr2491545lfn.62.1681471570603;
+        Fri, 14 Apr 2023 04:26:10 -0700 (PDT)
+Received: from [192.168.1.101] (abyl123.neoplus.adsl.tpnet.pl. [83.9.31.123])
+        by smtp.gmail.com with ESMTPSA id f2-20020a19ae02000000b004ecb06acbb3sm738430lfc.281.2023.04.14.04.26.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Apr 2023 04:26:10 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/2] SM8350 VIDEOCC
+Date:   Fri, 14 Apr 2023 13:26:07 +0200
+Message-Id: <20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: marvell octeonTX2 GTI system
- atchdog driver
-Content-Language: en-US
-To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230414102342.23696-1-bbhushan2@marvell.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414102342.23696-1-bbhushan2@marvell.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-B4-Tracking: v=1; b=H4sIAE84OWQC/32NWwrCMBBFt1LybaR5FNEv9yFFJmnaDISkTGpQS
+ vZu7AL8PPdyODvLjtBldut2Rq5gxhQbyFPHrIe4OI5TYyZ7qXotFN/SipYH8IARngUna7mxExi
+ jL8OgJWumgey4IYjWNze+QmjjSm7G95F6jI095i3R5ygX8Vv/R4rgPRdKz1cjJQxG3UM7KZ0TL
+ WystX4B1EoKpswAAAA=
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681471569; l=1143;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=b1Z8B5GLQvfM6ewcQNkW9peR5LT/DSelr7WkGl08+Z0=;
+ b=76jbKqduayOAhCvGyK9OsQaZZi45ZFQ2hNbCxhFM+69mO3MOsGdnvnUZxZvpv9alD59wiz2tVLlt
+ 24W5MmekCF9GjBtxOpDEnBAyUBiHu0SjMYtWKN4qVMeF+JaFgpX2
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,99 +89,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 12:23, Bharat Bhushan wrote:
-> Add binding documentation for the Marvell octeonTX2
-> GTI system watchdog driver.
+v1 -> v2:
+- "){" -> ") {"
+- subsys_initcall -> module_platform_driver
+- constify lucid_5lpe_vco & .hw.init
+- devm_add_action_or_reset -> devm_pm_runtime_enable
 
-Subject: typo: atchdog
+v1: https://lore.kernel.org/r/20230413-topic-lahaina_vidcc-v1-0-134f9b22a5b3@linaro.org
 
-> 
-> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
-> ---
->  .../watchdog/marvell-octeontx2-wdt.yaml       | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml b/Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml
-> new file mode 100644
-> index 000000000000..e509f26c61b9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/marvell-octeontx2-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell OcteonTX2 GTI system watchdog
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +maintainers:
-> +  - Bharat Bhushan <bbhushan2@marvell.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: marvell-octeontx2-wdt
+This serires brings support for SM8350 videocc and updates the
+related dt-bindings.
 
-That's not correct compatible. marvell is a vendor prefix.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: clock: qcom,videocc: Add SM8350
+      clk: qcom: Introduce SM8350 VIDEOCC
 
-Did you test the bindings before sending?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      OcteonTX2 GTI system watchdog register space
-
-Drop description, it is obvious.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      OcteonTX2 GTI system watchdog interrupt number
-
-Ditto
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-
-unevaluatedProperties: false instead
-
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        watchdog@802000040000 {
-> +          compatible = "marvell-octeontx2-wdt";
-> +          reg = <0x8020 0x40000 0x0 0x20000>;
-
-Are you sure that this is correct DTS? 32-bit numbers are usually
-8-digit long. Plus size of 0x20000 is crazy huge. And the unit address
-is a bit unusual. Are you sure dtc W=1 does not say about any errors in
-your DTS?
-
-
-> +          interrupts = <0 38 1>;
-
-Use defines for common flags.
-
-> +        };
-> +    };
-> +
-> +...
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |  29 +-
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/videocc-sm8350.c                  | 557 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8350-videocc.h    |  35 ++
+ include/dt-bindings/reset/qcom,sm8350-videocc.h    |  18 +
+ 6 files changed, 648 insertions(+), 1 deletion(-)
+---
+base-commit: e3342532ecd39bbd9c2ab5b9001cec1589bc37e9
+change-id: 20230413-topic-lahaina_vidcc-bcdabb475542
 
 Best regards,
-Krzysztof
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
