@@ -2,107 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 994406E1F25
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 11:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5956E1F54
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 11:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbjDNJUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 05:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44768 "EHLO
+        id S229965AbjDNJd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 05:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjDNJUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 05:20:48 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A0F5FDB;
-        Fri, 14 Apr 2023 02:20:46 -0700 (PDT)
-Received: from stefanw-SCHENKER ([37.4.248.58]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1N0WPK-1qawLR2nPI-00wRDM; Fri, 14 Apr 2023 11:20:13 +0200
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
-        linux-imx@nxp.com, "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, Stefan Wahren <stefan.wahren@i2se.com>,
-        Jacky Bai <ping.bai@nxp.com>
-Subject: [PATCH V3 6/6] ARM: dts: imx6ul: Add clock and PGC node to GPC
-Date:   Fri, 14 Apr 2023 11:19:47 +0200
-Message-Id: <20230414091947.7831-7-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230414091947.7831-1-stefan.wahren@i2se.com>
-References: <20230414091947.7831-1-stefan.wahren@i2se.com>
+        with ESMTP id S229747AbjDNJd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 05:33:56 -0400
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C7F8697
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 02:33:36 -0700 (PDT)
+Received: by mail-ua1-x92c.google.com with SMTP id r10so3622140uat.6
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 02:33:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681464808; x=1684056808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hmnkUWMaBh/dQ2evri0SLi/J8TMxwOaXw9HZAIykNPQ=;
+        b=AxSpE3IaPuxvlb/rnjlmHt5HDSPQ9PAIoq686N9ZUofrsSWuHTTqftC68x1PR/P2WJ
+         rWJCgFovzJyEhPa8gnJJ5ljEdxPo0q4omf5c3rGqcpl9nayNsOA5TwlrSMJXHr9KVJY3
+         N8yvbUELy+2DRXenNJ0B6WUcBchkv6tGAtZTh39DHRYcw6Q5K7hcDmzienQ9lnuJBUjD
+         KZIls+bpIW8hxQ3uCksqzT4Msmq0pI7LTS1BR00cDjzxANZx0jgA26YQoeg+8XYX9Yor
+         QhtYg5oZkK2GbDq5oksH7iHHQuiT31mmPV1nFqpmYSMXOSMa8PbvT7vfEJWrZi3NVYT3
+         Mahw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681464808; x=1684056808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hmnkUWMaBh/dQ2evri0SLi/J8TMxwOaXw9HZAIykNPQ=;
+        b=BvI3vgAdLPE7dfNfGtPrtg9lXCfyeXCV30+1V6lhCCEM1ep+Y2njsCgO6XAEeOHnZF
+         QOQ+56TFrXxtx0tz8b7RzapVTTZlF/9f9okgvaKJqj8QmnAQqP7iXyjjUS/vR+zUtvOo
+         8PQOUw7HmZw6uG5oGJNuOTpCaIcuXxOk9N+HVqJwZC0l9dDCxq+nhfvp8zKgNJBIcjnL
+         Pyj9Tz6oOM1HQAZMJmjMNhJZzdkyVNETE1HyQVI2hT5klRi0Txpnhsh/g0ssO3X1ze6r
+         WkpS5fABvgcrXW3dskEgSUzJwhouZyL8B71W6dl2awPql/vRHbr2hZvGySLK93VY0myI
+         0Thw==
+X-Gm-Message-State: AAQBX9fJaEMa/qmerWQeG9XMiZvEunjF6NCzD5FbhkLVzkJl01d9MxCg
+        gVd5o3o+MMkc+MSBrCK99pSCT9oIhkK3uQ6ZER09wQ==
+X-Google-Smtp-Source: AKy350bfsTtcHUxo29RImIJqDEHQ7T/MfcbWBd1biJy46lDDvJh6lED1lqs9QUqdbdlXBY7vDWk0nEhrfV1vzEezIQQ=
+X-Received: by 2002:a1f:3857:0:b0:43a:d64:5aba with SMTP id
+ f84-20020a1f3857000000b0043a0d645abamr2575462vka.2.1681464807793; Fri, 14 Apr
+ 2023 02:33:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:evrJA8MM22+6SLfyF/L8UqSTqxmdsXKGyejbmw7WripfxHhfRjj
- AAumbvkax09UMWIBbsaBIjamNJ0EcWbWAL2NTojOlKK9g2ZrTK8YzhaLEb6c3oKKxUlCkt3
- CE2YdPhAlAZ30CpDhpqQatriy73Hc4MscF+Se6BqrgNtbLk1Hrm62+AD0mt6+jtTaBLjFJF
- ViueNyMZw1ps2eMh5YZ1Q==
-UI-OutboundReport: notjunk:1;M01:P0:A18oXTTfw6Q=;TDAtKXytzyo3awLeAnBfcqEvlR0
- 9pBZfLMvpWpxtIqkxrzQUKFAGoFNZOs2ptIHA0Q2xSRk5OTsmkZ/h4X+4TW190/QiCJHmR5Dq
- nzQMbmdzkF9+jt9+eh756iAt0kSIzgkWTZSoUMGcn6eQKSttO7lpb9XP2OPFsnURwujSfS/8r
- 5/Tlm/7MJlh5qbrow4o5F1aK96NWTS3m+tLKZPeNfyh4w/+Bno5RVm/liwA4CIUsmE0NkNlW0
- i2gbVa4AqN73Bkj6jeI+hSGNwbYN5Sp/f4d+Uzfgctbi4Dva1th3hHWB97pvVc49Lh6UKsEDk
- /QWAgjZVHgR5ZWiT62W2yOkOW2Tqi8iBhajmgZrMjzPg/934wis7BRNfoktPW35BqZYQFhlLg
- I3FSelvslDYahmMRzFqIOA7Cz8VOf2O8PRT80YL1fFRJujM8ce1tv3eT6IldOc0OLtpaz9RLt
- zochIr7wgGSqe+lS+0xYxRTST9IC7OQe3/HcohEBoNxs0HXRDaJ77w5ekNMxUvIZwxmuPURsH
- e5Bd2a4HXodpCoELi7CLU9yvs8iqUDwBK96mi5zIryhlkeaFl8+vH6/hnByc6IfHR1jCdVv0Y
- jz+CJsQmb4viXWm99f6V6FLDel60RNOkHoGh9isKWwKR1resIjffTw32TpyuZd5vPkVtcaU+D
- VW4qa6pqHK2V50HyntLfHB5krkryOiweRI6wApMkXA==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230327125316.210812-1-brgl@bgdev.pl> <20230327125316.210812-4-brgl@bgdev.pl>
+ <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
+In-Reply-To: <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 14 Apr 2023 11:33:16 +0200
+Message-ID: <CAMRc=Mfw+4Co8JPz51_E+DSawijO8EB6rMmFXEmM0e5F3Fg_8A@mail.gmail.com>
+Subject: Re: [PATCH v3 03/18] dt-bindings: interrupt-controller: qcom-pdc: add
+ compatible for sa8775p
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to fsl,imx-gpc.yaml the General Power Control requires
-a ipg clock and a Power Gating Control node. So add them to fix
-the dtbs_check warnings on i.MX6UL boards:
+On Thu, Apr 6, 2023 at 4:10=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
+wrote:
+>
+> On Mon, Mar 27, 2023 at 2:53=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
+l> wrote:
+> >
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add a compatible for the Power Domain Controller on SA8775p platforms.
+> > Increase the number of PDC pin mappings.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > Cc: Thomas Gleixner <tglx@linutronix.de>
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > ---
+> >  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml     | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/qco=
+m,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pd=
+c.yaml
+> > index 94791e261c42..641ff32e4a6c 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.y=
+aml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.y=
+aml
+> > @@ -26,6 +26,7 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - qcom,sa8775p-pdc
+> >            - qcom,sc7180-pdc
+> >            - qcom,sc7280-pdc
+> >            - qcom,sc8280xp-pdc
+> > @@ -53,7 +54,7 @@ properties:
+> >    qcom,pdc-ranges:
+> >      $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> >      minItems: 1
+> > -    maxItems: 32 # no hard limit
+> > +    maxItems: 38 # no hard limit
+> >      items:
+> >        items:
+> >          - description: starting PDC port
+> > --
+> > 2.37.2
+> >
+>
+> Bjorn,
+>
+> Will you pick up the dt-bindings patches from this series as well or
+> should they go through Rob's tree?
+>
+> Bart
 
-gpc@20dc000: 'clocks' is a required property
-gpc@20dc000: 'clock-names' is a required property
-gpc@20dc000: 'pgc' is a required property
+Gentle ping as this one's still not in next.
 
-Suggested-by: Jacky Bai <ping.bai@nxp.com>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm/boot/dts/imx6ul.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 118764c50d92..a8efaed69214 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -719,6 +719,18 @@ gpc: gpc@20dc000 {
- 				#interrupt-cells = <3>;
- 				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&intc>;
-+				clocks = <&clks IMX6UL_CLK_IPG>;
-+				clock-names = "ipg";
-+
-+				pgc {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					power-domain@0 {
-+						reg = <0>;
-+						#power-domain-cells = <0>;
-+					};
-+				};
- 			};
- 
- 			iomuxc: pinctrl@20e0000 {
--- 
-2.34.1
-
+Bart
