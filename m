@@ -2,90 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A25FC6E29D4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 20:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919C26E298A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 19:35:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjDNSJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 14:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
+        id S229846AbjDNRfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 13:35:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjDNSJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 14:09:11 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B18D9EFA;
-        Fri, 14 Apr 2023 11:09:09 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33EEpId7025674;
-        Fri, 14 Apr 2023 17:31:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=fP0y3ivoleJMzMVSQbyNpJyi0x/okXy9OO/bGDnBZuo=;
- b=pYNXcPekDQ16mTq+D/7EAGIE8BRt1hg7PnruFL1Pbu7KTKrhWFgi0LDJByqJOe2MypuP
- Y3TImWgL9QKuioOjAGyDSRISML8y6fH0GgLl5oQQr/ki2hd52vG7UxiM0V7A56bFkVGM
- ujUVA1ofe1VPxOt8jQ/9ZMo2fSl5iezCNSprhy/5hUEUDxgm/SY6d/X0SP3J/CpfuCH8
- NWHY0j7/odt6qCxx/wM5BSiZycqeubNH0RqYpUEoOYezOViglCEtwLlVC1HdOdSK0kTM
- JUg9nGyz+0zM8KXp3mnsKvphpg9fB2fXbn6eovlgIIGoqmVylQGhVibuQWsZ/mFFBZ7j MA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pxked32d8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 17:31:20 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33EHVJ2p028545
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 17:31:19 GMT
-Received: from [10.216.10.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 14 Apr
- 2023 10:31:13 -0700
-Message-ID: <7abff83f-09ea-5b1b-cbb8-786cc97627d0@quicinc.com>
-Date:   Fri, 14 Apr 2023 23:01:03 +0530
+        with ESMTP id S229469AbjDNRf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 13:35:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A17F355AB;
+        Fri, 14 Apr 2023 10:35:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C35F6497A;
+        Fri, 14 Apr 2023 17:35:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD973C433EF;
+        Fri, 14 Apr 2023 17:35:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681493724;
+        bh=PdlPchlBqq3ipIe1/5avWeUUYeo8hYM1C6FOgpJVePE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FHyrqHeYFDR408+DVbywqdFdI5GZKpRRQe+rslBVGoCMgTxqF+CAtyTC9jcAKomNz
+         PfFasrHSeJp341AxUycZArVFXHXCW5TKn0Xb7ZilD+q0ehTk+irIq11PYbUZ9zGrLp
+         6ThJGCgMv0RNeESv03yDmCQkKpWF5K+DteXEi1L5vP5NsKJD66qxtdJMwmyuIzqsPm
+         QOlGK2hVNdQjwc0VTI3v9X5qNkB/wJe46FODMI+uKTk2DaWJWNqm7N7Ku5hkZzfgUm
+         hHItTYOL1nkJ/zA7/RHzNc0O/EnkLC5HZIV0/fiT8fJce/ObiPD6Z1SxOrlqOjQIoa
+         mQtJQBmKqECTg==
+Date:   Fri, 14 Apr 2023 18:35:18 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     =?utf-8?B?UGF3ZcWC?= Anikiel <pan@semihalf.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
+        tiwai@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
+        lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com
+Subject: Re: [PATCH 5/9] ASoC: ssm2602: Add workaround for playback with
+ external MCLK
+Message-ID: <cb35f3f2-4dc9-4d56-96bd-bcffb33b7aaf@sirena.org.uk>
+References: <20230414140203.707729-1-pan@semihalf.com>
+ <20230414140203.707729-6-pan@semihalf.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V1 1/4] dt-bindings: clock: qcom,ipq9574-gcc: Drop the
- Bias PLL ubi clock source
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <20230414134812.16812-1-quic_devipriy@quicinc.com>
- <20230414134812.16812-2-quic_devipriy@quicinc.com>
- <dc48d390-9c8b-d3b7-9c5e-6cbddb0e1306@linaro.org>
- <aca7b808-51ce-1921-2ee2-0e82cf19d960@quicinc.com>
- <7b4fe58c-9cf8-57ab-8cbc-c5ccf0b2a46d@linaro.org>
- <2c5bbe48-3007-a1d5-73b9-9d2132bff9d4@quicinc.com>
- <76237034-7871-c77f-1e32-c0a585d8df86@linaro.org>
-Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <76237034-7871-c77f-1e32-c0a585d8df86@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QQV_QQ5WEzXOyGI-CmQyQ1dyJA7XHiKR
-X-Proofpoint-ORIG-GUID: QQV_QQ5WEzXOyGI-CmQyQ1dyJA7XHiKR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-14_10,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- phishscore=0 bulkscore=0 spamscore=0 malwarescore=0 suspectscore=0
- adultscore=0 priorityscore=1501 clxscore=1015 mlxlogscore=669
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304140154
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="EH6yRfJ9i6hhIpAh"
+Content-Disposition: inline
+In-Reply-To: <20230414140203.707729-6-pan@semihalf.com>
+X-Cookie: One Bell System - it works.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -93,43 +61,74 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--EH6yRfJ9i6hhIpAh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 4/14/2023 10:41 PM, Krzysztof Kozlowski wrote:
-> On 14/04/2023 18:04, Devi Priya wrote:
->>
->>
->> On 4/14/2023 8:39 PM, Krzysztof Kozlowski wrote:
->>> On 14/04/2023 16:22, Devi Priya wrote:
->>>>
->>>>
->>>> On 4/14/2023 7:47 PM, Krzysztof Kozlowski wrote:
->>>>> On 14/04/2023 15:48, Devi Priya wrote:
->>>>>> Remove bias_pll_ubi_nc_clk from the binding as it has been removed from
->>>>>> the Device Tree. Also added Bjorn Andersson to the maintainers list.
->>>>>
->>>>> Was it really removed? Where?
->>>>>
->>>> It has been removed from the Device tree and binding in V11
->>>> https://lore.kernel.org/linux-arm-msm/20230404101622.5394-1-quic_devipriy@quicinc.com/
->>>
->>> I still see it in current next. Are you sure you refer to something
->>> already merged?
->>
->> This change was made in V11 and Currently V9 is merged in linux-next.
->> So, the delta changes between V9 & V12 is posted in this series.
->> The device tree change where the clock is removed is added part of this
->> incremental patch series and the binding is updated to reflect the same.
->> Apologies, if the confusion is because of "has been removed from device
->> tree" in the commit message.
-> 
-> Your commit indicated that removal from DTS happened. If it did not
-> happen, you need to come with proper reason (and fix the tense not to
-> confuse).
-Got it, will update the commit message.
+On Fri, Apr 14, 2023 at 04:01:59PM +0200, Pawe=C5=82 Anikiel wrote:
 
-Thanks,
-Devi Priya
-> 
-> Best regards,
-> Krzysztof
-> 
+> Apply a workaround for what seems to be a hardware quirk: when using
+> an external MCLK signal, powering on Output and DAC for the first time
+> produces output distortions unless they're powered together with whole
+> chip power.
+
+This doesn't seem coherent, these are multiple register writes so
+clearly can't be done at the same moment as initial power on.  Clearly
+there's some other constraint here.
+
+> The workaround powers them on in probe for the first time, as doing it
+> later may be impossible (e.g. when starting playback while recording,
+> whole chip power will already be on).
+
+It doesn't do that, it powers them on at component probe.
+
+> Here are some sequences run at the very start before a sw reset (and
+> later using one of the NOT OK sequences from above):
+>=20
+>   ssmset 0x09 0x01 # core
+>   ssmset 0x06 0x07 # chip, out, dac
+>   OK
+
+I can't tell what any of this is trying to say, especially given all the
+magic numbers, and obviously no actual use of the driver should be
+writing directly to the register map.
+
+> +	/* Workaround for what seems to be a hardware quirk: when using an
+> +	 * external MCLK signal, powering on Output and DAC for the first
+> +	 * time produces output distortions unless they're powered together
+> +	 * with whole chip power. We power them here for the first time,
+> +	 * as doing it later may be impossible (e.g. when starting playback
+> +	 * while recording, whole chip power will already be on)
+> +	 */
+> +	regmap_write(ssm2602->regmap, SSM2602_ACTIVE, 0x01);
+> +	regmap_write(ssm2602->regmap, SSM2602_PWR,    0x07);
+> +	regmap_write(ssm2602->regmap, SSM2602_RESET,  0x00);
+> +
+
+The rest of the driver uses symbolic names for register values, this
+code should too. =20
+
+This also seems buggy in that it writes non-default values to the
+hardware then does a reset, meaning that the cache and hardware values
+will be out of sync, and since it only happens on probe there will be an
+issue after suspend if power is removed.  It looks like this would be
+most comfortably implemented as a register patch applied as soon as the
+regmap is instantiated.  See regmap_register_patch().
+
+--EH6yRfJ9i6hhIpAh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQ5jtUACgkQJNaLcl1U
+h9Ajkwf+ODUCBkDtTHlEW7Kmhees6SWhoER3fk+u//I4yyeodw2AopWmhSQaUs0m
+k5/cPXokWbQaCDic+hod7YejaAtDGHj3lDH9s4CAsE9SRtuYV1SCL8N94LN6ZETG
+/3MlDr+ScZ+ga+8OsSQVvGMfYZlSuRlTiUJmocRWO5dJ/thyDzh/89QdgGfQt0eo
+g6asIK+pLjG4N7Pl20E/bAG5sG1AHGkYiAxOLVD6vsXzcBZT+GoI5xYxD2rleRNi
+cAN5Og3SghfLXhZNQeDBZ4/7mjCF/AwymoAsPuYwQRkWeWdZh29gOhPqSUD/Mzss
+EtMguFBBN3y1NPRsMRBqzvmFV4TkcQ==
+=zZC1
+-----END PGP SIGNATURE-----
+
+--EH6yRfJ9i6hhIpAh--
