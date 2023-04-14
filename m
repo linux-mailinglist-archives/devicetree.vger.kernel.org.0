@@ -2,112 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6DD6E2108
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 12:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C749C6E20CB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 12:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbjDNKgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 06:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42646 "EHLO
+        id S229547AbjDNKbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 06:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbjDNKgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 06:36:46 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C4EA5DC;
-        Fri, 14 Apr 2023 03:36:09 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33E6o8EO030159;
-        Fri, 14 Apr 2023 10:35:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=2OsiV7InPcs/s0E7YyO/DQTV9uVls5Br3g8+gRn4d7I=;
- b=ZJ83CDgxCy5ZZZ0BThBK/q2Mm9jqOm5SviLRbXiIY5vJ9dzvcI2nURHh4auK3mi762yY
- l08ocov+cRcx/UqqaA09Dk2jlM3czSBlRgNxA0QsLUpJWiVC/9FUR7kcmrh9d96hd245
- GhH+1HtSGmfIdCKY4szzEgeXK9qxNOjXbtz2LFfcK1VbYZNsu3ru8RHylDW2G/vJw7yC
- iTpCR8zpNoK44YfY42jnEzXcKfFA0ZF+oSjI8hEJdwA/GD6PGbyhVQjF20GVivzcdrnh
- ysPE1J4ztGXd+HDcSG/uwWxshON6i5+YgAMSDPVMy5nPVU7sdA1re6vsQbZjUHvM/8m0 cg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3py1wpgfm8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 10:35:30 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33EAZTIg008233
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 10:35:29 GMT
-Received: from srichara-linux.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 14 Apr 2023 03:35:23 -0700
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_srichara@quicinc.com>
-Subject: [PATCH V3 9/9] arm64: defconfig: Enable IPQ5018 SoC base configs
-Date:   Fri, 14 Apr 2023 15:59:27 +0530
-Message-ID: <1681468167-11689-10-git-send-email-quic_srichara@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1681468167-11689-1-git-send-email-quic_srichara@quicinc.com>
-References: <1681468167-11689-1-git-send-email-quic_srichara@quicinc.com>
+        with ESMTP id S229775AbjDNKbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 06:31:33 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A1FA10FC
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 03:31:31 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-94e53ef6815so173417466b.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 03:31:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681468289; x=1684060289;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7A3jIFNX+D4elFTnhiKETmy1MLNeTbEEPtotnHqMGuQ=;
+        b=ef8OHhmk/2tUpsrGW9BAs7ADG0qRkLcn6YKfX7e8PuFF8mPfZpawfAzggGfU432iXb
+         CELESl9USoOKfAs7NQZKaf94BEN9o75rea8wrdalwVcBzwCVMxS4kko1MSgWw1yLfGhl
+         UgW1E3kQAzdKOOUH8hSIwoZbk4iZO3+xbtQo8+gLc0she+IgxiyseuFCePqqBtwyhsh2
+         Nl9lpxH3b73x8blbg5KJkcBBOS82RXTqHNgGG988oaRjZBjEVZZSINXDqTYbRDfNMSFq
+         0M0nBwdhl3O3dApDGXn2EW+zEC5rg2vr4k6dGFkmCb5qNEipvzeEdzkbcDfTMU4fxN4W
+         FChA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681468289; x=1684060289;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7A3jIFNX+D4elFTnhiKETmy1MLNeTbEEPtotnHqMGuQ=;
+        b=BA32efcyXyXcuUwkf2yQLuwDT+IihJLDf/hMthPonsWVliXC3PDPdGdBx9AwaiDcNt
+         ZCjzWqHpg58Kh0Ez5VmZhL89AA3UgAPFCIjprVzDtiVy9l5Yy4LAZmceelo5bxoDgNw/
+         3m3tFC0eH3qmfMdeopW1IrcAHQgRSv7egYlv5HmqjdEO8NVB0OoFQ7bhz+9oCQHpgNUM
+         V23gEnmNvnPlawP7Z2iq9qGIJ7oNxDOTxW0Wg2uAnBaKVSrHtJrgcSg84qmWrde39xNo
+         FKpet0BW+s8O0WNOUZqqiQwQZUxnzQAyMJGtmmUjpIcEEjtQ1Y5qPSN3etIliiIoyalH
+         wEZw==
+X-Gm-Message-State: AAQBX9eS6iZHJhUU9UCsG+7Odxqs32OX3YjPFp1Jb6rnTbLyomHqI7R6
+        dpj3jGKWqWShST1dFBj2yXLJgg==
+X-Google-Smtp-Source: AKy350Y077+BdBXdq1CcDQ8qonO9EVH5kYn/JqjMAYJj03p/5Gq3PVCVakbTgw4OSubyrs08ItiJ+A==
+X-Received: by 2002:aa7:df0d:0:b0:4fd:29e4:ccfe with SMTP id c13-20020aa7df0d000000b004fd29e4ccfemr5082786edy.18.1681468289362;
+        Fri, 14 Apr 2023 03:31:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:40b9:8c57:b112:651d? ([2a02:810d:15c0:828:40b9:8c57:b112:651d])
+        by smtp.gmail.com with ESMTPSA id x9-20020aa7d6c9000000b004fa19f5ba99sm1957986edr.79.2023.04.14.03.31.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Apr 2023 03:31:28 -0700 (PDT)
+Message-ID: <e7db1133-b23c-f196-547c-9deea94f0bfe@linaro.org>
+Date:   Fri, 14 Apr 2023 12:31:26 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: St-KEszM6iXcfzaIIFwAw70wpQYgnlUL
-X-Proofpoint-ORIG-GUID: St-KEszM6iXcfzaIIFwAw70wpQYgnlUL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-14_04,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- adultscore=0 priorityscore=1501 mlxscore=0 phishscore=0 impostorscore=0
- mlxlogscore=840 malwarescore=0 lowpriorityscore=0 clxscore=1015
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304140095
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 01/27] dt-bindings: pwm: Add compatible for MediaTek
+ MT6795
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     matthias.bgg@gmail.com, p.zabel@pengutronix.de, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
+        chunfeng.yun@mediatek.com, vkoul@kernel.org, kishon@kernel.org,
+        thierry.reding@gmail.com, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        xinlei.lee@mediatek.com, houlong.wei@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
+        kernel@collabora.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230412112739.160376-1-angelogioacchino.delregno@collabora.com>
+ <20230412112739.160376-2-angelogioacchino.delregno@collabora.com>
+ <aaeeb18d-f8e8-d6c1-1272-e5b797554b9e@linaro.org>
+ <20230414083019.cpomx37tax4ibe5u@pengutronix.de>
+ <f8a4fd52-52b6-dded-c8b7-864be549e2ad@linaro.org>
+ <13fe3e54-caa5-098c-0a86-3d2f8475c23f@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <13fe3e54-caa5-098c-0a86-3d2f8475c23f@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs
+On 14/04/2023 12:25, AngeloGioacchino Del Regno wrote:
+> Il 14/04/23 10:34, Krzysztof Kozlowski ha scritto:
+>> On 14/04/2023 10:30, Uwe Kleine-König wrote:
+>>> On Fri, Apr 14, 2023 at 10:21:05AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 12/04/2023 13:27, AngeloGioacchino Del Regno wrote:
+>>>>> Add a compatible string for MediaTek Helio X10 MT6795's display PWM
+>>>>> block: this is the same as MT8173.
+>>>>>
+>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>> ---
+>>>>>   Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 4 +++-
+>>>>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+>>>>> index 0088bc8e7c54..153e146df7d4 100644
+>>>>> --- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+>>>>> @@ -22,7 +22,9 @@ properties:
+>>>>>             - mediatek,mt8173-disp-pwm
+>>>>>             - mediatek,mt8183-disp-pwm
+>>>>>         - items:
+>>>>> -          - const: mediatek,mt8167-disp-pwm
+>>>>> +          - enum:
+>>>>> +              - mediatek,mt6795-disp-pwm
+>>>>> +              - mediatek,mt8167-disp-pwm
+>>>>
+>>>> This does not look correct. You do not add compatible, you replace
+>>>> breaking all mt8167-disp-pwm. At least it looks like this from context.
+>>>
+>>> I thought the old semantic to be:
+>>>
+>>> 	"mediatek,mt8167-disp-pwm"
+>>>
+>>> and the new
+>>>
+>>> 	"mediatek,mt6795-disp-pwm" or "mediatek,mt8167-disp-pwm"
+>>>
+>>> . What am I missing?
+>>
+>> The new is ok for mt6795 but it is not valid for mt8167.
+>>
+> 
+> Sorry, why is it not valid for MT8167?
 
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Eh, above example did not help me, because it missed mt8173, but I see
+now the context I missed. It's already a list of two compatibles, so the
+patch is fine.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index b6342b4..fef176a 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -553,6 +553,7 @@ CONFIG_PINCTRL_IMX8ULP=y
- CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
-+CONFIG_PINCTRL_IPQ5018=y
- CONFIG_PINCTRL_IPQ5332=y
- CONFIG_PINCTRL_IPQ6018=y
- CONFIG_PINCTRL_IPQ9574=y
-@@ -1151,6 +1152,7 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
- CONFIG_QCOM_CLK_APCC_MSM8996=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
-+CONFIG_IPQ_GCC_5018=y
- CONFIG_IPQ_GCC_5332=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
--- 
-2.7.4
+Best regards,
+Krzysztof
 
