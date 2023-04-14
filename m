@@ -2,116 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A73546E24FA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 722F96E2508
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbjDNOAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 10:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49946 "EHLO
+        id S229992AbjDNODV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 10:03:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbjDNOAk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:00:40 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92AA7B76F;
-        Fri, 14 Apr 2023 07:00:19 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33EDZ4AU028075;
-        Fri, 14 Apr 2023 14:00:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=jwsGJFHSWAgHssb3+WEAtC1s/zNo7+tWxhoaSK7zjZc=;
- b=Unj+bM9dn42S1ZjWnkWMfx+sNUnWPssnRka5X7caAZnx5rdXAjvcYsFXAO2P1mw4TYr0
- qglrazR13xYiJtS8U5wcVy0tE39+UkKy4T5Ikmu76VTm6l2ZleL2xP2m2t83XU3wM2Jp
- 2LxP943jv57eYbzwsa06zfaaD3LYhml/m8y26SFSuEcjYdD0glnbxwIjzD0DQ/CY6OnI
- pOduXzjI+9Juq9FpB7mEkv4p3BA0UgvPRPjSJs0KymRiqPabmLxJkIyQ2vAaLOSJHSfe
- h88MBlA+iYqi5is+G9FzWqJOY0O7O2/L6d0AaiDNaZomirNb2Lkcsq8SogTXRwhjNkO4 4g== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pxxhkh8pn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 14:00:05 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33EE04W0012160
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 14:00:04 GMT
-Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 14 Apr 2023 06:59:59 -0700
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Subject: [PATCH V1 3/3] MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver support
-Date:   Fri, 14 Apr 2023 19:29:13 +0530
-Message-ID: <7374c3c53b635ef8081a605bd6f24be3f04e6d0a.1681480351.git.quic_schowdhu@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1681480351.git.quic_schowdhu@quicinc.com>
-References: <cover.1681480351.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S229754AbjDNODU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:03:20 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C46B76D
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:02:44 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id h8so3066026ljf.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:02:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google; t=1681480962; x=1684072962;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6CmKFXx/xfojEaW7/QBPIIKO9g8KorbKrua0cC4RrJY=;
+        b=nX4KdpatJdru56O41hIK0y/nHXVcDcxnMfPovuQbKYYpANGyF6FaK2xOBz+EgXHDVP
+         J+loYySH+aJNuAgpdPoY79jVbGug7NsdV+BPBjueeICVJAQmRhT4OBSH3V8oUXz8Qr7q
+         B2GgoRHJ0lz/lG/r6ThO9OeqNGVDXumR+mkV6++4NWDuIq5yzxWrTmvSbBN6CA5ivlSV
+         /PVnLgk5cHVDlFUj9rrKxPhbb357nqwGQHaanx8dudSlqq3x0A1yYE2Ow7kVDtSGWL/k
+         sxJj1+PrqSf/xFHXi/J56wNGnyeVEAqfLx2wWhFEk5j2IZWk89QtiR46kJga7RCBLJzN
+         FGMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681480962; x=1684072962;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6CmKFXx/xfojEaW7/QBPIIKO9g8KorbKrua0cC4RrJY=;
+        b=NyqkxFbJTZ5JL9iovwXjHbLiWoHrQEhD62HmHebUGPayBZLKOiVXfvrarULVBg+FUO
+         OaZWRjY696jNlexMjMQYNNmTLcBjGNtsja/MmM1D2twF30F18CWxgF4I1xgPXpanSFQ+
+         v2uymSotNRUzKTMKjqeW7UD1ts61cpwGzaq7v7tvoxW5Pt0sgIs8gj+GJg5O1mrY3LXZ
+         ncvAhkwVhCdW1GIcbCDR0sa3z7AyuOh/nf1guSi7gN/cwgP9Q4P4EL51NsN5sL9+4nHA
+         zuDBZDbRoT9qfjQyLSKj7rO/Md5mx4EnfiG0Ina5iathtrM26kyFRHQ5YE9wj3ih/GNZ
+         qG/Q==
+X-Gm-Message-State: AAQBX9e3HAVgPvKuarPYj8FErt0HS1ycDOKPW5OAHYLuywqv3qznSAMT
+        5wfyc4EOK3vNH2iQ+07A0xWbJA==
+X-Google-Smtp-Source: AKy350ZKVU9Q0jCCIA9VriNQc1B7S0oO5F5h9xArFBdAxOSR8FmbdC8A69TYdJ5iCGu/V+wGWtgclA==
+X-Received: by 2002:a2e:8542:0:b0:2a7:6daa:da39 with SMTP id u2-20020a2e8542000000b002a76daada39mr2266282ljj.22.1681480962193;
+        Fri, 14 Apr 2023 07:02:42 -0700 (PDT)
+Received: from panikiel.roam.corp.google.com (staticline-31-182-201-26.toya.net.pl. [31.182.201.26])
+        by smtp.gmail.com with ESMTPSA id 15-20020a2eb2cf000000b002a76e2dedbcsm828684ljz.139.2023.04.14.07.02.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Apr 2023 07:02:41 -0700 (PDT)
+From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org
+Cc:     perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
+        lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com,
+        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+Subject: [PATCH 0/9] Add Chameleon v3 ASoC audio
+Date:   Fri, 14 Apr 2023 16:01:54 +0200
+Message-ID: <20230414140203.707729-1-pan@semihalf.com>
+X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uiw11shw83e6ZIGLU5CO_y916LOLXUWb
-X-Proofpoint-GUID: uiw11shw83e6ZIGLU5CO_y916LOLXUWb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-14_07,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 adultscore=0 clxscore=1015 bulkscore=0 spamscore=0
- suspectscore=0 phishscore=0 mlxlogscore=871 impostorscore=0
- lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303200000 definitions=main-2304140126
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the entries for all the files added as a part of driver support for
-DCC(Data Capture and Compare).
+The Google Chameleon v3 is a device made for testing audio and video
+paths of other devices. This patchset adds support for ASoC audio on
+this device. It has two audio sources: HDMI audio from the it68051 chip
+(RX only), and analog audio from the ssm2603 chip (RX and TX).
 
-Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+The patchset adds the ASoC platform and machine drivers, as well as some
+changes to the existing ssm2602 codec driver.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b4e9c5b..2071000 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5705,6 +5705,14 @@ W:	http://lists.twibble.org/mailman/listinfo/dc395x/
- F:	Documentation/scsi/dc395x.rst
- F:	drivers/scsi/dc395x.*
- 
-+DCC QTI DRIVER
-+M:      Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-+L:      linux-arm-msm@vger.kernel.org
-+S:      Maintained
-+F:      Documentation/ABI/testing/debugfs-driver-dcc
-+F:      Documentation/devicetree/bindings/misc/qcom,dcc.yaml
-+F:      drivers/misc/dcc.c
-+
- DCCP PROTOCOL
- L:	dccp@vger.kernel.org
- S:	Orphan
+Paweł Anikiel (9):
+  ASoC: Add Chameleon v3 audio
+  dt-bindings: ASoC: Add chv3-i2s
+  dt-bindings: ASoC: Add chv3-audio
+  dt-bindings: ASoC: Add it68051
+  ASoC: ssm2602: Add workaround for playback with external MCLK
+  ASoC: ssm2602: Add support for CLKDIV2
+  ASoC: ssm2602: Add mute gpio
+  dt-bindings: ASoC: Add mute-gpio to ssm2602
+  ARM: dts: chameleonv3: Add ssm2603 mute gpio
+
+ .../devicetree/bindings/sound/adi,ssm2602.txt |   4 +
+ .../bindings/sound/google,chv3-audio.yaml     |  49 +++
+ .../bindings/sound/google,chv3-i2s.yaml       |  42 +++
+ .../bindings/sound/ite,it68051.yaml           |  23 ++
+ .../boot/dts/socfpga_arria10_chameleonv3.dts  |  30 ++
+ sound/soc/Kconfig                             |   1 +
+ sound/soc/Makefile                            |   1 +
+ sound/soc/chameleonv3/Kconfig                 |   7 +
+ sound/soc/chameleonv3/Makefile                |   2 +
+ sound/soc/chameleonv3/chv3-audio.c            | 111 ++++++
+ sound/soc/chameleonv3/chv3-i2s.c              | 347 ++++++++++++++++++
+ sound/soc/chameleonv3/chv3-it68051.c          |  41 +++
+ sound/soc/codecs/ssm2602.c                    |  37 +-
+ 13 files changed, 692 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/ite,it68051.yaml
+ create mode 100644 sound/soc/chameleonv3/Kconfig
+ create mode 100644 sound/soc/chameleonv3/Makefile
+ create mode 100644 sound/soc/chameleonv3/chv3-audio.c
+ create mode 100644 sound/soc/chameleonv3/chv3-i2s.c
+ create mode 100644 sound/soc/chameleonv3/chv3-it68051.c
+
 -- 
-2.7.4
+2.40.0.634.g4ca3ef3211-goog
 
