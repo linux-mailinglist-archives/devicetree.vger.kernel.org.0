@@ -2,63 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA7F6E269B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B806E26A9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbjDNPQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 11:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35798 "EHLO
+        id S231217AbjDNPSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 11:18:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbjDNPQJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:16:09 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFBD993CE;
-        Fri, 14 Apr 2023 08:16:07 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33EFG1U3078381;
-        Fri, 14 Apr 2023 10:16:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681485361;
-        bh=EOgCsQnaeS9zQrffcGPnXqDTNjAS2noKZ3EEPUQeYWg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KrA2ggloZc3O0wCUXi1SdMJ/IOQ1VucP3kmYQ+8704CHgN5w/6LQX2B7TyQ2cjnWo
-         gvNTOdUk4A7WGeNc3OXoCdXu8E1sB3icF2gKc1+ZltSpPezpw3Jql7FQO02O+swI+U
-         vsGhCxutsgNCuUhwX8t8dJ7wUJuvv3S9h5JPYre4=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33EFG17u048699
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Apr 2023 10:16:01 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 14
- Apr 2023 10:16:01 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 14 Apr 2023 10:16:01 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33EFG04L096252;
-        Fri, 14 Apr 2023 10:16:01 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>
-CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-choudhary@ti.com>
-Subject: [PATCH v2 5/5] arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
-Date:   Fri, 14 Apr 2023 20:45:53 +0530
-Message-ID: <20230414151553.339599-6-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230414151553.339599-1-j-choudhary@ti.com>
-References: <20230414151553.339599-1-j-choudhary@ti.com>
+        with ESMTP id S230498AbjDNPSB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:18:01 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17CD78A5A
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 08:17:51 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id xi5so46383430ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 08:17:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681485469; x=1684077469;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9drcNPSM0KBR/CLrBwPG24/hlufSHekIX2GuAa0mc7s=;
+        b=DpYdX+CHD+F/+NFh7Oh0tAd/G7RToDYcGkhwE0Qp9T+/OXvLJkiThET18+0f2JhQR/
+         ytNVi+NL44SPs4QSFY3PVpySwPE8J67VT6ToVQyvHjhsbqre9DKC1GI64VmbIKZINwuQ
+         TBrs8yC9yasnwi7+34VIkrpYmsalcISpUyMIMxWPxhHm9W2fCutH/uqUiiwSFAM/Epgs
+         Z1vis+O0CuGzfD3ka/4FKW33Y7U1MqWS1c2LEqQ9ARD7gQ4stOYs+jI7cehgK/wmEphg
+         wt2mU3/FpPLYcZUff4OIPg4J8gaRgJ/VlB5oiirY18bTdXQllJmRfVm9GrR47BMFGojl
+         Czqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681485469; x=1684077469;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9drcNPSM0KBR/CLrBwPG24/hlufSHekIX2GuAa0mc7s=;
+        b=hXXTvTXSIoEKqwXz++XmRQFY6DCvNf9spEcWvSoP+4An9efP9vGKb47eWUFTKzPWXH
+         iEwTCd4aLfsgpvu/nXG3D04dFSTLYeRt9xbaSBWTBN8c7kRLA0pzdUI+xECuApCVJOLC
+         Vk9FLLbwCy3e7Rl6A7tXAYaKJIg0CSnZzTp3SbkdTfsaCWhwDqq54OQ+F9EdYD3eHJ8y
+         7tnksAFkhVfuQ2x1kl5E+Ev8fnvR8QcNLxu19lSz/N4pQvIqjmsqe6GqSv8lr7npONGv
+         vg1fgBcFE3UtxmVVAuaSh8J6cpvv9ATgaiOr9HQu8c4ZiP7Jp05AQzzgahChB2gjpN+8
+         sJwQ==
+X-Gm-Message-State: AAQBX9cD/XGyIm9/ywLncpkLk6guPYd3kfWGLuixhCOOMBWbQ+BcIYC8
+        fFZFhl0HTnJI2RtCcZGXjZzjUQ==
+X-Google-Smtp-Source: AKy350Y1ovRQx1f10GgZ8oEgerwPzy42tM/K38eDatHEyM6Q0mtLluw+V3szHNhRcNBxfX4Yn4ti6g==
+X-Received: by 2002:a17:907:72d4:b0:94a:7da2:d339 with SMTP id du20-20020a17090772d400b0094a7da2d339mr7465159ejc.26.1681485469533;
+        Fri, 14 Apr 2023 08:17:49 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:39b7:81a0:bd41:17b1? ([2a02:810d:15c0:828:39b7:81a0:bd41:17b1])
+        by smtp.gmail.com with ESMTPSA id p25-20020a17090635d900b0094e75d3ba1bsm2575677ejb.131.2023.04.14.08.17.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Apr 2023 08:17:49 -0700 (PDT)
+Message-ID: <20faef75-9182-6e67-8ac5-c8234318ab64@linaro.org>
+Date:   Fri, 14 Apr 2023 17:17:48 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom,videocc: Add SM8350
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org>
+ <20230413-topic-lahaina_vidcc-v2-1-f721d507e555@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230413-topic-lahaina_vidcc-v2-1-f721d507e555@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,161 +84,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rahul T R <r-ravikumar@ti.com>
+On 14/04/2023 13:26, Konrad Dybcio wrote:
+> SM8350, like most recent higher-end chips has a separate clock
+> controller block just for the Venus IP. Document it.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../devicetree/bindings/clock/qcom,videocc.yaml    | 29 +++++++++++++
 
-Enable display for J784S4 EVM.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux for DP
-HPD.
-
-Add the endpoint nodes to describe connection from:
-DSS => MHDP => DisplayPort connector.
-
-Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
-required for controlling DP power. Set status for all required nodes
-for DP-0 as "okay".
-
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-[j-choudhary@ti.com: move all the changes together to enable DP-0 in EVM]
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 112 +++++++++++++++++++++++
- 1 file changed, 112 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index b1445b7c2aa8..03c9bf34cb1b 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -102,6 +102,28 @@ vdd_sd_dv: regulator-TLV71033 {
- 		states = <1800000 0x0>,
- 			 <3300000 0x1>;
- 	};
-+
-+	dp0_pwr_3v3: regulator-dp0-prw {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dp0-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	dp0: dp0-connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+		dp-pwr-supply = <&dp0_pwr_3v3>;
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&dp0_out>;
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -163,6 +185,19 @@ vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
- 			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
- 		>;
- 	};
-+
-+	dp0_pins_default: dp0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0cc, PIN_INPUT, 12) /* (AM37) SPI0_CS0.DP0_HPD */
-+		>;
-+	};
-+
-+	main_i2c4_pins_default: main-i2c4-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AG33) MCAN14_TX.I2C4_SCL */
-+			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
-+		>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -305,3 +340,80 @@ &main_cpsw1_port1 {
- &serdes_refclk {
- 	clock-frequency = <100000000>;
- };
-+
-+&dss {
-+	status = "okay";
-+	assigned-clocks = <&k3_clks 218 2>,
-+			  <&k3_clks 218 5>,
-+			  <&k3_clks 218 14>,
-+			  <&k3_clks 218 18>;
-+	assigned-clock-parents = <&k3_clks 218 3>,
-+				 <&k3_clks 218 7>,
-+				 <&k3_clks 218 16>,
-+				 <&k3_clks 218 22>;
-+};
-+
-+&serdes_wiz4 {
-+	status = "okay";
-+};
-+
-+&serdes4 {
-+	status = "okay";
-+	serdes4_dp_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <4>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_DP>;
-+		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
-+			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
-+	};
-+};
-+
-+&mhdp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0_pins_default>;
-+	phys = <&serdes4_dp_link>;
-+	phy-names = "dpphy";
-+};
-+
-+&dss_ports {
-+	port {
-+		dpi0_out: endpoint {
-+			remote-endpoint = <&dp0_in>;
-+		};
-+	};
-+};
-+
-+&main_i2c4 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c4_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp4: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&dp0_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0 {
-+		reg = <0>;
-+		dp0_in: endpoint {
-+			remote-endpoint = <&dpi0_out>;
-+		};
-+	};
-+
-+	port@4 {
-+		reg = <4>;
-+		dp0_out: endpoint {
-+			remote-endpoint = <&dp0_connector_in>;
-+		};
-+	};
-+};
--- 
-2.25.1
+Best regards,
+Krzysztof
 
