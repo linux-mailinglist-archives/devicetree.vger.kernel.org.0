@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EA696E1DA4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED2E06E1DAC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbjDNH4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:56:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42592 "EHLO
+        id S229668AbjDNH6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:58:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229996AbjDNH4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:56:38 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84077AB8
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:56:28 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id j17so33900124ejs.5
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:56:28 -0700 (PDT)
+        with ESMTP id S229864AbjDNH6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:58:09 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9F36A42
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:58:07 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id fy21so603862ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:58:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681458987; x=1684050987;
+        d=linaro.org; s=google; t=1681459086; x=1684051086;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jW+MbmxIJNrbIzKdDNHsLz5HCe2p5XocFzky4ID/b28=;
-        b=SQuOmnpYAOKYWLP2/Hb5F/pB9ial8nLpK3cS1BU9upFDDlnw3Nphv73mLmqzPdvQfB
-         TNzaw7yq7FXlkQkwp01QVsq3wwJsWn0kC11GJT8mjmQdupiuwPolDVLPPc2EV3D4Omnl
-         7rWfnT2x3piw64ezhXCeNktfmwX4GuUwiOtk3glbb2BqUIv+j3aSF+H0t7asOAcUTNPI
-         BQXW/eoYu+4S3oRW7NMlbE1gclUx4Q22X9T0FX+d2PNzYRo5C9FluWJMmpJqvIWRz+2W
-         IO13S4c9e1+A82Kv0VkgGz1X9fvTCQMxWeXkin2MPnbQgVjJAY/Shld9AfMpObvElKnu
-         7WKA==
+        bh=K+Yfacuylo4JJllG71Jbnk5n4HfFW0n3lsROPOxpb4Q=;
+        b=hYsjh40aaQY+oQS6OIgh1++bqNzesCTrsemH5MrmXBQsMPZYgIi4sE2nGto8mUCzgI
+         HqJ0WYIt/aZyqgqWn4/+kRwu0ykQomNrD1SafbfrXabhI3khubdOSrsApy+tSPYAsGuB
+         718bbAdR5JvYxoItiKAM0UedmLR8y6RcSxqiX1UFL3LoGCy2c/DjcYiGnoBfxlP9MXGE
+         yS+jG3JJHPYT+9lPqxwC171OFl+jLOrdA7IbUMmUsDsH7/73Q1We3YGCd4ID/8tLIS5D
+         KCA8EUi/oDCMSMxZYBgP3Lb4OFJTMyKKMJIKvuRB0qzHT4ida0/ri8NWmjV5aAyjKHsr
+         f7vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681458987; x=1684050987;
+        d=1e100.net; s=20221208; t=1681459086; x=1684051086;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jW+MbmxIJNrbIzKdDNHsLz5HCe2p5XocFzky4ID/b28=;
-        b=esN//dcX2yMaktPDd2xKjSVAgSMH4PLCGSLPNlN5qLeGBQQEagR+B79NG7njWNludT
-         p+RVT81q22bfeoU6ETrAZI/kSAM12vFyQaJjOmfAVOn3aiAbtpluWbchsBps69anSS/E
-         DOTmMSI88lTptuZXxm/JHxaCVk5tjXEacXp71NlFMvI0TH7O0oniJPuRl85sW74EiiQt
-         SO7LvHfLqgGQ9Nfrn7aluDCcjjehXy1wedBSCQVREIxAb6w/qBa1Yxe7ZMe14REYnXZP
-         ZI7g2t32DypYZAq/n6ntyxiA8QrwdtW6avzuLI/rY6i+zd0VUZPFFHQSNgmVKVytEcqR
-         5XsQ==
-X-Gm-Message-State: AAQBX9cKHoHjuDeKY/Fl+ZUPGNwGtkaXx/SMOfcqr8QebyApdBp8/CqP
-        eesucyN4Ou7UggR81Hkj8VHMtQ==
-X-Google-Smtp-Source: AKy350bWhmK5DRYJSe1ViYwTt7BS/VNalYNzgHTzxjWODRHBfJ99m+BsYbrrBLJS7qShnrdAbySENg==
-X-Received: by 2002:a17:906:33c8:b0:94a:653b:ba41 with SMTP id w8-20020a17090633c800b0094a653bba41mr4042099eja.15.1681458987112;
-        Fri, 14 Apr 2023 00:56:27 -0700 (PDT)
+        bh=K+Yfacuylo4JJllG71Jbnk5n4HfFW0n3lsROPOxpb4Q=;
+        b=Xe5R6mrHN0W9rb2xzFq0BB3lKTcPrM59ozRP+vDyzxQpLB4ZGy8jiPKprtf1SfHct2
+         LGeEEtx9KE2uw1TY4QbcUaojTSgcqU+c9oq83IoR/R6LjJyySm3zfdkGsJq1R6l0OAxy
+         JMr2vFlUV6fMkyrdyox+Gmp9StknlWm3B3QK9fJJuH4rPFXCdlUJP5pgCdYeuluNkGKW
+         eRjoXVdOzjy2G5F8FdKVCeKJLOZWOqNSe1BH6V1NeRijX5kFoHKMMOWDFrfEbcvKQNA2
+         eNNB36QTqh4UZ8U98Sk793E0gI3O2+fYPVM6M0nmbDqHoGv/lVyx6b3zwV35iAOmj59k
+         6WRA==
+X-Gm-Message-State: AAQBX9fiHlLJDgtWTbeWK6JupaGoLWY/4XNQ9RoF81wk48UC2F3K6ZiN
+        1zxsOIJagEX26FRQ9oVyL/fRmQ==
+X-Google-Smtp-Source: AKy350ayYVeThpnJSr6PrFCeZNPNgJ1qRrffU60LjVtr/ZwlCmdM05fvQSt0QM9iqYBYcNV0jvsAGQ==
+X-Received: by 2002:a17:906:a3c3:b0:94a:8771:fb60 with SMTP id ca3-20020a170906a3c300b0094a8771fb60mr4272971ejb.37.1681459086379;
+        Fri, 14 Apr 2023 00:58:06 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id gy18-20020a170906f25200b008ec4333fd65sm2047171ejb.188.2023.04.14.00.56.25
+        by smtp.gmail.com with ESMTPSA id g8-20020a170906c18800b0094e877ec197sm2089687ejz.148.2023.04.14.00.58.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:56:26 -0700 (PDT)
-Message-ID: <7a73d76c-ede1-6852-6544-acd2ee990ca1@linaro.org>
-Date:   Fri, 14 Apr 2023 09:56:25 +0200
+        Fri, 14 Apr 2023 00:58:05 -0700 (PDT)
+Message-ID: <45602a7e-9385-296b-d704-64cdf727f5db@linaro.org>
+Date:   Fri, 14 Apr 2023 09:58:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 6/8] dt-bindings: mfd: qcom-spmi-pmic: Add PMI632
- compatible
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add KUNBUS GmbH
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20230414-pmi632-v1-0-fe94dc414832@z3ntu.xyz>
- <20230414-pmi632-v1-6-fe94dc414832@z3ntu.xyz>
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Stefano Bossi <stefano.bossi@gmail.com>
+References: <20230414045747.5499-1-bruno.thomsen@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414-pmi632-v1-6-fe94dc414832@z3ntu.xyz>
+In-Reply-To: <20230414045747.5499-1-bruno.thomsen@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,14 +76,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 01:17, Luca Weiss wrote:
-> Document support for the pmi632, often found with the sdm632 SoC.
+On 14/04/2023 06:57, Bruno Thomsen wrote:
+> KUNBUS GmbH created the modular DIN-rail mounted open source hardware
+> platform called Revolution Pi for automation and IIoT projects.
+> https://www.kunbus.com/
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
+> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+> Reviewed-by: Stefano Bossi <stefano.bossi@gmail.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I do not see it being used in current next. We do not document all
+possible companies in the world. We document prefixes used in bindings.
 
 Best regards,
 Krzysztof
