@@ -2,66 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 067336E19CD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 03:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 094AE6E19DC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 03:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbjDNBio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 21:38:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
+        id S229804AbjDNBvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Apr 2023 21:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjDNBin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 21:38:43 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9F52697;
-        Thu, 13 Apr 2023 18:38:39 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1D2778086;
-        Fri, 14 Apr 2023 09:38:27 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Apr
- 2023 09:38:26 +0800
-Received: from [192.168.125.131] (183.27.97.249) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Apr
- 2023 09:38:25 +0800
-Message-ID: <f020e55c-d4e4-dbb9-d658-7bef2b8bd94b@starfivetech.com>
-Date:   Fri, 14 Apr 2023 09:37:29 +0800
+        with ESMTP id S229516AbjDNBvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 21:51:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4737B30DE;
+        Thu, 13 Apr 2023 18:51:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C340260B3B;
+        Fri, 14 Apr 2023 01:51:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F389AC433EF;
+        Fri, 14 Apr 2023 01:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681437097;
+        bh=gLDWYLDDhntT7dquLuIpW7PMEAgkvCXTIyzwrqznejE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZQ7IAWg77gcZjC3M9ConoEp2KwEyANJbR8QqqdS6b+WKyWDHcc9FE491QH/O8dkwk
+         KnxXU8L6P2EO/t/xL7SkRsqgmqQDhgEDVdCtlV5IZ/iQlxguTCbmg0uKm/sAXU5ywj
+         JG7Pzl3ksFU5tyOsYIDYBwKsAL2rGaXunE3CMjwWag6QejhF6cFQ6CuVa2+nOokk8g
+         BxA9uWlK8Ef8w4f9mNZvoo4wDRJxfCSyueUcbWduddxINCG0e+QZoiBzbE5dp5Wx+c
+         75xn5lKXrwt5vMgZIZaA3Ph0z2RLoycooKVXfWxDBSbnEw3TLypxYqSAQYS+DGLjxH
+         qQHK9EetDh03w==
+Message-ID: <59c363bc-9e98-e7a2-1da4-92e41daef34f@kernel.org>
+Date:   Fri, 14 Apr 2023 10:51:34 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v4 07/10] clk: starfive: Add StarFive JH7110 Video-Output
- clock driver
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
+Subject: Re: [PATCHv1 2/5] dt-bindings: ata: ahci: add RK3588 AHCI controller
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230411135558.44282-1-xingyu.wu@starfivetech.com>
- <20230411135558.44282-8-xingyu.wu@starfivetech.com>
- <683cbe934d1df9436e003466d2a419ef.sboyd@kernel.org>
- <463ee23c-f617-bed0-27a8-56c6fb40d092@starfivetech.com>
- <cd4a11ae65e186799145410969d40421.sboyd@kernel.org>
- <4ed4d0e6-8da5-7eef-8713-44854b8d4a9b@starfivetech.com>
- <d70886f6ee13e70845a72354fe9a2b7d.sboyd@kernel.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <d70886f6ee13e70845a72354fe9a2b7d.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20230413182345.92557-1-sebastian.reichel@collabora.com>
+ <20230413182345.92557-3-sebastian.reichel@collabora.com>
+Content-Language: en-US
+From:   Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20230413182345.92557-3-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,60 +65,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/4/14 2:38, Stephen Boyd wrote:
-> Quoting Xingyu Wu (2023-04-13 06:31:12)
->> On 2023/4/13 12:04, Stephen Boyd wrote:
->> > diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> > index 5ec210644e1d..851b93d0f371 100644
->> > --- a/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> > +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> > @@ -11,6 +11,9 @@
->> >  #include <linux/init.h>
->> >  #include <linux/io.h>
->> >  #include <linux/platform_device.h>
->> > +#include <linux/slab.h>
->> > +
->> > +#include <soc/starfive/reset-starfive-jh71x0.h>
->> >  
->> >  #include <dt-bindings/clock/starfive,jh7110-crg.h>
->> >  
->> > @@ -335,26 +338,32 @@ static void jh7110_reset_unregister_adev(void *_adev)
->> >       struct auxiliary_device *adev = _adev;
->> >  
->> >       auxiliary_device_delete(adev);
->> > +     auxiliary_device_uninit(adev);
->> >  }
->> >  
->> >  static void jh7110_reset_adev_release(struct device *dev)
->> >  {
->> >       struct auxiliary_device *adev = to_auxiliary_dev(dev);
->> > +     struct jh71x0_reset_adev *rdev = to_jh71x0_reset_adev(adev);
->> >  
->> > -     auxiliary_device_uninit(adev);
->> > +     kfree(rdev);
->> >  }
->> >  
->> >  int jh7110_reset_controller_register(struct jh71x0_clk_priv *priv,
->> >                                    const char *adev_name,
->> >                                    u32 adev_id)
->> >  {
->> > +     struct jh71x0_reset_adev *rdev;
->> >       struct auxiliary_device *adev;
->> >       int ret;
->> >  
->> > -     adev = devm_kzalloc(priv->dev, sizeof(*adev), GFP_KERNEL);
->> > -     if (!adev)
->> > +     rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
->> 
->> Can there use 'devm_kzalloc'? Are you not using this because the struct is public and clock driver
->> and reset driver both use it. But I think the both clock driver and reset driver are the same
->> device and can use 'devm_kzalloc'.
+On 4/14/23 03:23, Sebastian Reichel wrote:
+> Just like RK3568, the RK3588 has a DWC based AHCI controller.
 > 
-> No. The release function for the auxiliary_device is supposed to free
-> the memory. It shouldn't be tied to the lifetime of anything like the
-> lifetime of the clk driver being bound.
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+> FWIW IDK what exactly the ASIC clock is. The TRM does not provide any
+> details unfortunately. It is required for functional SATA, though.
+> ---
+>  .../devicetree/bindings/ata/snps,dwc-ahci-common.yaml       | 6 ++++--
+>  Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml    | 6 ++++--
+>  2 files changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
+> index c1457910520b..0df8f49431eb 100644
+> --- a/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
+> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci-common.yaml
+> @@ -31,11 +31,11 @@ properties:
+>        PM-alive clock, RxOOB detection clock, embedded PHYs reference (Rx/Tx)
+>        clock, etc.
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 5
+>  
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 5
+>      items:
+>        oneOf:
+>          - description: Application APB/AHB/AXI BIU clock
+> @@ -50,6 +50,8 @@ properties:
+>            const: rxoob
+>          - description: SATA Ports reference clock
+>            const: ref
+> +        - description: Rockchip ASIC clock
 
-Get it. Thanks.
+Shouldn't this mention that this clock is for the 3588 only ? Or is it also
+necessary for the 3568 ? That is not super clear.
 
-Best regards,
-Xingyu Wu
+> +          const: asic
+>  
+>    resets:
+>      description:
+> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> index 5afa4b57ce20..c6a0d6c8b62c 100644
+> --- a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> @@ -23,9 +23,11 @@ properties:
+>          const: snps,dwc-ahci
+>        - description: SPEAr1340 AHCI SATA device
+>          const: snps,spear-ahci
+> -      - description: Rockhip RK3568 AHCI controller
+> +      - description: Rockhip AHCI controller
+>          items:
+> -          - const: rockchip,rk3568-dwc-ahci
+> +          - enum:
+> +              - rockchip,rk3568-dwc-ahci
+> +              - rockchip,rk3588-dwc-ahci
+>            - const: snps,dwc-ahci
+>  
+>  patternProperties:
+
