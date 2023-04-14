@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 885CC6E2B8B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 23:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B57756E2B91
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 23:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbjDNVMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 17:12:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
+        id S229468AbjDNVPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 17:15:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbjDNVMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 17:12:16 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D337E4EF3
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 14:12:14 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id qb20so48415024ejc.6
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 14:12:14 -0700 (PDT)
+        with ESMTP id S229704AbjDNVPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 17:15:12 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3180E55A6
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 14:15:10 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-504eac2f0b2so3116037a12.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 14:15:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681506733; x=1684098733;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1681506908; x=1684098908;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jpwwM8DbcXGtGGGpWXw5xEbGhldxgCUGXxIxcQVNp8s=;
-        b=g8xmMN8znp0OpiHnPEW9iZCKhziK0nNa18QIsSq1/RmlLHdR9uxF1QnjiXP/thmKuB
-         /1Db5lm8pS3+oq0auA0j3hQYzz0gtuAW3wsJsX3pfCtZBANdtst1Uw9ktsHWyRg0Y7l9
-         4gVmitqDwbA+ngkon06cDvZphQQQSW+DKWhENCtcLv1fdAAfOWyRiyxsJcfyT0frS5qM
-         11jG6NvozqoQjEvHQVCqcqhjGjrf1623DrtQFauZsDPepAlTwUWkcPMjq9ty6JOqaUEi
-         MOzKhN33keYrB6kcLcP1y3duxvV3zTfI8D4jqwBsz4Lz6MAhqnLn3VcjQyQLhxN/7CZx
-         G6ZA==
+        bh=dsPAZy8oT/gx/RIMzxg6Bp+0QvzJZgMJ6bFFeDXY5Cc=;
+        b=GGpjFtvuTy7pv6U2vaUtIKWBUV1xOIgiJNDinQWvpG1r2Nx1ehedUTJsP/uL8NuN52
+         XlE2LnyNKTs0hr/pUYHacGKQ+Iu9nanV1Um8QZfQE4eHNhGGr8bJAszJNOJbax5LgIo8
+         ZMOdvvZHS+LMMB2Hvop/t7EK8Zj/M+NRmqYofvtiE4/gPdk/K/cWiBuLutRrSkV4gIRe
+         1J3GvHiSNCjGvtOL17Y+sGiyCs4CKT+SdAL/80tveIr9wT0Xh7htcXdaWoBeQIKJ0Cq5
+         aAfawxNX92rEw8bZgOjg+FMREXa0LZNVRAzEqOtM7Qq+oekZ5Kq0R81E/XayhYE6resk
+         GZGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681506733; x=1684098733;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1681506908; x=1684098908;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jpwwM8DbcXGtGGGpWXw5xEbGhldxgCUGXxIxcQVNp8s=;
-        b=Z0Lib9ThnbnX7VuS0XSQjpXWYrwTssCMgEXKlyPmsPcLzZtNHBRqU5eipp+LiHupzr
-         71KRfiVluCHWaZmVNnrpMlYXdKmZEtjjFllzAOQ8Vx4RgBo8SYucVPscYTXULD50ONI2
-         8xueHsTEveeZgEZnNTxOtASLQb3/WOcJKT8hlP19YbCm/ekL2Mj8sb0hZHucXe0vNPk9
-         mZ66pzNgbT7d4PMkQdrAFKcjFwlRgGCb6RHjW5mmDqkLthMAYN5zBoAGRBqC8RE+xy6S
-         HTp51JiMxK2eORaUnWP4C4pksp40ES2YiERKeXFcBpogb1C2VA6RpIrazobq4N/C6Cko
-         MUJg==
-X-Gm-Message-State: AAQBX9cL9LamlCdINVg3aHEwnVJsLbDhi5uzAlraOxoVWZ66tqrx2S4V
-        cYCF9G4o4/wyshHINkwVY6a9zg==
-X-Google-Smtp-Source: AKy350biCvKQBwZA5r1WJE7zZK4OAppLAmWqrl+pC5eQnrCjfaW5vLswwMFckdRh/585lBvG6TCGkA==
-X-Received: by 2002:a17:906:2c44:b0:94a:70ba:70ee with SMTP id f4-20020a1709062c4400b0094a70ba70eemr520804ejh.32.1681506733182;
-        Fri, 14 Apr 2023 14:12:13 -0700 (PDT)
+        bh=dsPAZy8oT/gx/RIMzxg6Bp+0QvzJZgMJ6bFFeDXY5Cc=;
+        b=TH2dgxoKh8sQvrDr4C1qXhi7MOqOcgQPQlA/wEcZmcbGo1KEU57+iz9452l1dyGbxU
+         WvLcwbh2VNXE/wxHnhpq0PUm55VrMm4FMff4YlDcCMVbDWWw4rCUDyTIG8k7g5jdDNmH
+         nJD/lkFg9yWL8prOuhdaxesP+FMj/cfL/6lgY1QhGhzsXGejWjAAC2YUrA3e91OeyMO8
+         1TW2FcETqX7BHkjZoF60rSrOUDNPRMyVbOnVjV9118LeoaqxV1Y7Wjrm+Ue4sfP/ggzM
+         zqD2QrCGS06CTqLmjR3lylal/YiZYcOEZsOWZ4pl13bzhPjwgH1qzy43qOdGWYmbMkL+
+         RkxQ==
+X-Gm-Message-State: AAQBX9cfMh+38dEL5oUY2gUMryGmsUQD9o1npWS8EgAegYYEAXbs2PpV
+        /QG6oPc0yj93G5UIW8FszqAxQQ==
+X-Google-Smtp-Source: AKy350Yf2LNrtc0+ouPHuBOO3MiIaDU6TxiCbXcYu4CNrZ1PVQic1v0SRHDCWbvRNAuFjEz34A6X3A==
+X-Received: by 2002:aa7:c043:0:b0:504:77ed:ac87 with SMTP id k3-20020aa7c043000000b0050477edac87mr7473679edo.5.1681506908652;
+        Fri, 14 Apr 2023 14:15:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ffae:8aab:ae5a:4688? ([2a02:810d:15c0:828:ffae:8aab:ae5a:4688])
-        by smtp.gmail.com with ESMTPSA id v8-20020a1709067d8800b0094a98a175cesm2903287ejo.80.2023.04.14.14.12.12
+        by smtp.gmail.com with ESMTPSA id l12-20020a056402344c00b00504803f4071sm2531724edc.44.2023.04.14.14.15.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 14:12:12 -0700 (PDT)
-Message-ID: <83947c77-de8c-fc39-6721-e1e1cb5fc3fc@linaro.org>
-Date:   Fri, 14 Apr 2023 23:12:11 +0200
+        Fri, 14 Apr 2023 14:15:08 -0700 (PDT)
+Message-ID: <5219fd85-23fb-21f8-d765-9f862ea143ec@linaro.org>
+Date:   Fri, 14 Apr 2023 23:15:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v11 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x
- variants
+Subject: Re: [PATCH 1/2] dt-bindings:iio:adc: add max14001 bindings
 Content-Language: en-US
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230414110137.401356-1-patrick.rudolph@9elements.com>
- <20230414110137.401356-2-patrick.rudolph@9elements.com>
+To:     Kim Seer Paller <kimseer.paller@analog.com>, lars@metafoo.de,
+        jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230414102844.21579-1-kimseer.paller@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414110137.401356-2-patrick.rudolph@9elements.com>
+In-Reply-To: <20230414102844.21579-1-kimseer.paller@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,108 +75,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 13:01, Patrick Rudolph wrote:
-> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> chips. The functionality will be provided by the exisintg pca954x driver.
+On 14/04/2023 12:28, Kim Seer Paller wrote:
+> Add bindings for MAX14001.
+> 
+> The MAX14001 is configurable, isolated 10-bit ADCs for multi-range
+> binary inputs.
 
-Typo: existing
+Subject: missing spaces between prefixes.
 
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
 
 > 
-> While on it make the interrupts support conditionally as not all of the
-> existing chips have interrupts.
-> 
-> For chips that are powered off by default add an optional regulator
-> called vdd-supply.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 > ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 45 ++++++++++++++++---
->  1 file changed, 39 insertions(+), 6 deletions(-)
+>  .../bindings/iio/adc/adi,max14001.yaml        | 83 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> index 9f1726d0356b..6fed6eae9c9b 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> @@ -4,21 +4,29 @@
->  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: NXP PCA954x I2C bus switch
-> +title: NXP PCA954x I2C and compatible bus switches
->  
->  maintainers:
->    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->  
->  description:
-> -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> -
-> -allOf:
-> -  - $ref: /schemas/i2c/i2c-mux.yaml#
-> +  The NXP PCA954x and compatible devices are I2C bus
-> +  multiplexer/switches that share the same functionality
-> +  and register layout.
-> +  The devices usually have 4 or 8 child buses, which are
-> +  attached to the parent bus by using the SMBus "Send Byte"
-> +  command.
->  
->  properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - maxim,max7356
-> +          - maxim,max7357
-> +          - maxim,max7358
-> +          - maxim,max7367
-> +          - maxim,max7368
-> +          - maxim,max7369
->            - nxp,pca9540
->            - nxp,pca9542
->            - nxp,pca9543
-> @@ -59,10 +67,33 @@ properties:
->      description: if present, overrides i2c-mux-idle-disconnect
->      $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
->  
-> +  vdd-supply:
-> +    description: A voltage regulator supplying power to the chip.
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> new file mode 100644
+> index 000000000..4546bf595
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  required:
->    - compatible
->    - reg
->  
+> +title: MAX14001 ADC device driver
+
+Drop device driver. Bindings are for hardware, not Linux drivers.
+
+> +
+> +maintainers:
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +
+> +description: |
+> +    Single channel 10 bit ADC with SPI interface. Datasheet
+> +    can be found here:
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max14001
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 5000000
+> +
+> +  vref-supply:
+> +    description: Voltage reference to establish input scaling.
+> +
+> +  adi,use-fadc:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    type: boolean
+
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+Keep one.
+
+> +    description: If set, the filtered ADC data (FADC register) will be read,
+> +                  otherwise the unfiltered ADC data (ADC register) will be read.
+
+Hmmmm, looks familiar. Don't we have existing property for this?
+
+> +
+> +  adi,inrush-mode:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    type: boolean
+> +    description: If set, the device will use FAST inrush mode,
+> +                  otherwise the device will use ADC controlled inrush mode.
+> +
+> +  adi,filter:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2, 3 ]
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      0: Filtering off
+> +      1: Average 2 readings
+> +      2: Average 4 readings
+> +      3: Average 8 readings
+
+Isn't this also matching existing property for number of sample averaging?
+
+> +
+> +  adi,current-source:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    type: boolean
+> +    description: If set, the 70uA current source will be connected to the REFIN pin,
+> +                  otherwise the current source will be turned off.
+> +
 > +allOf:
-> +  - $ref: /schemas/i2c/i2c-mux.yaml#
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - maxim,max7367
-> +                - maxim,max7369
-> +                - nxp,pca9542
-> +                - nxp,pca9543
-> +                - nxp,pca9544
-> +                - nxp,pca9545
-
-That's independent change. You add here support for Maxim devices, not
-customize PCA. Please split it to new patch (first in the series).
-
-> +    then:
-> +      properties:
-> +        interrupts: false
-> +        "#interrupt-cells": false
-> +        interrupt-controller: false
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
 > +
->  unevaluatedProperties: false
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        status = "okay";
+
+Drop status
+
+> +
+> +        adc@0 {
+> +            compatible = "adi,max14001";
+> +            reg = <0>;
+> +            spi-max-frequency = <5000000>;
+> +            vref-supply = <&vref_reg>;
+> +            adi,use-fadc;
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0e64787aa..766847ad2 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12573,6 +12573,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/sound/max9860.txt
+>  F:	sound/soc/codecs/max9860.*
 >  
->  examples:
-> @@ -74,11 +105,13 @@ examples:
->          #size-cells = <0>;
->  
->          i2c-mux@74 {
-> -            compatible = "nxp,pca9548";
-> +            compatible = "nxp,pca9545";
+> +MAX14001 IIO ADC DRIVER
+
+Are you sure you ordered it correctly?
 
 Best regards,
 Krzysztof
