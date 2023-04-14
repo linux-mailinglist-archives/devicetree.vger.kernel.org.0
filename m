@@ -2,90 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6773E6E1C37
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 08:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779326E1C49
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 08:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbjDNGNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 02:13:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46554 "EHLO
+        id S230056AbjDNGQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 02:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjDNGNO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 02:13:14 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8314C2D;
-        Thu, 13 Apr 2023 23:13:12 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33E6CvUM121911;
-        Fri, 14 Apr 2023 01:12:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681452777;
-        bh=5fzgEE5rhEgibICZ0O25CWXhfNZmGZDqlt0vq4RXvyM=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=URVsDq7rIRMqNYXlhoOuQJmyn0xTjbHWqn4Juvnls0SIrvnYAYRllnFPrDu4Dfc3S
-         yiiWHAEWiLDp0Ad9P77YDV7rBeWPdsTR6xVd1nHgBSocBpBDY7SysXraIGnRnNMWvu
-         qooD9ng3eJxu0rTDOE686cgGhxfV085TkyWawdPg=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33E6CvA9027034
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Apr 2023 01:12:57 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 14
- Apr 2023 01:12:57 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 14 Apr 2023 01:12:57 -0500
-Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33E6CrH8054033;
-        Fri, 14 Apr 2023 01:12:53 -0500
-Message-ID: <8552c377-b2e9-749a-9f0c-7c444fe012c6@ti.com>
-Date:   Fri, 14 Apr 2023 11:42:52 +0530
+        with ESMTP id S230064AbjDNGQe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 02:16:34 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C0E759C5;
+        Thu, 13 Apr 2023 23:16:31 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.99,195,1677510000"; 
+   d="scan'208";a="155958225"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 14 Apr 2023 15:16:31 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 25D384195D7C;
+        Fri, 14 Apr 2023 15:16:31 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, fancer.lancer@gmail.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org
+Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v12 00/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Date:   Fri, 14 Apr 2023 15:16:03 +0900
+Message-Id: <20230414061622.2930995-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
-Content-Language: en-US
-To:     Judith Mendez <jm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>
-CC:     Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Schuyler Patton <spatton@ti.com>
-References: <20230413223051.24455-1-jm@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20230413223051.24455-1-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Judith,
+Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+To support them, modify PCIe DesignWare common codes.
 
-On 14/04/23 04:00, Judith Mendez wrote:
-> Judith Mendez (5):
->   arm64: dts: ti: Add AM62x MCAN MAIN domain transceiver overlay
->   arm64: defconfig: Enable MCAN driver
->   dt-binding: can: m_can: Remove required interrupt attributes
->   arm64: dts: ti: Enable multiple MCAN for AM62x in MCU MCAN overlay
->   can: m_can: Add hrtimer to generate software interrupt
+Changes from v11:
+https://lore.kernel.org/linux-pci/20230310123510.675685-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230413
+ - Based on the following cleanups patches:
+   [PATCH v4 00/14] PCI: dwc: Relatively simple fixes and cleanups
+   https://lore.kernel.org/linux-pci/20230414021832.13167-1-Sergey.Semin@baikalelectronics.ru/
+ - Drop a fixed patch of pci-epf-test because I have submitted it independently.
+ - Split patches about adding dw_pcie_link_set_max_* functions.
+ - Split patches about modify __dw_pcie_prog_outbound_atu().
+ - Add description about num lanes into the commit log.
+ - Add some macros into pci_regs.h and pci.h.
+ - Add comment about disabling bars in pcie-rcar-gen4-host.c.
+ - Set MAX_MSI_IRQS to num_vectors for handling 32 MSIs.
+ - Add .ep_deinit().
+ - Add retrain link handling of PCIe Host mode for detecting PCIe Gen4.
+ - Modify some minor things.
 
-This is fine for RFC, but next time, please split DT and defconfig
-changes (1/5,2/5, and 4/5) to separate series as they have to go via
-arm64 tree.
+Changes from v10:
+https://lore.kernel.org/linux-pci/20230308082352.491561-1-yoshihiro.shimoda.uh@renesas.com/
+ - Fix dt-bindings doc for endpoint (reported by Rob's bot).
+ - Add reg and reg-names to the dt-bindings doc of host.
+ - Fix examples in the dt-bindings docs of both host and endpoint.
+ - Add R-Car S4-8 device ID into the pci_test_endpoint driver.
+
+Changes from v9:
+https://lore.kernel.org/linux-pci/20230210134917.2909314-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230306
+ - Add bug fix patches into this patch series.
+   https://lore.kernel.org/linux-pci/20230216092012.3256440-1-yoshihiro.shimoda.uh@renesas.com/
+   https://lore.kernel.org/linux-pci/20230222015327.3585691-1-yoshihiro.shimoda.uh@renesas.com/
+ - Add maximum for max-link-speed and num-lanes to dt-bindings of both host and endpoint.
+ - Add max-functions to dt-bindings of endpoint.
+ - Use reg-names "app" on endpoint.
+ - Remove unnecessary linkup and wait process in rcar_gen4_pcie_host_init().
+ - Remove unnecessary macros in pcie-rcar-gen4.h.
+ - Use dbi2 to write BAR mask registers.
+ - Remove no_msix and intx_by_atu flags.
+ - Reduce __dw_pcie_prog_outbound_atu() arguments.
+ - Add dw_pcie_num_lanes_setup() to setup num_lanes.
+ - Refactor dw_pcie_setup() to avoid PCIE_PORT_LINK_CONTROL writing twice.
+
+Yoshihiro Shimoda (19):
+  PCI: Add PCI_EXP_LNKCAP_MLW macros
+  PCI: Add INtx Mechanism Messages macros
+  PCI: Add PCI_HEADER_TYPE_MULTI_FUNC
+  PCI: dwc: Add dw_pcie_link_set_max_link_width()
+  PCI: dwc: Add dw_pcie_link_set_max_width()
+  PCI: dwc: Add dw_pcie_link_set_max_cap_width()
+  PCI: dwc: Expose dw_pcie_ep_exit() to module
+  PCI: dwc: Introduce struct dw_pcie_outbound_atu
+  PCI: dwc: Add members into struct dw_pcie_outbound_atu
+  PCI: dwc: Change arguments of dw_pcie_prog_ep_outbound_atu()
+  PCI: dwc: Add support for triggering legacy IRQs
+  PCI: dwc: Add EDMA_UNROLL capability flag
+  PCI: dwc: Introduce .ep_pre_init() and .ep_deinit()
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+  PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+  PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+  misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
+
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        |  98 +++++++++
+ .../bindings/pci/rcar-gen4-pci-host.yaml      | 109 ++++++++++
+ MAINTAINERS                                   |   1 +
+ drivers/misc/pci_endpoint_test.c              |   4 +
+ drivers/pci/controller/dwc/Kconfig            |  18 ++
+ drivers/pci/controller/dwc/Makefile           |   4 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  93 ++++++--
+ drivers/pci/controller/dwc/pcie-designware.c  | 201 +++++++++++-------
+ drivers/pci/controller/dwc/pcie-designware.h  |  27 ++-
+ .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 166 +++++++++++++++
+ .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 134 ++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 187 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  49 +++++
+ include/linux/pci.h                           |  18 ++
+ include/uapi/linux/pci_regs.h                 |   7 +
+ 15 files changed, 1020 insertions(+), 96 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
 
 -- 
-Regards
-Vignesh
+2.25.1
+
