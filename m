@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17F2C6E1F06
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 11:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A88456E1F20
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 11:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbjDNJIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 05:08:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42144 "EHLO
+        id S229448AbjDNJUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 05:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbjDNJIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 05:08:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6906B59FF;
-        Fri, 14 Apr 2023 02:08:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 02982645AC;
-        Fri, 14 Apr 2023 09:08:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B10C433D2;
-        Fri, 14 Apr 2023 09:08:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681463331;
-        bh=NxHhNyO59Sno8DPKEVsgy8IRR2jb7JLYYAGWJQ0o1jk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=S22X7WQPAuZ12nmRcg3Rf64pzpx51yTVa48kdudRbsLtAFON2ElyZv/Jdpzu3CEr0
-         tDC9sJAinjGmM8lE7s31slyQktikjbZ/BKnvpMaZ8+OsMrFHIHQnqiHn/fQpaTHj0z
-         wL62Y83dOd0OUBafpwSmf8+R/eyQsRq83qznv9mR8MvLcW9wSsVhIIM+DQ6szqW43s
-         axWSeEOn6HbmekoQHUBb9ECjnoTIzuHTT7PF1vTivE1hBPm8EQ7FCHQsGLBXWXgsj0
-         9KAitdl1eOcXV9Gdr5zlaH+DO+Xruae/vy+R5dDpZQ3VRtwRRXnVXDNO1V3qRxk5ds
-         WFZMi6Anbthhg==
-Message-ID: <94db291f-6d93-548b-92ad-3a9f480783e2@kernel.org>
-Date:   Fri, 14 Apr 2023 11:08:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 2/2] dt-bindings: usb: snps,dwc3: Add
- 'snps,global-regs-starting-offset' quirk
-Content-Language: en-US
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        with ESMTP id S229479AbjDNJUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 05:20:45 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 541475BB0;
+        Fri, 14 Apr 2023 02:20:44 -0700 (PDT)
+Received: from stefanw-SCHENKER ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N4Q8u-1qX8jH2Txu-011RQg; Fri, 14 Apr 2023 11:20:09 +0200
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230412033006.10859-1-stanley_chang@realtek.com>
- <20230412033006.10859-2-stanley_chang@realtek.com>
- <CAL_JsqLqTHbHjB1qiLduhzvTaO7EBMgL6KYqZJtgStGVGtX1vQ@mail.gmail.com>
- <5ae89b563e234acdb36a4ae253cec869@realtek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <5ae89b563e234acdb36a4ae253cec869@realtek.com>
-Content-Type: text/plain; charset=UTF-8
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
+        linux-imx@nxp.com, "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V3 0/6] ARM: dts: imx6ull: Fix dtbs_check warnings
+Date:   Fri, 14 Apr 2023 11:19:41 +0200
+Message-Id: <20230414091947.7831-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-9.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Provags-ID: V03:K1:hZO7aSeh19CFSzyt1wn7DMqe5u+cJwhytrJylrSjOxbVjlxhFzV
+ la9Z3fIgiDi3HXXewf+iWVDf4Pz851OnoCQEvSb5U1Z6T/JbnJtn6509JsU9bXk4E2f73Ef
+ idkUHyq/4w34eR6PgnFQW5/bKeNKaATggNeKkNp0hsQiQC9YVUxFvLYH4hX7ufHVEWZCc7f
+ ImlrB1EGBnn1B6UTtL4Dg==
+UI-OutboundReport: notjunk:1;M01:P0:T4Ry70SW50U=;1kp/ghpYCyKpzAyHh/WjkyYii9z
+ MdWawSyhF1XQp+hbp4dviq+AgQQSQcHMmidH8MYlIYxNpJ5Hfy8nnzfQbMC/Rc67v5PAUxD+3
+ mz0mekv+1dw5uO/6dg23sxLuxOwYbt91EZhE3u4H+7sPWHGsc4xsuZSEFtc3e67h4HRFVYZJj
+ gmUmb3QkIarRFcKpGoSJ2/9k3ODxKIM5MJrTQkUrKllA/Wf6sCb+W3m7nS6xvFeyy9v3ZTROO
+ uBGJokHgL0baX01rquISsU8CXJIYWiPK0TlkI584uCP/AFx1pWwHeoNJ8DI0ooq4yJ173xKcM
+ lEbDKocv9JydyPVw/7+c/1PT+CyhF/VMQZtg+0JKC1mcVhElXZ6oOKjHxqBLpepSv146pwlML
+ KmvYDCVMnvLl1C45h7PCCdXMaFnEIlLDG91aq1ThdAb+kHATQBCMa5ncEhs1kFQpBiU1wD4hm
+ 2oUVIdXYJJzAZ37wcW+jiU6lXZw1WKpeX1tw0GCUorGkSWs5KZcGPsOSHX1vrCjvWemW8/Q9a
+ QtDpB1dgpQBiXl2YxjhTPGExek9qVOoYOrJ+T1e2+lAu9314F3egz1HZLWjj9jEOjH0oNc9ZG
+ 7kBAyiwnDQd4aMfe0oVrLU6NwUuUdPHyvTsZO86Gotf8wL48Y4DI7TuwchKcEI4qvzAvRKB4h
+ OKluAaiyw87XBKviGquCA1c988CSwh/+38QWukzfvw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,70 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 04:53, Stanley Chang[昌育德] wrote:
-> 
->>
->> On Tue, Apr 11, 2023 at 10:30 PM Stanley Chang
->> <stanley_chang@realtek.com> wrote:
->>>
->>> Add a new 'snps,global-regs-starting-offset' DT to dwc3 core to remap
->>> the global register start address
->>>
->>> The RTK DHC SoCs were designed the global register address offset at
->>> 0x8100. The default address is at DWC3_GLOBALS_REGS_START (0xc100).
->>> Therefore, add the property of device-tree to adjust this start address.
->>>
->>> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
->>> ---
->>>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
->>>  1 file changed, 7 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> index be36956af53b..5cbf3b7ded04 100644
->>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> @@ -359,6 +359,13 @@ properties:
->>>      items:
->>>        enum: [1, 4, 8, 16, 32, 64, 128, 256]
->>>
->>> +  snps,global-regs-starting-offset:
->>> +    description:
->>> +      value for remapping global register start address. For some dwc3
->>> +      controller, the dwc3 global register start address is not at
->>> +      default DWC3_GLOBALS_REGS_START (0xc100). This property is
->> added to
->>> +      adjust the address.
->>
->> We already have 'reg' or using a specific compatible to handle differences. Use
->> one of those, not a custom property. Generally, properties should be used for
->> things that vary per board, not fixed in a given SoC.
->>
->> Rob
->>
-> 
-> The default offset is fixed by macro DWC3_GLOBALS_REGS_START, and it is not specified by reg.
+This series tries to address some dtbs_check warnings on i.MX6ULL.
 
-Are you saying that reg points to XHCI registers and the gap between
-them and DWC3_GLOBALS_REGS_START is different on some implementations of
-this IP?
+Changes in V3:
+- add Krzysztof's Reviewed-Bys
+- fix indentation in Patch 6 found by Krzysztof Kozlowski
 
-> The dwc3/core is a general driver for every dwc3 IP of SoCs,
-> and vendor's definition and compatible should specify on its parent.
+Changes in V2:
+- new patch to fix fsl-imx-uart warnings 
+- fixed GPC typo found by Fabio Estevam
+- keep enum in bindings as suggested by Krzysztof Kozlowski
+- make imx6ul GPT compatible to imx6sx
 
-Not entirely. It's how currently it is written, but not necessarily
-correct representation. The parent is only glue part which for some
-non-IP resources.
+Stefan Wahren (6):
+  dt-bindings: serial: fsl-imx-uart: add missing properties
+  dt-bindings: crypto: fsl-dcp: add imx6sl and imx6ull compatible
+  dt-bindings: imx-thermal: add imx6sll and imx6ul compatible
+  dt-bindings: imxgpt: add imx6ul compatible
+  ARM: dts: imx: Adjust dma-apbh node name
+  ARM: dts: imx6ul: Add clock and PGC node to GPC
 
-> If we add a specific compatible to dwc3/core driver, then it will break this rule.
+ .../devicetree/bindings/crypto/fsl-dcp.yaml   | 12 ++++++---
+ .../bindings/serial/fsl-imx-uart.yaml         | 25 +++++++++++++++++++
+ .../bindings/thermal/imx-thermal.yaml         | 14 ++++++++---
+ .../devicetree/bindings/timer/fsl,imxgpt.yaml |  3 +++
+ arch/arm/boot/dts/imx23.dtsi                  |  2 +-
+ arch/arm/boot/dts/imx28.dtsi                  |  2 +-
+ arch/arm/boot/dts/imx6qdl.dtsi                |  2 +-
+ arch/arm/boot/dts/imx6sx.dtsi                 |  2 +-
+ arch/arm/boot/dts/imx6ul.dtsi                 | 14 ++++++++++-
+ arch/arm/boot/dts/imx7s.dtsi                  |  2 +-
+ 10 files changed, 65 insertions(+), 13 deletions(-)
 
-What rule? The rule is to have specific compatibles, so now you are
-breaking it.
-
-> Therefore, I use a property to adjust this offset. 
-> If no define this property, it will use default offset. So it will not affect other board.
-
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
