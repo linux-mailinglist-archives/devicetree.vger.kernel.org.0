@@ -2,86 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5B696E27F6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 18:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 283B16E2816
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 18:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbjDNQFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 12:05:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49538 "EHLO
+        id S229908AbjDNQLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 12:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbjDNQFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 12:05:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191455BB0;
-        Fri, 14 Apr 2023 09:05:03 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33EFR9vE011456;
-        Fri, 14 Apr 2023 16:04:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zmT8OGNRNLDcRI4wX+B2UEr0mwcLGz92og4FZshltnQ=;
- b=antOn+e0QYxY11M/qmPeE5IR7JBm1chVBS7oGTbBzEjjMiGBgw8GyYgRpnPujQeNkBPH
- CCwgJIJyJEB+vBSVebP1dzIcCAr18Nvkg0lGNNHlVRbjC0eAnF1mdIhM12Koc56w1tfs
- XxaniBbWTUhs+Xf4zjMVlJVYdD9Oiu2J2An7NbqSpM6GqW+2+6CJFSXXmXLnkeGIIuLn
- E3CuDfCgKXh2XYUzXckILUyEzIU0ZikYi89UVicHw2MpPDFKYtglLpch9+F0/PoWxI3M
- ibKNnDMuVmaCpYPYq2fDxXJoHAQc4d2AliYoWN8w4PrCu8815zS4d1J++wQZDVXFDkge LA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pxdteknet-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 16:04:59 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33EG4wGV002787
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Apr 2023 16:04:58 GMT
-Received: from [10.216.10.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 14 Apr
- 2023 09:04:52 -0700
-Message-ID: <2c5bbe48-3007-a1d5-73b9-9d2132bff9d4@quicinc.com>
-Date:   Fri, 14 Apr 2023 21:34:48 +0530
+        with ESMTP id S229564AbjDNQLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 12:11:31 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6789E6A5E
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 09:11:29 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <jzi@pengutronix.de>)
+        id 1pnM1A-00049R-QH; Fri, 14 Apr 2023 18:11:20 +0200
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <jzi@pengutronix.de>)
+        id 1pnM19-00BErg-Ni; Fri, 14 Apr 2023 18:11:19 +0200
+Received: from jzi by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <jzi@pengutronix.de>)
+        id 1pnM18-00FQvi-Es; Fri, 14 Apr 2023 18:11:18 +0200
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH 0/2] Support non-default LVDS data mapping for simple
+Date:   Fri, 14 Apr 2023 18:11:14 +0200
+Message-Id: <20230414161116.3673911-1-j.zink@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V1 1/4] dt-bindings: clock: qcom,ipq9574-gcc: Drop the
- Bias PLL ubi clock source
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <20230414134812.16812-1-quic_devipriy@quicinc.com>
- <20230414134812.16812-2-quic_devipriy@quicinc.com>
- <dc48d390-9c8b-d3b7-9c5e-6cbddb0e1306@linaro.org>
- <aca7b808-51ce-1921-2ee2-0e82cf19d960@quicinc.com>
- <7b4fe58c-9cf8-57ab-8cbc-c5ccf0b2a46d@linaro.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <7b4fe58c-9cf8-57ab-8cbc-c5ccf0b2a46d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: H18vUg1Fz5dVU1W_YWN3MuQSKPZI4V0I
-X-Proofpoint-GUID: H18vUg1Fz5dVU1W_YWN3MuQSKPZI4V0I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-14_08,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=597 clxscore=1015 spamscore=0 lowpriorityscore=0 phishscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 mlxscore=0 impostorscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304140142
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: jzi@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,35 +51,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some LVDS panels, such as the innolux,g101ice-l01 support multiple LVDS
+data mapping modes, which can be configured by strapping a dataformat
+pin on the display to a specific voltage.
 
+This can be particularly useful for using the jeida-18 format, which
+requires only 3 instead of 4 LVDS lanes.
 
-On 4/14/2023 8:39 PM, Krzysztof Kozlowski wrote:
-> On 14/04/2023 16:22, Devi Priya wrote:
->>
->>
->> On 4/14/2023 7:47 PM, Krzysztof Kozlowski wrote:
->>> On 14/04/2023 15:48, Devi Priya wrote:
->>>> Remove bias_pll_ubi_nc_clk from the binding as it has been removed from
->>>> the Device Tree. Also added Bjorn Andersson to the maintainers list.
->>>
->>> Was it really removed? Where?
->>>
->> It has been removed from the Device tree and binding in V11
->> https://lore.kernel.org/linux-arm-msm/20230404101622.5394-1-quic_devipriy@quicinc.com/
-> 
-> I still see it in current next. Are you sure you refer to something
-> already merged?
+This series adds an optional data-mapping property, analogously to the
+property on lvds-panel, which overrides the default data mapping set in
+the panel description in simple-panel.
 
-This change was made in V11 and Currently V9 is merged in linux-next.
-So, the delta changes between V9 & V12 is posted in this series.
-The device tree change where the clock is removed is added part of this 
-incremental patch series and the binding is updated to reflect the same.
-Apologies, if the confusion is because of "has been removed from device 
-tree" in the commit message.
+Best regards
+Johannes
 
-Thanks,
-Devi Priya
-> 
-> Best regards,
-> Krzysztof
-> 
+Johannes Zink (2):
+  dt-bindings: display: simple: support non-default data-mapping
+  drm/panel-simple: allow LVDS format override
+
+ .../bindings/display/panel/panel-simple.yaml  | 51 +++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          | 37 +++++++++++++-
+ 2 files changed, 87 insertions(+), 1 deletion(-)
+
+-- 
+2.39.2
+
