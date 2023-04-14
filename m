@@ -2,122 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3B16E1A47
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 04:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A85C6E1A6B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 04:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjDNCWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Apr 2023 22:22:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49314 "EHLO
+        id S229775AbjDNCnB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 Apr 2023 22:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjDNCWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 22:22:34 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E274EF2;
-        Thu, 13 Apr 2023 19:22:12 -0700 (PDT)
+        with ESMTP id S229457AbjDNCnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Apr 2023 22:43:00 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D475D12E;
+        Thu, 13 Apr 2023 19:42:57 -0700 (PDT)
 Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
         (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 91F6624E1C6;
-        Fri, 14 Apr 2023 10:20:33 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+        by ex01.ufhost.com (Postfix) with ESMTP id 3FA5A24E235;
+        Fri, 14 Apr 2023 10:42:56 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
  (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Apr
- 2023 10:20:33 +0800
-Received: from [192.168.125.82] (183.27.97.249) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Apr
- 2023 10:20:32 +0800
-Message-ID: <84300997-31f8-b36e-e54e-876c266fc953@starfivetech.com>
-Date:   Fri, 14 Apr 2023 10:20:31 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/7] dt-bindings: power: Constrain properties for
- JH7110 PMU
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
+ 2023 10:42:56 +0800
+Received: from localhost.localdomain (183.27.97.249) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Apr
+ 2023 10:42:54 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-2-changhuang.liang@starfivetech.com>
- <cb97cf01-2dfd-7f93-2048-e05a806d468f@linaro.org>
- <ee406b3d-0719-9332-cab5-62fe7537bcf1@starfivetech.com>
- <20230412-trifle-outplayed-8a1c795fab8b@wendy>
- <d59439c1-bce1-b4a1-0e05-77afc4fc2ebb@linaro.org>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <d59439c1-bce1-b4a1-0e05-77afc4fc2ebb@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+        Hal Feng <hal.feng@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v3 0/7] Add PLL clocks driver for StarFive JH7110 SoC
+Date:   Fri, 14 Apr 2023 10:41:50 +0800
+Message-ID: <20230414024157.53203-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain
 X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
- (172.16.6.72)
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
 X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch serises are to add PLL clocks driver and providers by writing
+and reading syscon registers for the StarFive JH7110 RISC-V SoC. And add
+documentation to describe StarFive System Controller(syscon) Registers.
+
+PLL are high speed, low jitter frequency synthesizers in JH7110.
+Each PLL clocks work in integer mode or fraction mode by some dividers,
+and the dividers are set in several syscon registers.
+The formula for calculating frequency is: 
+Fvco = Fref * (NI + NF) / M / Q1
+
+The first patch adds docunmentation to describe PLL clock bindings,
+and the second patch adds driver to support PLL clocks for JH7110.
+The patch 3 modifies the SYSCRG dibindings and adds PLL clock inputs.
+The patch 4 modifies the system clock driver and changes PLL clock source
+from PLL clock controller instead of the fixed factor clocks. The patch 5
+adds documentation to decribe syscon registers. And the patch 6 adds the
+stg/sys/aon syscon nodes for JH7110 SoC. The last patch adds PLL 
+clock node and modifies the syscrg node in JH7110 dts file.
+
+This patchset should be applied after these patchset about JH7110 basic
+clock drivers(Accepted and will merged in v6.4)[1].
+[1] https://lore.kernel.org/all/20230401111934.130844-1-hal.feng@starfivetech.com/
+
+Changes since v2:
+- Rebased on latest JH7110 basic clock drivers.
+- Added the complete documentation to describe syscon register.
+- Added syscon node in JH7110 dts file.
+- Modified the clock rate selection to match the closest rate in
+  PLL driver when setting rate.
+
+v2: https://lore.kernel.org/all/20230316030514.137427-1-xingyu.wu@starfivetech.com/
+
+Changes since v1: 
+- Changed PLL clock node to be child of syscon node in dts.
+- Modifed the definitions and names of function in PLL clock driver.
+- Added commit to update syscon and syscrg dt-bindings.
+
+v1: https://lore.kernel.org/all/20230221141147.303642-1-xingyu.wu@starfivetech.com/
+
+William Qiu (2):
+  dt-bindings: soc: starfive: Add StarFive syscon module
+  riscv: dts: starfive: jh7110: Add syscon nodes
+
+Xingyu Wu (5):
+  dt-bindings: clock: Add StarFive JH7110 PLL clock generator
+  clk: starfive: Add StarFive JH7110 PLL clock driver
+  dt-bindings: clock: jh7110-syscrg: Add PLL clock inputs
+  clk: starfive: jh7110-sys: Modify PLL clocks source
+  riscv: dts: starfive: jh7110: Add PLL clock node and modify syscrg
+    node
+
+ .../bindings/clock/starfive,jh7110-pll.yaml   |  46 ++
+ .../clock/starfive,jh7110-syscrg.yaml         |  20 +-
+ .../soc/starfive/starfive,jh7110-syscon.yaml  |  58 +++
+ MAINTAINERS                                   |  12 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  29 +-
+ drivers/clk/starfive/Kconfig                  |   9 +
+ drivers/clk/starfive/Makefile                 |   1 +
+ .../clk/starfive/clk-starfive-jh7110-pll.c    | 427 ++++++++++++++++++
+ .../clk/starfive/clk-starfive-jh7110-pll.h    | 293 ++++++++++++
+ .../clk/starfive/clk-starfive-jh7110-sys.c    |  31 +-
+ .../dt-bindings/clock/starfive,jh7110-crg.h   |   6 +
+ 11 files changed, 903 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-pll.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-pll.h
 
 
-On 2023/4/12 19:29, Krzysztof Kozlowski wrote:
-> On 12/04/2023 11:42, Conor Dooley wrote:
->> On Wed, Apr 12, 2023 at 04:51:16PM +0800, Changhuang Liang wrote:
->>>
->>>
->>> On 2023/4/12 16:35, Krzysztof Kozlowski wrote:
->>>> On 11/04/2023 08:47, Changhuang Liang wrote:
->>>>> When use "starfive,jh7110-pmu-dphy" compatible, do not need the reg and
->>>>> interrupts properties.
->>> [...]
->>>>>  
->>>>>  description: |
->>>>>    StarFive JH7110 SoC includes support for multiple power domains which can be
->>>>> @@ -17,6 +18,7 @@ properties:
->>>>>    compatible:
->>>>>      enum:
->>>>>        - starfive,jh7110-pmu
->>>>> +      - starfive,jh7110-pmu-dphy
->>>>
->>>> You do here much more than commit msg says.
->>>>
->>>> Isn'y DPHY a phy? Why is it in power?
->>>>
->>>
->>> OK, I will add more description. This is a power framework used to turn on/off 
->>> DPHY. So it in power, not a phy.
-
-I found something wrong with my description here, not turn on/off DPHY,
-is turn on/off DPHY power switch. 
-
->>
->> Perhaps tie it less to its role w/ the phy, and more to do with its
->> location, say "jh7110-aon-pmu"?
->> There's already "aon"/"sys"/"stg" stuff used in clock-controller and
->> syscon compatibles etc.
->>
->> Krzysztof, what do you think of that? (if you remember the whole
->> discussion we previously had about using those identifiers a few weeks
->> ago).
-> 
-> Depends whether this is the same case or not. AFAIR, for AON/SYS/STG
-> these were blocks with few features, not only clock controller.
-> 
-> This sounds like just phy. Powering on/off phy is still a job of phy
-> controller... unless it is a power domain controller.
-> Best regards,
-> Krzysztof
-> 
-
-So, next version the compatible can be changed to "jh7110-aon-pmu"?
+base-commit: 197b6b60ae7bc51dd0814953c562833143b292aa
+prerequisite-patch-id: 388b8adbb0fe2daf4d07a21eafd4f1bd50ce2403
+prerequisite-patch-id: 1117ecaa40a353c667b71802ab34ecf9568d8bb2
+prerequisite-patch-id: b00c6b21fbd0353d88b7c9b09093ba30b765f45b
+prerequisite-patch-id: 08ec9027e8a5c6fdf201726833168c7464a9b94d
+prerequisite-patch-id: fb5120248e48fe1faf053ae0b490c92507ec2b44
+prerequisite-patch-id: 4b93d8d590b0a2abe7b4be5287232c494c35be4a
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: c09c4c68af017b8e5c97b515cb50b70c18a2e705
+prerequisite-patch-id: 0df8ccb0e848c2df4c2da95026494bebecede92d
+prerequisite-patch-id: 315303931e4b6499de7127a88113763f86e97e16
+prerequisite-patch-id: 40cb8212ddb024c20593f73d8b87d9894877e172
+prerequisite-patch-id: a1673a9e9f19d6fab5a51abb721e54e36636f067
+prerequisite-patch-id: d57cc467fb036241b9276320ff076c4a30d376d6
+prerequisite-patch-id: 6e563d68bc5dbf951d4ced17897f9cc4d56169fe
+prerequisite-patch-id: 61ec2caa21fd0fc60e57977f7d16d3f72b135745
+prerequisite-patch-id: 1387a7e87b446329dfc21f3e575ceae7ebcf954c
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: 9007c8610fdcd387592475949864edde874c20a2
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 0a0ac5a8a90655b415f6b62e324f3db083cdaaee
+-- 
+2.25.1
 
