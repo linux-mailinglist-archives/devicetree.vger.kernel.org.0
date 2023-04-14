@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C41A6E28D3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 18:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE926E28DC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 19:00:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbjDNQ6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 12:58:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57676 "EHLO
+        id S229638AbjDNRAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 13:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjDNQ6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 12:58:01 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AAA7448B
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 09:58:00 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id c9so8344327ejz.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 09:58:00 -0700 (PDT)
+        with ESMTP id S229461AbjDNRAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 13:00:40 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D895448B
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 10:00:39 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50672fbf83eso7053230a12.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 10:00:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681491478; x=1684083478;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1681491638; x=1684083638;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cLuHyW+oToWSMJF/7yNdvhI6vBh6/Geuch2BcgJwQ+s=;
-        b=p9jcxsu5QbhKFz/zEToMWOzWt4NlQFv/ocvksXuo79xWMN9r4zmYmzFuOuaGZxcPBz
-         Bn9tdeRrraErGBUFG9HDf0ubFG+vlvtmtZ0TY4JgT6Bq7pyiOdUmLt3yTwyceZJsdzSr
-         5yOlGNO46IkUnpG2VxOblDidTidYX75Jk80/Em/p3D4iJ50Ue5KWUhRlBDCWbwRHLUUT
-         amskfEa6yTYjo40P3pvzl35iHmSyJ0PkK6UTzuRQL76sUGxYL5hA7734a8+6JuVan/q6
-         l5jE7RvaHDQ73AsP0fQ5sruExM0suuYGq5Ir7UgDjty9tThT3wcnzhYgrmczrb2vpjHP
-         xASg==
+        bh=fcVz7CUgiYkhjPKrULZ6Y+Q6MNzNGZWZZ2qZp+hF1YE=;
+        b=CR9QspsCWtzKNvqnQ603pmM+6l4HqsfihOi5xyoIaanOI9D3sVSROgtrnxCxF6AvgW
+         jAbr1g3t77RA2eMuIzUbIQd6mPR8SZDNu8DoPo13zJ4k4qGZIa4M+SzZmIixtnc+7Xvm
+         bhXQMZibQ9v3ll1MzCkGynzn0HI+/8lLWEerhhF7jcV6w/B9nD5zFIvrKzt9NDlX5t9Z
+         koRDQPEHGqKbL0nu/hKLJ0J/sYf3LKaaL9wFszBsaUSbUJcXlSaQwWY1h0ixGP0PitcT
+         D2SUFetjeyaSW+cCVsX7lq2iMwREmwlTN+Jb9W29Qy09+ZWgNwLNLSvDuHMgZ3kI9DWU
+         NVFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681491478; x=1684083478;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1681491638; x=1684083638;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cLuHyW+oToWSMJF/7yNdvhI6vBh6/Geuch2BcgJwQ+s=;
-        b=bXXb2qJdWdqWnjwMqzI+Giofejj0Vo5i4TnbTNHRMS7ubKkNuRaYI9d+1l60rpdGbu
-         KHFoTb/7nrZcD10rYWkmOH5A3RYwJx4LjBNyr536o0EFE5AT8YDMWuXl3XsVar0mgZP7
-         jyNJbC24LbcVzjjYGPSDfwOKuBBLK5uFbSvED5jc7EcZtUycKJb54XMJEt0PquXMW7vf
-         1MGxq93U+2RqYuiFr1e39knDAut5bXnwVOkSKmPO1Kgv82h1j6757Xcz/zjb3kB+vlx0
-         zjTEMTIfb3lWrSZ03Li6O/pwSmZzBcZujVoZq+fnHSxwArnVHjfFtZHv18MD/hSRKtT7
-         0Axw==
-X-Gm-Message-State: AAQBX9c4sNWfku7y3Bm5sbZVqX7nJzA7IdE8HcaHn5TrGI1D+WIIWeZt
-        mWESa7WlM9wkZCYPr6eq4pfCnw==
-X-Google-Smtp-Source: AKy350YQ1HKGT+ViKDuqS5nsV9zqTPyR2y8jAfhlwKBUAhpwzMu5YdZluLXysFoxFAEZSZMgaTQwww==
-X-Received: by 2002:a17:907:9873:b0:94e:887f:a083 with SMTP id ko19-20020a170907987300b0094e887fa083mr6847292ejc.57.1681491478620;
-        Fri, 14 Apr 2023 09:57:58 -0700 (PDT)
+        bh=fcVz7CUgiYkhjPKrULZ6Y+Q6MNzNGZWZZ2qZp+hF1YE=;
+        b=U0DnbQlTaTZf2wc7LGb/ghTpnMbwBlWJCvzaSFg6zRLlPe3imv1fVeKTexz4aPuvJw
+         GL8DJyymlFyacnIYP9jISvF2zOdlevFik/s14fWJkPMGVHKxVohbWA4vyP6emKWNhvzm
+         CakK2hx49yP704MOwaykdVoMiE5/KO6CMLPURsMKeLqGzoHakVL3KGgm8sQQXKnAiW8A
+         GH0uEoWIlJCz+jFGfHMSTHqy3v0Cm1r+wHA10yxg/FWrYnRjCNMvoBl16NP7UaILnnyX
+         RoUrO0AZBDJtA5Y4KkZPplsG7ayKNwsr6b2WInDVEJJFwa2ePjgKDz0zDR0yLChVFUys
+         dTkA==
+X-Gm-Message-State: AAQBX9fQI0w6Le6lqxY4lZ6mOiWxdM0SoFsx6QwPaB3f7LGKw6PI7JFw
+        bVkeA/NA9CIutU4EexFd9bysN0M11FR7bc7GWs8=
+X-Google-Smtp-Source: AKy350ZZUwNYw/gqt4ucoxJgVdnUzPsq4LA6OmDG8VF20owwn2Du/lQmxZOGY6pXpqgffpIDOkScGA==
+X-Received: by 2002:a05:6402:653:b0:501:fe46:480b with SMTP id u19-20020a056402065300b00501fe46480bmr6234787edx.15.1681491637856;
+        Fri, 14 Apr 2023 10:00:37 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:39b7:81a0:bd41:17b1? ([2a02:810d:15c0:828:39b7:81a0:bd41:17b1])
-        by smtp.gmail.com with ESMTPSA id i7-20020a170906698700b0094a9eb7598esm2620895ejr.120.2023.04.14.09.57.57
+        by smtp.gmail.com with ESMTPSA id i25-20020aa7c719000000b00504ae3a5adfsm2345714edq.2.2023.04.14.10.00.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 09:57:58 -0700 (PDT)
-Message-ID: <b12f305e-ba53-bbab-1d0d-121b76d8b5f6@linaro.org>
-Date:   Fri, 14 Apr 2023 18:57:56 +0200
+        Fri, 14 Apr 2023 10:00:37 -0700 (PDT)
+Message-ID: <5544de12-396c-29d4-859c-a6e17b2e2de4@linaro.org>
+Date:   Fri, 14 Apr 2023 19:00:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 1/9] ASoC: Add Chameleon v3 audio
+Subject: Re: [PATCH 2/9] dt-bindings: ASoC: Add chv3-i2s
+Content-Language: en-US
 To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
@@ -63,10 +64,9 @@ Cc:     perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
         lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com
 References: <20230414140203.707729-1-pan@semihalf.com>
- <20230414140203.707729-2-pan@semihalf.com>
-Content-Language: en-US
+ <20230414140203.707729-3-pan@semihalf.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414140203.707729-2-pan@semihalf.com>
+In-Reply-To: <20230414140203.707729-3-pan@semihalf.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,16 +80,81 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/04/2023 16:01, Paweł Anikiel wrote:
-> Add machine and platform drivers for ASoC audio on Chameleon v3.
-> 
-> The board has two audio sources: HDMI audio from the it68051 chip
-> (RX only), and analog audio from the ssm2603 chip (RX and TX).
+> Add binding for chv3-i2s device.
+
+Your subject needs improvements:
+1. ASoC goes before bindings
+2. You miss some meaningful title of device. "chv3-i2s" can be anything,
+so add Google or Google Chameleon. Or use entire compatible.
+
+
 > 
 > Signed-off-by: Paweł Anikiel <pan@semihalf.com>
 > ---
->  .../boot/dts/socfpga_arria10_chameleonv3.dts  |  28 ++
+>  .../bindings/sound/google,chv3-i2s.yaml       | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml b/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
+> new file mode 100644
+> index 000000000000..6f49cf059ac5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/google,chv3-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google Chameleon v3 I2S device
+> +
+> +maintainers:
+> +  - Paweł Anikiel <pan@semihalf.com>
+> +
+> +description: |
+> +  I2S device for the Google Chameleon v3. The device handles both RX
+> +  and TX using a producer/consumer ring buffer design.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,chv3-i2s
 
-No way. DTS is always, always separate.
+Missing blank line.
+
+Is chv3 the name of your SoC? Where are the SoC bindings? What's exactly
+the versioning scheme for it (compatibles must be specific, not generic).
+
+> +  reg:
+> +    items:
+> +      - description: core registers
+> +      - description: irq registers
+
+As well...
+
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2s0: i2s@c0060300 {
+> +        compatible = "google,chv3-i2s";
+> +        reg = <0xc0060300 0x100>,
+> +              <0xc0060f00 0x10>;
+> +        interrupts = <0 20 IRQ_TYPE_LEVEL_HIGH>;
+
+Isn't 0 also a known define?
+
+
 
 Best regards,
 Krzysztof
