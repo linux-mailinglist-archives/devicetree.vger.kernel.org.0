@@ -2,187 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC32F6E1DB7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 10:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 383D46E1DCE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 10:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbjDNIBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 04:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46624 "EHLO
+        id S229733AbjDNIHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 04:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbjDNIBk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 04:01:40 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3BE665BA
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 01:01:38 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id c9so4724143ejz.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 01:01:38 -0700 (PDT)
+        with ESMTP id S229965AbjDNIHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 04:07:47 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBC06E8B
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 01:07:45 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id c7so3285873ybn.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 01:07:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681459297; x=1684051297;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xje8D9sa7nkYBBtoZ60rXI27tiHKZTyz3H3ko6glfWs=;
-        b=SNzhq9yJd9kEmkttqZyGlJGyME1zSO4jRes4LYWjxfYh998ByIMuuMTsRUC891pvxw
-         5AbB3DkE+/EOqA2BNkBBk8hUjWFZ/fsDHsISSnQjmlvPXuU+ZIjNOAu5lpXAwpfJfTEA
-         yO5q6VoErPQyjATCG48//JjePz1qHYt2qjl4TzMF9ZlJVwNabncUPeq+tecx6EDJUKf1
-         SmJBsa6PEJixtGxDfajFmw+YdCKCVQXPhhvgr9ARk8zGh5bbnAwaR8WlRfTPIIMRv581
-         skHZEIVneM3xKjRXv+yhfg+Kzzu/zgEY9CydYX7AmUffCqlQBHKN8c655e6lzeHPdX4E
-         d/Pg==
+        d=linaro.org; s=google; t=1681459664; x=1684051664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JZnp/yCsMHc5KR2mJVi72YvBKCTqmijPKq0ipLNZZMk=;
+        b=ktm6FG/JzVzuHbCMOSVDcY+/2bQ60RCnnINpZrzuNcm4lQmOn92FFmwyOqKzCQA4bs
+         /h4dhVG9MEuhoKUl8IUJVBUrmhpVPumHcWbY6DYJnZUTgtr8dc3QVPJi+Re3IHYiuJAm
+         7a8FlwRPl/iaDrwhxcVHIqaOXUAFuFGFKNgfjXA1S5g7M7STk5oxUX6P5/A18yHERe5T
+         a2GFT1v0GwucfnlaI8YtZlhVHnnKo66bBLVsrM5mpEBlxjxrbLWV9CmLDKBuf84K8ojg
+         Rd3ogWHf+9ybyFbYEEM3B8PnzHTNztX4LMgcwAhL74oj6FUjehodr9sB90nhrETzrCpS
+         ekNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681459297; x=1684051297;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xje8D9sa7nkYBBtoZ60rXI27tiHKZTyz3H3ko6glfWs=;
-        b=XBFYEsEYf3OU5oPkZqOmZYFeFH5AHB0RiiIImzc52IyhXwcV9XT7fSzgLZGT8anRhF
-         qaptzhWMdVFwq+l1gtc5o0oRSGcRj4SdaH6Ptck458SND1wrRuLjwzEfjPbB5pjndl90
-         wleTbj93SCoPZaoCCg7qRA8XjmupEA8MczTUcku2qXdKaKeAaXPOlwfr9VAXGp1vpy4c
-         FhCRYFw+f1mC4dVeXjIqbsmmPDEOVRo/emNzF084BVSosk6qWIZYEIdybPFcLke9G5AY
-         tvhblrULKtRZsmLX0CQomkHYjzStRbXm9Q8S4lY8K/1AgIakMrTcJ9VG7whRhPF3dw0T
-         eLcQ==
-X-Gm-Message-State: AAQBX9eEXaaJl/RFpCun3jpqG5PkGn4jBvc4ujF2W03UdK2wEZCzh1Sb
-        aUYxSPe0iDeaIju77WNyBkWCPA==
-X-Google-Smtp-Source: AKy350ZpPz0lsPYf/WDpVV1jLkM/RaqXPVT1AUiSTHl5MrL2rJ/rUIEn3+7mlYfUZuE5d3lI///K/w==
-X-Received: by 2002:a17:906:4d1:b0:94e:8aeb:f8f3 with SMTP id g17-20020a17090604d100b0094e8aebf8f3mr5886098eja.57.1681459297579;
-        Fri, 14 Apr 2023 01:01:37 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id gj19-20020a170906e11300b0094a83007249sm2129846ejb.16.2023.04.14.01.01.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 01:01:37 -0700 (PDT)
-Message-ID: <9ab56180-328e-1416-56cb-bbf71af0c26d@linaro.org>
-Date:   Fri, 14 Apr 2023 10:01:36 +0200
+        d=1e100.net; s=20221208; t=1681459664; x=1684051664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JZnp/yCsMHc5KR2mJVi72YvBKCTqmijPKq0ipLNZZMk=;
+        b=fboifJ1aT94Wo4OSZx568GtE+qSykq+euFxES38CMks5wk9bA2Z4LVl8YbzDOIoJZd
+         q2MUxVyFbr42uMkHFQnEI+YYESwjQi9dkfWfyR91l8uAd9bqEpzOGe6AJvvNxFgIhXIc
+         svWbvALSjp/CPeLZll/vFqq+9/xf3YRZDupNFN61eZfQ7PHmCKm1jkHGNdiIwzEfqYC2
+         EGrPixpAkoTV/Dgje/jOseF/yyqotZgTBpvotzCrjXaCgsBz0g7cZscZNpyyvLpF1EDZ
+         /Xm5k4CGKU7gmEqP0IezhiZji5NmE1BIB6sdGH9DmOnwN2v/TbW/1Sa/UmEaL1/h3IpJ
+         tz/Q==
+X-Gm-Message-State: AAQBX9cFhdT8IW6aS9z/1mCROrovqeh3NXQmISzLKpZ2+IZphnC1F6vZ
+        iQADDQdBS8M1tfisGRWmhdRxaCxSgyiibqCZ8QEJHw==
+X-Google-Smtp-Source: AKy350bLx13Jl5gFGHxjyqfCjFjz/GjXNeiJM8AOkmoHfSPx1qRKImtUe2heqX7bIsSjqpOeFvV5LWB0XQSFe2trTjQ=
+X-Received: by 2002:a25:d496:0:b0:b8f:66e3:b8f9 with SMTP id
+ m144-20020a25d496000000b00b8f66e3b8f9mr1726675ybf.4.1681459664714; Fri, 14
+ Apr 2023 01:07:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [RFC PATCH 4/5] arm64: dts: ti: Enable multiple MCAN for AM62x in
- MCU MCAN overlay
-Content-Language: en-US
-To:     Judith Mendez <jm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Davis <afd@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>
-References: <20230413223051.24455-1-jm@ti.com>
- <20230413223051.24455-5-jm@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230413223051.24455-5-jm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230414004455.19275-1-dipenp@nvidia.com> <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
+In-Reply-To: <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 14 Apr 2023 10:07:33 +0200
+Message-ID: <CACRpkdY6R9WvwOr3mVgrJcf9dVB4s13eu8juZkBt0Q+=gg2G2w@mail.gmail.com>
+Subject: Re: [V6 0/9] Add Tegra234 HTE support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        robh+dt@kernel.org, timestamp@lists.linux.dev,
+        krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, corbet@lwn.net,
+        gregkh@linuxfoundation.org,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 00:30, Judith Mendez wrote:
-> Enable two MCAN in MCU domain. AM62x does not have on-board CAN
-> transcievers, so instead of changing the DTB permanently, add
-> MCU MCAN nodes and transceiver nodes to a MCU MCAN overlay.
-> 
-> If there are no hardware interrupts rounted to the GIC interrupt
-> controller for MCAN IP, A53 Linux will not receive hardware
-> interrupts. If an hrtimer is used to generate software interrupts,
-> the two required interrupt attributes in the MCAN node do not have
-> to be included.
-> 
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |  2 +-
->  .../boot/dts/ti/k3-am625-sk-mcan-mcu.dtso     | 75 +++++++++++++++++++
->  2 files changed, 76 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index abe15e76b614..c76be3888e4d 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -9,7 +9,7 @@
->  # alphabetically.
->  
->  # Boards with AM62x SoC
-> -k3-am625-sk-mcan-dtbs := k3-am625-sk.dtb k3-am625-sk-mcan-main.dtbo
-> +k3-am625-sk-mcan-dtbs := k3-am625-sk.dtb k3-am625-sk-mcan-main.dtbo k3-am625-sk-mcan-mcu.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-sk-mcan.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso b/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso
-> new file mode 100644
-> index 000000000000..777705aea546
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso
-> @@ -0,0 +1,75 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * DT overlay for MCAN in MCU domain on AM625 SK
-> + *
-> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/pinctrl/k3.h>
-> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +
-> +&{/} {
-> +	transceiver2: can-phy1 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver3: can-phy2 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +};
-> +
-> +&mcu_pmx0 {
-> +	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
-> +			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan2_pins_default: mcu-mcan2-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
-> +			AM62X_IOPAD(0x03C, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
-> +		>;
-> +	};
-> +};
-> +
-> +&cbass_mcu {
-> +	mcu_mcan1: can@4e00000 {
-> +		compatible = "bosch,m_can";
-> +		reg = <0x00 0x4e00000 0x00 0x8000>,
-> +			  <0x00 0x4e08000 0x00 0x200>;
-> +		reg-names = "message_ram", "m_can";
-> +		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
-> +		clock-names = "hclk", "cclk";
-> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcu_mcan1_pins_default>;
-> +		phys = <&transceiver2>;
-> +		status = "okay";
+On Fri, Apr 14, 2023 at 9:36=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 14/04/2023 02:44, Dipen Patel wrote:
+> > This patch series mainly adds support for the Tegra234 HTE provider. In
+> > addition, it addresses dt binding comments which prompted code
+> > changes in the existing HTE provider driver without breaking the
+> > Tegra194 provider. The comments raised concern how existing code
+> > retrieves gpio controller node
+> > (the node is used to help namespace conversion between HTE and GPIOLIB)=
+.
+> > To help simplify that process, new DT property is suggested which adds
+> > gpio controller node in the HTE provider binding as phandle property. T=
+o
+> > conlude this patch series:
+> > - adds Tegra234 HTE provider
+> > - modifies existing provider code to address new dt binding for Tegra23=
+4
+> > without breaking it for the Tegra194 chip.
+> >
+> > The V1 patch series:
+> > - Adds tegra Tegra234 HTE(timestamp) provider supports.
+> > - Updates MAINTAINERS file for git tree, mail list fields.
+> > - Updates devicetree and API documentations.
+> > - Enables HTE subsystem, Tegra194 and Tegra234 HTE providers
+> > by default in arm64 defconfig and dts files.
+>
+> All your emails miss PATCH prefix. Use `git format-patch` to generate
+> proper versioned patch. Stripping important part messes up with our
+> filters. We have quite a lot of emails, so proper filtering is important.
 
-okay is by default. Why do you need it?
+At this point I would even recommend kernel maintainers to get b4
+into the workflow:
+https://people.kernel.org/monsieuricon/sending-a-kernel-patch-with-b4-part-=
+1
 
+This tool will also implement other desired behaviours and version
+the patch set for you.
 
+I am gradually adopting it for my own work, using it all the time when
+applying patches but also getting better at using it for submitting
+them. It has a small overhead (like learning and memorizing the
+subcommands) but once you get used to it, it is really helpful.
 
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
