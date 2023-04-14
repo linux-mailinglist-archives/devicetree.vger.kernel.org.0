@@ -2,104 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5BE6E2678
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07206E2682
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbjDNPJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 11:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58856 "EHLO
+        id S229497AbjDNPLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 11:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230095AbjDNPJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:09:11 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6416326A1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 08:09:10 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id fy21so3385199ejb.9
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 08:09:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681484949; x=1684076949;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y2YIosRAqD0RcoeUtDhEKssUjybK8X1yJ4TLNycZYAk=;
-        b=Gry3UmYwLHT4qA7+1z/AMddLZsQimozLMMwWB4MRD3o5ySdLjkDZHDVcxUWOR1onoT
-         ZsInt2oSiRVt0OFZtWE8k4p4TGAXqfbcQVEkMB7FqvEJ7aajSOX9KWoqdlJ98dcjITpw
-         5BCEXKl4GWrnRsz/U1rIau+fJR/rxo8jzBkwPu5I5OtIIx9Dtoh7kAowBiWH1f2hU+Zh
-         6jLDXvqKtJjIQtO39UKdUlrB5Dn2DT8xT3Hk3iFxwxMUohnN7dvLzk6C8iWcYlzqRsJG
-         fGHP7rl241RIgOPjatWTEQFVOzptNlmmK5KhGvA/m9KUUMwwquuRmJC8FQuRMZYv/j5A
-         9xNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681484949; x=1684076949;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y2YIosRAqD0RcoeUtDhEKssUjybK8X1yJ4TLNycZYAk=;
-        b=JuFvXliwjvK7l56GyDqwTnCQP7PZGbq0AjOSmeX16V+UY2eltu3jYY5mO9VclUIV5t
-         r+Qpm1DrxGNUSTy7IZPT8EMkkfzZut+h98wBdq/MKXXyHyG1iGa3swsLnCTAfvow5UUW
-         xQGwCeeNgUOIK8OQjInISCWKAOdnVm6m2Gtd1XUh5SLp53Xm0ecDCdbwsze5MW8bUXC/
-         ZQVly5qlD5dCQUSSq+qXPGZ5Ygn3hqV/ReclhHtleksDwYckg+U84UVpBbAxAiL+6kfD
-         Pr6Ogbx7ww3xfBLfBT9aCEb5fi08TFMskAJ57h+SI7L+6Z6HIXVl4tQZox4ShqxX37Cj
-         FKdA==
-X-Gm-Message-State: AAQBX9esZlOg4Wb1pVGnGEzEr9LIc0ShZ/cbh7tNtX6oXDoDELvsywWI
-        B2tEGjabuMdF6TZEDdQZ84mxxw==
-X-Google-Smtp-Source: AKy350Y5vscslMdJAx35nCQvPSRnHUrNqLPW/+KyljmDqgU/KP6IWdG1spU0fR5e6iRHfMaUK4wMmA==
-X-Received: by 2002:a17:906:d053:b0:930:4eba:1640 with SMTP id bo19-20020a170906d05300b009304eba1640mr5090248ejb.38.1681484948890;
-        Fri, 14 Apr 2023 08:09:08 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:39b7:81a0:bd41:17b1? ([2a02:810d:15c0:828:39b7:81a0:bd41:17b1])
-        by smtp.gmail.com with ESMTPSA id sg32-20020a170907a42000b008c16025b318sm2525558ejc.155.2023.04.14.08.09.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 08:09:08 -0700 (PDT)
-Message-ID: <7b4fe58c-9cf8-57ab-8cbc-c5ccf0b2a46d@linaro.org>
-Date:   Fri, 14 Apr 2023 17:09:07 +0200
+        with ESMTP id S229848AbjDNPK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:10:57 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 868F0C4;
+        Fri, 14 Apr 2023 08:10:54 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33EFAQWO107868;
+        Fri, 14 Apr 2023 10:10:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681485026;
+        bh=j36I0SHEL60unIXivNF5NtJiYS+8nIovqEm5U5C62pc=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=OWqxc4LP0AM4767LfxOn4EznCyjT0ZR1jUvDKbXq66luisSpXDZ2wJmkTlLl7OSxB
+         sNlmiO5tl5UOTaBlvGDmeA2cOLQWdde/h35hN/Re0yb6DqoZpKhtjf5vtmWFjr0Fv7
+         D3pvyDD2QUAQo1UDqaV/JZrrNt5nX+yYL1lju5GU=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33EFAQHW031535
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 14 Apr 2023 10:10:26 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 14
+ Apr 2023 10:10:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 14 Apr 2023 10:10:26 -0500
+Received: from [172.24.145.152] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33EFAJ9f089671;
+        Fri, 14 Apr 2023 10:10:19 -0500
+Message-ID: <83e146a8-0ba6-d49f-cfa8-68ca7f45bcfe@ti.com>
+Date:   Fri, 14 Apr 2023 20:40:18 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V1 1/4] dt-bindings: clock: qcom,ipq9574-gcc: Drop the
- Bias PLL ubi clock source
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 2/2] drm: bridge: cdns-mhdp8546: Add support for no-hpd
 Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
-References: <20230414134812.16812-1-quic_devipriy@quicinc.com>
- <20230414134812.16812-2-quic_devipriy@quicinc.com>
- <dc48d390-9c8b-d3b7-9c5e-6cbddb0e1306@linaro.org>
- <aca7b808-51ce-1921-2ee2-0e82cf19d960@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <aca7b808-51ce-1921-2ee2-0e82cf19d960@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
+        <jani.nikula@intel.com>, <tzimmermann@suse.de>,
+        <javierm@redhat.com>, <ville.syrjala@linux.intel.com>,
+        <r-ravikumar@ti.com>, <lyude@redhat.com>,
+        <alexander.deucher@amd.com>, <sjakhade@cadence.com>,
+        <yamonkar@cadence.com>, <a-bhatia1@ti.com>,
+        <tomi.valkeinen@ideasonboard.com>
+References: <20230405142440.191939-1-j-choudhary@ti.com>
+ <20230405142440.191939-3-j-choudhary@ti.com>
+ <20230406015207.GO9915@pendragon.ideasonboard.com>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <20230406015207.GO9915@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 16:22, Devi Priya wrote:
+
+
+On 06/04/23 07:22, Laurent Pinchart wrote:
+> Hi Jayesh,
 > 
+> Thank you for the patch.
 > 
-> On 4/14/2023 7:47 PM, Krzysztof Kozlowski wrote:
->> On 14/04/2023 15:48, Devi Priya wrote:
->>> Remove bias_pll_ubi_nc_clk from the binding as it has been removed from
->>> the Device Tree. Also added Bjorn Andersson to the maintainers list.
+> On Wed, Apr 05, 2023 at 07:54:40PM +0530, Jayesh Choudhary wrote:
+>> From: Rahul T R <r-ravikumar@ti.com>
 >>
->> Was it really removed? Where?
+>> In J721S2 EVMs DP0 hpd is not connected to correct
+>> hpd pin on SOC, to handle such cases, Add support for
+>> "no-hpd" property in the device tree node to disable
+>> hpd
+> 
+> s/hpd/hpd./
+> 
+> You can also reflow the commit message to 72 columns.
+
+Okay. Thanks for the suggestion. Will do.
+
+> 
+>> Also change the log level for dpcd read failuers to
+>> debug, since framework retries 32 times for each read
+> 
+> s/read/read./
+> 
+> Doesn't this apply to writes as well ?
+
+Based on message request, we went into the conditional that uses
+read. So just changing the log-level for dpcd read was enough to
+get rid of the debug logs.
+
+> 
+>> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>   .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 37 ++++++++++++++++---
+>>   .../drm/bridge/cadence/cdns-mhdp8546-core.h   |  1 +
+>>   2 files changed, 33 insertions(+), 5 deletions(-)
 >>
-> It has been removed from the Device tree and binding in V11
-> https://lore.kernel.org/linux-arm-msm/20230404101622.5394-1-quic_devipriy@quicinc.com/
+>> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+>> index f6822dfa3805..e177794b069d 100644
+>> --- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+>> +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+>> @@ -54,6 +54,8 @@
+>>   #include "cdns-mhdp8546-hdcp.h"
+>>   #include "cdns-mhdp8546-j721e.h"
+>>   
+>> +static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp);
+>> +
+>>   static int cdns_mhdp_mailbox_read(struct cdns_mhdp_device *mhdp)
+>>   {
+>>   	int ret, empty;
+>> @@ -749,7 +751,7 @@ static int cdns_mhdp_fw_activate(const struct firmware *fw,
+>>   	 * MHDP_HW_STOPPED happens only due to driver removal when
+>>   	 * bridge should already be detached.
+>>   	 */
+>> -	if (mhdp->bridge_attached)
+>> +	if (mhdp->bridge_attached && !mhdp->no_hpd)
+>>   		writel(~(u32)CDNS_APB_INT_MASK_SW_EVENT_INT,
+>>   		       mhdp->regs + CDNS_APB_INT_MASK);
+>>   
+>> @@ -845,7 +847,7 @@ static ssize_t cdns_mhdp_transfer(struct drm_dp_aux *aux,
+>>   		ret = cdns_mhdp_dpcd_read(mhdp, msg->address,
+>>   					  msg->buffer, msg->size);
+>>   		if (ret) {
+>> -			dev_err(mhdp->dev,
+>> +			dev_dbg(mhdp->dev,
+>>   				"Failed to read DPCD addr %u\n",
+>>   				msg->address);
+>>   
+>> @@ -1738,6 +1740,19 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
+>>   
+>>   	spin_unlock(&mhdp->start_lock);
+>>   
+>> +	if (mhdp->no_hpd) {
+>> +		ret = wait_event_timeout(mhdp->fw_load_wq,
+>> +					 mhdp->hw_state == MHDP_HW_READY,
+>> +					 msecs_to_jiffies(100));
+>> +		if (ret == 0) {
+>> +			dev_err(mhdp->dev, "%s: Timeout waiting for fw loading\n",
+>> +				__func__);
+>> +			return -ETIMEDOUT;
+>> +		}
+>> +
+>> +		cdns_mhdp_update_link_status(mhdp);
+>> +		return 0;
+>> +	}
+> 
+> Missing blank line.
+> 
+> It's not clear to me while you need to wait for the state to change to
+> MHDP_HW_READY in the no_hpd case. This should be explained in the commit
+> message.
+> 
+>>   	/* Enable SW event interrupts */
+>>   	if (hw_ready)
+>>   		writel(~(u32)CDNS_APB_INT_MASK_SW_EVENT_INT,
+>> @@ -2256,7 +2271,16 @@ static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp)
+>>   
+>>   	mutex_lock(&mhdp->link_mutex);
+>>   
+>> -	mhdp->plugged = cdns_mhdp_detect_hpd(mhdp, &hpd_pulse);
+>> +	if (mhdp->no_hpd) {
+>> +		ret = drm_dp_dpcd_read_link_status(&mhdp->aux, status);
+>> +		hpd_pulse = false;
+>> +		if (ret < 0)
+>> +			mhdp->plugged = false;
+>> +		else
+>> +			mhdp->plugged = true;
+> 
+> I think there's an issue with how the driver uses mhdp->plugged. In the
+> no_hpd case, you try to detect if a display is connected by reading the
+> link status at attach time, and then never update mhdp->plugged. This
+> means that if no display is connected at that point, functions like
+> cdns_mhdp_get_edid() will always fail, even if a display gets plugged
+> later. As the goal of this series is (as far as I understand) support
+> systems where the HPD signal could be connected to a SoC GPIO instead of
+> the bridge, I don't think this is good enough.
 
-I still see it in current next. Are you sure you refer to something
-already merged?
+In the driver, I see that this is the only call which changes 
+mhdp->plugged. Do you have any suggestions on how to work on this?
+Polling the value of drm_dp_dpdc_read_link_status does not seem like a
+clean way.
+Here by doing this, we are settling for few functionalities of display.
 
-Best regards,
-Krzysztof
+Thanks,
+-Jayesh
 
+> 
+>> +	} else {
+>> +		mhdp->plugged = cdns_mhdp_detect_hpd(mhdp, &hpd_pulse);
+>> +	}
+>>   
+>>   	if (!mhdp->plugged) {
+>>   		cdns_mhdp_link_down(mhdp);
+>> @@ -2451,6 +2475,8 @@ static int cdns_mhdp_probe(struct platform_device *pdev)
+>>   	mhdp->aux.dev = dev;
+>>   	mhdp->aux.transfer = cdns_mhdp_transfer;
+>>   
+>> +	mhdp->no_hpd = of_property_read_bool(dev->of_node, "cdns,no-hpd");
+>> +
+>>   	mhdp->regs = devm_platform_ioremap_resource(pdev, 0);
+>>   	if (IS_ERR(mhdp->regs)) {
+>>   		dev_err(dev, "Failed to get memory resource\n");
+>> @@ -2526,8 +2552,9 @@ static int cdns_mhdp_probe(struct platform_device *pdev)
+>>   
+>>   	mhdp->bridge.of_node = pdev->dev.of_node;
+>>   	mhdp->bridge.funcs = &cdns_mhdp_bridge_funcs;
+>> -	mhdp->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID |
+>> -			   DRM_BRIDGE_OP_HPD;
+>> +	mhdp->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID;
+>> +	if (!mhdp->no_hpd)
+>> +		mhdp->bridge.ops |= DRM_BRIDGE_OP_HPD;
+>>   	mhdp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
+>>   	if (mhdp->info)
+>>   		mhdp->bridge.timings = mhdp->info->timings;
+>> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
+>> index bedddd510d17..6786ccb51387 100644
+>> --- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
+>> +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
+>> @@ -388,6 +388,7 @@ struct cdns_mhdp_device {
+>>   
+>>   	bool link_up;
+>>   	bool plugged;
+>> +	bool no_hpd;
+>>   
+>>   	/*
+>>   	 * "start_lock" protects the access to bridge_attached and
+> 
