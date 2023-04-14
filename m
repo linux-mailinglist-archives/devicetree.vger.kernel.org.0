@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89926E2095
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 12:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8386E20A0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 12:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbjDNKTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 06:19:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
+        id S230211AbjDNKYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 06:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbjDNKTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 06:19:16 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AFFA7EF8;
-        Fri, 14 Apr 2023 03:19:11 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5052A6603221;
-        Fri, 14 Apr 2023 11:19:09 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681467550;
-        bh=VeLJmPRvnvEQ5IsnqXZVpDeqo2cwm0kmKEbVshVuBp8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=D4l4IvXvCtqC3q5kEPR63kKHkXr3NXvxuaNRo9Tu3sa2jvRz7b6V543y+h/1EObv5
-         UzpIhgf2ablwIZJHwB3fKsigC0ozALklq9Bu1D9+Bk635GloxxsT2oTvjFU+0E7m8a
-         hux5psPRVFbuKQT/p1/o1MSsLzFyReEIeuvshJ6BUZ/1ywpiWV59Sht2JvsCOG+EKc
-         fm9fWjVZn+XubQ2RVUMNyKx1Ll1e6qF2eJcAft3lXVL65oktw3u5RhmWgODO9O8Myh
-         ZkC33DerM75vwRrpMwG+MTzFxteIVSodfbzBMp41kGdwTGH2beS9ACWzW4gLXXAIys
-         VEMo3Vlw5OoMA==
-Message-ID: <d1f54cd7-99c0-3d1c-460b-9f15f33b95c1@collabora.com>
-Date:   Fri, 14 Apr 2023 12:19:06 +0200
+        with ESMTP id S230115AbjDNKYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 06:24:12 -0400
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85744C0A;
+        Fri, 14 Apr 2023 03:24:11 -0700 (PDT)
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33E90DIl011792;
+        Fri, 14 Apr 2023 03:23:50 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=bD5Y1MPDHvXV1+72/2W7Q1ijnYncf1yOPj42QcwQtIQ=;
+ b=YIXpOi2SluS2ubcANTQZmttd15PdlwZRPQZ7b/5BddELq43PgF7QcsyhTQ7CODr13doh
+ /T08jOWPiK2q1PBQJXiu0CRl6D0aotsYJW2ztkn3EGr6k1GjutywhQ/8vIm5ji/r7Hqj
+ K0I10tHp7pYwdKwRRmZ3XOzOMpvEMgTs6BufAn6fpXCj/++kSYVU+Iv3xzJuZWZJ3MEi
+ En9t+4jd4KslEPT0Uue3xgBLOR7TXB9Eg4hwcjHIhXqIvtdOiWRxWRvjwXJ9iGb3mKEV
+ KaQjT1gCwCdG2R8q1aFmG6LrDRhNmO1plJDmpkO4819WujI8VB7KUicix24BlRnkBmUU rA== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3py3tk0bph-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Fri, 14 Apr 2023 03:23:50 -0700
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Fri, 14 Apr
+ 2023 03:23:48 -0700
+Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
+ Transport; Fri, 14 Apr 2023 03:23:46 -0700
+From:   Bharat Bhushan <bbhushan2@marvell.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Bharat Bhushan <bbhushan2@marvell.com>
+Subject: [PATCH 1/2] dt-bindings: watchdog: marvell octeonTX2 GTI system atchdog driver
+Date:   Fri, 14 Apr 2023 15:53:41 +0530
+Message-ID: <20230414102342.23696-1-bbhushan2@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 7/7] leds: leds-mt6323: Add support for WLEDs and
- MT6332
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>, pavel@ucw.cz
-Cc:     lee@kernel.org, sean.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230412153310.241046-1-angelogioacchino.delregno@collabora.com>
- <20230412153310.241046-8-angelogioacchino.delregno@collabora.com>
- <00c0b699-ba1a-951c-185a-ef8f09abf6f3@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <00c0b699-ba1a-951c-185a-ef8f09abf6f3@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain
+X-Proofpoint-GUID: ojrR47Yeiac9xXFmQ9OLXtsaSm1HYoR0
+X-Proofpoint-ORIG-GUID: ojrR47Yeiac9xXFmQ9OLXtsaSm1HYoR0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-14_04,2023-04-14_01,2023-02-09_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,60 +62,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 13/04/23 16:15, Alexandre Mergnat ha scritto:
-> On 12/04/2023 17:33, AngeloGioacchino Del Regno wrote:
->> Add basic code to turn on and off WLEDs and wire up MT6332 support
->> to take advantage of it.
->> This is a simple approach due to to the aforementioned PMIC supporting
->> only on/off status so, at the time of writing, it is impossible for me
->> to validate more advanced functionality due to lack of hardware.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/leds/leds-mt6323.c | 171 +++++++++++++++++++++++++++++++++++--
->>   1 file changed, 164 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/leds/leds-mt6323.c b/drivers/leds/leds-mt6323.c
->> index 5d95dbd9a761..202b38ac32f6 100644
->> --- a/drivers/leds/leds-mt6323.c
->> +++ b/drivers/leds/leds-mt6323.c
+Add binding documentation for the Marvell octeonTX2
+GTI system watchdog driver.
 
-..snip..
+Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
+---
+ .../watchdog/marvell-octeontx2-wdt.yaml       | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml
 
->> @@ -418,6 +538,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
->>       int ret;
->>       unsigned int status;
->>       u32 reg;
->> +    u8 max_leds;
->>       leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
->>       if (!leds)
->> @@ -428,6 +549,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
->>       leds->pdata = device_get_match_data(dev);
->>       regs = leds->pdata->regs;
->>       spec = leds->pdata->spec;
->> +    max_leds = spec->max_leds + spec->max_wleds;
-> 
-> I haven't access to the datasheet so I have to ask you:
-> Why the max leds value is the addition of max led and wled ?
-> 
-> IMO, the datasheed give you the max supported led OR wled on its bus function to 
-> the maximum supplied current by the PMIC (I assume LED or WLED have different 
-> need). Or the PMIC has 2 bus, one for led and another for wled ?
-> 
+diff --git a/Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml b/Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml
+new file mode 100644
+index 000000000000..e509f26c61b9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/marvell-octeontx2-wdt.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/marvell-octeontx2-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell OcteonTX2 GTI system watchdog
++
++allOf:
++  - $ref: watchdog.yaml#
++
++maintainers:
++  - Bharat Bhushan <bbhushan2@marvell.com>
++
++properties:
++  compatible:
++    const: marvell-octeontx2-wdt
++
++  reg:
++    maxItems: 1
++    description:
++      OcteonTX2 GTI system watchdog register space
++
++  interrupts:
++    maxItems: 1
++    description:
++      OcteonTX2 GTI system watchdog interrupt number
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        watchdog@802000040000 {
++          compatible = "marvell-octeontx2-wdt";
++          reg = <0x8020 0x40000 0x0 0x20000>;
++          interrupts = <0 38 1>;
++        };
++    };
++
++...
+-- 
+2.17.1
 
-I don't have access to the datasheet for MT6332 as well - but anyway, the only
-purpose of the max_leds variable is to validate the maximum number of 'reg'
-spaces that we're supposed to read from devicetree, that's all.
-
-The alternative would've been to check if there's any led, then any wled in the
-mt6323_hwspec from platform data - then:
-
-if only wleds, max_leds = wleds;
-else if only leds, max_leds = leds;
-else if leds and wleds, max_leds = leds + wleds;
-
-You see that it doesn't make any sense to do such check, and we can go with
-just adding wleds+leds.
-
-Regards,
-Angelo
