@@ -2,76 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 890766E28E6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 19:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 378E96E28FE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 19:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbjDNRBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 13:01:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60158 "EHLO
+        id S230296AbjDNRLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 13:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbjDNRBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 13:01:49 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E8A9B44C
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 10:01:41 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id c9so8375922ejz.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 10:01:41 -0700 (PDT)
+        with ESMTP id S229744AbjDNRLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 13:11:17 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8113419A1
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 10:11:16 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50685f1b6e0so539432a12.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 10:11:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681491700; x=1684083700;
+        d=linaro.org; s=google; t=1681492275; x=1684084275;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vCbJAh+Z0aRKbTKNkNpTrH1WXy4mYvnZUCA8nbxWox8=;
-        b=yKoeG23ri75vVft4xi17uGfIyuX8d/w+X/Qo03BGo9MdxEXkpILyAxwTEHB+WPPhCX
-         oZFsdPz6WpboQhqKhZrV4DeoHHYeQavnUuneCodkbkTXUNmzSmDTQvW3DbjRKLzb/M+h
-         eVedx7arbZOXA12EJ7vgrZNwQpM5wkPbPnbyfDgfD9feSS1gQ/YwoaTEqErnUkhECMSw
-         +1/ACgoJz7wAEx9uQyKzAcVtCFjNkgNuiyYipH8uKyAd3/E3HExxfKmVogJ9G5dOj1tg
-         uM47VSdyLB6tmklhyhvvwxUjTc8Ie3i0ZCCZ4bzJyegyLEU5Gy6S6PhETG2Itk2XQzE9
-         y/JA==
+        bh=WWFKzv+6OmPpo0mp+ZpJhFgaz9KaqvwS0otuVBFZkt4=;
+        b=zD/gD0jBGi43o9/Ge5kQCvMRScKUzFjkx5DaAbv/qtx0EJwZcJv2CoslRQDqd02H+y
+         md1jyufYPCllkhwCyDmoo0CVeh58e28zdDxN3wSnCy4MWOoyIhraFoYPXDTqREkpyI7N
+         m/Ha9wvdSPGfS4O24o9Xt0FXKp4Pa4k81XftT642qAajltTUdZRatCK5garx8jXT3WfM
+         1yS2jLg5m8kgM3QRF5uydUGagY5uIvqyob9d+bk1Ynq5DdSWZ3B8e7Y3SRMWysP+C6Ek
+         WdhGn+Umaoye7LWFQdNtIniRqS3MKgp8m/bJOIcI7J6L4+H4Lhp5B6bhonQfdbRP/5tQ
+         8M4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681491700; x=1684083700;
+        d=1e100.net; s=20221208; t=1681492275; x=1684084275;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vCbJAh+Z0aRKbTKNkNpTrH1WXy4mYvnZUCA8nbxWox8=;
-        b=THil1V6RvcvfLrnLdwixexT5p0MqmRKBdihWN6IrJet+ClTha+H7qEBQegc0ebq6Jn
-         8rN1XeTDFXX/L0PJMSieDFb0v7xTqowpCySCn7GqThFNaGFmfyxmk35ilqFbNmtBdZRd
-         nTRgTKnX/LinB9O67ImaVqiVGkeX/ad64C+O7qd9V8jGA4hm6ourXvcwFI2MBFWReu9E
-         /qOEGhLC0EWUJyIlKvWdSY5MxaVDzYEDIUMWhlgDhW45mIhsVmzzx2rIvqjCPUsQNs4W
-         PN57lyrwCGOyE7QYDR20yINj+X2kEAqriVG+1ERXhjC49/HpM79nD8RBAMRSRff9mwpC
-         IPBA==
-X-Gm-Message-State: AAQBX9c8UFwWiAHA9AMBXTOw1LVGd6E2V9SQID9xyIY0HPYmxNjC2H1C
-        Fh/xB15i5YkhF8Cn3Abo+xuL6w==
-X-Google-Smtp-Source: AKy350YiivcwJTYAsTfFGBz+OXvwfnukjw7cREDIL00YkEeOmHmKknAOL0ZHz2mzQiyD7pydh2C/3w==
-X-Received: by 2002:a17:907:8d09:b0:94e:48ac:9a51 with SMTP id tc9-20020a1709078d0900b0094e48ac9a51mr4464472ejc.4.1681491699870;
-        Fri, 14 Apr 2023 10:01:39 -0700 (PDT)
+        bh=WWFKzv+6OmPpo0mp+ZpJhFgaz9KaqvwS0otuVBFZkt4=;
+        b=KOEjWh6i5u4go+hKQSle/GKL6b1IbRvbDB2BpW/YwJBL726ilhhzCeM1zzjzJoSehh
+         cjawn0TzC7aKdUDkB6/3aE2qbpvMnAEAXawmtEodz2JFLyHAbVtGXyOH8pblZIN8eobP
+         BXnnSUyYf8UHmbIpflTAQkvnDKj0CM3CKx/CVeB8dOPfk9ISKZ7CdokmLxXwAFu2NLFn
+         GyOkMgD5MqwqFYhTtNeMdp0bwu/ehtmJYM1d+stexy3/8i5VpQvIS222jynyHejonP5D
+         CJl4nju6jtMtb7T/TvIA5+odiIbV519FYTivfS/eSZrX7Ob+sclJMH+AqwwuVXW5/r9B
+         wNPg==
+X-Gm-Message-State: AAQBX9cFWSqrq38uXkDAQ1zMaWs1rU6BwScTHM7NpcDrmSrd+zSsqdS7
+        P550zDClCOUpnB8tXXWTvIaBhA==
+X-Google-Smtp-Source: AKy350ZM7koFyxIDpucMqufOPkm2B6d69BgIu8wCBP3JNPLMuVz9Btf/itc+rnQmz5h3CQEwKNXoLA==
+X-Received: by 2002:aa7:c394:0:b0:501:c3de:dc5c with SMTP id k20-20020aa7c394000000b00501c3dedc5cmr6166290edq.18.1681492275024;
+        Fri, 14 Apr 2023 10:11:15 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:39b7:81a0:bd41:17b1? ([2a02:810d:15c0:828:39b7:81a0:bd41:17b1])
-        by smtp.gmail.com with ESMTPSA id w18-20020a1709064a1200b0094e92b50076sm2652252eju.133.2023.04.14.10.01.38
+        by smtp.gmail.com with ESMTPSA id v15-20020aa7dbcf000000b00501d51c23fbsm2344642edt.6.2023.04.14.10.11.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 10:01:39 -0700 (PDT)
-Message-ID: <00b9429b-494a-24aa-9770-90dba6e2b0ea@linaro.org>
-Date:   Fri, 14 Apr 2023 19:01:38 +0200
+        Fri, 14 Apr 2023 10:11:14 -0700 (PDT)
+Message-ID: <76237034-7871-c77f-1e32-c0a585d8df86@linaro.org>
+Date:   Fri, 14 Apr 2023 19:11:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 4/9] dt-bindings: ASoC: Add it68051
+Subject: Re: [PATCH V1 1/4] dt-bindings: clock: qcom,ipq9574-gcc: Drop the
+ Bias PLL ubi clock source
 Content-Language: en-US
-To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org
-Cc:     perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
-        lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com
-References: <20230414140203.707729-1-pan@semihalf.com>
- <20230414140203.707729-5-pan@semihalf.com>
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
+References: <20230414134812.16812-1-quic_devipriy@quicinc.com>
+ <20230414134812.16812-2-quic_devipriy@quicinc.com>
+ <dc48d390-9c8b-d3b7-9c5e-6cbddb0e1306@linaro.org>
+ <aca7b808-51ce-1921-2ee2-0e82cf19d960@quicinc.com>
+ <7b4fe58c-9cf8-57ab-8cbc-c5ccf0b2a46d@linaro.org>
+ <2c5bbe48-3007-a1d5-73b9-9d2132bff9d4@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414140203.707729-5-pan@semihalf.com>
+In-Reply-To: <2c5bbe48-3007-a1d5-73b9-9d2132bff9d4@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,52 +86,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 16:01, Paweł Anikiel wrote:
-> Add binding for it68051 device.
+On 14/04/2023 18:04, Devi Priya wrote:
 > 
-> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
-> ---
->  .../bindings/sound/ite,it68051.yaml           | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/ite,it68051.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/ite,it68051.yaml b/Documentation/devicetree/bindings/sound/ite,it68051.yaml
-> new file mode 100644
-> index 000000000000..341c171b8a8a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/ite,it68051.yaml
-> @@ -0,0 +1,23 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/ite,it68051.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: it68051 audio codec
-> +
-> +maintainers:
-> +  - Paweł Anikiel <pan@semihalf.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ite,it68051
-> +
+> On 4/14/2023 8:39 PM, Krzysztof Kozlowski wrote:
+>> On 14/04/2023 16:22, Devi Priya wrote:
+>>>
+>>>
+>>> On 4/14/2023 7:47 PM, Krzysztof Kozlowski wrote:
+>>>> On 14/04/2023 15:48, Devi Priya wrote:
+>>>>> Remove bias_pll_ubi_nc_clk from the binding as it has been removed from
+>>>>> the Device Tree. Also added Bjorn Andersson to the maintainers list.
+>>>>
+>>>> Was it really removed? Where?
+>>>>
+>>> It has been removed from the Device tree and binding in V11
+>>> https://lore.kernel.org/linux-arm-msm/20230404101622.5394-1-quic_devipriy@quicinc.com/
+>>
+>> I still see it in current next. Are you sure you refer to something
+>> already merged?
+> 
+> This change was made in V11 and Currently V9 is merged in linux-next.
+> So, the delta changes between V9 & V12 is posted in this series.
+> The device tree change where the clock is removed is added part of this 
+> incremental patch series and the binding is updated to reflect the same.
+> Apologies, if the confusion is because of "has been removed from device 
+> tree" in the commit message.
 
-No ref to common DAI properties? No sound-dai-cells? No resources?
-Bindings are supposed to be complete.
-
-
-> +required:
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +    it68051: audio-codec {
-
-Drop label, you do not use it here.
-
-> +        compatible = "ite,it68051";
-> +    };
+Your commit indicated that removal from DTS happened. If it did not
+happen, you need to come with proper reason (and fix the tense not to
+confuse).
 
 Best regards,
 Krzysztof
