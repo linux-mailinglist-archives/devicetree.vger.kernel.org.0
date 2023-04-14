@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B7016E250C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 737D26E250E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:03:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbjDNODd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 10:03:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
+        id S230184AbjDNODf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 10:03:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjDNODc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:03:32 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0419159FF
+        with ESMTP id S230163AbjDNODe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:03:34 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2FBBB80
         for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:03:00 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id z38so2823076ljq.12
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:02:59 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id q26so11311652lfe.9
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:03:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google; t=1681480966; x=1684072966;
+        d=semihalf.com; s=google; t=1681480967; x=1684072967;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pAsx/vtlSONsGJaMiUuvZrWP17NNhM0s9aopfUG3YMs=;
-        b=Qi8J8nvWCtFhQJhd2UX1NuWmfKbSuxCdjqjnDbhKFiBYPv3xo/hUC6Do2yDnUCewAT
-         tl4VOteQPr1vA9ehtzJx9//7fZlv2nySr+BsyVTmcwpIEX1nKSDMlvaAlyUlYHXNsEpx
-         gRf0Q7SM1nyAeFaDsOuPiresr4FTfzZwyOvBn6qzJEFghHmpmtp+Uap2CZHpoeicqPFC
-         TlO8OVPwTjnp/FJTOYL+dZPoyeFIcpk/Gn0o5iSNzBJScOAyrh8sVcPPbEZrjuWTThOR
-         QJ0AsZSe1L+lXynCjQG2TIcE/AElygHP+mila0NJdBrRzO7TCSkxv+fOFSljBz39gnOD
-         M3xw==
+        bh=L6n77Uz+PsEL5Zjj7L5BoLRIOYIh+FfJEj7GLcVMFvg=;
+        b=to1vKMIM1WC0fNpuIs5zm3Xd24aEi6aKDV9OLiqX3WkQ186p1OuycU1BZvA94dDYsT
+         r09kVB9ndrgzrg5+P/PlIVIj6pggSuDLvitGJaAe+apJV9pcgVmTgO5MbPN5TvD/C6IL
+         0EtgNlqLzaUciDl3qcozHuoFcBoCWUVp+BLw+RrVuKI8qRirPnozw5rxTutWT69uV17+
+         kN29a9NOcNSqMukp4uOHgo0o0MbaVDiICQZpYsoHoF+uMeXyqgAMD1r/CBKX7CUpimbT
+         1r/morRdVUAFqIRIASuMeGpTdR3NjQC7ZlYp/eI2C4He8BfW4P+1LR9KmoDtUFbzgXAQ
+         vCeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681480966; x=1684072966;
+        d=1e100.net; s=20221208; t=1681480967; x=1684072967;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pAsx/vtlSONsGJaMiUuvZrWP17NNhM0s9aopfUG3YMs=;
-        b=ZkYfYcgPWwZjsrgKzse7GuU45yXHhMSBcKdIK0j6e7K55lHqOHS6Vzg/8lBg3TpvAx
-         cJh0gBqNy7BfaJCDM7NoSzJeV+hx++zoF6oNcf9PZ1MpP5WQaKcbk0BhqHPG+phzy0Lu
-         7NkVBg/w6qHjpB/SZb3a+FqVEBjAG+dZ8apSWjN5PLdH6XeXW8ygB7Lm6sDiVL//sTd0
-         4AFWhhmfWfDpHs0yjNGpb35Vu/sAvdTIiXz4Jj3F27WbAB9rf7EES5y2BgaFgYpQqH1q
-         Yn7hLzMZpPsF2aoEAsA/tUS/T8niy8E+mFq18KvAVfOBAoDG2G6p7Yo9Fxt70aPoxatr
-         c+nw==
-X-Gm-Message-State: AAQBX9emHv/MuY/S6RxAvPJZLWqKmvoEgkttq59lL45VCrhYp4X0P/nv
-        LmGK7ltf63AdREZzx+QjD9Y+HA==
-X-Google-Smtp-Source: AKy350Z+QDZGlS7XF9A1X0316HTp53Mi+Jrm8uEaFMhPQvNowT32YfQLUfNynbysrYJBu0ehToQ6JA==
-X-Received: by 2002:a2e:9d84:0:b0:295:d7a8:559b with SMTP id c4-20020a2e9d84000000b00295d7a8559bmr1714528ljj.10.1681480965408;
-        Fri, 14 Apr 2023 07:02:45 -0700 (PDT)
+        bh=L6n77Uz+PsEL5Zjj7L5BoLRIOYIh+FfJEj7GLcVMFvg=;
+        b=jz032cOnPYUimtV/Yjd/hdj1fBJ00UfeXHiVlzPZndWiLCgw0FUEz78uz64U+LVruv
+         SrKY5W6hhS7+ckxzLAO5zAKhoy1QDXZIrWeBH4EJWv5YxYqic2fmK90nmJfAfc2qSjnb
+         lSN6jlwQsQI9TNSQflZjNqHmpvqlJe6ZGb0y/bptT4si/kl6//5ZBplXqn874QX2Lyzk
+         aWpsziAPf7Nk6FuZz07eCXEaC6lP6H6XlA31KVxxoA7SkV7mM1b9rzlyckbyKgSHIwGh
+         IzavrjTafVTI/lTF8NgLZnwSBpA8x2NXj5GeHlLpqvdWK4W3v3mizSBdRby90Q7du1iu
+         gQyQ==
+X-Gm-Message-State: AAQBX9fAXKEtpUmcHruPTcbP8zfYLgzw7LtU9l+4bTNxmSfEtgc9RoW+
+        hCMbNsXs0Z6MHjT0rXUpPZiSCg==
+X-Google-Smtp-Source: AKy350ZSXgVjOCNXI2VQYGW1Lkq/T4J5v7tUI1rYH+arf0uiLVP1zRg1drMxe3NixehsPq/kIrQ5fw==
+X-Received: by 2002:a05:6512:4012:b0:4eb:2b62:134f with SMTP id br18-20020a056512401200b004eb2b62134fmr2780018lfb.16.1681480966909;
+        Fri, 14 Apr 2023 07:02:46 -0700 (PDT)
 Received: from panikiel.roam.corp.google.com (staticline-31-182-201-26.toya.net.pl. [31.182.201.26])
-        by smtp.gmail.com with ESMTPSA id 15-20020a2eb2cf000000b002a76e2dedbcsm828684ljz.139.2023.04.14.07.02.44
+        by smtp.gmail.com with ESMTPSA id 15-20020a2eb2cf000000b002a76e2dedbcsm828684ljz.139.2023.04.14.07.02.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 07:02:45 -0700 (PDT)
+        Fri, 14 Apr 2023 07:02:46 -0700 (PDT)
 From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
 To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
@@ -57,9 +57,9 @@ Cc:     perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
         lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com,
         =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
-Subject: [PATCH 3/9] dt-bindings: ASoC: Add chv3-audio
-Date:   Fri, 14 Apr 2023 16:01:57 +0200
-Message-ID: <20230414140203.707729-4-pan@semihalf.com>
+Subject: [PATCH 4/9] dt-bindings: ASoC: Add it68051
+Date:   Fri, 14 Apr 2023 16:01:58 +0200
+Message-ID: <20230414140203.707729-5-pan@semihalf.com>
 X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
 In-Reply-To: <20230414140203.707729-1-pan@semihalf.com>
 References: <20230414140203.707729-1-pan@semihalf.com>
@@ -76,68 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for chv3-audio device.
+Add binding for it68051 device.
 
 Signed-off-by: Paweł Anikiel <pan@semihalf.com>
 ---
- .../bindings/sound/google,chv3-audio.yaml     | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
+ .../bindings/sound/ite,it68051.yaml           | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ite,it68051.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/google,chv3-audio.yaml b/Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
+diff --git a/Documentation/devicetree/bindings/sound/ite,it68051.yaml b/Documentation/devicetree/bindings/sound/ite,it68051.yaml
 new file mode 100644
-index 000000000000..8b602b60eaee
+index 000000000000..341c171b8a8a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
-@@ -0,0 +1,49 @@
++++ b/Documentation/devicetree/bindings/sound/ite,it68051.yaml
+@@ -0,0 +1,23 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/google,chv3-audio.yaml#
++$id: http://devicetree.org/schemas/sound/ite,it68051.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Google Chameleon v3 audio
++title: it68051 audio codec
 +
 +maintainers:
 +  - Paweł Anikiel <pan@semihalf.com>
 +
 +properties:
 +  compatible:
-+    const: google,chv3-audio
-+
-+  google,audio-cpu0:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of controller #0
-+
-+  google,audio-codec0:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of codec #0
-+
-+  google,audio-cpu1:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of controller #1
-+
-+  google,audio-codec1:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of codec #1
++    const: ite,it68051
 +
 +required:
 +  - compatible
-+  - google,audio-cpu0:
-+  - google,audio-codec0:
-+  - google,audio-cpu1:
-+  - google,audio-codec1:
-+
-+additionalProperties: false
 +
 +examples:
 +  - |
-+    sound {
-+        compatible = "google,chv3-audio";
-+        google,audio-cpu0 = <&i2s1>;
-+        google,audio-codec0 = <&ssm2603>;
-+        google,audio-cpu1 = <&i2s0>;
-+        google,audio-codec1 = <&it68051>;
++    it68051: audio-codec {
++        compatible = "ite,it68051";
 +    };
 -- 
 2.40.0.634.g4ca3ef3211-goog
