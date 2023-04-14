@@ -2,141 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA0E6E2BB6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 23:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FDAF6E2BD9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 23:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbjDNVYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 17:24:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34456 "EHLO
+        id S229636AbjDNVsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 17:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbjDNVYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 17:24:13 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B285D6A70;
-        Fri, 14 Apr 2023 14:24:11 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4ec81245ae1so62156e87.0;
-        Fri, 14 Apr 2023 14:24:11 -0700 (PDT)
+        with ESMTP id S229895AbjDNVsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 17:48:01 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34044212A
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 14:48:00 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so13506872a12.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 14:48:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681507449; x=1684099449;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2EiDytvabdYN54DIeMJTMZ/ViwsZyEhMHyZ0a9MJx4o=;
-        b=f4bXWIVQdBvGSTrlBLVpdjpmOpLlf/2zdUUYvWsYmqr1oM2sa0uOWGdPjMUDAYU19/
-         9FRa/pjk5Bh3ItGibXEqYg/jPR8uXoOme2v5qsFilkyI+hJuLgtAaAP9vRbRD8YPJ9TP
-         TpQqaHKYS5JmhzpF/ivSf9LXQccZOYBd1u4hUxOGwpamErBL0Cep+J/a0+Wzl1LRhsXm
-         jWv/tCmWNbN8VVWD7Zo+g7mvIMoZqGYJgXlSuc4an0E+nlmGC6kqB1X3Cnjq0IEAEZvq
-         IRQerQ4SWmll4wSfdfNPParLM5LNk7Abli51mYfUvneX2An3VzgOyeQvd75oQzfsFTTK
-         9e7g==
+        d=linaro.org; s=google; t=1681508878; x=1684100878;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3EVZPS7cfZtkMpVcoeHTNj5NWFzlcFiikQhX7e7eo7s=;
+        b=oIKjcQ5bA3LZIj+MtHEU4gp7gZWetvnXUBlEDfdBhf7gL5Wvs1HRCG4FPxaBqH8pso
+         3zrd/j511kb7/GQPqGXt3D0rqQs66pkRdbbuW/7dg9EMolAo0k2q2HuU3oqzxbdWV1vH
+         zQtK1kl2NepczBZdGgiesQcpnBqc03G4wnYMZy54qu3cI59KWI98u+w+tCFH360uBQ+L
+         71+vf6AESb5obKm+RLh1gPoDojrdB564W6QtGpu42eRNOmzAoHSSwjFKJ3PwAuBA5+UC
+         kdm6pGp14QECBMnHonGDtPmgSX+/YDkKsqDlSZ6sLueUzF9e0e7kzgSbOLBDnzxjUVdH
+         R6YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681507449; x=1684099449;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2EiDytvabdYN54DIeMJTMZ/ViwsZyEhMHyZ0a9MJx4o=;
-        b=L33sktSagTnIN+jS7RSlkaqsQtjDUMBQ2Tl+55arRAgqWxdLlU6jhFCBy5vAgNqHwy
-         pNbvLKHZ4X0z2qc7CbKw4bUmMWPa5njqLUjKwLItstX0H0+u3lVZDbg8+fA7etXyA9Of
-         cc6zDflrl37qBvS4zZIF9cPvl9hnesTVSDG6F5oLuta0LBqTmY6aUat6CX4jssn4jXC/
-         cWKI2k376nF8/obV5XjjhpiJAJyeyCUED9pV7gsqowIlOPBe4dqPB3dYubGMytWeeVQt
-         m1Uljdkupr5PXM/+tJFt1pfA5PQCBn8pR8AiIz3kEPU8WZZT65OOaSSdagChZswEoAeS
-         EUXg==
-X-Gm-Message-State: AAQBX9fd/SXRr/o8na+YSqZ1tp8AGv8jPGpr/XFjDytM7pPkOVqKx9lz
-        +4jYsaYNh5m+NUFBrSYV+Z8=
-X-Google-Smtp-Source: AKy350ZI1VywWQcvXG6FwGA8wlIsDCE6CZLzEI5r5l8KCp0+nQsf0jYJpptE+LEBb49w6SKevH1t1w==
-X-Received: by 2002:a19:7003:0:b0:4db:3605:9bd3 with SMTP id h3-20020a197003000000b004db36059bd3mr55621lfc.17.1681507449498;
-        Fri, 14 Apr 2023 14:24:09 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id m11-20020a056512014b00b004ecad67a925sm961263lfo.66.2023.04.14.14.24.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 14:24:09 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kalle Valo <kvalo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, ath11k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Robert Marko <robimarko@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] wifi: ath11k: support reading radio MAC from DT
-Date:   Fri, 14 Apr 2023 23:23:56 +0200
-Message-Id: <20230414212356.9326-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230414212356.9326-1-zajec5@gmail.com>
-References: <20230414212356.9326-1-zajec5@gmail.com>
+        d=1e100.net; s=20221208; t=1681508878; x=1684100878;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3EVZPS7cfZtkMpVcoeHTNj5NWFzlcFiikQhX7e7eo7s=;
+        b=J6BfV5prxnFzM+xIorH+kl3cuKujTfksAQul/N0Evhs2p02iwrAIORojcQgYrjZrXH
+         INSB+CmA78ZRL3gvvDutdZRoFfutn4n2WPAuSrMd55GnrGswpoPKnJZOX2O395YB5lH9
+         ewnXCDtwKVB+P2vNgt3gbfgNnnBbTxvyZLZORwfzkjkpzv8okynSW4D697AtA9C+0etC
+         5wgojCgT7yVpsmnHGlEMcena6Jg/Jc2fT1oVbYMSwxHPjVxnhHKRDCQTZ3HOr6KD6ZxI
+         ekRUpOXdviJ/ETw/txoFEtB7p5qAnM/yyT0uw9FCgfXKxl7j70IJwdtPPfJtgYLfeYQ1
+         TvGg==
+X-Gm-Message-State: AAQBX9dhG4Wbi+XebsUGFduYhmXi19OZqe5NRptOHhl5Rz6aMJdQW8Ne
+        OGgMYDcVNNvbyuX4/o7aZsxIxg==
+X-Google-Smtp-Source: AKy350Zd7mIwQhRcrPhJL46mGi+B2WmInMBjqPo7ce+h/92m7V5Dbt/VUSCHLDLUeD0k87Zjl8iA/w==
+X-Received: by 2002:a05:6402:114e:b0:504:9e79:e86f with SMTP id g14-20020a056402114e00b005049e79e86fmr7272505edw.18.1681508878492;
+        Fri, 14 Apr 2023 14:47:58 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ffae:8aab:ae5a:4688? ([2a02:810d:15c0:828:ffae:8aab:ae5a:4688])
+        by smtp.gmail.com with ESMTPSA id c18-20020aa7c752000000b00501d73cfc86sm2562459eds.9.2023.04.14.14.47.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Apr 2023 14:47:58 -0700 (PDT)
+Message-ID: <187d51b3-6fec-7a25-e472-3d9020c12db5@linaro.org>
+Date:   Fri, 14 Apr 2023 23:47:56 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 01/10] dt-bindings: thermal: tegra: Document throttle
+ temperature
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230414125721.1043589-1-thierry.reding@gmail.com>
+ <20230414125721.1043589-2-thierry.reding@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230414125721.1043589-2-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 14/04/2023 14:57, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Each throttling configuration needs to specify the temperature threshold
+> at which it should start throttling. Previously this was tied to a given
+> trip point as a cooling device and used the temperature specified for
+> that trip point. This doesn't work well because the throttling mechanism
+> is not a cooling device in the traditional sense.
+> 
+> Instead, allow device trees to specify the throttle temperature in the
+> throttle configuration directly so that the throttle doesn't need to be
+> exposed as a cooling device.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../bindings/thermal/nvidia,tegra124-soctherm.yaml         | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+> index 4677ad6645a5..37dac851f486 100644
+> --- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
 
-On some devices (most routers) MAC is stored in an NVMEM cell. Support
-reading it.
+File does not exist in next and no dependency is mentioned, so tricky to
+review and figure out context. Without context the comment is:
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/net/wireless/ath/ath11k/mac.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ad5a22d12bd3..6550bb5b2ece 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -8,6 +8,7 @@
- #include <linux/etherdevice.h>
- #include <linux/bitfield.h>
- #include <linux/inetdevice.h>
-+#include <linux/of_net.h>
- #include <net/if_inet6.h>
- #include <net/ipv6.h>
- 
-@@ -9292,7 +9293,7 @@ int ath11k_mac_register(struct ath11k_base *ab)
- 	struct ath11k_pdev *pdev;
- 	int i;
- 	int ret;
--	u8 mac_addr[ETH_ALEN] = {0};
-+	u8 device_mac_addr[ETH_ALEN] = {0};
- 
- 	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
- 		return 0;
-@@ -9305,18 +9306,22 @@ int ath11k_mac_register(struct ath11k_base *ab)
- 	if (ret)
- 		return ret;
- 
--	device_get_mac_address(ab->dev, mac_addr);
-+	device_get_mac_address(ab->dev, device_mac_addr);
- 
- 	for (i = 0; i < ab->num_radios; i++) {
-+		u8 radio_mac_addr[ETH_ALEN];
-+
- 		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
--		if (ab->pdevs_macaddr_valid) {
-+		if (!of_get_mac_address(ar->np, radio_mac_addr)) {
-+			ether_addr_copy(ar->mac_addr, radio_mac_addr);
-+		} else if (ab->pdevs_macaddr_valid) {
- 			ether_addr_copy(ar->mac_addr, pdev->mac_addr);
- 		} else {
--			if (is_zero_ether_addr(mac_addr))
-+			if (is_zero_ether_addr(device_mac_addr))
- 				ether_addr_copy(ar->mac_addr, ab->mac_addr);
- 			else
--				ether_addr_copy(ar->mac_addr, mac_addr);
-+				ether_addr_copy(ar->mac_addr, device_mac_addr);
- 			ar->mac_addr[4] += i;
- 		}
- 
--- 
-2.34.1
+> @@ -120,6 +120,13 @@ properties:
+>                # high (85%, TEGRA_SOCTHERM_THROT_LEVEL_HIGH)
+>                - 3
+>  
+> +          temperature:
+> +            $ref: /schemas/types.yaml#/definitions/int32
+
+Use -millicelsius suffix instead:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+> +            minimum: -273000
+> +            maximum: 200000
+> +            description: The temperature threshold (in millicelsius) that,
+> +              when crossed, will trigger the configured automatic throttling.
+
+Don't you want some hysteresis? Or is it already using trips binding?
+But in that case you should skip the $ref and maximum - they come from
+thermal-zones, don't they?
+
+Best regards,
+Krzysztof
 
