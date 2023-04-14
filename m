@@ -2,135 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF5956E1F54
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 11:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C70256E1F5B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 11:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbjDNJd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 05:33:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50886 "EHLO
+        id S229650AbjDNJeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 05:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbjDNJd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 05:33:56 -0400
-Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C7F8697
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 02:33:36 -0700 (PDT)
-Received: by mail-ua1-x92c.google.com with SMTP id r10so3622140uat.6
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 02:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681464808; x=1684056808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hmnkUWMaBh/dQ2evri0SLi/J8TMxwOaXw9HZAIykNPQ=;
-        b=AxSpE3IaPuxvlb/rnjlmHt5HDSPQ9PAIoq686N9ZUofrsSWuHTTqftC68x1PR/P2WJ
-         rWJCgFovzJyEhPa8gnJJ5ljEdxPo0q4omf5c3rGqcpl9nayNsOA5TwlrSMJXHr9KVJY3
-         N8yvbUELy+2DRXenNJ0B6WUcBchkv6tGAtZTh39DHRYcw6Q5K7hcDmzienQ9lnuJBUjD
-         KZIls+bpIW8hxQ3uCksqzT4Msmq0pI7LTS1BR00cDjzxANZx0jgA26YQoeg+8XYX9Yor
-         QhtYg5oZkK2GbDq5oksH7iHHQuiT31mmPV1nFqpmYSMXOSMa8PbvT7vfEJWrZi3NVYT3
-         Mahw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681464808; x=1684056808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hmnkUWMaBh/dQ2evri0SLi/J8TMxwOaXw9HZAIykNPQ=;
-        b=BvI3vgAdLPE7dfNfGtPrtg9lXCfyeXCV30+1V6lhCCEM1ep+Y2njsCgO6XAEeOHnZF
-         QOQ+56TFrXxtx0tz8b7RzapVTTZlF/9f9okgvaKJqj8QmnAQqP7iXyjjUS/vR+zUtvOo
-         8PQOUw7HmZw6uG5oGJNuOTpCaIcuXxOk9N+HVqJwZC0l9dDCxq+nhfvp8zKgNJBIcjnL
-         Pyj9Tz6oOM1HQAZMJmjMNhJZzdkyVNETE1HyQVI2hT5klRi0Txpnhsh/g0ssO3X1ze6r
-         WkpS5fABvgcrXW3dskEgSUzJwhouZyL8B71W6dl2awPql/vRHbr2hZvGySLK93VY0myI
-         0Thw==
-X-Gm-Message-State: AAQBX9fJaEMa/qmerWQeG9XMiZvEunjF6NCzD5FbhkLVzkJl01d9MxCg
-        gVd5o3o+MMkc+MSBrCK99pSCT9oIhkK3uQ6ZER09wQ==
-X-Google-Smtp-Source: AKy350bfsTtcHUxo29RImIJqDEHQ7T/MfcbWBd1biJy46lDDvJh6lED1lqs9QUqdbdlXBY7vDWk0nEhrfV1vzEezIQQ=
-X-Received: by 2002:a1f:3857:0:b0:43a:d64:5aba with SMTP id
- f84-20020a1f3857000000b0043a0d645abamr2575462vka.2.1681464807793; Fri, 14 Apr
- 2023 02:33:27 -0700 (PDT)
+        with ESMTP id S230046AbjDNJer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 05:34:47 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED3396A54;
+        Fri, 14 Apr 2023 02:34:17 -0700 (PDT)
+Received: from localhost (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AEAD266031C6;
+        Fri, 14 Apr 2023 10:34:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681464855;
+        bh=M/Zt0EOj4LIQThEVbo30D78JWsDa3kNHxL7hcZHzi7E=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Cd+LSSJOIQjJv3zflq8yIMpr4TqHH4Vg/BU0QGb+No+eNZb85JFOUKiIXXDgjZ6KJ
+         p8Y1xm94v5VDfaSECLXmVnJ9BZJrGx1cpn1DCz5HzBQPg7MvyTLGpyTUkgc0yWpk4l
+         9HGwIgFZxjxtUzdcMCmkpvj6u6xPOEu9mLiPzeGru+jPQhuKmlQiazYPaX9e3Gs8uC
+         TDJ5E/LNd9SMyMHMyKIROB0nnBzb844wJ0C5Eypc7/hkm7ccftOG7HPiv7B6gd904G
+         cyD9b1mHDyAzAc6FpQk25LgBN7RxwIUkwHcFhtoxP2Z/2wnoAl7OpyoHrKgw8kEMVn
+         C5WNCmQoRWo4g==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: [PATCH 0/3] Add regulators to Rock 5B's CPU big cores
+Date:   Fri, 14 Apr 2023 12:34:08 +0300
+Message-Id: <20230414093411.113787-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <20230327125316.210812-1-brgl@bgdev.pl> <20230327125316.210812-4-brgl@bgdev.pl>
- <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
-In-Reply-To: <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 14 Apr 2023 11:33:16 +0200
-Message-ID: <CAMRc=Mfw+4Co8JPz51_E+DSawijO8EB6rMmFXEmM0e5F3Fg_8A@mail.gmail.com>
-Subject: Re: [PATCH v3 03/18] dt-bindings: interrupt-controller: qcom-pdc: add
- compatible for sa8775p
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 6, 2023 at 4:10=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
-wrote:
->
-> On Mon, Mar 27, 2023 at 2:53=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
-l> wrote:
-> >
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add a compatible for the Power Domain Controller on SA8775p platforms.
-> > Increase the number of PDC pin mappings.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > Cc: Thomas Gleixner <tglx@linutronix.de>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml     | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/qco=
-m,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pd=
-c.yaml
-> > index 94791e261c42..641ff32e4a6c 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.y=
-aml
-> > @@ -26,6 +26,7 @@ properties:
-> >    compatible:
-> >      items:
-> >        - enum:
-> > +          - qcom,sa8775p-pdc
-> >            - qcom,sc7180-pdc
-> >            - qcom,sc7280-pdc
-> >            - qcom,sc8280xp-pdc
-> > @@ -53,7 +54,7 @@ properties:
-> >    qcom,pdc-ranges:
-> >      $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> >      minItems: 1
-> > -    maxItems: 32 # no hard limit
-> > +    maxItems: 38 # no hard limit
-> >      items:
-> >        items:
-> >          - description: starting PDC port
-> > --
-> > 2.37.2
-> >
->
-> Bjorn,
->
-> Will you pick up the dt-bindings patches from this series as well or
-> should they go through Rob's tree?
->
-> Bart
+The CPU big cores on the Rock 5B board are powered by the RK8602/RK8603
+regulators. Since the support for those regulators has been recently 
+merged via [1], add the necessary device tree nodes and bind them to 
+the corresponding CPU nodes.
 
-Gentle ping as this one's still not in next.
+Additionally, provide a couple of unrelated DTS fixes/improvements.
 
-Bart
+[1] https://lore.kernel.org/lkml/20230406194158.963352-1-cristian.ciocaltea@collabora.com/
+
+Cristian Ciocaltea (3):
+  arm64: dts: rockchip: Drop RTC clock-frequency on rk3588-rock-5b
+  arm64: dts: rockchip: Use generic name for es8316 on rk3588-rock-5b
+  arm64: dts: rockchip: Add vdd_cpu_big regulators to rk3588-rock-5b
+
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      | 59 ++++++++++++++++++-
+ 1 file changed, 57 insertions(+), 2 deletions(-)
+
+-- 
+2.40.0
+
