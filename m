@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C9DF6E2259
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 606C46E2270
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbjDNLh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 07:37:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41132 "EHLO
+        id S229707AbjDNLkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 07:40:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbjDNLhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:37:25 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D29E768D
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:37:23 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id b40so2505608lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:37:23 -0700 (PDT)
+        with ESMTP id S229540AbjDNLky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:40:54 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE221A4
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:40:53 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id q23so35341989ejz.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681472242; x=1684064242;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ISD1jIsYhapCYWWcz+5k3pAzTGPESmv5s/eS+sFm/Hg=;
-        b=Yn+a8wJ8gv1qZmhb+z/wE+fuvt/rcYbb8kz7kfkqSXFgHRc0BgsLC0q8O4NMiEzR7o
-         pKgUHRdqp+8IGGPNH8Ywgbf7DWpaI8ggAiibJFFIlaU5cRR3j2I5xbUHFtjDuKFTfzB5
-         s20M5Ut1nHBArSCleX9AuBS07MaGJQLckXs9R7D9DCULQPN6sAA8bHp6l4OVgDRDZweH
-         eF3XGQrwpxNgEttPBBrGAOfAz799scOk9U/AwVvXdDISPWBzr/sD2GGpfu+p04B7QpZO
-         eMQz3qifremBL3yejGU5B8aznbnJfAJ6+73aEobu+dzwNvYZup+v1f92XXdyonajb/jH
-         YCbw==
+        d=linaro.org; s=google; t=1681472451; x=1684064451;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nwCnm0dqF6GO9rD40udc/VGMXwcnBrK2/hebHkxzkgU=;
+        b=SsI69cum9qeu0etn2SIPkAfRUOij/h8S6VFCMpuN1D3QWOUs+kky4qxmj1gsUPUc3d
+         7LF0CEaInESiQRJbEvNXw+LcqLZfaMPIw0jlutiq/yiR34XcvToBa/a/iP/npQGtciQ5
+         5tbD3L9TfW9gSpau207N/XLAEwr05CABrein9SHZ5VN1EkOgkhkIyylB7mWKDD/fCflQ
+         OdaG7ikmby8gBpbkjPoF/V+nYVuRB6D/BmQSz5+ZXkJJgceHE0S03VncogZuQ5Gu6CkU
+         lumPe64Ek7MkPNHYQJGEqrL/DWGHRZxE0LWWHWj1WibXDdrv3oVZygVHM+1MRb0pO9cR
+         FdYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681472242; x=1684064242;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ISD1jIsYhapCYWWcz+5k3pAzTGPESmv5s/eS+sFm/Hg=;
-        b=ZePo3H1bTA/iwE1lGvHagcJRjZqiFJwwBvhM3eRO9xu+E0tYsJXXB8FvH/K2zqTdEQ
-         EjRhPX5t4k1ULzSc5PrK3fmjefySUnH+5T/SFiE3xAIH4L6ZPp9CIpAGuOVE/KdXc6DQ
-         5I1bAYaoPLJtAUX1B2JS5+wduNtjT3LeRT2F/2GaqvylPHl/pkl4ELqc5FqFkb6ihdEl
-         ibjXl0TL0b6VZjPX2GfjLjpbNC9I8yDzwelrShJAshz/ZpQlFqVXXdwTIdIusnmRZjkK
-         sl0FCoMfvja/ULHUDs+1X9lc0JeeQp8/G+4eImVQZZfX8Dig8fmGEDUeT3JrrvoyfYiG
-         h1hA==
-X-Gm-Message-State: AAQBX9dTT/RkuS3llZPLmKU2cJPGCTDJL8Hq+G99xODD7QXGKGJS2gER
-        pzkF0dJGbsRdLMucQxF+sPbXAA==
-X-Google-Smtp-Source: AKy350b/2Yd4GqLCpCTDVzD36MwXnIdkHJ777ub6Yn9XcKuAxZJRDQeHd4i9F9FU7ufFiAN4N74nUg==
-X-Received: by 2002:a05:6512:75:b0:4db:3927:e2bc with SMTP id i21-20020a056512007500b004db3927e2bcmr2007693lfo.50.1681472241922;
-        Fri, 14 Apr 2023 04:37:21 -0700 (PDT)
-Received: from [192.168.1.101] (abyl123.neoplus.adsl.tpnet.pl. [83.9.31.123])
-        by smtp.gmail.com with ESMTPSA id y5-20020ac24e65000000b004ec83bc3e43sm756946lfs.192.2023.04.14.04.37.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 04:37:21 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 14 Apr 2023 13:37:18 +0200
-Subject: [PATCH v3 2/2] soc: qcom: Introduce RPM master stats driver
+        d=1e100.net; s=20221208; t=1681472451; x=1684064451;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nwCnm0dqF6GO9rD40udc/VGMXwcnBrK2/hebHkxzkgU=;
+        b=f+SpAIha+dV28ja35IyDSJzcqFPb6ALjg7z2e8sH7NnJ0x7OdqLnnD3AqE90QkPMX8
+         ythLXmAHQhq1llfDpvzAjmak9kz4Qh//8UTotJj/VxKgYDtzqvNG80j4TcVqUiAwf73E
+         fW9TLO8GvUMRoGsgJjwwQ9csMLfVXajSgN8CTUzyqkoHrnL/R9a+IIbopZEnIRvefkpA
+         bDLOOtWLrDI9EOaSq5JvQ/1u4JjS8Tkq8ATGddTszBsTH4qRnBSy4mk6uY1vhL5Ik0sW
+         ghgqfRljumO0B3hx4D+EzMohi9nC9Uo63+xFp1+3c5EFQYS1YcD2apkKykVH3B/lOyCw
+         Db2g==
+X-Gm-Message-State: AAQBX9eLHxebPVwTK5vERJpuk5PziFxdMTBoJAqt4gE46jVTKlZZxZMU
+        vKXcfXmHx8JHNMtKRsFV4qNJ2avQ02ho27/lZOs=
+X-Google-Smtp-Source: AKy350b9+O0ZZJipRXtRD4UQuPeSzAlpeim/uewsl4aFs4kjyrgNQ/vfpndmvaF3DStL+OWori2gtQ==
+X-Received: by 2002:a17:907:6f17:b0:94e:dc3c:cca2 with SMTP id sy23-20020a1709076f1700b0094edc3ccca2mr2123702ejc.70.1681472451565;
+        Fri, 14 Apr 2023 04:40:51 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:40b9:8c57:b112:651d? ([2a02:810d:15c0:828:40b9:8c57:b112:651d])
+        by smtp.gmail.com with ESMTPSA id dk8-20020a170906f0c800b0094a44aa90ddsm2279434ejb.216.2023.04.14.04.40.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Apr 2023 04:40:51 -0700 (PDT)
+Message-ID: <40498f71-d0cd-e7af-6515-c60a8d1edce8@linaro.org>
+Date:   Fri, 14 Apr 2023 13:40:50 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/3] dt-bindings: misc: esm: Add ESM support for TI K3
+ devices
+Content-Language: en-US
+To:     Neha Malcom Francis <n-francis@ti.com>, u-boot@lists.denx.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     nm@ti.com, vigneshr@ti.com, u-kumar1@ti.com
+References: <20230414105225.194195-1-n-francis@ti.com>
+ <20230414105225.194195-2-n-francis@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230414105225.194195-2-n-francis@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230405-topic-master_stats-v3-2-2cb2ba4f2092@linaro.org>
-References: <20230405-topic-master_stats-v3-0-2cb2ba4f2092@linaro.org>
-In-Reply-To: <20230405-topic-master_stats-v3-0-2cb2ba4f2092@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681472238; l=7204;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=hb0oyhgLV35bIH5MUQG7WNpjMFfzdLIJfQqifL30BjY=;
- b=uUDbYx+s7nKX8/aLuRZUv8bje+vhs+kkDvgeYYX6mxdcN+8NbMTdggTUm4S/k97zgE+Axldis6gL
- v5e7WnwNCxuthqP7wyPeR2H40Gi5wss157ApgLKUCPoR6ijpz3GU
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,223 +78,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce a driver to query and expose detailed, per-subsystem (as opposed
-to the existing qcom_stats driver which exposes SoC-wide data) about low
-power mode states of a given RPM master. That includes the APSS (ARM),
-MPSS (modem) and other remote cores, depending on the platform
-configuration.
+On 14/04/2023 12:52, Neha Malcom Francis wrote:
+> Document the binding for TI K3 ESM (Error Signaling Module) block.
+> 
+> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+> ---
+>  .../devicetree/bindings/misc/esm-k3.yaml      | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/esm-k3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/esm-k3.yaml b/Documentation/devicetree/bindings/misc/esm-k3.yaml
+> new file mode 100644
+> index 000000000000..5e637add3b0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/esm-k3.yaml
 
-This is a vastly cleaned up and restructured version of a similar
-driver found in msm-5.4.
+Filename matching compatible. Missing vendor prefix and device name.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/soc/qcom/Kconfig            |  11 +++
- drivers/soc/qcom/Makefile           |   1 +
- drivers/soc/qcom/rpm_master_stats.c | 160 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 172 insertions(+)
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/esm-k3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments K3 ESM Binding
 
-diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-index a491718f8064..e597799e8121 100644
---- a/drivers/soc/qcom/Kconfig
-+++ b/drivers/soc/qcom/Kconfig
-@@ -135,6 +135,17 @@ config QCOM_RMTFS_MEM
- 
- 	  Say y here if you intend to boot the modem remoteproc.
- 
-+config QCOM_RPM_MASTER_STATS
-+	tristate "Qualcomm RPM Master stats"
-+	depends on ARCH_QCOM || COMPILE_TEST
-+	help
-+	  The RPM Master sleep stats driver provides detailed per-subsystem
-+	  sleep/wake data, read from the RPM message RAM. It can be used to
-+	  assess whether all the low-power modes available are entered as
-+	  expected or to check which part of the SoC prevents it from sleeping.
-+
-+	  Say y here if you intend to debug or monitor platform sleep.
-+
- config QCOM_RPMH
- 	tristate "Qualcomm RPM-Hardened (RPMH) Communication"
- 	depends on ARCH_QCOM || COMPILE_TEST
-diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-index 0f43a88b4894..7349371fdea1 100644
---- a/drivers/soc/qcom/Makefile
-+++ b/drivers/soc/qcom/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
- qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
- obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
- obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
-+obj-$(CONFIG_QCOM_RPM_MASTER_STATS)	+= rpm_master_stats.o
- obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
- qcom_rpmh-y			+= rpmh-rsc.o
- qcom_rpmh-y			+= rpmh.o
-diff --git a/drivers/soc/qcom/rpm_master_stats.c b/drivers/soc/qcom/rpm_master_stats.c
-new file mode 100644
-index 000000000000..73080c92bf89
---- /dev/null
-+++ b/drivers/soc/qcom/rpm_master_stats.c
-@@ -0,0 +1,160 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2023, Linaro Limited
-+ *
-+ * This driver supports what is known as "Master Stats v2", which seems to be
-+ * the only version which has ever shipped, all the way from 2013 to 2023.
-+ */
-+
-+#include <linux/debugfs.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/platform_device.h>
-+
-+struct master_stats_data {
-+	void __iomem *base;
-+	const char *label;
-+};
-+
-+struct rpm_master_stats {
-+	uint32_t active_cores;
-+	uint32_t num_shutdowns;
-+	uint64_t shutdown_req;
-+	uint64_t wakeup_idx;
-+	uint64_t bringup_req;
-+	uint64_t bringup_ack;
-+	uint32_t wakeup_reason; /* 0 = "rude wakeup", 1 = scheduled wakeup */
-+	uint32_t last_sleep_trans_dur;
-+	uint32_t last_wake_trans_dur;
-+
-+	/* Per-subsystem (*not necessarily* SoC-wide) XO shutdown stats */
-+	uint32_t xo_count;
-+	uint64_t xo_last_enter;
-+	uint64_t last_exit;
-+	uint64_t xo_total_dur;
-+};
-+
-+static int master_stats_show(struct seq_file *s, void *unused)
-+{
-+	struct master_stats_data *d = s->private;
-+	struct rpm_master_stats stat;
-+
-+	memcpy_fromio(&stat, d->base, sizeof(stat));
-+
-+	seq_printf(s, "%s:\n", d->label);
-+
-+	seq_printf(s, "\tLast shutdown @ %llu\n", stat.shutdown_req);
-+	seq_printf(s, "\tLast bringup req @ %llu\n", stat.bringup_req);
-+	seq_printf(s, "\tLast bringup ack @ %llu\n", stat.bringup_ack);
-+	seq_printf(s, "\tLast wakeup idx: %llu\n", stat.wakeup_idx);
-+	seq_printf(s, "\tLast XO shutdown enter @ %llu\n", stat.xo_last_enter);
-+	seq_printf(s, "\tLast XO shutdown exit @ %llu\n", stat.last_exit);
-+	seq_printf(s, "\tXO total duration: %llu\n", stat.xo_total_dur);
-+	seq_printf(s, "\tLast sleep transition duration: %u\n", stat.last_sleep_trans_dur);
-+	seq_printf(s, "\tLast wake transition duration: %u\n", stat.last_wake_trans_dur);
-+	seq_printf(s, "\tXO shutdown count: %u\n", stat.xo_count);
-+	seq_printf(s, "\tWakeup reason: 0x%x\n", stat.wakeup_reason);
-+	seq_printf(s, "\tShutdown count: %u\n", stat.num_shutdowns);
-+	seq_printf(s, "\tActive cores bitmask: 0x%x\n", stat.active_cores);
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(master_stats);
-+
-+static int master_stats_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *msgram_np;
-+	struct master_stats_data *d;
-+	struct dentry *dent, *root;
-+	struct resource res;
-+	int count, i, ret;
-+
-+	count = of_property_count_strings(dev->of_node, "qcom,master-names");
-+	if (count < 0)
-+		return count;
-+
-+	d = devm_kzalloc(dev, count * sizeof(*d), GFP_KERNEL);
-+	if (!d)
-+		return -ENOMEM;
-+
-+	root = debugfs_create_dir("rpm_master_stats", NULL);
-+	platform_set_drvdata(pdev, root);
-+
-+	for (i = 0; i < count; i++) {
-+		msgram_np = of_parse_phandle(dev->of_node, "qcom,rpm-msg-ram", i);
-+		if (!msgram_np) {
-+			debugfs_remove_recursive(root);
-+			return dev_err_probe(dev, -EINVAL,
-+					     "Couldn't parse MSG RAM phandle idx %d", i);
-+		}
-+
-+		/*
-+		 * Purposefully skip devm_platform helpers as we're using a
-+		 * shared resource.
-+		 */
-+		ret = of_address_to_resource(msgram_np, 0, &res);
-+		if (ret < 0) {
-+			debugfs_remove_recursive(root);
-+			return ret;
-+		}
-+
-+		d[i].base = devm_ioremap(dev, res.start, resource_size(&res));
-+		if (IS_ERR(d[i].base)) {
-+			debugfs_remove_recursive(root);
-+			return dev_err_probe(dev, -EINVAL,
-+					     "Could not map the MSG RAM slice idx %d!\n", i);
-+		}
-+
-+		ret = of_property_read_string_index(dev->of_node, "qcom,master-names", i,
-+						    &d[i].label);
-+		if (ret < 0) {
-+			debugfs_remove_recursive(root);
-+			return dev_err_probe(dev, ret,
-+					     "Could not read name idx %d!\n", i);
-+		}
-+
-+		/*
-+		 * Generally it's not advised to fail on debugfs errors, but this
-+		 * driver's only job is exposing data therein.
-+		 */
-+		dent = debugfs_create_file(d[i].label, 0444, root,
-+					   &d[i], &master_stats_fops);
-+		if (!dent) {
-+			debugfs_remove_recursive(root);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	device_set_pm_not_required(dev);
-+
-+	return 0;
-+}
-+
-+static void master_stats_remove(struct platform_device *pdev)
-+{
-+	struct dentry *root = platform_get_drvdata(pdev);
-+
-+	debugfs_remove_recursive(root);
-+}
-+
-+static const struct of_device_id rpm_master_table[] = {
-+	{ .compatible = "qcom,rpm-master-stats" },
-+	{ },
-+};
-+
-+static struct platform_driver master_stats_driver = {
-+	.probe = master_stats_probe,
-+	.remove_new = master_stats_remove,
-+	.driver = {
-+		.name = "rpm_master_stats",
-+		.of_match_table = rpm_master_table,
-+	},
-+};
-+module_platform_driver(master_stats_driver);
-+
-+MODULE_DESCRIPTION("RPM Master Statistics driver");
-+MODULE_LICENSE("GPL");
+Drop: Binding
 
--- 
-2.40.0
+> +
+> +maintainers:
+> +  - Neha Malcom Francis <n-francis@ti.com>
+> +
+> +description: |
+> +  The ESM (Error Signaling Module) is an IP block on TI K3 devices
+> +  that allows handling of safety events somewhat similar to what interrupt
+> +  controller would do. The safety signals have their separate paths within
+> +  the SoC, and they are handld by the ESM, which routes them to the proper
+
+typo: handled
+
+> +  destination, which can be system reset, interrupt controller, etc. In the
+> +  simplest configuration the signals are just routed to reset the SoC.
+
+There is no proper bindings directory for ESM? Misc is discouraged.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,j721e-esm
+> +
+> +  reg:
+> +    items:
+> +      - description: physical address and length of the registers which
+> +          contain revision and debug features
+
+Drop useless "physical address and length of the registers which". reg
+cannot be anything else.
+
+> +      - description: physical address and length of the registers which
+> +          indicate strapping options
+> +
+> +  ti,esm-pins:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      integer array of ESM event IDs to route to external event pin which can
+> +      be used to reset the SoC. The array can have an arbitrary amount of event
+> +      IDs listed on it.
+
+What is ESM event ID? The property name suggests pins...
+
+
+> +    minItems: 1
+> +    maxItems: 255
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ti,esm-pins
+> +
+> +examples:
+> +  - |
+> +    main_esm: esm@700000 {
+
+Drop label.
+
+> +        compatible = "ti,j721e-esm";
+> +        reg = <0x0 0x700000 0x0 0x1000>;
+> +        ti,esm-pins = <344>, <345>;
+> +    };
+
+Best regards,
+Krzysztof
 
