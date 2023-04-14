@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 943466E250A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:03:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7016E250C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 16:03:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbjDNODW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 10:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52764 "EHLO
+        id S230130AbjDNODd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 10:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230106AbjDNODV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:03:21 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3276AB777
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:02:48 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id a29so19757992ljq.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:02:48 -0700 (PDT)
+        with ESMTP id S229744AbjDNODc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 10:03:32 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0419159FF
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:03:00 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id z38so2823076ljq.12
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 07:02:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google; t=1681480964; x=1684072964;
+        d=semihalf.com; s=google; t=1681480966; x=1684072966;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WLixTRfjgENcovszATtGl8QPdC0Pd1weyqx+S/unz9w=;
-        b=HYr1AJD9m6oRzthxD0R3069MK8VuvZvtWAoQpZlxrFyHMJ4nU/c5FyZKYeOig8uMSj
-         uGFMmqbadrconO75X6ztpe44p+Ku6G7jL5DmcgyZ1hq12rZFhpZ6hyVtTplNqNBCzJWu
-         XfOR18dwtShwQIar93V5opgVMYaHKJAAYppuruB8+KyzpQPzzM4N+zat0BH2h1IsLCmq
-         UMYJwaoRl7kYzee5Fphzl71rnWPD6vbafkgCvs4E0mDq4T8ySmSLUpqwL0LRET4UdM4B
-         z/7G1KR9DON5ir3hrOMhn9Sal2JyF3iatNVjX0jZFvvZVnEuhX3iMEH7k8m2fup6CVSj
-         mgiQ==
+        bh=pAsx/vtlSONsGJaMiUuvZrWP17NNhM0s9aopfUG3YMs=;
+        b=Qi8J8nvWCtFhQJhd2UX1NuWmfKbSuxCdjqjnDbhKFiBYPv3xo/hUC6Do2yDnUCewAT
+         tl4VOteQPr1vA9ehtzJx9//7fZlv2nySr+BsyVTmcwpIEX1nKSDMlvaAlyUlYHXNsEpx
+         gRf0Q7SM1nyAeFaDsOuPiresr4FTfzZwyOvBn6qzJEFghHmpmtp+Uap2CZHpoeicqPFC
+         TlO8OVPwTjnp/FJTOYL+dZPoyeFIcpk/Gn0o5iSNzBJScOAyrh8sVcPPbEZrjuWTThOR
+         QJ0AsZSe1L+lXynCjQG2TIcE/AElygHP+mila0NJdBrRzO7TCSkxv+fOFSljBz39gnOD
+         M3xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681480964; x=1684072964;
+        d=1e100.net; s=20221208; t=1681480966; x=1684072966;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WLixTRfjgENcovszATtGl8QPdC0Pd1weyqx+S/unz9w=;
-        b=Ms455+Fb+aQ/lv60Iioky2T+WNL2DKDk2tEP7wh2EdkNxtuSnclFaSZm9VCyIk0VUG
-         EHgRbZp2sFSo3M80urq51SofpN2YopMvua9ytZJ7j6AZSqO9R9h9tIgc0r3vAuchmh3E
-         u2cR7M1MpY1bXmUGQjVlTxH228LDqvPdgo+yj3iw1F5MYJkcdU5Ij+k2e5PWc2DXoR10
-         xjSzVp0StTjLhmKqsReMILZoSnIvRpRusEuXBQ2dJV4wZHrGiB1T8q6kP+TYP/CgQvRd
-         fRNThRAv24pRGjOVc78JVYG/kp6dpVeVYk3u2C9lDyUVlXjiH9G6hkf9U3PM7ZjFBdfi
-         m5CQ==
-X-Gm-Message-State: AAQBX9c9AssDZbIDas52bFxS/t+tUw2GZlicTwuSOaSe9SgT758lUDCe
-        dJT1dir+y2nCzMFd/UjXOuRcYg==
-X-Google-Smtp-Source: AKy350ZYVGEPLLxfVYu+/HWW1CWF15hmWbDiIZLuRfjxN0aQCDsV6QACgfOZTdQ+VsxwMQxddFYJ+A==
-X-Received: by 2002:a05:651c:d5:b0:2a7:6f60:34f2 with SMTP id 21-20020a05651c00d500b002a76f6034f2mr2103167ljr.33.1681480964321;
-        Fri, 14 Apr 2023 07:02:44 -0700 (PDT)
+        bh=pAsx/vtlSONsGJaMiUuvZrWP17NNhM0s9aopfUG3YMs=;
+        b=ZkYfYcgPWwZjsrgKzse7GuU45yXHhMSBcKdIK0j6e7K55lHqOHS6Vzg/8lBg3TpvAx
+         cJh0gBqNy7BfaJCDM7NoSzJeV+hx++zoF6oNcf9PZ1MpP5WQaKcbk0BhqHPG+phzy0Lu
+         7NkVBg/w6qHjpB/SZb3a+FqVEBjAG+dZ8apSWjN5PLdH6XeXW8ygB7Lm6sDiVL//sTd0
+         4AFWhhmfWfDpHs0yjNGpb35Vu/sAvdTIiXz4Jj3F27WbAB9rf7EES5y2BgaFgYpQqH1q
+         Yn7hLzMZpPsF2aoEAsA/tUS/T8niy8E+mFq18KvAVfOBAoDG2G6p7Yo9Fxt70aPoxatr
+         c+nw==
+X-Gm-Message-State: AAQBX9emHv/MuY/S6RxAvPJZLWqKmvoEgkttq59lL45VCrhYp4X0P/nv
+        LmGK7ltf63AdREZzx+QjD9Y+HA==
+X-Google-Smtp-Source: AKy350Z+QDZGlS7XF9A1X0316HTp53Mi+Jrm8uEaFMhPQvNowT32YfQLUfNynbysrYJBu0ehToQ6JA==
+X-Received: by 2002:a2e:9d84:0:b0:295:d7a8:559b with SMTP id c4-20020a2e9d84000000b00295d7a8559bmr1714528ljj.10.1681480965408;
+        Fri, 14 Apr 2023 07:02:45 -0700 (PDT)
 Received: from panikiel.roam.corp.google.com (staticline-31-182-201-26.toya.net.pl. [31.182.201.26])
-        by smtp.gmail.com with ESMTPSA id 15-20020a2eb2cf000000b002a76e2dedbcsm828684ljz.139.2023.04.14.07.02.43
+        by smtp.gmail.com with ESMTPSA id 15-20020a2eb2cf000000b002a76e2dedbcsm828684ljz.139.2023.04.14.07.02.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 07:02:44 -0700 (PDT)
+        Fri, 14 Apr 2023 07:02:45 -0700 (PDT)
 From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
 To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
@@ -57,9 +57,9 @@ Cc:     perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
         lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com,
         =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
-Subject: [PATCH 2/9] dt-bindings: ASoC: Add chv3-i2s
-Date:   Fri, 14 Apr 2023 16:01:56 +0200
-Message-ID: <20230414140203.707729-3-pan@semihalf.com>
+Subject: [PATCH 3/9] dt-bindings: ASoC: Add chv3-audio
+Date:   Fri, 14 Apr 2023 16:01:57 +0200
+Message-ID: <20230414140203.707729-4-pan@semihalf.com>
 X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
 In-Reply-To: <20230414140203.707729-1-pan@semihalf.com>
 References: <20230414140203.707729-1-pan@semihalf.com>
@@ -68,7 +68,7 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,61 +76,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for chv3-i2s device.
+Add binding for chv3-audio device.
 
 Signed-off-by: Paweł Anikiel <pan@semihalf.com>
 ---
- .../bindings/sound/google,chv3-i2s.yaml       | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
+ .../bindings/sound/google,chv3-audio.yaml     | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml b/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
+diff --git a/Documentation/devicetree/bindings/sound/google,chv3-audio.yaml b/Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
 new file mode 100644
-index 000000000000..6f49cf059ac5
+index 000000000000..8b602b60eaee
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
-@@ -0,0 +1,42 @@
++++ b/Documentation/devicetree/bindings/sound/google,chv3-audio.yaml
+@@ -0,0 +1,49 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/google,chv3-i2s.yaml#
++$id: http://devicetree.org/schemas/sound/google,chv3-audio.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Google Chameleon v3 I2S device
++title: Google Chameleon v3 audio
 +
 +maintainers:
 +  - Paweł Anikiel <pan@semihalf.com>
 +
-+description: |
-+  I2S device for the Google Chameleon v3. The device handles both RX
-+  and TX using a producer/consumer ring buffer design.
-+
 +properties:
 +  compatible:
-+    const: google,chv3-i2s
-+  reg:
-+    items:
-+      - description: core registers
-+      - description: irq registers
-+  interrupts:
-+    maxItems: 1
++    const: google,chv3-audio
++
++  google,audio-cpu0:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of controller #0
++
++  google,audio-codec0:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of codec #0
++
++  google,audio-cpu1:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of controller #1
++
++  google,audio-codec1:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of codec #1
 +
 +required:
 +  - compatible
-+  - reg
-+  - interrupts
++  - google,audio-cpu0:
++  - google,audio-codec0:
++  - google,audio-cpu1:
++  - google,audio-codec1:
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2s0: i2s@c0060300 {
-+        compatible = "google,chv3-i2s";
-+        reg = <0xc0060300 0x100>,
-+              <0xc0060f00 0x10>;
-+        interrupts = <0 20 IRQ_TYPE_LEVEL_HIGH>;
++    sound {
++        compatible = "google,chv3-audio";
++        google,audio-cpu0 = <&i2s1>;
++        google,audio-codec0 = <&ssm2603>;
++        google,audio-cpu1 = <&i2s0>;
++        google,audio-codec1 = <&it68051>;
 +    };
 -- 
 2.40.0.634.g4ca3ef3211-goog
