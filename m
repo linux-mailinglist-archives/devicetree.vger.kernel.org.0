@@ -2,106 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03CA86E1D53
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFEB96E1D64
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbjDNHgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:36:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58600 "EHLO
+        id S229703AbjDNHml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjDNHgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:36:40 -0400
+        with ESMTP id S229617AbjDNHmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:42:40 -0400
 Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C827F558B
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:36:20 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id z9so16412577ejx.11
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:36:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BB71A1
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:42:38 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id kt6so5310531ejb.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:42:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681457776; x=1684049776;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1681458157; x=1684050157;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6BIZm7OVoNPgP6hAJjegDQgkQsNI+ED4GT7hk/PWCTI=;
-        b=KLRG03aT3upNVPSBhBy9mK+wVYK0Rg+7gOcMpROGPKro/27CtNuIHLDXg0n/BZo+cx
-         n1krkAKd10ib4EXHQ/9eKJKZWDylSuNY/OwMo0kvsaFT1o4WSAUJ56FUILTJBBm5Tm9m
-         eW7gEFThJZ9ZsOp3TsxQRBvT9TOT/hbGgW+R9H3uNxgkeJypfJSv4QzqCFJS1hCk9n/a
-         aYfb0fz4CfhE7SHunCg/qCYgYUXB6D1j5qykim9mzN4uaIMT4wKi8hg3fp7HM5JHcmEF
-         lCZy5tsEHnECWiUWdov0ES0MDacOf0aY+/Rm/rdJn0W68Gtwdj5U2jwRVaKiFWMxEcST
-         vcqA==
+        bh=PYpcf8R8QGaHDcrBQ4ZMSmtY+ByQQt2dDOsbEdCIjII=;
+        b=LwcIlKmI6UzDZBCRtIWOfCPYlTd7RYyc99ld0pahVWPdEXnLp99R7nrXyBFaIVTqrw
+         nDLfjsV5BOB+PuVDckpdfxpvMM4kARClb2odEin4VvUsLahRP8NVlIpOAYT2K26AcNPF
+         M2cLMR+WnERfdeoxTfTUmG4ex7hWXpivWe+JO7l5t3lp9TDcCVTIbwz78JhrDASs8jza
+         fxdnbLaWNC/LSfqIcQ1Zk6k+/DENu8VRvxUh2vtu8vNPhFrR6suKrCJOaGYyB0OO90fM
+         /iKmBu6zP3UvYlMKeWldnWGlw7KCUEqe619h8phllrueWf7dsf/pmqpeQ/hvd+IHFBXT
+         GYXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681457776; x=1684049776;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1681458157; x=1684050157;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6BIZm7OVoNPgP6hAJjegDQgkQsNI+ED4GT7hk/PWCTI=;
-        b=WltBK/yDCFYzBJYTuAVjF/Egw3M0o83DOJ0W7WtpnH2AQRSz0jlmrp+5gp7qg74sfQ
-         ayQbNajWk7MYDxTUTtJXi0x6YC14b9aTybrgLQR6yswKj5hKOdCaDKvrPA8tzkD5/F6x
-         2CTUezjLyryT1uB12dxve2kX0vDV0P/mnyaDX0gPaoGyc3NkeMBo1p8s3tB7M8TUUcQU
-         KzlFCRME+7bP4pEsWxfdzdjV3pIfB/xGIwhDiMvBrLpahbyLTTyfgWBWA+d7sozn+My6
-         MfU+TeycJsqlkUYRfYuUbSELDPIJ4HaBHupbPfEHNOmcnqDwQnqkTQsy2mnFCI0cZrRr
-         XNNg==
-X-Gm-Message-State: AAQBX9fnZdXotktYLxsG2DJvnlqrv3Iek3rF6oEFjyG75+ZCgSFq56od
-        fAuYinCfNZ+R8yGuvFGs89XxvA==
-X-Google-Smtp-Source: AKy350ataZ2VxRZLVqcOMSGN9yHYPp2N5iuran36ny+AQ/gi+UjSIj45G6llauYBbyVOYStGbZPi3w==
-X-Received: by 2002:a17:906:2788:b0:94a:90e5:b2b6 with SMTP id j8-20020a170906278800b0094a90e5b2b6mr4995448ejc.58.1681457776525;
-        Fri, 14 Apr 2023 00:36:16 -0700 (PDT)
+        bh=PYpcf8R8QGaHDcrBQ4ZMSmtY+ByQQt2dDOsbEdCIjII=;
+        b=eCLFU5CJRSQ25ly/3PG9ou3RiyPoKsJ1XFZ3s/s0LkOocCVNRGOXJkOA8EP9D/cD/A
+         yk+40Rj+BbNtGW8HD2LhUDtCZ0D9jnP2R2w7ps+jnDNuYXmVnrh+j807fKt/9A6PFaGv
+         Yn/vMGY0bmlyqrWOcrFMCw2rEVivdaSXODfnIKvcCRkHeOVqTOdiheukBj0+UUrvo+Eg
+         BuVtpIbq9JnOoUZuxcAxtDJyKFp4imHb4s58IEBY/nNzjLPU3UxjjXKOVq1etzjXa5e7
+         FwwfYJ8/bX0u6K7wBQ5OKszNQIf1VqtIWQT1jN0PB3vWL7d5WsDwgPhUMoUOokxMox56
+         noqA==
+X-Gm-Message-State: AAQBX9ebBE4AiDDByJLYrOjAMQE96yntmebjCUEFcDaBb5kA7+iAoIHI
+        +XJmbxMraJwZK1YWSt1rUrCzqsFnnOn7ZnlEYAI=
+X-Google-Smtp-Source: AKy350Y/SU83zzrO89a/MUOol+3Nh+8JvARjeI1fMpnaKc1PS6yUx0kxHH92K6xpptIL1S4nI4jEhA==
+X-Received: by 2002:a17:906:480f:b0:94a:7225:92f with SMTP id w15-20020a170906480f00b0094a7225092fmr5547165ejq.11.1681458156921;
+        Fri, 14 Apr 2023 00:42:36 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id j25-20020a170906095900b0094a70a89bffsm2018786ejd.205.2023.04.14.00.36.15
+        by smtp.gmail.com with ESMTPSA id b24-20020a05640202d800b005068053b53dsm626237edx.73.2023.04.14.00.42.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:36:16 -0700 (PDT)
-Message-ID: <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
-Date:   Fri, 14 Apr 2023 09:36:15 +0200
+        Fri, 14 Apr 2023 00:42:36 -0700 (PDT)
+Message-ID: <111eabde-3a23-6e07-cd94-96d20670f3de@linaro.org>
+Date:   Fri, 14 Apr 2023 09:42:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [V6 0/9] Add Tegra234 HTE support
+Subject: Re: [PATCH v2 tty-next 1/2] dt-bindings: serial: ni,ni16650: add
+ bindings
 Content-Language: en-US
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-References: <20230414004455.19275-1-dipenp@nvidia.com>
+To:     Brenda Streiff <brenda.streiff@ni.com>
+Cc:     ilpo.jarvinen@linux.intel.com,
+        Gratian Crisan <gratian.crisan@ni.com>,
+        Jason Smith <jason.smith@ni.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230329154235.615349-1-brenda.streiff@ni.com>
+ <20230410211152.94332-1-brenda.streiff@ni.com>
+ <20230410211152.94332-2-brenda.streiff@ni.com>
+ <b2f81c57-9b7c-9ad6-6ce6-cc94703599db@linaro.org>
+ <b92e2f18-4fd0-0510-4a85-36d7a200c9fe@ni.com>
+ <6f9cfd54-c8cf-7395-e7bd-c350a06c8f16@linaro.org>
+ <c7adbaf3-346e-cafd-e831-95f9c2900d13@ni.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230414004455.19275-1-dipenp@nvidia.com>
+In-Reply-To: <c7adbaf3-346e-cafd-e831-95f9c2900d13@ni.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 02:44, Dipen Patel wrote:
-> This patch series mainly adds support for the Tegra234 HTE provider. In
-> addition, it addresses dt binding comments which prompted code
-> changes in the existing HTE provider driver without breaking the
-> Tegra194 provider. The comments raised concern how existing code
-> retrieves gpio controller node
-> (the node is used to help namespace conversion between HTE and GPIOLIB).
-> To help simplify that process, new DT property is suggested which adds
-> gpio controller node in the HTE provider binding as phandle property. To
-> conlude this patch series:
-> - adds Tegra234 HTE provider
-> - modifies existing provider code to address new dt binding for Tegra234
-> without breaking it for the Tegra194 chip.
+On 13/04/2023 22:44, Brenda Streiff wrote:
 > 
-> The V1 patch series:
-> - Adds tegra Tegra234 HTE(timestamp) provider supports.
-> - Updates MAINTAINERS file for git tree, mail list fields.
-> - Updates devicetree and API documentations.
-> - Enables HTE subsystem, Tegra194 and Tegra234 HTE providers
-> by default in arm64 defconfig and dts files.
+> 
+> On 4/13/23 02:39, Krzysztof Kozlowski wrote:
+>> On 13/04/2023 00:24, Brenda Streiff wrote:
+>>> On 4/11/23 00:44, Krzysztof Kozlowski wrote:
+>>>> On 10/04/2023 23:11, Brenda Streiff wrote:
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clock-frequency: true
+>>>>
+>>>> I missed it last time - why do you need this property? You do not have
+>>>> any clock input, so which clock's frequency is it?
+>>>>
+>>>
+>>> This is the clock frequency of the UART; on our x86-based platforms this
+>>> comes from the LPC clock, on Zynq-7000 it's derived from a clock in the
+>>> FPGA. This is used to set struct uart_port::uartclk in the serial core,
+>>> as it is for other UARTs.
+>>>
+>>> This clock frequency can vary based on board design (especially on the
+>>> x86 side, due to different LPC clocks) but for a given design is fixed-
+>>> frequency.
+>>
+>> So you must have clock input - clocks property. Once you add this, use
+>> assigned-clocks to get the rate you want.
+>>
+>>>
+>>> Would you prefer this be documented further? I was following 8250.yaml's
+>>> lead here with the simple `true`.
+>>
+>> I prefer to drop it. It is not correct and a legacy property. Without
+>> clock inputs how can you even configure some clock?
+> 
+> Configure in what respect? Software can't change this clock; it's
+> effectively a fixed oscillator.
 
-All your emails miss PATCH prefix. Use `git format-patch` to generate
-proper versioned patch. Stripping important part messes up with our
-filters. We have quite a lot of emails, so proper filtering is important.
+So where is the clock located? Physically.
+
+> 
+> In practice, this would always be pointing at a compatible="fixed-clock"
+> which declares a clock-frequency; this seems like "clock-frequency but
+> more steps". I can add that, but I'm not clear on what value that adds.
+
+Aren't we talking about two different things? Based on limited
+informamtion, I claimed you have clock input. If you have clock input,
+then you miss clocks property.
+
+What value would that add? I don't know... the rules that bindings
+describe hardware?
+
+> 
+> We also have shipping devices with ACPI tables using "clock-frequency",
+> so independent of support for "clocks" and "assigned-clocks" for
+> devicetree-using systems, I would still have to keep support in the
+> driver for a "clock-frequency" device property for ACPI-using systems.
+
+I don't care about ACPI and ACPI has nothing to do with Bindings. We do
+not write bindings for ACPI.
+
+What your driver has or has not to do, it's also separate question. I2C
+camera sensors solved it long time ago. I don't see why this must be
+special.
+
+> 
+> (Is there documentation on a standalone clock-property being a legacy
+> property that I've missed? 
+> I don't see anything of the sort in
+> writing-bindings.rst or in dt-schema and I want to make sure that I
+
+dtschema:
+  # Legacy clock properties
+  clock-frequency:
+    description: Legacy property ...
+
+> haven't missed the proper guidance here.)
 
 Best regards,
 Krzysztof
