@@ -2,117 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F20196E2C5C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 00:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 876EA6E2C7C
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 00:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbjDNWMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 18:12:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51410 "EHLO
+        id S229491AbjDNWiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 18:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbjDNWMA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 18:12:00 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD91C44AE;
-        Fri, 14 Apr 2023 15:11:52 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33EMBanx037917;
-        Fri, 14 Apr 2023 17:11:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681510296;
-        bh=a0uKTsMKaNvk5uDtPQLpPxerY/DYuoC0qGEIcf/1C7s=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=IJNabqVjScx0220sPMI7p2BoqZ48sUsP3VO/xJ82NdcXb1LijLkJG00auwjgpXv22
-         0yImhfOtcNFQAm77FHHd9eUOmCJnQLcQ1w6V5PX7swnDudtpBfgFIknAaKL5gKupba
-         iKqhYx0/B6iCm4Dj2+3+zIK/yeZL5pH3KFozmi94=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33EMBatK009894
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Apr 2023 17:11:36 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 14
- Apr 2023 17:11:36 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 14 Apr 2023 17:11:36 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33EMBZf4063553;
-        Fri, 14 Apr 2023 17:11:35 -0500
-Date:   Fri, 14 Apr 2023 17:11:35 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Judith Mendez <jm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Davis <afd@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Schuyler Patton <spatton@ti.com>
-Subject: Re: [RFC PATCH 4/5] arm64: dts: ti: Enable multiple MCAN for AM62x
- in MCU MCAN overlay
-Message-ID: <20230414221135.vifinqboqndxdxzw@embark>
-References: <20230413223051.24455-1-jm@ti.com>
- <20230413223051.24455-5-jm@ti.com>
- <9ab56180-328e-1416-56cb-bbf71af0c26d@linaro.org>
- <20230414182925.ya3fe2n6mtyuqotb@detached>
- <342dd9b0-35cd-1715-ee67-6a6628a3a9a6@linaro.org>
+        with ESMTP id S229450AbjDNWiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 18:38:18 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66CA49E1;
+        Fri, 14 Apr 2023 15:38:17 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-63b4dfead1bso528732b3a.3;
+        Fri, 14 Apr 2023 15:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681511897; x=1684103897;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rd3c9+mE7jlWzBM428gtRxGvixpDmdNW0Kf4A0MjSMA=;
+        b=UD6PxTIDCsE4J+rPmy8GMiFLpPCTQ1CQrkYgVjV06BcaKT43qjbC5n5gJx61EtyNeA
+         upOp6yo07/MGB5NM/tPJzODZ4XhxxNQhuAzaUMsj8GzDOXjuGMzz+QXi8Z7EkPKNkyY9
+         d03rndiEB/L/iCvqVZtlpdHyYkZD/i4JVlAKyPFKlcY/7ADVyft2KEfFHl1Kc48xiwsZ
+         PAZfyY0PSBBqgyCXHYYdHrhgSz6V9aL+m+cMIcg/62kfZV8bOhqns3r8LoEvysWoYTmC
+         IdWZXgnHo41uFI+k+OqGLr9NODetSYnIvUthbLcISBcGd802rit7avfxrjomgqLsyae7
+         Jfhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681511897; x=1684103897;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rd3c9+mE7jlWzBM428gtRxGvixpDmdNW0Kf4A0MjSMA=;
+        b=bNnjK3tOCWsTDv6Y4R5h1kMkLtATcHaonNUJbHzaX4Ek+8mCbMhC5mtpfy1jRr2Uk3
+         IRYscJh54VaL3BoYpCxYDXCwA9dXrytl3Uqh05SvC0qbw1GzbToungkHSalOjlCs7efM
+         jE4opdytSx98vCbrfNQlrjp2zvQbv3GLlTRowijKY3DKCD6OcKrJXpNGsGU6HYPWX3C6
+         1IHz/SvF2d8tY6cbbA4dvj9PE94AFhDeabu6A9cPrv0rJNrdmY5jKvXsZiQ8IT8kZK50
+         255ah5IUtVF8L7HVP+Cex9n8t/eLUNI0Mt9wMcXB1E9OaN5+H9ThKqe8ATLVInhL5zdI
+         Becg==
+X-Gm-Message-State: AAQBX9dxpk6Ovhaitm5MG/OmfpxV5AGmAY2PuXrzD8nVC6JlRuuZJMUm
+        kJTjbRy+5GrmG7TlSKxyH3kaGI1NVP5L0A==
+X-Google-Smtp-Source: AKy350apIIoDRR+eXBw9W9c5rt3yXzw2WlFDTi4QTZvEVK8Chf3FqVrZrXgZCZFz+pq6B4PSfLQ46w==
+X-Received: by 2002:aa7:8891:0:b0:632:e512:1025 with SMTP id z17-20020aa78891000000b00632e5121025mr10789705pfe.33.1681511897077;
+        Fri, 14 Apr 2023 15:38:17 -0700 (PDT)
+Received: from localhost.localdomain ([2402:e280:218d:82:ae97:7cb6:b12a:54f5])
+        by smtp.gmail.com with ESMTPSA id v26-20020aa7851a000000b00637b0c719c5sm3478084pfn.201.2023.04.14.15.38.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Apr 2023 15:38:16 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
+Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Saalim Quadri <danascape@gmail.com>
+Subject: [PATCH] ASoC: dt-bindings: wm8753: Convert to dtschema
+Date:   Fri, 14 Apr 2023 22:38:01 +0000
+Message-Id: <20230414223801.1106550-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <342dd9b0-35cd-1715-ee67-6a6628a3a9a6@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22:44-20230414, Krzysztof Kozlowski wrote:
-> On 14/04/2023 20:29, Nishanth Menon wrote:
-> >>> +
-> >>> +&cbass_mcu {
-> >>> +	mcu_mcan1: can@4e00000 {
-> >>> +		compatible = "bosch,m_can";
-> >>> +		reg = <0x00 0x4e00000 0x00 0x8000>,
-> >>> +			  <0x00 0x4e08000 0x00 0x200>;
-> >>> +		reg-names = "message_ram", "m_can";
-> >>> +		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
-> >>> +		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
-> >>> +		clock-names = "hclk", "cclk";
-> >>> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> >>> +		pinctrl-names = "default";
-> >>> +		pinctrl-0 = <&mcu_mcan1_pins_default>;
-> >>> +		phys = <&transceiver2>;
-> >>> +		status = "okay";
-> >>
-> >> okay is by default. Why do you need it?
-> > 
-> > mcan is not functional without pinmux, so it has been disabled by
-> > default in SoC. this overlay is supposed to enable it. But this is done
-> > entirely wrongly.
-> 
-> Ah, so this is override of existing node? Why not overriding by
-> label/phandle?
+Convert the WM8753 audio codec bindings to DT schema.
 
-Yep, that is how it should be done (as every other node is done for
-mcan):
-a) SoC.dtsi -> introduce mcu_mcan1, disabled since no transciever or
-pinmux, set status = "disabled";
-b) overlay -> use the label and provide the missing properties, set
-status = "okay";
+Signed-off-by: Saalim Quadri <danascape@gmail.com>
+---
+ .../devicetree/bindings/sound/wlf,wm8753.yaml | 62 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8753.txt      | 40 ------------
+ 2 files changed, 62 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8753.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8753.txt
 
-The series definitely needs a respin.
-
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8753.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8753.yaml
+new file mode 100644
+index 000000000000..9eebe7d7f0b7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8753.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8753.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: WM8753 audio CODEC
++
++description: |
++  Pins on the device (for linking into audio routes):
++      * LOUT1
++      * LOUT2
++      * ROUT1
++      * ROUT2
++      * MONO1
++      * MONO2
++      * OUT3
++      * OUT4
++      * LINE1
++      * LINE2
++      * RXP
++      * RXN
++      * ACIN
++      * ACOP
++      * MIC1N
++      * MIC1
++      * MIC2N
++      * MIC2
++      * Mic Bias
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: wlf,wm8753
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1a {
++            compatible = "wlf,wm8753";
++            reg = <0x1a>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8753.txt b/Documentation/devicetree/bindings/sound/wm8753.txt
+deleted file mode 100644
+index eca9e5a825a9..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8753.txt
++++ /dev/null
+@@ -1,40 +0,0 @@
+-WM8753 audio CODEC
+-
+-This device supports both I2C and SPI (configured with pin strapping
+-on the board).
+-
+-Required properties:
+-
+-  - compatible : "wlf,wm8753"
+-
+-  - reg : the I2C address of the device for I2C, the chip select
+-          number for SPI.
+-
+-Pins on the device (for linking into audio routes):
+-
+-  * LOUT1
+-  * LOUT2
+-  * ROUT1
+-  * ROUT2
+-  * MONO1
+-  * MONO2
+-  * OUT3
+-  * OUT4
+-  * LINE1
+-  * LINE2
+-  * RXP
+-  * RXN
+-  * ACIN
+-  * ACOP
+-  * MIC1N
+-  * MIC1
+-  * MIC2N
+-  * MIC2
+-  * Mic Bias
+-
+-Example:
+-
+-wm8753: codec@1a {
+-	compatible = "wlf,wm8753";
+-	reg = <0x1a>;
+-};
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.40.0
+
