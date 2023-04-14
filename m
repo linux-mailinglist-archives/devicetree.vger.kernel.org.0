@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 089066E1D6D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C99FC6E1D72
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 09:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjDNHq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 03:46:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
+        id S229539AbjDNHrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 03:47:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjDNHqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:46:17 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE681A1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:16 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id dm2so43613079ejc.8
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:16 -0700 (PDT)
+        with ESMTP id S229874AbjDNHq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 03:46:59 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CEEB1724
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:57 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id xd13so9581983ejb.4
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 00:46:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681458375; x=1684050375;
+        d=linaro.org; s=google; t=1681458415; x=1684050415;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uJMpHJ9Id0D2MrYTYA9hknAdsv0k6501D9t8I/C7d9M=;
-        b=txlFOjH8fFM6V0K2iqGzmAMMCIm43mrgAtn5O23gUflpUzNV2Rpgqzyj34lkHelagh
-         3Z9I7b94i2jt6d7RpXZOQITxQjp+vvYbZP40/eRiJ5v33/skX6S2k2uc4E3SstTfxI18
-         sZA7P+JpURGiE2tCWB04WomqYjwXeRzI8nmK3m2Of569r+/GB45NMjRc1lU3+fW5aaQY
-         oLQgQ/MMNAsRgt5L7XpdVpwiXp6+n/gBS6y4S0KYEH+x0gHcih330c1HDX4hLyWawHKs
-         bgurP0rC3kXMr3wOevYaMkVAXhnctMSAzTqaUSSkrYMFod8sxeHuzQKI2cjbhhIXGC2e
-         uVLA==
+        bh=Dt+A98jlqtbpeel2naOzylBvCk3G6/Q++nwH3epknTU=;
+        b=gfgztzkwvm4gf2aIWjlZL3RjZrGc0EZbhfb1YHOpNB6u39HnCow+CWMOaNCQj4TGd0
+         BTuA5kO/54Nu9izUwi6RyrymuJS0Ulvplwl/7s+cbRW3E+SCyuxEkIoIOw+Xabo7hDPB
+         o31RWBIw3tMXtjlbuW51hsEkS6eW+aSOOcF0xuUA1HpAmaxXvR6UGkgl1+sR0q2uIUnZ
+         lkslhm+GNb6ZoIrlae0uYFI2+SL2COzOKo4aw7LzzTdPvXPSTppDOz6QbhmkZ2MtBRpP
+         Y4XONL446Ax/S2IH7glLnIimLeeiPa+RKmfqp1nsSD6GjhkfTNucg3tQEtg7Koj4HygL
+         3BpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681458375; x=1684050375;
+        d=1e100.net; s=20221208; t=1681458415; x=1684050415;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uJMpHJ9Id0D2MrYTYA9hknAdsv0k6501D9t8I/C7d9M=;
-        b=ENUuFBJD5C4sw+He51a9I+XbqDJ/x9QBprKYZ2OqCJL3zo/FpandQiVJ42NqLPBRZ+
-         RxzmNg5pbmiNcsVOZV8NlKVZWGQwR/RR8rWX8HJzPLUZQqNFxId2cM1EHz/XISMOGMwv
-         SaUE9GFN9E4MNRVcGdRMhv9qQRA8aVK/B6DE7X2taPjZiJ6m3Qr8R/hyTaxBfPHhMZqj
-         +61I3eM4SxiWjIz8mfBPtbDknRjd2pNsDzJ1z5Ry4MGt7alMhNQ1ysz2RONXw+8KtV/0
-         pzfgbrqpFQQ+FMn4tF/hIKDPDo62WGtQKzytkbxOOzmw3uY+OY31CZj8GEDjd26/8cUY
-         D0Pw==
-X-Gm-Message-State: AAQBX9dydts2AAk/cq40LiRWIrncqSgrsXxAfz+oQOu+frSFqBJpHUz/
-        0Yl3UpisS3mY5jjZQGQbhU4vwQ==
-X-Google-Smtp-Source: AKy350boGKzFJ21zxd7dL/1s/qxBNhWGZUduYhPtCkpcSN3V6n/4aQoosh6V9eTJuVzLb50Doxr4Vg==
-X-Received: by 2002:a17:907:20aa:b0:94a:93cf:6b11 with SMTP id pw10-20020a17090720aa00b0094a93cf6b11mr3725931ejb.27.1681458375074;
-        Fri, 14 Apr 2023 00:46:15 -0700 (PDT)
+        bh=Dt+A98jlqtbpeel2naOzylBvCk3G6/Q++nwH3epknTU=;
+        b=X+ynV2laRMGBh4C1XfRMgNzdwQdKZyOSq9eXe89pblegpQ8qnbOOo/MymriaQgYIl3
+         5PhgIkGVVYfeS05zDuNbK+qkDA5SwNgvqihhA7v5KZzdp7aaEc8F561irZk/jH3N2qKm
+         qTLb78qriDEKB8E/RszynipWYOvuA31sLh5sJErSdCUl+1HY0PyqN1hEZCVeQdJBS1Qs
+         1qKAS85OY8L3IQTIVZ0mxFNAogEBL9I+kNtiThYKYY9SXBJ9xMjnnW4czdwGHe1PY+QK
+         46Yybmqk29djIy9wKV64F4pRdViCHCQ0Lk30qMC0U5KaHyMVM2BHA78LsZt363ylwmOo
+         ZXjQ==
+X-Gm-Message-State: AAQBX9dSnaaQv6VYn/NCI1gX9IHaopOs5zD3zKsKZeYHNInw53OpGbwg
+        3urH32jw+5ftDoYPACMiFzwPfA==
+X-Google-Smtp-Source: AKy350bLBmexUEFzr5LRWNNM6G7YHG2r1iyM3NyfBneNEodYOJT8tqYAQv0G0zNqUi4S+WfZ7YXsOw==
+X-Received: by 2002:a17:906:e2c7:b0:94e:e049:6d2a with SMTP id gr7-20020a170906e2c700b0094ee0496d2amr1504414ejb.66.1681458415547;
+        Fri, 14 Apr 2023 00:46:55 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:8a60:6b0f:105a:eefb? ([2a02:810d:15c0:828:8a60:6b0f:105a:eefb])
-        by smtp.gmail.com with ESMTPSA id tg4-20020a1709078dc400b0094ea3a32694sm1969651ejc.190.2023.04.14.00.46.13
+        by smtp.gmail.com with ESMTPSA id e2-20020a170906314200b0094bb4c75695sm2023228eje.194.2023.04.14.00.46.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 00:46:14 -0700 (PDT)
-Message-ID: <5a59485e-5421-0cd9-ce51-79cf0fd6da79@linaro.org>
-Date:   Fri, 14 Apr 2023 09:46:13 +0200
+        Fri, 14 Apr 2023 00:46:55 -0700 (PDT)
+Message-ID: <4b9a0f13-d03a-8496-a400-8621b8d7c98a@linaro.org>
+Date:   Fri, 14 Apr 2023 09:46:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v7 04/12] dt-bindings: reset: nuvoton: Document ma35d1
- reset control
+Subject: Re: [PATCH v7 12/12] MAINTAINERS: Add entry for NUVOTON MA35
 Content-Language: en-US
 To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
@@ -66,62 +65,58 @@ Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
         Jacky Huang <ychuang3@nuvoton.com>
 References: <20230412053824.106-1-ychuang570808@gmail.com>
- <20230412053824.106-5-ychuang570808@gmail.com>
- <874a1e5c-f82e-68d7-3617-042deb928071@linaro.org>
- <41807e8d-b081-6c91-3fc8-f273770ea493@gmail.com>
+ <20230412053824.106-13-ychuang570808@gmail.com>
+ <241f6cb1-193f-d372-0eda-157946b15780@linaro.org>
+ <91861072-dc2d-46d3-dc0d-26d17a3693c7@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <41807e8d-b081-6c91-3fc8-f273770ea493@gmail.com>
+In-Reply-To: <91861072-dc2d-46d3-dc0d-26d17a3693c7@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 02:55, Jacky Huang wrote:
+On 14/04/2023 03:22, Jacky Huang wrote:
 > Dear Krzysztof,
 > 
 > 
-> On 2023/4/14 上午 12:58, Krzysztof Kozlowski wrote:
+> On 2023/4/14 上午 01:01, Krzysztof Kozlowski wrote:
 >> On 12/04/2023 07:38, Jacky Huang wrote:
 >>> From: Jacky Huang <ychuang3@nuvoton.com>
 >>>
->>> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
->>> between the reset controller and reset references in the dts.
->>> Add documentation to describe nuvoton ma35d1 reset driver.
->>>
->>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>>> Add entry for Nuvoton ma35d1 maintainer and files.
+>>> In addition, update board binding paths of NUVOTON NPCM.
 >>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->>
->> This is an automated instruction, just in case, because many review tags
->> are being ignored. If you do not know the process, here is a short
->> explanation:
->>
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions, under or above your Signed-off-by tag. Tools like b4 can help
->> here. However, there's no need to repost patches *only* to add the tags.
->> The upstream maintainer will do that for acks received on the version
->> they apply.
->>
->> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>>   ARM/NUVOTON NPCM ARCHITECTURE
+>>>   M:	Avi Fishman <avifishman70@gmail.com>
+>>>   M:	Tomer Maimon <tmaimon77@gmail.com>
+>>> @@ -2512,7 +2522,8 @@ L:	openbmc@lists.ozlabs.org (moderated for non-subscribers)
+>>>   S:	Supported
+>>>   F:	Documentation/devicetree/bindings/*/*/*npcm*
+>>>   F:	Documentation/devicetree/bindings/*/*npcm*
+>>> -F:	Documentation/devicetree/bindings/arm/npcm/*
+>> It is not a bisectable change.
 >>
 >> Best regards,
 >> Krzysztof
 >>
 > 
-> Thank you for your explanation. I was not aware of the rules for adding 
-> tags, and it was my mistake.
-> I thought that it was necessary for the reviewer to proactively add the 
-> "reviewed-by" tag to the patch
+> F:    Documentation/devicetree/bindings/*/*/*npcm*
+> F:    Documentation/devicetree/bindings/*/*npcm*
+> F:    Documentation/devicetree/bindings/arm/nuvoton/*npcm*    <-- remove 
+> this
+> F:    Documentation/devicetree/bindings/soc/nuvoton/*npcm* <-- remove this
+> 
+> Yes, the two statements at the bottom seem redundant. I will remove them.
 
-I proactively added the tag last time. You expect me to review it every
-time and every time add my tag? You know, we all have better things to do...
+I did not comment about "redundant". I used the word "bisectable". git
+help bisect.
 
 Best regards,
 Krzysztof
