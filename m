@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B0F6E2220
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 916906E2221
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:28:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbjDNL2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230358AbjDNL2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 14 Apr 2023 07:28:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59752 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbjDNL2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:28:51 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C347EF3
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:28:47 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id d8-20020a05600c3ac800b003ee6e324b19so9640763wms.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:28:47 -0700 (PDT)
+        with ESMTP id S230257AbjDNL2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:28:52 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690C49033
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:28:48 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id he11-20020a05600c540b00b003ef6d684102so8059870wmb.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:28:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681471726; x=1684063726;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681471727; x=1684063727;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VA+8E5LZobYHQtztDzfDEriptbAWZDDL2MajJpESt6I=;
-        b=LuWQntXf3XPHVi0bQhTZk/wFsgJcYvgL4fggnHvW2RYCeCrhQzKEHR75W9qAV8qtQy
-         BtQ+BHg4nNQ58gULlrKVQJRWx2YI2ur3VJbkDIfKn1pi3NlN8eXr0RkfN+VXL4RAA2+T
-         mjrePBcr25kaNG4cMrN8Vc+RzL+LtVNIEDHc6h1elKR5V7tvRnyWB6uxmjwVpyPxiUIy
-         Hhav3NwTonPdHvpUr78JswMG9M4GmXeKKleIX3NIQ2Uj3IolOgntU0TzKdOxruSUGzOi
-         m7futdI7b1myrCtM7Dy9oaMoM5B9wzt3L3UeldgI0L/G3HFap15GHVBYRwoez/5rOTdu
-         l9nQ==
+        bh=ojVGLmC7jRSK7REBBlt41xebSraaA5BlvM/BOdJSKQY=;
+        b=T7Qzes6XGVyFUtWwGNxfJYoCYc/l+sGqN3qEp4wx/dsos+Rmy5xH4qhIDu3W0zaaIF
+         0A46La79F6iH90XBI+EnPh3rbqAhn8npb7RG5wMTLf0oi1eHK16uMmmnXPEDh/WLWgsl
+         uJgEc0P1PTln7R+J1zGUH+FqlF+jUFENO3iAsCDVuoaeFDhx8OyMIdzpz8gFNxvZ+Pbz
+         37IawYdMZtReaZJ0P4lnIsmb200WFi4J3QQNrtmyAWjspGmXbqAGQX42iVhWHFBH6z19
+         Ysb1kpSZYsUTiBgzlSGncMAU93Gv0YwHPLrFLPEiJYTyyuf31IN+WqUgqeWXh64GvdAv
+         qA9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681471726; x=1684063726;
+        d=1e100.net; s=20221208; t=1681471727; x=1684063727;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VA+8E5LZobYHQtztDzfDEriptbAWZDDL2MajJpESt6I=;
-        b=PbN1D8vjStG8L6OKd4NXQBU7vTKZUu2MyEBQVXDgTjgBbQQ6I+8r6OXuDSCZP216+9
-         I6IyoMXRcFDlyP0rX/vlPbP6oP3JJnE7bfGzulnst5M5EMgwbUl84IHeYV+w/k/oWhcl
-         4DSyhsg3Y/1UvcmqCFQJ43anlC7M+VuFEzg3Jv6ovtPflKtaXLAOtnO73nV6so8vDUK9
-         ZWBkhPOHmNpNojmKjGNE99FoaHi5Vsy8WLix7SM2Q4putTfrhJfE401C3zhP1e0pAGRz
-         TrIuledL14F7e3VnWxZHzut5iqu/8dEQvRmhurik/qxTIAtQRb89D03JxiHCuqJ41j4m
-         r1Kg==
-X-Gm-Message-State: AAQBX9fA+2Pr9PHlQ0wUo1UkXWbf/fJJlDGvFNb49E7UaBcpQe+vvZMS
-        IpY7sBDZrf2YWBfJXSjvA7byZw==
-X-Google-Smtp-Source: AKy350YvfYXwbj/O+Mr9nS89XvjR2SlgPaNHallWSVWJGbDSKxD2e3ArkqpZnF3WRMRT+lTyQP7Mag==
-X-Received: by 2002:a7b:c4da:0:b0:3ea:f73e:9d8a with SMTP id g26-20020a7bc4da000000b003eaf73e9d8amr4369443wmk.30.1681471726100;
+        bh=ojVGLmC7jRSK7REBBlt41xebSraaA5BlvM/BOdJSKQY=;
+        b=VPYcKHKSlJGQIvze0mKIR+B2JX6JQOjFlCrPSXShZwUc993gbcls5UoDO2/TIOZBBi
+         sxBPH9aWczhNqtTxq5xLHszae0BrbDv3l4jjBeQ+EkjL8zB8dJKast1imYVKHsZcG6HO
+         Cv2vQP6QW3Zn1UBKv+XBG0pFyIiSa6Q4AM/y3+IE0Aspe7G5N5JAvHqDmZ6uTljrDh7O
+         l7ajlAhdkiK/qNVbzKK5jCL6zQ81tBr7IsUhWM0FJU0txzGZd9REEvFWiYZfFVETwyt9
+         8NuoHkOUmzkuzbFuDn95pluEkOXdLUwDuIP/Vu76pbf/VUKq+tKxhQ5rvPMaipcT8XpX
+         KQqg==
+X-Gm-Message-State: AAQBX9eaFokX1aDM/6P1OTiEvP7PAt5XnR2itE1wZ0vl5pCzMMhqmkhS
+        vCFQJJasg6MfJf4z2rAZHuQJkQ==
+X-Google-Smtp-Source: AKy350aoNOA1mimdB3soprzgeft0BdW7ZCsxmCguQKWlIq4zlpGbdL+c26/QpB/zwrl6bvd/TkzJWQ==
+X-Received: by 2002:a7b:c5ca:0:b0:3dc:4fd7:31f7 with SMTP id n10-20020a7bc5ca000000b003dc4fd731f7mr3928263wmk.41.1681471726846;
         Fri, 14 Apr 2023 04:28:46 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e34:eca6:27f0:42a5:8f07:826a:465d])
-        by smtp.gmail.com with ESMTPSA id t1-20020a1c7701000000b003ede06f3178sm4063745wmi.31.2023.04.14.04.28.45
+        by smtp.gmail.com with ESMTPSA id t1-20020a1c7701000000b003ede06f3178sm4063745wmi.31.2023.04.14.04.28.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 04:28:45 -0700 (PDT)
+        Fri, 14 Apr 2023 04:28:46 -0700 (PDT)
 From:   Esteban Blanc <eblanc@baylibre.com>
 To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
@@ -56,9 +56,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
         eblanc@baylibre.com, jneanne@baylibre.com, jpanis@baylibre.com,
         aseketeli@baylibre.com
-Subject: [PATCH v2 1/5] arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
-Date:   Fri, 14 Apr 2023 13:28:39 +0200
-Message-Id: <20230414112843.1358067-2-eblanc@baylibre.com>
+Subject: [PATCH v2 2/5] arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
+Date:   Fri, 14 Apr 2023 13:28:40 +0200
+Message-Id: <20230414112843.1358067-3-eblanc@baylibre.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230414112843.1358067-1-eblanc@baylibre.com>
 References: <20230414112843.1358067-1-eblanc@baylibre.com>
@@ -66,8 +66,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,43 +82,33 @@ operational modes of the PMIC.
 
 Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 175 ++++++++++++++++++++
- 1 file changed, 175 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 213 +++++++++++++++++++
+ 1 file changed, 213 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index fa44ed4c17d5..8458b7da068f 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -118,6 +118,25 @@ J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
- 	};
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+index 6930efff8a5a..048607c197b1 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+@@ -79,3 +79,216 @@ &main_mcan16 {
+ 	pinctrl-names = "default";
+ 	phys = <&transceiver0>;
  };
- 
-+&wkup_pmx2 {
-+	/* wkup_pmx2 starts at 0x68 */
-+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x98, PIN_INPUT_PULLUP, 0) /* (F20) WKUP_I2C0_SCL */
-+			J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
-+		>;
-+	};
-+};
 +
-+&wkup_pmx3 {
-+	/* wkup_pmx3 starts at 0x174 */
++&wkup_pmx0 {
 +	pmic_irq_pins_default: pmic-irq-pins-default {
 +		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x1c, PIN_INPUT, 7) /* (E18) WKUP_GPIO0_84 */
++			/* (C21) MCU_OSPI1_CSn1.WKUP_GPIO0_39 */
++			J721S2_WKUP_IOPAD(0x060, PIN_INPUT, 7)
++		>;
++	};
++
++	wkup_i2c0_pins_default: wkup_i2c0_pins_default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x100, PIN_INPUT, 0) /* (H24) WKUP_I2C0_SCL */
++			J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (H27) WKUP_I2C0_SDA */
 +		>;
 +	};
 +};
-+
- &main_pmx0 {
- 	main_i2c0_pins_default: main-i2c0-pins-default {
- 		pinctrl-single,pins = <
-@@ -231,3 +250,159 @@ flash@0 {
- 		cdns,read-delay = <4>;
- 	};
- };
 +
 +&wkup_i2c0 {
 +	status = "okay";
@@ -127,7 +116,7 @@ index fa44ed4c17d5..8458b7da068f 100644
 +	pinctrl-0 = <&wkup_i2c0_pins_default>;
 +	clock-frequency = <400000>;
 +
-+	tps659414: tps659414@48 {
++	tps659411: tps659411@48 {
 +		compatible = "ti,tps6594-q1";
 +		reg = <0x48>;
 +		ti,primary-pmic;
@@ -136,7 +125,75 @@ index fa44ed4c17d5..8458b7da068f 100644
 +		pinctrl-names = "default";
 +		pinctrl-0 = <&pmic_irq_pins_default>;
 +		interrupt-parent = <&wkup_gpio0>;
-+		interrupts = <84 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		buck1234-supply = <&vsys_3v3>;
++		buck5-supply = <&vsys_3v3>;
++		ldo1-supply = <&vsys_3v3>;
++		ldo2-supply = <&vsys_3v3>;
++		ldo3-supply = <&vsys_3v3>;
++		ldo4-supply = <&vsys_3v3>;
++
++		regulators {
++			bucka1234: buck1234 {
++				regulator-name = "vdd_cpu_avs";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <900000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			bucka5: buck5 {
++				regulator-name = "vdd_mcu_0v85";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa1: ldo1 {
++				regulator-name = "vdd_mcuwk_0v8";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa2: ldo2 {
++				regulator-name = "vdd_mcu_gpioret_3v3";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa3: ldo3 {
++				regulator-name = "vdd_mcuio_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa4: ldo4 {
++				regulator-name = "vda_mcu_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
++
++	tps659414: tps659414@4c {
++		compatible = "ti,tps6594-q1";
++		reg = <0x4c>;
++		system-power-controller;
++		interrupt-parent = <&wkup_gpio0>;
++		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
 +
 +		gpio-controller;
 +		#gpio-cells = <2>;
@@ -152,31 +209,31 @@ index fa44ed4c17d5..8458b7da068f 100644
 +		ldo4-supply = <&vsys_3v3>;
 +
 +		regulators {
-+			bucka1: buck1 {
-+				regulator-name = "vda_mcu_1v8";
++			buckb1: buck1 {
++				regulator-name = "vdd_io_1v8_reg";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			buckb2: buck2 {
++				regulator-name = "vdd_fpd_1v1";
++				regulator-min-microvolt = <1100000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buckb3: buck3 {
++				regulator-name = "vdd_phy_1v8";
 +				regulator-min-microvolt = <1800000>;
 +				regulator-max-microvolt = <1800000>;
 +				regulator-boot-on;
 +				regulator-always-on;
 +			};
 +
-+			bucka2: buck2 {
-+				regulator-name = "vdd_mcuio_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			bucka3: buck3 {
-+				regulator-name = "vdd_mcu_0v85";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			bucka4: buck4 {
++			buckb4: buck4 {
 +				regulator-name = "vdd_ddr_1v1";
 +				regulator-min-microvolt = <1100000>;
 +				regulator-max-microvolt = <1100000>;
@@ -184,31 +241,15 @@ index fa44ed4c17d5..8458b7da068f 100644
 +				regulator-always-on;
 +			};
 +
-+			bucka5: buck5 {
-+				regulator-name = "vdd_phyio_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
++			buckb5: buck5 {
++				regulator-name = "vdd_ram_0v85";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
 +				regulator-boot-on;
 +				regulator-always-on;
 +			};
 +
-+			ldoa1: ldo1 {
-+				regulator-name = "vdd1_lpddr4_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldoa2: ldo2 {
-+				regulator-name = "vda_dll_0v8";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldoa3: ldo3 {
++			ldob1: ldo1 {
 +				regulator-name = "vdd_wk_0v8";
 +				regulator-min-microvolt = <800000>;
 +				regulator-max-microvolt = <800000>;
@@ -216,7 +257,23 @@ index fa44ed4c17d5..8458b7da068f 100644
 +				regulator-always-on;
 +			};
 +
-+			ldoa4: ldo4 {
++			ldob2: ldo2 {
++				regulator-name = "vdd_gpioret_3v3";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldob3: ldo3 {
++				regulator-name = "vda_dll_0v8";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldob4: ldo4 {
 +				regulator-name = "vda_pll_1v8";
 +				regulator-min-microvolt = <1800000>;
 +				regulator-max-microvolt = <1800000>;
@@ -226,50 +283,23 @@ index fa44ed4c17d5..8458b7da068f 100644
 +		};
 +	};
 +
-+	lp876441: lp876441@4c {
++	lp876411: lp876411@58 {
 +		compatible = "ti,lp8764-q1";
-+		reg = <0x4c>;
++		reg = <0x58>;
 +		system-power-controller;
 +		interrupt-parent = <&wkup_gpio0>;
-+		interrupts = <84 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
 +
 +		gpio-controller;
 +		#gpio-cells = <2>;
 +
-+		buck1-supply = <&vsys_3v3>;
-+		buck2-supply = <&vsys_3v3>;
-+		buck3-supply = <&vsys_3v3>;
-+		buck4-supply = <&vsys_3v3>;
++		buck1234-supply = <&vsys_3v3>;
 +
-+		regulators: regulators {
-+			buckb1: buck1 {
-+				regulator-name = "vdd_cpu_avs";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			buckb2: buck2 {
-+				regulator-name = "vdd_ram_0v85";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buckb3: buck3 {
-+				regulator-name = "vdd_core_0v85";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buckb4: buck4 {
-+				regulator-name = "vdd_io_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
++		regulators {
++			buckc1234: buck1234 {
++				regulator-name = "vdd_core_0v8";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <800000>;
 +				regulator-boot-on;
 +				regulator-always-on;
 +			};
