@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A9956E2240
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D662F6E2243
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 13:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbjDNLcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 07:32:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36496 "EHLO
+        id S229924AbjDNLeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 07:34:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbjDNLcS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:32:18 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5AFAF29
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:31:57 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id h8so2620042ljf.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:31:57 -0700 (PDT)
+        with ESMTP id S229775AbjDNLeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 07:34:10 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA778A5A
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:34:07 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id xi5so44765144ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 04:34:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681471911; x=1684063911;
+        d=linaro.org; s=google; t=1681472046; x=1684064046;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DmebibJcFHPM0HYnu4gqi5WPZvQ6x+mjUWqYPAJoB3k=;
-        b=bHg01QwJKN2U5FCexVrCoue+ufy3RHkhSNlPAYPtSOyf7VpcxstPmQWAHSMK8anctE
-         uZRxk0b9fzAC843uXb7XKYSjjVJBuh8a49MbwRCQy83UjSEgics6c9ei7Ieq5fbpVFkA
-         /zFfujuX+5rEtmDOS6cfk34yxTv6WjtL0szTXziSmdb0oH2cBoKsLdAP3NcVbA4ccvmR
-         uFmixwpdddITtZYmXb9pmkXtqEe1Z5Zyvvc6+mFSOtq7EY6Kfk4cHTCtnfVJGb73zjlQ
-         coi/K8cZTW0YCQmqHsTfwmX3csmYWxg+O+yeVvOyEzp2ETz1X9FHoR2ARmdgA2i6Eys6
-         DfoQ==
+        bh=kDywA5nzzG8PDOGzLd47TShAUBCkfpN1bPDv+Nlseqw=;
+        b=wE9RKmde+wKXtU9MTYLEOct8qq+bULIWhBM1+kFiAIbN1E9xG98wmd8oovOFhJG7Gx
+         IpKjSq81+inoRgM8PzR3CKWJmq2djz5y/R2B7uvdk3MZphQtQkarM1oma1fbWQ7Nnnm/
+         VuknmubBBwri1AuAabd58qP5lDSEGyQjPo00KXLmBAzUMal3bEDiiMo2nD2YCVSNXEcz
+         jVkOpD7DR4W66VRmnScecowcKspnaPbieGDHE2+R44/kodoI9qrwEq62Y/5aj9vPXxSv
+         vKtR5oY7ob34ESDJv3DnVU9ehqPma2a7o0//W30kMibsCY/6aEPjfrFeEpHPDY/o/Yd6
+         KOeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681471911; x=1684063911;
+        d=1e100.net; s=20221208; t=1681472046; x=1684064046;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DmebibJcFHPM0HYnu4gqi5WPZvQ6x+mjUWqYPAJoB3k=;
-        b=DTbE6RwMWCxs8wckPkzNN1fAOhuPKq8+mvcQk3jNUGgz/bWKje3mZ9BGBWCjlCeVf7
-         +QCvr0TNIZfTRYQHVp2Pqo1O4vdd1om8IZ8df76HtxQJ23caeHY7awWFMVZkRvpyGFw+
-         yFNu4TRLJltmfNoeHazT5Xne45ahdxjwYBaUIG3GEnL3csYeTV5MOzggpL5VX3O79CkF
-         j2EX1A0g4J8RMPNfvxsF1XZFdV5gVoePLkhi3wWMUu5RGQmzFmYkcseO6wqchHE/hhFo
-         OhFUVHHjej5yFfy2vBN5n1MLBC96aNgLhoAGG8kW6XLog5GyO/6/iMNWwly1FJnbc6BG
-         qxdQ==
-X-Gm-Message-State: AAQBX9fJj3G3alFaLSINBFz//8Rrb5oZadsp+A97dVX3HDu81usmzyKM
-        V28vKbtkYlhlEJJYxyA3ZJ9V7A==
-X-Google-Smtp-Source: AKy350aoCUPfzbHh/nQudk/fBZ3ANMN821/KdCe3z4FZx8t/3E1+urYa91Dnxxqe833fGGWCjsUtzw==
-X-Received: by 2002:a2e:9a82:0:b0:2a7:723b:fd5c with SMTP id p2-20020a2e9a82000000b002a7723bfd5cmr1493821lji.7.1681471911504;
-        Fri, 14 Apr 2023 04:31:51 -0700 (PDT)
-Received: from [192.168.1.101] (abyl123.neoplus.adsl.tpnet.pl. [83.9.31.123])
-        by smtp.gmail.com with ESMTPSA id j7-20020a2e3c07000000b002a76dd438ddsm770088lja.79.2023.04.14.04.31.49
+        bh=kDywA5nzzG8PDOGzLd47TShAUBCkfpN1bPDv+Nlseqw=;
+        b=C0nRaZKFzBu/qY/g9nR/vextzwejbBCRD1g+ih9wHD5z5K9uK4BDVtohiwuuFt8HGA
+         q4IYNEeqQzZIuaP5PTZPihM6qlk55f59S8tRkaGOcxnT+czWOahMe4FtenVDsf5cJi6D
+         bKBhH6GEuvVbQ2hkV9fS4N5v+7X0W2SlRWUaOThn19eo6lLdh7SelMafTKPAGKRz0gXK
+         cXxc8sMNbRswzLRcibQuiT56xRtLqHMKLX8zpPlt+entLoFHC3aoTj5gKExGxFrI4WYT
+         DgsLZX6Lad0J5drK3UjRTkn3kX3T6X+ZQ1xgJ2whCI0TfAwEDaek/xj+zlh1aOcmeSsE
+         GyDg==
+X-Gm-Message-State: AAQBX9cw4IAd18HNTvF4Y50rqQ5jWryFVqD8PJzr7KkY/WkCnl8v0jcP
+        YttOkpwk3q3fr1osMxgj6+M4Nw==
+X-Google-Smtp-Source: AKy350bVUcMD2xiF/UPxET7fTfTpqmeEmoLJaQoPunlHOEJC91LnySQ96kFCTSNklJgkGDOUqrQEMA==
+X-Received: by 2002:a17:906:3a05:b0:92f:f655:cc78 with SMTP id z5-20020a1709063a0500b0092ff655cc78mr5411666eje.53.1681472046353;
+        Fri, 14 Apr 2023 04:34:06 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:40b9:8c57:b112:651d? ([2a02:810d:15c0:828:40b9:8c57:b112:651d])
+        by smtp.gmail.com with ESMTPSA id x6-20020a170906b08600b0094e6db4d4a1sm2313659ejy.186.2023.04.14.04.34.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 04:31:51 -0700 (PDT)
-Message-ID: <01b21803-9367-f253-3b66-b0a6c1d93cf2@linaro.org>
-Date:   Fri, 14 Apr 2023 13:31:49 +0200
+        Fri, 14 Apr 2023 04:34:05 -0700 (PDT)
+Message-ID: <f7b35807-3d3c-2b8e-d0f1-f94d6b390a85@linaro.org>
+Date:   Fri, 14 Apr 2023 13:34:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH V3 8/9] arm64: dts: Add ipq5018 SoC and rdp432-c2 board
- support
+Subject: Re: [PATCH v2 3/5] arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family
+ PMICs
 Content-Language: en-US
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, ulf.hansson@linaro.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-References: <1681468167-11689-1-git-send-email-quic_srichara@quicinc.com>
- <1681468167-11689-9-git-send-email-quic_srichara@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1681468167-11689-9-git-send-email-quic_srichara@quicinc.com>
+To:     Esteban Blanc <eblanc@baylibre.com>, nm@ti.com, vigneshr@ti.com,
+        kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
+        jneanne@baylibre.com, jpanis@baylibre.com, aseketeli@baylibre.com
+References: <20230414112843.1358067-1-eblanc@baylibre.com>
+ <20230414112843.1358067-4-eblanc@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230414112843.1358067-4-eblanc@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,27 +79,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 14.04.2023 12:29, Sricharan Ramabadhran wrote:
-> Add initial device tree support for the Qualcomm IPQ5018 SoC and
-> rdp432-c2 board.
+On 14/04/2023 13:28, Esteban Blanc wrote:
+> From: Jerome Neanne <jneanne@baylibre.com>
 > 
-> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> This patch adds support for TPS6594 PMIC family on wakup I2C0 bus.
+> Theses devices provides regulators (bucks and LDOs), but also
+> GPIOs, a RTC, a watchdog, an ESM (Error Signal Monitor)
+> which monitors the SoC error output signal, and a PFSM
+> (Pre-configurable Finite State Machine) which manages the
+> operational modes of the PMIC.
+> 
+> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
+> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
 > ---
->  [v3] Fixed all review comments and DTS schema warnings
-This is too vague.
-
-[...]
-
+>  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 171 ++++++++++++++++++++
+>  1 file changed, 171 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> index e289d5b44356..a9511e82478a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -150,6 +150,12 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+>  		>;
+>  	};
+>  
+> +	pmic_irq_pins_default: pmic-irq-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0xd4, PIN_INPUT, 7) /* (G26) WKUP_GPIO0_9 */
+> +		>;
+> +	};
 > +
-> +			v2m1: v2m@1000 {
-> +				compatible = "arm,gic-v2m-frame";
-> +				reg = <0x00001000 0xffd>;
-Doesn't this exceed the ranges=<> of &intc?
+>  	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* MCU_OSPI0_CLK */
+> @@ -308,3 +314,168 @@ &c71_0 {
+>  	memory-region = <&c71_0_dma_memory_region>,
+>  			<&c71_0_memory_region>;
+>  };
+> +
+> +&wkup_i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	tps659413: tps659413@48 {
 
-Konrad
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Same everywhere else.
+
+Best regards,
+Krzysztof
+
