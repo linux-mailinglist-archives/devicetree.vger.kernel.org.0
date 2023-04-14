@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADBE6E2B4A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D6506E2B54
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbjDNUrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 16:47:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48066 "EHLO
+        id S229941AbjDNUzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 16:55:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjDNUrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:47:46 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261C640E3
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:47:44 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-506767f97f8so1595131a12.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:47:44 -0700 (PDT)
+        with ESMTP id S229689AbjDNUzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:55:09 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD6149C7
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:55:06 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id u13so20365605ybu.5
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:55:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681505262; x=1684097262;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s5f3N0RAtgUVBIB/xIm7w7WNTQBqMz0AMr1YWNHsHjg=;
-        b=X7duMdF7yBT9zLGwesGIN4G3wnxp3Cjfh3udvsg4agx3zVaZ/60sVw/xE7aSLDTGhJ
-         zIjF3dd5jmSjhNdUX/OuNDeR2QQNKuNa7hYPHXF+TO4ZuLaKUXtGxHGa03DKlHrMgFeu
-         xfjSbV19IpjVaxXaFVOgcoi9ORTuRfC4KpnrmEDPFuoispB5my4N9JAPmdvul7vQ7HXf
-         Yum4/lMy5nouQOYVVzN07viXOybs3vZoC4POy8XN2UmICUQ3Y6zvtFLW30B1TIzjFLZl
-         RiDCukTz9T+ZsbMuVrfFxih+a2WKElYsyb0CNfJebpbF0EgGQQ1aL3Bh25KUHqarouEr
-         k3xg==
+        d=linaro.org; s=google; t=1681505706; x=1684097706;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/IURpgE1xbg57WxWviHWuAPUOk7epEJxWNcaSFTD3Ms=;
+        b=EyQRrgfn7LKymKGR5myIfuzUTXTT4wjpF3TmZvfH3hfjPXc/22ZWByX562pWMDSwEP
+         VqNRI1jgGQ3XO6o8CRRq9EzejnM+ynGUP1Sun5BuDvu/hz35szzVeKok964QLmDq4v0r
+         9e85aYinmTR2nhmwJLC2TuGxbeTyGalmX2nJtgKtDxWHM0brE8wdjtZTAXC6pG5doQw5
+         gjU1SjsyZAeskQKF70YVtS+e3UGfXSwW4DA2GLk9oyv1iBEnHLYNsGdL1WXOy1guHRSV
+         3zCbdmzog+sS3UjpTkjpGA2YkDHv4pYobdr7LsN9ltvvgGEb7YbWAEBInS4UTQc+N7jt
+         HnbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681505262; x=1684097262;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s5f3N0RAtgUVBIB/xIm7w7WNTQBqMz0AMr1YWNHsHjg=;
-        b=WpkmPhxLlOXglUqqU1WhJdwx+SeoAY3K9RqlRusD7eEwx8hjNgMKys5N1L+6FZAaXz
-         uE7pmRXYXQk7h+dJmOtuC89bQAPWzJUUBxubEPByxpgwGOurMlUnrYXGMC2/jgkAEWuI
-         e0iDHtJBGYOF2Oe7TDcsWUqjzn+ga6lKgBA7d4MLdkLN0ffBa4eXqNoQNFz46PyOqhz8
-         bo98MBG+njjIYijh74AQlIKgrwO8sBGAxF97kNAagFQbva+JKumqzh/eDXOQlvaIcWsD
-         b+JEODfXnDryqth39obvEAr9jW68rsfPKLuMfNBcscan7/PHrRrV30+7Zy3pF9TP3PH4
-         rsew==
-X-Gm-Message-State: AAQBX9fhiHQVuP8lQiAQEuQ0hknmXkFG8sqrpN7rPPKQG2G76uStsztf
-        cq+nL3dealwHFD3RzM4VYyyLkA==
-X-Google-Smtp-Source: AKy350YgvMVGXc4UafDc/Bu9EhgyHaWr2UVtxorQb1uoFdRovgAwRThK3H4UFtY7yfcABeD8dWrWig==
-X-Received: by 2002:a05:6402:b2e:b0:4fb:f2db:a654 with SMTP id bo14-20020a0564020b2e00b004fbf2dba654mr7044407edb.12.1681505262487;
-        Fri, 14 Apr 2023 13:47:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ffae:8aab:ae5a:4688? ([2a02:810d:15c0:828:ffae:8aab:ae5a:4688])
-        by smtp.gmail.com with ESMTPSA id bf13-20020a0564021a4d00b005024459f431sm2491923edb.70.2023.04.14.13.47.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 13:47:41 -0700 (PDT)
-Message-ID: <193eb300-3075-c07c-6946-9c56aca7a340@linaro.org>
-Date:   Fri, 14 Apr 2023 22:47:40 +0200
+        d=1e100.net; s=20221208; t=1681505706; x=1684097706;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/IURpgE1xbg57WxWviHWuAPUOk7epEJxWNcaSFTD3Ms=;
+        b=OndKeu2hlvVMeqrCAMMc3NZbDwaer434RxQbnns+k+Ytp/B2siOUzkZ6fcS4nRUVm+
+         teA8ffPrvKn/A/riQI8FuUyvnePtkNLWEBGlwpD35vA6yMMVvpHVmNyg9+/g5K3f6y0j
+         pzqH7ItVDjtjUnioNY+DVgsPTjvb7IuvFzEaoXkb/ELu4vpQUz8btxRKPTNia1G7yrsP
+         Ct8zeiLkCMUz9Ok24HpA/c+5Yveye91kZUX3W2e30uJyAZg0hNo3MmqDv6NqoasJ4aCV
+         gz1L9++kkaAsbtubIJUv1rDJOZMVtUQXbKpYNAIJyY0NGHur02iZUNwBjp8MKLC6/lR9
+         insQ==
+X-Gm-Message-State: AAQBX9f3iM1Tq/HxAwVI0KknQ6pK3mxvOEB9PEVMNCILGZ12wHCZDm28
+        Cv3shYah/hf8VAn4XkKIc0opUKrAod2bxVPjgiC5MQ==
+X-Google-Smtp-Source: AKy350aF41mkuwh1/kO7eZl2hcZWels8mhSTbjZere9bTExw3aS8wy2MCxPVGGZk4BY3COhO1yMbWu1m1Fg4ByKRuIQ=
+X-Received: by 2002:a25:d882:0:b0:b8f:59ed:e9d9 with SMTP id
+ p124-20020a25d882000000b00b8f59ede9d9mr3675922ybg.9.1681505706076; Fri, 14
+ Apr 2023 13:55:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [V6 0/9] Add Tegra234 HTE support
-Content-Language: en-US
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-References: <20230414004455.19275-1-dipenp@nvidia.com>
- <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
- <a280fe0f-b8b1-4cb5-b4b6-aa9e9367241e@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a280fe0f-b8b1-4cb5-b4b6-aa9e9367241e@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org>
+ <20230413-topic-lahaina_vidcc-v2-2-f721d507e555@linaro.org>
+ <CAA8EJpoxvjWrvJENkFSimfU=CG7C3jZ=ToZep1tnJbtPzCcS9Q@mail.gmail.com> <34797b11-b654-a9a4-ac26-5287ca582a82@linaro.org>
+In-Reply-To: <34797b11-b654-a9a4-ac26-5287ca582a82@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 14 Apr 2023 23:54:54 +0300
+Message-ID: <CAA8EJppVUddvAp=3H7oGntE-5XqJkHc7=2mcgpBBnRcsHCDZQg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] clk: qcom: Introduce SM8350 VIDEOCC
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,42 +78,192 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 19:14, Dipen Patel wrote:
-> On 4/14/23 12:36 AM, Krzysztof Kozlowski wrote:
->> On 14/04/2023 02:44, Dipen Patel wrote:
->>> This patch series mainly adds support for the Tegra234 HTE provider. In
->>> addition, it addresses dt binding comments which prompted code
->>> changes in the existing HTE provider driver without breaking the
->>> Tegra194 provider. The comments raised concern how existing code
->>> retrieves gpio controller node
->>> (the node is used to help namespace conversion between HTE and GPIOLIB).
->>> To help simplify that process, new DT property is suggested which adds
->>> gpio controller node in the HTE provider binding as phandle property. To
->>> conlude this patch series:
->>> - adds Tegra234 HTE provider
->>> - modifies existing provider code to address new dt binding for Tegra234
->>> without breaking it for the Tegra194 chip.
->>>
->>> The V1 patch series:
->>> - Adds tegra Tegra234 HTE(timestamp) provider supports.
->>> - Updates MAINTAINERS file for git tree, mail list fields.
->>> - Updates devicetree and API documentations.
->>> - Enables HTE subsystem, Tegra194 and Tegra234 HTE providers
->>> by default in arm64 defconfig and dts files.
->>
->> All your emails miss PATCH prefix. Use `git format-patch` to generate
->> proper versioned patch. Stripping important part messes up with our
->> filters. We have quite a lot of emails, so proper filtering is important.
-> 
-> My bad...excitement of sending the patch series got hold of me :) Now I have realized
-> it is been happening since the beginning. Since all the previous patches have been
-> sent without PATCH prefix, is it ok for this version as it is or do you want me to resend
-> with proper prefix?
-> 
+On Fri, 14 Apr 2023 at 20:48, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 14.04.2023 18:31, Dmitry Baryshkov wrote:
+> > On Fri, 14 Apr 2023 at 14:26, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >> Add support for the Video Clock Controller found on the SM8350 SoC.
+> >>
+> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >> ---
+>
+> [...]
+>
+> >> +static struct clk_rcg2 video_cc_ahb_clk_src = {
+> >> +       .cmd_rcgr = 0xbd4,
+> >> +       .mnd_width = 0,
+> >> +       .hid_width = 5,
+> >> +       .parent_map = video_cc_parent_map_0,
+> >> +       .freq_tbl = ftbl_video_cc_ahb_clk_src,
+> >> +       .clkr.hw.init = &(const struct clk_init_data) {
+> >> +               .name = "video_cc_ahb_clk_src",
+> >> +               .parent_data = video_cc_parent_data_0,
+> >> +               .num_parents = ARRAY_SIZE(video_cc_parent_data_0),
+> >> +               .flags = CLK_SET_RATE_PARENT,
+> >> +               .ops = &clk_rcg2_shared_ops,
+> >> +       },
+> >> +};
+> >
+> > Do we need this clock at all? We don't have the child
+> > video_cc_ahb_clk, so potentially CCF can try disabling or modifying
+> > this clock.
+> Hm.. I see a few things:
+>
+> 1. downstream kona has it, upstream does not
+> 2. it's shared so we never actually hard-shut it off..
+> 2a. ..but it'd be good to ensure it's on when it's ready..
+> 2b. ..but we never do anyway..
+> 2c. ..but should we even? doesn't Venus govern it internally?
+>
+>
+> >
+> >> +
+> >> +static const struct freq_tbl ftbl_video_cc_mvs0_clk_src[] = {
+> >> +       F(720000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
+> >> +       F(1014000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
+> >> +       F(1098000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
+> >> +       F(1332000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
+> >> +       { }
+> >> +};
+> >> +
+>
+> [...]
+>
+> >> +static struct clk_branch video_cc_mvs1_clk = {
+> >> +       .halt_reg = 0xdb4,
+> >> +       .halt_check = BRANCH_HALT_VOTED,
+> >
+> > As a note, sm8250 has BRANCH_HALT here.
+> No, it does on the div2 clk, and so do we:
 
-It's okay for me, no need to resend. I just wanted to bring this to your
-attention, so future patchsets can be improved.
+Excuse me, I got confused by all the syllables. I was looking at the
+video_cc_mvs1c_clk. On sm8250 it is _VOTED, in this patch it is not. I
+can not say that either one of those is incorrect, but such a
+difference looks a bit suspicious for me. Maybe Tanya or somebody else
+can comment here.
 
-Best regards,
-Krzysztof
+> [...]
+>
+> >> +};
+> >> +
+> >> +static struct clk_branch video_cc_mvs1_div2_clk = {
+> >> +       .halt_reg = 0xdf4,
+> >> +       .halt_check = BRANCH_HALT_VOTED,
+> >> +       .hwcg_reg = 0xdf4,
+>
+> [...]
+>
+> >> +
+> >> +static const struct qcom_reset_map video_cc_sm8350_resets[] = {
+> >> +       [CVP_VIDEO_CC_INTERFACE_BCR] = { 0xe54 },
+> >> +       [CVP_VIDEO_CC_MVS0_BCR] = { 0xd14 },
+> >
+> > Would it be better to use common VIDEO_CC prefix here (IOW:
+> > VIDEO_CC_CVP_MVS0_BCR, VIDEO_CC_CVP_INTERFACE_BCR), etc.
+> My best guess would be that the ones prefixed with CVP_
+> are actual INTF/INSTANCEn(CORE) reset lines whereas
+> the ones containing _CLK_ reset their clock sub-branches.
 
+Note, again, on sm8250 all resets start with VIDEO_CC, even CVP ones.
+I think we can follow that.
+
+>
+> >
+> >> +       [VIDEO_CC_MVS0C_CLK_ARES] = { 0xc34, 2 },
+> >> +       [CVP_VIDEO_CC_MVS0C_BCR] = { 0xbf4 },
+> >> +       [CVP_VIDEO_CC_MVS1_BCR] = { 0xd94 },
+> >> +       [VIDEO_CC_MVS1C_CLK_ARES] = { 0xcd4, 2 },
+> >> +       [CVP_VIDEO_CC_MVS1C_BCR] = { 0xc94 },
+> >> +};
+>
+> [...]
+>
+> >> +       ret = pm_runtime_resume_and_get(&pdev->dev);
+> >> +       if (ret)
+> >> +               return ret;
+> >> +
+> >> +       regmap = qcom_cc_map(pdev, &video_cc_sm8350_desc);
+> >> +       if (IS_ERR(regmap)) {
+> >> +               pm_runtime_put(&pdev->dev);
+> >> +               return PTR_ERR(regmap);
+> >> +       };
+> >
+> > Extra semicolon
+> Ooeh!
+>
+> >
+> >> +
+> >> +       clk_lucid_pll_configure(&video_pll0, regmap, &video_pll0_config);
+> >> +       clk_lucid_pll_configure(&video_pll1, regmap, &video_pll1_config);
+> >> +
+> >> +       /*
+> >> +        * Keep clocks always enabled:
+> >> +        *      video_cc_ahb_clk
+> >> +        *      video_cc_xo_clk
+> >> +        */
+> >> +       regmap_update_bits(regmap, 0xe58, BIT(0), BIT(0));
+> >> +       regmap_update_bits(regmap, 0xeec, BIT(0), BIT(0));
+> >> +
+> >> +       ret = qcom_cc_really_probe(pdev, &video_cc_sm8350_desc, regmap);
+> >> +       pm_runtime_put(&pdev->dev);
+> >> +
+> >> +       return ret;
+> >> +}
+> >> +
+> >> +static const struct dev_pm_ops video_cc_sm8350_pm_ops = {
+> >> +       SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
+> >
+> > The driver doesn't use pm_clk at all. Are these PM_OPS correct?
+> I'm unsure. I see the pm state changing in debugfs when the clocks are
+> (not) consumed. But let's continue our discussion about using pm_clks
+> for AHB.
+
+Well, those are two separate questions. One is that w/o additional
+pm_clk calls this string is useless (and should be removed). Another
+on is a possible restructure of our cc drivers to use pm_clk for AHB
+clocks (which would require adding more than that).
+
+
+>
+> >
+> >> +};
+> >> +
+> >> +static const struct of_device_id video_cc_sm8350_match_table[] = {
+> >> +       { .compatible = "qcom,sm8350-videocc" },
+> >> +       { }
+> >> +};
+> >> +MODULE_DEVICE_TABLE(of, video_cc_sm8350_match_table);
+> >> +
+> >> +static struct platform_driver video_cc_sm8350_driver = {
+> >> +       .probe = video_cc_sm8350_probe,
+> >> +       .driver = {
+> >> +               .name = "sm8350-videocc",
+> >> +               .of_match_table = video_cc_sm8350_match_table,
+> >> +               .pm = &video_cc_sm8350_pm_ops,
+> >> +       },
+> >> +};
+> >> +module_platform_driver(video_cc_sm8350_driver);
+> >> +
+> >> +MODULE_DESCRIPTION("QTI SM8350 VIDEOCC Driver");
+> >> +MODULE_LICENSE("GPL");
+> >>
+> >> --
+> >> 2.40.0
+> >>
+> >
+> > Generic note: the register layout follows closely sm8250. However the
+> > existing differences probably do not warrant merging them.
+> No, I don't think merging any designs that are farther away
+> than 8150 and 8155 or 8992 and 8994 etc. is a good idea..
+>
+> I don't want to ever look at something like dispcc-sm8[123]50.c
+> again!
+
+Me too!
+
+-- 
+With best wishes
+Dmitry
