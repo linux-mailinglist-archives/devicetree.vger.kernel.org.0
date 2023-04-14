@@ -2,166 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A28A36E2126
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 12:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE3A6E212C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 12:43:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbjDNKmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 06:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49248 "EHLO
+        id S229822AbjDNKnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 06:43:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjDNKmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 06:42:37 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FFCA1A1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 03:42:35 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50672fbf83eso5736844a12.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 03:42:35 -0700 (PDT)
+        with ESMTP id S229938AbjDNKnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 06:43:51 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118034EDD;
+        Fri, 14 Apr 2023 03:43:44 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id v6so17017357wrv.8;
+        Fri, 14 Apr 2023 03:43:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681468954; x=1684060954;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QlR+xSiTjnc2SLlMey8CvdA1HO2rDpDlXaNoW69NFc0=;
-        b=zmUd3JoFz7Tv3Vx3luqjYIZjlQtlyaeuFd+OzfpBA9c7rp/ziS2FdfeDuPsrYQtq1z
-         kq7caNrwLhd08UehIxFjfRrljBj/baEVLCQ+rGlTPY6NVq/av0qfmCMvwmfVjG/Y534t
-         yHl6IlLtsqJstYTzc+fFCm9T1g1/UUQF9HVIXIISfAmYYW1GZl8TcwC1YRMWetZypgkI
-         qlztK+3VOTDeTrrV2/XpUuHrxhkgt7nC95w6p1w/0dn2OOrPBo8UBkjeW0y5ZgH0b37L
-         P+8GAmEl/DSEHevlWAY3lMSLpPVIZEDp0MUMCpaS+XK6JdORsDpYQWrMLuUkTEFnCe/T
-         dr5g==
+        d=gmail.com; s=20221208; t=1681469022; x=1684061022;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gNgu8/gxif8nw/9Y5K0MGzuFATQ+lD23DX1qBxOYNkg=;
+        b=ntAbmdAOB87jM3sQ1csEnjg8Ag2twQ61Xl4Zun8ptqhKrtHZW0l/Ym/JRVy/wivAxG
+         0iCwa+T0dMBud5YuzRit4k36il2soQGcLf8+/lK+bAayzf6YbqTpFHjUzh6Pc8CdHOz0
+         WaDKsMNbgOaUnSfDKFLcPlvEcLb6kEvQCZyrXH4MFDxPrddhS4olJZScbQFnISQmZB6f
+         omhoUqu8q9HF84Z17yIRcStxAYWiyOPDHkj1IPBOf1pMpcjVsHrtKEDRPSmUl4zC/nIU
+         g5VHTYWrGX8fl4wNdWzKP+NmClpjAcONTGZa0Mm+7qA35L7WkTGYe3InJ+adt4e2hXjc
+         O7uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681468954; x=1684060954;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1681469022; x=1684061022;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QlR+xSiTjnc2SLlMey8CvdA1HO2rDpDlXaNoW69NFc0=;
-        b=k4iH/oi93t/ljUwwZv8F3MtlQzENCD+LNGx7w20utSASz2gx9K491ETpGDBCDe2CtD
-         B6rq3c/EE/HAK5+cZGCyFmd2DaGuzngyIps2r58bX9K1T21liG2tcoLk1PZHhqOSekcD
-         1eBt8ptuTZX35grHd8UA3e8ltM8NVVgY32+qP+emdVHXJaONE8tmisQFAarQf16CcnGv
-         IjMqCH9T+w8GI+ztZjzDplSaft91MBzlDpKDnvJ2pLM2BQNZmmo9rnaeEogWzWZr3pfe
-         SGU1g013uz/8eurX9ZnDDM7TWZLAKRjqIzfkFZwNvn/LzhtWthfTAqualqv9W+uVeEeU
-         LhdQ==
-X-Gm-Message-State: AAQBX9dTFmPxOxxViJ8w0t9r8ZPcDB4rulTIFUdEHZ5mFP+cpViuRlNV
-        efembmb8474GkKByZKsqxHA3tw==
-X-Google-Smtp-Source: AKy350a8p/Dm34e6FTIrwnmd/FYPe6DCZ5aMSRnZbXAhFybe2SHbqsToCcm2MWHCebPZJuVwNc96pw==
-X-Received: by 2002:a05:6402:114e:b0:504:9e79:e86f with SMTP id g14-20020a056402114e00b005049e79e86fmr5349108edw.18.1681468953929;
-        Fri, 14 Apr 2023 03:42:33 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:40b9:8c57:b112:651d])
-        by smtp.gmail.com with ESMTPSA id m24-20020aa7d358000000b00504706aa54esm1966447edr.57.2023.04.14.03.42.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Apr 2023 03:42:33 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Xin Ji <xji@analogixsemi.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: display: simplify compatibles syntax
-Date:   Fri, 14 Apr 2023 12:42:30 +0200
-Message-Id: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=gNgu8/gxif8nw/9Y5K0MGzuFATQ+lD23DX1qBxOYNkg=;
+        b=b8z43wj6i8F9zqIols2IF8VjF0sDEnNa69coHL5zGSdRPyGxkAxu5hjeiDGwsAHqhr
+         YuegnhxB5ygTG9ogFDSnFR3LHywJUED3+JDdCEd5Yz6ukX/s+Iv8VnI7nA4KbivOBdh3
+         1tKY+pOAFeGyk85QHMRHVTZHiLFMSzbK/2kzUrvNKOcDv6SF1FZTXwglRBv8ssiu/UWs
+         QTI67JlMP4ogdK7VkOBxw+zORvqfPaMMRioCYSjkeCFGMRHigjxTOXtpWuE82ctceKmP
+         kqB+vEUWto4be2NAc98oFNB1WLyCxZ7tWDJX4oZx+AELuuqvcVdE18Psbxn/9TF0JQQJ
+         1kHQ==
+X-Gm-Message-State: AAQBX9dp2UGDySHowuQ8VvrHaBsLUjgCkIeQmGe9DJ/WUpY8Kap0Vnv9
+        +rD+tuqUftr8DRY/AbMZF+BdaZjmVwKU/i2GeNo=
+X-Google-Smtp-Source: AKy350a9U4k0Iy7pNu4JvvfTjZIpwao5lJtg7D3YdN7kFR3yOSYuAwqTS/atSnBgWjuR+uOrNsHldqse3GCOgZDpLYk=
+X-Received: by 2002:a5d:4248:0:b0:2ce:ac97:6f51 with SMTP id
+ s8-20020a5d4248000000b002ceac976f51mr927213wrr.13.1681469022498; Fri, 14 Apr
+ 2023 03:43:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230414004455.19275-1-dipenp@nvidia.com> <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
+In-Reply-To: <373eacb8-be3f-6b95-3e08-f0ff36f79891@linaro.org>
+From:   Thierry Reding <thierry.reding@gmail.com>
+Date:   Fri, 14 Apr 2023 12:43:31 +0200
+Message-ID: <CA+PwDYeTkWp9vXMec99H2OKOGhx0mOrnthT08=JkMkEsi4NDPw@mail.gmail.com>
+Subject: Re: [V6 0/9] Add Tegra234 HTE support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dipen Patel <dipenp@nvidia.com>, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        robh+dt@kernel.org, timestamp@lists.linux.dev,
+        krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, corbet@lwn.net,
+        gregkh@linuxfoundation.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lists (items) with one item should be just const or enum because it is
-shorter and simpler.
+On Fri, Apr 14, 2023 at 09:36:15AM +0200, Krzysztof Kozlowski wrote:
+> On 14/04/2023 02:44, Dipen Patel wrote:
+> > This patch series mainly adds support for the Tegra234 HTE provider. In
+> > addition, it addresses dt binding comments which prompted code
+> > changes in the existing HTE provider driver without breaking the
+> > Tegra194 provider. The comments raised concern how existing code
+> > retrieves gpio controller node
+> > (the node is used to help namespace conversion between HTE and GPIOLIB).
+> > To help simplify that process, new DT property is suggested which adds
+> > gpio controller node in the HTE provider binding as phandle property. To
+> > conlude this patch series:
+> > - adds Tegra234 HTE provider
+> > - modifies existing provider code to address new dt binding for Tegra234
+> > without breaking it for the Tegra194 chip.
+> >
+> > The V1 patch series:
+> > - Adds tegra Tegra234 HTE(timestamp) provider supports.
+> > - Updates MAINTAINERS file for git tree, mail list fields.
+> > - Updates devicetree and API documentations.
+> > - Enables HTE subsystem, Tegra194 and Tegra234 HTE providers
+> > by default in arm64 defconfig and dts files.
+>
+> All your emails miss PATCH prefix. Use `git format-patch` to generate
+> proper versioned patch. Stripping important part messes up with our
+> filters. We have quite a lot of emails, so proper filtering is important.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I used to get this wrong as well because I didn't know (or perhaps it
+didn't exist yet at the time) --reroll-count|-v and used to manually
+override --subject-prefix.
 
----
-
-Rebased on next-20230406. I hope it applies cleanly...
----
- .../display/bridge/analogix,anx7625.yaml      |  3 +--
- .../display/panel/sharp,lq101r1sx01.yaml      |  4 ++--
- .../bindings/display/solomon,ssd1307fb.yaml   | 24 +++++++++----------
- 3 files changed, 14 insertions(+), 17 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 7960745a8dbe..a1ed1004651b 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -16,8 +16,7 @@ description: |
- 
- properties:
-   compatible:
--    items:
--      - const: analogix,anx7625
-+    const: analogix,anx7625
- 
-   reg:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
-index 9ec0e8aae4c6..57b44a0e763d 100644
---- a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
-@@ -34,8 +34,8 @@ properties:
-       - items:
-           - const: sharp,lq101r1sx03
-           - const: sharp,lq101r1sx01
--      - items:
--          - const: sharp,lq101r1sx01
-+      - enum:
-+          - sharp,lq101r1sx01
- 
-   reg: true
-   power-supply: true
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-index 8bd58913804a..94bb5ef567c6 100644
---- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -14,20 +14,18 @@ properties:
-   compatible:
-     oneOf:
-       # Deprecated compatible strings
--      - items:
--          - enum:
--              - solomon,ssd1305fb-i2c
--              - solomon,ssd1306fb-i2c
--              - solomon,ssd1307fb-i2c
--              - solomon,ssd1309fb-i2c
-+      - enum:
-+          - solomon,ssd1305fb-i2c
-+          - solomon,ssd1306fb-i2c
-+          - solomon,ssd1307fb-i2c
-+          - solomon,ssd1309fb-i2c
-         deprecated: true
--      - items:
--          - enum:
--              - sinowealth,sh1106
--              - solomon,ssd1305
--              - solomon,ssd1306
--              - solomon,ssd1307
--              - solomon,ssd1309
-+      - enum:
-+          - sinowealth,sh1106
-+          - solomon,ssd1305
-+          - solomon,ssd1306
-+          - solomon,ssd1307
-+          - solomon,ssd1309
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
-
+Thierry
