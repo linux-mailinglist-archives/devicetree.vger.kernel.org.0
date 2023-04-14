@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5AA6E2B39
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D0C76E2B3C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:43:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229907AbjDNUmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 16:42:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45748 "EHLO
+        id S229954AbjDNUnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 16:43:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjDNUmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:42:40 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE7CE62
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:42:38 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id ud9so48451245ejc.7
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:42:38 -0700 (PDT)
+        with ESMTP id S229802AbjDNUnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:43:23 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7E6E4A
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:43:21 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id si1so18500544ejb.10
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681504957; x=1684096957;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1681505000; x=1684097000;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=C8pLu4jERpRba3FUTEoPszF0/AQbHGcUDrxLnefSzTE=;
-        b=w8Hp01Vm5edDVFPyq4CzVtZ3SVBji5A7jB93jOxlbSP1mAg0w8WmdrKlPapj/DtZu3
-         93qDObTt8sPCkx7T5KeXjR8HINtXd9BstDincbjezkcF5Y48yW0UY5MEwXm7El1w1pBj
-         Rp/Y3jp9aV7V4PwuCySYTiQLluVcxK++AGzBB0bBtmaT+OaXoZFoxc+HGJ7Hm6jAS2Dt
-         fvgGGlfhas+3eZCskUokP2Wa7HfHCUTfMEI980aJ4W7uhJwOo7XG0t8+WVyBYaxPGrLE
-         9z9nGqayH6O03k3zih6J77bcqtcjaeHk3CPiLvY6odp6e/TXP7CMiMlXwo3lylkfCnrT
-         NYaQ==
+        bh=IbvsfBiUpsWwp2EZA/U+fVvXwsafXqW9kWt8dct1hI0=;
+        b=PQ4Ojz/ZluqgOOIrZ+k4NRMLyGMGqqUL2NfwOMLFMp4Ttb+DjRzphOfhbQG5KIU/Ez
+         wkytAJFlqHFIdEvIRn76Z80E0jF7MhgtNB8ZIY8DbIYUvnQzSdzBseL2GgrbIDSXIqSf
+         PaBFIhubjtwaBwfqB7e7deyng7A1zOK8i7117UQrTMPq9tcxxpb/DRvJLNyFhIEB4n0g
+         VKWcBXmg3M4P/dqTszSoAN40lVAvqm2zpFdtjRg2ftQe7aNy4vOhmsMLGSLlXLIq+nWy
+         vnmaPHyvadJ3zb2B20oT58P4nnV3YV8isd5gIJwnrfTty1psA8HHUHvPAEq4OXQ7dQDa
+         d4dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681504957; x=1684096957;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1681505000; x=1684097000;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C8pLu4jERpRba3FUTEoPszF0/AQbHGcUDrxLnefSzTE=;
-        b=PsGPvtWIehQ2EX0uZEtc5rvz6ybAgCeoRRsJ1sUD4TWtlg769LXuwnf4CpnvUznpl3
-         SfayFKq8R37WDraWtfQj1gCJGdA4NCe7KUUTarGcwgAGYkIVQyg6WSdOIuEeYtkhm9yi
-         PqdB/SSKsLNShoqK6qKfrT6Le/StYVSW0RIdKtbhebUpPcOoL6r7udHdgkQ59lgUCXSJ
-         sZHi9mc+Pf7hI+5K8q9UHlKmUYJNJc2Ty8JDUAYaAsNvUdF206C1Fi86rWztH7Itm82H
-         o5hNZzMCshWRCbAp+SQAUDJhg0UqJQzOK4SCE5R4943vo/rkQMEmrq68lWH2nkSVV0eZ
-         Ge0g==
-X-Gm-Message-State: AAQBX9cHLi+RV9WCKx4qz/NBuZ5nfXfBR9X7XrtZVpjac4a47WKLFCcT
-        Ib62gQiOAGG8SXahBTTeMtQgLQ==
-X-Google-Smtp-Source: AKy350blLh5O9Aqx8n+mdVx/OhzQ8YJzp+126dy3SDo+2KiE4ZFWQvXzvrky4iJqJYy913BH1+wI3w==
-X-Received: by 2002:a17:906:5610:b0:94e:ff98:44a7 with SMTP id f16-20020a170906561000b0094eff9844a7mr332362ejq.72.1681504956944;
-        Fri, 14 Apr 2023 13:42:36 -0700 (PDT)
+        bh=IbvsfBiUpsWwp2EZA/U+fVvXwsafXqW9kWt8dct1hI0=;
+        b=h5J4LE0C4Iy1T4NCStx46YNrzNXKug+fnzskVUQyVPBKUB6ixetfcWQRwA1/v8cYJq
+         dP2DsD57JUZiHxEguOk2u4/KEAR6z1oU4yJVzH3GwR8YrZAjVrrsGBVUTQucM18BUSby
+         SVYyYx741DdIymPgzBdMhZCxJAyVUyXPT9zylNnv0aM5LGO8r2BiAPl4vYswq1zIqmJo
+         vLxMjuIe/UF1JYr7m1iLuV9uoiALT2MOHFfhbdLY9Ceizx0dUNnbmip0CSfOZrep3dSE
+         ELua6Hhtzf3BuwtqQ7p4eh2nrpt8z925BpmHluMC54p8vJSewkzfi0oDoPvNwhpYszTf
+         H5JQ==
+X-Gm-Message-State: AAQBX9cOz0hMGBbK+snrn9Gmk7ZuvkRjk/b/stpKSsyEZ0hjfwaT5oXI
+        Bf+4xkB0vYlR0JjR22nj6L5xtQ==
+X-Google-Smtp-Source: AKy350YXC3UocjmjmySCyoSnl1xQWm95ob71IRHYAanvJuCeh8REit80iFOGb+mJz5knOzx+RuvhfA==
+X-Received: by 2002:a17:906:828f:b0:94a:4739:bed9 with SMTP id h15-20020a170906828f00b0094a4739bed9mr315836ejx.13.1681505000565;
+        Fri, 14 Apr 2023 13:43:20 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ffae:8aab:ae5a:4688? ([2a02:810d:15c0:828:ffae:8aab:ae5a:4688])
-        by smtp.gmail.com with ESMTPSA id d26-20020a170906c21a00b0094f0053d491sm569273ejz.162.2023.04.14.13.42.35
+        by smtp.gmail.com with ESMTPSA id sg32-20020a170907a42000b008c16025b318sm2840679ejc.155.2023.04.14.13.43.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 13:42:36 -0700 (PDT)
-Message-ID: <20b0af27-97c9-d764-43ef-d13a429ffe1d@linaro.org>
-Date:   Fri, 14 Apr 2023 22:42:35 +0200
+        Fri, 14 Apr 2023 13:43:20 -0700 (PDT)
+Message-ID: <bafedfaf-9ffe-b0ad-d51d-d4b820da3a80@linaro.org>
+Date:   Fri, 14 Apr 2023 22:43:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/1] dt-bindings: iio: pressure: Support Honeywell
- mprls0025pa sensor
+Subject: Re: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <ZDlLmCIiKSMa7Hah@arbad>
- <d577bc44-780f-f25d-29c6-ed1d353b540c@linaro.org>
-In-Reply-To: <d577bc44-780f-f25d-29c6-ed1d353b540c@linaro.org>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230412045152.4694-1-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,83 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 22:40, Krzysztof Kozlowski wrote:
-> On 14/04/2023 14:48, Andreas Klinger wrote:
->> Honeywell mpr is a pressure sensor series. There are many different models with different pressure
->> ranges, units and transfer functions.
->>
->> The range and transfer function need to be set up in the dt. Therefore new properties
->> honeywell,pmin-pascal, honeywell,pmax-pascal, honeywell,transfer-function are introduced.
+On 12/04/2023 06:51, Yinbo Zhu wrote:
+> Loongson platform support spi hardware controller and this series patch
+> was to add spi driver and binding support.
 > 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-> 
->>
->> Add dt-bindings.
->>
->> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
-> 
-> Patches 2 and 3 are missing. At least they were mentioned in the
-> changelog but this is 1/1.
-> 
->> ---
->>  .../iio/pressure/honeywell,mprls0025pa.yaml   | 93 +++++++++++++++++++
->>  1 file changed, 93 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
->> new file mode 100644
->> index 000000000000..c0eb3c4be16f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
->> @@ -0,0 +1,93 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/pressure/honeywell,mprls0025pa.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Honeywell mpr series pressure sensor
->> +
->> +maintainers:
->> +  - Andreas Klinger <ak@it-klinger.de>
->> +
->> +description: |
->> +  Honeywell pressure sensor of model mprls0025pa.
->> +
->> +  This sensor has an I2C and SPI interface. Only the I2C interface is implemented.
->> +
->> +  There are many models with different pressure ranges available. The vendor calls them "mpr
->> +  series". All of them have the identical programming model and differ in the pressure range, unit
-> 
-> Wrap according to Linux coding style, so at 80.
-> 
->> +  and transfer function.
->> +
->> +  To support different models one need to specify the pressure range as well as the transfer
->> +  function. Pressure range needs to be converted from its unit to pascal.
->> +
->> +  The transfer function defines the ranges of numerical values delivered by the sensor. The minimal
->> +  range value stands for the minimum pressure and the maximum value also for the maximum pressure
->> +  with linear relation inside the range.
->> +
->> +  Specifications about the devices can be found at:
->> +    https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/
->> +      pressure-sensors/board-mount-pressure-sensors/micropressure-mpr-series/documents/
->> +      sps-siot-mpr-series-datasheet-32332628-ciid-172626.pdf
->> +
->> +properties:
->> +  compatible:
->> +    const: honeywell,mprls0025pa
-> 
-> So this is one compatible for entire family of 96 separate devices.
-> Looks like reasonable compromise, although I will wait for Rob's
-> approval on that.
-> 
-> Anyway you need to fix the coding style.
+> Change in v2:
+> 		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+> 	 	   https://
 
-... and as Rob's bot pointed out, test it before sending.
+Can you stop Ccing fake address "loongson-kernel@lists.loongnix.cn"? It
+does not exist. Remove it from all submissions.
 
 Best regards,
 Krzysztof
