@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D0C76E2B3C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7206E2B3F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjDNUnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 16:43:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46348 "EHLO
+        id S230004AbjDNUoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 16:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbjDNUnX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:43:23 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7E6E4A
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:43:21 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id si1so18500544ejb.10
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:43:21 -0700 (PDT)
+        with ESMTP id S229894AbjDNUoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:44:04 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41407E62
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:44:03 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id rp27so11646481ejb.12
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:44:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681505000; x=1684097000;
+        d=linaro.org; s=google; t=1681505042; x=1684097042;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IbvsfBiUpsWwp2EZA/U+fVvXwsafXqW9kWt8dct1hI0=;
-        b=PQ4Ojz/ZluqgOOIrZ+k4NRMLyGMGqqUL2NfwOMLFMp4Ttb+DjRzphOfhbQG5KIU/Ez
-         wkytAJFlqHFIdEvIRn76Z80E0jF7MhgtNB8ZIY8DbIYUvnQzSdzBseL2GgrbIDSXIqSf
-         PaBFIhubjtwaBwfqB7e7deyng7A1zOK8i7117UQrTMPq9tcxxpb/DRvJLNyFhIEB4n0g
-         VKWcBXmg3M4P/dqTszSoAN40lVAvqm2zpFdtjRg2ftQe7aNy4vOhmsMLGSLlXLIq+nWy
-         vnmaPHyvadJ3zb2B20oT58P4nnV3YV8isd5gIJwnrfTty1psA8HHUHvPAEq4OXQ7dQDa
-         d4dQ==
+        bh=k/nx/yKVbSsYFF5X0g9blNxbC1WsVq39ejbZ4qWxfM4=;
+        b=Ka24PG3jdtgMZW+uR4p/SVUg5cMBUtdd3X/qmhLPC52CEUJbbs59MkyYCFent9DH2d
+         E0xG3C6UMAr5vpG+BrO4blJSsiRtGeghEB6SPsyLiSu1llEBoGJFaujchENgVyC5d3H+
+         IdVE9Opq0NfJAUYJJ3ZyuR+/evAehUq6h9uncJkKg0wq+IJMnYXCmzyDmfOqi74LI2oT
+         eSZps8MaYm54Y/Y5bdKhtMnYf+2U0J7FK0YYRWLqLT3w37gmyeATunCmWsc6m/9VPIwc
+         OUB3Dyskhgl532D0H1hWlJnUNIsDjx48wBav2YQUcJMBThdmL/ZVEh20Bm81b5f1numX
+         q96g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681505000; x=1684097000;
+        d=1e100.net; s=20221208; t=1681505042; x=1684097042;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IbvsfBiUpsWwp2EZA/U+fVvXwsafXqW9kWt8dct1hI0=;
-        b=h5J4LE0C4Iy1T4NCStx46YNrzNXKug+fnzskVUQyVPBKUB6ixetfcWQRwA1/v8cYJq
-         dP2DsD57JUZiHxEguOk2u4/KEAR6z1oU4yJVzH3GwR8YrZAjVrrsGBVUTQucM18BUSby
-         SVYyYx741DdIymPgzBdMhZCxJAyVUyXPT9zylNnv0aM5LGO8r2BiAPl4vYswq1zIqmJo
-         vLxMjuIe/UF1JYr7m1iLuV9uoiALT2MOHFfhbdLY9Ceizx0dUNnbmip0CSfOZrep3dSE
-         ELua6Hhtzf3BuwtqQ7p4eh2nrpt8z925BpmHluMC54p8vJSewkzfi0oDoPvNwhpYszTf
-         H5JQ==
-X-Gm-Message-State: AAQBX9cOz0hMGBbK+snrn9Gmk7ZuvkRjk/b/stpKSsyEZ0hjfwaT5oXI
-        Bf+4xkB0vYlR0JjR22nj6L5xtQ==
-X-Google-Smtp-Source: AKy350YXC3UocjmjmySCyoSnl1xQWm95ob71IRHYAanvJuCeh8REit80iFOGb+mJz5knOzx+RuvhfA==
-X-Received: by 2002:a17:906:828f:b0:94a:4739:bed9 with SMTP id h15-20020a170906828f00b0094a4739bed9mr315836ejx.13.1681505000565;
-        Fri, 14 Apr 2023 13:43:20 -0700 (PDT)
+        bh=k/nx/yKVbSsYFF5X0g9blNxbC1WsVq39ejbZ4qWxfM4=;
+        b=kaRYW91kkHXg+yvkMTYKEoxVRzZEO/amuc2ruWzJ2gXSAkZRo1yPczL+ZC5yyG4qC2
+         /ZT9PRHVBpHS8u2hnn3uI2iba2VzxraQp3OJxNeOqQWkAPI/vIhzfghQmpFI2+CR24rc
+         gjSLm8f9F8IF9m2CeaLbJEf6pBXfgyaOXHGe7H5pyK0f7Y1f7hO0VhI2MyxcRaMJabiT
+         pHaBMd0Q/Ls5cIX7bm/NoZzzuaHnPHBMhC15+bmO8Nmaz+sJPqbTM+3JjEelyKG07FKI
+         gpnV3RQzCHVgwbKZ7LQKU9WV8abuie7vLlyQ4WLahoUTnPJUS5ImCHyOzttOg7FLKSv/
+         3kxA==
+X-Gm-Message-State: AAQBX9dMGnFnp7UU2iFCDZ+0wX/4J5x5i/eirEubk3LPRBoi9H9QqVEr
+        iaRrT6gUhFzlXItOEG7YjzdQnQ==
+X-Google-Smtp-Source: AKy350ZOjOg5ES3cZwD713h6zSPRrL5WIGdTryxXFTVy1eJJGbtMQ8icDtPg15fL8avEWmLCkrIbUA==
+X-Received: by 2002:a17:906:7295:b0:947:3d04:61dc with SMTP id b21-20020a170906729500b009473d0461dcmr324838ejl.77.1681505041758;
+        Fri, 14 Apr 2023 13:44:01 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ffae:8aab:ae5a:4688? ([2a02:810d:15c0:828:ffae:8aab:ae5a:4688])
-        by smtp.gmail.com with ESMTPSA id sg32-20020a170907a42000b008c16025b318sm2840679ejc.155.2023.04.14.13.43.19
+        by smtp.gmail.com with ESMTPSA id qf29-20020a1709077f1d00b0094a2f92aaeesm2852341ejc.158.2023.04.14.13.44.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 13:43:20 -0700 (PDT)
-Message-ID: <bafedfaf-9ffe-b0ad-d51d-d4b820da3a80@linaro.org>
-Date:   Fri, 14 Apr 2023 22:43:19 +0200
+        Fri, 14 Apr 2023 13:44:01 -0700 (PDT)
+Message-ID: <342dd9b0-35cd-1715-ee67-6a6628a3a9a6@linaro.org>
+Date:   Fri, 14 Apr 2023 22:44:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
+Subject: Re: [RFC PATCH 4/5] arm64: dts: ti: Enable multiple MCAN for AM62x in
+ MCU MCAN overlay
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Judith Mendez <jm@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>
-References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230413223051.24455-5-jm@ti.com>
+ <9ab56180-328e-1416-56cb-bbf71af0c26d@linaro.org>
+ <20230414182925.ya3fe2n6mtyuqotb@detached>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20230414182925.ya3fe2n6mtyuqotb@detached>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,16 +87,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2023 06:51, Yinbo Zhu wrote:
-> Loongson platform support spi hardware controller and this series patch
-> was to add spi driver and binding support.
+On 14/04/2023 20:29, Nishanth Menon wrote:
+>>> +
+>>> +&cbass_mcu {
+>>> +	mcu_mcan1: can@4e00000 {
+>>> +		compatible = "bosch,m_can";
+>>> +		reg = <0x00 0x4e00000 0x00 0x8000>,
+>>> +			  <0x00 0x4e08000 0x00 0x200>;
+>>> +		reg-names = "message_ram", "m_can";
+>>> +		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
+>>> +		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
+>>> +		clock-names = "hclk", "cclk";
+>>> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&mcu_mcan1_pins_default>;
+>>> +		phys = <&transceiver2>;
+>>> +		status = "okay";
+>>
+>> okay is by default. Why do you need it?
 > 
-> Change in v2:
-> 		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
-> 	 	   https://
+> mcan is not functional without pinmux, so it has been disabled by
+> default in SoC. this overlay is supposed to enable it. But this is done
+> entirely wrongly.
 
-Can you stop Ccing fake address "loongson-kernel@lists.loongnix.cn"? It
-does not exist. Remove it from all submissions.
+Ah, so this is override of existing node? Why not overriding by
+label/phandle?
 
 Best regards,
 Krzysztof
