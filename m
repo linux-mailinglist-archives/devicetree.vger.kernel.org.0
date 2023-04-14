@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9037F6E2B20
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B576E2B2C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 22:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbjDNUcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 16:32:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40872 "EHLO
+        id S229826AbjDNUgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 16:36:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbjDNUca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:32:30 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BDE6A6F
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:32:27 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4ec816d64afso165200e87.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:32:27 -0700 (PDT)
+        with ESMTP id S229720AbjDNUgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 16:36:07 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3813272A5
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:36:06 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id q23so39134270ejz.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 13:36:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681504345; x=1684096345;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1681504564; x=1684096564;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pF8wYlTRr7UhJmkBBdIJdcpPe42pYWprHEZ8trWKnL8=;
-        b=vUo2RawMzewrKvOpzDihQ3ZxDMiNBGASJoUa5Xt11CyZ2Dzeys+3KErZRBEu5273S1
-         TBYBKOxB3RmhwRc5OVgu0Z2+KJm5qOHP55KcUWwiMHbZ7T3xyNDdt1H6O+NEqsBAHFKV
-         JlJdJGcrbx/ApxD/nSD5nphcQeoW0LyIBhS/lJIVuLSe+FgpOoZcr0B9WSOaa4alE/Ad
-         v8hnqrFOCMn9CAiVCxICOShT1VVTs8DpknLYf5070+BBDolYf8649baTIjqYf0MdLGZw
-         3fmcRQBt8g5TsjfI1IyYjkuUD0zVpfArZX76Wra1aJ0/kMIygKJgOlZKH8X2IpF4wrWG
-         5r0A==
+        bh=y8CJir3j3h3iz3lOaao3uM4b4n2bBipQycmBP4wvaNk=;
+        b=kGWjr0/CHo8BFqm+05eB3GLYkTLecAOjzwYHXFb9ROxyHjoM+n5DU7jEpWNDb/rp5g
+         OkzEMwjv62wpX9GyJ+CyGr3dNhc8rjLUK1fw99wYj8ouDnzFWk5p2S3r3c7PtA1ozWB6
+         OzSZZ8Q8grvNoS9oNtFzjksLWBdMyWdDihVMPJLGL47lCgV08ry9nMdZD6/31cseIVOt
+         tna0SqWUlB1PL5hFyqx00lOSil0+Y9dA1UG/w29Ig9xR2tFOazqoG9dqroRmKaz8qty0
+         nbtlE/YMMGufW2Bc4d/n4B99YVV/zhl8WPwoRUcBDL3IX7CegYW1TjEEdke3Pgofnx4O
+         fWrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681504345; x=1684096345;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1681504564; x=1684096564;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pF8wYlTRr7UhJmkBBdIJdcpPe42pYWprHEZ8trWKnL8=;
-        b=Q8YtyGvs8R9siUuy78BQzkEoekmkJsPAGfu8K/kf0MNaF7dAW4tfOSf+aCzNaTjhC/
-         aKt03czPf/K20vzQmeJQ0P08v+UfJcJasV2ZOYLlYuJc04g9oDjuJKaCJK9KdQbhRBki
-         QtGHe5lbciHapmMQ55Q+9HrpGalkX0HZpH7tnGpo+yYvOaW8Lt571DwBVwm9cJV4QGgY
-         T2mkJjgx9gzAeG3JcNymue7Yay3E61wWbRRKTTbHICDXK7mp/Anh3/Ya+2H81uy7gxwo
-         xpRu9H02MP/gLHywVDfapM1yIpA97eKT9RHs9c3sg6V4ww98FXg8vcixmfJ3cLdGWR43
-         7THw==
-X-Gm-Message-State: AAQBX9cCiUUxT/mOQEtFGnIlq4CGyMcB9SJpwTrRREHjw0pDbR8Rfl6Z
-        z2YKjqukPrevdJizTK4FqpjW+A==
-X-Google-Smtp-Source: AKy350Z0WYbGj4bk7grD+6NmVk3+WiGz+Pgt8Nt3XfsGmQsf/NVlYrV9tSMJOjBSRzIPEPCFG+gf8g==
-X-Received: by 2002:a05:6512:230e:b0:4e2:7ab6:15cd with SMTP id o14-20020a056512230e00b004e27ab615cdmr26508lfu.30.1681504345630;
-        Fri, 14 Apr 2023 13:32:25 -0700 (PDT)
-Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
-        by smtp.gmail.com with ESMTPSA id h4-20020a2eb0e4000000b002a0d3a51a55sm986956ljl.91.2023.04.14.13.32.23
+        bh=y8CJir3j3h3iz3lOaao3uM4b4n2bBipQycmBP4wvaNk=;
+        b=aiW2HkMDDFZHiS1atQlP0+C2tiX2eQR9CBBAz/l5VJknHmDLKi1PnleVZ2VUY8WEqi
+         fDJ4DWa7rPJoeNVdaV2qOanUt/eqbgh34EAe7OuTtzCHARfPCjIVI4xpD31u1ioia2Xi
+         PDQX6/0dpLxQid8pnHfbosxIq8P1lq2cxSas/M8aMKmf43acKhGscDvEfZNXcr4GtTij
+         tV74O8gmqweCPEbAtyU/RglaFQRze+9epRET74ff38VoGOuqgKiVCD3lhuXvCiwBf97F
+         2v3w49nXuGFXmGNYVG6FtcdRLOSoessDDpYiy2G/aW7mZ6IOiwab0AtpkioM4xtZJxtg
+         6FSQ==
+X-Gm-Message-State: AAQBX9dbBTE3mUh7H0Gf/3fdBhv0I1aCx7bHTVCPE92QLKkx2ePHgpwo
+        w0ZseB++dMfdSW4tE8PgAk3ARA==
+X-Google-Smtp-Source: AKy350bNnkeouvV6lS7CSRyzxJBpdhSqncKW6XFCRpOwKjqeVcRUhCjyEbvbpaYbs+WoPeAlLZtROQ==
+X-Received: by 2002:a17:906:2f91:b0:94a:87d6:d39e with SMTP id w17-20020a1709062f9100b0094a87d6d39emr277861eji.58.1681504564643;
+        Fri, 14 Apr 2023 13:36:04 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ffae:8aab:ae5a:4688? ([2a02:810d:15c0:828:ffae:8aab:ae5a:4688])
+        by smtp.gmail.com with ESMTPSA id g25-20020a17090613d900b0094edfbd475csm1398229ejc.127.2023.04.14.13.36.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 13:32:25 -0700 (PDT)
-Message-ID: <ed35e238-77f4-862a-c536-97428ce03a2b@linaro.org>
-Date:   Fri, 14 Apr 2023 22:32:22 +0200
+        Fri, 14 Apr 2023 13:36:04 -0700 (PDT)
+Message-ID: <686577b9-7ddf-c05d-19d4-926a8b0a963a@linaro.org>
+Date:   Fri, 14 Apr 2023 22:36:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom,videocc: Add SM8350
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add KUNBUS GmbH
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org>
- <20230413-topic-lahaina_vidcc-v2-1-f721d507e555@linaro.org>
- <20faef75-9182-6e67-8ac5-c8234318ab64@linaro.org>
- <CAA8EJprnD0jSH7JvhoEnqhNxC55TeqCvvR64R7U8Ni7M93N2eQ@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAA8EJprnD0jSH7JvhoEnqhNxC55TeqCvvR64R7U8Ni7M93N2eQ@mail.gmail.com>
+        linux-kernel@vger.kernel.org,
+        Stefano Bossi <stefano.bossi@gmail.com>
+References: <20230414045747.5499-1-bruno.thomsen@gmail.com>
+ <45602a7e-9385-296b-d704-64cdf727f5db@linaro.org>
+ <CAH+2xPBe8Ef2YedghsxBwxUEiS_M-eVxyC4oScs2HeTM=4M_yg@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAH+2xPBe8Ef2YedghsxBwxUEiS_M-eVxyC4oScs2HeTM=4M_yg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,32 +78,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 14.04.2023 18:45, Dmitry Baryshkov wrote:
-> On Fri, 14 Apr 2023 at 18:18, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 14/04/2023 22:24, Bruno Thomsen wrote:
+> Den fre. 14. apr. 2023 kl. 09.58 skrev Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org>:
 >>
->> On 14/04/2023 13:26, Konrad Dybcio wrote:
->>> SM8350, like most recent higher-end chips has a separate clock
->>> controller block just for the Venus IP. Document it.
+>> On 14/04/2023 06:57, Bruno Thomsen wrote:
+>>> KUNBUS GmbH created the modular DIN-rail mounted open source hardware
+>>> platform called Revolution Pi for automation and IIoT projects.
+>>> https://www.kunbus.com/
 >>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>>  .../devicetree/bindings/clock/qcom,videocc.yaml    | 29 +++++++++++++
+>>> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+>>> Reviewed-by: Stefano Bossi <stefano.bossi@gmail.com>
 >>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> I do not see it being used in current next. We do not document all
+>> possible companies in the world. We document prefixes used in bindings.
 > 
-> Krzysztof, Konrad, would it make sense to split it into separate
-> bindings? After all, previous videocc bindings used clock-names, while
-> this one doesn't.
-I'm fine with either of these. Your call, Krzysztof.
+> I am going to use it in the board compatibility string for the Revolution Pi
+> DIN module device tree(s). So I send it separately to avoid spamming the
+> mailing list on every iteration of the board DT. But I can resend it when there
+> is a board patch that uses it.
 
-Konrad
-> 
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> 
+The best is to send it with the first patchset which introduces it.
+
+Best regards,
+Krzysztof
+
