@@ -2,98 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B806E26A9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5E106E26CE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Apr 2023 17:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231217AbjDNPSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Apr 2023 11:18:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
+        id S230430AbjDNPYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Apr 2023 11:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230498AbjDNPSB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:18:01 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17CD78A5A
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 08:17:51 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id xi5so46383430ejb.13
-        for <devicetree@vger.kernel.org>; Fri, 14 Apr 2023 08:17:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681485469; x=1684077469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9drcNPSM0KBR/CLrBwPG24/hlufSHekIX2GuAa0mc7s=;
-        b=DpYdX+CHD+F/+NFh7Oh0tAd/G7RToDYcGkhwE0Qp9T+/OXvLJkiThET18+0f2JhQR/
-         ytNVi+NL44SPs4QSFY3PVpySwPE8J67VT6ToVQyvHjhsbqre9DKC1GI64VmbIKZINwuQ
-         TBrs8yC9yasnwi7+34VIkrpYmsalcISpUyMIMxWPxhHm9W2fCutH/uqUiiwSFAM/Epgs
-         Z1vis+O0CuGzfD3ka/4FKW33Y7U1MqWS1c2LEqQ9ARD7gQ4stOYs+jI7cehgK/wmEphg
-         wt2mU3/FpPLYcZUff4OIPg4J8gaRgJ/VlB5oiirY18bTdXQllJmRfVm9GrR47BMFGojl
-         Czqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681485469; x=1684077469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9drcNPSM0KBR/CLrBwPG24/hlufSHekIX2GuAa0mc7s=;
-        b=hXXTvTXSIoEKqwXz++XmRQFY6DCvNf9spEcWvSoP+4An9efP9vGKb47eWUFTKzPWXH
-         iEwTCd4aLfsgpvu/nXG3D04dFSTLYeRt9xbaSBWTBN8c7kRLA0pzdUI+xECuApCVJOLC
-         Vk9FLLbwCy3e7Rl6A7tXAYaKJIg0CSnZzTp3SbkdTfsaCWhwDqq54OQ+F9EdYD3eHJ8y
-         7tnksAFkhVfuQ2x1kl5E+Ev8fnvR8QcNLxu19lSz/N4pQvIqjmsqe6GqSv8lr7npONGv
-         vg1fgBcFE3UtxmVVAuaSh8J6cpvv9ATgaiOr9HQu8c4ZiP7Jp05AQzzgahChB2gjpN+8
-         sJwQ==
-X-Gm-Message-State: AAQBX9cD/XGyIm9/ywLncpkLk6guPYd3kfWGLuixhCOOMBWbQ+BcIYC8
-        fFZFhl0HTnJI2RtCcZGXjZzjUQ==
-X-Google-Smtp-Source: AKy350Y1ovRQx1f10GgZ8oEgerwPzy42tM/K38eDatHEyM6Q0mtLluw+V3szHNhRcNBxfX4Yn4ti6g==
-X-Received: by 2002:a17:907:72d4:b0:94a:7da2:d339 with SMTP id du20-20020a17090772d400b0094a7da2d339mr7465159ejc.26.1681485469533;
-        Fri, 14 Apr 2023 08:17:49 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:39b7:81a0:bd41:17b1? ([2a02:810d:15c0:828:39b7:81a0:bd41:17b1])
-        by smtp.gmail.com with ESMTPSA id p25-20020a17090635d900b0094e75d3ba1bsm2575677ejb.131.2023.04.14.08.17.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 08:17:49 -0700 (PDT)
-Message-ID: <20faef75-9182-6e67-8ac5-c8234318ab64@linaro.org>
-Date:   Fri, 14 Apr 2023 17:17:48 +0200
+        with ESMTP id S230160AbjDNPYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Apr 2023 11:24:37 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DBC7AD36;
+        Fri, 14 Apr 2023 08:24:35 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id E52E95FD0A;
+        Fri, 14 Apr 2023 18:24:32 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1681485872;
+        bh=27rKXTxLIgcS+trNatx2a2CTSjoT7Q+aM89mbryOnzI=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=Uz8wBngDVIw48wLM/QWlmCJUlOirzMBsQEOG0xrZzrwXJanZJVT/GiLt80WLq3Q/2
+         EyqqOMbA3EFLL/k68vaZ9evR2Ck+1wGmj1NBcB0vzgULQt83DBTlLNDMhppj16lRiS
+         AgUSq4kYkuG+j9Mye2yaPZSQZuHJmcxqefSQ29d8bKGAANPo4TYT9pnOJNlkGUKfVI
+         NR6uRr1ozPk+9UQQu2Z73RuN0HOpVZJ2HdaEK+Jnx9Mz8p4nSlnjT8eB98IST+K0HE
+         n7qZ5kW2ExUxiV/saf4CctTFseoY2Remenf3CY5tFQqmoH2/upQbsr35n/AP8kx2gC
+         JoNVuwI3dz2QA==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri, 14 Apr 2023 18:24:30 +0300 (MSK)
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
+        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>, <mturquette@baylibre.com>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <hminas@synopsys.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC:     <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v1 0/5] arm64: meson: support Amlogic A1 USB OTG controller
+Date:   Fri, 14 Apr 2023 18:24:18 +0300
+Message-ID: <20230414152423.19842-1-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom,videocc: Add SM8350
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org>
- <20230413-topic-lahaina_vidcc-v2-1-f721d507e555@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230413-topic-lahaina_vidcc-v2-1-f721d507e555@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/14 08:08:00 #21104846
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 13:26, Konrad Dybcio wrote:
-> SM8350, like most recent higher-end chips has a separate clock
-> controller block just for the Venus IP. Document it.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../devicetree/bindings/clock/qcom,videocc.yaml    | 29 +++++++++++++
+This patch series introduces full support for the Amlogic A1 USB controller
+in OTG mode (peripheral and host modes switching).
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Previously, Amlogic's patch series [1] was applied to the upstream tree,
+but it only had USB host mode support.
+Furthermore, the device tree patchset [2] wasn't merged due to a missing
+clk driver.
+Patchset [2] has been completely reworked:
+    - changed register base offsets to proper values
+    - introduced dwc2 in peripheral mode
+    - OTG mode support
+    - the SoB of Amlogic authors still remain
 
-Best regards,
-Krzysztof
+Testing:
+    - USB OTG role switching between gadget and host - OK
+    - Peripheral mode - OK (tested with adb shell/push/pop)
+    - Host mode - OK (tested only USB enumeration and detection)
+
+Links:
+    [1] https://lore.kernel.org/all/1581990859-135234-1-git-send-email-hanjie.lin@amlogic.com/
+    [2] https://lore.kernel.org/all/1581990859-135234-4-git-send-email-hanjie.lin@amlogic.com/
+
+Dmitry Rokosov (5):
+  phy: amlogic: during USB PHY clkin obtaining, enable it
+  usb: dwc2: support dwc2 IP for Amlogic A1 SoC family
+  dt-bindings: usb: dwc2: add support for Amlogic A1 SoC USB peripheral
+  usb: dwc3-meson-g12a: support OTG switch
+  arm64: dts: meson: a1: support USB controller in OTG mode
+
+ .../devicetree/bindings/usb/dwc2.yaml         |  1 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 59 +++++++++++++++++++
+ drivers/phy/amlogic/phy-meson-g12a-usb2.c     |  2 +-
+ drivers/usb/dwc2/params.c                     | 21 +++++++
+ drivers/usb/dwc3/dwc3-meson-g12a.c            |  2 +-
+ 5 files changed, 83 insertions(+), 2 deletions(-)
+
+-- 
+2.36.0
 
