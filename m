@@ -2,73 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 896526E2FCE
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 10:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 627656E2FD2
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 10:56:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjDOIxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 04:53:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60148 "EHLO
+        id S229790AbjDOI4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 04:56:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjDOIxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 04:53:32 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8372740F1
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 01:53:30 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id fy21so8518805ejb.9
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 01:53:30 -0700 (PDT)
+        with ESMTP id S229733AbjDOI4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 04:56:53 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F197244A0
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 01:56:51 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id si1so21341541ejb.10
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 01:56:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681548809; x=1684140809;
+        d=linaro.org; s=google; t=1681549010; x=1684141010;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fOyFQ2wFGtSd8qaPjXT+9Ch8QWN9JK4V7LI6iLKCdxk=;
-        b=KkL4AGpMgpNBq83/uaElao2EPAjn0pkvMThOd8qWzeji4frQNXEIOAzf2Udim43+eZ
-         YBNVcGInTyrCgxWf7mmxEdfUTOPqTXDxBfHRjKQ005wWWC3bqaEK6heJYR67Ftuw0GDw
-         TQitN2A9iA/cGk8jdJ4yAYeREuQk0HN7QMFytVtAcCAOFe3by/QyW6n7oomKTF97laqq
-         yvx2LEza1inDiaSbdIRyeULiC715JlZK3XkIcQz7NR4a2+2GDqmw64LDy/i00rM1mQFr
-         UzuNBC+3pS3iD9dtR1YiJ7FvSIWk3GkkVIwapICUtvm0K8k2V3LSctQKv/ExTEgyInMh
-         Sz9w==
+        bh=KXiigblBzd+BU70FqSJL39EK8P2S//kVQiPcDPt1kOM=;
+        b=qUyroR2Rx6ySD4cu7xBoTwFmQ0VWRO91hHf2j72MweTnAhTQWNNHY7afg351BhTdhI
+         z8rmf2SR7zUyNGnOsI6rFaawC9DSUQnDl+973/VMxqh87Ie+vhiCDsg+d8Oqt8RMFBjo
+         tVM5BO0km1K98WvnDm9Tghc/wPfyegNDlYMP4cXPARTllXvFwqukkwG1spAxdpN5OGpp
+         PBLIFOqUiEzxu56ticch0MiNxb8CQRM10iZkVm4Y68pmzabbviUrzQwYLd4TAzJtlrlZ
+         xkUdlwAjXVYqWNaUcm1rmw8zHo+HyTQ57T9clKA2MMOPFP6YZ8jyH/VkfN3Y7DYc5+Qi
+         8Rnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681548809; x=1684140809;
+        d=1e100.net; s=20221208; t=1681549010; x=1684141010;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fOyFQ2wFGtSd8qaPjXT+9Ch8QWN9JK4V7LI6iLKCdxk=;
-        b=fulR9Cqv2UNyWg565dXvfUpOmrrXGFssZ0ZGbTrLapeHD7ZG6QgomDe6LH96BgnB7+
-         yIUISmI9xYnBsMAXs4gb7vGfhIebvEJIUxV4Fnmok1FZiftvjYBqT+rSmKuZ1ehi1I14
-         YdynOWhg32YIzSknHcyk8eSG4ni+mjwo97qR9Q65D0/auzB3FlhcpItKf1pngImNVaZf
-         Sjp2s2eR3diphCjSwl+EE64VGkieDnYdRQP0xlJ+BvM5cE64hPs4H2nDWkRFkdi5A4nI
-         g2YLoBmY7rLvPIM/S/kGbvQgyzH79Su6CtHuU1ncHa2YTLzD+rKcLTZX0TLTI0PtrF5W
-         1d8A==
-X-Gm-Message-State: AAQBX9f4485ViOWI4upVNXiKrU/4QWnZPjazrTWWf/Rrf3bOO3Ct8Zff
-        3EQ/jm8uXFhiRmTIr0NKIJ7EHA==
-X-Google-Smtp-Source: AKy350ZVKdn9XyFdxnaJQ81W2jGronzMUZ8Zykc6G0YKNLnZ8O0zBY9XHC+PhWEvrcKlpNB6yYKxiA==
-X-Received: by 2002:a17:906:6a94:b0:94c:a08c:3be2 with SMTP id p20-20020a1709066a9400b0094ca08c3be2mr1364721ejr.63.1681548808988;
-        Sat, 15 Apr 2023 01:53:28 -0700 (PDT)
+        bh=KXiigblBzd+BU70FqSJL39EK8P2S//kVQiPcDPt1kOM=;
+        b=EjpRY3gR772a5MFiyavg/54mwz1cXtgABOLJ3q1Ar3oIDgGiMi0vLbxIeZGDdZmyN7
+         Jup93azRh3SrqV+wht1BFUxKbCsYHjgh2/sHYGm5H3oLb54fShyJY71QylLGOtfcZ+UU
+         3Og7CjsXvk57kRstxV8rA0jOALEhuPQANFk3AGLkX0bnVCYvNG7L5L4cdg2WPVTxK4Oq
+         P/lZOJzAejX4Nw2WAOBz673jTPr9SYu7yiSWUTDsNX1E0AMQoPxu0A4KWkQSa/Bh+ktD
+         PCMF2cPs87dzotm2YU2cMWeBeftLi4uJ828OdzMS5N2JCtybbkKrWVwgQZqipCxro3Bu
+         0Q7w==
+X-Gm-Message-State: AAQBX9cDe021l/30N9RIqql8vRSqObSP0CBPL+SuR9lNMyQLb8pui6VH
+        InZ52gBGdeUlQraMtPP3+adFuA==
+X-Google-Smtp-Source: AKy350aXdBFMDe3uSpxc+jG1qjnrrpj7m+IRvlYTua3HuZ18VVDteVNpOizL7XlRnP++hK0nXFzJmQ==
+X-Received: by 2002:a17:906:755:b0:94f:2eb1:ffd2 with SMTP id z21-20020a170906075500b0094f2eb1ffd2mr257610ejb.40.1681549010444;
+        Sat, 15 Apr 2023 01:56:50 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a3bf:4ed:6c53:2a36? ([2a02:810d:15c0:828:a3bf:4ed:6c53:2a36])
-        by smtp.gmail.com with ESMTPSA id hu14-20020a170907a08e00b0094f2d38896esm193732ejc.65.2023.04.15.01.53.27
+        by smtp.gmail.com with ESMTPSA id sg44-20020a170907a42c00b0094c784f64fbsm3507553ejc.66.2023.04.15.01.56.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Apr 2023 01:53:28 -0700 (PDT)
-Message-ID: <cf45c33c-0604-0a37-3546-68ccc518c6de@linaro.org>
-Date:   Sat, 15 Apr 2023 10:53:27 +0200
+        Sat, 15 Apr 2023 01:56:49 -0700 (PDT)
+Message-ID: <d08d052e-6be6-92fa-a326-5227aba1c344@linaro.org>
+Date:   Sat, 15 Apr 2023 10:56:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v3 1/3] spi: dt-bindings: qcom,spi-qcom-qspi: Add iommus
+Subject: Re: [PATCH v4 1/8] media: dt-bindings: cadence-csi2rx: Convert to DT
+ schema
 Content-Language: en-US
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     quic_msavaliy@quicinc.com, dianders@chromium.org, mka@chromium.org,
-        swboyd@chromium.org, quic_vtanuku@quicinc.com
-References: <1681481153-24036-1-git-send-email-quic_vnivarth@quicinc.com>
- <1681481153-24036-2-git-send-email-quic_vnivarth@quicinc.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
+References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
+ <20230413035541.62129-2-jack.zhu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1681481153-24036-2-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <20230413035541.62129-2-jack.zhu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,13 +87,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 16:05, Vijaya Krishna Nivarthi wrote:
-> Add iommus binding for DMA mode support
+On 13/04/2023 05:55, Jack Zhu wrote:
+> Convert DT bindings document for Cadence MIPI-CSI2 RX controller to
+> DT schema format.
 > 
-> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+> For compatible, new compatibles should not be messed with conversion,
+> but the original binding did not specify any SoC-specific compatible
+> string, so add the StarFive compatible string.
+> 
+> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
 > ---
+>  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 ----------
+>  .../bindings/media/cdns,csi2rx.yaml           | 177 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
