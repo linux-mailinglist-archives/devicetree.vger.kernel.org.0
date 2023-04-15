@@ -2,137 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D9CB6E333F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 21:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BB66E3370
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 22:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbjDOTKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 15:10:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39532 "EHLO
+        id S230016AbjDOUND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 16:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjDOTKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 15:10:08 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FF403C0B;
-        Sat, 15 Apr 2023 12:10:07 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33FJ5bY5028214;
-        Sat, 15 Apr 2023 19:09:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=N3vL3RGfvK8GznC4j9MO7miYb9Yae3BnD+igqgQ/+S4=;
- b=aDw9JemMK0uvEMesppGvqOLQA7CQbSuDmvb3Ie7x5KqAtZVx7qxUhznH8n/ctG3o+VT4
- xfrD+ktL30M+qUexQPM12bqCKIUk4n3pH6QxJuF9HGwDXBuSWypx8N3i/Rxw3QxAnD+L
- xHeg+yAEDBzy7ps8OMC8LCRBYoCSMmWCt5TXoqT+FwUFnLzDRNZKu7ellaibM2Jdl34T
- qIixDRf9fmmJ2wFr8vDZ9/4QxTNY64esgtU/f+pxUO2/FNXe2j0mF9eYBrDYnw7MH3jA
- Vg6KHOgIwszESwxXY6PN2hk/ko3Q1bho938lwC2AyuN2m2FDpxCu9QpcO7xA41NXM+B/ 9Q== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pymmg0un6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 15 Apr 2023 19:09:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33FJ9drp002810
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 15 Apr 2023 19:09:39 GMT
-Received: from [10.216.37.89] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sat, 15 Apr
- 2023 12:09:32 -0700
-Message-ID: <f979b4c2-c0e8-6b43-796b-10c21ae4df75@quicinc.com>
-Date:   Sun, 16 Apr 2023 00:39:29 +0530
+        with ESMTP id S229989AbjDOUNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 16:13:02 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC54A2689;
+        Sat, 15 Apr 2023 13:13:01 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-63b5ce4f069so736990b3a.1;
+        Sat, 15 Apr 2023 13:13:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681589581; x=1684181581;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ac4/gKT5b6/9noaaMeqV09+9MVanu6JqxbGBWbuNNtw=;
+        b=pnICfcRMC5zJW6zd7L5SIzJmxGA0+FF4/T5vl51mB4zb0osPEA2/WFwZfE5RS0yBh/
+         GqA8se5FnzIbLPqtSA4LUi/hmtRI/nrqVdAJT+S4O7O6bK37IWv9ZBvgvse9C+YeVqEo
+         l4QAaVgFhRY1/i86dM1I7lZzC16Eqg7rrynnarRsP+OGvjEALlcoN7iBoBhoZz2WK8lx
+         5sYsguCOuUDIxrURqo1T7NOwh2eyAymmYVb0d/NiYgTN0l+QOiXaEYKLLqm/8pe8Y2zl
+         vnm2T22MolSYytmyUn+Mm8td5hi6yMYBRXyY5TNeYI9Zl3b3VmS1PGoLNDgl7iOAX0GJ
+         P+hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681589581; x=1684181581;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ac4/gKT5b6/9noaaMeqV09+9MVanu6JqxbGBWbuNNtw=;
+        b=J0ucUnOilLQtqxVg5S5JR/43zRm+iui3qSBOFwJ7ag4mn4byNl62mVxWgG2ZDMX32/
+         SchY4agccYakTSRzbT1qbsvPtMg6DAN/BFwMREaas2VPvW0hRTxztEG/lMGepmMMY9lu
+         kE7Ya4vjCY+WVBiDJX50KI/5K7Y94btu+l51KgH75Ebf0J1upEAz18ChN4UlW9l2QYOp
+         fMSC6DVT0RpE4xkn4uPlsWo0MJh4+eHj8SSd0xh0vadAI/8pe+bknIRCRHC9OTTOIUhI
+         +k15woo+LmrOvfVc3YGPGWvx7BDxvRQO2qscP5yWl0AqMhUftfuVKop0uWM3U7170ePN
+         T1/A==
+X-Gm-Message-State: AAQBX9e7ABS3B6w1nQXvpl35ZWTKLUsDwK5/JT//qqAjaC1lULZ7BO3a
+        fSLxJ4ubI4XVOBlHNZ0P2xE=
+X-Google-Smtp-Source: AKy350aTASezSjdDMkmYoTpUTGQAoa9iIV+w98sIMwNqUN9M6lufnA0E4sPt38Ew7iNabsq/kmWLxg==
+X-Received: by 2002:a05:6a00:1a13:b0:63b:7954:9881 with SMTP id g19-20020a056a001a1300b0063b79549881mr6274176pfv.28.1681589580927;
+        Sat, 15 Apr 2023 13:13:00 -0700 (PDT)
+Received: from localhost.localdomain ([2402:e280:218d:82:ae97:7cb6:b12a:54f5])
+        by smtp.gmail.com with ESMTPSA id x24-20020a62fb18000000b0062de9ef6915sm4926228pfm.216.2023.04.15.13.12.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Apr 2023 13:12:59 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        danascape@gmail.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        patches@opensource.cirrus.com, robh+dt@kernel.org
+Subject: [PATCH] ASoC: dt-bindings: wm8753: Convert to dtschema
+Date:   Sat, 15 Apr 2023 20:12:46 +0000
+Message-Id: <20230415201246.1200683-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <5d629ff3-c5ae-bd00-e70d-8c0d58365ce3@linaro.org>
+References: <5d629ff3-c5ae-bd00-e70d-8c0d58365ce3@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v6 8/8] arm64: dts: qcom: sa8540-ride: Enable first port
- of tertiary usb controller
-Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
-        <quic_wcheng@quicinc.com>, <quic_jackp@quicinc.com>,
-        <quic_harshq@quicinc.com>, <quic_shazhuss@quicinc.com>
-References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
- <20230405125759.4201-9-quic_kriskura@quicinc.com>
- <20230414155159.zmhkeoxwhxe5czm5@halaney-x13s>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <20230414155159.zmhkeoxwhxe5czm5@halaney-x13s>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: V8M1DKbwj9CQN79F062NW3Eb_Eceuf0E
-X-Proofpoint-GUID: V8M1DKbwj9CQN79F062NW3Eb_Eceuf0E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-15_10,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- bulkscore=0 malwarescore=0 mlxlogscore=605 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 impostorscore=0 spamscore=0
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304150177
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> You choose unusual bindings to convert to DT schema. It is fine but
+> honestly, less useful, with limited impact. This is an old, 12 year old
+> binding without users. Maybe it would be even removed by now...
+> I suggest converting ones which have a real impact - have users in DTS.
+> Otherwise you will be putting quite a lot of effort for no real gains...
+> because what is the difference between this binding being TXT and DT schema?
 
+I am converting these bindings as part of my GSoC project where I need to convert
+as many files as possible during the given tenure, I am slowly trying to read files
+in other subsystems too and will push patches for other subsystems too.
+Is it fine?
 
-On 4/14/2023 9:21 PM, Andrew Halaney wrote:
-> On Wed, Apr 05, 2023 at 06:27:59PM +0530, Krishna Kurapati wrote:
->> Enable first port of Quad port Tertiary USB controller for SA8540 Ride.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> 
-> This is nitpicky, but I liked some of the description in the first[0]
-> version of this patch that I authored for you:
-> 
->      From dcb27d07f079194ebd7efe1c9bec64da78beb290 Mon Sep 17 00:00:00 2001
->      From: Andrew Halaney <ahalaney@redhat.com>
->      Date: Thu, 19 Jan 2023 14:53:38 -0600
->      Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: Enable usb_2
->      Content-type: text/plain
-> 
->      There is now support for the multiport USB controller this uses
->      so enable it.
-> 
->      The board only has a single port hooked up (despite it being wired up to
->      the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
->      which by default on boot is selected to mux properly. Grab the gpio
->      controlling that and ensure it stays in the right position so USB 2.0
->      continues to be routed from the external port to the SoC.
-> 
->      Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> 
-> Specifically the bit helping explain what the mux, its default state,
-> etc are things I find explain some of the hardware/patch better. Personal
-> opinion of course but I'll highlight it since you dropped it out :)
-> 
-> [0] https://lore.kernel.org/linux-arm-msm/20230119220942.ja5gbo3t3fl63gpy@halaney-x13s/
-> 
-> Either way, thanks for taking the patch along and working on this.
-> 
-> Thanks,
-> Andrew
-> 
+About the part where you suggested to convert the txt into a single YAML, shall I
+continue working on them? As I can see Mark merged the previous 2 patches to linux-next
 
-Hi Andrew, Sorry for that. Will make sure to update the commit text with 
-this info in the next version.
+Kind Regards,
 
-Regards,
-Krishna,
+Saalim
