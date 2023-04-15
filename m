@@ -2,240 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C08826E3154
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 14:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B37F16E3167
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 14:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjDOMQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 08:16:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48540 "EHLO
+        id S229753AbjDOMr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 08:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjDOMQS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 08:16:18 -0400
-Received: from smtp.smtpout.orange.fr (smtp-18.smtpout.orange.fr [80.12.242.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2390193
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 05:16:15 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-        by smtp.orange.fr with ESMTPA
-        id nep7pQmHwxZmMnep7pYjtW; Sat, 15 Apr 2023 14:16:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orange.fr;
-        s=t20230301; t=1681560973;
-        bh=oaPZSLKdrABf1h1Krxj/JAchE9UFaxR56+UJQa8Br+c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=VxL/oOX0wNjy5nN1pSUJEJaCRISTlLLgnQt25YBRmaUAafnO+qqd4SDR6ttBOwgeK
-         4/ap2fK6aU4pyRiHsl7oEKcJRFc/EtjXX35bNzs9i7UKaYvVCNeEBIyF63+0l1aoBw
-         kMBQPkx9GrXubTccZWX3sgVxX7+iA/UFWvzAthok6JJK2f+al44GHWIlI16C5eyt/T
-         EugS05IB1hoIcNkBGVUhthXrM6YdfATY6sqqeV4m9cU1zOM/+sNYtivNv/O0MpHHRW
-         Xb4tkYeRiMUuHgELPgFZ1VOSO5AklvXSg8FbAvqBIbkBZsxBUHOB8Uc9/W7YktdUed
-         y2D7NffMlsGNg==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 15 Apr 2023 14:16:13 +0200
-X-ME-IP: 86.243.2.178
-Message-ID: <c04038f2-b7aa-7c37-df93-6950831579f6@wanadoo.fr>
-Date:   Sat, 15 Apr 2023 14:16:09 +0200
+        with ESMTP id S229481AbjDOMr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 08:47:26 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0707449F;
+        Sat, 15 Apr 2023 05:47:19 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33FCl94k058808;
+        Sat, 15 Apr 2023 07:47:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681562829;
+        bh=sb0FhD/LvwwWn6UVgXTwyf8MfqPC7ltsVNVDTgc/s2M=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=QDQgQiYwVuBe3q62Hmw9OoK4HiViFw5WAh26VXX6UwXcI74PUTPaYn4IHrBnhDHZh
+         nmh5y32NvXcXhfCq3V6UC6ouqT8cQ5HJEU2KBG4eo7KWD2XL5Gnr2tX0p4s2xXtzsw
+         XxD2FTSE4IYVbgF4pOpQpj+/cFfkp0IY9yoS0LkQ=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33FCl9bl037598
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 15 Apr 2023 07:47:09 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sat, 15
+ Apr 2023 07:47:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sat, 15 Apr 2023 07:47:09 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33FCl90K046000;
+        Sat, 15 Apr 2023 07:47:09 -0500
+Date:   Sat, 15 Apr 2023 07:47:09 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     "Kumar, Udit" <u-kumar1@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <bb@ti.com>,
+        <vaishnav.a@ti.com>, <j-choudhary@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j7200-common-proc-board: Enable
+ I2C
+Message-ID: <20230415124709.fazcyqe5zfnbcrbc@jogging>
+References: <20230414181434.2046049-1-u-kumar1@ti.com>
+ <20230414181434.2046049-3-u-kumar1@ti.com>
+ <20230414182401.2yfpwjug3naiwesi@quicksand>
+ <b360dfd0-3dd3-996c-a9b6-1af770c4015b@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 2/2] clk: wpcm450: Add Nuvoton WPCM450 clock/reset
- controller driver
-To:     j.neuschaefer@gmx.net
-Cc:     avifishman70@gmail.com, benjaminfair@google.com,
-        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux@roeck-us.net, mturquette@baylibre.com,
-        openbmc@lists.ozlabs.org, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, sboyd@kernel.org, tali.perry1@gmail.com,
-        tglx@linutronix.de, tmaimon77@gmail.com, venture@google.com,
-        wim@linux-watchdog.org, yuenn@google.com
-References: <20230415111355.696738-1-j.neuschaefer@gmx.net>
- <20230415111355.696738-3-j.neuschaefer@gmx.net>
-Content-Language: fr
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20230415111355.696738-3-j.neuschaefer@gmx.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <b360dfd0-3dd3-996c-a9b6-1af770c4015b@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 15/04/2023 à 13:13, Jonathan Neuschäfer a écrit :
-> This driver implements the following features w.r.t. the clock and reset
-> controller in the WPCM450 SoC:
-> 
-> - It calculates the rates for all clocks managed by the clock controller
-> - It leaves the clock tree mostly unchanged, except that it enables/
->    disables clock gates based on usage.
-> - It exposes the reset lines managed by the controller using the
->    Generic Reset Controller subsystem
-> 
-> NOTE: If the driver and the corresponding devicetree node are present,
->        the driver will disable "unused" clocks. This is problem until
->        the clock relations are properly declared in the devicetree (in a
->        later patch). Until then, the clk_ignore_unused kernel parameter
->        can be used as a workaround.
-> 
-> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer-hi6Y0CQ0nG0@public.gmane.org>
-> ---
-
+On 09:36-20230415, Kumar, Udit wrote:
 [...]
 
-> +
-> +static void __init wpcm450_clk_init(struct device_node *clk_np)
-> +{
-> +	struct clk_hw_onecell_data *clk_data;
-> +	static struct clk_hw **hws;
-> +	static struct clk_hw *hw;
-> +	void __iomem *clk_base;
-> +	int i, ret;
-> +	struct reset_simple_data *reset;
-> +
-> +	clk_base = of_iomap(clk_np, 0);
-> +	if (!clk_base) {
-> +		pr_err("%pOFP: failed to map registers\n", clk_np);
-> +		of_node_put(clk_np);
-> +		return;
-> +	}
-> +	of_node_put(clk_np);
-> +
-> +	clk_data = kzalloc(struct_size(clk_data, hws, WPCM450_NUM_CLKS), GFP_KERNEL);
-> +	if (!clk_data)
-> +		goto err_unmap;
-> +
-> +	clk_data->num = WPCM450_NUM_CLKS;
-> +	hws = clk_data->hws;
-> +
-> +	for (i = 0; i < WPCM450_NUM_CLKS; i++)
-> +		hws[i] = ERR_PTR(-ENOENT);
-> +
-> +	// PLLs
-> +	for (i = 0; i < ARRAY_SIZE(pll_data); i++) {
-> +		const struct wpcm450_pll_data *data = &pll_data[i];
-> +
-> +		hw = wpcm450_clk_register_pll(clk_base + data->reg, data->name,
-> +					      &data->parent, data->flags);
-> +		if (IS_ERR(hw)) {
-> +			pr_info("Failed to register PLL: %pe", hw);
-> +			goto err_free;
-> +		}
-> +	}
-> +
-> +	// Early divisors (REF/2)
-> +	for (i = 0; i < ARRAY_SIZE(clkdiv_data_early); i++) {
-> +		const struct wpcm450_clkdiv_data *data = &clkdiv_data_early[i];
-> +
-> +		hw = clk_hw_register_divider_table_parent_data(NULL, data->name, &data->parent,
-> +							       data->flags, clk_base + REG_CLKDIV,
-> +							       data->shift, data->width,
-> +							       data->div_flags, data->table,
-> +							       &wpcm450_clk_lock);
-> +		if (IS_ERR(hw)) {
-> +			pr_err("Failed to register div table: %pe\n", hw);
-> +			goto err_free;
-> +		}
-> +	}
-> +
-> +	// Selects/muxes
-> +	for (i = 0; i < ARRAY_SIZE(clksel_data); i++) {
-> +		const struct wpcm450_clksel_data *data = &clksel_data[i];
-> +
-> +		hw = clk_hw_register_mux_parent_data(NULL, data->name, data->parents,
-> +						     data->num_parents, data->flags,
-> +						     clk_base + REG_CLKSEL, data->shift,
-> +						     data->width, 0,
-> +						     &wpcm450_clk_lock);
-> +		if (IS_ERR(hw)) {
-> +			pr_err("Failed to register mux: %pe\n", hw);
-> +			goto err_free;
-> +		}
-> +		if (data->index >= 0)
-> +			clk_data->hws[data->index] = hw;
-> +	}
-> +
-> +	// Divisors
-> +	for (i = 0; i < ARRAY_SIZE(clkdiv_data); i++) {
-> +		const struct wpcm450_clkdiv_data *data = &clkdiv_data[i];
-> +
-> +		hw = clk_hw_register_divider_table_parent_data(NULL, data->name, &data->parent,
-> +							       data->flags, clk_base + REG_CLKDIV,
-> +							       data->shift, data->width,
-> +							       data->div_flags, data->table,
-> +							       &wpcm450_clk_lock);
-> +		if (IS_ERR(hw)) {
-> +			pr_err("Failed to register divider: %pe\n", hw);
-> +			goto err_free;
-> +		}
-> +	}
-> +
-> +	// Enables/gates
-> +	for (i = 0; i < ARRAY_SIZE(clken_data); i++) {
-> +		const struct wpcm450_clken_data *data = &clken_data[i];
-> +
-> +		hw = clk_hw_register_gate_parent_data(NULL, data->name, &data->parent, data->flags,
-> +						      clk_base + REG_CLKEN, data->bitnum,
-> +						      data->flags, &wpcm450_clk_lock);
-
-If an error occures in the 'for' loop or after it, should this be 
-clk_hw_unregister_gate()'ed somewhere?
-
-CJ
-
-> +		if (IS_ERR(hw)) {
-> +			pr_err("Failed to register gate: %pe\n", hw);
-> +			goto err_free;
-> +		}
-> +		clk_data->hws[data->bitnum] = hw;
-> +	}
-> +
-> +	ret = of_clk_add_hw_provider(clk_np, of_clk_hw_onecell_get, clk_data);
-> +	if (ret)
-> +		pr_err("Failed to add DT provider: %d\n", ret);
-> +
-> +	// Reset controller
-> +	reset = kzalloc(sizeof(*reset), GFP_KERNEL);
-> +	if (!reset)
-> +		goto err_free;
-> +	reset->rcdev.owner = THIS_MODULE;
-> +	reset->rcdev.nr_resets = WPCM450_NUM_RESETS;
-> +	reset->rcdev.ops = &reset_simple_ops;
-> +	reset->rcdev.of_node = clk_np;
-> +	reset->membase = clk_base + REG_IPSRST;
-> +	ret = reset_controller_register(&reset->rcdev);
-> +	if (ret)
-> +		pr_err("Failed to register reset controller: %d\n", ret);
-> +
-> +	of_node_put(clk_np);
-> +	return;
-> +
-> +err_free:
-> +	kfree(clk_data->hws);
-> +err_unmap:
-> +	iounmap(clk_base);
-> +	of_node_put(clk_np);
-> +}
-> +
-> +CLK_OF_DECLARE(wpcm450_clk_init, "nuvoton,wpcm450-clk", wpcm450_clk_init);
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 2a52c990d4fec..16e111d213560 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -208,7 +208,7 @@ config RESET_SCMI
-> 
->   config RESET_SIMPLE
->   	bool "Simple Reset Controller Driver" if COMPILE_TEST || EXPERT
-> -	default ARCH_ASPEED || ARCH_BCMBCA || ARCH_BITMAIN || ARCH_REALTEK || ARCH_STM32 || (ARCH_INTEL_SOCFPGA && ARM64) || ARCH_SUNXI || ARC
-> +	default ARCH_ASPEED || ARCH_BCMBCA || ARCH_BITMAIN || ARCH_REALTEK || ARCH_STM32 || (ARCH_INTEL_SOCFPGA && ARM64) || ARCH_SUNXI || ARC || ARCH_WPCM450
->   	depends on HAS_IOMEM
->   	help
->   	  This enables a simple reset controller driver for reset lines that
-> --
-> 2.39.2
+> > > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> > > index 63633e4f6c59..e66bbfe65ff2 100644
+> > > --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> > > +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> > > @@ -254,6 +254,10 @@ exp3: gpio@20 {
+> > >   	};
+> > >   };
+> > > +&wkup_i2c0 {
+> > > +	status = "okay";
+> > How about the pinmux? speed? what peripheral is on the wakeup i2c?
+> > 
+> > 	Do we have an eeprom or something here?
 > 
 > 
+> This got eeprom and PMIC,
+> 
+> eeprom read is ok with pin mux and speed.
+> 
+> if you want to specify, let me know
 
+yes, you must specify eeprom at least. I understand pmic is in
+discussion atm [1], So, that can be resolved seperately.
+
+Also if the eeprom is on the SoM, you should add this in the SoM dtsi,
+not the baseboard dtsi.
+
+[1] https://lore.kernel.org/all/714a56b1-438c-7aad-920b-f3f1d72afc5f@linaro.org/
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
