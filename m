@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FE926E338F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 22:37:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EFB76E3447
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 00:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbjDOUhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 16:37:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52102 "EHLO
+        id S229984AbjDOWcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 18:32:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjDOUhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 16:37:00 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5531FD6;
-        Sat, 15 Apr 2023 13:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681591017; x=1713127017;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9iZGajGkwfSEo9OapwAQBNWHmJAD3OotwdQ+yG7ORnU=;
-  b=EPfiBzVW1SnqzvMOn11S6YD3qG+AjVr3KnjuW43WolpwGcSIwYahvPZP
-   8JsTyBuroBDgRC+NggQLfmSgTMDwoScCaRfTV5anUcymVsE1/xx5ociK/
-   PERsbfNMaSxLfTmRc2Lu7BOFNVxG8m7+6lgHXQHkFFlEBqD8iudMoMm/d
-   SRxvVBd23VCti0iL5XiRqhWxnueKHPIVRaWkFsM7ugl/VSQ3bAPkO3fLO
-   XmQaq7e6eDRSXLuuyVHnHBjGhZj6ZbFJ/hAz7SukJlPDxa/YH8qJlb+4e
-   Edo4Gg4ZodG52eBIlcYnBu2Lvcixb3txAGmKWjP0bbYU/DOuuQFIJuMkz
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10681"; a="333466728"
-X-IronPort-AV: E=Sophos;i="5.99,200,1677571200"; 
-   d="scan'208";a="333466728"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2023 13:36:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10681"; a="720690216"
-X-IronPort-AV: E=Sophos;i="5.99,200,1677571200"; 
-   d="scan'208";a="720690216"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 15 Apr 2023 13:36:53 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pnmdh-000bLD-0S;
-        Sat, 15 Apr 2023 20:36:53 +0000
-Date:   Sun, 16 Apr 2023 04:36:29 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jonathan McDowell <noodles@earth.li>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
-Message-ID: <202304160423.TaGIRb5X-lkp@intel.com>
-References: <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+        with ESMTP id S229541AbjDOWcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 18:32:04 -0400
+X-Greylist: delayed 361 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 15 Apr 2023 15:32:01 PDT
+Received: from forward501c.mail.yandex.net (forward501c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d501])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80B030F5
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 15:32:01 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:992a:0:640:c3bc:0])
+        by forward501c.mail.yandex.net (Yandex) with ESMTP id 0B8D95E4FA;
+        Sun, 16 Apr 2023 01:25:58 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id rPiwCiZWr8c0-9qdmcQtV;
+        Sun, 16 Apr 2023 01:25:56 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ioremap.net; s=mail; t=1681597557;
+        bh=j6QL5cAd6kmENaJ82LDvshMMXQELa95dKR1dUFlpYmE=;
+        h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+        b=KaRSxOwkFKngw62Mbq9RoV51ofVHld/zLGoioK+9FWyilxZT2EsW222DYznSvgdrT
+         7Rc//KVRiQ5bRdqCNuHZX4LAgcJlHMQ9mNXS0o1qanoaGGax8OkT//rCNVnF7Z/24H
+         JTMUIVhEess3Tjq0Zg7h1iT8bBbc+aOxoXFhLSbg=
+Authentication-Results: mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net; dkim=pass header.i=@ioremap.net
+Message-ID: <daa72583-922f-4ed5-f7e9-36423dd899a0@ioremap.net>
+Date:   Sat, 15 Apr 2023 23:25:53 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V5 2/6] dt-bindings: w1: Add DS2482/DS2484 I2C to 1-W
+ bridges
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>
+References: <20230404080243.9613-1-stefan.wahren@chargebyte.com>
+ <20230404080243.9613-3-stefan.wahren@chargebyte.com>
+ <20230404133937.GA3778861-robh@kernel.org>
+ <e2afed14-fed3-772c-3acc-dc132b5a1078@i2se.com>
+ <2023040651-baboon-busybody-6175@gregkh>
+ <bdcf41d5-cd61-1e95-0b21-b8fe401644bd@ioremap.net>
+ <dc794f94-42ff-33a5-facc-5fe09f6da295@linaro.org>
+ <4649763c-4355-758e-dcdc-5bdb4277c441@linaro.org>
+From:   Evgeniy Polyakov <zbr@ioremap.net>
+In-Reply-To: <4649763c-4355-758e-dcdc-5bdb4277c441@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+Hi Krzysztof
 
-kernel test robot noticed the following build errors:
+On 15/04/2023 10:34, Krzysztof Kozlowski wrote:
+>>> Thank you for the patches Stefan, but I'm no longer a w1 maintainer,
+>>> sorry I haven't updated the maintainers file, please send all w1 patches
+>>> to Greg.
+>>
+>> Thanks Evgeniy.
+>>
+>> If the one-wire subsystem is orphaned, I can manage the patches to
+>> offload Greg a bit.
+> 
+> There was not feedback on my proposal, which I am optimistically going
+> to understand as "go ahead". :)
+> 
+> I'll send a patch, assuming Evgeniy that you are not planning to
+> maintain w1 anymore and a new maintainer would be useful.
 
-[auto build test ERROR on sunxi/sunxi/for-next]
-[also build test ERROR on robh/for-next krzk/for-next krzk-dt/for-next krzk-mem-ctrl/for-next linus/master v6.3-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Greg has been managing all the w1 patches for last years and as far as I 
+understand, in particular since I stepped out, I'm totally not against 
+anyone picking up the queue from him or doing it the way I've been doing 
+through his tree, but please discuss it with him and come up with the 
+solution which works best, I have no word in it.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-McDowell/ARM-dts-sun5i-chip-Enable-bluetooth/20230416-014856
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
-patch link:    https://lore.kernel.org/r/f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles%40earth.li
-patch subject: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20230416/202304160423.TaGIRb5X-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7eb91ccc0e287519d5df2e97e81c3bee553e3535
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jonathan-McDowell/ARM-dts-sun5i-chip-Enable-bluetooth/20230416-014856
-        git checkout 7eb91ccc0e287519d5df2e97e81c3bee553e3535
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304160423.TaGIRb5X-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm/boot/dts/sun5i-r8-chip.dts:262.1-2 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Thank you.
