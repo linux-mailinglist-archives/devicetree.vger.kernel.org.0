@@ -2,64 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C62C6E2FBB
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 10:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0DD6E2FC8
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 10:51:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjDOIba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 04:31:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55636 "EHLO
+        id S229574AbjDOIv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 04:51:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbjDOIb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 04:31:28 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D352112;
-        Sat, 15 Apr 2023 01:31:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681547486; x=1713083486;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Bt+KZdRCXHcYjBL+CJ4plANJoXCVg/BAm9vKQVmi004=;
-  b=QIG0JjEuN3t0FB0SPVBLHCm3XFJUjLfjQWZHyV4P/P6wK6wPKYgNKvXz
-   10TIq2z4WbY2AUwAw3d1C+2I44Vf82X8rkOQux4BNK/ivY2gQPfWIU5AS
-   8xLtGNi9dl3VFrxPzXpOEuYuvfMNHkYJ6dQGSrLiaxFwgHXrex50yPK7L
-   dMIj/SLY2VmmUzlsIBj+3V0ExHsyOlNDoVdiRSyFVUgwKXLN/vVevkZuq
-   V2+s2xLxkAHYPRK6bu6BSoR+oBx2YTEV1L2ZKEiyuRzeqIbxkWNNY1UlO
-   lVkebqPQpMHiUXA0oNSYU7pzQroU2Qf53bWKnXNY24DUBFj8Zune6FXjo
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="346470702"
-X-IronPort-AV: E=Sophos;i="5.99,199,1677571200"; 
-   d="scan'208";a="346470702"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2023 01:31:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="692720900"
-X-IronPort-AV: E=Sophos;i="5.99,199,1677571200"; 
-   d="scan'208";a="692720900"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 15 Apr 2023 01:31:22 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pnbJa-000ajf-0s;
-        Sat, 15 Apr 2023 08:31:22 +0000
-Date:   Sat, 15 Apr 2023 16:30:47 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Kim Seer Paller <kimseer.paller@analog.com>, lars@metafoo.de,
-        jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, kimseer.paller@analog.com
-Subject: Re: [PATCH 1/2] dt-bindings:iio:adc: add max14001 bindings
-Message-ID: <202304151615.k0j79iDf-lkp@intel.com>
-References: <20230414102844.21579-1-kimseer.paller@analog.com>
+        with ESMTP id S229546AbjDOIvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 04:51:55 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00C640E1
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 01:51:53 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id gc14so6365988ejc.5
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 01:51:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681548712; x=1684140712;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=727pFB0FjNdVpuuxEzPiPIWkdzw9KyCLThLHjRqD2eQ=;
+        b=lRQjOACQ945GGlASX3gK/8NJ2LavL17Q9KB6T+XTYMzJz8cUarJhJrrbZLSgJmaAfK
+         35KaE66Yda5UmRDeD0GwhnzQJ66L+WszeeFIT8YCAsz0BO3DI7v3dsYINa5cu9tpQB/D
+         hYIn/BUyHvm9Zt3gBFR0i9t8hl9RE3WYgMgagzE9GIvYRUSJVTnFN4dIlIZua5HFDwvH
+         1twvgqSElT9TltVISyOO5mIZfPvLlJ4C7M+7FPDWvawtfwT6GlxPwGTMtaGIFMuGhict
+         KxAnMCCukC9WTv5lIZQyIsi/+dBPAd3QsyyDBdPopNG6XV72gP9dqEHg/j0todk2jV/b
+         GryA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681548712; x=1684140712;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=727pFB0FjNdVpuuxEzPiPIWkdzw9KyCLThLHjRqD2eQ=;
+        b=cMSvIEO5CwtPQjVacZUtCjuPxMIEjIlxmzvbvfmevhMrNslG+jMCwQO/U2b9uMPE0t
+         WLv+3mSpF6E+xTFK+tlQ2kaXEn/56QX+BXIO/kwZm5gKk1vQIYoBLFeHWRYKJGw/9Xbq
+         9zQrlc4OOWL/TkU44mragrB3F2Z76BvajSMj07o2SRicyZ1M7soeK4hha1jQkyUvAegf
+         8CzdmJwMW8dKEWjo/3pvu7GFdztGkXeQbGEDyCLotJI3jvjvLMpTta25ZbiHUerHiISq
+         pzBViGDaXgx+9uIO+3HYZSLIvWAi2NAgPiYeJRSy555yV8iaCm9iYO63V72dUezSkHu8
+         wpGQ==
+X-Gm-Message-State: AAQBX9dujxXqMgpU+miovF3w4hgvlgiifuJLHPL/711Dq27m17bHzLs1
+        73v5g9RsJ4BrRChPf+qOCcZrnw==
+X-Google-Smtp-Source: AKy350b+paIPDOmroqwsh6MSvE6G8YXP/c1DRY4EhfNdOp2c8An4cPaK9RA0npi1LeYJFmQWlUBWYQ==
+X-Received: by 2002:a17:907:3112:b0:880:a42d:dfb4 with SMTP id wl18-20020a170907311200b00880a42ddfb4mr1330403ejb.16.1681548712153;
+        Sat, 15 Apr 2023 01:51:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a3bf:4ed:6c53:2a36? ([2a02:810d:15c0:828:a3bf:4ed:6c53:2a36])
+        by smtp.gmail.com with ESMTPSA id i3-20020a1709061e4300b0092b8c1f41ebsm3481507ejj.24.2023.04.15.01.51.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 15 Apr 2023 01:51:51 -0700 (PDT)
+Message-ID: <b848415b-c697-60e9-dca2-97ef612e2a85@linaro.org>
+Date:   Sat, 15 Apr 2023 10:51:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230414102844.21579-1-kimseer.paller@analog.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v10 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+To:     Ryan Chen <ryan_chen@aspeedtech.com>, jk@codeconstruct.com.au,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-i2c@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20230415012848.1777768-1-ryan_chen@aspeedtech.com>
+ <20230415012848.1777768-2-ryan_chen@aspeedtech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230415012848.1777768-2-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,37 +93,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kim,
+On 15/04/2023 03:28, Ryan Chen wrote:
+> Add ast2600-i2cv2 compatible and aspeed,global-regs, aspeed,enable-dma
+> and description for ast2600-i2cv2.
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.3-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kim-Seer-Paller/iio-adc-add-max14001-support/20230414-183416
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20230414102844.21579-1-kimseer.paller%40analog.com
-patch subject: [PATCH 1/2] dt-bindings:iio:adc: add max14001 bindings
-reproduce:
-        # https://github.com/intel-lab-lkp/linux/commit/8e4267ba9a592dc820ad029c5e602098ec981159
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Kim-Seer-Paller/iio-adc-add-max14001-support/20230414-183416
-        git checkout 8e4267ba9a592dc820ad029c5e602098ec981159
-        make menuconfig
-        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
-        make htmldocs
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304151615.k0j79iDf-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/iio/dac/adi,max14001.yaml
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
