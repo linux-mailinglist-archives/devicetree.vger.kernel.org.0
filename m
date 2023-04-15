@@ -2,125 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3BCA6E328B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 18:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 026B76E32C7
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 19:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjDOQtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 12:49:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56350 "EHLO
+        id S229845AbjDOROJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 13:14:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjDOQtq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 12:49:46 -0400
+        with ESMTP id S229574AbjDOROI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 13:14:08 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52245E1;
-        Sat, 15 Apr 2023 09:49:45 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A2710E7;
+        Sat, 15 Apr 2023 10:14:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E14D86118B;
-        Sat, 15 Apr 2023 16:49:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22A85C433EF;
-        Sat, 15 Apr 2023 16:49:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CE2D960B00;
+        Sat, 15 Apr 2023 17:14:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 25E28C4339B;
+        Sat, 15 Apr 2023 17:14:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681577384;
-        bh=HzfT7C9pxZUKfBOzD0bn0wIBd5ovSSU49etyxQMRn4s=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=aBYgLqucsTTarCKTBL3wdnwg6i8sqBa804UW2EET+CKcXHntwF3129XIKFpOEhB74
-         5bj5xri8We8v9A+D08305ckbNN91Rtfm/Gr4W4awR6XD0C8iqS7/HvhON+nfc80uYB
-         Y9ykEn/YDDdsiwALjAy4XMLfafRnUV6reZ8hliEb1BeCr7M+sHsS4C2R6Yf+jpOGVX
-         1AcI3IbBksAxbLurcRqzVEeLm0z9G7JHmwE5q536S1/xasJpntZaTWZKzEnDRR4EVC
-         YjIrBDvqauhSg5VPr2ahuQM9ByvNSG34ccFZMG+Ts6vgDM34WH4eXx29T5ZTT9jOVk
-         XRmheW/YpuW5A==
-Date:   Sat, 15 Apr 2023 17:49:43 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        s=k20201202; t=1681578846;
+        bh=/jSsoNxOvU8LSy+l6NwzbNJ7bw9nm6AcIP7OOw8z6pQ=;
+        h=From:Subject:Date:To:Cc:Reply-To:From;
+        b=Lat7VnNXQ6AoNm2PHANEyrOZERv7dzW5MJn3a+tKFjsDFx9iQgxyy3ZTscQGK2xaQ
+         OyUrhpqLPWwaMg18/n8RsqiCnoqomSShiJ0dk4lvISqoj3vBCKToedpAs2JtYHL7Ii
+         7+INKhM6HhZx4ixo8majrNGBgiITShvept6RdDIfzEafvmnvQWtDmAYodi3tXDFa/Z
+         x4oxvCRLWyaUe9K9vJIFDunXTYvVQzKRHR7LapxTv7Q1HnbT12nl5nFz+BBF42P8My
+         TNjb3PO5uAIF8UIKfLW60Z2h1CIYzHiaSVwdnTvZwWtx8aMO88M1dIJpGkw0aE09xv
+         EA24JZOqEJUIA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.lore.kernel.org (Postfix) with ESMTP id 08CFAC77B77;
+        Sat, 15 Apr 2023 17:14:06 +0000 (UTC)
+From:   Yang Xiwen via B4 Relay 
+        <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH RFC v2 0/3] mmc: add support for the dw-mmc controller on
+ Hi3798MV200
+Date:   Sun, 16 Apr 2023 01:13:15 +0800
+Message-Id: <20230415-mmc-hi3798mv200-v2-0-1d274f9b71da@outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACvbOmQC/3WNyw7CIBQFf8XctRigD4srExM/wK3pgsdViFIMV
+ KJp+u/S7l3OOZnMBAmjwwSHzQQRs0suDAX4dgPayuGOxJnCwCmvaM0a4r0m1lV70fnMKSUaWYN
+ CibZrWyiWkgmJinLQdvG8TCPG5XhFvLnPmrrC5XyCvozWpTHE75rPbL3+ljIjlBjVKMGMqISpj
+ +E9PkN47HTw0M/z/AN2fUw/zgAAAA==
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] dt-bindings: iio: adc: Require generic `channel`
- name for channel nodes
-Message-ID: <20230415174943.2b731203@jic23-huawei>
-In-Reply-To: <c653un4emxud34gpo5np7jtnhsym5thpivjwcgpm2vsft2q2qj@s66thxonibjc>
-References: <20230410202917.247666-1-marijn.suijten@somainline.org>
-        <20230410202917.247666-6-marijn.suijten@somainline.org>
-        <20230412212756.0b4b69f3@jic23-huawei>
-        <c653un4emxud34gpo5np7jtnhsym5thpivjwcgpm2vsft2q2qj@s66thxonibjc>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Yang Xiwen <forbidden405@outlook.com>
+Cc:     tianshuliang <tianshuliang@hisilicon.com>,
+        Jiancheng Xue <xuejiancheng@hisilicon.com>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        David Yang <mmyangfl@gmail.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681578841; l=1327;
+ i=forbidden405@outlook.com; s=20230415; h=from:subject:message-id;
+ bh=/jSsoNxOvU8LSy+l6NwzbNJ7bw9nm6AcIP7OOw8z6pQ=;
+ b=l4JXNZc79E2xwFXSVxovtxTQvUrpZAmERG0HzQvNBiv1O1kOh4Np5tlJxusfjwJbQDhwaU3lw
+ 48Dst+MG4HkC/nYlTtZygyY4WmHuE7CeSnQ4gSXvc4Yz3t6HzgOvWS9
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=hfdpPU3AXR+t7fdv58tXCD4UzRNq+fop2TMJezFlAhM=
+X-Endpoint-Received: by B4 Relay for forbidden405@outlook.com/20230415 with auth_id=44
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Apr 2023 22:31:46 +0200
-Marijn Suijten <marijn.suijten@somainline.org> wrote:
+The dw-mmc controller found on Hi3798MV200 is like the one found on
+Hi3798CV200, but has some tweaks.
+Also refreshed the dt binding and converted it to YAML.
 
-> On 2023-04-12 21:27:56, Jonathan Cameron wrote:
-> > On Mon, 10 Apr 2023 22:29:17 +0200
-> > Marijn Suijten <marijn.suijten@somainline.org> wrote:
-> >   
-> > > As discussed in [1] it is more convenient to use a generic `channel`
-> > > node name for ADC channels while storing a friendly - board-specific
-> > > instead of PMIC-specific - name in the label, if/when desired to
-> > > overwrite the channel description already contained (but previously
-> > > unused) in the driver [2].
-> > > 
-> > > The same `channel` node name pattern has also been set in
-> > > iio/adc/adc.yaml, but this generic binding is not inherited as base for
-> > > qcom,spmi-vadc bindings due to not having any other generic elements in
-> > > common, besides the node name rule and reg property.
-> > > 
-> > > Replace the .* name pattern with the `channel` literal, but leave the
-> > > label property optional for bindings to choose to fall back a channel
-> > > label hardcoded in the driver [2] instead.
-> > > 
-> > > [1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
-> > > [2]: https://lore.kernel.org/linux-arm-msm/20230116220909.196926-4-marijn.suijten@somainline.org/
-> > > 
-> > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>  
-> > 
-> > There are various ways we could pick up this patch set...
-> > a) Binding changes via individual subsystem trees,
-> > b) All in on go.
-> > 
-> > I think it's late to guarantee to land the changes from (a) in the coming merge window
-> > so if someone else is willing to do (b) then
-> > 
-> > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Otherwise we can do (a) early in next cycle.  Feel free to poke me if we are doing (b)
-> > and I seem to have forgotten to pick up this patch!  
-> 
-> Thanks!  I hope we don't get many conflicts (+ new bindings adhering to
-> the old(er) formats) otherwise I'll resend if we do (a).  Around what
-> time would be good, rc2?
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v2:
+- add DDR52 support
+- edit dt-binding, substitude all hi3798cv200 with histb
+- send email to more people
+- Link to v1: https://lore.kernel.org/r/20230415-mmc-hi3798mv200-v1-0-db5b91d939d4@outlook.com
 
-Sure. If rebase is needed send a v5 with that done.  If not, a simple
-reminder reply to this thread will probably work.
+---
+Yang Xiwen (3):
+      mmc: dw_mmc-hi3798cv200: rename to dw_mmc-histb
+      mmc: dw_mmc-histb: add support for hi3798mv200
+      binding: mmc: hi3798cv200-dw-mshc: convert to YAML and rename to histb-dw-mshc, add compatible of hi3798mv200
 
-Thanks,
+ .../bindings/mmc/hi3798cv200-dw-mshc.txt           |  40 ---
+ .../devicetree/bindings/mmc/histb-dw-mshc.yaml     |  90 ++++++
+ drivers/mmc/host/Kconfig                           |   8 +-
+ drivers/mmc/host/Makefile                          |   2 +-
+ drivers/mmc/host/dw_mmc-hi3798cv200.c              | 206 -------------
+ drivers/mmc/host/dw_mmc-histb.c                    | 339 +++++++++++++++++++++
+ 6 files changed, 434 insertions(+), 251 deletions(-)
+---
+base-commit: 76f598ba7d8e2bfb4855b5298caedd5af0c374a8
+change-id: 20230415-mmc-hi3798mv200-ce15e9b96866
 
-Jonathan
-
-> 
-> [..]
-> 
-> - Marijn
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
 
