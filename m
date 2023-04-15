@@ -2,138 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BE8F6E316C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 14:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E406E31BC
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 16:19:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbjDOMtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 08:49:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53732 "EHLO
+        id S229522AbjDOOS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 10:18:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjDOMtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 08:49:18 -0400
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C5744BA;
-        Sat, 15 Apr 2023 05:49:17 -0700 (PDT)
-Received: by mail-oo1-xc2e.google.com with SMTP id u13-20020a4ac38d000000b005426b196223so410725oop.8;
-        Sat, 15 Apr 2023 05:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681562957; x=1684154957;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TqQ3SiHws9LUFOFeaTF92+MKSqS3DlyruqkxUBl1iVE=;
-        b=sAInW4jdFWd18P0SfBBU1170JUXE7LLFld6YAm6j4OxSekPTZLOY5WVbySpiaUlsDL
-         cpJMSyT+1ai6GPaZ+GaWtYkHgOJajm9XTRgsMpGNHdNJpFSdVJ8eIclf7bq9/lqZwTjy
-         bYCndd0i63bDCsn6dTfSGaZPEXeKUTgVW8kEdsGMEbT0z3VpD/9H/GWrqqlAGE4Lefvt
-         8vN3ZbLwGvCs+1TSnnJ1en9utPQWCqfFfzI10I/VkrMacWt/iSTGLzvHIyVo4jDYeh3D
-         +Ov80e54jVnDI/UWw16z7QxZWBr9RpuXpXEUdPm8cjZeoDBTgzQd8mvnIFazu15hpi/D
-         Heqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681562957; x=1684154957;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TqQ3SiHws9LUFOFeaTF92+MKSqS3DlyruqkxUBl1iVE=;
-        b=ccoeXEI4b7ewJeMjgqXsh8232CkvgJsicaaSrI//J547pAIvcTUajnFxrRUe7BKp9D
-         GZICmkB6RdvIfZ3HKXdoGNmjd0uSGETmx5Ob4uqei1cQOcrTv+xXxvza5fWEDiJNQ0iE
-         CClVZrrPCD5088cyF6mq/N3RQ6bjFHwROIV/nIyb2Q58Yac0lK/aRlDeKDh/COk57hN1
-         Y4Tn6n0AhDdLx2Pe+94kO/PU293+hLykropyOOCCxtJ1cjhha5V3NbhrcV8xreOuYmmy
-         2R+w5jLAEBNcBTj87IAjX7Nwdtu779IpKe0Xil8nAmF7KKBKs2LMyZNr8dkak6k9s1dn
-         /yKg==
-X-Gm-Message-State: AAQBX9dnPFd1ZtLG2U4+oB246OXO3P/8DFgPefGHUs2uEeiznHwhg4CF
-        Neqtyt5GAk+RpOCnKAeYH6K9jk/JOOA+ADBPLAA=
-X-Google-Smtp-Source: AKy350aw1sitUTkN1aRNjH+bN0r38acxG6oBYdh1kAmyzRFvhhgzUT2uye2u9KKaOPwVKPk8KV+BJZuBzcqgjqA4HF4=
-X-Received: by 2002:a4a:d50d:0:b0:53b:7a81:fe64 with SMTP id
- m13-20020a4ad50d000000b0053b7a81fe64mr2496510oos.0.1681562956798; Sat, 15 Apr
- 2023 05:49:16 -0700 (PDT)
+        with ESMTP id S229468AbjDOOS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 10:18:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8773344BA;
+        Sat, 15 Apr 2023 07:18:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 23BFE60C96;
+        Sat, 15 Apr 2023 14:18:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7E6E2C433D2;
+        Sat, 15 Apr 2023 14:18:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681568336;
+        bh=NU2bCHBCBu/FVM8V5ZxWORQ+XnnJ/22QxWvmPvYrkQw=;
+        h=From:Subject:Date:To:Cc:Reply-To:From;
+        b=fffqcVMJ3eOkgOZGMvowotNdRuGMPBN6BMQT+DmIxWkiJ8kwLFPk+64f6m1pgO2DQ
+         DtAQa3rq964WruOoZeh6xRHkR/bD5GAW73+YiH5hWXxcdeSk/ElExzGPx1ibKQE9Y8
+         zOe0+saqLQNES9mfpAFJ5+VOel1kY/VHV+ckXjxqfcThL8uUhiWHvg3c+flbLu6vmj
+         YXzo0kCT7JvbrfkGIQtQBQlyUMNq8/zhY64SRA2OzZfg+QZPTFTnm1y8ovgUpea2RS
+         jn9WZyzNFy+Emx7xNGY/xqdFWkDvzfl8B032gOUwEAPPZHSuJ63x/j3nFfYwclPV5F
+         uIj1p5j/sDDSQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.lore.kernel.org (Postfix) with ESMTP id 57880C77B70;
+        Sat, 15 Apr 2023 14:18:56 +0000 (UTC)
+From:   Yang Xiwen via B4 Relay 
+        <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH RFC 0/3] mmc: add support for the dw-mmc controller on
+ Hi3798MV200
+Date:   Sat, 15 Apr 2023 22:18:43 +0800
+Message-Id: <20230415-mmc-hi3798mv200-v1-0-db5b91d939d4@outlook.com>
 MIME-Version: 1.0
-References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org> <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sat, 15 Apr 2023 14:49:04 +0200
-Message-ID: <CAMhs-H8e_e29=DVU0vc42gp0EiB_zkQLcNw_rH5Om21Xbm=Fpg@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
- white-space cleanup
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEOyOmQC/x2NQQrCMBAAv1L2bCBJbWy8Cj6gV/GQxNXsIVF2S
+ xFK/27qcRiGWUGQCQXO3QqMCwm9awNz6CDlUF+o6NEYrLa9PppBlZJUpv7kx7JYrVVCM6CP3o3
+ OQatiEFSRQ01570qQGXkXH8Ynff+rG0zXC9y37Qd+CibYfwAAAA==
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Julius Werner <jwerner@chromium.org>,
-        Evan Benn <evanbenn@chromium.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Sander Vanheule <sander@svanheule.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        =?UTF-8?B?4oCaZWNraQ==?= <rafal@milecki.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Jamie Iles <jamie@jamieiles.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Yang Xiwen <forbidden405@outlook.com>
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681568331; l=1144;
+ i=forbidden405@outlook.com; s=20230415; h=from:subject:message-id;
+ bh=NU2bCHBCBu/FVM8V5ZxWORQ+XnnJ/22QxWvmPvYrkQw=;
+ b=3xDF9NiFLIw4XcXlfHospvvBjb4Bhkt3ICZkU3monaSgRKpk0SYnAOCP83Nip5dD4fK9lOTlj
+ pz/WjDjUWCACfbtinZekZdg/c7PNTyeth7SCAwKXNcxsbcz7a2UHwgN
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=hfdpPU3AXR+t7fdv58tXCD4UzRNq+fop2TMJezFlAhM=
+X-Endpoint-Received: by B4 Relay for forbidden405@outlook.com/20230415 with auth_id=44
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 15, 2023 at 11:58=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Minor cleanup without functional impact:
-> 1. Indent DTS examples to preferred four-spaces (more readable for DTS),
-> 2. Drop unneeded quotes,
-> 3. Add/drop blank lines to make the code readable.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../watchdog/mediatek,mt7621-wdt.yaml         |  6 ++--
+The dw-mmc controller found on Hi3798MV200 is like the one found on
+Hi3798CV200, but has some tweaks.
+Also refreshed the dt binding and converted it to YAML.
+Unfortunately, DDR52 is not supported yet.
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Yang Xiwen (3):
+      mmc: dw_mmc-hi3798cv200: rename to dw_mmc-histb
+      mmc: dw_mmc-histb: add support for hi3798mv200
+      binding: mmc: hi3798cv200-dw-mshc: convert to YAML and rename to histb-dw-mshc, add compatible of hi3798mv200
 
-Thanks,
-    Sergio Paracuellos
+ .../bindings/mmc/hi3798cv200-dw-mshc.txt           |  40 ---
+ .../devicetree/bindings/mmc/histb-dw-mshc.yaml     |  90 ++++++
+ drivers/mmc/host/Kconfig                           |   8 +-
+ drivers/mmc/host/Makefile                          |   2 +-
+ drivers/mmc/host/dw_mmc-hi3798cv200.c              | 206 -------------
+ drivers/mmc/host/dw_mmc-histb.c                    | 336 +++++++++++++++++++++
+ 6 files changed, 431 insertions(+), 251 deletions(-)
+---
+base-commit: 76f598ba7d8e2bfb4855b5298caedd5af0c374a8
+change-id: 20230415-mmc-hi3798mv200-ce15e9b96866
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
+
