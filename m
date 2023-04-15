@@ -2,153 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D60716E2FD8
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 11:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FAC16E2FF8
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 11:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjDOJA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 05:00:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34592 "EHLO
+        id S229636AbjDOJLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 05:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjDOJA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 05:00:56 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BBB171B
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 02:00:54 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-94a342f7c4cso475668566b.0
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 02:00:54 -0700 (PDT)
+        with ESMTP id S229540AbjDOJLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 05:11:40 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6269AD1F
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 02:11:02 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id jg21so51195915ejc.2
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 02:11:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681549251; x=1684141251;
+        d=linaro.org; s=google; t=1681549860; x=1684141860;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=h7bWAyZyLD6uo7vF/WlVxj3C8Ki8eISz7a0rWcMvR1k=;
-        b=Co0OwPVRZSFCKAUtHmKZxfLEAl4+Yk9tRoSp0clTuJuTTsTWsesS7PWBTgdyTOlyEd
-         bvErnPDwam2MuQ/85GuljVZSjqxCU4lay98TPaSI6eh+3DbgqXhKiXdeP4hhJpLgBzPR
-         QONKjBWMsLwAiAUmhgHneXIT4yUvIfDtAd04MVj6qXuGPQUYtah+cHnfkZdJ8xwDwzWf
-         7Z9urp7g82zxPXKJlqXl+ZFL0g2kh8xhmkrijuXx0FCo30I0AJvnYWTlWadx5OQb7KT8
-         1nGYSyuKtZOANDAyIr4QKAl1B3jd6va4NY5Nb/G/jEvrtXDSn+wV122H06cH5GFbxNPp
-         XIDQ==
+        bh=bkqhhdKnhncpcXSMYex0XLHXcS1AhaZjY9ZDkZfJ5BM=;
+        b=HDJgWSCZ6DECQVi7mecei8mGzS8DjvsskIRgELeqzfetwiRlukLBHsmYLdS8kI6CCG
+         u+5HhGSAQCth1eFw20xgp/ExLFqMjeg8zDvWAMKKxVpFE95hnHZ+SuYXTcQo7/IZTPYZ
+         yNpxnnA1y2iyqUj/Y4Msu8c2HwkrkLryv7S5/TwFBH+5pak7lVVF6N0GECEhOFLFc7RH
+         oU0ZRA6ewAw3sKBUeRU4MOdlA7cKz46ngoaffBpv/B7usmSYR+ENBQBuP6LgW8EJWfYZ
+         Ryh5sXmfNlTAo2yr0IQ5QTGvklujOvgB2njk+6tDdiHhTFecX9HRtYM7d8B18QZYrvrx
+         VcrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681549251; x=1684141251;
+        d=1e100.net; s=20221208; t=1681549860; x=1684141860;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h7bWAyZyLD6uo7vF/WlVxj3C8Ki8eISz7a0rWcMvR1k=;
-        b=dk45KuLAWRIukH1Lkyag8qqQs2vDfu3fAT3iy0eHziHV/DfjD/KXlStN7CBZIz0Jp1
-         54ckov3rxAS5KFzdl25HSfxfC1H5jtfJ3i7pQt+ZEA1RK3X1zJyg3FPM5uvfBpfBWlFL
-         7g7KldlHsW4+h5Dn0GfvDMi7am8Rylk1hUNLCVKg2nio+UTcmeRjrfhprxVAEaHwdxo+
-         589Z4sXXD8MRDo5hmD6HueUVhbNQlOh4aa8BBeHoR1xAUR83ZtyOEe2aseSDg6PpJCeC
-         n+DVyYOFrwrfcbQ/b8Ijmt4Zb0Bg86Hkpco/dNF3qEXskL0lSkOpxlv7ZUEUJ06nNkQP
-         5wXA==
-X-Gm-Message-State: AAQBX9chpwdN2A44GYJD9TMjU4yMpAQnr2BtdgT8CYNuTKZobkoX/XWp
-        KFA1dYYDLvCG4BlejIhtl6V3fQ==
-X-Google-Smtp-Source: AKy350aEJnSqnbH8WH/aQ9lyPmdapGYw/EYooeirvjzag7l10B9FqEzScCXV7gADNUZ63773fFSs4A==
-X-Received: by 2002:a05:6402:1a2c:b0:506:7d14:984c with SMTP id be12-20020a0564021a2c00b005067d14984cmr6282723edb.19.1681549251217;
-        Sat, 15 Apr 2023 02:00:51 -0700 (PDT)
+        bh=bkqhhdKnhncpcXSMYex0XLHXcS1AhaZjY9ZDkZfJ5BM=;
+        b=GulLawCK/EBg+dR2cccBF+pfbojyKExiFSE36+XxN6KUezvsqMct5fdqlpytBfm+Ti
+         ThZD8VygWX08o+NQnEueo5mZ1LnOwYEwOWWStoOkbkQwU2QO6FmuYAzufDn/gAC8uZUM
+         P+FI1eyEFkPxjbkAdsAVf240MD35XOtkv/YpR77wRi7wVxR/LX9m6L/CZDreNZ8Z0ins
+         DAqJ3kqUA1QfPPKkRjhhGyIO/LRgk859sSslyK3qFH7sAQ3iH1yHAor454XKGyzctGqB
+         fyew99PQk/LnJMdNw4Dsz5ZtiRoX8H1ymSjmDmo47pZuqfQQgSWEbj3EpZvCIvNS3dHq
+         Yf0A==
+X-Gm-Message-State: AAQBX9fj0s9EMnHAf8i0ygzm9zElfKQgNr3DUju0JcZmCyHWGjormqzD
+        vFWVE/nh42nwVsRloVzrBj/vBQ==
+X-Google-Smtp-Source: AKy350ZFG3UTHm3sBP58Fno4kIsIdNDJ0dz7Z5ySjSVhbi2XZCOv8Pvqm17Zayd0KsIGaCYvzcSuAw==
+X-Received: by 2002:a17:907:208c:b0:94e:547b:6322 with SMTP id pv12-20020a170907208c00b0094e547b6322mr1537489ejb.25.1681549860633;
+        Sat, 15 Apr 2023 02:11:00 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a3bf:4ed:6c53:2a36? ([2a02:810d:15c0:828:a3bf:4ed:6c53:2a36])
-        by smtp.gmail.com with ESMTPSA id wt10-20020a170906ee8a00b0094f225c0cd3sm421385ejb.86.2023.04.15.02.00.50
+        by smtp.gmail.com with ESMTPSA id gy23-20020a170906f25700b0094f31208918sm92340ejb.108.2023.04.15.02.10.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Apr 2023 02:00:50 -0700 (PDT)
-Message-ID: <310e8979-de96-dda8-6c95-0e6033d8b403@linaro.org>
-Date:   Sat, 15 Apr 2023 11:00:49 +0200
+        Sat, 15 Apr 2023 02:11:00 -0700 (PDT)
+Message-ID: <8a790966-d985-c0fc-498e-c17e69a6622e@linaro.org>
+Date:   Sat, 15 Apr 2023 11:10:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 7/7] ASoC: dt-bindings: mediatek,mt8188-afe: add audio
- properties
+Subject: Re: [PATCH 1/2] dt-bindings: input: microchip,cap11xx: add advanced
+ sensitivity settings
 Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230413104713.7174-1-trevor.wu@mediatek.com>
- <20230413104713.7174-8-trevor.wu@mediatek.com>
+To:     Jiri Valek - 2N <jiriv@axis.com>, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        u.kleine-koenig@pengutronix.de
+References: <20230414233815.4004526-1-jiriv@axis.com>
+ <20230414233815.4004526-2-jiriv@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230413104713.7174-8-trevor.wu@mediatek.com>
+In-Reply-To: <20230414233815.4004526-2-jiriv@axis.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 12:47, Trevor Wu wrote:
-> Assign top_a1sys_hp clock to 26M, and add apll1_d4 to clocks for switching
-> the parent of top_a1sys_hp dynamically
-> On the other hand, "mediatek,infracfg" is included for bus protection.
+On 15/04/2023 01:38, Jiri Valek - 2N wrote:
+> Add support for advanced sensitivity settings and signal guard feature.
 > 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
 > ---
->  .../bindings/sound/mediatek,mt8188-afe.yaml    | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  .../bindings/input/microchip,cap11xx.yaml     | 64 ++++++++++++++++++-
+>  1 file changed, 61 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml
-> index 82ccb32f08f2..03301d5082f3 100644
-> --- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml
-> @@ -29,6 +29,10 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description: The phandle of the mediatek topckgen controller
+> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> index 5fa625b5c5fb..08e28226a164 100644
+> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> @@ -45,13 +45,13 @@ properties:
+>        Enables the Linux input system's autorepeat feature on the input device.
 >  
-> +  mediatek,infracfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of the mediatek infracfg controller
-> +
->    power-domains:
->      maxItems: 1
+>    linux,keycodes:
+> -    minItems: 6
+> -    maxItems: 6
+> +    minItems: 3
+> +    maxItems: 8
+>      description: |
+>        Specifies an array of numeric keycode values to
+>        be used for the channels. If this property is
+>        omitted, KEY_A, KEY_B, etc are used as defaults.
+> -      The array must have exactly six entries.
+> +      The number of entries must correspond to the number of channels.
 >  
-> @@ -37,6 +41,7 @@ properties:
->        - description: 26M clock
->        - description: audio pll1 clock
->        - description: audio pll2 clock
-> +      - description: audio pll1 divide 4
->        - description: clock divider for i2si1_mck
->        - description: clock divider for i2si2_mck
->        - description: clock divider for i2so1_mck
-> @@ -58,6 +63,7 @@ properties:
->        - const: clk26m
->        - const: apll1
->        - const: apll2
-> +      - const: apll1_d4
-
-Why do you add clocks in the middle? The order is strict, so you just
-broke all DTS.
-
->        - const: apll12_div0
->        - const: apll12_div1
->        - const: apll12_div2
-> @@ -74,6 +80,12 @@ properties:
->        - const: i2si2_m_sel
->        - const: adsp_audio_26m
->  
-> +  assigned-clocks:
-> +    maxItems: 1
-> +
-> +  assigned-clock-parents:
-> +    maxItems: 1
-
-Usually these two are not needed.
-
-> +
->    mediatek,etdm-in1-cowork-source:
+>    microchip,sensor-gain:
 >      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> @@ -147,6 +159,8 @@ required:
->    - power-domains
->    - clocks
->    - clock-names
-> +  - assigned-clocks
-> +  - assigned-clock-parents
+> @@ -70,6 +70,58 @@ properties:
+>        open drain. This property allows using the active
+>        high push-pull output.
+>  
+> +  microchip,sensitivity-delta-sense:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 32
+> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+> +    description: |
 
-Why making them required?
+Do not need '|' unless you need to preserve formatting.
+
+> +      Optional parameter. Controls the sensitivity multiplier of a touch detection.
+> +      At the more sensitive settings, touches are detected for a smaller delta
+> +      capacitance corresponding to a “lighter” touch.
+> +
+> +  microchip,sensitivity-base-shift:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 256
+> +    enum: [1, 2, 4, 8, 16, 32, 64, 128, 256]
+> +    description: |
+> +      Optional parameter. Controls data scaling factor.
+> +      The higher the value of these bits, the larger the range and the lower
+> +      the resolution of the data presented. These settings will not affect
+> +      touch detection or sensitivity.
+> +
+> +  microchip,signal-guard:
+> +    minItems: 3
+> +    maxItems: 8
+> +    enum: [0, 1]
+> +    default: 0
+
+This was not really tested. Missing ref, mixing scalar and array
+properties. You want items with enum. And drop default.
+
+
+> +    description: |
+> +      Optional parameter supported only for CAP129x.
+
+Then disallow it for others (allOf:if:then: ...
+microchip,signal-guard:false)
+> +      The signal guard isolates the signal from virtual grounds.
+> +      If enabled then the behavior of the channel is changed to signal guard.
+> +      The number of entries must correspond to the number of channels.
+> +
+> +  microchip,input-treshold:
+> +    minItems: 3
+> +    maxItems: 8
+> +    minimum: 0
+> +    maximum: 127
+> +    default: 64
+> +    description: |
+> +      Optional parameter. Specifies the delta threshold that is used to
+> +      determine if a touch has been detected.
+> +      The number of entries must correspond to the number of channels.
+> +
+> +  microchip,calib-sensitivity:
+> +    minItems: 3
+> +    maxItems: 8
+> +    enum: [1, 2, 4]
+> +    default: 1
+> +    description: |
+> +      Optional parameter supported only for CAP129x. Specifies an array of
+> +      numeric values that controls the gain used by the calibration routine to
+> +      enable sensor inputs to be more sensitive for proximity detection.
+> +      The number of entries must correspond to the number of channels.
+
+Most of these properties do not look like hardware properties. Policies
+and runtime configuration should not be put into DT. Explain please why
+these are board-specific thus suitable for DT.
+
+
 Best regards,
 Krzysztof
 
