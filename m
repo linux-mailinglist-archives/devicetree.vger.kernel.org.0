@@ -2,92 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C28246E30BB
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 12:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7719F6E30D6
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 12:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjDOKmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 06:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41410 "EHLO
+        id S230246AbjDOKsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 06:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbjDOKmc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 06:42:32 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F296A276
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 03:41:56 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id x34so8011265ljq.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 03:41:56 -0700 (PDT)
+        with ESMTP id S230061AbjDOKsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 06:48:04 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7AC7D8A;
+        Sat, 15 Apr 2023 03:47:35 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id qb20so51462141ejc.6;
+        Sat, 15 Apr 2023 03:47:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681555314; x=1684147314;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mmIpyi6/VTzVwR3NUnypEdQ8q3iaaas7kIub4aO6IHw=;
-        b=OsFYyZ3jgJxQdw2pwn6WlUYEcNltC2vYfjFDR9nB7nX85UcJZB887HpisNMDFkha3m
-         ihWNz2OElgrMGAO7z1VtmGJVX/mGh1vAL9UrjimCa2SZcib6AdgAxCRVeO8tHL2uDLXi
-         B0ibtNDpp0oLIHRsvSpq0RoOHL+9pw8ILiyTpZlC4iwvRFHPmvNd/OgjZ9v6YzxUG2kR
-         ugBTOTI8kL92jPcqcugtIRE35CKLNj3qeYzZTFWno7hjwMvkehB0FVPDDc0mczQKmC/Z
-         LqR9jcj9NmpARzzME7ACZ/z3JC8Sr2WPFrPhNTlW7w9MznjxCCD6TXJHUDmP7LOmbW69
-         nDEA==
+        d=gmail.com; s=20221208; t=1681555623; x=1684147623;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ICwYyWWnryvHm9RgRWeq29kRBlsUBNW7tslN8BXiwmU=;
+        b=BQaKk6QpiVmZPeB/smhkVOuNZTbb+v8ly+PlkeCAAUt25cyNgPCVm9EHDY1zU5H9ZJ
+         GVarHQ5Bc6ZcGPe6Bwfk8vERzbJADby9E/E4YAXf9GrGff/klt/bFP/Lm3NC4VKujCGF
+         vHOa1yCSPHf70VHMBwULihW2kIzTwHzKKADr3KbFPA53nKl5Xb6wT9FbFoZv8LTZ/mH5
+         hTjRz4qA8W12+1+3cOV2vzKvjJMUW0G5cSRcoXl0bdyEgPAPNH3nS2aL9/6bZcLTxOI3
+         hPzl/BZxx9dUBa0lM+AOa+Ts1Dh7s6E2VR25Q7p8TuWCo5L7ZgLE4cxSLqulgNyQgrIz
+         MzVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681555314; x=1684147314;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mmIpyi6/VTzVwR3NUnypEdQ8q3iaaas7kIub4aO6IHw=;
-        b=Cn1ectphMu/xV1TGTVV+AUtFyG7sklMBWSSwGSnRb69sYoKY/sRCbC1N4zA0wEEXuU
-         czs9pM+nZvbsV6Hke0B/rAoieBOq1HrQ5yTGBlgBxYTitN+s4m0yqeS/JgXL8H01OWK0
-         I/Ga8DgteDZ0ouCaovMlSrFsAKHurrktPsnLnY9hRxnmZrgsbHz6eiWkAn7Hg6AcIfux
-         yO9ClJzwa3pMNfw02LAwYAI7vaJo3PJMDkpkxYBzHUX/gB4nTqke923c7eWmVLWLc0WJ
-         Dw0bDmcGnW8WorveCF6GVkQl1+Wo2z8mlDiNvsaxJ2tehJWcNF28AsqDOsM7qr6HlWYZ
-         iVXA==
-X-Gm-Message-State: AAQBX9cT+mCmswssWp4wUBiRujcEVB2+lOvqO/BmpdEIB2gbAPkTGwTz
-        G/W5rrTLZPXi8STbtp5l6X+qHw==
-X-Google-Smtp-Source: AKy350ZMoScIlZDLdVRk0mI6XK2W/BpNCPrjar+eP/56X+p/oI81gvPUNLcgVsAoH1ejne6AYBKpFg==
-X-Received: by 2002:a05:651c:10cc:b0:2a7:a3b4:7747 with SMTP id l12-20020a05651c10cc00b002a7a3b47747mr2417038ljn.29.1681555314001;
-        Sat, 15 Apr 2023 03:41:54 -0700 (PDT)
-Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
-        by smtp.gmail.com with ESMTPSA id u7-20020a2ea167000000b002a784085edbsm1272666ljl.99.2023.04.15.03.41.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Apr 2023 03:41:53 -0700 (PDT)
-Message-ID: <d34f008b-080c-7639-6839-918aaa8da8a1@linaro.org>
-Date:   Sat, 15 Apr 2023 12:41:51 +0200
+        d=1e100.net; s=20221208; t=1681555623; x=1684147623;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ICwYyWWnryvHm9RgRWeq29kRBlsUBNW7tslN8BXiwmU=;
+        b=Toj0hslV3eSu4GkIKYe0GOYsuMlI8f0w5GpYbaHjxeXkFlxjZN587UEfnEt3eD/ZLk
+         h/eaq7bvcSDdflXXoIxyJ8lC9VNqHCZbgBNoJ7W7QaMVFnNqV7n5614yfYc0pikDhdJb
+         Ng9vQ3l7DIviECTVBheIonMR62b07JmF2iT6oL8pPyFfYCf2AuBtxwjJeKR3oXqt9dzX
+         omrdjbvTQcohSIMCNp06hXDIVcFUHGQxvz0zy8tV09WOv8gHHB+1UU45sMPqfod5vXay
+         5T/1ZeaSbvcTDb6A2uv3VGcdzW4NS4ijXIom7AIjXmGJNStdZIXH1Ze/GTVWJmLGEVGI
+         8WWw==
+X-Gm-Message-State: AAQBX9dxQJs5OrbhhSBo+QxdolF61wWj18xGWpaVZF3iWUyJdYegc03y
+        ISSWcQWZk/kKM0AtSC/Putw=
+X-Google-Smtp-Source: AKy350ZlZmmQo025rfm2e2tAa9xyZl6HKwCyENZ72HZZ0DvAjQTuASLgS7n6KD8a24YZf10jRtRI2A==
+X-Received: by 2002:a17:907:2087:b0:94e:fe0f:b2be with SMTP id pv7-20020a170907208700b0094efe0fb2bemr1577373ejb.14.1681555622742;
+        Sat, 15 Apr 2023 03:47:02 -0700 (PDT)
+Received: from localhost.localdomain (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id m15-20020a170906720f00b00947ab65d932sm3607034ejk.83.2023.04.15.03.47.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Apr 2023 03:47:02 -0700 (PDT)
+From:   Jernej Skrabec <jernej.skrabec@gmail.com>
+To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        rfoss@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        samuel@sholland.org
+Cc:     Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        airlied@gmail.com, daniel@ffwll.ch,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
+        hverkuil-cisco@xs4all.nl, Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH 0/3] drm/bridge: dw_hdmi: allow to disable CEC from DT
+Date:   Sat, 15 Apr 2023 12:46:10 +0200
+Message-Id: <20230415104613.61224-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg:
- introduce support for fts touchscreen
-Content-Language: en-US
-To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Job Noorman <job@noorman.info>,
-        Alistair Francis <alistair@alistair23.me>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230415020222.216232-1-joelselvaraj.oss@gmail.com>
- <20230415020222.216232-5-joelselvaraj.oss@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230415020222.216232-5-joelselvaraj.oss@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,46 +75,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Boards can have perfectly working DW HDMI CEC implementation but they
+may prefer to use bit banged implementation instead. This is the
+situation on Beelink X2.
 
+Add DW HDMI DT property for disabling CEC. This prevents confusion on
+userspace side by not exposing unused CEC interface.
 
-On 15.04.2023 04:02, Joel Selvaraj wrote:
-> The Poco F1 EBBG variant uses Focaltech FTS touchscreen. Introduce
-> support for it.
-> 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Best regards,
+Jernej
 
-Konrad
->  .../dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-> index 76931ebad065..26e77979cdab 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-> @@ -13,3 +13,24 @@ &display_panel {
->  	compatible = "ebbg,ft8719";
->  	status = "okay";
->  };
-> +
-> +&i2c14 {
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		compatible = "focaltech,fts8719";
-> +		reg = <0x38>;
-> +
-> +		interrupts-extended = <&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
-> +
-> +		vddio-supply = <&vreg_l14a_1p8>;
-> +
-> +		pinctrl-0 = <&ts_int_default &ts_reset_default>;
-> +		pinctrl-1 = <&ts_int_sleep &ts_reset_sleep>;
-> +		pinctrl-names = "default", "sleep";
-> +
-> +		touchscreen-size-x = <1080>;
-> +		touchscreen-size-y = <2246>;
-> +	};
-> +};
+Jernej Skrabec (3):
+  dt-bindings: display: synopsys,dw-hdmi: Add property for disabling CEC
+  drm/bridge: dw_hdmi: Handle snps,disable-cec property
+  ARM: dts: sun8i: h3: beelink-x2: Disable DW-HDMI CEC
+
+ .../devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml | 5 +++++
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts                    | 1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c                    | 4 +++-
+ 3 files changed, 9 insertions(+), 1 deletion(-)
+
+-- 
+2.40.0
+
