@@ -2,169 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93BBB6E2EF3
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 06:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD246E2F2F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 07:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbjDOEKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 00:10:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43940 "EHLO
+        id S229766AbjDOFja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 01:39:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjDOEKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 00:10:30 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9DC55A4;
-        Fri, 14 Apr 2023 21:10:29 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33F4AFo9100286;
-        Fri, 14 Apr 2023 23:10:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681531815;
-        bh=dslg9uFniCIR+qxHa2T1VzYHiExAU99uAOFzP7FzTnY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=DTfGExgzdYZHW6hety/9DkYd+Xmm4Wrmlj9eepWxPirxg1ZaDETJ0bF5ZfM7rUCl3
-         Ux2evJgXbdoOwVoHC3gAFojcPFD3+he1xZo9Eb2mZ6CQiRvtP1IF2/uodfVPOQEBhY
-         UBYnrOIYZVdbOuc+jeC+ZgKcpk6D793d0eEtzNKQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33F4AFN9017891
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Apr 2023 23:10:15 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 14
- Apr 2023 23:10:14 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 14 Apr 2023 23:10:14 -0500
-Received: from [10.249.130.34] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33F4AAvL014091;
-        Fri, 14 Apr 2023 23:10:11 -0500
-Message-ID: <20bbb3f0-ac79-9d98-9c99-7062581b163f@ti.com>
-Date:   Sat, 15 Apr 2023 09:40:10 +0530
+        with ESMTP id S229462AbjDOFja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 01:39:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B0F55B4;
+        Fri, 14 Apr 2023 22:39:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD85461DA2;
+        Sat, 15 Apr 2023 05:39:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CC8BC433D2;
+        Sat, 15 Apr 2023 05:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1681537168;
+        bh=sgqkra4Gl7AEFkkAJD6KZbCVVWw5Ls3bOzVoxaPUYvs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jmk1QDXOKGjBY0T2+F1Q0RNrD2CkZhgopDBDxA+5qOo6Tkeg6L7xcJMjZBPE0Fg5Q
+         PecKJFwxwhVKxdk0DkkXG0Nj19rX7tI0Nu4hV7lQfT7z2dg+wASQpAuS4LW69Oqe1E
+         ku5O4zQlD2JFGgMvATYQRbgLf0T7KA0octmvdJ2c=
+Date:   Sat, 15 Apr 2023 07:39:24 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH V1 2/3] drivers: misc: dcc: Add driver support for Data
+ Capture and Compare unit(DCC)
+Message-ID: <ZDo4jIIV7cfPD2qW@kroah.com>
+References: <cover.1681480351.git.quic_schowdhu@quicinc.com>
+ <b1a9cbbcfefe133cc9047a71a2acdaa74239df29.1681480351.git.quic_schowdhu@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j7200: Fix physical address of pin
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <bb@ti.com>,
-        <vaishnav.a@ti.com>, <j-choudhary@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, J Keerthi <j-keerthy@ti.com>
-References: <20230414181434.2046049-1-u-kumar1@ti.com>
- <20230414181434.2046049-2-u-kumar1@ti.com>
- <20230414182638.watc555ihi2hgkuv@slinging>
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230414182638.watc555ihi2hgkuv@slinging>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b1a9cbbcfefe133cc9047a71a2acdaa74239df29.1681480351.git.quic_schowdhu@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth
+On Fri, Apr 14, 2023 at 07:29:12PM +0530, Souradeep Chowdhury wrote:
+> The DCC is a DMA Engine designed to capture and store data
+> during system crash or software triggers. The DCC operates
+> based on user inputs via the debugfs interface. The user gives
+> addresses as inputs and these addresses are stored in the
+> dcc sram. In case of a system crash or a manual software
+> trigger by the user through the debugfs interface,
+> the dcc captures and stores the values at these addresses.
+> This patch contains the driver which has all the methods
+> pertaining to the debugfs interface, auxiliary functions to
+> support all the four fundamental operations of dcc namely
+> read, write, read/modify/write and loop. The probe method
+> here instantiates all the resources necessary for dcc to
+> operate mainly the dedicated dcc sram where it stores the
+> values. The DCC driver can be used for debugging purposes
+> without going for a reboot since it can perform software
+> triggers as well based on user inputs.
 
-On 4/14/2023 11:56 PM, Nishanth Menon wrote:
-> On 23:44-20230414, Udit Kumar wrote:
->> Fixes: 9ae21ac445e9 ("arm64: dts: ti: k3-j7200: Fix wakeup pinmux range")
-> In the wrong place.
+You have 72 columns, why not use them all please?
 
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
 
-will address in v2
-
-
->> wkup_pmx splits into multiple regions. Like
->>
->>      wkup_pmx0 -> 13 pins (WKUP_PADCONFIG 0 - 12)
->>      wkup_pmx1 -> 2 pins (WKUP_PADCONFIG 14 - 15)
->>      wkup_pmx2 -> 59 pins (WKUP_PADCONFIG 26 - 84)
->>      wkup_pmx3 -> 8 pins (WKUP_PADCONFIG 93 - 100)
->>
->> With this split, pin offset needs to be adjusted to
->> match with new pmx for all pins above wkup_pmx0.
->>
->> Example a pin under wkup_pmx1 should start from 0 instead of
->> old offset(0x38 WKUP_PADCONFIG 14 offset)
->>
->> J7200 Datasheet (Table 6-106, Section 6.4 Pin Multiplexing) :
->>              https://www.ti.com/lit/ds/symlink/dra821u.pdf
-> Drop the preceding whitespace.
-
-ok
-
->> Signed-off-by: J Keerthi <j-keerthy@ti.com>
-> Spell check name please, I think he usually goes with:
->
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
->
-> If this patch is from Keerthy, the patch should have a "From:"
-
-ok.
-
-git apply on original patch didn't worked , so i applied and committed.
-
-will fix in patch itself before posting, Keerthi as author
+It is now 2023 :)
 
 
->> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
->> ---
->>   .../dts/ti/k3-j7200-common-proc-board.dts     | 28 +++++++++----------
->>   1 file changed, 14 insertions(+), 14 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->> index 0d39d6b8cc0c..63633e4f6c59 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->> @@ -83,25 +83,25 @@ vdd_sd_dv: gpio-regulator-TLV71033 {
->>   &wkup_pmx2 {
->>   	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
->>   		pinctrl-single,pins = <
->> -			J721E_WKUP_IOPAD(0x0068, PIN_OUTPUT, 0) /* MCU_RGMII1_TX_CTL */
->> -			J721E_WKUP_IOPAD(0x006c, PIN_INPUT, 0) /* MCU_RGMII1_RX_CTL */
->> -			J721E_WKUP_IOPAD(0x0070, PIN_OUTPUT, 0) /* MCU_RGMII1_TD3 */
->> -			J721E_WKUP_IOPAD(0x0074, PIN_OUTPUT, 0) /* MCU_RGMII1_TD2 */
->> -			J721E_WKUP_IOPAD(0x0078, PIN_OUTPUT, 0) /* MCU_RGMII1_TD1 */
->> -			J721E_WKUP_IOPAD(0x007c, PIN_OUTPUT, 0) /* MCU_RGMII1_TD0 */
->> -			J721E_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* MCU_RGMII1_RD3 */
->> -			J721E_WKUP_IOPAD(0x008c, PIN_INPUT, 0) /* MCU_RGMII1_RD2 */
->> -			J721E_WKUP_IOPAD(0x0090, PIN_INPUT, 0) /* MCU_RGMII1_RD1 */
->> -			J721E_WKUP_IOPAD(0x0094, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
->> -			J721E_WKUP_IOPAD(0x0080, PIN_OUTPUT, 0) /* MCU_RGMII1_TXC */
->> -			J721E_WKUP_IOPAD(0x0084, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
->> +			J721E_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* MCU_RGMII1_TX_CTL */
->> +			J721E_WKUP_IOPAD(0x0004, PIN_INPUT, 0) /* MCU_RGMII1_RX_CTL */
->> +			J721E_WKUP_IOPAD(0x0008, PIN_OUTPUT, 0) /* MCU_RGMII1_TD3 */
->> +			J721E_WKUP_IOPAD(0x000c, PIN_OUTPUT, 0) /* MCU_RGMII1_TD2 */
->> +			J721E_WKUP_IOPAD(0x0010, PIN_OUTPUT, 0) /* MCU_RGMII1_TD1 */
->> +			J721E_WKUP_IOPAD(0x0014, PIN_OUTPUT, 0) /* MCU_RGMII1_TD0 */
->> +			J721E_WKUP_IOPAD(0x0020, PIN_INPUT, 0) /* MCU_RGMII1_RD3 */
->> +			J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0) /* MCU_RGMII1_RD2 */
->> +			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0) /* MCU_RGMII1_RD1 */
->> +			J721E_WKUP_IOPAD(0x002c, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
->> +			J721E_WKUP_IOPAD(0x0018, PIN_OUTPUT, 0) /* MCU_RGMII1_TXC */
->> +			J721E_WKUP_IOPAD(0x001c, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
-> nice catch.
->
->>   		>;
->>   	};
->>   
->>   	mcu_mdio_pins_default: mcu-mdio1-pins-default {
->>   		pinctrl-single,pins = <
->> -			J721E_WKUP_IOPAD(0x009c, PIN_OUTPUT, 0) /* (L1) MCU_MDIO0_MDC */
->> -			J721E_WKUP_IOPAD(0x0098, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
->> +			J721E_WKUP_IOPAD(0x0034, PIN_OUTPUT, 0) /* (L1) MCU_MDIO0_MDC */
->> +			J721E_WKUP_IOPAD(0x0030, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
->>   		>;
->>   	};
->>   };
->> -- 
->> 2.34.1
->>
+
+
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/debugfs.h>
+> +#include <linux/delay.h>
+> +#include <linux/fs.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/miscdevice.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/uaccess.h>
+> +
+> +#define STATUS_READY_TIMEOUT		5000  /* microseconds */
+> +
+> +#define DCC_SRAM_NODE "dcc_sram"
+
+You only use this once, why is a #define needed?
+
+> +static void dcc_create_debug_dir(struct dcc_drvdata *drvdata)
+> +{
+> +	int i;
+> +	char list_num[10];
+> +	struct dentry *list;
+> +	struct device *dev = drvdata->dev;
+> +
+> +	drvdata->dbg_dir = debugfs_create_dir(dev_name(dev), NULL);
+
+You are creating a directory at the root of debugfs with just your
+device name?  While that will work, that feels very odd.  Please use a
+subdirectory.
+
+> +	if (IS_ERR(drvdata->dbg_dir)) {
+> +		pr_err("can't create debugfs dir\n");
+
+There is no need to ever check the return value of a debugfs call.
+
+Nor do you really ever even need to save off the dentry here, just look
+it up when you need to remove it.
+
+> +		return;
+> +	}
+> +
+> +	for (i = 0; i <= drvdata->nr_link_list; i++) {
+> +		sprintf(list_num, "%d", i);
+> +		list = debugfs_create_dir(list_num, drvdata->dbg_dir);
+> +		debugfs_create_file("enable", 0600, list, drvdata, &enable_fops);
+> +		debugfs_create_file("config", 0600, list, drvdata, &config_fops);
+> +	}
+> +
+> +	debugfs_create_file("trigger", 0200, drvdata->dbg_dir, drvdata, &trigger_fops);
+> +	debugfs_create_file("ready", 0400, drvdata->dbg_dir, drvdata, &ready_fops);
+> +	debugfs_create_file("config_reset", 0200, drvdata->dbg_dir,
+> +			    drvdata, &config_reset_fops);
+
+This really looks like you are using debugfs to control the device, not
+just for debugging information.  How are you going to be able to use the
+device in a system that has debugfs disabled?
+
+thanks,
+
+greg k-h
