@@ -2,230 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB416E31C3
-	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 16:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8326E31D9
+	for <lists+devicetree@lfdr.de>; Sat, 15 Apr 2023 16:36:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbjDOOTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 10:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42522 "EHLO
+        id S229541AbjDOOgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 10:36:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjDOOS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 10:18:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02DEB49E1;
-        Sat, 15 Apr 2023 07:18:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B78960B21;
-        Sat, 15 Apr 2023 14:18:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D7F73C433A4;
-        Sat, 15 Apr 2023 14:18:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681568336;
-        bh=jS0bpY0B94N3teaYRFeuB4DDITFUe3GUayl2qqATw4Y=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-        b=LNEqNroCC6vOajujZb9dIYQ0z7DDXijLtYKlOQPj+KDUEcUYap53J74dT7yIz60cp
-         Ytug0jO05So/92ZxfIULe35wdlW/v9bZu/OFg0us/r9S4PywKUc1XB7+05z3cfSy5t
-         eh7YbQD8VWwrBQ5q2N4223Sp84faioecgDyZ7C5iP9Woao+vuNpt3a1/hrAYDQD2ZG
-         8fxX59JOAqvj78iIPAGMU1XmuYp/brjRAqSAuS3SkwRm8D2zYNGd8QXagbL8Tybolg
-         VLTpTegO6kN0lbhJVd9ZGzFF+zRKwsCLYEQGTc5NVk+2D1SJZ+AKaPYh13TJ8V9VU2
-         hgkMN7FpPe8CA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.lore.kernel.org (Postfix) with ESMTP id B1032C77B70;
-        Sat, 15 Apr 2023 14:18:56 +0000 (UTC)
-From:   Yang Xiwen via B4 Relay 
-        <devnull+forbidden405.outlook.com@kernel.org>
-Date:   Sat, 15 Apr 2023 22:18:46 +0800
-Subject: [PATCH RFC 3/3] binding: mmc: hi3798cv200-dw-mshc: convert to YAML
- and rename to histb-dw-mshc, add compatible of hi3798mv200
+        with ESMTP id S229522AbjDOOgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 10:36:41 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E724C22
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 07:36:39 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id c9so13945351ejz.1
+        for <devicetree@vger.kernel.org>; Sat, 15 Apr 2023 07:36:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=elearningbenefits-com.20221208.gappssmtp.com; s=20221208; t=1681569398; x=1684161398;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FCc+aPGwbR8VbRgg2YiEKQ55yVGbmk/dWlTuIErptoA=;
+        b=su63NeGTaOW0CLRExKFqRX7/ZIrjYTQeE8xQjOYI9EjG4p8micTCnHG8vWbxP44mdB
+         uOKWm6wUnnAbqx+R4guXYHrf+1CXgCvH7ruQ0m7Xqi8BNssULal9ZojzeLjTL1wVCvSf
+         XjXrkLrT+RjS19k4VA8jJdRyFdxobhAhD3Nk6iMZ6U/ghwlMg+v+uNJLIBUkA0OKxLpB
+         BzE7vNndPn3mD+RnHdiwZ1gbFHDXnBzRkV4NVN/FznRlmwYcT6ZXfPHvxrMMEnibdCQ3
+         FvIdDzdgIxmplTXheNrExDtI2d9TgGIQMc5aW5mBdD4sZAZG9WoJ9ffdBwn4TO23iu3e
+         t4og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681569398; x=1684161398;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FCc+aPGwbR8VbRgg2YiEKQ55yVGbmk/dWlTuIErptoA=;
+        b=FEHXD/1zpmbKCLs8wnwjajtr7bo5QogZr0CAxgJGjNj0+7vWco8asVAIVhMZqDJFjH
+         HfC4mdd4619zTGmdQ6vVldScQR20jmK5KhNU9iN0P3JHfce1plaXQSoL5wt70iDHjXGN
+         32OtsPaiml9JWKaWma6Ys/hONjbsPMSDFP1i21VW0RYNL9+FLxGvyO6ibyHzRWCTDsJZ
+         sl692pQq2IMLjm8ACp0nk3VWneudL7k57KLrVbrX4vo6BOTElsTLiLKGJBODtgnW8am+
+         yOb5NLis3QI7FxAbn8RajMz6qyLXg2QZVT1ohHUOTOKYgO2iDpOkhfoWFrtfbIOgMf8M
+         j3Hw==
+X-Gm-Message-State: AAQBX9f3c41c13cbVZ8CzhgWolHC6xpuXw2gf124VGy1p6ozUXgOlnyx
+        yFpkhVPMai2vVhVzyVnZBELSI2HCsn8Hns62YsixUw==
+X-Google-Smtp-Source: AKy350ZmsskWHYgt15k4PAhN9ggirYYU8z7VjdzJRejSkanQNmmTlOOCCWDjzQ4yvXSjndtgfhvLz3jx1eSfc7QZTdw=
+X-Received: by 2002:a17:906:304a:b0:94e:dbf7:2dfe with SMTP id
+ d10-20020a170906304a00b0094edbf72dfemr2064939ejd.11.1681569398397; Sat, 15
+ Apr 2023 07:36:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230415-mmc-hi3798mv200-v1-3-db5b91d939d4@outlook.com>
-References: <20230415-mmc-hi3798mv200-v1-0-db5b91d939d4@outlook.com>
-In-Reply-To: <20230415-mmc-hi3798mv200-v1-0-db5b91d939d4@outlook.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yang Xiwen <forbidden405@outlook.com>
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681568331; l=4836;
- i=forbidden405@outlook.com; s=20230415; h=from:subject:message-id;
- bh=2D/pBZCGAgmdlkmpqO4z/Qn0KjP4597p33+qioc0CGI=;
- b=KJ2kN9GGQjGE1Zfp9lP0qd6w9VrxShZz6xATYcFOjN9efHslM8Fg/Mvmb1tQm4GOpEK4gXWdF
- B7gusXCo1hKCdPU17hO8GB1o3Egx09cZ0kYKmLCJqEc8lB9VlzONOft
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=hfdpPU3AXR+t7fdv58tXCD4UzRNq+fop2TMJezFlAhM=
-X-Endpoint-Received: by B4 Relay for forbidden405@outlook.com/20230415 with auth_id=44
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+From:   Ada Perez <ada@elearningbenefits.com>
+Date:   Sat, 15 Apr 2023 09:36:24 -0500
+Message-ID: <CAKX08jWq4k6GQxLhhirmCc_9Aw7Ci=syi14ABQNAiA6VVSa3Jg@mail.gmail.com>
+Subject: RE: NAB Show Attendees Data-List 2023
+To:     Ada Perez <ada@elearningbenefits.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yang Xiwen <forbidden405@outlook.com>
+Hi,
 
-Hi3798MV200 has an extra clock, also document it here.
+I hope you=E2=80=99re having a great week!
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- .../bindings/mmc/hi3798cv200-dw-mshc.txt           | 40 ----------
- .../devicetree/bindings/mmc/histb-dw-mshc.yaml     | 90 ++++++++++++++++++++++
- 2 files changed, 90 insertions(+), 40 deletions(-)
+Would you be interested in the National Association of Broadcasters
+Attendees Data List 2023?
 
-diff --git a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.txt
-deleted file mode 100644
-index a0693b7145f2a..0000000000000
---- a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.txt
-+++ /dev/null
-@@ -1,40 +0,0 @@
--* Hisilicon Hi3798CV200 specific extensions to the Synopsys Designware Mobile
--  Storage Host Controller
--
--Read synopsys-dw-mshc.txt for more details
--
--The Synopsys designware mobile storage host controller is used to interface
--a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
--differences between the core Synopsys dw mshc controller properties described
--by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
--specific extensions to the Synopsys Designware Mobile Storage Host Controller.
--
--Required Properties:
--- compatible: Should contain "hisilicon,hi3798cv200-dw-mshc".
--- clocks: A list of phandle + clock-specifier pairs for the clocks listed
--  in clock-names.
--- clock-names: Should contain the following:
--	"ciu" - The ciu clock described in synopsys-dw-mshc.txt.
--	"biu" - The biu clock described in synopsys-dw-mshc.txt.
--	"ciu-sample" - Hi3798CV200 extended phase clock for ciu sampling.
--	"ciu-drive"  - Hi3798CV200 extended phase clock for ciu driving.
--
--Example:
--
--	emmc: mmc@9830000 {
--		compatible = "hisilicon,hi3798cv200-dw-mshc";
--		reg = <0x9830000 0x10000>;
--		interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&crg HISTB_MMC_CIU_CLK>,
--			 <&crg HISTB_MMC_BIU_CLK>,
--			 <&crg HISTB_MMC_SAMPLE_CLK>,
--			 <&crg HISTB_MMC_DRV_CLK>;
--		clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
--		fifo-depth = <256>;
--		clock-frequency = <200000000>;
--		cap-mmc-highspeed;
--		mmc-ddr-1_8v;
--		mmc-hs200-1_8v;
--		non-removable;
--		bus-width = <8>;
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
-new file mode 100644
-index 0000000000000..05a435185e9da
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
-@@ -0,0 +1,90 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/histb-dw-mshc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title:
-+  Hisilicon Hi3798CV200 specific extensions to the Synopsys Designware Mobile
-+  Storage Host Controller
-+
-+maintainers:
-+  - Yang Xiwen <forbidden405@outlook.com>
-+
-+description:
-+  The Synopsys designware mobile storage host controller is used to interface
-+  a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
-+  differences between the core Synopsys dw mshc controller properties described
-+  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
-+  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
-+
-+allOf:
-+  - $ref: "synopsys-dw-mshc-common.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: hisilicon,hi3798mv200-dw-mshc
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+
-+        clock-names:
-+          minItems: 5
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,hi3798cv200-dw-mshc
-+      - hisilicon,hi3798mv200-dw-mshc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 4
-+    maxItems: 5
-+    description: A list of phandles for the clocks listed in clock-names
-+
-+  clock-names:
-+    minItems: 4
-+    items:
-+      - const: ciu
-+      - const: biu
-+      - const: ciu-sample
-+      - const: ciu-drive
-+      - const: sap-dll-mode
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    emmc: mmc@9830000 {
-+            compatible = "hisilicon,hi3798cv200-dw-mshc";
-+            reg = <0x9830000 0x10000>;
-+            interrupts = <35>;
-+            clocks = <&crg 1>,
-+                     <&crg 2>,
-+                     <&crg 3>,
-+                     <&crg 4>;
-+            clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
-+            fifo-depth = <256>;
-+            clock-frequency = <200000000>;
-+            cap-mmc-highspeed;
-+            mmc-ddr-1_8v;
-+            mmc-hs200-1_8v;
-+            non-removable;
-+            bus-width = <8>;
-+    };
-+
+No of Contacts:- 45,764
+Cost: $ 1,874
 
--- 
-2.39.2
+Looking forward for your response,
 
+Kind Regards,
+Ada Perez
+Marketing Coordinator
