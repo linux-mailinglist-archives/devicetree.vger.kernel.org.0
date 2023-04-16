@@ -2,115 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A1666E3B52
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 20:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D84C6E3B69
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 21:10:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbjDPSvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 14:51:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48190 "EHLO
+        id S229484AbjDPTKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 15:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbjDPSvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 14:51:18 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B786A1987
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:51:16 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id dx24so14657169ejb.11
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:51:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681671075; x=1684263075;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GKImHCjHVF5MZ/4M5IREBVMKJU5wQfIJuuJriWo9vEM=;
-        b=s7Cy79OQkVoSUqwpUIa4AWNao0LwkjducBmRn/xrDI3YTfRKfxsy1NdT1DhklolWHz
-         agVFkH2SM+Sev/Pxi0yBokTO67lNPQ9po7rxIguvFpXX2W7KmgH+oeAL+/LwwUaC8onn
-         VGSaYCt3Fse06Zn83FmefE6gCa7XKwlMEDqUUnSe52G30qUOGjrTIokO+NItSxS4m9/j
-         QuA66PMKS7ihuYAPnxjgGViptkmwGlEnnmkZtbho2JULPMs8zDUH171k61GpvaaXyGE+
-         vsV3D7krkyEgfKiA3L+stcOe1IjYFjZml6jhGqjWyGQh6wJv88PTBbXDsO781DjJjz19
-         kjFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681671075; x=1684263075;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GKImHCjHVF5MZ/4M5IREBVMKJU5wQfIJuuJriWo9vEM=;
-        b=PyA0OPmu6DlCNifzNNE0zTODpfFlLxCuyp2iyT45fDdG3Gh9b9Bg9DLL3jfRf+j82Z
-         VWfLBwbO5+qG2YbloZe9m5GBB7+xCndIZSa3GWszQ1pYm3gt2o162gJ/5H9cAj5I6tZ5
-         lckZ6py23TIanJH6wkHzWWFMrHD6+reLzWzAc13QMbBrndWUQrFSG80LeAvOn8V5/jFN
-         HXz8KOG48uQNA5qdWV/ChLrJMbWgD+M2L+HL3XQH1WKyhQYzBpbpxYoiq6SVJuAYOSaK
-         jrKh5jeb5X/x3ZQpyWjk6aQGQB88kNJ3Lz8bnLBkdWvESSpa1VQodfmeQIfKBaQfWsVk
-         9EKA==
-X-Gm-Message-State: AAQBX9e4QbeuJisXe+Q6VlSCvNtIPxzISpbFRxhKCk1ifI/JY0y7TmhV
-        KvgQ/fYI2RFGcEc8uKjMtuftNg==
-X-Google-Smtp-Source: AKy350ZUnlsLiqcJGll/ROJIUcU/VJ4V8dQbWggjC/n4kdtez0qynFD8+ZslbYFgDYYJPL4FJM4PFw==
-X-Received: by 2002:a17:906:fc0e:b0:94f:317f:6a58 with SMTP id ov14-20020a170906fc0e00b0094f317f6a58mr3656389ejb.35.1681671075214;
-        Sun, 16 Apr 2023 11:51:15 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id v2-20020a1709064e8200b0094efcc4a076sm3253368eju.164.2023.04.16.11.51.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 11:51:14 -0700 (PDT)
-Message-ID: <98da9a32-9771-1002-f323-909e8b49a536@linaro.org>
-Date:   Sun, 16 Apr 2023 20:51:13 +0200
+        with ESMTP id S229575AbjDPTKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 15:10:08 -0400
+X-Greylist: delayed 581 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 Apr 2023 12:10:05 PDT
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2EE270E
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 12:10:05 -0700 (PDT)
+Received: from [192.168.100.237] (cust-58-62-110-94.dyn.as47377.net [94.110.62.58])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 31B6A3A3B6B;
+        Sun, 16 Apr 2023 21:00:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1681671620;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KbiAlrrOOyRd9nSswntO2EM/kuhEbC2Dui2D0jg8mhE=;
+        b=yJTuA2IM1/ouSfmFU4g81QYz/Qs036N+Xgao0Ath/i9vW1OlzLPaQPSs5Z/cwJgY+mB5Yt
+        9frXAammof4cYeKT3YVKBBWuJmf5TlBYeZdPZpxvHm/UkuLToAfxBulAuQ/nfQnJU4gl/N
+        knaWX+2Bmwu0hShO8EBylOfwdt4HsidJ6JVG8BFAGRPK8fnJHUS7eltyRhN2MTg3ab2WE1
+        UgpwApF4MwfWTnKCtGazcW0/+MWrMm5ofGGKOhMMnVk7OADQ+R6e9jhHvt6dGh4OC2H0oK
+        b9tPCUEGwBSgAzSOzEjLJfpJWZ4oWq8P1U6FwFMzQAju74a9ESqS7tOiZHvUhQ==
+Message-ID: <75148300a158ceb0f86043535b089838e1d1bb61.camel@svanheule.net>
+Subject: Re: [PATCH 6/6] dt-bindings: watchdog: realtek,otto-wdt: simplify
+ requiring interrupt-names
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Julius Werner <jwerner@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Justin Chen <justinpopo6@gmail.com>, ?ecki <rafal@milecki.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Jamie Iles <jamie@jamieiles.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org
+Date:   Sun, 16 Apr 2023 21:00:17 +0200
+In-Reply-To: <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
+         <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8753: Convert to dtschema
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Saalim Quadri <danascape@gmail.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
-        robh+dt@kernel.org
-References: <5d629ff3-c5ae-bd00-e70d-8c0d58365ce3@linaro.org>
- <20230415201246.1200683-1-danascape@gmail.com>
- <92d0f4c7-ed53-5d84-3955-08d1ab8bbd98@linaro.org>
-In-Reply-To: <92d0f4c7-ed53-5d84-3955-08d1ab8bbd98@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/04/2023 09:35, Krzysztof Kozlowski wrote:
-> On 15/04/2023 22:12, Saalim Quadri wrote:
->>> You choose unusual bindings to convert to DT schema. It is fine but
->>> honestly, less useful, with limited impact. This is an old, 12 year old
->>> binding without users. Maybe it would be even removed by now...
->>> I suggest converting ones which have a real impact - have users in DTS.
->>> Otherwise you will be putting quite a lot of effort for no real gains...
->>> because what is the difference between this binding being TXT and DT schema?
->>
->> I am converting these bindings as part of my GSoC project where I need to convert
->> as many files as possible during the given tenure, I am slowly trying to read files
->> in other subsystems too and will push patches for other subsystems too.
->> Is it fine?
-> 
-> In general it is fine. I wonder if we can change the goal of GSoC? I am
-> surprised that such goal was chosen in the first place. Converting old,
-> unused bindings to DT schema is okay, but it would be much better to do
-> this for the bindings which are actually used.
-> 
-> Because I still wonder - what is the difference between this binding
-> being TXT and DT schema?
+Hi Krzysztof,
 
-BTW,
+On Sat, 2023-04-15 at 11:51 +0200, Krzysztof Kozlowski wrote:
+> Required properties should be listed in "required:" block.=C2=A0 Since
+> interrupts are already there, the dependency of interrupt-names on the
+> interrupts can be simplified.
 
-If you want to find used bindings and tasks to do, check Rob's bot output:
+Maybe I'm not reading this right, but isn't the dependency stated in the bi=
+nding
+"interrupts requires interrupt-names to be present"? resource-names.txt
+describes the reverse dependency ("interrupt-names is only meaningful with =
+an
+associated interrupts").
 
-https://gitlab.com/robherring/linux-dt/-/jobs/4118960859
-https://gitlab.com/robherring/linux-dt/-/jobs/4118960858
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-I pointed to these jobs two months ago when Daniel was looking for some
-feedback.
+In any case, I'm OK with a flattened requirements list:
 
-Best regards,
-Krzysztof
+Acked-by: Sander Vanheule <sander@svanheule.net>
+
+
+Best,
+Sander
+
 
