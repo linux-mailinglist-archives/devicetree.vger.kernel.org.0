@@ -2,95 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E83E06E3AD8
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 19:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EEE96E3ADD
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 19:54:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbjDPRup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 13:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
+        id S229565AbjDPRyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 13:54:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbjDPRup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 13:50:45 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F9E271B
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:50:43 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id ud9so58265753ejc.7
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:50:43 -0700 (PDT)
+        with ESMTP id S229567AbjDPRyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 13:54:40 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6AFC1FC7
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:54:38 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5052caa1e32so3541826a12.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:54:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681667442; x=1684259442;
+        d=linaro.org; s=google; t=1681667677; x=1684259677;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ArQgtD3XSqkYnGRgmzJbWKvwHilfmpOzjhORldjiTRk=;
-        b=pjh6Cixrsx8Hh512bQNyQ6zvHY998f+4aIajXuk5EHdzmo5iT6u3GlXVbpaMV38yos
-         YpFwr+V5uPby5XRdL3RkmIfpnFq2AWq7G6UZ7ia+8RncjR9w9Xan+3GKbSZ8m4Baox1U
-         HNHJzW+OH4DoL6PAGYseKkrKSbr/Px4FVq/kHeg8jB2uXJ0YVMLf3qLjeXI9IZq7qqmE
-         tGihYj7Lko1JPhUxqH6jN9ilObc9x6emMwwv4Xf9kRfX/EbhI8uDU8f7SbdaBt67s3MS
-         A21fcWQsFMWRwq4fyiYIIr4fd19bKIXGRTXZyH077fSLsSf1b69G0GR5Q/3qVLwYu9Q9
-         hImw==
+        bh=JS6gaHiphUmSOWpn+pmyiSugcXzg+J545dx/xJnnaxk=;
+        b=WuWEb3nQKRcBC4aQq5LCsl/QIdpbFKoJvTV/SSvo7+KcXslPZLEolPou2WpIPh9FCF
+         srBTN+NGP3wj8rwbrUDV8VW47d+Ia+cdOt36cVwkpPie84WhNTiO/G08tM6139DnVgOd
+         Dy8L6Fa6tgCAG04ZtOxo+uyGTfV4VjAkykB/5otTlNrA2UVIuusuAX/F56nUUuVtwxWD
+         96eYsH0axlMBFn6uCuZh8OTkFdS2nLbwtuzoUk7tVDlq+GxwnO2hQIDEnvwl1J3GmSt1
+         ugYCUXZV3Sj18cLHhJWSKF3gciUab1+yK2RmZV3x+B4zT8k8zJmTdCetNRpPXt6ybdBk
+         ZCWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681667442; x=1684259442;
+        d=1e100.net; s=20221208; t=1681667677; x=1684259677;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ArQgtD3XSqkYnGRgmzJbWKvwHilfmpOzjhORldjiTRk=;
-        b=MNjXwyvjUi7MNi0HsP2cO4r3+Viuz9GJL5lS3npb1TelFL+o5LKt0ktMwtBIJMi+ZP
-         DrNLv3j53HROz6/JC7DxAbgtnWdFhDv8AN9KLBe6X/+IpGmhYLyJ3Aq9SzFAMdLhzAVl
-         aCaLVudIRhEJlZeRaj+02/tGi/XqEAnG2VcHTp4+J1BhygFa/gbA+AzLLaYXMm0m/1eV
-         IGl1tNvtKFgkiGUezwbeJoBQ28yz6HnXJts3nuArf/A3Fy4gFPC0aiUk63kvyJdA2UrO
-         MaL+Wat3DEBaHNNuH5tRdh0jFu+dfaslIVFq40V7bvC9vscK85/NBdRIjT4h1R2RSUn5
-         MeMg==
-X-Gm-Message-State: AAQBX9c501xGK5qWHQMsztchQ1rapI1lRHk+MjR/KLPfnIfpFhpLSGcQ
-        opNjtPkR0GJzFPHjOKvdPdQcVw==
-X-Google-Smtp-Source: AKy350bi5SNwJCsq1S0JAPIIz20WwvLuMxekPOjUVrH+1IolwM3A1B+tOdwmSN/EadbYy+1HMOa5vA==
-X-Received: by 2002:a17:906:52d6:b0:931:1e69:e1da with SMTP id w22-20020a17090652d600b009311e69e1damr4736891ejn.7.1681667442258;
-        Sun, 16 Apr 2023 10:50:42 -0700 (PDT)
+        bh=JS6gaHiphUmSOWpn+pmyiSugcXzg+J545dx/xJnnaxk=;
+        b=HBrSkNu5dpwAQWviosUe/eWF+I5K5f4ae/G9x+3X7CM4JD1+5pbGGyA2Sqa88+Jrd9
+         1dZDBGfy7JLew+I6Jfg6PfbrnERo+GxmsEhtUMSmwN26Hi0J7aoYiMVjdRX4Ex5hG0pD
+         L0226qZ09FPNmhCssHDmKJ5/OW5drtxGm8r3WNp+0IKA4+SiTXaYDrA19qH2ziv0wnXS
+         f9M9KAdcIiPErgUW/+ImIkCnHvU89DclfwmZ2t5yu9Jcy9cE6OFmQyspuPb/BLOC5DmQ
+         ltWmjifsibwTdhkqp4V/XPxJAgsJf4Mm6aznZ4laa/qMvEiAA4bYvZAdcVlmC0xiQQ9L
+         G4kg==
+X-Gm-Message-State: AAQBX9ey2rldiHqmtPLPUJdncFzVvUDLnhPobLllvO0Hm5Hsjqy4zX9q
+        b0YKvibnxAUzmPhqvwnoarjLRA==
+X-Google-Smtp-Source: AKy350Y5iFghGHPVY/+36B4z9G0r8ayC/uD7aU0dvjOxkfyBYGegI5B/Jo7ShhZXPQ/Ssg96Hx350Q==
+X-Received: by 2002:a05:6402:1486:b0:4fd:29a1:6a58 with SMTP id e6-20020a056402148600b004fd29a16a58mr13688436edv.19.1681667677169;
+        Sun, 16 Apr 2023 10:54:37 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id gn42-20020a1709070d2a00b00930525d89e2sm5397950ejc.89.2023.04.16.10.50.41
+        by smtp.gmail.com with ESMTPSA id h23-20020aa7c957000000b005066ca60b2csm4695188edt.63.2023.04.16.10.54.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 10:50:41 -0700 (PDT)
-Message-ID: <4c453fdf-0405-518c-0e2d-50cabc61bacd@linaro.org>
-Date:   Sun, 16 Apr 2023 19:50:40 +0200
+        Sun, 16 Apr 2023 10:54:36 -0700 (PDT)
+Message-ID: <00bd1ec1-0745-c521-4df9-e31e1057a6ff@linaro.org>
+Date:   Sun, 16 Apr 2023 19:54:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v5 06/14] dt-bindings: mfd: qcom,spmi-pmic: Add typec to
- SPMI device types
+Subject: Re: [PATCH v2 01/12] dt-bindings: soc: samsung: add Exynos4212 PMU
+ compatible
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
- <20230413113438.1577658-7-bryan.odonoghue@linaro.org>
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230416133422.1949-1-aweber.kernel@gmail.com>
+ <20230416133422.1949-2-aweber.kernel@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230413113438.1577658-7-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230416133422.1949-2-aweber.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 13:34, Bryan O'Donoghue wrote:
-> Add the PMIC Type-C port driver to the list of devices.
+On 16/04/2023 15:34, Artur Weber wrote:
+> The platform was originally dropped in commit bca9085e0ae9 ("ARM:
+> dts: exynos: remove Exynos4212 support (dead code)"), as there were
+> no boards using it.
+
+You meant commit c40610198f35e? This is the one which you partially revert.
+
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-This depends on previous patch, so should go together. You should
-clearly communicate dependencies/merging in cover letter. At the top of
-it, so maintainers will know they *cannot* pick it up independently.
+> We will be adding a device that uses it, so add it back.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
 Best regards,
 Krzysztof
