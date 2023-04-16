@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A0C6E3619
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 10:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB656E361F
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 10:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbjDPIls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 04:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53766 "EHLO
+        id S230142AbjDPImn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 04:42:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjDPIlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 04:41:47 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F0B1E53
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 01:41:45 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id jg21so56176714ejc.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 01:41:45 -0700 (PDT)
+        with ESMTP id S230210AbjDPImm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 04:42:42 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 026C01FF6
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 01:42:39 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id kt6so18352918ejb.0
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 01:42:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681634503; x=1684226503;
+        d=linaro.org; s=google; t=1681634557; x=1684226557;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z38YOwonjh+CuGoHVNF1HUAwyUw8JsKrwMe04nmWqWU=;
-        b=XtL7I8EJa4TnDjPqg/bkL7het+eZwnY7c+vq/oR2ufKb0V0wVxGLOZPHOCrhLp/MLY
-         nQac8gaM2+kSZzQMExRz5WmhDKRKEwtQDMuzGoYCzPz/ABG/m/RmWD00gis9vZyn+8fI
-         QqfIJA1OfwTSEDH8Bq/9e8CvppGUejeR5PnKTUicmjUqpEph6LPByXk8FWl5s8v4s1TQ
-         B7kUj9Y+8d3E5VtFUDtzmuZodOqOXYGrSPGTsqj32s0E9JYBgn77+s5Hw0bLi8Dkbr4m
-         QUHb0zcNiDhtcKAHF/IUpNbEohIY694N/DlEvVye1C4+PFpvEFln0yhFvsL2wu4AoNIC
-         1J5Q==
+        bh=hqq+eYxLKmqhmd5LaiASaZTg9uvXAN3PWoh+nYWuMCg=;
+        b=zMwiXZdP/jKXpT6gKopu1anaiiVIxNM48UHNK3IMwrXVTmW2eHNeLY/mWgBO3hmb9/
+         4BcLE0MzbhexGA42zE+RgXFUNg34SlJ9W+lb2R3mchYaZmyWJuYysZoiA51OyqKXTvvq
+         aCDEajkatGrLk6ZhzSDPKCUulC2zPQME/QwMjjeKQvzciorbcXMqtmk/4ygGA+GZSDlS
+         3emf9MwtJPK7Q/SUHUjHBz1MxJuCAeTY/T2GVZ219g3CdGzJI7oB3ANtLw8FGRa3gxeB
+         fe7EZmxMMQeFPoZLZR52U/rAf/VXYyGIjJiSZlTulcU86rTdne3i7LYT20XkLh61XQFH
+         FIQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681634503; x=1684226503;
+        d=1e100.net; s=20221208; t=1681634557; x=1684226557;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z38YOwonjh+CuGoHVNF1HUAwyUw8JsKrwMe04nmWqWU=;
-        b=VPIVoyFUFsWNB+XJGuuK9xhSaxgksgOzbfyVDC30YIvsFCp0EEC3ScO42PLcU3CUPO
-         O6EjqHca3roAjpdn+3BLKUqmdH/XIg3uEMpjN8xL68WewEL0XUymD/hMvc3Ghk+b22GM
-         iqx7x67k0d+jJ32jiH0JqbRQRC20QYvS1l1hv2E5EOTdNNYQfQNDyhmycMmeg/i2/OKK
-         B6+GjMcbsUH7TlfSqWVETaXpv21tp2Txgi9vITyjJoF2IDkmAZk3QqiA11m3/4SwP0hI
-         ch8Y5qvbaBRQAJhzr+OBujC0p4eMis/A2/C1F7c3o3cyGLiPjHE83rGSdaWYyEsKuDIo
-         u6oQ==
-X-Gm-Message-State: AAQBX9e/jk6Czr1jZS4VHkduwI5uiL3YLJEjPQxdc/n74bgY6yU+Hs17
-        Jj4Mu0qIUpAiB1GecVbz9yo64A==
-X-Google-Smtp-Source: AKy350Zi0A5LLp8sg5agw1LU2VkgNVdoV04TQ1cymNV6El5KTnF+4ocfEanZIQeGs02EIhPW/yxFvw==
-X-Received: by 2002:a17:907:9010:b0:94e:bc04:1e19 with SMTP id ay16-20020a170907901000b0094ebc041e19mr2881822ejc.71.1681634503524;
-        Sun, 16 Apr 2023 01:41:43 -0700 (PDT)
+        bh=hqq+eYxLKmqhmd5LaiASaZTg9uvXAN3PWoh+nYWuMCg=;
+        b=DV0eIknzsocDTvM2JuPCfE5jQgYdvk1UoFvkFhYrEZP6dZS9qYe3j2C1JUR60k2T7G
+         gEYfQG+Zwh5+LfEkYd8OIDY1k8dyenug0bunQoKYVcJjxm0Zu3NO6GY7TfOA+1LuKV4p
+         pI0CuH0ohOmIStPN0vR1/JX3efUfHgk7SvgPiXgD+MbaeZ/AzhNPMkpFheAl6hKHo4tz
+         U7hkRXLoa4ebtlZGXT0vMcq6kUXrqO1aBX9QTXAShHN2Nbv8Gs+3V78LJhjj4xTLEpW2
+         l+YEhS+p70e5DBZC3u1YtZrgXfigkYfBHOHBA1oTUKxsG0cjKEXmHzPSVeHevSYHKUym
+         ytQA==
+X-Gm-Message-State: AAQBX9eJfQTYhPbpA3ghjfbRKly0faUCJYwyvMV6ZaPMEVU9nXwwLd1k
+        adtcJj74V4ssPRvTpTxHJ7INwA==
+X-Google-Smtp-Source: AKy350YmwV0JiTy6NU+GKSTqxxFOs6/3hOvoxtfaH7q6nvSq2pks1/HUnrJLWXt9TN+yzpgJLuQAzQ==
+X-Received: by 2002:a17:906:ad8a:b0:94e:6f2d:d1c9 with SMTP id la10-20020a170906ad8a00b0094e6f2dd1c9mr4154864ejb.68.1681634557504;
+        Sun, 16 Apr 2023 01:42:37 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:29dd:ded4:3ccc:83db? ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
-        by smtp.gmail.com with ESMTPSA id hu14-20020a170907a08e00b0094f2d38896esm1498033ejc.65.2023.04.16.01.41.42
+        by smtp.gmail.com with ESMTPSA id w3-20020a170906b18300b0094b5ce9d43dsm4792678ejy.85.2023.04.16.01.42.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 01:41:43 -0700 (PDT)
-Message-ID: <b6f47412-591d-6b89-2096-c5e5b72d8e17@linaro.org>
-Date:   Sun, 16 Apr 2023 10:41:41 +0200
+        Sun, 16 Apr 2023 01:42:37 -0700 (PDT)
+Message-ID: <9ffb88fa-6cda-2740-77c6-d4985ebaace7@linaro.org>
+Date:   Sun, 16 Apr 2023 10:42:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v3 0/5] Add support for Focaltech FTS Touchscreen
+Subject: Re: [PATCH v3 1/5] dt-bindings: input: touchscreen: add
+ focaltech,fts5452 touchscreen
 Content-Language: en-US
 To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
         Caleb Connolly <caleb@connolly.tech>,
@@ -80,8 +81,9 @@ Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
 References: <20230415020222.216232-1-joelselvaraj.oss@gmail.com>
+ <20230415020222.216232-2-joelselvaraj.oss@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230415020222.216232-1-joelselvaraj.oss@gmail.com>
+In-Reply-To: <20230415020222.216232-2-joelselvaraj.oss@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,22 +97,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/04/2023 04:02, Joel Selvaraj wrote:
-> Changes in v3:(Suggested by Krzysztof Kozlowski and Konrad Dybcio)
-> --------------
-> - dts: removed the invalid "input-enable" property
-> - dts: replace interrupts with interrupts-extended
-> - dts: removed redundant dma configuration
-> - dts: reorder pinctrl and pinctrl-names
-> - bindings: moved unevaluatedProperties after required
-> - bindings: make interrupts a required property (new change from my end)
-> - bindings: update example based on dts changes
+> Document the Focaltech FTS touchscreen driver.
 > 
-> I have made the interrupts a required property in the bindings as the driver
-> will not function without an interrupt. Because of this new change, I have not
+> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+>  .../input/touchscreen/focaltech,fts5452.yaml  | 71 +++++++++++++++++++
 
-Driver does not really matter for the bindings. The BSD driver for
-example might function without an interrupt, so why requiring it? The
-reason for requiring or not is in the hardware and how it works.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
