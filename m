@@ -2,469 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 089606E34BB
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 04:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C22DD6E35B9
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 09:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjDPCb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 22:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
+        id S230315AbjDPH0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 03:26:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjDPCb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 22:31:56 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50432D5F;
-        Sat, 15 Apr 2023 19:31:52 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id fw22-20020a17090b129600b00247255b2f40so8702247pjb.1;
-        Sat, 15 Apr 2023 19:31:52 -0700 (PDT)
+        with ESMTP id S230261AbjDPH0I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 03:26:08 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D2610DF
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:26:04 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id q23so46836654ejz.3
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:26:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681612312; x=1684204312;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1681629963; x=1684221963;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mbh8KBxteAdMHdfu1a3aRujCPPZXG30RxkMg5arQofY=;
-        b=TuGBhR0oV1QNnf+DO8mRmOvRRAovA31JL6MCftHNQAGsj6GE/hSvzuK2w0mFg62TGS
-         NdxzpcFT4yYoaeqmcFwkp4Nk/VxlBokT/j/ZhmFzKi5+ccHWn6iLXwYZgT9rVc09DcMR
-         4d8c4eQrpHjYmiQQm86wJmX8QxtYZZvKG0RpvCoset+PQ+JsDWAZkSdc0vTBnp5ugCRg
-         I8Qw/I9cK1yvvQFw9wa4d2izGk4i9ouZgulCddxycmFLEh7shq/LsTzJiFfjuqTxox1l
-         brN4z7O+oxi3gLMoKFE4PVT8SyunXZvhdaoERlgsD22PR8zwlIBSPnf5YYPk29LldwdL
-         zRLw==
+        bh=NIDABhyNbelgMCvJQQFAEuAhFdwIuaaK3cUB1/BFVsY=;
+        b=OoLWftTrTEjmdMK4+RBWo01LVPwtpyj/XI8Wt6DCvbB486AxxOS9UeduZxxT/5rYaH
+         rah08CUYw/eaE0FfPbNLz6S9cl/h+lOeyF7If32KIihBzZThBRJazguN2Nhk2Cq/ldXj
+         uYMYZH3ce0dhDHeAjO7spMsxAJ4UOZI+ESUTeA0O0UPoDtEsXPe/8SgIF99un0HQq7MI
+         Y9qMjNvCn8zkdvLx1yeqEc8k370THJS8xuF/R1nQ+vtH/Lx9cB0cfjsN0ohi2O8sir1F
+         LYSknYBfjht66VzKcxep7JvlFC42R9BMy9aWeIAKxMRjEFQJ0/d3Dsv175eY03nyIS4A
+         H1Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681612312; x=1684204312;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1681629963; x=1684221963;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mbh8KBxteAdMHdfu1a3aRujCPPZXG30RxkMg5arQofY=;
-        b=bgeSeWeI8JjbAnQoBGCdCvIvl9qOoaO+eGA95EwrWUdFE2JRNJ6MSmtqYBn/vJzbO3
-         EMMg/CEJ9bUW44aP4z/Vdoylj6MdfEfxSW5h+X3+sRn+ZzQtBQoUBmCEfnIUqzSiTajv
-         2Ya4BS7j+i3kXufhyTa6iXY90u2h88rdho/WxaMXsLa1/vuyN7y3FrGoxOx6AKFqL7I1
-         ir61IIP3l1N2EqTy5Hi2S3jMz6o+2iRGGzhwrTPiico2CeQxM8Rc313K6VE7IqsRhdI7
-         RxeYw8yNYrkOojUPY1CDnRJfCdgTiGdlLWETdi91nV2upZEgAG82HVydntOJINo0YYPF
-         K9wA==
-X-Gm-Message-State: AAQBX9dtcMok0CXO0H6pppiZOJSrQbwsYo77VS+pBRhYnmDLBe4hUuO8
-        M/TFHNo4ojbOW2dvAanAArE=
-X-Google-Smtp-Source: AKy350aCEe8StHXF+JpU9stlV4jilDL5hUak/GTLTuS4QN1nrMp0VEsTW3USsgODPq0DZ2N+orUdxQ==
-X-Received: by 2002:a17:902:e5c8:b0:1a6:be37:22e1 with SMTP id u8-20020a170902e5c800b001a6be3722e1mr2901809plf.15.1681612311968;
-        Sat, 15 Apr 2023 19:31:51 -0700 (PDT)
-Received: from [192.168.1.101] (1-160-170-76.dynamic-ip.hinet.net. [1.160.170.76])
-        by smtp.gmail.com with ESMTPSA id jl4-20020a170903134400b001a52abb3be3sm5208710plb.201.2023.04.15.19.31.48
+        bh=NIDABhyNbelgMCvJQQFAEuAhFdwIuaaK3cUB1/BFVsY=;
+        b=Cj7Yxw+7LZxadaZb4ls/AT9v2AN+dq10T2W0eoNhw1w3FHK5Lmzd2GgMJWzNHjDwOS
+         OLHj8qX35I+kjgzuOCjX0iuz02J1eYNhCHrPTbC5hhOpxl3xEDxKmW1+aoCQOBcqGqu5
+         43zJOle8If4QQZVcK7mCOkVrpKwlBsIB1DXfCgbCZjBhHJAahoIvKtp4LhrA4rVZKRGu
+         p+3R8nyg9/B7ID0Tb78Qx7SDz+v8H0sYeSzGiNPME0bBCOBQxvupnYimyKWlg8XQUoXw
+         v9wt+gujuPTAcAbgdgvLH8Bi5YbWSgs5+z42+K7xGQTNKST4g0Uu9d063Upuqn55LXrZ
+         YUeA==
+X-Gm-Message-State: AAQBX9dV3PO1W0bWHfvMbeF4DcoAbnlycURZ8oViCkNoWy8BM1jeTEBj
+        aZmvCpLFDNtHxTNFbTdJZVIbMg==
+X-Google-Smtp-Source: AKy350ZRJvvlLI0h3fWyko6hDelwGayM7z8cBsUxgjTR5sfrGgwJ3pC5RXpZ3TFrMP8rFWL0jaAHsw==
+X-Received: by 2002:a17:906:708:b0:94e:fd61:8482 with SMTP id y8-20020a170906070800b0094efd618482mr3772799ejb.35.1681629963016;
+        Sun, 16 Apr 2023 00:26:03 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:29dd:ded4:3ccc:83db? ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
+        by smtp.gmail.com with ESMTPSA id gy23-20020a170906f25700b0094f31208918sm1309523ejb.108.2023.04.16.00.26.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Apr 2023 19:31:51 -0700 (PDT)
-Message-ID: <ae2883a6-2fbe-666f-c17d-169faa9a619e@gmail.com>
-Date:   Sun, 16 Apr 2023 10:31:47 +0800
+        Sun, 16 Apr 2023 00:26:02 -0700 (PDT)
+Message-ID: <08156ff8-b627-56a8-e079-eb336c193808@linaro.org>
+Date:   Sun, 16 Apr 2023 09:26:01 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v7 11/12] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-To:     Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230412053824.106-1-ychuang570808@gmail.com>
- <20230412053824.106-12-ychuang570808@gmail.com>
- <9bd73f85-9d9a-8c44-e4e6-3c10b76fe135@kernel.org>
+Subject: Re: [PATCH RFC 3/3] binding: mmc: hi3798cv200-dw-mshc: convert to
+ YAML and rename to histb-dw-mshc, add compatible of hi3798mv200
 Content-Language: en-US
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <9bd73f85-9d9a-8c44-e4e6-3c10b76fe135@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+To:     forbidden405@outlook.com, Ulf Hansson <ulf.hansson@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230415-mmc-hi3798mv200-v1-0-db5b91d939d4@outlook.com>
+ <20230415-mmc-hi3798mv200-v1-3-db5b91d939d4@outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230415-mmc-hi3798mv200-v1-3-db5b91d939d4@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Jiri,
+On 15/04/2023 16:18, Yang Xiwen via B4 Relay wrote:
+> From: Yang Xiwen <forbidden405@outlook.com>
+> 
+> Hi3798MV200 has an extra clock, also document it here.
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
 
-Thanks for you advice.
+Subject: it is way too long. It should be just conversion. Don't
+introduce new compatibles.
 
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  .../bindings/mmc/hi3798cv200-dw-mshc.txt           | 40 ----------
+>  .../devicetree/bindings/mmc/histb-dw-mshc.yaml     | 90 ++++++++++++++++++++++
+>  2 files changed, 90 insertions(+), 40 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.txt
+> deleted file mode 100644
+> index a0693b7145f2a..0000000000000
+> --- a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -* Hisilicon Hi3798CV200 specific extensions to the Synopsys Designware Mobile
+> -  Storage Host Controller
+> -
+> -Read synopsys-dw-mshc.txt for more details
+> -
+> -The Synopsys designware mobile storage host controller is used to interface
+> -a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+> -differences between the core Synopsys dw mshc controller properties described
+> -by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
+> -specific extensions to the Synopsys Designware Mobile Storage Host Controller.
+> -
+> -Required Properties:
+> -- compatible: Should contain "hisilicon,hi3798cv200-dw-mshc".
+> -- clocks: A list of phandle + clock-specifier pairs for the clocks listed
+> -  in clock-names.
+> -- clock-names: Should contain the following:
+> -	"ciu" - The ciu clock described in synopsys-dw-mshc.txt.
+> -	"biu" - The biu clock described in synopsys-dw-mshc.txt.
+> -	"ciu-sample" - Hi3798CV200 extended phase clock for ciu sampling.
+> -	"ciu-drive"  - Hi3798CV200 extended phase clock for ciu driving.
+> -
+> -Example:
+> -
+> -	emmc: mmc@9830000 {
+> -		compatible = "hisilicon,hi3798cv200-dw-mshc";
+> -		reg = <0x9830000 0x10000>;
+> -		interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&crg HISTB_MMC_CIU_CLK>,
+> -			 <&crg HISTB_MMC_BIU_CLK>,
+> -			 <&crg HISTB_MMC_SAMPLE_CLK>,
+> -			 <&crg HISTB_MMC_DRV_CLK>;
+> -		clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
+> -		fifo-depth = <256>;
+> -		clock-frequency = <200000000>;
+> -		cap-mmc-highspeed;
+> -		mmc-ddr-1_8v;
+> -		mmc-hs200-1_8v;
+> -		non-removable;
+> -		bus-width = <8>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+> new file mode 100644
+> index 0000000000000..05a435185e9da
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/histb-dw-mshc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title:
+> +  Hisilicon Hi3798CV200 specific extensions to the Synopsys Designware Mobile
+> +  Storage Host Controller
+> +
+> +maintainers:
+> +  - Yang Xiwen <forbidden405@outlook.com>
+> +
+> +description:
+> +  The Synopsys designware mobile storage host controller is used to interface
+> +  a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+> +  differences between the core Synopsys dw mshc controller properties described
+> +  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
+> +  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
 
-On 2023/4/14 下午 02:47, Jiri Slaby wrote:
-> On 12. 04. 23, 7:38, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> This adds UART and console driver for Nuvoton ma35d1 Soc.
->> It supports full-duplex communication, FIFO control, and
->> hardware flow control.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ...
->> --- /dev/null
->> +++ b/drivers/tty/serial/ma35d1_serial.c
->> @@ -0,0 +1,773 @@
-> ...
->> +static void transmit_chars(struct uart_ma35d1_port *up)
->> +{
->> +    int count;
->
-> count is unsigned.
+Drop the last sentence.
 
+> +
+> +allOf:
+> +  - $ref: "synopsys-dw-mshc-common.yaml#"
 
-I will use 'u32' instead.
+Drop quotes.
 
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: hisilicon,hi3798mv200-dw-mshc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 5
+> +
+> +        clock-names:
+> +          minItems: 5
 
->
->> +    u8 ch;
->> +
->> +    if (uart_tx_stopped(&up->port)) {
->> +        ma35d1serial_stop_tx(&up->port);
->> +        return;
->> +    }
->> +    count = UART_FIFO_DEPTH - ((serial_in(up, UART_REG_FSR) & 
->> FSR_TXPTR_MSK) >> 16);
->
-> So this could be FIELD_GET() while you are defining FSR_TXPTR_MSK 
-> using GENMASK(), right?
+Entire allOf goes after required:.
 
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hisilicon,hi3798cv200-dw-mshc
+> +      - hisilicon,hi3798mv200-dw-mshc
 
-Yes, I will modify it as
+New compatibles are not related to conversion.
 
-     count = UART_FIFO_DEPTH - FIELD_GET(FSR_TXPTR_MSK, serial_in(up, 
-UART_REG_FSR));
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 4
+> +    maxItems: 5
+> +    description: A list of phandles for the clocks listed in clock-names
 
+Drop description.
 
->
->> + uart_port_tx_limited(&up->port, ch, count,
->> +                 !(serial_in(up, UART_REG_FSR) & FSR_TX_FULL),
->> +                 serial_out(up, UART_REG_THR, ch),
->> +                 ({}));
->> +}
-> ...
->> +static void ma35d1serial_set_termios(struct uart_port *port,
->> +                     struct ktermios *termios,
->> +                     const struct ktermios *old)
->> +{
->> +    struct uart_ma35d1_port *up = to_ma35d1_uart_port(port);
->> +    u32 lcr = 0;
->> +    unsigned long flags;
->> +    u32 baud, quot;
->> +
->> +    lcr = UART_LCR_WLEN(tty_get_char_size(termios->c_cflag));
->> +
->> +    if (termios->c_cflag & CSTOPB)
->> +        lcr |= LCR_NSB;
->> +    if (termios->c_cflag & PARENB)
->> +        lcr |= LCR_PBE;
->> +    if (!(termios->c_cflag & PARODD))
->> +        lcr |= LCR_EPE;
->> +    if (termios->c_cflag & CMSPAR)
->> +        lcr |= LCR_SPE;
->> +
->> +    baud = uart_get_baud_rate(port, termios, old, port->uartclk / 
->> 0xffff,
->> +                  port->uartclk / 11);
->> +
->> +    quot = ma35d1serial_get_divisor(port, baud);
->> +
->> +    /*
->> +     * Ok, we're now changing the port state.  Do it with
->> +     * interrupts disabled.
->> +     */
->> +    spin_lock_irqsave(&up->port.lock, flags);
->> +
->> +    up->port.read_status_mask = FSR_RX_OVER_IF;
->> +    if (termios->c_iflag & INPCK)
->> +        up->port.read_status_mask |= FSR_FEF | FSR_PEF;
->> +    if (termios->c_iflag & (BRKINT | PARMRK))
->> +        up->port.read_status_mask |= FSR_BIF;
->> +
->> +    /*
->> +     * Characteres to ignore
->
-> "Characters"
->
-> The comment could be oneline.
+> +
+> +  clock-names:
+> +    minItems: 4
+> +    items:
+> +      - const: ciu
+> +      - const: biu
+> +      - const: ciu-sample
+> +      - const: ciu-drive
+> +      - const: sap-dll-mode
 
-Okay, I will modify it as as oneline.
+Only four clocks were in original document. Don't mix different changes
+in one patch.
 
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    emmc: mmc@9830000 {
+> +            compatible = "hisilicon,hi3798cv200-dw-mshc";
+> +            reg = <0x9830000 0x10000>;
 
->
->> +     */
->> +    up->port.ignore_status_mask = 0;
->> +    if (termios->c_iflag & IGNPAR)
->> +        up->port.ignore_status_mask |= FSR_FEF | FSR_PEF;
->> +    if (termios->c_iflag & IGNBRK) {
->> +        up->port.ignore_status_mask |= FSR_BIF;
->> +        /*
->> +         * If we're ignoring parity and break indicators,
->> +         * ignore overruns too (for real raw support).
->> +         */
->> +        if (termios->c_iflag & IGNPAR)
->> +            up->port.ignore_status_mask |= FSR_RX_OVER_IF;
->> +    }
->
-> Actually I don't understand the "Characteres" comment above at all. 
-> What characters?
+Wrong indentation. Use 4 spaces for example indentation.
 
+> +            interrupts = <35>;
+> +            clocks = <&crg 1>,
 
-We just follow what other serial drivers have done.
-
-You can find the same code segment in tty/serial dz.c, fsl_lpuart.c, 
-atmel_serial.c, 8250_port.c ....
-
-
->
->> +    if (termios->c_cflag & CRTSCTS)
->> +        up->mcr |= UART_MCR_AFE;
->> +    else
->> +        up->mcr &= ~UART_MCR_AFE;
->> +
->> +    uart_update_timeout(port, termios->c_cflag, baud);
->> +    ma35d1serial_set_mctrl(&up->port, up->port.mctrl);
->> +    serial_out(up, UART_REG_BAUD, quot | BAUD_MODE2);
->> +    serial_out(up, UART_REG_LCR, lcr);
->> +    spin_unlock_irqrestore(&up->port.lock, flags);
->> +}
-> ...
->
->> +/*
->> + *  Print a string to the serial port trying not to disturb
->> + *  any possible real use of the port...
->> + *
->> + *  The console_lock must be held when we get here.
->> + */
->> +static void ma35d1serial_console_write(struct console *co,
->> +                       const char *s, u32 count)
->> +{
->> +    struct uart_ma35d1_port *up = &ma35d1serial_ports[co->index];
->> +    unsigned long flags;
->> +    u32 ier;
->> +
->> +    local_irq_save(flags);
->
-> This doesn't protect access to the registers on other CPUs.
->
-
-We will add spin_lock protect to it.
-
-
->> +
->> +    /*
->> +     *  First save the IER then disable the interrupts
->> +     */
->> +    ier = serial_in(up, UART_REG_IER);
->> +    serial_out(up, UART_REG_IER, 0);
->> +
->> +    uart_console_write(&up->port, s, count, 
->> ma35d1serial_console_putchar);
->> +
->> +    wait_for_xmitr(up);
->> +
->> +    serial_out(up, UART_REG_IER, ier);
->> +    local_irq_restore(flags);
->> +}
->> +
->> +static int __init ma35d1serial_console_setup(struct console *co,
->> +                         char *options)
->> +{
->> +    struct device_node *np = ma35d1serial_uart_nodes[co->index];
->> +    struct uart_ma35d1_port *p = &ma35d1serial_ports[co->index];
->> +    u32 val32[4];
->> +    struct uart_port *port;
->> +    int baud = 115200;
->> +    int bits = 8;
->> +    int parity = 'n';
->> +    int flow = 'n';
->
-> If you don't do uart_parse_options() (why you don't?), you don't need 
-> the variables.
-
-
-On this platform, the serial console is fixed to be 11520, n, 8, since 
-booting from
-
-the non-volatile firmware in MaskROM, arm-trust-firmware, uboot. So we 
-do not
-
-use usrt_parse_options().
-
-I will remove these variables and modify 'uart_set_options(port, co, 
-baud, parity, bits, flow)'
-
-as 'uart_set_options(port, co, 115200, n, 8, n)'
-
-
->
->> +    /*
->> +     * Check whether an invalid uart number has been specified, and
->> +     * if so, search for the first available port that does have
->> +     * console support.
->> +     */
->> +    if ((co->index < 0) || (co->index >= UART_NR)) {
->> +        pr_debug("Console Port%x out of range\n", co->index);
->> +        return -EINVAL;
->> +    }
->> +
->> +    if (of_property_read_u32_array(np, "reg", val32, 4) != 0)
->> +        return -EINVAL;
->> +    p->port.iobase = val32[1];
->> +    p->port.membase = ioremap(p->port.iobase, UART_REG_SIZE);
->> +    p->port.ops = &ma35d1serial_ops;
->> +    p->port.line = 0;
->> +    p->port.uartclk = UART_CONSOLE_CLK;
->> +
->> +    port = &ma35d1serial_ports[co->index].port;
->> +    return uart_set_options(port, co, baud, parity, bits, flow);
->> +}
-> ...> +static void ma35d1serial_console_init_port(void)
->> +{
->> +    int i = 0;
->
-> unsigned
-
-I will fix it.
-
-
->
->> +    struct device_node *np;
->> +
->> +    for_each_matching_node(np, ma35d1_serial_of_match) {
->> +        if (ma35d1serial_uart_nodes[i] == NULL) {
->> +            of_node_get(np);
->> +            ma35d1serial_uart_nodes[i] = np;
->> +            i++;
->> +            if (i == UART_NR)
->> +                break;
->> +        }
->> +    }
->> +}
->
->> +/*
->> + * Register a set of serial devices attached to a platform device.
->> + * The list is terminated with a zero flags entry, which means we 
->> expect
->> + * all entries to have at least UPF_BOOT_AUTOCONF set.
->> + */
->> +static int ma35d1serial_probe(struct platform_device *pdev)
->> +{
->> +    struct resource *res_mem;
->> +    struct uart_ma35d1_port *up;
->> +    int ret = 0;
->> +    struct clk *clk;
->> +    int err;
->> +
->> +    if (pdev->dev.of_node) {
->> +        ret = of_alias_get_id(pdev->dev.of_node, "serial");
->> +        if (ret < 0) {
->> +            dev_err(&pdev->dev, "failed to get alias/pdev id, errno 
->> %d\n", ret);
->> +            return ret;
->> +        }
->> +    }
->> +    up = &ma35d1serial_ports[ret];
->> +    up->port.line = ret;
->> +    res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +    if (!res_mem)
->> +        return -ENODEV;
->> +
->> +    up->port.iobase = res_mem->start;
->> +    up->port.membase = ioremap(up->port.iobase, UART_REG_SIZE);
->> +    up->port.ops = &ma35d1serial_ops;
->> +
->> +    spin_lock_init(&up->port.lock);
->> +
->> +    clk = of_clk_get(pdev->dev.of_node, 0);
->> +    if (IS_ERR(clk)) {
->> +        err = PTR_ERR(clk);
->> +        dev_err(&pdev->dev, "failed to get core clk: %d\n", err);
->> +        return -ENOENT;
->
-> iounmap(membase) missing.
-
-
-I will use devm_ioremap instead, and add return value check to it.
-
-
->
->> +    }
->> +    err = clk_prepare_enable(clk);
->> +    if (err)
->> +        return -ENOENT;
->
-> Dtto.
->
->> +
->> +    if (up->port.line != 0)
->> +        up->port.uartclk = clk_get_rate(clk);
->> +    up->port.irq = platform_get_irq(pdev, 0);
->
-> What if this fails?
-
-
-I will add return value check to it.
-
-
->
->> +    up->port.dev = &pdev->dev;
->> +    up->port.flags = UPF_BOOT_AUTOCONF;
->> +    ret = uart_add_one_port(&ma35d1serial_reg, &up->port);
->
-> And this?
->
-
-I will add return value check to it.
-
-
->> +    platform_set_drvdata(pdev, up);
->> +    return 0;
->> +}
->> +
->> +/*
->> + * Remove serial ports registered against a platform device.
->> + */
->> +static int ma35d1serial_remove(struct platform_device *dev)
->> +{
->> +    struct uart_port *port = platform_get_drvdata(dev);
->> +
->> +    uart_remove_one_port(&ma35d1serial_reg, port);
->> +    free_irq(port->irq, port);
->
-> You do this in ma35d1serial_shutdown() already, correct? So this will 
-> error out, right?
-
-
-Yes, the free_irq() should be removed. I  will fix it.
-
-
->
->> +    return 0;
->> +}
->
-> Just a couple of questions about testing. Have you tried to:
-> * remove the module?
-> * suspend/resume the machine while having a line active (device node 
-> opened)?
-> * running at least a lockdep-enabled kernel while using the device 
-> extensively?
->
-> thanks,
-
-Thank you for the suggestions. Actually, we never remove the serial 
-driver module.
-
-We will have a test on serial module remove, and test suspend/resume 
-with at least one uart port enabled.
-
-For the last question, as this SoC have dual-core Cortex-A35 CPU. We 
-will a test
-
-to run independent uart transfer application on different core.
-
+> +
+> 
 
 Best regards,
-
-Jacky Huang
-
-
-
-
+Krzysztof
 
