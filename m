@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B09E16E36A6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 11:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BED6E36DB
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 12:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbjDPJgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 05:36:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47300 "EHLO
+        id S230036AbjDPKBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 06:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjDPJgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 05:36:46 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 035D2198C;
-        Sun, 16 Apr 2023 02:36:45 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id gb12so20363192qtb.6;
-        Sun, 16 Apr 2023 02:36:44 -0700 (PDT)
+        with ESMTP id S229763AbjDPKBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 06:01:45 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43F32728;
+        Sun, 16 Apr 2023 03:01:44 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a5so212072ejb.6;
+        Sun, 16 Apr 2023 03:01:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681637804; x=1684229804;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NbfDrzJRkM8K1un7ocCqgCwd0PjSNRKebf06x0UdXOA=;
-        b=H/7P139nIYVSxF/EpLa1Xv3kV+DoUb0IlN71+7IZCz/3VDSWiTvTX6xLBENTqAcOQz
-         o3TFGOzdNoJYVxue71033eL3VKXngXafmf2no8MmxYt5lLJmK4dsNwiD2CMCDNDM0Y9P
-         RKreiwYsnlPrxbCFMDlUThkXGwrMK7Kzebk4Fe1u7DfFF2fzh+iaHp317cO5W9tg4o0K
-         pMsz4hM9TkTkofWFhBROXEw92AzhjNgRXORecgcck/Xv8qDQkS5wMiqUtaJLP+Ua9u8W
-         T0yJ9GRgMAtGCjQJBip0m5LC9aKoA6Yaa820cCTEdrDM9XxvYVHebeEE5hG20wVq0X2N
-         pz7g==
+        d=gmail.com; s=20221208; t=1681639303; x=1684231303;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pJigTOMieV88JCMUkFyYL25oiCUdnIAzYt3+b/d9iJU=;
+        b=CK+FzezMiv2xY54n49RI1Hh4a3V/IpVGr9cPTGzt18vBdOWGwcYOMrDdyg+B7Npa83
+         AHRLzfW0xHpgvt2GiDppjcWV/MIV6ZF+06gB5DBwIBUOflB9GzUyo1K8RjQjuyExyoY7
+         qDVg4cBav/ryzXyQJAbh5OcUsmK/LtnWjewIgpnelQElavMAf/GdXyZChHVph3AhHaTH
+         JQuJiXwljacmVOBtaPHxcvsKiOuYRII4BCh0Ex72Pvv/v1s6k2ASIb+oyZi6RlQL2m9N
+         xM0CBaIH6jeYkXDIXuJcIMLxUC96ifyF/iWnO+eZTy30iJr1VB4ul3Jj5MHehbzSUcNE
+         us/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681637804; x=1684229804;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NbfDrzJRkM8K1un7ocCqgCwd0PjSNRKebf06x0UdXOA=;
-        b=lOHvCvt2SG+9w9GtJqwKq5nxhBNgZSU8HZz3er4ibGsalKbR2I8HIafoQkhMGyuIOD
-         7198Deoa2MazFqSTZTFVpEZ1alGpSAbxd1ASzjda24bbc34IlAE8w+gNBp2FPvSwZdAk
-         52sU50weOMuAKHwPx4MGm3BpHfYcm5OpjbgSjUzs7+s/WK7NbR/Ekt1Q4xKE80ARjaUE
-         iN5zUeA9MsQwh7Zeq2xStXhbhciI84dj8aZzZrVuDO2sN7kddYtVgaSQn9T7YgCb+AHH
-         pTQdekRW4Wd9OMwUC90kT8zad8dmZ82EA/aDZqFJEDL7jSnUH8y+PS1r3CoMhfnDSo8D
-         sNEg==
-X-Gm-Message-State: AAQBX9e/7OD9vzc+0UfRP6Fy4+COCcoygfifu451GF9hCpjtWoSkUiRX
-        1GB6v3ROjA18EoU1lV/uXvKjV4Almn/VzsWVSjI=
-X-Google-Smtp-Source: AKy350b1WWgf6dXmG9GT6/je3w7PCfM64pRzyWHgf1y0BhNIlgTXpdb59g0fXuC1a0BBki+W8u+ffUUFlHDQaYZfH80=
-X-Received: by 2002:a05:622a:1a9a:b0:3e9:9419:b153 with SMTP id
- s26-20020a05622a1a9a00b003e99419b153mr3386803qtc.0.1681637804028; Sun, 16 Apr
- 2023 02:36:44 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681639303; x=1684231303;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pJigTOMieV88JCMUkFyYL25oiCUdnIAzYt3+b/d9iJU=;
+        b=cnyidh1xOcajAMUGMYgyPvMuGTPyZzXEyuG8op5vPiqWO5ty2lnGzp7vXHAILwr064
+         ziIUjBm3PJjm23IISYspubaIlJXuqnt9Srr1wASgoMwPn/dlLJki9reluo14zyFNLoeK
+         sGsUzhgnGjCV6tCaUKRs6gRmLvBfUflzlFHqataySLKJhs3jVMOnrEiCIod4zEALBtQc
+         NyVvgYFKgGlFDNV1KhgkH+Q+sTiFjvdrPOA+9CngXMKzQ2xp5Ctb1tI448wSlzYphuyQ
+         JlYDJuFyPC7jLomA81a5JMvto5rX7VirCrgBLds5F4nk9L4bRUU3HjXENOoLs0QLsyKb
+         nnLg==
+X-Gm-Message-State: AAQBX9dgtgAhb71u4KB0LRXrGOksSz0nk4mTpeM3KBlVdrDTJJWXhWyb
+        yN7fzaaBtSA7bf45EjKqeZg=
+X-Google-Smtp-Source: AKy350blmIQqNb6VOqWPaRs8N1vcRDsMO1c+ca9Bz5vL8d20BlI7qVirihpC9PAbKpIxDgnp2nSTsQ==
+X-Received: by 2002:a17:906:7013:b0:94e:d3e8:ec3e with SMTP id n19-20020a170906701300b0094ed3e8ec3emr3770036ejj.46.1681639303270;
+        Sun, 16 Apr 2023 03:01:43 -0700 (PDT)
+Received: from localhost.my.domain (83.8.121.70.ipv4.supernova.orange.pl. [83.8.121.70])
+        by smtp.gmail.com with ESMTPSA id lh22-20020a170906f8d600b0094f6bf5ac9asm145232ejb.22.2023.04.16.03.01.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Apr 2023 03:01:42 -0700 (PDT)
+From:   Artur Weber <aweber.kernel@gmail.com>
+To:     thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH 0/3] Add Samsung S6D7AA0 panel controller driver
+Date:   Sun, 16 Apr 2023 12:01:36 +0200
+Message-Id: <20230416100139.13741-1-aweber.kernel@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
- <3231223.aeNJFYEL58@steina-w> <CAHp75VeR5R_CqWNT=Fpbyp-YSeo+3QXBnR62C=K_tyr-qQ2MVw@mail.gmail.com>
- <4800953.GXAFRqVoOG@steina-w> <CAHp75VeTFDkaYRfX+9hE7LYE4Z-NpNfP=xfsGt27nm_DrTC_cw@mail.gmail.com>
- <a79134a3-be9d-7297-15e1-1de4eb4054d0@linaro.org>
-In-Reply-To: <a79134a3-be9d-7297-15e1-1de4eb4054d0@linaro.org>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 16 Apr 2023 12:36:07 +0300
-Message-ID: <CAHp75VdRjCvcwjVO8GZfrVhFqJmO+WaqmJ63A2vVK4iELx=OXg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -77,70 +72,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 16, 2023 at 10:42=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 15/04/2023 17:06, Andy Shevchenko wrote:
-> > On Fri, Apr 14, 2023 at 9:37=E2=80=AFAM Alexander Stein
-> > <alexander.stein@ew.tq-group.com> wrote:
-> >> Am Dienstag, 11. April 2023, 11:34:16 CEST schrieb Andy Shevchenko:
-> >>> On Tue, Apr 11, 2023 at 10:19=E2=80=AFAM Alexander Stein
-> >>> <alexander.stein@ew.tq-group.com> wrote:
+This patchset adds initial support for Samsung S6D7AA0-based panels.
+Currently, only the S6D7AA0-LSL080AL02 panel used in the Samsung
+Galaxy Tab 3 8.0 family of tablets is supported; other panels can be
+added in the future.
 
-...
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-> >>> So, taking the above into consideration, why is it GPIO property to
-> >>> begin with? This is PCB property of the certain platform design that
-> >>> needs to be driven by a specific driver, correct?
-> >>
-> >> True this is induced by the PCB, but this property applies to the GPIO=
-,
-> >> neither the GPIO controller output, nor the GPIO consumer is aware of.
-> >> So it has to be added in between. The original idea to add a property =
-for the
-> >> consumer driver is also rejected, because this kind of behavior is not=
- limited
-> >> to this specific driver.
-> >> That's why the delay is inserted in between the GPIO output and GPIO c=
-onsumer.
-> >>
-> >>> At the very least this is pin configuration (but external to the SoC)=
-,
-> >>> so has to be a _separate_ pin control in my opinion.
-> >>
-> >> Sorry, I don't get what you mean by _separate_ pin control.
-> >
-> > As you mentioned above this can be applied theoretically to any pin of
-> > the SoC, That pin may or may not be a GPIO or a pin that can be
-> > switched to the GPIO mode. Hence this entire idea shouldn't be part of
-> > the existing _in-SoC_ pin control driver if any. This is a purely
-> > separate entity, but at the same time it adds a property to a pin,
-> > hence pin control.
-> > At the same time, it's not an SoC related one, it's a PCB. Hence _separ=
-ate_.
->
-> I don't think that anything here is related to pin control. Pin control
-> is specific function of some device which allows different properties or
-> different functions of a pin.
+Artur Weber (3):
+  dt-bindings: panel: Add Samsung S6D7AA0 LCD controller bindings
+  drm/panel: Add Samsung S6D7AA0 panel controller driver
+  MAINTAINERS: Add myself as Samsung S6D7AA0 panel driver maintainer
 
-Sorry, but from a hardware perspective I have to disagree with you.
-It's a property of the _pin_ and not of a GPIO. Any pin might have the
-same property. That's why it's definitely _not_ a property of GPIO,
-but wider than that.
+ .../display/panel/samsung,s6d7aa0.yaml        |  51 +++
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/panel/Kconfig                 |   7 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c | 397 ++++++++++++++++++
+ 5 files changed, 462 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
 
-> This has nothing to do with different
-> properties/configuration/functions, thus it is not pin control. The pin
-> control maintainer also acked the patches.
+-- 
+2.40.0
 
-This series is about GPIO, so the pin control maintainer acked that,
-and not reviewed it, so let's take this into account. The GPIO
-maintainer has yet to comment on my reply, if he has anything to say.
-
-> The choice was discussed before, so I am surprised why you jump late in
-> discussions.
-
-Why? I was not in the initial submission and I jumped as quickly as I
-noticed this.
-
---=20
-With Best Regards,
-Andy Shevchenko
