@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E21586E39AC
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 17:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF4D6E39B9
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 17:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbjDPPNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 11:13:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33884 "EHLO
+        id S229530AbjDPPQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 11:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230130AbjDPPNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 11:13:19 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 720212703
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:13:18 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id xi5so57833683ejb.13
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:13:18 -0700 (PDT)
+        with ESMTP id S229992AbjDPPQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 11:16:30 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504C6212F
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:16:28 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-94a34a0baf9so533636766b.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:16:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681657997; x=1684249997;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l1fA94NAcl87+C/afR7aU2FClgyJ4wBG784WxvcOq8o=;
-        b=mKGjfJXnxdsyCrYyFNzn0vT0G4Zi+94W3E7p/gcYBoeWn7MTlwc92KsbnxL1BT4wxq
-         2VE8Qh1fgAhk7gnCgoWkmrqTNST7VnsxTwFS7siQJOTUzofyOy1+9n9/8RW3DA7DOD3b
-         rGtlJyYHHZHWSbkNX7V61zUrirkhxnIFPn0EBwlM9dhzD8rJQlVTaeJCo1TyBtyKvBQL
-         975jn08KEIlwsZw/CewkyqmpssdqfMw8CElQtaRJX96WL4/cG7VeZtcarh384QI6o1GJ
-         AYxTD6q61Rx6GVQxOJ5Np3bXqe0NqKM1jWeuFUONHg8cmCyTYp1SaEBqLRWdgvMdwtTP
-         8dBg==
+        d=linaro.org; s=google; t=1681658187; x=1684250187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XHXx1WxVbkypOiNBGNUZmThAOdeRNxJAjmAdlMDMp8E=;
+        b=y3/++AURgUCPvA5rkoehnh8Y+4wNGB83hhpFG8flpxl2KUPEWtMnhenneaUa0gLNZK
+         YJSyvifL0yLzKUG1RdIszZ/XNU/H/mNSSu25oEuUAwzMguv7AAO1j45F3CvRkZsaAZ/y
+         2aFGxubgLSTPBU6i8f70TSAxorpHv5TL16vZaPOqy2EqmmSlQQPW242EKiBLXtotR35l
+         6hLPd1zbJ3AcnWRrPn0QnIi0LQB05GrSzdkPyU2ehdnPSqL3nJixE6SBG7ReIWTLszjO
+         2E8YyeuUgY+cl80fzgp/HXab+y6V9O81eZahQg1y20d6OP7sSUGLAlVkjljRH12bD7Hw
+         5TCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681657997; x=1684249997;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l1fA94NAcl87+C/afR7aU2FClgyJ4wBG784WxvcOq8o=;
-        b=VfqE/sv5I6SE0qXpptpgEuSGKhmXBqCzxcifcx63rVy6bwkzQfALOpEXViB3OesKkH
-         yyPSwDiLivWjxllubQr2qOVbXPmUWm6IkqbNvdYJfuCPHAlID9lctaM7AKL4QU8xnYed
-         LNjn+JdioNjD8yDpmGfL5cp/Si58UQMOEUeciWAWa87SeLaUBbWyS6rT+mDntWkw4tYJ
-         FM5fiPCfG8SZRa4GDKKiiUFT/gsfTkpp6oslRW5GlEAEVLkgrwU4R900I/Ol7W1hrXjH
-         MDMoakb65sLalOoc4ODmuG0KinkEN7ZTMVms3zdyaUCGBksCaWeTFONNIq8bxvs1pS05
-         CJcw==
-X-Gm-Message-State: AAQBX9cL0gnQK+7plOJs9Qy4ll1Ulrb/VfvehuAWI88TyXTi2cIjYYas
-        OCXja4+InZzPCkJ5a4Wy2PGtcg==
-X-Google-Smtp-Source: AKy350Y05MF3d2vyxqLW7Lc7rHVFJsG/aqfTtQVTToYdEpNdzaUly++NgBkdcQSYghDNABRI5awcCg==
-X-Received: by 2002:a17:907:4ce:b0:94e:be0:97 with SMTP id vz14-20020a17090704ce00b0094e0be00097mr4577184ejb.26.1681657996890;
-        Sun, 16 Apr 2023 08:13:16 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:ba4d:301c:484d:5c9])
-        by smtp.gmail.com with ESMTPSA id v2-20020a1709064e8200b0094efcc4a076sm3009201eju.164.2023.04.16.08.13.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Apr 2023 08:13:16 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20221208; t=1681658187; x=1684250187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHXx1WxVbkypOiNBGNUZmThAOdeRNxJAjmAdlMDMp8E=;
+        b=KgGohZApXMWbrvEPpN4mnr9hfSLnXz73TqgO6OUhnkjCSRll1uhUJi1fFqV7ZpK/cM
+         9KEbH9/Z90utzF3cUqJnohSohvBwQA4V/FTrkYWiH3Yjo0VbZCROFrpFkVYMa/BYaH93
+         1ByAUA9vkCIPJDwb7RO5u4nPcJLVB457xXfXJTufyB5uHZUOKlYiUTx7GgTu3Lxu2njE
+         TIYzUBTckXkRVobe5itRJ6LohHj2iVuvuP45PxtglLUF6083Pp86cMesFSlQxOi0nI65
+         QhmwIF/1b/5/EBEWdQoU4FURGJQtij24QUQma2t2VzxSlRJB4kAa0sVeOLnpCYyAxBNP
+         SUhQ==
+X-Gm-Message-State: AAQBX9cy4D/kZVQEm5dNIsSaTniKHq20qmilPq5oZAy9RHzI9KzpCSxk
+        NrdZJxyjtbe0p7ZFZUwFWZA85w==
+X-Google-Smtp-Source: AKy350Yjj2QapbeVSqOfkPRK8k2YUlYOt44qontiXS8cBRH2ab0Dyuh0mT0B3la3VfYJ99s1bNZsTg==
+X-Received: by 2002:a05:6402:5177:b0:506:9805:7b56 with SMTP id d23-20020a056402517700b0050698057b56mr3259819ede.32.1681658186812;
+        Sun, 16 Apr 2023 08:16:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ba4d:301c:484d:5c9? ([2a02:810d:15c0:828:ba4d:301c:484d:5c9])
+        by smtp.gmail.com with ESMTPSA id i17-20020aa7c9d1000000b005065141d1f4sm4556224edt.20.2023.04.16.08.16.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Apr 2023 08:16:26 -0700 (PDT)
+Message-ID: <4c4e4a51-8afd-c6e2-91c6-090cc0382d9e@linaro.org>
+Date:   Sun, 16 Apr 2023 17:16:25 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/4] arm64: defconfig: enable building the
+ nvmem-reboot-mode module
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sc8280xp: correct GIC child node name
-Date:   Sun, 16 Apr 2023 17:13:11 +0200
-Message-Id: <20230416151311.346596-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230416151311.346596-1-krzysztof.kozlowski@linaro.org>
-References: <20230416151311.346596-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230413131705.3073911-1-brgl@bgdev.pl>
+ <20230413131705.3073911-3-brgl@bgdev.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230413131705.3073911-3-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GIC child node is supposed to be named msi-controller:
+On 13/04/2023 15:17, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> This module is used by the Qualcomm sa8775p platform for passing the
+> reboot reason to the bootloader. Enable building it in the arm64
+> defconfig as a module.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-  sa8295p-adp.dtb: interrupt-controller@17a00000: gic-its@17a40000: False schema does not allow
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 6d3780a75024..5532bf8af211 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -3907,7 +3907,7 @@ intc: interrupt-controller@17a00000 {
- 			#size-cells = <2>;
- 			ranges;
- 
--			gic-its@17a40000 {
-+			msi-controller@17a40000 {
- 				compatible = "arm,gic-v3-its";
- 				reg = <0 0x17a40000 0 0x20000>;
- 				msi-controller;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
