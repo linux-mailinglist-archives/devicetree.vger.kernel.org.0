@@ -2,170 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C396E37B3
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 13:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61EE56E37C2
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 13:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbjDPLXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 07:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54484 "EHLO
+        id S229919AbjDPLea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 07:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbjDPLXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 07:23:21 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2081.outbound.protection.outlook.com [40.92.52.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4DC2D4D;
-        Sun, 16 Apr 2023 04:23:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WVL5vAQ8CRdkPYa+0n3xJoZbn48STyP/2e1MwViMuyMa1wu9ep2UL/sux7rY2sgV8wp8EhfrHlBqH75DJFoK8sKpfN2tECQzi3QlJNLW3mL/9UCqEXHiDa2cZypnnIoLdqvdu1q+eV/4i3ApeP42xGfBApby5vdZR8JZmu7K9UAO6SasnLG1OHq2W/TDV9xlRJZSmm7isvN9uHwOHUEX/FHg2JF0l4upTASmO/sRU6xUMX8NO7XeyYMQdp3idvvJqASSoFRDXhKacljCnwjnqay02qQGuYhxMOJloDGrTHxs4Rh1K+x+52apN0W02xU7l95Pjr68bph6WnSu326A8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGGJ0kDYbj3dgQYbyW5iiQrj0QGA3/aQ9gLo6IP1kec=;
- b=W8TaseCiPmnjlSjSC6aZxiwqtV1rAhA2NCFl7ydWHm6QISOVSflEyaXLzAxBJSzWBSGm9+A/2g7ktLmXM+Eh7wtFnzHmD+iMSmdsgtY88yPx/M4jgZTTbT7K3SKccp6iz8DvpoekTSZDXVRfzcPDEIRsd77aYTj8uWpnZEqEdb9mTbh+x0vCA65Cp3Umu0TgJNsbO47/Y6dE6EPHtuxAgf5ObItT7CKbMP0sWtkgmoZ8COr9oDD83k6BGzieQzdU8r0Xp9F+NlpkQuo57HzY/vfYduq2jXmxfgwbnvJ56AGHbwhg0Dc7m64eKp8920UjGCu7FEnI5WORuEGbgg7Gfg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGGJ0kDYbj3dgQYbyW5iiQrj0QGA3/aQ9gLo6IP1kec=;
- b=PVKST2Zvwu/q2hOGsKWwxWZ+cke/ZRFny/vCslRecPwqZg9457pDkt7PMjXshBwf4QsXgHvxq5s+cLQtJUtOo6G8CnUct0KlRvaA1z2gEXs/j/LDrBzLp+/HKM9UkaA8faSktVjBkP6279tD4oVMlBgKY/HnbHlRPF7lelXLQiXRI/wxGaAcNbkL3zGzAtAr7pkAzJb57P/juNgjXHhgJMVoU/eNScvzLUCjqh98E9zYl/1P0fcR6tcAnIiZ7SEREEpbkaCf6Ln1GvMhzB7iyNng4Lq+U95hTea99PK0yIyOZyIbW+ZKyt9X9HwGtbwjjpPE2Ohw0HUmODdmEATdTg==
-Received: from TYZPR04MB6321.apcprd04.prod.outlook.com (2603:1096:400:28a::14)
- by TYZPR04MB6103.apcprd04.prod.outlook.com (2603:1096:400:25a::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.30; Sun, 16 Apr
- 2023 11:23:14 +0000
-Received: from TYZPR04MB6321.apcprd04.prod.outlook.com
- ([fe80::4705:d219:7cf0:46f4]) by TYZPR04MB6321.apcprd04.prod.outlook.com
- ([fe80::4705:d219:7cf0:46f4%3]) with mapi id 15.20.6298.028; Sun, 16 Apr 2023
- 11:23:14 +0000
-Message-ID: <TYZPR04MB63219AB5419192530CD99C58969F9@TYZPR04MB6321.apcprd04.prod.outlook.com>
-Date:   Sun, 16 Apr 2023 19:23:02 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH RFC v4 4/4] dt-binding: mmc: histb-dw-mshc: Add
- Hi3798MV200 compatible string
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     tianshuliang <tianshuliang@hisilicon.com>,
-        Jiancheng Xue <xuejiancheng@hisilicon.com>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        David Yang <mmyangfl@gmail.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230415-mmc-hi3798mv200-v4-0-44096e187f53@outlook.com>
- <20230415-mmc-hi3798mv200-v4-4-44096e187f53@outlook.com>
- <7cdf170f-1045-db73-df87-fd9da693da28@linaro.org>
-From:   Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <7cdf170f-1045-db73-df87-fd9da693da28@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-TMN:  [zfjRa/9FudgfPc0cXhBHNmQLu0jumY6gWGfcUSBrU385F9Xy0aWtKD183cB9TnsR]
-X-ClientProxiedBy: SJ0PR05CA0001.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::6) To TYZPR04MB6321.apcprd04.prod.outlook.com
- (2603:1096:400:28a::14)
-X-Microsoft-Original-Message-ID: <9796d087-d522-ffc7-198d-6b2c7c7fb1ef@outlook.com>
+        with ESMTP id S229891AbjDPLe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 07:34:29 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEC72D56;
+        Sun, 16 Apr 2023 04:34:28 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id bq10so64754qkb.0;
+        Sun, 16 Apr 2023 04:34:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681644867; x=1684236867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zlYy3eXYWsShD3NMmHngdRJUg5eOV87owj4SyMuQt6c=;
+        b=Jeh9UVJrDLWGUf/2BC7gm8pXW42W4fbNFUrRZ85Dfim3tXSxe/Gx9OuLH6/tV+LtJz
+         KsjJsoIXWXeOZo3Qdbk39Zo5+8dI6ZO3AokUDHdcg4KHJFntGVREMHWmmGWaYqUvj866
+         6Xb4QBv49eQNrWXIB91QHrieje/9wBL81cEIoPMl+owY7M/FZfgWgPRuR19GW2dKhp+l
+         wJe3IY4XWT2oTxAmuekIwZsnVuIbvFc2gI3zeq+5iMI8u5pEE4FFFFXQCmGLrzLjMO4E
+         NeCmNi7cKVVMkUj3667DeQJ6U1yIA+qRbFLIBPNEDq0+bUcUIEJqMVMqIH3p7W4ArWzA
+         M+hQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681644867; x=1684236867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zlYy3eXYWsShD3NMmHngdRJUg5eOV87owj4SyMuQt6c=;
+        b=eZq2qdXYYXINi25jWxMdiiKxInGaOC3WHdadf9yr2zVY7KO81XUZCxCsKZGRPomRNS
+         qc0AcS+TWzZdOn1br5eTpukYjQqEe++P9UHKPdt6S+nusS/fCT3IG6hPp3JwbVCwLacU
+         pjr8G+BHgIzKVNbZ0h356OTM6n+KIyycLS3bbO5Bm7U9I/tURjR1v1M9YG9+2jA49mJD
+         xpvGDsP6qdYgyB63th0MTvnFRJz/e5A3DEctF8IqLws93c/KyM6wthmyDXzXRnDMRrhq
+         CbvEpRuLeHQOKbJuE8TeKPWv2r0N7gPjVvIVf9aOZooXwnOMz6K3UkacWy5Q3NcVSm4Y
+         a6ww==
+X-Gm-Message-State: AAQBX9cIUbwQFaKcISixcxTr3dJnxt/ZWHSs6mvuhAtH/YsQpToMbNZQ
+        HcA9J8DNYvlXupZmOyI7NazHadGMJ2aul0ksxrZ44KzcbVU=
+X-Google-Smtp-Source: AKy350bh6HyrJkZZPnF2GcWvYOumA4o5gaWRk+WmTlNWmBR0DMC2+1yyoITCSX1TctK5Wdf8Yo7VJxPQDxcNBSAqFLM=
+X-Received: by 2002:a05:620a:1134:b0:74a:dc9d:95f8 with SMTP id
+ p20-20020a05620a113400b0074adc9d95f8mr1703831qkk.14.1681644867272; Sun, 16
+ Apr 2023 04:34:27 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR04MB6321:EE_|TYZPR04MB6103:EE_
-X-MS-Office365-Filtering-Correlation-Id: 72088f5b-0337-4684-eb3e-08db3e6cf838
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SZLheEtg1a5iNb215ZoAl8Pz6xIUeNYAp/8uisC+DGx0wzlP/frhT8COcE1m8e5+ijweYZlG9u6okM5z7sr5i5G1Ufo8ZO9Eqdu+qIbINx7IZLTiryNk9z17+6kpzzBbdsUYdAiu5hBk4VajwJefxO3vGMo5SehdhM7s2Rc16mgmQqiUsnOhRySe9h33f8/Ek9kbFW2o4SuQKWjCBml6ZDNZnImaCzU5eOFJBqDeNhZoFEwuo+y+V9Qf922uwaFnwA+/E56SjUcmNsboYHcIyFakU+RumWFydtfXAjDwY7cPDVstfOF7UnSlypfjGA9VwTqqORt2YLxzoD8TQijs1BKefn7c4Au7BHjt0ouOMM16pzOfiUAHNqBmq2BvTMdQLmjFTYS2xgcRwdxq0TRIbOPtrASPEZ95OMCj8PfAWwchRZfvY2FwpSlc4ZfFsSipXTqSvjn99bb75SBgMimJe6jnBfimgToVyP/BBS5LywGueCJFPeK375KHF5nAHMDKhIWD+maFVLdsTCn4S/Ko3qS3UQSPuM25MCes7n+oTcsPnZfhCKYXT/Xn9u6UshWjy3KVLA03S9xD3F7WBQwjj3F0zV3JFrcYenhqjY19zJOqUq/h+IvEcaVoZSFMPnUn
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d0hvOXYzYTI5cytGMW0rQjRzUnZDckZzeXB0Qko2ek4xaVlEeXJyeGE4Nisw?=
- =?utf-8?B?T0FFU2dWbEJDa3RnbHRFaTlEaGFPQkZneGFkTnp0YnpCcytDYllBTGdBL2hj?=
- =?utf-8?B?MXlNSTRUV0hxOWxoSllkeHdPUXdzd1B0TGxZS053VlpDczRGSGhkYWtobG56?=
- =?utf-8?B?WjQranRmeXhrRlNPa0pZVTFOU1BYazlhMUpPZ2U4S1Rpd2ZOeU56QmdFUENK?=
- =?utf-8?B?V1lBK0RESlp0RmhmUnRMRC92OVNvYXk1bCtzaVBzOXlqMThzcVpEdzJlNEcx?=
- =?utf-8?B?dkYreWpjWWRQd0Y0MVJNaTUwTXZCdzdrVkMzL2Nsc1NaL1pKRktQbXJucTlv?=
- =?utf-8?B?Y2lteFBNMGV6K2FDUmJOSDYzdkdzdkpNSmZrVkJzLzZJeHd3TE0yYTRPSE5i?=
- =?utf-8?B?Y0JPQk04S3REQXN0Tk1qVGE4dzQrNFg1QmJManBkZVR1SjM5WHYyb3lvV3hG?=
- =?utf-8?B?KzJwaFNIeHlnQmtGNEYrN3ExODBPOVRzQVlHbldtS0xtV1ZVaTJseGJMUDZ3?=
- =?utf-8?B?TGRwM2xocERtUFQrbGdxbUJqVVBqZFQ3bVErbVJaOWpwSTNHZnlCR080NEtK?=
- =?utf-8?B?d0k2YTZ1OThkemRXNjU1cEtkL0NhOC9PYUxYd2NPR1ZuOGRYa3puUHVreXJp?=
- =?utf-8?B?V3YvVWQ4VE0rMXltS1ZWTFF4QmZ5T3VlSnNseXh4dEh3bmFkZDVQY0tRN1F3?=
- =?utf-8?B?di9SNjkyM09UWW1WNnhGRUxNc0dEcTh2WC9mWU1EMkZBQ0lyS1RMRDJyUGNI?=
- =?utf-8?B?NGg3Z1VrWUF1dCtDUWxuemhwUmdtUHAxTlpZTVdOQlc3YWJXandPTlc0MGF3?=
- =?utf-8?B?ZEVONkxQRnBldmk5OXhGd0ZwY2JBM1ppV2RGUHQ4NlgzcmhzbVlONFFLY0pE?=
- =?utf-8?B?b3RoRUlWbFNIc3QrUG5ma3Z4UEc1eG5pemZobzlWSGNFOHBkV1hMY0g0Q0FC?=
- =?utf-8?B?RGtJdzhxVXFUOEJQTkhiRWd0dy94MDUrV1RDR1JubVh0VUdHWnRmRkhtOFE2?=
- =?utf-8?B?VldNUHFyM2NSQTJVUFo0eGV4UEhJVC9FdnpNYmhzUlhsbUdhVWYvU3pOSmI2?=
- =?utf-8?B?Zm1uSjlZcXdHMkswVjQ3eTF3VXpOUUZwZkdCbDMyZWVOVVM2VktteTFxOHJC?=
- =?utf-8?B?enVmYnFCZDNRSTZsb2tpUjFJL3FBK2hzRmZIQzdrdzBIVXgwYy83bThwekZR?=
- =?utf-8?B?ZHNHc3VlNStVeFpLbzNvYVhmbGU5NmVlOGhsMjE0c0tNQ2ZKTjhLSFZHSEJs?=
- =?utf-8?B?ak5BN212QzBMY1FwWWRvbTdGM01ibnpETjlCcGYwWktNMUpKUWhGbk16eFpI?=
- =?utf-8?B?YjE3OFo4NW1vRUM1enlLYmE5bUpMRlltWkFlOVZTMlNOZTNuMC9yOWljaVhu?=
- =?utf-8?B?ZlNJejc3cUEvZHJHT3NDaU5XWVVJQnB0aHVsZWErOHc0SE5XZXdFTFM5dXgv?=
- =?utf-8?B?Nk1ZR3JVUjNHVEdEaUxmcWdENHpUMWdvWVpBb0Q0ZmNjOEtxYm5VUEMzZ1VW?=
- =?utf-8?B?RE10ei9ma2YvbjlZQ0NiVFRQQXZ1QXcrWGdrRldvZTF0Y0V0b1J0ZXhIQkcz?=
- =?utf-8?B?cVN5WFRSem9xQ1ZnakdCQzZNSEZ5ZGdRQWVUOU9FY05nZkQ3cXZ6QmZ6MVh5?=
- =?utf-8?B?N0tnRnJwczdISU1PSEo5WEJUT0pIQ21GY2JCYXRKTW44dngrTHFPZzFJQmNa?=
- =?utf-8?B?T243eUVHaTBWZjNTY1hJSmdKdWo5RDR2aVA3Z2pNNWtDWnJaRjIxQlB6K0Fy?=
- =?utf-8?Q?DpM+AT7PWzYlqwH7Uk=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72088f5b-0337-4684-eb3e-08db3e6cf838
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR04MB6321.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2023 11:23:14.7302
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB6103
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
+ <3231223.aeNJFYEL58@steina-w> <CAHp75VeR5R_CqWNT=Fpbyp-YSeo+3QXBnR62C=K_tyr-qQ2MVw@mail.gmail.com>
+ <4800953.GXAFRqVoOG@steina-w> <CAHp75VeTFDkaYRfX+9hE7LYE4Z-NpNfP=xfsGt27nm_DrTC_cw@mail.gmail.com>
+ <a79134a3-be9d-7297-15e1-1de4eb4054d0@linaro.org> <CAHp75VdRjCvcwjVO8GZfrVhFqJmO+WaqmJ63A2vVK4iELx=OXg@mail.gmail.com>
+ <ee53f7cf-b94a-ba0f-1e28-5ffa2c0f5e78@linaro.org> <CAHp75Vc31cQLT0TNS7UZddA+M=215qy_xZMpzTeRj0LV7t69tA@mail.gmail.com>
+ <ca984bb6-18b9-8e65-edb1-007a0fae4fb7@linaro.org>
+In-Reply-To: <ca984bb6-18b9-8e65-edb1-007a0fae4fb7@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 16 Apr 2023 14:33:51 +0300
+Message-ID: <CAHp75VfCm-80LuDmTNuOX-DP=xWnVibrpzu_wFAa5Wg0QY+yWQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/16/2023 7:16 PM, Krzysztof Kozlowski wrote:
-> On 16/04/2023 11:19, Yang Xiwen via B4 Relay wrote:
->> From: Yang Xiwen <forbidden405@outlook.com>
->>
->> Add Hi3798MV200 compatible string and an extra clock for it.
->>
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->>  .../bindings/mmc/hisilicon,histb-dw-mshc.yaml      | 26 +++++++++++++++++++++-
->>  1 file changed, 25 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/hisilicon,histb-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/hisilicon,histb-dw-mshc.yaml
->> index 301b6ad39c5af..2f8335fd2c965 100644
->> --- a/Documentation/devicetree/bindings/mmc/hisilicon,histb-dw-mshc.yaml
->> +++ b/Documentation/devicetree/bindings/mmc/hisilicon,histb-dw-mshc.yaml
->> @@ -19,6 +19,7 @@ properties:
->>    compatible:
->>      enum:
->>        - hisilicon,hi3798cv200-dw-mshc
->> +      - hisilicon,hi3798mv200-dw-mshc
->>  
->>    reg:
->>      maxItems: 1
->> @@ -27,14 +28,16 @@ properties:
->>      maxItems: 1
->>  
->>    clocks:
->> -    maxItems: 4
-> 
-> You miss now minItems. Are you sure you tested your bindings? This
-> should fail.
-> 
-> Anyway, wait with sending new versions of patches to give other people
-> chance to review. It's already second patchset today.
-> 
-> Best regards,
-> Krzysztof
-> 
-Sorry for that. I'll fix that in v5 and send the new patchset a few days
-later, waiting for others to review the driver.
--- 
-Best regards,
-Yang Xiwen
+On Sun, Apr 16, 2023 at 2:21=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 16/04/2023 13:14, Andy Shevchenko wrote:
+> > On Sun, Apr 16, 2023 at 2:04=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >> On 16/04/2023 11:36, Andy Shevchenko wrote:
+> >>> On Sun, Apr 16, 2023 at 10:42=E2=80=AFAM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>> On 15/04/2023 17:06, Andy Shevchenko wrote:
+> >>>>> On Fri, Apr 14, 2023 at 9:37=E2=80=AFAM Alexander Stein
+> >>>>> <alexander.stein@ew.tq-group.com> wrote:
+> >>>>>> Am Dienstag, 11. April 2023, 11:34:16 CEST schrieb Andy Shevchenko=
+:
+> >>>>>>> On Tue, Apr 11, 2023 at 10:19=E2=80=AFAM Alexander Stein
+> >>>>>>> <alexander.stein@ew.tq-group.com> wrote:
+> >>>
+> >>> ...
+> >>>
+> >>>>>>> So, taking the above into consideration, why is it GPIO property =
+to
+> >>>>>>> begin with? This is PCB property of the certain platform design t=
+hat
+> >>>>>>> needs to be driven by a specific driver, correct?
+> >>>>>>
+> >>>>>> True this is induced by the PCB, but this property applies to the =
+GPIO,
+> >>>>>> neither the GPIO controller output, nor the GPIO consumer is aware=
+ of.
+> >>>>>> So it has to be added in between. The original idea to add a prope=
+rty for the
+> >>>>>> consumer driver is also rejected, because this kind of behavior is=
+ not limited
+> >>>>>> to this specific driver.
+> >>>>>> That's why the delay is inserted in between the GPIO output and GP=
+IO consumer.
+> >>>>>>
+> >>>>>>> At the very least this is pin configuration (but external to the =
+SoC),
+> >>>>>>> so has to be a _separate_ pin control in my opinion.
+> >>>>>>
+> >>>>>> Sorry, I don't get what you mean by _separate_ pin control.
+> >>>>>
+> >>>>> As you mentioned above this can be applied theoretically to any pin=
+ of
+> >>>>> the SoC, That pin may or may not be a GPIO or a pin that can be
+> >>>>> switched to the GPIO mode. Hence this entire idea shouldn't be part=
+ of
+> >>>>> the existing _in-SoC_ pin control driver if any. This is a purely
+> >>>>> separate entity, but at the same time it adds a property to a pin,
+> >>>>> hence pin control.
+> >>>>> At the same time, it's not an SoC related one, it's a PCB. Hence _s=
+eparate_.
+> >>>>
+> >>>> I don't think that anything here is related to pin control. Pin cont=
+rol
+> >>>> is specific function of some device which allows different propertie=
+s or
+> >>>> different functions of a pin.
+> >>>
+> >>> Sorry, but from a hardware perspective I have to disagree with you.
+> >>> It's a property of the _pin_ and not of a GPIO. Any pin might have th=
+e
+> >>> same property. That's why it's definitely _not_ a property of GPIO,
+> >>> but wider than that.
+> >>
+> >> I did not say this is a property of GPIO. I said this is nothing to do
+> >> with pin control, configuration and pinctrl as is.
+> >
+> > Ah, I see. But still is a property of the pin on the PCB level.
+>
+> No, it is property of a circuit, so property of two pins and a wire
+> between them. Not a property of one pin.
 
+Electrically speaking -- yes, software speaking, no, this is the
+property of the one end (platfrom abstraction in the software) and as
+you said, consumer which may be SoC, or the device connected to the
+SoC (depending on the signal direction), or both (like pull-up for
+I2C).
+
+> > That's
+> > why I said that it should be like a "proxy" driver that has to be a
+> > consumer of the pins on one side and provide the pins with this
+> > property on the other.
+>
+> Not sure, why do you need it for anything else than GPIOs? What is the
+> real world use case for proxy driver of non-GPIO lines?
+
+I2C is an example where we have something in between, which both of
+the ends are using and this is the property of PCB, but luckily we
+don't need anything special in the software for that, right? But from
+the electrical point of view it's exactly a non-GPIO property. That's
+why "proxy".
+
+> >> Otherwise bindings would be in directory matching the real hardware...
+> >> but they are not. So you can of course call it as you wish, but from
+> >> hardware perspective this is not pin control. This is RC circuit, not
+> >> pin related thingy.
+> >
+> > Yep, I put it as a pin configuration which is part of pin control in
+> > the Linux kernel right now. But I agree with your above explanation
+> > and it seems that we lack a, let's say, "pin modification" framework
+> > that stacks additional (PCB level or why not even some special in-SoC
+> > ones) properties and adds them to the given pins.
+>
+> It's nothing to do with modification of properties of some pin. It's a
+> separate circuit which has an effect on how two connected pins behave.
+> If you look from an effect point of view, only one side is more
+> interested in the effect - consumer. But still this sits in the middle.
+
+Yes, see above. And we are programming only one side of this scenario.
+For us it's a property of one side of the equation.
+
+--=20
+With Best Regards,
+Andy Shevchenko
