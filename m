@@ -2,94 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A616E380D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 14:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7C8B6E3814
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 14:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbjDPMhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 08:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49690 "EHLO
+        id S229579AbjDPMhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 08:37:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230259AbjDPMhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 08:37:05 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA8382D40;
-        Sun, 16 Apr 2023 05:37:04 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id xd13so23346093ejb.4;
-        Sun, 16 Apr 2023 05:37:04 -0700 (PDT)
+        with ESMTP id S230044AbjDPMhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 08:37:54 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FDF107
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 05:37:51 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94e53ef6815so268572966b.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 05:37:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681648624; x=1684240624;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VDa2GFtYkfWVlc8ZTMskD2bfRssb3+wPHR9VnWdgQkk=;
-        b=Ye4lxVUXva7hfPvirb5EICjV7mvCIR+LZoN3QkH/Aa9mcMNRKXRHXY7XX9YxfQiM4d
-         UHF+N75fqf6yWUywGE72iYA9LGogaxALspplCNngKKlCEiNB/KHmYLhX5s9kFNdrJlgm
-         Ps5No9KHIl4sEN/LvkdFDyEuljHQ2Yb4FiMA1QptZREt1Bp0QkaLum68LKPqGSisGWmj
-         02RcdFqsq/361uqczbuNL3um2U2cyI0NQiD7Oc40B1PwxsMYtEbKZYmC5yPD3d1E2/Ce
-         TzkSQIRiqBSrM/faDZ7/OC9IJha+EfIshOaH1OD3tv+CNbl5x1Wr5b1zwVnYnEvDen3x
-         FaoQ==
+        d=linaro.org; s=google; t=1681648670; x=1684240670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kbhJD9kC/BcS5f31BmZ7z4fLnTBoltMR968i2T4jNzQ=;
+        b=eg/lfEIorHyeK6BM4EJNj4VvE7mWrQNmhq3XURwMzSZ7FuQgE0ZHaLzNO8fmcsL3+d
+         LIzyP2W6RHtAL1n5qCYIhIE+DXawh7JyYko8vbPBgEy8CK3ZI+9NIrzdlLQtHPMwNm5X
+         TTAQINuWpV15WbzcfiBIon6JvbH/CfwAl6WI3K5T58LECOqFz1v4TOfbW3YqzfC7zkU+
+         g93ySv64ok4xK9qmw/8NTvJ9zjeHk+mRFMXAgXOltD2+xgAzKHntjpSO9GoApJOQdKPr
+         hb4Bqn0St9OOZ9UQFyLGFA9vh2/Ne1aUmpYn7iYtMFpFgU9nnsAfC2Fjs+w7BvJpPpDL
+         4S7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681648624; x=1684240624;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VDa2GFtYkfWVlc8ZTMskD2bfRssb3+wPHR9VnWdgQkk=;
-        b=Z1hVKdWL6mcmQiAcTWG7ZSqXu4ypa/OHCRM3SiGO1/SE0HUojNJdQTmW9OzR5nZAzU
-         yPy25ESlFFyu474/PVpYUe65AhBojgSp5I8ERpR2aQnlrTAzD+9CNUBmSYwuW9Mmgyak
-         RUm0zAvitYy4vumWkoUtPdd53TPHRqZeolzwiZDdQxqWJU/WzZuC7FqvfvDZnq49O2mF
-         Bz5ZpFYwDS0Q76y4PT0sFEPW5M9acX135DGNG99MQGk+AdSiyLDNdBus4lSHo2FwEaqX
-         HBCD5UM5OJIKoa9k16S8InRTM8XlQjjQ+iL1IYvU+wiobVfPf2LryMz/9k3W8+AVcGgq
-         6Ajw==
-X-Gm-Message-State: AAQBX9eJHJLJCH9GjNjX9G2Jrn27Nc5b0UMl2wwIo1HqvqMkxGGvGgup
-        yqnTGXBLnsaXXS0tDpo1z5s=
-X-Google-Smtp-Source: AKy350Z9RmwvdFDkqAGZQeSDhkrMeMTMfOfNN8b8VmhaRJ5qZRpnoXUSxR2zWJy9cKGKUWb33636uQ==
-X-Received: by 2002:a17:906:82c5:b0:93f:2256:fc05 with SMTP id a5-20020a17090682c500b0093f2256fc05mr4820249ejy.55.1681648624015;
-        Sun, 16 Apr 2023 05:37:04 -0700 (PDT)
-Received: from [192.168.50.244] (83.8.121.70.ipv4.supernova.orange.pl. [83.8.121.70])
-        by smtp.gmail.com with ESMTPSA id i3-20020a1709061e4300b0092b8c1f41ebsm4999772ejj.24.2023.04.16.05.37.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 05:37:03 -0700 (PDT)
-Message-ID: <8bb6e9a6-0143-3627-14c4-285ce2632070@gmail.com>
-Date:   Sun, 16 Apr 2023 14:37:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 00/12] Re-introduce Exynos4212 support and add Samsung
- Galaxy Tab 3 8.0 boards
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        d=1e100.net; s=20221208; t=1681648670; x=1684240670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kbhJD9kC/BcS5f31BmZ7z4fLnTBoltMR968i2T4jNzQ=;
+        b=LustDEUkq/VUHd/QxACL6KivHODhr2GTX5g/2eDmCUk3+ldNCmPk2JjtY7oEgk5qMQ
+         S0PGroItWDhojykeL059i54nEc3wZaRsinVPnCpXARmL7sRsRGmKSgVZkTDX1zcMOlWK
+         lp5Cpp+BCG7nfpuiCLdFohfJW8/Q46gbvsFAcvXk7C14NeN/Z7Xh0VBXkVMl6Oz26n+1
+         +CkrKfh3Sh+TRzBm/ENx5RC8tvH9x8Q8eTkesg5uT0qP5cDfD7tCPHLW4+Nnkrkv6Ny3
+         h4nh281bBIHU/h0tdlrtjXHZS2i+t6hPz6R6boFzD/jWaV1CX7PGC9bnnV49GQLSetRA
+         FItQ==
+X-Gm-Message-State: AAQBX9dgFojaH4vllPeFBbvcuMCSCN1KziXkUpNdmsNKM2cFiLqL2L3w
+        LXUxAQvQOdolx/uwAoDkcKuzXw==
+X-Google-Smtp-Source: AKy350ZqMZY6Wq2Fo0UB4LTewsbC4CPDnHKMOoKFsN85Nja6lrREKvEjTvECuVIZWNh9hZNROQOPPA==
+X-Received: by 2002:aa7:d98b:0:b0:505:4391:398 with SMTP id u11-20020aa7d98b000000b0050543910398mr9473352eds.33.1681648670383;
+        Sun, 16 Apr 2023 05:37:50 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
+        by smtp.gmail.com with ESMTPSA id j23-20020aa7de97000000b0050432d2b443sm4556889edv.48.2023.04.16.05.37.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Apr 2023 05:37:50 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230416101624.15866-1-aweber.kernel@gmail.com>
- <3e513119-4d6a-18ec-aaec-1c6b2b7e35b4@gmail.com>
- <ba148e6c-1685-f6d4-458f-bbdf1dd674cf@linaro.org>
- <36287654-c6e6-f4bd-320c-866bef692d2f@gmail.com>
- <d0b2868f-cade-feb1-52cd-2aacd537c9c6@linaro.org>
-From:   Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <d0b2868f-cade-feb1-52cd-2aacd537c9c6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/6] arm64: dts: qcom: ipq6018: drop incorrect SPI bus spi-max-frequency
+Date:   Sun, 16 Apr 2023 14:37:25 +0200
+Message-Id: <20230416123730.300863-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,62 +73,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/04/2023 12:53, Krzysztof Kozlowski wrote:
-> On 16/04/2023 12:49, Artur Weber wrote:
->> On 16/04/2023 12:34, Krzysztof Kozlowski wrote:
->>> On 16/04/2023 12:26, Artur Weber wrote:
->>>> On 16/04/2023 12:16, Artur Weber wrote:
->>>>> This patches re-introduces the Exynos4212 platform and adds support
->>>>> for the Samsung Galaxy Tab 3 8.0 series of tablets that uses it:
->>>>>
->>>>>     - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
->>>>>     - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
->>>>>     - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
->>>>>
->>>>> What works:
->>>>>
->>>>>     - Display and backlight
->>>>>     - Touchscreen (without touchkeys)
->>>>>     - GPIO buttons, hall sensor
->>>>>     - WiFi and Bluetooth
->>>>>     - USB, fuel gauge, charging (partial)
->>>>>     - Accelerometer and magnetometer
->>>>>     - WiFi model only: light sensor
->>>>
->>>> This patchset depends on "[PATCH 0/3] Add Samsung S6D7AA0 panel
->>>> controller driver" for the display panel support for the Samsung Galaxy
->>>> 3 8.0 boards.
->>>
->>> Why? DTS and ARM code cannot depend on driver changes. Please rework
->>> your patchsets to remove any of such dependencies.
->>
->> Ah, that makes sense. I'll re-send the patchset in a second with the
->> panel node removed.
-> 
-> I am sorry, I don't understand. Why would you remove anything from DTS?
-> Are bindings NAKed?
+The spi-max-frequency property belongs to SPI devices, not SPI
+controller:
 
-The dependency display panel patchset introduces the panel and its 
-bindings, which in turn are included in the Tab3 DTSI. It was submitted 
-at roughly the same time as this series, and hasn't been fully reviewed 
-or merged as of writing. (I have seen your comments on that patchset, 
-and I will be addressing them shortly.) So the bindings haven't been 
-explicitly ACKed yet (assuming you mean the Acked-by reply).
+  ipq6018-cp01-c1.dtb: spi@78b5000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
 
-In response to:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
- > Please rework your patchsets to remove any of such dependencies.
-
-I suggested that I could remove the panel node from the DTSI for the 
-time being. The intent was to submit it in a separate patch later, once 
-the display is reviewed/merged, and thus actually available in the 
-kernel; this way, the two patches could be reviewed and merged separately.
-
-I could instead wait for the display patchset to get reviewed/merged 
-first, then resubmit this series, if that's preferable.
-
-I apologize for the confusion.
-
-Best regards,
-Artur Weber
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index f531797f2619..54af7cb3c7a8 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -441,7 +441,6 @@ blsp1_spi1: spi@78b5000 {
+ 			#size-cells = <0>;
+ 			reg = <0x0 0x078b5000 0x0 0x600>;
+ 			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+-			spi-max-frequency = <50000000>;
+ 			clocks = <&gcc GCC_BLSP1_QUP1_SPI_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
+ 			clock-names = "core", "iface";
+@@ -456,7 +455,6 @@ blsp1_spi2: spi@78b6000 {
+ 			#size-cells = <0>;
+ 			reg = <0x0 0x078b6000 0x0 0x600>;
+ 			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+-			spi-max-frequency = <50000000>;
+ 			clocks = <&gcc GCC_BLSP1_QUP2_SPI_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
+ 			clock-names = "core", "iface";
+-- 
+2.34.1
 
