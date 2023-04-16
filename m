@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FFEB6E35BC
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 09:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1AE6E35BE
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 09:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230305AbjDPH1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 03:27:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36812 "EHLO
+        id S230261AbjDPH33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 03:29:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbjDPH1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 03:27:50 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E80171E
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:27:49 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id vc20so1377831ejc.10
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:27:49 -0700 (PDT)
+        with ESMTP id S229715AbjDPH32 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 03:29:28 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BC6171C
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:29:26 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-504718a2265so7182064a12.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:29:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681630067; x=1684222067;
+        d=linaro.org; s=google; t=1681630165; x=1684222165;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=73bMhyNa0aa8++7vraJhEFeVzDGBZJo8oH+HWy7K7yA=;
-        b=vIONb8S4Fov/w6lEJwtIY2XDOhURweSdmf2eYGoohCqBWvMR469wTlBOPxUOHrNLfq
-         U7d3RheCV2V3RChebAvRCwecv0QtbwsTQOMJtcFBcqti8d9mtRIODisx1+6/pYcWOsPq
-         vvEoIL4v2Zs5kdyRignjh8Pij88mZKU9Ro6UDknWcj3l6VJUvWAy5m1zoVHDDxMMYQA6
-         Urz1QYkyvIFOCE5MpYNT55ozc2rXofUXHfkgeSYRunxt6qs0qRjBR/IBSQND7I9UCuh5
-         FQUEYZ9Wsnc3sKwAVFlPNQ8AB7eH9VePhcTelqt3BqTt/o0rRwNx1VhMnc5qPvlJ36Nm
-         wMvQ==
+        bh=aOFw0uuOIsz0xKsPATPHwvWzm/Yzaxe08PB/6QJSEUw=;
+        b=DOnW+G6iqBrWA2MOKsTFBTiRv2iaHXAi+jllIdVYapkDwKIURixteJeuxsR7WtCKzK
+         JXdxs7aPnhFBwg3Ri2oQZobjgcNHln1Jj8u5lNHkHySKrEPBPNgypoqiyC9QKsQMh1vR
+         +2czx9/NSluvl2kre7hsOwYnnTpM3AzRHuTIoGQ6VlXCSuY+k1ouTk+ruDEHbkKvXLZ4
+         zjyDFu+WiNwODcewRx3zQRB2uRSr5KfL83zYCWq9Fxm+6I1iYY3COSWOLzhxkIz3sdFe
+         oB5aNemEz+df7NGT+bKh3gB19q/kNMBnjLcJ13JZT9beQJ2bUO8csOWpabngJrUk4Gqj
+         t40g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681630067; x=1684222067;
+        d=1e100.net; s=20221208; t=1681630165; x=1684222165;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=73bMhyNa0aa8++7vraJhEFeVzDGBZJo8oH+HWy7K7yA=;
-        b=Ywzcb9W6wZcYURVEEuVmzQ/h/XhSUJiJ05ezUInJs3BoOcyffervvHyQyRTejJaT50
-         58BqvZKjt0x4Ll1Uu/gCyvY3fgNejXMIBU4RfcIJ89NQjLC2rOBfqH+a2QcjQ06v2jPL
-         awdr/80VlDCwi76PJuWmtjATl4O9LQ0fGxifP0fzNZlvdeE+BqOWrE2Yp6QfUb5pOcMf
-         O17i/Q6DMwVGttyb7wy6sED6cIMaZt44E8ATTX6jzZIpqHRAkRAGtWdE8iOtOpGeDVtH
-         nzxNk56cxsCkxR8XSDU0f4dVuC0gsLhJXrBcSnswrE7jvhJcnkVwHKMu6XNV9bxmZaum
-         F9Qg==
-X-Gm-Message-State: AAQBX9coAzYvvXzeaOPyOJMJ48cV8DtkpdZYMOZxx2f/S6rDnXhuSv/G
-        ngnWKrsGkjTnNkO3a++31F3blg==
-X-Google-Smtp-Source: AKy350ajcg5svPODaCy5GefECc0x96HqXNNX3Q6QNl7eIsMc6jJRAr0jWQmn+ooPujRSUW5OZDiWvQ==
-X-Received: by 2002:a17:906:82c5:b0:94a:8e19:6aba with SMTP id a5-20020a17090682c500b0094a8e196abamr3986530ejy.21.1681630067634;
-        Sun, 16 Apr 2023 00:27:47 -0700 (PDT)
+        bh=aOFw0uuOIsz0xKsPATPHwvWzm/Yzaxe08PB/6QJSEUw=;
+        b=htzuwwZTm3hp6KI50/YY42BwQbrsmwGRs98xypRg1k2lSr0DHWXdoYxzWHPBC/aon2
+         d9VjTXnzyK6EmZrEU5SjtaGwrXA18oGy4roVFzQpbLpjjBTzXPkAjPXSZfrt5oiAGxzH
+         fpnvq0j6UbxX+Es3zJMoG9wPShWk/v3A+aCk+ouys30+PDDG+gWQObXlCOFKLl2rWwkN
+         rsenW+RWyRIKhxXV+AFW2ZD6S0uLNVEQ/yRoxLTph/I7E+fn8zIDhg4gflNd0YCIInXl
+         RKZy4QA8fqIl6DS0554QkGD4IaEI/Hqytr+cMpcclvyLbzCNG/G9jZdmKFrmsxrGVIsY
+         YfLw==
+X-Gm-Message-State: AAQBX9f6+1x2wLfa5aQWB5swQgWpaSieOZhYo+7gwn6Vtm9Iy1NHt0wp
+        jFqHtco233fgxJeP02vLAdLKJQ==
+X-Google-Smtp-Source: AKy350Ythj50Bg33yVvszp2GfBH+aJINJcdc8fACiNjOd/SXOv1SxMI+qB7o0aYnA8GRIbGpjBHAyg==
+X-Received: by 2002:a50:ee0f:0:b0:506:7c83:87e7 with SMTP id g15-20020a50ee0f000000b005067c8387e7mr8207377eds.41.1681630165251;
+        Sun, 16 Apr 2023 00:29:25 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:29dd:ded4:3ccc:83db? ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170906500400b0094776b4ef04sm4821709ejj.10.2023.04.16.00.27.46
+        by smtp.gmail.com with ESMTPSA id x23-20020a170906135700b0094f0621cd27sm2262844ejb.55.2023.04.16.00.29.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 00:27:47 -0700 (PDT)
-Message-ID: <25a8dcf9-fd1b-0eb3-eced-7a1e158ca7fc@linaro.org>
-Date:   Sun, 16 Apr 2023 09:27:46 +0200
+        Sun, 16 Apr 2023 00:29:24 -0700 (PDT)
+Message-ID: <01a997c9-ea2c-469e-8de7-7a376b880f23@linaro.org>
+Date:   Sun, 16 Apr 2023 09:29:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 3/3] ARM: dts: axp209: Add iio-hwmon node for internal
- temperature
+Subject: Re: [PATCH v3 6/6] dt-bindings: iio: st-sensors: Add LSM303D
+ accelerometer+magnetometer
 Content-Language: en-US
-To:     Jonathan McDowell <noodles@earth.li>,
+To:     Marius Hoch <mail@mariushoch.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <cover.1681580558.git.noodles@earth.li>
- <a40b6d46209f9b5626cd5a147c31daf5d19c9439.1681580558.git.noodles@earth.li>
+        Denis Ciocca <denis.ciocca@st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Hans de Goede <hdegoede@redhat.com>
+References: <20230415231130.115094-1-mail@mariushoch.de>
+ <20230415231130.115094-7-mail@mariushoch.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a40b6d46209f9b5626cd5a147c31daf5d19c9439.1681580558.git.noodles@earth.li>
+In-Reply-To: <20230415231130.115094-7-mail@mariushoch.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,49 +83,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/04/2023 19:47, Jonathan McDowell wrote:
-> This adds a DT node to hook up the internal temperature ADC to the
-
-Do not use "This commit/patch", but imperative mood. See:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> iio-hwmon driver. The various voltage + current ADCs are consumed and
-> exposed by their respective drivers, but this is not and is always
-> available. Naming chosen to match the axp20x_ prefix the power sensors
-> use.
-
-Weird choice.
-
+On 16/04/2023 01:11, Marius Hoch wrote:
+> Same as the lsm9ds0, except that the lsm303d doesn't
+> feature a gyroscope.
 > 
-> Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> Signed-off-by: Marius Hoch <mail@mariushoch.de>
 > ---
->  arch/arm/boot/dts/axp209.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
-> index ca240cd6f6c3..f00b5a7ec106 100644
-> --- a/arch/arm/boot/dts/axp209.dtsi
-> +++ b/arch/arm/boot/dts/axp209.dtsi
-> @@ -48,6 +48,13 @@
->   * http://dl.linux-sunxi.org/AXP/AXP209%20Datasheet%20v1.0_cn.pdf
->   */
->  
-> +/ {
-> +	axp20x_temp {
+> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> index c6201976378f..194aca5542c2 100644
+> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> @@ -85,6 +85,7 @@ properties:
+>        - description: IMUs
+>          enum:
+>            - st,lsm9ds0-imu
+> +          - st,lsm303d-imu
 
-No underscores in node names.
+The entries are ordered by name.
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+With fixed:
 
-> +		compatible = "iio-hwmon";
-> +		io-channels = <&axp_adc 4>; /* Internal temperature */
-> +	};
-> +};
-> +
->  &axp209 {
->  	compatible = "x-powers,axp209";
->  	interrupt-controller;
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
