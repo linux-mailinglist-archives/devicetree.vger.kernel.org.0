@@ -2,283 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5476E3826
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 14:39:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07A616E380D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 14:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbjDPMjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 08:39:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53566 "EHLO
+        id S230282AbjDPMhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 08:37:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbjDPMjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 08:39:46 -0400
-X-Greylist: delayed 364 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 Apr 2023 05:39:26 PDT
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75D45580
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 05:39:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681648397; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=GnggELMCxxFRPmgSUsNqxykb1r16VuqNLwt6tSaiNLtaaGbimwlLLIx+mchgqhmC5R
-    9o006fjlCLY29DblZYAEO7tNNYagQqf8IoivVA4VZzYCO2BVnoNhVvv9e0+jo430zrjs
-    t6zn3PmPAl5sAD7eloLRFhWmrgnH2pVWWxYgphgzhvxPNlLxLhZ2RK8g8tczGfxBA8p2
-    I9DGscWxHLNx/MzWN/KPwj9BfAHv/qNb3fHdyXTyIguIp9D0OwxdcC06I7Eavh2QV9Rz
-    n4IgFc1TeONGhflTbQKqZnrc7VG71IDwLr3Fp6P9PCpSQ6KA98+70PeUj4K8RqijlgfM
-    J6cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1681648397;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=IKBUJF6tZX/jXw35f486xVBREJLR9ANrCysZJ8pX18o=;
-    b=Ql8IPZb1g2ceSCX5yqJHRdrk2vPnuZVKj0DxzqVaMGNF6Fa8mTIuxA8xmewXKty6vV
-    CbbdEa6nkDFMe7CYtbt9BXvYpuZDjHx3tyL3D4BonotSMN3qahgYof2YSUnsXdkE1c8a
-    iKftj38FXPL91/w0Hdlz4EVQKQ+iLQEG231g7ae2e92KHnp/9kkTCqyTjbui2+xyHpox
-    TaJQoo7vi49kvfW+DoNyaEvoH7B0LJdpCECgrx0Oib4CKmKt3KXQtd7eOtmUzxnuapwS
-    eZBtia+S+0u/MqGwVQVyu0OCZfwjNrvzPC32scxwNEVWHGcjuUt17yCQ2586F66ZB6W5
-    t3QA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1681648397;
-    s=strato-dkim-0002; d=hartkopp.net;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=IKBUJF6tZX/jXw35f486xVBREJLR9ANrCysZJ8pX18o=;
-    b=NyM4PPqeDa3ugRYF+mjgrhtpIfqE+9W9pR9ZXFeDzAg2aPhPdJmuc0fB+SIDJimcLf
-    IvDYuB8byRqdYyUAEbLMeTZMnHLsSdu1OvYC6ugrEH2CkjW+AOJW62MW6QbPr0+Jx7Az
-    A/5GaRR/vMjT+/sO0BGzYD87Oj/of7dBKdpRMY5QGxSXDtKiyHeqKcn3EZqslIOa8lmq
-    vtAzYrE1HGlm0zbxbUz5QGzZcdm4F1ZFdfCuY439jvH638q6PZJ8DVba9jq7vhp1bA/O
-    QdZamburdlOuDYOTPInyPBFaXiIlaQZRxFiWHtBLhB6vXu20Zb52UBQ6hnhwh158Nd3E
-    Mr/w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1681648397;
-    s=strato-dkim-0003; d=hartkopp.net;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=IKBUJF6tZX/jXw35f486xVBREJLR9ANrCysZJ8pX18o=;
-    b=rN1MJWIkjV6/zDin0Iz85QSrhUjH+SFBtFS0k6RjJH1zON7WYXP5otZBLr5YNJbzTZ
-    4SjmyQlvvkB8WzGJp3Aw==
-X-RZG-AUTH: ":P2MHfkW8eP4Mre39l357AZT/I7AY/7nT2yrDxb8mjG14FZxedJy6qgO1qCHSa1GLptZHusl129OHEdFq0USEbVLYqA=="
-Received: from [IPV6:2a00:6020:4a8e:5000::83c]
-    by smtp.strato.de (RZmta 49.4.0 AUTH)
-    with ESMTPSA id x06214z3GCXGS6h
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sun, 16 Apr 2023 14:33:16 +0200 (CEST)
-Message-ID: <4a6c66eb-2ccf-fc42-a6fc-9f411861fcef@hartkopp.net>
-Date:   Sun, 16 Apr 2023 14:33:11 +0200
+        with ESMTP id S230259AbjDPMhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 08:37:05 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA8382D40;
+        Sun, 16 Apr 2023 05:37:04 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id xd13so23346093ejb.4;
+        Sun, 16 Apr 2023 05:37:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681648624; x=1684240624;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VDa2GFtYkfWVlc8ZTMskD2bfRssb3+wPHR9VnWdgQkk=;
+        b=Ye4lxVUXva7hfPvirb5EICjV7mvCIR+LZoN3QkH/Aa9mcMNRKXRHXY7XX9YxfQiM4d
+         UHF+N75fqf6yWUywGE72iYA9LGogaxALspplCNngKKlCEiNB/KHmYLhX5s9kFNdrJlgm
+         Ps5No9KHIl4sEN/LvkdFDyEuljHQ2Yb4FiMA1QptZREt1Bp0QkaLum68LKPqGSisGWmj
+         02RcdFqsq/361uqczbuNL3um2U2cyI0NQiD7Oc40B1PwxsMYtEbKZYmC5yPD3d1E2/Ce
+         TzkSQIRiqBSrM/faDZ7/OC9IJha+EfIshOaH1OD3tv+CNbl5x1Wr5b1zwVnYnEvDen3x
+         FaoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681648624; x=1684240624;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VDa2GFtYkfWVlc8ZTMskD2bfRssb3+wPHR9VnWdgQkk=;
+        b=Z1hVKdWL6mcmQiAcTWG7ZSqXu4ypa/OHCRM3SiGO1/SE0HUojNJdQTmW9OzR5nZAzU
+         yPy25ESlFFyu474/PVpYUe65AhBojgSp5I8ERpR2aQnlrTAzD+9CNUBmSYwuW9Mmgyak
+         RUm0zAvitYy4vumWkoUtPdd53TPHRqZeolzwiZDdQxqWJU/WzZuC7FqvfvDZnq49O2mF
+         Bz5ZpFYwDS0Q76y4PT0sFEPW5M9acX135DGNG99MQGk+AdSiyLDNdBus4lSHo2FwEaqX
+         HBCD5UM5OJIKoa9k16S8InRTM8XlQjjQ+iL1IYvU+wiobVfPf2LryMz/9k3W8+AVcGgq
+         6Ajw==
+X-Gm-Message-State: AAQBX9eJHJLJCH9GjNjX9G2Jrn27Nc5b0UMl2wwIo1HqvqMkxGGvGgup
+        yqnTGXBLnsaXXS0tDpo1z5s=
+X-Google-Smtp-Source: AKy350Z9RmwvdFDkqAGZQeSDhkrMeMTMfOfNN8b8VmhaRJ5qZRpnoXUSxR2zWJy9cKGKUWb33636uQ==
+X-Received: by 2002:a17:906:82c5:b0:93f:2256:fc05 with SMTP id a5-20020a17090682c500b0093f2256fc05mr4820249ejy.55.1681648624015;
+        Sun, 16 Apr 2023 05:37:04 -0700 (PDT)
+Received: from [192.168.50.244] (83.8.121.70.ipv4.supernova.orange.pl. [83.8.121.70])
+        by smtp.gmail.com with ESMTPSA id i3-20020a1709061e4300b0092b8c1f41ebsm4999772ejj.24.2023.04.16.05.37.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Apr 2023 05:37:03 -0700 (PDT)
+Message-ID: <8bb6e9a6-0143-3627-14c4-285ce2632070@gmail.com>
+Date:   Sun, 16 Apr 2023 14:37:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 5/5] can: m_can: Add hrtimer to generate software
- interrupt
-To:     Marc Kleine-Budde <mkl@pengutronix.de>, Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Davis <afd@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>
-References: <20230413223051.24455-1-jm@ti.com>
- <20230413223051.24455-6-jm@ti.com>
- <20230414-bounding-guidance-262dffacd05c-mkl@pengutronix.de>
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 00/12] Re-introduce Exynos4212 support and add Samsung
+ Galaxy Tab 3 8.0 boards
 Content-Language: en-US
-From:   Oliver Hartkopp <socketcan@hartkopp.net>
-In-Reply-To: <20230414-bounding-guidance-262dffacd05c-mkl@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230416101624.15866-1-aweber.kernel@gmail.com>
+ <3e513119-4d6a-18ec-aaec-1c6b2b7e35b4@gmail.com>
+ <ba148e6c-1685-f6d4-458f-bbdf1dd674cf@linaro.org>
+ <36287654-c6e6-f4bd-320c-866bef692d2f@gmail.com>
+ <d0b2868f-cade-feb1-52cd-2aacd537c9c6@linaro.org>
+From:   Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <d0b2868f-cade-feb1-52cd-2aacd537c9c6@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 4/14/23 20:20, Marc Kleine-Budde wrote:
-> On 13.04.2023 17:30:51, Judith Mendez wrote:
->> Add a hrtimer to MCAN struct. Each MCAN will have its own
->> hrtimer instantiated if there is no hardware interrupt found.
+On 16/04/2023 12:53, Krzysztof Kozlowski wrote:
+> On 16/04/2023 12:49, Artur Weber wrote:
+>> On 16/04/2023 12:34, Krzysztof Kozlowski wrote:
+>>> On 16/04/2023 12:26, Artur Weber wrote:
+>>>> On 16/04/2023 12:16, Artur Weber wrote:
+>>>>> This patches re-introduces the Exynos4212 platform and adds support
+>>>>> for the Samsung Galaxy Tab 3 8.0 series of tablets that uses it:
+>>>>>
+>>>>>     - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
+>>>>>     - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
+>>>>>     - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
+>>>>>
+>>>>> What works:
+>>>>>
+>>>>>     - Display and backlight
+>>>>>     - Touchscreen (without touchkeys)
+>>>>>     - GPIO buttons, hall sensor
+>>>>>     - WiFi and Bluetooth
+>>>>>     - USB, fuel gauge, charging (partial)
+>>>>>     - Accelerometer and magnetometer
+>>>>>     - WiFi model only: light sensor
+>>>>
+>>>> This patchset depends on "[PATCH 0/3] Add Samsung S6D7AA0 panel
+>>>> controller driver" for the display panel support for the Samsung Galaxy
+>>>> 3 8.0 boards.
+>>>
+>>> Why? DTS and ARM code cannot depend on driver changes. Please rework
+>>> your patchsets to remove any of such dependencies.
 >>
->> The hrtimer will generate a software interrupt every 1 ms. In
+>> Ah, that makes sense. I'll re-send the patchset in a second with the
+>> panel node removed.
 > 
-> Are you sure about the 1ms?
+> I am sorry, I don't understand. Why would you remove anything from DTS?
+> Are bindings NAKed?
 
-The "shortest" 11 bit CAN ID CAN frame is a Classical CAN frame with DLC 
-= 0 and 1 Mbit/s (arbitration) bitrate. This should be 48 bits @1Mbit => 
-~50 usecs
+The dependency display panel patchset introduces the panel and its 
+bindings, which in turn are included in the Tab3 DTSI. It was submitted 
+at roughly the same time as this series, and hasn't been fully reviewed 
+or merged as of writing. (I have seen your comments on that patchset, 
+and I will be addressing them shortly.) So the bindings haven't been 
+explicitly ACKed yet (assuming you mean the Acked-by reply).
 
-So it should be something about
+In response to:
 
-     50 usecs * (FIFO queue len - 2)
+ > Please rework your patchsets to remove any of such dependencies.
 
-if there is some FIFO involved, right?
+I suggested that I could remove the panel node from the DTSI for the 
+time being. The intent was to submit it in a separate patch later, once 
+the display is reviewed/merged, and thus actually available in the 
+kernel; this way, the two patches could be reviewed and merged separately.
+
+I could instead wait for the display patchset to get reviewed/merged 
+first, then resubmit this series, if that's preferable.
+
+I apologize for the confusion.
 
 Best regards,
-Oliver
+Artur Weber
 
->> hrtimer callback, we check if there is a transaction pending by
->> reading a register, then process by calling the isr if there is.
->>
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->>   drivers/net/can/m_can/m_can.c          | 24 ++++++++++++++++++++++--
->>   drivers/net/can/m_can/m_can.h          |  3 +++
->>   drivers/net/can/m_can/m_can_platform.c |  9 +++++++--
->>   3 files changed, 32 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
->> index 8e83d6963d85..bb9d53f4d3cc 100644
->> --- a/drivers/net/can/m_can/m_can.c
->> +++ b/drivers/net/can/m_can/m_can.c
->> @@ -23,6 +23,7 @@
->>   #include <linux/pinctrl/consumer.h>
->>   #include <linux/platform_device.h>
->>   #include <linux/pm_runtime.h>
->> +#include <linux/hrtimer.h>
->>   
->>   #include "m_can.h"
->>   
->> @@ -1584,6 +1585,11 @@ static int m_can_close(struct net_device *dev)
->>   	if (!cdev->is_peripheral)
->>   		napi_disable(&cdev->napi);
->>   
->> +	if (dev->irq < 0) {
->> +		dev_info(cdev->dev, "Disabling the hrtimer\n");
-> 
-> Make it a dev_dbg() or remove completely.
-> 
->> +		hrtimer_cancel(&cdev->hrtimer);
->> +	}
->> +
->>   	m_can_stop(dev);
->>   	m_can_clk_stop(cdev);
->>   	free_irq(dev->irq, dev);
->> @@ -1792,6 +1798,19 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff *skb,
->>   	return NETDEV_TX_OK;
->>   }
->>   
->> +enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
->> +{
->> +	irqreturn_t ret;
-> 
-> never read value?
-> 
->> +	struct m_can_classdev *cdev =
->> +		container_of(timer, struct m_can_classdev, hrtimer);
->> +
->> +	ret = m_can_isr(0, cdev->net);
->> +
->> +	hrtimer_forward_now(timer, ns_to_ktime(5 * NSEC_PER_MSEC));
-> 
-> There's ms_to_ktime()....and the "5" doesn't match your patch
-> description.
-> 
->> +
->> +	return HRTIMER_RESTART;
->> +}
->> +
->>   static int m_can_open(struct net_device *dev)
->>   {
->>   	struct m_can_classdev *cdev = netdev_priv(dev);
->> @@ -1836,8 +1855,9 @@ static int m_can_open(struct net_device *dev)
->>   	}
->>   
->>   	if (err < 0) {
->> -		netdev_err(dev, "failed to request interrupt\n");
->> -		goto exit_irq_fail;
->> +		dev_info(cdev->dev, "Enabling the hrtimer\n");
->> +		cdev->hrtimer.function = &hrtimer_callback;
->> +		hrtimer_start(&cdev->hrtimer, ns_to_ktime(0), HRTIMER_MODE_REL_PINNED);
-> 
-> IMHO it makes no sense to request an IRQ if the device doesn't have one,
-> and then try to fix up things in the error path. What about this?
-> 
-> --- a/drivers/net/can/m_can/m_can.c
-> +++ b/drivers/net/can/m_can/m_can.c
-> @@ -1831,9 +1831,11 @@ static int m_can_open(struct net_device *dev)
->                   err = request_threaded_irq(dev->irq, NULL, m_can_isr,
->                                              IRQF_ONESHOT,
->                                              dev->name, dev);
-> -        } else {
-> +        } else if (dev->irq) {
->                   err = request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
->                                     dev);
-> +        } else {
-> +                // polling
->           }
->   
->           if (err < 0) {
-> 
->>   	}
->>   
->>   	/* start the m_can controller */
->> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
->> index a839dc71dc9b..ed046d77fdb9 100644
->> --- a/drivers/net/can/m_can/m_can.h
->> +++ b/drivers/net/can/m_can/m_can.h
->> @@ -28,6 +28,7 @@
->>   #include <linux/pm_runtime.h>
->>   #include <linux/slab.h>
->>   #include <linux/uaccess.h>
->> +#include <linux/hrtimer.h>
->>   
->>   /* m_can lec values */
->>   enum m_can_lec_type {
->> @@ -93,6 +94,8 @@ struct m_can_classdev {
->>   	int is_peripheral;
->>   
->>   	struct mram_cfg mcfg[MRAM_CFG_NUM];
->> +
->> +	struct hrtimer hrtimer;
->>   };
->>   
->>   struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int sizeof_priv);
->> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
->> index 9c1dcf838006..53e1648e9dab 100644
->> --- a/drivers/net/can/m_can/m_can_platform.c
->> +++ b/drivers/net/can/m_can/m_can_platform.c
->> @@ -7,6 +7,7 @@
->>   
->>   #include <linux/phy/phy.h>
->>   #include <linux/platform_device.h>
->> +#include <linux/hrtimer.h>
->>   
->>   #include "m_can.h"
->>   
->> @@ -98,8 +99,12 @@ static int m_can_plat_probe(struct platform_device *pdev)
->>   	addr = devm_platform_ioremap_resource_byname(pdev, "m_can");
->>   	irq = platform_get_irq_byname(pdev, "int0");
->>   	if (IS_ERR(addr) || irq < 0) {
-> 
-> What about the IS_ERR(addr) case?
-> 
->> -		ret = -EINVAL;
->> -		goto probe_fail;
->> +		if (irq == -EPROBE_DEFER) {
->> +			ret = -EPROBE_DEFER;
->> +			goto probe_fail;
->> +		}
->> +		dev_info(mcan_class->dev, "Failed to get irq, initialize hrtimer\n");
->> +		hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL_PINNED);
-> 
-> I don't like it when polling is unconditionally set up in case of an irq
-> error. I'm not sure if we need an explicit device tree property....
-> 
->>   	}
->>   
->>   	/* message ram could be shared */
->> -- 
->> 2.17.1
->>
->>
-> 
-> Marc
-> 
