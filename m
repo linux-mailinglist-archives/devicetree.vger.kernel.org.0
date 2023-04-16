@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D84C6E3B69
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 21:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E0B16E3B7B
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 21:17:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjDPTKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 15:10:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53724 "EHLO
+        id S229756AbjDPTRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 15:17:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbjDPTKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 15:10:08 -0400
-X-Greylist: delayed 581 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 Apr 2023 12:10:05 PDT
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2EE270E
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 12:10:05 -0700 (PDT)
-Received: from [192.168.100.237] (cust-58-62-110-94.dyn.as47377.net [94.110.62.58])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 31B6A3A3B6B;
-        Sun, 16 Apr 2023 21:00:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1681671620;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KbiAlrrOOyRd9nSswntO2EM/kuhEbC2Dui2D0jg8mhE=;
-        b=yJTuA2IM1/ouSfmFU4g81QYz/Qs036N+Xgao0Ath/i9vW1OlzLPaQPSs5Z/cwJgY+mB5Yt
-        9frXAammof4cYeKT3YVKBBWuJmf5TlBYeZdPZpxvHm/UkuLToAfxBulAuQ/nfQnJU4gl/N
-        knaWX+2Bmwu0hShO8EBylOfwdt4HsidJ6JVG8BFAGRPK8fnJHUS7eltyRhN2MTg3ab2WE1
-        UgpwApF4MwfWTnKCtGazcW0/+MWrMm5ofGGKOhMMnVk7OADQ+R6e9jhHvt6dGh4OC2H0oK
-        b9tPCUEGwBSgAzSOzEjLJfpJWZ4oWq8P1U6FwFMzQAju74a9ESqS7tOiZHvUhQ==
-Message-ID: <75148300a158ceb0f86043535b089838e1d1bb61.camel@svanheule.net>
-Subject: Re: [PATCH 6/6] dt-bindings: watchdog: realtek,otto-wdt: simplify
- requiring interrupt-names
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S229458AbjDPTRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 15:17:17 -0400
+X-Greylist: delayed 362 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 Apr 2023 12:17:16 PDT
+Received: from st43p00im-ztfb10073301.me.com (st43p00im-ztfb10073301.me.com [17.58.63.186])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF621BFD
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 12:17:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1681672273; bh=SHEIfHZdwV1MgUhja3Pb7A0Q8HBViX4AhyXV3iC/XmE=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=IEp/xzCQksUYhUhiofR4fY9KsVezXAMrdQDRS9Qmb/R1e18RX4DVVZYt66l977Wpt
+         fCBIJ/bayDQXSSDKFgf4Ts2G3LlEYlA7fkgSxWMCBfkClp8xfzNOiLWfhILR/DGVYq
+         HXzq9wEk5PaN57/qD8gq1qfLAtEVr2lJ92tSAfIz425GNLsEgFommRIzAJ2R7l1hj5
+         QOEkj+btC1jKgU2fOtnguUgVo04sdtmoPsbjmfQ3Er0xLw/UX1pe6p+9UBvsncCUeO
+         ZYEWrSL6ngMnRmei0Qv59njFtqkC/PsdzAflZmswDtrs1McE63xDOtma9D65xKZ4C8
+         zbCxZWA1F6dWA==
+Received: from localhost (st43p00im-dlb-asmtp-mailmevip.me.com [17.42.251.41])
+        by st43p00im-ztfb10073301.me.com (Postfix) with ESMTPSA id 71783800D29;
+        Sun, 16 Apr 2023 19:11:12 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Julius Werner <jwerner@chromium.org>,
-        Evan Benn <evanbenn@chromium.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Justin Chen <justinpopo6@gmail.com>, ?ecki <rafal@milecki.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Jamie Iles <jamie@jamieiles.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-renesas-soc@vger.kernel.org
-Date:   Sun, 16 Apr 2023 21:00:17 +0200
-In-Reply-To: <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
-References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
-         <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     patrice.chotard@foss.st.com, Alain Volmat <avolmat@me.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: irqchip: sti: remove stih415/stih416 and stid127
+Date:   Sun, 16 Apr 2023 21:09:50 +0200
+Message-Id: <20230416190950.18929-1-avolmat@me.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: Jkl-dPGDjNp7nHuhdjtxZtB-NUEdponJ
+X-Proofpoint-GUID: Jkl-dPGDjNp7nHuhdjtxZtB-NUEdponJ
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.816,17.11.62.513.0000000_definitions?=
+ =?UTF-8?Q?=3D2022-01-17=5F04:2020-02-14=5F02,2022-01-17=5F04,2021-12-02?=
+ =?UTF-8?Q?=5F01_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxlogscore=611 mlxscore=0
+ phishscore=0 suspectscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2304160181
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Remove bindings for the stih415/stih416/stid127 since they are
+not supported within the kernel anymore.
 
-On Sat, 2023-04-15 at 11:51 +0200, Krzysztof Kozlowski wrote:
-> Required properties should be listed in "required:" block.=C2=A0 Since
-> interrupts are already there, the dependency of interrupt-names on the
-> interrupts can be simplified.
+Signed-off-by: Alain Volmat <avolmat@me.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Patch sent previously via serie: https://lore.kernel.org/all/20230209091659.1409-5-avolmat@me.com/
+ .../bindings/interrupt-controller/st,sti-irq-syscfg.txt  | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-Maybe I'm not reading this right, but isn't the dependency stated in the bi=
-nding
-"interrupts requires interrupt-names to be present"? resource-names.txt
-describes the reverse dependency ("interrupt-names is only meaningful with =
-an
-associated interrupts").
-
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-
-In any case, I'm OK with a flattened requirements list:
-
-Acked-by: Sander Vanheule <sander@svanheule.net>
-
-
-Best,
-Sander
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt b/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
+index ced6014061a3..977d7ed3670e 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
+@@ -6,11 +6,7 @@ and PL310 L2 Cache IRQs are controlled using System Configuration registers.
+ This driver is used to unmask them prior to use.
+ 
+ Required properties:
+-- compatible	: Should be set to one of:
+-			"st,stih415-irq-syscfg"
+-			"st,stih416-irq-syscfg"
+-			"st,stih407-irq-syscfg"
+-			"st,stid127-irq-syscfg"
++- compatible	: Should be "st,stih407-irq-syscfg"
+ - st,syscfg	: Phandle to Cortex-A9 IRQ system config registers
+ - st,irq-device	: Array of IRQs to enable - should be 2 in length
+ - st,fiq-device	: Array of FIQs to enable - should be 2 in length
+@@ -25,11 +21,10 @@ Optional properties:
+ Example:
+ 
+ irq-syscfg {
+-	compatible    = "st,stih416-irq-syscfg";
++	compatible    = "st,stih407-irq-syscfg";
+ 	st,syscfg     = <&syscfg_cpu>;
+ 	st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
+ 			<ST_IRQ_SYSCFG_PMU_1>;
+ 	st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
+ 			<ST_IRQ_SYSCFG_DISABLED>;
+-	st,invert-ext = <(ST_IRQ_SYSCFG_EXT_1_INV | ST_IRQ_SYSCFG_EXT_3_INV)>;
+ };
+-- 
+2.34.1
 
