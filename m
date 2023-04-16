@@ -2,58 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8AC6E3885
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 15:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B926E388D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 15:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbjDPNK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 09:10:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
+        id S229753AbjDPNQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 09:16:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230416AbjDPNK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 09:10:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AF7212E;
-        Sun, 16 Apr 2023 06:10:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 83F2361AC3;
-        Sun, 16 Apr 2023 13:10:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 224CBC433D2;
-        Sun, 16 Apr 2023 13:10:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681650622;
-        bh=LfiZ+5o35dtTGT3sDwTcKuuxb1tn2j+UJ8+wyZpuGjs=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=aEDtxQzkGBunqrbEekbaUUHChUpAM91W2X5+/EtCCFWYW9IWpdaspWeai9REO/6gM
-         /UNdO73Tepx24Pdf9V6vmDFJhEW/lDbhpI7VGxebQ77nrD9vgHajJKL5nmEUmrmmzz
-         9KHYa36sgcs+yqGJvE4FBSHHurlN3qLfJWV0u8Ji+VKTh0XhIMSK0Grnq9Ye6xJ9An
-         cwWfko9dCXD1E9Rvs2pZuJvIC4kZGqUhUi3btl4giYj/LvKCiTmOpx5+D8AGGFB39+
-         UVQ7UKJ63M58Nq0MfugOtN1EhqASw7diHMOwtv9IvFoymccUqt4NQO+I3GtMmw5tiP
-         GYcTLEpmueGPQ==
-Date:   Sun, 16 Apr 2023 14:10:24 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Siddartha Mohanadoss <smohanad@codeaurora.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: add 16 ratio of
- pre-scaling
-Message-ID: <20230416141024.2c09d7c8@jic23-huawei>
-In-Reply-To: <20230416123142.299533-1-krzysztof.kozlowski@linaro.org>
-References: <20230416123142.299533-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229476AbjDPNQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 09:16:40 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BDF211B;
+        Sun, 16 Apr 2023 06:16:39 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-504e232fe47so4178049a12.2;
+        Sun, 16 Apr 2023 06:16:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681650998; x=1684242998;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CG6bCloxRF63LINwsV/S6++Cq8kHn62f+t1mJDbwRK0=;
+        b=WXFFpsaEeQMYaSn0v/zrfFpyjWKoQioMpl8FyBtcvwM/W+CH3eQ+FO8fDo4YaSPbqC
+         IBR4fvHDQFglnsUsuGDL9btHT7rzgxknyMVD8vTPCfdzkSoD9OpN8e/0qHNlEtLtPnna
+         n8Wj0hynb/1Snkic/6YiPhC3tUkSx+ly+h1qYOrElXpFKddIjGlVH5U/mmCRnbijh9vJ
+         ZEqJnPJ/11Q/ZClWyCxatUVsjtlwtMkJGtOFVBqYpefMS0frrrjxK2+2ltAvy180okSB
+         fRcerp0pe6CHkmBii7OxVvmPyc0Q5kaLQgMUNyWXjmKjOzqcvNgTxzpnPnxefUNIzq17
+         /27Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681650998; x=1684242998;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CG6bCloxRF63LINwsV/S6++Cq8kHn62f+t1mJDbwRK0=;
+        b=gJQGUDB3mrRksT6nGbBIAmiOJuDX9TORQNvOUAXorsUFsGtfAuchSeO3oNq1F5e9bn
+         vXgkyt2bMr3GKPSom7ukQWn2DsgLZ9vjqJ8CuuP0iaU9sMdxtqpKq7J1fCO3MzzzQqvJ
+         WtprdQR8FF5PtQ44jswM3R1AUYK/mTP+Y5D4GisVFEzWXhSaEBqJjz7wKudVh+mClkfY
+         LJ51cxTXiimv8ICOIYF+BHU7a6Lxu05z14rO1w7rDFDycLS5++ER8bljFU5WszxKboLH
+         lWG4y92xCZkooFn6k6wp81LjPvEqpThSI4YDKJpxX+EVLnSGj56uycnWN48+eZ6G8+/g
+         UNJA==
+X-Gm-Message-State: AAQBX9eObdqy09c0RmMbk9I1BbkYU74m0D/Svx55f+eV/Hxbcoug6P1j
+        f5CvJc5yVHe2nUb+kN2sFYo=
+X-Google-Smtp-Source: AKy350ZcY3oLmiF4wDab6nhMKU9+AzhQFiWjQFrMeN775fJZ9qEf5nnH8cHD0k8y0tiEK1CJCRb2Ag==
+X-Received: by 2002:aa7:d04e:0:b0:505:7d54:db93 with SMTP id n14-20020aa7d04e000000b005057d54db93mr11408339edo.21.1681650997751;
+        Sun, 16 Apr 2023 06:16:37 -0700 (PDT)
+Received: from localhost.my.domain (83.8.121.70.ipv4.supernova.orange.pl. [83.8.121.70])
+        by smtp.gmail.com with ESMTPSA id n9-20020a05640204c900b005068d7ccfb0sm2396594edw.83.2023.04.16.06.16.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Apr 2023 06:16:37 -0700 (PDT)
+From:   Artur Weber <aweber.kernel@gmail.com>
+To:     thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v3 0/3] Add Samsung S6D7AA0 panel controller driver
+Date:   Sun, 16 Apr 2023 15:16:29 +0200
+Message-Id: <20230416131632.31673-1-aweber.kernel@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,58 +72,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 16 Apr 2023 14:31:42 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+This patchset adds initial support for Samsung S6D7AA0-based panels.
+Currently, only the S6D7AA0-LSL080AL02 panel used in the Samsung
+Galaxy Tab 3 8.0 family of tablets is supported; other panels can be
+added in the future.
 
-> Document value of 16 for pre-scaling, already used in DTS and supported
-> by the Linux driver since long time:
->=20
->   sm7225-fairphone-fp4.dtb: adc@3100: channel@8:qcom,pre-scaling: 'oneOf'=
- conditional failed, one must be fixed:
->     10 was expected
->     16 is not one of [1, 3, 4, 6, 20, 8, 10]
->     81 was expected
->=20
-> Fixes: e13d757279bb ("iio: adc: Add QCOM SPMI PMIC5 ADC driver")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changed in v2:
+ - Added commit messages for dt-bindings and MAINTAINERS entry commits
+ - dt-bindings: Applied suggestions from Krzysztof Kozlowski
+ - driver: Removed unused panel_name property from desc struct
 
-I'm carrying an identical patch (though without the reordering) from Luca W=
-eiss.
-I thought as the whole series was very late in the cycle that it was unlike=
-ly
-to be necessary to rush this in.
+Changed in v3:
+ - Correctly applied patch for dt-bindings
 
-https://lore.kernel.org/all/20230414-pmi632-v1-5-fe94dc414832@z3ntu.xyz/
+Artur Weber (3):
+  dt-bindings: display: panel: Add Samsung S6D7AA0 LCD panel controller
+  drm/panel: Add Samsung S6D7AA0 panel controller driver
+  MAINTAINERS: Add entry for Samsung S6D7AA0 LCD panel controller driver
 
-I see that patch is for the fairphone-fp3 adn this report is the fairphone-=
-fp4.
-Is that the reason this is a fix?
+ .../display/panel/samsung,s6d7aa0.yaml        |  52 +++
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/panel/Kconfig                 |   7 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c | 395 ++++++++++++++++++
+ 5 files changed, 461 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
 
-I'm also I'd like someone from driver side to confirm the drier supports th=
-is.
-=46rom a quick glance I'm not seeing 16 in what I think might be the related =
-table.
-https://elixir.bootlin.com/linux/latest/source/drivers/iio/adc/qcom-spmi-va=
-dc.c#L126
-
-Jonathan
-
-> ---
->  Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yam=
-l b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> index f30114424b92..42077ca65747 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> @@ -101,7 +101,7 @@ patternProperties:
->          oneOf:
->            - items:
->                - const: 1
-> -              - enum: [ 1, 3, 4, 6, 20, 8, 10 ]
-> +              - enum: [ 1, 3, 4, 6, 8, 10, 16, 20 ]
->            - items:
->                - const: 10
->                - const: 81
+-- 
+2.40.0
 
