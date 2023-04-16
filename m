@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 797B06E39A8
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 17:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E21586E39AC
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 17:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbjDPPNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 11:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33842 "EHLO
+        id S230184AbjDPPNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 11:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbjDPPNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 11:13:18 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CFB26A3
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:13:17 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id xd13so23919228ejb.4
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:13:17 -0700 (PDT)
+        with ESMTP id S230130AbjDPPNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 11:13:19 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 720212703
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:13:18 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id xi5so57833683ejb.13
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:13:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681657996; x=1684249996;
+        d=linaro.org; s=google; t=1681657997; x=1684249997;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+vFZujeb45Cux4/hIfTESYrw4QuZxe5NaUo5lk285fQ=;
-        b=M05VTyzIRfp0lJMz0GQXrZPL/t7pNC3AqptY7bUOZNVI2BzX4jqvIQ6KDMTxXEbeum
-         EQgcyI5FbsNIFVpw4GzbVytMV5Rk3Ykw8R/6tpuxrRlhmzy2dEE6OgH0BQ079wWiP1O0
-         4vEdJjDGpj/JShFybN3yC91lCOG5MnsQtZcmm5Ddr7uSedo7VE/geymO/mLoUcoDO5fu
-         ebI+9vmYZU6IoP2AI7Ms7tSqX/dT67x7HiFtLXMJpjVECoMUXzXRT+GlWIXX0UJRFYDz
-         v0jhuqjTcggUqqPZIm09p1TT+kJgmvwnFANdEaSIPoDgUdT3CMqkhNct+UAaRRsjCNXH
-         MpWA==
+        bh=l1fA94NAcl87+C/afR7aU2FClgyJ4wBG784WxvcOq8o=;
+        b=mKGjfJXnxdsyCrYyFNzn0vT0G4Zi+94W3E7p/gcYBoeWn7MTlwc92KsbnxL1BT4wxq
+         2VE8Qh1fgAhk7gnCgoWkmrqTNST7VnsxTwFS7siQJOTUzofyOy1+9n9/8RW3DA7DOD3b
+         rGtlJyYHHZHWSbkNX7V61zUrirkhxnIFPn0EBwlM9dhzD8rJQlVTaeJCo1TyBtyKvBQL
+         975jn08KEIlwsZw/CewkyqmpssdqfMw8CElQtaRJX96WL4/cG7VeZtcarh384QI6o1GJ
+         AYxTD6q61Rx6GVQxOJ5Np3bXqe0NqKM1jWeuFUONHg8cmCyTYp1SaEBqLRWdgvMdwtTP
+         8dBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681657996; x=1684249996;
+        d=1e100.net; s=20221208; t=1681657997; x=1684249997;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+vFZujeb45Cux4/hIfTESYrw4QuZxe5NaUo5lk285fQ=;
-        b=CgPfsY8kIVYLpitSeN7OzpU5DC4flSEJuuLWS3DmujkdDRUKcHVKskkS3ey1SWSiHc
-         NP12+/BiRHymjzNntt9BwqGy5hOq3Jzm+fjYCCOd3b/juBf4+4CEVVgpGLsAzRYWhB/J
-         sGzLRWJiFsdXyXz5HTxBQHuVGnk3v+Y4L/e5nzQHyiRawRvhghVT/dY/BhS9cx/R43mK
-         OvNhrxC0IsyCXrXuBwtVeaP9bloEMZd0H4TtCn4i9JS2eeZBhEtf2hGFzkv9oBuvk1qw
-         AIuFtX89Sz4fpyzdGO3wmVCYkYVdmYPXUX/PZJh1x3MJpsvKkuMN3mRQfDGNkO08N2N6
-         9a3Q==
-X-Gm-Message-State: AAQBX9cmXdcBAw5+6SrPP/JI/fsth4DAbO8Tv8aS1sBJblM89XeQNtqQ
-        vfjvviS4Mc8uIuQK78MQJ5+Irg==
-X-Google-Smtp-Source: AKy350ZfXavYzi/CNS2jjBhwrfaOEy3c2JgNTbbkon4urYT3EAhwugLQFxyZEk10c2ig7QGEGNOzfA==
-X-Received: by 2002:a17:906:6d15:b0:94a:a41b:558 with SMTP id m21-20020a1709066d1500b0094aa41b0558mr5049351ejr.54.1681657995872;
-        Sun, 16 Apr 2023 08:13:15 -0700 (PDT)
+        bh=l1fA94NAcl87+C/afR7aU2FClgyJ4wBG784WxvcOq8o=;
+        b=VfqE/sv5I6SE0qXpptpgEuSGKhmXBqCzxcifcx63rVy6bwkzQfALOpEXViB3OesKkH
+         yyPSwDiLivWjxllubQr2qOVbXPmUWm6IkqbNvdYJfuCPHAlID9lctaM7AKL4QU8xnYed
+         LNjn+JdioNjD8yDpmGfL5cp/Si58UQMOEUeciWAWa87SeLaUBbWyS6rT+mDntWkw4tYJ
+         FM5fiPCfG8SZRa4GDKKiiUFT/gsfTkpp6oslRW5GlEAEVLkgrwU4R900I/Ol7W1hrXjH
+         MDMoakb65sLalOoc4ODmuG0KinkEN7ZTMVms3zdyaUCGBksCaWeTFONNIq8bxvs1pS05
+         CJcw==
+X-Gm-Message-State: AAQBX9cL0gnQK+7plOJs9Qy4ll1Ulrb/VfvehuAWI88TyXTi2cIjYYas
+        OCXja4+InZzPCkJ5a4Wy2PGtcg==
+X-Google-Smtp-Source: AKy350Y05MF3d2vyxqLW7Lc7rHVFJsG/aqfTtQVTToYdEpNdzaUly++NgBkdcQSYghDNABRI5awcCg==
+X-Received: by 2002:a17:907:4ce:b0:94e:be0:97 with SMTP id vz14-20020a17090704ce00b0094e0be00097mr4577184ejb.26.1681657996890;
+        Sun, 16 Apr 2023 08:13:16 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:ba4d:301c:484d:5c9])
         by smtp.gmail.com with ESMTPSA id v2-20020a1709064e8200b0094efcc4a076sm3009201eju.164.2023.04.16.08.13.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Apr 2023 08:13:15 -0700 (PDT)
+        Sun, 16 Apr 2023 08:13:16 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/4] arm64: dts: qcom: sm8150: drop snps,dw-pcie fallback compatible
-Date:   Sun, 16 Apr 2023 17:13:10 +0200
-Message-Id: <20230416151311.346596-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/4] arm64: dts: qcom: sc8280xp: correct GIC child node name
+Date:   Sun, 16 Apr 2023 17:13:11 +0200
+Message-Id: <20230416151311.346596-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230416151311.346596-1-krzysztof.kozlowski@linaro.org>
 References: <20230416151311.346596-1-krzysztof.kozlowski@linaro.org>
@@ -69,44 +69,35 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm PCI express root complex does not use snps,dw-pcie fallback:
+GIC child node is supposed to be named msi-controller:
 
-  ['qcom,pcie-sm8150', 'snps,dw-pcie'] is too long
+  sa8295p-adp.dtb: interrupt-controller@17a00000: gic-its@17a40000: False schema does not allow
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 024b3c79ea11..1d22eca9cbde 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -1823,7 +1823,7 @@ dma@10a2000 {
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 6d3780a75024..5532bf8af211 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -3907,7 +3907,7 @@ intc: interrupt-controller@17a00000 {
+ 			#size-cells = <2>;
+ 			ranges;
  
- 		pcie0: pci@1c00000 {
--			compatible = "qcom,pcie-sm8150", "snps,dw-pcie";
-+			compatible = "qcom,pcie-sm8150";
- 			reg = <0 0x01c00000 0 0x3000>,
- 			      <0 0x60000000 0 0xf1d>,
- 			      <0 0x60000f20 0 0xa8>,
-@@ -1918,7 +1918,7 @@ pcie0_lane: phy@1c06200 {
- 		};
- 
- 		pcie1: pci@1c08000 {
--			compatible = "qcom,pcie-sm8150", "snps,dw-pcie";
-+			compatible = "qcom,pcie-sm8150";
- 			reg = <0 0x01c08000 0 0x3000>,
- 			      <0 0x40000000 0 0xf1d>,
- 			      <0 0x40000f20 0 0xa8>,
+-			gic-its@17a40000 {
++			msi-controller@17a40000 {
+ 				compatible = "arm,gic-v3-its";
+ 				reg = <0 0x17a40000 0 0x20000>;
+ 				msi-controller;
 -- 
 2.34.1
 
