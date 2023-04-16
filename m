@@ -2,82 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 386E36E3A85
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 19:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC11B6E3A89
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 19:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbjDPRbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 13:31:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43688 "EHLO
+        id S229519AbjDPRdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 13:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjDPRbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 13:31:05 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E8E137
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:31:03 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id kt6so20220425ejb.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:31:03 -0700 (PDT)
+        with ESMTP id S229446AbjDPRdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 13:33:24 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1A792;
+        Sun, 16 Apr 2023 10:33:23 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-63b8b19901fso206360b3a.3;
+        Sun, 16 Apr 2023 10:33:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681666262; x=1684258262;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=t2xdlz8zT+95r3jmtcx8udaHAYRhzx4/xxqNOYfEnyQ=;
-        b=UPY/xgMpRi7Kh3LDgP73wLTw2JkroVmtHnv/SAQoKEFd9c1Wf02DTgKcc1vp/Kxr73
-         bdru6k/Dw1+Bm6LbrYS8dhsiZQOMSrbhyRRRX0meRpBqV/8g1Nx7ycJL5KjzZu+8gXPn
-         aUjJe4lKUq8AenHDO+FCIYZWc76l/DCsxHz+15NYhpf+wBpRAn+tSFHrIBhhApOh++Gu
-         TtZAW2J8607Q+zeHwPgkerUTI4O0T3R9rEtt/45UFrZbvYrYRiUN3JwNwgBHTMkt8fKv
-         /8g+7NDp9FBTyowBuslUKfhZUdsPiCEg7MsPq3a0Q213pd85yUp4OubyfM0Djxbb3X7z
-         e38Q==
+        d=gmail.com; s=20221208; t=1681666402; x=1684258402;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G5OXsid8SYL4GdSMfFGQSs/wdoDzyJyZpFKL7M/EWZU=;
+        b=r26bZ91MxZ8MIhL3bXOVZym4OV4qGD+oXb+sZ6/Bbj88MEymCf06SEFfbJ1rJvc2q1
+         deH0nKmnSkPXiGMsDh1RxIQjjNioNDR3L70xYvCpb2Inm0MnMR7n/+DGpkEtjgFcYajq
+         X8MtthEibrfeXhnNPGsq6dO6V9SEASZIjbnyhFcD3zNaW8wdagJYamUA/l75EXgpkl6J
+         GCMS75hM8XEm87oly5ydBtTc1eByYn2eL2Rpg97qU6+uhXownM7uxSbs29Q7IOyJCSmn
+         GYFFRp+rmojhelvZprQysyptI+Od47EBs7GEdLJBUD3nrUzgqB/ySo7thbgcye8g33D2
+         T1ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681666262; x=1684258262;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t2xdlz8zT+95r3jmtcx8udaHAYRhzx4/xxqNOYfEnyQ=;
-        b=RwcdkJ9cbU5aAkR0NFz1EIsamJ0+e8Ue3I3FfjrV7n5e0onxogz4zDifnBCpQqusjo
-         GBVgfjB+Ql4AtHEUdVvOufIeGwVL4d8zuLZ9HA92xpIp5joXfwsWTHdpYTblfdguq17I
-         nWPQUr+u7YKaAR3xL/H1KI2QbziWoZEGKQEHXglU491ceDuas7fZ8DPdrJ2zN2ihTJhj
-         zi8I/0FNvoGF7CHiGirnPG05xIKyOz+IQ4FBN8pvrezl4bh6djtprwuYxYURq4LODsKJ
-         hvcHRSZYOkOGGR1Ty1IVeR6+D4UA0iPp9I8YJ5lC8lkgSsxudq/WdCex+yjS1g00Bl2K
-         9Nkg==
-X-Gm-Message-State: AAQBX9dQhC6AfQYVhLdjzENaoQL6J1HlNXiovuvAo1o6dwXoNOVTUT0V
-        rqm38bw3Noe3b9+To39HJ5NscA==
-X-Google-Smtp-Source: AKy350bBiTeu1+2CyyTo8pFcohBJFEKu8qa2Y86EZfdwvjg5nTgSrLcbsgbgwIeXPh0aZSNxI/5L/A==
-X-Received: by 2002:a17:906:2dd4:b0:94f:a03:3d3b with SMTP id h20-20020a1709062dd400b0094f0a033d3bmr4288204eji.20.1681666262173;
-        Sun, 16 Apr 2023 10:31:02 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id sg32-20020a170907a42000b008c16025b318sm5344804ejc.155.2023.04.16.10.31.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 10:31:01 -0700 (PDT)
-Message-ID: <b4b23751-a44c-2b38-0d55-a34711ad53c4@linaro.org>
-Date:   Sun, 16 Apr 2023 19:31:00 +0200
+        d=1e100.net; s=20221208; t=1681666402; x=1684258402;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G5OXsid8SYL4GdSMfFGQSs/wdoDzyJyZpFKL7M/EWZU=;
+        b=a1tkmuWnIlv9JU1jN/JbjrxKtwOmqQVwoFWFXMNQY2WKkjiLDfJc2347/H/ULmJy4w
+         DBlSPeMu9Y3loW1TPeB+Q4WPnQpo/qkCQeDv4A1jUsI8sI6WdTV+g3QQ0LlRf6LTmeKv
+         NgYUGx2fNh9zd74WK9hPZS5dymP3CEVkRFXXmXaLZ3Ibe6PzChFg1L2NdTW83T895d5f
+         8/hso3i4UVrnuZAGC8fjSxMSo2oSJrrhhFEXDow3tQ6RtAKBxBN5I3ttvQqiPzeH/Qzn
+         PP3xZ4SfeksSc/5CSPpuZ04nqG90R4nQL2DWAzGIdyvguy/OUV9nSkBY9Swr3s2E2aDR
+         yzmw==
+X-Gm-Message-State: AAQBX9c//BNcAGUG09yc+NrC814eI4anOOoi3WGGnZVjwN2FS5cMpLM6
+        g5dMy2ct2/QAvdlFIPjNWssT21sAkPjbk7FrCyg=
+X-Google-Smtp-Source: AKy350YOHxcAsnUbt/l01GPFPoS+uNRrCZ4sZGsqnnlfixZL9Q6Mh+rLYgt5VRK0pg//bgX/I5e3zQ==
+X-Received: by 2002:a05:6a00:240b:b0:637:c959:8ea1 with SMTP id z11-20020a056a00240b00b00637c9598ea1mr16584791pfh.22.1681666401849;
+        Sun, 16 Apr 2023 10:33:21 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([104.28.245.200])
+        by smtp.gmail.com with ESMTPSA id j22-20020a62b616000000b0062d90f36d16sm6110973pff.88.2023.04.16.10.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Apr 2023 10:33:21 -0700 (PDT)
+From:   David Yang <mmyangfl@gmail.com>
+To:     linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, David Yang <mmyangfl@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] clk: Add basic register clock controller
+Date:   Mon, 17 Apr 2023 01:32:56 +0800
+Message-Id: <20230416173302.1185683-1-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V3 1/7] dt-bindings: rtc: Subdivision of LS2X RTC
- compatible
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>
-Cc:     linux-rtc@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
-        zhaoxiao <zhaoxiao@uniontech.com>, keguang.zhang@gmail.com
-References: <cover.1681370153.git.zhoubinbin@loongson.cn>
- <35f43a8cfc32b5a065e4a04eb6cc6abf311f2700.1681370153.git.zhoubinbin@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <35f43a8cfc32b5a065e4a04eb6cc6abf311f2700.1681370153.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,44 +71,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 09:57, Binbin Zhou wrote:
-> The LS2X RTC alarm depends on the associated registers in a separate
-> power management domain.
-> 
-> In order to define the PM domain addresses of the different chips, a
-> more detailed description of compatible is required.
+These clocks were provided in `include/linux/clk-provider.h`, but lacks DT
+bindings. Add a clock controller to avoid operation conflict on same
+register.
 
-This does not match your diff at all.
+v2: split clock controller and its clocks
 
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> index a3603e638c37..2928811b83a0 100644
-> --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> @@ -47,8 +47,11 @@ properties:
->        - isil,isl1218
->        # Intersil ISL12022 Real-time Clock
->        - isil,isl12022
-> -      # Loongson-2K Socs/LS7A bridge Real-time Clock
-> -      - loongson,ls2x-rtc
+Links:
+v1: https://lore.kernel.org/r/20230414181302.986271-1-mmyangfl@gmail.com
 
-Why removing it?
+David Yang (4):
+  dt-bindings: clock: Add simple-clock-controller
+  clk: Add simple clock controller
+  dt-bindings: clock: Add gate-clock
+  clk: gate: Add DT binding
 
-> +      # Loongson LS7A bridge Real-time Clock
-> +      - loongson,ls7a-rtc
-> +      # Loongson-2K Socs Real-time Clock
-> +      - loongson,ls2k0500-rtc
-> +      - loongson,ls2k1000-rtc
+ .../devicetree/bindings/clock/gate-clock.yaml |  58 ++++
+ .../clock/simple-clock-controller.yaml        |  50 +++
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-gate.c                        |  81 +++++
+ drivers/clk/clk-of.c                          | 292 ++++++++++++++++++
+ drivers/clk/clk-of.h                          |  26 ++
+ 6 files changed, 508 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/gate-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/simple-clock-controller.yaml
+ create mode 100644 drivers/clk/clk-of.c
+ create mode 100644 drivers/clk/clk-of.h
 
-That's even more surprising...
 
-I don't understand what you are doing here at all.
-
-Best regards,
-Krzysztof
+base-commit: 7a934f4bd7d6f9da84c8812da3ba42ee10f5778e
+-- 
+2.39.2
 
