@@ -2,84 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E226E3476
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 01:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C864D6E3497
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 02:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230204AbjDOXMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Apr 2023 19:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46492 "EHLO
+        id S230107AbjDPAYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Apr 2023 20:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230151AbjDOXMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 19:12:23 -0400
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050:0:465::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF052114;
-        Sat, 15 Apr 2023 16:12:17 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4PzTbw2pDPz9sjS;
-        Sun, 16 Apr 2023 01:12:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mariushoch.de;
-        s=MBO0001; t=1681600332;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wlxmi8TjfHTxZJwdTO4o4SDvKTGV2TgJ+RNBxFINEus=;
-        b=x2haiR7C1chddEjmmWPDgCwMDuU0Mc7cB6buwyH896ERrSi0tSVlAF5d1TtIMJ4mOjGrFO
-        UGhLzsIBS/fjVyD368fj3aLn1dTDK9uq0V0Bck9kngcea7NDGEnIoPVWhg++wJXZdu6zGy
-        vEmt2/1ubRmha5DthSf+PIx/N/gKlC7fZaqbKLz9ZDX8ZehoAoGzFRq3JzAOCUeUQHoTET
-        6gmrNRHOYnRq+RVAAJutuHfTbMU4BIEvfUo7gJJtaezsYUnJ1R2TsqHWEMHm/BIM3k234P
-        /pBhasoD6ld0l5n/gJjwxwXk7LLFAv1gEtOMO9nY6LZtxODfq3wMUJpg/Qluzg==
-From:   Marius Hoch <mail@mariushoch.de>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229451AbjDPAYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Apr 2023 20:24:46 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 67CFC35A8;
+        Sat, 15 Apr 2023 17:24:44 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 550BE1063;
+        Sat, 15 Apr 2023 17:25:28 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3DC203F587;
+        Sat, 15 Apr 2023 17:24:42 -0700 (PDT)
+Date:   Sun, 16 Apr 2023 01:24:21 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jonathan McDowell <noodles@earth.li>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Hans de Goede <hdegoede@redhat.com>,
-        Marius Hoch <mail@mariushoch.de>
-Subject: [PATCH v3 6/6] dt-bindings: iio: st-sensors: Add LSM303D accelerometer+magnetometer
-Date:   Sun, 16 Apr 2023 01:11:30 +0200
-Message-Id: <20230415231130.115094-7-mail@mariushoch.de>
-In-Reply-To: <20230415231130.115094-1-mail@mariushoch.de>
-References: <20230415231130.115094-1-mail@mariushoch.de>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
+Message-ID: <20230416012421.255bfd19@slackpad.lan>
+In-Reply-To: <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+References: <cover.1681580558.git.noodles@earth.li>
+        <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4PzTbw2pDPz9sjS
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Same as the lsm9ds0, except that the lsm303d doesn't
-feature a gyroscope.
+On Sat, 15 Apr 2023 18:46:03 +0100
+Jonathan McDowell <noodles@earth.li> wrote:
 
-Signed-off-by: Marius Hoch <mail@mariushoch.de>
----
- Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> The C.H.I.P has an rtl8723bs device with the bluetooth interface hooked
+> up on UART3. Support for this didn't exist in mainline when the DTS was
+> initially added, but it does now, so enable it.
+> 
+> Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> ---
+>  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> index fd37bd1f3920..4d72a181d8aa 100644
+> --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
+> +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> @@ -255,6 +255,10 @@ &uart3 {
+>  	pinctrl-0 = <&uart3_pg_pins>,
+>  		    <&uart3_cts_rts_pg_pins>;
+>  	status = "okay";
+> +
+> +	bluetooth {
+> +		compatible = "realtek,rtl8723bs-bt";
+> +	}
 
-diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-index c6201976378f..194aca5542c2 100644
---- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-+++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-@@ -85,6 +85,7 @@ properties:
-       - description: IMUs
-         enum:
-           - st,lsm9ds0-imu
-+          - st,lsm303d-imu
-       - description: Deprecated bindings
-         enum:
-           - st,lis302dl-spi
--- 
-2.39.2
+As the kernel test robot already pointed out, there is a semicolon
+missing here.
+Otherwise looks good (dt-validate passes), but don't know if there are
+any wakeup GPIOs connected (can't seem to find a schematic?).
+
+Cheers,
+Andre
+
+
+>  };
+>  
+>  &usb_otg {
 
