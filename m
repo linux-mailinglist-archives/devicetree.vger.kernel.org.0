@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A55026E37F2
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 14:23:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809286E37FC
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 14:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbjDPMXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 08:23:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43910 "EHLO
+        id S230131AbjDPMbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 08:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjDPMXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 08:23:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C887270E;
-        Sun, 16 Apr 2023 05:23:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C5A360F94;
-        Sun, 16 Apr 2023 12:23:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 047E3C433D2;
-        Sun, 16 Apr 2023 12:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681647832;
-        bh=aP1qUe64Ea8WYk6U+eHRssPcrGTNk8le/9pqK8F/18A=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=GXYMaLnRLalPAAusfsc6fwsmkoADn6aOi6HgDYR7v8bQa1bKc4lXveGjTLNQMs77t
-         4ab1b9lgDfDJq6TG6D/+Xo9a477PSXVWoK2YD9HcFYi+XiDR1jYJE3RdriuH3Aj2Ht
-         7yiqKmW3HAVKGa2qvmmDbyP53LCXEoGbcwfwK+Ylyfj1id2OkQXfQIcYxoeoJ6zGaY
-         CE/QIXYNammx4gloUecwpXPWLXTdtKzoSkw/XRSxSjbt022XfQMrl/8AMTlEWsNP7d
-         knyaTWz54d5hUVd1auFNIX8QXzDnPvSnDMLI9uxZeadFWkojA9F54ToYzVdSwuJ0pD
-         bbkbpPuH6L62Q==
-Date:   Sun, 16 Apr 2023 13:23:53 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Marius Hoch <mail@mariushoch.de>,
+        with ESMTP id S229908AbjDPMbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 08:31:47 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089832711
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 05:31:46 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50506ac462bso2775064a12.3
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 05:31:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681648304; x=1684240304;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iYjMTz0lC2QfPX12S8GW0HkDAV4l3XKgRbDxNQnkDxI=;
+        b=Qs9PCGp8ZxcUyfvlwkoNXtnQpGJlobg/b1wBMQab48ehsJR2ZL9YxZSR0uB9e6OqPL
+         tc2B+Mfsc+0nnbniNC/rc7OYIuo1b8mUjQjIx3LAlkQrqJIwOI2aItXsHQo4SlciYqeX
+         yzl24uzJSpuGEZSkrFRP9KfawH6XtXK4Z20DZBiW3cuGBItxMh3n1ABcJ/vgQKRn4H8z
+         iVEzj+Db1Ch0vJgG3ib99hEwrwDcT9BpnEDSxEIMmK/+bQR8jSIiEiSUW8Oq+z3+Yenv
+         q6KmX3L9OkWuedYHkPBhvqhAhEntrDSAIyd9h9up3QbSX2+3M5hxCfWwcY/o/H5nLT+j
+         e6Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681648304; x=1684240304;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iYjMTz0lC2QfPX12S8GW0HkDAV4l3XKgRbDxNQnkDxI=;
+        b=XdsIp+gqQn31nOwDANANkgbY4TT49PM4Q3wxalT+M8NI94yGs3kZ5U2BgeYnUlLVmV
+         InTKxJsQOTxJsnQsvOBtFF8E4FZfvFp+StyhQpx9bsMwDtWByTFEb4ELHxI5flfWeJfb
+         gjONskeuNhxBmY1LzIjY1ivaB5RkdC1qvsd5JWw6y+LI9RsLsc3jbcR8cgqqerXYK8Lf
+         UnZfj7xCBU+X3L8HfX0LAusA053pvpoYce3i9wVvW4CBlSlQgh04vO3yVUvK2zABBHKI
+         hdsUi71z293l6Wdf6T/1xF3TfSv517QRj9AuzCdDGC5ZFroYe+usp9ZchvQx1CiGHytH
+         saCg==
+X-Gm-Message-State: AAQBX9drsWnXZei4D+H+Tjye0hjvxcqFKRpQP7gw0xQrfEmjz61NpMOT
+        j7hkv1nXHGk/l2riZg++5Z7aXJ8of20LnMlumZc=
+X-Google-Smtp-Source: AKy350Zoc7DPifrKeFuu7B88mUHGZsp9viVO2J1XYR0wdN55B2bQQ3mTOpOP6c0/HyBNXTFhwVS3Tg==
+X-Received: by 2002:aa7:da8f:0:b0:504:7fdc:2682 with SMTP id q15-20020aa7da8f000000b005047fdc2682mr9985914eds.35.1681648304498;
+        Sun, 16 Apr 2023 05:31:44 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
+        by smtp.gmail.com with ESMTPSA id u17-20020aa7db91000000b005068eefc59dsm2173536edt.42.2023.04.16.05.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Apr 2023 05:31:44 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Siddartha Mohanadoss <smohanad@codeaurora.org>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH v3 6/6] dt-bindings: iio: st-sensors: Add LSM303D
- accelerometer+magnetometer
-Message-ID: <20230416132353.2ed1651a@jic23-huawei>
-In-Reply-To: <01a997c9-ea2c-469e-8de7-7a376b880f23@linaro.org>
-References: <20230415231130.115094-1-mail@mariushoch.de>
-        <20230415231130.115094-7-mail@mariushoch.de>
-        <01a997c9-ea2c-469e-8de7-7a376b880f23@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: add 16 ratio of pre-scaling
+Date:   Sun, 16 Apr 2023 14:31:42 +0200
+Message-Id: <20230416123142.299533-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 16 Apr 2023 09:29:23 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Document value of 16 for pre-scaling, already used in DTS and supported
+by the Linux driver since long time:
 
-> On 16/04/2023 01:11, Marius Hoch wrote:
-> > Same as the lsm9ds0, except that the lsm303d doesn't
-> > feature a gyroscope.
-> > 
-> > Signed-off-by: Marius Hoch <mail@mariushoch.de>
-> > ---
-> >  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> > index c6201976378f..194aca5542c2 100644
-> > --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> > @@ -85,6 +85,7 @@ properties:
-> >        - description: IMUs
-> >          enum:
-> >            - st,lsm9ds0-imu
-> > +          - st,lsm303d-imu  
-> 
-> The entries are ordered by name.
-> 
-> With fixed:
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+  sm7225-fairphone-fp4.dtb: adc@3100: channel@8:qcom,pre-scaling: 'oneOf' conditional failed, one must be fixed:
+    10 was expected
+    16 is not one of [1, 3, 4, 6, 20, 8, 10]
+    81 was expected
 
-I tidied up the ordering whilst applying and also swapped the ordering in
-patch 3 for similar reason.
+Fixes: e13d757279bb ("iio: adc: Add QCOM SPMI PMIC5 ADC driver")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Note that we are very late in this cycle so unless there is an unexpected
-delay these will sit in the branch I push out as iio.git/testing until
-after rc1 when I'll rebase it on rc1 and push out as togreg for linux-next
-to pick up for the 6.5 cycle.
-
-Plenty of time for others to comment in the meantime, but I'm guessing we
-won't get much and this way I can 'probably' forget about handling this
-series individually.
-
-Jonathan
- 
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+index f30114424b92..42077ca65747 100644
+--- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+@@ -101,7 +101,7 @@ patternProperties:
+         oneOf:
+           - items:
+               - const: 1
+-              - enum: [ 1, 3, 4, 6, 20, 8, 10 ]
++              - enum: [ 1, 3, 4, 6, 8, 10, 16, 20 ]
+           - items:
+               - const: 10
+               - const: 81
+-- 
+2.34.1
 
