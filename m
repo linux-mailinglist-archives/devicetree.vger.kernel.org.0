@@ -2,133 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C5E6E378E
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 12:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FAEC6E3799
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 13:02:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjDPKxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 06:53:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
+        id S229636AbjDPLCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 07:02:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbjDPKxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 06:53:21 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF2A26A1
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 03:53:18 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id jg21so56568559ejc.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 03:53:18 -0700 (PDT)
+        with ESMTP id S229615AbjDPLCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 07:02:10 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AEF10FB
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 04:02:07 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id u3so4936942ejj.12
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 04:02:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681642397; x=1684234397;
+        d=linaro.org; s=google; t=1681642926; x=1684234926;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/ouacL5jzwqdrqc6h6cItWvGdIc1UJBQ5F31zwjpSlE=;
-        b=ySR9w98P8RnXzxDyjT5uqepX//GbkqEGw5tC571tl0ZdhTXPQQcvJP7AgNxP3neV9P
-         TUrP0pJcjwpwNyjp6mpS6tPz2rTywKDvBijjxzSescmDF7HJHCwc8m2mStVWnb8TKbEE
-         nu5SA27QGxsybnotK16UiRK5mGrc608EqMjJ6jxME5EtP3rb3yx8/WkZKy1AMRRkdvf7
-         UtyMxDuCF32w7IRYMcYRULAceslZlfudSH6sxwzy88KJx/r2mjfWNoBFMfxwXIn4AVQs
-         /OF4CSYzEyPpdE0bElp8yyr8ISlrXyZhbehmQ8O1MxpPKUtIdtUu19Mcm2kL8j92KFdh
-         MkYQ==
+        bh=4WEBjyty9DFdqOQH0zK6dTdg5jesKwkOh/RLzzQc8K4=;
+        b=aULvflOyaSYPx8ovMpRCo9pz0QX6rYvnfEFnSAcXlceTgnefx7dnaBcK1xFz6eJ9rA
+         dYatYZgVtjclp3vxTgX/E//i//5qykFtkLGuVhEXsP4fgID4DNfbCo58ujyOc0wQ+v+w
+         QTj7y4w+mZRGLT3VVnICZzANcECoa8BXO38YcjscZwooNhfaD4iu8tYz6ZP7B7qWapVh
+         LF3wvQHG5q2q0Y3iWTET7Rbnzmz+O2K0ESry66jYtaGFPFpJh/9JNZ7jy690f7QJKuJU
+         Fe7WHUi3JoQKTfVLY5YmSFZ5xPfxTB4H3lCgIGOFploepeAVuooDGBN99vEDjmoQ5h+A
+         vYuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681642397; x=1684234397;
+        d=1e100.net; s=20221208; t=1681642926; x=1684234926;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ouacL5jzwqdrqc6h6cItWvGdIc1UJBQ5F31zwjpSlE=;
-        b=VYfI6As3SexzQkOphIL+0Vi3DCi0Jhrd6PORqDj7meunMsCujgZ6LLAeaT/LbAdUu+
-         rHMUzH3QZFxbA6ZT64mzdFG/jOG1eMakMCW769yBQwbgZUiDiEbKf7ijoK4CNAIthlRl
-         RO/t/CYs78nZ4qt1VDi/7q48DAtW+pxdJHZADk64xsU4UujN4sLifgSKAjcJiQA+kzH6
-         ivU8Y3/PeWiG6oKPNPrI71kC4iUkqxn+vcPZWyvnOUlqS5HIrmdJkcVwyyrTtFW755pC
-         6yRKL9plxlQbO0uw9KKrVGCSVubtDJzZr/Iz0NiwywWMmTsJhecNhRFotivIbL5ZCTSD
-         7/xQ==
-X-Gm-Message-State: AAQBX9cRwWxGgtK0EGOMiXWlhsS/4nzv6pou5tQUeSZ8jnJ4eGEUqN4L
-        C1x/ddFuij3y7mzI/PgFR2MAjg==
-X-Google-Smtp-Source: AKy350YiRHdtMmcT7j7PJPXYEMEyZ4e1Bw1LhCILnCce78Lp2xLtZeLuqXkwcSyY8+YlACLr4t7D3Q==
-X-Received: by 2002:a17:906:f14f:b0:94a:171:83b1 with SMTP id gw15-20020a170906f14f00b0094a017183b1mr4650225ejb.2.1681642397392;
-        Sun, 16 Apr 2023 03:53:17 -0700 (PDT)
+        bh=4WEBjyty9DFdqOQH0zK6dTdg5jesKwkOh/RLzzQc8K4=;
+        b=im/xVWr581DTJ0WJ12ftyPA5oob5UCCONfekmLQ6494nqrgWso1ejwuG9mlINGz8YY
+         26tXFwpIZTC1OFONI28dLR2Ha4/QCmLrKveauCxHSmGd/zrnQxrgN8Ykfhe7PKxBj01N
+         bYQENKikGKNwSfPWcsTQjaosxKKZRQaOee2zatntnhPgvdeBqgzf9OVZ4XqWMIhQ0NVq
+         +o5Gnbi1fuQ0stQ2iDRVu7+ENDRZ1lRjNwcVBNmdyreWwLIIzjca2iYBsJCmNeGHL4dW
+         iJfmXvIv0EfEG/PSUNaZLjexFaKRL3+dQwzCui4FJ43ZPm3otfnMc+zTTUV2KJ4XsOQH
+         Dafw==
+X-Gm-Message-State: AAQBX9e2kJNI5Z9EGxXc46qo9L/k1pE9DSLnQpSraFrLqkLnFIUzR+BI
+        Kk+OqGUZvGg7pcuN4B6DHd0CBg==
+X-Google-Smtp-Source: AKy350b1E+fZ7aEii7E43vI6XNJJZQzoyIgmsDvGp/Bmzgmo4kBSdXvFFXklgYoiD4Nx/4MnoxRj8Q==
+X-Received: by 2002:a17:906:2b0c:b0:94f:3980:bf91 with SMTP id a12-20020a1709062b0c00b0094f3980bf91mr2538331ejg.19.1681642925782;
+        Sun, 16 Apr 2023 04:02:05 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:29dd:ded4:3ccc:83db? ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
-        by smtp.gmail.com with ESMTPSA id qw24-20020a170906fcb800b009353066595csm4913522ejb.136.2023.04.16.03.53.16
+        by smtp.gmail.com with ESMTPSA id ca11-20020a170906a3cb00b0094f14286f86sm2122418ejb.48.2023.04.16.04.02.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 03:53:17 -0700 (PDT)
-Message-ID: <d0b2868f-cade-feb1-52cd-2aacd537c9c6@linaro.org>
-Date:   Sun, 16 Apr 2023 12:53:15 +0200
+        Sun, 16 Apr 2023 04:02:05 -0700 (PDT)
+Message-ID: <3d5dbf9d-614b-7c36-3467-2e80d5a9c33f@linaro.org>
+Date:   Sun, 16 Apr 2023 13:02:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 00/12] Re-introduce Exynos4212 support and add Samsung
- Galaxy Tab 3 8.0 boards
+Subject: Re: [PATCH 1/3] dt-bindings: panel: Add Samsung S6D7AA0 LCD
+ controller bindings
 Content-Language: en-US
-To:     Artur Weber <aweber.kernel@gmail.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230416101624.15866-1-aweber.kernel@gmail.com>
- <3e513119-4d6a-18ec-aaec-1c6b2b7e35b4@gmail.com>
- <ba148e6c-1685-f6d4-458f-bbdf1dd674cf@linaro.org>
- <36287654-c6e6-f4bd-320c-866bef692d2f@gmail.com>
+To:     Artur Weber <aweber.kernel@gmail.com>, thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230416100139.13741-1-aweber.kernel@gmail.com>
+ <20230416100139.13741-2-aweber.kernel@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <36287654-c6e6-f4bd-320c-866bef692d2f@gmail.com>
+In-Reply-To: <20230416100139.13741-2-aweber.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/04/2023 12:49, Artur Weber wrote:
-> On 16/04/2023 12:34, Krzysztof Kozlowski wrote:
->> On 16/04/2023 12:26, Artur Weber wrote:
->>> On 16/04/2023 12:16, Artur Weber wrote:
->>>> This patches re-introduces the Exynos4212 platform and adds support
->>>> for the Samsung Galaxy Tab 3 8.0 series of tablets that uses it:
->>>>
->>>>    - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
->>>>    - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
->>>>    - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
->>>>
->>>> What works:
->>>>
->>>>    - Display and backlight
->>>>    - Touchscreen (without touchkeys)
->>>>    - GPIO buttons, hall sensor
->>>>    - WiFi and Bluetooth
->>>>    - USB, fuel gauge, charging (partial)
->>>>    - Accelerometer and magnetometer
->>>>    - WiFi model only: light sensor
->>>
->>> This patchset depends on "[PATCH 0/3] Add Samsung S6D7AA0 panel
->>> controller driver" for the display panel support for the Samsung Galaxy
->>> 3 8.0 boards.
->>
->> Why? DTS and ARM code cannot depend on driver changes. Please rework
->> your patchsets to remove any of such dependencies.
-> 
-> Ah, that makes sense. I'll re-send the patchset in a second with the 
-> panel node removed.
+On 16/04/2023 12:01, Artur Weber wrote:
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-I am sorry, I don't understand. Why would you remove anything from DTS?
-Are bindings NAKed?
+Missing commit msg.
+
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
+
+
+> ---
+>  .../display/panel/samsung,s6d7aa0.yaml        | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+> new file mode 100644
+> index 000000000000..969cef7738b8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,s6d7aa0.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung S6D7AA0 MIPI-DSI LCD panel controller
+> +
+> +maintainers:
+> +  - Artur Weber <aweber.kernel@gmail.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,s6d7aa0-lsl080al02
+> +
+> +  reg: true
+> +  reset-gpios: true
+> +  backlight: true
+> +
+> +  enable-supply:
+> +    description: Enable supply
+> +
+> +required:
+> +  - compatible
+
+reg?
+
+> +  - reset-gpios> +  - enable-supply
+> +  - backlight
+
+keep the same order as they appear in properties.
+
+> +
+> +additionalProperties: false
+> +
 
 Best regards,
 Krzysztof
