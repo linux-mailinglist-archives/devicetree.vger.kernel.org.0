@@ -2,121 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52B076E3975
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 16:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 679436E3994
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 17:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbjDPOnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 10:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53310 "EHLO
+        id S229902AbjDPPEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 11:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230503AbjDPOnG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 10:43:06 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D8B26BA;
-        Sun, 16 Apr 2023 07:43:02 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id ca18e2360f4ac-760f4dcfdf4so9114639f.2;
-        Sun, 16 Apr 2023 07:43:02 -0700 (PDT)
+        with ESMTP id S229866AbjDPPEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 11:04:52 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982BDB4
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:04:50 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id ud9so57608574ejc.7
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 08:04:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681656181; x=1684248181;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lGpLBVsxwER8/EaEoKHaVtqV2psSyJ0wu7dYzjJmzf8=;
-        b=ouPeFzfuNPxikun9ZeVqPAUq6CFiJ19wacRCX8UZJxRWgGfio30SC+a7BO219p07cl
-         XVgKDLX/TOu4vLduXjYdkBtnDipb3ZjiFQp6Pe2ZXQYpJ17yl65S+Z/TBKD4SRMDFwKG
-         KQ9aofOVxsrzUkcmp8IOYpnhs8QuFmBrUUo0qw0nXq/J9zlHYOTIbAQQZoIgdJ1iPmPM
-         2RIQYgtQpQD980zCg+fI0qecxfkAtVRhnLlc9vjrF/gha3GrhFmgt9IngFWkcTGha9ik
-         A/kRuTp+2i7tqtu6TJPmWyvTh6c89xOmG+Ni9APeunZE1jU4haUQ7iJUEDvu8V4+Nscx
-         JOgw==
+        d=linaro.org; s=google; t=1681657489; x=1684249489;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W7knCr9Rw+t/6alapTgwg/iEzfEkJZjn1612eROrLe0=;
+        b=XaR//UYbfZ9tT/9t67VsysxxBdnm84ST9QijxZCd8TEMnylMyj9VhQcx71ux05BA7X
+         gvF55lWW47c0Bw/mwLgQzQD8fVM2+Uz7LYnQ9giWTZJ+fD1QPAas00GxJGeT5f5x82bY
+         /ozxls8s/s2xn/tZ0lmEn2Abr28OKO+3cBhmPntSX4koURbI4C53Gd4Wd/b/s2n1icDL
+         wBgDEteu6u8HjX9KYayX8Beyo7FtMdY+LlLOyOBHRHn0xIkgKxHq5QBqnm7m5ePcq8s2
+         jlBO4tKK4AL1u3BdACgHyA0YLBD1lGjbNiLufR33TGn7ve4qzKpfRHNqkVJC35YsOquF
+         5u5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681656181; x=1684248181;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lGpLBVsxwER8/EaEoKHaVtqV2psSyJ0wu7dYzjJmzf8=;
-        b=S9DaslT+zSMFhzoJz4EzzIkeGnyR9JP0Og4VYjz/j+wpPknc+/sFLVUOVx4dnbjOWp
-         UCeNIqcZxZNL7r7a5sZeHMiAuIlvlXI+uh9tukQu0e5kKeqd7oUnYZSJt/Gj86sR+k2T
-         YpByFxpeZqdzfvqxgo/XwnaqOwjWOB7P7bUHRPubD4X4q//QzOITW45emGxxqeV/4u2u
-         7cJcoCnRMQ/K3ngA38liHadQMj2JP2AXJkH4et2kUmGMRZgTPq69PFcc4NOl/ykzQM7L
-         Dp6TfpPWXhlpAYTYFmtb53OnJ5Q5c21/EmYF8gEBH0leBU4LgWXB4kTF92WXjDMfGJox
-         9svA==
-X-Gm-Message-State: AAQBX9cnR3ukxC8nnhfJFHCE9GyUmU1Ccsx7KbZJcaQ2xx8OF9pQ9BeC
-        ZOwaUis3LekavFRxRi4dfRQ=
-X-Google-Smtp-Source: AKy350ajVI1dcl+qJWnB5TwZgR5tXJgpuczGoJNcRfKU8OJAidqFloEWErsqAQYlomUnSlM8SAPWWw==
-X-Received: by 2002:a92:2809:0:b0:328:9739:440b with SMTP id l9-20020a922809000000b003289739440bmr8404145ilf.0.1681656181616;
-        Sun, 16 Apr 2023 07:43:01 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u15-20020a02cbcf000000b0040f783066a5sm1924899jaq.31.2023.04.16.07.43.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Apr 2023 07:43:01 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 16 Apr 2023 07:43:00 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Cc:     robh+dt@kernel.org, jdelvare@suse.com,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] ARM: dts: aspeed: p10bmc: Change power supply info
-Message-ID: <5c043eeb-97c4-4666-9112-c13fefde81cc@roeck-us.net>
-References: <20230413132627.3444119-1-lakshmiy@us.ibm.com>
- <20230413132627.3444119-6-lakshmiy@us.ibm.com>
+        d=1e100.net; s=20221208; t=1681657489; x=1684249489;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W7knCr9Rw+t/6alapTgwg/iEzfEkJZjn1612eROrLe0=;
+        b=dna0IpFNCxXHyFwo6tRftjMjxQyroQXS44fSjvcuJadDYEbHOIqjEjCQwytFCZe6mh
+         FUP2I+2j+7wupj/3gPiiYBHL0TXc3Cuo9QYgln/+JG2pnp2ka8bS+uFqnGenHTQK9xhT
+         ZrZCv6Ljwmo9qdQRZIbZrImyNH3O2gl68cEgvT+Rj6SRL51Yf8aglI5DjLm2l/FHCgz3
+         6G+EHCHmL4D3/0+aXBPPRiNDwOgrJWvUogb55Vu2zgqZuqUTdUNHCD9I0xGFQbsg9BUD
+         MBaM/0jZIGTg8kX7JPV/UdFJrUL91hA0lb2l0/0Kq9rykQ9ghM76CkctssYsLMU4eJ35
+         mWBA==
+X-Gm-Message-State: AAQBX9dNZF7zlEp/TDJ0wZRUuIt9d+AWnvNKL5EtNV978gUFUmHQM6gT
+        9O6brwH8wd8EYzq9cDUs8TkNNg==
+X-Google-Smtp-Source: AKy350ZmvaPyK/34orGOz6gZvivnaCzSPH+AWBjfFvkNmokL7H4Sbk94KYMRpcm+UnV25l3Pqe1/jA==
+X-Received: by 2002:a17:906:ad87:b0:94a:4b7a:9886 with SMTP id la7-20020a170906ad8700b0094a4b7a9886mr4729072ejb.12.1681657488988;
+        Sun, 16 Apr 2023 08:04:48 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ba4d:301c:484d:5c9? ([2a02:810d:15c0:828:ba4d:301c:484d:5c9])
+        by smtp.gmail.com with ESMTPSA id tk9-20020a170907c28900b0094f5179540fsm955274ejc.83.2023.04.16.08.04.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Apr 2023 08:04:48 -0700 (PDT)
+Message-ID: <3877cb9e-9647-0acf-f705-d34fe2c731ff@linaro.org>
+Date:   Sun, 16 Apr 2023 17:04:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230413132627.3444119-6-lakshmiy@us.ibm.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 03/18] dt-bindings: interrupt-controller: qcom-pdc: add
+ compatible for sa8775p
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+References: <20230327125316.210812-1-brgl@bgdev.pl>
+ <20230327125316.210812-4-brgl@bgdev.pl>
+ <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
+ <CAMRc=Mfw+4Co8JPz51_E+DSawijO8EB6rMmFXEmM0e5F3Fg_8A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMRc=Mfw+4Co8JPz51_E+DSawijO8EB6rMmFXEmM0e5F3Fg_8A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 13, 2023 at 08:26:27AM -0500, Lakshmi Yadlapati wrote:
-> Bonnell system supports new ACBEL FSG032 power supply on
-> I2C addresses 5A and 5B. Update the device tree with new
-> power supply information and device addresses.
-> 
-> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-> Reviewed-by: Eddie James <eajames@linux.ibm.com>
+On 14/04/2023 11:33, Bartosz Golaszewski wrote:
+> On Thu, Apr 6, 2023 at 4:10 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>
+>> On Mon, Mar 27, 2023 at 2:53 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>
+>>> Add a compatible for the Power Domain Controller on SA8775p platforms.
+>>> Increase the number of PDC pin mappings.
+>>>
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> Cc: Thomas Gleixner <tglx@linutronix.de>
+>>> Cc: Marc Zyngier <maz@kernel.org>
+>>> ---
+>>>  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml     | 3 ++-
+>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>> index 94791e261c42..641ff32e4a6c 100644
+>>> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>> @@ -26,6 +26,7 @@ properties:
+>>>    compatible:
+>>>      items:
+>>>        - enum:
+>>> +          - qcom,sa8775p-pdc
+>>>            - qcom,sc7180-pdc
+>>>            - qcom,sc7280-pdc
+>>>            - qcom,sc8280xp-pdc
+>>> @@ -53,7 +54,7 @@ properties:
+>>>    qcom,pdc-ranges:
+>>>      $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>>      minItems: 1
+>>> -    maxItems: 32 # no hard limit
+>>> +    maxItems: 38 # no hard limit
 
-This patch will have to be applied through an ARM tree.
+I don't think the limit is correct. I still see warnings with this
+patch. We already have 57 elements, so limit should be I guess 128 or
+something.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Best regards,
+Krzysztof
 
-Thanks,
-Guenter
-
-> ---
->  arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-> index a5be0ee048ec..4f959a4f8b58 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-> @@ -552,14 +552,14 @@ ucd90160@64 {
->  &i2c3 {
->  	status = "okay";
->  
-> -	power-supply@58 {
-> -		compatible = "ibm,cffps";
-> -		reg = <0x58>;
-> +	power-supply@5a {
-> +		compatible = "acbel,fsg032";
-> +		reg = <0x5a>;
->  	};
->  
-> -	power-supply@59 {
-> -		compatible = "ibm,cffps";
-> -		reg = <0x59>;
-> +	power-supply@5b {
-> +		compatible = "acbel,fsg032";
-> +		reg = <0x5b>;
->  	};
->  };
->  
