@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 384A16E3B39
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 20:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90DFA6E3B3E
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 20:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbjDPSbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 14:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42314 "EHLO
+        id S229776AbjDPScN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 14:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbjDPSbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 14:31:13 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1559F2689
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:31:09 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id dx24so14579778ejb.11
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:31:09 -0700 (PDT)
+        with ESMTP id S229530AbjDPScM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 14:32:12 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAF5C2122
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:32:10 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id ud9so58424441ejc.7
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:32:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681669867; x=1684261867;
+        d=linaro.org; s=google; t=1681669929; x=1684261929;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LlSBR/ShimGduJqFPI5aceEu54uJPlimp53JoHD6PME=;
-        b=yFv2QCH3hdQbx8P4vVE9YZ6FaDSEmZtc0t1GxIAa1LajI3B1pOfGVqFOiJKTbaMMT3
-         mEEzH5DJ+XWhjKg30hTxyGqyVmZ61OxMMNxwzfYvCglBLb4qLiCEvvcgENB8A67A2GDN
-         zEJBPifwHT00k4boYDIlWdJubiETWr/nzLWn9tyIAvnBIka5+nei0TUt+Aq4fQMhtuOy
-         YVm82apquBqlN3MKcfzagkW+BYtOYlN32x5sRUKZqzSCrnsnzZ6lWvm/GMPScUKSxxzZ
-         nQmS/sbEFZGNY/TxoFfEgYxnSiYxx8JTlwkqtGSucta2THKSeajuJymxMUstaYsp6zKJ
-         Kuhw==
+        bh=nkHuhYDvbdCOvZz3EZOv9s7JCqMnwT2ehYe9tW+hB2c=;
+        b=lJHIQjGLglg10CR7YrWQEksL5owJYHniRJJxCge7kAz4nsrCAovsE455JaqvN8brv5
+         SZjfPkIpu2FLm9ufz9PAe5aaN0T8BEmHE6VzCZYiEVFr5nFC8tnpYaVFwkZa2FN0HIRr
+         499CC+lGs4QztOn8GZFP/wS0vbz/3xDpQWBEieKm1KFe+qkC35STEdsUSvAlfJZlOKZT
+         +AP5aRV0iLAbGi/nLZAPBpy+BGOTX8z7B4+mKzXOGPUN7nGk7gfNz+ZOujo3T2pUudqs
+         eZhKhcU3cOeAzWu3MDnOlxJFBHU80SWbXXEB+4SocrXUoU0zJd9Wn/QMQ95Hl/B+a96y
+         Pltw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681669867; x=1684261867;
+        d=1e100.net; s=20221208; t=1681669929; x=1684261929;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LlSBR/ShimGduJqFPI5aceEu54uJPlimp53JoHD6PME=;
-        b=TS8OoK4mWbMwv0Ebr+37fktRYyCvOzUp5Dg2kYjVZ3oLVvCr68B5+Ezrz6R/QcASR0
-         17wcRpXfBPwsP+Q679kdzSaOfHr8VxWesSyAffkI7SwSZ2AlD8QsOs0zs+Yw4ybeksjQ
-         phUQC+1x+DqMLj/QYpvSBG3oTTO/pRuq3iVD5xoy/ViYP7ASn9Urd9nbaaywdzHtzClT
-         cExVxqVJZkfC+wAXVZFpnC77j+QAN/rzY/LnSo1txq/u573gPcyC5n7Ptx6HZi/6lZkw
-         GS6y6+2e5lC9ACA3npIojBMPrvw1Ns5LXFVf7cgxA+H9g8aUgaevN9BijtbyB6Bhim5H
-         JZVA==
-X-Gm-Message-State: AAQBX9d9bSCipAVjKz4H4u9SGC9xyqlt8Os7INQFudsnLAL511G+AQ0j
-        5hwi7NvxM6ezZ+8UMaZ+mFlufw==
-X-Google-Smtp-Source: AKy350YW7KeEJrlhpMsn0KWhTkUJxdnRtKPEFgnpdqTcJQnTkS+JAd/5gtmkuKjD2e622LFsZTZUzQ==
-X-Received: by 2002:a17:907:c018:b0:94f:6025:be53 with SMTP id ss24-20020a170907c01800b0094f6025be53mr1731474ejc.50.1681669867471;
-        Sun, 16 Apr 2023 11:31:07 -0700 (PDT)
+        bh=nkHuhYDvbdCOvZz3EZOv9s7JCqMnwT2ehYe9tW+hB2c=;
+        b=E8EBE63Gw188uC59V06F4IbO2a1RuXfWaoityP7jQAbgZgLF3z7wOy3xdcvhzQFRsP
+         TO1Yiuc95kTr7ftgJRBsg93nXRYEiRl35ov7F0U/VA5yYiO5FiTLdRR1xcpRqwHNbWdO
+         IQsS7TYu5BmHf6/+XMKvqMT8gzhMlIcwiwJVS2FsRvTTNTwq/slIOjuo0JDqXdEx7IFO
+         LzchnXsWOlyK2nPg4Af3tdhcuq0G1dqa7lTEI6WeVg8mT6S5iDJz9I64MK+CIhb24z95
+         Rs5zZpy2TAi0a6mMC5GVMR8/HA+MR3mo/BOSkPMMpsWK5OVAKGnXlZll9JIX9WHLdalv
+         WtjQ==
+X-Gm-Message-State: AAQBX9foZok1Lce9TmcIOPGluZ8qBXDbNfrRfucRHPZVj4pjNbwORrmp
+        v6/lDrWgxHFKIE6TPPT/qaQ+Zw==
+X-Google-Smtp-Source: AKy350YzkY5FWr47E5pxqRH1fLpiNrNt1LhnrHitY5+bw4q9TPxq77fbrgfzf/3CIx30ao/jPTOgdg==
+X-Received: by 2002:a17:906:354c:b0:94a:6343:7596 with SMTP id s12-20020a170906354c00b0094a63437596mr5459372eja.41.1681669929374;
+        Sun, 16 Apr 2023 11:32:09 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id gv35-20020a1709072be300b0094f07545d43sm2896853ejc.188.2023.04.16.11.31.06
+        by smtp.gmail.com with ESMTPSA id k18-20020a17090632d200b0094f05fee9d3sm2956173ejk.211.2023.04.16.11.32.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 11:31:06 -0700 (PDT)
-Message-ID: <dcaf82c5-8fc6-68fd-c087-8d55def90ea0@linaro.org>
-Date:   Sun, 16 Apr 2023 20:31:05 +0200
+        Sun, 16 Apr 2023 11:32:08 -0700 (PDT)
+Message-ID: <19ceb0f6-1225-c8cb-1469-3d657e66d171@linaro.org>
+Date:   Sun, 16 Apr 2023 20:32:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: clock: Add gate-clock
+Subject: Re: [PATCH v2 5/9] regulator: rt5033: Change regulator names to
+ lowercase
 Content-Language: en-US
-To:     Yangfl <mmyangfl@gmail.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Jakob Hauser <jahau@rocketmail.com>,
+        Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230416173302.1185683-1-mmyangfl@gmail.com>
- <20230416173302.1185683-4-mmyangfl@gmail.com>
- <8b3ea617-8d4e-cf0b-1cb2-d02405c39487@linaro.org>
- <CAAXyoMPcmbUGDpM6YAyJqGaXvgg2rQOCSdGGnaVQoGd5OE4OwA@mail.gmail.com>
+Cc:     Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1681646904.git.jahau@rocketmail.com>
+ <d4218947e354aee45589acb1060ce41727a26750.1681646904.git.jahau@rocketmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAXyoMPcmbUGDpM6YAyJqGaXvgg2rQOCSdGGnaVQoGd5OE4OwA@mail.gmail.com>
+In-Reply-To: <d4218947e354aee45589acb1060ce41727a26750.1681646904.git.jahau@rocketmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -81,16 +87,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/04/2023 20:28, Yangfl wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2023年4月17日周一 01:41写道：
->>
->> Did you test the changes?
+On 16/04/2023 14:44, Jakob Hauser wrote:
+> Lowercase is preferred for node names.
 > 
-> I don't know what "test" is here. make dt_binding_check passed and it
-> can work with the driver.
 
-I don't think so. If you tested it, for sure you would see warnings like
-"node has a unit name, but no reg or ranges property".
+This will break all existing users. In-tree and out-of-tree. Where is
+the binding update?
 
 Best regards,
 Krzysztof
