@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 177D36E35C8
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 09:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CF1B6E35D2
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 09:42:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbjDPHgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 03:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39478 "EHLO
+        id S229662AbjDPHmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 03:42:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbjDPHgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 03:36:18 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96E5A195
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:36:16 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5050497df77so2822203a12.1
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:36:16 -0700 (PDT)
+        with ESMTP id S230282AbjDPHmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 03:42:21 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D3F810F8
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:42:19 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50506111a6eso3580772a12.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 00:42:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681630575; x=1684222575;
+        d=linaro.org; s=google; t=1681630938; x=1684222938;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KT6ds4r+t0E7ayy20d8041ijDjDVcqQYBYne/WH971Q=;
-        b=ZUefnxGf3uwiTnwbQHt23i0ynkK3Ie/1dRfIVfuL/Haj85OqjPvhUh4/yySsNsjyYk
-         NrGnkGvDUJlehsGN3KdDp8ohqT3pcNw84cH0pnBgjBL9xCqUz4pYqJQP7+YJw/mZ88dU
-         i3QL+NfsOE9AqtjAFkBmK6GzQVWgLjpm+2O/PH8X9jgoG/qErLBaowOCv0iH8ZxkJIzD
-         Te4gb7n+602eGxt+mZppFpXXKpGEQPZgQvBBxQqIiov2iVs/5gxOqemfjZoK8q+E/BRt
-         rTe6nGDQRg8+KpYE37v91yOotTit4tmGIw290XOdbRNaaco7MczRMMLZiJEzWXfIkTht
-         TFvQ==
+        bh=6dLa1M1X92V/rEfxWxLWOXbfYqz+Tfo7l/6rlFRMEeU=;
+        b=D+/5BrFrsRWl6tmSf2Cb4v4fCRJJDBC750uoFultAdnh/rxD6JdYZkt+JAuTlghQ+P
+         iX3CEovNCrbVXLxOaOBCDzYGniAX8u3E33EOK4BffQx0+K0A3vZS15PLxJfq3BVIjxog
+         iXdJs8zeHVu47n1/p2lRWMqTnsIHgk7V7fduxtCEw9iduO6tvXKJyqokQPlaPBfHevqr
+         GVEgV6kzZvtM7Ynkg+iDrymAwPR9KF8H3UUzZC/SdpSrkxRvJyakxqBLaXy3DTBNoblD
+         HPDoeQL7LJ2KioJ3amShv7J9fCH0muNs3lnnv66fqHVS46OnwNV2CDOLuvk1p5M2P3nv
+         F3sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681630575; x=1684222575;
+        d=1e100.net; s=20221208; t=1681630938; x=1684222938;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KT6ds4r+t0E7ayy20d8041ijDjDVcqQYBYne/WH971Q=;
-        b=SEkYcjg1733TwPxV5D8cwW45tIZW7PlcsDQqSG3nnKrkVBM8CH12NP+CnhGfLHLwl7
-         QULW/Dwroy8ZRMh5hQPfSjPb25rJh6ZrnNM2qZQ+RxZDw8vwWa/SP0J1TG1FMZAiAmZt
-         NK9pyi1oCUNCJ+eYjunb1jamuTNBnc1qNV9riPyB5YI1dYRVwrsB5bg4lEhyW1MA20su
-         R9Z7PU4hgODmLQ9KXfhxIIGxxp6vBCi0dG+emHymWgLBPGHTheo4eO4hwzsZGHUhNDgG
-         IaH0xyGE0DxTYG1B5SH7tJTUOOkP9X1/o1MmghWP8JPGEHeMhNVE7YifiNkMuAWN0+bu
-         znCw==
-X-Gm-Message-State: AAQBX9eR49XL0x0Gz/aP9k6T2ToeyYvVDMZhf7htoEmFF0DwsuSiJVbk
-        ep5wtx8HvFUPM3PspeHEKYVzww==
-X-Google-Smtp-Source: AKy350Z2aww6ueQ2QXHv9VW/GbvbBi6FPFiYc7YAz5ZKFZ8NlNMWifqWm2wp7e/PC8O1NSVBC0fDYQ==
-X-Received: by 2002:aa7:da8f:0:b0:504:9ae7:f73b with SMTP id q15-20020aa7da8f000000b005049ae7f73bmr12695250eds.2.1681630575085;
-        Sun, 16 Apr 2023 00:36:15 -0700 (PDT)
+        bh=6dLa1M1X92V/rEfxWxLWOXbfYqz+Tfo7l/6rlFRMEeU=;
+        b=OruaWxSLzE2FWvUh5hDTadkZWNQjGhAcISXNLP97TRiHWbjJxG4RI9cvHBqBerrjUJ
+         TnYO+T3C4icmjamizkMkr7ulwt6SgbY8DaJvXas/8/0jRNIzVtyEMQAjhJGN7HynGQld
+         Cn48bp4mXG7lbyl7Z7hVAb21mpFMSNBTfcym7QOLlcpFT50PBFTLdB5bouEX2rmefgyh
+         M9ksRWboBlj1dj9MXIojQcfetph/L1KJ3oyVZofa6bYgFc4IWObFC4JM/R8g+jHNuKDX
+         VbaAghDLgF4bP79zq2fCTq5b/MoytAY7sXZad77wlz/qt4TMtflUBMyzzCtGjCTuUTnG
+         4eVg==
+X-Gm-Message-State: AAQBX9cd6sktCDCs7m3nObfKAMki8ZJGld/HwYBoildn37RaFP+er4WC
+        uf7JHqx+Lu7aLeb0CT5jFHm1pw==
+X-Google-Smtp-Source: AKy350YdEbzwwBXwD5KRCKHU96tJ9nWZ+m0qP+3oUQ7ORuqXSsAD1aF7PwhCPfQ53cXPp14fSnGkvw==
+X-Received: by 2002:a05:6402:68f:b0:506:98e8:7e58 with SMTP id f15-20020a056402068f00b0050698e87e58mr1775432edy.34.1681630937823;
+        Sun, 16 Apr 2023 00:42:17 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:29dd:ded4:3ccc:83db? ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
-        by smtp.gmail.com with ESMTPSA id p25-20020a17090635d900b0094e75d3ba1bsm4756890ejb.131.2023.04.16.00.36.13
+        by smtp.gmail.com with ESMTPSA id bl8-20020a170906c24800b00949691d3183sm4738461ejb.36.2023.04.16.00.42.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 00:36:14 -0700 (PDT)
-Message-ID: <05fbaaf6-3e0d-5d42-0645-587d8555065a@linaro.org>
-Date:   Sun, 16 Apr 2023 09:36:13 +0200
+        Sun, 16 Apr 2023 00:42:17 -0700 (PDT)
+Message-ID: <a79134a3-be9d-7297-15e1-1de4eb4054d0@linaro.org>
+Date:   Sun, 16 Apr 2023 09:42:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH RFC v2 3/3] binding: mmc: hi3798cv200-dw-mshc: convert to
- YAML and rename to histb-dw-mshc, add compatible of hi3798mv200
+Subject: Re: [PATCH v1 0/3] gpio: Add gpio-delay support
 Content-Language: en-US
-To:     forbidden405@outlook.com, Ulf Hansson <ulf.hansson@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     tianshuliang <tianshuliang@hisilicon.com>,
-        Jiancheng Xue <xuejiancheng@hisilicon.com>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        David Yang <mmyangfl@gmail.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230415-mmc-hi3798mv200-v2-0-1d274f9b71da@outlook.com>
- <20230415-mmc-hi3798mv200-v2-3-1d274f9b71da@outlook.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20230406093344.917259-1-alexander.stein@ew.tq-group.com>
+ <3231223.aeNJFYEL58@steina-w>
+ <CAHp75VeR5R_CqWNT=Fpbyp-YSeo+3QXBnR62C=K_tyr-qQ2MVw@mail.gmail.com>
+ <4800953.GXAFRqVoOG@steina-w>
+ <CAHp75VeTFDkaYRfX+9hE7LYE4Z-NpNfP=xfsGt27nm_DrTC_cw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230415-mmc-hi3798mv200-v2-3-1d274f9b71da@outlook.com>
+In-Reply-To: <CAHp75VeTFDkaYRfX+9hE7LYE4Z-NpNfP=xfsGt27nm_DrTC_cw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -82,18 +84,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/04/2023 19:13, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
+On 15/04/2023 17:06, Andy Shevchenko wrote:
+> On Fri, Apr 14, 2023 at 9:37 AM Alexander Stein
+> <alexander.stein@ew.tq-group.com> wrote:
+>> Am Dienstag, 11. April 2023, 11:34:16 CEST schrieb Andy Shevchenko:
+>>> On Tue, Apr 11, 2023 at 10:19 AM Alexander Stein
+>>> <alexander.stein@ew.tq-group.com> wrote:
+> ...
 > 
-> Hi3798MV200 has an extra clock, also document it here.
+>>> So, taking the above into consideration, why is it GPIO property to
+>>> begin with? This is PCB property of the certain platform design that
+>>> needs to be driven by a specific driver, correct?
+>>
+>> True this is induced by the PCB, but this property applies to the GPIO,
+>> neither the GPIO controller output, nor the GPIO consumer is aware of.
+>> So it has to be added in between. The original idea to add a property for the
+>> consumer driver is also rejected, because this kind of behavior is not limited
+>> to this specific driver.
+>> That's why the delay is inserted in between the GPIO output and GPIO consumer.
+>>
+>>> At the very least this is pin configuration (but external to the SoC),
+>>> so has to be a _separate_ pin control in my opinion.
+>>
+>> Sorry, I don't get what you mean by _separate_ pin control.
 > 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  .../bindings/mmc/hi3798cv200-dw-mshc.txt           | 40 ----------
+> As you mentioned above this can be applied theoretically to any pin of
+> the SoC, That pin may or may not be a GPIO or a pin that can be
+> switched to the GPIO mode. Hence this entire idea shouldn't be part of
+> the existing _in-SoC_ pin control driver if any. This is a purely
+> separate entity, but at the same time it adds a property to a pin,
+> hence pin control.
+> At the same time, it's not an SoC related one, it's a PCB. Hence _separate_.
 
-I got multiple, unthreaded patches from you, so I don't know which one
-is correct. Anyway, I responded to one of them. Entire feedback applies
-here as well.
+I don't think that anything here is related to pin control. Pin control
+is specific function of some device which allows different properties or
+different functions of a pin.
+
+This has nothing to do with different
+properties/configuration/functions, thus it is not pin control. The pin
+control maintainer also acked the patches.
+
+The choice was discussed before, so I am surprised why you jump late in
+discussions.
+
+Although different problem is calling it v1. This is not v1, but v3 or
+v4. Keep proper versioning. After v2 goes v3. RFC does not mean "v-2".
 
 Best regards,
 Krzysztof
