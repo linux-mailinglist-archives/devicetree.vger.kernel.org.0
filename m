@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E476E3A90
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 19:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 287D36E3AB4
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 19:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbjDPRdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 13:33:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
+        id S229794AbjDPRiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 13:38:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjDPRdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 13:33:44 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F02530F3
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:33:36 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id c9so19544985ejz.1
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:33:36 -0700 (PDT)
+        with ESMTP id S229744AbjDPRiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 13:38:54 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42E1268F
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:38:40 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94ef8b88a5bso110235366b.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 10:38:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681666414; x=1684258414;
+        d=linaro.org; s=google; t=1681666719; x=1684258719;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hr4sCeQla+eaEpjaF4AQP0D0MlU+2odQ5sAy4A+PCY0=;
-        b=XgirmbUw4U2cxiuYQHTKTuHaRKy7CocNxLXAKlnqPaaqutrCM3h1diaybz3UaUXjcz
-         l3lzWXxz/iB70nhIqwhy1DIuvZSfcEIk0NKeXZjDfWyRZdeu45FV1rU4JZlK4qWxc1Ev
-         qaobEA9R6heVjmk3p/86GmbSouRNSvrpArE9k220z0zsnRxYrcG0e/bymZvmtBJWw+0r
-         jz1BzSTBwgEwgOuGqy0QDZP14TmX1bqaEj7Em6uFLYPyhRsVfNgqvp+29cpcr0nMK4BN
-         R+BFGSXfX/891dBvppv5WZlLNDNkHkdKp+u/m2aEZzHeQ1fvh58Gk0wbpzPjw3h0PX89
-         CDgg==
+        bh=f2vKe4V7oTjo32GQLqOKK9KO2UHfJzvL/v/DQOh4vME=;
+        b=abHRUrt5wUQO7o3okURaM/Bwxq5e70RyKNZ3o1yVlo0qp4wUO959TGhV+UTMEmvs1P
+         39hfxQ0v0h34iow78PmVmB4uyy211WwlXKoXN5wW0U0B8GdVmpNPQ4pbuSEiiIYNHgR0
+         ycG6Vpl6X2UosaD1Obyt9cxSipQLFX8gJg/qD5A7xgYlgChKbiulgPk7a76eYDsJdf5m
+         0rJen6DZO4LtdbWS3mnXesWe8bySM4acFPCtaTgE3++2uBuIXgASYpD8AXrzl13ELWYk
+         qE81Dmx8d6NkGEtlqdVMz9JDufDmB1dGF8m/sFaEa9FIj0J8WvrwcOnHSf+tgaekA7P4
+         63hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681666414; x=1684258414;
+        d=1e100.net; s=20221208; t=1681666719; x=1684258719;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hr4sCeQla+eaEpjaF4AQP0D0MlU+2odQ5sAy4A+PCY0=;
-        b=ae9W/ZL3dg/CPNwWTZTvwfbKdyIBM2LVWfccBX56ptFTERVTV6RnI0z013s4bns3u2
-         3dRNF1Bvyw29xSOwtZBKYXDnRSKNHYDtGUOYGxUnoVzXaDFRNHm0VR4C0LdszMEBF/+f
-         hta+MeiFyUQhZhbNoHBqNKKlhoEDLtbLiyg1DnVYrkLsn7XiboZSUurMfH3ksOVGLxP5
-         zp0vhtnlwm4+6jmQ013bbxPia1DMViSMAKo8/h6bca0HpTd6Cq/tkyqOhy/1GLcq0sIE
-         W1vF5qV41JT6Ng+m2HQXQXAdpiyP1UG9iBeBPwUamm5mTaiPayNXX9FXLPnu9w3iwsxR
-         ex6g==
-X-Gm-Message-State: AAQBX9f4c24lHe6daN2KUlVA0PLg05L04EIuPLazH5YQ6BzhZCkoroaS
-        oz1GGB083zfClxI3dHo48le6fA==
-X-Google-Smtp-Source: AKy350ZKMw7Z86LdcmkNX7vdTVn0BL9KWnwpwevn4POP/KaTAQLRqu/+pILoMfXhDC07BxkbXQlggg==
-X-Received: by 2002:a17:907:c00f:b0:94f:2a13:4df6 with SMTP id ss15-20020a170907c00f00b0094f2a134df6mr3899223ejc.36.1681666414671;
-        Sun, 16 Apr 2023 10:33:34 -0700 (PDT)
+        bh=f2vKe4V7oTjo32GQLqOKK9KO2UHfJzvL/v/DQOh4vME=;
+        b=TQF+XAynhGP0jezCEb08ETVS550mOBTavBuUdb9dHf0JLAZauAM0wKdJyoDtsg2MMc
+         o3tXMY22KnDnYh6z2uJ3hwVOx3n+U5c5pJSowBrIi6Ve+ROS35emHHfpF3stJznskHwr
+         dxP7HRMTsK2MQ2rGFzef9g9fkamjzXPK2+j4er8p5MZWdKfyivjbkHXLEPrFyzGlcu69
+         RIcjjKnJKLsDR6wKEu2y1mhzbp8hIGgde7zpbvPxDg64N78miv/PY7RU1adXyQV1KMCA
+         B5oLloE5BbpwonZsCx93Nh1tumppYu6F4xfOUKc4Dot7duSvyttWSg75tZJ4KPKu97fF
+         NzOQ==
+X-Gm-Message-State: AAQBX9cb1D8jEKS/2SRowqiKYA8UlfzZu8+1sIcBD9KfjtYgIFXKo9Mb
+        NZ/8BViDsAm5eZqTSB2Xpx576w==
+X-Google-Smtp-Source: AKy350aTQXNKVQFEuceo2SpdnYVpR14+yujDsTeJUZHdSUOVrzsfrVXo5hTVvkca/HY/La78DmELLw==
+X-Received: by 2002:aa7:d74f:0:b0:505:34c:eb38 with SMTP id a15-20020aa7d74f000000b00505034ceb38mr11698645eds.11.1681666719387;
+        Sun, 16 Apr 2023 10:38:39 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id n25-20020a17090625d900b0094e62aa8bcesm5324293ejb.29.2023.04.16.10.33.33
+        by smtp.gmail.com with ESMTPSA id j21-20020aa7ca55000000b004fa380a14e7sm4740615edt.77.2023.04.16.10.38.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 10:33:34 -0700 (PDT)
-Message-ID: <2d785047-3d54-f796-8e31-19409e197e08@linaro.org>
-Date:   Sun, 16 Apr 2023 19:33:33 +0200
+        Sun, 16 Apr 2023 10:38:39 -0700 (PDT)
+Message-ID: <c6571a6d-bf55-14b3-102d-814af6763be7@linaro.org>
+Date:   Sun, 16 Apr 2023 19:38:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH V3 7/7] MIPS: Loongson: Enable LS2X RTC in
- loongson2k_defconfig
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: Add simple-clock-controller
 Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>
-Cc:     linux-rtc@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
-        zhaoxiao <zhaoxiao@uniontech.com>, keguang.zhang@gmail.com,
-        WANG Xuerui <git@xen0n.name>
-References: <cover.1681370153.git.zhoubinbin@loongson.cn>
- <6c4e9e4c2da51ecbd6a05ec2a973bc06a282d58f.1681370153.git.zhoubinbin@loongson.cn>
+To:     David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230416173302.1185683-1-mmyangfl@gmail.com>
+ <20230416173302.1185683-2-mmyangfl@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6c4e9e4c2da51ecbd6a05ec2a973bc06a282d58f.1681370153.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20230416173302.1185683-2-mmyangfl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,19 +79,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 09:58, Binbin Zhou wrote:
-> This is now supported, enable for Loongson-2K systems. Other systems are
-> unaffected.
-
-I don't understand what do you want to say here. How defconfig change
-could affect other systems?
-
+On 16/04/2023 19:32, David Yang wrote:
+> Add DT bindings documentation for simple-clock-controller, mutex
+> controller for clocks.
 > 
-> Signed-off-by: WANG Xuerui <git@xen0n.name>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
+> ---
+>  .../clock/simple-clock-controller.yaml        | 50 +++++++++++++++++++
 
-Squash with previous defconfig change. There is no point in enabling
-options one by one.
+Where is the changelog?
+
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/simple-clock-controller.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/simple-clock-controller.yaml b/Documentation/devicetree/bindings/clock/simple-clock-controller.yaml
+> new file mode 100644
+> index 000000000000..17835aeddb1d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/simple-clock-controller.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/simple-clock-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Simple clock controller
+> +
+> +maintainers:
+> +  - David Yang <mmyangfl@gmail.com>
+> +
+> +description: |
+> +  Driver (lock provider) for real clocks.
+
+Drop driver references. Typo: clock, not lock.
+
+What is a real clock? What is an unreal clock?
+
+> +
+> +  Usually one register controls more than one clocks. This controller avoids
+> +  write conflicts by imposing a write lock, so that two operations on the same
+> +  register will not happen at the same time.
+
+Interesting. How the clock controller imposes write locks? Aren't you
+now mixing drivers and hardware?
+
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - oneOf:
+> +          - const: simple-clock-controller
+> +          - const: simple-clock-reset-controller
+
+Why two?
+
+> +      - const: syscon
+> +      - const: simple-mfd
+
+Why do you need syscon and simple-mfd?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#reset-cells':
+> +    const: 2
+> +
+> +patternProperties:
+> +  "clock@.*":
+
+Use consistent quotes.
+
+Anyway, I don't understand what is happening here and why such changes.
+Nothing is explained...
+
 
 Best regards,
 Krzysztof
