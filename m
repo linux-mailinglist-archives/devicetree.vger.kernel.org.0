@@ -2,143 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739CF6E3BB6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 21:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44C096E3BCB
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 22:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjDPTvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 15:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37118 "EHLO
+        id S229564AbjDPUHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 16:07:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjDPTvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 15:51:17 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92523A8;
-        Sun, 16 Apr 2023 12:51:15 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2B0E8E0008;
-        Sun, 16 Apr 2023 19:51:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1681674674;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=vDCHYtatRNGqqSMam8YDqpPpEGtjwBwQpRGk26Gg1NM=;
-        b=KULaQ71ufRwVMmKh27NIndxXTkYIBFk1u48LFxSWEcOWF3p3U1sSCjZVJ9plH7iI49yj8B
-        tbiI2kvvxlpEt7tL/JmvWbHvxUM43DL7X00zlBG+ke4ILtgiKTu0nloCxCJsfFWFYZ4bT9
-        0iLXv2BXLwcCFbT1EKYuoa5Vyfv1je71Ax5pRVERQwtWIKudyPkJrlmlyKYRhLVNncmcKR
-        3Yk4hg4mEXgUFKvp7a6rl1EvmYqAkT2GM/FMXApN34bhgInEJkDxUP4iF5DsN1Pss1SgIy
-        c1cyXAcpvjC+0ZScHw/ZHOUJ91ZBbxZcgbw51IXkxEaFh7utJOD/Q/pST8TXcQ==
-Date:   Sun, 16 Apr 2023 21:51:08 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
-        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
+        with ESMTP id S229473AbjDPUHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 16:07:12 -0400
+Received: from qs51p00im-qukt01072101.me.com (qs51p00im-qukt01072101.me.com [17.57.155.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BE519AA
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 13:07:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1681675174; bh=IVKH4e5F12/aHSckhgJ+9Vou6vv8Z8xBAm/h26VKkak=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=TRMF70SlVzIW7G1ufFA1crD27DeMBXmjYIyqdOghnLy8JSdT2F779kJu+YHYgvBQ1
+         Db7nYdpH6Mm1qGSMwz649N7FCP9JArk4wlTiDAqclZjzKwmgFQdmMIklXowPy4H5YF
+         LbRUFOHfqwamjUQ+J1MZornk73uAlPpFDl4qRuUFqdVAtk9TFD8YOZtsSeaHBNvuWf
+         geqaSgwySI0jdqgeanMU0ql6qZwloavEDXwBd5PmcVvigAThE+giJi6D+9Z183NsTO
+         aPsqFJa0soiuLKiB6zniH/X0kZgEnsEMgL5ezYukIaHGnaMI8fbKDkfc8fhGMMow3n
+         vqjyO8GCOt+eg==
+Received: from localhost (qs51p00im-dlb-asmtp-mailmevip.me.com [17.57.155.28])
+        by qs51p00im-qukt01072101.me.com (Postfix) with ESMTPSA id A53024152D;
+        Sun, 16 Apr 2023 19:59:33 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
-        zhaoxiao <zhaoxiao@uniontech.com>, keguang.zhang@gmail.com
-Subject: Re: [PATCH V3 0/7] rtc: ls2x: Add support for the Loongson-2K/LS7A
- RTC
-Message-ID: <202304161951080f60b5e2@mail.local>
-References: <cover.1681370153.git.zhoubinbin@loongson.cn>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     patrice.chotard@foss.st.com, Alain Volmat <avolmat@me.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: dwmac: sti: remove stih415/sti416/stid127
+Date:   Sun, 16 Apr 2023 21:58:56 +0200
+Message-Id: <20230416195857.61284-1-avolmat@me.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1681370153.git.zhoubinbin@loongson.cn>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: VTkGdyk2TrNEdbva_m1b_pQNoH2gbW0Y
+X-Proofpoint-ORIG-GUID: VTkGdyk2TrNEdbva_m1b_pQNoH2gbW0Y
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.790,17.11.62.513.0000000_definitions?=
+ =?UTF-8?Q?=3D2022-01-12=5F02:2020-02-14=5F02,2022-01-12=5F02,2021-12-02?=
+ =?UTF-8?Q?=5F01_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 clxscore=1015 mlxscore=0
+ mlxlogscore=776 phishscore=0 bulkscore=0 malwarescore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2304160189
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2023 15:57:32+0800, Binbin Zhou wrote:
-> Hi all:
-> 
-> The initial DT-base ls2x rtc driver was written by Wang Xuerui, He has
-> released five versions of patchset before, and all related mail records
-> are shown below if you are interested:
-> 
-> https://lore.kernel.org/all/?q=ls2x-rtc
-> 
-> In this series of patches, based on the code above, I have added the
-> following support:
-> 
-> 1. Add ACPI-related support, as Loongson-3A5000 + LS7A is now ACPI-base
->    by default under LoongArch architecture;
-> 2. Add rtc alarm/walarm related functions.
-> 
-> I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA
-> and Loongson-2K0500.
-> 
-> BTW:
-> As LS1X does not support DT, we will merge LS2X and LS1X after keguang
-> has completed DT support for LS1X.
+Remove compatible for stih415/stih416 and stid127 which are
+no more supported.
 
-Stop waiting and simply add it.
+Signed-off-by: Alain Volmat <avolmat@me.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Patch previously sent as part of serie: https://lore.kernel.org/all/20230209091659.1409-9-avolmat@me.com/
 
-> 
-> -------
-> Changes since v2:
-> - Rebase on the top of rtc-next.
-> patch(1/7):
->  - The new patch.
-> patch(2/7):
->  - Check patchset with "checkpatch.pl --strict";
->  - Drop static inline functions which are used only once, such as
->    ls2x_rtc_regs_to_time;
->  - Remove the suruct ls2x_rtc_regs and regmap_bulk_xxx() is used to read
->    and write rtc registers;
->  - Clear the RTC wakeup interrupt manually;
->  - Enable the RTC in set_time() and check in read_time();
->  - device_get_match_data() is used to get ls2x_pm_offset, for LS2k1000
->    has the different value;
->  - Remove some inexact CONFIG_ACPI;
->  - remove()->remove_new().
-> 
-> Changes since v1:
-> 1. Rebased on top of latest loongarch-next;
-> 2. Add interrupt descriptions to the ls2k and ls7a DTS files to avoid
-> errors when the driver gets the IRQ number, Thanks to Qing Zhang for
-> testing;
-> 3. Remove some inexact CONFIG_ACPI.
-> 
-> Thanks.
-> 
-> Binbin Zhou (7):
->   dt-bindings: rtc: Subdivision of LS2X RTC compatible
->   rtc: Add support for the Loongson-2K/LS7A RTC
->   LoongArch: Enable LS2X RTC in loongson3_defconfig
->   MIPS: Loongson64: DTS: Add RTC support to LS7A
->   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
->   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
->   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
-> 
->  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   7 +-
->  arch/loongarch/configs/loongson3_defconfig    |   1 +
->  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   7 +
->  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +
->  arch/mips/configs/loongson2k_defconfig        |   1 +
->  arch/mips/configs/loongson3_defconfig         |   1 +
->  drivers/rtc/Kconfig                           |  11 +
->  drivers/rtc/Makefile                          |   1 +
->  drivers/rtc/rtc-ls2x.c                        | 345 ++++++++++++++++++
->  9 files changed, 379 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/rtc/rtc-ls2x.c
-> 
-> -- 
-> 2.39.1
-> 
+ Documentation/devicetree/bindings/net/sti-dwmac.txt | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/net/sti-dwmac.txt b/Documentation/devicetree/bindings/net/sti-dwmac.txt
+index 062c5174add3..42cd075456ab 100644
+--- a/Documentation/devicetree/bindings/net/sti-dwmac.txt
++++ b/Documentation/devicetree/bindings/net/sti-dwmac.txt
+@@ -7,8 +7,7 @@ and what is needed on STi platforms to program the stmmac glue logic.
+ The device node has following properties.
+ 
+ Required properties:
+- - compatible	: Can be "st,stih415-dwmac", "st,stih416-dwmac",
+-   "st,stih407-dwmac", "st,stid127-dwmac".
++ - compatible	: "st,stih407-dwmac"
+  - st,syscon : Should be phandle/offset pair. The phandle to the syscon node which
+    encompases the glue register, and the offset of the control register.
+  - st,gmac_en: this is to enable the gmac into a dedicated sysctl control
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
