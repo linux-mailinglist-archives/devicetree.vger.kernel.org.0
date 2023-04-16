@@ -2,102 +2,496 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 304F96E36DF
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 12:02:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC50F6E3700
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 12:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbjDPKBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 06:01:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53618 "EHLO
+        id S230034AbjDPKLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 06:11:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230445AbjDPKBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 06:01:50 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10DA32D42;
-        Sun, 16 Apr 2023 03:01:49 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id c9so17895613ejz.1;
-        Sun, 16 Apr 2023 03:01:48 -0700 (PDT)
+        with ESMTP id S229853AbjDPKLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 06:11:42 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3577121
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 03:11:38 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id fy21so13818591ejb.9
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 03:11:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681639307; x=1684231307;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bS+Nk5tohYdjt0M+Lv5Edd8xQcZQmX7f5b7WTtVtHzg=;
-        b=RuEfaLXciTcAZlv5u4MJtuL2VgOZ49Wdk/1vl86tSwFdXqfjiltwWMwo8uvtnc0ho1
-         bufJbRYn9hMHXwbO7uJ/BoOuEy5dP2PhGYyYrybgWwHH3JBP5IYvvWxDNdPbVaCoxYEe
-         ZszvpLPCZ6gSt9tceHdv8CxNhW61IxKZg/DisecM+uy4hHVjijoClEnPXJpEIAwZSwR0
-         kGTPhgI31i3yARXH3AhqoDuPlVG2DbIYmjn53BIBDsoiWe3gEL3J5v1rWOwT7W49HmxI
-         MoNbkh6iDVlDOegG9xTAiilRW/vNWXvwStWC3VfI1Ul223w0g54tFzdpInX8qSQd04Rh
-         dTMw==
+        d=linaro.org; s=google; t=1681639897; x=1684231897;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PXlcOAS1nGAgLABpy2LEgEsdYkAtut7JjkmPtZqL66Y=;
+        b=gUrKjH9f3EH1rFG9SnwbgYtz1ayqJbLzYy6Iq2Qr0xKKkOL+kfc4SrzIV6VFrC09Di
+         IcZpArhnisLC3yOBvk71oykwEMGxuZK/6oSOg/Wpe67gplBYsVIYwqD6AzWrur6aTV6l
+         j87/wPaANj7xLlxA4SdqhO+z4znSRyKJKRwucauz9vRZOwzLJmcTFur0s8kXSnEtW2ds
+         0GhNMmd3hICk4hzL7BPKUSCOur+/1lIKr5IMo0UTHAoxtipQC4Qd2Bv6/UO2zxD/mLGo
+         ORLUuT8lyWiovHtZBpoaZ6kOjxYF4yeApNmSi7Yb7//cV0z6PpDQLHuXhr/+Zjvm01ao
+         H3tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681639307; x=1684231307;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bS+Nk5tohYdjt0M+Lv5Edd8xQcZQmX7f5b7WTtVtHzg=;
-        b=TheTzdoNFeplXH2znBw0GG90A2UZ4CnknSQO/1RQVhzmhrbFG2br/aNfyQhOI5fFVd
-         RLrRIu/GRyNl3Gso6lW/atwnAE9h8tfDnLlDaZTNhbv/KC3iYLOQedxeM7J8QVg6Eoff
-         V1N4TNJZ5+KXA2yN63TUhz8uj80/BSc6iqALJbhYxuztxA1BZnmTGDU5UIorlZISmQk7
-         GJyc+hz71FXL85PTt7jGfjZRWDAOtN746gN8EVOsBeKOg2KeFyDm4CKXvPxWKnc3CcLN
-         rpbElm4RCTpEawvs0gtD1BZh71Zx8KQWgn9DfmwUQkwX37S5w/9IHE7H09gjxVMgjMKN
-         7DUQ==
-X-Gm-Message-State: AAQBX9fyg5FlWoFEsyNWd9jDmmsJ+7kItNsTS/6M64RkD3Hlbv4ekN10
-        vsDMWtb+O6+djQq9ukC5kWQ=
-X-Google-Smtp-Source: AKy350Zsxh+KLSNWSgLa2gYb4NYNfxQubU3xCOln1931vfBIF0m0uS+s3t5u+AG6G6D2YvI1PIuNkw==
-X-Received: by 2002:a17:907:a074:b0:94e:bede:6d2a with SMTP id ia20-20020a170907a07400b0094ebede6d2amr4503207ejc.24.1681639307530;
-        Sun, 16 Apr 2023 03:01:47 -0700 (PDT)
-Received: from localhost.my.domain (83.8.121.70.ipv4.supernova.orange.pl. [83.8.121.70])
-        by smtp.gmail.com with ESMTPSA id lh22-20020a170906f8d600b0094f6bf5ac9asm145232ejb.22.2023.04.16.03.01.46
+        d=1e100.net; s=20221208; t=1681639897; x=1684231897;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PXlcOAS1nGAgLABpy2LEgEsdYkAtut7JjkmPtZqL66Y=;
+        b=R/OP+Ij0S2K/RPHeTLkddEbPrqcRYWmSF0Hcf4f+gCG7jR8IeD6wEbhsqYR4kZUrCl
+         pQ9JopaYAYnxKJ/AiD44mzVXByxOcWF+1JtMWMZc6TavHM5FJcWZC+EJQCz6EMPcnyUi
+         iG/ZKQGI/DvBgCbm2zUovp33m8D51VhAv9Qhbq6XCy0u1h7cVQHnlVZlT7rgQm5xx9vK
+         r+4YF6dGXngn4gRMu9cgdzQAQSA4lro0n8GnvAz7BuI1InVG4D4vgwdXQD9XLU99j5Au
+         QfN/a1OtExEfGxX1pXKKqhmk7ghVG21Zd6S5cTbyVwS+8bX9aK0HhmodxP8owsivZRjy
+         Zi7w==
+X-Gm-Message-State: AAQBX9conJtgz+YJPcN0BCl4VA9QCzNIWphpdXg3Eqo5vD+POcYeQOfW
+        T6PwXFFgYO3o72fnHLqFGnebBw==
+X-Google-Smtp-Source: AKy350aLTADs/BLgrJxsRRyl/Pgg+19M0SwiGPfPFQqN4Tu9AAAJrLSGQkFkxNVsZhlY4Sj2rlvtQw==
+X-Received: by 2002:a17:906:5255:b0:94a:5a9e:9da0 with SMTP id y21-20020a170906525500b0094a5a9e9da0mr3666069ejm.77.1681639897229;
+        Sun, 16 Apr 2023 03:11:37 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:29dd:ded4:3ccc:83db])
+        by smtp.gmail.com with ESMTPSA id wg9-20020a17090705c900b0094ea48e9052sm4742755ejb.32.2023.04.16.03.11.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Apr 2023 03:01:47 -0700 (PDT)
-From:   Artur Weber <aweber.kernel@gmail.com>
-To:     thierry.reding@gmail.com
-Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Artur Weber <aweber.kernel@gmail.com>
-Subject: [PATCH 3/3] MAINTAINERS: Add myself as Samsung S6D7AA0 panel driver maintainer
-Date:   Sun, 16 Apr 2023 12:01:39 +0200
-Message-Id: <20230416100139.13741-4-aweber.kernel@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230416100139.13741-1-aweber.kernel@gmail.com>
-References: <20230416100139.13741-1-aweber.kernel@gmail.com>
+        Sun, 16 Apr 2023 03:11:36 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/4] arm64: dts: qcom: fix indentation
+Date:   Sun, 16 Apr 2023 12:11:31 +0200
+Message-Id: <20230416101134.95686-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Correct indentation to use only tabs.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90abe83c02f3..6a55e6e3ac59 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6623,6 +6623,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
- F:	drivers/gpu/drm/panel/panel-samsung-s6d27a1.c
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi  |  8 ++--
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi |  4 +-
+ arch/arm64/boot/dts/qcom/sdm670.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi   |  4 +-
+ arch/arm64/boot/dts/qcom/sm6375.dtsi   | 34 ++++++++---------
+ arch/arm64/boot/dts/qcom/sm8150.dtsi   |  4 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi   | 52 +++++++++++++-------------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi   | 52 +++++++++++++-------------
+ 8 files changed, 80 insertions(+), 80 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 2b35cb3f5292..2c5780008c84 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -53,8 +53,8 @@ CPU0: cpu@0 {
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_0>;
+ 			L2_0: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
++				compatible = "cache";
++				cache-level = <2>;
+ 			};
+ 		};
  
-+DRM DRIVER FOR SAMSUNG S6D7AA0 PANELS
-+M:	Artur Weber <aweber.kernel@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-+F:	drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
-+
- DRM DRIVER FOR SITRONIX ST7703 PANELS
- M:	Guido Günther <agx@sigxcpu.org>
- R:	Purism Kernel Team <kernel@puri.sm>
+@@ -83,8 +83,8 @@ CPU2: cpu@100 {
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_1>;
+ 			L2_1: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
++				compatible = "cache";
++				cache-level = <2>;
+ 			};
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index ef9bd6ab577d..8fb766f9e8e0 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -60,8 +60,8 @@ L2_0: l2-cache {
+ 				cache-level = <2>;
+ 				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
+-				      cache-level = <3>;
++					compatible = "cache";
++					cache-level = <3>;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+index c5f839dd1c6e..49c07cb76b20 100644
+--- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+@@ -42,7 +42,7 @@ L2_0: l2-cache {
+ 				compatible = "cache";
+ 				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
++					compatible = "cache";
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 90424442bb4a..ae0510e687b4 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -110,8 +110,8 @@ L2_0: l2-cache {
+ 				cache-level = <2>;
+ 				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
+-				      cache-level = <3>;
++					compatible = "cache";
++					cache-level = <3>;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+index ae9b6bc446cb..4e8b99e7cf66 100644
+--- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+@@ -48,10 +48,10 @@ CPU0: cpu@0 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_0: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
++					compatible = "cache";
+ 				};
+ 			};
+ 		};
+@@ -68,8 +68,8 @@ CPU1: cpu@100 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_100: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -85,8 +85,8 @@ CPU2: cpu@200 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_200: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -102,8 +102,8 @@ CPU3: cpu@300 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_300: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -119,8 +119,8 @@ CPU4: cpu@400 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_400: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -136,8 +136,8 @@ CPU5: cpu@500 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_500: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -153,8 +153,8 @@ CPU6: cpu@600 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_600: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -170,8 +170,8 @@ CPU7: cpu@700 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_700: l2-cache {
+-			      compatible = "cache";
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 2273fa571988..1a229caad8aa 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -65,8 +65,8 @@ L2_0: l2-cache {
+ 				cache-level = <2>;
+ 				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
+-				      cache-level = <3>;
++					compatible = "cache";
++					cache-level = <3>;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index ebcb481571c2..ebe59bd7bcc7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -58,12 +58,12 @@ CPU0: cpu@0 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_0: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
+-				      cache-level = <3>;
++					compatible = "cache";
++					cache-level = <3>;
+ 				};
+ 			};
+ 		};
+@@ -80,9 +80,9 @@ CPU1: cpu@100 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_100: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -98,9 +98,9 @@ CPU2: cpu@200 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_200: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -116,9 +116,9 @@ CPU3: cpu@300 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_300: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -134,9 +134,9 @@ CPU4: cpu@400 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_400: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -152,9 +152,9 @@ CPU5: cpu@500 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_500: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -170,9 +170,9 @@ CPU6: cpu@600 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_600: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -188,9 +188,9 @@ CPU7: cpu@700 {
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			L2_700: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 595533aeafc4..b15b585f3548 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -57,12 +57,12 @@ CPU0: cpu@0 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			L2_0: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+-				      compatible = "cache";
+-				      cache-level = <3>;
++					compatible = "cache";
++					cache-level = <3>;
+ 				};
+ 			};
+ 		};
+@@ -79,9 +79,9 @@ CPU1: cpu@100 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			L2_100: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -97,9 +97,9 @@ CPU2: cpu@200 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			L2_200: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -115,9 +115,9 @@ CPU3: cpu@300 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			L2_300: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -133,9 +133,9 @@ CPU4: cpu@400 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 1>;
+ 			L2_400: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -151,9 +151,9 @@ CPU5: cpu@500 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 1>;
+ 			L2_500: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -169,9 +169,9 @@ CPU6: cpu@600 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 1>;
+ 			L2_600: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
+@@ -187,9 +187,9 @@ CPU7: cpu@700 {
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpufreq_hw 2>;
+ 			L2_700: l2-cache {
+-			      compatible = "cache";
+-			      cache-level = <2>;
+-			      next-level-cache = <&L3_0>;
++				compatible = "cache";
++				cache-level = <2>;
++				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+ 
 -- 
-2.40.0
+2.34.1
 
