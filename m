@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9096E3AEF
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 20:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C22D6E3AFD
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 20:06:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbjDPSAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 14:00:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60118 "EHLO
+        id S229802AbjDPSGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 14:06:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbjDPSAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 14:00:51 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEC4E48
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:00:48 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id sz19so1424356ejc.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:00:48 -0700 (PDT)
+        with ESMTP id S229598AbjDPSGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 14:06:24 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E1610F0
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:06:21 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id fw30so5725975ejc.5
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 11:06:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681668046; x=1684260046;
+        d=linaro.org; s=google; t=1681668380; x=1684260380;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8r3Ph3wlo9aaB7DgnoPHy3tyWqlgW0rD+5zyojxS3hs=;
-        b=mmJl88pBJmqq7M40k9C+dTZWeToJCvvEHd5ziWNNYwChaS3z0gHAnhGbrzM0HNJUQC
-         8T39fdc1hMuEpXek569W6uW8kX8i8obKHwTib6wyUhWtPldbz76omqa4+TQyhikRfrvh
-         AxDluD6PekcBtZjkytKHnD9pK4FkGxucaj42VQ+7rEtk2Tdj5PpLJgHDyW7LR9Wm0/DR
-         KnxnINvuh0Clp9VDXXm7gnt4U16gJCVxrRFX66npHV/AtwG1pGCrPx6K/UODFATp6H4b
-         9a8Rl6am6CO86e6teZ9CqliGKVMXttYXxVIHKbFCX/byeAs4H5A0bITRdzGSEuWk9OP+
-         yL3g==
+        bh=zx4HOdq1glymmchauCaLCgaY7UhtC2caCXREOqnLcnE=;
+        b=ddakFiPtPqcA6nXNg9qB79RhsTIQJkU2ZRVv3zqRn9m4GLf8VHwtPzmMb/HkqKx3TO
+         QgtiFm9x04J54FEgP5o0dZC70R4QnPpum/vVl0or2d4pelkja8AIamHrNbqjP9V3Io59
+         iDuQeYhw1d93IPJv5i+ZVKhpEu741aUYqv0AfrZUPXCD6Z6V1OfQa6rWRQcbyHM3I1CH
+         QOj2GzhEXqk71OyChXdSPodkye+GFJSL6S1AEczvmNdgi8MpD8csdOPQ2YD2e3Vz+sG8
+         x4sxuXBzS9H+50F62r+FTY7DPNuRD7OcS0ZksVCYZiv+ufVWN7x+CboTSbrmUbQvup1a
+         dMDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681668046; x=1684260046;
+        d=1e100.net; s=20221208; t=1681668380; x=1684260380;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8r3Ph3wlo9aaB7DgnoPHy3tyWqlgW0rD+5zyojxS3hs=;
-        b=QOrFQiVtmIOsesZ/tzqupIKNbdNHIFLFh+oAJdunRMB5TDGPWOMXVafHyUWe5mPptn
-         /RCF5viqLgX3Y82W1ts/D23Gk707RJlghZ6SbBkD6ZzM9FWiXmrZkHJYReUBJAwX2CeC
-         +91qeQ4f1tG2yGlnqOG2Iwq73Cm3cRBLncEZJEXt57te2i6yUARPxCCqLa4aA02DeD/P
-         m60wFcrN41vKxumf48Tzx5zEXQ5YGaCQvdYoJE0MzY6ncU0cb4h3EeKMHOvrK0jRTSg3
-         7ya0GfvNDcIVmDfIA0WHohABQe5dLIf+na+NV4CvwVfrQV6hEr+AYpG1C/cdMMCKlaKa
-         3+4g==
-X-Gm-Message-State: AAQBX9dVu9TWRSUSdg4EYJKXr/ggcAfUsjaOj/YeZPVC5i7xIQ2GD4DI
-        B/u6UKGwlCA3KAlAH/CoUAms9Q==
-X-Google-Smtp-Source: AKy350bEeekS6PjjoYeaY9ZD65LfZf1mhdBAyCQ7201c+Gz5Stjr8OqVkeI9F4SK1ojfGrPXfXNLmg==
-X-Received: by 2002:a17:906:a945:b0:870:d9a:9ebb with SMTP id hh5-20020a170906a94500b008700d9a9ebbmr5530065ejb.38.1681668046515;
-        Sun, 16 Apr 2023 11:00:46 -0700 (PDT)
+        bh=zx4HOdq1glymmchauCaLCgaY7UhtC2caCXREOqnLcnE=;
+        b=HNfaKFMmv5Evxy8ywe9LU/vzAiEFYsPqVCw6Z1UI7XQEDQbddMOWrx4HGxeLEAkr7O
+         /D1JfklnTTHeQMQrIBBOvOkfumEh+7PKH17kov3jtdc2XH+PQ3F6ZvC4zo42Woj6N83G
+         xVSY73XamPxscic3CzG/1iqmEYJtNli74jgigIQaY6amku+xrsWhBfGROqbMBPQLCdf6
+         VqKk4viPUZohgjcEC1kkr1WfBGZ+CEtY8Str/KuV2Wi8xkVt9ASBoml+bBfLOpKLzxNs
+         IR+aXS4noTWgK5jrsG2BiydnEYdxM0oIens2eA9j6c22eHe1DH+CTBkMHnI50jMHi3Tl
+         ZdxA==
+X-Gm-Message-State: AAQBX9eIkTdbo+nLt08fR7xKw69WlgNpqqzMPRA+w6vomNcXqo3M3ZlB
+        KO1T3ljMbfk0xbBV1smgHv+RQA==
+X-Google-Smtp-Source: AKy350as9Ry/0XZTLgutgv5F71m3xIEIuueZ6CB5ap8/e/hdGHn/MB6do5KVKLt/AnCFrHGfPkHrUQ==
+X-Received: by 2002:a17:907:a424:b0:94f:6218:191f with SMTP id sg36-20020a170907a42400b0094f6218191fmr1809248ejc.52.1681668380277;
+        Sun, 16 Apr 2023 11:06:20 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id q17-20020a1709066ad100b0094f6f45b2c1sm576598ejs.156.2023.04.16.11.00.45
+        by smtp.gmail.com with ESMTPSA id f21-20020a170906739500b0094f7c1b6a94sm191773ejl.11.2023.04.16.11.06.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 11:00:46 -0700 (PDT)
-Message-ID: <21eff2e7-1ebc-1d98-6e5e-025f5cf7b822@linaro.org>
-Date:   Sun, 16 Apr 2023 20:00:44 +0200
+        Sun, 16 Apr 2023 11:06:19 -0700 (PDT)
+Message-ID: <cedc7ebd-9852-9cef-7020-abfeb873b0a6@linaro.org>
+Date:   Sun, 16 Apr 2023 20:06:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 03/12] ARM: exynos: Re-introduce Exynos4212 support
+Subject: Re: [PATCH v2 08/12] Revert "phy: Remove SOC_EXYNOS4212 dep. from
+ PHY_EXYNOS4X12_USB"
 Content-Language: en-US
 To:     Artur Weber <aweber.kernel@gmail.com>
 Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
@@ -78,15 +79,15 @@ Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
         linux-phy@lists.infradead.org,
         ~postmarketos/upstreaming@lists.sr.ht
 References: <20230416133422.1949-1-aweber.kernel@gmail.com>
- <20230416133422.1949-4-aweber.kernel@gmail.com>
+ <20230416133422.1949-9-aweber.kernel@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230416133422.1949-4-aweber.kernel@gmail.com>
+In-Reply-To: <20230416133422.1949-9-aweber.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -97,135 +98,13 @@ On 16/04/2023 15:34, Artur Weber wrote:
 > The platform was originally dropped in commit bca9085e0ae9 ("ARM:
 > dts: exynos: remove Exynos4212 support (dead code)"), as there were
 > no boards using it.
-
-This is not accurate. Platform was not dropped with that commit. This
-was only DTS. I propose to drop it and focus on commit which you are
-reverting.
-
 > 
 > We will be adding a device that uses it, so add it back.
 > 
-> This effectively reverts commit 9e43eca3c874 ("ARM: EXYNOS: Remove
-> Exynos4212 related dead code").
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
->  arch/arm/mach-exynos/Kconfig    | 5 +++++
->  arch/arm/mach-exynos/common.h   | 8 ++++++++
->  arch/arm/mach-exynos/exynos.c   | 2 ++
->  arch/arm/mach-exynos/firmware.c | 8 +++++++-
->  arch/arm/mach-exynos/pm.c       | 2 +-
->  arch/arm/mach-exynos/suspend.c  | 4 ++++
->  6 files changed, 27 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/mach-exynos/Kconfig b/arch/arm/mach-exynos/Kconfig
-> index 4d3b40e4049a..b3d5df5225fe 100644
-> --- a/arch/arm/mach-exynos/Kconfig
-> +++ b/arch/arm/mach-exynos/Kconfig
-> @@ -78,6 +78,11 @@ config CPU_EXYNOS4210
->  	default y
->  	depends on ARCH_EXYNOS4
->  
-> +config SOC_EXYNOS4212
-> +	bool "Samsung Exynos4212"
-> +	default y
-> +	depends on ARCH_EXYNOS4
-> +
->  config SOC_EXYNOS4412
->  	bool "Samsung Exynos4412"
->  	default y
-> diff --git a/arch/arm/mach-exynos/common.h b/arch/arm/mach-exynos/common.h
-> index 29eb075b24a4..c9e85d33c309 100644
-> --- a/arch/arm/mach-exynos/common.h
-> +++ b/arch/arm/mach-exynos/common.h
-> @@ -15,6 +15,7 @@
->  #define EXYNOS3_SOC_MASK	0xFFFFF000
->  
->  #define EXYNOS4210_CPU_ID	0x43210000
-> +#define EXYNOS4212_CPU_ID	0x43220000
->  #define EXYNOS4412_CPU_ID	0xE4412200
->  #define EXYNOS4_CPU_MASK	0xFFFE0000
->  
-> @@ -34,6 +35,7 @@ static inline int is_samsung_##name(void)	\
->  
->  IS_SAMSUNG_CPU(exynos3250, EXYNOS3250_SOC_ID, EXYNOS3_SOC_MASK)
->  IS_SAMSUNG_CPU(exynos4210, EXYNOS4210_CPU_ID, EXYNOS4_CPU_MASK)
-> +IS_SAMSUNG_CPU(exynos4212, EXYNOS4212_CPU_ID, EXYNOS4_CPU_MASK)
->  IS_SAMSUNG_CPU(exynos4412, EXYNOS4412_CPU_ID, EXYNOS4_CPU_MASK)
->  IS_SAMSUNG_CPU(exynos5250, EXYNOS5250_SOC_ID, EXYNOS5_SOC_MASK)
->  IS_SAMSUNG_CPU(exynos5410, EXYNOS5410_SOC_ID, EXYNOS5_SOC_MASK)
-> @@ -52,6 +54,12 @@ IS_SAMSUNG_CPU(exynos5800, EXYNOS5800_SOC_ID, EXYNOS5_SOC_MASK)
->  # define soc_is_exynos4210()	0
->  #endif
->  
-> +#if defined(CONFIG_SOC_EXYNOS4212)
-> +# define soc_is_exynos4212()	is_samsung_exynos4212()
-> +#else
-> +# define soc_is_exynos4212()	0
-> +#endif
-> +
->  #if defined(CONFIG_SOC_EXYNOS4412)
->  # define soc_is_exynos4412()	is_samsung_exynos4412()
->  #else
-> diff --git a/arch/arm/mach-exynos/exynos.c b/arch/arm/mach-exynos/exynos.c
-> index 51a247ca4da8..5671621f1661 100644
-> --- a/arch/arm/mach-exynos/exynos.c
-> +++ b/arch/arm/mach-exynos/exynos.c
-> @@ -178,6 +178,7 @@ static void __init exynos_dt_machine_init(void)
->  		exynos_cpuidle.dev.platform_data = &cpuidle_coupled_exynos_data;
->  #endif
->  	if (of_machine_is_compatible("samsung,exynos4210") ||
-> +	    of_machine_is_compatible("samsung,exynos4212") ||
->  	    (of_machine_is_compatible("samsung,exynos4412") &&
->  	     (of_machine_is_compatible("samsung,trats2") ||
->  		  of_machine_is_compatible("samsung,midas") ||
-> @@ -192,6 +193,7 @@ static char const *const exynos_dt_compat[] __initconst = {
->  	"samsung,exynos3250",
->  	"samsung,exynos4",
->  	"samsung,exynos4210",
-> +	"samsung,exynos4212",
->  	"samsung,exynos4412",
->  	"samsung,exynos5",
->  	"samsung,exynos5250",
-> diff --git a/arch/arm/mach-exynos/firmware.c b/arch/arm/mach-exynos/firmware.c
-> index 2da5b60b59e2..110c8064ee64 100644
-> --- a/arch/arm/mach-exynos/firmware.c
-> +++ b/arch/arm/mach-exynos/firmware.c
-> @@ -63,12 +63,18 @@ static int exynos_cpu_boot(int cpu)
->  	 *
->  	 * On Exynos5 devices the call is ignored by trustzone firmware.
->  	 */
-> -	if (!soc_is_exynos4210() && !soc_is_exynos4412())
-> +	if (!soc_is_exynos4210() && !soc_is_exynos4412() &&
-> +	    !soc_is_exynos4212())
+> This reverts commit fee7e1d50c6e6da1d99035181ba5a5c88f5bb526.
 
-Keep them ordered, so 4210, 4212 and 4412.
-
->  		return 0;
->  
->  	/*
->  	 * The second parameter of SMC_CMD_CPU1BOOT command means CPU id.
-> +	 * But, Exynos4212 has only one secondary CPU so second parameter
-> +	 * isn't used for informing secure firmware about CPU id.
->  	 */
-> +	if (soc_is_exynos4212())
-> +		cpu = 0;
-> +
->  	exynos_smc(SMC_CMD_CPU1BOOT, cpu, 0, 0);
->  	return 0;
->  }
-> diff --git a/arch/arm/mach-exynos/pm.c b/arch/arm/mach-exynos/pm.c
-> index 30f4e55bf39e..9b6db04e4e34 100644
-> --- a/arch/arm/mach-exynos/pm.c
-> +++ b/arch/arm/mach-exynos/pm.c
-> @@ -161,7 +161,7 @@ void exynos_enter_aftr(void)
->  
->  	exynos_pm_central_suspend();
->  
-> -	if (soc_is_exynos4412()) {
-> +	if (soc_is_exynos4412() || soc_is_exynos4212()) {
-
-Ditto
+As in all other commits, do not reference the DTS but the commit which
+removed this part you are reverting.
 
 Best regards,
 Krzysztof
