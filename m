@@ -2,103 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0096F6E3C1B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 23:25:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C276E3C82
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 00:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjDPVZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 17:25:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54790 "EHLO
+        id S229803AbjDPWCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 18:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjDPVZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 17:25:57 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895C21BE3;
-        Sun, 16 Apr 2023 14:25:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Bs63x70rdsxCq7It95t8f+p2x7fYiriUv+8Gh4KJY+U=; b=A5Q0bDs+zQyaMeT9GKb6T2xv2B
-        r485j/9ulNsB6h9OI039djmvsM8IJXmpX0h69wsL9Ow+MEkrEBsPr0Ki6T3Fq1A01egVgFDhq787M
-        H0ehYptS7+zO1hQTI4MSQIkiDaMbH5/wxOqBiuKmObGjNiw3jfB8XsSeyyMJaaeLzlKVtkDBa14XX
-        xIThtb3TIuQK4Gv+9BNqdzDRrrO56j5QI9o2PpBq7JDExyI075xyvmJXwCvD9x04bDPLStAF83L7w
-        8t917tNVMPakvto4FHUtRebx7AV9n8xEqr+2FO+sQbhfic2PizKvKV6El1LndBDT3jM/iMU9dC66R
-        9AT44oGA==;
-Received: from p200300ccff45ca001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff45:ca00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1po9sd-0002mZ-1u; Sun, 16 Apr 2023 23:25:51 +0200
-Date:   Sun, 16 Apr 2023 23:25:49 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add ROHM BD2606MVV LED driver
-Message-ID: <20230416232549.3b0a5eed@aktux>
-In-Reply-To: <7fe8d6f5-ab0f-c6d5-2551-7beb3dfb16d7@linaro.org>
-References: <20230414055341.335456-1-andreas@kemnade.info>
-        <20230414055341.335456-2-andreas@kemnade.info>
-        <f9da7499-3fb3-1ce6-db0b-d87febee2052@linaro.org>
-        <20230414175412.37a15572@aktux>
-        <7fe8d6f5-ab0f-c6d5-2551-7beb3dfb16d7@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
+        with ESMTP id S229513AbjDPWCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 18:02:50 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133CC211C;
+        Sun, 16 Apr 2023 15:02:47 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 438B585C9B;
+        Mon, 17 Apr 2023 00:02:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1681682564;
+        bh=JXOO0HH7hgkSuYOF/8TS6jyPZhhE7U1JS+DTKN8pPds=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OoV12WlRdtE7Or0xGRTZE3jHnaCPBOcm80TQHxHgMiKO03ci3JoUjDzCS7OvLD5RX
+         wU6uCJQAEK6aUAFm8GF3cf4tO7q4F6/z5Sy9ufHVMAkxPYWzhFR9RiZpmECV+Wcouq
+         3KGXmT6HhVJdJg1PFlhHy0h+ObJdi+t+SUd+NNkwLnbasypWl1Qld9ddAKVcPH2rGP
+         BdFWfuqzty3Pnm7huZDiQdFnBfEw/LRan04973rt4yjhun34SHjkOWouxTGUTMmFwg
+         utIevBBGrwgDnIJ4kac+l6nc5gDz7JhpXwVfyOog+tTmX3hUzbU8BMpV1oaiDkiEz+
+         7CvOwJlN1vNrA==
+Message-ID: <6bfeb8aa-f4f4-4b24-a070-108e5553ad48@denx.de>
+Date:   Mon, 17 Apr 2023 00:02:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/6] drm: bridge: samsung-dsim: Support multi-lane
+ calculations
+Content-Language: en-US
+To:     Adam Ford <aford173@gmail.com>, dri-devel@lists.freedesktop.org
+Cc:     m.szyprowski@samsung.com, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230415104104.5537-1-aford173@gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230415104104.5537-1-aford173@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, 14 Apr 2023 23:17:56 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 14/04/2023 17:54, Andreas Kemnade wrote:
-> > On Fri, 14 Apr 2023 17:28:49 +0200
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >   
-> >> On 14/04/2023 07:53, Andreas Kemnade wrote:  
-> >>> Document ROHM BD2606MVV LED driver devicetree bindings.    
-> >>
-> >> Subject: no improvements and no comments from your side. Why?
-> >>  
-> > old subject (v2):
-> > 
-> > dt-bindings: leds: ROHM BD2606MVV LED driver
-> > 
-> > Your comment:
-> > Subject: maybe drop "driver" (suggests it is for Linux drivers, although
-> > maybe it matches the actual hardware here?) and add missing verb, e.g.
-> > "Add ROHM ..."
-> > 
-> > New Subject (v3/4):
-> > dt-bindings: leds: Add ROHM BD2606MVV LED driver
-> > 
-> > What is still missing?  
+On 4/15/23 12:40, Adam Ford wrote:
+> If there is more than one lane, the HFP, HBP, and HSA is calculated in
+> bytes/pixel, then they are divided amongst the different lanes with some
+> additional overhead. This is necessary to achieve higher resolutions while
+> keeping the pixel clocks lower as the number of lanes increase.
 > 
-> There is still "driver". Comment was: drop "driver". Where is it dropped?
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+>   drivers/gpu/drm/bridge/samsung-dsim.c | 40 +++++++++++++++++++++++----
+>   1 file changed, 34 insertions(+), 6 deletions(-)
 > 
-> If you do not agree, sure, just respond with something.
-> 
-I am fine with both. On one hand BD2606MVV is not a LED by itself
-but LEDs can be connected to it. so the chip itself can be called LED driver.
+> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
+> index e0a402a85787..1ccbad4ea577 100644
+> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+> @@ -215,6 +215,7 @@
+>   #define DSI_RX_FIFO_SIZE		256
+>   #define DSI_XFER_TIMEOUT_MS		100
+>   #define DSI_RX_FIFO_EMPTY		0x30800002
+> +#define DSI_HSYNC_PKT_OVERHEAD	6
+>   
+>   #define OLD_SCLK_MIPI_CLK_NAME		"pll_clk"
+>   
+> @@ -879,13 +880,40 @@ static void samsung_dsim_set_display_mode(struct samsung_dsim *dsi)
+>   			| DSIM_MAIN_VBP(m->vtotal - m->vsync_end);
+>   		samsung_dsim_write(dsi, DSIM_MVPORCH_REG, reg);
+>   
+> -		reg = DSIM_MAIN_HFP(m->hsync_start - m->hdisplay)
+> -			| DSIM_MAIN_HBP(m->htotal - m->hsync_end);
+> -		samsung_dsim_write(dsi, DSIM_MHPORCH_REG, reg);
+> +		/*
+> +		 * If there is more than one lane, the HFP, HBP, and HSA
+> +		 * is calculated in bytes/pixel, then they are divided
+> +		 * amongst the different lanes with some additional
+> +		 * overhead correction
+> +		 */
 
-But on the other hand I think that holds true for everything in drivers/leds
-and binding/leds and we do not call the subsystem leddriver.
-So there are reasons for and against "driver" in the subject line.
+Did you find any confirmation of this in the MX8M* datasheet or at least 
+by measuring the DSI data lanes with a scope ?
 
-Regards,
-Andreas
+It would be real cool if this could be confirmed somehow, and we could 
+rule out that this tweaking of HSA/HSE/... stuff isn't related to either 
+LP-HS transition timing calculation this driver is missing, OR, 
+incorrect flags in various bridge/panel drivers like commit:
+
+ca161b259cc84 ("drm/bridge: ti-sn65dsi83: Do not generate HFP/HBP/HSA 
+and EOT packet")
+
