@@ -2,91 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39E706E3BFE
-	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 22:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8D86E3C0A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Apr 2023 23:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbjDPU4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 16:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49404 "EHLO
+        id S229883AbjDPVMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 17:12:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjDPU4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 16:56:50 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C022133;
-        Sun, 16 Apr 2023 13:56:49 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id ud9so58968891ejc.7;
-        Sun, 16 Apr 2023 13:56:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20221208; t=1681678608; x=1684270608;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0WS1S2J47m9oZfeWP6yf02N4PR4c/sbbG9OpnnKVNb0=;
-        b=Y1MtgDTM9NDmIpajiqJlE+6DdkvMLOoVa3VmvdAft4qxVRnLve++ZydABxkHv8okQs
-         lNdimhxM1p+SzvXifOHGHG0RxMapoI1z00KvMeXjDXsFhN+mJmMSRPIwcTNq+188RkNL
-         w8y42mUxpWfiaOKBd6/x+4Vvm6ONnANnO80FXhOpioMXcOvkqMj2gPhEg6VPOxJxpleF
-         h9/JIntF3/Ml8569J/WDwrEtlxvV7WAypD48jWo+HNbZXSjTAw/9Ue2uG/zSnQvbrP7i
-         jy1EX3IzlOb4ECnd5O0c6MdrUbRX2ZO13DQMTQl2y6yqL23SqjPnN/piGBwGtr3Ft67e
-         8sSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681678608; x=1684270608;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0WS1S2J47m9oZfeWP6yf02N4PR4c/sbbG9OpnnKVNb0=;
-        b=l01DzcdUHFoUpyvW/Cmsw5+JmtNvyITT51BWUeeqris84ihVIruesBii9aR8+Zc3e2
-         sUzYavYMzHLZZNyC3/gwMRZ23+0R7ucBcGaBRxm/eAgNRXZpRXGgMbN1hxfuXGJd/XgB
-         N4Wa8CpGLUtqd1ecnWsCLZ4DHLiLa5r3wZUFY1+pjxNKO6xxCd4JCrjpJXiVMlal2hXM
-         QkWaTDWsTh4qSEhP4u7ykd53S9Cm58jMqZJ5g43oe/sJJhd23n8MrSOtCZtdwoL+II05
-         0Dre1bCkekHUQvl7s0i3V6+wVRhmyDgwqvgLUum4OTZxrLo5YPDZ8qjUUdfb1XcWVol/
-         g/Jw==
-X-Gm-Message-State: AAQBX9foKiqJN7wZuj8K8Q7pGv7Y5bEIsfs6lArBAp0gLxWctpzmZfMr
-        lFUtIo2Bfluy72/bJAnCsd14p/hENIFeYJhbBhs=
-X-Google-Smtp-Source: AKy350aAl7oqe1ri0rb5+ehDUovVW9O7EQwAqt1kFQNqQPClScpqKDS+kcHcWi9AGVPNc7cnTNruAr0Rv5/TYwEPLuE=
-X-Received: by 2002:a17:907:590:b0:94f:3338:2431 with SMTP id
- vw16-20020a170907059000b0094f33382431mr3499453ejb.32.1681678608156; Sun, 16
- Apr 2023 13:56:48 -0700 (PDT)
+        with ESMTP id S229571AbjDPVMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 17:12:30 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C111992
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 14:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=PcdhZzelGiLWVRkQSPYVU84yN6BD
+        oaInWPYe2mWzyWI=; b=0vlvYnXM0yc2UOV09gFwoU0Plkbv9q8QVtBV91C/Xct+
+        nQaNG2FpJ5ue/IGfl/+vqlk/skwVcvLJ/OiMlAMchiTrl0GtHOLktk8sjvMT1ycY
+        6D3x7GP9CzLuMSAWyzexEUQPLk1ptIFAEipKhWYtxMOtuO22My5NQaelxoDf/TM=
+Received: (qmail 2639833 invoked from network); 16 Apr 2023 23:12:19 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Apr 2023 23:12:19 +0200
+X-UD-Smtp-Session: l3s3148p1@dHlEh3r5xr4gAQnoAEhOALUKm+CIhvWF
+Date:   Sun, 16 Apr 2023 23:12:13 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Julius Werner <jwerner@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Sander Vanheule <sander@svanheule.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        =?utf-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Jamie Iles <jamie@jamieiles.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
+ white-space cleanup
+Message-ID: <ZDxkrVOhrEMg0oWh@sai>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Julius Werner <jwerner@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Sander Vanheule <sander@svanheule.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, Fu Wei <fu.wei@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        =?utf-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Jamie Iles <jamie@jamieiles.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
+ <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20230414152423.19842-1-ddrokosov@sberdevices.ru> <20230414152423.19842-5-ddrokosov@sberdevices.ru>
-In-Reply-To: <20230414152423.19842-5-ddrokosov@sberdevices.ru>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 16 Apr 2023 22:56:36 +0200
-Message-ID: <CAFBinCDyUBWd-V0mDy_edzH=3JM5SAuX=vtT4MG9Fb62Rcv=mA@mail.gmail.com>
-Subject: Re: [PATCH v1 4/5] usb: dwc3-meson-g12a: support OTG switch
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        mturquette@baylibre.com, vkoul@kernel.org, kishon@kernel.org,
-        hminas@synopsys.com, Thinh.Nguyen@synopsys.com,
-        yue.wang@amlogic.com, hanjie.lin@amlogic.com,
-        kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+8XwfRVUNrqARVTo"
+Content-Disposition: inline
+In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 5:24=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
-es.ru> wrote:
-[...]
->  static const struct dwc3_meson_g12a_drvdata a1_drvdata =3D {
-> -       .otg_switch_supported =3D false,
-> +       .otg_switch_supported =3D true,
-it would be great if you could also follow up with a patch that
-removes otg_switch_supported.
-A1 was the only variant that needed it and after this patch it's just dead =
-code.
+
+--+8XwfRVUNrqARVTo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Apr 15, 2023 at 11:51:08AM +0200, Krzysztof Kozlowski wrote:
+> Minor cleanup without functional impact:
+> 1. Indent DTS examples to preferred four-spaces (more readable for DTS),
+> 2. Drop unneeded quotes,
+> 3. Add/drop blank lines to make the code readable.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com> # for Renesas =
+WDT
 
 
-Best regards,
-Martin
+--+8XwfRVUNrqARVTo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQ8ZKIACgkQFA3kzBSg
+KbYctA//WZaNN4qBA3XDpxqd0lCrFYt2SAthM8gh8vN6cczN1b9Nak3ux3+Boc1k
+TKtCJ81t8g4Gg65bxDolozTwVxdZ3qsHXLOtRJrlLwn4SQjNtyjQPxt+FSYxe/AJ
+gDf8hNvHEHfeKRFI4boNK2fzxDkjE9R8RMrZnh63OnGtcCNQvEp6MkZimwStVVlX
+TwYmE7rf6r8dbq7n3yDuWZFJB+eXi1ld0LNJrsROMMc5m88KNRHWi4r9Dxjg+UfK
+VjpH5kYQFUtnFrd9Q8kcPdV/r9L9sVW3jdZJG5KB5xMPfZk4sX8wpXf28gqyOrW0
+ENNFH8YV1rbQxZ8c6wszQs5+HJDbJmAetk9rJ32K98sTissdzrVZxm3hM8jSbO63
+3oD8Gsy5wFifbAKlMukOSCavhnsbHQEUs0QLkBDOnOBCRGItoabDJLAT3TsLMyKq
+ln8lCA9vu9InZ0UCtC0RJKpkFHxXorcEGZ3mu7xPeT7eUW9Qj6hsJ3nhvfgD9Tsd
+jOFUoL9NSbGmTvFfM3wQDG1e9kFKvVZ01wN/8GRDEkKlOxP5O3oCvUW4VSa1Rq6u
+fXpV0eFgzt0452QFbx0/Q5RU9+N25EOGcM3zZXzc7SHs2/yvNnCWvmB/RY9o6wxB
+2YGS7nThdzLseBhIGuQPyyrmhwtJImDqa8043vnHIxUJ4RiG4i4=
+=fYC2
+-----END PGP SIGNATURE-----
+
+--+8XwfRVUNrqARVTo--
