@@ -2,106 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 837526E4631
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29FD66E46E8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbjDQLRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 07:17:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42116 "EHLO
+        id S230252AbjDQL4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 07:56:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbjDQLRb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:17:31 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6043493EB;
-        Mon, 17 Apr 2023 04:16:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1681730195; x=1713266195;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+OV6QAPstFh42nYNRUk7hKpFpD9JDrBVvGjP7eZkvHc=;
-  b=K7nuqbVWv0NbmaGBYSyx++mGIkQgs8aIoGqKb/HdKltsrYnES67l97LD
-   Sef67m8c7l9R5A9CTBN3oXW3ZSE32URB4G868ujqWo234jdA4cMkKxu8Y
-   5PyYDl3x10/a+4oYDMiWfDSpo5RwWQ6GPOCYoHPnVA6WYhRmtW4cPF+nI
-   tHdfPH+f+386h72/KzxtnuCNZ5NkGHcTgeKVe4mfm0wCTUW30ai9XdYPW
-   XrZxvnjMuLY0sOi2+fb+2FS1NO2rhjKiC45bt9gJtruJKHuYVIBX5Y0Ro
-   igsaRpsdo4WsArw01GcY5SauhRmQJHoWUZchWtMK99kizXPZk9l+GVoSM
-   w==;
-X-IronPort-AV: E=Sophos;i="5.99,204,1677567600"; 
-   d="scan'208";a="209385723"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Apr 2023 04:13:33 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 17 Apr 2023 04:13:33 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 17 Apr 2023 04:13:33 -0700
-Date:   Mon, 17 Apr 2023 13:13:32 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Alain Volmat <avolmat@me.com>
-CC:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <patrice.chotard@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: dwmac: sti: remove
- stih415/sti416/stid127
-Message-ID: <20230417111332.fcmkgtzdireraet7@soft-dev3-1>
-References: <20230416195857.61284-1-avolmat@me.com>
+        with ESMTP id S230137AbjDQL4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:56:40 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F4E7D84
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 04:55:42 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id E16C33F85E;
+        Mon, 17 Apr 2023 13:28:18 +0200 (CEST)
+Message-ID: <d549ccfe-b7c6-8c3f-4ba9-b6cb53330481@somainline.org>
+Date:   Mon, 17 Apr 2023 13:28:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20230416195857.61284-1-avolmat@me.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/2] dt-bindings: display: mediatek: dp: Add compatible
+ for MediaTek MT8188
+Content-Language: en-US
+To:     xinlei.lee@mediatek.com, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, jitao.shi@mediatek.com
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <1681358785-6930-1-git-send-email-xinlei.lee@mediatek.com>
+ <1681358785-6930-2-git-send-email-xinlei.lee@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+In-Reply-To: <1681358785-6930-2-git-send-email-xinlei.lee@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 04/16/2023 21:58, Alain Volmat wrote:
+Il 13/04/23 06:06, xinlei.lee@mediatek.com ha scritto:
+> From: Xinlei Lee <xinlei.lee@mediatek.com>
 > 
-> Remove compatible for stih415/stih416 and stid127 which are
-> no more supported.
-
-Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-
+> Add dt-binding documentation of dp-tx for MediaTek MT8188 SoC.
 > 
-> Signed-off-by: Alain Volmat <avolmat@me.com>
+> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Patch previously sent as part of serie: https://lore.kernel.org/all/20230209091659.1409-9-avolmat@me.com/
-> 
->  Documentation/devicetree/bindings/net/sti-dwmac.txt | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/sti-dwmac.txt b/Documentation/devicetree/bindings/net/sti-dwmac.txt
-> index 062c5174add3..42cd075456ab 100644
-> --- a/Documentation/devicetree/bindings/net/sti-dwmac.txt
-> +++ b/Documentation/devicetree/bindings/net/sti-dwmac.txt
-> @@ -7,8 +7,7 @@ and what is needed on STi platforms to program the stmmac glue logic.
->  The device node has following properties.
-> 
->  Required properties:
-> - - compatible  : Can be "st,stih415-dwmac", "st,stih416-dwmac",
-> -   "st,stih407-dwmac", "st,stid127-dwmac".
-> + - compatible  : "st,stih407-dwmac"
->   - st,syscon : Should be phandle/offset pair. The phandle to the syscon node which
->     encompases the glue register, and the offset of the control register.
->   - st,gmac_en: this is to enable the gmac into a dedicated sysctl control
-> --
-> 2.34.1
-> 
 
--- 
-/Horatiu
+Are you sure that there's no eDP support planned for this SoC?
+...because in that case you should also add a mediatek,mt8188-edp-tx compatible.
+
