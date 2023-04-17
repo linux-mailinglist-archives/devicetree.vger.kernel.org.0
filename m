@@ -2,91 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F056E49F8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B79D6E4A09
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbjDQNdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60138 "EHLO
+        id S230229AbjDQNhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:37:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbjDQNdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:33:53 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D994EDD;
-        Mon, 17 Apr 2023 06:33:20 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33HDXCHk003323;
-        Mon, 17 Apr 2023 08:33:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681738392;
-        bh=5j+thoOyIbYVeZd46Hj2i9qA/56u4rW+5ESCXPcuJzM=;
-        h=From:To:CC:Subject:Date;
-        b=qZHi3StGSy6DZUTeRopY8C1eU4V/8ofPzcCYVxMjk9VnPZCuLzZ+DjqZXupl51s1a
-         qzlGzME3YSzpCXkqRSDuxSrFrvVqeLC8ri+e0ny9eAd1MXi+rFPwjLixjPYpjcE2ZN
-         V7VlaKWZFJTzKwWIOoL/PKZp+XXQJ+X5jN687qHw=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33HDXCGl078599
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Apr 2023 08:33:12 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 17
- Apr 2023 08:33:11 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 17 Apr 2023 08:33:11 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33HDXBhj104012;
-        Mon, 17 Apr 2023 08:33:11 -0500
-From:   <kamlesh@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kamlesh Gurudasani <kamlesh@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62-main: Remove power-domains from crypto node
-Date:   Mon, 17 Apr 2023 19:03:08 +0530
-Message-ID: <20230417133308.1990057-1-kamlesh@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229802AbjDQNhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:37:05 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA3D1FF0
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:37:03 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2a8b082d6feso13727381fa.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:37:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681738622; x=1684330622;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ajiTsFHjF5bEfn/T0pz497Y4T0W30EVlD5XZiWzW1G8=;
+        b=k5Ai8lynqBteD3+ZaXcqgNcsEUo5d6I1KDWEBPrXfHBbhz0GPJDjV+iWgcELffFW2N
+         T36YVT2Sy86NuQbvuMLTjodQ0XE3EhFULHLnHvQL09KakbwiDeB9ucZe8XqUj/CXRlSq
+         y+WC08aV7bI8zAmgTCxNzlYSLx1NmTVjh80jQmF4d5iM4PYnwi07FcBdx5Rv/ZV5ChPU
+         c2XTYkbs9qGVbJRcSVDiCT80JnDIQgpQvPJc49GEyYnTpSOcaJKRcMZZK49DouhhCho3
+         7vYIY/lZFf8B8w3lBpnziyPT6B9YA4JVLUswFvsV6lq6RLwnoPuzLu6lhQfowSwA7gho
+         WU0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681738622; x=1684330622;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ajiTsFHjF5bEfn/T0pz497Y4T0W30EVlD5XZiWzW1G8=;
+        b=M1HS10rFR+puF7nJ3JmrZ9grTuPDsTXu2uw7KuCSnSCZGbTqiy5sJ9ezeSZPtsk8SR
+         Ip4shP2mQkkQnjyMg6/WoS+Q8+gZsUAHbpvYYrY1Y9CZx1soyjqd1ALY7OkA5u+tM5UM
+         r0qldjMfie2nTId3cwnryd4EzjSyJ9ILsHHr15RJG/Oyb+IsjsH+HZX/eLTd6YWS/DjE
+         QaQqc1lif8cmb3sVpoo9gt3Jz+Wp7eQATd7XYUCmSf79A5Z+lQn+oztxpMLV6LyTfZzI
+         OlyEP0nTs1pcl3s9Y7FSGZhzU9r957u4ycEOTAYe+g9DeTNiEFRYnDwEUUc8DRBUNSfv
+         hjoQ==
+X-Gm-Message-State: AAQBX9cnr9Rzj+/U1JL7cy2gw/kLu6FU+e7W/EKAJ3eQXO3S9ey2ympz
+        wTtJlMDdyVtgPPv/p01ZdCcGhg==
+X-Google-Smtp-Source: AKy350bqpmBwO7pT6gTJyyulqIMk2WplO3I3p5A9atMkIk4oS8bLgIA8QDfDyLRF7NBH71KIU62zxQ==
+X-Received: by 2002:ac2:4c2f:0:b0:4ec:b1bf:a55b with SMTP id u15-20020ac24c2f000000b004ecb1bfa55bmr1642956lfq.24.1681738621717;
+        Mon, 17 Apr 2023 06:37:01 -0700 (PDT)
+Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
+        by smtp.gmail.com with ESMTPSA id u6-20020ac243c6000000b004e7fa99f2b5sm2061422lfl.186.2023.04.17.06.37.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 06:37:01 -0700 (PDT)
+Message-ID: <8a6834d6-8e5a-3c48-8a04-8d9c4d160408@linaro.org>
+Date:   Mon, 17 Apr 2023 15:36:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v4] dt-bindings: net: Convert ATH10K to YAML
+Content-Language: en-US
+To:     Kalle Valo <kvalo@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230406-topic-ath10k_bindings-v4-1-9f67a6bb0d56@linaro.org>
+ <87pm82x1ew.fsf@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <87pm82x1ew.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kamlesh Gurudasani <kamlesh@ti.com>
 
-With latest firmware update, we can no longer control power of SA3UL from
-main domain.
 
-Remove power-domains property from the crypto node.
+On 17.04.2023 12:12, Kalle Valo wrote:
+> Konrad Dybcio <konrad.dybcio@linaro.org> writes:
+> 
+>> Convert the ATH10K bindings to YAML.
+>>
+>> Dropped properties that are absent at the current state of mainline:
+>> - qcom,msi_addr
+>> - qcom,msi_base
+> 
+> Very good, thanks. Clearly I had missed that those were unused during
+> the review.
+> 
+>> qcom,coexist-support and qcom,coexist-gpio-pin do very little and should
+>> be reconsidered on the driver side, especially the latter one.
+> 
+> I'm curious, what do you mean very little? We set ath10k firmware
+> parameters based on these coex properties. How would you propose to
+> handle these?
+Right, I first thought they did nothing and then realized they're
+sent to the fw.. I never amended the commit message though..
 
-Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index b3e4857bbbe4..18a6e9ffaf58 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -174,7 +174,6 @@ k3_reset: reset-controller {
- 	crypto: crypto@40900000 {
- 		compatible = "ti,am62-sa3ul";
- 		reg = <0x00 0x40900000 0x00 0x1200>;
--		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
--- 
-2.34.1
+> 
+>> Somewhat based on the ath11k bindings.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> [...]
+> 
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
+>> @@ -0,0 +1,358 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/wireless/qcom,ath10k.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies ATH10K wireless devices
+> 
+> [...]
+> 
+>> +  wifi-firmware:
+>> +    type: object
+>> +    additionalProperties: false
+>> +    description: |
+>> +      The ATH10K Wi-Fi node can contain one optional firmware subnode.
+>> +      Firmware subnode is needed when the platform does not have Trustzone.
+> 
+> Is there a reason why you write ath10k in upper case? There are two case
+> of that in the yaml file. We usually write it in lower case, can I
+> change to that?
+No particular reason, my brain just implicitly decided that it
+should be this way.. Please unify it (or LMK if you want me to
+perform another resend)!
 
+Konrad
+> 
