@@ -2,97 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DAB6E42FB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B10E6E4301
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbjDQI5P convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Apr 2023 04:57:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59182 "EHLO
+        id S229738AbjDQI7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 04:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbjDQI5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:57:14 -0400
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B6424EDF;
-        Mon, 17 Apr 2023 01:57:07 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id o11so6006552ybk.11;
-        Mon, 17 Apr 2023 01:57:07 -0700 (PDT)
+        with ESMTP id S229478AbjDQI7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:59:37 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28B561FC3;
+        Mon, 17 Apr 2023 01:59:36 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50672fbf83eso13745144a12.0;
+        Mon, 17 Apr 2023 01:59:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681721974; x=1684313974;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wJafEGZLilXLck6GAd9V/sVhueR55spEo7I/YbebiPc=;
+        b=qfM932Zhr03+ycfBEcHVAQFqxldOI5utfQfmvV4OKB+GLgVI/Dhm4xkbQ2pHvpE2Gl
+         ikQtFMtQt3w6/hALMzB75albvSzCrfmVEGlR4osSuoM2SOPQSyHJOzk48iZ5E+l6AjAC
+         c47OoVO94sgR3sHKh2mVm7dWmAuloaSXXp93QJrhzmGukDm7PzSi211vL8PueM9L5FMR
+         bjJBNOapEyTPyiLi2rIVXsVRQtdZV7OhKaI8gwEGmYYNacJUxKm5GVB5c2fyfpCpsDGu
+         pvJbVqhWV2St4iipY3cjvj6QCJhW9aecJL56EYLAFWTJk57wY1sOiQ4/jBtPGywt/jRS
+         l4CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681721826; x=1684313826;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1681721974; x=1684313974;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rtUWIJu6Ns0zOdXgId6MZyD/lN9k8BpY4Fb8foShQOs=;
-        b=Sodx6yV/BnJxGw7H8+G0BTk7whqvpAHu2KkZpYA0LuKYVoI/drhJQt+Du0Q/pwzdH4
-         cSbvoNumG/9zDh460GXWwurZx3JipbtxwaB7+benH/cxlUmqZufTN7SHlH6NUCaeqw05
-         rc18pQkAyC+YDQN0Irp9RRDY+WCunuUcd6tHdVRqld+tmmo3EAgaISdaD8WDuCWK+1kk
-         uXf9KYGm0W/7LPiddFC4uvneExSUK4WPd+nGH7PZZwNRTBiUiJRTNdF6Lc0GuZKMRRiI
-         boAQ0R4zr+eUUP/YFidmC7J88lmcafCIFvGXUi463eyKYGvv+vecsSKQmu01vkXa1oXJ
-         g6VQ==
-X-Gm-Message-State: AAQBX9cUHrWbE04gBTMFmSHyERrlvv1JBtDYix4zVB7LsCAUsiXTtYBk
-        WSjE3ESApQM2rIATdIKY9QDpTnj1MX9ttQ==
-X-Google-Smtp-Source: AKy350Y9IpHajHkecLsIIwjWmHZUGw72waksAEkDIrAwwcshEIkqTWuFlo9GgH1d+Gl+3WNIkcNKBQ==
-X-Received: by 2002:a25:c714:0:b0:b8e:e029:7961 with SMTP id w20-20020a25c714000000b00b8ee0297961mr18025449ybe.34.1681721826173;
-        Mon, 17 Apr 2023 01:57:06 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id b1-20020a25cb01000000b00b92579d3d7csm399450ybg.52.2023.04.17.01.57.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 01:57:05 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-54fe82d8bf5so96008127b3.3;
-        Mon, 17 Apr 2023 01:57:05 -0700 (PDT)
-X-Received: by 2002:a81:4407:0:b0:54f:bb6f:3deb with SMTP id
- r7-20020a814407000000b0054fbb6f3debmr8857925ywa.4.1681721824852; Mon, 17 Apr
- 2023 01:57:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230412185608.64628-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230412185608.64628-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230412185608.64628-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 17 Apr 2023 10:56:53 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU9qrSaJqNL_PsrvbyrBAEB17yVMmLPon8AbvE3kjbTUQ@mail.gmail.com>
-Message-ID: <CAMuHMdU9qrSaJqNL_PsrvbyrBAEB17yVMmLPon8AbvE3kjbTUQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzv2l-smarc: Enable CRU, CSI support
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        bh=wJafEGZLilXLck6GAd9V/sVhueR55spEo7I/YbebiPc=;
+        b=IfspAeYXvw47otxE04CBQ9+50z032uY7SJLiV5cj/b+pKoVWjhrpiAxjya9XAwaLyb
+         dC8BBI2cUTmwCPd4o1/UfeCx8FwkIpMN00rSVnbQyXqqHxRD3lUKQm0copAjoMoHSdE5
+         eAM1sm44SRMM/PocXrZbfwkZm42+L9WTvruiApOMVSBRApdJw7T74Xc+Db5pSSRHYo/m
+         0dfUV4Bl68yaPB0082RQeDQ4kQHZaa5hP+tWJZODmWjCdUwttSPGheUWAai2BmOylW4y
+         o5siycZTaUvABpxcUwiFurVSYJJwUaQr32NK+GMVRkAg7LWval/7ojCsOrt8SaYmPiIm
+         J3KA==
+X-Gm-Message-State: AAQBX9dXwXMWMqos33dlhFrl/WBfEEBAjshvn8Wdt7pBr/wL0q50VPwX
+        Sr/UXKTKNNgoPRUHsqyZu/+WjWMTgy4=
+X-Google-Smtp-Source: AKy350aa7Tqk9acCyMU93oK0d8443WM/hwBWH+1CqkPHUMe5MUiqGivxZLO5vsLKd771bc0fAATA9w==
+X-Received: by 2002:a05:6402:4413:b0:4af:7bdc:188e with SMTP id y19-20020a056402441300b004af7bdc188emr16893868eda.16.1681721974297;
+        Mon, 17 Apr 2023 01:59:34 -0700 (PDT)
+Received: from orome (p200300e41f053a00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f05:3a00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id c9-20020a056402100900b0050508605c1dsm5536595edu.37.2023.04.17.01.59.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Apr 2023 01:59:33 -0700 (PDT)
+Date:   Mon, 17 Apr 2023 10:59:32 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 01/10] dt-bindings: thermal: tegra: Document throttle
+ temperature
+Message-ID: <ZD0KdAXyi0Ex1JOU@orome>
+References: <20230414125721.1043589-1-thierry.reding@gmail.com>
+ <20230414125721.1043589-2-thierry.reding@gmail.com>
+ <187d51b3-6fec-7a25-e472-3d9020c12db5@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="n8oRERorzIEJ3aCU"
+Content-Disposition: inline
+In-Reply-To: <187d51b3-6fec-7a25-e472-3d9020c12db5@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
 
-Thanks for your patch!
+--n8oRERorzIEJ3aCU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 12, 2023 at 8:56 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Enable CRU, CSI on RZ/V2L SMARC EVK and tie the CSI to the OV5645 sensor
-> using Device Tree overlay. RZ/G2L SMARC EVK and RZ/V2L SMARC EVK have the
-> same connections for connecting the CSI to OV5645 sensor so just reuse
-> the existing r9a07g044l2-smarc-cru-csi-ov5645.dtso and create a symbolic
-> link to this file for RZ/V2L SMARC EVK.
+On Fri, Apr 14, 2023 at 11:47:56PM +0200, Krzysztof Kozlowski wrote:
+> On 14/04/2023 14:57, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Each throttling configuration needs to specify the temperature threshold
+> > at which it should start throttling. Previously this was tied to a given
+> > trip point as a cooling device and used the temperature specified for
+> > that trip point. This doesn't work well because the throttling mechanism
+> > is not a cooling device in the traditional sense.
+> >=20
+> > Instead, allow device trees to specify the throttle temperature in the
+> > throttle configuration directly so that the throttle doesn't need to be
+> > exposed as a cooling device.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../bindings/thermal/nvidia,tegra124-soctherm.yaml         | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-=
+soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-s=
+octherm.yaml
+> > index 4677ad6645a5..37dac851f486 100644
+> > --- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-socther=
+m.yaml
+> > +++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-socther=
+m.yaml
+>=20
+> File does not exist in next and no dependency is mentioned, so tricky to
+> review and figure out context. Without context the comment is:
 
-Perhaps it makes more sense to rename r9a07g044l2-smarc-cru-csi-ov5645.dtso
-to rzg2l-smarc-cru-csi-ov5645.dtso instead?
+Apologies, I have a conversion series for these thermal bindings. I'll
+send those out first.
 
-Gr{oetje,eeting}s,
+> > @@ -120,6 +120,13 @@ properties:
+> >                # high (85%, TEGRA_SOCTHERM_THROT_LEVEL_HIGH)
+> >                - 3
+> > =20
+> > +          temperature:
+> > +            $ref: /schemas/types.yaml#/definitions/int32
+>=20
+> Use -millicelsius suffix instead:
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pr=
+operty-units.yaml
 
-                        Geert
+Okay.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> > +            minimum: -273000
+> > +            maximum: 200000
+> > +            description: The temperature threshold (in millicelsius) t=
+hat,
+> > +              when crossed, will trigger the configured automatic thro=
+ttling.
+>=20
+> Don't you want some hysteresis? Or is it already using trips binding?
+> But in that case you should skip the $ref and maximum - they come from
+> thermal-zones, don't they?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+We don't use a hysteresis at the moment, but checking the register
+documentation, there's indeed "up" and "down" thresholds, so we can add
+another property for that.
+
+This doesn't use the trips binding and in fact, one of the reasons for
+this change is because we want to make this separate from trip points.
+Trip points are usually associated with cooling devices and this
+throttling mechanism doesn't really fit that concept because it is an
+automatic mechanism that is triggered when a given temperature threshold
+is crossed, rather than a manually activated mechanism, which is what a
+cooling device would be.
+
+Thierry
+
+--n8oRERorzIEJ3aCU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQ9CnEACgkQ3SOs138+
+s6Hwgg//ej6HrQF29/A2wofCJYWnXGuIdDPJB6IthVMjhGD9+DzNne9c0CVxslRH
+5faMpw7E5yVvfE93O3sj35mmHcTxQacv1zKan6/4L8DL0kTEqPgB3I69zLCku1PH
+PHzxD/r+q+29GExtN0ZlWpyf1aNnHFfUR/xh2e2kXR2C8XqHmEJ56ZMx/2cDJs5x
+hCubIxoKaqu1XUABb/0l7Z/Q/3ng4jtioiuYcc+YIgROW9ag32QuEgeXjpOi2q+1
+zlgBYgRpGe0FD2LaIvusviJOQ9X/mj78gKBwoy5Oh5qZOU2BXLYvF5tLRIRgzaPC
+HEhBenV8ED0+DrisncOKH60pxAvGV0BPmPNr2mijH8iItyu6D9dTJLyYE6GTqR9i
+zBShzFhdjfHA+ETbjkIeA9+ca0vX5+o5ABMG9QR2Cdet/79H9oIR1pO7RJbE6Lz/
+oAz/gusDS55E8Fz09vPSInPI7gj8AD/FYnrKdALKd8GbY1C7ERn4H/LRcUEP+9Te
+JxvvBiKNovT3l4BprfflGFmkfP0iPDKhbDJT3AJl0fiy631VzkEN37LtwSZc8IQj
+cOYQcH6tQaldVNUNLVKesAL3xH51y1hGymNrDUpIqdB/OV6QloXjl9I+ZvE5vjuJ
+NjVkj+OS6NENoGVWJQz4WgMUdxJZMhCI8JjJBb2Xd6AYaljYiZo=
+=CWGp
+-----END PGP SIGNATURE-----
+
+--n8oRERorzIEJ3aCU--
