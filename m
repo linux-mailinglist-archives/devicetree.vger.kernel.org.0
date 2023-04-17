@@ -2,98 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 943556E4307
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEF2D6E430C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:02:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbjDQJBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 05:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32976 "EHLO
+        id S229654AbjDQJCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 05:02:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbjDQJA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:00:59 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE72F198D;
-        Mon, 17 Apr 2023 02:00:57 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2D2A9660309E;
-        Mon, 17 Apr 2023 10:00:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681722056;
-        bh=/YGQ+0hV77ZHCBNDe9AvFb4WIzLMZH7RtXL1XwElmPQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=h958IdabLtJFK6QKhYmlx0JGnJpy1cdDRpG7xDJultoBC/coreeGeNQ5dNrEVZB4I
-         mB0XZqDkmieWmAMmdyryMXVVY1Ubm2Vjc10AA8etFm0tU2pcXTGznD6GhbB7+9Ab2Z
-         XVwTeYlENzhruxT+oAdfXXw2rztjD6jGGtM+voIMZ4l4yGt5/h3yD6BwDlmgAjL4PH
-         1s0tztnkFKfv7NBMgNYMU6+Q5ofPRzEFhiGQscbh0mmeDEE+zvQLC22tDMuy4unzoe
-         H6dAwmfIy5JGJL6oF/LogeZdND6ygNLFeZkQVrWnFwo8h1+AzpqlBIzZh5PjwVt85Y
-         8BiEVIbGH/i0A==
-Message-ID: <3716ddbb-1f80-7d1e-a517-2fe35bd4126a@collabora.com>
-Date:   Mon, 17 Apr 2023 11:00:52 +0200
+        with ESMTP id S229627AbjDQJCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:02:06 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 086FBBB;
+        Mon, 17 Apr 2023 02:02:04 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.99,203,1677510000"; 
+   d="scan'208";a="159710146"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 17 Apr 2023 18:02:04 +0900
+Received: from localhost.localdomain (unknown [10.226.92.249])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id AF5CE400720E;
+        Mon, 17 Apr 2023 18:02:01 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 1/3] arm64: dts: renesas: r9a07g044: Add MTU3a node
+Date:   Mon, 17 Apr 2023 10:01:57 +0100
+Message-Id: <20230417090159.191346-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v10 2/7] iommu/mediatek: Fix two IOMMU share pagetable
- issue
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
-        chengci.xu@mediatek.com
-References: <20230417073606.25729-1-yong.wu@mediatek.com>
- <20230417073606.25729-3-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230417073606.25729-3-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/04/23 09:36, Yong Wu ha scritto:
-> From: "Chengci.Xu" <chengci.xu@mediatek.com>
-> 
-> Prepare for mt8188 to fix a two IOMMU HWs share pagetable issue.
-> 
-> We have two MM IOMMU HWs in mt8188, one is VPP-IOMMU, the other is
-> VDO-IOMMU. The 2 MM IOMMU HWs share pagetable don't work in this case:
->   a) VPP-IOMMU probe firstly.
->   b) VDO-IOMMU probe.
->   c) The master for VDO-IOMMU probe (means frstdata is vpp-iommu).
->   d) The master in another domain probe. No matter it is vdo or vpp.
-> Then it still create a new pagetable in step d). The problem is
-> "frstdata->bank[0]->m4u_dom" was not initialized. Then when d) enter, it
-> still create a new one.
-> 
-> In this patch, we create a new variable "share_dom" for this share
-> pgtable case, it should be helpful for readable. and put all the share
-> pgtable logic in the mtk_iommu_domain_finalise.
-> 
-> In mt8195, the master of VPP-IOMMU probes before than VDO-IOMMU
-> from its dtsi node sequence, we don't see this issue in it. Prepare for
-> mt8188.
-> 
-> Fixes: 645b87c190c9 ("iommu/mediatek: Fix 2 HW sharing pgtable issue")
-> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+Add MTU3a node to R9A07G044 (RZ/G2L) SoC DTSI.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+Driver and binding patches are in next [1]
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/log/?qt=grep&q=biju.das
+---
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 70 ++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 1315be5167b9..6983be94d95b 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -174,6 +174,76 @@ soc: soc {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		mtu3: timer@10001200 {
++			compatible = "renesas,r9a07g044-mtu3",
++				     "renesas,rz-mtu3";
++			reg = <0 0x10001200 0 0xb00>;
++			interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 174 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 176 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 181 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 182 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 183 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 185 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 186 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 192 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 198 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 200 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 201 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 202 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 207 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "tgia0", "tgib0", "tgic0", "tgid0",
++					  "tgiv0", "tgie0", "tgif0",
++					  "tgia1", "tgib1", "tgiv1", "tgiu1",
++					  "tgia2", "tgib2", "tgiv2", "tgiu2",
++					  "tgia3", "tgib3", "tgic3", "tgid3",
++					  "tgiv3",
++					  "tgia4", "tgib4", "tgic4", "tgid4",
++					  "tgiv4",
++					  "tgiu5", "tgiv5", "tgiw5",
++					  "tgia6", "tgib6", "tgic6", "tgid6",
++					  "tgiv6",
++					  "tgia7", "tgib7", "tgic7", "tgid7",
++					  "tgiv7",
++					  "tgia8", "tgib8", "tgic8", "tgid8",
++					  "tgiv8", "tgiu8";
++			clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
++			power-domains = <&cpg>;
++			resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
++			#pwm-cells = <2>;
++			status = "disabled";
++		};
++
+ 		ssi0: ssi@10049c00 {
+ 			compatible = "renesas,r9a07g044-ssi",
+ 				     "renesas,rz-ssi";
+-- 
+2.25.1
 
