@@ -2,78 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CB2F6E4365
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E157D6E4376
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230378AbjDQJQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 05:16:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44394 "EHLO
+        id S230487AbjDQJSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 05:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230227AbjDQJQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:16:26 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B512421D;
-        Mon, 17 Apr 2023 02:16:19 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H5bPcp032193;
-        Mon, 17 Apr 2023 04:16:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=+giweXyh9ja7j4+UCim1/7CY63h06GBLcMMPLEWqw+w=;
- b=EkitFwzbzeHg/nRde79sqH9f26ZY11JhZ/9L2J3DlP6O8JeoXb7erTm/AohCIQEclLMZ
- zFpT1PZS9suac6cQ9XxVBhtjLe3Y9a6EW22kCbHx6AACB8AiKQaJsG4CUbn/2K61hTXl
- 187nGqlmkC40CAxO5KxhKNdFRujL3WbT2lgAZkHc84yge8DUwK2M94EM5ZAGadlxRH22
- QqwFro+WHMU9gpjNo0ELFZ4Ej6iJXIXavIm9L/JE/f5UGoqN9msF9gLAqkIi/sIpHfxN
- h70961EHFA4dKhhLAOEMPve/DYiZwXJU77tSi7FlWpwjZA9XSg15QKfiiB161YgP7+pr dw== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3pyrbpuku4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 04:15:59 -0500
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Mon, 17 Apr
- 2023 04:15:58 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 17 Apr 2023 04:15:58 -0500
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 02FA9475;
-        Mon, 17 Apr 2023 09:15:58 +0000 (UTC)
-Date:   Mon, 17 Apr 2023 09:15:58 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Saalim Quadri <danascape@gmail.com>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <daniel.baluta@nxp.com>,
-        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8753: Convert to dtschema
-Message-ID: <20230417091557.GZ68926@ediswmail.ad.cirrus.com>
-References: <20230414223801.1106550-1-danascape@gmail.com>
+        with ESMTP id S230375AbjDQJSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:18:25 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5916DB7;
+        Mon, 17 Apr 2023 02:18:20 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 115E3660309E;
+        Mon, 17 Apr 2023 10:18:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681723099;
+        bh=B6LbGft4HxAIqoilnk5IC83grPCkk/Hif1oJBGNxpWU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jebdwN5kgEG64iYOCZj683+YGj3wMzGsaamuIPbrw7rTfny4mghm2QLnsviE9sNuV
+         TLUfGHqyQZvtoMVtvnjYLI210dt4ZZupgQ0WHJNrgBpnha92v/5dx251GIkO1OX38t
+         CLR3CAd1YLab+xYyY5unuL3GgDAMKU2eJvGZJhyJy1CeUMoGD33aMXhW8OXH2n77je
+         vjNudg7KXB/jWsj5P96Yz9zvgxRzfad6MvpYtv3+vY4KEdvT3P2tNs1gi4K7tMgMv0
+         ocBThx1DCx2vT6aSVt4XK05xHxlZA6zO2heIV19bFQBN0FUNAUmzd/eFH9Xc+fb1KX
+         fEEdYW5UOdqrQ==
+Message-ID: <37b56f69-99c2-adf0-cc9f-572fbdaa2eee@collabora.com>
+Date:   Mon, 17 Apr 2023 11:18:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230414223801.1106550-1-danascape@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: O7J3hXBjZ4d6_6QyDWIwmycs-qeRqfOx
-X-Proofpoint-ORIG-GUID: O7J3hXBjZ4d6_6QyDWIwmycs-qeRqfOx
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/6] media: mediatek: vcodec: can`t regard getting lat
+ buffer fail as error
+Content-Language: en-US
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230417054816.17097-1-yunfei.dong@mediatek.com>
+ <20230417054816.17097-2-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230417054816.17097-2-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 10:38:01PM +0000, Saalim Quadri wrote:
-> Convert the WM8753 audio codec bindings to DT schema.
+Il 17/04/23 07:48, Yunfei Dong ha scritto:
+> The speed of lat decoder is much faster than core, need to get trans
+> buffer again when lat fail to get trans buffer.
 > 
-> Signed-off-by: Saalim Quadri <danascape@gmail.com>
-> ---
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+The commit description is misleading, looks like you're doing functional
+changes, but you're just changing loglevels... and the title is also a
+little confusing, so.. I would propose:
 
-Thanks,
-Charles
+media: mediatek: vcodec: Avoid unneeded error logging
+
+Since the LAT decoder works faster than its CORE, getting the trans buffer may
+be done only after CORE finishes processing: avoid printing an error if the
+decode function returns -EAGAIN, as this means that the buffer from CORE is not
+yet available, but will be at a later time.
+
+Also change the log level for calls to vdec_msg_queue_dqbuf() in H264 and VP9
+LAT decoder drivers to avoid excessive logging.
+
+Cheers,
+Angelo
+
+
