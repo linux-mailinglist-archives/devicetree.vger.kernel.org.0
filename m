@@ -2,60 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 094D26E45C7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDACA6E4607
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:07:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbjDQKxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 06:53:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50808 "EHLO
+        id S230356AbjDQLHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 07:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230493AbjDQKw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:52:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51741976D;
-        Mon, 17 Apr 2023 03:51:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D67F6124E;
-        Mon, 17 Apr 2023 10:49:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD791C433EF;
-        Mon, 17 Apr 2023 10:49:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681728571;
-        bh=ziVA6an0IclPiTv5XXAnS129CvY6eq9Ui0ud26tLlWU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=pnlzBaD2datLbMEEuWf8qpGLvnCe9TaMR7JX0TfTiVM14q5kUkGVSP6CXaYN9wjt9
-         biSqEVVYsSs8uUIU0j67ehaj8JjecZXJBtdf8rAwcqraalik96YmsY0qtuNrh8Hf7E
-         +C1Fya95z8EeZXji2v8L8AOSaH/18WObxmVEoxlaBuptn1CzOX9l+WmbmczVa1io1W
-         RvKC6okQtnql7Vf7QuaxO94aubCdXDuHPfJiUDK/CX7hrQOJw6R8OPYjwgMCToMMP3
-         dhd2y6M+vmkynLIunJK+Lx4F5SzWZCd4nacwg5hPCdXKFUl7hCXaz3Cw3gWzq+QKo7
-         j4h5VXR1FUbgQ==
-Message-ID: <0fdc2dd8-89d6-8282-d16d-946ec2cb87c4@kernel.org>
-Date:   Mon, 17 Apr 2023 13:49:26 +0300
+        with ESMTP id S229959AbjDQLHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:07:51 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8AA5FC0;
+        Mon, 17 Apr 2023 04:06:58 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id e9e14a558f8ab-3294eacb2f6so3900725ab.3;
+        Mon, 17 Apr 2023 04:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681729512; x=1684321512;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ELltBzgQq2kMsFk/gBLyDUWGvL72bzaDJeO1HjsJ+nU=;
+        b=i0uxx4P8b7+jO8mRYbbxdG6Tfr1WANwEY6VPHvQYQbrvN/wUdd/DblekpGVF6pDzlY
+         voV/o3DikT2W9GSUxV8PGX7PgfRr+oJ2/26tGn5E6SCJHSidR3lWL+XGuQ8Y/E0uX/6o
+         yUYpESxqjjR+uiztIKF4TGwbKx82yutq9a+6+7lkrY3hhmlRRnSbAs4+nlLWIYosPCdr
+         VYPzJjqLIKc+QNtj2YBSCuC9SQtJSjUeIWNYZQzpZ97q2RCobF7EpuOXqia9CzHkptXH
+         uzHiB8VIFKT+R6a/v5sqMghm04M3C/3Y00UFKX3Y1H35WpHUnBybtY0az8JRLi/Xr97S
+         2Lpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681729512; x=1684321512;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ELltBzgQq2kMsFk/gBLyDUWGvL72bzaDJeO1HjsJ+nU=;
+        b=aaolkxrWArmJOxV3i487gmPkF0RamzX7OjscjsMe+vbJRVeAbZ76AS9VbdKVyKzuA6
+         8K8G28i9xGCr8z+d8tdWCJbnaoYdAKRDjHtxsq8i08TKWyD4JPONQYv3TahQiIZ5l+//
+         iNhC4Yv1u78eYL8wOB0VtVNh9H6DxYQasr9i80NGaLnM8tBb09D3vvjT0k4QslFFGkNe
+         dry/8cn7+vo9HShdqajlp2IfmBAkvyS0/RJNqnlrsg7Xq0N5+B1gwWL3R8DwvHbS0NC0
+         a8XGzSYdpg4Bkoe5laplj/tV36nNasXTiwQLLTjC5lzaNl9TPeKkwlWhFTmInMhYUGt5
+         L3qA==
+X-Gm-Message-State: AAQBX9dmbf1eploYHvOGhivNvIzqAmoskTLe3DBommOgGkxRELl6CMqX
+        RWRfOqyoA2aWrULfGWcLn2cJbYKNiIbbyUqw5gY=
+X-Google-Smtp-Source: AKy350ZM1nWgkQHtj558qYXfvl4irLs4ErPelGgapvsZkr0Tr0xC6WGBmnrJkha7B4Xh3iK8iVpXCIb6HF/fktL4JCE=
+X-Received: by 2002:a92:cf43:0:b0:32b:1c9f:3c48 with SMTP id
+ c3-20020a92cf43000000b0032b1c9f3c48mr1115197ilr.1.1681729512244; Mon, 17 Apr
+ 2023 04:05:12 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 00/10] arm64: dts: ti: k3-am64: Add missing properties
- used in u-boot
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
+References: <20230412185608.64628-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230412185608.64628-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdU9qrSaJqNL_PsrvbyrBAEB17yVMmLPon8AbvE3kjbTUQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdU9qrSaJqNL_PsrvbyrBAEB17yVMmLPon8AbvE3kjbTUQ@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 17 Apr 2023 12:04:46 +0100
+Message-ID: <CA+V-a8sVjK7jm6m=7XC9B8JBeUqL+aL_wvFjM-e=-p+4xWuszQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzv2l-smarc: Enable CRU, CSI support
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Nikhil M Jain <n-jain1@ti.com>, Tom Rini <trini@konsulko.com>
-References: <20230414073328.381336-1-nm@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230414073328.381336-1-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,43 +74,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
+Thank you for the review.
 
-On 14/04/2023 10:33, Nishanth Menon wrote:
-> Hi,
-> 
-> while attempting to cleanup u-boot, I noticed that u-boot had some
-> additional nodes that were'nt in kernel.org, and this makes syncing the
-> kernel.org patches back to u-boot hard.
-> 
-> So, sync the same.
-> 
-> Bootlogs: (SK and evm)
-> https://gist.github.com/nmenon/6b09f55251225d3f3cce076c32a33bba
-> 
-> Baseline: next-20230413 (will be great if we can get into rc2 - will
-> make u-boot sync easier)
-> 
-> Nishanth Menon (10):
->   arm64: dts: ti: k3-am64: Add general purpose timers
->   arm64: dts: ti: k3-am642-sk: Fix mmc1 pinmux
->   arm64: dts: ti: k3-am642-sk: Enable main_i2c0 and eeprom
->   arm64: dts: ti: k3-am642-sk: Describe main_uart1 pins
->   arm64: dts: ti: k3-am642-sk: Rename regulator node name
->   arm64: dts: ti: k3-am642-evm: Enable main_i2c0 and eeprom
->   arm64: dts: ti: k3-am642-evm: Describe main_uart1 pins
->   arm64: dts: ti: k3-am642-evm: Rename regulator node name
->   arm64: dts: ti: k3-am642-evm: Add VTT GPIO regulator for DDR
->   arm64: dts: ti: k3-am642-sk|evm: Drop bootargs, add aliases
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 144 +++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  |  45 +++++++
->  arch/arm64/boot/dts/ti/k3-am64.dtsi      |  16 ---
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  76 ++++++++++--
->  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  69 ++++++++---
->  5 files changed, 313 insertions(+), 37 deletions(-)
-> 
+On Mon, Apr 17, 2023 at 9:57=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> Thanks for your patch!
+>
+> On Wed, Apr 12, 2023 at 8:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Enable CRU, CSI on RZ/V2L SMARC EVK and tie the CSI to the OV5645 senso=
+r
+> > using Device Tree overlay. RZ/G2L SMARC EVK and RZ/V2L SMARC EVK have t=
+he
+> > same connections for connecting the CSI to OV5645 sensor so just reuse
+> > the existing r9a07g044l2-smarc-cru-csi-ov5645.dtso and create a symboli=
+c
+> > link to this file for RZ/V2L SMARC EVK.
+>
+> Perhaps it makes more sense to rename r9a07g044l2-smarc-cru-csi-ov5645.dt=
+so
+> to rzg2l-smarc-cru-csi-ov5645.dtso instead?
+>
+ok, and then for g2lc [0] I add rzg2lc-smarc-cru-csi-ov5645.dtso ?
 
-for this series:
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/2023041311=
+4016.16068-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Cheers,
+Prabhakar
