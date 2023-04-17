@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24EC96E4113
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4CB06E4126
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230509AbjDQHcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44982 "EHLO
+        id S230514AbjDQHgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 03:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbjDQHcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:32:14 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0754F59DB
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:31:18 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id bz21so1492180ljb.11
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:31:18 -0700 (PDT)
+        with ESMTP id S230430AbjDQHgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:36:14 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5282240F4
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:35:01 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2a7ac8a2c8bso11307171fa.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:35:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681716677; x=1684308677;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZQL9KZY7FW2Qg45tBkM7dKXdpeg8tHxW2q8lij1q41c=;
-        b=Bm78Kgh8C173ihnNSQOi9dpKN2xDuPU6PsRBd2usuMQof9ncak3h0wJIjppIQTKO+Y
-         eZWs8n8teNUh672FmlawPg+5d/FopqpxzZv8QuifHZkozmJ3Z8qd7Z3UGf/pqxYPQZLZ
-         6DB5ZI2rsIbBvXOZCKEsD+JrQaA7XpIGPLQ3sDEFAL0L8sxUcXeJgW0HN3wpNN+FMvGi
-         Oqpbx4AcUbaMVdUnOQw/FCXYwm9Z3Ll3HRYYD9E23+NdIWEZOMx6En+bbkv8QSp1pB6h
-         PluXaAEce8npv03m7elDzswmr6VDNOMEkx5D1g0XrKtrWXt5kSi80qRkenbuVtkyUa06
-         mWqw==
+        d=linaro.org; s=google; t=1681716898; x=1684308898;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AMqVD+3rNvnx6wycjLK+d68DyXUgEvodKiq65GmNOi4=;
+        b=VSafXWaJQk5u/FI8j9UPOZlAe9n0WSpnMJpLt3SRhT9K18bCQ7Im9xcWTXPByN7Zl9
+         VqT9juuxX2hm4f1t4YFSeysrPo2AADZDGwe4UtR+VyEosQy3rttCGRqT+twIFlzRTkXy
+         i8WtzWg5B/Iuzo96FjqGJfLTcpRIIzKqafuhcia5eQZzjpen5KcjHtWZd7oljqXx7HBe
+         jb9r+WYe0Wxph3wWPhrnYtElHpnj/avztQG6hpSC55eqEn8Qng+LEGQ4iHVOzRTIxl44
+         MLxd6mJYw9wLUc6H2NLvh0RsmYlyU1frRr6C95ga/nkJefNVmY7tGPQPrWYkBuFidBUy
+         Zjzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681716677; x=1684308677;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZQL9KZY7FW2Qg45tBkM7dKXdpeg8tHxW2q8lij1q41c=;
-        b=ZQ8YXxKeyh3d7m6sLwK2MuAQbOw5aZNyY6blYhHU9GRxqtjeljj39sCNx2wDBe8oVF
-         dj2rRW6wxWt9R1Em+qgn5K/DOD0CToFGAyw/gzwDXyYOGzWuG9zu1khOAnW4ecI8xh/B
-         kHJ0FYlskTMaNiWp2YcX0WHSrdTnJ3uwpdjCQ5LCERe91SGWUOBMA9Tb8cpHH3pA/DnQ
-         dcyuTKkoAm7jCb9F8fXfOLaLN9720IVrdvK3BXjJfYjpbQXdIdCTD0U5lN6FBvpzdtTB
-         Xo4mTCEg3SJPmOC5VwCq1Cd/xI7r62Sh0Ks0QQL0KeSLARZoS9rTeK7GN78CrbcKNiBo
-         tYpg==
-X-Gm-Message-State: AAQBX9e1WPf8FI5Dc4MlzdQGClY34GcsG8i2yNEDxpissaBDYMgh2xe7
-        mWEL2LlnXfEQ1ddSqQNLwNzRig==
-X-Google-Smtp-Source: AKy350bbwl++ToVpbCwpNTBuz2rvYRz8CM9GTNp/a92rGhFBMuSYhJNAAy2BqvRmZcPR5vR/fzU27Q==
-X-Received: by 2002:a2e:8892:0:b0:2a8:bf74:61cc with SMTP id k18-20020a2e8892000000b002a8bf7461ccmr945460lji.26.1681716677270;
-        Mon, 17 Apr 2023 00:31:17 -0700 (PDT)
-Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
-        by smtp.gmail.com with ESMTPSA id 15-20020a05651c008f00b002a8a8f2dc89sm1762700ljq.72.2023.04.17.00.31.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 00:31:16 -0700 (PDT)
-Message-ID: <a0e2156f-4a0b-82ed-f3a2-f928c21f1619@linaro.org>
-Date:   Mon, 17 Apr 2023 09:31:15 +0200
+        d=1e100.net; s=20221208; t=1681716898; x=1684308898;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AMqVD+3rNvnx6wycjLK+d68DyXUgEvodKiq65GmNOi4=;
+        b=jlE7DBuQR4BdV4YvO/DwaQZZQNWgtq8TX/prAH/QvCZRjH4kCRt0b6qk0qAdWlWDq6
+         OWIVv6eqRUj4ITcDWii/BtH8WWSZ85rMAA1NRz6+s2DWWkhTOWrWDNoRbM/riPKwKJ4l
+         3KWdNYUxl4ZoXuBcyGOSPfKPzTdmH5lQQk1c8FlyWideyclopjraLv1aWaso8dbliIr6
+         sLqKDdBixEA5NhPLVr1uzC4qMe+h5mKuJEcyGiJ6M0R7c99hk9KKrw2xXPzJA2CKSj9W
+         5pRPF3mR3q74+F6R4OatluXhqgg65ttCeeI/tzoAYxmUhU2Jwzb62dT8myoNJeld6olq
+         YukA==
+X-Gm-Message-State: AAQBX9dqHgCiiWSC/67BqH+mx3NBLzPvDaXy1ZZwoLPM4DRkuDntEE96
+        /I+Goj5IHylgJtGhmc+uq80DrQ==
+X-Google-Smtp-Source: AKy350aYV/xU5PmdvoOcCCFGTSvSEGtsMh2RodTK//IpQa9ROYy7I79t+SCOqr5Tqb0DPZ6x4ScBJg==
+X-Received: by 2002:ac2:454e:0:b0:4dd:a61c:8f74 with SMTP id j14-20020ac2454e000000b004dda61c8f74mr1929741lfm.51.1681716898007;
+        Mon, 17 Apr 2023 00:34:58 -0700 (PDT)
+Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id w15-20020a056512098f00b004eb2f35045bsm1956275lft.269.2023.04.17.00.34.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Apr 2023 00:34:57 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 0/2] SRAM dt binding and fix
+Date:   Mon, 17 Apr 2023 09:34:55 +0200
+Message-Id: <20230417-ux500-sram-v1-0-5924988bb835@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm6125-sprout: align ADC channel
- node names with bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230416123730.300863-1-krzysztof.kozlowski@linaro.org>
- <20230416123730.300863-6-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230416123730.300863-6-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-B4-Tracking: v=1; b=H4sIAKD2PGQC/yWNQQqDMBBFryKz7kASNcFepbhIdNRZmJYZWgTx7
+ k3a5eO/xz9BSZgU7s0JQh9WfuYC9tbAtMW8EvJcGJxxrelswPfRG4MqccfB2zD44PycOihBikq
+ YJOZpq8nfpKrW9SW08PG7eozX9QW2fGp0egAAAA==
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,58 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds a DT binding for the U8500 SRAMs.
 
+This patch series also fixes an issue with pool labels that I
+saw on U8500.
 
-On 16.04.2023 14:37, Krzysztof Kozlowski wrote:
-> Bindings expect ADC channel node names to follow specific pattern:
-> 
->   sm6125-xiaomi-laurel-sprout.dtb: adc@3100: 'adc-chan@4d', 'adc-chan@4e', 'adc-chan@52', 'adc-chan@54' do not match any of the regexes: ...
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I suppose SRAM patches will go in through the SoC tree, I kind
+of feel that SRAM is a SoC concept and the driver should
+actually be in drivers/soc...
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> index b1038eb8cebc..a7f4aeae9c1a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> @@ -138,7 +138,7 @@ &pm6125_adc {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&camera_flash_therm &emmc_ufs_therm>;
->  
-> -	adc-chan@4d {
-> +	channel@4d {
->  		reg = <ADC5_AMUX_THM1_100K_PU>;
->  		qcom,ratiometric;
->  		qcom,hw-settle-time = <200>;
-> @@ -146,7 +146,7 @@ adc-chan@4d {
->  		label = "rf_pa0_therm";
->  	};
->  
-> -	adc-chan@4e {
-> +	channel@4e {
->  		reg = <ADC5_AMUX_THM2_100K_PU>;
->  		qcom,ratiometric;
->  		qcom,hw-settle-time = <200>;
-> @@ -154,7 +154,7 @@ adc-chan@4e {
->  		label = "quiet_therm";
->  	};
->  
-> -	adc-chan@52 {
-> +	channel@52 {
->  		reg = <ADC5_GPIO1_100K_PU>;
->  		qcom,ratiometric;
->  		qcom,hw-settle-time = <200>;
-> @@ -162,7 +162,7 @@ adc-chan@52 {
->  		label = "camera_flash_therm";
->  	};
->  
-> -	adc-chan@54 {
-> +	channel@54 {
->  		reg = <ADC5_GPIO3_100K_PU>;
->  		qcom,ratiometric;
->  		qcom,hw-settle-time = <200>;
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (2):
+      dt-bindings: sram: Add compatible for ST-Ericsson U8500 eSRAM
+      misc: sram: Generate unique names for subpools
+
+ Documentation/devicetree/bindings/sram/sram.yaml |  1 +
+ drivers/misc/sram.c                              | 10 ++++++----
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230417-ux500-sram-961796726db4
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
