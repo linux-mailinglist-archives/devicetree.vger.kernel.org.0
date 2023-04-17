@@ -2,187 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9E856E4333
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E3E6E4345
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjDQJG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 05:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36982 "EHLO
+        id S230445AbjDQJIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 05:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjDQJGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:06:25 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF959170D;
-        Mon, 17 Apr 2023 02:06:23 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a5so5685798ejb.6;
-        Mon, 17 Apr 2023 02:06:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681722382; x=1684314382;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tRw++8DCsbGRpKEYAvR6c5N87LkuLbIZdhy/p3qR+is=;
-        b=OdcAo9gViulnTDbqdPTYCzAVE/krbdLJaDTSOSsz2UEKmR/QWJFG9DlfieG2lvMnxP
-         Q247aeezUz8ssIfDJ7F/F+uQZWocDRMAgDT3b4RQvmzJ9N4/3EOMESdOB4Pfg2K9syE3
-         7go/d449NALS5uwoONLWDRjEUqRDM1gN2yoMB/YS5w6l8BCudd6X91dl0hzApKX/rWTu
-         VDXLXsZWf8AuwFEJpoIAAOW5qMpgjTzPJvfEKFWoT/PF1ePvgMLgeCRz+2eIZCC9RSGC
-         m5vOm49lK/TkCDLcXM58yXAod1BXl5PP+pD4gagqflPU1RBgZp/osWgRu7ypGYx8czks
-         apVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681722382; x=1684314382;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tRw++8DCsbGRpKEYAvR6c5N87LkuLbIZdhy/p3qR+is=;
-        b=Av6nh+Uuu5PjAE46iOBnXbBXqG+dk+7HyjQF2Q9ToheE6Ai17ZscQgto5X8SVCGg2f
-         zTdZPu3Sg7TypyHKKFIIG2nDy044npru6HpSreW7lcIlg5MO0fvaJ+of+GuzPiczdJ8j
-         zfWKPyVjlzV4ZKPLLFyk8whfrQ90CO7C3VIzXpTRA9BfpLlSi5qFQUNS3RKVMRpFozlm
-         jfLHjIaK8zkyCSR60EZE5D43dmd7N+hd6vhHEQwiBpwxeqXTKNLtCeVwbSWxmZAAcbOB
-         1s24ebGz+1hVCCijp4WDKa2O57EPmP8QOt6niD9s64C2FTmoJsjb4OGbNQCM3H5Afynu
-         tn8g==
-X-Gm-Message-State: AAQBX9f1rAwdQ2Dyvg8gv3u+m3FWCWdIPZ0BOKcFYSTjuN08757RTnrj
-        JL76Ewgc66HBrz+NboMOQolAN+WeWjY=
-X-Google-Smtp-Source: AKy350ZK+YGWEv6Grr3hY2pQZOUcytskKThJXsUjLmFw8fe9hhjYsGOEj0Z/OgMhzz4761KptxN76Q==
-X-Received: by 2002:a17:907:1623:b0:94f:49a2:619a with SMTP id hb35-20020a170907162300b0094f49a2619amr4068267ejc.11.1681722381812;
-        Mon, 17 Apr 2023 02:06:21 -0700 (PDT)
-Received: from orome (p200300e41f053a00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f05:3a00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id qb37-20020a1709077ea500b0094ee0c9a6d0sm4820220ejc.184.2023.04.17.02.06.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 02:06:21 -0700 (PDT)
-Date:   Mon, 17 Apr 2023 11:06:19 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        with ESMTP id S230181AbjDQJIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:08:53 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864AA26B8;
+        Mon, 17 Apr 2023 02:08:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1681722522; x=1713258522;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=m8aASMkvQM9MGebrTwvix2EO5nQR6qeGOss5wQyHKgw=;
+  b=WStaXL3qTAE9ybfVUxYfibH577Pg6dZl4fk52dH3CcVmZ1+N068bxUQ+
+   Rg52eYXJvNP/QmY37MeEaAduPhZVaEfF+O85Xznt/UcijbvOIYVX4oXi5
+   Aas3IQH7ljBF/SoKA2Yq+ErQyriGOykalVHQw/+Xbf18YqWCIm6J+jyYH
+   bceg1i6QoHIIrZOVqrVFdRxbKz+lbTFN/6NHvcx4IIt1UrPsXmyDMFWxK
+   DuCUcXqK6nd3OWXYvnNvsdRCrSzxYYA2UiqIfEi7LJTbda56p8VvI+dUI
+   QImLrn6rU1F1tXfCnpeX72W4QOWl1WcmxRAago+NnkfYeUKsqBK1yC+Hg
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,203,1677567600"; 
+   d="scan'208";a="147374424"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Apr 2023 02:08:40 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 17 Apr 2023 02:08:37 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Mon, 17 Apr 2023 02:08:28 -0700
+Message-ID: <8a76d193-7a01-9ec5-40e8-65fcb039f708@microchip.com>
+Date:   Mon, 17 Apr 2023 11:08:21 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
+ white-space cleanup
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 09/10] arm64: tegra: Rework SOCTHERM on Tegra132 and
- Tegra210
-Message-ID: <ZD0MC6AqgNtYUJ4a@orome>
-References: <20230414125721.1043589-1-thierry.reding@gmail.com>
- <20230414125721.1043589-10-thierry.reding@gmail.com>
- <ed5f12fd-f1f8-9823-a32d-5782068dc790@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xwrNWjN09bPXOM+0"
-Content-Disposition: inline
-In-Reply-To: <ed5f12fd-f1f8-9823-a32d-5782068dc790@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        "Jerome Brunet" <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Julius Werner <jwerner@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Sander Vanheule <sander@svanheule.net>,
+        "Maxime Coquelin" <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        "Sergio Paracuellos" <sergio.paracuellos@gmail.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Jamie Iles <jamie@jamieiles.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-renesas-soc@vger.kernel.org>
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
+ <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/04/2023 at 11:51, Krzysztof Kozlowski wrote:
+> Minor cleanup without functional impact:
+> 1. Indent DTS examples to preferred four-spaces (more readable for DTS),
+> 2. Drop unneeded quotes,
+> 3. Add/drop blank lines to make the code readable.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
---xwrNWjN09bPXOM+0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[..]
 
-On Mon, Apr 17, 2023 at 10:15:11AM +0200, Daniel Lezcano wrote:
-> On 14/04/2023 14:57, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > The "heavy throttle" cooling device that SOCTHERM uses isn't a cooling
-> > device in the traditional sense. It's an automatic mechanism that cannot
-> > be actively controlled. Do not expose it as a cooling device and instead
-> > of tying it to a specific trip point, hard-code the temperature at which
-> > the automatic throttling will begin.
-> >=20
-> > While at it, clean up the trip point names to reflect the names used by
-> > the thermal device tree bindings.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >   arch/arm64/boot/dts/nvidia/tegra132.dtsi | 63 +++++-------------
-> >   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 83 +++++++-----------------
-> >   2 files changed, 39 insertions(+), 107 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot=
-/dts/nvidia/tegra132.dtsi
-> > index 8b78be8f4f9d..11ebf7517df1 100644
-> > --- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-> > +++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-> > @@ -876,11 +876,10 @@ soctherm: thermal-sensor@700e2000 {
-> >   		#thermal-sensor-cells =3D <1>;
-> >   		throttle-cfgs {
-> > -			throttle_heavy: heavy {
-> > +			heavy {
-> >   				nvidia,priority =3D <100>;
-> >   				nvidia,cpu-throt-level =3D <TEGRA_SOCTHERM_THROT_LEVEL_HIGH>;
-> > -
-> > -				#cooling-cells =3D <2>;
-> > +				temperature =3D <102000>;
-> >   			};
-> >   		};
-> >   	};
-> > @@ -1136,114 +1135,84 @@ cpu-thermal {
-> >   			polling-delay-passive =3D <1000>;
-> >   			polling-delay =3D <0>;
-> > -			thermal-sensors =3D
-> > -				<&soctherm TEGRA124_SOCTHERM_SENSOR_CPU>;
-> > +			thermal-sensors =3D <&soctherm TEGRA124_SOCTHERM_SENSOR_CPU>;
-> >   			trips {
-> > -				cpu_shutdown_trip {
-> > +				critical {
-> >   					temperature =3D <105000>;
-> >   					hysteresis =3D <1000>;
-> >   					type =3D "critical";
-> >   				};
-> > -				cpu_throttle_trip: throttle-trip {
-> > +				hot {
-> >   					temperature =3D <102000>;
-> >   					hysteresis =3D <1000>;
-> >   					type =3D "hot";
-> >   				};
-> >   			};
-> > -
-> > -			cooling-maps {
-> > -				map0 {
-> > -					trip =3D <&cpu_throttle_trip>;
-> > -					cooling-device =3D <&throttle_heavy 1 1>;
-> > -				};
-> > -			};
->=20
-> If the hardware mitigation is 'heavy', don't you want to have DVFS acting
-> before hardware throttling ?
+>   .../bindings/watchdog/atmel,sama5d4-wdt.yaml  | 14 ++++----
 
-The throttling here is in fact some form of DVFS, but yes, generally we
-would likely want to have additional forms of DVFS before we reach this
-state. We could add CPU cooling devices and there's also a mechanism to
-throttle the DRAM frequency on certain boards.
+[..]
 
-But those are mostly orthogonal to this series. The goal here is to get
-rid of the throttling mechanism as a cooling device.
+For Microchip:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-Thierry
+Thanks Krzysztof, best regards,
+   Nicolas
 
---xwrNWjN09bPXOM+0
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Nicolas Ferre
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQ9DAsACgkQ3SOs138+
-s6FELg/+L3hpRpV39q61zhQbh/YoF7yUOFJNYif7YnBVic6Rl2wVaoV0v8bQhVcx
-h7qTUhSg4nTgwRHzOaPpfAbiTwch7a3hGHJJ9GV6Dpv/2DkGDDiFUur1l84EhX7A
-nNg3PzmbZiig4HRR5qpelCirAWq4iApIuq5AwDjrUScV3bAeVvQSLYQLddnx+/pZ
-kpg9K0XGggfOvgdtaYo2cIDWPTNJYwbSIPUAf2w7valVHb4JOGQlUznp9j+OnZTh
-sX8M9BZBNZ2ri3gB60KcQfWpsleiv49DWo7v7N/ZOtPSOAxLtFZXCvRLJv/0Q2xf
-IN3zCDwlSVw710XqoKAKhmEtYK7Dpj0rQN50UxXASygVr43jBbFH7gJ3E/4rGt6B
-iyZhL+2h4fwhPaPDQh7VZBHIh3iboO9wvGDl6Hjq3M1DxZ07T4HIGl9IrpM+oWDu
-x1fzlFkuDbuH6G8YSKOFn7Bki7BJwOREbTzCMtHdbVwti4mmwe24oPi9Ay8N7nca
-Dh4h0/8J5hfHZYQa8A+xwaMSlziXprZGDOys4tw21v8scj1xxwv/EXkBMncYE0ti
-0LLONmdhycrKY9DtBI6iSDsvRIGbzlTTHGIp3O3nnb74DHtZGx/95GN6GBIGXGp6
-tXFO5FO77thcrhbj3Bkm1Ax/bgFgdaSriA9p62DavTOhP/7lzDA=
-=xoD4
------END PGP SIGNATURE-----
-
---xwrNWjN09bPXOM+0--
