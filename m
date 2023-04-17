@@ -2,166 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F04A6E508F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 21:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 149626E50D0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 21:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbjDQTFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 15:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60512 "EHLO
+        id S230434AbjDQT0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 15:26:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230002AbjDQTFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 15:05:43 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFF755BC;
-        Mon, 17 Apr 2023 12:05:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681758314; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=INqIBw4Ne4PgLy5vmY0LJBcYVa0jPhdpwP0ZTp9SvMxTNVsY/5fzEw4Skd5x0C/1lM
-    avWfzxvnZt+uRnH45Cu4Ovs3SoNTTuoAlpFhLhchgsMpT6JS2/2XYDPHpnQhey7Obvt/
-    VZ4RfzxGZA6mWk99KLwFndVy+VrPm3dFDIIc/6uhhLx039+zBheT93/znAjr8r5HhJVD
-    Mm2v+WKgsXbfwy8Fo02bI1Q//XVeoA/Cc+B0V9EXkHBOKeDTVQcuT666uryILzn3LM1w
-    UXs5Q7dTdcg7t9TkmUUB+p5XG5ZdSQgTCVeuC9foygDJ7FueeWTKeHRAofnIceU3YQ1t
-    8iUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1681758314;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=zMu8aCbltdkyaF8tMU4hcbAdwR6OQSkVDX5++sopalU=;
-    b=Z7THDmGdOJQi/D7qEGmW6cpwYVxZqgCIJK1hVZ9v02urqRsWJ5hatiZ9WjyP9awBjq
-    kKCgIiVsgKmV0UxqIenaBoAWuqiWBf0xeCHCb3H1XWUzZYY7VnGsztgMgedGlkkvYnT2
-    e6kHB9d/Qm6h8jq3kgZtyqbShoc6SE1wV6/x53BcEH+fuFvBMOLw+x65CiddyzKoToNB
-    QYZX/yvMbhTvnGSkAuEFrr2Ef7UqH7hwXgjzzM5qwlKsZDQWwcOmPQXbqzcs8dx+5Ovf
-    Zjq60svGQ9wa5BJxF498XiGPh7mrcEqRHWpnr0GFbbxJUxsiA0YvKixNr/o9KXDLml4e
-    3rnw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1681758314;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=zMu8aCbltdkyaF8tMU4hcbAdwR6OQSkVDX5++sopalU=;
-    b=tj9FF4MBFTjzEVOyc693G+9bSO3gFpH7oVu3u4z60niTHeJB8ND2Bc7uWZOsUOFAnP
-    b/hPAXWDxFgIVDROTq77rmn5T42vAgbNozYfSx2zm+Vk7DdCk5ib/Co5Kv/HGiPe4QFv
-    phpbyOp1dl0YZcT6VKPzbgHp7DeLYEJ5RnIyYBl7asrhwTRVEVDPALOrnHcjOcOzLRUj
-    J4L13kuhYcN/4+deaiDpt99qL7MGRKuWwht/pygsiYykFirzPvg5S1yTcMWLhHxrzI3b
-    EhmvyS+F7EdkuXqXg3HrxtYKK7DLukKbQi/p9JOEhkIPgF8LX75ReM3qx1dSCNTuqgy8
-    +e/g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1681758314;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=zMu8aCbltdkyaF8tMU4hcbAdwR6OQSkVDX5++sopalU=;
-    b=Rb+/EdXy6QJAJY1dx4i43fy15Q4UmnxHB5WJh1ND7b6jw4thZLbpKP7mpJXXVNJUEa
-    Qo36RKaAvge/AJtMfdAQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8peN1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
-    with ESMTPSA id j6420az3HJ5EeE4
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 17 Apr 2023 21:05:14 +0200 (CEST)
-Date:   Mon, 17 Apr 2023 21:05:06 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230468AbjDQT0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 15:26:21 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBAAB6E99
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 12:26:19 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1poUUJ-0004Fg-PX; Mon, 17 Apr 2023 21:26:07 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id BC3631B175F;
+        Mon, 17 Apr 2023 19:26:04 +0000 (UTC)
+Date:   Mon, 17 Apr 2023 21:26:04 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Oliver Hartkopp <socketcan@hartkopp.net>
+Cc:     Judith Mendez <jm@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFT v2 01/14] dt-bindings: clock: qcom,rpmcc: Add a way
- to enable unused clock cleanup
-Message-ID: <ZD2YYrOdQMD3pi7u@gerhold.net>
-References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
- <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
+        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>
+Subject: Re: [RFC PATCH 5/5] can: m_can: Add hrtimer to generate software
+ interrupt
+Message-ID: <20230417-unsafe-porridge-0b712d137530-mkl@pengutronix.de>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230413223051.24455-6-jm@ti.com>
+ <20230414-bounding-guidance-262dffacd05c-mkl@pengutronix.de>
+ <4a6c66eb-2ccf-fc42-a6fc-9f411861fcef@hartkopp.net>
+ <20230416-failing-washbasin-e4fa5caea267-mkl@pengutronix.de>
+ <f58e8dce-898c-8797-5293-1001c9a75381@hartkopp.net>
+ <20230417-taking-relieving-f2c8532864c0-mkl@pengutronix.de>
+ <25806ec7-64c5-3421-aea1-c0d431e3f27f@hartkopp.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="clk4ct7erfqsly7j"
 Content-Disposition: inline
-In-Reply-To: <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <25806ec7-64c5-3421-aea1-c0d431e3f27f@hartkopp.net>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 10:35:17PM +0100, Konrad Dybcio wrote:
-> Disabling RPMCC clocks can be a bit touchy. If we can't guarantee all
-> (or at least most) of the oneline peripherals ask the interconnect
-> framework to keep their buses online and guarantee enough bandwidth,
-> we're relying on bootloader defaults to keep the said buses alive through
-> RPM requests and rate setting on RPM clocks.
-> 
-> Without that in place, the RPM clocks are never enabled in the CCF, which
-> qualifies them to be cleaned up, since - as far as Linux is concerned -
-> nobody's using them and they're just wasting power. Doing so will end
-> tragically, as within miliseconds we'll get *some* access attempt on an
-> unlocked bus which will cause a platform crash.
-> 
-> On the other hand, if we want to save power and put well-supported
-> platforms to sleep, we should be shutting off at least some of these
-> clocks (this time with a clear distinction of which ones are *actually*
-> not in use, coming from the interconnect driver).
-> 
-> To differentiate between these two cases while not breaking older DTs,
-> introduce an opt-in property to correctly mark RPM clocks as enabled
-> after handoff (the initial max freq vote) and hence qualify them for the
-> common unused clock cleanup.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-> index 2a95bf8664f9..386153f61971 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-> @@ -58,6 +58,12 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  qcom,clk-disable-unused:
-> +    type: boolean
-> +    description:
-> +      Indicates whether unused RPM clocks can be shut down with the common
-> +      unused clock cleanup. Requires a functional interconnect driver.
-> +
 
-I'm surprised that Stephen Boyd did not bring up his usual "rant" here
-of moving the interconnect clock voting out of rpmcc into the
-interconnect drivers (see [1], [2]). :-)
+--clk4ct7erfqsly7j
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I was a bit "cautious" about it back then but at this point I think it
-kind of makes sense. Make sure to read Stephen's detailed explanation in
-https://lore.kernel.org/linux-arm-msm/159796605593.334488.8355244657387381953@swboyd.mtv.corp.google.com/
+On 17.04.2023 19:34:03, Oliver Hartkopp wrote:
+> On 17.04.23 09:26, Marc Kleine-Budde wrote:
+> > On 16.04.2023 21:46:40, Oliver Hartkopp wrote:
+> > > > I had the 5ms that are actually used in the code in mind. But this =
+is a
+> > > > good calculation.
+> > >=20
+> > > @Judith: Can you acknowledge the value calculation?
+> > >=20
+> > > > > The "shortest" 11 bit CAN ID CAN frame is a Classical CAN frame w=
+ith DLC =3D 0
+> > > > > and 1 Mbit/s (arbitration) bitrate. This should be 48 bits @1Mbit=
+ =3D> ~50
+> > > > > usecs
+> > > > >=20
+> > > > > So it should be something about
+> > > > >=20
+> > > > >       50 usecs * (FIFO queue len - 2)
+> > > >=20
+> > > > Where does the "2" come from?
+> > >=20
+> > > I thought about handling the FIFO earlier than it gets completely "fu=
+ll".
+> > >=20
+> > > The fetching routine would need some time too and the hrtimer could a=
+lso
+> > > jitter to some extend.
+> >=20
+> > I was assuming something like this.
+> >=20
+> > I would argue that the polling time should be:
+> >=20
+> >      50 =C2=B5s * FIFO length - IRQ overhead.
+> >=20
+> > The max IRQ overhead depends on your SoC and kernel configuration.
+>=20
+> I just tried an educated guess to prevent the FIFO to be filled up
+> completely. How can you estimate the "IRQ overhead"? And how do you catch
+> the CAN frames that are received while the IRQ is handled?
 
-We keep looking for workarounds to prevent the CCF from "messing" with
-interconnect-related clocks. But the CCF cannot mess with "clocks" it
-does not manage. The RPM interconnect drivers already talk directly to
-the RPM in drivers/interconnect/qcom/smd-rpm.c. I think it should be
-quite easy to move the QCOM_SMD_RPM_BUS_CLK relates defines over there
-and just bypass the CCF entirely.
+We're talking about polling, better call it "overhead" or "latency from
+timer expiration until FIFO has at least one frame room". This value
+depends on your system.
 
-For backwards compatibility (for platforms without interconnect drivers)
-one could either assume that the bootloader bandwidth votes will be
-sufficient and just leave those clocks completely alone. Or the
-"icc_smd_rpm" platform device could initially make max votes similar to
-the rpmcc device. By coincidence the "icc_smd_rpm" platform device is
-always created, no matter how the device tree looks or if the platform
-actually has an interconnect driver.
+It depends on many, many factors, SoC, Kernel configuration (preempt RT,
+powersaving, frequency scaling, system load. In your example it's 100
+=C2=B5s. I wanted to say there's an overhead (or latency) and we need enough
+space in the FIFO, to cover it.
 
-Stephan
+Marc
 
-[1]: https://lore.kernel.org/linux-arm-msm/159796605593.334488.8355244657387381953@swboyd.mtv.corp.google.com/
-[2]: https://lore.kernel.org/linux-arm-msm/20211209091005.D3344C004DD@smtp.kernel.org/
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--clk4ct7erfqsly7j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQ9nUkACgkQvlAcSiqK
+BOixwwf/S6gpZAbZI0gDLqq59QAhT0OVgjq9E8jQRb6b3SM430nhVX/oOlfIXRCJ
+mz76H1v+b1fURaOi+VZC5zoVb5MF8WhJtBEAWa2IbLNGA1A/6UMtQ466nbNCXPYP
+dFBo+MfWZrkcSayCEYuWdwiPPHJSkOtNeZnjRDwMm2uPF1CeSrQlS5Fbi0GNJy//
+7hVBMN7Jm4qlCQxCC3jHRm0Gtc8qWz5n1v2DyxokjtT4jMo9Iwni6wnPB9ni5JHT
+SldeHxtqHDcc4i83eUxhZzsYD6WDV+J7VAkARfnJBcDnFX8qCznvU5eOjBMU3qgr
+IIraJi0ns1cH/zWAc/yyMoaL+/vn9A==
+=PGh8
+-----END PGP SIGNATURE-----
+
+--clk4ct7erfqsly7j--
