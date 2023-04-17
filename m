@@ -2,628 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18FBB6E4BAB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 16:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C82736E4BBD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 16:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbjDQOjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 10:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34486 "EHLO
+        id S230476AbjDQOmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 10:42:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbjDQOjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 10:39:20 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3011E9ED3
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 07:39:17 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id x34so13232603ljq.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 07:39:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681742355; x=1684334355;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EKbG0++H3xbVFVaOPyRrEAbbHRNYZ849A4wa8ugtNII=;
-        b=pN366wTwu0+ztQLR0QYrHqKI4hmwEnaED2TGmsjGy4dRQ4fkBakoWiKQmQQnSpwIsv
-         DifBTjk7IRTNrg1QcVCnTzl5Wz2ycTM+Fw9LtwP4SFXD4FzFtVsZQANx7T9sGhJG/gCZ
-         tC1M1ZUnz8HNYpHA8VvUfGzGk538L9kjUSwyh/XwJrVxyfG2W3kVOD7Pz0N6Lb0cEfUj
-         QpkRxlmvbOGnY+bQJ6y5PPo73qdkNV+iqFv41jiEH86AwOTFJ3kQ5Rkx0pu5zssWCxuD
-         BXgnxlRryY220DqHPRUHnuAPsIg3AuOuwJAXt5dRkwdxx0ERshDXU2vH7U2dSbzy2Y5R
-         1l4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681742355; x=1684334355;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EKbG0++H3xbVFVaOPyRrEAbbHRNYZ849A4wa8ugtNII=;
-        b=ZxyVtsUxeLpWyUY6m5O10qzv9+mL168ABOsyg3zMny6EWDZmrVJLmaVEyyR4F8bick
-         cp97AAy/GP9fImVvUOaudJauT1XWLrX7P78HZQAIoEgYVL1N0lF4Sqvx3fldIkY0ROam
-         33JU/ooBzOjm1EqNKI0d5J/M5SumBCdZh1VcakLe/7vSlkdEJceSWpBXP0C9spU4lUdC
-         8DSpS76vf34CR5Ha5B8injYVjZ8c3D0dj5BYTLWiqh52/AjIf6tfAj3quVuQ77xqdpxT
-         fhhXvPIuLC8cNZz1YrkRjxJdiw4oRDig3FAH9WMvfMNt0hc4ttRn8BxauB7PXj0VQajA
-         Jprw==
-X-Gm-Message-State: AAQBX9cL7kyA0mmK4x/fnCOsJZhs64M7r1Ou5v5P1xfoKczNbOIoTZjS
-        NXbBgTgLgnkLq2Dd5LLX6HBj5H6gKaj/xYk2Uzk=
-X-Google-Smtp-Source: AKy350Ys7432pfBMLLzz6dw68+mYOLdLdhmEsnM5AWFvKLwa3wj66GMhFh2CAoluNfj16VS8EXh3cw==
-X-Received: by 2002:a2e:930d:0:b0:2a7:a779:eae4 with SMTP id e13-20020a2e930d000000b002a7a779eae4mr4478436ljh.9.1681742354985;
-        Mon, 17 Apr 2023 07:39:14 -0700 (PDT)
-Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
-        by smtp.gmail.com with ESMTPSA id 2-20020a2eb282000000b002a76b9e4058sm2235785ljx.43.2023.04.17.07.39.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 07:39:14 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 17 Apr 2023 16:39:06 +0200
-Subject: [PATCH v3 4/4] drm/panel: nt36523: Add Lenovo J606F panel
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230412-topic-lenovopanel-v3-4-bcf9ba4de46f@linaro.org>
-References: <20230412-topic-lenovopanel-v3-0-bcf9ba4de46f@linaro.org>
-In-Reply-To: <20230412-topic-lenovopanel-v3-0-bcf9ba4de46f@linaro.org>
-To:     Jianhua Lu <lujianhua000@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681742347; l=22582;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=a+KroKy76h4Z+iWZU936x+V3O3+qF0O8kFg1bcYLy8k=;
- b=9DtjzXzjSrv/qSfPI3t1hQNOMc2jNtpJL0lr2A4kN6iYBbdLLyFclCrrcs+qpXA5jitq0nH3iKmp
- q/BS2vq0A14zuokiSc/NW7KU5NvYEVcxIRFY6KpVhVHxMhSEIRU/
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230262AbjDQOms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 10:42:48 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895826A7C;
+        Mon, 17 Apr 2023 07:42:41 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id C15585C00D1;
+        Mon, 17 Apr 2023 10:42:40 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 17 Apr 2023 10:42:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1681742560; x=1681828960; bh=fu
+        bE93SP0lItcwGJQx6p+0xya3znlaaOwZS+MYhUJ8I=; b=L3Ir/DDuKNLFnnm1s6
+        vhOv8M18cddFV1mi2u9ryYkb84UK3rvKQ5fhVcsVHd8lfoPU0jOu+Pfr9d/06q22
+        CyBZ+Y0/Rbgv53SCfwulJ3KV5nBOSdEnZsxzKBl3HrzSF/oajLFwC2KXzkAYurxc
+        AlI6PjhyobkSDNxhfGSC8tvGn7CXyCefR6Wm/04Pj52IP6/oFNQc+ZDBB6oknXP8
+        tWAXMf4DwdhFoHOrxFh8fZO7N/SEUAJblax7ruwYPoI9OzBNH/CrMQCNgZn6QE3S
+        RxPlswMt6gy6MrqtwSk43d1n7GB+4Kxgs+pYvugXKPbJlTcNuY1cG+K9p57ONiQa
+        4kQw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1681742560; x=1681828960; bh=fubE93SP0lItc
+        wGJQx6p+0xya3znlaaOwZS+MYhUJ8I=; b=fZZywwTz33JVETQZ4w8TsBjXpRomn
+        Qryv4N0b98NUXuxR+9iaUOUtQpcfytCNm62OteiH2OUtA3Ut/EBkqRaYLfObTvK+
+        4PrCsdGpwMs8enTdl/P+zdnzqit7clrToW3/pNteRruh8RUt1KEUF9ihTZLx4Y2U
+        muLpmYZ544KJsDRKC+OS+DTSeu1HTKj20lpefJ+gVKgRELwASshgQybVHYfQBLyM
+        1PemQeIJ+GJSdAT/JkUX0SOu7UxR7cZsrtq+Dxc7iBNR5akRqJEwwy2ALdJZGPiA
+        kht7YO1Rc879lbZeSIBFAMSqc+rCxfINPC8Qb+B8aISi+rGBLaRWlmalw==
+X-ME-Sender: <xms:4Fo9ZEUbTa9wZ8OLYI6wbO9pzxUAuHxg6yrrOtJwuyPfBbEl3Ea1-A>
+    <xme:4Fo9ZIm25iuIFgVX_htc_ne7zhlz_ssq0rqgd8ClCDt2HJ-ghcTmDUy5-rLpqaseG
+    HOaa2RwKku5g5RtjpI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeliedgjeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:4Fo9ZIYm5wSafDgnPz381plm1Nz83TZ_e-h8l2OpwgzCPVrCee25Vw>
+    <xmx:4Fo9ZDU3c7-s0ogGu4guOT3GOlYzYEjJGmOVX3I2P_UmvrMle_sxLg>
+    <xmx:4Fo9ZOnjxx6gGcPb8k6F-U4rPP_d_yGAMxyU3F2u7wmchZQBdGQW2w>
+    <xmx:4Fo9ZJ-j1W-CxQEOagM4xhHoHkAHU01HB0fz-sYVq_KEsHvhrj9-0A>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5E106B60086; Mon, 17 Apr 2023 10:42:40 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-372-g43825cb665-fm-20230411.003-g43825cb6
+Mime-Version: 1.0
+Message-Id: <1cef656e-abd4-406a-9b35-04825b292e05@app.fastmail.com>
+In-Reply-To: <20230413131705.3073911-1-brgl@bgdev.pl>
+References: <20230413131705.3073911-1-brgl@bgdev.pl>
+Date:   Mon, 17 Apr 2023 16:42:16 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Bartosz Golaszewski" <brgl@bgdev.pl>,
+        "Sebastian Reichel" <sre@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 0/4] arm64: qcom: fix the reboot reason handling on sa8775p
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Lenovo J606F tablets come with a 2K (2000x1200) 60Hz 11" 5:3
-video mode display. Add support for these panels.
+On Thu, Apr 13, 2023, at 15:17, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> SA8775P uses nvmem to pass the reboot reason magic value to the bootloader.
+> Remove the reboot modes from the PON node and introduce an SDAM node passed
+> to the nvmem-reboot-mode driver. While at it: convert the bindings for
+> nvmem-reboot-mode to YAML and enable it for arm64 in defconfig.
+>
+> Bartosz Golaszewski (2):
+>   arm64: defconfig: enable building the nvmem-reboot-mode module
+>   dt-bindings: power: reset: convert nvmem-reboot-mode bindings to YAML
+>
+> Parikshit Pareek (2):
+>   arm64: dts: qcom: sa8775p: pmic: remove the PON modes
+>   arm64: dts: qcom: sa8775p: pmic: add the sdam_0 node
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Reviewed-by: Jianhua Lu <lujianhua000@gmail.com>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/panel/panel-novatek-nt36523.c | 486 ++++++++++++++++++++++++++
- 1 file changed, 486 insertions(+)
+It looks like it's too late for the dts patches in v6.4, but I was
+picking up defconfig patches from the list, and that one seems useful
+regardless of the rest, so I added it to the soc/defconfig branch.
 
-diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36523.c b/drivers/gpu/drm/panel/panel-novatek-nt36523.c
-index 2c5712ac3037..c3befa7f253d 100644
---- a/drivers/gpu/drm/panel/panel-novatek-nt36523.c
-+++ b/drivers/gpu/drm/panel/panel-novatek-nt36523.c
-@@ -13,6 +13,8 @@
- #include <linux/of_graph.h>
- #include <linux/regulator/consumer.h>
- 
-+#include <video/mipi_display.h>
-+
- #include <drm/drm_connector.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_mipi_dsi.h>
-@@ -481,6 +483,456 @@ static int elish_csot_init_sequence(struct panel_info *pinfo)
- 	return 0;
- }
- 
-+static int j606f_boe_init_sequence(struct panel_info *pinfo)
-+{
-+	struct mipi_dsi_device *dsi = pinfo->dsi[0];
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x20);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x05, 0xd9);
-+	mipi_dsi_dcs_write_seq(dsi, 0x07, 0x78);
-+	mipi_dsi_dcs_write_seq(dsi, 0x08, 0x5a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0d, 0x63);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0e, 0x91);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0f, 0x73);
-+	mipi_dsi_dcs_write_seq(dsi, 0x95, 0xeb);
-+	mipi_dsi_dcs_write_seq(dsi, 0x96, 0xeb);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_ROWS, 0x11);
-+	mipi_dsi_dcs_write_seq(dsi, 0x6d, 0x66);
-+	mipi_dsi_dcs_write_seq(dsi, 0x75, 0xa2);
-+	mipi_dsi_dcs_write_seq(dsi, 0x77, 0xb3);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00, 0x08, 0x00, 0x23, 0x00, 0x4d, 0x00, 0x6d, 0x00,
-+			       0x89, 0x00, 0xa1, 0x00, 0xb6, 0x00, 0xc9);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb1, 0x00, 0xda, 0x01, 0x13, 0x01, 0x3c, 0x01, 0x7e, 0x01,
-+			       0xab, 0x01, 0xf7, 0x02, 0x2f, 0x02, 0x31);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb2, 0x02, 0x67, 0x02, 0xa6, 0x02, 0xd1, 0x03, 0x08, 0x03,
-+			       0x2e, 0x03, 0x5b, 0x03, 0x6b, 0x03, 0x7b);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb3, 0x03, 0x8e, 0x03, 0xa2, 0x03, 0xb7, 0x03, 0xe7, 0x03,
-+			       0xfd, 0x03, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb4, 0x00, 0x08, 0x00, 0x23, 0x00, 0x4d, 0x00, 0x6d, 0x00,
-+			       0x89, 0x00, 0xa1, 0x00, 0xb6, 0x00, 0xc9);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb5, 0x00, 0xda, 0x01, 0x13, 0x01, 0x3c, 0x01, 0x7e, 0x01,
-+			       0xab, 0x01, 0xf7, 0x02, 0x2f, 0x02, 0x31);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb6, 0x02, 0x67, 0x02, 0xa6, 0x02, 0xd1, 0x03, 0x08, 0x03,
-+			       0x2e, 0x03, 0x5b, 0x03, 0x6b, 0x03, 0x7b);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb7, 0x03, 0x8e, 0x03, 0xa2, 0x03, 0xb7, 0x03, 0xe7, 0x03,
-+			       0xfd, 0x03, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb8, 0x00, 0x08, 0x00, 0x23, 0x00, 0x4d, 0x00, 0x6d, 0x00,
-+			       0x89, 0x00, 0xa1, 0x00, 0xb6, 0x00, 0xc9);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x00, 0xda, 0x01, 0x13, 0x01, 0x3c, 0x01, 0x7e, 0x01,
-+			       0xab, 0x01, 0xf7, 0x02, 0x2f, 0x02, 0x31);
-+	mipi_dsi_dcs_write_seq(dsi, 0xba, 0x02, 0x67, 0x02, 0xa6, 0x02, 0xd1, 0x03, 0x08, 0x03,
-+			       0x2e, 0x03, 0x5b, 0x03, 0x6b, 0x03, 0x7b);
-+	mipi_dsi_dcs_write_seq(dsi, 0xbb, 0x03, 0x8e, 0x03, 0xa2, 0x03, 0xb7, 0x03, 0xe7, 0x03,
-+			       0xfd, 0x03, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x21);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x45, 0x00, 0x65, 0x00,
-+			       0x81, 0x00, 0x99, 0x00, 0xae, 0x00, 0xc1);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb1, 0x00, 0xd2, 0x01, 0x0b, 0x01, 0x34, 0x01, 0x76, 0x01,
-+			       0xa3, 0x01, 0xef, 0x02, 0x27, 0x02, 0x29);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb2, 0x02, 0x5f, 0x02, 0x9e, 0x02, 0xc9, 0x03, 0x00, 0x03,
-+			       0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb3, 0x03, 0x86, 0x03, 0x9a, 0x03, 0xaf, 0x03, 0xdf, 0x03,
-+			       0xf5, 0x03, 0xf7);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb4, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x45, 0x00, 0x65, 0x00,
-+			       0x81, 0x00, 0x99, 0x00, 0xae, 0x00, 0xc1);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb5, 0x00, 0xd2, 0x01, 0x0b, 0x01, 0x34, 0x01, 0x76, 0x01,
-+			       0xa3, 0x01, 0xef, 0x02, 0x27, 0x02, 0x29);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb6, 0x02, 0x5f, 0x02, 0x9e, 0x02, 0xc9, 0x03, 0x00, 0x03,
-+			       0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb7, 0x03, 0x86, 0x03, 0x9a, 0x03, 0xaf, 0x03, 0xdf, 0x03,
-+			       0xf5, 0x03, 0xf7);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb8, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x45, 0x00, 0x65, 0x00,
-+			       0x81, 0x00, 0x99, 0x00, 0xae, 0x00, 0xc1);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x00, 0xd2, 0x01, 0x0b, 0x01, 0x34, 0x01, 0x76, 0x01,
-+			       0xa3, 0x01, 0xef, 0x02, 0x27, 0x02, 0x29);
-+	mipi_dsi_dcs_write_seq(dsi, 0xba, 0x02, 0x5f, 0x02, 0x9e, 0x02, 0xc9, 0x03, 0x00, 0x03,
-+			       0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73);
-+	mipi_dsi_dcs_write_seq(dsi, 0xbb, 0x03, 0x86, 0x03, 0x9a, 0x03, 0xaf, 0x03, 0xdf, 0x03,
-+			       0xf5, 0x03, 0xf7);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x23);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x80);
-+	mipi_dsi_dcs_write_seq(dsi, 0x07, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x11, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x12, 0x77);
-+	mipi_dsi_dcs_write_seq(dsi, 0x15, 0x07);
-+	mipi_dsi_dcs_write_seq(dsi, 0x16, 0x07);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x24);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x01, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x02, 0x1c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x03, 0x1c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x04, 0x1d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x05, 0x1d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x06, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0x07, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0x08, 0x0f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x09, 0x0f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0a, 0x0e);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0b, 0x0e);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0c, 0x0d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0d, 0x0d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0e, 0x0c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0f, 0x0c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x10, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0x11, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0x12, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x13, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x14, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x15, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x16, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x17, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x18, 0x1c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x19, 0x1c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1a, 0x1d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1b, 0x1d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1c, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1e, 0x0f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1f, 0x0f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x20, 0x0e);
-+	mipi_dsi_dcs_write_seq(dsi, 0x21, 0x0e);
-+	mipi_dsi_dcs_write_seq(dsi, 0x22, 0x0d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x23, 0x0d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x24, 0x0c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x25, 0x0c);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_GAMMA_CURVE, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0x27, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0x28, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x29, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2a, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2b, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_LUT, 0x20);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2f, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_ROWS, 0x44);
-+	mipi_dsi_dcs_write_seq(dsi, 0x33, 0x0c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x34, 0x32);
-+	mipi_dsi_dcs_write_seq(dsi, 0x37, 0x44);
-+	mipi_dsi_dcs_write_seq(dsi, 0x38, 0x40);
-+	mipi_dsi_dcs_write_seq(dsi, 0x39, 0x00);
-+
-+	ret = mipi_dsi_dcs_set_pixel_format(dsi, 0x9a);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set pixel format: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0x3b, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_3D_CONTROL, 0x42);
-+	mipi_dsi_dcs_write_seq(dsi, 0x3f, 0x06);
-+	mipi_dsi_dcs_write_seq(dsi, 0x43, 0x06);
-+	mipi_dsi_dcs_write_seq(dsi, 0x47, 0x66);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4a, 0x9a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4b, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4c, 0x91);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4d, 0x21);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4e, 0x43);
-+
-+	ret = mipi_dsi_dcs_set_display_brightness(dsi, 18);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display brightness: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0x52, 0x34);
-+	mipi_dsi_dcs_write_seq(dsi, 0x55, 0x82, 0x02);
-+	mipi_dsi_dcs_write_seq(dsi, 0x56, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0x58, 0x21);
-+	mipi_dsi_dcs_write_seq(dsi, 0x59, 0x30);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5a, 0xba);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5b, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_CABC_MIN_BRIGHTNESS, 0x00, 0x06);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5f, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x65, 0x82);
-+	mipi_dsi_dcs_write_seq(dsi, 0x7e, 0x20);
-+	mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x3c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x82, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0x97, 0xc0);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb6,
-+			       0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05,
-+			       0x05, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x92, 0xc4);
-+	mipi_dsi_dcs_write_seq(dsi, 0x93, 0x1a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x94, 0x5f);
-+	mipi_dsi_dcs_write_seq(dsi, 0xd7, 0x55);
-+	mipi_dsi_dcs_write_seq(dsi, 0xda, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xde, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdb, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdc, 0xc4);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdd, 0x22);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe0, 0xc4);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe1, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe2, 0xc4);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe3, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe4, 0xc4);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe5, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe6, 0xc4);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5c, 0x88);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5d, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0x8d, 0x88);
-+	mipi_dsi_dcs_write_seq(dsi, 0x8e, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb5, 0x90);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x25);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x05, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x19, 0x07);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1f, 0xba);
-+	mipi_dsi_dcs_write_seq(dsi, 0x20, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_GAMMA_CURVE, 0xba);
-+	mipi_dsi_dcs_write_seq(dsi, 0x27, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, 0x33, 0xba);
-+	mipi_dsi_dcs_write_seq(dsi, 0x34, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, 0x3f, 0xe0);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_VSYNC_TIMING, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x44, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_GET_SCANLINE, 0x40);
-+	mipi_dsi_dcs_write_seq(dsi, 0x48, 0xba);
-+	mipi_dsi_dcs_write_seq(dsi, 0x49, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5b, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5c, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5d, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_CABC_MIN_BRIGHTNESS, 0xd0);
-+	mipi_dsi_dcs_write_seq(dsi, 0x61, 0xba);
-+	mipi_dsi_dcs_write_seq(dsi, 0x62, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x2a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x64, 0x16);
-+	mipi_dsi_dcs_write_seq(dsi, 0x67, 0x16);
-+	mipi_dsi_dcs_write_seq(dsi, 0x6a, 0x16);
-+	mipi_dsi_dcs_write_seq(dsi, 0x70, 0x30);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_READ_PPS_START, 0xf3);
-+	mipi_dsi_dcs_write_seq(dsi, 0xa3, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, 0xa4, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, 0xa5, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, 0xd6, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x26);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x00, 0xa1);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0a, 0xf2);
-+	mipi_dsi_dcs_write_seq(dsi, 0x04, 0x28);
-+	mipi_dsi_dcs_write_seq(dsi, 0x06, 0x30);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0c, 0x13);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0d, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x0f, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x11, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x12, 0x50);
-+	mipi_dsi_dcs_write_seq(dsi, 0x13, 0x51);
-+	mipi_dsi_dcs_write_seq(dsi, 0x14, 0x65);
-+	mipi_dsi_dcs_write_seq(dsi, 0x15, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x16, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, 0x17, 0xa0);
-+	mipi_dsi_dcs_write_seq(dsi, 0x18, 0x86);
-+	mipi_dsi_dcs_write_seq(dsi, 0x19, 0x11);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1a, 0x7b);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1b, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1c, 0xbb);
-+	mipi_dsi_dcs_write_seq(dsi, 0x22, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x23, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2a, 0x11);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2b, 0x7b);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1e, 0xc3);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1f, 0xc3);
-+	mipi_dsi_dcs_write_seq(dsi, 0x24, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x25, 0xc3);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2f, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_ROWS, 0xc3);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_COLUMNS, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x32, 0xc3);
-+	mipi_dsi_dcs_write_seq(dsi, 0x39, 0x00);
-+
-+	ret = mipi_dsi_dcs_set_pixel_format(dsi, 0xc3);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set pixel format: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0x20, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x33, 0x11);
-+	mipi_dsi_dcs_write_seq(dsi, 0x34, 0x78);
-+	mipi_dsi_dcs_write_seq(dsi, 0x35, 0x16);
-+	mipi_dsi_dcs_write_seq(dsi, 0xc8, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0xc9, 0x82);
-+	mipi_dsi_dcs_write_seq(dsi, 0xca, 0x4e);
-+	mipi_dsi_dcs_write_seq(dsi, 0xcb, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_READ_PPS_CONTINUE, 0x4c);
-+	mipi_dsi_dcs_write_seq(dsi, 0xaa, 0x47);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x27);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x56, 0x06);
-+	mipi_dsi_dcs_write_seq(dsi, 0x58, 0x80);
-+	mipi_dsi_dcs_write_seq(dsi, 0x59, 0x53);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5a, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5b, 0x14);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5c, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5d, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_CABC_MIN_BRIGHTNESS, 0x20);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5f, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, 0x60, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x61, 0x1d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x62, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x63, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x64, 0x24);
-+	mipi_dsi_dcs_write_seq(dsi, 0x65, 0x1c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x66, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x67, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x68, 0x25);
-+	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x78, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0xc3, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0xd1, 0x24);
-+	mipi_dsi_dcs_write_seq(dsi, 0xd2, 0x30);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x2a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x22, 0x2f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x23, 0x08);
-+	mipi_dsi_dcs_write_seq(dsi, 0x24, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x25, 0xc3);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_GAMMA_CURVE, 0xf8);
-+	mipi_dsi_dcs_write_seq(dsi, 0x27, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x28, 0x1a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x29, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2a, 0x1a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2b, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_LUT, 0x1a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0xe0);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x14, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x16, 0xc0);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0xf0);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+
-+	ret = mipi_dsi_dcs_set_pixel_format(dsi, 0x08);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set pixel format: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x24);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+
-+	ret = mipi_dsi_dcs_set_pixel_format(dsi, 0x5d);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set pixel format: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0x3b, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4a, 0x5d);
-+	mipi_dsi_dcs_write_seq(dsi, 0x4b, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5a, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5b, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x91, 0x44);
-+	mipi_dsi_dcs_write_seq(dsi, 0x92, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdb, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdc, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdd, 0x22);
-+	mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe0, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe1, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe2, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe3, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe5, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe6, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5c, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5d, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x8d, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x8e, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x25);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1f, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0x20, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_GAMMA_CURVE, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0x27, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x33, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0x34, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x48, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0x49, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0x5b, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x61, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0x62, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x26);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x02, 0x31);
-+	mipi_dsi_dcs_write_seq(dsi, 0x19, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1a, 0x7f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1b, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1c, 0x0c);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2a, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, 0x2b, 0x7f);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1e, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0x1f, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0x25, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_ROWS, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_COLUMNS, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0x32, 0x8d);
-+
-+	ret = mipi_dsi_dcs_set_pixel_format(dsi, 0x75);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set pixel format: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x2a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x25, 0x75);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x20);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0x18, 0x40);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x02);
-+
-+	ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set tear on: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0xbb, 0x13);
-+	mipi_dsi_dcs_write_seq(dsi, 0x3b, 0x03, 0x5f, 0x1a, 0x04, 0x04);
-+	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x10);
-+	usleep_range(10000, 11000);
-+	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-+
-+	ret = mipi_dsi_dcs_set_display_brightness(dsi, 0);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display brightness: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x2c);
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, 0x68, 0x05, 0x01);
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(100);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display on: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(30);
-+
-+	return 0;
-+}
-+
- static const struct drm_display_mode elish_boe_modes[] = {
- 	{
- 		/* There is only one 120 Hz timing, but it doesn't work perfectly, 104 Hz preferred */
-@@ -511,6 +963,22 @@ static const struct drm_display_mode elish_csot_modes[] = {
- 	},
- };
- 
-+static const struct drm_display_mode j606f_boe_modes[] = {
-+	{
-+		.clock = (1200 + 58 + 2 + 60) * (2000 + 26 + 2 + 93) * 60 / 1000,
-+		.hdisplay = 1200,
-+		.hsync_start = 1200 + 58,
-+		.hsync_end = 1200 + 58 + 2,
-+		.htotal = 1200 + 58 + 2 + 60,
-+		.vdisplay = 2000,
-+		.vsync_start = 2000 + 26,
-+		.vsync_end = 2000 + 26 + 2,
-+		.vtotal = 2000 + 26 + 2 + 93,
-+		.width_mm = 143,
-+		.height_mm = 235,
-+	},
-+};
-+
- static const struct panel_desc elish_boe_desc = {
- 	.modes = elish_boe_modes,
- 	.num_modes = ARRAY_SIZE(elish_boe_modes),
-@@ -547,6 +1015,20 @@ static const struct panel_desc elish_csot_desc = {
- 	.is_dual_dsi = true,
- };
- 
-+static const struct panel_desc j606f_boe_desc = {
-+	.modes = j606f_boe_modes,
-+	.num_modes = ARRAY_SIZE(j606f_boe_modes),
-+	.width_mm = 143,
-+	.height_mm = 235,
-+	.bpc = 8,
-+	.lanes = 4,
-+	.format = MIPI_DSI_FMT_RGB888,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+		      MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
-+	.init_sequence = j606f_boe_init_sequence,
-+	.has_dcs_backlight = true,
-+};
-+
- static void nt36523_reset(struct panel_info *pinfo)
- {
- 	gpiod_set_value_cansleep(pinfo->reset_gpio, 1);
-@@ -827,6 +1309,10 @@ static int nt36523_probe(struct mipi_dsi_device *dsi)
- }
- 
- static const struct of_device_id nt36523_of_match[] = {
-+	{
-+		.compatible = "lenovo,j606f-boe-nt36523w",
-+		.data = &j606f_boe_desc,
-+	},
- 	{
- 		.compatible = "xiaomi,elish-boe-nt36523",
- 		.data = &elish_boe_desc,
-
--- 
-2.40.0
-
+     Arnd
