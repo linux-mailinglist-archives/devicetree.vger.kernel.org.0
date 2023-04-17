@@ -2,221 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 584D66E44CB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 695276E450E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbjDQKHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 06:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41206 "EHLO
+        id S230002AbjDQKVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 06:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbjDQKHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:07:06 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D72C3A99
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:06:32 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f1738d0d4cso3760995e9.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:06:32 -0700 (PDT)
+        with ESMTP id S230391AbjDQKVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:21:47 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A9372B2
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:20:51 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id xd13so28786930ejb.4
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681725884; x=1684317884;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EZUY4/57kqmqVHMhmuIoQO3azKh51Iz8m2kCJDmMY0A=;
-        b=qIBJraDIQIA5v+rbd4LhBeAHTbxfPcUNOzM49wsoxm2/Tj8p4mgrpOCDpRTdfCOTHP
-         667nXkDdg2EDkzr1k6EA30HyEQZVM5BFAc2JI39U0gvmXMYhxgZFD191FjDUNgtKF8Xc
-         NuMg0m5fqMm9G7B+lGHbUdUU5IeSGh+bbbdZo4IvgXx1mcwP2PYec+gPWQl2FqNbH67/
-         ELuEH+Vt+vt1u4uz3aiH/GCnCnwm70cM54xbwMjnNqtPtOfGWmlPs+WGvbbQK8F+mFEp
-         1aPgjTPTmEOMqkbJACj0E/jdyr9eTxgRufqka8FU5eXy4EI1ngzAt6BR6tN4RMn3efpp
-         qfqw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681726728; x=1684318728;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IEKwLXsBEauVzf8PBHcbltO1uOVycYMbAPiN0uQCZOA=;
+        b=z1/4XUxTRf+MxwZzFrAn5VXQJVSFBh8AFpQkl5e5QodhhBhbXZHmHZTtLsIkeLynQ1
+         5dKtcSHqiofPKSpkxUbr5i6miGBwVLAwQN+1tNgsYb3kmwhyccuWAm3GA8zu+0dHx/ap
+         SNzLiQvrIhSQKVmsFTZdc4IfZ/R2FC3BXLknv87jor3b9RiB/Sok76iLZIcX9XSp4EHW
+         cV2Py4YJgfTtfhsVuDqbBeZv12kJCfl+ioflkiKsPwEQOucO3iIWVe1CzZ90+gjn29r6
+         +OI+APMa78pReWIWVGEFqkKbHeJYC/jc4ZYDoTWYWQ4aff+LqqeaHGiWUpPBo1jVnURR
+         3RuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681725884; x=1684317884;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EZUY4/57kqmqVHMhmuIoQO3azKh51Iz8m2kCJDmMY0A=;
-        b=HOaPn47VgbTawC/ta2WEn2EnSm32rXMEhTaF4Ua0dErzDWZKhdi2yI5zAveC29dZ1k
-         NPWXBOevFUpNnU+1BI6s51UbcAwNFsC2HzyVDXYFHv6JGjYKBuIxr/B7eF3CCRwDmcJH
-         +dBKfS2Lg45rynsPXut35vgpBl3frbiATZmQvqjHiUw1aDHtTB/azwZAjqbuVkqHInGD
-         KxVnsZo+WhK6v2sgBQjR9cQtrkLkuD2M29x2BiTXbSOuJyMhbUP6zo9BSKzMemvu91sH
-         EdpcQ9Mg+3KkPVl45omtOKhjHDRy2A41kJpF88hjW816+A6zF6XMW0GrQavwVLDCINX5
-         IHPQ==
-X-Gm-Message-State: AAQBX9cvLYgOooxGGRHp7aJCLhth33bYIsPBsL1UK9pUVw1P+clA3L6X
-        x17NLenF8apBqrpZUuA+SuKisQ==
-X-Google-Smtp-Source: AKy350YOGGEXz8m/tFxIzICQ9PcToXq3MDFLmmm7h1rjdTEkDBJsnzkN6fcjfCprXUvhpBW8L7VVKQ==
-X-Received: by 2002:a5d:5104:0:b0:2f8:cd53:d882 with SMTP id s4-20020a5d5104000000b002f8cd53d882mr4621802wrt.56.1681725884198;
-        Mon, 17 Apr 2023 03:04:44 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id i4-20020a5d55c4000000b002f74578f494sm7745975wrw.41.2023.04.17.03.04.43
+        d=1e100.net; s=20221208; t=1681726728; x=1684318728;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IEKwLXsBEauVzf8PBHcbltO1uOVycYMbAPiN0uQCZOA=;
+        b=jkuYx0rohmEsuhdiZVWuxjhTA6dBUCR6cbQqFbU6/rtF16iCEUTZ4/tmpEHSu1C5Nd
+         GhwLNUcyz4k85CkO/jmi86If+eIkw6khOFxeqehHpUipg1Knfh21X2MPjfbEcJ2hLA9d
+         N/FRzkDT9WtFaFSw/tZIk+z2/33rLtYSM6qDJWsQRYCUK3Y0BWl3kf63JmTjJh6unVbb
+         13x0hKplITN9nLNGR3IzgcURpzsovjXaXMxkmN792rlyGyZa+tGk21+MFpV4EX239ShH
+         1YipHezRgnoLuG7vKo4Dv/1i8Q2dGiZCy9XJEbfYZulOMfeqfVNKsunCMSVtdAuXArHo
+         Q4DA==
+X-Gm-Message-State: AAQBX9cXCOt3EiMRpTJf9fBrlP5JmbZ6MDlq8NBGYjqpAv8HCasRM4Gw
+        PM1owXnbQCXQFLtPpsfwfUgO/v0uWYpn9ttKqnIF/A==
+X-Google-Smtp-Source: AKy350Yn97b8YdvYRltq539a9T88Tdd9ctYhN1bmF84VQIX609OSCsLtqz6Ga+Pe34Pw2ZZURwGa6g==
+X-Received: by 2002:a7b:ca59:0:b0:3ef:5a4f:430 with SMTP id m25-20020a7bca59000000b003ef5a4f0430mr11274672wml.11.1681725905871;
+        Mon, 17 Apr 2023 03:05:05 -0700 (PDT)
+Received: from localhost ([2a01:e0a:28d:66d0:92d9:442d:a276:285d])
+        by smtp.gmail.com with ESMTPSA id p8-20020a7bcc88000000b003f04f0c5a6fsm11463173wma.26.2023.04.17.03.05.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 03:04:43 -0700 (PDT)
-Message-ID: <75d00efb-ff3c-b1f8-a141-3fa78a39557a@linaro.org>
-Date:   Mon, 17 Apr 2023 11:04:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v5 00/14] Add Qualcomm PMIC TPCM support
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
- <CRVOZOPMKBX4.2T7FOCWF0RKBJ@otso>
- <10551f5e-4516-c0cc-0b04-73aa38f80a2c@linaro.org>
- <CRWA2OP2T6KT.RCWAVWF5Q2T2@otso>
- <ccc9fa4c-ca52-d8f3-a8b3-45031bea673f@linaro.org>
- <CRYUWMIJDSB2.BJWEPJEA3Y1D@otso>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CRYUWMIJDSB2.BJWEPJEA3Y1D@otso>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Mon, 17 Apr 2023 03:05:05 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 17 Apr 2023 12:05:04 +0200
+Message-Id: <CRYY2V3HJ0CP.96JQ18PLZB3C@burritosblues>
+Cc:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sterzik@ti.com>, <u-kumar1@ti.com>, <jneanne@baylibre.com>,
+        <jpanis@baylibre.com>, <aseketeli@baylibre.com>
+Subject: Re: [PATCH v2 0/5] arm64: dts: ti: k3-j7200-som-p0: Add TP6594
+ family PMICs
+From:   "Esteban Blanc" <eblanc@baylibre.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+X-Mailer: aerc 0.14.0
+References: <20230414112843.1358067-1-eblanc@baylibre.com>
+ <714a56b1-438c-7aad-920b-f3f1d72afc5f@linaro.org>
+In-Reply-To: <714a56b1-438c-7aad-920b-f3f1d72afc5f@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/04/2023 08:35, Luca Weiss wrote:
-> Do you have an idea in which part of the code to start debugging this?
-> Since orientation detection is working is it maybe in the phy code and
-> not in the tcpm driver? Or does that also touch crucial stuff for USB
-> apart from telling phy which direction to use?
+On Fri Apr 14, 2023 at 1:36 PM CEST, Krzysztof Kozlowski wrote:
+> On 14/04/2023 13:28, Esteban Blanc wrote:
+> > TPS6594 is a Power Management IC which provides regulators and others
+> > features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+> > PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+> > communicate through the I2C or SPI interfaces.
+> > TPS6594 is the super-set device while TPS6593 and LP8764 are derivative=
+s.
+> >=20
+> > This should be applied on top of other patch series:
+> > - https://lore.kernel.org/all/20230406075622.8990-1-jpanis@baylibre.com=
+/
+> >   For core MFD driver
+> > - https://lore.kernel.org/lkml/20230414101217.1342891-1-eblanc@baylibre=
+.com/
+> >   For regulator driver
+>
+> Why? DTS cannot be merged with drivers, so if you insist on such
+> dependency then:
+> 1. Your patchset is broken,
+> 2. I actually does not understand why,
+> 3. NAK - don't merge DTS into driver branches.
+>
+> You probably are misunderstanding branches and dependencies.
 
-PHY - I'd almost just do the following
+There is no dependency indeed. We thought that dt-bindings patch at least h=
+ad
+to be applied before this DT series even if it is not a 'dependency', the o=
+ther
+link was a mistake. I will remove these misleading links in next cover-lett=
+er.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c 
-b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-index edb788a71edeb..bbac82bd093f8 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-@@ -3369,7 +3369,7 @@ static int qmp_combo_typec_switch_set(struct 
-typec_switch_dev *sw,
+Thanks for your time. Best regards,
 
-         dev_dbg(qmp->dev, "Toggling orientation current %d requested %d\n",
-                 qmp->orientation, orientation);
--
-+return 0;
-
-In that case the PHY should "just work" for host or device in one 
-orientation.
-
-The other possibility is that the data role message is not hitting dwc3 
-drd on your platform.
-
-If you take the last commit on this branch - plus the updated PHY commit
-
-Commit: 171d7f507511 ("usb: dwc3: drd: Enable user-space triggered 
-role-switching")
-
-Commit: eb0daa19f3ad ("phy: qcom-qmp: Register as a typec switch for 
-orientation detection")
-
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-04-17-pm8150b-tcpm-qcom-wrapper-typec-mux
-
-cat /sys/class/usb_role/a600000.usb-role-switch/role
-
-On SM8250 it looks like this
-
-- Attach TypeC accessory with USB key plugged in [1]
-   Mount USB key, read/write some data
-   Unmount USB key
-
-   cat /sys/class/usb_role/a600000.usb-role-switch/role
-   host
-
-- Attach TypeC accessory in opposite orientation
-   Run same test
-
-- Connect to PC via TypeC cable
-   Run usb-ecm-up.sh [2]
-
-   cat /sys/class/usb_role/a600000.usb-role-switch/role
-   device
-
-   PC     : ifconfig enp49s0f3u2u4 192.168.8.1
-   SM8250 : ifconfig usb0 192.168.8.2
-   Then
-     PC     : iperf -s
-     SM8250 : iperf -c 192.168.8.1 -t 10
-     [  1] 0.0000-10.0706 sec   307 MBytes   256 Mbits/sec
-
-- Unplug from PC - replug TypeC accessory
-   Rerun test in both orientations
-
-- Replug target to PC
-   In this case we only have to reset the IP address
-
-   PC     : ifconfig enp49s0f3u2u4 192.168.8.1
-   SM8250 : ifconfig usb0 192.168.8.2
-
-Yep its worth checking out that the data-role switch is working, we 
-might be looking at the wrong thing for you on the PHY.
-
-[1] 
-https://www.amazon.com/CableCreation-Multiport-Adapter-Gigabit-Ethernet/dp/B08FWMWGTD
-
-[2] usb-ecm-up.sh
-root@linaro-gnome:~# cat usb-ecm-up.sh
-#!/usr/bin/env bash
-
-# load libcomposite module
-modprobe libcomposite
-
-# ensure function is loaded
-modprobe usb_f_ecm
-modprobe usb_f_ncm
-
-mount -t configfs none /sys/kernel/config/
-
-# create a gadget
-mkdir /sys/kernel/config/usb_gadget/g0
-
-# cd to its configfs node
-cd /sys/kernel/config/usb_gadget/g0
-
-# configure it (vid/pid can be anything if USB Class is used for driver 
-compat)
-echo 0x0525 > idVendor
-echo 0xa4a4 > idProduct
-
-# configure its serial/mfg/product
-mkdir strings/0x409
-
-echo 0xCAFEBABE > strings/0x409/serialnumber
-echo Linaro > strings/0x409/manufacturer
-echo qrb5165-rb5 > strings/0x409/product
-
-# create configs
-mkdir configs/c.1
-mkdir configs/c.1/strings/0x409
-
-# create the function (name must match a usb_f_<name> module such as 'acm')
-mkdir functions/ncm.0
-
-echo "CDC ECM" > configs/c.1/strings/0x409/configuration
-
-# associate function with config
-ln -s functions/ncm.0 configs/c.1
-
-# Set USB version 3.1
-echo 0x0310 > bcdUSB
-
-echo "super-speed-plus" > max_speed
-
-# enable gadget by binding it to a UDC from /sys/class/udc
-#echo a600000.dwc3 > UDC
-echo a600000.usb > UDC
-# to unbind it: echo "" > UDC; sleep 1; rm -rf 
-/sys/kernel/config/usb_gadget/g0
-
-sleep 1
-
-ifconfig usb0 192.168.8.2
-
+--=20
+Esteban Blanc
+BayLibre
