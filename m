@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A196E4929
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FA2B6E4937
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbjDQND0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:03:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
+        id S230410AbjDQNDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:03:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbjDQNDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:03:11 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB2910263
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 05:59:58 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id r15so4182846wmo.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 05:59:58 -0700 (PDT)
+        with ESMTP id S230445AbjDQNDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:03:22 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F73C33A4D
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:00:20 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id m39-20020a05600c3b2700b003f170e75bd3so1370962wms.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:00:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681736328; x=1684328328;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=B+MVzf8r/4s+B98TOSVIFBCcQmTeOnxbCDg8qGd1O2g=;
-        b=Qw3+fO+DNms8K56wL8s70n889hD+X3HzOhfr2FkVez8KSDwMuAvbZJ6/az6knoCYRO
-         WC5/jl0Xicoz9hT7MfXD8h1NXyK2JBbH1gLx6iV0deFFfX0Q2VIvb0mXk2TNHm9Ju3QI
-         HsEXwJAtir4qM7DcSsj7iT8Qjyl6VEh35HzCFVrFVOliKWLo2J5aC/FbNG4zhSXFJvVo
-         ghWHmHUd1yAbxuYE175hZWDu90XL2C0F/pqXB4Z7Iyo1Xs9FBoqpXt3S1Bun677QLY4h
-         RvL6o3kArQ9La2z5BDnKffqx6A6u3gxQXnPqavA34WnVlWAQWTseLP7iuJv6S7yjM1iG
-         ixvA==
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681736329; x=1684328329;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GuITCu8i/li8kE8CEtM/U6x5Upz1m7yYpvjZ7zwPQTw=;
+        b=0J4OzIPsxxt8RPoqfiLc+/5X6L4vMstEaQae+8XGjR8f59YSGqJZgSVnEL/3ASF4X8
+         xmeYZjdTVKXCzDj4OWOT/EeHCyjOp3SjaJhmEQT5hb7dmp7ztxyc2Vp4/klikgi9oyzW
+         zci0oD4zEJd/TApreVAeNpIYoWEf9PMaY8fo/RzFWT+LpRUXQo5cwF1eU0eIrPKkcJsm
+         3ixChpu0OabJbZcbl8SVNJtHEwoUJ/zoJ0a1b2IX8z2xqNud0x3yaPKgf7o7qlnwQn4U
+         mrTjIX0dgG+rDFD126c9Wvqw/OAXwbo6GwQYGgS5RF5qlgbHePV1UAEa5xKs7adHYazB
+         Ab2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681736328; x=1684328328;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B+MVzf8r/4s+B98TOSVIFBCcQmTeOnxbCDg8qGd1O2g=;
-        b=CTFDJAAfvq610mzzuvhX2s/DFj8n1w0PHwNjTq4paiuJgSrppGy0p0ZMubDXdBv+7O
-         qYS3P6MYlvSLYb/5zFFvBISy9WwjE+Vf5xy0qA/2L3tT1IpSYQMxG6HWvKNZuIMnsuzO
-         dGQMYQr3NUg8MBt5dy5hcqgIf9/FrWIRD2aH+4JYkkuwvQiEYwr9aZTm3xP0HvPW1KFH
-         yCc6tl8C9pidErVrb02JUkl1PQKr4G0YXQnTel1KBp478FDxBAzwee9KbIvdmaxUIQg1
-         n7rSWR747JPvROc+1EH8sQyOjlzb/W8YEa4nCwbtlwa4thssdhJHVMnA/81mkVMw+CJ0
-         sxjA==
-X-Gm-Message-State: AAQBX9fVJEvdjpDs7PRcDrHCOY4o9mr603c/A7pvUKc71XKlSu59+jT7
-        bOJyPY9mJvIdnx6D3AtYqfEW5g==
-X-Google-Smtp-Source: AKy350Z2eV6AqL+dVKQQg8ekRMO3sImYABpWFD57wB0IsJLBBkAMxrq4zgrfOPdZN4P4MyAL/pMLaw==
-X-Received: by 2002:a1c:7304:0:b0:3f1:6f4a:a3ad with SMTP id d4-20020a1c7304000000b003f16f4aa3admr4528202wmb.2.1681736328321;
-        Mon, 17 Apr 2023 05:58:48 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681736329; x=1684328329;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GuITCu8i/li8kE8CEtM/U6x5Upz1m7yYpvjZ7zwPQTw=;
+        b=FFMgFxY7FooQo2rRtXIG5G2C4n5pCOy904mzkj+zS4Hv4VV/tzmXqCOHcrw/+WqqRe
+         4wXyXOrQMZHYSm6uEWsyDkIyFoilFAT3ZARf6XK8/tVCR0fDmKtDEC6P0CPrTSMQPNTc
+         KYQGN3eqbXj1Uas45ZUVrbhh2QulPKEg5PtC16n1p02FSW3L5eZxt6Acj6OmBr7VOAOl
+         y89Coe5yL33RGd2oQTy+f80/BJJ6gyy75SpHtnrLxRHAfuQe7v4XQa0kspLPq2lLlwpj
+         WeMoQXZ4xcer4a+EMaoPAduzWhxjS8MW972q6rUZTDy727DEmFvHpVnu2lztgRpEbXOM
+         EtAA==
+X-Gm-Message-State: AAQBX9c32PcoovDx9IH15skr61bhhDNFYseD9EaPuoJtR9MCvXVDrt1O
+        cNzdteNplqhACn0Dd5vdpipTP9hB+JtSGG9ttj0=
+X-Google-Smtp-Source: AKy350YYJSLvINl73EmHpD86PAlOoFXuPnqV6KCbJ2kTnUUZ4i6TgTz/EYFSBIxG56b50i2GrzcLLQ==
+X-Received: by 2002:a05:600c:247:b0:3e2:589:2512 with SMTP id 7-20020a05600c024700b003e205892512mr11213289wmj.21.1681736329304;
+        Mon, 17 Apr 2023 05:58:49 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:374a:ffae:fd26:4893])
-        by smtp.gmail.com with ESMTPSA id v21-20020a05600c471500b003ef5bb63f13sm15557546wmo.10.2023.04.17.05.58.47
+        by smtp.gmail.com with ESMTPSA id v21-20020a05600c471500b003ef5bb63f13sm15557546wmo.10.2023.04.17.05.58.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 05:58:47 -0700 (PDT)
+        Mon, 17 Apr 2023 05:58:48 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,10 +62,12 @@ Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v4 0/5] arm64: dts: qcom: sa8775p: add more IOMMUs
-Date:   Mon, 17 Apr 2023 14:58:39 +0200
-Message-Id: <20230417125844.400782-1-brgl@bgdev.pl>
+Subject: [PATCH v4 1/5] arm64: defconfig: enable the SA8775P GPUCC driver
+Date:   Mon, 17 Apr 2023 14:58:40 +0200
+Message-Id: <20230417125844.400782-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230417125844.400782-1-brgl@bgdev.pl>
+References: <20230417125844.400782-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,42 +82,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add the GPU and PCIe IOMMUs for sa8775p platforms as well as the required
-GPU clock controller driver.
+Enable the GPUCC module for SA8775P platforms in the arm64 defconfig.
 
-NOTE: I didn't pick up Krzysztof's tag for patch 4/5 as the patch changed
-significantly.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-v3 -> v4:
-- fix the adreno smmu compatibles
-- drop patches that are already in next
-
-v2 -> v3:
-- select QCOM_GDSC in Kconfig for the GPUCC module
-- the GPU SMMU is actually an adreno SMMU so describe it as such and
-  fix the DT
-- fix the mapped memory size for the PCIe SMMU
-
-v1 -> v2:
-- remove unused include in the GPUCC driver
-- remove unused clock from the GPUCC driver and make it compatible
-  with the generic QCom GPUCC bindings
-- put the new defconfig option in the right place (as per savedefconfig)
-  and make the GPUCC driver a module rather than built-in
-- describe the smmu clocks for sa8775p in dt-bindings
-
-Bartosz Golaszewski (5):
-  arm64: defconfig: enable the SA8775P GPUCC driver
-  arm64: dts: qcom: sa8775p: add the pcie smmu node
-  arm64: dts: qcom: sa8775p: add the GPU clock controller node
-  dt-bindings: iommu: arm,smmu: enable clocks for sa8775p Adreno SMMU
-  arm64: dts: qcom: sa8775p: add the GPU IOMMU node
-
- .../devicetree/bindings/iommu/arm,smmu.yaml   |   6 +-
- arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 125 ++++++++++++++++++
- arch/arm64/configs/defconfig                  |   1 +
- 3 files changed, 130 insertions(+), 2 deletions(-)
-
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index b6342b40c600..e1063ab32658 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -1164,6 +1164,7 @@ CONFIG_MSM_GCC_8998=y
+ CONFIG_QCS_GCC_404=y
+ CONFIG_SA_GCC_8775P=y
+ CONFIG_SC_DISPCC_8280XP=m
++CONFIG_SA_GPUCC_8775P=m
+ CONFIG_SC_GCC_7180=y
+ CONFIG_SC_GCC_7280=y
+ CONFIG_SC_GCC_8180X=y
 -- 
 2.37.2
 
