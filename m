@@ -2,291 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B973D6E4A1C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5082E6E4A2A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230253AbjDQNkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:40:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
+        id S230203AbjDQNmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:42:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbjDQNkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:40:09 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0367F130
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:40:08 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2a8b082d6feso13750241fa.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:40:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681738806; x=1684330806;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OfX3jjRBAyejaneTA/BukJVT9hltWcZ6BOSo0XWuuHM=;
-        b=dNipT0zxpVH9LwkSmnABRW+aAyMOBTh2UM7lpkx/alNQB8ME8CfWujTxsFD5lxGpMS
-         XdphnWFzTRIKRSO2Yphyq++emqJc6dmUtPXFUaHBaQT7WFtyws3LUKhHboG1Hg7WQdsH
-         L6oRnQtRUCu5S4P82N6ARSSEh43aZwN8snAF8TMLGa83o5sbTV1v0NLFO3Rw9gf8+v9Q
-         ZUmk+mNH3hj8sSdBKhI53SpFVBnkoY9Xy6kJ3V3EpR7E5gzLtJMQJuaZkDbbdXlpxlhD
-         c9dVDXJD/M2dLWGlBkvLh5wTYcAbp0qymcox+O3lMbXF7/jBimC8juDowkJlAK1VsLpc
-         un/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681738806; x=1684330806;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OfX3jjRBAyejaneTA/BukJVT9hltWcZ6BOSo0XWuuHM=;
-        b=hcmeAvF/dTKaxWsZZRq2UrqVbXUx/7T6SmPTIjJIe4Mz9W+eGGtZ1llHnAWF0ypy11
-         WGUxQtsZWIGU69w0jRc5xPZ6Z7iPONvlLKdzyhlGFqwZVS3oS2ZKnqDQyXWLf1Facu2B
-         E+vy5mZ0s3Pgl4lJtTr/RYrtursLV4cBTp4xMOb1XH5ypxjCXQ69+lpR6mJNCbxj73+t
-         XI2jdTXYEYtUjFuw56joSVZe3TIdXmgj1yw0nppHYsBWPcElnjSFV3PN1yit2bG1gvgF
-         HLEJXL2kzNFoiLwUJ57jcps0OI0xNlL1OX5+E44iYQsvqPyTbPgfmAIRwD78ion886ci
-         qJBg==
-X-Gm-Message-State: AAQBX9d4xxR6A4sEX6RPBDAA2/CZmNi/jSPKU+MQ9p/4vXxr8kDcTVTx
-        ZV62/G2kSi46KRk8sZRTu/zrNg==
-X-Google-Smtp-Source: AKy350asxBHx6SjgbH1XtrKGinYIJdyc3SlVGJPj7DhRHC8UfFIrz28WHGfnjB9MElGEfLJN7kY3BA==
-X-Received: by 2002:ac2:4c2f:0:b0:4ec:b1bf:a55b with SMTP id u15-20020ac24c2f000000b004ecb1bfa55bmr1644966lfq.24.1681738806214;
-        Mon, 17 Apr 2023 06:40:06 -0700 (PDT)
-Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
-        by smtp.gmail.com with ESMTPSA id u6-20020ac243c6000000b004e7fa99f2b5sm2062181lfl.186.2023.04.17.06.40.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 06:40:05 -0700 (PDT)
-Message-ID: <aefda5ed-fee3-8919-2b96-a5bda7c77d06@linaro.org>
-Date:   Mon, 17 Apr 2023 15:40:03 +0200
+        with ESMTP id S230047AbjDQNmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:42:54 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6EC6A75;
+        Mon, 17 Apr 2023 06:42:49 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33HDgfwc115750;
+        Mon, 17 Apr 2023 08:42:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681738961;
+        bh=seuPS1iQRiZOPAIOrJ+23K+sqk6ZAZc/FbVBz513qsc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=R93LsQ1ayRBbbfHxo4p/s1leBiFctxhlan8YGvrBmFV7ibChrTQJJ8bnlQwDWse2h
+         6fImBjl9iyuPTrfPk2D9uZ9tlNIPw7BfNlQ+avPLez/njE7G7ZVc3t7cUemt8Lb32A
+         uHhYT87X6K7Gj239ojNoUNtWQQJBgQU5TkQ8PM+g=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33HDgfMo098059
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Apr 2023 08:42:41 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 17
+ Apr 2023 08:42:41 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 17 Apr 2023 08:42:41 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33HDgfsu079671;
+        Mon, 17 Apr 2023 08:42:41 -0500
+Date:   Mon, 17 Apr 2023 08:42:41 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <kamlesh@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Remove power-domains from
+ crypto node
+Message-ID: <20230417134241.oj5cmrqjeoxj2sb2@power>
+References: <20230417133308.1990057-1-kamlesh@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v3 2/2] soc: qcom: Introduce RPM master stats driver
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230405-topic-master_stats-v3-0-2cb2ba4f2092@linaro.org>
- <20230405-topic-master_stats-v3-2-2cb2ba4f2092@linaro.org>
- <20230416142055.GA2798@thinkpad>
- <ab6d9730-2eae-44c7-a809-b29174acdefc@linaro.org>
- <20230417082003.GA2874@thinkpad>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230417082003.GA2874@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230417133308.1990057-1-kamlesh@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19:03-20230417, kamlesh@ti.com wrote:
+> From: Kamlesh Gurudasani <kamlesh@ti.com>
+> 
+> With latest firmware update, we can no longer control power of SA3UL from
+> main domain.
 
+How is this backward compatible?
 
-On 17.04.2023 10:20, Manivannan Sadhasivam wrote:
-> On Mon, Apr 17, 2023 at 09:14:39AM +0200, Konrad Dybcio wrote:
->>
->>
->> On 16.04.2023 16:20, Manivannan Sadhasivam wrote:
->>> On Fri, Apr 14, 2023 at 01:37:18PM +0200, Konrad Dybcio wrote:
->>>> Introduce a driver to query and expose detailed, per-subsystem (as opposed
->>>> to the existing qcom_stats driver which exposes SoC-wide data) about low
->>>> power mode states of a given RPM master. That includes the APSS (ARM),
->>>> MPSS (modem) and other remote cores, depending on the platform
->>>> configuration.
->>>>
->>>> This is a vastly cleaned up and restructured version of a similar
->>>> driver found in msm-5.4.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>  drivers/soc/qcom/Kconfig            |  11 +++
->>>>  drivers/soc/qcom/Makefile           |   1 +
->>>>  drivers/soc/qcom/rpm_master_stats.c | 160 ++++++++++++++++++++++++++++++++++++
->>>>  3 files changed, 172 insertions(+)
->>>>
->>>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
->>>> index a491718f8064..e597799e8121 100644
->>>> --- a/drivers/soc/qcom/Kconfig
->>>> +++ b/drivers/soc/qcom/Kconfig
->>>> @@ -135,6 +135,17 @@ config QCOM_RMTFS_MEM
->>>>  
->>>>  	  Say y here if you intend to boot the modem remoteproc.
->>>>  
->>>> +config QCOM_RPM_MASTER_STATS
->>>> +	tristate "Qualcomm RPM Master stats"
->>>> +	depends on ARCH_QCOM || COMPILE_TEST
->>>> +	help
->>>> +	  The RPM Master sleep stats driver provides detailed per-subsystem
->>>> +	  sleep/wake data, read from the RPM message RAM. It can be used to
->>>> +	  assess whether all the low-power modes available are entered as
->>>> +	  expected or to check which part of the SoC prevents it from sleeping.
->>>> +
->>>> +	  Say y here if you intend to debug or monitor platform sleep.
->>>> +
->>>>  config QCOM_RPMH
->>>>  	tristate "Qualcomm RPM-Hardened (RPMH) Communication"
->>>>  	depends on ARCH_QCOM || COMPILE_TEST
->>>> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
->>>> index 0f43a88b4894..7349371fdea1 100644
->>>> --- a/drivers/soc/qcom/Makefile
->>>> +++ b/drivers/soc/qcom/Makefile
->>>> @@ -14,6 +14,7 @@ obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
->>>>  qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
->>>>  obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
->>>>  obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
->>>> +obj-$(CONFIG_QCOM_RPM_MASTER_STATS)	+= rpm_master_stats.o
->>>>  obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
->>>>  qcom_rpmh-y			+= rpmh-rsc.o
->>>>  qcom_rpmh-y			+= rpmh.o
->>>> diff --git a/drivers/soc/qcom/rpm_master_stats.c b/drivers/soc/qcom/rpm_master_stats.c
->>>> new file mode 100644
->>>> index 000000000000..73080c92bf89
->>>> --- /dev/null
->>>> +++ b/drivers/soc/qcom/rpm_master_stats.c
->>>> @@ -0,0 +1,160 @@
->>>> +// SPDX-License-Identifier: GPL-2.0-only
->>>> +/*
->>>> + * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
->>>> + * Copyright (c) 2023, Linaro Limited
->>>> + *
->>>> + * This driver supports what is known as "Master Stats v2", which seems to be
->>>> + * the only version which has ever shipped, all the way from 2013 to 2023.
->>>
->>> It'd better to mention "Qualcomm downstream" in the somewhere above comment to
->>> make it clear for users.
->> Ack
->>
->>>
->>>> + */
->>>> +
->>>> +#include <linux/debugfs.h>
->>>> +#include <linux/io.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/of_address.h>
->>>> +#include <linux/platform_device.h>
->>>> +
->>>> +struct master_stats_data {
->>>> +	void __iomem *base;
->>>> +	const char *label;
->>>> +};
->>>> +
->>>> +struct rpm_master_stats {
->>>> +	uint32_t active_cores;
->>>> +	uint32_t num_shutdowns;
->>>> +	uint64_t shutdown_req;
->>>> +	uint64_t wakeup_idx;
->>>> +	uint64_t bringup_req;
->>>> +	uint64_t bringup_ack;
->>>> +	uint32_t wakeup_reason; /* 0 = "rude wakeup", 1 = scheduled wakeup */
->>>> +	uint32_t last_sleep_trans_dur;
->>>> +	uint32_t last_wake_trans_dur;
->>>> +
->>>> +	/* Per-subsystem (*not necessarily* SoC-wide) XO shutdown stats */
->>>> +	uint32_t xo_count;
->>>> +	uint64_t xo_last_enter;
->>>> +	uint64_t last_exit;
->>>> +	uint64_t xo_total_dur;
->>>
->>> Why can't you use u64, u32?
->> Brain derp!
->>
->>>
->>> Also, sort these members as below:
->>>
->>> u64
->>> u32
->> No, it's the way this data is structured in the
->> memory and we copy it as a whole.
->>
 > 
-> Ok, in that case you'd need __packed.
+> Remove power-domains property from the crypto node.
 > 
->>>
->>>> +};
->>>> +
+> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> [...]
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index b3e4857bbbe4..18a6e9ffaf58 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -174,7 +174,6 @@ k3_reset: reset-controller {
+>  	crypto: crypto@40900000 {
+>  		compatible = "ti,am62-sa3ul";
+>  		reg = <0x00 0x40900000 0x00 0x1200>;
+> -		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+>  		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+> -- 
+> 2.34.1
 > 
->>>> +		/*
->>>> +		 * Generally it's not advised to fail on debugfs errors, but this
->>>> +		 * driver's only job is exposing data therein.
->>>> +		 */
->>>> +		dent = debugfs_create_file(d[i].label, 0444, root,
->>>> +					   &d[i], &master_stats_fops);
->>>> +		if (!dent) {
->>>
->>> Don't check for NULL, instead use IS_ERR() if you really care about error
->>> checking here.
->> "This function will return a pointer to a dentry if
->> it succeeds. This pointer must be passed to the
->> debugfs_remove function when the file is to be removed
->> (no automatic cleanup happens if your module is unloaded,
->> you are responsible here.) If an error occurs, NULL will
->> be returned."
-> 
-> This seems to be the old comment. Take a look at the updated one in mainline:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/fs/debugfs/inode.c#n468
-> 
-> Greg changed the semantics of the debugfs APIs a while back but the kernel doc
-> was updated recently:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/debugfs/inode.c?id=d3002468cb5d5da11e22145c9af32facd5c34352
-Okay, ack to both. I'll fix all that and resend!
 
-Konrad
-> 
-> - Mani
-> 
->>
->>>
->>>> +			debugfs_remove_recursive(root);
->>>> +			return -EINVAL;
->>>> +		}
->>>> +	}
->>>> +
->>>> +	device_set_pm_not_required(dev);
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static void master_stats_remove(struct platform_device *pdev)
->>>> +{
->>>> +	struct dentry *root = platform_get_drvdata(pdev);
->>>> +
->>>> +	debugfs_remove_recursive(root);
->>>> +}
->>>> +
->>>> +static const struct of_device_id rpm_master_table[] = {
->>>> +	{ .compatible = "qcom,rpm-master-stats" },
->>>> +	{ },
->>>> +};
->>>> +
->>>> +static struct platform_driver master_stats_driver = {
->>>> +	.probe = master_stats_probe,
->>>> +	.remove_new = master_stats_remove,
->>>> +	.driver = {
->>>> +		.name = "rpm_master_stats",
->>>> +		.of_match_table = rpm_master_table,
->>>> +	},
->>>> +};
->>>> +module_platform_driver(master_stats_driver);
->>>> +
->>>> +MODULE_DESCRIPTION("RPM Master Statistics driver");
->>>
->>> Qualcomm RPM Master Statistics driver
->> Ack
->>
->> Konrad
->>>
->>> - Mani
->>>
->>>> +MODULE_LICENSE("GPL");
->>>>
->>>> -- 
->>>> 2.40.0
->>>>
->>>
-> 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
