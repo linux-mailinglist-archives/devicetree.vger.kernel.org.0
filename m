@@ -2,324 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF4D56E481D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 14:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A196E4929
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230475AbjDQMpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 08:45:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38262 "EHLO
+        id S231268AbjDQND0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:03:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229878AbjDQMp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 08:45:29 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1A3C3;
-        Mon, 17 Apr 2023 05:45:27 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id x8-20020a17090a6b4800b002474c5d3367so7810210pjl.2;
-        Mon, 17 Apr 2023 05:45:27 -0700 (PDT)
+        with ESMTP id S231279AbjDQNDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:03:11 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB2910263
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 05:59:58 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id r15so4182846wmo.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 05:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681735527; x=1684327527;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fMk9exMYjjdDJNTuBhM7AS0L6trr20lU8gX0Q2FmNlk=;
-        b=rT9OuqM5jAiZuKGtjjeHOPszw76Yf3bdpSxCE9Uqi+uyJX8nFIKm8MW+Y1m2rSIJrR
-         TgRKhqGtdAtEMluk4c6NGyNvI488hx7VpLmerifF1fy36MsG+zYffb5xg89d9km25zjZ
-         2/gMPAvJh4RKa3KbiPlpmUpJApWNOfqtcf1zdllEpJ/XGR7NpswEdzySImStgeG0ahN2
-         /X3vc8B8Y3JgeMhbU4ccqz/ZaNolQHLpQxarOCqP4zkxAMXk97mS8qWWFrzQG7trTlEW
-         JK9bdCbbLaEIjIOIWUCUvFCdwWFahWGFSfgaJRGNNkf/gsZkAHb3+/3msPl5ejMAjp57
-         l8FQ==
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681736328; x=1684328328;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B+MVzf8r/4s+B98TOSVIFBCcQmTeOnxbCDg8qGd1O2g=;
+        b=Qw3+fO+DNms8K56wL8s70n889hD+X3HzOhfr2FkVez8KSDwMuAvbZJ6/az6knoCYRO
+         WC5/jl0Xicoz9hT7MfXD8h1NXyK2JBbH1gLx6iV0deFFfX0Q2VIvb0mXk2TNHm9Ju3QI
+         HsEXwJAtir4qM7DcSsj7iT8Qjyl6VEh35HzCFVrFVOliKWLo2J5aC/FbNG4zhSXFJvVo
+         ghWHmHUd1yAbxuYE175hZWDu90XL2C0F/pqXB4Z7Iyo1Xs9FBoqpXt3S1Bun677QLY4h
+         RvL6o3kArQ9La2z5BDnKffqx6A6u3gxQXnPqavA34WnVlWAQWTseLP7iuJv6S7yjM1iG
+         ixvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681735527; x=1684327527;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fMk9exMYjjdDJNTuBhM7AS0L6trr20lU8gX0Q2FmNlk=;
-        b=RLVyDTpIZx5wmuC+IJ83GoDgipcjEL92D350MjYOXJKHsbNF+ln9ZfMK170DurXL1q
-         ruvFD3CJoSVjpBlRI2uaY7q+5ws2TqybiwlPz69d/rQCWLZR9nMgQHLTAQnYUe6YpqMU
-         dq3ET2k/9yNEeXag430Lsga/CMCA2P9z16dp7Qumbxl0jr0IEOMk7ou+wc2SQxLvouVa
-         v3WzXwrkUGH/IoIUDP3Xh7pqKNJdJziMH5K4+KJxgDmgHsBtLOdhzV38l3GnCvbWKoOf
-         QxLZxrQbsLontF1xn75kFACf/J002tI+hhKbGApVNqGCaA1Tcs7ICamMyaMypLIIiv/u
-         QdnQ==
-X-Gm-Message-State: AAQBX9ceZtkImosFD44Ahk0nY0QPxwowVGgeYrBLP4jxBILkSCUTyx//
-        7k0Fk1E5DQy+ICAit505wS4pCVzU/fyVZSZWZtU=
-X-Google-Smtp-Source: AKy350aPosra5Yx+M7BndBTj1NAnYWm72uxji2y0kobZst1HLL0OQDnupJCD43UNlBJEDCnqQKtGPT5EbLvlKy40V0I=
-X-Received: by 2002:a17:903:18f:b0:1a6:8d3b:85e7 with SMTP id
- z15-20020a170903018f00b001a68d3b85e7mr3778458plg.3.1681735526873; Mon, 17 Apr
- 2023 05:45:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
- <20230417080117.jiqpynebq2we2hh4@pengutronix.de> <20230417081510.GA19964@pendragon.ideasonboard.com>
- <3232774.44csPzL39Z@steina-w>
-In-Reply-To: <3232774.44csPzL39Z@steina-w>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 17 Apr 2023 07:45:15 -0500
-Message-ID: <CAHCN7xJ26TMD4U_5wTtGcGFHZBTTewVRd+mnKa5Ff5cRxBdHPA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
+        d=1e100.net; s=20221208; t=1681736328; x=1684328328;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B+MVzf8r/4s+B98TOSVIFBCcQmTeOnxbCDg8qGd1O2g=;
+        b=CTFDJAAfvq610mzzuvhX2s/DFj8n1w0PHwNjTq4paiuJgSrppGy0p0ZMubDXdBv+7O
+         qYS3P6MYlvSLYb/5zFFvBISy9WwjE+Vf5xy0qA/2L3tT1IpSYQMxG6HWvKNZuIMnsuzO
+         dGQMYQr3NUg8MBt5dy5hcqgIf9/FrWIRD2aH+4JYkkuwvQiEYwr9aZTm3xP0HvPW1KFH
+         yCc6tl8C9pidErVrb02JUkl1PQKr4G0YXQnTel1KBp478FDxBAzwee9KbIvdmaxUIQg1
+         n7rSWR747JPvROc+1EH8sQyOjlzb/W8YEa4nCwbtlwa4thssdhJHVMnA/81mkVMw+CJ0
+         sxjA==
+X-Gm-Message-State: AAQBX9fVJEvdjpDs7PRcDrHCOY4o9mr603c/A7pvUKc71XKlSu59+jT7
+        bOJyPY9mJvIdnx6D3AtYqfEW5g==
+X-Google-Smtp-Source: AKy350Z2eV6AqL+dVKQQg8ekRMO3sImYABpWFD57wB0IsJLBBkAMxrq4zgrfOPdZN4P4MyAL/pMLaw==
+X-Received: by 2002:a1c:7304:0:b0:3f1:6f4a:a3ad with SMTP id d4-20020a1c7304000000b003f16f4aa3admr4528202wmb.2.1681736328321;
+        Mon, 17 Apr 2023 05:58:48 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:374a:ffae:fd26:4893])
+        by smtp.gmail.com with ESMTPSA id v21-20020a05600c471500b003ef5bb63f13sm15557546wmo.10.2023.04.17.05.58.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Apr 2023 05:58:47 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v4 0/5] arm64: dts: qcom: sa8775p: add more IOMMUs
+Date:   Mon, 17 Apr 2023 14:58:39 +0200
+Message-Id: <20230417125844.400782-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 17, 2023 at 5:11=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Am Montag, 17. April 2023, 10:15:10 CEST schrieb Laurent Pinchart:
-> > Hi Marco,
-> >
-> > On Mon, Apr 17, 2023 at 10:01:17AM +0200, Marco Felsch wrote:
-> > > On 23-04-17, Laurent Pinchart wrote:
-> > > > On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
-> > > > > Hi Laurent,
-> > > > >
-> > > > > your patch LGTM just one nit/idea, please see below.
-> > > > >
-> > > > > On 23-04-17, Laurent Pinchart wrote:
-> > > > > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
-> > > > > >
-> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.=
-com>
-> > > > > > ---
-> > > > > >
-> > > > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60
-> > > > > >  +++++++++++++++++++++++
-> > > > > >  1 file changed, 60 insertions(+)
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> > > > > > 2dd60e3252f3..2a374a4c14a2 100644
-> > > > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
-> > > > > >
-> > > > > >                               };
-> > > > > >
-> > > > > >                       };
-> > > > > >
-> > > > > > +                     mipi_csi_0: csi@32e40000 {
-> > > > > > +                             compatible =3D "fsl,imx8mp-
-> mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > > > > +                             reg =3D <0x32e40000 0x10000>;
-> > > > > > +                             interrupts =3D <GIC_SPI 17
-> IRQ_TYPE_LEVEL_HIGH>;
-> > > > > > +                             clock-frequency =3D
-> <500000000>;
-> > > > > > +                             clocks =3D <&clk
-> IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > > > > +                                      <&clk
-> IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> > > > > > +                                      <&clk
-> IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > > > > +                                      <&clk
-> IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > > > > +                             clock-names =3D "pclk",
-> "wrap", "phy", "axi";
-> > > > > > +                             assigned-clocks =3D <&clk
-> IMX8MP_CLK_MEDIA_CAM1_PIX>;
-> > > > > > +                             assigned-clock-parents =3D
-> <&clk IMX8MP_SYS_PLL2_1000M>;
-> > > > > > +                             assigned-clock-rates =3D
-> <500000000>;
-> > > > > > +                             power-domains =3D
-> <&media_blk_ctrl
-> > > > > > IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-> > > > > > +                             status =3D "disabled";
-> > > > > > +
-> > > > > > +                             ports {
-> > > > > > +                                     #address-cells =3D
-> <1>;
-> > > > > > +                                     #size-cells =3D <0>;
-> > > > > > +
-> > > > > > +                                     port@0 {
-> > > > > > +                                             reg =3D
-> <0>;
-> > > > >
-> > > > > If we would add:
-> > > > >                                                 mipi_csi_0_in:
-> endpoint {};
-> > > > >
-> > > > > here we could refernce it from overlays/board dts files more easi=
-ly.
-> > > >
-> > > > Isn't there an unwritten rule (or consensus) that an endpoint shoul=
-d
-> > > > always have a remote-endpoint property ?
-> > >
-> > > I don't know if there is one.
-> > >
-> > > > While ports describe hardware properties of a device and should alw=
-ays
-> > > > be there regardless of connections, endpoints describe connections =
-and
-> > > > I don't think they should be instantiated with a valid
-> > > > remote-endpoint.
-> > >
-> > > I know, therefore I mentioned it as idea to make it 'easier' to add
-> > > camera nodes.
-> >
-> > As a middleground, would it be useful to have a label for the port ?
-> > Something like
-> >
-> >       mipi_csi_0: csi@32e40000 {
-> >               ports {
-> >                       mipi_csi_0_port_0: port@0 {
-> >                       };
-> >               };
-> >       };
-> >
-> > An overlay could then reference that and create the endpoint. I'm not
-> > entirely sure how useful that would be though, as the overlay would nee=
-d
-> > to enable the CSI node anyway. Compare
-> >
-> > --------
-> > &mipi_csi_0 {
-> >       status =3D "okay";
-> > };
-> >
-> > &mipi_csi_0_port_0 {
-> >       mipi_csi_0_in: endpoint {
-> >               remote-endpoint =3D <&imx327_out>;
-> >       };
-> > };
-> > --------
-> >
-> > with
-> >
-> > --------
-> > &mipi_csi_0 {
-> >       status =3D "okay";
-> >
-> >       ports {
-> >               port@0 {
-> >                       mipi_csi_0_in: endpoint {
-> >                               remote-endpoint =3D <&imx327_out>;
-> >                       };
-> >               };
-> >       };
-> > };
-> > --------
-> >
-> > I have a slight preference for the latter as it groups all the CSI0 dat=
-a
-> > in a single overlay target, but if the former is generally preferred,
-> > I'm fine with that too.
->
-> The former is more compact, but also raises the following dtc warnings wh=
-ile
-> creating the .dtbo:
-> Warning (graph_endpoint): /fragment@4/__overlay__: graph endpoint node na=
-me
-> should be 'endpoint'
-> Warning (graph_endpoint): /fragment@4/__overlay__: graph connection to no=
-de '/
-> fragment@1/__overlay__/ports/port@1/endpoint' is not bidirectional
->
-> for the following snippet:
->
-> &mipi_csi_0_out {
->         remote-endpoint =3D <&isp1_in>;
-> };
->
-> I'm not sure if there is a chance to fix at all.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Once there is consensus on how this should be generically plumbed,
-please keep me in the loop, so I can add the corresponding imx8m Nano
-trees as well.  I've tested Laurent's work for a while on the Nano
-that I have.  I was going to push DT updates for Nano, then I saw this
-conversation, so I decided to hold off for now.
+Add the GPU and PCIe IOMMUs for sa8775p platforms as well as the required
+GPU clock controller driver.
 
-adam
->
-> Best regards,
-> Alexander
->
-> >
-> > > > > > +                                     };
-> > > > > > +
-> > > > > > +                                     port@1 {
-> > > > > > +                                             reg =3D
-> <1>;
-> > > > > > +                                     };
-> > > > > > +                             };
-> > > > > > +                     };
-> > > > > > +
-> > > > > > +                     mipi_csi_1: csi@32e50000 {
-> > > > > > +                             compatible =3D "fsl,imx8mp-
-> mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > > > > +                             reg =3D <0x32e50000 0x10000>;
-> > > > > > +                             interrupts =3D <GIC_SPI 80
-> IRQ_TYPE_LEVEL_HIGH>;
-> > > > > > +                             clock-frequency =3D
-> <266000000>;
-> > > > > > +                             clocks =3D <&clk
-> IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > > > > +                                      <&clk
-> IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
-> > > > > > +                                      <&clk
-> IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > > > > +                                      <&clk
-> IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > > > > +                             clock-names =3D "pclk",
-> "wrap", "phy", "axi";
-> > > > > > +                             assigned-clocks =3D <&clk
-> IMX8MP_CLK_MEDIA_CAM2_PIX>;
-> > > > > > +                             assigned-clock-parents =3D
-> <&clk IMX8MP_SYS_PLL2_1000M>;
-> > > > > > +                             assigned-clock-rates =3D
-> <266000000>;
-> > > > > > +                             power-domains =3D
-> <&media_blk_ctrl
-> > > > > > IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-> > > > > > +                             status =3D "disabled";
-> > > > > > +
-> > > > > > +                             ports {
-> > > > > > +                                     #address-cells =3D
-> <1>;
-> > > > > > +                                     #size-cells =3D <0>;
-> > > > > > +
-> > > > > > +                                     port@0 {
-> > > > > > +                                             reg =3D
-> <0>;
-> > > > > > +                                     };
-> > > > > > +
-> > > > > > +                                     port@1 {
-> > > > > > +                                             reg =3D
-> <1>;
-> > > > > > +                                     };
-> > > > > > +                             };
-> > > > > > +                     };
-> > > > > > +
-> > > > > >
-> > > > > >                       pcie_phy: pcie-phy@32f00000 {
-> > > > > >
-> > > > > >                               compatible =3D "fsl,imx8mp-
-> pcie-phy";
-> > > > > >                               reg =3D <0x32f00000 0x10000>;
->
->
-> --
-> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
-rmany
-> Amtsgericht M=C3=BCnchen, HRB 105018
-> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
-chneider
-> http://www.tq-group.com/
->
->
+NOTE: I didn't pick up Krzysztof's tag for patch 4/5 as the patch changed
+significantly.
+
+v3 -> v4:
+- fix the adreno smmu compatibles
+- drop patches that are already in next
+
+v2 -> v3:
+- select QCOM_GDSC in Kconfig for the GPUCC module
+- the GPU SMMU is actually an adreno SMMU so describe it as such and
+  fix the DT
+- fix the mapped memory size for the PCIe SMMU
+
+v1 -> v2:
+- remove unused include in the GPUCC driver
+- remove unused clock from the GPUCC driver and make it compatible
+  with the generic QCom GPUCC bindings
+- put the new defconfig option in the right place (as per savedefconfig)
+  and make the GPUCC driver a module rather than built-in
+- describe the smmu clocks for sa8775p in dt-bindings
+
+Bartosz Golaszewski (5):
+  arm64: defconfig: enable the SA8775P GPUCC driver
+  arm64: dts: qcom: sa8775p: add the pcie smmu node
+  arm64: dts: qcom: sa8775p: add the GPU clock controller node
+  dt-bindings: iommu: arm,smmu: enable clocks for sa8775p Adreno SMMU
+  arm64: dts: qcom: sa8775p: add the GPU IOMMU node
+
+ .../devicetree/bindings/iommu/arm,smmu.yaml   |   6 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 125 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 3 files changed, 130 insertions(+), 2 deletions(-)
+
+-- 
+2.37.2
+
