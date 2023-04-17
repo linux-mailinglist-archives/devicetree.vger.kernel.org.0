@@ -2,118 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B3626E4283
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85526E4287
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:24:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjDQIXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 04:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40932 "EHLO
+        id S229771AbjDQIYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 04:24:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230375AbjDQIXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:23:42 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5797A55A7;
-        Mon, 17 Apr 2023 01:23:09 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H41abM021159;
-        Mon, 17 Apr 2023 08:23:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=MmOOZa0wwQbtadZSrZGHPeffz7xcdPREluDFNCb9zi0=;
- b=Se5TCw1cn859lBYtx7gnNSR5Zd3a3s6Okqx/uAF2MNV/tZEQ8BIAP0iHrx+SvYfpnXm7
- IsuTJNgLxQtlFcayApZwIGIq/pDegVQK8FRV/4Eo/tvKN/GlkTHY5jwPbFMEUw3Lu7Xk
- qFN3wAtaQ7tgftplVeAXUlOe1y/aV7aJgb10i/bvH/Xgui64NTr5Lt0XsO8yK9kUK239
- dv1ltrO+IbjDxJRZTuDvSgT2IXlucF07kB6BW4iNeEfc1QHIJh77h37rLv4lG7SGcpn1
- 8+bsWgOnagy+Qbcd5SYFSg/qaia7iLX2Bwndg8nFrC6w0AURjvOKGJUwAhx9EfDkELlT 2w== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pymqmtx97-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 08:23:06 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33H8N5Wr024522
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 08:23:05 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 17 Apr 2023 01:23:01 -0700
-From:   Taniya Das <quic_tdas@quicinc.com>
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-CC:     <dmitry.baryshkov@linaro.org>, <quic_skakitap@quicinc.com>,
-        <quic_jkona@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Taniya Das <quic_tdas@quicinc.com>
-Subject: [PATCH V2 3/3] arm64: dts: qcom: sm8450: Add video clock controller
-Date:   Mon, 17 Apr 2023 13:51:27 +0530
-Message-ID: <20230417082127.11681-4-quic_tdas@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230417082127.11681-1-quic_tdas@quicinc.com>
-References: <20230417082127.11681-1-quic_tdas@quicinc.com>
+        with ESMTP id S229649AbjDQIY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:24:27 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE0955B9C
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:24:05 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1poK9R-0000br-KL; Mon, 17 Apr 2023 10:23:53 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1poK9R-0003Cb-3g; Mon, 17 Apr 2023 10:23:53 +0200
+Date:   Mon, 17 Apr 2023 10:23:53 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
+Message-ID: <20230417082353.fxjrclthiaebebnd@pengutronix.de>
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
+ <20230417055627.16482-2-laurent.pinchart@ideasonboard.com>
+ <20230417065059.fgmdfwk7pnj62amm@pengutronix.de>
+ <20230417074148.GF28551@pendragon.ideasonboard.com>
+ <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
+ <20230417081510.GA19964@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EusM-uAA01ZUD0GxnyKM5v2RCpRIf9-l
-X-Proofpoint-ORIG-GUID: EusM-uAA01ZUD0GxnyKM5v2RCpRIf9-l
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_04,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 impostorscore=0 mlxscore=0 lowpriorityscore=0
- malwarescore=0 clxscore=1015 phishscore=0 spamscore=0 bulkscore=0
- mlxlogscore=860 adultscore=1 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303200000 definitions=main-2304170074
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230417081510.GA19964@pendragon.ideasonboard.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for video clock controller on Qualcomm SM8450 platform.
+On 23-04-17, Laurent Pinchart wrote:
+> Hi Marco,
+> 
+> On Mon, Apr 17, 2023 at 10:01:17AM +0200, Marco Felsch wrote:
+> > On 23-04-17, Laurent Pinchart wrote:
+> > > On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
+> > > > Hi Laurent,
+> > > > 
+> > > > your patch LGTM just one nit/idea, please see below.
+> > > > 
+> > > > On 23-04-17, Laurent Pinchart wrote:
+> > > > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
+> > > > > 
+> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
+> > > > >  1 file changed, 60 insertions(+)
+> > > > > 
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > > index 2dd60e3252f3..2a374a4c14a2 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
+> > > > >  				};
+> > > > >  			};
+> > > > >  
+> > > > > +			mipi_csi_0: csi@32e40000 {
+> > > > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+> > > > > +				reg = <0x32e40000 0x10000>;
+> > > > > +				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +				clock-frequency = <500000000>;
+> > > > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> > > > > +					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
+> > > > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> > > > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
+> > > > > +				clock-names = "pclk", "wrap", "phy", "axi";
+> > > > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
+> > > > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+> > > > > +				assigned-clock-rates = <500000000>;
+> > > > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+> > > > > +				status = "disabled";
+> > > > > +
+> > > > > +				ports {
+> > > > > +					#address-cells = <1>;
+> > > > > +					#size-cells = <0>;
+> > > > > +
+> > > > > +					port@0 {
+> > > > > +						reg = <0>;
+> > > > 
+> > > > If we would add:
+> > > > 						mipi_csi_0_in: endpoint {};
+> > > > 
+> > > > here we could refernce it from overlays/board dts files more easily.
+> > > 
+> > > Isn't there an unwritten rule (or consensus) that an endpoint should
+> > > always have a remote-endpoint property ?
+> > 
+> > I don't know if there is one.
+> > 
+> > > While ports describe hardware properties of a device and should always
+> > > be there regardless of connections, endpoints describe connections and
+> > > I don't think they should be instantiated with a valid
+> > > remote-endpoint.
+> > 
+> > I know, therefore I mentioned it as idea to make it 'easier' to add
+> > camera nodes.
+> 
+> As a middleground, would it be useful to have a label for the port ?
+> Something like
+> 
+> 	mipi_csi_0: csi@32e40000 {
+> 		ports {
+> 			mipi_csi_0_port_0: port@0 {
+> 			};
+> 		};
+> 	};
+> 
+> An overlay could then reference that and create the endpoint. I'm not
+> entirely sure how useful that would be though, as the overlay would need
+> to enable the CSI node anyway. Compare
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
-Changes since V1:
- - No changes.
+Argh.. you're right, the node isn't enabled too. So the only useful
+use-case for my idea would be: a base-dts which enables the mipi-csi
+node always (since the products do camera support) and the overlay would
+only need to reference the port or endpoint phandle. I'm not sure if
+this use-case is very often.
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Please ignore it.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 31877f18dce2..863a39000630 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -760,6 +760,19 @@ gcc: clock-controller@100000 {
- 				      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
- 		};
- 
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm8450-videocc";
-+			reg = <0 0x0aaf0000 0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "bi_tcxo", "iface";
-+			power-domains = <&rpmhpd SM8450_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		gpi_dma2: dma-controller@800000 {
- 			compatible = "qcom,sm8450-gpi-dma", "qcom,sm6350-gpi-dma";
- 			#dma-cells = <3>;
--- 
-2.25.1
-
+> --------
+> &mipi_csi_0 {
+> 	status = "okay";
+> };
+> 
+> &mipi_csi_0_port_0 {
+> 	mipi_csi_0_in: endpoint {
+> 		remote-endpoint = <&imx327_out>;
+> 	};
+> };
+> --------
+> 
+> with
+> 
+> --------
+> &mipi_csi_0 {
+> 	status = "okay";
+> 
+> 	ports {
+> 		port@0 {
+> 			mipi_csi_0_in: endpoint {
+> 				remote-endpoint = <&imx327_out>;
+> 			};
+> 		};
+> 	};
+> };
+> --------
+> 
+> I have a slight preference for the latter as it groups all the CSI0 data
+> in a single overlay target, but if the former is generally preferred,
+> I'm fine with that too.
+> 
+> > > > > +					};
+> > > > > +
+> > > > > +					port@1 {
+> > > > > +						reg = <1>;
+> > > > > +					};
+> > > > > +				};
+> > > > > +			};
+> > > > > +
+> > > > > +			mipi_csi_1: csi@32e50000 {
+> > > > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+> > > > > +				reg = <0x32e50000 0x10000>;
+> > > > > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +				clock-frequency = <266000000>;
+> > > > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> > > > > +					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
+> > > > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> > > > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
+> > > > > +				clock-names = "pclk", "wrap", "phy", "axi";
+> > > > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>;
+> > > > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+> > > > > +				assigned-clock-rates = <266000000>;
+> > > > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
+> > > > > +				status = "disabled";
+> > > > > +
+> > > > > +				ports {
+> > > > > +					#address-cells = <1>;
+> > > > > +					#size-cells = <0>;
+> > > > > +
+> > > > > +					port@0 {
+> > > > > +						reg = <0>;
+> > > > > +					};
+> > > > > +
+> > > > > +					port@1 {
+> > > > > +						reg = <1>;
+> > > > > +					};
+> > > > > +				};
+> > > > > +			};
+> > > > > +
+> > > > >  			pcie_phy: pcie-phy@32f00000 {
+> > > > >  				compatible = "fsl,imx8mp-pcie-phy";
+> > > > >  				reg = <0x32f00000 0x10000>;
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
