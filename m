@@ -2,108 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABF4E6E435F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CB2F6E4365
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230347AbjDQJPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 05:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43768 "EHLO
+        id S230378AbjDQJQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 05:16:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbjDQJPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:15:08 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14ECA2684
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 02:15:05 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id u3so10281300ejj.12
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 02:15:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681722903; x=1684314903;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SMv8PZ53O5KYo73k6iASy7jKT1DCbFAwjh9Wp7pGud0=;
-        b=qCghISR1WsxRWdzM4V7UFdyw05zhrCZCu/TOLETzb7KU+h0S/7Rithm7b6X502e50K
-         AWfZbhA5OAcuTSqLqUnu1DUDPpsD7TpG5YOJ+b0UCcjoqGgvgXY5hZxqXIya5xSkxyZt
-         d27Ln8HduB+/5Ir7kKWrmLzTmt74HoVGb9F7lbWs82I8FFUJ/RhXMP/Z/+r0k2ZNiCSB
-         q9nz6/p7ze23Ig9lSjXC4sZJMDhaXSzKwFpAVtHVOPXbyk+12NNTQni/aAL6C/WpL9lR
-         TJv9jcwxOVzWwHPeM+o/7W+I616JCv14F+fTk177aBzI7c1VPOHh9jlfdvDYKq0irTQg
-         mq0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681722903; x=1684314903;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SMv8PZ53O5KYo73k6iASy7jKT1DCbFAwjh9Wp7pGud0=;
-        b=FrWhuOhT8fUgENnjERRYgKhuc0yr7IwjWZ/4slFCHZmsTLWh98scLSl/5//6JbZs12
-         sMwnbFkz5IukcBixZ+RNwzqdTGe/jn1j+8A91TMGWS+F/0HO3GF3W/oOekDR2TtrgZSp
-         WLJhVduC6V3Dp1dr2JTaEJSO2g89An07i4JCl7jnYKl8Gd7TlxJs48EmEvC/CNO5Vcbq
-         te7x9bSTbkM2OXwQAC2FU90FrC+OTf4ByxJcKDwpEtmc/tZTpMXTl+hxRgzM+fsNpsmO
-         52gu3tgfQK6e9kpZquocTVDs9YqvSoF3MM+N/SifV+90r0XMIg0n5LwUZR6rdkre3pDj
-         pANQ==
-X-Gm-Message-State: AAQBX9cjENP6UoR6JWbJ6iTuU/XjPACaD6QAjKeq5svmVU8BJGChYUnO
-        rMwrzhjoEJmEnb/ZGF4qLXXp7g==
-X-Google-Smtp-Source: AKy350ZVql9TKGl1Q96l3jyXZ3oiegO0Q+ngbdENs6m1PoiIW4VZnQ94fowjzCtJ8ymJESG2YPJDjw==
-X-Received: by 2002:a17:906:6c9:b0:94a:959f:6d58 with SMTP id v9-20020a17090606c900b0094a959f6d58mr7283041ejb.18.1681722903429;
-        Mon, 17 Apr 2023 02:15:03 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id hu20-20020a170907a09400b0094f432f2429sm2336871ejc.109.2023.04.17.02.15.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 02:15:02 -0700 (PDT)
-Message-ID: <915723aa-14e7-efc7-859b-ceab0eaeadec@linaro.org>
-Date:   Mon, 17 Apr 2023 11:15:00 +0200
+        with ESMTP id S230227AbjDQJQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:16:26 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B512421D;
+        Mon, 17 Apr 2023 02:16:19 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H5bPcp032193;
+        Mon, 17 Apr 2023 04:16:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=+giweXyh9ja7j4+UCim1/7CY63h06GBLcMMPLEWqw+w=;
+ b=EkitFwzbzeHg/nRde79sqH9f26ZY11JhZ/9L2J3DlP6O8JeoXb7erTm/AohCIQEclLMZ
+ zFpT1PZS9suac6cQ9XxVBhtjLe3Y9a6EW22kCbHx6AACB8AiKQaJsG4CUbn/2K61hTXl
+ 187nGqlmkC40CAxO5KxhKNdFRujL3WbT2lgAZkHc84yge8DUwK2M94EM5ZAGadlxRH22
+ QqwFro+WHMU9gpjNo0ELFZ4Ej6iJXIXavIm9L/JE/f5UGoqN9msF9gLAqkIi/sIpHfxN
+ h70961EHFA4dKhhLAOEMPve/DYiZwXJU77tSi7FlWpwjZA9XSg15QKfiiB161YgP7+pr dw== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3pyrbpuku4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 17 Apr 2023 04:15:59 -0500
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Mon, 17 Apr
+ 2023 04:15:58 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 17 Apr 2023 04:15:58 -0500
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 02FA9475;
+        Mon, 17 Apr 2023 09:15:58 +0000 (UTC)
+Date:   Mon, 17 Apr 2023 09:15:58 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Saalim Quadri <danascape@gmail.com>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <daniel.baluta@nxp.com>,
+        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: wm8753: Convert to dtschema
+Message-ID: <20230417091557.GZ68926@ediswmail.ad.cirrus.com>
+References: <20230414223801.1106550-1-danascape@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 09/10] arm64: tegra: Rework SOCTHERM on Tegra132 and
- Tegra210
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230414125721.1043589-1-thierry.reding@gmail.com>
- <20230414125721.1043589-10-thierry.reding@gmail.com>
- <ed5f12fd-f1f8-9823-a32d-5782068dc790@linaro.org> <ZD0MC6AqgNtYUJ4a@orome>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <ZD0MC6AqgNtYUJ4a@orome>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230414223801.1106550-1-danascape@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: O7J3hXBjZ4d6_6QyDWIwmycs-qeRqfOx
+X-Proofpoint-ORIG-GUID: O7J3hXBjZ4d6_6QyDWIwmycs-qeRqfOx
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/04/2023 11:06, Thierry Reding wrote:
-
-[ ... ]
-
->>
->> If the hardware mitigation is 'heavy', don't you want to have DVFS acting
->> before hardware throttling ?
+On Fri, Apr 14, 2023 at 10:38:01PM +0000, Saalim Quadri wrote:
+> Convert the WM8753 audio codec bindings to DT schema.
 > 
-> The throttling here is in fact some form of DVFS, but yes, generally we
-> would likely want to have additional forms of DVFS before we reach this
-> state. We could add CPU cooling devices and there's also a mechanism to
-> throttle the DRAM frequency on certain boards.
-> 
-> But those are mostly orthogonal to this series. The goal here is to get
-> rid of the throttling mechanism as a cooling device.
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> ---
 
-Right, thanks
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Thanks,
+Charles
