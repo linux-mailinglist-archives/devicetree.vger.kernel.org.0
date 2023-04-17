@@ -2,56 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BFB6E3FED
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 08:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 270CD6E4025
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 08:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbjDQGj6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Apr 2023 02:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36020 "EHLO
+        id S229830AbjDQGvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 02:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbjDQGj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 02:39:57 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233CE213A;
-        Sun, 16 Apr 2023 23:39:56 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id C29A224E217;
-        Mon, 17 Apr 2023 14:39:46 +0800 (CST)
-Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Apr
- 2023 14:39:46 +0800
-Received: from localhost.localdomain (183.27.97.249) by EXMBX067.cuchost.com
- (172.16.6.67) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Apr
- 2023 14:39:45 +0800
-From:   Mason Huo <mason.huo@starfivetech.com>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-CC:     Shengyu Qu <wiagn233@outlook.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Add cpu scaling for JH7110 SoC
-Date:   Mon, 17 Apr 2023 14:39:42 +0800
-Message-ID: <20230417063942.3141-4-mason.huo@starfivetech.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230417063942.3141-1-mason.huo@starfivetech.com>
-References: <20230417063942.3141-1-mason.huo@starfivetech.com>
+        with ESMTP id S230257AbjDQGve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 02:51:34 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3C51BB;
+        Sun, 16 Apr 2023 23:50:44 -0700 (PDT)
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 17 Apr 2023
+ 14:52:00 +0800
+From:   Yu Tu <yu.tu@amlogic.com>
+To:     <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Neil Armstrong" <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>,
+        Yu Tu <yu.tu@amlogic.com>
+Subject: [PATCH V7 0/4] Add S4 SoC PLL and Peripheral clock controller
+Date:   Mon, 17 Apr 2023 14:50:01 +0800
+Message-ID: <20230417065005.24967-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX067.cuchost.com
- (172.16.6.67)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.18.11.248]
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -61,112 +49,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the operating-points-v2 to support cpu scaling on StarFive JH7110 SoC.
-It supports up to 4 cpu frequency loads.
+1. Add S4 SoC PLL and Peripheral clock controller dt-bindings.
+2. Add PLL and Peripheral clock controller driver for S4 SOC.
 
-Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 17 ++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 33 +++++++++++++++++++
- 2 files changed, 50 insertions(+)
+Yu Tu (4):
+  dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
+  dt-bindings: clock: document Amlogic S4 SoC peripherals clock
+    controller
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
+  clk: meson: s4: add support for Amlogic S4 SoC peripheral clock
+    controller
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index cca1c8040801..b25e6d68ce53 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -227,3 +227,20 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&U74_1 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&U74_2 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&U74_3 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&U74_4 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 4c5fdb905da8..7eef88d2cedb 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -53,6 +53,9 @@ U74_1: cpu@1 {
- 			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imafdc_zba_zbb";
- 			tlb-split;
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>;
-+			clock-names = "cpu";
- 
- 			cpu1_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -79,6 +82,9 @@ U74_2: cpu@2 {
- 			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imafdc_zba_zbb";
- 			tlb-split;
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>;
-+			clock-names = "cpu";
- 
- 			cpu2_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -105,6 +111,9 @@ U74_3: cpu@3 {
- 			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imafdc_zba_zbb";
- 			tlb-split;
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>;
-+			clock-names = "cpu";
- 
- 			cpu3_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -131,6 +140,9 @@ U74_4: cpu@4 {
- 			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imafdc_zba_zbb";
- 			tlb-split;
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>;
-+			clock-names = "cpu";
- 
- 			cpu4_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -164,6 +176,27 @@ core4 {
- 		};
- 	};
- 
-+	cpu_opp: opp-table-0 {
-+			compatible = "operating-points-v2";
-+			opp-shared;
-+			opp-375000000 {
-+					opp-hz = /bits/ 64 <375000000>;
-+					opp-microvolt = <800000>;
-+			};
-+			opp-500000000 {
-+					opp-hz = /bits/ 64 <500000000>;
-+					opp-microvolt = <800000>;
-+			};
-+			opp-750000000 {
-+					opp-hz = /bits/ 64 <750000000>;
-+					opp-microvolt = <800000>;
-+			};
-+			opp-1500000000 {
-+					opp-hz = /bits/ 64 <1500000000>;
-+					opp-microvolt = <1040000>;
-+			};
-+	};
-+
- 	gmac0_rgmii_rxin: gmac0-rgmii-rxin-clock {
- 		compatible = "fixed-clock";
- 		clock-output-names = "gmac0_rgmii_rxin";
+V6 -> V7: Change send patch series as well change format and clock flags
+suggested by Jerome. Change dt-bindings suggested by Krzysztof.
+V5 -> V6: Change send patch series, as well change format and clock flags.
+V4 -> V5: change format and clock flags and adjust the patch series
+as suggested by Jerome.
+V3 -> V4: change format and clock flags.
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/all/20230116074214.2326-1-yu.tu@amlogic.com/
+
+ .../clock/amlogic,s4-peripherals-clkc.yaml    |   97 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   50 +
+ MAINTAINERS                                   |    1 +
+ drivers/clk/meson/Kconfig                     |   25 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-peripherals.c            | 3814 +++++++++++++++++
+ drivers/clk/meson/s4-peripherals.h            |  217 +
+ drivers/clk/meson/s4-pll.c                    |  902 ++++
+ drivers/clk/meson/s4-pll.h                    |   87 +
+ .../clock/amlogic,s4-peripherals-clkc.h       |  131 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   30 +
+ 11 files changed, 5356 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-peripherals.c
+ create mode 100644 drivers/clk/meson/s4-peripherals.h
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+
+
+base-commit: 5883d6b83cb0c84c8bc86bd1ff937ea313eb7325
 -- 
-2.39.2
+2.33.1
 
