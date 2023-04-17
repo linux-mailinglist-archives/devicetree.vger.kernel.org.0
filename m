@@ -2,176 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 919466E42EE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 751336E42F5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:53:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjDQIvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 04:51:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56638 "EHLO
+        id S230033AbjDQIxM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Apr 2023 04:53:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjDQIvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:51:42 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 812A340EF;
-        Mon, 17 Apr 2023 01:51:41 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H8fgdJ003357;
-        Mon, 17 Apr 2023 08:51:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=3wj6YWgoNjtEryvQvyB4lsbeRiILBYvdHQxN0xuUxfs=;
- b=S+Xotwn5vgGai5Yl/itmm+gkoBWHOSahp4JEbQNZtlCj4aYb7nWLBJVApufKl9soj/dl
- 6xgkD44Fil+GkNyBRStYoqIHVCLyiCnv1+AEUwxPoho3ytXuJ4FdQL60omjTzg231/G0
- VsQjXfwbTO8rn9glFcFI1MZK5GIBSVBC7ui268zaulmquV28QmP3Kng6xOPCEez51wEu
- hZiR5ktofYR5M8dO0lVCty1sigSzhiTQYkeCTg13qKjKya2El7EZUz2JjG+lRmngKsEN
- wKz4n8bC3jQXQZCaR+SmcnhGrnVuq4FQBFm01lxzsCFGwGa/ZS/1BuaU1DsHixhcq3zT +g== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q12str0pw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 08:51:20 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33H8pJ1g030683
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 08:51:19 GMT
-Received: from [10.50.21.161] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 17 Apr
- 2023 01:50:49 -0700
-Message-ID: <4f496374-2d35-5d92-b7ec-cad256deb5a2@quicinc.com>
-Date:   Mon, 17 Apr 2023 14:20:45 +0530
+        with ESMTP id S230003AbjDQIxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:53:11 -0400
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ED394210;
+        Mon, 17 Apr 2023 01:53:10 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id a11so2573187ybm.3;
+        Mon, 17 Apr 2023 01:53:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681721589; x=1684313589;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mu7Hch1DiBF07SUCPix+0KBbOFjQRP+x98Um6bdp30s=;
+        b=PnFNdTtZt0Y1VO7EK9swxDnISYllCaoLyf9HKRMYdIzyUItfOxNBGrkUJn17s6WKBv
+         WalPQxSm0ZoK7kT2HLqPJhXnuMxUDr3/HZ2TOxupnWaWMgIJXPlUMOry5iKoW3+xPzYz
+         SQQjKwqt6mVMPLlVk9Vo68ZWRgK6pVhNquwWLyQSA2JNawL/cWLyeoAR3VlW9ayLrSCd
+         tXVR63aaFW4hv4vN4uNXm7Xirjx9+UTVpc6hqSalQqVnQnJ14WAHX+0U3X8uEjuiGRqO
+         L0+HrjEXk1eDKOz0wHRuR6nsTv2VrVgeG6E7as21nPsVpJyrUUB7F+f0zTkJihYVZtWq
+         Uklg==
+X-Gm-Message-State: AAQBX9fpUbVkVBOxjsJKV7TkmtbBkEizlM2GvDlyUDxKRspUCCPbxNEU
+        BzCajKZhUbixjyrX+ZIa49HWGaHHQij6XA==
+X-Google-Smtp-Source: AKy350ZG8hkUHJnT1YXwItDS1L2vqsB6KJizSd15YMzCphb/9lRvLHT4liN876LbbdcWGCZmqe1Cpg==
+X-Received: by 2002:a25:1b04:0:b0:b8f:4bff:d54d with SMTP id b4-20020a251b04000000b00b8f4bffd54dmr14174999ybb.63.1681721589316;
+        Mon, 17 Apr 2023 01:53:09 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id g8-20020a81ae48000000b005463e45458bsm3000559ywk.123.2023.04.17.01.53.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 01:53:08 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id m14so7515743ybk.4;
+        Mon, 17 Apr 2023 01:53:06 -0700 (PDT)
+X-Received: by 2002:a25:68cc:0:b0:a27:3ecc:ffe7 with SMTP id
+ d195-20020a2568cc000000b00a273eccffe7mr11775312ybc.3.1681721586452; Mon, 17
+ Apr 2023 01:53:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V1 2/3] drivers: misc: dcc: Add driver support for Data
- Capture and Compare unit(DCC)
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20230412110900.69738-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230412110900.69738-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230412110900.69738-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 17 Apr 2023 10:52:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVe6DXpM5zQk-zitNTk17QiStusOTQcjTMVy6HnhXyq1w@mail.gmail.com>
+Message-ID: <CAMuHMdVe6DXpM5zQk-zitNTk17QiStusOTQcjTMVy6HnhXyq1w@mail.gmail.com>
+Subject: Re: [PATCH v8 2/7] riscv: asm: vendorid_list: Add Andes Technology to
+ the vendors list
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        "Rajendra Nayak" <quic_rjendra@quicinc.com>
-References: <cover.1681480351.git.quic_schowdhu@quicinc.com>
- <b1a9cbbcfefe133cc9047a71a2acdaa74239df29.1681480351.git.quic_schowdhu@quicinc.com>
- <ZDo4jIIV7cfPD2qW@kroah.com>
- <f3196d7a-50f0-9bfb-71a6-47ddb9686039@quicinc.com>
- <ZDzkkNQP5eO2vcxA@kroah.com>
- <7c46fe45-70b4-1f20-5ab4-cd51917d04a8@quicinc.com>
- <ZDz4RcQ1sFpynxop@kroah.com>
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <ZDz4RcQ1sFpynxop@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RR0Z-jhz-aG35wxOqQxGgnGOSrcfD-dy
-X-Proofpoint-ORIG-GUID: RR0Z-jhz-aG35wxOqQxGgnGOSrcfD-dy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_04,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 mlxscore=0 impostorscore=0 adultscore=0 bulkscore=0
- mlxlogscore=999 phishscore=0 clxscore=1015 spamscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304170078
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Apr 12, 2023 at 1:09 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add Andes Technology to the vendors list.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 4/17/2023 1:11 PM, Greg Kroah-Hartman wrote:
-> On Mon, Apr 17, 2023 at 12:26:23PM +0530, Souradeep Chowdhury wrote:
->> On 4/17/2023 11:47 AM, Greg Kroah-Hartman wrote:
->>> On Mon, Apr 17, 2023 at 11:31:46AM +0530, Souradeep Chowdhury wrote:
->>>> On 4/15/2023 11:09 AM, Greg Kroah-Hartman wrote:
->>>>>> +static void dcc_create_debug_dir(struct dcc_drvdata *drvdata)
->>>>>> +{
->>>>>> +	int i;
->>>>>> +	char list_num[10];
->>>>>> +	struct dentry *list;
->>>>>> +	struct device *dev = drvdata->dev;
->>>>>> +
->>>>>> +	drvdata->dbg_dir = debugfs_create_dir(dev_name(dev), NULL);
->>>>>
->>>>> You are creating a directory at the root of debugfs with just your
->>>>> device name?  While that will work, that feels very odd.  Please use a
->>>>> subdirectory.
->>>>
->>>> This is as per the comment on v17 of the patch series on DCC
->>>>
->>>> https://lore.kernel.org/linux-arm-kernel/6693993c-bd81-c974-a903-52a62bfec606@ieee.org/
->>>>
->>>> "You never remove this dcc_dbg directory.  Why not?
->>>>
->>>> And since you don't, dcc_dbg could just be a local
->>>> variable here rather than being a global.  But it
->>>> seems to me this is the root directory you want to
->>>> remove when you're done."
->>>
->>> But that's not the issue.  The issue is that you are putting into
->>> /sys/kernel/debug/ a flat namespace of all of your devices.  Is that
->>> really what you want?  If so, why do you think this will never conflict
->>> with any other device in the system?
->>
->> Since we are going by the dev_name here which also contains the address
->> as per the example in the yaml binding, this will not conflict with other
->> dev_names in the system.
-> 
-> That is not true at all.  dev_names are only unique per bus type.  There
-> is nothing preventing any other bus from using the same name for their
-> device as yours.
-> 
-> So please, for the sake of your own sanity, just create a directory and
-> dump all of your devices into it.  And for the sake of all of ours, as
-> making the root of debugfs full of random device names is a mess, don't
-> you think?  What would happen if all drivers did that?
+Gr{oetje,eeting}s,
 
-Ack
+                        Geert
 
-> 
->>>> As per upstream discussions it was decided that debugfs will be a suitable
->>>> interface for DCC. More on this in the following link:-
->>>>
->>>> https://lore.kernel.org/linux-arm-kernel/20221228172825.r32vpphbdulaldvv@builder.lan/
->>>
->>> debugfs is not a suitable interface for anything that is "real" as
->>> that's not what it is there for.  Most systems disable debugfs entirely
->>> (i.e. Android), or prevent any normal user from accessing it, so this
->>> api you are creating will not be able to be used by anyone.
->>>
->>> debugfs is for debugging, not for anything that the system functionality
->>> relies on to work properly.
->>
->> DCC is a debugging hardware which stores the values of the configured
->> register address on a system crash on it's dedicated sram. These register
->> addresses are configured by the user through the debugfs interface. Also on
->> the platforms where debugfs is disabled there is an alternative of using
->> bootconfig suggested to configure the register values during boot-time.
->> There is an ongoing patch series for that as follows:-
->>
->> https://lore.kernel.org/linux-arm-kernel/cover.1675054375.git.quic_schowdhu@quicinc.com/T/
-> 
-> But again, debugfs is not even mounted in most systems, so how are they
-> going to interact with your hardware?  Restricting it to debugfs feels
-> very odd to me, but hey, it's your code, I guess you don't want anyone
-> to use it :)
-> 
-> good luck!
-> 
-> greg k-h
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
