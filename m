@@ -2,182 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D826E540C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 23:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104F36E541A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 23:48:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbjDQVnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 17:43:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43422 "EHLO
+        id S230331AbjDQVsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 17:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbjDQVnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 17:43:10 -0400
-Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4131B4;
-        Mon, 17 Apr 2023 14:43:08 -0700 (PDT)
-Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HI2YZc032198;
-        Mon, 17 Apr 2023 17:43:04 -0400
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2043.outbound.protection.outlook.com [104.47.66.43])
-        by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3pynpb3t49-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 17:43:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gfI7V5SlHaath3uF7I5ygge43Z/bB7R+u1Gm6J6cD85OQ0ptcav6mGTCz8XTO6j9xUOJ2JnW/mCxaJzFgk9GTBQu5AF4huCcypH9x5KBMg3vYaQQJyoOQli/CWxwaD7fufN9irbk4n+zGViXzN4qM2fiG8xvTp5yCwLyzrR43VD8bmXQmWcoqYDKOlUyeTw+6gOffXE7W1Glf6oaez7Dxpw7oHgG/p8eWERedrHYQWRHcLfico1FTAEb6nJXu83MLotfdC0JGORasurNEIOlHmJAvUdk0GIftlHAczuoJEUNOvHc9ZpD1s9EEilpRi4AfRTk13ojFgKPHExcVbbUcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uxU2SSj0f0tJ85rcgeYcrlEnQaAFHQB8fq+qiQnxY5E=;
- b=jJNLibwsNRsKexEGPRI9IBQ9b8CbtTpJv1NVsLP+UNC/y3QJAxYV7lHvPLd4fp360GFVandKvJCsGJnFko3xjvd0wQW/s4P5jE2t3DHNbhcKu7erfmBc/eAlsH/4d7/AyBSBytzg175hytXQCV9c0AaEYKPGLcfKbPBVx8RRKwq4bQXarhrOh3pVetMF9MAsQQNsbsdFJLDCOZH88qXTSwVTi9VTGN9fGJwriWYt8tlhPWEnqB8+SWutUqipmHKD+tLRynpwfMI4R5+KIZtMy5MBRzz28pMJihvWllmwuxy/RhITpQAjRW8KQzGlBnIrhn5Q0pI/vkSJoTP6N0rzfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uxU2SSj0f0tJ85rcgeYcrlEnQaAFHQB8fq+qiQnxY5E=;
- b=7jK3AifY8j24D4v2oKnCB9cL1eH6q3YsPwpFGX/lCEq/1tFFCExtDiB069lUrHDVH7+sj7LUdM4uKl7tjuAKxcen56JKtt4+D1seYAq319wxHKhJ1SnDlu2fDG7bmbT3WOVfvcQU9oUAUJUGF4AWzGf6YhrO+BHRHpaS6f8wAK4=
-Received: from MN2PR03MB5197.namprd03.prod.outlook.com (2603:10b6:208:1f0::18)
- by SJ0PR03MB6343.namprd03.prod.outlook.com (2603:10b6:a03:399::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Mon, 17 Apr
- 2023 21:43:01 +0000
-Received: from MN2PR03MB5197.namprd03.prod.outlook.com
- ([fe80::c9df:9ae8:8919:f81b]) by MN2PR03MB5197.namprd03.prod.outlook.com
- ([fe80::c9df:9ae8:8919:f81b%4]) with mapi id 15.20.6298.045; Mon, 17 Apr 2023
- 21:43:01 +0000
-From:   "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "sre@kernel.org" <sre@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>
-Subject: RE: [PATCH 4/6] dt-bindings: power: supply: add MAX77659 charger
- binding
-Thread-Topic: [PATCH 4/6] dt-bindings: power: supply: add MAX77659 charger
- binding
-Thread-Index: AQHZFHafezZFG2rId0CSeK7xJHHTP6523OgAgLncwxA=
-Date:   Mon, 17 Apr 2023 21:43:01 +0000
-Message-ID: <MN2PR03MB5197E655DE2EAACAEA2316578B9C9@MN2PR03MB5197.namprd03.prod.outlook.com>
-References: <20221220132250.19383-1-Zeynep.Arslanbenzer@analog.com>
- <20221220132250.19383-5-Zeynep.Arslanbenzer@analog.com>
- <5ba4295f-1197-913c-b1eb-a23798c3badf@linaro.org>
-In-Reply-To: <5ba4295f-1197-913c-b1eb-a23798c3badf@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?utf-8?B?UEcxbGRHRStQR0YwSUc1dFBTSmliMlI1TG5SNGRDSWdjRDBpWXpwY2RYTmxj?=
- =?utf-8?B?bk5jZW1WNWJtVndMbUZ5YzJ4aGJtSmxibnBsY2x4aGNIQmtZWFJoWEhKdllX?=
- =?utf-8?B?MXBibWRjTURsa09EUTVZall0TXpKa015MDBZVFF3TFRnMVpXVXRObUk0TkdK?=
- =?utf-8?B?aE1qbGxNelZpWEcxelozTmNiWE5uTFdObVptVTRNVFZrTFdSa05qZ3RNVEZs?=
- =?utf-8?B?WkMxaVpqUXhMVFpqT1RRMk5tUmpNRGt4T1Z4aGJXVXRkR1Z6ZEZ4alptWmxP?=
- =?utf-8?B?REUxWmkxa1pEWTRMVEV4WldRdFltWTBNUzAyWXprME5qWmtZekE1TVRsaWIy?=
- =?utf-8?B?UjVMblI0ZENJZ2MzbzlJamN5TnpZaUlIUTlJakV6TXpJMk1qUXhNemMyTkRV?=
- =?utf-8?B?eU5qTTRPQ0lnYUQwaVdIVmhZUzl6SzNORWFtWm9SREl6TWl0cE1Yb3daekFy?=
- =?utf-8?B?VlZNd1BTSWdhV1E5SWlJZ1ltdzlJakFpSUdKdlBTSXhJaUJqYVQwaVkwRkJR?=
- =?utf-8?B?VUZGVWtoVk1WSlRVbFZHVGtOblZVRkJSVzlEUVVGQk1HZFdhVk5rV0VoYVFW?=
- =?utf-8?B?cFNSbkZHUVhabE5YUlliRVZYYjFWRE9UZHRNV05FUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVWhCUVVGQlJHRkJVVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVVkJRVkZCUWtGQlFVRlRha1ZZZUhkQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZLTkVGQlFVSm9RVWRSUVdGUlFtWkJTRTFCV2xGQ2Fr?=
- =?utf-8?B?RklWVUZqWjBKc1FVWTRRV05CUW5sQlJ6aEJZV2RDYkVGSFRVRmtRVUo2UVVZ?=
- =?utf-8?B?NFFWcG5RbWhCUjNkQlkzZENiRUZHT0VGYVowSjJRVWhOUVdGUlFqQkJSMnRC?=
- =?utf-8?B?WkdkQ2JFRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlJVRkJRVUZCUVVGQlFVRm5RVUZCUVVGQmJtZEJRVUZIUlVGYVFVSndRVVk0?=
- =?utf-8?B?UVdOM1FteEJSMDFCWkZGQ2VVRkhWVUZZZDBKM1FVaEpRV0ozUW5GQlIxVkJX?=
- =?utf-8?B?WGRDTUVGSVRVRllkMEl3UVVkclFWcFJRbmxCUkVWQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVkZCUVVGQlFVRkJRVUZEUVVGQlFVRkJRMlZCUVVGQldW?=
- =?utf-8?B?RkNhMEZIYTBGWWQwSjZRVWRWUVZsM1FqRkJTRWxCV2xGQ1prRklRVUZqWjBK?=
- =?utf-8?B?MlFVZHZRVnBSUW1wQlNGRkJZM2RDWmtGSVVVRmhVVUpzUVVoSlFVMW5RVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVKQlFVRkJRVUZCUVVGQlNVRkJRVUZC?=
- =?utf-8?Q?QUE9PSIvPjwvbWV0YT4=3D?=
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN2PR03MB5197:EE_|SJ0PR03MB6343:EE_
-x-ms-office365-filtering-correlation-id: 11b579f4-c303-47e4-4562-08db3f8cb792
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: L5MBZsqaM5w4dBigKVLJYDiAzkQC93mMtwd3h4UdEgrZEwmDROk8Iz9R06tRTkte6+35Q3UPv3+KJ3U9xVsbMsvCXIOu9nghHGZLjHkyfKMLGxgKNzrYnDaK7a/EDBe33oQbYS+bosHxQGg3t7vBtSkIO5dogRfyW7CYk5k3SA9V6VDlttr8wX2EjBfXyWGrOQaXTQXfq6I+Eya+9opPkeKB+M907Ghen4ljlYFn7n0PPhgQu3QqfI+tDhVk0wGzGI3p744+9niK2xOZivfSoMKT6NOWAXMG+l8kn99//WaQlTDiep2Ot6APUhFZoFEGteAySTeDEbG4HJkQSoXqPx1hfT5Abqz8z42m8qm4n3/Dnfk6SvlWQzAS4xULfVwqciYpmCwl/PGsV6ewcEBHNCq04hukgwFZiM2AzfOJlMqMWZf9mkotK4Lzp5GCpp5bkKRqMlbAnT5tVJFa+/yIKffgJD62gZ91YQeTNd5HmNOmLMAWeqofgUBLwkvNeYjRBQaLsmh110Y/StbucP1TOU+mL5szDQfzNn+4sYIDMUCNy5KrfJ2qN5GyraxhPz7CXfZ3IM+BZLBzdy7oo+suP89F98sCKXiLxfOYgVEMF/sQ56oUR3DSvlq7dcSecD9spZLVoxyV03OyA5xJh4VYeg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR03MB5197.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(39860400002)(346002)(376002)(396003)(136003)(451199021)(7416002)(52536014)(5660300002)(9686003)(83380400001)(122000001)(86362001)(186003)(26005)(6506007)(38100700002)(38070700005)(8936002)(8676002)(54906003)(478600001)(33656002)(7696005)(71200400001)(41300700001)(316002)(55016003)(76116006)(4326008)(66556008)(64756008)(66476007)(66946007)(66446008)(6916009)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QnNwd1A1UXBMQnBrQ0V6eTY2eDdHYWx5WGtxN1VwVGRjY09TOTlLeEVQZUIx?=
- =?utf-8?B?azZWeS84ekJnVTVGcENkc21vN1NyajNmYW5tVUttckpYQjdoalpRZGIzVTFJ?=
- =?utf-8?B?enZWTE1EVGpnYTJPWW1NVEZzV2JhT2owSzBZZENWRFg4ZUdMUEc3OVdsTzRO?=
- =?utf-8?B?N1g4Z0tsSWR2OEwwQXRvTEZ6Vkx3YS80OVpUSHY2RFlieXVERE5CZWR5MDhh?=
- =?utf-8?B?L0xMK2N6U1d3b1lHNTZ1bkZseEovWkF3NW9nNUdjamtZTFNWZEM0ZnJvV0ww?=
- =?utf-8?B?WHZXb1RpRHk0ZENUb3o5MCtNM1J0czUzV2tMZkp6aVpmTkNCSHBoUkpyTTRS?=
- =?utf-8?B?c01iS1B6TUdZQjlxSEljSzVaSWNtTDRmbkpRM09YOUFpVFNJL2s2UnhzdTls?=
- =?utf-8?B?YmtGS3pIWlpxZGN1RFIrWTQzcjRWeGlrMURMY2hzM1RybFhmdVVFTXJhTUQv?=
- =?utf-8?B?MFQ2T2lROEwxaWQ5OHpKQXdPcVozTEJPRG9DaDE3RFRkYURHbjhFV0o0RlZG?=
- =?utf-8?B?UVhiUEIxalZoRW02dG1SUWN0OGVES1ZyRFhFSHdHbWQwT2pnSzFXQkNZNUNa?=
- =?utf-8?B?N0JJcjV1bEV0L1FMT0ZWYjRybENXTFFDTXcvZS9GR2Zjd1M1VzFXM01OaWJE?=
- =?utf-8?B?S2s1Vm5nUm8ra204NDhMTHJKZEFYWHROWGpCWG1qbXNMVlhRZ0lDbm92V20z?=
- =?utf-8?B?d1Ywbnk4bk1oaVIzUnJDWlBqWEFvMTJhZ0NMcUcxUVR0WjhmaTR3NTU5K0V4?=
- =?utf-8?B?Wk5WME9uM2Ixek0yMVcraWhNYzNxQ0NvNjI5bE9naU8ySWYxd1FGb3pWSGtO?=
- =?utf-8?B?QzJ6amg2YVljVHFWZ3hBKytSSUh1bUtRKzVDTEp2SEc2dW9oUlVNc2xsNzZV?=
- =?utf-8?B?d2tIRGZwWXBpamFzZlRqNG95L1BHd1pEQ3QzcSswQzdRN0lLU0RlR1ZyeGdn?=
- =?utf-8?B?d2piemJsYmFINGtaQ0Iya2hVMWxySkJ3cDhhK3kxQkJJbThZQUs1aDVnUW5P?=
- =?utf-8?B?Y01YTk1FS2NxckZlMFA0MHg3Zk4zbURXY0dMUCtsWW9tblFHRUlNVXY2Tktk?=
- =?utf-8?B?L0R0enZyL0JpdXFrRFhoK1VuaGRiWWhtdHRxWk9ZdjRxUEV6cUdlSGM1TEEx?=
- =?utf-8?B?MmxIZTB3bEp3VXBMR1dlVSt3SEJyblorczJ6OGRLdEtCay9OVnJXUlk1Smly?=
- =?utf-8?B?VnE0M0V1OHgzTVpXbkh2Mjl6bjV5WmduMzhucGRjVnBSdzFodUdEK0FnOG0w?=
- =?utf-8?B?RWVJZjAzSXgzdzczV1JTZHkwOG5IaDJLckhBS0IwSlRrbDlvK1ZLSDhERkdN?=
- =?utf-8?B?RjhDOHlIMVpZa09zTldEVzdGZVpBZHN5Yk13NnAzdGY2ZFdhSG03T0tZdzhp?=
- =?utf-8?B?VFJqeWRuN0M0UnREVTVZVmZpVkdseTRmVklVeXNobUJNeWQrMWlxZDZ3MTUx?=
- =?utf-8?B?SnJpVGhUaC9BK3JhNG43NWhHRXJLNjBYYU01clRIdHRKNzgwTzBMUklQSkFl?=
- =?utf-8?B?SWZKZ1pNWCtGd2tOQXJuS2RSUDFqcU1INmhsdFA2TnRxdTN1Nks0MVo0Ny9N?=
- =?utf-8?B?Y1FNa2lzRjY4T2p0THZnMFVyWmE4ampQbk5JazlyRDZhclBzZjJKelRPUW1r?=
- =?utf-8?B?aTVUd0NrcjVvTTduUWJoQ0JUY3p3QUF5bzlUTXQwSnJKYmtpZVpTSDdjM1NE?=
- =?utf-8?B?Q3Z3ZGRqL0pLVVVEaUZaVGVVNzRNeUU5dkdNMWpWNzdrbjFNbisrdDVtOUJx?=
- =?utf-8?B?Z3RJUlhEMXlYOHBETEYyYjdzQWVyQWw1NzAxL0VlMHM2VlUrZWloU1hHWjdU?=
- =?utf-8?B?a3I1QzhZc0YvNFNLcGpUamx3VXJEL0pOblFkNVBPNk9JYkU3R3ltVmQwSEMv?=
- =?utf-8?B?RXBOZlY2MXB0ZERsa3BtVmFpblpjanBsaDFaa1MrT29GL0dvWmdCY0tNKzNm?=
- =?utf-8?B?Q2hXVG9uanpKbWVPdVVjanJvQjdvNnowREVORHBMTG9teWd4TStpcDlSejJl?=
- =?utf-8?B?VVduRTFlNXhiNThQamhCSGpIcXlUbEZnbHBJMWZWN2ZWUTludzVCK1E1N0lv?=
- =?utf-8?B?em5qRzZMb0VUSFZKWi9odnhzNjI1L3E1UzB1L1dtOHFmaTIzQjB3NW9BYUpl?=
- =?utf-8?B?N2lMUXhrQTJSekZVN1ZtT0d4WEdYd1V3djllTEtrVlFvb3hnTEQrWE1mbW9N?=
- =?utf-8?B?SFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S230252AbjDQVsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 17:48:53 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373A4E5;
+        Mon, 17 Apr 2023 14:48:50 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-187f76c50dbso3495289fac.10;
+        Mon, 17 Apr 2023 14:48:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681768129; x=1684360129;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OXwV9LPrGeZ8wDUIV3pgZ80LZh7AN78jSl9VrRyXbZ4=;
+        b=G1bF56fn4UBaNMqvhjThmvmKqMksNgPveJ6/9Tc2oWt/g0TcBrxk+8K0LzqJ+ioMeI
+         oppn5haG929XDPU1XMYAdZD5R2yJ+9d4HW+noCY9WTrT6o++Zh9gIkOcmURqFE6BkucH
+         meE+ff9VTtDrAGUO1P46LJ+WqbdFRAE1FRyZJWR+mVJxDv0Gf7fQRdH7ybmec4cSyvSK
+         jVHVCJLqq0kLeesSSaqE4g/0hzUpYUwaNJK6DQJrU5B2pGmYKHPcOuIr0trvEXOzBZAe
+         tHQ3ZCz+IRpZKWZwhQkMLcMYTF2tyMC1jy2s7n4M5WkEqes0irwP5OLKQUchCaDEAgMM
+         t2DQ==
+X-Gm-Message-State: AAQBX9f+p0qUSftq60jZHVOozNvQOoKfcKTiu1aOrqAuzc418h2NmUph
+        xOWyTLgGBPNSXWrD1NgJBJrBR4SHNg==
+X-Google-Smtp-Source: AKy350YhDqSYydufXsE+EtKu4mP8Vidrjb389yE2BCtU0xQDC6FZAe5xdA8HHd1dj27E8uQmNcczRw==
+X-Received: by 2002:a05:6871:79c:b0:184:8300:bfac with SMTP id o28-20020a056871079c00b001848300bfacmr10139968oap.35.1681768129204;
+        Mon, 17 Apr 2023 14:48:49 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q70-20020a4a3349000000b00546daaf33cfsm1482160ooq.14.2023.04.17.14.48.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Apr 2023 14:48:48 -0700 (PDT)
+Received: (nullmailer pid 3489969 invoked by uid 1000);
+        Mon, 17 Apr 2023 21:48:47 -0000
+Date:   Mon, 17 Apr 2023 16:48:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        bhelgaas@google.com, michals@xilinx.com,
+        nagaradhesh.yeleswarapu@amd.com, bharat.kumar.gogada@amd.com,
+        lorenzo.pieralisi@arm.com
+Subject: Re: [PATCH 2/2] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Message-ID: <20230417214847.GA3441806-robh@kernel.org>
+References: <20230417103226.334588-1-thippeswamy.havalige@amd.com>
+ <20230417103226.334588-3-thippeswamy.havalige@amd.com>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR03MB5197.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11b579f4-c303-47e4-4562-08db3f8cb792
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2023 21:43:01.0738
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JnNPZkKKLMihi+bfhoGYZyH3ztve9CBFzO9UDuqguAH6+/DjykPM196S7poLjmx5PPVBPGuUtuurEg7yrzMdP/EhQ+82DSWS+fHHI3YIpY8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB6343
-X-Proofpoint-ORIG-GUID: vtobK22eFOpmLce7uTnNmCdH4vZYa3Oi
-X-Proofpoint-GUID: vtobK22eFOpmLce7uTnNmCdH4vZYa3Oi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_14,2023-04-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 clxscore=1015 spamscore=0 malwarescore=0
- lowpriorityscore=0 impostorscore=0 suspectscore=0 mlxscore=0 adultscore=0
- phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304170191
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230417103226.334588-3-thippeswamy.havalige@amd.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -185,65 +66,973 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pk9uIDIwLzEyLzIwMjIgMTQ6MjIsIFpleW5lcCBBcnNsYW5iZW56ZXIgd3JvdGU6DQo+PiBUaGlz
-IHBhdGNoIGFkZHMgZGV2aWNlIHRyZWUgYmluZGluZyBkb2N1bWVudGF0aW9uIGZvciBNQVg3NzY1
-OSBjaGFyZ2VyLg0KPg0KPkRvIG5vdCB1c2UgIlRoaXMgY29tbWl0L3BhdGNoIi4NCj5odHRwczov
-L3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvdjUu
-MTcuMS9zb3VyY2UvRG9jdW1lbnRhdGlvbi9wcm9jZXNzL3N1Ym1pdHRpbmctcGF0Y2hlcy5yc3Qq
-TDk1X187Pkl3ISFBM05pOENTMHkyWSEtQW5IbUlUaGJCNVE4OF9kRmR2ZUVtc1hsc2ZmbFJYRGFi
-ZjZSVkU1eVNSdXNNeFAyNE5FZkFyOFJDc3UyNkxUdm9hSUlNdkVEcjJZeERFQ3JHbE13UjgteXd2
-b1I2MnJYQjBXJCANCj4NCj4+IA0KPj4gU2lnbmVkLW9mZi1ieTogTnVyZXR0aW4gQm9sdWN1IDxO
-dXJldHRpbi5Cb2x1Y3VAYW5hbG9nLmNvbT4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBaZXluZXAgQXJz
-bGFuYmVuemVyIDxaZXluZXAuQXJzbGFuYmVuemVyQGFuYWxvZy5jb20+Pg0KPj4gLS0tDQo+PiAg
-Li4uL3Bvd2VyL3N1cHBseS9hZGksbWF4Nzc2NTktY2hhcmdlci55YW1sICAgIHwgNDIgKysrKysr
-KysrKysrKysrKysrKw0KPj4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICB8ICAxICsNCj4+ICAyIGZpbGVzIGNoYW5nZWQsIDQzIGluc2VydGlvbnMoKykNCj4+
-ICBjcmVhdGUgbW9kZSAxMDA2NDQgDQo+PiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvcG93ZXIvc3VwcGx5L2FkaSxtYXg3NzY1OS1jaGFyZ2VyLnlhDQo+PiBtbA0KPj4gDQo+PiBk
-aWZmIC0tZ2l0IA0KPj4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcG93ZXIv
-c3VwcGx5L2FkaSxtYXg3NzY1OS1jaGFyZ2VyLg0KPj4geWFtbCANCj4+IGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bvd2VyL3N1cHBseS9hZGksbWF4Nzc2NTktY2hhcmdlci4N
-Cj4+IHlhbWwNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAwMDAwMDAu
-LjI0ZjhiNWEyYmQ4NA0KPj4gLS0tIC9kZXYvbnVsbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3Bvd2VyL3N1cHBseS9hZGksbWF4Nzc2NTktY2hhcg0KPj4gKysr
-IGdlci55YW1sDQo+PiBAQCAtMCwwICsxLDQyIEBADQo+PiArIyBTUERYLUxpY2Vuc2UtSWRlbnRp
-ZmllcjogR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSAlWUFNTCAxLjINCj4+ICstLS0NCj4+
-ICskaWQ6IA0KPj4gK2h0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi8vZGV2aWNldHJl
-ZS5vcmcvc2NoZW1hcy9wb3dlci9zdXBwbA0KPj4gK3kvYWRpLG1heDc3NjU5LWNoYXJnZXIueWFt
-bCpfXztJdyEhQTNOaThDUzB5MlkhLUFuSG1JVGhiQjVRODhfZEZkdmVFbQ0KPj4gK3NYbHNmZmxS
-WERhYmY2UlZFNXlTUnVzTXhQMjRORWZBcjhSQ3N1MjZMVHZvYUlJTXZFRHIyWXhERUNyR2xNd1I4
-LXl3dg0KPj4gK29SNXJLVVIxMSQNCj4+ICskc2NoZW1hOiANCj4+ICtodHRwczovL3VybGRlZmVu
-c2UuY29tL3YzL19faHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnkNCj4+
-ICthbWwqX187SXchIUEzTmk4Q1MweTJZIS1BbkhtSVRoYkI1UTg4X2RGZHZlRW1zWGxzZmZsUlhE
-YWJmNlJWRTV5U1J1c00NCj4+ICt4UDI0TkVmQXI4UkNzdTI2TFR2b2FJSU12RURyMll4REVDckds
-TXdSOC15d3ZvUnlfeVdXQlMkDQo+PiArDQo+PiArdGl0bGU6IEJhdHRlcnkgY2hhcmdlciBmb3Ig
-TUFYNzc2NTkgUE1JQyBmcm9tIEFESS4NCj4NCj5Ecm9wIGZ1bGwgc3RvcC4NCj4NCj4+ICsNCj4+
-ICttYWludGFpbmVyczoNCj4+ICsgIC0gTnVyZXR0aW4gQm9sdWN1IDxOdXJldHRpbi5Cb2x1Y3VA
-YW5hbG9nLmNvbT4+DQo+PiArICAtIFpleW5lcCBBcnNsYW5iZW56ZXIgPFpleW5lcC5BcnNsYW5i
-ZW56ZXJAYW5hbG9nLmNvbT4+DQo+PiArDQo+PiArZGVzY3JpcHRpb246IHwNCj4+ICsgIFRoaXMg
-bW9kdWxlIGlzIHBhcnQgb2YgdGhlIE1BWDc3NjU5IE1GRCBkZXZpY2UuIEZvciBtb3JlIGRldGFp
-bHMNCj4+ICsgIHNlZSBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2FkaSxt
-YXg3NzY1OS55YW1sLg0KPj4gKw0KPj4gKyAgVGhlIGNoYXJnZXIgaXMgcmVwcmVzZW50ZWQgYXMg
-YSBzdWItbm9kZSBvZiB0aGUgUE1JQyBub2RlIG9uIHRoZSBkZXZpY2UgdHJlZS4NCj4+ICsNCj4+
-ICtwcm9wZXJ0aWVzOg0KPj4gKyAgY29tcGF0aWJsZToNCj4+ICsgICAgY29uc3Q6IGFkaSxtYXg3
-NzY1OS1jaGFyZ2VyDQo+PiArDQo+PiArICByZWc6DQo+PiArICAgIG1heEl0ZW1zOiAxDQo+PiAr
-DQo+PiArICBhZGksZmFzdC1jaGFyZ2UtdGltZXI6DQo+PiArICAgICRyZWY6IC9zY2hlbWFzL3R5
-cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPj4gKyAgICBkZXNjcmlwdGlvbjogRmFzdC1j
-aGFyZ2Ugc2FmZXR5IHRpbWVyIHZhbHVlIChpbiBob3VycykuDQo+DQo+Tm8sIHVzZSBzdWZmaXhl
-cyBmb3IgY29tbW9uIHVuaXRzLg0KDQpIaSBLcnp5c3p0b2YsDQoNClRoYW5rIHlvdSBmb3IgeW91
-ciByZXZpZXcuIFRoZSBwb3NzaWJsZSByZWdpc3RlciB2YWx1ZXMgb2YgdGhlIGZhc3QgY2hhcmdl
-IHNhZmV0eSB0aW1lciBhcmUgZGVzY3JpYmVkIGluIHRoZSBkYXRhc2hlZXQgYXMgZm9sbG93cy4g
-SSB3YXMgdW5kZWNpZGVkIGFib3V0IHVzaW5nIHRoZSBjb21tb24gdW5pdCwgc2Vjb25kLCBhcyBp
-dCBtYXkgYWZmZWN0IHRoZSBjb21wcmVoZW5zaWJpbGl0eSBvZiB0aGUgY29kZS4gT2YgY291cnNl
-LCBJIGNhbiB1c2Ugc2Vjb25kIGFzIHRoZSBjb21tb24gdW5pdCBpZiB5b3UgdGhpbmsgaXQncyBt
-b3JlIGFwcHJvcHJpYXRlLg0KDQowYjAwID0gVGltZXIgZGlzYWJsZWQgDQowYjAxID0gMyBob3Vy
-cyANCjBiMTAgPSA1IGhvdXJzIA0KMGIxMSA9IDcgaG91cnMNCg0KPg0KPj4gKw0KPj4gKyAgYWRp
-LGZhc3QtY2hhcmdlLW1pY3JvYW1wOg0KPj4gKyAgICBkZXNjcmlwdGlvbjogRmFzdC1jaGFyZ2Ug
-Y29uc3RhbnQgY3VycmVudCB2YWx1ZS4NCj4NCj4+ICsNCj4+ICsgIGFkaSx0b3BvZmYtdGltZXI6
-DQo+PiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0K
-Pj4gKyAgICBkZXNjcmlwdGlvbjogVG9wLU9mZiB0aW1lciB2YWx1ZSAoaW4gbWludXRlcykuDQo+
-DQo+Tm8sIHVzZSBzdWZmaXhlcyBmb3IgY29tbW9uIHVuaXRzLg0KDQpTaW1pbGFyIGNhc2U6DQoN
-CjBiMDAwID0gMCBtaW51dGVzIA0KMGIwMDEgPSA1IG1pbnV0ZXMgDQowYjAxMCA9IDEwIG1pbnV0
-ZXMgDQowYjAxMSA9IDE1IG1pbnV0ZXMgDQowYjEwMCA9IDIwIG1pbnV0ZXMgDQowYjEwMSA9IDI1
-IG1pbnV0ZXMgDQowYjExMCA9IDMwIG1pbnV0ZXMgDQowYjExMSA9IDM1IG1pbnV0ZXMNCg0KPg0K
-Pg0KPkJlc3QgcmVnYXJkcywNCj5Lcnp5c3p0b2YNCg0KQmVzdCByZWdhcmRzLA0KWmV5bmVwDQo=
+On Mon, Apr 17, 2023 at 04:02:26PM +0530, Thippeswamy Havalige wrote:
+> Add support for Xilinx XDMA Soft IP core as Root Port.
+> 
+> The Zynq UltraScale+ MPSoCs devices support XDMA soft IP module in
+> programmable logic.
+> 
+> The integrated XDMA soft IP block has integrated bridge function that
+> can act as PCIe Root Port.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+> ---
+>  drivers/pci/controller/Kconfig        |  10 +
+>  drivers/pci/controller/Makefile       |   1 +
+>  drivers/pci/controller/pcie-xdma-pl.c | 877 ++++++++++++++++++++++++++
+>  3 files changed, 888 insertions(+)
+>  create mode 100644 drivers/pci/controller/pcie-xdma-pl.c
+> 
+> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
+> index 42654035654a..edc7812673ff 100644
+> --- a/drivers/pci/controller/Kconfig
+> +++ b/drivers/pci/controller/Kconfig
+> @@ -113,6 +113,16 @@ config PCIE_XILINX_CPM
+>  	  Say 'Y' here if you want kernel support for the
+>  	  Xilinx Versal CPM host bridge.
+>  
+> +config PCIE_XILINX_DMA
+> +	bool "Xilinx DMA PL PCIe host bridge support"
+> +	depends on ARCH_ZYNQMP || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	select PCI_HOST_COMMON
+> +	help
+> +	  Say 'Y' here if you want kernel to enable support for the
+> +	  XILINX PL PCIe host bridge support, this PCIe controller
+> +	  includes DMA PL component.
+> +
+>  config PCI_XGENE
+>  	bool "X-Gene PCIe controller"
+>  	depends on ARM64 || COMPILE_TEST
+> diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
+> index 37c8663de7fe..567890c7952e 100644
+> --- a/drivers/pci/controller/Makefile
+> +++ b/drivers/pci/controller/Makefile
+> @@ -12,6 +12,7 @@ obj-$(CONFIG_PCIE_RCAR_HOST) += pcie-rcar.o pcie-rcar-host.o
+>  obj-$(CONFIG_PCIE_RCAR_EP) += pcie-rcar.o pcie-rcar-ep.o
+>  obj-$(CONFIG_PCI_HOST_COMMON) += pci-host-common.o
+>  obj-$(CONFIG_PCI_HOST_GENERIC) += pci-host-generic.o
+> +obj-$(CONFIG_PCIE_XILINX_DMA) += pcie-xdma-pl.o
+>  obj-$(CONFIG_PCI_HOST_THUNDER_ECAM) += pci-thunder-ecam.o
+>  obj-$(CONFIG_PCI_HOST_THUNDER_PEM) += pci-thunder-pem.o
+>  obj-$(CONFIG_PCIE_XILINX) += pcie-xilinx.o
+> diff --git a/drivers/pci/controller/pcie-xdma-pl.c b/drivers/pci/controller/pcie-xdma-pl.c
+> new file mode 100644
+> index 000000000000..487d2be3bf45
+> --- /dev/null
+> +++ b/drivers/pci/controller/pcie-xdma-pl.c
+> @@ -0,0 +1,877 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * PCIe host controller driver for Xilinx XDMA PCIe Bridge
+> + *
+> + * Copyright (C) 2017 Xilinx, Inc. All rights reserved.
+> + */
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_pci.h>
+
+> +#include <linux/of_platform.h>
+> +#include <linux/of_irq.h>
+
+I don't think you need either of these.
+
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/pci-ecam.h>
+> +
+> +#include "../pci.h"
+> +
+> +/* Register definitions */
+> +#define XILINX_PCIE_DMA_REG_IDR			0x00000138
+> +#define XILINX_PCIE_DMA_REG_IMR			0x0000013c
+> +#define XILINX_PCIE_DMA_REG_PSCR		0x00000144
+> +#define XILINX_PCIE_DMA_REG_RPSC		0x00000148
+> +#define XILINX_PCIE_DMA_REG_MSIBASE1		0x0000014c
+> +#define XILINX_PCIE_DMA_REG_MSIBASE2		0x00000150
+> +#define XILINX_PCIE_DMA_REG_RPEFR		0x00000154
+> +#define XILINX_PCIE_DMA_REG_IDRN		0x00000160
+> +#define XILINX_PCIE_DMA_REG_IDRN_MASK		0x00000164
+> +#define XILINX_PCIE_DMA_REG_MSI_LOW		0x00000170
+> +#define XILINX_PCIE_DMA_REG_MSI_HI		0x00000174
+> +#define XILINX_PCIE_DMA_REG_MSI_LOW_MASK	0x00000178
+> +#define XILINX_PCIE_DMA_REG_MSI_HI_MASK		0x0000017c
+> +
+> +/* Interrupt registers definitions */
+> +#define XILINX_PCIE_DMA_INTR_LINK_DOWN		0
+> +#define XILINX_PCIE_DMA_INTR_HOT_RESET		3
+> +#define XILINX_PCIE_DMA_INTR_CFG_TIMEOUT	8
+> +#define XILINX_PCIE_DMA_INTR_CORRECTABLE	9
+> +#define XILINX_PCIE_DMA_INTR_NONFATAL		10
+> +#define XILINX_PCIE_DMA_INTR_FATAL		11
+> +#define XILINX_PCIE_DMA_INTR_INTX		16
+> +#define XILINX_PCIE_DMA_INTR_MSI		17
+> +#define XILINX_PCIE_DMA_INTR_SLV_UNSUPP		20
+> +#define XILINX_PCIE_DMA_INTR_SLV_UNEXP		21
+> +#define XILINX_PCIE_DMA_INTR_SLV_COMPL		22
+> +#define XILINX_PCIE_DMA_INTR_SLV_ERRP		23
+> +#define XILINX_PCIE_DMA_INTR_SLV_CMPABT		24
+> +#define XILINX_PCIE_DMA_INTR_SLV_ILLBUR		25
+> +#define XILINX_PCIE_DMA_INTR_MST_DECERR		26
+> +#define XILINX_PCIE_DMA_INTR_MST_SLVERR		27
+
+Looks like a superset of the pcie-xilinx-cpm.c registers. You can't 
+share some code here? Like all the interrupt handling code which does 
+nothing more than print debug messages...
+
+> +
+> +#define IMR(x) BIT(XILINX_PCIE_DMA_INTR_ ##x)
+> +
+> +#define XILINX_PCIE_DMA_INTR_IMR_ALL_MASK	\
+> +	(					\
+> +		IMR(LINK_DOWN)		|	\
+> +		IMR(HOT_RESET)		|	\
+> +		IMR(CFG_TIMEOUT)	|	\
+> +		IMR(CORRECTABLE)	|	\
+> +		IMR(NONFATAL)		|	\
+> +		IMR(FATAL)		|	\
+> +		IMR(INTX)		|	\
+> +		IMR(MSI)		|	\
+> +		IMR(SLV_UNSUPP)		|	\
+> +		IMR(SLV_UNEXP)		|	\
+> +		IMR(SLV_COMPL)		|	\
+> +		IMR(SLV_ERRP)		|	\
+> +		IMR(SLV_CMPABT)		|	\
+> +		IMR(SLV_ILLBUR)		|	\
+> +		IMR(MST_DECERR)		|	\
+> +		IMR(MST_SLVERR)		|	\
+> +	)
+> +
+> +#define XILINX_PCIE_DMA_IMR_ALL_MASK	0x0FF30FE9
+> +#define XILINX_PCIE_DMA_IDR_ALL_MASK	0xFFFFFFFF
+> +#define XILINX_PCIE_DMA_IDRN_MASK	GENMASK(19, 16)
+> +
+> +/* Root Port Error Register definitions */
+> +#define XILINX_PCIE_DMA_RPEFR_ERR_VALID	BIT(18)
+> +#define XILINX_PCIE_DMA_RPEFR_REQ_ID	GENMASK(15, 0)
+> +#define XILINX_PCIE_DMA_RPEFR_ALL_MASK	0xFFFFFFFF
+> +
+> +/* Root Port Interrupt Register definitions */
+> +#define XILINX_PCIE_DMA_IDRN_SHIFT	16
+> +
+> +/* Root Port Status/control Register definitions */
+> +#define XILINX_PCIE_DMA_REG_RPSC_BEN	BIT(0)
+> +
+> +/* Phy Status/Control Register definitions */
+> +#define XILINX_PCIE_DMA_REG_PSCR_LNKUP	BIT(11)
+> +
+> +/* Number of MSI IRQs */
+> +#define XILINX_NUM_MSI_IRQS	64
+> +
+> +struct xilinx_msi {
+> +	struct irq_domain	*msi_domain;
+> +	unsigned long		*bitmap;
+> +	struct irq_domain	*dev_domain;
+> +	struct mutex		lock;		/* protect bitmap variable */
+> +	int			irq_msi0;
+> +	int			irq_msi1;
+> +};
+> +
+> +/**
+> + * struct xilinx_pcie_dma - PCIe port information
+> + * @reg_base: IO Mapped Register Base
+> + * @irq: Interrupt number
+> + * @cfg: Holds mappings of config space window
+> + * @root_busno: Root Bus number
+> + * @dev: Device pointer
+> + * @phys_reg_base: Physical address of reg base
+> + * @leg_domain: Legacy IRQ domain pointer
+> + * @pldma_domain: PL DMA IRQ domain pointer
+> + * @resources: Bus Resources
+> + * @msi: MSI information
+> + * @irq_misc: Legacy and error interrupt number
+> + * @intx_irq: legacy interrupt number
+> + * @lock: lock protecting shared register access
+> + */
+> +struct xilinx_pcie_dma {
+> +	void __iomem			*reg_base;
+> +	u32				irq;
+> +	struct pci_config_window	*cfg;
+> +	u8				root_busno;
+
+No need to store this. You can use pci_is_root_bus().
+
+> +	struct device			*dev;
+> +	phys_addr_t			phys_reg_base;
+> +	struct irq_domain		*leg_domain;
+> +	struct irq_domain		*pldma_domain;
+> +	struct list_head		resources;
+> +	struct xilinx_msi		msi;
+> +	int				irq_misc;
+> +	int				intx_irq;
+> +	raw_spinlock_t			lock;
+> +};
+> +
+> +static inline u32 pcie_read(struct xilinx_pcie_dma *port, u32 reg)
+> +{
+> +		return readl(port->reg_base + reg);
+> +}
+> +
+> +static inline void pcie_write(struct xilinx_pcie_dma *port, u32 val, u32 reg)
+> +{
+> +		writel(val, port->reg_base + reg);
+> +}
+> +
+> +static inline bool xilinx_pcie_dma_linkup(struct xilinx_pcie_dma *port)
+> +{
+> +	return (pcie_read(port, XILINX_PCIE_DMA_REG_PSCR) &
+> +		XILINX_PCIE_DMA_REG_PSCR_LNKUP) ? 1 : 0;
+> +}
+> +
+> +/**
+> + * xilinx_pcie_dma_clear_err_interrupts - Clear Error Interrupts
+> + * @port: PCIe port information
+
+You don't really need kerneldoc comments on private functions.
+
+> + */
+> +static void xilinx_pcie_dma_clear_err_interrupts(struct xilinx_pcie_dma *port)
+> +{
+> +	unsigned long val = pcie_read(port, XILINX_PCIE_DMA_REG_RPEFR);
+> +
+> +	if (val & XILINX_PCIE_DMA_RPEFR_ERR_VALID) {
+> +		dev_dbg(port->dev, "Requester ID %lu\n",
+> +			val & XILINX_PCIE_DMA_RPEFR_REQ_ID);
+> +		pcie_write(port, XILINX_PCIE_DMA_RPEFR_ALL_MASK,
+> +			   XILINX_PCIE_DMA_REG_RPEFR);
+> +	}
+> +}
+> +
+> +/**
+> + * xilinx_pcie_dma_valid_device - Check if a valid device is present on bus
+> + * @bus: PCI Bus structure
+> + * @devfn: device/function
+> + *
+> + * Return: 'true' on success and 'false' if invalid device is found
+> + */
+> +static bool xilinx_pcie_dma_valid_device(struct pci_bus *bus, unsigned int devfn)
+> +{
+> +	struct xilinx_pcie_dma *port = bus->sysdata;
+> +
+> +	/* Check if link is up when trying to access downstream ports */
+> +	if (bus->number != port->root_busno)
+
+Use pci_is_root_bus()
+
+> +		if (!xilinx_pcie_dma_linkup(port))
+> +			return false;
+
+The link went down right here after you checked. What happens next?
+
+> +
+> +	/* Only one device down on each root port */
+> +	if (bus->number == port->root_busno && devfn > 0)
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +/**
+> + * xilinx_pcie_dma_map_bus - Get configuration base
+> + * @bus: PCI Bus structure
+> + * @devfn: Device/function
+> + * @where: Offset from base
+> + *
+> + * Return: Base address of the configuration space needed to be
+> + *	   accessed.
+> + */
+> +static void __iomem *xilinx_pcie_dma_map_bus(struct pci_bus *bus,
+> +					     unsigned int devfn, int where)
+> +{
+> +	struct xilinx_pcie_dma *port = bus->sysdata;
+> +	int relbus;
+> +
+> +	if (!xilinx_pcie_dma_valid_device(bus, devfn))
+> +		return NULL;
+> +
+> +	relbus = (bus->number << PCIE_ECAM_BUS_SHIFT) |
+> +		 (devfn << PCIE_ECAM_DEVFN_SHIFT);
+> +
+> +	return port->reg_base + relbus + where;
+> +}
+> +
+> +/* PCIe operations */
+> +static struct pci_ecam_ops xilinx_pcie_dma_ops = {
+> +	.pci_ops = {
+> +		.map_bus = xilinx_pcie_dma_map_bus,
+> +		.read	= pci_generic_config_read,
+> +		.write	= pci_generic_config_write,
+> +	}
+> +};
+> +
+> +/**
+> + * xilinx_pcie_dma_enable_msi - Enable MSI support
+> + * @port: PCIe port information
+> + */
+> +static void xilinx_pcie_dma_enable_msi(struct xilinx_pcie_dma *port)
+> +{
+> +	phys_addr_t msi_addr = port->phys_reg_base;
+> +
+> +	pcie_write(port, upper_32_bits(msi_addr), XILINX_PCIE_DMA_REG_MSIBASE1);
+> +	pcie_write(port, lower_32_bits(msi_addr), XILINX_PCIE_DMA_REG_MSIBASE2);
+> +}
+> +
+> +static void xilinx_mask_leg_irq(struct irq_data *data)
+> +{
+> +	struct xilinx_pcie_dma *port = irq_data_get_irq_chip_data(data);
+> +	unsigned long flags;
+> +	u32 mask;
+> +	u32 val;
+> +
+> +	mask = BIT(data->hwirq + XILINX_PCIE_DMA_IDRN_SHIFT);
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val = pcie_read(port, XILINX_PCIE_DMA_REG_IDRN_MASK);
+> +	pcie_write(port, (val & (~mask)), XILINX_PCIE_DMA_REG_IDRN_MASK);
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+> +
+> +static void xilinx_unmask_leg_irq(struct irq_data *data)
+> +{
+> +	struct xilinx_pcie_dma *port = irq_data_get_irq_chip_data(data);
+> +	unsigned long flags;
+> +	u32 mask;
+> +	u32 val;
+> +
+> +	mask = BIT(data->hwirq + XILINX_PCIE_DMA_IDRN_SHIFT);
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val = pcie_read(port, XILINX_PCIE_DMA_REG_IDRN_MASK);
+> +	pcie_write(port, (val | mask), XILINX_PCIE_DMA_REG_IDRN_MASK);
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+> +
+> +static struct irq_chip xilinx_leg_irq_chip = {
+> +	.name           = "INTx",
+> +	.irq_mask       = xilinx_mask_leg_irq,
+> +	.irq_unmask     = xilinx_unmask_leg_irq,
+> +};
+> +
+> +/**
+> + * xilinx_pcie_dma_intx_map - Set the handler for the INTx and mark IRQ as valid
+> + * @domain: IRQ domain
+> + * @irq: Virtual IRQ number
+> + * @hwirq: HW interrupt number
+> + *
+> + * Return: Always returns 0.
+> + */
+> +static int xilinx_pcie_dma_intx_map(struct irq_domain *domain, unsigned int irq,
+> +				    irq_hw_number_t hwirq)
+> +{
+> +	irq_set_chip_and_handler(irq, &xilinx_leg_irq_chip, handle_level_irq);
+> +	irq_set_chip_data(irq, domain->host_data);
+> +	irq_set_status_flags(irq, IRQ_LEVEL);
+> +
+> +	return 0;
+> +}
+> +
+> +/* INTx IRQ Domain operations */
+> +static const struct irq_domain_ops intx_domain_ops = {
+> +	.map = xilinx_pcie_dma_intx_map,
+> +};
+> +
+> +static void xilinx_pcie_dma_handle_msi_irq(struct xilinx_pcie_dma *port,
+> +					   u32 status_reg)
+> +{
+> +	struct xilinx_msi *msi;
+> +	unsigned long status;
+> +	u32 bit;
+> +	u32 virq;
+> +
+> +	msi = &port->msi;
+> +
+> +	while ((status = pcie_read(port, status_reg)) != 0) {
+> +		for_each_set_bit(bit, &status, 32) {
+> +			pcie_write(port, 1 << bit, status_reg);
+> +			if (status_reg == XILINX_PCIE_DMA_REG_MSI_HI)
+> +				bit = bit + 32;
+> +			virq = irq_find_mapping(msi->dev_domain, bit);
+> +			if (virq)
+> +				generic_handle_irq(virq);
+> +		}
+> +	}
+> +}
+> +
+> +static void xilinx_pcie_dma_msi_handler_high(struct irq_desc *desc)
+> +{
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct xilinx_pcie_dma *port = irq_desc_get_handler_data(desc);
+> +
+> +	chained_irq_enter(chip, desc);
+> +	xilinx_pcie_dma_handle_msi_irq(port, XILINX_PCIE_DMA_REG_MSI_HI);
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void xilinx_pcie_dma_msi_handler_low(struct irq_desc *desc)
+> +{
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct xilinx_pcie_dma *port = irq_desc_get_handler_data(desc);
+> +
+> +	chained_irq_enter(chip, desc);
+> +	xilinx_pcie_dma_handle_msi_irq(port, XILINX_PCIE_DMA_REG_MSI_LOW);
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void xilinx_pcie_dma_event_flow(struct irq_desc *desc)
+> +{
+> +	struct xilinx_pcie_dma *port = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	unsigned long val;
+> +	int i;
+> +
+> +	chained_irq_enter(chip, desc);
+> +	val =  pcie_read(port, XILINX_PCIE_DMA_REG_IDR);
+> +	val &= pcie_read(port, XILINX_PCIE_DMA_REG_IMR);
+> +	for_each_set_bit(i, &val, 32)
+> +		generic_handle_domain_irq(port->pldma_domain, i);
+> +
+> +	pcie_write(port, val, XILINX_PCIE_DMA_REG_IDR);
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +#define _IC(x, s)                              \
+> +	[XILINX_PCIE_DMA_INTR_ ## x] = { __stringify(x), s }
+> +
+> +static const struct {
+> +	const char      *sym;
+> +	const char      *str;
+> +} intr_cause[32] = {
+> +	_IC(LINK_DOWN,		"Link Down"),
+> +	_IC(HOT_RESET,		"Hot reset"),
+> +	_IC(CFG_TIMEOUT,	"ECAM access timeout"),
+> +	_IC(CORRECTABLE,	"Correctable error message"),
+> +	_IC(NONFATAL,		"Non fatal error message"),
+> +	_IC(FATAL,		"Fatal error message"),
+> +	_IC(INTX,		"INTX error message"),
+> +	_IC(MSI,		"MSI message received"),
+> +	_IC(SLV_UNSUPP,		"Slave unsupported request"),
+> +	_IC(SLV_UNEXP,		"Slave unexpected completion"),
+> +	_IC(SLV_COMPL,		"Slave completion timeout"),
+> +	_IC(SLV_ERRP,		"Slave Error Poison"),
+> +	_IC(SLV_CMPABT,		"Slave Completer Abort"),
+> +	_IC(SLV_ILLBUR,		"Slave Illegal Burst"),
+> +	_IC(MST_DECERR,		"Master decode error"),
+> +	_IC(MST_SLVERR,		"Master slave error"),
+> +};
+> +
+> +static irqreturn_t xilinx_pcie_dma_intr_handler(int irq, void *dev_id)
+> +{
+> +	struct xilinx_pcie_dma *port = (struct xilinx_pcie_dma *)dev_id;
+> +	struct device *dev = port->dev;
+> +	struct irq_data *d;
+> +
+> +	d = irq_domain_get_irq_data(port->pldma_domain, irq);
+> +	switch (d->hwirq) {
+> +	case XILINX_PCIE_DMA_INTR_CORRECTABLE:
+> +	case XILINX_PCIE_DMA_INTR_NONFATAL:
+> +	case XILINX_PCIE_DMA_INTR_FATAL:
+> +		xilinx_pcie_dma_clear_err_interrupts(port);
+> +		fallthrough;
+> +
+> +	default:
+> +		if (intr_cause[d->hwirq].str)
+> +			dev_warn(dev, "%s\n", intr_cause[d->hwirq].str);
+> +		else
+> +			dev_warn(dev, "Unknown IRQ %ld\n", d->hwirq);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static struct irq_chip xilinx_msi_irq_chip = {
+> +	.name = "xilinx_pcie_dmapcie:msi",
+> +	.irq_enable = pci_msi_unmask_irq,
+> +	.irq_disable = pci_msi_mask_irq,
+> +	.irq_mask = pci_msi_mask_irq,
+> +	.irq_unmask = pci_msi_unmask_irq,
+> +};
+> +
+> +static struct msi_domain_info xilinx_msi_domain_info = {
+> +	.flags = (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS |
+> +		MSI_FLAG_MULTI_PCI_MSI),
+> +	.chip = &xilinx_msi_irq_chip,
+> +};
+> +
+> +static void xilinx_compose_msi_msg(struct irq_data *data, struct msi_msg *msg)
+> +{
+> +	struct xilinx_pcie_dma *pcie = irq_data_get_irq_chip_data(data);
+> +	phys_addr_t msi_addr = pcie->phys_reg_base;
+> +
+> +	msg->address_lo = lower_32_bits(msi_addr);
+> +	msg->address_hi = upper_32_bits(msi_addr);
+> +	msg->data = data->hwirq;
+> +}
+> +
+> +static int xilinx_msi_set_affinity(struct irq_data *irq_data,
+> +				   const struct cpumask *mask, bool force)
+> +{
+> +	return -EINVAL;
+> +}
+> +
+> +static struct irq_chip xilinx_irq_chip = {
+> +	.name = "Xilinx MSI",
+> +	.irq_compose_msi_msg = xilinx_compose_msi_msg,
+> +	.irq_set_affinity = xilinx_msi_set_affinity,
+> +};
+> +
+> +static int xilinx_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				   unsigned int nr_irqs, void *args)
+> +{
+> +	struct xilinx_pcie_dma *pcie = domain->host_data;
+> +	struct xilinx_msi *msi = &pcie->msi;
+> +	int bit;
+> +	int i;
+> +
+> +	mutex_lock(&msi->lock);
+> +	bit = bitmap_find_free_region(msi->bitmap, XILINX_NUM_MSI_IRQS,
+> +				      get_count_order(nr_irqs));
+> +	if (bit < 0) {
+> +		mutex_unlock(&msi->lock);
+> +		return -ENOSPC;
+> +	}
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		irq_domain_set_info(domain, virq + i, bit + i, &xilinx_irq_chip,
+> +				    domain->host_data, handle_simple_irq,
+> +				    NULL, NULL);
+> +	}
+> +	mutex_unlock(&msi->lock);
+> +	return 0;
+> +}
+> +
+> +static void xilinx_irq_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				   unsigned int nr_irqs)
+> +{
+> +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
+> +	struct xilinx_pcie_dma *pcie = irq_data_get_irq_chip_data(data);
+> +	struct xilinx_msi *msi = &pcie->msi;
+> +
+> +	mutex_lock(&msi->lock);
+> +	bitmap_release_region(msi->bitmap, data->hwirq,
+> +			      get_count_order(nr_irqs));
+> +	mutex_unlock(&msi->lock);
+> +}
+> +
+> +static const struct irq_domain_ops dev_msi_domain_ops = {
+> +	.alloc  = xilinx_irq_domain_alloc,
+> +	.free   = xilinx_irq_domain_free,
+> +};
+> +
+> +static void xilinx_pcie_dma_free_interrupts(struct xilinx_pcie_dma *port)
+> +{
+> +	irq_set_chained_handler_and_data(port->msi.irq_msi0, NULL, NULL);
+> +	irq_set_chained_handler_and_data(port->msi.irq_msi1, NULL, NULL);
+> +}
+> +
+> +static void xilinx_pcie_dma_free_irq_domains(struct xilinx_pcie_dma *port)
+> +{
+> +	struct xilinx_msi *msi = &port->msi;
+> +
+> +	if (port->leg_domain) {
+> +		irq_domain_remove(port->leg_domain);
+> +		port->leg_domain = NULL;
+> +	}
+> +
+> +	if (msi->dev_domain) {
+> +		irq_domain_remove(msi->dev_domain);
+> +		msi->dev_domain = NULL;
+> +	}
+> +
+> +	if (msi->msi_domain) {
+> +		irq_domain_remove(msi->msi_domain);
+> +		msi->msi_domain = NULL;
+> +	}
+> +}
+> +
+> +static int xilinx_pcie_dma_init_msi_irq_domain(struct xilinx_pcie_dma *port)
+> +{
+> +	struct fwnode_handle *fwnode = of_node_to_fwnode(port->dev->of_node);
+> +	struct xilinx_msi *msi = &port->msi;
+> +	int size = BITS_TO_LONGS(XILINX_NUM_MSI_IRQS) * sizeof(long);
+> +	struct device *dev = port->dev;
+> +
+> +	msi->dev_domain = irq_domain_add_linear(NULL, XILINX_NUM_MSI_IRQS,
+> +						&dev_msi_domain_ops, port);
+> +	if (!msi->dev_domain)
+> +		goto out;
+> +
+> +	msi->msi_domain = pci_msi_create_irq_domain(fwnode,
+> +						    &xilinx_msi_domain_info,
+> +						    msi->dev_domain);
+> +	if (!msi->msi_domain)
+> +		goto out;
+> +
+> +	mutex_init(&msi->lock);
+> +	msi->bitmap = kzalloc(size, GFP_KERNEL);
+> +	if (!msi->bitmap)
+> +		goto out;
+> +
+> +	raw_spin_lock_init(&port->lock);
+> +	xilinx_pcie_dma_enable_msi(port);
+> +
+> +	return 0;
+> +
+> +out:
+> +	xilinx_pcie_dma_free_irq_domains(port);
+> +	dev_err(dev, "Failed to allocate MSI IRQ domains\n");
+> +	return -ENOMEM;
+> +}
+> +
+> +static void xilinx_pcie_dma_intx_flow(struct irq_desc *desc)
+> +{
+> +	struct xilinx_pcie_dma *port = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	unsigned long val;
+> +	int i;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	val = FIELD_GET(XILINX_PCIE_DMA_IDRN_MASK,
+> +			pcie_read(port, XILINX_PCIE_DMA_REG_IDRN));
+> +
+> +	for_each_set_bit(i, &val, PCI_NUM_INTX)
+> +		generic_handle_domain_irq(port->leg_domain, i);
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void xilinx_pcie_dma_mask_event_irq(struct irq_data *d)
+> +{
+> +	struct xilinx_pcie_dma *port = irq_data_get_irq_chip_data(d);
+> +	u32 val;
+> +
+> +	raw_spin_lock(&port->lock);
+> +	val = pcie_read(port, XILINX_PCIE_DMA_REG_IMR);
+> +	val &= ~BIT(d->hwirq);
+> +	pcie_write(port, val, XILINX_PCIE_DMA_REG_IMR);
+> +	raw_spin_unlock(&port->lock);
+> +}
+> +
+> +static void xilinx_pcie_dma_unmask_event_irq(struct irq_data *d)
+> +{
+> +	struct xilinx_pcie_dma *port = irq_data_get_irq_chip_data(d);
+> +	u32 val;
+> +
+> +	raw_spin_lock(&port->lock);
+> +	val = pcie_read(port, XILINX_PCIE_DMA_REG_IMR);
+> +	val |= BIT(d->hwirq);
+> +	pcie_write(port, val, XILINX_PCIE_DMA_REG_IMR);
+> +	raw_spin_unlock(&port->lock);
+> +}
+> +
+> +static struct irq_chip xilinx_pcie_dma_event_irq_chip = {
+> +	.name           = "RC-Event",
+> +	.irq_mask       = xilinx_pcie_dma_mask_event_irq,
+> +	.irq_unmask     = xilinx_pcie_dma_unmask_event_irq,
+> +};
+> +
+> +static int xilinx_pcie_dma_event_map(struct irq_domain *domain,
+> +				     unsigned int irq, irq_hw_number_t hwirq)
+> +{
+> +	irq_set_chip_and_handler(irq, &xilinx_pcie_dma_event_irq_chip,
+> +				 handle_level_irq);
+> +	irq_set_chip_data(irq, domain->host_data);
+> +	irq_set_status_flags(irq, IRQ_LEVEL);
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops event_domain_ops = {
+> +	.map = xilinx_pcie_dma_event_map,
+> +};
+> +
+> +/**
+> + * xilinx_pcie_dma_init_irq_domain - Initialize IRQ domain
+> + * @port: PCIe port information
+> + *
+> + * Return: '0' on success and error value on failure
+> + */
+> +static int xilinx_pcie_dma_init_irq_domain(struct xilinx_pcie_dma *port)
+> +{
+> +	struct device *dev = port->dev;
+> +	struct device_node *node = dev->of_node;
+> +	struct device_node *pcie_intc_node;
+> +	int ret;
+> +
+> +	/* Setup INTx */
+> +	pcie_intc_node = of_get_next_child(node, NULL);
+
+This breaks if someone puts the PCI devices into DT (which is perfectly 
+valid to do on any PCI host bridge). It also assumes some order of 
+child nodes which is undefined. Be specific about what child node you 
+want. 
+
+> +	if (!pcie_intc_node) {
+> +		dev_err(dev, "No PCIe Intc node found\n");
+> +		return PTR_ERR(pcie_intc_node);
+> +	}
+> +
+> +	port->pldma_domain = irq_domain_add_linear(pcie_intc_node, 32,
+> +						   &event_domain_ops, port);
+> +	if (!port->pldma_domain)
+> +		goto out;
+> +
+> +	irq_domain_update_bus_token(port->pldma_domain, DOMAIN_BUS_NEXUS);
+> +
+> +	port->leg_domain = irq_domain_add_linear(pcie_intc_node, PCI_NUM_INTX,
+> +						 &intx_domain_ops,
+> +						 port);
+> +	if (!port->leg_domain) {
+> +		dev_err(dev, "Failed to get a legacy IRQ domain\n");
+> +		return PTR_ERR(port->leg_domain);
+> +	}
+> +
+> +	irq_domain_update_bus_token(port->leg_domain, DOMAIN_BUS_WIRED);
+> +
+> +	ret = xilinx_pcie_dma_init_msi_irq_domain(port);
+> +	if (ret != 0) {
+> +		irq_domain_remove(port->leg_domain);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	of_node_put(pcie_intc_node);
+> +	raw_spin_lock_init(&port->lock);
+> +
+> +	return 0;
+> +out:
+> +	return -ENOMEM;
+> +}
+> +
+> +static int xilinx_pcie_dma_setup_irq(struct xilinx_pcie_dma *port)
+> +{
+> +	struct device *dev = port->dev;
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	int i, irq;
+> +
+> +	port->irq = platform_get_irq(pdev, 0);
+> +	if (port->irq < 0)
+> +		return port->irq;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(intr_cause); i++) {
+> +		int err;
+> +
+> +		if (!intr_cause[i].str)
+> +			continue;
+> +
+> +		irq = irq_create_mapping(port->pldma_domain, i);
+> +		if (!irq) {
+> +			dev_err(dev, "Failed to map interrupt\n");
+> +			return -ENXIO;
+> +		}
+> +
+> +		err = devm_request_irq(dev, irq, xilinx_pcie_dma_intr_handler,
+> +				       0, intr_cause[i].sym, port);
+> +		if (err) {
+> +			dev_err(dev, "Failed to request IRQ %d\n", irq);
+> +			return err;
+> +		}
+> +	}
+> +
+> +	port->intx_irq = irq_create_mapping(port->pldma_domain,
+> +					    XILINX_PCIE_DMA_INTR_INTX);
+> +	if (!port->intx_irq) {
+> +		dev_err(dev, "Failed to map INTx interrupt\n");
+> +		return -ENXIO;
+> +	}
+> +
+> +	/* Plug the INTx chained handler */
+> +	irq_set_chained_handler_and_data(port->intx_irq,
+> +					 xilinx_pcie_dma_intx_flow, port);
+> +
+> +	/* Plug the main event chained handler */
+> +	irq_set_chained_handler_and_data(port->irq,
+> +					 xilinx_pcie_dma_event_flow, port);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xilinx_pcie_dma_init_port - Initialize hardware
+> + * @port: PCIe port information
+> + */
+> +static void xilinx_pcie_dma_init_port(struct xilinx_pcie_dma *port)
+> +{
+> +	if (xilinx_pcie_dma_linkup(port))
+> +		dev_info(port->dev, "PCIe Link is UP\n");
+> +	else
+> +		dev_info(port->dev, "PCIe Link is DOWN\n");
+> +
+> +	/* Disable all interrupts */
+> +	pcie_write(port, ~XILINX_PCIE_DMA_IDR_ALL_MASK,
+> +		   XILINX_PCIE_DMA_REG_IMR);
+> +
+> +	/* Clear pending interrupts */
+> +	pcie_write(port, pcie_read(port, XILINX_PCIE_DMA_REG_IDR) &
+> +			 XILINX_PCIE_DMA_IMR_ALL_MASK,
+> +		   XILINX_PCIE_DMA_REG_IDR);
+> +
+> +	/* Needed for MSI DECODE MODE */
+> +	pcie_write(port, XILINX_PCIE_DMA_IDR_ALL_MASK, XILINX_PCIE_DMA_REG_MSI_LOW_MASK);
+> +	pcie_write(port, XILINX_PCIE_DMA_IDR_ALL_MASK, XILINX_PCIE_DMA_REG_MSI_HI_MASK);
+> +
+> +	/* Enable the Bridge enable bit */
+> +	pcie_write(port, pcie_read(port, XILINX_PCIE_DMA_REG_RPSC) |
+> +			 XILINX_PCIE_DMA_REG_RPSC_BEN,
+> +		   XILINX_PCIE_DMA_REG_RPSC);
+> +}
+> +
+> +static int xilinx_request_msi_irq(struct xilinx_pcie_dma *port)
+> +{
+> +	struct device *dev = port->dev;
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +
+> +	port->msi.irq_msi0 = platform_get_irq_byname(pdev, "msi0");
+> +	if (port->msi.irq_msi0 <= 0) {
+> +		dev_err(dev, "Unable to find msi0 IRQ line\n");
+> +		return port->msi.irq_msi0;
+> +	}
+> +
+> +	irq_set_chained_handler_and_data(port->msi.irq_msi0,
+> +					 xilinx_pcie_dma_msi_handler_low,
+> +					 port);
+> +
+> +	port->msi.irq_msi1 = platform_get_irq_byname(pdev, "msi1");
+> +	if (port->msi.irq_msi1 <= 0) {
+> +		irq_set_chained_handler_and_data(port->msi.irq_msi0,
+> +						 NULL, NULL);
+> +		dev_err(dev, "Unable to find msi1 IRQ line\n");
+> +		return port->msi.irq_msi1;
+> +	}
+> +
+> +	irq_set_chained_handler_and_data(port->msi.irq_msi1,
+> +					 xilinx_pcie_dma_msi_handler_high,
+> +					 port);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xilinx_pcie_dma_parse_dt - Parse Device tree
+> + * @port: PCIe port information
+> + *
+> + * Return: '0' on success and error value on failure
+> + */
+> +static int xilinx_pcie_dma_parse_dt(struct xilinx_pcie_dma *port,
+> +				    struct resource *bus_range)
+> +{
+> +	struct device *dev = port->dev;
+> +	struct device_node *node = dev->of_node;
+> +	struct resource regs;
+> +	int err;
+> +
+> +	err = of_address_to_resource(node, 0, &regs);
+
+Use platform_get_resource() instead.
+
+> +	if (err) {
+> +		dev_err(dev, "missing \"reg\" property\n");
+> +		return err;
+> +	}
+> +	port->phys_reg_base = regs.start;
+> +
+> +	port->cfg = pci_ecam_create(dev, &regs, bus_range, &xilinx_pcie_dma_ops); 
+> +	if (IS_ERR(port->cfg))
+> +		return -1;
+
+Return the original error value. -1 should never be used.
+
+> +
+> +	port->reg_base = port->cfg->win;
+> +
+> +	err = xilinx_request_msi_irq(port);
+> +	if (err) {
+> +		pci_ecam_free(port->cfg);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xilinx_pcie_dma_probe - Probe function
+> + * @pdev: Platform device pointer
+> + *
+> + * Return: '0' on success and error value on failure
+> + */
+> +static int xilinx_pcie_dma_probe(struct platform_device *pdev)
+> +{
+> +	struct xilinx_pcie_dma *port;
+> +	struct device *dev = &pdev->dev;
+> +	struct pci_host_bridge *bridge;
+> +	struct resource_entry *bus;
+> +	int err;
+> +
+> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*port));
+> +	if (!bridge)
+> +		return -ENODEV;
+> +
+> +	port = pci_host_bridge_priv(bridge);
+> +
+> +	port->dev = dev;
+> +
+> +	bus = resource_list_first_type(&bridge->windows, IORESOURCE_BUS);
+> +	if (!bus)
+> +		return -ENODEV;
+> +
+> +	err = xilinx_pcie_dma_parse_dt(port, bus->res);
+> +	if (err) {
+> +		dev_err(dev, "Parsing DT failed\n");
+> +		return err;
+> +	}
+> +
+> +	xilinx_pcie_dma_init_port(port);
+> +
+> +	err = xilinx_pcie_dma_init_irq_domain(port);
+> +	if (err)
+> +		goto err_irq_domain;
+> +
+> +	err = xilinx_pcie_dma_setup_irq(port);
+> +
+> +	bridge->sysdata = port;
+> +	bridge->ops = (struct pci_ops *)&xilinx_pcie_dma_ops.pci_ops;
+> +
+> +	err = pci_host_probe(bridge);
+> +	if (err < 0)
+> +		goto err_host_bridge;
+> +
+> +	return 0;
+> +
+> +err_host_bridge:
+> +	xilinx_pcie_dma_free_irq_domains(port);
+> +
+> +err_irq_domain:
+> +	pci_ecam_free(port->cfg);
+> +	xilinx_pcie_dma_free_interrupts(port);
+> +	return err;
+> +}
+> +
+> +static const struct of_device_id xilinx_pcie_dma_of_match[] = {
+> +	{
+> +		.compatible = "xlnx,xdma-host-3.00",
+> +	},
+> +	{}
+> +};
+> +
+> +static struct platform_driver xilinx_pcie_dma_driver = {
+> +	.driver = {
+> +		.name = "xilinx-xdma-pcie",
+> +		.of_match_table = xilinx_pcie_dma_of_match,
+> +		.suppress_bind_attrs = true,
+> +	},
+> +	.probe = xilinx_pcie_dma_probe,
+> +};
+> +
+> +builtin_platform_driver(xilinx_pcie_dma_driver);
+> -- 
+> 2.25.1
+> 
