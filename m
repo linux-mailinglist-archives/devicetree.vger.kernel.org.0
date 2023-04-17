@@ -2,133 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335896E4139
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E1D46E4137
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:37:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbjDQHhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231151AbjDQHhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 17 Apr 2023 03:37:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50442 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbjDQHhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:37:08 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10CD10D8;
-        Mon, 17 Apr 2023 00:36:03 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33H7Zp5L051645;
-        Mon, 17 Apr 2023 02:35:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681716951;
-        bh=Z4LB/IWF7ou7ipPzsHyZXXQjaY1cCvmLaOqcfk3aGqw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=GvzRGLO8i/x9jaN2hCg9cDTkELxNrkqjj1u+E39JgPG5OUfTo5rtWSBtZeK4tmjHW
-         7y4j7RXToWCZOiooM9xzj46Jbz51yjhf5HQ1Hd0nQh485qq6Iavg4q/zGtkzgVweS6
-         J2OO2s6ymZ+PVyDYmzUE2Ny6JxYUiVfB0ApGb5sI=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33H7ZpBs065183
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Apr 2023 02:35:51 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 17
- Apr 2023 02:35:50 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 17 Apr 2023 02:35:51 -0500
-Received: from [172.24.145.7] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33H7ZlA5085138;
-        Mon, 17 Apr 2023 02:35:48 -0500
-Message-ID: <c41fe817-6ce2-e3dd-3380-d04f3319f7eb@ti.com>
-Date:   Mon, 17 Apr 2023 13:05:47 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-j784s4-main: Add system
- controller and SERDES lane mux
-Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>, <nm@ti.com>, <afd@ti.com>
-CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230414151553.339599-1-j-choudhary@ti.com>
- <20230414151553.339599-2-j-choudhary@ti.com>
- <bc3e7500-b653-323b-2a8e-86926f1c090e@ti.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <bc3e7500-b653-323b-2a8e-86926f1c090e@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230478AbjDQHhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:37:07 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B435A4C1B
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:35:54 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a5so5091012ejb.6
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:35:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1681716953; x=1684308953;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5XFC/9mvzx/O4+6lgw0WJn0uaQEYjzkPhtZfQPhydig=;
+        b=HUNbhNW99JActqnQxEFBW8XSlaWGg0MbaAp51GqNl/iqZW/orFbEQDWGJd7LnYcD2G
+         enTyvjpxSqOlLy+rHMoYWBYvMAyfQX7p0p3U2O2YlCrXy6u7plHWmfQMqziDmMLpOM7H
+         PhewcKOa9xsP5vLUXqrKWw1hiVSVQSSG6f4okIbN7Frmr+drvDGi4L45g+XTK/wS46Zr
+         k4z1P9XZhwDM8jNRuriP6wqOXNdPVCiKrysYQQ3vvZRCak+E7z5BkJmAwlIfNY+H9Dds
+         h6gS7t735ef1m5k9e47nDQWr/8PjxutS/LcGnBVYGrdXYQiRuYw0OI8Z3zKwuCNx6fq8
+         HwAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681716953; x=1684308953;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5XFC/9mvzx/O4+6lgw0WJn0uaQEYjzkPhtZfQPhydig=;
+        b=VSMCI5N2oB4c/2SsApRoEvs9VQ0eM6Q/HjWBvTPo27EfRJ8r7Q4Ta8UHLGGdAfH0+c
+         SVX5NtQ78Z2+tiEey/pRXqZOlJ1ngGhszqnMU9J/GqpX/CnMzgD6LHp21N1+WHWZBMo3
+         G9fG19dnHZrKgv0ncfzOUZlPzBImi8hq7LBy5FM07ljaSqXqTZ+g48j+sy3P/zBJv3IF
+         euniC9VnttW6OwwB+rdJLeIxfYVrNdcRSfwlFpTxupvymTjT6gm7urD+abhjLQcTrAjs
+         JpbwJ9OA7Q/4E7D+7gy0JLgWvA2JlvRenKb+MynQhOwRN2Xmsl7aABc0cpyFk7kYXOO0
+         8CDg==
+X-Gm-Message-State: AAQBX9cEggVflFB8dJpFx2OC8zy5DO70RpdZqW2Af+wmPeMc6RMFvJgc
+        gnVgO+gVZYjMMf+TQG9HiISuig==
+X-Google-Smtp-Source: AKy350aiszsdDZQNPNMwuj0S2OGQCXnyOKHKInK77illrwKv5Zv4EoM9X2+pYLi40BANUGtxEvocIQ==
+X-Received: by 2002:a17:906:70d1:b0:94e:e859:8721 with SMTP id g17-20020a17090670d100b0094ee8598721mr7788806ejk.22.1681716953131;
+        Mon, 17 Apr 2023 00:35:53 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id be5-20020a1709070a4500b0094f282fc29asm2973857ejc.207.2023.04.17.00.35.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 00:35:52 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 17 Apr 2023 09:35:52 +0200
+Message-Id: <CRYUWMIJDSB2.BJWEPJEA3Y1D@otso>
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
+        <gregkh@linuxfoundation.org>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     <caleb.connolly@linaro.org>, <konrad.dybcio@linaro.org>,
+        <subbaram@quicinc.com>, <jackp@quicinc.com>,
+        <robertom@qti.qualcomm.com>
+Subject: Re: [PATCH v5 00/14] Add Qualcomm PMIC TPCM support
+X-Mailer: aerc 0.14.0
+References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
+ <CRVOZOPMKBX4.2T7FOCWF0RKBJ@otso>
+ <10551f5e-4516-c0cc-0b04-73aa38f80a2c@linaro.org>
+ <CRWA2OP2T6KT.RCWAVWF5Q2T2@otso>
+ <ccc9fa4c-ca52-d8f3-a8b3-45031bea673f@linaro.org>
+In-Reply-To: <ccc9fa4c-ca52-d8f3-a8b3-45031bea673f@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vignesh,
+On Mon Apr 17, 2023 at 2:30 AM CEST, Bryan O'Donoghue wrote:
+> On 14/04/2023 07:51, Luca Weiss wrote:
+> > I see "reverse" and "normal" depending on the direction the USB stick i=
+s
+> > plugged in. When unplugged but also when plugged into my PC it stays at
+> > "unknown".
+>
+> Right so, this is down to bad behavior on the PHY patch, which is=20
+> resolved for me on sm8250 with the below.
+>
+> Basically when you unplug a device you would transition back to=20
+> "TYPEC_ORIENTATION_NONE" but that would turn off the PHY, which is obs=20
+> not very useful if you want to subsequently be a gadget.
+>
+> Anyway thanks for testing this - I'd missed the=20
+> host->device->host->device ping-pong breakage.
 
-On 17/04/23 10:07, Vignesh Raghavendra wrote:
-> Hi Jayesh
-> 
-> On 14/04/23 20:45, Jayesh Choudhary wrote:
->> From: Siddharth Vadapalli <s-vadapalli@ti.com>
->>
->> The system controller node manages the CTRL_MMR0 region.
->> Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> index e9169eb358c1..344f4ffa0b82 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> @@ -5,6 +5,9 @@
->>    * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->>    */
->>   
->> +#include <dt-bindings/mux/mux.h>
->> +#include <dt-bindings/mux/ti-serdes.h>
->> +
->>   &cbass_main {
->>   	msmc_ram: sram@70000000 {
->>   		compatible = "mmio-sram";
->> @@ -26,6 +29,25 @@ l3cache-sram@200000 {
->>   		};
->>   	};
->>   
->> +	scm_conf: scm-conf@100000 {
-> 
-> generic node name please: "syscon@"
+Hm, unfortunately no improvement with this on my side.. No USB
+connection pops up on the host, or USB messages regarding the USB stick
+on the device.
 
-Okay.
+Do you have an idea in which part of the code to start debugging this?
+Since orientation detection is working is it maybe in the phy code and
+not in the tcpm driver? Or does that also touch crucial stuff for USB
+apart from telling phy which direction to use?
 
-> 
->> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
->> +		reg = <0x00 0x00100000 0x00 0x1c000>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0x00 0x00 0x00100000 0x1c000>;
->> +
->> +		serdes_ln_ctrl: mux-controller@4080 {
-> 
-> Either add reg property or replace @ with -
+Regards
+Luca
 
-Will use '-'.
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c=20
+> b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> index b9a30c087423d..edb788a71edeb 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> @@ -3372,12 +3372,13 @@ static int qmp_combo_typec_switch_set(struct=20
+> typec_switch_dev *sw,
+>
+>          qmp->orientation =3D orientation;
+>
+> -       if (orientation =3D=3D TYPEC_ORIENTATION_NONE) {
+> -               if (qmp->init_count)
+> -                       ret =3D qmp_combo_dp_power_off(dp_phy);
+> -       } else {
+> -               if (!qmp->init_count)
+> -                       ret =3D qmp_combo_dp_power_on(dp_phy);
+> +       if (orientation !=3D TYPEC_ORIENTATION_NONE) {
+> +               ret =3D qmp_combo_dp_power_off(dp_phy);
+> +               if (ret)
+> +                       return ret;
+> +               ret =3D qmp_combo_dp_power_on(dp_phy);
+> +               if (ret)
+> +                       return ret;
+>          }
+>
+> ---
+> bod
 
-> 
-> Run make with W=12 to catch such errors.
-
-Okay. Will do.
-
-Thanks.
-
-[...]
