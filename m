@@ -2,107 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 727736E469A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C57256E46BE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbjDQLjl convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Apr 2023 07:39:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59462 "EHLO
+        id S229933AbjDQLqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 07:46:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjDQLjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:39:40 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3607E5FD8;
-        Mon, 17 Apr 2023 04:38:52 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-54c12009c30so520789807b3.9;
-        Mon, 17 Apr 2023 04:38:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681731468; x=1684323468;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o06OvCm7/JJ0dOtkcNU5u/X4HgBtDN4dg1a5gDLpjQc=;
-        b=TdPbjye/lB39U+WSak2xRP6UUeW+tRJt1ftK6/5Dohe9/4AhbfvnbHyToxJuqNFTOH
-         g1iBUKZLhk9+f3P0MVqp/NnP8hmLgec2JNhewR5YjJ+qThy/JvdN041P+hQYrob93TNx
-         92xLQf3C9bkbP3hK4o3dZh3nra34q69z7+NqkBJnuRyXBxg2KmiW5rzdmXu/iVeUH0iS
-         IcDPC6ee8bYJRE2B2f+jGspauaa/R4HLkBwLYrURkXr978DazrtjADhcPJ+4D1LzSsMC
-         +xuLa93vZP3sNxeJmqfrgdhSHZ/45JJpc7L0QW3KzQfTFxlO3BRc53G1auG9dSbJEFVu
-         vgCQ==
-X-Gm-Message-State: AAQBX9f2UJrb5Z6xi4fwg2ni3zCX6Oxs+Htke+shxGMGxbISwdm0IQh9
-        tHhGWk7yECwJ/fCnxGH8thXqW1Wti34bqw==
-X-Google-Smtp-Source: AKy350aTSuoDXQHgpQyjrEQVJI/6aHltteXabalU8fJhQnF2xMLDBtGzflxd0C58ewvYLtIZR+7u7g==
-X-Received: by 2002:a81:d34a:0:b0:54f:9de8:fd61 with SMTP id d10-20020a81d34a000000b0054f9de8fd61mr13412324ywl.12.1681731467950;
-        Mon, 17 Apr 2023 04:37:47 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id cl22-20020a05690c0c1600b0054fbadd96c4sm3032782ywb.126.2023.04.17.04.37.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 04:37:47 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id l5so4582174ybe.7;
-        Mon, 17 Apr 2023 04:37:47 -0700 (PDT)
-X-Received: by 2002:a25:d08d:0:b0:b7c:1144:a708 with SMTP id
- h135-20020a25d08d000000b00b7c1144a708mr9361683ybg.12.1681731467399; Mon, 17
- Apr 2023 04:37:47 -0700 (PDT)
+        with ESMTP id S230171AbjDQLqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:46:44 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A4830C6;
+        Mon, 17 Apr 2023 04:45:48 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D6FA66031F1;
+        Mon, 17 Apr 2023 12:45:00 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681731900;
+        bh=rc5sSx+YYAGFEa3FY87Igi7HBmh/hyzSbmpQbdwi+y0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Um5p9+brAQ6SHqAXekne7HyJj0Eq7yT6g1y55LmbVItRhaGWaluW2ZcfTtzRpNMHP
+         lnCePxAGv0WPC/y8Rdu7cy/zEth2V2VntcQHbhIKhLOiWKDBuag6XJbe+J5C2Do7eL
+         FkA2WY5ePKom214x1Jhfa3JkuHPaDVCd5ATlDrsJby0yEdAy35iODggx+QQOw+hMcZ
+         TvsZsfSA2po+V24o8ASPUX7oU1cKk0t9RzieaxpSFWmccAEiIEigvdFiecF06Gbj39
+         qFiGGjSv8V8QLB7xya/u/TeQYUNSjsnVrY2RXDbxOZqAK/lrYLgUHIcmcuW9zCXlLz
+         0aghy4R1wV+yg==
+Message-ID: <ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com>
+Date:   Mon, 17 Apr 2023 13:44:58 +0200
 MIME-Version: 1.0
-References: <20230412185608.64628-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230412185608.64628-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdU9qrSaJqNL_PsrvbyrBAEB17yVMmLPon8AbvE3kjbTUQ@mail.gmail.com> <CA+V-a8sVjK7jm6m=7XC9B8JBeUqL+aL_wvFjM-e=-p+4xWuszQ@mail.gmail.com>
-In-Reply-To: <CA+V-a8sVjK7jm6m=7XC9B8JBeUqL+aL_wvFjM-e=-p+4xWuszQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 17 Apr 2023 13:37:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX1kkxaKfRJ+HbJA6nxX8x9KRsszo+Kq0g87Rf3eo0v7A@mail.gmail.com>
-Message-ID: <CAMuHMdX1kkxaKfRJ+HbJA6nxX8x9KRsszo+Kq0g87Rf3eo0v7A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzv2l-smarc: Enable CRU, CSI support
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 2/2] drm/mediatek: dp: Add the audio control to
+ mtk_dp_data struct
+Content-Language: en-US
+To:     xinlei.lee@mediatek.com, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, jitao.shi@mediatek.com
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <1681358785-6930-1-git-send-email-xinlei.lee@mediatek.com>
+ <1681358785-6930-3-git-send-email-xinlei.lee@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <1681358785-6930-3-git-send-email-xinlei.lee@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Il 13/04/23 06:06, xinlei.lee@mediatek.com ha scritto:
+> From: Xinlei Lee <xinlei.lee@mediatek.com>
+> 
+> Mainly add the following two flag:
+> 
+> 1.The audio packet arrangement function is to only arrange audio
+> packets into the Hblanking area. In order to align with the HW
+> default setting of g1200, this function needs to be turned off.
+> 
+> 2.Due to the difference of HW, different dividers need to be set.
+> 
+> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_dp.c     | 32 ++++++++++++++++++++++++++-
+>   drivers/gpu/drm/mediatek/mtk_dp_reg.h |  5 +++++
+>   2 files changed, 36 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
+> index 767b71da31a4..65a9984eac81 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+> @@ -139,6 +139,8 @@ struct mtk_dp_data {
+>   	unsigned int smc_cmd;
+>   	const struct mtk_dp_efuse_fmt *efuse_fmt;
+>   	bool audio_supported;
+> +	const bool arrange;
 
-On Mon, Apr 17, 2023 at 1:05 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Mon, Apr 17, 2023 at 9:57 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Wed, Apr 12, 2023 at 8:56 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Enable CRU, CSI on RZ/V2L SMARC EVK and tie the CSI to the OV5645 sensor
-> > > using Device Tree overlay. RZ/G2L SMARC EVK and RZ/V2L SMARC EVK have the
-> > > same connections for connecting the CSI to OV5645 sensor so just reuse
-> > > the existing r9a07g044l2-smarc-cru-csi-ov5645.dtso and create a symbolic
-> > > link to this file for RZ/V2L SMARC EVK.
-> >
-> > Perhaps it makes more sense to rename r9a07g044l2-smarc-cru-csi-ov5645.dtso
-> > to rzg2l-smarc-cru-csi-ov5645.dtso instead?
-> >
-> ok, and then for g2lc [0] I add rzg2lc-smarc-cru-csi-ov5645.dtso ?
->
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230413114016.16068-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+bool audio_pkt_in_hblank_area
 
-Oh wait... had missed that one. Let me catch up and get a better
-view on the big picture first... ;-)
+> +	const u8 audio_m_div2;
 
-Gr{oetje,eeting}s,
+u16 audio_m_div2_bit would be more descriptive, and would allow you to store
+the bit for later use as-it-is.
 
-                        Geert
+P.S.: This structure is always declared as const, so it's useless to declare
+each of its members as const.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>   };
+>   
+>   static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
+> @@ -646,8 +648,10 @@ static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp *mtk_dp,
+>   
+>   static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
+>   {
+> +	u8 div2_id = mtk_dp->data->audio_m_div2;
+> +
+>   	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
+> -			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
+> +			   div2_id << AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_SHIFT,
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+So, if you do it like I've suggested, this becomes
+
+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC
+			   mtk_dp->data->audio_m_div2_bit,
+			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
+
+>   			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
+>   }
+>   
+> @@ -1362,6 +1366,14 @@ static void mtk_dp_sdp_set_down_cnt_init_in_hblank(struct mtk_dp *mtk_dp)
+>   			   SDP_DOWN_CNT_INIT_IN_HBLANK_DP_ENC1_P0_MASK);
+>   }
+>   
+> +static void mtk_dp_audio_sample_arrange(struct mtk_dp *mtk_dp)
+
+Since your register names are not human readable (I know that this is not your
+fault, don't worry), please add a comment that describes this function, saying
+that this arranges the audio packets into the Hblank area, similarly to how you
+described the same into the commit description.
+
+This would otherwise be a nightmare to understand for the "random reader" :-)
+
+> +{
+> +	if (mtk_dp->data->arrange) {
+
+You can reduce indentation, if you need to do so (after adding the definitions)
+with doing the inverse check like so:
+
+	if (!mtk_dp->data->audio_pkt_in_hblank_area)
+		return;
+
+> +		mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3374, 0, BIT(12));
+
+Add a definition for this bit....
+
+> +		mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3374, 0, 0xFFF);
+
+....and for this mask; please define this one as GENMASK(11, 0).
+
+> +	}
+> +}
+> +
+>   static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
+>   {
+>   	u32 sram_read_start = min_t(u32, MTK_DP_TBC_BUF_READ_START_ADDR,
+> @@ -1371,6 +1383,7 @@ static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
+>   				    MTK_DP_PIX_PER_ADDR);
+>   	mtk_dp_set_sram_read_start(mtk_dp, sram_read_start);
+>   	mtk_dp_setup_encoder(mtk_dp);
+> +	mtk_dp_audio_sample_arrange(mtk_dp);
+>   	mtk_dp_sdp_set_down_cnt_init_in_hblank(mtk_dp);
+>   	mtk_dp_sdp_set_down_cnt_init(mtk_dp, sram_read_start);
+>   }
+> @@ -2615,11 +2628,22 @@ static int mtk_dp_resume(struct device *dev)
+>   
+>   static SIMPLE_DEV_PM_OPS(mtk_dp_pm_ops, mtk_dp_suspend, mtk_dp_resume);
+>   
+> +static const struct mtk_dp_data mt8188_dp_data = {
+> +	.bridge_type = DRM_MODE_CONNECTOR_DisplayPort,
+> +	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
+> +	.efuse_fmt = mt8195_dp_efuse_fmt,
+> +	.audio_supported = true,
+> +	.arrange = true,
+> +	.audio_m_div2 = 4,
+
+	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
+
+> +};
+> +
+>   static const struct mtk_dp_data mt8195_edp_data = {
+>   	.bridge_type = DRM_MODE_CONNECTOR_eDP,
+>   	.smc_cmd = MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
+>   	.efuse_fmt = mt8195_edp_efuse_fmt,
+>   	.audio_supported = false,
+> +	.arrange = false,
+> +	.audio_m_div2 = 5,
+
+	.audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
+
+>   };
+>   
+>   static const struct mtk_dp_data mt8195_dp_data = {
+> @@ -2627,9 +2651,15 @@ static const struct mtk_dp_data mt8195_dp_data = {
+>   	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
+>   	.efuse_fmt = mt8195_dp_efuse_fmt,
+>   	.audio_supported = true,
+> +	.arrange = false,
+> +	.audio_m_div2 = 5,
+
+	.audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
+
+>   };
+>   
+>   static const struct of_device_id mtk_dp_of_match[] = {
+> +	{
+> +		.compatible = "mediatek,mt8188-dp-tx",
+> +		.data = &mt8188_dp_data,
+> +	},
+
+Please also add support for mediatek,mt8188-edp-tx.
+
+Regards,
+Angelo
+
