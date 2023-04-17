@@ -2,213 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E897A6E4253
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A254B6E4256
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:15:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229912AbjDQIPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 04:15:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33946 "EHLO
+        id S230347AbjDQIPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 04:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbjDQIPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:15:03 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D0961FDB;
-        Mon, 17 Apr 2023 01:15:00 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (133-32-181-51.west.xps.vectant.ne.jp [133.32.181.51])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F249DDE6;
-        Mon, 17 Apr 2023 10:14:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1681719293;
-        bh=fB6GDrDT9giAq0/ETq0gBYFcxiahDr5O0kDTfl1LlZo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CtYkEImMB844Wi5MM3czBnQCBQ8wK8QsNIxmSpIcjTR48F6R/V2Ttb6v/XckA0zxb
-         28xcLndxd4GUsh5wLA5XkfID8Hlhz12PeUu+hiA6Lx7nmUeT5ZlcVeierl2ABretFB
-         brv6wS++dOrEGWjqv4v50APmWF1Z6TiRvpP1NiLY=
-Date:   Mon, 17 Apr 2023 11:15:10 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
-Message-ID: <20230417081510.GA19964@pendragon.ideasonboard.com>
-References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
- <20230417055627.16482-2-laurent.pinchart@ideasonboard.com>
- <20230417065059.fgmdfwk7pnj62amm@pengutronix.de>
- <20230417074148.GF28551@pendragon.ideasonboard.com>
- <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
+        with ESMTP id S229741AbjDQIPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:15:22 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D31451FDB
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:15:15 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50677365fd1so2411961a12.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:15:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681719314; x=1684311314;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qyd57+hDVpdwNMW7hr5gKwq+MvzTgUGFKsE7mL7n1nM=;
+        b=IEL7MDertJUokHTDoF+VbTls2kkSYhPTQpOIbn1V2ZW19tCcAw/LYjILja6GlPPdnH
+         vWG4KDNUHefNx4bzcHYytElPd0/vwLDUbjTnngyiupDYUEh5RL0g2RsshYTbIQBMP5WR
+         fabRT/GL5nsSZN3iIqi9rETASY2YQQnL+uvNZ0/CdfPzGrlspbZ4kUek1k+RGESt9VrB
+         LovbgsfO2gCr888khVgs77RjtJsM/WmFrx0/DWHmjKuf2woW4uzfiBT5W5rx0Ayyl6+8
+         xLVCnnnlngNZxOrJCImSBwjNMYCWpzAwPj9bxVO9wk9XFFc+AuFtB2o6TNdH/4Gi17DG
+         8erQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681719314; x=1684311314;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qyd57+hDVpdwNMW7hr5gKwq+MvzTgUGFKsE7mL7n1nM=;
+        b=bYz4Z9N7v1R0KAAu+SEErWOxpux34PcmDw5u5ydG1iR7FMRpi+u5+bYTz6HRCj4MbS
+         AqNsrk7qlI7e6rr8EZ/IQDg8djQFZr5iYnq/wWxOxilYC/FmCBR5II6BdAzcvzSCpwff
+         bXqHiGT+itkMmFFsiz0ZMHFzGAQOLjxz4LWfit29ywLGl1OBzDtU3PzfRUpWC7H06pM4
+         tC+G2MjOcHV8yREuZ1jNA4xga3OSetOzkMxpN9BJ387xlXwBYOw1nR8HSGnjqGN6wYto
+         NX5SB3EEAW79Ah4ziNnHPmtdqSaBMzdqMVHNGYVdMBqm+1LFlw62m6ioCGNq8ku6Yihl
+         nfuA==
+X-Gm-Message-State: AAQBX9d1T6GKcdbubMiZJTfvt5aVep5tpMjPXl+OihNuvMVBM9dB0uUp
+        bAiythh9grrEEPSIykJklqcP9A==
+X-Google-Smtp-Source: AKy350bOtbV50RP+sOLjmT+9xsUHvSnfPE1mcMDJEka9U/cwi9TkOgGuesHnY06oIDcgN/pFxX87MA==
+X-Received: by 2002:a05:6402:b2e:b0:504:af14:132d with SMTP id bo14-20020a0564020b2e00b00504af14132dmr12818333edb.13.1681719314126;
+        Mon, 17 Apr 2023 01:15:14 -0700 (PDT)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id dy11-20020a05640231eb00b00506956c99d9sm2625337edb.15.2023.04.17.01.15.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 01:15:13 -0700 (PDT)
+Message-ID: <ed5f12fd-f1f8-9823-a32d-5782068dc790@linaro.org>
+Date:   Mon, 17 Apr 2023 10:15:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 09/10] arm64: tegra: Rework SOCTHERM on Tegra132 and
+ Tegra210
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230414125721.1043589-1-thierry.reding@gmail.com>
+ <20230414125721.1043589-10-thierry.reding@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230414125721.1043589-10-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
-
-On Mon, Apr 17, 2023 at 10:01:17AM +0200, Marco Felsch wrote:
-> On 23-04-17, Laurent Pinchart wrote:
-> > On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
-> > > Hi Laurent,
-> > > 
-> > > your patch LGTM just one nit/idea, please see below.
-> > > 
-> > > On 23-04-17, Laurent Pinchart wrote:
-> > > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
-> > > > 
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
-> > > >  1 file changed, 60 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > index 2dd60e3252f3..2a374a4c14a2 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
-> > > >  				};
-> > > >  			};
-> > > >  
-> > > > +			mipi_csi_0: csi@32e40000 {
-> > > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > > +				reg = <0x32e40000 0x10000>;
-> > > > +				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +				clock-frequency = <500000000>;
-> > > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > > +					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> > > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > > +				clock-names = "pclk", "wrap", "phy", "axi";
-> > > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
-> > > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> > > > +				assigned-clock-rates = <500000000>;
-> > > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-> > > > +				status = "disabled";
-> > > > +
-> > > > +				ports {
-> > > > +					#address-cells = <1>;
-> > > > +					#size-cells = <0>;
-> > > > +
-> > > > +					port@0 {
-> > > > +						reg = <0>;
-> > > 
-> > > If we would add:
-> > > 						mipi_csi_0_in: endpoint {};
-> > > 
-> > > here we could refernce it from overlays/board dts files more easily.
-> > 
-> > Isn't there an unwritten rule (or consensus) that an endpoint should
-> > always have a remote-endpoint property ?
+On 14/04/2023 14:57, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> I don't know if there is one.
+> The "heavy throttle" cooling device that SOCTHERM uses isn't a cooling
+> device in the traditional sense. It's an automatic mechanism that cannot
+> be actively controlled. Do not expose it as a cooling device and instead
+> of tying it to a specific trip point, hard-code the temperature at which
+> the automatic throttling will begin.
 > 
-> > While ports describe hardware properties of a device and should always
-> > be there regardless of connections, endpoints describe connections and
-> > I don't think they should be instantiated with a valid
-> > remote-endpoint.
+> While at it, clean up the trip point names to reflect the names used by
+> the thermal device tree bindings.
 > 
-> I know, therefore I mentioned it as idea to make it 'easier' to add
-> camera nodes.
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>   arch/arm64/boot/dts/nvidia/tegra132.dtsi | 63 +++++-------------
+>   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 83 +++++++-----------------
+>   2 files changed, 39 insertions(+), 107 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+> index 8b78be8f4f9d..11ebf7517df1 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+> @@ -876,11 +876,10 @@ soctherm: thermal-sensor@700e2000 {
+>   		#thermal-sensor-cells = <1>;
+>   
+>   		throttle-cfgs {
+> -			throttle_heavy: heavy {
+> +			heavy {
+>   				nvidia,priority = <100>;
+>   				nvidia,cpu-throt-level = <TEGRA_SOCTHERM_THROT_LEVEL_HIGH>;
+> -
+> -				#cooling-cells = <2>;
+> +				temperature = <102000>;
+>   			};
+>   		};
+>   	};
+> @@ -1136,114 +1135,84 @@ cpu-thermal {
+>   			polling-delay-passive = <1000>;
+>   			polling-delay = <0>;
+>   
+> -			thermal-sensors =
+> -				<&soctherm TEGRA124_SOCTHERM_SENSOR_CPU>;
+> +			thermal-sensors = <&soctherm TEGRA124_SOCTHERM_SENSOR_CPU>;
+>   
+>   			trips {
+> -				cpu_shutdown_trip {
+> +				critical {
+>   					temperature = <105000>;
+>   					hysteresis = <1000>;
+>   					type = "critical";
+>   				};
+>   
+> -				cpu_throttle_trip: throttle-trip {
+> +				hot {
+>   					temperature = <102000>;
+>   					hysteresis = <1000>;
+>   					type = "hot";
+>   				};
+>   			};
+> -
+> -			cooling-maps {
+> -				map0 {
+> -					trip = <&cpu_throttle_trip>;
+> -					cooling-device = <&throttle_heavy 1 1>;
+> -				};
+> -			};
 
-As a middleground, would it be useful to have a label for the port ?
-Something like
+If the hardware mitigation is 'heavy', don't you want to have DVFS 
+acting before hardware throttling ?
 
-	mipi_csi_0: csi@32e40000 {
-		ports {
-			mipi_csi_0_port_0: port@0 {
-			};
-		};
-	};
-
-An overlay could then reference that and create the endpoint. I'm not
-entirely sure how useful that would be though, as the overlay would need
-to enable the CSI node anyway. Compare
-
---------
-&mipi_csi_0 {
-	status = "okay";
-};
-
-&mipi_csi_0_port_0 {
-	mipi_csi_0_in: endpoint {
-		remote-endpoint = <&imx327_out>;
-	};
-};
---------
-
-with
-
---------
-&mipi_csi_0 {
-	status = "okay";
-
-	ports {
-		port@0 {
-			mipi_csi_0_in: endpoint {
-				remote-endpoint = <&imx327_out>;
-			};
-		};
-	};
-};
---------
-
-I have a slight preference for the latter as it groups all the CSI0 data
-in a single overlay target, but if the former is generally preferred,
-I'm fine with that too.
-
-> > > > +					};
-> > > > +
-> > > > +					port@1 {
-> > > > +						reg = <1>;
-> > > > +					};
-> > > > +				};
-> > > > +			};
-> > > > +
-> > > > +			mipi_csi_1: csi@32e50000 {
-> > > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > > +				reg = <0x32e50000 0x10000>;
-> > > > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +				clock-frequency = <266000000>;
-> > > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > > +					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
-> > > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > > +				clock-names = "pclk", "wrap", "phy", "axi";
-> > > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>;
-> > > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> > > > +				assigned-clock-rates = <266000000>;
-> > > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-> > > > +				status = "disabled";
-> > > > +
-> > > > +				ports {
-> > > > +					#address-cells = <1>;
-> > > > +					#size-cells = <0>;
-> > > > +
-> > > > +					port@0 {
-> > > > +						reg = <0>;
-> > > > +					};
-> > > > +
-> > > > +					port@1 {
-> > > > +						reg = <1>;
-> > > > +					};
-> > > > +				};
-> > > > +			};
-> > > > +
-> > > >  			pcie_phy: pcie-phy@32f00000 {
-> > > >  				compatible = "fsl,imx8mp-pcie-phy";
-> > > >  				reg = <0x32f00000 0x10000>;
+[ ... ]
 
 -- 
-Regards,
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Laurent Pinchart
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
