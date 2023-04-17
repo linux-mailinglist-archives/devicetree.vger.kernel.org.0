@@ -2,148 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 092F36E3CA3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 00:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1DB6E3CE7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 02:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbjDPWbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Apr 2023 18:31:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40108 "EHLO
+        id S229674AbjDQAJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Apr 2023 20:09:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbjDPWbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 18:31:37 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71DE226A1;
-        Sun, 16 Apr 2023 15:31:36 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id q191so18556547pgq.7;
-        Sun, 16 Apr 2023 15:31:36 -0700 (PDT)
+        with ESMTP id S229498AbjDQAJV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Apr 2023 20:09:21 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD29E2115
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 17:09:18 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id he13so17973008wmb.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Apr 2023 17:09:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681684296; x=1684276296;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XFwNbwTeZCLBVi0XkvXE7u6Jd7tTvMFg3HLldvV4R4A=;
-        b=aevjBF9o/afH9OcEqMfa0y3GDp6G0r4ZRicU0NQBxnGr2zQu2o9JYLkPtxGayMCpVR
-         2ZFLMRijtzm8cM8hynCZ9Q0j5cT+CYqVJA98BoNHMRG06g+6e3hrt6PqUKnKKvghExIS
-         agCfStD+rX1lw06usNZTpVs8nMNl9rMYo1ihnFeWunGdDSnpnopjHcTBpeu+2Vp5JPUg
-         c307tySXNgRnmPjOBjiqY0KtOe91+xfv2aLFLV9iCv1e7HLM6YpagAdK9LcPx/RamvM0
-         DTBP/19/8GTSIwk+SceHE0bbf4RPzadoatqxsLSJ9qa1tXRNxvH6mcdNeqlvrNOy0QqR
-         ccSw==
+        d=linaro.org; s=google; t=1681690157; x=1684282157;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CbPYQdpIos11VFsu8WhwNBj+KG9SbHGorRS3cfQMAPk=;
+        b=VEk+V8v9goo7W+1YywTCEB/TuI1nlWT+CQDVShO3S61BvRaVUzwEUHHQ2neg8v3+b2
+         ax0VaF9olA6pj5y2nu1Dy63J42PTzdyPjKVqxp3GBmKyl4D+dItSUo5yahUK/qN1CZYu
+         ijLj12EKd9yMHG/KmwiZqVjrBMPofkmNj++agySJo/D2u5BnwalC9beEMG29T0ffdbtZ
+         oFjs2wlosXQ0uoZcSZco4g0UCYwFGCSm4LJHrvuJYoZBKgcZDKx5RIQNRacoA7GaoWxM
+         mrrRNG4zd+LP871PRceEP1KlEWmg07YIdLMzmwEPbkZZ3dVv4jDlilgVA94sk1MoIHEX
+         TUvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681684296; x=1684276296;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XFwNbwTeZCLBVi0XkvXE7u6Jd7tTvMFg3HLldvV4R4A=;
-        b=Rn4+QKz4guaxWcT/2RaqNjo1pXLrxfjZ2rWgLzmJZnn1rSwQ+r3R0xck6aN7nHrYml
-         Xmd3HkdzkjgL/cottdaoUMhxJ6I3C03tNO67bO9KBks0fAJTUQBDkw2koz4zOku7fni0
-         YE7mqk7IRTfqbvdol9D/JqRl2K0dMaa40P+LW70Oi0tswvrTFWvm4MLsCt7hc9hAQPQL
-         uCS4fxGMxcqM37BcOBtxR0JgbZ50q6IU1DmHhpz4JHV5r2FtCTneM6QAjBDKlbVIWNDv
-         tRn4T2r0w/5EIaurWxKX6kA2ePoRxUCtboxaqikCaY6DqXf+4DfMw0aF/kIYO+DzXFLb
-         Vjtg==
-X-Gm-Message-State: AAQBX9faEBHNQaf495Scl/2N41Z0jNHlb271dKnJRXZrvfrFSYrl6Ikc
-        hVhTWDZOTzsVHNHSCvq7EA/8IxwGSjcyaYYZcXY=
-X-Google-Smtp-Source: AKy350YBBXwEZ9X8S2MW5Q3T6K4il3kW5VzZMfBL1UAIS6CK51N2QxjHJCum+Rp5h2vYo1uXMKDb8UmSJokdVEdqB6M=
-X-Received: by 2002:a65:4583:0:b0:50c:a00:c1fa with SMTP id
- o3-20020a654583000000b0050c0a00c1famr2594015pgq.7.1681684295645; Sun, 16 Apr
- 2023 15:31:35 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681690157; x=1684282157;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbPYQdpIos11VFsu8WhwNBj+KG9SbHGorRS3cfQMAPk=;
+        b=fer5ayo2jpDKPAc2V+CqXVVPlux+CS/Hec0D78xs5HWoGUc10Ey5MyjdWDCPBjLS/Q
+         lw9q379BQhehDvxaV2knV90rD2b+HGuN/Qz/dUm4GrA6BlTOqFR7HndF7ST1IjGj5rqd
+         3s3aldfxiwIqg95iLOHWs6iqIlWZ3GPo/51+YbgFv3Z6RmorvWcYMbEQ/wHKsm5j4hLW
+         a20mfYEaz/WQ9UmpHBeBSoThh6YHRXCcpLgjv/dTHLV3T4iKkzEAMCGlV3YiCIGitrGf
+         phcQJiGCPUdvY36wMk+VMoY0oE0lCyMs8rqajreURIP8TJ5VZb1bPz4gPRJT6FcSBISD
+         qLNQ==
+X-Gm-Message-State: AAQBX9dtLQ5L40h22qPSODvTpw7oacn+hB3Bi3vIaA53C2YOqLbKhCOv
+        hS751eZmmpKJzvnK3BV+gYz+fw==
+X-Google-Smtp-Source: AKy350YjlGO3iN4mc0hPFM83gKsC1xggLtdZxvPFHWG15hHOAe/xV4ep8SGVDPrsShfkmURC5rkyrg==
+X-Received: by 2002:a1c:750c:0:b0:3f1:6980:2d2e with SMTP id o12-20020a1c750c000000b003f169802d2emr3908271wmc.22.1681690157096;
+        Sun, 16 Apr 2023 17:09:17 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id jb17-20020a05600c54f100b003f17316ab46sm2256484wmb.13.2023.04.16.17.09.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Apr 2023 17:09:16 -0700 (PDT)
+Message-ID: <b2388450-28a9-3dd9-8557-3649518c6619@linaro.org>
+Date:   Mon, 17 Apr 2023 01:09:15 +0100
 MIME-Version: 1.0
-References: <20230415104104.5537-1-aford173@gmail.com> <20230415104104.5537-2-aford173@gmail.com>
- <414febc4-aab1-95ec-ac2e-e82a3f881d01@denx.de>
-In-Reply-To: <414febc4-aab1-95ec-ac2e-e82a3f881d01@denx.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Sun, 16 Apr 2023 17:31:24 -0500
-Message-ID: <CAHCN7xKsvT-TL4xdP=CKDzTJoFq1PGqmFmTohdRF9JaWaxWemw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] drm: bridge: samsung-dsim: Fix PMS Calculator on imx8m[mnp]
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, m.szyprowski@samsung.com,
-        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v5 04/14] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy:
+ Add ports as an optional
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
+ <20230413113438.1577658-5-bryan.odonoghue@linaro.org>
+ <6ec55a3d-8b9a-2a44-6a0c-0dfc0100e88a@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <6ec55a3d-8b9a-2a44-6a0c-0dfc0100e88a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 16, 2023 at 5:07=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
->
-> On 4/15/23 12:40, Adam Ford wrote:
-> > According to Table 13-45 of the i.MX8M Mini Reference Manual, the min
-> > and max values for M and  the frequency range for the VCO_out
-> > calculator were incorrect.  This also appears to be the case for the
-> > imx8mn and imx8mp.
-> >
-> > To fix this, make new variables to hold the min and max values of m
-> > and the minimum value of VCO_out, and update the PMS calculator to
-> > use these new variables instead of using hard-coded values to keep
-> > the backwards compatibility with other parts using this driver.
->
-> [...]
->
-> >   static const struct samsung_dsim_driver_data imx8mm_dsi_driver_data =
-=3D {
-> > @@ -470,6 +485,9 @@ static const struct samsung_dsim_driver_data imx8mm=
-_dsi_driver_data =3D {
-> >        */
-> >       .pll_p_offset =3D 14,
-> >       .reg_values =3D imx8mm_dsim_reg_values,
-> > +     .m_min =3D 64,
-> > +     .m_max =3D 1023,
-> > +     .vco_min =3D 1050,
->
-> You might want to call this 'min_freq' since there is a 'max_freq' which
-> seems to indicate what VCO max frequency is.
->
-> Note that the same datasheet contains the following information:
-> "
-> MIPI_DPHY_M_PLLPMS field descriptions
->
-> 12=E2=80=934 PMS_M
-> Specifies the PLL PMS value for the M divider
-> NOTE: The programmable divider range should be within 25 to 125 to
-> ensure PLL stability.
+On 16/04/2023 18:47, Krzysztof Kozlowski wrote:
+> I assume both ports are required? Could it work without input or output?
 
-I was confused by this because this statement is not consistent with
-the link they reference jumps me to the table where it reads M is
-between 64 and 1023.
+It can work without an output because we might not have DP switched on 
+-> bog-standard USB orientation-switching in host-only, device-only or 
+dual-role modes.
 
-> NOTE: The M and P divider values should be considered together to ensure
-> VCO ouput frequency
-> (VCO_out) range is between 350 MHz to 750 MHz.
-> Please refer to the topic DPHY PLL for more information.
-
-I was confused by this too, because the NXP documentation reads the
-350 - 750MHz that you state, but  "Table 13-45: DPHY PLL Parameters"
-which immediately follows that sentence  on page 4158 shows VCO_out is
-between 1050-2100 MHz.
-
-I compared the PMS values for a variety of frequencies to those that
-were set in the downstream NXP code, and the PMS values matched.
-Maybe someone from NXP can explain the discrepancy.
-
-adam
-
-> "
+---
+bod
