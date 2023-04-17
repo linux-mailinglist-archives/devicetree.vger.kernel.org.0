@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF6F16E4089
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3471D6E409F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbjDQHRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34174 "EHLO
+        id S230404AbjDQHVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 03:21:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbjDQHRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:17:45 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13AB4203
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:17:38 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2a7b08e84d4so11140381fa.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:17:38 -0700 (PDT)
+        with ESMTP id S230408AbjDQHVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:21:02 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6F944B6
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:20:34 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4ec817735a7so1188805e87.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:20:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681715857; x=1684307857;
+        d=linaro.org; s=google; t=1681716033; x=1684308033;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3OR5eT9VnzB8iC9lmd78WCiWUCSzoPnYyNJk6lQC8Oc=;
-        b=B8e0BXhwU4lqGmdezCmNtposCPWNDQsrr5U8BuPRXI99DeyUt/CICr5FjRWWtD0ZCO
-         B6sVXpU3n4W1y1ijhh5Gp62WWoOcJGcAwUEW5n1ukLr4y/b8aryEHiiBRoi2lMGiry8v
-         jZ/RWKOzasftEEE6rzZXV/Gli/JmCNAA1bM0/+oocvjobrpWOrE63+sls3P+4MT6tncn
-         m8G/VfCfVW9aIahT4Qrn5TzJnZ6K70gLv7swFTUQ8KZ3k4tRYuBPUPjTEJpr2foOUqUV
-         7Ruicx7/gIqumpoDrQNpmLpPWV29pULliByxrxgRYNOu1gbg9UaEn8T70T2WGbazG5LP
-         lwlg==
+        bh=23eaV4yrZlv41f+CKNhvw+EBCrhUaHp4FA0RWyDryN0=;
+        b=brrL1QkKtXOzgBfJa/J15xXIyDQ7hn5Ramsb1NyNUFrt9xKV+RafsrwZSVMIi/SOqi
+         4WlwHdUOu2anKQdKDl8mGXpCtkkfBpjMLvdMfxrBZsFs0p/f2/rhBtMSlasgzrQIleIv
+         fz0lnazxeXtCMYnUPqbrW6XICHV06uBE8QYA4TmObJO2RjyjIPZZaOK7GbK8nwB0EH8N
+         EV8xAQBRXZD5C7BcV24IMP0KRhFDYUf2U1T3uvTlls7Ea0gupaKsPMWNjV+lmBTWj4j3
+         So/3uP7iv2yokepC2vsq8NbCEQdZOQ52DOxqbohFNzWh3NC8Syhi1q16BvUR4MeyDIPX
+         isPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681715857; x=1684307857;
+        d=1e100.net; s=20221208; t=1681716033; x=1684308033;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OR5eT9VnzB8iC9lmd78WCiWUCSzoPnYyNJk6lQC8Oc=;
-        b=az2XR6l2bA0f/NoaNIw7JGvFV4sqjBjf3QkYNs7fAgx3yUsFrhbRpknLYsIpkWB23/
-         MLQqaEmmV+5tQjkCK4hqeU7hwI47GwSodNfwrHyqPoWZyOLGbcncPdmUQSGvh2OINgQD
-         NekCbpaJB+0xFfoRRG622im5QxNcqgSJQr8iXtXvBmDQJUmuRU1BpzF/BlTFLKUKzvEH
-         PfYLpggSsTl1HD0pIpi66DSWWmUK+eslOrNG+IUn13WqCzzzg6yEDBD7WAKGx3GjVZF+
-         ZWCiUT1ghCpnwiTU+AU5RfCB0g2gAoIMPdRTHwaSkwpAmZ+shS/zRCb8Al+he7yLnwgf
-         S4Fw==
-X-Gm-Message-State: AAQBX9cLpr5FI3kqDw3PwLiRm79d4H/shjIOd0WcRwu6/ZOo2/YYqLfU
-        MLWu+OjSx/hMehSGZtzShSrk8Q==
-X-Google-Smtp-Source: AKy350ab+wKkL8gb4ltrCcM9tnhiEY2HkIoaBTwD+PoQh+qh2OILwYOXIQ3SdEWHJwapl/UE+lfJ2A==
-X-Received: by 2002:a19:ad02:0:b0:4db:3a92:2c85 with SMTP id t2-20020a19ad02000000b004db3a922c85mr1157217lfc.67.1681715857157;
-        Mon, 17 Apr 2023 00:17:37 -0700 (PDT)
+        bh=23eaV4yrZlv41f+CKNhvw+EBCrhUaHp4FA0RWyDryN0=;
+        b=LgDQbzv7dR/OyAfZ2JvjC/GAiMBQG+DYtr4pnaM+eJNDMzaDIch744EfMmsCo8wbzD
+         4eq1CLsL4/QqQjsE7rQvNXLUROxm9vYeENbBh0rROnFeboT4jUvdlBbAk2zxVctAvwCX
+         rYdFBj/44PnFldvsnq2T3gR/uDiZUu484tG1N6+tG2Da8CaOB0ZYKKRXHLJTcZ8o+YPf
+         T0oX9mg4Or17DUyN2jIPqV3BkTTWiGIC+83O34COtyKf2NZB8siBVP0PqTC3azp/K+mD
+         /TwXG4cPkb28ETgluSfeJBAxfgfsNIeQBEOTM5SD4ELmhNnj29+MT0J0AVW61eTKrFRG
+         uQOg==
+X-Gm-Message-State: AAQBX9dk78y+SdFv/wbEzhna/jAR8x+ZhIL6rNl5aUKmGKfKJB+Z0W9O
+        iX+zZBJg7vqibhGxVb9TpDEwLg==
+X-Google-Smtp-Source: AKy350ZCzYttSbW0KXmPxpfqHUCsLYwl5TDvD9kAjWNUhP1831FlnXfA3HGZWwg3Xq2TkcdcwMnS9g==
+X-Received: by 2002:ac2:5310:0:b0:4eb:3615:4c35 with SMTP id c16-20020ac25310000000b004eb36154c35mr1510089lfh.33.1681716032961;
+        Mon, 17 Apr 2023 00:20:32 -0700 (PDT)
 Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
-        by smtp.gmail.com with ESMTPSA id u6-20020ac251c6000000b004d85f2acd8esm1948698lfm.295.2023.04.17.00.17.36
+        by smtp.gmail.com with ESMTPSA id 13-20020ac2482d000000b004e8452972a2sm1949681lft.247.2023.04.17.00.20.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 00:17:36 -0700 (PDT)
-Message-ID: <0e5cf9e6-bfcb-ff79-d94c-97c46735e12b@linaro.org>
-Date:   Mon, 17 Apr 2023 09:17:35 +0200
+        Mon, 17 Apr 2023 00:20:32 -0700 (PDT)
+Message-ID: <33ac8c1d-bc0b-7056-09f5-95ee4f319f1a@linaro.org>
+Date:   Mon, 17 Apr 2023 09:20:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8280xp: correct GIC child node
- name
+Subject: Re: [PATCH] dt-bindings: display: panel: add common definition of
+ ports
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230416151311.346596-1-krzysztof.kozlowski@linaro.org>
- <20230416151311.346596-4-krzysztof.kozlowski@linaro.org>
+References: <20230416153929.356330-1-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230416151311.346596-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230416153929.356330-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,29 +85,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 16.04.2023 17:13, Krzysztof Kozlowski wrote:
-> GIC child node is supposed to be named msi-controller:
-> 
->   sa8295p-adp.dtb: interrupt-controller@17a00000: gic-its@17a40000: False schema does not allow
+On 16.04.2023 17:39, Krzysztof Kozlowski wrote:
+> Few panel bindings for dual-link connections just type "ports: true",
+> which does not enforce any type.  Add common definition of ports, so the
+> type will be fixed.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 6d3780a75024..5532bf8af211 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -3907,7 +3907,7 @@ intc: interrupt-controller@17a00000 {
->  			#size-cells = <2>;
->  			ranges;
+> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/display/panel/panel-common.yaml     | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+> index 5b38dc89cb21..ad62d34e6fa3 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+> @@ -70,6 +70,16 @@ properties:
+>    port:
+>      $ref: /schemas/graph.yaml#/properties/port
 >  
-> -			gic-its@17a40000 {
-> +			msi-controller@17a40000 {
->  				compatible = "arm,gic-v3-its";
->  				reg = <0 0x17a40000 0 0x20000>;
->  				msi-controller;
+> +  # For dual-link connections
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    patternProperties:
+> +      "^port@[0-9a-f]+$":
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +
+> +    required:
+> +      - port@0
+> +
+>    ddc-i2c-bus:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -154,6 +164,12 @@ dependencies:
+>    width-mm: [ height-mm ]
+>    height-mm: [ width-mm ]
+>  
+> +allOf:
+> +  - not:
+> +      required:
+> +        - port
+> +        - ports
+> +
+>  additionalProperties: true
+>  
+>  ...
