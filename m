@@ -2,65 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13DAF6E4978
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B096E4982
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230494AbjDQNLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33994 "EHLO
+        id S229551AbjDQNMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:12:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230499AbjDQNLa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:11:30 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F6DFBB94;
-        Mon, 17 Apr 2023 06:10:51 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-187f76c50dbso1714372fac.10;
-        Mon, 17 Apr 2023 06:10:51 -0700 (PDT)
+        with ESMTP id S229562AbjDQNLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:11:34 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79FBEBB87;
+        Mon, 17 Apr 2023 06:10:59 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id a7so3001896oiw.7;
+        Mon, 17 Apr 2023 06:10:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681737030; x=1684329030;
+        d=1e100.net; s=20221208; t=1681737034; x=1684329034;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=xtZGasXv9C7Ge2QWI6k5UgJ2d5nkIFCB+5qLTT/nVfk=;
-        b=h/Uh5hUEASajduHQd0p1caYizGia0gOSBvzba72bH5cseU++xJpWqZPCupV0AztPzJ
-         zzntzVAsj0HetH6HgQthUEfzlH6Q7ehI9W6tLhSwBr2V3syxxRc/bSnWWANESbITbPPZ
-         UxPZncqNanFssTj2ZMQ4x+/Wt8kOQNT0VZr3vOM8kLEVDxvGCbZ4RoYv+HMlFhZEZG2r
-         FxN7S+Gplz62yh82OZiFaR4rGh3xI6c4VmVdNtuBBJP3eLhRuW+Ttua8mC5uvT0EUcOI
-         t2NH2b+PrcxP+vZu6dGuP1idnIY3VY+IisQIXpKITbMPUnTv7j80RcuX3o6u+FMwkTyO
-         OxEg==
-X-Gm-Message-State: AAQBX9f5APTqc5lJq+Oh/MHAXb60sf2eDNqsxzDEikddZGpfnBjiF+sJ
-        I/v+V7HarD8IdD2w2uo9ig==
-X-Google-Smtp-Source: AKy350Z3w0CjpBv/bSJS7p2s+vYJva0zzvbCznrDfyKOIBrsleV0opbnMsnYoNw0OJfBleJ+sh2bMw==
-X-Received: by 2002:a05:6870:d1c7:b0:187:9c57:90c5 with SMTP id b7-20020a056870d1c700b001879c5790c5mr8732256oac.1.1681737029758;
-        Mon, 17 Apr 2023 06:10:29 -0700 (PDT)
+        bh=jBonPjm6hFR6zSrloV8u7ZAY904Aai0PvZoTRlUcPtA=;
+        b=R8qMcuw/CmlG+BivBAlUKA0dSOJTMpqp9ilLjplda1RebQpBogOqxiJwkHiN96g9yI
+         K0OU/Sk9engmF8RzAIAaiH0S+jaoYC10NUYRur2cCOWq9dl4W6STbLhDO1AccfUm5lzj
+         n+MelB009qOZ9m37DsG9DWdNhsmrnvkyEOXuToztKBX/hJldIDrOqCJnOtaElsQsSZyt
+         odELxyYIa1iXYQEFOk4GZPT/b7aEdZPBC5PJOsxSgHpABisFD49OnyNhAVwzaj56Dvu+
+         3lkB9+sxsHOzKs21Do08LHsL5hfPNKiu+kJei8vAFow+kymrEwehSoclBnqWL+YYQ8Qa
+         t00A==
+X-Gm-Message-State: AAQBX9dUcCrCfaIxSU2O4fzEJEexMDQJrKtfNb6N5c41cGBNU8hpzWk9
+        GyG/0HnquDCmBMN7BEi6UQ==
+X-Google-Smtp-Source: AKy350YnZq84V4tQgFyHDcnn+eunXYEjW2tATgr53HkpmhsG7LHEOB3RlxH2Jte7iMzDS5GPW95Yyg==
+X-Received: by 2002:a05:6808:238e:b0:38e:eaf:cf1c with SMTP id bp14-20020a056808238e00b0038e0eafcf1cmr1069613oib.54.1681737033870;
+        Mon, 17 Apr 2023 06:10:33 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l9-20020a05687014c900b001806f2ac9a6sm4491284oab.47.2023.04.17.06.10.28
+        by smtp.gmail.com with ESMTPSA id j21-20020a056808057500b0038e086c764dsm978559oig.43.2023.04.17.06.10.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 06:10:29 -0700 (PDT)
-Received: (nullmailer pid 2588785 invoked by uid 1000);
+        Mon, 17 Apr 2023 06:10:33 -0700 (PDT)
+Received: (nullmailer pid 2588781 invoked by uid 1000);
         Mon, 17 Apr 2023 13:10:27 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
+To:     Yang Xiwen <forbidden405@outlook.com>
+Cc:     Jiancheng Xue <xuejiancheng@hisilicon.com>,
+        tianshuliang <tianshuliang@hisilicon.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>,
+        David Yang <mmyangfl@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Rosin <peda@axentia.se>
-In-Reply-To: <20230417104801.808972-2-patrick.rudolph@9elements.com>
-References: <20230417104801.808972-1-patrick.rudolph@9elements.com>
- <20230417104801.808972-2-patrick.rudolph@9elements.com>
-Message-Id: <168173527787.2535638.15636356972148474152.robh@kernel.org>
-Subject: Re: [PATCH v12 1/4] dt-bindings: i2c: Correct interrupt support
+        devicetree@vger.kernel.org
+In-Reply-To: <20230415-mmc-hi3798mv200-v4-3-44096e187f53@outlook.com>
+References: <20230415-mmc-hi3798mv200-v4-0-44096e187f53@outlook.com>
+ <20230415-mmc-hi3798mv200-v4-3-44096e187f53@outlook.com>
+Message-Id: <168173527652.2535566.16838567933859217136.robh@kernel.org>
+Subject: Re: [PATCH RFC v4 3/4] dt-binding: mmc: hi3798cv200-dw-mshc:
+ convert to YAML and rename to histb-dw-mshc
 Date:   Mon, 17 Apr 2023 08:10:27 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,40 +73,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 17 Apr 2023 12:47:57 +0200, Patrick Rudolph wrote:
-> Only some of the PCA954x compatible ICs have interrupt
-> capability, but the binding advertises it on all ICs.
+On Sun, 16 Apr 2023 17:19:34 +0800, Yang Xiwen wrote:
+> The renaming is due to the fact that it is now supporting SoCs other
+> than Hi3798CV200.
 > 
-> Sync the dt-binding with the driver and only advertise it on:
->  - nxp,pca9542
->  - nxp,pca9543
->  - nxp,pca9544
->  - nxp,pca9545
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 20 ++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
+>  .../bindings/mmc/hi3798cv200-dw-mshc.txt           | 40 -------------
+>  .../bindings/mmc/hisilicon,histb-dw-mshc.yaml      | 69 ++++++++++++++++++++++
+>  2 files changed, 69 insertions(+), 40 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml:66:1: [error] duplication of key "allOf" in mapping (key-duplicates)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.example.dts'
-Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml:66:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml:66:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml: ignoring, error parsing file
-make: *** [Makefile:1512: dt_binding_check] Error 2
+./Documentation/devicetree/bindings/mmc/hisilicon,histb-dw-mshc.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/mmc/hisilicon,histb-dw-mshc.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230417104801.808972-2-patrick.rudolph@9elements.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230415-mmc-hi3798mv200-v4-3-44096e187f53@outlook.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
