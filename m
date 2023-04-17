@@ -2,154 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C42606E4D0A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 17:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2B76E4D36
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 17:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230302AbjDQPXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 11:23:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
+        id S229573AbjDQPab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 11:30:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231311AbjDQPXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 11:23:04 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94428B44D;
-        Mon, 17 Apr 2023 08:21:51 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id hg25-20020a05600c539900b003f05a99a841so21227290wmb.3;
-        Mon, 17 Apr 2023 08:21:51 -0700 (PDT)
+        with ESMTP id S229498AbjDQPaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 11:30:30 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A604D5585
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 08:29:49 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id he13so19012028wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 08:29:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681744907; x=1684336907;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OppusVDPTknxRE+RqoeEhB3WmCzyqWgv0cWY8mHzosw=;
-        b=h6hEuTnPiYwjVilzvawD9txg5cYumU2jRZEeA6dcFsFHY12SyfhRYGAN+S1UpJ4lxK
-         qOM0iTNJBCE/w5l7Y6tQWN6RHt4HFS8pOlR/yxpD15rGjrfoUcolPi9O2Xvao1ny/k3+
-         c9nclFnknn4VwLTZ0601PDW7GqRc+MiTaETjT8HUxpac7OGmcimHdOrN8NraF5V4yXPC
-         sWxPJc2pDTkifSkEmmxApCpPTZsPqDf5fL86EyutpXsdCY6mVE9t35tCKEdCmo7LQ5NH
-         Ixk2yYGdG2UrIBJKX9xOZerSd2ynErllNKO0PYU5Oqcc1dbSU7Q4YLbXRrL142gsPPXZ
-         fEsw==
+        d=linaro.org; s=google; t=1681745359; x=1684337359;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RzwpePrDPa7xmr54v7b5JEOp+2Pd1xHJ2snEcb8e6Q0=;
+        b=xXaSXGfkqHywUqrIdSTuJGAOS2HgJQOlGEp1vPBfWt4kLdPXwVzEKmVTiN95xLc4kP
+         jt6uY5G34VADtXHyi41pUyd1eX/fc6ehmYIp8G78BwotiHlWZR+7CWP6uVcNWNIYpCnI
+         TBOa0nvTTmubsOSWm1ztLzYuTRM1WEE07NSI+9pUT3575MnQJ6j5UIi66rZ9uuglOaqs
+         AKTTIjohJAQLbVBhCleyYRR5n5kPNDtHpyK42IV0yJWNxdrY4psQR8lOZ72VvQKFr0OS
+         VrmMhFF3n8sMibZpkqcTERyK6rD5GLa87TJxyqJbjLN92pHZ8fjEaBuvPGGCoPrNgij3
+         rOAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681744907; x=1684336907;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1681745359; x=1684337359;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OppusVDPTknxRE+RqoeEhB3WmCzyqWgv0cWY8mHzosw=;
-        b=jnkUaxpwEJLmTfqVh5ZUyenqgh2VY04+0ZT3+xfTQmgIe6QJzRseAb1SJXwOTmnPfd
-         KXHTjSYj2OjR6UkBKYjRx6tG2YjZr8V3cV1b5TUT9X4KP6nmE3KUETEbf46Jp+CZC/Z6
-         PqKxjL6KMmTW9+nTmB3/FiXDksGoSaf4eZC4mKUCkDkdKfYdzgxpY+RTduE+xfZvliHg
-         Wroo8jFF1UKffGotGLgaEq5IEQQYD3z5HLTephCoOzeMMKZ288Ottdl9Eq3fhjAYq59m
-         MuNQkO6qWS4+ID2Symm99rN2u84o6WlkHEtMS3BjQM3SOTkZdh8lgt0kSUqsXP65FVrP
-         Yh/g==
-X-Gm-Message-State: AAQBX9cuDc3TtSoWto/CX/9ZJmatYEJOZv2o3rp7+sgo2LVFc5VsYHd0
-        yIlQtoIiysm+xySfAlWxh0M=
-X-Google-Smtp-Source: AKy350Z6k141t5UQYKP+f7l2sYiLN+AXLz6Ow2fM5djSVBa82EIaIGrUwqCYpmHiVYs8u06xUgL9mQ==
-X-Received: by 2002:a05:600c:204d:b0:3f1:75a9:5c0d with SMTP id p13-20020a05600c204d00b003f175a95c0dmr1645560wmg.26.1681744907449;
-        Mon, 17 Apr 2023 08:21:47 -0700 (PDT)
-Received: from localhost.localdomain (host-87-7-13-196.retail.telecomitalia.it. [87.7.13.196])
-        by smtp.googlemail.com with ESMTPSA id j15-20020a05600c1c0f00b003f173be2ccfsm3501354wms.2.2023.04.17.08.21.43
+        bh=RzwpePrDPa7xmr54v7b5JEOp+2Pd1xHJ2snEcb8e6Q0=;
+        b=PW8Tz1wxHoPTfkoxVAqjuLBiAYsSZUNI3TzHl4qxm8IoiepuBg/okPXbNvsWUzgIwN
+         ySZfI3XqnRTcWqeqh1yMwkVlsN3NIJHKUQ+130pt7vPbCxJ0FIzFfNiZPWLNaI8o3JTW
+         RxIGjPHWZUEWg4OsyShr6sn3p4dX5co2fslC6w+8WSIjmUZO0MaQT4AySndpd4DKdC0L
+         yXcxiV7B4KyJ5WCB5xghHxBhrjgjsytP0jsKPKjAxzmHkHSUry0MeJWI0FOUkvBKNLY9
+         UML1qT+k7yegySVPbii5f3bcyAZsi8Ohr6ynpw4LZk80k/0pcg409UWQ/XrTpbSfgi3t
+         Gsjg==
+X-Gm-Message-State: AAQBX9dzr38G/R90yIhKrtu4HMJzx5Z7qFXsUZhb6FqQI/3XFYOSVcZo
+        Lni1fpKcPfo8Eu27YiGyoVe20A==
+X-Google-Smtp-Source: AKy350a8R3cCjE1wWQ446FxciFe8xGnzx9tik/JyEKMV1aebQPlDVAQwTU0a+LXIf1Hlno0IQpE1/Q==
+X-Received: by 2002:a7b:ce14:0:b0:3f1:65de:764 with SMTP id m20-20020a7bce14000000b003f165de0764mr6377900wmc.32.1681745359638;
+        Mon, 17 Apr 2023 08:29:19 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id jb17-20020a05600c54f100b003f17316ab46sm4097554wmb.13.2023.04.17.08.29.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 08:21:45 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        Mon, 17 Apr 2023 08:29:19 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: [net-next PATCH v7 16/16] Documentation: LEDs: Describe good names for network LEDs
-Date:   Mon, 17 Apr 2023 17:17:38 +0200
-Message-Id: <20230417151738.19426-17-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230417151738.19426-1-ansuelsmth@gmail.com>
-References: <20230417151738.19426-1-ansuelsmth@gmail.com>
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230412-topic-lenovopanel-v3-0-bcf9ba4de46f@linaro.org>
+References: <20230412-topic-lenovopanel-v3-0-bcf9ba4de46f@linaro.org>
+Subject: Re: [PATCH v3 0/4] Lenovo Tab P11 panel
+Message-Id: <168174535878.1042404.157210995107973966.b4-ty@linaro.org>
+Date:   Mon, 17 Apr 2023 17:29:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch>
+Hi,
 
-Network LEDs can exist in both the MAC and the PHY. Naming is
-difficult because the netdev name is neither stable or unique, do to
-commands like ip link set name eth42 dev eth0, and network
-namesspaces.
+On Mon, 17 Apr 2023 16:39:02 +0200, Konrad Dybcio wrote:
+> v2 -> v3:
+> - Drop patch 1 (the one allowing port AND ports)
+> - Pick up tags
+> 
+> v2: https://lore.kernel.org/r/20230412-topic-lenovopanel-v2-0-055c3649788e@linaro.org
+> 
+> v1 -> v2:
+> - Remove dsi_info (unused for single DSI) [5/5]
+> - Add backlight.scale [3/5]
+> - pick up tags
+> 
+> [...]
 
-Give some example names where the MAC and the PHY have unique names
-based on device tree nodes, or PCI bus addresses.
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next-fixes)
 
-Since the LED can be used for anything which Linux supports for LEDs,
-avoid using names like activity or link, rather describe the location
-on the RJ-45, of what the RJ-45 is expected to be used for, WAN/LAN
-etc.
+[1/4] dt-bindings: display: panel: nt36523: Add Lenovo J606F panel
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=b4b26ab24f8f9ad3aa9fbdfd211e51b051ddb91e
+[2/4] drm/panel: nt36523: Add DCS backlight support
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=aecb583cb997935fb4f4a667a8013469528a8d53
+[3/4] drm/panel: nt36523: Get orientation from OF
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=1eae88fa7b56b3b02d0e003a737fc31d71f3f486
+[4/4] drm/panel: nt36523: Add Lenovo J606F panel
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=4f048de28b90abefff2044f450e882576eb746e9
 
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- Documentation/leds/well-known-leds.txt | 30 ++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/Documentation/leds/well-known-leds.txt b/Documentation/leds/well-known-leds.txt
-index 2160382c86be..e9c30dc75884 100644
---- a/Documentation/leds/well-known-leds.txt
-+++ b/Documentation/leds/well-known-leds.txt
-@@ -70,3 +70,33 @@ Good: "platform:*:charging" (allwinner sun50i)
- * Screen
- 
- Good: ":backlight" (Motorola Droid 4)
-+
-+* Ethernet LEDs
-+
-+Currently two types of Network LEDs are support, those controlled by
-+the PHY and those by the MAC. In theory both can be present at the
-+same time for one Linux netdev, hence the names need to differ between
-+MAC and PHY.
-+
-+Do not use the netdev name, such as eth0, enp1s0. These are not stable
-+and are not unique. They also don't differentiate between MAC and PHY.
-+
-+** MAC LEDs
-+
-+Good: f1070000.ethernet:white:WAN
-+Good: mdio_mux-0.1:00:green:left
-+Good: 0000:02:00.0:yellow:top
-+
-+The first part must uniquely name the MAC controller. Then follows the
-+colour.  WAN/LAN should be used for a single LED. If there are
-+multiple LEDs, use left/right, or top/bottom to indicate their
-+position on the RJ45 socket.
-+
-+** PHY LEDs
-+
-+Good: f1072004.mdio-mii:00: white:WAN
-+Good: !mdio-mux!mdio@2!switch@0!mdio:01:green:right
-+Good: r8169-0-200:00:yellow:bottom
-+
-+The first part must uniquely name the PHY. This often means uniquely
-+identifying the MDIO bus controller, and the address on the bus.
 -- 
-2.39.2
+Neil
 
