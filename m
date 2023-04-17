@@ -2,64 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E87346E4984
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC86E6E4977
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:11:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjDQNMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33188 "EHLO
+        id S230377AbjDQNLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:11:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbjDQNLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:11:34 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAD7BB8C;
-        Mon, 17 Apr 2023 06:10:59 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id d1so6542819oiw.13;
-        Mon, 17 Apr 2023 06:10:59 -0700 (PDT)
+        with ESMTP id S230316AbjDQNL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:11:29 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824CFB77B;
+        Mon, 17 Apr 2023 06:10:50 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id be20so2604211oib.4;
+        Mon, 17 Apr 2023 06:10:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681737035; x=1684329035;
+        d=1e100.net; s=20221208; t=1681737028; x=1684329028;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=VxzMSlWJqp0jC6TDxAVrz9kAacy8nE6CyreWMpO82qY=;
-        b=TbEeth/d+Lh7X3cP079eim5YXZH1gp/ubS+M/EdEEmEr3ismKJZrQsYApY76Yeus+f
-         7StSEJj7qqXVXAIRiy9mHUpd3+6TT7VKt/oLuAoOUZpMvSzBsrVR4K9cwWjBsZNRtVJf
-         vgJ/AloTEGeaTVUNFc18nVMbG5lRQ6GY9FhXDaKaDQMBQ+yG0DgRQabKAh+CK5pQ87KE
-         mk0MzNpOIzftWWojKTVbyIZyw4O8CpN3q56Hs1dXhcflfRl4ndhDkx6LICDJ+3Z58vmm
-         idZim2BiOGErFZUOEo6Aym0tfv7tRo1Td/tQrOoleoQLcmR6F3jYIX9MUQbhMVdamNuK
-         pPNQ==
-X-Gm-Message-State: AAQBX9ce+Jc253AwUtTvXM9EJ1zngxWmgPvNT8u6Hc9EqPB3GBrYOdg1
-        hqL72O3Ibfuee4J/0OlBSA==
-X-Google-Smtp-Source: AKy350ZlGphdnLNiDveQNO6I/GKvTFb/FnKDX5Ft9E5IDzE2uMM2gZ+a2HIyvJqu2MA7klFBfhkVoQ==
-X-Received: by 2002:a05:6808:bd5:b0:38d:e9e4:1ebd with SMTP id o21-20020a0568080bd500b0038de9e41ebdmr3351197oik.8.1681737035239;
-        Mon, 17 Apr 2023 06:10:35 -0700 (PDT)
+        bh=XGc5GbTW6kZhqyLY58+PiGrV4TzfIzCtj6GSngzzGx0=;
+        b=Lc5xMvcAHe6Hj4NCjygMrZEa6RW1PRBMh5dkaq+Zvr4wufgdqodC8g2of3SBjwv4Jl
+         xQ+p3JPbtzMs2T+JZJr72nslbUyK34+hWwYTXcmmPQq1H6OQwyLwBNg4ML+BRaew4x6B
+         2x7rGXbytBb8zqaN4oh5ry6ZLTVE/6szrxQtSUn7TOrU9gK5pJt4yuPlXfx6rotAeNRk
+         INHKQsOKzTFprpWAG/nS8L960K2qVmtaJc9ewYdPG/2EGVjnRM8dcHw19Euiif8IcUNq
+         iab9vlFFRcRFBxe07tt301rEvq3Ui1VsyWTBhFB7Pz7/EZofEepr+Z7accOI79kB1VDD
+         7LPQ==
+X-Gm-Message-State: AAQBX9dLTteALJlJcMNDL0qTUTuUcWTs0MLZ+7+WqIxIoNMwsH1qGtf2
+        N63my02ROw+sUxEJat8fguxAJzHmKA==
+X-Google-Smtp-Source: AKy350bLOodLTGfu7sS/UE8gZ4DIs15DTghBMqDc5P7PbXHAE80LzdytFuibl1XHbvlxfKHLrIz+Rw==
+X-Received: by 2002:a05:6808:23c6:b0:38e:8c6:8793 with SMTP id bq6-20020a05680823c600b0038e08c68793mr1670112oib.2.1681737028477;
+        Mon, 17 Apr 2023 06:10:28 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r7-20020acada07000000b003895430852dsm4607496oig.54.2023.04.17.06.10.34
+        by smtp.gmail.com with ESMTPSA id 63-20020aca0742000000b003896b3269d3sm4570296oih.20.2023.04.17.06.10.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 06:10:34 -0700 (PDT)
-Received: (nullmailer pid 2588774 invoked by uid 1000);
+        Mon, 17 Apr 2023 06:10:28 -0700 (PDT)
+Received: (nullmailer pid 2588762 invoked by uid 1000);
         Mon, 17 Apr 2023 13:10:27 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc:     Paolo Abeni <pabeni@redhat.com>, ath11k@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+To:     David Yang <mmyangfl@gmail.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Robert Marko <robimarko@gmail.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        Eric Dumazet <edumazet@google.com>
-In-Reply-To: <20230414212356.9326-1-zajec5@gmail.com>
-References: <20230414212356.9326-1-zajec5@gmail.com>
-Message-Id: <168173527510.2535500.15269428530497246338.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: net: wireless: qcom,ath11k: allow
- describing radios
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20230414181302.986271-2-mmyangfl@gmail.com>
+References: <20230414181302.986271-1-mmyangfl@gmail.com>
+ <20230414181302.986271-2-mmyangfl@gmail.com>
+Message-Id: <168173527448.2535459.6262053412684555960.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add reg-clock-controller
 Date:   Mon, 17 Apr 2023 08:10:27 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -73,17 +67,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 14 Apr 2023 23:23:54 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Sat, 15 Apr 2023 02:12:59 +0800, David Yang wrote:
+> Add DT bindings documentation for reg-clock-controller, collection of
+> basic clocks common to many platforms.
 > 
-> Qualcomm ath11k chipsets can have up to 3 radios. Each radio may need to
-> be additionally described by including its MAC or available frequency
-> ranges.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
 > ---
->  .../bindings/net/wireless/qcom,ath11k.yaml    | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
+>  .../bindings/clock/reg-clock-controller.yaml  | 245 ++++++++++++++++++
+>  1 file changed, 245 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/reg-clock-controller.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -92,14 +84,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dtb: wifi@c000000: radio@0: Unevaluated properties are not allowed ('reg' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dtb: wifi@c000000: '#address-cells', '#size-cells' do not match any of the regexes: '^radio@[0-2]$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/reg-clock-controller.example.dtb: reg-clk-ctrl@ffff0000: 'gate-clock@cc-3' does not match any of the regexes: '.*-names$', '.*-supply$', '^#.*-cells$', '^#[a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z0-9][a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+(,[0-9a-fA-F]+)*$', '^__.*__$', 'pinctrl-[0-9]+'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230414212356.9326-1-zajec5@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230414181302.986271-2-mmyangfl@gmail.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
