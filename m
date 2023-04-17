@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BB516E4F67
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 19:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D206E4F85
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 19:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbjDQRj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 13:39:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33880 "EHLO
+        id S230435AbjDQRow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 13:44:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbjDQRjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 13:39:24 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E38B45B;
-        Mon, 17 Apr 2023 10:39:16 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id m39-20020a05600c3b2700b003f170e75bd3so1732792wms.1;
-        Mon, 17 Apr 2023 10:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681753154; x=1684345154;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xo8M7dptfnnU8j8sIZf6ijHu+Q3xkPlAvSopMzRPSeI=;
-        b=dxFQjXSqWSI4OK3YlKmd4NDmF/m8JF1EDA4I4yjdo0xcBTHYlHxRiOAOCVO0JbO5LJ
-         EMBzj/9m3bpsfhJbd9KzFtKtN5vssL9xugmL50GBR8rS6lS5kV8wy6TEJ2oM5/uFZQo3
-         eVj8V8YoU9tgYURwoBZ5mwJDBs3nvhR76e1mkMj0vCjI5iJX1nqjgYG1F7SE7LWRhQuj
-         DzNpLa9MjC9IlmvUtV5di/4MyrIRBLXL1fGNPKg2gsfDy755YmhOcM4EcmEG3R+V7B0s
-         /c3+5BKwrFdvGA60lwCzK8wrzKBpV1/iIoukolc6R3cUuGrBh9nMiMzVnyF7Tg20wx5q
-         lZNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681753154; x=1684345154;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xo8M7dptfnnU8j8sIZf6ijHu+Q3xkPlAvSopMzRPSeI=;
-        b=f61CrgdCc8+R/RAcTkz0MSKLmidMJdmH4bio8h5MoCH71HahwEiNmWPhH40krwk2lN
-         VarL3l1bZvx9ED+Zxwkv0XVMFjGfUU4WxryuWBvzv5uiewO7X99qDZJOl4PQz3fyaCYR
-         XsIi+9D5ErpNMTVbejhmL5qkQ6MXnSRo9BIW15utFNhBesHZh4zRxIFCw8azApRuHfHn
-         DfrKOrda+HrcscH4sPJRH08wXqx+QGZh7hz319Qdn1dngCN0okp8BlYOjBv0ZF+v2hAZ
-         gSvAhcHfWbJUoGtIwtuBRfP7Nmk2yWL81U71ScOJdgCYcdAr/AelT6sPGOZofyRT3dLY
-         kr6A==
-X-Gm-Message-State: AAQBX9fZpT4GitqJRiYQ7eXRifb9wrQjAaArVajncn+z3X8aPl5oxS59
-        k9yJKCbdshzp4wpznd+/K6Hs26z4TdyI/Q==
-X-Google-Smtp-Source: AKy350Z/R7Edry6qOXn5LKcogwRMGp4EGe+XGM1A+KKlUhlTpgn4eAwnm+s947vhwm74FR4LqtNFog==
-X-Received: by 2002:a1c:f617:0:b0:3ed:a80e:6dfa with SMTP id w23-20020a1cf617000000b003eda80e6dfamr10949474wmc.40.1681753154125;
-        Mon, 17 Apr 2023 10:39:14 -0700 (PDT)
-Received: from andrejs-nb.int.toradex.com (35.145.195.178.dynamic.wline.res.cust.swisscom.ch. [178.195.145.35])
-        by smtp.gmail.com with ESMTPSA id iw1-20020a05600c54c100b003f174cafcdasm2478211wmb.7.2023.04.17.10.39.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 10:39:13 -0700 (PDT)
-From:   Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
-X-Google-Original-From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-Subject: [PATCH v1 4/4] arm64: dts: colibri-imx8x: delete adc1 and dsp
-Date:   Mon, 17 Apr 2023 19:38:30 +0200
-Message-Id: <20230417173830.19401-5-andrejs.cainikovs@toradex.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230417173830.19401-1-andrejs.cainikovs@toradex.com>
-References: <20230417173830.19401-1-andrejs.cainikovs@toradex.com>
+        with ESMTP id S230492AbjDQRoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 13:44:44 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E247D98;
+        Mon, 17 Apr 2023 10:44:32 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HHgviG006123;
+        Mon, 17 Apr 2023 17:44:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=Lk2dtssckoYP0BgRrMxw79+JnQVqwyfxtEsTiEbqgYg=;
+ b=j3eb1O+TLZkAxZKHigX6MwPlbS7GtyBM7tEb6s1esYh97vdWxi4KEGRvi777oqf+8N70
+ YhH8wJidLxlN3+/rTJBzltMws00Qdkfr1McGSG5uB18+AJO/gA4Adc5OuENPETvkO64Q
+ RnSSw/yoL7UUBGIMnXE51UPsAuRz+M1CJcIo1KByd3SylQKjDX7tpgqsyhCZZT69LYLk
+ 7GRrPn7l2x/UFqfGo41GW9ZjsEfsyKS2ifpSVGXddxESRW0jDBdgmXQkN3yPRyBG1fTR
+ R0oyEHOza68TnuOrr+CQtYpbo5p41F+g+nY1z+78T22VuNoUn1EeuDBQqTiNXkfHhzwp hg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q171ggq8v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 17 Apr 2023 17:44:21 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HHiJpC018668
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 17 Apr 2023 17:44:19 GMT
+Received: from car-linux11.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Mon, 17 Apr 2023 10:44:19 -0700
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+To:     <sudeep.holla@arm.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nikunj Kela <quic_nkela@quicinc.com>
+Subject: [PATCH v3 0/2] Allow parameter in smc/hvc calls
+Date:   Mon, 17 Apr 2023 10:43:59 -0700
+Message-ID: <20230417174401.19563-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230409181918.29270-1-quic_nkela@quicinc.com>
+References: <20230409181918.29270-1-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WG00_snvTZPzi4a-_Kqr4-Vbp7Db03Xj
+X-Proofpoint-ORIG-GUID: WG00_snvTZPzi4a-_Kqr4-Vbp7Db03Xj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-17_12,2023-04-17_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=556 suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304170155
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8, i.MX8X, i.MX8XP and i.MX8XL SOC device trees are all based on
-imx8-ss-*.dtsi files. For i.MX8X and i.MX8XP these device trees
-should be updated with some peripherals removed or updated, similar
-to i.MX8XL (imx8dxl-ss-*.dtsi files). However, it looks like only
-i.MX8 and i.MX8XL are up to date, but for i.MX8X and i.MX8XP some
-of the peripherals got inherited from imx8-ss-*.dtsi files, but in
-reality they are not present on SOC.
-As a result, during resource partition ownership check U-Boot receives
-messages from SCU firmware about these resources not owned by boot
-partition. In reality, these resources are not owned by anyone, as
-they simply does not exist, but are defined in Linux device tree.
-This change removes those peripherals, which are listed during
-U-Boot resource partition ownership check as warnings:
+Currently, smc/hvc calls are made with parameters set
+to zeros. We are using multiple scmi instances within
+a VM. We are sharing the same smc-id(func_id) with all
+scmi instance. The hypervisor needs a way to distinguish 
+among hvc calls made from different instances.
 
-  ## Flattened Device Tree blob at 9d400000
-     Booting using the fdt blob at 0x9d400000
-     Loading Device Tree to 00000000fd652000, end 00000000fd67efff ... OK
-  Disable clock-controller@59580000 rsrc 512 not owned
-  Disable clock-controller@5ac90000 rsrc 102 not owned
+This patch series introduces new compatible string which
+can be used to pass shmem channel address as a parameter
+to smc/hvc calls.
 
-  Starting kernel ...
-
-Fixes: ba5a5615d54f ("arm64: dts: freescale: add initial support for colibri imx8x")
-
-Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
 ---
- arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+v3 -> pass shmem channel address as parameter
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index b0d6f632622c..49d105eb4769 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -769,3 +769,10 @@ pinctrl_wifi: wifigrp {
- 		fsl,pins = <IMX8QXP_SCU_BOOT_MODE3_SCU_DSC_RTC_CLOCK_OUTPUT_32K	0x20>;
- 	};
- };
-+
-+/* Delete peripherals which are not present on SOC, but are defined in imx8-ss-*.dtsi */
-+
-+/delete-node/ &adc1;
-+/delete-node/ &adc1_lpcg;
-+/delete-node/ &dsp;
-+/delete-node/ &dsp_lpcg;
+v2 -> fix the compilation erros on 32bit platform(see below)
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202304100606.kUjhsRYf-lkp@intel.com/
+
+v1 -> original patches
+
+Nikunj Kela (2):
+  dt-bindings: firmware: arm,scmi: support for parameter in smc/hvc call
+  firmware: arm_scmi: Augment SMC/HVC to allow optional parameter
+
+ .../bindings/firmware/arm,scmi.yaml           |  4 +++
+ drivers/firmware/arm_scmi/driver.c            |  1 +
+ drivers/firmware/arm_scmi/smc.c               | 25 ++++++++++++++++++-
+ 3 files changed, 29 insertions(+), 1 deletion(-)
+
 -- 
-2.34.1
+2.17.1
 
