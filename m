@@ -2,65 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E157D6E4376
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:18:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE9C6E4380
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:19:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbjDQJSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 05:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46848 "EHLO
+        id S230479AbjDQJTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 05:19:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230375AbjDQJSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:18:25 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5916DB7;
-        Mon, 17 Apr 2023 02:18:20 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S229717AbjDQJTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:19:48 -0400
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4DE9F;
+        Mon, 17 Apr 2023 02:19:43 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 115E3660309E;
-        Mon, 17 Apr 2023 10:18:18 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681723099;
-        bh=B6LbGft4HxAIqoilnk5IC83grPCkk/Hif1oJBGNxpWU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jebdwN5kgEG64iYOCZj683+YGj3wMzGsaamuIPbrw7rTfny4mghm2QLnsviE9sNuV
-         TLUfGHqyQZvtoMVtvnjYLI210dt4ZZupgQ0WHJNrgBpnha92v/5dx251GIkO1OX38t
-         CLR3CAd1YLab+xYyY5unuL3GgDAMKU2eJvGZJhyJy1CeUMoGD33aMXhW8OXH2n77je
-         vjNudg7KXB/jWsj5P96Yz9zvgxRzfad6MvpYtv3+vY4KEdvT3P2tNs1gi4K7tMgMv0
-         ocBThx1DCx2vT6aSVt4XK05xHxlZA6zO2heIV19bFQBN0FUNAUmzd/eFH9Xc+fb1KX
-         fEEdYW5UOdqrQ==
-Message-ID: <37b56f69-99c2-adf0-cc9f-572fbdaa2eee@collabora.com>
-Date:   Mon, 17 Apr 2023 11:18:15 +0200
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id AF5D342404;
+        Mon, 17 Apr 2023 09:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1681723181; bh=frGGl/SueB8zDDanXT+8MSbrFf+w013HktHuXgfQFII=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=d3r/XQjjpRmnKOn6gqDZX6a0czfKALdekPl084QtoSGIIBxHkv7Apz6IBEByzgMBL
+         /i7fGBFIYxIKVwDJsJ4em8yOSTK7OggUc3x8iLYkUsK7fo+MGfhP1acpAt/3WB2p8K
+         PWgDUutpc1eLl+E77tUcDHMTsSsTnMk+Mvy0NhVICk7K0SJCskaKKctGWXyPB15PZN
+         sLifQPTLjQt+Wo0398gtpHBu+1L8kYhvAJ7X8dzwdpafJeuPle7Qix0Wb8g9vqvncA
+         qS9bQoLQnYaPddEGPLOkRRsFEYh0IMGcGRfi6ohaBpitJVrsoMDxNehECqAVBxOQvY
+         cmVxGbAF2lkng==
+Message-ID: <3d1acabd-ac0a-d0f2-3dd7-62165549e9dc@marcan.st>
+Date:   Mon, 17 Apr 2023 18:19:34 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 1/6] media: mediatek: vcodec: can`t regard getting lat
- buffer fail as error
+ Thunderbird/102.9.0
+Subject: Re: [PATCH RESEND v9 0/5] PWM and keyboard backlight driver for ARM
+ Macs
 Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230417054816.17097-1-yunfei.dong@mediatek.com>
- <20230417054816.17097-2-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230417054816.17097-2-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     fnkl.kernel@gmail.com, Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        - <asahi@lists.linux.dev>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sasha Finkelstein <7d578vix8hzw@opayq.net>
+References: <20230214-fpwm-v9-0-f3094107b16b@gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <20230214-fpwm-v9-0-f3094107b16b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
@@ -72,26 +63,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/04/23 07:48, Yunfei Dong ha scritto:
-> The speed of lat decoder is much faster than core, need to get trans
-> buffer again when lat fail to get trans buffer.
+On 03/04/2023 23.19, Sasha Finkelstein via B4 Relay wrote:
+> Hi,
 > 
+> This is the v9 of the patch series to add PWM and keyboard
+> backlight driver for ARM macs.
+> 
+> Changes in v1:
+> Addressing the review comments.
+> 
+> Changes in v2:
+> Added the reviewed-by and acked-by tags.
+> Addressing a review comment.
+> 
+> Changes in v3 and v4:
+> Addressing the review comments.
+> 
+> Changes in v5:
+> Added t600x device tree changes
+> 
+> Changes in v8:
+> Changed the overflow handling to clamp instead of erroring.
+> 
+> Changes in v9:
+> Missed a spot where clamping should be applied. Fixed that.
+> 
+> v1: https://www.spinics.net/lists/linux-pwm/msg19500.html
+> v2: https://www.spinics.net/lists/linux-pwm/msg19562.html
+> v3: https://www.spinics.net/lists/linux-pwm/msg19901.html
+> v4: https://www.spinics.net/lists/linux-pwm/msg20093.html
+> v5: https://www.spinics.net/lists/linux-pwm/msg20150.html
+> v6: https://www.spinics.net/lists/linux-pwm/msg20190.html
+> v7: https://lore.kernel.org/r/20230214-fpwm-v7-0-fb0a6bfbd037@gmail.com
+> v8: https://lore.kernel.org/r/20230214-fpwm-v8-0-65518a0d4944@gmail.com
+> 
+> ---
+> Sasha Finkelstein (5):
+>       dt-bindings: pwm: Add Apple PWM controller
+>       pwm: Add Apple PWM controller
+>       arm64: dts: apple: t8103: Add PWM controller
+>       arm64: dts: apple: t600x: Add PWM controller
+>       MAINTAINERS: Add entries for Apple PWM driver
+> 
+>  .../devicetree/bindings/pwm/apple,s5l-fpwm.yaml    |  51 +++++++
+>  MAINTAINERS                                        |   2 +
+>  arch/arm64/boot/dts/apple/t600x-die0.dtsi          |   9 ++
+>  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi     |  18 +++
+>  arch/arm64/boot/dts/apple/t8103-j293.dts           |  17 +++
+>  arch/arm64/boot/dts/apple/t8103-j313.dts           |  17 +++
+>  arch/arm64/boot/dts/apple/t8103.dtsi               |   9 ++
+>  drivers/pwm/Kconfig                                |  12 ++
+>  drivers/pwm/Makefile                               |   1 +
+>  drivers/pwm/pwm-apple.c                            | 159 +++++++++++++++++++++
+>  10 files changed, 295 insertions(+)
+> ---
+> base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+> change-id: 20230214-fpwm-d8f76bc8ddc1
+> 
+> Best regards,
 
-The commit description is misleading, looks like you're doing functional
-changes, but you're just changing loglevels... and the title is also a
-little confusing, so.. I would propose:
+Applied #3-#4 to asahi-soc/dt, thanks!
 
-media: mediatek: vcodec: Avoid unneeded error logging
-
-Since the LAT decoder works faster than its CORE, getting the trans buffer may
-be done only after CORE finishes processing: avoid printing an error if the
-decode function returns -EAGAIN, as this means that the buffer from CORE is not
-yet available, but will be at a later time.
-
-Also change the log level for calls to vdec_msg_queue_dqbuf() in H264 and VP9
-LAT decoder drivers to avoid excessive logging.
-
-Cheers,
-Angelo
-
+- Hector
 
