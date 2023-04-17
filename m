@@ -2,107 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F846E471B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 14:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 837526E4631
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjDQMGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 08:06:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52336 "EHLO
+        id S229717AbjDQLRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 07:17:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjDQMGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 08:06:15 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472756A56;
-        Mon, 17 Apr 2023 05:05:22 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33HB7jBY096541;
-        Mon, 17 Apr 2023 06:07:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681729665;
-        bh=zql8jPEHH08G2MdBNso/tJEKFjGMdswHE+ilLc0irv8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=TFnS5NFZggALvZcMPqWz2ytiIoOezJVajdutL2NT6prLP2WTcT7ESePQEXpUUVqEN
-         xd84h0QQ/Iwv5YgIx/AtJIn3AhVipHN4gfzEsYVFI9H9fKzs1De4N1zCiOCFUV569k
-         Co0MxGgZ3FBVYB3bi/tz1Ag5NPif6mgv3Ev3gAuA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33HB7jHA064008
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Apr 2023 06:07:45 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 17
- Apr 2023 06:07:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 17 Apr 2023 06:07:44 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33HB7iTq047481;
-        Mon, 17 Apr 2023 06:07:44 -0500
-Date:   Mon, 17 Apr 2023 06:07:44 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Esteban Blanc <eblanc@baylibre.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sterzik@ti.com>, <u-kumar1@ti.com>, <jneanne@baylibre.com>,
-        <jpanis@baylibre.com>, <aseketeli@baylibre.com>
-Subject: Re: [PATCH v2 0/5] arm64: dts: ti: k3-j7200-som-p0: Add TP6594
- family PMICs
-Message-ID: <20230417110744.ty2x5orajxdmhigm@gradation>
-References: <20230414112843.1358067-1-eblanc@baylibre.com>
- <20230414180551.urqvxtxtaewoz5xa@lustfully>
- <CRYY0AFI63HC.MPYLE2JQ49AK@burritosblues>
+        with ESMTP id S230229AbjDQLRb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:17:31 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6043493EB;
+        Mon, 17 Apr 2023 04:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1681730195; x=1713266195;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+OV6QAPstFh42nYNRUk7hKpFpD9JDrBVvGjP7eZkvHc=;
+  b=K7nuqbVWv0NbmaGBYSyx++mGIkQgs8aIoGqKb/HdKltsrYnES67l97LD
+   Sef67m8c7l9R5A9CTBN3oXW3ZSE32URB4G868ujqWo234jdA4cMkKxu8Y
+   5PyYDl3x10/a+4oYDMiWfDSpo5RwWQ6GPOCYoHPnVA6WYhRmtW4cPF+nI
+   tHdfPH+f+386h72/KzxtnuCNZ5NkGHcTgeKVe4mfm0wCTUW30ai9XdYPW
+   XrZxvnjMuLY0sOi2+fb+2FS1NO2rhjKiC45bt9gJtruJKHuYVIBX5Y0Ro
+   igsaRpsdo4WsArw01GcY5SauhRmQJHoWUZchWtMK99kizXPZk9l+GVoSM
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,204,1677567600"; 
+   d="scan'208";a="209385723"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Apr 2023 04:13:33 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 17 Apr 2023 04:13:33 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Mon, 17 Apr 2023 04:13:33 -0700
+Date:   Mon, 17 Apr 2023 13:13:32 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Alain Volmat <avolmat@me.com>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <patrice.chotard@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: dwmac: sti: remove
+ stih415/sti416/stid127
+Message-ID: <20230417111332.fcmkgtzdireraet7@soft-dev3-1>
+References: <20230416195857.61284-1-avolmat@me.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <CRYY0AFI63HC.MPYLE2JQ49AK@burritosblues>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20230416195857.61284-1-avolmat@me.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:01-20230417, Esteban Blanc wrote:
-> On Fri Apr 14, 2023 at 8:05 PM CEST, Nishanth Menon wrote:
-> > On 13:28-20230414, Esteban Blanc wrote:
-> > > TPS6594 is a Power Management IC which provides regulators and others
-> > > features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> > > PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
-> > > communicate through the I2C or SPI interfaces.
-> > > TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
-> > > 
-> > > This should be applied on top of other patch series:
-> > > - https://lore.kernel.org/all/20230406075622.8990-1-jpanis@baylibre.com/
-> > >   For core MFD driver
-> > > - https://lore.kernel.org/lkml/20230414101217.1342891-1-eblanc@baylibre.com/
-> > >   For regulator driver
-> > > 
-> >
-> > https://lore.kernel.org/lkml/20230330030046.qr5dnft6klejkxkp@ungreased/
-> >
-> > has anything changed?
+The 04/16/2023 21:58, Alain Volmat wrote:
 > 
-> Yes:
-> - Harmonize regulators names across the different boards
-> - Adjust AVS voltage range
-> - Remove some outdated comments
-> - Add PMICs to J784S4 board
-> - Compatible string modified to match dt-bindings
-> - Add gpio-controller and gpio-cells properties
-> 
-> I missed a few of theses on the cover letter, sorry about that.
+> Remove compatible for stih415/stih416 and stid127 which are
+> no more supported.
 
-The bindings and drivers need to reach kernel.org master branch first, if
-they are in by rc1, then the dts patches can be picked in.
+Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+
+> 
+> Signed-off-by: Alain Volmat <avolmat@me.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Patch previously sent as part of serie: https://lore.kernel.org/all/20230209091659.1409-9-avolmat@me.com/
+> 
+>  Documentation/devicetree/bindings/net/sti-dwmac.txt | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/sti-dwmac.txt b/Documentation/devicetree/bindings/net/sti-dwmac.txt
+> index 062c5174add3..42cd075456ab 100644
+> --- a/Documentation/devicetree/bindings/net/sti-dwmac.txt
+> +++ b/Documentation/devicetree/bindings/net/sti-dwmac.txt
+> @@ -7,8 +7,7 @@ and what is needed on STi platforms to program the stmmac glue logic.
+>  The device node has following properties.
+> 
+>  Required properties:
+> - - compatible  : Can be "st,stih415-dwmac", "st,stih416-dwmac",
+> -   "st,stih407-dwmac", "st,stid127-dwmac".
+> + - compatible  : "st,stih407-dwmac"
+>   - st,syscon : Should be phandle/offset pair. The phandle to the syscon node which
+>     encompases the glue register, and the offset of the control register.
+>   - st,gmac_en: this is to enable the gmac into a dedicated sysctl control
+> --
+> 2.34.1
+> 
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+/Horatiu
