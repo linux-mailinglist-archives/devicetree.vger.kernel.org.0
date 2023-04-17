@@ -2,50 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B05C6E47D2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 14:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0C76E47EF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 14:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbjDQMc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 08:32:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54376 "EHLO
+        id S229988AbjDQMiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 08:38:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjDQMc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 08:32:57 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6797176A2;
-        Mon, 17 Apr 2023 05:32:38 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 3B0F91C0AAC; Mon, 17 Apr 2023 14:32:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1681734757;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1NeQx7djer6NRM3T3dun5t+CH8TGUfLxCoRrKQn84eo=;
-        b=of6IjzfQDUSKXx93Gs7Km/iwE51OR7T8p4icXc7H9I9+H3iyuGwXgifwvJV5JV2/BcNcsv
-        5F7UnH3WdPth0Ah3bDUUswjZpet37juEW75mY32vQOPaPrOORVW/PKRONyE6FIIoxCOAix
-        nss/fZs5FI0FaG35f8ENLhVu2zWHUWw=
-Date:   Mon, 17 Apr 2023 14:32:36 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v4 2/2] leds: bd2606mvv: Driver for the Rohm 6 Channel
- i2c LED driver
-Message-ID: <ZD08ZGY/iHGgKHhx@duo.ucw.cz>
-References: <20230414055341.335456-1-andreas@kemnade.info>
- <20230414055341.335456-3-andreas@kemnade.info>
- <ZDlEsNZ3pTlfxkAz@duo.ucw.cz>
- <20230415000533.534ea99b@aktux>
+        with ESMTP id S229547AbjDQMiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 08:38:00 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554BB46AF
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 05:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1681735036; bh=gJesLtiDnccwIC0RA7jikU/NZ0vOLBaI0EL8Y7OHrAI=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=SKQOE09xi6VRiW3rlypNrv35XlLjZcT1LxzPDOJaBEQcesmiGmOqr67+WxIoTRmZu
+         NubFRUhbrg8yv0kIQWVlY5mn1HUL+NGM34mBpLBiH7bwGgbCaOr6VPJHtxKI6UQXxS
+         U3rc5iLWiNyqO0OKKDbwpyQBbfDzFmcyNfiYcE6s=
+Date:   Mon, 17 Apr 2023 14:37:16 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rk3399-pinephone-pro: Add support for volume
+ keys
+Message-ID: <20230417123716.c23izju4ezjrzytn@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20230405123813.2272919-1-pbrobinson@gmail.com>
+ <20230405135339.bcdyjdbtynuwf5yz@core>
+ <4152389.RUnXabflUD@diego>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="TRwALHgnVOKfWzYO"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230415000533.534ea99b@aktux>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4152389.RUnXabflUD@diego>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,43 +65,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Heiko,
 
---TRwALHgnVOKfWzYO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Apr 17, 2023 at 10:34:20AM +0200, Heiko Stübner wrote:
+> Hi Peter, Ondrej,
+> 
+> Am Mittwoch, 5. April 2023, 15:53:39 CEST schrieb Ondřej Jirman:
+> > [...]
+> >
+> > (I have to press quite hard to get bellow 300 and to get reliable detection
+> > of volume down key press)
+> > 
+> > On development version of the phone, the value returned by sardac is less
+> > variable. Basically either 298.828125 or 300.5859375 but it's also on
+> > the edge.
+> > 
+> > I suggest raising the threshold to something like 600 and to do your own
+> > testing, to get more data points. Unpressed value is ~1791.2109375 on both
+> > phones, so 400 still gets a lot of headroom. And volume up is always < 15
+> > in my tests.
+> 
+> did this get more attention meanwhile?
+> 
+> I don't have a Pinephone Pro myself, so you'll need to decide between you
+> about the value and the concern Ondrej raised here for the value.
 
-Hi!
+It's safe and needed to use a higher value.
 
-> > > +config LEDS_BD2606MVV
-> > > +	tristate "LED driver for BD2606MVV"
-> > > +	depends on LEDS_CLASS
-> > > +	depends on I2C
-> > > +	select REGMAP_I2C
-> > > +	help
-> > > +	  This option enables support for BD2606MVV LED driver chips
-> > > +	  accessed via the I2C bus. It supports setting brightness, with
-> > > +	  the limitiation that there are groups of two channels sharing
-> > > +	  a brightness setting, but not the on/off setting.
-> > > + =20
-> >=20
-> > This driver can be used as a module...
+SAR ADC input is pulled high to 1.8V unless some key is pressed, so unpressed
+value will always be around 1800 on all Pinephones, and pressed value will
+depend on contact quality and tolerances. For volume down, SAR ADC input is fed
+from a resistor divider of (10kOhm + 2kOhm) from 1.8V power rail. So that gives
+2/12*1.8 = 0.3V. We can't have the press detection threshold right at this
+voltage, because:
 
-And I was pointing this out before...
+1) these resistors have tolerances that will randomly result in measured voltage
+   being above or below the 0.3V on real devices (-1% on 10k and +1% on 2k =
+   2*1.01/(10*0.99+2*1.01)*1.8 = 305 mV - already too high even without
+   considering switch contact quality), and
 
-BR,
-									Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+2) those piddly membrane switches apparently have their own random resistance
+   that is added to the bottom leg of the resistor divider, and depends on
+   strenght of the press on some devices (and switches may develop higher
+   resistance with age/use).
 
---TRwALHgnVOKfWzYO
-Content-Type: application/pgp-signature; name="signature.asc"
+Schematic: https://megous.com/dl/tmp/1125d9248a8213b3.png
 
------BEGIN PGP SIGNATURE-----
+kind regards,
+	o.
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZD08ZAAKCRAw5/Bqldv6
-8q4YAJ4lZ+bORnRziYkwuTxQqFsFCwAm7QCfQ73x66AtHMYkvcsE1GGowEr7HTs=
-=uF4Q
------END PGP SIGNATURE-----
-
---TRwALHgnVOKfWzYO--
+> Thanks
+> Heiko
