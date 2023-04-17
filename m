@@ -2,431 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8105D6E4F9B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 19:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 284966E4FBB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 19:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjDQRsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 13:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44346 "EHLO
+        id S230357AbjDQR4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 13:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231151AbjDQRsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 13:48:36 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C602CB46E;
-        Mon, 17 Apr 2023 10:48:34 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1a66888cb89so10369745ad.3;
-        Mon, 17 Apr 2023 10:48:34 -0700 (PDT)
+        with ESMTP id S230135AbjDQR4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 13:56:02 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B54B6E97
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 10:56:00 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2a8baeac4d1so13185311fa.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 10:56:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681753714; x=1684345714;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mElitKZ7sVJOTw6f2WC/zkSXCNzETK2pY5VMRBVufmw=;
-        b=gGXX1Z3tsyEQ9yXV6FxAqKXrU/swtTH8fC2XXCDtPINtMLZI2Qi15weLR0kQC7WJ4c
-         0loRi1w73hJqt9ryrPCAGARvvap5ZEED70RY+GLV5zrLxpKLBFc4UyWIwxAVEd8waCOY
-         enHkm3sQq6zWbLi4P+E6BJAk92u50FETpMdynIgvEyx+OvIggocKQSdR9iJFRe6f7dHp
-         S8o9Pt9Pja5RR9HlOSzd3FzfcdJxprsgm09Lasp5okFZzJ6j8QO1nzWqxD05Q7c40D7K
-         2kw7b3bSHfowMrmkSVISE5Rn2bcrtF8dWZw7+Go3mNQwGpRFt3/zNwSO+OdNZmAL97IV
-         1Wyw==
+        d=linaro.org; s=google; t=1681754158; x=1684346158;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BKDmMoGXfJU4fYQc4SgnFhXeKOqYUlPRJlTeeGghjx8=;
+        b=e71iFc9OvZScNGlXJc4d2BWw8WUA4B4a/x6KjylMvisNQRju5rfTmHoGAERKFeFwZn
+         b4b0AbtBHn2fF+dHWmUNI1BZTCo5/CmZ66WbPGiXQtxT73ZIVfY5t5YekrFLga2kz/Sx
+         Lch22J7ZYA8bXnLl0pd3/aYY7YbPUVk7U4xLG+54MITzuTcTKozirc0bHF+/t2IQVC9j
+         RK86hfbSOLwowXUWoY3kne/x2Q8caGQC8G7bz5mYIVdjlPY4k8OTvZSmCH7YICPy34Nj
+         raofRJ/fDGk6ovfpJyr4qj0CJmI3pGyapnUZ13Ngc5mF2vTe67ThfiR3cFk6PCSfIq3Z
+         Crtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681753714; x=1684345714;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mElitKZ7sVJOTw6f2WC/zkSXCNzETK2pY5VMRBVufmw=;
-        b=GFdkTxaXCu68YvO3o6pZ9MvljjuaAg0OWu92mGUD/ph/qKwR08i33cSE2Up2qyQROD
-         BYzn0l4B9tbl0F26lqBtv6oT4AfMJsKvCXega2Ooh1YzYYuQeOwqvgGQWutaN3cSTvVk
-         p1xS3Modi30Md9ZDJM0twHdJDobquAqCZUaBsV4TvLn2gJF2I0njKyxgl0dhFIWGcGhL
-         uXGykh7iU42Zgv01n7ofMFr+DXr2GChk/COrkszbEMoiIJ5jPgyN3sbFWoh0tpRos8lr
-         H82XiYe1FVJ/+GWW3CyYzfDsrtNrmubSP93bRlybNniNP+ck6o7/Y6rMm4z6zKC3Skev
-         pyZw==
-X-Gm-Message-State: AAQBX9fmPP0/nbHTsnxLV8OsjiPSsEKzLp/EuA3NqL5ZdhKJmJhrpKib
-        Jh2rYDgg6BQNEeLC7/0wyh/YY6sdiXZn4Crh+esjcgKg2Gv+fLlpgcA=
-X-Google-Smtp-Source: AKy350ZY2/SVWgCZZpNshcEjU75Gg3p0EuJFZSfpF3GMp51iDvev5JaVd2A9k5GnGj8yn466wUQCGf1vWQiSDPp1hgQ=
-X-Received: by 2002:a05:6a00:228b:b0:63b:641d:76d8 with SMTP id
- f11-20020a056a00228b00b0063b641d76d8mr6279150pfe.2.1681753714033; Mon, 17 Apr
- 2023 10:48:34 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681754158; x=1684346158;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BKDmMoGXfJU4fYQc4SgnFhXeKOqYUlPRJlTeeGghjx8=;
+        b=VgvePbKHRhUTsH01PwBOXzFMffp+KEFFLD6rbg7xwbHBYejNjOhXEjvcnlnbRQtDT9
+         yIaF75TXtxCbZWOsRFAMIuVx8qpmvxjXVLt1s9nipfrut6Ap2woROnAKvThcILKYGI7Z
+         Rw5bD8B1pNPIV0Pufe/eQks/aB6qe5ENyJt80+DPUOB7IFMeTsf3Ye8zpT6OLvLVAewZ
+         +vmfkHgLQU0282t1YP/hQp5TxRMiyu8GKlCfEqx2JKis8mgWPzeH/cocFrJPYh2mZktr
+         59c5DMXcUul+D8+7fVV0Il6SttAYHmAUKnhfcR8LhNJJJncc0XPTXMmkexbVn0wK9Vx+
+         9UzQ==
+X-Gm-Message-State: AAQBX9dQYVRECiJQh/EHWgkcMUSHJTqSS1+hgWLjltZE37kb1WaqLApR
+        qX9d6oCUk70yah3BKqPu11UGcQ==
+X-Google-Smtp-Source: AKy350ZOy7SA3V/n3VNMo4APMIyDC2YUvIH1K4sUn3ZXx3m0oJ7cyPxlvpT9oHIMKvhOqVnn/3edoQ==
+X-Received: by 2002:ac2:4105:0:b0:4e8:3f35:6844 with SMTP id b5-20020ac24105000000b004e83f356844mr1847583lfi.19.1681754158663;
+        Mon, 17 Apr 2023 10:55:58 -0700 (PDT)
+Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
+        by smtp.gmail.com with ESMTPSA id u21-20020ac25195000000b004cb45148027sm2111190lfi.203.2023.04.17.10.55.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 10:55:58 -0700 (PDT)
+Message-ID: <e7d15873-a6b7-9a64-f164-7df64585dcfb@linaro.org>
+Date:   Mon, 17 Apr 2023 19:55:56 +0200
 MIME-Version: 1.0
-References: <20230414181302.986271-1-mmyangfl@gmail.com> <20230414181302.986271-2-mmyangfl@gmail.com>
- <c1f32d73-a311-6d70-0be6-12bdb50a052f@linaro.org>
-In-Reply-To: <c1f32d73-a311-6d70-0be6-12bdb50a052f@linaro.org>
-From:   Yangfl <mmyangfl@gmail.com>
-Date:   Tue, 18 Apr 2023 01:47:57 +0800
-Message-ID: <CAAXyoMPz1ONgDvFET0dFKBktODoSY2m3ubHfmVBsJ46sRBF31w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add reg-clock-controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sa8775p: pmic: add the sdam_0
+ node
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230417145536.414490-1-brgl@bgdev.pl>
+ <20230417145536.414490-4-brgl@bgdev.pl>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230417145536.414490-4-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2023=E5=B9=B4=
-4=E6=9C=8815=E6=97=A5=E5=91=A8=E5=85=AD 05:08=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 14/04/2023 20:12, David Yang wrote:
-> > Add DT bindings documentation for reg-clock-controller, collection of
-> > basic clocks common to many platforms.
-> >
-> > Signed-off-by: David Yang <mmyangfl@gmail.com>
-> > ---
-> >  .../bindings/clock/reg-clock-controller.yaml  | 245 ++++++++++++++++++
-> >  1 file changed, 245 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/reg-clock-c=
-ontroller.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/reg-clock-controll=
-er.yaml b/Documentation/devicetree/bindings/clock/reg-clock-controller.yaml
-> > new file mode 100644
-> > index 000000000000..a6a7e0b05821
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/reg-clock-controller.yaml
-> > @@ -0,0 +1,245 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/reg-clock-controller.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Simple straight-forward register-based clocks
-> > +
-> > +maintainers:
-> > +  - David Yang <mmyangfl@gmail.com>
-> > +
-> > +description: |
-> > +  Basic clocks common to many platforms.
-> > +
-> > +  If your clocks don't fit into these catagories, simply create your c=
-lock
->
-> typo: categories
 
-Fixed in v2.
 
->
-> > +  controller. This driver normally work well with other controllers as=
- long as
-> > +  they operate on different registers.
-> > +
-> > +  See linux/clk-provider.h for details about properties for each type =
-of clock.
->
-> Describe here what is this device, what such simple clock controller
-> represents.
+On 17.04.2023 16:55, Bartosz Golaszewski wrote:
+> From: Parikshit Pareek <quic_ppareek@quicinc.com>
+> 
+> Introduce sdam_0 node, which is to be used via nvmem for power on
+> reasons during reboot. Add supported PoN reaons supported via sdam_0
+> node.
+> 
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Description has been rewritten in v3, to describe the device.
-
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - reg-clock-controller
-> > +
-> > +  ranges: true
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ranges
-> > +  - '#address-cells'
-> > +  - '#size-cells'
->
-> required goes after patternProperties.
-
-Fixed in v2.
-
->
-> > +
-> > +patternProperties:
-> > +  ".*gate-clock@.*":
->
-> "gate-clock@" should be equivalent. However this should be just "clock".
-
-Fixed in v3.
-
->
-> > +    type: object
-> > +
-> > +    description: |
->
-> Do not need '|' unless you need to preserve formatting.
-
-Fixed in v2.
-
->
-> > +      Clock which can gate its output.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: gate-clock
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      '#clock-cells':
-> > +        const: 0
-> > +
-> > +      clocks:
-> > +        maxItems: 1
-> > +        description:
-> > +          Parent clock.
-> > +
-> > +      clock-output-name:
->
-> names
->
-> Don't create your own properties.
-
-Fixed in v2, "clock-output-names".
-
->
-> > +        maxItems: 1
-> > +
-> > +      bit-index:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Bit index which controls the output.
->
-> I suggest to use same property as nvme, so bits.
-
-Replaced with "bits" in v2.
-
->
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - '#clock-cells'
-> > +      - bit-index
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  ".*divider-clock@.*":
-> > +    type: object
-> > +
-> > +    description: |
-> > +      Clock with an adjustable divider affecting its output frequency.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: divider-clock
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      '#clock-cells':
-> > +        const: 0
-> > +
-> > +      clocks:
-> > +        description:
-> > +          Parent clocks.
-> > +
-> > +      clock-output-name:
-> > +        maxItems: 1
-> > +
-> > +      shift:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Shift to the divider bit field.
-> > +
-> > +      width:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Width of the divider bit field.
-> > +
-> > +      dividers:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +        description:
-> > +          Array of value/divider pairs.
->
-> Then it looks like matrix.
-
-This part of bindings has been (temporarily) removed from this series
-since v2, to make it simpler.
-
->
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - '#clock-cells'
-> > +      - shift
-> > +      - width
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  ".*mux-clock@.*":
-> > +    type: object
-> > +
-> > +    description: |
-> > +      Clock with multiple selectable parents.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: mux-clock
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      '#clock-cells':
-> > +        const: 0
-> > +
-> > +      clocks:
-> > +        minItems: 1
-> > +        description:
-> > +          Parent clock.
-> > +
-> > +      clock-output-name:
-> > +        maxItems: 1
-> > +
-> > +      shift:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Shift to multiplexer bit field.
-> > +
-> > +      mask:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Mask of mutliplexer bit field.
-> > +
-> > +      table:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +        description:
-> > +          Array of register values corresponding to the parent index.
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - '#clock-cells'
-> > +      - shift
-> > +      - mask
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  ".*fractional-divider-clock@.*":
-> > +    type: object
-> > +
-> > +    description: |
-> > +      Clock with adjustable fractional divider affecting its output fr=
-equency.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: fractional_divider-clock
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      '#clock-cells':
-> > +        const: 0
-> > +
-> > +      clocks:
-> > +        maxItems: 1
-> > +        description:
-> > +          Parent clock.
-> > +
-> > +      clock-output-name:
-> > +        maxItems: 1
-> > +
-> > +      numerator-shift:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Shift to the numerator bit field.
-> > +
-> > +      numerator-width:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Width of the numerator bit field.
-> > +
-> > +      denominator-shift:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Shift to the denominator bit field.
-> > +
-> > +      denominator-width:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Width of the denominator bit field.
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - '#clock-cells'
-> > +      - numerator-shift
-> > +      - numerator-width
-> > +      - denominator-shift
-> > +      - denominator-width
-> > +
-> > +    additionalProperties: false
-> > +
-> > +additionalProperties: true
->
-> No, come on. This must be false.
-
-Fixed with "false" in v2.
-
->
-> > +
-> > +examples:
-> > +  - |
-> > +    clks: reg-clk-ctrl@ffff0000 {
->
-> Names should be generic, so clock-controller
->
-> Drop the label.
-
-Dropped in v2.
-
->
-> > +      compatible =3D "reg-clock-controller";
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <1>;
-> > +      ranges =3D <0 0xffff0000 0x1000>;
-> > +
-> > +      my_clk: gate-clock@cc-3 {
->
-> Drop label.
->
-> That's a new unit address to me. Did I miss a change in DT spec?
-
-Dropped label in v2.
-
->
-> > +        compatible =3D "gate-clock";
-> > +        #clock-cells =3D <0>;
-> > +        reg =3D <0xcc 4>;
->
-> reg is after compatible.
->
-> > +        bit-index =3D <3>;
-> > +        clock-output-name =3D "my-clk";
->
-> Plus, test your patches. This fails testing...
-
-Fix name error in v3.
-
->
-> > +      };
-> > +    };
->
-> Best regards,
-> Krzysztof
->
+Konrad
+>  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> index 5abdc239d3a6..3c3b6287cd27 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> @@ -88,6 +88,14 @@ trip1 {
+>  			};
+>  		};
+>  	};
+> +
+> +	reboot-mode {
+> +		compatible = "nvmem-reboot-mode";
+> +		nvmem-cells = <&reboot_reason>;
+> +		nvmem-cell-names = "reboot-mode";
+> +		mode-recovery = <0x01>;
+> +		mode-bootloader = <0x02>;
+> +	};
+>  };
+>  
+>  &spmi_bus {
+> @@ -133,6 +141,19 @@ pmm8654au_0_gpios: gpio@8800 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  		};
+> +
+> +		pmm8654au_0_sdam_0: nvram@7100 {
+> +			compatible = "qcom,spmi-sdam";
+> +			reg = <0x7100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0x7100 0x100>;
+> +
+> +			reboot_reason: reboot-reason@48 {
+> +				reg = <0x48 0x1>;
+> +				bits = <1 7>;
+> +			};
+> +		};
+>  	};
+>  
+>  	pmm8654au_1: pmic@2 {
