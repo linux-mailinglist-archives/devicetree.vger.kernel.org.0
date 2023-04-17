@@ -2,204 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E9106E4DA6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 17:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92CD96E4DBC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 17:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231489AbjDQPtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 11:49:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44628 "EHLO
+        id S230023AbjDQPzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 11:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231488AbjDQPtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 11:49:14 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CBA8CC0E
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 08:48:56 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id he11-20020a05600c540b00b003ef6d684102so12104960wmb.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 08:48:56 -0700 (PDT)
+        with ESMTP id S231470AbjDQPz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 11:55:29 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2FB53C2B
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 08:55:27 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id by8so26801937ljb.13
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 08:55:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681746521; x=1684338521;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X85l2d7NJCmwLILZpNY9M6MPLYM0ojKd4DtOQId9uPw=;
-        b=PO1dBDrjSLIMgfg3Kl3hSb8qz17TJbtYsNSQGpabbSMGyKsK+V8PNc1qh6xuRNRQ3V
-         S1cA+WFxT7apXran8o5gIbTD2McnQcM0gTthAvQ+aKS2LkKTyiCiXADs3i2iVDTzfV4z
-         hQ9SpIOo5B0YkOz59PJmQLfMIG9s/hd+1cwxROnKQtSyM53OckZNsnRk52aBiNafNXJx
-         DztWjoVpAyMoDzh6EJwDFJvOtU1lxmDeUeizyTv2AJKLg1/stNrlTMeRS8AmVFnX6Zce
-         tDF2NgnUBgJ+HVeNGRI1/sWOyArO5cHuBPo57/cICjR1xBRkKvhn38N568c8ppaaoKTD
-         C6XA==
+        d=linaro.org; s=google; t=1681746926; x=1684338926;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NXnWo8ByKKEVLIBG2kCqFrQuN4bfPUrFB2sr4C9Aorw=;
+        b=Nt/yc5WB22wCJ8cKSZ/CWVsECG2X3iP9z8fDQlEHdiuZGdABnOPNozY2jYZXyVFop5
+         LXI4PQPBde6K6siSpgoxpr6bqvqiq80P1Wd7r/mdU0VW+eTJihtUYhhXPi1ehonFGz56
+         /3F8GJSBdUKEYBRaCom8GY7JJ0VkahAXjt5dP9BYydvAsHuHpI/j4FqjQWZVux9X+MOG
+         uKWWUsAgTGoC8YkxMPuiuR/lvbvBabPNsmrrkPtRU/NjozNGFGuawtrObFxCEnn+KB1i
+         C4DZV/2kcJ6im4xbao3hwr5GBVIUdVl7r8jULYfF00ded7QLFJF4BiyTT9OW4gYqOwno
+         7WUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681746521; x=1684338521;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X85l2d7NJCmwLILZpNY9M6MPLYM0ojKd4DtOQId9uPw=;
-        b=iLdGOOw8cG4MK7J5aRsZJ5oQHGP/8eCzgcEnlG578sZw7Qq9iegklic1fLeC/KaYaJ
-         JfJ5MZKfI1Au3ldkCYNVUa0u9jInt4wLl6RuoYD+8icXGdAtUPbeAMHAJiWu+kMW/hy4
-         TNbWX1oHj9pr0PNEeqfV4IewTDXjPhCVrQp/WXjtUAZJkAa5rx5TQmGWNn1lcvsDCKXl
-         +gz5kY7diccVGPn/pZHy0//hcJZHpL4DqsdGVzpMvuIlYL/UgxA2ULm/bpoaPQ16iboC
-         847Ls0SbVUi/tmewIhNthF/CbQndxpyeXCuhglriPZCc783yMY98s2QGkmy6msJaECJA
-         PKOw==
-X-Gm-Message-State: AAQBX9eaH7n943NvFmvDnMATsI3eopq6KOyMuP7/SKMWGpwrITm0ZCBM
-        fhyrP2dFeXMZJVH414iyTlRyVg==
-X-Google-Smtp-Source: AKy350ZXBG2QMTqT+vo4TejHH69tUKsW1wMXcv1AoM2I2UhDgW8AbBg5aWaZaLiuXDQY+ifBa0mfsg==
-X-Received: by 2002:a7b:cb8b:0:b0:3f1:74c7:c7cb with SMTP id m11-20020a7bcb8b000000b003f174c7c7cbmr1442667wmi.16.1681746521286;
-        Mon, 17 Apr 2023 08:48:41 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:28d:66d0:5888:afdf:3f10:3b2b])
-        by smtp.gmail.com with ESMTPSA id v5-20020a05600c444500b003f09cda253esm16189932wmn.34.2023.04.17.08.48.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 08:48:40 -0700 (PDT)
-From:   Esteban Blanc <eblanc@baylibre.com>
-To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com, jpanis@baylibre.com,
-        aseketeli@baylibre.com
-Subject: [PATCH v3 6/6] arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
-Date:   Mon, 17 Apr 2023 17:48:32 +0200
-Message-Id: <20230417154832.216774-7-eblanc@baylibre.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230417154832.216774-1-eblanc@baylibre.com>
-References: <20230417154832.216774-1-eblanc@baylibre.com>
+        d=1e100.net; s=20221208; t=1681746926; x=1684338926;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NXnWo8ByKKEVLIBG2kCqFrQuN4bfPUrFB2sr4C9Aorw=;
+        b=ficZm9pGGJcqq2Gvn2irYG2/lRcAZpZYjBGUKw4dr/rCOF2F4hKgiJ/s2TjmjmK7sT
+         aH1xfDqIUTjF+OEfSAyTC6k/dyqBxtPDncFoPga/r4zlyzwj3kiUojpH6PE22Mg12Z6L
+         ulpaqYct1Mf8UWNIbqaEd89LySm9AESWrLimvPjMMDYj90obDyOYKNTr1PpYmIxdAiXz
+         p+ljYMmOFBR7ZYgPoL9RGouB647iWpA2xn9bfcRfHbojhAAdgwrwEx6OYGcVaPDaep1Q
+         k190unqowVazuVIA054c6AeCypRok5rQsbeHVX7mOYfZQ866btk9j62lIPvAcOVaSBuE
+         96gQ==
+X-Gm-Message-State: AAQBX9cn4NxPVqGbn52JbvNpEPNt3koZQxn01hgVh+wZRJv3kNzeRlKT
+        mqnwC7P5fq7Z+nPX6ANmxUpNwQ==
+X-Google-Smtp-Source: AKy350anA5TDyJUtYhMpMxazg0hvvJ6ro1LyKRC+oUeWms2XAVX6FzeVEgCLR58kSSKfo1GKdE9lgQ==
+X-Received: by 2002:a05:651c:23b:b0:2a8:bc34:c1d3 with SMTP id z27-20020a05651c023b00b002a8bc34c1d3mr1901161ljn.40.1681746925970;
+        Mon, 17 Apr 2023 08:55:25 -0700 (PDT)
+Received: from [192.168.1.101] (abyk99.neoplus.adsl.tpnet.pl. [83.9.30.99])
+        by smtp.gmail.com with ESMTPSA id d24-20020a2e3618000000b002a8aa82654asm1804649lja.60.2023.04.17.08.55.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 08:55:25 -0700 (PDT)
+Message-ID: <f77bcfdc-e50e-d27b-6634-2095033c85d6@linaro.org>
+Date:   Mon, 17 Apr 2023 17:55:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 5/5] drm/msm/dpu1: Handle the reg bus ICC path
+Content-Language: en-US
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230417-topic-dpu_regbus-v1-0-06fbdc1643c0@linaro.org>
+ <20230417-topic-dpu_regbus-v1-5-06fbdc1643c0@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230417-topic-dpu_regbus-v1-5-06fbdc1643c0@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Julien Panis <jpanis@baylibre.com>
 
-This patch adds support for TPS6593 PMIC on main I2C0 bus.
-This device provides regulators (bucks and LDOs), but also
-GPIOs, a RTC, a watchdog, an ESM (Error Signal Monitor)
-which monitors the SoC error output signal, and a PFSM
-(Pre-configurable Finite State Machine) which manages the
-operational modes of the PMIC.
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
-Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 95 +++++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
+On 17.04.2023 17:30, Konrad Dybcio wrote:
+> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
+> another path that needs to be handled to ensure MDSS functions properly,
+> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+> 
+> Gating that path may have a variety of effects.. from none to otherwise
+> inexplicable DSI timeouts..
+> 
+> On the DPU side, we need to keep the bus alive. The vendor driver
+> kickstarts it to max (300Mbps) throughput on first commit, but in
+> exchange for some battery life in rare DPU-enabled-panel-disabled
+> usecases, we can request it at DPU init and gate it at suspend.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+[...]
+> @@ -1261,6 +1270,15 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
+>  		return rc;
+>  	}
+>  
+> +	/*
+> +	 * The vendor driver supports setting 76.8 / 150 / 300 Mbps on this
+This should have obviously been M>B<ps..
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 5c9012141ee2..8484cd987646 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -191,11 +191,106 @@ AM62AX_IOPAD(0x12c, PIN_INPUT, 0) /* (W16) RGMII1_TX_CTL */
- 	};
- };
- 
-+&mcu_pmx0 {
-+	status = "okay";
-+
-+	pmic_irq_pins_default: pmic-irq-pins-default {
-+		pinctrl-single,pins = <
-+			AM62AX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (E11) MCU_GPIO0_0 */
-+		>;
-+	};
-+};
-+
-+&mcu_gpio0 {
-+	status = "okay";
-+};
-+
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c0_pins_default>;
- 	clock-frequency = <400000>;
-+
-+	tps659312: pmic@48 {
-+		compatible = "ti,tps6593-q1";
-+		reg = <0x48>;
-+		ti,primary-pmic;
-+		system-power-controller;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&mcu_gpio0>;
-+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+
-+		buck123-supply = <&vcc_3v3_sys>;
-+		buck4-supply = <&vcc_3v3_sys>;
-+		buck5-supply = <&vcc_3v3_sys>;
-+		ldo1-supply = <&vcc_3v3_sys>;
-+		ldo2-supply = <&vcc_3v3_sys>;
-+		ldo3-supply = <&buck5>;
-+		ldo4-supply = <&vcc_3v3_sys>;
-+
-+		regulators {
-+			buck123: buck123 {
-+				regulator-name = "vcc_core";
-+				regulator-min-microvolt = <715000>;
-+				regulator-max-microvolt = <895000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck4: buck4 {
-+				regulator-name = "vcc_1v1";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: buck5 {
-+				regulator-name = "vcc_1v8_sys";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: ldo1 {
-+				regulator-name = "vddshv5_sdio";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2: ldo2 {
-+				regulator-name = "vpp_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3: ldo3 {
-+				regulator-name = "vcc_0v85";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: ldo4 {
-+				regulator-name = "vdda_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
- };
- 
- &main_i2c1 {
--- 
-2.39.2
-
+Konrad
+> +	 * path, but it seems to go for the highest level when display output
+> +	 * is enabled and zero otherwise. For simplicity, we can assume that
+> +	 * DPU being enabled and running implies that.
+> +	 */
+> +	if (dpu_kms->reg_bus_path)
+> +		icc_set_bw(dpu_kms->reg_bus_path, 0, MBps_to_icc(300));
+> +
+>  	dpu_vbif_init_memtypes(dpu_kms);
+>  
+>  	drm_for_each_encoder(encoder, ddev)
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> index d5d9bec90705..c332381d58c4 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> @@ -111,6 +111,7 @@ struct dpu_kms {
+>  	atomic_t bandwidth_ref;
+>  	struct icc_path *mdp_path[2];
+>  	u32 num_mdp_paths;
+> +	struct icc_path *reg_bus_path;
+>  };
+>  
+>  struct vsync_info {
+> 
