@@ -2,52 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 014756E41DF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62CB96E4203
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjDQICI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 04:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48216 "EHLO
+        id S230332AbjDQIFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 04:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231169AbjDQIBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:01:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3051BE3
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:01:28 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1poJna-00056J-0M; Mon, 17 Apr 2023 10:01:18 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1poJnZ-00019Z-9b; Mon, 17 Apr 2023 10:01:17 +0200
-Date:   Mon, 17 Apr 2023 10:01:17 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
-Message-ID: <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
-References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
- <20230417055627.16482-2-laurent.pinchart@ideasonboard.com>
- <20230417065059.fgmdfwk7pnj62amm@pengutronix.de>
- <20230417074148.GF28551@pendragon.ideasonboard.com>
+        with ESMTP id S231277AbjDQIFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:05:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E20F1BF;
+        Mon, 17 Apr 2023 01:05:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EFBA61FD4;
+        Mon, 17 Apr 2023 08:05:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A6F3C4339B;
+        Mon, 17 Apr 2023 08:05:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681718704;
+        bh=0Y/mnS2pjaYk07j+LJSA/55y9ntA2FADo9/M3Dr4xgk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DGKJDv/BLy56BiFvmzmoetNbBUmKx1OS5vjufwpa9DMDa4mpBFiD918rvHExFqe9f
+         YsTYesSOFT7FcZyJvTAJjSCRAtAFNpoX/uS6xAF3TxMBqeB7QPV7uAbmI0B0qMB7Yn
+         kATDatbmgWXBYL3FWMniD9DEHM/iztPJ4+H9e4pSqLzimIeAP6znCuSo8LggP5GfRZ
+         M0bNu7BjUDOxcEQmUQUttIaWAC36jaDyOwaKa+KYPlrauqv/uKzIK69VTXgd1RPXy9
+         mZGu2O8Y+qd8VOMWyw+ziPsCOVg2C4bT42JBJQ/xl0FDFDpV9LUUHS+izm0F1VV3K7
+         xax7EE8okIlgg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1poJrL-0003gR-Mp; Mon, 17 Apr 2023 10:05:11 +0200
+Date:   Mon, 17 Apr 2023 10:05:11 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 2/8] dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3
+ PHY
+Message-ID: <ZDz9t9TkBqZ1fcfn@hovoldconsulting.com>
+References: <cover.1680693149.git.quic_varada@quicinc.com>
+ <1efa9a64499767d939efadd0aef897ac4a6e54eb.1680693149.git.quic_varada@quicinc.com>
+ <0a66e291-a86d-1ff9-e674-839b8cc8f1da@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230417074148.GF28551@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+In-Reply-To: <0a66e291-a86d-1ff9-e674-839b8cc8f1da@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,119 +65,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-04-17, Laurent Pinchart wrote:
-> Hi Marco,
-> 
-> On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
-> > Hi Laurent,
+On Thu, Apr 06, 2023 at 09:41:49AM +0200, Krzysztof Kozlowski wrote:
+> On 05/04/2023 13:41, Varadarajan Narayanan wrote:
+> > Add dt-bindings for USB3 PHY found on Qualcomm IPQ9574
 > > 
-> > your patch LGTM just one nit/idea, please see below.
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> >  Changes in v8:
+> > 	- Update clock names for ipq9574
 > > 
-> > On 23-04-17, Laurent Pinchart wrote:
-> > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
-> > > 
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
-> > >  1 file changed, 60 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > index 2dd60e3252f3..2a374a4c14a2 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
-> > >  				};
-> > >  			};
-> > >  
-> > > +			mipi_csi_0: csi@32e40000 {
-> > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > +				reg = <0x32e40000 0x10000>;
-> > > +				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> > > +				clock-frequency = <500000000>;
-> > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > +					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > +				clock-names = "pclk", "wrap", "phy", "axi";
-> > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
-> > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> > > +				assigned-clock-rates = <500000000>;
-> > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-> > > +				status = "disabled";
-> > > +
-> > > +				ports {
-> > > +					#address-cells = <1>;
-> > > +					#size-cells = <0>;
-> > > +
-> > > +					port@0 {
-> > > +						reg = <0>;
+> >  Changes in v6:
+> > 	- Made power-domains optional
 > > 
-> > If we would add:
-> > 						mipi_csi_0_in: endpoint {};
-> > 
-> > here we could refernce it from overlays/board dts files more easily.
-> 
-> Isn't there an unwritten rule (or consensus) that an endpoint should
-> always have a remote-endpoint property ?
+> > Note: In the earlier patch sets, had used the (legacy)
+> > specification available in qcom,msm8996-qmp-usb3-phy.yaml. Moved
+> > to newer specification in qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> > ---
+> >  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 43 +++++++++++++++++++---
+> >  1 file changed, 37 insertions(+), 6 deletions(-)
 
-I don't know if there is one.
-
-> While ports describe hardware properties of a device and should always
-> be there regardless of connections, endpoints describe connections and
-> I don't think they should be instantiated with a valid
-> remote-endpoint.
-
-I know, therefore I mentioned it as idea to make it 'easier' to add
-camera nodes.
-
-Regards,
-  Marco
-
+> > +        clock-names:
+> > +          items:
+> > +            - const: aux
+> > +            - const: ref
+> > +            - const: com_aux
 > 
-> > > +					};
-> > > +
-> > > +					port@1 {
-> > > +						reg = <1>;
-> > > +					};
-> > > +				};
-> > > +			};
-> > > +
-> > > +			mipi_csi_1: csi@32e50000 {
-> > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > +				reg = <0x32e50000 0x10000>;
-> > > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> > > +				clock-frequency = <266000000>;
-> > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > +					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
-> > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > +				clock-names = "pclk", "wrap", "phy", "axi";
-> > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>;
-> > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> > > +				assigned-clock-rates = <266000000>;
-> > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-> > > +				status = "disabled";
-> > > +
-> > > +				ports {
-> > > +					#address-cells = <1>;
-> > > +					#size-cells = <0>;
-> > > +
-> > > +					port@0 {
-> > > +						reg = <0>;
-> > > +					};
-> > > +
-> > > +					port@1 {
-> > > +						reg = <1>;
-> > > +					};
-> > > +				};
-> > > +			};
-> > > +
-> > >  			pcie_phy: pcie-phy@32f00000 {
-> > >  				compatible = "fsl,imx8mp-pcie-phy";
-> > >  				reg = <0x32f00000 0x10000>;
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
+> Can anyone explain me why do we name these (here and other Qualcomm
+> bindings) based on clock name, not input? Just because different clock
+> is fed to the block, does not necessarily mean the input should be named
+> differently.
+
+I guess part of the answer is that this has just been copied from the
+vendor dts and (almost) no one but Qualcomm has access to the
+documentation. What would the input names be here?
+
+Also note that there are SoCs that enable both 'cfg_ahb' and 'com_aux'
+(e.g. sc7180).
+
+> > +            - const: pipe
+> > +
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+
+Johan
