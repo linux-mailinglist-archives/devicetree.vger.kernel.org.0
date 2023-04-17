@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4020F6E5056
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 20:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F94D6E5071
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 20:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbjDQSle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 14:41:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48482 "EHLO
+        id S230199AbjDQSzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 14:55:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjDQSld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 14:41:33 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA65046B1
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 11:41:31 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-54ee0b73e08so430720887b3.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 11:41:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681756891; x=1684348891;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zh2NygFtkr3VUedMSETAcg+PkAMPbYO4qgRvEzIpFdA=;
-        b=GGkR4g/uPZVqgebfVFZrVET/qxYmJ9p02R7SCDBUn2CObHnoLTJmwYYk6SYFZdRz9q
-         xDN9bgfRttmR2K4LyLZcNcAGZ42DqgO5vye8FBXvwTE+gStEO/k3od+sgMQfpB3zvjbs
-         6RSSQ6mj/IxXr9H2rDYIQpogoEbLYppiQWgngTNRa92HGLhMO07FW7r0lJdXpMmOCXum
-         nZhDot+xgEjqhA+uK+zeKrt/f+pRG6ZqNtNRD9AeNwV645wF29Rqb1rWXi6ek3YTzHaE
-         vKUO81VLqrb0I86Jr4EmHD3pne1XUyESmOSJhLlmWDJ8U67kdGl7oovlXzlwqg86Nefm
-         74hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681756891; x=1684348891;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zh2NygFtkr3VUedMSETAcg+PkAMPbYO4qgRvEzIpFdA=;
-        b=U7xYUu1t5g4HR/U2sei2WFpv4E+MNMTstwdUNqnVIDmDfPRYfIJmdHXVjjaVIHIWpJ
-         R/dRDHvnMHaNioKxj4e2iH/Uoqb/8GUbeWy88DmE+hUOVoX2YZjGfhGbZsudA6lEYrQK
-         QB6eRj9drStTBJ90953fMqN40QhTL3DtmwxwdnDfMEsgrK54cJqQDE2NwbVa36A0HPzB
-         JQJ87EGrr10uMee6SRXp2D/WUdctDASFF4f1xhSK3PvyD4HTBjbSmabNl8D9Novwt2SU
-         vCv/TB9/oZ6z56c2lo44s17fEFSeO2jSzl+Ibjyul/aeiEwnqHmyxfBHschQSQZlOKyN
-         9l4g==
-X-Gm-Message-State: AAQBX9f99P3GVKdkbYKhYnAaFCmsPDumrHJOspt+zQK7u1pqtEXTsqJr
-        yYaF2/ehhqwDOyny6T3+0byiaT66Xwblg62W/M8WcQ==
-X-Google-Smtp-Source: AKy350Z6FWj4zKvPDAxvAHo/deDE8tFqv0ceNT9dCNYRALo/7GspKAKMsq1sb5MY9YeaPfrjuaaJaItelRDkE6wuACA=
-X-Received: by 2002:a81:af62:0:b0:54c:bdc:ef18 with SMTP id
- x34-20020a81af62000000b0054c0bdcef18mr9977412ywj.5.1681756891046; Mon, 17 Apr
- 2023 11:41:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org>
- <20230413-topic-lahaina_vidcc-v2-2-f721d507e555@linaro.org>
- <CAA8EJpoxvjWrvJENkFSimfU=CG7C3jZ=ToZep1tnJbtPzCcS9Q@mail.gmail.com>
- <34797b11-b654-a9a4-ac26-5287ca582a82@linaro.org> <CAA8EJppVUddvAp=3H7oGntE-5XqJkHc7=2mcgpBBnRcsHCDZQg@mail.gmail.com>
- <5cf16897-0670-78b9-a1c0-2f6ecb086987@linaro.org>
-In-Reply-To: <5cf16897-0670-78b9-a1c0-2f6ecb086987@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 17 Apr 2023 21:41:19 +0300
-Message-ID: <CAA8EJppW+QRq=uKQwCToMg8PmHmEgAz=bYg-_sD2UpfH_Li2RA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] clk: qcom: Introduce SM8350 VIDEOCC
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Taniya Das <quic_tdas@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230157AbjDQSzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 14:55:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644A230D0;
+        Mon, 17 Apr 2023 11:55:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CC6A961B7A;
+        Mon, 17 Apr 2023 18:55:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7015FC433EF;
+        Mon, 17 Apr 2023 18:55:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681757706;
+        bh=a67vqx0zLJeULnY4ySGNK+OdFOK9hdjKSEI9T8MMhD8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cKtSFaY8Budl3dBXR0jj1QEKyCa3jwo4l1PHQ0jWx0Zh/xJk37SDdUpUiODwm6lfI
+         aQ77Z5m5MQUOZZ7XKrrFQjPwvS0/Lsflg0kHWHJj+U0j86zv8F1KdzXGTDh3bQvt5A
+         YHXU+u99d0p0d0nn3ehMgKxUXRGEAgUSAUhPNAKW/JiiTog6RSSxEX+tGKNMV7OOmS
+         d1Tg1ZMcEXtCPLQHfagd7uzcGx3jENaUOSYu+B7g70iiRjr3pCEbkoeS3aKzIpQN+R
+         SFtmag72/Zq5WwmCeuZFszj09rNAO627PodFSNpO6uIUXCSAd7ChGMR4E52OdyLct8
+         5VRGo+w+TBgoQ==
+Date:   Mon, 17 Apr 2023 19:55:00 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 1/7] dt-bindings: power: Constrain properties for
+ JH7110 PMU
+Message-ID: <20230417-ramrod-carpool-cd05b0def1a2@spud>
+References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
+ <20230411064743.273388-2-changhuang.liang@starfivetech.com>
+ <cb97cf01-2dfd-7f93-2048-e05a806d468f@linaro.org>
+ <ee406b3d-0719-9332-cab5-62fe7537bcf1@starfivetech.com>
+ <20230412-trifle-outplayed-8a1c795fab8b@wendy>
+ <d59439c1-bce1-b4a1-0e05-77afc4fc2ebb@linaro.org>
+ <84300997-31f8-b36e-e54e-876c266fc953@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="m9nc9K7NjCFO2sFe"
+Content-Disposition: inline
+In-Reply-To: <84300997-31f8-b36e-e54e-876c266fc953@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,226 +70,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Apr 2023 at 21:10, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 14.04.2023 22:54, Dmitry Baryshkov wrote:
-> > On Fri, 14 Apr 2023 at 20:48, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>
-> >>
-> >>
-> >> On 14.04.2023 18:31, Dmitry Baryshkov wrote:
-> >>> On Fri, 14 Apr 2023 at 14:26, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+
+--m9nc9K7NjCFO2sFe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Apr 14, 2023 at 10:20:31AM +0800, Changhuang Liang wrote:
+>=20
+>=20
+> On 2023/4/12 19:29, Krzysztof Kozlowski wrote:
+> > On 12/04/2023 11:42, Conor Dooley wrote:
+> >> On Wed, Apr 12, 2023 at 04:51:16PM +0800, Changhuang Liang wrote:
+> >>>
+> >>>
+> >>> On 2023/4/12 16:35, Krzysztof Kozlowski wrote:
+> >>>> On 11/04/2023 08:47, Changhuang Liang wrote:
+> >>>>> When use "starfive,jh7110-pmu-dphy" compatible, do not need the reg=
+ and
+> >>>>> interrupts properties.
+> >>> [...]
+> >>>>> =20
+> >>>>>  description: |
+> >>>>>    StarFive JH7110 SoC includes support for multiple power domains =
+which can be
+> >>>>> @@ -17,6 +18,7 @@ properties:
+> >>>>>    compatible:
+> >>>>>      enum:
+> >>>>>        - starfive,jh7110-pmu
+> >>>>> +      - starfive,jh7110-pmu-dphy
 > >>>>
-> >>>> Add support for the Video Clock Controller found on the SM8350 SoC.
+> >>>> You do here much more than commit msg says.
 > >>>>
-> >>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>> ---
-> >>
-> >> [...]
-> >>
-> >>>> +static struct clk_rcg2 video_cc_ahb_clk_src = {
-> >>>> +       .cmd_rcgr = 0xbd4,
-> >>>> +       .mnd_width = 0,
-> >>>> +       .hid_width = 5,
-> >>>> +       .parent_map = video_cc_parent_map_0,
-> >>>> +       .freq_tbl = ftbl_video_cc_ahb_clk_src,
-> >>>> +       .clkr.hw.init = &(const struct clk_init_data) {
-> >>>> +               .name = "video_cc_ahb_clk_src",
-> >>>> +               .parent_data = video_cc_parent_data_0,
-> >>>> +               .num_parents = ARRAY_SIZE(video_cc_parent_data_0),
-> >>>> +               .flags = CLK_SET_RATE_PARENT,
-> >>>> +               .ops = &clk_rcg2_shared_ops,
-> >>>> +       },
-> >>>> +};
-> >>>
-> >>> Do we need this clock at all? We don't have the child
-> >>> video_cc_ahb_clk, so potentially CCF can try disabling or modifying
-> >>> this clock.
-> >> Hm.. I see a few things:
-> >>
-> >> 1. downstream kona has it, upstream does not
-> >> 2. it's shared so we never actually hard-shut it off..
-> >> 2a. ..but it'd be good to ensure it's on when it's ready..
-> >> 2b. ..but we never do anyway..
-> >> 2c. ..but should we even? doesn't Venus govern it internally?
-> >>
-> >>
-> >>>
-> >>>> +
-> >>>> +static const struct freq_tbl ftbl_video_cc_mvs0_clk_src[] = {
-> >>>> +       F(720000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
-> >>>> +       F(1014000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
-> >>>> +       F(1098000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
-> >>>> +       F(1332000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
-> >>>> +       { }
-> >>>> +};
-> >>>> +
-> >>
-> >> [...]
-> >>
-> >>>> +static struct clk_branch video_cc_mvs1_clk = {
-> >>>> +       .halt_reg = 0xdb4,
-> >>>> +       .halt_check = BRANCH_HALT_VOTED,
-> >>>
-> >>> As a note, sm8250 has BRANCH_HALT here.
-> >> No, it does on the div2 clk, and so do we:
-> >
-> > Excuse me, I got confused by all the syllables. I was looking at the
-> > video_cc_mvs1c_clk. On sm8250 it is _VOTED, in this patch it is not. I
-> > can not say that either one of those is incorrect, but such a
-> > difference looks a bit suspicious for me. Maybe Tanya or somebody else
-> > can comment here.
-> I'd say this could be a design decision, with div2 clocks being
-> treated differently, but it's how downstream does it on shipping
-> devices and while generally it's not a great thing to say, it seems
-> to be the "right enough" thing..
-
-Ack. Fair enough.
-
->
-> >
-> >> [...]
-> >>
-> >>>> +};
-> >>>> +
-> >>>> +static struct clk_branch video_cc_mvs1_div2_clk = {
-> >>>> +       .halt_reg = 0xdf4,
-> >>>> +       .halt_check = BRANCH_HALT_VOTED,
-> >>>> +       .hwcg_reg = 0xdf4,
-> >>
-> >> [...]
-> >>
-> >>>> +
-> >>>> +static const struct qcom_reset_map video_cc_sm8350_resets[] = {
-> >>>> +       [CVP_VIDEO_CC_INTERFACE_BCR] = { 0xe54 },
-> >>>> +       [CVP_VIDEO_CC_MVS0_BCR] = { 0xd14 },
-> >>>
-> >>> Would it be better to use common VIDEO_CC prefix here (IOW:
-> >>> VIDEO_CC_CVP_MVS0_BCR, VIDEO_CC_CVP_INTERFACE_BCR), etc.
-> >> My best guess would be that the ones prefixed with CVP_
-> >> are actual INTF/INSTANCEn(CORE) reset lines whereas
-> >> the ones containing _CLK_ reset their clock sub-branches.
-> >
-> > Note, again, on sm8250 all resets start with VIDEO_CC, even CVP ones.
-> > I think we can follow that.
-> Or get rid of that, as it's always called with a phandle to videocc..
->
-> Thoughts?
-
-I'd say, switch to VIDEO_CC prefix, please. We can not drop the
-prefix, as we risc getting conflicts otherwise.
-
->
-> >
-> >>
-> >>>
-> >>>> +       [VIDEO_CC_MVS0C_CLK_ARES] = { 0xc34, 2 },
-> >>>> +       [CVP_VIDEO_CC_MVS0C_BCR] = { 0xbf4 },
-> >>>> +       [CVP_VIDEO_CC_MVS1_BCR] = { 0xd94 },
-> >>>> +       [VIDEO_CC_MVS1C_CLK_ARES] = { 0xcd4, 2 },
-> >>>> +       [CVP_VIDEO_CC_MVS1C_BCR] = { 0xc94 },
-> >>>> +};
-> >>
-> >> [...]
-> >>
-> >>>> +       ret = pm_runtime_resume_and_get(&pdev->dev);
-> >>>> +       if (ret)
-> >>>> +               return ret;
-> >>>> +
-> >>>> +       regmap = qcom_cc_map(pdev, &video_cc_sm8350_desc);
-> >>>> +       if (IS_ERR(regmap)) {
-> >>>> +               pm_runtime_put(&pdev->dev);
-> >>>> +               return PTR_ERR(regmap);
-> >>>> +       };
-> >>>
-> >>> Extra semicolon
-> >> Ooeh!
-> >>
-> >>>
-> >>>> +
-> >>>> +       clk_lucid_pll_configure(&video_pll0, regmap, &video_pll0_config);
-> >>>> +       clk_lucid_pll_configure(&video_pll1, regmap, &video_pll1_config);
-> >>>> +
-> >>>> +       /*
-> >>>> +        * Keep clocks always enabled:
-> >>>> +        *      video_cc_ahb_clk
-> >>>> +        *      video_cc_xo_clk
-> >>>> +        */
-> >>>> +       regmap_update_bits(regmap, 0xe58, BIT(0), BIT(0));
-> >>>> +       regmap_update_bits(regmap, 0xeec, BIT(0), BIT(0));
-> >>>> +
-> >>>> +       ret = qcom_cc_really_probe(pdev, &video_cc_sm8350_desc, regmap);
-> >>>> +       pm_runtime_put(&pdev->dev);
-> >>>> +
-> >>>> +       return ret;
-> >>>> +}
-> >>>> +
-> >>>> +static const struct dev_pm_ops video_cc_sm8350_pm_ops = {
-> >>>> +       SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
-> >>>
-> >>> The driver doesn't use pm_clk at all. Are these PM_OPS correct?
-> >> I'm unsure. I see the pm state changing in debugfs when the clocks are
-> >> (not) consumed. But let's continue our discussion about using pm_clks
-> >> for AHB.
-> >
-> > Well, those are two separate questions. One is that w/o additional
-> > pm_clk calls this string is useless (and should be removed). Another
-> > on is a possible restructure of our cc drivers to use pm_clk for AHB
-> > clocks (which would require adding more than that).
-> Right, I had an impression that you needed any sort of pm ops at
-> all to be registered with pm_genpd correctly, but that seems not to
-> be the case.. With that commented out, I still see "suspended" / "active"
-> and not "unsupported"..
-
-Let's just drop them for now.
-
-
->
-> Konrad
-> >
-> >
-> >>
-> >>>
-> >>>> +};
-> >>>> +
-> >>>> +static const struct of_device_id video_cc_sm8350_match_table[] = {
-> >>>> +       { .compatible = "qcom,sm8350-videocc" },
-> >>>> +       { }
-> >>>> +};
-> >>>> +MODULE_DEVICE_TABLE(of, video_cc_sm8350_match_table);
-> >>>> +
-> >>>> +static struct platform_driver video_cc_sm8350_driver = {
-> >>>> +       .probe = video_cc_sm8350_probe,
-> >>>> +       .driver = {
-> >>>> +               .name = "sm8350-videocc",
-> >>>> +               .of_match_table = video_cc_sm8350_match_table,
-> >>>> +               .pm = &video_cc_sm8350_pm_ops,
-> >>>> +       },
-> >>>> +};
-> >>>> +module_platform_driver(video_cc_sm8350_driver);
-> >>>> +
-> >>>> +MODULE_DESCRIPTION("QTI SM8350 VIDEOCC Driver");
-> >>>> +MODULE_LICENSE("GPL");
-> >>>>
-> >>>> --
-> >>>> 2.40.0
+> >>>> Isn'y DPHY a phy? Why is it in power?
 > >>>>
 > >>>
-> >>> Generic note: the register layout follows closely sm8250. However the
-> >>> existing differences probably do not warrant merging them.
-> >> No, I don't think merging any designs that are farther away
-> >> than 8150 and 8155 or 8992 and 8994 etc. is a good idea..
+> >>> OK, I will add more description. This is a power framework used to tu=
+rn on/off=20
+> >>> DPHY. So it in power, not a phy.
+>=20
+> I found something wrong with my description here, not turn on/off DPHY,
+> is turn on/off DPHY power switch.=20
+>=20
 > >>
-> >> I don't want to ever look at something like dispcc-sm8[123]50.c
-> >> again!
-> >
-> > Me too!
-> >
+> >> Perhaps tie it less to its role w/ the phy, and more to do with its
+> >> location, say "jh7110-aon-pmu"?
+> >> There's already "aon"/"sys"/"stg" stuff used in clock-controller and
+> >> syscon compatibles etc.
+> >>
+> >> Krzysztof, what do you think of that? (if you remember the whole
+> >> discussion we previously had about using those identifiers a few weeks
+> >> ago).
+> >=20
+> > Depends whether this is the same case or not. AFAIR, for AON/SYS/STG
+> > these were blocks with few features, not only clock controller.
+> >=20
+> > This sounds like just phy. Powering on/off phy is still a job of phy
+> > controller... unless it is a power domain controller.
+> > Best regards,
+> > Krzysztof
+> >=20
+>=20
+> So, next version the compatible can be changed to "jh7110-aon-pmu"?
 
+Hmm, is the dphy the only thing that's power is controlled by registers
+in the aon syscon? I tried looking in the "preliminary" TRM that I have,
+but it's not really got a proper register map so I could not tell.
 
+If there are, it'd help your case I think Changhuang Liang.
 
--- 
-With best wishes
-Dmitry
+--m9nc9K7NjCFO2sFe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZD2WBAAKCRB4tDGHoIJi
+0vyrAP40p9+eWy0HrXzGbRGnh12ucDUKDIndOUg1jtl07fmWDAEAlx5fHF/hyhd+
+cM0x7QGv6LiQILIX9j6p+Ha/5wFgKAM=
+=A2lK
+-----END PGP SIGNATURE-----
+
+--m9nc9K7NjCFO2sFe--
