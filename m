@@ -2,315 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C9B6E4488
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0AB06E44B0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbjDQKBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 06:01:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34582 "EHLO
+        id S230302AbjDQKDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 06:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjDQKBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:01:19 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E852D62;
-        Mon, 17 Apr 2023 03:00:35 -0700 (PDT)
+        with ESMTP id S230521AbjDQKDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:03:00 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D3258A76
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:01:48 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id m39-20020a05600c3b2700b003f170e75bd3so1147929wms.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:01:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1681725635; x=1713261635;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=b/8P0WGhAa/Cc5Bb3QAKq9k0biS4kx5qfPVA+BMlmjs=;
-  b=YVc7MD3hExk/dZeu7xbCKZpBsk/cevgu2StUj1ub+TDD1IfHk7q6U3/o
-   1Q8lXPKpYlaAXvdyaK6pdCz++rtSTL/GshvxK8XodOhQW8b57l324YxMP
-   cyNKyFjCRRAvtoAkRbqfjqC6oLzoSpgazP2INyoDc3nm3mzGM7+wQNV+H
-   dX5SGcHOIcbrpWJ6BH1KkTvHOslyB7s8iwju7LIAuervGdYYy9CtUl41X
-   ZF5iQP3bGsNpeN2Npcm8ZeL/lMB4pzCvbiZm9jI7AmfxGoNyZz6ngTlW6
-   IFuPWGZZOeK7LMCZkVwlh0cKYvVtPtF+VU7CDF2ZukfNE6wiUaIfGmIfQ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,203,1677538800"; 
-   d="scan'208";a="30364744"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 17 Apr 2023 11:59:27 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 17 Apr 2023 11:59:27 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 17 Apr 2023 11:59:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1681725567; x=1713261567;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=b/8P0WGhAa/Cc5Bb3QAKq9k0biS4kx5qfPVA+BMlmjs=;
-  b=L7vK7M+27Zq5hO2gFV99eTmlGC2x9BS7e7jaQWJt5xzWltqJZimF5seS
-   P12V568buhFVCcepDb1oAFFqI9Izl/u2W0kPMPEIa4c0GT/CJ9eMpdJK+
-   XkAStRwbQGZTC0wRvQLz+UsO0uKzsxK0GruKV/J0d9z5iIT5Z06xspfRC
-   zpru3ItHvCtF61SB0hiVGtqbVAZqsKIMvuYbo8aMA34lKLQOTKZkX9J0g
-   bKhobu/FGIYzYdy6oLoY8dEankUZM+/CjLfToIweppvm2aEe11f/+cqN3
-   XVT/6aYtSM7x8e5L7WOCRC+xy6okZ0HMoI0mVihZRyJUoS4TqIdR8kaZe
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,203,1677538800"; 
-   d="scan'208";a="30364743"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 17 Apr 2023 11:59:27 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id ECF37280072;
-        Mon, 17 Apr 2023 11:59:26 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
-Date:   Mon, 17 Apr 2023 11:59:25 +0200
-Message-ID: <3232774.44csPzL39Z@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230417081510.GA19964@pendragon.ideasonboard.com>
-References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com> <20230417080117.jiqpynebq2we2hh4@pengutronix.de> <20230417081510.GA19964@pendragon.ideasonboard.com>
-MIME-Version: 1.0
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1681725704; x=1684317704;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ulDyeTfM/dLc8xW1I8CjbmB4vSY2qudxnA5Iz8lTqFw=;
+        b=Juvg+xtZc7vlWFJjzGXhPzM9BeoL2I0ec3x/42sjfHioTj3hOI2mOZV/RYn5xvoUf/
+         SxoBpSW/ZisNsZIG6bjQoC4LfCCPGpKTG/4Tzytcpnf1gyJ1myyT3jaYZzt6ca/SSjxB
+         PLCHn4S1L0sINar49+MPFb4llc9eaPKnJRyHd+kSrF5ctZg94RQHpoI1rLcUT5qnRedj
+         QZ79N4875RTp5kNBCjY6IWnlDJ2W3FALG9iHzRSqywi1qwnbv4fB55nZR5Taw5OHb4xa
+         TBPNG6HWRNE/LpgIm/4A6JlEvEnKRXknT57uJftdpqn+W3qTs3zBhiODRFXuEI6Nygw6
+         PcrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681725704; x=1684317704;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ulDyeTfM/dLc8xW1I8CjbmB4vSY2qudxnA5Iz8lTqFw=;
+        b=b749i1V51TDWJt5WMSWLmeynZJTJT1tGPrvumBnjyi0cvu2Is4odMWfFLgARQ2hdOo
+         T1ghc90D2EK+Ois3UkhLbskodzHSwIywJOQGN3h27kMPTvvc+xaK7QTVB8kPAMltcl+N
+         opaM34h50X+AosXl0cfEDB8VWBZY1SUuInBFTrgFgDwJS2KoDaXDJS6sqPis650hkU/L
+         fXj++g01hUMK0KUc9r9/+ZM5QfBEDvD+lzoGEBYz+MCYaWuzJ+LEpuXgUysAZpV9efey
+         XDb9YlKsyF1TeeyKM/t1dHmE9dgQNGfowhH/EEvwPQrUDb5YKV2QEN1FyVgJ1B7pfxJ3
+         8DeA==
+X-Gm-Message-State: AAQBX9desV0RgvdHw5hpN2yVODHmfDXfmQOoxTwWmEBj+xT0xJiV92dd
+        dwIffMkTCn/NiHSn+rO/W+l/tQ==
+X-Google-Smtp-Source: AKy350Y9qhQaZjIQAx6s8l4L/Cr75yfwxzT7F+pVDDC5A9nMjb0Apur8IOipa70GeI78x11Uy41owg==
+X-Received: by 2002:a1c:f719:0:b0:3f0:a9b1:81e0 with SMTP id v25-20020a1cf719000000b003f0a9b181e0mr10028830wmh.19.1681725704116;
+        Mon, 17 Apr 2023 03:01:44 -0700 (PDT)
+Received: from localhost ([2a01:e0a:28d:66d0:92d9:442d:a276:285d])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b003ef36ef3833sm15409232wmo.8.2023.04.17.03.01.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 03:01:43 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 17 Apr 2023 12:01:42 +0200
+Message-Id: <CRYY0AFI63HC.MPYLE2JQ49AK@burritosblues>
+Cc:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sterzik@ti.com>, <u-kumar1@ti.com>, <jneanne@baylibre.com>,
+        <jpanis@baylibre.com>, <aseketeli@baylibre.com>
+Subject: Re: [PATCH v2 0/5] arm64: dts: ti: k3-j7200-som-p0: Add TP6594
+ family PMICs
+From:   "Esteban Blanc" <eblanc@baylibre.com>
+To:     "Nishanth Menon" <nm@ti.com>
+X-Mailer: aerc 0.14.0
+References: <20230414112843.1358067-1-eblanc@baylibre.com>
+ <20230414180551.urqvxtxtaewoz5xa@lustfully>
+In-Reply-To: <20230414180551.urqvxtxtaewoz5xa@lustfully>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 17. April 2023, 10:15:10 CEST schrieb Laurent Pinchart:
-> Hi Marco,
->=20
-> On Mon, Apr 17, 2023 at 10:01:17AM +0200, Marco Felsch wrote:
-> > On 23-04-17, Laurent Pinchart wrote:
-> > > On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
-> > > > Hi Laurent,
-> > > >=20
-> > > > your patch LGTM just one nit/idea, please see below.
-> > > >=20
-> > > > On 23-04-17, Laurent Pinchart wrote:
-> > > > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
-> > > > >=20
-> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.co=
-m>
-> > > > > ---
-> > > > >=20
-> > > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60
-> > > > >  +++++++++++++++++++++++
-> > > > >  1 file changed, 60 insertions(+)
-> > > > >=20
-> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> > > > > 2dd60e3252f3..2a374a4c14a2 100644
-> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
-> > > > >=20
-> > > > >  				};
-> > > > >  		=09
-> > > > >  			};
-> > > > >=20
-> > > > > +			mipi_csi_0: csi@32e40000 {
-> > > > > +				compatible =3D "fsl,imx8mp-
-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > > > +				reg =3D <0x32e40000 0x10000>;
-> > > > > +				interrupts =3D <GIC_SPI 17=20
-IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +				clock-frequency =3D=20
-<500000000>;
-> > > > > +				clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > > > +					 <&clk=20
-IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> > > > > +					 <&clk=20
-IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > > > +					 <&clk=20
-IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > > > +				clock-names =3D "pclk",=20
-"wrap", "phy", "axi";
-> > > > > +				assigned-clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_CAM1_PIX>;
-> > > > > +				assigned-clock-parents =3D=20
-<&clk IMX8MP_SYS_PLL2_1000M>;
-> > > > > +				assigned-clock-rates =3D=20
-<500000000>;
-> > > > > +				power-domains =3D=20
-<&media_blk_ctrl
-> > > > > IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-> > > > > +				status =3D "disabled";
-> > > > > +
-> > > > > +				ports {
-> > > > > +					#address-cells =3D=20
-<1>;
-> > > > > +					#size-cells =3D <0>;
-> > > > > +
-> > > > > +					port@0 {
-> > > > > +						reg =3D=20
-<0>;
-> > > >=20
-> > > > If we would add:
-> > > > 						mipi_csi_0_in:=20
-endpoint {};
-> > > >=20
-> > > > here we could refernce it from overlays/board dts files more easily.
-> > >=20
-> > > Isn't there an unwritten rule (or consensus) that an endpoint should
-> > > always have a remote-endpoint property ?
+On Fri Apr 14, 2023 at 8:05 PM CEST, Nishanth Menon wrote:
+> On 13:28-20230414, Esteban Blanc wrote:
+> > TPS6594 is a Power Management IC which provides regulators and others
+> > features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+> > PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+> > communicate through the I2C or SPI interfaces.
+> > TPS6594 is the super-set device while TPS6593 and LP8764 are derivative=
+s.
 > >=20
-> > I don't know if there is one.
+> > This should be applied on top of other patch series:
+> > - https://lore.kernel.org/all/20230406075622.8990-1-jpanis@baylibre.com=
+/
+> >   For core MFD driver
+> > - https://lore.kernel.org/lkml/20230414101217.1342891-1-eblanc@baylibre=
+.com/
+> >   For regulator driver
 > >=20
-> > > While ports describe hardware properties of a device and should always
-> > > be there regardless of connections, endpoints describe connections and
-> > > I don't think they should be instantiated with a valid
-> > > remote-endpoint.
-> >=20
-> > I know, therefore I mentioned it as idea to make it 'easier' to add
-> > camera nodes.
->=20
-> As a middleground, would it be useful to have a label for the port ?
-> Something like
->=20
-> 	mipi_csi_0: csi@32e40000 {
-> 		ports {
-> 			mipi_csi_0_port_0: port@0 {
-> 			};
-> 		};
-> 	};
->=20
-> An overlay could then reference that and create the endpoint. I'm not
-> entirely sure how useful that would be though, as the overlay would need
-> to enable the CSI node anyway. Compare
->=20
-> --------
-> &mipi_csi_0 {
-> 	status =3D "okay";
-> };
->=20
-> &mipi_csi_0_port_0 {
-> 	mipi_csi_0_in: endpoint {
-> 		remote-endpoint =3D <&imx327_out>;
-> 	};
-> };
-> --------
->=20
-> with
->=20
-> --------
-> &mipi_csi_0 {
-> 	status =3D "okay";
->=20
-> 	ports {
-> 		port@0 {
-> 			mipi_csi_0_in: endpoint {
-> 				remote-endpoint =3D <&imx327_out>;
-> 			};
-> 		};
-> 	};
-> };
-> --------
->=20
-> I have a slight preference for the latter as it groups all the CSI0 data
-> in a single overlay target, but if the former is generally preferred,
-> I'm fine with that too.
+>
+> https://lore.kernel.org/lkml/20230330030046.qr5dnft6klejkxkp@ungreased/
+>
+> has anything changed?
 
-The former is more compact, but also raises the following dtc warnings whil=
-e=20
-creating the .dtbo:
-Warning (graph_endpoint): /fragment@4/__overlay__: graph endpoint node name=
-=20
-should be 'endpoint'
-Warning (graph_endpoint): /fragment@4/__overlay__: graph connection to node=
- '/
-fragment@1/__overlay__/ports/port@1/endpoint' is not bidirectional
+Yes:
+- Harmonize regulators names across the different boards
+- Adjust AVS voltage range
+- Remove some outdated comments
+- Add PMICs to J784S4 board
+- Compatible string modified to match dt-bindings
+- Add gpio-controller and gpio-cells properties
 
-for the following snippet:
-
-&mipi_csi_0_out {
-	remote-endpoint =3D <&isp1_in>;
-};
-
-I'm not sure if there is a chance to fix at all.
+I missed a few of theses on the cover letter, sorry about that.
 
 Best regards,
-Alexander
 
->=20
-> > > > > +					};
-> > > > > +
-> > > > > +					port@1 {
-> > > > > +						reg =3D=20
-<1>;
-> > > > > +					};
-> > > > > +				};
-> > > > > +			};
-> > > > > +
-> > > > > +			mipi_csi_1: csi@32e50000 {
-> > > > > +				compatible =3D "fsl,imx8mp-
-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > > > > +				reg =3D <0x32e50000 0x10000>;
-> > > > > +				interrupts =3D <GIC_SPI 80=20
-IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +				clock-frequency =3D=20
-<266000000>;
-> > > > > +				clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > > > +					 <&clk=20
-IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
-> > > > > +					 <&clk=20
-IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > > > +					 <&clk=20
-IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > > > +				clock-names =3D "pclk",=20
-"wrap", "phy", "axi";
-> > > > > +				assigned-clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_CAM2_PIX>;
-> > > > > +				assigned-clock-parents =3D=20
-<&clk IMX8MP_SYS_PLL2_1000M>;
-> > > > > +				assigned-clock-rates =3D=20
-<266000000>;
-> > > > > +				power-domains =3D=20
-<&media_blk_ctrl
-> > > > > IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-> > > > > +				status =3D "disabled";
-> > > > > +
-> > > > > +				ports {
-> > > > > +					#address-cells =3D=20
-<1>;
-> > > > > +					#size-cells =3D <0>;
-> > > > > +
-> > > > > +					port@0 {
-> > > > > +						reg =3D=20
-<0>;
-> > > > > +					};
-> > > > > +
-> > > > > +					port@1 {
-> > > > > +						reg =3D=20
-<1>;
-> > > > > +					};
-> > > > > +				};
-> > > > > +			};
-> > > > > +
-> > > > >=20
-> > > > >  			pcie_phy: pcie-phy@32f00000 {
-> > > > >  		=09
-> > > > >  				compatible =3D "fsl,imx8mp-
-pcie-phy";
-> > > > >  				reg =3D <0x32f00000 0x10000>;
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+--=20
+Esteban Blanc
+BayLibre
