@@ -2,118 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 551066E418E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCF66E41A8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:55:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbjDQHpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:45:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35246 "EHLO
+        id S229604AbjDQHzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 03:55:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbjDQHpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:45:07 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B11D112F;
-        Mon, 17 Apr 2023 00:44:57 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 63DD580CF;
-        Mon, 17 Apr 2023 15:44:48 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Apr
- 2023 15:44:48 +0800
-Received: from [192.168.125.131] (183.27.97.249) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Apr
- 2023 15:44:46 +0800
-Message-ID: <8c396a98-a76e-cd68-4d26-15ae3a15a623@starfivetech.com>
-Date:   Mon, 17 Apr 2023 15:43:48 +0800
+        with ESMTP id S230430AbjDQHzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:55:10 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC26A3C10
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:55:06 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id xd13so27831759ejb.4
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681718105; x=1684310105;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=04X9YyS+WRM9ueLmwKNRcEhK8aDEU6JqEoi8mu6JJQg=;
+        b=f7bIgFtbo3iG9YB1+2z34kflvvNdStH3Uoi9DdZ0wi2w17qQ++kRvLpHhqTLCWvQZp
+         +lFl70n+xuxmFbNFepSyM79s2+oP3pqShyI/Uf5xmel3Um0NXDVEGE1R/ZndMcexW/vo
+         n7IsuvG5zeRGPpXN53gTG4aeEgtrZ9L918lca5Akqx1BokuzHMA/kwxPl1jVw/WMTYy/
+         8lURqrqNVwbmT10S49PR8q+Opy0F8SJcBokglHu+lOyWQMvlT6j4eerebQY7KPzM12W4
+         ic4tIN0IqpUekLtbvZqGUh0C8zN2m0Is7YzCdmO3zauc/ckVt2i0LvFx8h6KHRgeuNBD
+         pBag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681718105; x=1684310105;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=04X9YyS+WRM9ueLmwKNRcEhK8aDEU6JqEoi8mu6JJQg=;
+        b=Bya59ZWa54IKPb6Uw4NTGIO7Iqu4LKmtANj5M3FjhhutKGyIY3I9pqZnLmhspCL2ve
+         UmI9KoIshOjnIJx2Q4DSX/sTub1mdlPhRh163Gt8eW0iI26+bLpdJWLuoOchgXF1etME
+         DsF8U5pxhHCWLnB1jdZnjKa7DkQt3Je87J+3c5FdWrMJ2JbD3z6pN2IOxAeFl4ZZcPg/
+         ILHLX8lXv8ZCLKeMo25qIIRWZcvJVn5VxMaPSsA7sImYzqSYNah84Rqd9txlyLKrdG2u
+         s4N/urew5xq7euSX70KcAQP/QaMkIypl2SuheVWSsLKX0GYpdG2gGUi3y5Q77RAD29rX
+         UtMw==
+X-Gm-Message-State: AAQBX9duNXoXaPUJOOTxvLT2iTrjUHH8Ab2ZU603uZeSq7PzwMGrmqFl
+        kK79xDYAU0lkD0cGJC2ttzE7GQ==
+X-Google-Smtp-Source: AKy350ap2ETRFcAZiOVu5L5wZXGxbHGbZstaUB32EeY+kKy5jiLzynUjnJpGw4e3u80X65R+Cbf8Dw==
+X-Received: by 2002:a17:906:c455:b0:94f:17b7:5db3 with SMTP id ck21-20020a170906c45500b0094f17b75db3mr5709683ejb.20.1681718105164;
+        Mon, 17 Apr 2023 00:55:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:b0ac:4d3b:966c:b33d? ([2a02:810d:15c0:828:b0ac:4d3b:966c:b33d])
+        by smtp.gmail.com with ESMTPSA id r10-20020a17090638ca00b0094a44867e0asm6236255ejd.52.2023.04.17.00.55.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 00:55:04 -0700 (PDT)
+Message-ID: <b46028dc-b539-384c-78aa-2f5e6f6516f2@linaro.org>
+Date:   Mon, 17 Apr 2023 09:55:03 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v3 5/7] dt-bindings: soc: starfive: Add StarFive syscon
- module
-To:     Rob Herring <robh@kernel.org>,
-        William Qiu <william.qiu@starfivetech.com>
-CC:     <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, <linux-clk@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>
-References: <20230414024157.53203-1-xingyu.wu@starfivetech.com>
- <20230414024157.53203-6-xingyu.wu@starfivetech.com>
- <168147484896.3576391.17289619505417988717.robh@kernel.org>
+Subject: Re: [PATCH v3 03/18] dt-bindings: interrupt-controller: qcom-pdc: add
+ compatible for sa8775p
 Content-Language: en-US
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <168147484896.3576391.17289619505417988717.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+References: <20230327125316.210812-1-brgl@bgdev.pl>
+ <20230327125316.210812-4-brgl@bgdev.pl>
+ <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
+ <CAMRc=Mfw+4Co8JPz51_E+DSawijO8EB6rMmFXEmM0e5F3Fg_8A@mail.gmail.com>
+ <3877cb9e-9647-0acf-f705-d34fe2c731ff@linaro.org>
+ <CAMRc=MeT4VLiLu5DJSXHqDdZv2gEoC-B7aPvoXVpc3SokQcrFg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMRc=MeT4VLiLu5DJSXHqDdZv2gEoC-B7aPvoXVpc3SokQcrFg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/4/14 20:37, Rob Herring wrote:
+On 17/04/2023 09:27, Bartosz Golaszewski wrote:
+> On Sun, Apr 16, 2023 at 5:04 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 14/04/2023 11:33, Bartosz Golaszewski wrote:
+>>> On Thu, Apr 6, 2023 at 4:10 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>>
+>>>> On Mon, Mar 27, 2023 at 2:53 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>>>
+>>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>>
+>>>>> Add a compatible for the Power Domain Controller on SA8775p platforms.
+>>>>> Increase the number of PDC pin mappings.
+>>>>>
+>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>> Cc: Thomas Gleixner <tglx@linutronix.de>
+>>>>> Cc: Marc Zyngier <maz@kernel.org>
+>>>>> ---
+>>>>>  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml     | 3 ++-
+>>>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>>>> index 94791e261c42..641ff32e4a6c 100644
+>>>>> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>>>> @@ -26,6 +26,7 @@ properties:
+>>>>>    compatible:
+>>>>>      items:
+>>>>>        - enum:
+>>>>> +          - qcom,sa8775p-pdc
+>>>>>            - qcom,sc7180-pdc
+>>>>>            - qcom,sc7280-pdc
+>>>>>            - qcom,sc8280xp-pdc
+>>>>> @@ -53,7 +54,7 @@ properties:
+>>>>>    qcom,pdc-ranges:
+>>>>>      $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>>>>      minItems: 1
+>>>>> -    maxItems: 32 # no hard limit
+>>>>> +    maxItems: 38 # no hard limit
+>>
+>> I don't think the limit is correct. I still see warnings with this
+>> patch. We already have 57 elements, so limit should be I guess 128 or
+>> something.
+>>
 > 
-> On Fri, 14 Apr 2023 10:41:55 +0800, Xingyu Wu wrote:
->> From: William Qiu <william.qiu@starfivetech.com>
->> 
->> Add documentation to describe StarFive System Controller Registers.
->> 
->> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->> ---
->>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 58 +++++++++++++++++++
->>  MAINTAINERS                                   |  6 ++
->>  2 files changed, 64 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->> 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> ./Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/clock/starfive,jh7110-pll.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230414024157.53203-6-xingyu.wu@starfivetech.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+> You mean for other platforms? This limit applies to sa8775p as the
 
-I have updated yamllint and dtschema, and tested it and didn't see this error.
-I asked william and also didn't see this. This error says the file:
-http://devicetree.org/schemas/clock/starfive,jh7110-pll.yaml was not found.
-This file is added in patch 1 but patch 1 should be applied after these patchset
-about JH7110 basic clock drivers. I don't know if that's the reason.
+I see errors on sa8775p.
+
+> goal of the patch is to add its own PDC compatible. If other platforms
+> have more interrupts then we need to fix it first with a separate
+> commit IMO. I'll send out two patches for that.
 
 Best regards,
-Xingyu Wu
+Krzysztof
+
