@@ -2,108 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 196426E415D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:40:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4466E4173
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:42:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjDQHkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:40:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55616 "EHLO
+        id S230224AbjDQHmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 03:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjDQHkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:40:51 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55A54EFB
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:40:25 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-506b20efd4cso16084a12.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:40:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681717220; x=1684309220;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jOuJf1Uk2XVzTeZs33zX+691srOKO1AbhUKqZP8jH3E=;
-        b=bD/FFEpVwIhN3pNSBZp3oeHUq+WS77cAz7PD/ZDAxvCN2FFkuT1Md8xPhUGKe3V14h
-         KG2U6A26i2gEjFiIYpxVVOSGJ6vCsoDHLqpw+wPcwir9uk39FZSJFROsp5b9vErKDybJ
-         fd2qa2dKD/pu+lZohU/reF67C6eliqsk7s6AdMgse9o7usfrvfePAr840Ucb+9KBgMNF
-         9MwSrl4L6QmFXSI53P5U/syh7tDQyfs8u+xFeKcV5EOZ3zJFkM+c6UkSUW089UdKRsUh
-         Wfi98fwzrmg0JUXmrM9uIl+Z5LnhsqdhR9shJ27fNa+ELDg4kk6iYumtkPvGzyywYlyn
-         WH9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681717220; x=1684309220;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jOuJf1Uk2XVzTeZs33zX+691srOKO1AbhUKqZP8jH3E=;
-        b=Ftm05a+ZhrH+RibD8HStMGOh6ODxM6kH17sstr53PH7DQgBX2Gc3xZ+Ga5pYF1fp9T
-         GcfytGH9nuZ1pbYW+HFNEVU9rR78LfJS8U+W9rE/LzN/T1PsXAh7RNZelW6Yr7f5L+Z5
-         bCZXIu1NJH3Rj+WR+nVb+BfcEwZ0kdXSM+6OorikXPwFLVc5+b2bhIdcMegOd/J/R1bQ
-         oEw4JUnCOCgmDZY4zoRVCkyBN3UIPBMeTmhY/PUj5Wh7K9xVnq3udX7alCp+xYL5x93r
-         VhrhydYVRhxJ/zuMk5qic98uAj1ErzAn8p/8HQ9mSH1NM9KTcsXjNas/XI9TMVjEE9H/
-         TB6w==
-X-Gm-Message-State: AAQBX9cQMqUZp5DhMHaznboP5w0rvYy3twTqCf5C9FveUpwW37sai5Dj
-        JcVu1uONFfpV1fcWKYg/sd+6Bw==
-X-Google-Smtp-Source: AKy350Y85eczDG7Mw8aICC9OfwA8qtxoVQbiQnVpgM7S2lQj5ctUHXmf9vdwjdbGCteBPpkM0yTRwg==
-X-Received: by 2002:a05:6402:1645:b0:506:8d35:40b7 with SMTP id s5-20020a056402164500b005068d3540b7mr7121155edx.8.1681717219986;
-        Mon, 17 Apr 2023 00:40:19 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id c18-20020aa7c752000000b00501d73cfc86sm5527649eds.9.2023.04.17.00.40.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 00:40:19 -0700 (PDT)
-Message-ID: <c240cbef-1d9e-dc1b-b619-c22dacf8d41f@linaro.org>
-Date:   Mon, 17 Apr 2023 09:40:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V2 3/6] dt-bindings: imx-thermal: add imx6sll and imx6ul
- compatible
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229977AbjDQHmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:42:07 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 892A24ED6;
+        Mon, 17 Apr 2023 00:41:38 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (133-32-181-51.west.xps.vectant.ne.jp [133.32.181.51])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F33F1DE6;
+        Mon, 17 Apr 2023 09:41:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1681717291;
+        bh=8SSnqeaL5ZNLo5JFQAWgyu2IDRB5X/DdxvU5ytni+ns=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D8b3ARSUjPXXH/oFsQVpyjwJ9RMWUwNCxjM+gLswAtO7zbvbR0yaG3HEklLHXp9h7
+         bkYsdIINO1dcnKfJLVDUmbe2G/1rPjTNYin4SPE3zbT7c6/+uK+Eje7SI/byjl2Fvb
+         3CPladoIMrVP4fuPh3D9mzSRDkKVleV2gIHwkVJA=
+Date:   Mon, 17 Apr 2023 10:41:48 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
-        linux-imx@nxp.com, "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-References: <20230410205803.45853-1-stefan.wahren@i2se.com>
- <20230410205803.45853-4-stefan.wahren@i2se.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230410205803.45853-4-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
+Message-ID: <20230417074148.GF28551@pendragon.ideasonboard.com>
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
+ <20230417055627.16482-2-laurent.pinchart@ideasonboard.com>
+ <20230417065059.fgmdfwk7pnj62amm@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230417065059.fgmdfwk7pnj62amm@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/04/2023 22:58, Stefan Wahren wrote:
-> Currently the dtbs_check for imx6 generates warnings like this:
-> 
-> ['fsl,imx6sll-tempmon', 'fsl,imx6sx-tempmon'] is too long
-> 
-> So add them to the devicetree binding.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
+Hi Marco,
 
-Applied, thanks
+On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
+> Hi Laurent,
+> 
+> your patch LGTM just one nit/idea, please see below.
+> 
+> On 23-04-17, Laurent Pinchart wrote:
+> > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > index 2dd60e3252f3..2a374a4c14a2 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
+> >  				};
+> >  			};
+> >  
+> > +			mipi_csi_0: csi@32e40000 {
+> > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+> > +				reg = <0x32e40000 0x10000>;
+> > +				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> > +				clock-frequency = <500000000>;
+> > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> > +					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
+> > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
+> > +				clock-names = "pclk", "wrap", "phy", "axi";
+> > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
+> > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+> > +				assigned-clock-rates = <500000000>;
+> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+> > +				status = "disabled";
+> > +
+> > +				ports {
+> > +					#address-cells = <1>;
+> > +					#size-cells = <0>;
+> > +
+> > +					port@0 {
+> > +						reg = <0>;
+> 
+> If we would add:
+> 						mipi_csi_0_in: endpoint {};
+> 
+> here we could refernce it from overlays/board dts files more easily.
+
+Isn't there an unwritten rule (or consensus) that an endpoint should
+always have a remote-endpoint property ? While ports describe hardware
+properties of a device and should always be there regardless of
+connections, endpoints describe connections and I don't think they
+should be instantiated with a valid remote-endpoint.
+
+> > +					};
+> > +
+> > +					port@1 {
+> > +						reg = <1>;
+> > +					};
+> > +				};
+> > +			};
+> > +
+> > +			mipi_csi_1: csi@32e50000 {
+> > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+> > +				reg = <0x32e50000 0x10000>;
+> > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> > +				clock-frequency = <266000000>;
+> > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> > +					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
+> > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
+> > +				clock-names = "pclk", "wrap", "phy", "axi";
+> > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>;
+> > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+> > +				assigned-clock-rates = <266000000>;
+> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
+> > +				status = "disabled";
+> > +
+> > +				ports {
+> > +					#address-cells = <1>;
+> > +					#size-cells = <0>;
+> > +
+> > +					port@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> > +					port@1 {
+> > +						reg = <1>;
+> > +					};
+> > +				};
+> > +			};
+> > +
+> >  			pcie_phy: pcie-phy@32f00000 {
+> >  				compatible = "fsl,imx8mp-pcie-phy";
+> >  				reg = <0x32f00000 0x10000>;
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Regards,
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Laurent Pinchart
