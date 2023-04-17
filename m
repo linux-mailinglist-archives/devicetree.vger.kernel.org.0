@@ -2,46 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44A426E42A1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B006E42AD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:35:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjDQIek convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Apr 2023 04:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47042 "EHLO
+        id S229483AbjDQIfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 04:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjDQIej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:34:39 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BAC4209
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:34:35 -0700 (PDT)
-Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1poKJY-0001gx-Ro; Mon, 17 Apr 2023 10:34:20 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     =?utf-8?B?T25kxZllag==?= Jirman <megi@xff.cz>,
-        Peter Robinson <pbrobinson@gmail.com>,
+        with ESMTP id S230516AbjDQIfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:35:22 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449F95266
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:35:18 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id dm2so62114301ejc.8
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:35:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681720516; x=1684312516;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jOi5tK+OGPHQm6htXDR5U68ZReexAHOUaRN7I2oGD8k=;
+        b=E0Kx67cEiCPHehDco2mDIZiGpabs3Max5Ma2CbbdHaWB96ceYQ1K/8mgvvo/7kcHAo
+         SSsrNC5jnbLrZmpLWHwkNAfhTvLXXvzpxNeq96arEQdhR+eD60oiCFLJwSdXn/2IWgeC
+         dBWUt4VvJykpacVnAGF2I/XVGDdMRYiSiVEN8esTohYaDuZsDoFQWFVGvmiClr9EW0hR
+         UAloZtt0Zo011j9XU+db0bGxji3glFLyK/sn3shpOHMP4GkqvmntN92zixnqxgTxiHtm
+         WZvzp3oo+blot76VZLHKcVGGRz9XTkLKIYK74jWioPtqPrua4y1+ZP6ep+NwiUj3hLh9
+         Hp8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681720516; x=1684312516;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jOi5tK+OGPHQm6htXDR5U68ZReexAHOUaRN7I2oGD8k=;
+        b=cAE5Po9GKQHLtpBZ3vh8svmIFuNjVej31mzwIXWWh+2gP4+oUoYsdViBIsFqGcMWu6
+         1kJyJiDfVyJtPTJc79mKqG2VfhEXOJ2FCOzBKEMKcBZYuNjj/v/eIJoMPijtFfT9vb4R
+         drFw3baeh3zEyePzon0jkpOa75y4b3vWgfOmkQ7h2FdOn61n3wNrYfsqkUU2ERgDNV+Y
+         /RG2nMDGqF5MqcE3nspYMII/FG9JOFC+cZcan1ZnMG+4W6MjrXcX7htLPO9ufTwOb/22
+         Z9UmFTcfbTNXfV8mrnnaa/ENWzPtOciMux93oPyf9J5w+dg2/UbDmaRZcjAZ3NUPnPPn
+         LsiQ==
+X-Gm-Message-State: AAQBX9d1KmLg0FmYcpW4zJL8jqv0iuj0+bAYa78JAKwazT5vfu7dlzwW
+        l7IL9RHo2dmPIHrVJOuwa1yHrQ==
+X-Google-Smtp-Source: AKy350YoaaDUDxlz8DqeHMiEL4jmIMDW5roQccOUuiMRDsiw6Rk8TxI/S7fcJSHDG0KUlsI2rAIyJw==
+X-Received: by 2002:a17:906:8604:b0:94e:f176:43cc with SMTP id o4-20020a170906860400b0094ef17643ccmr6987784ejx.39.1681720516598;
+        Mon, 17 Apr 2023 01:35:16 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:b0ac:4d3b:966c:b33d? ([2a02:810d:15c0:828:b0ac:4d3b:966c:b33d])
+        by smtp.gmail.com with ESMTPSA id y15-20020a170906524f00b0094e1026bc66sm6393487ejm.140.2023.04.17.01.35.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 01:35:16 -0700 (PDT)
+Message-ID: <1632bd15-c9b6-4bb8-13b2-d0c4b068315c@linaro.org>
+Date:   Mon, 17 Apr 2023 10:35:15 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 03/18] dt-bindings: interrupt-controller: qcom-pdc: add
+ compatible for sa8775p
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Martijn Braam <martijn@brixit.nl>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rk3399-pinephone-pro: Add support for volume keys
-Date:   Mon, 17 Apr 2023 10:34:20 +0200
-Message-ID: <4152389.RUnXabflUD@diego>
-In-Reply-To: <20230405135339.bcdyjdbtynuwf5yz@core>
-References: <20230405123813.2272919-1-pbrobinson@gmail.com>
- <20230405135339.bcdyjdbtynuwf5yz@core>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+References: <20230327125316.210812-1-brgl@bgdev.pl>
+ <20230327125316.210812-4-brgl@bgdev.pl>
+ <CAMRc=Mfe6gCM=Mz6Can6xsSsrjX-9T_aR2Yev+b57koky_az-A@mail.gmail.com>
+ <CAMRc=Mfw+4Co8JPz51_E+DSawijO8EB6rMmFXEmM0e5F3Fg_8A@mail.gmail.com>
+ <3877cb9e-9647-0acf-f705-d34fe2c731ff@linaro.org>
+ <CAMRc=MeT4VLiLu5DJSXHqDdZv2gEoC-B7aPvoXVpc3SokQcrFg@mail.gmail.com>
+ <b46028dc-b539-384c-78aa-2f5e6f6516f2@linaro.org>
+In-Reply-To: <b46028dc-b539-384c-78aa-2f5e6f6516f2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,124 +89,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter, Ondrej,
+On 17/04/2023 09:55, Krzysztof Kozlowski wrote:
+> On 17/04/2023 09:27, Bartosz Golaszewski wrote:
+>> On Sun, Apr 16, 2023 at 5:04 PM Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 14/04/2023 11:33, Bartosz Golaszewski wrote:
+>>>> On Thu, Apr 6, 2023 at 4:10 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>>>
+>>>>> On Mon, Mar 27, 2023 at 2:53 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>>>>
+>>>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>>>
+>>>>>> Add a compatible for the Power Domain Controller on SA8775p platforms.
+>>>>>> Increase the number of PDC pin mappings.
+>>>>>>
+>>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>>> Cc: Thomas Gleixner <tglx@linutronix.de>
+>>>>>> Cc: Marc Zyngier <maz@kernel.org>
+>>>>>> ---
+>>>>>>  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml     | 3 ++-
+>>>>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>>>>> index 94791e261c42..641ff32e4a6c 100644
+>>>>>> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+>>>>>> @@ -26,6 +26,7 @@ properties:
+>>>>>>    compatible:
+>>>>>>      items:
+>>>>>>        - enum:
+>>>>>> +          - qcom,sa8775p-pdc
+>>>>>>            - qcom,sc7180-pdc
+>>>>>>            - qcom,sc7280-pdc
+>>>>>>            - qcom,sc8280xp-pdc
+>>>>>> @@ -53,7 +54,7 @@ properties:
+>>>>>>    qcom,pdc-ranges:
+>>>>>>      $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>>>>>      minItems: 1
+>>>>>> -    maxItems: 32 # no hard limit
+>>>>>> +    maxItems: 38 # no hard limit
+>>>
+>>> I don't think the limit is correct. I still see warnings with this
+>>> patch. We already have 57 elements, so limit should be I guess 128 or
+>>> something.
+>>>
+>>
+>> You mean for other platforms? This limit applies to sa8775p as the
+> 
+> I see errors on sa8775p.
 
-Am Mittwoch, 5. April 2023, 15:53:39 CEST schrieb Ondřej Jirman:
-> On Wed, Apr 05, 2023 at 01:38:13PM +0100, Peter Robinson wrote:
-> > From: Ondrej Jirman <megi@xff.cz>
-> > 
-> > These are implemented via regular ADC, so regular polling is needed,
-> > for these keys to work.
-> > 
-> > Signed-off-by: Martijn Braam <martijn@brixit.nl>
-> > Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
-> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-> > ---
-> >  .../dts/rockchip/rk3399-pinephone-pro.dts     | 26 +++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> > index a0795a2b1cb1..ecd48040eb0c 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> > @@ -10,6 +10,7 @@
-> >   */
-> >  
-> >  /dts-v1/;
-> > +#include <dt-bindings/input/gpio-keys.h>
-> >  #include <dt-bindings/input/linux-event-codes.h>
-> >  #include "rk3399.dtsi"
-> >  #include "rk3399-opp.dtsi"
-> > @@ -29,6 +30,26 @@ chosen {
-> >  		stdout-path = "serial2:115200n8";
-> >  	};
-> >  
-> > +	adc-keys {
-> > +		compatible = "adc-keys";
-> > +		io-channels = <&saradc 1>;
-> > +		io-channel-names = "buttons";
-> > +		keyup-threshold-microvolt = <1600000>;
-> > +		poll-interval = <100>;
-> > +
-> > +		button-up {
-> > +			label = "Volume Up";
-> > +			linux,code = <KEY_VOLUMEUP>;
-> > +			press-threshold-microvolt = <100000>;
-> > +		};
-> > +
-> > +		button-down {
-> > +			label = "Volume Down";
-> > +			linux,code = <KEY_VOLUMEDOWN>;
-> > +			press-threshold-microvolt = <300000>;
-> 
-> I don't know about this... I've tried reading voltage values from:
-> 
->   cd /sys/bus/iio/devices/iio:device0 (path may differ on your kernel)
-> 
->   echo $((`cat in_voltage_scale`*`cat in_voltage1_raw`))
-> 
-> and I get various readings around the value 300 mV on both sides of the
-> threshold when pressing the vol down key. So this threshold may not be
-> good enough in practice.
-> 
-> Values I get for several different pushes of the button:
-> 
->   293.5546875
->   328.7109375
->   332.2265625
->   304.1015625
->   297.0703125
->   522.0703125
-> 
-> (I have to press quite hard to get bellow 300 and to get reliable detection
-> of volume down key press)
-> 
-> On development version of the phone, the value returned by sardac is less
-> variable. Basically either 298.828125 or 300.5859375 but it's also on
-> the edge.
-> 
-> I suggest raising the threshold to something like 600 and to do your own
-> testing, to get more data points. Unpressed value is ~1791.2109375 on both
-> phones, so 400 still gets a lot of headroom. And volume up is always < 15
-> in my tests.
+OK, so as you pointed out it's about other platform - sa8540p-ride.
+Anyway you update now this line to bump the limit, so bump it to
+something high instead of changing it in two patches.
 
-did this get more attention meanwhile?
-
-I don't have a Pinephone Pro myself, so you'll need to decide between you
-about the value and the concern Ondrej raised here for the value.
-
-Thanks
-Heiko
-
-
-> Otherwise:
-> 
-> Tested-by: Ondrej Jirman <megi@xff.cz>
-> 
-> kind regards,
-> 	o.
-> 
-> > +		};
-> > +	};
-> > +
-> >  	gpio-keys {
-> >  		compatible = "gpio-keys";
-> >  		pinctrl-names = "default";
-> > @@ -429,6 +450,11 @@ &sdio0 {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&saradc {
-> > +	vref-supply = <&vcca1v8_s3>;
-> > +	status = "okay";
-> > +};
-> > +
-> >  &sdmmc {
-> >  	bus-width = <4>;
-> >  	cap-sd-highspeed;
-> 
-
-
-
+Best regards,
+Krzysztof
 
