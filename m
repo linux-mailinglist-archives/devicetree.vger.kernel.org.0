@@ -2,129 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DEAA6E4FC6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 20:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2EA96E4FE4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 20:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbjDQSDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 14:03:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
+        id S229976AbjDQSJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 14:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbjDQSDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 14:03:07 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B632D61;
-        Mon, 17 Apr 2023 11:03:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681754586; x=1713290586;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NiywolP3IeUIa8VfpIaUT5vTVN52GkeINXKV5c29gCM=;
-  b=YPMZLyJwFIeYu0so3eVup4eky2T7JZLGMDIvh2HP+2nnH0wS7DiLL/fr
-   HU3qO9VHh2MsVFSMujHUetokPlHWSkGaXRap2wDy4JLMmpMtYt9pCXoiZ
-   zSq+Be9eMBTAwGJMLwYyxzD3bGYNWjCl0kRzWWtgh5qasS/phupyfl7no
-   PYoaVlRBCvYIn1m6S4HiDnqwE1ZOqwtXtRK1RgOxgY+4epRopuKP6pmyU
-   vGOIRVrKv8dms6TDQ3f32quofI5+xYhzBunc0UHELY7Cm4eu7/U+sa8QH
-   lbCHxNI369ADn1OmgVN/mimApX7htnQQ3Ls09Ap9QVCZtmuy2oc+dtVoN
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="372844402"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; 
-   d="scan'208";a="372844402"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2023 11:03:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="865078950"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; 
-   d="scan'208";a="865078950"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 17 Apr 2023 11:03:01 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1poTBs-000ccB-2O;
-        Mon, 17 Apr 2023 18:03:00 +0000
-Date:   Tue, 18 Apr 2023 02:02:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Subject: Re: [PATCH V4 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
-Message-ID: <202304180101.Wxf2Jbjq-lkp@intel.com>
-References: <2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S229694AbjDQSJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 14:09:36 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8723610D;
+        Mon, 17 Apr 2023 11:09:35 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id w11so26648437plp.13;
+        Mon, 17 Apr 2023 11:09:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681754975; x=1684346975;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WNOsIQtquipVLHz8/RMsd7IDhOh5uaDhFa5Mb/HyQyI=;
+        b=K8lNZwCWAi69HuM8H5CpvXsO6JRXmF5bjsuJP4MBlqphQkWtHN5yPJgRPvhr11jBXv
+         LCQ0XiBOvyWy5lLY6PjcNjovVPe+8B2Xe6pkEDe9wlD21biLd8qxrncpDxkEIV44w5qR
+         Ll4g6NjbGABIuFK/2Aw4ZznxTV0HFr+kVqNBw9EFhOoDtcHJM7NTh30TWF/sisZla8kF
+         MQTOLmHoxRj+FjiTizTWKLFVOZQj3LDIfwVmudGbeC1nQ+WoQobnPHtXS9WpjP9eXdJr
+         TGBAsd6GCk/fy/X1ifvZpV4YZThGoaWGGJpyGQvb1oj2JnhKcLHjtGVuNJwdQBRLkbl4
+         ZCdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681754975; x=1684346975;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WNOsIQtquipVLHz8/RMsd7IDhOh5uaDhFa5Mb/HyQyI=;
+        b=iewYxCK2EGK7aCjUa8MAUILzojjEGvoQDYZzkXto+kSuvt8+xMeHh2PWh+KyclJWUM
+         VOULx4R7y6VMnByBgAvsoVVsvNQ8zDSR6xp3ynHbClTzWiA7jCpGuonAs8YkcChV7h8f
+         A9Q0ZnfdQobIg3aVjO5xR+HR0+ilceq0WHyPmFLZmhX5iIJyFcEFThmlJGiaXa2GiL6K
+         Ibk/s2/E3BmewuiJsRcBQ79T6oVCJAAc1O7oMiT/cfSDMtqWZybgWlR1vaueCGjPXsPX
+         qm+GPI0ZdmgrQo3cBj4/CFfBShHf8QyZZwV5yhUAsm0uuTOvlxwisblVFGbwE8SxEcYn
+         EEeg==
+X-Gm-Message-State: AAQBX9cPN2GCRclL0p4WgcHTM7HT7MtfW7RGSh/hdqCVV8g7Eb4Wstvd
+        32bLcqZwSy6R5aIqntOmElLdPMxlTvtuJ+X8bUw=
+X-Google-Smtp-Source: AKy350ZcGwtvc9bc5OmV986re8jTS7t6yf3evE/VHZhrKbmPQSK20zQKGda3a6I2bSv/pHSjitN9vGPX2QJ/+41y0BM=
+X-Received: by 2002:a17:902:ea05:b0:19a:64f6:e147 with SMTP id
+ s5-20020a170902ea0500b0019a64f6e147mr4400040plg.2.1681754974933; Mon, 17 Apr
+ 2023 11:09:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230416173302.1185683-1-mmyangfl@gmail.com> <20230416173302.1185683-2-mmyangfl@gmail.com>
+ <c6571a6d-bf55-14b3-102d-814af6763be7@linaro.org>
+In-Reply-To: <c6571a6d-bf55-14b3-102d-814af6763be7@linaro.org>
+From:   Yangfl <mmyangfl@gmail.com>
+Date:   Tue, 18 Apr 2023 02:08:58 +0800
+Message-ID: <CAAXyoMNKDFBnJbT0XX2LWtwDPiePjqhJ4n--cb+SDDBSmPZ_WQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: Add simple-clock-controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Souradeep,
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2023=E5=B9=B4=
+4=E6=9C=8817=E6=97=A5=E5=91=A8=E4=B8=80 01:38=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On 16/04/2023 19:32, David Yang wrote:
+> > Add DT bindings documentation for simple-clock-controller, mutex
+> > controller for clocks.
+> >
+> > Signed-off-by: David Yang <mmyangfl@gmail.com>
+> > ---
+> >  .../clock/simple-clock-controller.yaml        | 50 +++++++++++++++++++
+>
+> Where is the changelog?
+>
 
-kernel test robot noticed the following build warnings:
+Cover now send with v3.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on krzk-dt/for-next linus/master v6.3-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> >  1 file changed, 50 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/simple-cloc=
+k-controller.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/simple-clock-contr=
+oller.yaml b/Documentation/devicetree/bindings/clock/simple-clock-controlle=
+r.yaml
+> > new file mode 100644
+> > index 000000000000..17835aeddb1d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/simple-clock-controller.y=
+aml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/simple-clock-controller.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Simple clock controller
+> > +
+> > +maintainers:
+> > +  - David Yang <mmyangfl@gmail.com>
+> > +
+> > +description: |
+> > +  Driver (lock provider) for real clocks.
+>
+> Drop driver references. Typo: clock, not lock.
+>
+> What is a real clock? What is an unreal clock?
+>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Souradeep-Chowdhury/dt-bindings-sram-qcom-imem-Add-Boot-Stat-region-within-IMEM/20230417-231510
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu%40quicinc.com
-patch subject: [PATCH V4 2/3] soc: qcom: boot_stat: Add Driver Support for Boot Stats
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20230418/202304180101.Wxf2Jbjq-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/4c8808184261e004f0b258e469415e4eea9c5ad9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Souradeep-Chowdhury/dt-bindings-sram-qcom-imem-Add-Boot-Stat-region-within-IMEM/20230417-231510
-        git checkout 4c8808184261e004f0b258e469415e4eea9c5ad9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/soc/qcom/
+Rewrite description in v3. The controller is kinda unreal since it
+does not require any operation to "enable" the controller, but such
+description is avoided in v3.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304180101.Wxf2Jbjq-lkp@intel.com/
+> > +
+> > +  Usually one register controls more than one clocks. This controller =
+avoids
+> > +  write conflicts by imposing a write lock, so that two operations on =
+the same
+> > +  register will not happen at the same time.
+>
+> Interesting. How the clock controller imposes write locks? Aren't you
+> now mixing drivers and hardware?
 
-All warnings (new ones prefixed by >>):
+Avoided driver details in device description in v3.
 
->> drivers/soc/qcom/boot_stats.c:76:6: warning: no previous prototype for 'boot_stats_remove' [-Wmissing-prototypes]
-      76 | void boot_stats_remove(struct platform_device *pdev)
-         |      ^~~~~~~~~~~~~~~~~
+>
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - oneOf:
+> > +          - const: simple-clock-controller
+> > +          - const: simple-clock-reset-controller
+>
+> Why two?
 
+It may also handle reset requests. But removed in v3 for further considerat=
+ion.
 
-vim +/boot_stats_remove +76 drivers/soc/qcom/boot_stats.c
+>
+> > +      - const: syscon
+> > +      - const: simple-mfd
+>
+> Why do you need syscon and simple-mfd?
 
-    75	
-  > 76	void boot_stats_remove(struct platform_device *pdev)
-    77	{
-    78		struct bs_data *drvdata = platform_get_drvdata(pdev);
-    79	
-    80		debugfs_remove_recursive(drvdata->dbg_dir);
-    81		iounmap(drvdata->b_stats);
-    82	}
-    83	
+Kinda typo. Removed in v3.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#reset-cells':
+> > +    const: 2
+> > +
+> > +patternProperties:
+> > +  "clock@.*":
+>
+> Use consistent quotes.
+
+Fixed in v3.
+
+>
+> Anyway, I don't understand what is happening here and why such changes.
+> Nothing is explained...
+>
+>
+> Best regards,
+> Krzysztof
+>
