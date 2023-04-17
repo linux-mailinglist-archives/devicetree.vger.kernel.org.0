@@ -2,152 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F94D6E5071
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 20:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F04A6E508F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 21:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbjDQSzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 14:55:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
+        id S230090AbjDQTFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 15:05:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230157AbjDQSzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 14:55:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644A230D0;
-        Mon, 17 Apr 2023 11:55:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CC6A961B7A;
-        Mon, 17 Apr 2023 18:55:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7015FC433EF;
-        Mon, 17 Apr 2023 18:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681757706;
-        bh=a67vqx0zLJeULnY4ySGNK+OdFOK9hdjKSEI9T8MMhD8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cKtSFaY8Budl3dBXR0jj1QEKyCa3jwo4l1PHQ0jWx0Zh/xJk37SDdUpUiODwm6lfI
-         aQ77Z5m5MQUOZZ7XKrrFQjPwvS0/Lsflg0kHWHJj+U0j86zv8F1KdzXGTDh3bQvt5A
-         YHXU+u99d0p0d0nn3ehMgKxUXRGEAgUSAUhPNAKW/JiiTog6RSSxEX+tGKNMV7OOmS
-         d1Tg1ZMcEXtCPLQHfagd7uzcGx3jENaUOSYu+B7g70iiRjr3pCEbkoeS3aKzIpQN+R
-         SFtmag72/Zq5WwmCeuZFszj09rNAO627PodFSNpO6uIUXCSAd7ChGMR4E52OdyLct8
-         5VRGo+w+TBgoQ==
-Date:   Mon, 17 Apr 2023 19:55:00 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
+        with ESMTP id S230002AbjDQTFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 15:05:43 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFF755BC;
+        Mon, 17 Apr 2023 12:05:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681758314; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=INqIBw4Ne4PgLy5vmY0LJBcYVa0jPhdpwP0ZTp9SvMxTNVsY/5fzEw4Skd5x0C/1lM
+    avWfzxvnZt+uRnH45Cu4Ovs3SoNTTuoAlpFhLhchgsMpT6JS2/2XYDPHpnQhey7Obvt/
+    VZ4RfzxGZA6mWk99KLwFndVy+VrPm3dFDIIc/6uhhLx039+zBheT93/znAjr8r5HhJVD
+    Mm2v+WKgsXbfwy8Fo02bI1Q//XVeoA/Cc+B0V9EXkHBOKeDTVQcuT666uryILzn3LM1w
+    UXs5Q7dTdcg7t9TkmUUB+p5XG5ZdSQgTCVeuC9foygDJ7FueeWTKeHRAofnIceU3YQ1t
+    8iUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1681758314;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=zMu8aCbltdkyaF8tMU4hcbAdwR6OQSkVDX5++sopalU=;
+    b=Z7THDmGdOJQi/D7qEGmW6cpwYVxZqgCIJK1hVZ9v02urqRsWJ5hatiZ9WjyP9awBjq
+    kKCgIiVsgKmV0UxqIenaBoAWuqiWBf0xeCHCb3H1XWUzZYY7VnGsztgMgedGlkkvYnT2
+    e6kHB9d/Qm6h8jq3kgZtyqbShoc6SE1wV6/x53BcEH+fuFvBMOLw+x65CiddyzKoToNB
+    QYZX/yvMbhTvnGSkAuEFrr2Ef7UqH7hwXgjzzM5qwlKsZDQWwcOmPQXbqzcs8dx+5Ovf
+    Zjq60svGQ9wa5BJxF498XiGPh7mrcEqRHWpnr0GFbbxJUxsiA0YvKixNr/o9KXDLml4e
+    3rnw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1681758314;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=zMu8aCbltdkyaF8tMU4hcbAdwR6OQSkVDX5++sopalU=;
+    b=tj9FF4MBFTjzEVOyc693G+9bSO3gFpH7oVu3u4z60niTHeJB8ND2Bc7uWZOsUOFAnP
+    b/hPAXWDxFgIVDROTq77rmn5T42vAgbNozYfSx2zm+Vk7DdCk5ib/Co5Kv/HGiPe4QFv
+    phpbyOp1dl0YZcT6VKPzbgHp7DeLYEJ5RnIyYBl7asrhwTRVEVDPALOrnHcjOcOzLRUj
+    J4L13kuhYcN/4+deaiDpt99qL7MGRKuWwht/pygsiYykFirzPvg5S1yTcMWLhHxrzI3b
+    EhmvyS+F7EdkuXqXg3HrxtYKK7DLukKbQi/p9JOEhkIPgF8LX75ReM3qx1dSCNTuqgy8
+    +e/g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1681758314;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=zMu8aCbltdkyaF8tMU4hcbAdwR6OQSkVDX5++sopalU=;
+    b=Rb+/EdXy6QJAJY1dx4i43fy15Q4UmnxHB5WJh1ND7b6jw4thZLbpKP7mpJXXVNJUEa
+    Qo36RKaAvge/AJtMfdAQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8peN1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
+    with ESMTPSA id j6420az3HJ5EeE4
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 17 Apr 2023 21:05:14 +0200 (CEST)
+Date:   Mon, 17 Apr 2023 21:05:06 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 1/7] dt-bindings: power: Constrain properties for
- JH7110 PMU
-Message-ID: <20230417-ramrod-carpool-cd05b0def1a2@spud>
-References: <20230411064743.273388-1-changhuang.liang@starfivetech.com>
- <20230411064743.273388-2-changhuang.liang@starfivetech.com>
- <cb97cf01-2dfd-7f93-2048-e05a806d468f@linaro.org>
- <ee406b3d-0719-9332-cab5-62fe7537bcf1@starfivetech.com>
- <20230412-trifle-outplayed-8a1c795fab8b@wendy>
- <d59439c1-bce1-b4a1-0e05-77afc4fc2ebb@linaro.org>
- <84300997-31f8-b36e-e54e-876c266fc953@starfivetech.com>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH RFT v2 01/14] dt-bindings: clock: qcom,rpmcc: Add a way
+ to enable unused clock cleanup
+Message-ID: <ZD2YYrOdQMD3pi7u@gerhold.net>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+ <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="m9nc9K7NjCFO2sFe"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <84300997-31f8-b36e-e54e-876c266fc953@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Mar 08, 2023 at 10:35:17PM +0100, Konrad Dybcio wrote:
+> Disabling RPMCC clocks can be a bit touchy. If we can't guarantee all
+> (or at least most) of the oneline peripherals ask the interconnect
+> framework to keep their buses online and guarantee enough bandwidth,
+> we're relying on bootloader defaults to keep the said buses alive through
+> RPM requests and rate setting on RPM clocks.
+> 
+> Without that in place, the RPM clocks are never enabled in the CCF, which
+> qualifies them to be cleaned up, since - as far as Linux is concerned -
+> nobody's using them and they're just wasting power. Doing so will end
+> tragically, as within miliseconds we'll get *some* access attempt on an
+> unlocked bus which will cause a platform crash.
+> 
+> On the other hand, if we want to save power and put well-supported
+> platforms to sleep, we should be shutting off at least some of these
+> clocks (this time with a clear distinction of which ones are *actually*
+> not in use, coming from the interconnect driver).
+> 
+> To differentiate between these two cases while not breaking older DTs,
+> introduce an opt-in property to correctly mark RPM clocks as enabled
+> after handoff (the initial max freq vote) and hence qualify them for the
+> common unused clock cleanup.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> index 2a95bf8664f9..386153f61971 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> @@ -58,6 +58,12 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  qcom,clk-disable-unused:
+> +    type: boolean
+> +    description:
+> +      Indicates whether unused RPM clocks can be shut down with the common
+> +      unused clock cleanup. Requires a functional interconnect driver.
+> +
 
---m9nc9K7NjCFO2sFe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm surprised that Stephen Boyd did not bring up his usual "rant" here
+of moving the interconnect clock voting out of rpmcc into the
+interconnect drivers (see [1], [2]). :-)
 
-On Fri, Apr 14, 2023 at 10:20:31AM +0800, Changhuang Liang wrote:
->=20
->=20
-> On 2023/4/12 19:29, Krzysztof Kozlowski wrote:
-> > On 12/04/2023 11:42, Conor Dooley wrote:
-> >> On Wed, Apr 12, 2023 at 04:51:16PM +0800, Changhuang Liang wrote:
-> >>>
-> >>>
-> >>> On 2023/4/12 16:35, Krzysztof Kozlowski wrote:
-> >>>> On 11/04/2023 08:47, Changhuang Liang wrote:
-> >>>>> When use "starfive,jh7110-pmu-dphy" compatible, do not need the reg=
- and
-> >>>>> interrupts properties.
-> >>> [...]
-> >>>>> =20
-> >>>>>  description: |
-> >>>>>    StarFive JH7110 SoC includes support for multiple power domains =
-which can be
-> >>>>> @@ -17,6 +18,7 @@ properties:
-> >>>>>    compatible:
-> >>>>>      enum:
-> >>>>>        - starfive,jh7110-pmu
-> >>>>> +      - starfive,jh7110-pmu-dphy
-> >>>>
-> >>>> You do here much more than commit msg says.
-> >>>>
-> >>>> Isn'y DPHY a phy? Why is it in power?
-> >>>>
-> >>>
-> >>> OK, I will add more description. This is a power framework used to tu=
-rn on/off=20
-> >>> DPHY. So it in power, not a phy.
->=20
-> I found something wrong with my description here, not turn on/off DPHY,
-> is turn on/off DPHY power switch.=20
->=20
-> >>
-> >> Perhaps tie it less to its role w/ the phy, and more to do with its
-> >> location, say "jh7110-aon-pmu"?
-> >> There's already "aon"/"sys"/"stg" stuff used in clock-controller and
-> >> syscon compatibles etc.
-> >>
-> >> Krzysztof, what do you think of that? (if you remember the whole
-> >> discussion we previously had about using those identifiers a few weeks
-> >> ago).
-> >=20
-> > Depends whether this is the same case or not. AFAIR, for AON/SYS/STG
-> > these were blocks with few features, not only clock controller.
-> >=20
-> > This sounds like just phy. Powering on/off phy is still a job of phy
-> > controller... unless it is a power domain controller.
-> > Best regards,
-> > Krzysztof
-> >=20
->=20
-> So, next version the compatible can be changed to "jh7110-aon-pmu"?
+I was a bit "cautious" about it back then but at this point I think it
+kind of makes sense. Make sure to read Stephen's detailed explanation in
+https://lore.kernel.org/linux-arm-msm/159796605593.334488.8355244657387381953@swboyd.mtv.corp.google.com/
 
-Hmm, is the dphy the only thing that's power is controlled by registers
-in the aon syscon? I tried looking in the "preliminary" TRM that I have,
-but it's not really got a proper register map so I could not tell.
+We keep looking for workarounds to prevent the CCF from "messing" with
+interconnect-related clocks. But the CCF cannot mess with "clocks" it
+does not manage. The RPM interconnect drivers already talk directly to
+the RPM in drivers/interconnect/qcom/smd-rpm.c. I think it should be
+quite easy to move the QCOM_SMD_RPM_BUS_CLK relates defines over there
+and just bypass the CCF entirely.
 
-If there are, it'd help your case I think Changhuang Liang.
+For backwards compatibility (for platforms without interconnect drivers)
+one could either assume that the bootloader bandwidth votes will be
+sufficient and just leave those clocks completely alone. Or the
+"icc_smd_rpm" platform device could initially make max votes similar to
+the rpmcc device. By coincidence the "icc_smd_rpm" platform device is
+always created, no matter how the device tree looks or if the platform
+actually has an interconnect driver.
 
---m9nc9K7NjCFO2sFe
-Content-Type: application/pgp-signature; name="signature.asc"
+Stephan
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZD2WBAAKCRB4tDGHoIJi
-0vyrAP40p9+eWy0HrXzGbRGnh12ucDUKDIndOUg1jtl07fmWDAEAlx5fHF/hyhd+
-cM0x7QGv6LiQILIX9j6p+Ha/5wFgKAM=
-=A2lK
------END PGP SIGNATURE-----
-
---m9nc9K7NjCFO2sFe--
+[1]: https://lore.kernel.org/linux-arm-msm/159796605593.334488.8355244657387381953@swboyd.mtv.corp.google.com/
+[2]: https://lore.kernel.org/linux-arm-msm/20211209091005.D3344C004DD@smtp.kernel.org/
