@@ -2,42 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5EE6E4313
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE26E6E4321
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 11:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbjDQJC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 05:02:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34298 "EHLO
+        id S230045AbjDQJEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 05:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbjDQJCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:02:16 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C12911FFC;
-        Mon, 17 Apr 2023 02:02:10 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.99,203,1677510000"; 
-   d="scan'208";a="159710161"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Apr 2023 18:02:10 +0900
-Received: from localhost.localdomain (unknown [10.226.92.249])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id EE596400CEF2;
-        Mon, 17 Apr 2023 18:02:07 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: rzg2l-smarc: Enable MTU3a counter using DT overlay
-Date:   Mon, 17 Apr 2023 10:01:59 +0100
-Message-Id: <20230417090159.191346-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230417090159.191346-1-biju.das.jz@bp.renesas.com>
-References: <20230417090159.191346-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S230453AbjDQJEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 05:04:16 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA4C4524C;
+        Mon, 17 Apr 2023 02:04:08 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E3B4D660309E;
+        Mon, 17 Apr 2023 10:04:05 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681722246;
+        bh=mmJ0iBDdFxaw1hgC1BUonlQRRJ5YNpa5yzZ59XFkdY8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IsIwscG9vpQo5g+as2A2VwbuhAaeS91T4rhpvpyRoj2MkE2mMlHPtOGRchRFwTYag
+         3ceHD3BmX3DEoTJ82clCEpWyIXff/9tithcoLlIaZy5/rNSj87pZJq5JzO5Pb5AhTj
+         kDAK7HBB8WNgtWZ6OVxQX1wyJzfR37on8hxp26HGo/G829OwQtVwfBsRQcd6zcaX4S
+         A+8Nw31pUGorLY9CqImD55kLocvlD8biBVvPOeU5k2exJVrNqTrcU2vZXNSt7dU+wV
+         09lJONJies1zQAdacjTtkyry8qv42vEEoaAJmBgKTl6N1hb5234TLC4gz67+XalLyu
+         cptzz1sD80BQg==
+Message-ID: <b645c058-9f51-034b-0e81-94c8d69469c1@collabora.com>
+Date:   Mon, 17 Apr 2023 11:04:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v10 7/7] MAINTAINERS: iommu/mediatek: Update the header
+ file name
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
+        chengci.xu@mediatek.com
+References: <20230417073606.25729-1-yong.wu@mediatek.com>
+ <20230417073606.25729-8-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230417073606.25729-8-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -46,81 +67,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable mtu3 node using dt overlay and disable scif2 node and delete
-{sd1_mux,sd1_mux_uhs} nodes as the pins are shared with mtu3 external
-clock input pins and Z phase signal(MTIOC1A).
+Il 17/04/23 09:36, Yong Wu ha scritto:
+> We add the prefix "mediatek," for the lastest ports header file name,
+> For example, include/dt-bindings/memory/mediatek,mt8188-memory-port.h.
+> Update the entry from "mt*" to "m*".
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>   MAINTAINERS | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d8ebab595b2a..833d32c356ef 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13056,7 +13056,7 @@ L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
+>   S:	Supported
+>   F:	Documentation/devicetree/bindings/iommu/mediatek*
+>   F:	drivers/iommu/mtk_iommu*
+> -F:	include/dt-bindings/memory/mt*-port.h
+> +F:	include/dt-bindings/memory/m*-port.h
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile          |  2 +
- .../boot/dts/renesas/rzg2l-smarc-pmod.dtso    | 43 +++++++++++++++++++
- 2 files changed, 45 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/rzg2l-smarc-pmod.dtso
+Stuff that's not MediaTek specific which filename starts by m and ends for -port.h
+is really unlikely, but we can prevent future issues.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index f130165577a8..57727bcd1334 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -81,8 +81,10 @@ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043-smarc-pmod.dtbo
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc-cru-csi-ov5645.dtbo
-+dtb-$(CONFIG_ARCH_R9A07G044) += rzg2l-smarc-pmod.dtbo
- 
- dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l2-smarc.dtb
-+dtb-$(CONFIG_ARCH_R9A07G054) += rzg2l-smarc-pmod.dtbo
- 
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-pmod.dtso b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pmod.dtso
-new file mode 100644
-index 000000000000..a502faf6e1ad
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pmod.dtso
-@@ -0,0 +1,43 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the RZ/{G2L,V2L} SMARC EVK PMOD parts
-+ *
-+ * Copyright (C) 2023 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+&mtu3 {
-+	pinctrl-0 = <&mtu3_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	mtu3_pins: mtu3 {
-+		mtu3-zphase-clk {
-+			pinmux = <RZG2L_PORT_PINMUX(19, 0, 3)>; /* MTIOC1A */
-+		};
-+
-+		mtu3-ext-clk-input-pin {
-+			pinmux = <RZG2L_PORT_PINMUX(48, 0, 4)>, /* MTCLKA */
-+				 <RZG2L_PORT_PINMUX(48, 1, 4)>; /* MTCLKB */
-+		};
-+	};
-+};
-+
-+&scif2 {
-+	status = "disabled";
-+};
-+
-+&sdhi1_pins {
-+	/delete-node/ sd1_mux;
-+};
-+
-+&sdhi1_pins_uhs {
-+	/delete-node/ sd1_mux_uhs;
-+};
--- 
-2.25.1
+Perhaps the best idea here would be to keep the mt*-port.h and add a new file entry
+with mediatek,mt*-port.h.
+
+Regards,
+Angelo
 
