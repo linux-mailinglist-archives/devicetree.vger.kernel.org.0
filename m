@@ -2,87 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCF56E40CC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E29006E40CF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjDQH0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:26:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40328 "EHLO
+        id S230218AbjDQH0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 03:26:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230300AbjDQH0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:26:15 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1568C1BDC
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:26:14 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id o29-20020a05600c511d00b003f1739de43cso853627wms.4
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:26:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681716372; x=1684308372;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ljLgaaf57A126KMMOllSF/kT0Vj9S+Mosp/GL21iGtQ=;
-        b=qI3Wq776VwZ2nPk9GQWZBx9TGiAT78sh8fzSiMUeSKKIpsmgbl8fe7HI7tdaZLget1
-         xaSGiv0/HvATfZUWp2LY4l7T6deS9FFPP+X+0DQjqUontVDYSgqCdyJ1VCe4klUPQDEu
-         BVb+FPQxloA12zau4dBE6uEVdqC7epvq+DpSRr12lMOVu6cghkeJqyhkYm903pvBEzkW
-         lQHpu/hZ9naLkUdg2RLgQqbr6ubQ01t3kCAR39GPKXRY3Dik5sJ4CDt0q/rO0QBhpBnK
-         +A8PxDu7i1EZW9QENM/oBHD1BhuAdzuFcxWZm7jsY2MPiiN65C7fXCGAcxlvFalXGi2H
-         j+Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681716372; x=1684308372;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ljLgaaf57A126KMMOllSF/kT0Vj9S+Mosp/GL21iGtQ=;
-        b=HGa7KUxb3YkSMprQXKBO1hgvBzPg9XsO9FDBr0o+TCmg2955yw67m07DC2S17H3R3E
-         BScQLuPP4AmDTz8AOJmK+3KuqdM9gijNeHnk7KHodZnolqBxNnBEqwbYHGSQ24vlxIBp
-         q/AMtt9iwWhCCm40hO6Cv4x8N7EEfVzCic/g46H7/4HG/C0VOceD6LQb5yTduMkVX4J6
-         miP4eh4iF/K/2cPCYMuypYG8Mn40N+fdNEnw5AKFagbr4pFOl4O/oMIevx6JwZYIL/Sw
-         RzPeNA8ogFY74gVxVmn4jYOm4GHGsSW/emcacm5ZfMGK25K4wn1ySqBS9iGw/nXRKGKv
-         6Rgw==
-X-Gm-Message-State: AAQBX9eB2VnE7QASQr3C5afpIxDwbJNMarhlZ2C6TWrnVlxr57cJ+1ij
-        wuDkWkIlKpkrphiF3XehErkw8Q==
-X-Google-Smtp-Source: AKy350aXTDBhJlSS7l+PbovD5yC3f5gUBwVC4AAsGrRjVNtF3fljLlitOHnHziKqn4q7vNPxM16IWg==
-X-Received: by 2002:a1c:6a10:0:b0:3f1:7316:6f4 with SMTP id f16-20020a1c6a10000000b003f1731606f4mr2138005wmc.20.1681716372523;
-        Mon, 17 Apr 2023 00:26:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a1e1:81a8:1acc:2b91? ([2a01:e0a:982:cbb0:a1e1:81a8:1acc:2b91])
-        by smtp.gmail.com with ESMTPSA id y25-20020a05600c365900b003f0aeac475esm9089599wmq.44.2023.04.17.00.26.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 00:26:12 -0700 (PDT)
-Message-ID: <e35d5610-6189-8421-2ebf-77d46c42d264@linaro.org>
-Date:   Mon, 17 Apr 2023 09:26:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: display: simplify compatibles syntax
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230211AbjDQH0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:26:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A72C940F5
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:26:30 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1poJFh-0006hA-8x; Mon, 17 Apr 2023 09:26:17 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 0A8271B04D6;
+        Mon, 17 Apr 2023 07:26:14 +0000 (UTC)
+Date:   Mon, 17 Apr 2023 09:26:13 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Oliver Hartkopp <socketcan@hartkopp.net>
+Cc:     Judith Mendez <jm@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Xin Ji <xji@analogixsemi.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>
+Subject: Re: [RFC PATCH 5/5] can: m_can: Add hrtimer to generate software
+ interrupt
+Message-ID: <20230417-taking-relieving-f2c8532864c0-mkl@pengutronix.de>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230413223051.24455-6-jm@ti.com>
+ <20230414-bounding-guidance-262dffacd05c-mkl@pengutronix.de>
+ <4a6c66eb-2ccf-fc42-a6fc-9f411861fcef@hartkopp.net>
+ <20230416-failing-washbasin-e4fa5caea267-mkl@pengutronix.de>
+ <f58e8dce-898c-8797-5293-1001c9a75381@hartkopp.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="f6bxkwneko5oxwq5"
+Content-Disposition: inline
+In-Reply-To: <f58e8dce-898c-8797-5293-1001c9a75381@hartkopp.net>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,21 +67,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 12:42, Krzysztof Kozlowski wrote:
-> Lists (items) with one item should be just const or enum because it is
-> shorter and simpler.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Rebased on next-20230406. I hope it applies cleanly...
-> ---
->   .../display/bridge/analogix,anx7625.yaml      |  3 +--
->   .../display/panel/sharp,lq101r1sx01.yaml      |  4 ++--
->   .../bindings/display/solomon,ssd1307fb.yaml   | 24 +++++++++----------
->   3 files changed, 14 insertions(+), 17 deletions(-)
-> 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+--f6bxkwneko5oxwq5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On 16.04.2023 21:46:40, Oliver Hartkopp wrote:
+> > I had the 5ms that are actually used in the code in mind. But this is a
+> > good calculation.
+>=20
+> @Judith: Can you acknowledge the value calculation?
+>=20
+> > > The "shortest" 11 bit CAN ID CAN frame is a Classical CAN frame with =
+DLC =3D 0
+> > > and 1 Mbit/s (arbitration) bitrate. This should be 48 bits @1Mbit =3D=
+> ~50
+> > > usecs
+> > >=20
+> > > So it should be something about
+> > >=20
+> > >      50 usecs * (FIFO queue len - 2)
+> >=20
+> > Where does the "2" come from?
+>=20
+> I thought about handling the FIFO earlier than it gets completely "full".
+>=20
+> The fetching routine would need some time too and the hrtimer could also
+> jitter to some extend.
+
+I was assuming something like this.
+
+I would argue that the polling time should be:
+
+    50 =C2=B5s * FIFO length - IRQ overhead.
+
+The max IRQ overhead depends on your SoC and kernel configuration.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--f6bxkwneko5oxwq5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQ89JIACgkQvlAcSiqK
+BOj1QAf8C3XM8k07BC2j8JyiAa7udtivyxZJ8HO2LKeVF312gm8khfUIMOo06Sqp
+jW+3LndAnjaby9ahmfPCWHwPPdF6X1xWJhH+JUCFTeM6C7JBdtKjSkFcVx2o69ot
+ZgMQnqOaxunKcnm2EOTOSsP9P2PLNzjm0MD0Nf+soV9PYgMdLfl/oKjZRMqQFbG/
+yMMZ40JaMt9kzwZSE9d6YE/EfygUmHmYQERz3OXGMhKVLMEe0CrOOKV+goEXvJfP
+SOg+kCqU14RzDC8fzJMk8Ju1bgICmQksIvHAH05hbuCctWjhePYHINx3kF8JZut+
+yJP8lWEBWlsf+uGi7oINsvn6ZTY4WA==
+=3slR
+-----END PGP SIGNATURE-----
+
+--f6bxkwneko5oxwq5--
