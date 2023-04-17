@@ -2,77 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 959DC6E41C8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014756E41DF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 10:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbjDQH5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43612 "EHLO
+        id S229640AbjDQICI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 04:02:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjDQH5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:57:24 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C272246B2
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:57:05 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id kt6so23592124ejb.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681718224; x=1684310224;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7PpWiQ7b2Y4q/bVhWBzEUCFurmz9ANGD/u5kpg3cc78=;
-        b=eCFaf5VYarfVdWKr0Q1BGA96mCmI7L6mpWOgbZX9xuWasmpgA3aKwGVHK9MEQ5a9Ef
-         s4n8Epc1sMSSbJwrUCNETScJ2xxS/GuCosckd9ABpWh/JBdZS1TcRKDzH37TWoPo03kU
-         ySikRyXrmZL0Ha69DRaX5bWyKs0dIylINmfazD/opQ1it09gzZcjkliFWiQn2l6B3sxP
-         mzAaTsYtdIEKOyj0fORx+Yphej33/GET0zLLa+CF7Zlromy+bXL9JSfLK8tDQjnW+Gye
-         4jXAesrHuSgYJeT6Yl2+HM4ncH2ufHAr4bG/u7xu7jHyrAKVtsIX4Ff/r6XiIj6cuJ5p
-         zy1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681718224; x=1684310224;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7PpWiQ7b2Y4q/bVhWBzEUCFurmz9ANGD/u5kpg3cc78=;
-        b=MkrvQIiBJ4G/BVx4IHuRRyoP6Oa8W3aGuYEeDfancC0FaEtrWuwmjmhFB+SukYJUn9
-         zjcEcZ30cRpSsyHAhH7N3jaJA8OikN2mI9tUuhB16Wk9IPSdSeKf44JZKJWQxb4+dCrd
-         SWiYmS53FzCnJlIm0VL8WcWsgOnAdUofWTqGxHaVIugXRxmurl8CLF8wKDzEOIMm+qi0
-         qWcAlGpOjiUPWS5jhuNM2yaFgio0SC9AOnJynVJ+dxCZaMKVw6HIo9o07CUEnudcbaoq
-         5R4TVFAD1iLwu/9e9kEXKs6cPjzVL8O66VIBESLojGo4oExGFrNUDGyrLn8Tw2J1PR4F
-         RERQ==
-X-Gm-Message-State: AAQBX9d2KnlUZ5luyqLdSsJ6kfz1Q/H+COMdavAwJVw6B9tuM6L+0bpu
-        Ej1Fk11cud06AC/LLmydJDf6UQ==
-X-Google-Smtp-Source: AKy350ad6PJFy2EvQ4qLXp03bkkTd0Ysn4iQIY1+hgUYCnMornSK7Uw+I3NoWKyCSeY6WWiBC+B+ZQ==
-X-Received: by 2002:a17:906:af63:b0:94e:6b12:caab with SMTP id os3-20020a170906af6300b0094e6b12caabmr8147626ejb.51.1681718224145;
-        Mon, 17 Apr 2023 00:57:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:b0ac:4d3b:966c:b33d? ([2a02:810d:15c0:828:b0ac:4d3b:966c:b33d])
-        by smtp.gmail.com with ESMTPSA id e17-20020a17090681d100b0094f2f1c5ea1sm2898753ejx.174.2023.04.17.00.57.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 00:57:03 -0700 (PDT)
-Message-ID: <42982d5c-31f7-bb26-3970-c40a702af190@linaro.org>
-Date:   Mon, 17 Apr 2023 09:57:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sm8150: add missing qcom,smmu-500
- fallback
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231169AbjDQIBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 04:01:44 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3051BE3
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 01:01:28 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1poJna-00056J-0M; Mon, 17 Apr 2023 10:01:18 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1poJnZ-00019Z-9b; Mon, 17 Apr 2023 10:01:17 +0200
+Date:   Mon, 17 Apr 2023 10:01:17 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230416151311.346596-1-krzysztof.kozlowski@linaro.org>
- <20230416151311.346596-2-krzysztof.kozlowski@linaro.org>
- <00b18b59-0ecd-316f-41f5-05ee34e599b7@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <00b18b59-0ecd-316f-41f5-05ee34e599b7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
+Message-ID: <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
+ <20230417055627.16482-2-laurent.pinchart@ideasonboard.com>
+ <20230417065059.fgmdfwk7pnj62amm@pengutronix.de>
+ <20230417074148.GF28551@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230417074148.GF28551@pendragon.ideasonboard.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,40 +56,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/04/2023 09:16, Konrad Dybcio wrote:
+On 23-04-17, Laurent Pinchart wrote:
+> Hi Marco,
 > 
+> On Mon, Apr 17, 2023 at 08:50:59AM +0200, Marco Felsch wrote:
+> > Hi Laurent,
+> > 
+> > your patch LGTM just one nit/idea, please see below.
+> > 
+> > On 23-04-17, Laurent Pinchart wrote:
+> > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
+> > > 
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
+> > >  1 file changed, 60 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > index 2dd60e3252f3..2a374a4c14a2 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
+> > >  				};
+> > >  			};
+> > >  
+> > > +			mipi_csi_0: csi@32e40000 {
+> > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+> > > +				reg = <0x32e40000 0x10000>;
+> > > +				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> > > +				clock-frequency = <500000000>;
+> > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> > > +					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
+> > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
+> > > +				clock-names = "pclk", "wrap", "phy", "axi";
+> > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
+> > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+> > > +				assigned-clock-rates = <500000000>;
+> > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+> > > +				status = "disabled";
+> > > +
+> > > +				ports {
+> > > +					#address-cells = <1>;
+> > > +					#size-cells = <0>;
+> > > +
+> > > +					port@0 {
+> > > +						reg = <0>;
+> > 
+> > If we would add:
+> > 						mipi_csi_0_in: endpoint {};
+> > 
+> > here we could refernce it from overlays/board dts files more easily.
 > 
-> On 16.04.2023 17:13, Krzysztof Kozlowski wrote:
->> Since commit 6c84bbd103d8 ("dt-bindings: arm-smmu: Add generic
->> qcom,smmu-500 bindings") the SMMU is supposed to use qcom,smmu-500
->> compatible fallback:
->>
->>   ['qcom,sm8150-smmu-500', 'qcom,adreno-smmu', 'qcom,smmu-500', 'arm,mmu-500'] is too long
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> index 3846f5e0f656..024b3c79ea11 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> @@ -3983,7 +3983,7 @@ spmi_bus: spmi@c440000 {
->>  		};
->>  
->>  		apps_smmu: iommu@15000000 {
-> Are you..
+> Isn't there an unwritten rule (or consensus) that an endpoint should
+> always have a remote-endpoint property ?
+
+I don't know if there is one.
+
+> While ports describe hardware properties of a device and should always
+> be there regardless of connections, endpoints describe connections and
+> I don't think they should be instantiated with a valid
+> remote-endpoint.
+
+I know, therefore I mentioned it as idea to make it 'easier' to add
+camera nodes.
+
+Regards,
+  Marco
+
 > 
->> -			compatible = "qcom,sm8150-smmu-500", "arm,mmu-500";
->> +			compatible = "qcom,sm8150-smmu-500",
+> > > +					};
+> > > +
+> > > +					port@1 {
+> > > +						reg = <1>;
+> > > +					};
+> > > +				};
+> > > +			};
+> > > +
+> > > +			mipi_csi_1: csi@32e50000 {
+> > > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+> > > +				reg = <0x32e50000 0x10000>;
+> > > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> > > +				clock-frequency = <266000000>;
+> > > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> > > +					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
+> > > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> > > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
+> > > +				clock-names = "pclk", "wrap", "phy", "axi";
+> > > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>;
+> > > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+> > > +				assigned-clock-rates = <266000000>;
+> > > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
+> > > +				status = "disabled";
+> > > +
+> > > +				ports {
+> > > +					#address-cells = <1>;
+> > > +					#size-cells = <0>;
+> > > +
+> > > +					port@0 {
+> > > +						reg = <0>;
+> > > +					};
+> > > +
+> > > +					port@1 {
+> > > +						reg = <1>;
+> > > +					};
+> > > +				};
+> > > +			};
+> > > +
+> > >  			pcie_phy: pcie-phy@32f00000 {
+> > >  				compatible = "fsl,imx8mp-pcie-phy";
+> > >  				reg = <0x32f00000 0x10000>;
 > 
-> "qcom,adreno-smmu", "arm,mmu-500";
-> ..sure about that?
-
-I supposed to paste here different one... thanks for spotting it.
-
-
-Best regards,
-Krzysztof
-
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
