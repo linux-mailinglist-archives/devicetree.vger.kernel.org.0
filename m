@@ -2,72 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21236E46C6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18FFD6E46DF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 13:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbjDQLuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 07:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
+        id S229834AbjDQLyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 07:54:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230192AbjDQLuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:50:14 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF8B365AF;
-        Mon, 17 Apr 2023 04:49:16 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 18A545FD28;
-        Mon, 17 Apr 2023 14:47:41 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1681732061;
-        bh=UFOQ7zl15XBdCKDP1PBa7gWSCuhGytq2kMbaG0PLdoc=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=l3oCzl5MJATaLtjposS07ZcWREmdW4Z4JqkdE5ALl7zbPpEgBtFlhtj8kWx6ooy7O
-         IasWd1VK1kgPIueM2Od6VLJWmA7IvsvEaZ/z/AA8uMBCcJKV4ZpmYKXKmgdrXcSZaD
-         /dLFxE4K784BXu0cOxqOU/CKULHj7FC48gpyuaYalocdi/HCjehD36QZ6qpYwzav+I
-         WB9I9KJuZaNn4hYCCSR3gdqmg5vf4gEnCo0/muMQJo/mOupgs6RqQIXVYh7fPBfgjw
-         b001/EpgNTtDPcUvqqppiw2o+bQLDrWf45kA7DyN3Wn39hy0cpO5EQ0Ijdf5DI9RPz
-         4w+nL9GaUb/Cw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Mon, 17 Apr 2023 14:47:39 +0300 (MSK)
-Date:   Mon, 17 Apr 2023 14:47:39 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <vkoul@kernel.org>, <kishon@kernel.org>,
-        <hminas@synopsys.com>, <Thinh.Nguyen@synopsys.com>,
-        <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v1 4/5] usb: dwc3-meson-g12a: support OTG switch
-Message-ID: <20230417114739.r7aoiodqybalbn4o@CAB-WSD-L081021>
-References: <20230414152423.19842-1-ddrokosov@sberdevices.ru>
- <20230414152423.19842-5-ddrokosov@sberdevices.ru>
- <CAFBinCDyUBWd-V0mDy_edzH=3JM5SAuX=vtT4MG9Fb62Rcv=mA@mail.gmail.com>
+        with ESMTP id S230285AbjDQLyM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:54:12 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7398A65B5;
+        Mon, 17 Apr 2023 04:53:22 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id o2so25329347plg.4;
+        Mon, 17 Apr 2023 04:53:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681732399; x=1684324399;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W28jZlr43n4A+R8dw3oLWIHuParHAvf3EPiECCIvalU=;
+        b=qhPUmExhRfifkoU+BUpekMd1gF/UVzqbLp7FIrS0RngjO+zVlU+4wtXqvS81HXxTCH
+         wXRI5D9rv6NJs6cPzwkxyvUaOqdBDHWyYDFRhROC3ZUQLD1x7IHGLBg6qpYIwBNX6pi6
+         CkzwtJfULWhZeiHSwtLINQKAJqCW2VVWpHYYusPnxo0O3FBnUABeM5DxYyslSkMplp79
+         yFjDrQTb1F4ofmRWcjcKbA56LrHfFKDAtqGldGIq/aZBJGHNF6bqZ/WTSIRG7RYDTKZu
+         /qxGVyyeADIj23M3ae8kc4bFZ8CVaxvsVMEqJfhYfai4YD6gJkShoqPFfBzbeE2DR3/S
+         lERA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681732399; x=1684324399;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=W28jZlr43n4A+R8dw3oLWIHuParHAvf3EPiECCIvalU=;
+        b=PPA5hbMEnfjpXH5IZj2nm1Qvf2SyC3p2RVuMHZaU8Y9kXSA+t5rP49XC73YE1QsxRX
+         staNecrUErewwhBu1te8BiaMc85ljJ08ny4NCanS6Zfuy0dJ+c4KkRfsJ7rmP43mUTFA
+         q3/jgf/dL5xz92zmqhqBV85yibY+tK10iZOnLiDHigWCkFU2tB+81uAv90lI6z+EsTzw
+         AZp+pSpXZbBBrp3646SljwWGL4vsXX9IONXmAxT8VqTcfINymf0BkBhtzrHAXQWgNbW1
+         Ho20CVUDGN0zL21qV2we3U7p3y025lpLyZI1ytKA4jDQEzcGLJVj9NKBBk1IF32xG6h8
+         TDiA==
+X-Gm-Message-State: AAQBX9c1mclfnJOe8RtaeFpyHyKz1cwH9h9nJJyPOrJCAlBVJuY8H1Qt
+        ZjRciN4h9arJhIbYPDNCacyj/snMuzNBshC/Fhk=
+X-Google-Smtp-Source: AKy350YurxFnXqjEiS/2z4uyi1r8p2MxvThm75LwFZcyBF9tDX0TFjTvQ5tjopuoyeXI+BEBVKAhjJ3Ze587uvT3574=
+X-Received: by 2002:a17:902:f90b:b0:1a6:655f:9efe with SMTP id
+ kw11-20020a170902f90b00b001a6655f9efemr3499134plb.3.1681732398572; Mon, 17
+ Apr 2023 04:53:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFBinCDyUBWd-V0mDy_edzH=3JM5SAuX=vtT4MG9Fb62Rcv=mA@mail.gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/17 09:07:00 #21118574
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+References: <20230415104104.5537-1-aford173@gmail.com> <20230415104104.5537-4-aford173@gmail.com>
+ <8db7ad8da4805d7eb4471051676d179e193ee399.camel@pengutronix.de>
+In-Reply-To: <8db7ad8da4805d7eb4471051676d179e193ee399.camel@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 17 Apr 2023 06:53:07 -0500
+Message-ID: <CAHCN7x+hFu15TM0w5DXzmWZRKEN6=MNNTVLNtpNxbirVGrapdg@mail.gmail.com>
+Subject: Re: [PATCH 4/6] drm: bridge: samsung-dsim: Dynamically configure DPHY timing
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        aford@beaconembedded.com,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Fabio Estevam <festevam@gmail.com>, m.szyprowski@samsung.com,
+        marex@denx.de, Robert Foss <rfoss@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,25 +89,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Martin,
+On Mon, Apr 17, 2023 at 3:38=E2=80=AFAM Lucas Stach <l.stach@pengutronix.de=
+> wrote:
+>
+> Hi Adam,
+>
+> Am Samstag, dem 15.04.2023 um 05:41 -0500 schrieb Adam Ford:
+> > NXP uses a lookup table to determine the various values for
+> > the PHY Timing based on the clock rate in their downstream
+> > kernel.  Since the input clock can be variable, the phy
+> > settings need to be variable too.  Add an additional variable
+> > to the driver data to enable this feature to prevent breaking
+> > boards that don't support it.
+> >
+>
+> I haven't checked if this generates values close to the ones in this
+> table, but I guess it should be worth a try to use
+> phy_mipi_dphy_get_default_config() instead.
 
-Thank you for quick review, appreciate it!
-Please find my comments below and in the other replies.
+I didn't know that was a thing.  I like that idea much better than the
+table.  I just pulled what NXP had and tweaked it to fit the mainline.
+I'll give it a try in the next few days, when I have some more time.
 
-On Sun, Apr 16, 2023 at 10:56:36PM +0200, Martin Blumenstingl wrote:
-> On Fri, Apr 14, 2023 at 5:24 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> [...]
-> >  static const struct dwc3_meson_g12a_drvdata a1_drvdata = {
-> > -       .otg_switch_supported = false,
-> > +       .otg_switch_supported = true,
-> it would be great if you could also follow up with a patch that
-> removes otg_switch_supported.
-> A1 was the only variant that needed it and after this patch it's just dead code.
-
-It makes sense. I thought about it before sending the first version, but
-I found a counter-argument: future SoCs may use this parameter.
-But if you ask, I will remove 'otg_switch_supported' in the next version
-
--- 
-Thank you,
-Dmitry
+adam
+>
+> Regards,
+> Lucas
+>
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> >  drivers/gpu/drm/bridge/samsung-dsim.c |  85 +++++++--
+> >  drivers/gpu/drm/bridge/samsung-dsim.h | 254 ++++++++++++++++++++++++++
+> >  include/drm/bridge/samsung-dsim.h     |   1 +
+> >  3 files changed, 326 insertions(+), 14 deletions(-)
+> >  create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.h
+> >
+<snip>
+>
