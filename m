@@ -2,73 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B9F6E474C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 14:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 494466E46FB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 14:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbjDQMNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 08:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60188 "EHLO
+        id S230093AbjDQL77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 07:59:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230434AbjDQMNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 08:13:18 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3C4F4499;
-        Mon, 17 Apr 2023 05:12:44 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 70C3B5FD28;
-        Mon, 17 Apr 2023 14:57:08 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1681732628;
-        bh=iw1ARucM/xufZ3PIY5MlxUVdgnsDiUvAkRlREVNWQsw=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=bsIliiOemS+7Us65TsC1UYc2EnsgwRkpA1vS5+MdbvaNpSsOdTZ+uwjQVnrH6WrFX
-         gwdAzfZJBsFlXxbAW3xS3EuUh5HSqrPu9GqrQtubQ16fqCkgYrJxn1qtX5d+jgbskl
-         jHKdMkpJTHa9rqCEb7eMmxUbkrg2wdw6+V0so9+rndyj0okTIy6FzNVBEvQAhzdFTU
-         DguPVJtO3RSNDltSr/K+qEYjmtMZKeCdyxL8QoZZkPGAKUaKHxpp0HUV/aeHqEOJbf
-         1y/cE+PEYfYctE9X+zywjYa4eHYv+c65/swsh+NcMW6VzSi0ljchvhDzNqQgEdC5AB
-         epGeyRW58N/LQ==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Mon, 17 Apr 2023 14:57:07 +0300 (MSK)
-Date:   Mon, 17 Apr 2023 14:57:07 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <vkoul@kernel.org>, <kishon@kernel.org>,
-        <hminas@synopsys.com>, <Thinh.Nguyen@synopsys.com>,
-        <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v1 1/5] phy: amlogic: during USB PHY clkin obtaining,
- enable it
-Message-ID: <20230417115707.p5btzzg4rlyzf7ni@CAB-WSD-L081021>
-References: <20230414152423.19842-1-ddrokosov@sberdevices.ru>
- <20230414152423.19842-2-ddrokosov@sberdevices.ru>
- <CAFBinCCEhobbyKHuKDWzTYCQWgNT1-e8=7hMhq1mvT6CuEOjGw@mail.gmail.com>
+        with ESMTP id S230402AbjDQL76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 07:59:58 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF885275;
+        Mon, 17 Apr 2023 04:59:06 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-63b620188aeso1247752b3a.0;
+        Mon, 17 Apr 2023 04:59:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681732662; x=1684324662;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ByuvqnZ0whBYE58ALvTkPoZXFMoOo3weY1eli1YLs8M=;
+        b=ezXmzlMEqu08ohTUCxyWeT1ghxYBInGOWizV/QuxcC3LNYxDh4JflmMdjRbuaKuFEF
+         M3/peUNeBWEFoNGrCMbsDOZBj245P7/NUTnHjRz8dXI8bIdQiWYnK5KwVA7Eqfw2RG/y
+         IMj15+g/R9545qoQEQLdBloLu5S8PqcAuaJA3lC97I6/m2AOugMZBuh0HbYjumTHQNpL
+         ZALVclRThPcEz1Icfh4eP08TGGnFWk+EW52vi9FJR+hNPeiM4l4D/xaMz4GsJGAmmSKj
+         OZ3qvulCfiClhw3EKAQiTh34xSpk3PvDKxCXWzG/BuQPk5qXzXboCa1KB7OeZP+/otqg
+         nDpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681732662; x=1684324662;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ByuvqnZ0whBYE58ALvTkPoZXFMoOo3weY1eli1YLs8M=;
+        b=TD1r/7eQ1j8ai4uIs7pg5XnBQe9Jw6SYAnV6meRbzVE47qi1zkd9C5KwT2gRbrf5uU
+         s228ThKZO7kkWW7O2D/QKG5ILsfKt2VM62tgvRP5Za0skgxeF7zV3zZ6Mk/vXen05zqJ
+         rSNwaTFvH36caPsmdXXtgmj9rI70UudedNCWDBoe7mt2Cdw5jqRCcQk39XOI0NOwbf17
+         wp6zdwHEP7s6SCu1m7I/RPwnIJkZZEesRrEFigpH7cYPfGzFDzD+sJkNofiI/SEphgCR
+         DWkJBbMOps035k4xJQWRTKBbIylztFfTY9ZVYcDloNWESwJj7JeoYUXFwdAPIUIYMM4n
+         rx8Q==
+X-Gm-Message-State: AAQBX9eUnvuiw/bXNSc9Qo45mmK7CvS8x/cjWr59edi1kIpms8xNsXWS
+        XJgAUorcPwKW/nwH4Igj2GbDKPdHoVrtc6WY7sE=
+X-Google-Smtp-Source: AKy350ZuQYL1FYypLxgVwEvW7yKVWERIY1UOZe2w4ZV8QVjHAvbbucDalib2gb7BSAcoKBVQ6I/LS6oIqFiXdpeTNM4=
+X-Received: by 2002:a05:6a00:24c4:b0:63b:5496:7af9 with SMTP id
+ d4-20020a056a0024c400b0063b54967af9mr6836463pfv.2.1681732661836; Mon, 17 Apr
+ 2023 04:57:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFBinCCEhobbyKHuKDWzTYCQWgNT1-e8=7hMhq1mvT6CuEOjGw@mail.gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/17 09:07:00 #21118574
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+References: <20230415104104.5537-1-aford173@gmail.com> <20230415104104.5537-5-aford173@gmail.com>
+ <807aa6c6-bbea-abcc-172d-17e22d1a3988@denx.de>
+In-Reply-To: <807aa6c6-bbea-abcc-172d-17e22d1a3988@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 17 Apr 2023 06:57:30 -0500
+Message-ID: <CAHCN7x+NUnMtLbj_7A_uqxPsi5NXRXsPFwDnn=sf1bgm-Q-BsQ@mail.gmail.com>
+Subject: Re: [PATCH 5/6] drm: bridge: samsung-dsim: Support non-burst mode
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, m.szyprowski@samsung.com,
+        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,29 +88,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 16, 2023 at 10:54:17PM +0200, Martin Blumenstingl wrote:
-> Hi Dmitry,
-> 
-> On Fri, Apr 14, 2023 at 5:24 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> [...]
-> > -       priv->clk = devm_clk_get(dev, "xtal");
-> > +       priv->clk = devm_clk_get_enabled(dev, "xtal");
-> Generally this works fine but I wouldn't recommend this approach if:
-> - there's some required wait time after the clock has been enabled
-> (see phy_meson_g12a_usb2_init - there's already some required wait
-> time after triggering the reset)
-> - clock gating (for power saving) is needed when the dwc3 driver is
-> unloaded by the PHY driver is not
-> 
-> In this case: just manually manage the clock in phy_meson_g12a_usb2_{init,exit}
+On Sun, Apr 16, 2023 at 5:13=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+>
+> On 4/15/23 12:41, Adam Ford wrote:
+> > The high-speed clock is hard-coded to the burst-clock
+> > frequency specified in the device tree.  However, when
+> > using devices like certain bridge chips without burst mode
+> > and varying resolutions and refresh rates, it may be
+> > necessary to set the high-speed clock dynamically based
+> > on the desired pixel clock for the connected device.
+>
+> The link rate negotiation should happen internally between the nearest
+> bridge and DSIM, so please add that to DRM core instead of hacking
+> around it by tweaking the HS clock again.
 
-I'm sorry, but I'm not fully understanding your point. Currently, no
-sleeps are required for this clock and we don't have any logic for
-power saving (g12a phy_ops doesn't have power_on()/power_off()
-implementation).
-However, I believe all of your arguments make sense for the future
-development of the phy_meson_g12a_usb2 driver. Is that correct?
+I thought you tried to add something like this before and had some resistan=
+ce.
 
--- 
-Thank you,
-Dmitry
+The Pixel clock is set by the bridge already without any new code
+added to the DRM core..  I am just reading that value that's there,
+and setting the clock accordingly.  I don't see how this is a hack.
+
+adam
