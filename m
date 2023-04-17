@@ -2,112 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 421876E4C3E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 17:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D906E4C6B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 17:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbjDQPAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 11:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54382 "EHLO
+        id S229573AbjDQPLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 11:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbjDQPAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 11:00:53 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679184222;
-        Mon, 17 Apr 2023 08:00:43 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-191-155.ewe-ip-backbone.de [91.248.191.155])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A4DB06603223;
-        Mon, 17 Apr 2023 16:00:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681743641;
-        bh=uM3PWO3IQObscBohW7QPL9pguhEFNiexqSSj/2QsykE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ONSf76mjLn0RMj50BOw6eqXwnjJms8Pgk1OcxbjaNuQvOai9JcudMN+9bTGf04gk4
-         dq3Xz7oTHmGWq0D1dIt8ToEnJ3cX2QhAnQDXGIU6YcPNfkuyta6buZEiI11jrJW+hO
-         WhgwqLi/ZWI4ec9R4aWc0rtTHOHRgavit3148PyeobgJ5UotqoO9l3LzhzX0sfKaUm
-         rsmtXoJ4wlzS0g4skHGX0LvBCIrg+d9pwuVN8UasSwKlM9pARTYXcVinWtGnPNblxM
-         77jd3njA9Uzj14yaW9bCtB7/4wyyvIgsTXaSNc1nsiVNvHy/YUZXy26lI8+gmMPbhi
-         ecLIocrr26jXg==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id DC9334807EF; Mon, 17 Apr 2023 17:00:38 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Marc Zyngier <maz@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230102AbjDQPK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 11:10:56 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F3B7ED8;
+        Mon, 17 Apr 2023 08:10:54 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HDVbv0018515;
+        Mon, 17 Apr 2023 15:10:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=S5Qi7p0d0sqPYAkoqlrE21UofxzDD+PHi/9VQ6ZkIIM=;
+ b=QzwA4yGXJIEFGYhLcC2uYXzFeDrcwSjem/Iu1xM20S5eNhYMVj8QQUGg0SURw/nLH4hv
+ QtouFffzD84kOWqp67dCiLswI8NF0rS7iW98fkFx/EZThsvAwrdMRJH3c6oAZqq9w99T
+ GjUu0EhcQtPEBXGc9Qng9OiP9TvNgNXqv87ZDYE5PwiUUe2cGQd0UKRZU6f9WOCo38pX
+ UQ3phEZA9+RJFOQLghPJMHL8SjvLrXRrTaYhArvq+0UO7Jbv8miI4rH6SDjjtoUvXYvp
+ YYHqAZlLFIpdq+WJiJE48kT0cSjg7SsOZ/41SBxmBzI7K5TeRuKSonO0cxLvYojjM2cT 6g== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pymneux4p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 17 Apr 2023 15:10:43 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HFAgg9009126
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 17 Apr 2023 15:10:42 GMT
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Mon, 17 Apr 2023 08:10:38 -0700
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        XiaoDong Huang <derrick.huang@rock-chips.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add MSI support
-Date:   Mon, 17 Apr 2023 17:00:38 +0200
-Message-Id: <20230417150038.51698-3-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230417150038.51698-1-sebastian.reichel@collabora.com>
-References: <20230417150038.51698-1-sebastian.reichel@collabora.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: [PATCH V4 0/3] soc: qcom: boot_stats: Add driver support for boot_stats
+Date:   Mon, 17 Apr 2023 20:38:13 +0530
+Message-ID: <cover.1681742910.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: nxEkOlQWMev2bGn20t8k8KSQdHI0zniv
+X-Proofpoint-GUID: nxEkOlQWMev2bGn20t8k8KSQdHI0zniv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-17_10,2023-04-17_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=977 phishscore=0
+ lowpriorityscore=0 clxscore=1015 mlxscore=0 spamscore=0 impostorscore=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304170136
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the two Interrupt Translation Service (ITS) IPs that are part of the
-GIC-600, which are required for message signalled interrupts (MSI). This
-is required for PCIe, which fully relies on MSI for interrupts.
+Qualcomm's proprietary Android boot-loaders capture boot time
+stats, like the time when the bootloader started execution and at what
+point the bootloader handed over control to the kernel etc. in the IMEM
+region. This information is captured in a specific format by this driver
+by mapping a structure to the IMEM memory region and then accessing the
+members of the structure to log the information in a debugfs file.
+This information is useful in verifying if existing boot KPIs have
+regressed or not.
 
-Enabling the ITS nodes requires an operating system, that has a
-workaround for Rockchip errata #3588001 (GIC600 can not support
-shareable attribute).
+A sample log in SM8450(waipio) device is as follows:-
 
-Co-developed-by: Kever Yang <kever.yang@rock-chips.com>
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+/sys/kernel/debug/146aa6b0.boot_stats # cat abl_time
+17898 ms
+/sys/kernel/debug/146aa6b0.boot_stats # cat pre_abl_time
+2879 ms
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 2124c654f665..62204b96b0b4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -1741,7 +1741,24 @@ gic: interrupt-controller@fe600000 {
- 		mbi-alias = <0x0 0xfe610000>;
- 		mbi-ranges = <424 56>;
- 		msi-controller;
-+		ranges;
-+		#address-cells = <2>;
- 		#interrupt-cells = <4>;
-+		#size-cells = <2>;
-+
-+		its0: msi-controller@fe640000 {
-+			compatible = "arm,gic-v3-its";
-+			msi-controller;
-+			#msi-cells = <1>;
-+			reg = <0x0 0xfe640000 0x0 0x20000>;
-+		};
-+
-+		its1: msi-controller@fe660000 {
-+			compatible = "arm,gic-v3-its";
-+			msi-controller;
-+			#msi-cells = <1>;
-+			reg = <0x0 0xfe660000 0x0 0x20000>;
-+		};
- 
- 		ppi-partitions {
- 			ppi_partition0: interrupt-partition-0 {
--- 
-2.39.2
+The Module Power Manager(MPM) sleep counter starts ticking at the PBL
+stage and the timestamp generated by the sleep counter is logged by
+the Qualcomm proprietary bootloader(ABL) at two points-> First when it
+starts execution which is logged here as "pre_abl_time" and the second
+when it is about to load the kernel logged as "abl_time". Both these
+values are read up by the driver from IMEM region and printed as above.
+
+Changes in V4
+
+*Implemented the comments on V3 of the patch series
+
+Souradeep Chowdhury (3):
+  dt-bindings: sram: qcom,imem: Add Boot Stat region within IMEM
+  soc: qcom: boot_stat: Add Driver Support for Boot Stats
+  MAINTAINERS: Add the entry for boot_stats driver support
+
+ Documentation/ABI/testing/debugfs-driver-bootstat  |  17 ++++
+ .../devicetree/bindings/sram/qcom,imem.yaml        |  22 +++++
+ MAINTAINERS                                        |   7 ++
+ drivers/soc/qcom/Kconfig                           |   9 ++
+ drivers/soc/qcom/Makefile                          |   1 +
+ drivers/soc/qcom/boot_stats.c                      | 101 +++++++++++++++++++++
+ 6 files changed, 157 insertions(+)
+ create mode 100644 Documentation/ABI/testing/debugfs-driver-bootstat
+ create mode 100644 drivers/soc/qcom/boot_stats.c
+
+--
+2.7.4
 
