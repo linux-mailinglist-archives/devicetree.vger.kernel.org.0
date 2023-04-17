@@ -2,67 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE1746E49EB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95F3C6E49F6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjDQNbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
+        id S230274AbjDQNdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:33:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjDQNbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:31:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF634199A;
-        Mon, 17 Apr 2023 06:31:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 57325624B4;
-        Mon, 17 Apr 2023 13:31:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B292EC433AA;
-        Mon, 17 Apr 2023 13:31:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681738296;
-        bh=Z1E7VRImbk5O8ynjKxbGEPL5/pNRjHf9QbC2IrDjeEw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ApQLt+5hMKVQIvzY5fCsHXN1O9d66Vkqdbnf/xozhB9nuWuwLcZf/MN0ppBlfhFIt
-         HQDUV2nEhzb6hm2lIFc6FOWsKV/xtHSrJDm16DGEKIk7rmSl1kCXD+7UtJki0cUM41
-         8okXBMRnAHqFb3pXt6yy8HLqPKgBBH01IvciEYmbPaO9iX7on0mQpD89z1YsQnCqhL
-         q322Ce5KqizgqcdNbLPtssnzKOay7XNC41dL/SlQYjEfg4XGzbmnPKW+wXhduIwJN+
-         v6rbKR36oXKryWyC6KbHqtudzstgkxltXOwyhoC5jg1NY3BT/2BLRzyKhheW+Oby7i
-         1ToU1aRNddTrw==
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-54ee0b73e08so419886927b3.0;
-        Mon, 17 Apr 2023 06:31:36 -0700 (PDT)
-X-Gm-Message-State: AAQBX9eGxyvuHzlfKkJwg+oWPlDZscfMuPgVFC5dXpk5VgFSDMxUSDax
-        qFkGb7WNAAArCWRQ4p25LpAW7nyYYFu9vvY9Rg==
-X-Google-Smtp-Source: AKy350bviA6nMrYItp2UFoijYxMfOof9zLeZI1Waml/VUI/79m2nqsKw6eSDud+5a83sS7abqkKDxQ68edHzGfQfRRo=
-X-Received: by 2002:a81:b60c:0:b0:54c:a67:90b with SMTP id u12-20020a81b60c000000b0054c0a67090bmr9245222ywh.5.1681738295535;
- Mon, 17 Apr 2023 06:31:35 -0700 (PDT)
+        with ESMTP id S230049AbjDQNdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:33:09 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF2972BA
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:33:01 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id ud9so63957108ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:33:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1681738375; x=1684330375;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZPiq0OVRi/FkSBkrx6r9kFVybHHOEdw9SmQm4viTMUc=;
+        b=HmaGMEqlD0daDB1jKy5x8/I2mHUSTv5MdkMvVgod2xVcHLDQWpfmEUu5hvCJhlB+uY
+         RBIBvON9ydZaIZ5A0hEF3/JnYamojfOZPaNv0Fnl4KtKLUlLAYOm41hAjOu/nHweOkU7
+         ah61rYpdk630cG/aRRas7+JhiblpbDRVJQmKQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681738375; x=1684330375;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZPiq0OVRi/FkSBkrx6r9kFVybHHOEdw9SmQm4viTMUc=;
+        b=W/NdfP6AUnVlLY9x62uKjaPvM0LB5LOFLeZXJHUtQLm75bZB3+sNwT3ZrRq0Axwbzm
+         uNjrwTUAehfdQDX+BGOoyhaWfX/F7927+6pWhtqDTNvJW9OdKuTIhvXIXMYcWdv2kumP
+         aBMquN7JSBVx79B/wJgkAUG1KSIr6jEMkBNvu5K6mudXMp747ODoA5+8erYlXRngC8/s
+         lZp5pybpeXYfQUSsT1PBa+kJdcRC7J7McJ2NkMj1OTDhjOhdG2N4TRSyKINK/Erl0Stj
+         nD0eTl+2nKqOywM37Jg2tougJxNdQcl3tZjxDJPf4P8INNRW9/vmVxm4NKAt/+kDNsNf
+         18gA==
+X-Gm-Message-State: AAQBX9d92C3ZYs0pENjgyszXEPhtc9YxJOXRn/WZeraENR+Xit+CX5ZA
+        ZHxOiAr6at0v7OiMEWhc5IgFK+gto4SmSne+k2ubkA==
+X-Google-Smtp-Source: AKy350ZzjPUz2h4qigxL59rfjw0d0maUo1wv20OwpPikwH6jp4gg9S+5S6QEt9Xcgp5m3FszaxGY+A==
+X-Received: by 2002:a17:906:5210:b0:94a:56ec:7f12 with SMTP id g16-20020a170906521000b0094a56ec7f12mr8187172ejm.30.1681738375002;
+        Mon, 17 Apr 2023 06:32:55 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
+        by smtp.gmail.com with ESMTPSA id p20-20020a170906615400b0094aa087578csm6686538ejl.171.2023.04.17.06.32.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 06:32:53 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id n43-20020a05600c502b00b003f17466a9c1so1205442wmr.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:32:53 -0700 (PDT)
+X-Received: by 2002:a05:600c:2308:b0:3f1:6980:2d34 with SMTP id
+ 8-20020a05600c230800b003f169802d34mr1272021wmo.6.1681738373434; Mon, 17 Apr
+ 2023 06:32:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230412224620.8909-1-tanure@linux.com> <20230412224620.8909-2-tanure@linux.com>
-In-Reply-To: <20230412224620.8909-2-tanure@linux.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 Apr 2023 08:31:24 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL1L4EOpVm7nXbZ0t8-9wHVq4531MN4Csemi-4SBd=zig@mail.gmail.com>
-Message-ID: <CAL_JsqL1L4EOpVm7nXbZ0t8-9wHVq4531MN4Csemi-4SBd=zig@mail.gmail.com>
-Subject: Re: [PATCH v3 1/1] of: fdt: Scan /memreserve/ last
-To:     Lucas Tanure <tanure@linux.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, jbrunet@baylibre.com,
-        linux-amlogic@lists.infradead.org,
+References: <20230417123956.926266-1-treapking@chromium.org>
+In-Reply-To: <20230417123956.926266-1-treapking@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 17 Apr 2023 06:32:40 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VoC2gK5MtBU9qhVxJwRRUGBMLT96UH7F+QKcmGEYo_sQ@mail.gmail.com>
+Message-ID: <CAD=FV=VoC2gK5MtBU9qhVxJwRRUGBMLT96UH7F+QKcmGEYo_sQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8173: Power on panel regulator on boot
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-        stefan@agner.ch
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,52 +81,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 12, 2023 at 5:46=E2=80=AFPM Lucas Tanure <tanure@linux.com> wro=
-te:
+Hi,
+
+On Mon, Apr 17, 2023 at 5:40=E2=80=AFAM Pin-yen Lin <treapking@chromium.org=
+> wrote:
 >
-> Change the order of scanning /memreserve/ and /reserved-memory node.
-> /reserved-memory node should go first, as it has a more updated
-> description of the memory regions and it can apply flags, like nomap.
-> Also, /memreserve/ should avoid reserving regions described in
-> /reserved-memory node.
-
-Please give some background details why we need to make this change.
-As-is, sounds like some theoretical issue. IOW, incorporate some of
-the details in the cover letter here. For single patches, you don't
-need a cover letter anyways.
-
-Powerpc folks, please comment and/or test. I worry there could be some
-subtle differences with this change.
-
+> Add "regulator-boot-on" to "panel_fixed_3v3" to save time on powering
+> the regulator during boot.  Also add "off-on-delay-us" to the node to
+> make sure the regulator never violates the panel timing requirements.
 >
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+>
 > ---
->  drivers/of/fdt.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index d1a68b6d03b3..c28aedd7ae1f 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -635,6 +635,9 @@ void __init early_init_fdt_scan_reserved_mem(void)
->         if (!initial_boot_params)
->                 return;
->
-> +       fdt_scan_reserved_mem();
-> +       fdt_reserve_elfcorehdr();
-> +
->         /* Process header /memreserve/ fields */
->         for (n =3D 0; ; n++) {
->                 fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
-> @@ -643,8 +646,6 @@ void __init early_init_fdt_scan_reserved_mem(void)
->                 memblock_reserve(base, size);
->         }
->
-> -       fdt_scan_reserved_mem();
-> -       fdt_reserve_elfcorehdr();
->         fdt_init_reserved_mem();
->  }
->
-> --
-> 2.40.0
->
+>  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
