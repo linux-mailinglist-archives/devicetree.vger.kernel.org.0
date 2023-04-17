@@ -2,69 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B096E4982
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 013846E49AF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbjDQNMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33366 "EHLO
+        id S229583AbjDQNRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:17:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbjDQNLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:11:34 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79FBEBB87;
-        Mon, 17 Apr 2023 06:10:59 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id a7so3001896oiw.7;
-        Mon, 17 Apr 2023 06:10:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681737034; x=1684329034;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=jBonPjm6hFR6zSrloV8u7ZAY904Aai0PvZoTRlUcPtA=;
-        b=R8qMcuw/CmlG+BivBAlUKA0dSOJTMpqp9ilLjplda1RebQpBogOqxiJwkHiN96g9yI
-         K0OU/Sk9engmF8RzAIAaiH0S+jaoYC10NUYRur2cCOWq9dl4W6STbLhDO1AccfUm5lzj
-         n+MelB009qOZ9m37DsG9DWdNhsmrnvkyEOXuToztKBX/hJldIDrOqCJnOtaElsQsSZyt
-         odELxyYIa1iXYQEFOk4GZPT/b7aEdZPBC5PJOsxSgHpABisFD49OnyNhAVwzaj56Dvu+
-         3lkB9+sxsHOzKs21Do08LHsL5hfPNKiu+kJei8vAFow+kymrEwehSoclBnqWL+YYQ8Qa
-         t00A==
-X-Gm-Message-State: AAQBX9dUcCrCfaIxSU2O4fzEJEexMDQJrKtfNb6N5c41cGBNU8hpzWk9
-        GyG/0HnquDCmBMN7BEi6UQ==
-X-Google-Smtp-Source: AKy350YnZq84V4tQgFyHDcnn+eunXYEjW2tATgr53HkpmhsG7LHEOB3RlxH2Jte7iMzDS5GPW95Yyg==
-X-Received: by 2002:a05:6808:238e:b0:38e:eaf:cf1c with SMTP id bp14-20020a056808238e00b0038e0eafcf1cmr1069613oib.54.1681737033870;
-        Mon, 17 Apr 2023 06:10:33 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j21-20020a056808057500b0038e086c764dsm978559oig.43.2023.04.17.06.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 06:10:33 -0700 (PDT)
-Received: (nullmailer pid 2588781 invoked by uid 1000);
-        Mon, 17 Apr 2023 13:10:27 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Yang Xiwen <forbidden405@outlook.com>
-Cc:     Jiancheng Xue <xuejiancheng@hisilicon.com>,
-        tianshuliang <tianshuliang@hisilicon.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        David Yang <mmyangfl@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231181AbjDQNQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:16:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8E9B47F
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:16:10 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1poOi2-0004iF-Dt; Mon, 17 Apr 2023 15:15:54 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1poOi1-0004G6-BX; Mon, 17 Apr 2023 15:15:53 +0200
+Date:   Mon, 17 Apr 2023 15:15:53 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230415-mmc-hi3798mv200-v4-3-44096e187f53@outlook.com>
-References: <20230415-mmc-hi3798mv200-v4-0-44096e187f53@outlook.com>
- <20230415-mmc-hi3798mv200-v4-3-44096e187f53@outlook.com>
-Message-Id: <168173527652.2535566.16838567933859217136.robh@kernel.org>
-Subject: Re: [PATCH RFC v4 3/4] dt-binding: mmc: hi3798cv200-dw-mshc:
- convert to YAML and rename to histb-dw-mshc
-Date:   Mon, 17 Apr 2023 08:10:27 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
+Message-ID: <20230417131553.bw5kkrpbptdnf6mi@pengutronix.de>
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
+ <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
+ <20230417081510.GA19964@pendragon.ideasonboard.com>
+ <3232774.44csPzL39Z@steina-w>
+ <CAHCN7xJ26TMD4U_5wTtGcGFHZBTTewVRd+mnKa5Ff5cRxBdHPA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xJ26TMD4U_5wTtGcGFHZBTTewVRd+mnKa5Ff5cRxBdHPA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,41 +59,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23-04-17, Adam Ford wrote:
 
-On Sun, 16 Apr 2023 17:19:34 +0800, Yang Xiwen wrote:
-> The renaming is due to the fact that it is now supporting SoCs other
-> than Hi3798CV200.
+...
+
+> > > > > > If we would add:
+> > > > > >                                                 mipi_csi_0_in:
+> > endpoint {};
+> > > > > >
+> > > > > > here we could refernce it from overlays/board dts files more easily.
+> > > > >
+> > > > > Isn't there an unwritten rule (or consensus) that an endpoint should
+> > > > > always have a remote-endpoint property ?
+> > > >
+> > > > I don't know if there is one.
+> > > >
+> > > > > While ports describe hardware properties of a device and should always
+> > > > > be there regardless of connections, endpoints describe connections and
+> > > > > I don't think they should be instantiated with a valid
+> > > > > remote-endpoint.
+> > > >
+> > > > I know, therefore I mentioned it as idea to make it 'easier' to add
+> > > > camera nodes.
+> > >
+> > > As a middleground, would it be useful to have a label for the port ?
+> > > Something like
+> > >
+> > >       mipi_csi_0: csi@32e40000 {
+> > >               ports {
+> > >                       mipi_csi_0_port_0: port@0 {
+> > >                       };
+> > >               };
+> > >       };
+> > >
+> > > An overlay could then reference that and create the endpoint. I'm not
+> > > entirely sure how useful that would be though, as the overlay would need
+> > > to enable the CSI node anyway. Compare
+> > >
+> > > --------
+> > > &mipi_csi_0 {
+> > >       status = "okay";
+> > > };
+> > >
+> > > &mipi_csi_0_port_0 {
+> > >       mipi_csi_0_in: endpoint {
+> > >               remote-endpoint = <&imx327_out>;
+> > >       };
+> > > };
+> > > --------
+> > >
+> > > with
+> > >
+> > > --------
+> > > &mipi_csi_0 {
+> > >       status = "okay";
+> > >
+> > >       ports {
+> > >               port@0 {
+> > >                       mipi_csi_0_in: endpoint {
+> > >                               remote-endpoint = <&imx327_out>;
+> > >                       };
+> > >               };
+> > >       };
+> > > };
+> > > --------
+> > >
+> > > I have a slight preference for the latter as it groups all the CSI0 data
+> > > in a single overlay target, but if the former is generally preferred,
+> > > I'm fine with that too.
+> >
+> > The former is more compact, but also raises the following dtc warnings while
+> > creating the .dtbo:
+> > Warning (graph_endpoint): /fragment@4/__overlay__: graph endpoint node name
+> > should be 'endpoint'
+> > Warning (graph_endpoint): /fragment@4/__overlay__: graph connection to node '/
+> > fragment@1/__overlay__/ports/port@1/endpoint' is not bidirectional
+> >
+> > for the following snippet:
+> >
+> > &mipi_csi_0_out {
+> >         remote-endpoint = <&isp1_in>;
+> > };
+> >
+> > I'm not sure if there is a chance to fix at all.
 > 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  .../bindings/mmc/hi3798cv200-dw-mshc.txt           | 40 -------------
->  .../bindings/mmc/hisilicon,histb-dw-mshc.yaml      | 69 ++++++++++++++++++++++
->  2 files changed, 69 insertions(+), 40 deletions(-)
-> 
+> Once there is consensus on how this should be generically plumbed,
+> please keep me in the loop, so I can add the corresponding imx8m Nano
+> trees as well.  I've tested Laurent's work for a while on the Nano
+> that I have.  I was going to push DT updates for Nano, then I saw this
+> conversation, so I decided to hold off for now.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This was just an idea nothing serious. Maybe Krzysztof have a strong
+opinion on that.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mmc/hisilicon,histb-dw-mshc.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/mmc/hisilicon,histb-dw-mshc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230415-mmc-hi3798mv200-v4-3-44096e187f53@outlook.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Regards,
+  Marco
