@@ -2,156 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4E86E45A7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 094D26E45C7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 12:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbjDQKuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 06:50:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50470 "EHLO
+        id S230491AbjDQKxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 06:53:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbjDQKuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:50:37 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFACE44B3
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:49:54 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id u3so10900922ejj.12
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 03:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1681728497; x=1684320497;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C9iHIbSak9nSUV5ZOt5jZPoisxCx1VMSh5mAnS7nnfM=;
-        b=OlcvyTsuhh2rBj7Us6n6yqnEc9GRxW3SjMm9TEKCgR4tdv8gOO9G0B5M7f/eUtfEaT
-         VuCD3g/SzLHwaGSCutn6aaVEba3wSPbHG2HeBh/sy1zAWugjiS/V2ElHRJGDV7T3+Rtb
-         DqA4amyoocTCZUV/D9xrTRL93IXSSEtqsYmLB585dpCUcTq50AvC1K46zwxN/MOh673c
-         Hj0/QkIMJ5CcGW1e4e9Yom7EFeIxYRJmWsFIsl3PZ9CXMAF5pBOdwR624S6vy3p7HKcA
-         630mEGEAqS+WVg1M1ddQzyDuJCmUNJiZ7j8az19DJNoUdma9SXuMLpJGbmPvQC6BNuYA
-         Z8Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681728497; x=1684320497;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C9iHIbSak9nSUV5ZOt5jZPoisxCx1VMSh5mAnS7nnfM=;
-        b=INufW4H5E7rYvKgJf/Otteb993rDp6ffMU3G4cBWFOOimM7IQad++57kwTetAwBpWb
-         REGzZIUd19Imh15EbHfGjPcAE1Aqi/XTNOcd0OeBI+kTqkh/iE+/KaU0lYvKwvHWFwkn
-         UYNs9vJN4QDkcrID2a9X6gR3zS3XzZpqnrLX/zcv8prJkSJEsZlsYwCrAjDlfIUOA1FV
-         jjdAWgM6xxZKXdmbBoQY0oxWEWlt5Atuf87qzpgZoplANpXFhwyK5udFzhXR3XrU1IJk
-         o7HYJOKplD8KUTp+5FXJBQ2feVi6XP4RzgL38mkf7kSobgOjYCSAIT2J38m4sfCSpfqX
-         hljQ==
-X-Gm-Message-State: AAQBX9dWgUjb3qpezgu4TrmD6FSr5NGmHgaxPXmDnhX4DHlxTMNwEyco
-        hFhNqXg+81x9/RU2+8xLGym2vA==
-X-Google-Smtp-Source: AKy350YR0VBYn5fdrMYuoVzSWv9e2HXJbGfK3uJjGluMIvIe8PzWyuSA1ExgonebbI+IbWlEiti31g==
-X-Received: by 2002:a17:907:a4a:b0:94f:2916:7d6 with SMTP id be10-20020a1709070a4a00b0094f291607d6mr6304638ejc.19.1681728497400;
-        Mon, 17 Apr 2023 03:48:17 -0700 (PDT)
-Received: from fedora.sec.9e.network (ip-095-222-150-251.um34.pools.vodafone-ip.de. [95.222.150.251])
-        by smtp.gmail.com with ESMTPSA id j25-20020a1709062a1900b0094f614e43d0sm1953842eje.8.2023.04.17.03.48.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 03:48:17 -0700 (PDT)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v12 2/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Mon, 17 Apr 2023 12:47:58 +0200
-Message-Id: <20230417104801.808972-3-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230417104801.808972-1-patrick.rudolph@9elements.com>
-References: <20230417104801.808972-1-patrick.rudolph@9elements.com>
+        with ESMTP id S230493AbjDQKw5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 06:52:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51741976D;
+        Mon, 17 Apr 2023 03:51:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D67F6124E;
+        Mon, 17 Apr 2023 10:49:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD791C433EF;
+        Mon, 17 Apr 2023 10:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681728571;
+        bh=ziVA6an0IclPiTv5XXAnS129CvY6eq9Ui0ud26tLlWU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=pnlzBaD2datLbMEEuWf8qpGLvnCe9TaMR7JX0TfTiVM14q5kUkGVSP6CXaYN9wjt9
+         biSqEVVYsSs8uUIU0j67ehaj8JjecZXJBtdf8rAwcqraalik96YmsY0qtuNrh8Hf7E
+         +C1Fya95z8EeZXji2v8L8AOSaH/18WObxmVEoxlaBuptn1CzOX9l+WmbmczVa1io1W
+         RvKC6okQtnql7Vf7QuaxO94aubCdXDuHPfJiUDK/CX7hrQOJw6R8OPYjwgMCToMMP3
+         dhd2y6M+vmkynLIunJK+Lx4F5SzWZCd4nacwg5hPCdXKFUl7hCXaz3Cw3gWzq+QKo7
+         j4h5VXR1FUbgQ==
+Message-ID: <0fdc2dd8-89d6-8282-d16d-946ec2cb87c4@kernel.org>
+Date:   Mon, 17 Apr 2023 13:49:26 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 00/10] arm64: dts: ti: k3-am64: Add missing properties
+ used in u-boot
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Nikhil M Jain <n-jain1@ti.com>, Tom Rini <trini@konsulko.com>
+References: <20230414073328.381336-1-nm@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230414073328.381336-1-nm@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the existing pca954x driver.
 
-For chips that are powered off by default add a regulator called vdd-supply.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 25 +++++++++++++++----
- 1 file changed, 20 insertions(+), 5 deletions(-)
+On 14/04/2023 10:33, Nishanth Menon wrote:
+> Hi,
+> 
+> while attempting to cleanup u-boot, I noticed that u-boot had some
+> additional nodes that were'nt in kernel.org, and this makes syncing the
+> kernel.org patches back to u-boot hard.
+> 
+> So, sync the same.
+> 
+> Bootlogs: (SK and evm)
+> https://gist.github.com/nmenon/6b09f55251225d3f3cce076c32a33bba
+> 
+> Baseline: next-20230413 (will be great if we can get into rc2 - will
+> make u-boot sync easier)
+> 
+> Nishanth Menon (10):
+>   arm64: dts: ti: k3-am64: Add general purpose timers
+>   arm64: dts: ti: k3-am642-sk: Fix mmc1 pinmux
+>   arm64: dts: ti: k3-am642-sk: Enable main_i2c0 and eeprom
+>   arm64: dts: ti: k3-am642-sk: Describe main_uart1 pins
+>   arm64: dts: ti: k3-am642-sk: Rename regulator node name
+>   arm64: dts: ti: k3-am642-evm: Enable main_i2c0 and eeprom
+>   arm64: dts: ti: k3-am642-evm: Describe main_uart1 pins
+>   arm64: dts: ti: k3-am642-evm: Rename regulator node name
+>   arm64: dts: ti: k3-am642-evm: Add VTT GPIO regulator for DDR
+>   arm64: dts: ti: k3-am642-sk|evm: Drop bootargs, add aliases
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 144 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  |  45 +++++++
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi      |  16 ---
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  76 ++++++++++--
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  69 ++++++++---
+>  5 files changed, 313 insertions(+), 37 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 93ffa67d0d9c..6fed6eae9c9b 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,21 +4,29 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
--
--allOf:
--  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  The NXP PCA954x and compatible devices are I2C bus
-+  multiplexer/switches that share the same functionality
-+  and register layout.
-+  The devices usually have 4 or 8 child buses, which are
-+  attached to the parent bus by using the SMBus "Send Byte"
-+  command.
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -59,6 +67,9 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip.
-+
- required:
-   - compatible
-   - reg
-@@ -71,6 +82,8 @@ allOf:
-           compatible:
-             contains:
-               enum:
-+                - maxim,max7367
-+                - maxim,max7369
-                 - nxp,pca9542
-                 - nxp,pca9543
-                 - nxp,pca9544
-@@ -97,6 +110,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
--- 
-2.39.2
+for this series:
 
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
