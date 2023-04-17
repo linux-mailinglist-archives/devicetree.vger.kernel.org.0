@@ -2,55 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 013846E49AF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1746E49EB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:31:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbjDQNRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43290 "EHLO
+        id S229657AbjDQNbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231181AbjDQNQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:16:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8E9B47F
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:16:10 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1poOi2-0004iF-Dt; Mon, 17 Apr 2023 15:15:54 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1poOi1-0004G6-BX; Mon, 17 Apr 2023 15:15:53 +0200
-Date:   Mon, 17 Apr 2023 15:15:53 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
-Message-ID: <20230417131553.bw5kkrpbptdnf6mi@pengutronix.de>
-References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
- <20230417080117.jiqpynebq2we2hh4@pengutronix.de>
- <20230417081510.GA19964@pendragon.ideasonboard.com>
- <3232774.44csPzL39Z@steina-w>
- <CAHCN7xJ26TMD4U_5wTtGcGFHZBTTewVRd+mnKa5Ff5cRxBdHPA@mail.gmail.com>
+        with ESMTP id S229458AbjDQNbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:31:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF634199A;
+        Mon, 17 Apr 2023 06:31:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 57325624B4;
+        Mon, 17 Apr 2023 13:31:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B292EC433AA;
+        Mon, 17 Apr 2023 13:31:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681738296;
+        bh=Z1E7VRImbk5O8ynjKxbGEPL5/pNRjHf9QbC2IrDjeEw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ApQLt+5hMKVQIvzY5fCsHXN1O9d66Vkqdbnf/xozhB9nuWuwLcZf/MN0ppBlfhFIt
+         HQDUV2nEhzb6hm2lIFc6FOWsKV/xtHSrJDm16DGEKIk7rmSl1kCXD+7UtJki0cUM41
+         8okXBMRnAHqFb3pXt6yy8HLqPKgBBH01IvciEYmbPaO9iX7on0mQpD89z1YsQnCqhL
+         q322Ce5KqizgqcdNbLPtssnzKOay7XNC41dL/SlQYjEfg4XGzbmnPKW+wXhduIwJN+
+         v6rbKR36oXKryWyC6KbHqtudzstgkxltXOwyhoC5jg1NY3BT/2BLRzyKhheW+Oby7i
+         1ToU1aRNddTrw==
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-54ee0b73e08so419886927b3.0;
+        Mon, 17 Apr 2023 06:31:36 -0700 (PDT)
+X-Gm-Message-State: AAQBX9eGxyvuHzlfKkJwg+oWPlDZscfMuPgVFC5dXpk5VgFSDMxUSDax
+        qFkGb7WNAAArCWRQ4p25LpAW7nyYYFu9vvY9Rg==
+X-Google-Smtp-Source: AKy350bviA6nMrYItp2UFoijYxMfOof9zLeZI1Waml/VUI/79m2nqsKw6eSDud+5a83sS7abqkKDxQ68edHzGfQfRRo=
+X-Received: by 2002:a81:b60c:0:b0:54c:a67:90b with SMTP id u12-20020a81b60c000000b0054c0a67090bmr9245222ywh.5.1681738295535;
+ Mon, 17 Apr 2023 06:31:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHCN7xJ26TMD4U_5wTtGcGFHZBTTewVRd+mnKa5Ff5cRxBdHPA@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20230412224620.8909-1-tanure@linux.com> <20230412224620.8909-2-tanure@linux.com>
+In-Reply-To: <20230412224620.8909-2-tanure@linux.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 17 Apr 2023 08:31:24 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL1L4EOpVm7nXbZ0t8-9wHVq4531MN4Csemi-4SBd=zig@mail.gmail.com>
+Message-ID: <CAL_JsqL1L4EOpVm7nXbZ0t8-9wHVq4531MN4Csemi-4SBd=zig@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] of: fdt: Scan /memreserve/ last
+To:     Lucas Tanure <tanure@linux.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, jbrunet@baylibre.com,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
+        stefan@agner.ch
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,98 +70,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-04-17, Adam Ford wrote:
+On Wed, Apr 12, 2023 at 5:46=E2=80=AFPM Lucas Tanure <tanure@linux.com> wro=
+te:
+>
+> Change the order of scanning /memreserve/ and /reserved-memory node.
+> /reserved-memory node should go first, as it has a more updated
+> description of the memory regions and it can apply flags, like nomap.
+> Also, /memreserve/ should avoid reserving regions described in
+> /reserved-memory node.
 
-...
+Please give some background details why we need to make this change.
+As-is, sounds like some theoretical issue. IOW, incorporate some of
+the details in the cover letter here. For single patches, you don't
+need a cover letter anyways.
 
-> > > > > > If we would add:
-> > > > > >                                                 mipi_csi_0_in:
-> > endpoint {};
-> > > > > >
-> > > > > > here we could refernce it from overlays/board dts files more easily.
-> > > > >
-> > > > > Isn't there an unwritten rule (or consensus) that an endpoint should
-> > > > > always have a remote-endpoint property ?
-> > > >
-> > > > I don't know if there is one.
-> > > >
-> > > > > While ports describe hardware properties of a device and should always
-> > > > > be there regardless of connections, endpoints describe connections and
-> > > > > I don't think they should be instantiated with a valid
-> > > > > remote-endpoint.
-> > > >
-> > > > I know, therefore I mentioned it as idea to make it 'easier' to add
-> > > > camera nodes.
-> > >
-> > > As a middleground, would it be useful to have a label for the port ?
-> > > Something like
-> > >
-> > >       mipi_csi_0: csi@32e40000 {
-> > >               ports {
-> > >                       mipi_csi_0_port_0: port@0 {
-> > >                       };
-> > >               };
-> > >       };
-> > >
-> > > An overlay could then reference that and create the endpoint. I'm not
-> > > entirely sure how useful that would be though, as the overlay would need
-> > > to enable the CSI node anyway. Compare
-> > >
-> > > --------
-> > > &mipi_csi_0 {
-> > >       status = "okay";
-> > > };
-> > >
-> > > &mipi_csi_0_port_0 {
-> > >       mipi_csi_0_in: endpoint {
-> > >               remote-endpoint = <&imx327_out>;
-> > >       };
-> > > };
-> > > --------
-> > >
-> > > with
-> > >
-> > > --------
-> > > &mipi_csi_0 {
-> > >       status = "okay";
-> > >
-> > >       ports {
-> > >               port@0 {
-> > >                       mipi_csi_0_in: endpoint {
-> > >                               remote-endpoint = <&imx327_out>;
-> > >                       };
-> > >               };
-> > >       };
-> > > };
-> > > --------
-> > >
-> > > I have a slight preference for the latter as it groups all the CSI0 data
-> > > in a single overlay target, but if the former is generally preferred,
-> > > I'm fine with that too.
-> >
-> > The former is more compact, but also raises the following dtc warnings while
-> > creating the .dtbo:
-> > Warning (graph_endpoint): /fragment@4/__overlay__: graph endpoint node name
-> > should be 'endpoint'
-> > Warning (graph_endpoint): /fragment@4/__overlay__: graph connection to node '/
-> > fragment@1/__overlay__/ports/port@1/endpoint' is not bidirectional
-> >
-> > for the following snippet:
-> >
-> > &mipi_csi_0_out {
-> >         remote-endpoint = <&isp1_in>;
-> > };
-> >
-> > I'm not sure if there is a chance to fix at all.
-> 
-> Once there is consensus on how this should be generically plumbed,
-> please keep me in the loop, so I can add the corresponding imx8m Nano
-> trees as well.  I've tested Laurent's work for a while on the Nano
-> that I have.  I was going to push DT updates for Nano, then I saw this
-> conversation, so I decided to hold off for now.
+Powerpc folks, please comment and/or test. I worry there could be some
+subtle differences with this change.
 
-This was just an idea nothing serious. Maybe Krzysztof have a strong
-opinion on that.
-
-Regards,
-  Marco
+>
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  drivers/of/fdt.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index d1a68b6d03b3..c28aedd7ae1f 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -635,6 +635,9 @@ void __init early_init_fdt_scan_reserved_mem(void)
+>         if (!initial_boot_params)
+>                 return;
+>
+> +       fdt_scan_reserved_mem();
+> +       fdt_reserve_elfcorehdr();
+> +
+>         /* Process header /memreserve/ fields */
+>         for (n =3D 0; ; n++) {
+>                 fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
+> @@ -643,8 +646,6 @@ void __init early_init_fdt_scan_reserved_mem(void)
+>                 memblock_reserve(base, size);
+>         }
+>
+> -       fdt_scan_reserved_mem();
+> -       fdt_reserve_elfcorehdr();
+>         fdt_init_reserved_mem();
+>  }
+>
+> --
+> 2.40.0
+>
