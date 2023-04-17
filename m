@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E196E4963
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9495E6E4986
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 15:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbjDQNIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 09:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56012 "EHLO
+        id S229898AbjDQNMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 09:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231266AbjDQNH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:07:57 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD785FE9
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:06:03 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f0a0c4e505so9247105e9.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 06:06:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1681736725; x=1684328725;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+pN7CHTmhcpk+kvQFe2Qj4nSZeBGIjHXqqKasTb6lhk=;
-        b=Bgg3k2q1I4LWyoS114Sz0KymTKA2sEwO4Aef31BG8tNohuz0BdZB2B6nEsGZrY1GEo
-         wOL+m/NcuDjyrWBSVrXOiH+20/n5djMM3Dj1qAOIbHSAXzClWaMolmUBcuAsxBtLFHk4
-         HfxfOH2gCCClo5PVsp5KjDQEOY9g6s6MYLKtYEtkXErOp5Hxzh7wj5jce0B1LY4YewB+
-         eE2pEIyZuyiVlWF7hMpadTMqa+h7dYLiQ/adwFBbZdTwXXm+6wt4KdRNMGo4T8XyxzPG
-         gk8CmhFlPuxt4gFWkzqSI0ID94xRb4AU70e6df5XjkEEnTizT1/rtIICx00xrshMzWfP
-         0ySQ==
+        with ESMTP id S230304AbjDQNLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 09:11:42 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3BA7EE6;
+        Mon, 17 Apr 2023 06:11:06 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1880110ebe5so500232fac.3;
+        Mon, 17 Apr 2023 06:11:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681736725; x=1684328725;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+pN7CHTmhcpk+kvQFe2Qj4nSZeBGIjHXqqKasTb6lhk=;
-        b=By8HmAFJLbOCoJWzOo8/ggvLFH2U1QYM3c3WVckbmVi/xJT+8AaOFxAartHUqp2l+o
-         XbNnguu/bosswXKzDzuAa5D8drWX0e8F/nN+6q5Q3Z9IxmKipwCfF4RJQK6qJbwtKdQo
-         vHu/EPAkL3QXXkDHhWeo47Q+yMgjyZCyK+HKfSwAIejmZYbapPeiCkXbo1JFTm78kMl4
-         GRTMxMeBwqzMPhYWHH7Q2nTcK7fMJaHy9Edt49brWJfwrm/Ab1PCiVxU4ZarG7Nxoszy
-         SdGltNDY0mDYxhyipBL9JyqR+FhDHXl5uzNveIn2jLX1bJQIFjTZ22bYNX+NFCaru/3x
-         O4Lg==
-X-Gm-Message-State: AAQBX9f+i3/mxrAKOkhlIsSyOSHH46XaR14Hiha3rBxj9z08jP3Xr5rq
-        yburPB8j2mcdFPW10GWXWS334g==
-X-Google-Smtp-Source: AKy350Ya7/njYFXhgTJTc7VF5jmgWE3WlJqHe1HiKD8ysBAxGWWzpzzvX4+3LSjuaxGp4l/qwi72Uw==
-X-Received: by 2002:a5d:4576:0:b0:2f2:501b:bca6 with SMTP id a22-20020a5d4576000000b002f2501bbca6mr6649069wrc.17.1681736725582;
-        Mon, 17 Apr 2023 06:05:25 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:374a:ffae:fd26:4893])
-        by smtp.gmail.com with ESMTPSA id q14-20020a05600000ce00b002f0075ccf7bsm10509938wrx.71.2023.04.17.06.05.24
+        d=1e100.net; s=20221208; t=1681737032; x=1684329032;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IXZt0KqImFgsyhhPxPLi1OSBe3TPO8lPA8li15emVQ8=;
+        b=eNmVN/i1QwqyB475WNYuIM60wcQSoX++knu5ea25r1tSb0PbiZhk95iEtxyqpfKLRO
+         uaG9JMtl70Y6JFjnYs95KSO2MUWDG7d0+x+8RQxUpQTych0Ei95nP7Eg7uJVDD5aJrgT
+         tjR8elV4dfqtHbtrGws3SkK5KJGDuccDvo94P90BghSFlA3K8vMcculAcC+I4k14+kma
+         PxMBEOA+pyIy+5pGDtxvvwAmsjqa4Ngrc64Hrm+nPTITFBHZnbtrNSbAxLB1q4yS/Xfu
+         awBNxpOFJ+yzGN62U5CkFGE/rUfBKAf7QSXi12LxEcuEDkX0iNunNCMJMlfmkPrM4Baa
+         EPlw==
+X-Gm-Message-State: AAQBX9eaT/zl1BPwadiyvcQgRqNaAWsZS3PxhA9+GOku4JwRNJLCOc22
+        Amw8+Mgg31EcY3/1IqWaAQ==
+X-Google-Smtp-Source: AKy350ayJO+eG9U/cqv47KAeV20FExrvvzSFt2UABLULJZ9LP4qdLHS8V2D+sSymTWdAERUmkEL1bg==
+X-Received: by 2002:a05:6870:519:b0:177:8200:d7b with SMTP id j25-20020a056870051900b0017782000d7bmr8842016oao.29.1681737032605;
+        Mon, 17 Apr 2023 06:10:32 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id du3-20020a0568703a0300b001723a2e84b6sm4540975oab.6.2023.04.17.06.10.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Apr 2023 06:05:25 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH] dt-bindings: phy: qmp-ufs: fix clock and clock-names for sa8775p
-Date:   Mon, 17 Apr 2023 15:05:22 +0200
-Message-Id: <20230417130522.401605-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-MIME-Version: 1.0
+        Mon, 17 Apr 2023 06:10:31 -0700 (PDT)
+Received: (nullmailer pid 2588783 invoked by uid 1000);
+        Mon, 17 Apr 2023 13:10:27 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, bharat.kumar.gogada@amd.com,
+        robh+dt@kernel.org, michals@xilinx.com, devicetree@vger.kernel.org,
+        nagaradhesh.yeleswarapu@amd.com
+In-Reply-To: <20230417103226.334588-2-thippeswamy.havalige@amd.com>
+References: <20230417103226.334588-1-thippeswamy.havalige@amd.com>
+ <20230417103226.334588-2-thippeswamy.havalige@amd.com>
+Message-Id: <168173527725.2535601.7665980002341378947.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-xdma: Add YAML schemas
+ for Xilinx XDMA PCIe Root Port Bridge
+Date:   Mon, 17 Apr 2023 08:10:27 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-We must set *minItems* to 3, not maxItems as this platform requires
-exactly three clocks and maxItems is already set to 3 globally.
+On Mon, 17 Apr 2023 16:02:25 +0530, Thippeswamy Havalige wrote:
+> Add YAML dtschemas of Xilinx XDMA Soft IP PCIe Root Port Bridge
+> dt binding.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+> ---
+>  .../bindings/pci/xlnx,xdma-host.yaml          | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml
+> 
 
-Fixes: e5796a9cdf73 ("dt-bindings: phy: qmp-ufs: describe the UFS PHY for sa8775p")
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-index 94c0fab065a8..a1897a7606df 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-@@ -78,9 +78,9 @@ allOf:
-     then:
-       properties:
-         clocks:
--          maxItems: 3
-+          minItems: 3
-         clock-names:
--          maxItems: 3
-+          minItems: 3
-     else:
-       properties:
-         clocks:
--- 
-2.37.2
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dtb: /example-0/soc/pcie@a0000000: failed to match any schema with compatible: ['xlnx,xdma-host-3.00']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230417103226.334588-2-thippeswamy.havalige@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
