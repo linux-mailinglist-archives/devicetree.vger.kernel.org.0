@@ -2,129 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A946E5519
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 01:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1026E5567
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 01:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbjDQXXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 19:23:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51258 "EHLO
+        id S229682AbjDQXuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 19:50:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjDQXXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 19:23:36 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3288E44B5;
-        Mon, 17 Apr 2023 16:23:33 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S229477AbjDQXuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 19:50:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DCC272C;
+        Mon, 17 Apr 2023 16:50:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 5C81E837A7;
-        Tue, 18 Apr 2023 01:23:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1681773811;
-        bh=LCsMthDhyYWENEbRzaTVRwOHdppq61Ge4OVid4ZaLlI=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B07A96284F;
+        Mon, 17 Apr 2023 23:50:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E413FC433D2;
+        Mon, 17 Apr 2023 23:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681775410;
+        bh=2YPJHP8es1VTEo9Fw/ICF+baELeINdHz9GXYi7P1KNc=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=iRcBAgqDR7ASOkNCOU0CGVqDFJ7sFNxfc4dJpCCCU5GiSIrdIo81xx+pPu5CDSOqR
-         4I3fDEAEFFNQRdVczCU+gm8/hWq5znEw6EtIDvNM0zpsIvQLze9ENOtuCzT2+pCLe5
-         RAMJCVel32BYkKsbHtqB6jXE2xP5y1M8YL/lEde9krZrTGQaP+YKPezcaIdXiozfLT
-         XfCGt9lz2Tz21wVexKVvM4n+tmaOXnaUZCeoGdQB6emwrRk4bbSoOLQTnX6ggPq01Z
-         A1mqH973Q8At89rskp7UmIsGw2/oyTJ8y09mFKn68VMfyFh+BfndwVBX34JH44s3GS
-         vAuIq4hkKlXEw==
-Message-ID: <ac7ce475-23dd-4d9d-afd1-ad139496a510@denx.de>
-Date:   Tue, 18 Apr 2023 01:23:28 +0200
+        b=kvvVI1TsmOLCr5PSAeMEHDt/hwXFIPKIGIfCj9ODzKSSG6//WQ3SKoctUHW2QSVHE
+         viK2SGuRbDU/981VKc82JnuEv8INNrfRvuT/dq2cEjjop8YjFnLZv5QLb1aBkyoOEG
+         EZJUWmxdZ/Izpuv4URwFf5LbTcZ+qfD4wDz/4MuqI0dA+5ypKPV8Xc3qGWRd6NZgV0
+         ZJTp5aToPknv5YSj6ElRA1PGnDWZ0ZVTHmAeKLRQo/iJ82Z4i7tSTlhbcCyuRF8mtT
+         pOfMVNAANSStrLDZA1ZmxAZ7hNbO7QWUqw6x+8bgUdHn8c/GvOw/pBi9f6HQdQWdsJ
+         PAKh9CWddNsZg==
+Message-ID: <7a599324-dc92-0c6a-2411-5e8fa70d5686@kernel.org>
+Date:   Tue, 18 Apr 2023 08:50:05 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 5/6] drm: bridge: samsung-dsim: Support non-burst mode
-To:     Adam Ford <aford173@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, m.szyprowski@samsung.com,
-        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>
-References: <20230415104104.5537-1-aford173@gmail.com>
- <20230415104104.5537-5-aford173@gmail.com>
- <807aa6c6-bbea-abcc-172d-17e22d1a3988@denx.de>
- <CAHCN7x+NUnMtLbj_7A_uqxPsi5NXRXsPFwDnn=sf1bgm-Q-BsQ@mail.gmail.com>
- <88e53197-2819-c068-eba6-a218a19d8d15@denx.de>
- <CAHCN7xLbbyTaN43pJe3NMdupoGb5vC3yXc_vBn6+CRChWCt92A@mail.gmail.com>
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 10/11] PCI: rockchip: Don't advertise MSI-X in PCIe
+ capabilities
 Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAHCN7xLbbyTaN43pJe3NMdupoGb5vC3yXc_vBn6+CRChWCt92A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+        alberto.dassatti@heig-vd.ch
+Cc:     xxm@rock-chips.com, Shawn Lin <shawn.lin@rock-chips.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        Hugh Cole-Baker <sigmaris@gmail.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230417092631.347976-1-rick.wertenbroek@gmail.com>
+ <20230417092631.347976-11-rick.wertenbroek@gmail.com>
+From:   Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20230417092631.347976-11-rick.wertenbroek@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/18/23 00:24, Adam Ford wrote:
-> On Mon, Apr 17, 2023 at 3:08 PM Marek Vasut <marex@denx.de> wrote:
->>
->> On 4/17/23 13:57, Adam Ford wrote:
->>> On Sun, Apr 16, 2023 at 5:13 PM Marek Vasut <marex@denx.de> wrote:
->>>>
->>>> On 4/15/23 12:41, Adam Ford wrote:
->>>>> The high-speed clock is hard-coded to the burst-clock
->>>>> frequency specified in the device tree.  However, when
->>>>> using devices like certain bridge chips without burst mode
->>>>> and varying resolutions and refresh rates, it may be
->>>>> necessary to set the high-speed clock dynamically based
->>>>> on the desired pixel clock for the connected device.
->>>>
->>>> The link rate negotiation should happen internally between the nearest
->>>> bridge and DSIM, so please add that to DRM core instead of hacking
->>>> around it by tweaking the HS clock again.
->>>
->>> I thought you tried to add something like this before and had some resistance.
->>
->> Yes, all my attempts were rejected by a single reviewer. I suspended my
->> efforts in that area for now.
->>
->>> The Pixel clock is set by the bridge already without any new code
->>> added to the DRM core..  I am just reading that value that's there,
->>> and setting the clock accordingly.  I don't see how this is a hack.
->>
->> Assume you have a DSI-to-HDMI bridge attached to your DSIM bridge, it
->> operates in non-burst mode, like ADV7533 . How would you configure the
+On 4/17/23 18:26, Rick Wertenbroek wrote:
+> The RK3399 PCIe endpoint controller cannot generate MSI-X IRQs.
+> This is documented in the RK3399 technical reference manual (TRM)
+> section 17.5.9 "Interrupt Support".
 > 
-> I have an ADV7535
+> MSI-X capability should therefore not be advertised. Remove the
+> MSI-X capability by editing the capability linked-list. The
+> previous entry is the MSI capability, therefore get the next
+> entry from the MSI-X capability entry and set it as next entry
+> for the MSI capability. This in effect removes MSI-X from the list.
 > 
->> HS clock rate for such a bridge in DT ? (hint: you cannot, because the
->> required clock comes from the EDID, which may not be available just yet)
+> Linked list before : MSI cap -> MSI-X cap -> PCIe Device cap -> ...
+> Linked list now : MSI cap -> PCIe Device cap -> ...
 > 
-> The whole idea is that you wouldn't want to or need to configure the
-> clock speed in the device tree because it comes from the
-> EDID->bridge->DSI.
-> 
-> I've tested this configuration on imx8mm, imx8mn, and imx8mp and I can
-> change the resolution and refresh rate on the fly and the DSI will
-> automatically readjust accordingly.   If you fixed the clock in the
-> device tree, you wouldn't be able to do that, and that was the point
-> of this patch.
+> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+> Tested-by: Damien Le Moal <dlemoal@kernel.org>
 
-Uh, I retract my comment, I was clearly confused here and we're talking 
-about the same thing.
+Looks good, but I think you need to add also:
+
+Fixes: cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip PCIe controller")
+Cc: stable@vger.kernel.org
+
+Otherwise, feel free to add:
+
+Reviewed-by: Damien Le Moal <dlemoal@kernel.org>
+
