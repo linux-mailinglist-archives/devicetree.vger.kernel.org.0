@@ -2,131 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 538AB6E3F50
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 08:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A174F6E3F6F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 08:13:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbjDQGDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 02:03:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43708 "EHLO
+        id S230102AbjDQGNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 02:13:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjDQGC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 02:02:59 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC22A3ABA;
-        Sun, 16 Apr 2023 23:02:57 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H5PxmY012715;
-        Mon, 17 Apr 2023 06:02:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=34taamsEjzMtcUYQrArKiuW9bRD33U8+uixJpo4cjkY=;
- b=bpXEsHbGdx08WqeleEvhRclgBCVq6PNP136+vvFQo8jHOV/jMIBytfrmrq8vQJ88hIsV
- nJ4v1RVixhSwd49H44ylC8D0zIXc7q3KZXJmXWOYRK1ceHId8gEsZly3FxMd2Br9G9ol
- vAwTp9b5QK4hk1iZ1Fxmg3PcqpGb2SAwjTdiogCGMauF4yCXMpQwuQZ08xGrI7O4a6dT
- ITdtsNGCnDiObDVcnI/JewcpaHzq8bspkfurdcPAGOL3DHfuzqwFOdGuuz3skwNk51Zq
- Y203Ixzr4L6U6jgIUcZFVEiUmgzJGBcpb/zFqG+ko6gTD6vz8pP752lUz3ORJfLr28y/ Mg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pymmg2qca-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 06:02:45 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33H62UhP004527
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Apr 2023 06:02:44 GMT
-Received: from [10.216.30.175] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sun, 16 Apr
- 2023 23:02:21 -0700
-Message-ID: <c63530fc-5682-b400-2bda-547f5de75380@quicinc.com>
-Date:   Mon, 17 Apr 2023 11:32:17 +0530
+        with ESMTP id S230097AbjDQGNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 02:13:10 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443C630D3;
+        Sun, 16 Apr 2023 23:13:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1681711988; x=1713247988;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=j7gvqUZqDZD8Oo2yS+/qga24MsPKcb4iX4wAgM9B1VY=;
+  b=HlgBHMvqWnrNj3uwxFhA9pdv5fUKPhoHWnXHymbe+CZXWIX2KOxmWJWh
+   Tb3KR76e9GEOpkfdFjZirw8T2erpNomzuUr9c79Gi9hmvibR0MP+2apZB
+   m1F1WIvWdfkrdVsqoN/eSQIJ/Fv9xftHfaznhdRK0hlg/l71TEgOQyxSj
+   wmUshHJ5pfOaWDUn19r2qzLp6zNF/E8Kq3D6j209G7nS5LFWqFxGLPxYg
+   8VHNM3hZ6tuxNWIU9A67d0DC97PdjwYC2sDNXnDoessMv5otzJ6JJkVbD
+   pjOkgrvngi9XqYmUGGYlFCyMrdsN1KHGQQZkLHaaYK1vKROySKYS7PaCf
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,203,1677538800"; 
+   d="scan'208";a="30353511"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 17 Apr 2023 08:13:06 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 17 Apr 2023 08:13:06 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 17 Apr 2023 08:13:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1681711986; x=1713247986;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=j7gvqUZqDZD8Oo2yS+/qga24MsPKcb4iX4wAgM9B1VY=;
+  b=pwc5D8wxULPEp8o9kVy68uDGkf1ud2VPeYQlEC/2bfvErhPgEZz5wZRG
+   Q1jWkNv/icC8NE3qG5kmD3W2C3ri1N5Hk1DlI2diVZxG8J12Oc8mMKB2L
+   T+ZkYGocO/PYcLF4Ztj4zFZZ+fzwkRLcZS1SXwBRa4NRzPgPAhOuL0WuB
+   hplZrDiXHNT619Tv3HVaAgUB48wrqkXbEhhkBunvsKimkijua7Mm3cVrM
+   /dcfOIuN/HvuvG3h3APxpCKD+3utuQoFeY2UcXhFQtuy10wPFAIx6lEop
+   V2ckrbSJ7/l1fgHp7hpxzqUwiL8V+p0Bo7C8xKc7WqSRdW5pHMWJEfB6D
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,203,1677538800"; 
+   d="scan'208";a="30353509"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 17 Apr 2023 08:13:05 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AC94C280056;
+        Mon, 17 Apr 2023 08:13:05 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Subject: Re: [PATCH v1 2/2] arm64: dts: imx8mp: Add ISI DT node
+Date:   Mon, 17 Apr 2023 08:13:04 +0200
+Message-ID: <2678521.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230417055627.16482-3-laurent.pinchart@ideasonboard.com>
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com> <20230417055627.16482-3-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V3 8/9] arm64: dts: Add ipq5018 SoC and rdp432-c2 board
- support
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-References: <1681468167-11689-1-git-send-email-quic_srichara@quicinc.com>
- <1681468167-11689-9-git-send-email-quic_srichara@quicinc.com>
- <01b21803-9367-f253-3b66-b0a6c1d93cf2@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <01b21803-9367-f253-3b66-b0a6c1d93cf2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eb2W7Ida1xdw8oz4z0I_4gR4LHVlyDZ5
-X-Proofpoint-GUID: eb2W7Ida1xdw8oz4z0I_4gR4LHVlyDZ5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_02,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- bulkscore=0 malwarescore=0 mlxlogscore=756 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 impostorscore=0 spamscore=0
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304170055
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
+
+thanks for those ISI patches.
+
+Am Montag, 17. April 2023, 07:56:27 CEST schrieb Laurent Pinchart:
+> Add a DT node for the i.MX8MP ISI instance, and model to connection to
+> two CSI-2 receivers (CSIS).
+>=20
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 38 +++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> 2a374a4c14a2..cc7a938b6f73 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1239,6 +1239,38 @@ ldb_lvds_ch1: endpoint {
+>  				};
+>  			};
+>=20
+> +			isi_0: isi@32e00000 {
+> +				compatible =3D "fsl,imx8mp-isi";
+> +				reg =3D <0x32e00000 0x4000>;
+> +				interrupts =3D <GIC_SPI 16=20
+IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 42=20
+IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks =3D <&clk=20
+IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> +					 <&clk=20
+IMX8MP_CLK_MEDIA_APB_ROOT>;
+> +				clock-names =3D "axi", "apb";
+> +				fsl,blk-ctrl =3D <&media_blk_ctrl>;
+> +				power-domains =3D <&media_blk_ctrl=20
+IMX8MP_MEDIABLK_PD_ISI>;
+> +				status =3D "disabled";
+> +
+> +				ports {
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +
+> +					port@0 {
+> +						reg =3D <0>;
+> +						isi_in_0: endpoint=20
+{
+
+I'm not sure if DT graph is different, but usually there is an empty line=20
+between properties and subnodes.
+
+Best regards,
+Alexander
+
+> +							remote-
+endpoint =3D <&mipi_csi_0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg =3D <1>;
+> +						isi_in_1: endpoint=20
+{
+> +							remote-
+endpoint =3D <&mipi_csi_1_out>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+>  			mipi_csi_0: csi@32e40000 {
+>  				compatible =3D "fsl,imx8mp-mipi-csi2",=20
+"fsl,imx8mm-mipi-csi2";
+>  				reg =3D <0x32e40000 0x10000>;
+> @@ -1265,6 +1297,9 @@ port@0 {
+>=20
+>  					port@1 {
+>  						reg =3D <1>;
+> +						mipi_csi_0_out:=20
+endpoint {
+> +							remote-
+endpoint =3D <&isi_in_0>;
+> +						};
+>  					};
+>  				};
+>  			};
+> @@ -1295,6 +1330,9 @@ port@0 {
+>=20
+>  					port@1 {
+>  						reg =3D <1>;
+> +						mipi_csi_1_out:=20
+endpoint {
+> +							remote-
+endpoint =3D <&isi_in_1>;
+> +						};
+>  					};
+>  				};
+>  			};
 
 
-On 4/14/2023 5:01 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 14.04.2023 12:29, Sricharan Ramabadhran wrote:
->> Add initial device tree support for the Qualcomm IPQ5018 SoC and
->> rdp432-c2 board.
->>
->> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> ---
->>   [v3] Fixed all review comments and DTS schema warnings
-> This is too vague.
-> 
-   Ha ok, infact below is the list of changes from V2 -> V3
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
-     *) Sorted the nodes based on address.
-     *) Removed the pcie fixed clocks.
-     *) Changed the board file name.
-     *) Added SDHCI nodes/pins.
-     *) Fixed the DT schema warnings.
-     *) Fixed rest of comments.
-
-> [...]
-> 
->> +
->> +			v2m1: v2m@1000 {
->> +				compatible = "arm,gic-v2m-frame";
->> +				reg = <0x00001000 0xffd>;
-> Doesn't this exceed the ranges=<> of &intc?
-> 
-   Right, thanks for the catch. Will fix it.
-
-Regards,
-  Sricharan
