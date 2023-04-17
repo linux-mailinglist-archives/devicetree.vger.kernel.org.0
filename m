@@ -2,174 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49DD06E404B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67FA66E4070
+	for <lists+devicetree@lfdr.de>; Mon, 17 Apr 2023 09:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230311AbjDQHAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 03:00:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51808 "EHLO
+        id S230152AbjDQHON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 03:14:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbjDQHAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:00:39 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4443C01;
-        Mon, 17 Apr 2023 00:00:37 -0700 (PDT)
+        with ESMTP id S230070AbjDQHOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 03:14:10 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512FD40EF
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:13:54 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id gw13so13242834wmb.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Apr 2023 00:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1681714837; x=1713250837;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NNWz/l3oDZnpTc0Gl/qtMRqwydt/1fHPp3ooI4fBNHk=;
-  b=aSxUaYNlzdVEimhoj1IUpnLX4sBQnJVVd3U0o0AGHn65CTN/uxUDV0i3
-   W3uSFOiuOYNE8QhgizTki9RRTrFOKBoyzoytH9WAqTYbe8VHciCZ0NUIT
-   Eo7DEsLO6IKGs/0+RWSkFHbvINOLU7esWAWFrgA/0MxGdma9qeIUNj8M8
-   9c1ujMjfaLA4EyvQPehgSI1SPKP4aled2xGtYWwX7mVCWkMzG03h/766J
-   grQ5V80sd0DIKq+70ud2s9ozYZtbxwS9QQpa7BCaDyf1KDy/nCIMLQHQh
-   gDTqA6V4bMSw4QID4wpwDvSQJNFAmas6JZrf4gBMPtU8GskbCPd50VBQD
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,203,1677538800"; 
-   d="scan'208";a="30355382"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 17 Apr 2023 09:00:35 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 17 Apr 2023 09:00:35 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 17 Apr 2023 09:00:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1681714835; x=1713250835;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NNWz/l3oDZnpTc0Gl/qtMRqwydt/1fHPp3ooI4fBNHk=;
-  b=R5e84MjyrDoniy+dfBQOQWtqr6KaZDALr70l6mryZjVE4FER04Wctpuw
-   FkycPeUJXvPIXAXKnj84kradEe0y0jxatVdwC0Fyi36GsIENjF1Sc3P+P
-   TNST8pMg5NyaZhnKWwHUawNrCeAVna75bVW5jGW9kUiXt15fd6EMRfmtU
-   8PuYEEiJm4gIpAy2Y77jk0yGH1nbXXYxexPlIw/VudMmnPD+5ZnGiqXZm
-   1cXfVVVRnRUldEG4Srb7BZIgfGtI5rLtRjp0ccB6YkRh90uFt0rDVyF3x
-   Aj3Sj9oaIHfk4Q9eiTVyFj3ig+IIJJnsmPAzEpExIQkXF1F+NF21uhe1F
-   w==;
-X-IronPort-AV: E=Sophos;i="5.99,203,1677538800"; 
-   d="scan'208";a="30355381"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 17 Apr 2023 09:00:35 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 009EB280056;
-        Mon, 17 Apr 2023 09:00:34 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        aford@beaconembedded.com, dri-devel@lists.freedesktop.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        m.szyprowski@samsung.com, Robert Foss <rfoss@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Adam Ford <aford173@gmail.com>
-Subject: Re: [PATCH 2/6] drm: bridge: samsung-dsim: Fix PMS Calculator on imx8m[mnp]
-Date:   Mon, 17 Apr 2023 09:00:33 +0200
-Message-ID: <5667233.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <CAHCN7xKsvT-TL4xdP=CKDzTJoFq1PGqmFmTohdRF9JaWaxWemw@mail.gmail.com>
-References: <20230415104104.5537-1-aford173@gmail.com> <414febc4-aab1-95ec-ac2e-e82a3f881d01@denx.de> <CAHCN7xKsvT-TL4xdP=CKDzTJoFq1PGqmFmTohdRF9JaWaxWemw@mail.gmail.com>
+        d=linaro.org; s=google; t=1681715633; x=1684307633;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=syZbPEWLfzOhgdzjVf4hmjv0J9HBk5GQyc3y8S0TDc4=;
+        b=ErwpGeDXQCLbGoJpUzuBlwXDGW4gHDKcKbcgLaP0EzlSVyPp50lO5ooqBdjE3mtkX2
+         H2XzQq4AmdkQaQKCTJ5r06lgTJg1ByduAJ1tL3tMNtwbHfzDey2VbApJbGNaRFMz2jNp
+         8s7kwtHw0z4SeVhSxT3zXFEtmcHueaD5kI+f3juqL4AFkRPA4gNlob1Pef6A93PMmq+D
+         XgvW6g6j3AigR2RLokz0R/ncUngcqoEaXLeqSSyZgD8N9FLV+d9ZQZ2qEpdQV7F6Czns
+         JIPuEKoZXl2LC8lq5BkZUE7Zs3N9b0ufy19M06r3imp3TU1r78GETkd+Zr9f3FjtByK/
+         5RoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681715633; x=1684307633;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=syZbPEWLfzOhgdzjVf4hmjv0J9HBk5GQyc3y8S0TDc4=;
+        b=dz3q4qhpyL6VHVFupB9PTvJE1bgxrQjw/oRMK6FjO2WAmFIVUB0HX8NW2SWVTjhteS
+         ibyF5kCRSFXu0rY96nlYr4Q9EfZdiCpbEhtr9JrZ4+tVbKOWPLexVPxK0mJ6j1XfY2/Q
+         eyHW6k9rG276cBee+DKzFsGgSpo38ibLrOx6yK2Ev5dtyVIli8faTJb/+3MF9GiRBUD0
+         UODTdYdHFDAWtjp5D0yjVSfkHqoQi9xIPPJyJ2nEzhwfOtA2je9i2SEqCqRJmynEEE8p
+         CvQNv15ZgHvcZ/72jOfVBVMUMXrMtk6kLvEAV1us6xbHObv+4cIIvTweaXGOhYuIBRpz
+         bUaA==
+X-Gm-Message-State: AAQBX9epLqSky+GaKyV4X2HQokl4nRHaUYbyyEy6gwSeRekyzZ+kN6/x
+        8rh8pQlSI5aDUGULlUMe0bJGiQ==
+X-Google-Smtp-Source: AKy350ZHevnEBLBB3tRQ66QQs/GmR4ej4PyHyYePKfXjn1BO5mfXXrncGDy2Oi214fEc1IZq/Eb4Bw==
+X-Received: by 2002:a1c:cc07:0:b0:3f0:9c6c:54a0 with SMTP id h7-20020a1ccc07000000b003f09c6c54a0mr10416635wmb.2.1681715632706;
+        Mon, 17 Apr 2023 00:13:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a1e1:81a8:1acc:2b91? ([2a01:e0a:982:cbb0:a1e1:81a8:1acc:2b91])
+        by smtp.gmail.com with ESMTPSA id iz19-20020a05600c555300b003f1733feb3dsm2772876wmb.0.2023.04.17.00.13.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Apr 2023 00:13:52 -0700 (PDT)
+Message-ID: <e065768f-f9cf-9d8b-a7da-80557b7c9f6f@linaro.org>
+Date:   Mon, 17 Apr 2023 09:13:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
+ white-space cleanup
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Julius Werner <jwerner@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Sander Vanheule <sander@svanheule.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Jamie Iles <jamie@jamieiles.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
+ <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 15/04/2023 11:51, Krzysztof Kozlowski wrote:
+> Minor cleanup without functional impact:
+> 1. Indent DTS examples to preferred four-spaces (more readable for DTS),
+> 2. Drop unneeded quotes,
+> 3. Add/drop blank lines to make the code readable.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../watchdog/amlogic,meson-gxbb-wdt.yaml      | 10 +++---
 
-Am Montag, 17. April 2023, 00:31:24 CEST schrieb Adam Ford:
-> On Sun, Apr 16, 2023 at 5:07=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
-> > On 4/15/23 12:40, Adam Ford wrote:
-> > > According to Table 13-45 of the i.MX8M Mini Reference Manual, the min
-> > > and max values for M and  the frequency range for the VCO_out
-> > > calculator were incorrect.  This also appears to be the case for the
-> > > imx8mn and imx8mp.
-> > >=20
-> > > To fix this, make new variables to hold the min and max values of m
-> > > and the minimum value of VCO_out, and update the PMS calculator to
-> > > use these new variables instead of using hard-coded values to keep
-> > > the backwards compatibility with other parts using this driver.
-> >=20
-> > [...]
-> >=20
-> > >   static const struct samsung_dsim_driver_data imx8mm_dsi_driver_data=
- =3D
-> > >   {
-> > >=20
-> > > @@ -470,6 +485,9 @@ static const struct samsung_dsim_driver_data
-> > > imx8mm_dsi_driver_data =3D {> >=20
-> > >        */
-> > >      =20
-> > >       .pll_p_offset =3D 14,
-> > >       .reg_values =3D imx8mm_dsim_reg_values,
-> > >=20
-> > > +     .m_min =3D 64,
-> > > +     .m_max =3D 1023,
-> > > +     .vco_min =3D 1050,
-> >=20
-> > You might want to call this 'min_freq' since there is a 'max_freq' which
-> > seems to indicate what VCO max frequency is.
-> >=20
-> > Note that the same datasheet contains the following information:
-> > "
-> > MIPI_DPHY_M_PLLPMS field descriptions
-> >=20
-> > 12=E2=80=934 PMS_M
-> > Specifies the PLL PMS value for the M divider
-> > NOTE: The programmable divider range should be within 25 to 125 to
-> > ensure PLL stability.
->=20
-> I was confused by this because this statement is not consistent with
-> the link they reference jumps me to the table where it reads M is
-> between 64 and 1023.
->=20
-> > NOTE: The M and P divider values should be considered together to ensure
-> > VCO ouput frequency
-> > (VCO_out) range is between 350 MHz to 750 MHz.
-> > Please refer to the topic DPHY PLL for more information.
->=20
-> I was confused by this too, because the NXP documentation reads the
-> 350 - 750MHz that you state, but  "Table 13-45: DPHY PLL Parameters"
-> which immediately follows that sentence  on page 4158 shows VCO_out is
-> between 1050-2100 MHz.
->=20
-> I compared the PMS values for a variety of frequencies to those that
-> were set in the downstream NXP code, and the PMS values matched.
-> Maybe someone from NXP can explain the discrepancy.
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Also note that, according to Table 13-28 in RM (Rev 2 07/2022) for i.MX8M=20
-Nano, VCO_out and Fout has a maximum of 1500MHz only. Although the note abo=
-ve=20
-mentions a range  of 1050-2100MHz...
-
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
-
-
+<snip>
