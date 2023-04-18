@@ -2,57 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42AE66E6DDB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 990536E6DE2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232849AbjDRVFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 17:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
+        id S232861AbjDRVL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 17:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232840AbjDRVFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:05:51 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011B1C172;
-        Tue, 18 Apr 2023 14:05:49 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-38e3a1a07c8so574373b6e.0;
-        Tue, 18 Apr 2023 14:05:49 -0700 (PDT)
+        with ESMTP id S232860AbjDRVLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:11:55 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC726A56;
+        Tue, 18 Apr 2023 14:11:54 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-187c78c6657so583975fac.2;
+        Tue, 18 Apr 2023 14:11:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681851949; x=1684443949;
+        d=1e100.net; s=20221208; t=1681852313; x=1684444313;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jIDYp/2j9X9Mpn+NMTYQeGLVTSLMhfAeiCWuUAQuqdE=;
-        b=L2D0sWRHzaKlrGOx93OnJwUvy8I49Jlsye+7qN39NcGFERnIVhaNgaBuZT0RM6roTN
-         kzAcl6SjoATgFzv9XtRJpM2Z4MAZs9c1aYsqWNZ+NMdaqcC4ldUjeIASu9PNBPK3iOus
-         o8rkyRFVd1T1DP7E0BbWPpO8/MxMnlcbcGUuaPcA+E0ssNNHILrTqq8qBfMgbqleexJH
-         tT4ExMj2hY3pSaP+E9idSSM6hn2/eb1Sl/+pac/5mx7XpHry1gafIj/pg0vqLng41ACx
-         W1JySVyD4tasYjy0kF+M/vwDsdZh5L+hggit7k4CXsGomy1O3z+7KopzA4a4V0FPpsML
-         vvNQ==
-X-Gm-Message-State: AAQBX9eoPkzWV02xyWJB49+1XRAahKNEuQ2o4vowJDznrMjhTGMWxc4a
-        jYfzkZe9YRzDPNLS4g2L9A==
-X-Google-Smtp-Source: AKy350bet3km/yb3giQkK8izKkkQaSFBeZstujhyhN82Nm+RKFFGmGsH37dO5tcBMB2o2VobJD5nKw==
-X-Received: by 2002:a05:6808:23d2:b0:38e:3902:6d37 with SMTP id bq18-20020a05680823d200b0038e39026d37mr1582824oib.59.1681851949075;
-        Tue, 18 Apr 2023 14:05:49 -0700 (PDT)
+        bh=Wq4XES0A3vZMGZurOPdlsGHZykLyFbZWmGpJXYBbCNw=;
+        b=fo3rYVE+OHinTgrmuBKyxuNLh/LjMRJGU+H59pl5IpXSbrMCPkgwSBfA2Gu7fdZ7en
+         YqzddyHu2PaxM2vbBdznIJV7Nsd1w0B1SAEoqPRQjFbWBE1+14T+WyoTHD7WuES5r42v
+         pof9h8m1lJSpwnumvo3msh8zGB5C5wk1Y9/c16L10Ve5fVPurw/Ub3dmNiJCz5userpT
+         L77drTsf4IP3gW4XUtUEDFB9SV96FCMFMqjJ7ZgEByOr5FRBQP0XKuQStSuua1UF49EA
+         nBjhFsvr0VXsFM/69Ms2/ymscsdWhTHR50NOdLmthlkHji5ZiLUwANbxMDdHLNhbKoDe
+         3y6w==
+X-Gm-Message-State: AAQBX9eIxHDuz8xoqtZLjaAabVs2nnfeBFWYNbkkx5oGkU4b7dZFpI+B
+        85ZRY5DykKhTNu3om1KVBQ==
+X-Google-Smtp-Source: AKy350asGV+/EQnR8K/k603pg3P1vk2PcyjMx5ZRioEAbPquyMv9OeqaOF+GvaSzzXOg6OCwjSe3hw==
+X-Received: by 2002:a05:6871:729:b0:187:a6fd:f1c7 with SMTP id f41-20020a056871072900b00187a6fdf1c7mr2115232oap.5.1681852313474;
+        Tue, 18 Apr 2023 14:11:53 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l15-20020a54450f000000b00389898f4c4fsm3142112oil.45.2023.04.18.14.05.48
+        by smtp.gmail.com with ESMTPSA id dy16-20020a056870c79000b0017197629658sm6077372oab.56.2023.04.18.14.11.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 14:05:48 -0700 (PDT)
-Received: (nullmailer pid 2339121 invoked by uid 1000);
-        Tue, 18 Apr 2023 21:05:47 -0000
-Date:   Tue, 18 Apr 2023 16:05:47 -0500
+        Tue, 18 Apr 2023 14:11:52 -0700 (PDT)
+Received: (nullmailer pid 2345963 invoked by uid 1000);
+        Tue, 18 Apr 2023 21:11:51 -0000
+Date:   Tue, 18 Apr 2023 16:11:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Bharat Bhushan <bbhushan2@marvell.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] Watchdog: Add octeontx2 GTI watchdog driver
-Message-ID: <20230418210547.GA2322152-robh@kernel.org>
-References: <20230414102342.23696-1-bbhushan2@marvell.com>
- <20230414102342.23696-2-bbhushan2@marvell.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Robert Foss <rfoss@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+        Thierry Reding <treding@nvidia.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: simplify compatibles syntax
+Message-ID: <168185230077.2345727.991435195687309100.robh@kernel.org>
+References: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230414102342.23696-2-bbhushan2@marvell.com>
+In-Reply-To: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,71 +76,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 03:53:42PM +0530, Bharat Bhushan wrote:
-> GTI watchdog timer are programmed in "interrupt + del3t + reset mode"
-> and del3t traps are not enabled.
-> GTI watchdog exception flow is:
->  - 1st timer expiration generates watchdog interrupt.
->  - 2nd timer expiration is ignored
->  - On 3rd timer expiration will trigger a system-wide core reset.
+
+On Fri, 14 Apr 2023 12:42:30 +0200, Krzysztof Kozlowski wrote:
+> Lists (items) with one item should be just const or enum because it is
+> shorter and simpler.
 > 
-> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  drivers/watchdog/Kconfig         |   9 ++
->  drivers/watchdog/Makefile        |   1 +
->  drivers/watchdog/octeontx2_wdt.c | 238 +++++++++++++++++++++++++++++++
->  3 files changed, 248 insertions(+)
->  create mode 100644 drivers/watchdog/octeontx2_wdt.c
 > 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index f0872970daf9..31ff282c62ad 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -2212,4 +2212,13 @@ config KEEMBAY_WATCHDOG
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called keembay_wdt.
->  
-> +config OCTEONTX2_WATCHDOG
-> +	tristate "OCTEONTX2 Watchdog driver"
-> +	depends on ARCH_THUNDER || (COMPILE_TEST && 64BIT)
-> +	help
-> +	 OCTEONTX2 GTI hardware supports watchdog timer. This watchdog timer are
-> +	 programmed in "interrupt + del3t + reset" mode. On first expiry it will
-> +	 generate interrupt. Second expiry (del3t) is ignored and system will reset
-> +	 on final timer expiry.
-> +
->  endif # WATCHDOG
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 9cbf6580f16c..aa1b813ad1f9 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -230,3 +230,4 @@ obj-$(CONFIG_MENZ069_WATCHDOG) += menz69_wdt.o
->  obj-$(CONFIG_RAVE_SP_WATCHDOG) += rave-sp-wdt.o
->  obj-$(CONFIG_STPMIC1_WATCHDOG) += stpmic1_wdt.o
->  obj-$(CONFIG_SL28CPLD_WATCHDOG) += sl28cpld_wdt.o
-> +obj-$(CONFIG_OCTEONTX2_WATCHDOG) += octeontx2_wdt.o
-> diff --git a/drivers/watchdog/octeontx2_wdt.c b/drivers/watchdog/octeontx2_wdt.c
-> new file mode 100644
-> index 000000000000..7b78a092e83f
-> --- /dev/null
-> +++ b/drivers/watchdog/octeontx2_wdt.c
-> @@ -0,0 +1,238 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Marvell Octeontx2 Watchdog driver
-> + *
-> + * Copyright (C) 2023 Marvell International Ltd.
-> + *
-> + * This program is free software; you can redistribute it and/or modify
-> + * it under the terms of the GNU General Public License version 2 as
-> + * published by the Free Software Foundation.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/cpu.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/of_platform.h>
+> Rebased on next-20230406. I hope it applies cleanly...
+> ---
+>  .../display/bridge/analogix,anx7625.yaml      |  3 +--
+>  .../display/panel/sharp,lq101r1sx01.yaml      |  4 ++--
+>  .../bindings/display/solomon,ssd1307fb.yaml   | 24 +++++++++----------
+>  3 files changed, 14 insertions(+), 17 deletions(-)
+> 
 
-It's doubtful you need anything from of_platform.h other than implicit 
-includes. Use the header(s) you need directly.
+Applied, thanks!
 
-Rob
