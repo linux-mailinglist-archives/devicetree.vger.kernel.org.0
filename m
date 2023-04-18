@@ -2,369 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C60E66E5AFE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 013E56E5B33
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 10:01:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbjDRHxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 03:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35120 "EHLO
+        id S231381AbjDRIB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 04:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231183AbjDRHxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:53:46 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A4A3C2B;
-        Tue, 18 Apr 2023 00:53:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681804423; x=1713340423;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=i++sEAsVzkt15x7T7vaSa5jKWy1+6C/e5XxSTsSMv+U=;
-  b=Qw/m9IQAptH5XOMlUQeu7x2BXw94i0aCY3/c6fQ0kE4XnjeyxBs/RByK
-   Vpk+wFC93/XH/lArXKW4AY21nFV5JsA2N0AOfIV+P90j3VtrNZo4VoA/k
-   VN0piarWNwqGZMT0X3fNEgK2WrBDo5RlhG9ROw/me7EJuKK21u9ptKfNO
-   udUxKqiZn7vVt34AshsvE2c0nRdPNFMFiC+pz8ENSxqon8Lg9iia2CNl4
-   RYg+8760Nm3tVJKm1OvN0N1j3RtcI5Fx44RHdFt/0YfBXYT4/ilcRQNAr
-   daSj2MNMowVu47rD0zodLbUNvsw7WjGsGX7gAd6KKo/F11+ZhG+soPjsL
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="345101336"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; 
-   d="scan'208";a="345101336"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 00:53:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="834777348"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; 
-   d="scan'208";a="834777348"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 18 Apr 2023 00:53:26 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pog9V-000d7X-21;
-        Tue, 18 Apr 2023 07:53:25 +0000
-Date:   Tue, 18 Apr 2023 15:52:50 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S229568AbjDRIBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 04:01:07 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7780DE44;
+        Tue, 18 Apr 2023 01:01:03 -0700 (PDT)
+Received: from booty.fritz.box (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 85AB9240016;
+        Tue, 18 Apr 2023 08:00:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1681804861;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=FPc004ho3DbyaVsoAMTPnWHcNE8iprzXyi2Ka/IlwGw=;
+        b=DmUcfJUt7AMAnjEok9ujkF88igE1mt8VixuLyvX+M43xMVM5jgIsZK4PI5ntwA4xyQMotw
+        2kZaZF6JGA1k8CdA18DkvuoZX5lCzM4v5cA3YamEz0UAIEXRas28R2NzetV9QYKmsKxn+Z
+        704UBAXoaFtfKIQ9Lmdc3fv/hRDTxcmDrRGntc2QvAZAUMabkY6uC99CUz0u1pzLNdbNEh
+        un3kBHKQEJ2aVsD7SRvvUCQOCzz9/ea+kgxeh0XmpIzusCqw+fAUzEAHOmvWvfL7yIhBh4
+        H2fYuAiSiBU2NOmonCnu81F7iLAXeJfHG/alYyb89KCb5Fpf6l8oRMu3leNcKQ==
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     linux-tegra@vger.kernel.org
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev, dmaengine@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 2/7] dmaengine: ste_dma40: Get LCPA SRAM from SRAM node
-Message-ID: <202304181505.5iKHmSYn-lkp@intel.com>
-References: <20230417-ux500-dma40-cleanup-v1-2-b26324956e47@linaro.org>
+        linux-staging@lists.linux.dev,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Subject: [PATCH v6 00/20] Add Tegra20 parallel video input capture
+Date:   Tue, 18 Apr 2023 10:00:34 +0200
+Message-Id: <20230418080054.452955-1-luca.ceresoli@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230417-ux500-dma40-cleanup-v1-2-b26324956e47@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+New in v6: a oneliner fix to patch 14 for an unlock imbalance in MIPI CSI
+calibration (Tegra210 only). Many thanks to Hans for testing and spotting
+this!
 
-kernel test robot noticed the following build warnings:
+Full details follow.
 
-[auto build test WARNING on fe15c26ee26efa11741a7b632e9f23b01aca4cc6]
+Tegra20 and other Tegra SoCs have a video input (VI) peripheral that can
+receive from either MIPI CSI-2 or parallel video (called respectively "CSI"
+and "VIP" in the documentation). The kernel currently has a staging driver
+for Tegra210 CSI capture. This patch set adds support for Tegra20 VIP
+capture.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Linus-Walleij/dt-bindings-dma-dma40-Prefer-to-pass-sram-through-phandle/20230417-160001
-base:   fe15c26ee26efa11741a7b632e9f23b01aca4cc6
-patch link:    https://lore.kernel.org/r/20230417-ux500-dma40-cleanup-v1-2-b26324956e47%40linaro.org
-patch subject: [PATCH 2/7] dmaengine: ste_dma40: Get LCPA SRAM from SRAM node
-config: arm-randconfig-c024-20230417 (https://download.01.org/0day-ci/archive/20230418/202304181505.5iKHmSYn-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/168b5818186247983ec0f99554e13c3aaa9383bb
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Linus-Walleij/dt-bindings-dma-dma40-Prefer-to-pass-sram-through-phandle/20230417-160001
-        git checkout 168b5818186247983ec0f99554e13c3aaa9383bb
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+Unfortunately I had no real documentation available to base this work on.
+I only had a working downstream 3.1 kernel, so I started with the driver
+found there and heavily reworked it to fit into the mainline tegra-video
+driver structure. The existing code appears written with the intent of
+being modular and allow adding new input mechanisms and new SoCs while
+keeping a unique VI core module. However its modularity and extensibility
+was not enough to add Tegra20 VIP support, so I added some hooks to turn
+hard-coded behaviour into per-SoC or per-bus customizable code. There are
+also a fix, some generic cleanups and DT bindings.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304181505.5iKHmSYn-lkp@intel.com/
+Quick tour of the patches:
 
-All warnings (new ones prefixed by >>):
+ * Device tree bindings
 
-   In file included from include/linux/device.h:15,
-                    from include/linux/dma-mapping.h:7,
-                    from drivers/dma/ste_dma40.c:9:
-   drivers/dma/ste_dma40.c: In function 'd40_probe':
-   drivers/dma/ste_dma40.c:3555:30: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-    3555 |         dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:150:58: note: in expansion of macro 'dev_fmt'
-     150 |         dev_printk_index_wrap(_dev_info, KERN_INFO, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                          ^~~~~~~
-   drivers/dma/ste_dma40.c:3555:9: note: in expansion of macro 'dev_info'
-    3555 |         dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-         |         ^~~~~~~~
-   drivers/dma/ste_dma40.c:3555:55: note: format string is defined here
-    3555 |         dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-         |                                                    ~~~^
-         |                                                       |
-         |                                                       unsigned int
-         |                                                    %08llx
->> drivers/dma/ste_dma40.c:3555:30: warning: format '%x' expects argument of type 'unsigned int', but argument 4 has type 'resource_size_t' {aka 'long long unsigned int'} [-Wformat=]
-    3555 |         dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:150:58: note: in expansion of macro 'dev_fmt'
-     150 |         dev_printk_index_wrap(_dev_info, KERN_INFO, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                          ^~~~~~~
-   drivers/dma/ste_dma40.c:3555:9: note: in expansion of macro 'dev_info'
-    3555 |         dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-         |         ^~~~~~~~
-   drivers/dma/ste_dma40.c:3555:68: note: format string is defined here
-    3555 |         dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-         |                                                                 ~~~^
-         |                                                                    |
-         |                                                                    unsigned int
-         |                                                                 %08llx
-   drivers/dma/ste_dma40.c:3562:26: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-    3562 |                          "[%s] Mismatch LCPA dma 0x%x, def %08x\n",
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:146:61: note: in expansion of macro 'dev_fmt'
-     146 |         dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                             ^~~~~~~
-   drivers/dma/ste_dma40.c:3561:17: note: in expansion of macro 'dev_warn'
-    3561 |                 dev_warn(&pdev->dev,
-         |                 ^~~~~~~~
-   drivers/dma/ste_dma40.c:3562:63: note: format string is defined here
-    3562 |                          "[%s] Mismatch LCPA dma 0x%x, def %08x\n",
-         |                                                            ~~~^
-         |                                                               |
-         |                                                               unsigned int
-         |                                                            %08llx
+   01. dt-bindings: display: tegra: add Tegra20 VIP
+   02. dt-bindings: display: tegra: vi: add 'vip' property and example
 
+ * Minor improvements to logging, comments, cleanups
 
-vim +3555 drivers/dma/ste_dma40.c
+   03. staging: media: tegra-video: improve documentation of tegra_video_format fields
+   04. staging: media: tegra-video: document tegra_channel_get_remote_source_subdev
+   05. staging: media: tegra-video: fix typos in comment
+   06. staging: media: tegra-video: improve error messages
+   07. staging: media: tegra-video: slightly simplify cleanup on errors
+   08. staging: media: tegra-video: move private struct declaration to C file
+   09. staging: media: tegra-video: move tegra210_csi_soc to C file
+   10. staging: media: tegra-video: remove unneeded include
 
-  3505	
-  3506	static int __init d40_probe(struct platform_device *pdev)
-  3507	{
-  3508		struct stedma40_platform_data *plat_data = dev_get_platdata(&pdev->dev);
-  3509		struct device_node *np = pdev->dev.of_node;
-  3510		struct device_node *np_lcpa;
-  3511		int ret = -ENOENT;
-  3512		struct d40_base *base;
-  3513		struct resource *res;
-  3514		struct resource res_lcpa;
-  3515		int num_reserved_chans;
-  3516		u32 val;
-  3517	
-  3518		if (!plat_data) {
-  3519			if (np) {
-  3520				if (d40_of_probe(pdev, np)) {
-  3521					ret = -ENOMEM;
-  3522					goto report_failure;
-  3523				}
-  3524			} else {
-  3525				d40_err(&pdev->dev, "No pdata or Device Tree provided\n");
-  3526				goto report_failure;
-  3527			}
-  3528		}
-  3529	
-  3530		base = d40_hw_detect_init(pdev);
-  3531		if (!base)
-  3532			goto report_failure;
-  3533	
-  3534		num_reserved_chans = d40_phy_res_init(base);
-  3535	
-  3536		platform_set_drvdata(pdev, base);
-  3537	
-  3538		spin_lock_init(&base->interrupt_lock);
-  3539		spin_lock_init(&base->execmd_lock);
-  3540	
-  3541		/* Get IO for logical channel parameter address (LCPA) */
-  3542		np_lcpa = of_parse_phandle(np, "sram", 0);
-  3543		if (!np_lcpa) {
-  3544			dev_err(&pdev->dev, "no LCPA SRAM node\n");
-  3545			goto report_failure;
-  3546		}
-  3547		/* This is no device so read the address directly from the node */
-  3548		ret = of_address_to_resource(np_lcpa, 0, &res_lcpa);
-  3549		if (ret) {
-  3550			dev_err(&pdev->dev, "no LCPA SRAM resource\n");
-  3551			goto report_failure;
-  3552		}
-  3553		base->lcpa_size = resource_size(&res_lcpa);
-  3554		base->phy_lcpa = res_lcpa.start;
-> 3555		dev_info(&pdev->dev, "found LCPA SRAM at 0x%08x, size 0x%08x\n",
-  3556			 base->phy_lcpa, base->lcpa_size);
-  3557	
-  3558		/* We make use of ESRAM memory for this. */
-  3559		val = readl(base->virtbase + D40_DREG_LCPA);
-  3560		if (base->phy_lcpa != val && val != 0) {
-  3561			dev_warn(&pdev->dev,
-  3562				 "[%s] Mismatch LCPA dma 0x%x, def %08x\n",
-  3563				 __func__, val, base->phy_lcpa);
-  3564		} else
-  3565			writel(base->phy_lcpa, base->virtbase + D40_DREG_LCPA);
-  3566	
-  3567		base->lcpa_base = ioremap(base->phy_lcpa, base->lcpa_size);
-  3568		if (!base->lcpa_base) {
-  3569			ret = -ENOMEM;
-  3570			d40_err(&pdev->dev, "Failed to ioremap LCPA region\n");
-  3571			goto release_base;
-  3572		}
-  3573		/* If lcla has to be located in ESRAM we don't need to allocate */
-  3574		if (base->plat_data->use_esram_lcla) {
-  3575			res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-  3576								"lcla_esram");
-  3577			if (!res) {
-  3578				ret = -ENOENT;
-  3579				d40_err(&pdev->dev,
-  3580					"No \"lcla_esram\" memory resource\n");
-  3581				goto destroy_cache;
-  3582			}
-  3583			base->lcla_pool.base = ioremap(res->start,
-  3584							resource_size(res));
-  3585			if (!base->lcla_pool.base) {
-  3586				ret = -ENOMEM;
-  3587				d40_err(&pdev->dev, "Failed to ioremap LCLA region\n");
-  3588				goto destroy_cache;
-  3589			}
-  3590			writel(res->start, base->virtbase + D40_DREG_LCLA);
-  3591	
-  3592		} else {
-  3593			ret = d40_lcla_allocate(base);
-  3594			if (ret) {
-  3595				d40_err(&pdev->dev, "Failed to allocate LCLA area\n");
-  3596				goto destroy_cache;
-  3597			}
-  3598		}
-  3599	
-  3600		spin_lock_init(&base->lcla_pool.lock);
-  3601	
-  3602		base->irq = platform_get_irq(pdev, 0);
-  3603	
-  3604		ret = request_irq(base->irq, d40_handle_interrupt, 0, D40_NAME, base);
-  3605		if (ret) {
-  3606			d40_err(&pdev->dev, "No IRQ defined\n");
-  3607			goto destroy_cache;
-  3608		}
-  3609	
-  3610		if (base->plat_data->use_esram_lcla) {
-  3611	
-  3612			base->lcpa_regulator = regulator_get(base->dev, "lcla_esram");
-  3613			if (IS_ERR(base->lcpa_regulator)) {
-  3614				d40_err(&pdev->dev, "Failed to get lcpa_regulator\n");
-  3615				ret = PTR_ERR(base->lcpa_regulator);
-  3616				base->lcpa_regulator = NULL;
-  3617				goto destroy_cache;
-  3618			}
-  3619	
-  3620			ret = regulator_enable(base->lcpa_regulator);
-  3621			if (ret) {
-  3622				d40_err(&pdev->dev,
-  3623					"Failed to enable lcpa_regulator\n");
-  3624				regulator_put(base->lcpa_regulator);
-  3625				base->lcpa_regulator = NULL;
-  3626				goto destroy_cache;
-  3627			}
-  3628		}
-  3629	
-  3630		writel_relaxed(D40_DREG_GCC_ENABLE_ALL, base->virtbase + D40_DREG_GCC);
-  3631	
-  3632		pm_runtime_irq_safe(base->dev);
-  3633		pm_runtime_set_autosuspend_delay(base->dev, DMA40_AUTOSUSPEND_DELAY);
-  3634		pm_runtime_use_autosuspend(base->dev);
-  3635		pm_runtime_mark_last_busy(base->dev);
-  3636		pm_runtime_set_active(base->dev);
-  3637		pm_runtime_enable(base->dev);
-  3638	
-  3639		ret = d40_dmaengine_init(base, num_reserved_chans);
-  3640		if (ret)
-  3641			goto destroy_cache;
-  3642	
-  3643		ret = dma_set_max_seg_size(base->dev, STEDMA40_MAX_SEG_SIZE);
-  3644		if (ret) {
-  3645			d40_err(&pdev->dev, "Failed to set dma max seg size\n");
-  3646			goto destroy_cache;
-  3647		}
-  3648	
-  3649		d40_hw_init(base);
-  3650	
-  3651		if (np) {
-  3652			ret = of_dma_controller_register(np, d40_xlate, NULL);
-  3653			if (ret)
-  3654				dev_err(&pdev->dev,
-  3655					"could not register of_dma_controller\n");
-  3656		}
-  3657	
-  3658		dev_info(base->dev, "initialized\n");
-  3659		return 0;
-  3660	 destroy_cache:
-  3661		kmem_cache_destroy(base->desc_slab);
-  3662		if (base->virtbase)
-  3663			iounmap(base->virtbase);
-  3664	
-  3665		if (base->lcla_pool.base && base->plat_data->use_esram_lcla) {
-  3666			iounmap(base->lcla_pool.base);
-  3667			base->lcla_pool.base = NULL;
-  3668		}
-  3669	
-  3670		if (base->lcla_pool.dma_addr)
-  3671			dma_unmap_single(base->dev, base->lcla_pool.dma_addr,
-  3672					 SZ_1K * base->num_phy_chans,
-  3673					 DMA_TO_DEVICE);
-  3674	
-  3675		if (!base->lcla_pool.base_unaligned && base->lcla_pool.base)
-  3676			free_pages((unsigned long)base->lcla_pool.base,
-  3677				   base->lcla_pool.pages);
-  3678	
-  3679		kfree(base->lcla_pool.base_unaligned);
-  3680	
-  3681		if (base->lcpa_base)
-  3682			iounmap(base->lcpa_base);
-  3683	
-  3684	release_base:
-  3685		if (base->phy_start)
-  3686			release_mem_region(base->phy_start,
-  3687					   base->phy_size);
-  3688		if (base->clk) {
-  3689			clk_disable_unprepare(base->clk);
-  3690			clk_put(base->clk);
-  3691		}
-  3692	
-  3693		if (base->lcpa_regulator) {
-  3694			regulator_disable(base->lcpa_regulator);
-  3695			regulator_put(base->lcpa_regulator);
-  3696		}
-  3697	
-  3698		kfree(base->lcla_pool.alloc_map);
-  3699		kfree(base->lookup_log_chans);
-  3700		kfree(base->lookup_phy_chans);
-  3701		kfree(base->phy_res);
-  3702		kfree(base);
-  3703	 report_failure:
-  3704		d40_err(&pdev->dev, "probe failed\n");
-  3705		return ret;
-  3706	}
-  3707	
+ * Preparation to make the VI module generic enough to host Tegra20 and VIP
+
+   11. staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
+   12. staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc op
+   13. staging: media: tegra-video: move default format to soc-specific data
+   14. staging: media: tegra-video: move MIPI calibration calls from VI to CSI
+   15. staging: media: tegra-video: add a per-soc enable/disable op
+   16. staging: media: tegra-video: move syncpt init/free to a per-soc op
+   17. staging: media: tegra-video: add syncpts for Tegra20 to struct tegra_vi
+   18. staging: media: tegra-video: add hooks for planar YUV and H/V flip
+   19. staging: media: tegra-video: add H/V flip controls
+
+ * Implementation of VIP and Tegra20
+
+   20. staging: media: tegra-video: add support for Tegra20 parallel input
+
+Enjoy!
+
+Changed in v5:
+ - patch 14: fixed unlock imbalance on Tegra210 in MIPI CSI calibration
+
+Changed in v5:
+- removed patch 3 as requested by Hans Verkuil; now the driver is kept
+  video-node-centric and the enum_format logic is unchanged
+- rebased on top of that
+- trivial fixes (typos)
+
+Changed in RESEND,v4:
+- add Rob's review tag on patch 2
+
+Changed in v4:
+- fixed the leftovers after the removal of 'channel@0' in DT
+- added review tags by Dimtry
+
+Changed in v3:
+- removed the 'channel@0' node from the device tree representation of vip
+- squashed the last two patches (VIP + T20) into one
+- small cleanups
+- rebase on v6.2-rc1
+
+Changed in v2:
+- improved dt-bindings patches based on reviews
+- removed patches 3 and 4 adding DT labels without a mainline user
+- two small fixes to the last patch
+
+[v5] https://lore.kernel.org/linux-tegra/20230407133852.2850145-1-luca.ceresoli@bootlin.com/
+[v4,resend] https://lore.kernel.org/linux-tegra/20230309144320.2937553-1-luca.ceresoli@bootlin.com/
+[v4] https://lore.kernel.org/linux-tegra/20230130141603.323221-1-luca.ceresoli@bootlin.com/
+[v3] https://lore.kernel.org/linux-media/20221229133205.981397-1-luca.ceresoli@bootlin.com/
+[v2] https://lore.kernel.org/linux-tegra/20221222100328.6e341874@booty/T/#t
+[v1] https://lore.kernel.org/linux-tegra/20221124155634.5bc2a423@booty/T/#t
+
+Luca
+
+Luca Ceresoli (20):
+  dt-bindings: display: tegra: add Tegra20 VIP
+  dt-bindings: display: tegra: vi: add 'vip' property and example
+  staging: media: tegra-video: improve documentation of
+    tegra_video_format fields
+  staging: media: tegra-video: document
+    tegra_channel_get_remote_source_subdev
+  staging: media: tegra-video: fix typos in comment
+  staging: media: tegra-video: improve error messages
+  staging: media: tegra-video: slightly simplify cleanup on errors
+  staging: media: tegra-video: move private struct declaration to C file
+  staging: media: tegra-video: move tegra210_csi_soc to C file
+  staging: media: tegra-video: remove unneeded include
+  staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
+  staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc
+    op
+  staging: media: tegra-video: move default format to soc-specific data
+  staging: media: tegra-video: move MIPI calibration calls from VI to
+    CSI
+  staging: media: tegra-video: add a per-soc enable/disable op
+  staging: media: tegra-video: move syncpt init/free to a per-soc op
+  staging: media: tegra-video: add syncpts for Tegra20 to struct
+    tegra_vi
+  staging: media: tegra-video: add hooks for planar YUV and H/V flip
+  staging: media: tegra-video: add H/V flip controls
+  staging: media: tegra-video: add support for Tegra20 parallel input
+
+ .../display/tegra/nvidia,tegra20-vi.yaml      |  59 ++
+ .../display/tegra/nvidia,tegra20-vip.yaml     |  41 ++
+ MAINTAINERS                                   |   3 +
+ drivers/staging/media/tegra-video/Kconfig     |   1 +
+ drivers/staging/media/tegra-video/Makefile    |   2 +
+ drivers/staging/media/tegra-video/csi.c       |  48 ++
+ drivers/staging/media/tegra-video/csi.h       |   4 -
+ drivers/staging/media/tegra-video/tegra20.c   | 661 ++++++++++++++++++
+ drivers/staging/media/tegra-video/tegra210.c  |  90 +++
+ drivers/staging/media/tegra-video/vi.c        | 222 ++----
+ drivers/staging/media/tegra-video/vi.h        |  71 +-
+ drivers/staging/media/tegra-video/video.c     |   5 +
+ drivers/staging/media/tegra-video/video.h     |   2 +-
+ drivers/staging/media/tegra-video/vip.c       | 290 ++++++++
+ drivers/staging/media/tegra-video/vip.h       |  68 ++
+ 15 files changed, 1380 insertions(+), 187 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+ create mode 100644 drivers/staging/media/tegra-video/tegra20.c
+ create mode 100644 drivers/staging/media/tegra-video/vip.c
+ create mode 100644 drivers/staging/media/tegra-video/vip.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.34.1
+
