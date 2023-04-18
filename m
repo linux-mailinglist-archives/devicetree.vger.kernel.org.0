@@ -2,106 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC20D6E6E74
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D1F6E6E83
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbjDRVlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 17:41:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
+        id S232930AbjDRVpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 17:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231168AbjDRVlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:41:18 -0400
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA8EBCE;
-        Tue, 18 Apr 2023 14:41:17 -0700 (PDT)
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-541b69cbe87so643688eaf.2;
-        Tue, 18 Apr 2023 14:41:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681854077; x=1684446077;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ElC7aqM0OYKhp7zqQxQuTXx1H9IDxJGXKnxZVOIROXA=;
-        b=NmpIvhZRJp6raBg/mVkrpZFNcKaiWGplwGrgsH/mP6IxpaSZ+OKr+iOuW2TN1hLa8k
-         IWQ9M0bvSEMzewk2lphtchRUQ7ScXF7RlL8ryiX2KtKA8k1nAh2HKp2hmwa+M8yV30wz
-         I545LHecrHcUHmb9glbPVdVWbnIvvmyrm5INMDvxUfeDlhiXjHiYKw5PdOJiYUOU4HQ0
-         unSCWacZ490peovOqPtD8tBa++0LJsJJmOpJffy1EO+OGYy3eSXs4F9co+jioc4f5y+F
-         WJeq/OpvHjwFF2QbcIaeezzXPvaftE1k1hmyi+op5VJjAcLiKQjGxbRfB3KtsLaiupLN
-         FMsw==
-X-Gm-Message-State: AAQBX9fkEhS+qBjfBqosuiCeGNr9GeFPaI/ueMQai8A080ZZ4o3J+RdX
-        wvGDiKWdbqtx6n0pBzUhrQ==
-X-Google-Smtp-Source: AKy350Y/zUwTPUY+bloMxG86x5GIO5/WgZZJ0w2lgVcgHZEOKfFzsX6+0hRjmFOdov3MNztPcibQZw==
-X-Received: by 2002:a05:6870:1702:b0:187:8f01:7107 with SMTP id h2-20020a056870170200b001878f017107mr2215193oae.44.1681854076847;
-        Tue, 18 Apr 2023 14:41:16 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o19-20020a9d5c13000000b006a3f8f7b686sm6075534otk.28.2023.04.18.14.41.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 14:41:16 -0700 (PDT)
-Received: (nullmailer pid 2378744 invoked by uid 1000);
-        Tue, 18 Apr 2023 21:41:15 -0000
-Date:   Tue, 18 Apr 2023 16:41:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        rfoss@kernel.org, krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        samuel@sholland.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, airlied@gmail.com, daniel@ffwll.ch,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
-        hverkuil-cisco@xs4all.nl
-Subject: Re: [PATCH 1/3] dt-bindings: display: synopsys,dw-hdmi: Add property
- for disabling CEC
-Message-ID: <20230418214115.GA2376963-robh@kernel.org>
-References: <20230415104613.61224-1-jernej.skrabec@gmail.com>
- <20230415104613.61224-2-jernej.skrabec@gmail.com>
+        with ESMTP id S233083AbjDRVpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:45:16 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1904B49FD;
+        Tue, 18 Apr 2023 14:44:58 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.239])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6BE9D6603217;
+        Tue, 18 Apr 2023 22:44:57 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681854297;
+        bh=sdgXZWB61ikcdoR6k+DOEhzGhE10wgrKBIzUUFMlXMA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aIQAGMUCzN7JKN6FIKofs07efe157XyVCT0+2FpttWZsPrC789sJpi5y/Ghr3/Raw
+         8Yl7znactE6Epm4o0O7eXb2emquphikOgt1FR/d2evggCQmNXvfCtWzRtRnm7/tiEB
+         pUrS1yPfIrZVDzJGEzdH2fwqX2i1Q40Z7ek/+vSCzK8dueHfpw97/4yP1BnSOm2OPD
+         5a4IsV8GypyuTPi3R/f4EgAsAxBh8/p9+uN5EVhOgM+NZiqwzBCxFdvGJvd1F/ZT8Z
+         uFAPRLNgDIq54KLvBKFF2FFnYnhAG/Ql1TDRUdNlLGInyvDvLhFPznWQEwWBPP+lIE
+         rP/rYgDesrySQ==
+Received: by mercury (Postfix, from userid 1000)
+        id D9F201066F5D; Tue, 18 Apr 2023 23:44:54 +0200 (CEST)
+Date:   Tue, 18 Apr 2023 23:44:54 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv1 3/5] dt-bindings: phy: rockchip: rk3588 has two reset
+ lines
+Message-ID: <20230418214454.m24t2s3lnsukwppn@mercury.elektranox.org>
+References: <20230413182345.92557-1-sebastian.reichel@collabora.com>
+ <20230413182345.92557-4-sebastian.reichel@collabora.com>
+ <20230418204136.GA2299798-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="s6ptsftpn4p7qth6"
 Content-Disposition: inline
-In-Reply-To: <20230415104613.61224-2-jernej.skrabec@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230418204136.GA2299798-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 15, 2023 at 12:46:11PM +0200, Jernej Skrabec wrote:
-> Even though some DW-HDMI controllers have perfectly usable HDMI-CEC
-> implementation, some boards might prefer not to use it or even use
-> software implementation instead.
-> 
-> Add property for disabling CEC so driver doesn't expose unused CEC
-> interface, if CEC pin isn't connected anywhere.
 
-Isn't this all true for any bridge supporting CEC? Make this common.
+--s6ptsftpn4p7qth6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> ---
->  .../devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> index 4b7e54a8f037..624d32c024f6 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> @@ -48,6 +48,11 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  snps,disable-cec:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Disable HDMI-CEC.
-> +
->  additionalProperties: true
->  
->  ...
-> -- 
-> 2.40.0
-> 
+Hello Rob,
+
+On Tue, Apr 18, 2023 at 03:41:36PM -0500, Rob Herring wrote:
+> On Thu, Apr 13, 2023 at 08:23:43PM +0200, Sebastian Reichel wrote:
+> > The RK3588 has two reset lines for the combphy. One for the
+> > APB interface and one for the actual PHY.
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  .../bindings/phy/phy-rockchip-naneng-combphy.yaml          | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-=
+combphy.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-co=
+mbphy.yaml
+> > index 9ae514fa7533..bac1aae07555 100644
+> > --- a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy=
+=2Eyaml
+> > +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy=
+=2Eyaml
+> > @@ -31,8 +31,13 @@ properties:
+> >        - const: pipe
+> > =20
+> >    resets:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  reset-names:
+> >      items:
+> > -      - description: exclusive PHY reset line
+> > +      - const: phy
+> > +      - const: apb
+>=20
+> This will fail on any existing users with single entry. You need to add=
+=20
+> 'minItems: 1' here.
+>=20
+> It also fails if they didn't use 'phy' as the name, but names should be=
+=20
+> defined.
+
+My understanding is, there there currently are users with one entry
+and no reset-names. I suppose its sensible not to provide a
+reset-name, iff there is only one line. As far as I can tell that
+should still work after my changes.
+
+-- Sebastian
+
+--s6ptsftpn4p7qth6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQ/D00ACgkQ2O7X88g7
++pq29w//Q5Slb98DCTi7eVp+a3iZCQ7kw1XvBK/cvgJLcPFl2ZT79eUY7JQon9pq
+DJs/ln/d65z4AmEX4MNqJU7k3lnv6cX2P2CtjR9oS32WPgxxkmT/kyY/d9yz/Ext
+kD5/QnZ30czThOPar6MWXMHhpXPnzFLBNjHexWU3mU0Qztdf3l8F5dwEhaG3hhnP
+yyuoolfYUHZRoOqCKF83Y/jCUOlpdLt1OB781DuxzVXqFO3r1dvbHTa2gH6vyr38
+clLOSRJ941nMNGxsT5h1QuEd91btcjcuAyPXLAiWfC8ofx9gx2GEApSBIMwlesKm
+/B2OYA2H2u/nKF/+uOld39p2Kf7fvSxZr+WDlc2rUqhMnBhTAMa+loOVfi0ENNOp
+DK+ya0xnJWalRn6v2qYz4vj8yu7nj20njNVgfotw2X2cPfufHOF4HWB19qNmpZmA
+H78RJJrmvZHBdrqwkyufscTaUsJKUjlNk1X1MflBFrl3LzuaIzO2AJ3sbC4q6pXV
+FeOp2ozw9ovlgj0RMUKEb/K62jGwM4RaufZAlzps3FRX35mJ1QhHH4Ro+bd+eja+
+kBAI6Ra69Tz+vn/FAN5zc39IKBZUtJ0tM9uZgwLbHZD/IAx0SicHYtKNYhLD2Cm0
+yc4EQhaCRQKo8k4BgCvxfShpyxJyHBrDQVA5IfWHz31ZP7vg2lM=
+=vQoE
+-----END PGP SIGNATURE-----
+
+--s6ptsftpn4p7qth6--
