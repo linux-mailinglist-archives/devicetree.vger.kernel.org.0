@@ -2,134 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96D236E5DC0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0926E5DD1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjDRJoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 05:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
+        id S231470AbjDRJqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 05:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbjDRJoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:44:02 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2934A1713
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:44:00 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4ec81779f49so2011019e87.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681811038; x=1684403038;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=l2LMbqz6wH8w60oclmV6uXVVb8iyR/SHLVOrQfQu5n4=;
-        b=wG+IKMn0J81Q85iLIDHTC0YAFhqDdS8tsiOF75ljf6BHnjZsDbafzV3nSJXp0PC56O
-         hpDuwbm2sJgSBouOkRHbvM7xfqxRMm0k3GiVipJa9QK7QUG5Rt+0gV226P/QtO/oOuu0
-         22JEwj0Eh8tCPdc8LAMh1MeCYYmAVWDRhahWTR/SWJCvHRfI7pwu5MP43pQxqkBs4l0k
-         4SWXa8GLepongw7rSaoLtbiINSDxQnztcS3l7z8CusPC1q9q/SVzibU7lSb6DkKpCK96
-         2+QFKROWuG+aMTSrYv2OGZAIIOSwutcTTWldBKLJ/eDDnnxd58e7sqFj1AFdmqWF5uw4
-         nbmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681811038; x=1684403038;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l2LMbqz6wH8w60oclmV6uXVVb8iyR/SHLVOrQfQu5n4=;
-        b=OGhoK5qBk0JuFuzOMNLo0HQ/dVdPSAIUA/HSlOKTs/z9NanhpgSJM61SA7BGdZtaCn
-         9SHmQstQzO0c9KLwUM2J62UxDqVf54Q5wRPrR6oWeBLA/d8L1HIwZVxJfvB5UP3pZsp2
-         SX3+ZCjWnTRbNiq15BjDmFopLzPWEZ0E4ZsOzSSbDIlBYe/N/aVyakHj6qaqwqhEx5uG
-         7BAwDjOpIIjPU4gNQEN6CT7kkyj0kR7ofGMD2hre7mJCDAEdP7gbbrv/8066NBR/2KZ4
-         Gc8aQ4IGcGY7jquDHm3ScjzDnpTR+46L5fu7Yf7t2D6HuN04mr3rLbq2YkSopsDTk0VR
-         KFpQ==
-X-Gm-Message-State: AAQBX9fYB+bHu7tKVjzcIxh6gMzvQmkhQdpDgeFFbwTV9tKOsD8RR5Tt
-        80kpFG6NwfRNQuXwLDWLLe0kig==
-X-Google-Smtp-Source: AKy350bMMt96DgjDZhelJgwdeH91GqmXc2epqbLnaBdJ6rmoJqtReem1n9MIx8T5neOs4RY5uDia5Q==
-X-Received: by 2002:ac2:5ec2:0:b0:4ed:b9b6:fc46 with SMTP id d2-20020ac25ec2000000b004edb9b6fc46mr2509904lfq.41.1681811038405;
-        Tue, 18 Apr 2023 02:43:58 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id n3-20020ac242c3000000b004eb09081d77sm2319615lfl.91.2023.04.18.02.43.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 02:43:58 -0700 (PDT)
-Message-ID: <a17c21b7-9c0a-2458-735c-ac3b16ed337f@linaro.org>
-Date:   Tue, 18 Apr 2023 11:43:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sa8775p: pmic: remove the PON modes
-Content-Language: en-US
-To:     Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S231355AbjDRJpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:45:34 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 444EA6A59;
+        Tue, 18 Apr 2023 02:45:31 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id B313C8106;
+        Tue, 18 Apr 2023 09:45:30 +0000 (UTC)
+Date:   Tue, 18 Apr 2023 12:45:29 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230413131705.3073911-1-brgl@bgdev.pl>
- <20230413131705.3073911-2-brgl@bgdev.pl>
- <3e361a73-797f-41c7-1ead-ecafee3928e4@linaro.org>
- <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Tero Kristo <kristo@kernel.org>, Bryan Brattlof <bb@ti.com>
+Subject: Re: [PATCH 0/3] arm64: dts: ti: k3-am62a: Add timers, wdt and fixup
+Message-ID: <20230418094529.GC14287@atomide.com>
+References: <20230418012717.1230882-1-nm@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230418012717.1230882-1-nm@ti.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Nishanth Menon <nm@ti.com> [230418 01:32]:
+> This is a series that adds wdt, timers to am62ax support, and adds the
+> missing description for uart1 and wkup_uart that is used by firmware.
 
+Looks good to me:
 
-On 18.04.2023 06:39, Shazad Hussain wrote:
-> 
-> 
-> On 4/13/2023 9:42 PM, Krzysztof Kozlowski wrote:
->> On 13/04/2023 15:17, Bartosz Golaszewski wrote:
->>> From: Parikshit Pareek <quic_ppareek@quicinc.com>
->>>
->>> Remove the power on reasons with reboot from the pmm8654au_0_pon.
->>> Instead, the PoN reaons should be part of different sdam_0 mode, to
->>
->> typo: reasons
->>
->>> be interoduced.
->>
->> introduced
->>
->> Anyway it does not say why. Are these power reasons not correct?
->>
-> 
-> Hi Krzysztof,
-> Since sm8350 the PMIC PON peripheral was split into PON_HLOS and PON_PBS
-> to avoid security concerns with HLOS APPS being able to trigger a PMIC
-> WARM_RESET unilaterally. When the split occurred, the spare registers
-> ended up in PON_PBS, not PON_HLOS. Thus at that time, we moved to using
-> an SDAM register for Linux “reboot reason” configuration. And bootloader
-> also SDAM register to get these reboot region data to get into
-> bootloader/edl, so to have this working we need to use SDAM.
-> 
-Does that imply all PMICs following the PMK8350 scheme (separate HLOS and
-PBS) should direct reboot mode writes to SDAM?
-
-Konrad
->>>
->>> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>> ---
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> -Shazad
+Reviewed-by: Tony Lindgren <tony@atomide.com>
