@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBEBE6E6F56
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 00:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 530756E6F5D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 00:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230523AbjDRW0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 18:26:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54550 "EHLO
+        id S231574AbjDRW3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 18:29:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbjDRW0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 18:26:16 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369D559D7;
-        Tue, 18 Apr 2023 15:26:15 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1842c7c2daaso470971fac.0;
-        Tue, 18 Apr 2023 15:26:15 -0700 (PDT)
+        with ESMTP id S229940AbjDRW3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 18:29:16 -0400
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D48E5C;
+        Tue, 18 Apr 2023 15:29:13 -0700 (PDT)
+Received: by mail-oo1-f54.google.com with SMTP id b8-20020a056820134800b00546f139ded4so885252oow.11;
+        Tue, 18 Apr 2023 15:29:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681856774; x=1684448774;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DzkYu2FZFUxwYvdabyHvXaq9bbCUpOwOEj0N+6nTnPE=;
-        b=dvhF4A1PpuHaqCHDBeyzvgJrX354fRn2/VrKKNq6bW1R6Q7cMj6vomNpaLq1OpZHe2
-         0Guq9r556cWq6AWKzqKsv/+6o/K8q9RsuMFFJkIi6WSFwPa54tZBx2VV8BLJYe+OH5ru
-         akJmbMttjOh92iIygodVTsFWdyA+qhm43YCUQVR90kSzUnue5nmfZnL3VDSBdmEEK7x6
-         1mBzVROySrecgTKd4ESEAaUaVQEiSX2S4uM0dDRSbkTI0rL3BANTDIrIoh4yTMVAUcCw
-         +V74HHc9EOTxDHsnoVz5/80HQ5X94WdYXBWE5qyKBmbuWwskDodAvHq9O7pxHm2q2GJu
-         vYVw==
-X-Gm-Message-State: AAQBX9fhRcd2BgOh0a1aIG/hI5+Bti9lo9/iU0voPA7wZ/N7yMkbzn0R
-        cKjJoG+Rx9LQZvU+VTKr0w==
-X-Google-Smtp-Source: AKy350bFvNy0NlWTzt68rhthpi/WPjnoE7xLzVZ9Y3ny/MmMDQ7CWhC385UPZEOO6x3QefiiZ6rpbQ==
-X-Received: by 2002:a05:6870:f2a5:b0:184:50ac:2e27 with SMTP id u37-20020a056870f2a500b0018450ac2e27mr1936247oap.50.1681856774469;
-        Tue, 18 Apr 2023 15:26:14 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681856953; x=1684448953;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=db9PMHM/Qn98GSD4/ys+i9eCeTPLiGiM+3j8knhblLE=;
+        b=DdH8u6TvdO59BNIvUCFbWbncMUqsXqhRFZ23+8IeqpHePPhS5IPU6w+XJj5xrOCEAW
+         +Yx5Er/DGLV6D98efek9SGdb8dnsQS/81dKGxrjUrla8MtIUzWRBGNivYw4mdUhbKIet
+         BeQQQAdpB5yYn6twMzVjfNnbnMtXhyh29Am2Pwt53tVWbOk8UHqAcEpH2Z89Bj4sD0Zc
+         9MXferTKqzYYMWiWPJZYg/piEUuJwnOhx1nusOGRhj9bScb7UOeZf6gko4pVx5qn9f+S
+         gM7H1LqZLlDUg/6mvqx+amRTWiIRANxy8yxWCVxHhX2BCy+d3g4xHN7mjoQJeJskRtam
+         MZvA==
+X-Gm-Message-State: AAQBX9fLbsQ95Kn+UC0RxpHH7dU7WyRicl2Mho9RCYZ3cz6fMZjW99rF
+        WyOqVBWLnXi0OLH07hQyJA==
+X-Google-Smtp-Source: AKy350bAeSIuzj8yPGX5PIb4p4EJBNSdItbfFSe5fZAkxlfdQzq90VsiHCw3NU3aEUKFTKJ/jOnUzA==
+X-Received: by 2002:a4a:33c3:0:b0:541:b514:77eb with SMTP id q186-20020a4a33c3000000b00541b51477ebmr3108899ooq.2.1681856952661;
+        Tue, 18 Apr 2023 15:29:12 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e8-20020a9d63c8000000b006a5f70dd12bsm1374581otl.17.2023.04.18.15.26.13
+        by smtp.gmail.com with ESMTPSA id z137-20020a4a498f000000b00545b549c2f1sm3687486ooa.22.2023.04.18.15.29.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 15:26:13 -0700 (PDT)
-Received: (nullmailer pid 2439794 invoked by uid 1000);
-        Tue, 18 Apr 2023 22:26:13 -0000
-Date:   Tue, 18 Apr 2023 17:26:13 -0500
+        Tue, 18 Apr 2023 15:29:12 -0700 (PDT)
+Received: (nullmailer pid 2442808 invoked by uid 1000);
+        Tue, 18 Apr 2023 22:29:11 -0000
+Date:   Tue, 18 Apr 2023 17:29:11 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Yangfl <mmyangfl@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH] dt-bindings: display: panel: add common definition of
- ports
-Message-ID: <20230418222613.GA2408838-robh@kernel.org>
-References: <20230416153929.356330-1-krzysztof.kozlowski@linaro.org>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] clk: Add basic register clock controller
+Message-ID: <20230418222911.GA2439926-robh@kernel.org>
+References: <20230416194624.1258860-1-mmyangfl@gmail.com>
+ <81ed4e15-19ea-34d9-3e05-d1195b2cdd57@linaro.org>
+ <CAAXyoMPShMwVjckmYRxStv=t=_GiNmqdLVUUjuxvVLdvp+-4Rw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230416153929.356330-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAXyoMPShMwVjckmYRxStv=t=_GiNmqdLVUUjuxvVLdvp+-4Rw@mail.gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,47 +70,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 16, 2023 at 05:39:29PM +0200, Krzysztof Kozlowski wrote:
-> Few panel bindings for dual-link connections just type "ports: true",
-> which does not enforce any type.  Add common definition of ports, so the
-> type will be fixed.
+On Tue, Apr 18, 2023 at 02:16:28AM +0800, Yangfl wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2023年4月17日周一 14:27写道：
+> >
+> > On 16/04/2023 21:46, David Yang wrote:
+> > > These clocks were provided in `include/linux/clk-provider.h`, but lacks DT
+> > > bindings. Add DT bindings for them.
+> > >
+> > > v2: split clock controller and its clocks
+> >
+> > I gave you several comments on v1 and this vague changelog entry
+> > suggests you ignored all of it.
+> >
+> > Implement feedback and respond to each one that you ack it or disagree
+> > with it.
+> >
+> >
+> > Best regards,
+> > Krzysztof
+> >
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> All issues have been addressed in v3 patch. I omitted details in
+> changelog to reduce redundancy. If that is not the proper way to make
+> response in dt maillist, please let me know.
 > 
-> ---
-> 
-> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/display/panel/panel-common.yaml     | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> index 5b38dc89cb21..ad62d34e6fa3 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> @@ -70,6 +70,16 @@ properties:
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->  
-> +  # For dual-link connections
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    patternProperties:
-> +      "^port@[0-9a-f]+$":
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> Responses for each comments in v1 and v2 have been sent against original email.
 
-This allows any undocumented property.
-
-> +
-> +    required:
-> +      - port@0
-> +
-
-I don't think this should be added here because users must define what 
-each port is. With it here, we're going to validate the nodes twice as 
-well. Same can be said for 'port' though. It can't be extended though.
-
-I originally wanted to a do a meta-schema to enforce some of this, but 
-there's just too many exceptions.
+Go look at v1 replies. This series is a hard no.
 
 Rob
