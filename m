@@ -2,172 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89DE66E5FE7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 13:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8719E6E5FB5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 13:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231289AbjDRLcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 07:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43070 "EHLO
+        id S229640AbjDRLV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 07:21:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231247AbjDRLcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 07:32:35 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA10861AB;
-        Tue, 18 Apr 2023 04:32:33 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 046FD5FD7C;
-        Tue, 18 Apr 2023 14:16:26 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1681816586;
-        bh=lYTwixrqbd9SStEuaH+MOse4j7UjK4ooo6t7FaqVmeA=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=Svh2dtABfLv0A4s8N8XedVQorPjq21MkbnzYzqGr0rE7B7n9umg+kH5gWc/yfHSxG
-         I6if+KKBejBAY8kxAT35VX8E6ePwaDSYCg9APOXYUTEcf+YTGq+sTMsW1m535JjJJZ
-         maO427TZfHXgh0eMipZMNELzwSsHvujFt9J6lbj8/lmYIsses3X6j8hyVgIzfEGY7w
-         KHroZFMv6imEBXB138tczGBWFym21BusY/Irq0Fl/7qA5FDUxrUYztnLs7qwN5pLfP
-         YAfl2lJeIKU0+N0tenqO5E9AidpMhA92sNKKaEeQ2alWPsyl02QvJSCU8DdA0PRhqw
-         Osjt1945IdDHA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 18 Apr 2023 14:16:25 +0300 (MSK)
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <mturquette@baylibre.com>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <hminas@synopsys.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC:     <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH v2 5/5] arm64: dts: meson: a1: support USB controller in OTG mode
-Date:   Tue, 18 Apr 2023 14:16:12 +0300
-Message-ID: <20230418111612.19479-6-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20230418111612.19479-1-ddrokosov@sberdevices.ru>
-References: <20230418111612.19479-1-ddrokosov@sberdevices.ru>
+        with ESMTP id S229564AbjDRLV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 07:21:58 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D77993D8;
+        Tue, 18 Apr 2023 04:21:35 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxJDQ3fT5kvWkeAA--.48215S3;
+        Tue, 18 Apr 2023 19:21:27 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxC743fT5klNssAA--.53316S3;
+        Tue, 18 Apr 2023 19:21:27 +0800 (CST)
+Subject: Re: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
+References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+ <bafedfaf-9ffe-b0ad-d51d-d4b820da3a80@linaro.org>
+ <81229100-a546-74b3-d626-09d042688746@loongson.cn>
+ <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <1e080e82-f20d-f3df-2eb0-f4104bfa616e@loongson.cn>
+Date:   Tue, 18 Apr 2023 19:21:27 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/18 05:44:00 #21123121
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-CM-TRANSID: AQAAf8DxC743fT5klNssAA--.53316S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvdXoW7JFWkAFWUuF43WrW5JF4xJFb_yoWkurg_Kr
+        y8A3s7Wr1Uurs8Jw4vqF1I9ws8tr1Du34YkrW0gw4UC34fXFy5Ar4DCw1SqasxW3s3KFn0
+        kw4qgFyI9w4YvjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
+        27CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2
+        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84AC
+        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
+        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+        vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF04k20xvE74
+        AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
+        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
+        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
+        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
+        Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07URHq7UUUUU=
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic A1 SoC family has USB2.0 controller based on dwc2 and dwc3
-heads. It supports otg/host/peripheral modes.
 
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 59 +++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index ae7d39cff07a..02af0aac6780 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -8,6 +8,8 @@
- #include <dt-bindings/gpio/meson-a1-gpio.h>
- #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,a1-clkc.h>
-+#include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -169,6 +171,17 @@ gpio_intc: interrupt-controller@0440 {
- 				amlogic,channel-interrupts =
- 					<49 50 51 52 53 54 55 56>;
- 			};
-+
-+			usb2_phy1: phy@4000 {
-+				compatible = "amlogic,a1-usb2-phy";
-+				clocks = <&clkc CLKID_USB_PHY_IN>;
-+				clock-names = "xtal";
-+				reg = <0x0 0x4000 0x0 0x60>;
-+				resets = <&reset RESET_USBPHY>;
-+				reset-names = "phy";
-+				#phy-cells = <0>;
-+				power-domains = <&pwrc PWRC_USB_ID>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff901000 {
-@@ -192,6 +205,52 @@ spifc: spi@fd000400 {
- 			#size-cells = <0>;
- 			status = "disabled";
- 		};
-+
-+		usb: usb@fe004400 {
-+			status = "disabled";
-+			compatible = "amlogic,meson-a1-usb-ctrl";
-+			reg = <0x0 0xfe004400 0x0 0xa0>;
-+			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc CLKID_USB_CTRL>,
-+				 <&clkc CLKID_USB_BUS>,
-+				 <&clkc CLKID_USB_CTRL_IN>;
-+			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
-+			resets = <&reset RESET_USBCTRL>;
-+			reset-name = "usb_ctrl";
-+
-+			dr_mode = "otg";
-+
-+			phys = <&usb2_phy1>;
-+			phy-names = "usb2-phy1";
-+
-+			dwc2: usb@ff500000 {
-+				compatible = "amlogic,meson-a1-usb", "snps,dwc2";
-+				reg = <0x0 0xff500000 0x0 0x40000>;
-+				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+				phys = <&usb2_phy1>;
-+				phy-names = "usb2_phy";
-+				clocks = <&clkc CLKID_USB_PHY>;
-+				clock-names = "otg";
-+				dr_mode = "peripheral";
-+				g-rx-fifo-size = <192>;
-+				g-np-tx-fifo-size = <128>;
-+				g-tx-fifo-size = <128 128 16 16 16>;
-+			};
-+
-+			dwc3: usb@ff400000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff400000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				snps,dis_u2_susphy_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,parkmode-disable-ss-quirk;
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.36.0
+在 2023/4/18 下午3:06, Krzysztof Kozlowski 写道:
+> On 18/04/2023 04:53, zhuyinbo wrote:
+>>
+>>
+>> 在 2023/4/15 上午4:43, Krzysztof Kozlowski 写道:
+>>> On 12/04/2023 06:51, Yinbo Zhu wrote:
+>>>> Loongson platform support spi hardware controller and this series patch
+>>>> was to add spi driver and binding support.
+>>>>
+>>>> Change in v2:
+>>>> 		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+>>>> 	 	   https://
+>>>
+>>> Can you stop Ccing fake address "loongson-kernel@lists.loongnix.cn"? It
+>>> does not exist. Remove it from all submissions.Recently, There was some issue with the company's email server, causing
+>> this mail list "loongson-kernel@lists.loongnix.cn" to only accept
+>> internal emails and not accpet external emails. The company's IT is
+>> working to fix this issue. and Ccing this mail list is an internal
+>> requirement.  I will not send emails to this mail list until this email
+>> sever issue is resolved.
+> 
+> You can always Bcc it, if you have such requirement. However your
+> internal requirements should not cause my removing all the time multiple
+> bounces...
+> 
+
+okay, I got it.
+
+Thanks.
+> Best regards,
+> Krzysztof
+> 
 
