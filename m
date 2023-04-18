@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4616E6968
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FB116E6970
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:26:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231238AbjDRQZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
+        id S231577AbjDRQ0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:26:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232525AbjDRQZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:25:22 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B467713C32;
-        Tue, 18 Apr 2023 09:25:02 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-187b70ab997so4676330fac.0;
-        Tue, 18 Apr 2023 09:25:02 -0700 (PDT)
+        with ESMTP id S232432AbjDRQ0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:26:00 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D33E6C66C;
+        Tue, 18 Apr 2023 09:25:59 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1879fc89f5eso377646fac.0;
+        Tue, 18 Apr 2023 09:25:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681835102; x=1684427102;
+        d=1e100.net; s=20221208; t=1681835159; x=1684427159;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qNOE/dyF7FtqvkElewLW1/drwX7fUO4SPOgTWaAx+Y8=;
-        b=hrUCAaj4/c0XTt3DxZBdktzdCCdGON/54O9yINi8cn8Dh+bSMtH++sCndJJCjAYAcG
-         WEVPkRWkq2nsX9Ybf814hijQJnIIyj05sNowxqA9FpUDSM3GFoGNAd1gTHKmnlel/XL8
-         IGVYDzfFM6qo1rJ60rvgDEN4gb3lQVPzCDrXGOhDWp3bOYIBQVo+Z0LJy25tDaMu6I9Y
-         AvrC7rVOG+DvNJ9E/VqzjO19q1/tCDJq1ffQ4AaQwmrO/da0WwBIEQQlRwOkvYLM4r7X
-         qGVh5r3dRngZDsg0vqWEK19Hjn2EXiul4httWA7ppH4tRUMwuVvsDsHgHYJhbO0p8YB4
-         522Q==
-X-Gm-Message-State: AAQBX9fc+RyIoBZ7aSCBui3cQ+L7JeGid8Xt7NZ0ULNc+p9xFPKZw18c
-        5q/jQGh3H0a40bbw78zbt6mIX/JkYg==
-X-Google-Smtp-Source: AKy350bzMR1g5hB4iuk845AUemZNXAqo9D5REaHir64PgiMFVxCquNqHbINnk1UXcAHs8bQz3X/zkg==
-X-Received: by 2002:a9d:19e9:0:b0:6a4:1a07:deb7 with SMTP id k96-20020a9d19e9000000b006a41a07deb7mr1315388otk.19.1681835101866;
-        Tue, 18 Apr 2023 09:25:01 -0700 (PDT)
+        bh=GALPTZ5rs1mIduJF7Jl53u7XfsfluO0jc0nwk+zxYao=;
+        b=j6SEneBD+X+GuvYYcjRcNenjkeOA+gD5OAymFYCEd1AwbCoD3vFAG0m2lEbe02wsSz
+         2HtLhPCSarVQ89EVK1kLePe7q/rR8xDmlD3Y8Ybi70i+jA8O47B/hjTsn1CiwV8OfPdQ
+         JgCnrzmPF9P7gjYGDr7/I8rCUF/w2CfUqgy4XspIRe8g/J041P2Rv0f50Grk1WDyB/Rs
+         2zlZ4Oyhb9KY43AvV0d40aQMNNdAjNgjZUjWrr7TMHzLCCiqqvuZbjPv5c5MdWEComgB
+         tizuyvrS7WdoqegAntF1Va2BPYNX1u7j/SIAHh5bkooqHmTHKGjZiuo9wRa1h8Y1ehfO
+         pLdg==
+X-Gm-Message-State: AAQBX9cydhk2iknBKVKTWgiMTgSvtGbZpm0snQHB51B55fCuIrO5LJyY
+        XPNYGqvtxpvtCuTsEEmpFw==
+X-Google-Smtp-Source: AKy350aqiwGvkm3PEtoK/oiOYt0ohBeRtozgRcDrXi5U4KbApLSinkvRa0UgAiJEnhzYkN4LUDI3oQ==
+X-Received: by 2002:a05:6871:149:b0:169:dcba:1ec9 with SMTP id z9-20020a056871014900b00169dcba1ec9mr1623622oab.41.1681835158903;
+        Tue, 18 Apr 2023 09:25:58 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x25-20020a05683000d900b006a12509bd94sm2094741oto.13.2023.04.18.09.25.00
+        by smtp.gmail.com with ESMTPSA id r204-20020a4a37d5000000b00541fbbbcd31sm1737771oor.5.2023.04.18.09.25.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 09:25:01 -0700 (PDT)
-Received: (nullmailer pid 1807499 invoked by uid 1000);
-        Tue, 18 Apr 2023 16:25:00 -0000
-Date:   Tue, 18 Apr 2023 11:25:00 -0500
+        Tue, 18 Apr 2023 09:25:58 -0700 (PDT)
+Received: (nullmailer pid 1808654 invoked by uid 1000);
+        Tue, 18 Apr 2023 16:25:57 -0000
+Date:   Tue, 18 Apr 2023 11:25:57 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] mailbox: Use of_property_read_bool() for boolean
- properties
-Message-ID: <20230418162500.GC1764573-robh@kernel.org>
-References: <20230310144710.1543139-1-robh@kernel.org>
+To:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ALSA: Use of_property_read_bool() for boolean properties
+Message-ID: <20230418162557.GD1764573-robh@kernel.org>
+References: <20230310144734.1546587-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230310144710.1543139-1-robh@kernel.org>
+In-Reply-To: <20230310144734.1546587-1-robh@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -62,7 +62,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 08:47:10AM -0600, Rob Herring wrote:
+On Fri, Mar 10, 2023 at 08:47:33AM -0600, Rob Herring wrote:
 > It is preferred to use typed property access functions (i.e.
 > of_property_read_<type> functions) rather than low-level
 > of_get_property/of_find_property functions for reading properties.
@@ -70,43 +70,25 @@ On Fri, Mar 10, 2023 at 08:47:10AM -0600, Rob Herring wrote:
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/mailbox/hi6220-mailbox.c | 5 +----
->  drivers/mailbox/omap-mailbox.c   | 3 +--
->  2 files changed, 2 insertions(+), 6 deletions(-)
+>  sound/ppc/tumbler.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
 Ping!
 
 > 
-> diff --git a/drivers/mailbox/hi6220-mailbox.c b/drivers/mailbox/hi6220-mailbox.c
-> index fca61f5312d9..1c73c63598f5 100644
-> --- a/drivers/mailbox/hi6220-mailbox.c
-> +++ b/drivers/mailbox/hi6220-mailbox.c
-> @@ -325,10 +325,7 @@ static int hi6220_mbox_probe(struct platform_device *pdev)
->  	writel(~0x0, ACK_INT_CLR_REG(mbox->ipc));
+> diff --git a/sound/ppc/tumbler.c b/sound/ppc/tumbler.c
+> index 6c882873b344..12f1e10db1c4 100644
+> --- a/sound/ppc/tumbler.c
+> +++ b/sound/ppc/tumbler.c
+> @@ -1361,7 +1361,7 @@ int snd_pmac_tumbler_init(struct snd_pmac *chip)
 >  
->  	/* use interrupt for tx's ack */
-> -	if (of_find_property(node, "hi6220,mbox-tx-noirq", NULL))
-> -		mbox->tx_irq_mode = false;
-> -	else
-> -		mbox->tx_irq_mode = true;
-> +	mbox->tx_irq_mode = !of_property_read_bool(node, "hi6220,mbox-tx-noirq");
->  
->  	if (mbox->tx_irq_mode)
->  		mbox->controller.txdone_irq = true;
-> diff --git a/drivers/mailbox/omap-mailbox.c b/drivers/mailbox/omap-mailbox.c
-> index 098c82d87137..fd28ac2120df 100644
-> --- a/drivers/mailbox/omap-mailbox.c
-> +++ b/drivers/mailbox/omap-mailbox.c
-> @@ -763,8 +763,7 @@ static int omap_mbox_probe(struct platform_device *pdev)
->  
->  		finfo->name = child->name;
->  
-> -		if (of_find_property(child, "ti,mbox-send-noirq", NULL))
-> -			finfo->send_no_irq = true;
-> +		finfo->send_no_irq = of_property_read_bool(child, "ti,mbox-send-noirq");
->  
->  		if (finfo->tx_id >= num_fifos || finfo->rx_id >= num_fifos ||
->  		    finfo->tx_usr >= num_users || finfo->rx_usr >= num_users)
+>  	for_each_child_of_node(chip->node, np) {
+>  		if (of_node_name_eq(np, "sound")) {
+> -			if (of_get_property(np, "has-anded-reset", NULL))
+> +			if (of_property_read_bool(np, "has-anded-reset"))
+>  				mix->anded_reset = 1;
+>  			if (of_property_present(np, "layout-id"))
+>  				mix->reset_on_sleep = 0;
 > -- 
 > 2.39.2
 > 
