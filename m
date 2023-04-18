@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BFF6E561C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 03:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A0E66E5668
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 03:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbjDRBAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 21:00:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33594 "EHLO
+        id S229614AbjDRB13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 21:27:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjDRBAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 21:00:39 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 057A82D77;
-        Mon, 17 Apr 2023 18:00:33 -0700 (PDT)
+        with ESMTP id S229655AbjDRB12 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 21:27:28 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56B1C2D79;
+        Mon, 17 Apr 2023 18:27:27 -0700 (PDT)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33I10NkS012536;
-        Mon, 17 Apr 2023 20:00:23 -0500
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33I1RIg5007800;
+        Mon, 17 Apr 2023 20:27:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681779623;
-        bh=OS7712zJKNw58HtC9X5O53QAWeh7BlP8TTEJdq8mwVM=;
+        s=ti-com-17Q1; t=1681781238;
+        bh=Of7HHWk/aqFbkXN6zZ3p7OKc+toNQyjl37HgSMUNRu4=;
         h=From:To:CC:Subject:Date;
-        b=Nmbl8ED0fFJsZEXjZNPqZpwVsJOUSNjR4MihRBHou5UCwHWFV2U7aTKbPHFyLCGnd
-         MC7yO6bemDbCLDYZqMn0DqUwLYUGpZCx4dreemPEaXFz+FIrzPSZXSukcXzlk4fvdJ
-         DfC/cJ2BZvAbCksmOSe5rNVEKaxq6jVqKyxjEVA8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33I10NX1091283
+        b=YW2g0ZwrHSncy8Um1PA0HQ8T1r0bsoPtvhO07AxAkEeA52WV+rUsT+a8Ya5ZkwOMk
+         hKa3gl6sP+9Tl/27jS4eL/Og1aFAZSo1/BjthKL018lgg9KOEYl3cBVkFsjJMgNvJa
+         ZZd41WsHiD+bcqDSLfNNMqq9wTOr7iox2bqnDL8U=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33I1RIuk115910
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Apr 2023 20:00:23 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 17 Apr 2023 20:27:18 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 17
- Apr 2023 20:00:23 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2023 20:27:18 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 17 Apr 2023 20:00:22 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33I10Mre016129;
-        Mon, 17 Apr 2023 20:00:22 -0500
+ Frontend Transport; Mon, 17 Apr 2023 20:27:18 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33I1RItK041844;
+        Mon, 17 Apr 2023 20:27:18 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
 CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH] dt-bindings: mfd: ti,j721e-system-controller: Add SoC chip ID
-Date:   Mon, 17 Apr 2023 20:00:19 -0500
-Message-ID: <20230418010019.1222431-1-nm@ti.com>
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Bryan Brattlof <bb@ti.com>
+Subject: [PATCH 0/3] arm64: dts: ti: k3-am62a: Add timers, wdt and fixup
+Date:   Mon, 17 Apr 2023 20:27:14 -0500
+Message-ID: <20230418012717.1230882-1-nm@ti.com>
 X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,43 +65,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The system-controller node also contains the chip-id node that is used
-to identify the SoC specific properties. Add a pattern property to
-match to the same, and add to the example.
+Hi,
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- .../bindings/mfd/ti,j721e-system-controller.yaml      | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+This is a series that adds wdt, timers to am62ax support, and adds the
+missing description for uart1 and wkup_uart that is used by firmware.
 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-index 76ef4352e13c..0c98d913747b 100644
---- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-@@ -62,6 +62,12 @@ patternProperties:
-     description:
-       The phy node corresponding to the ethernet MAC.
- 
-+  "^chipid@[0-9a-f]+$":
-+    type: object
-+    $ref: /schemas/hwinfo/ti,k3-socinfo.yaml#
-+    description:
-+      The node corresponding to SoC chip identification.
-+
- required:
-   - compatible
-   - reg
-@@ -99,5 +105,10 @@ examples:
-             reg = <0x4140 0x18>;
-             #clock-cells = <1>;
-         };
-+
-+        chipid@14 {
-+            compatible = "ti,am654-chipid";
-+            reg = <0x14 0x4>;
-+        };
-     };
- ...
+Nishanth Menon (3):
+  arm64: dts: ti: k3-am62a: Add general purpose timers
+  arm64: dts: ti: k3-am62a: Add watchdog nodes
+  arm64: dts: ti: k3-am62a7-evm: Describe main_uart1 and wkup_uart
+
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 141 ++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    |  56 ++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi |  11 ++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts     |  36 +++++
+ 4 files changed, 244 insertions(+)
+
 -- 
 2.40.0
 
