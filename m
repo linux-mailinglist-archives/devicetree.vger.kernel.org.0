@@ -2,60 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B265E6E5C64
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 10:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 593A36E5C8C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 10:52:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231148AbjDRIra convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 18 Apr 2023 04:47:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54920 "EHLO
+        id S229887AbjDRIww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 04:52:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbjDRIr3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 04:47:29 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D69F61BD8
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 01:47:28 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1pogza-0008QK-48; Tue, 18 Apr 2023 10:47:14 +0200
-Message-ID: <426e901f14254cfcff87ba1747534f9b856ef738.camel@pengutronix.de>
-Subject: Re: [PATCH 3/6] drm: bridge: samsung-dsim: Fetch
- pll-clock-frequency automatically
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        aford@beaconembedded.com, dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        m.szyprowski@samsung.com, Robert Foss <rfoss@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Date:   Tue, 18 Apr 2023 10:47:07 +0200
-In-Reply-To: <56085a0f-02f7-6f45-f351-1f9ee612b748@denx.de>
-References: <20230415104104.5537-1-aford173@gmail.com>
-         <20230415104104.5537-3-aford173@gmail.com>
-         <7eed74e8-9f67-a410-3cec-f61a6db85238@denx.de>
-         <CAHCN7xKw26TQ=t75TEDbEkA0mb9rnEwNW=7ei1=WFBZjiJMf=g@mail.gmail.com>
-         <56085a0f-02f7-6f45-f351-1f9ee612b748@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
-MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        with ESMTP id S229824AbjDRIww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 04:52:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E083E1AD;
+        Tue, 18 Apr 2023 01:52:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7C7CA623D6;
+        Tue, 18 Apr 2023 08:52:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1DD8C433EF;
+        Tue, 18 Apr 2023 08:52:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681807969;
+        bh=70xPBbsh44oN1k6erbly3OaVLsKVZbbBoVAm3vD2DdI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=b8ll9dxckioE9A0c1+ZgHz+sHWGOxwF/CQfkqv1VmqjNAmoCZDkuWKmwqUVedQ+v0
+         a7dX0RBxjSeQ9/9nb24+CEmtwK2/4z9qHxJ63a5OAvLZhn9kc4LH9WghBgeSsBgW/V
+         Ne2MD40ZYo0g/KsoVsVrBB8dwaHddXfpqhuCCYv6M7kLLxlZ1najAIcUl94MglNQq9
+         fDhroZE4J1O7KcGp5S7estYGZIwgHMmrXHKgDSGxFxViWWdu8Q2FLWYJJGIfzMXtS+
+         I9OH4KOoycgqvu23rmYmV2eLp9tGyUUr5yAKX8JyF8f2DBFOQrnm0LTtrda370YOPo
+         qk3YHeQ+tRHhw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1poh4x-009FZV-Fa;
+        Tue, 18 Apr 2023 09:52:47 +0100
+Date:   Tue, 18 Apr 2023 09:52:47 +0100
+Message-ID: <867cu9lggw.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        XiaoDong Huang <derrick.huang@rock-chips.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v3 1/2] irqchip/gic-v3: Add Rockchip 3588001 errata workaround
+In-Reply-To: <20230417214035.101190-2-sebastian.reichel@collabora.com>
+References: <20230417214035.101190-1-sebastian.reichel@collabora.com>
+        <20230417214035.101190-2-sebastian.reichel@collabora.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: sebastian.reichel@collabora.com, heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de, peng.fan@nxp.com, robin.murphy@arm.com, pgwipeout@gmail.com, derrick.huang@rock-chips.com, kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@collabora.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,56 +74,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 18.04.2023 um 10:30 +0200 schrieb Marek Vasut:
-> On 4/18/23 04:29, Adam Ford wrote:
-> > On Sun, Apr 16, 2023 at 5:08 PM Marek Vasut <marex@denx.de> wrote:
-> > > 
-> > > On 4/15/23 12:41, Adam Ford wrote:
-> > > > Fetch the clock rate of "sclk_mipi" (or "pll_clk") instead of
-> > > > having an entry in the device tree for samsung,pll-clock-frequency.
-> > > > 
-> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > > ---
-> > > >    drivers/gpu/drm/bridge/samsung-dsim.c | 12 ++++++------
-> > > >    1 file changed, 6 insertions(+), 6 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-> > > > index 9fec32b44e05..73f0c3fbbdf5 100644
-> > > > --- a/drivers/gpu/drm/bridge/samsung-dsim.c
-> > > > +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-> > > > @@ -1744,11 +1744,6 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
-> > > >        struct device_node *node = dev->of_node;
-> > > >        int ret;
-> > > > 
-> > > > -     ret = samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequency",
-> > > > -                                    &dsi->pll_clk_rate);
-> > > > -     if (ret < 0)
-> > > > -             return ret;
-> > > > -
-> > > >        ret = samsung_dsim_of_read_u32(node, "samsung,burst-clock-frequency",
-> > > >                                       &dsi->burst_clk_rate);
-> > > >        if (ret < 0)
-> > > 
-> > > Does this break compatibility with old samsung DTs ?
-> > 
-> > My goal here was to declutter the device tree stuff and fetch data
-> > automatically if possible. What if I changed this to make them
-> > optional?  If they exist, we can use them, if they don't exist, we
-> > could read the clock rate.  Would that be acceptable?
+On Mon, 17 Apr 2023 22:40:34 +0100,
+Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
 > 
-> If you do not see any potential problem with ignoring the DT property 
-> altogether, that would be better of course, but I think you cannot do 
-> that with old DTs, so you should retain backward compatibility fallback, 
-> yes. What do you think ?
+> Rockchip RK3588/RK3588s GIC600 integration does not support the
+> sharability feature. Rockchip assigned Errata ID #3588001 for this
+> issue.
 
-I'm very much in favor of this patch, but I also think we shouldn't
-risk breaking Samsung devices, where we don't now 100% that the input
-clock rate provided by the clock driver is correct.
+s/Errata/Erratum/ (here and in the subject).
 
-So I think the right approach is to use "samsung,pll-clock-frequency"
-when present in DT and get it from the clock provider otherwise. Then
-just remove the property from the DTs where we can validate that the
-input clock rate is correct, i.e. all i.MX8M*.
+> 
+> Note, that the 0x0201743b ID is not Rockchip specific and thus
+> there is an extra of_machine_is_compatible() check.
+> 
+> The flag are named BROKEN_SHAREABILITY to be vendor agnostic,
 
-Regards,
-Lucas
+Either "the flag is" or "the flags are".
+
+> since apparently similar integration design errors exist in other
+> platforms and they can reuse the same flag.
+> 
+> Co-developed-by: XiaoDong Huang <derrick.huang@rock-chips.com>
+> Signed-off-by: XiaoDong Huang <derrick.huang@rock-chips.com>
+> Co-developed-by: Kever Yang <kever.yang@rock-chips.com>
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> Co-developed-by: Lucas Tanure <lucas.tanure@collabora.com>
+> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  Documentation/arm64/silicon-errata.rst |  3 +++
+>  arch/arm64/Kconfig                     | 10 ++++++++
+>  drivers/irqchip/irq-gic-v3-its.c       | 35 ++++++++++++++++++++++++++
+>  3 files changed, 48 insertions(+)
+> 
+> diff --git a/Documentation/arm64/silicon-errata.rst b/Documentation/arm64/silicon-errata.rst
+> index ec5f889d7681..46d06ed3e4f4 100644
+> --- a/Documentation/arm64/silicon-errata.rst
+> +++ b/Documentation/arm64/silicon-errata.rst
+> @@ -205,6 +205,9 @@ stable kernels.
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | Qualcomm Tech. | Kryo4xx Gold    | N/A             | ARM64_ERRATUM_1286807       |
+>  +----------------+-----------------+-----------------+-----------------------------+
+> ++----------------+-----------------+-----------------+-----------------------------+
+> +| Rockchip       | RK3588          | #3588001        | ROCKCHIP_ERRATUM_3588001    |
+> ++----------------+-----------------+-----------------+-----------------------------+
+>  
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | Fujitsu        | A64FX           | E#010001        | FUJITSU_ERRATUM_010001      |
+> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+> index 1023e896d46b..1bc43faef10a 100644
+> --- a/arch/arm64/Kconfig
+> +++ b/arch/arm64/Kconfig
+> @@ -1150,6 +1150,16 @@ config NVIDIA_CARMEL_CNP_ERRATUM
+>  
+>  	  If unsure, say Y.
+>  
+> +config ROCKCHIP_ERRATUM_3588001
+> +	bool "Rockchip 3588001: GIC600 can not support shareability attributes"
+> +	default y
+> +	help
+> +	  The Rockchip RK3588 GIC600 SoC integration does not support ACE/ACE-lite.
+> +	  This means, that the GIC600 may not use the GIC600 sharability feature
+
+This sentence makes little sense. It is the GIC driver that cannot
+make use of the shareability attributes.
+
+> +	  even though it is supported by the IP itself.
+> +
+> +	  If unsure, say Y.
+> +
+>  config SOCIONEXT_SYNQUACER_PREITS
+>  	bool "Socionext Synquacer: Workaround for GICv3 pre-ITS"
+>  	default y
+> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+> index 586271b8aa39..5b7aa48dde25 100644
+> --- a/drivers/irqchip/irq-gic-v3-its.c
+> +++ b/drivers/irqchip/irq-gic-v3-its.c
+> @@ -42,9 +42,11 @@
+>  #define ITS_FLAGS_CMDQ_NEEDS_FLUSHING		(1ULL << 0)
+>  #define ITS_FLAGS_WORKAROUND_CAVIUM_22375	(1ULL << 1)
+>  #define ITS_FLAGS_WORKAROUND_CAVIUM_23144	(1ULL << 2)
+> +#define ITS_FLAGS_BROKEN_SHAREABILITY		(1ULL << 3)
+
+Having slept on it, I'd rather this is renamed as
+"FORCE_NON_SHAREABLE", as it better describes what we are doing. The
+brokenness is an attribute of the platform, not of the flag.
+
+>
+>  #define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
+>  #define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
+> +#define RDIST_FLAGS_BROKEN_SHAREABILITY		(1 << 2)
+
+Same thing here.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
