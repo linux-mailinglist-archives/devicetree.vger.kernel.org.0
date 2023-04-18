@@ -2,106 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8170F6E6609
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA9B6E6629
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjDRNez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 09:34:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53468 "EHLO
+        id S230023AbjDRNoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 09:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbjDRNey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:34:54 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E712E40;
-        Tue, 18 Apr 2023 06:34:49 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 496C124DBBD;
-        Tue, 18 Apr 2023 21:34:47 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Apr
- 2023 21:34:47 +0800
-Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Apr
- 2023 21:34:45 +0800
-Message-ID: <44908c89-1e77-8521-d5cd-2bbe7affa04c@starfivetech.com>
-Date:   Tue, 18 Apr 2023 21:34:43 +0800
+        with ESMTP id S231892AbjDRNoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:44:18 -0400
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28BD86B6;
+        Tue, 18 Apr 2023 06:44:14 -0700 (PDT)
+Received: from pps.filterd (m0353722.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33IDG74s012838;
+        Tue, 18 Apr 2023 13:44:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=3rTxPXcrDEqRa/DaBHbZhPe1zpvsDR1Y31o1ZvJjF3s=;
+ b=cwpLlpRCIH9kcNaFoDBJilVOnpiAWFvWxJEO8D6qQjW1yFy7604PuDFE/fhKsjkC9Xmh
+ KAOdmKnjk60hUCkXgGXRKyCW12vWiIS0n4p97Ut4gujiJULcNsS2NbNjT/NFui/UsBcP
+ qzZfQifUGxLFgYHEkowMjV7Ckje1s0vYmyvItK1Qa56F92sKtb2bQu3i2FWUJKV3VJag
+ 2Eh5Z2WVJlNvxdQu9HGccEWkLxuR9JLxcQtucQCAvVLuj0cqI905Iq4s1sUeMc0B0kuM
+ d3TOYGAX9MMxvaktOU7UREMNdasQ6ePFSn+6fz4TsV/q7aYoLNhmwCWH/1anUhk3148B rg== 
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q1q35a8qm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 13:44:13 +0000
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 33ICSkMv012039;
+        Tue, 18 Apr 2023 13:44:13 GMT
+Received: from smtprelay03.wdc07v.mail.ibm.com ([9.208.129.113])
+        by ppma04wdc.us.ibm.com (PPS) with ESMTPS id 3pykj7967f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 13:44:13 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+        by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33IDiBoJ27525774
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 18 Apr 2023 13:44:12 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id E74F558059;
+        Tue, 18 Apr 2023 13:44:11 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1351D58055;
+        Tue, 18 Apr 2023 13:44:11 +0000 (GMT)
+Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
+        by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+        Tue, 18 Apr 2023 13:44:10 +0000 (GMT)
+From:   Stefan Berger <stefanb@linux.ibm.com>
+To:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     nayna@linux.ibm.com, nasastry@in.ibm.com, mpe@ellerman.id.au,
+        Stefan Berger <stefanb@linux.ibm.com>
+Subject: [PATCH v9 0/4] tpm: Preserve TPM measurement log across kexec (ppc64)
+Date:   Tue, 18 Apr 2023 09:44:05 -0400
+Message-Id: <20230418134409.177485-1-stefanb@linux.ibm.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [-net-next v12 0/6] Add Ethernet driver for StarFive JH7110 SoC
-Content-Language: en-US
-To:     <patchwork-bot+netdevbpf@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kernel@esmil.dk>,
-        <pmmoreir@synopsys.com>, <richardcochran@gmail.com>,
-        <conor@kernel.org>, <paul.walmsley@sifive.com>,
-        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <andrew@lunn.ch>,
-        <hkallweit1@gmail.com>, <pgwipeout@gmail.com>,
-        <yanhong.wang@starfivetech.com>, <tomm.merciai@gmail.com>
-References: <20230417100251.11871-1-samin.guo@starfivetech.com>
- <168181742075.8442.13068337635820008574.git-patchwork-notify@kernel.org>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <168181742075.8442.13068337635820008574.git-patchwork-notify@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: VbtAIg_lLbzpMzY2eBe8yJ8mzsDB6Cdp
+X-Proofpoint-ORIG-GUID: VbtAIg_lLbzpMzY2eBe8yJ8mzsDB6Cdp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-18_09,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 mlxlogscore=696 bulkscore=0
+ phishscore=0 mlxscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304180118
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Re: [-net-next v12 0/6] Add Ethernet driver for StarFive JH7110 SoC
-From: patchwork-bot+netdevbpf@kernel.org
-to: Samin Guo <samin.guo@starfivetech.com>
-data: 2023/4/18
+The of-tree subsystem does not currently preserve the IBM vTPM 1.2 and
+vTPM 2.0 measurement logs across a kexec on PowerVM and PowerKVM. This
+series fixes this for the kexec_file_load() syscall using the flattened
+device tree (fdt) to carry the TPM measurement log's buffer across kexec.
 
-> Hello:
-> 
-> This series was applied to netdev/net-next.git (main)
-> by Paolo Abeni <pabeni@redhat.com>:
-> 
-> On Mon, 17 Apr 2023 18:02:45 +0800 you wrote:
->> This series adds ethernet support for the StarFive JH7110 RISC-V SoC,
->> which includes a dwmac-5.20 MAC driver (from Synopsys DesignWare).
->> This series has been tested and works fine on VisionFive-2 v1.2A and
->> v1.3B SBC boards.
->>
->> For more information and support, you can visit RVspace wiki[1].
->> You can simply review or test the patches at the link [2].
->> This patchset should be applied after the patchset [3] [4].
->>
->> [...]
-> 
-> Here is the summary with links:
->   - [-net-next,v12,1/6] dt-bindings: net: snps,dwmac: Add dwmac-5.20 version
->     https://git.kernel.org/netdev/net-next/c/13f9351180aa
->   - [-net-next,v12,2/6] net: stmmac: platform: Add snps,dwmac-5.20 IP compatible string
->     https://git.kernel.org/netdev/net-next/c/65a1d72f0c7c
->   - [-net-next,v12,3/6] dt-bindings: net: snps,dwmac: Add 'ahb' reset/reset-name
->     https://git.kernel.org/netdev/net-next/c/843f603762a5
->   - [-net-next,v12,4/6] dt-bindings: net: Add support StarFive dwmac
->     https://git.kernel.org/netdev/net-next/c/b76eaf7d7ede
->   - [-net-next,v12,5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
->     https://git.kernel.org/netdev/net-next/c/4bd3bb7b4526
->   - [-net-next,v12,6/6] net: stmmac: dwmac-starfive: Add phy interface settings
->     https://git.kernel.org/netdev/net-next/c/b4a5afa51cee
-> 
-> You are awesome, thank you!
+   Stefan
+
+v9:
+ - 2/4: Rebased on 6.3-rc7: call tpm_read_log_memory_region if -ENODEV returned
+
+v8:
+ - Added Jarkko's, Coiby's, and Rob's tags
+ - Rebase on v6.0-rc3 that absorbed 2 already upstreamed patches
+
+v7:
+ - Added Nageswara's Tested-by tags
+ - Added back original comment to inline function and removed Jarkko's R-b tag
+
+v6:
+ - Add __init to get_kexec_buffer as suggested by Jonathan
+ - Fixed issue detected by kernel test robot
+
+v5:
+ - Rebased on 1 more patch that would otherwise create merge conflicts
+
+v4:
+ - Rebased on 2 patches that would otherwise create merge conflicts;
+   posting these patches in this series with several tags removed so
+   krobot can test the series already
+ - Changes to individual patches documented in patch descripitons
+
+v3:
+ - Moved TPM Open Firmware related function to drivers/char/tpm/eventlog/tpm_of.c
+
+v2:
+ - rearranged patches
+ - fixed compilation issues for x86
 
 
-Thank you so much! Looking forward to seeing it in v6.4.
 
-Best regards,
-Samin
+Palmer Dabbelt (1):
+  drivers: of: kexec ima: Support 32-bit platforms
+
+Stefan Berger (3):
+  tpm: of: Make of-tree specific function commonly available
+  of: kexec: Refactor IMA buffer related functions to make them reusable
+  tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
+
+ drivers/char/tpm/eventlog/of.c |  30 +--
+ drivers/of/kexec.c             | 336 ++++++++++++++++++++++++++++-----
+ include/linux/kexec.h          |   6 +
+ include/linux/of.h             |   6 +
+ include/linux/tpm.h            |  36 ++++
+ kernel/kexec_file.c            |   6 +
+ 6 files changed, 344 insertions(+), 76 deletions(-)
+
+
+base-commit: 6a8f57ae2eb07ab39a6f0ccad60c760743051026
+-- 
+2.38.1
+
