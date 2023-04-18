@@ -2,79 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C944A6E62B1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCDE16E641D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbjDRMep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:34:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48954 "EHLO
+        id S232004AbjDRMq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:46:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231686AbjDRMej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:34:39 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31C8144B5;
-        Tue, 18 Apr 2023 05:34:30 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33I72Fd0026030;
-        Tue, 18 Apr 2023 07:34:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=3lLKLRtqAbq/3/AQUi5bOsqxDBANDb2I15uT/KuIKxU=;
- b=YOWTvFo7qC8Q69rjyC6m20xZD6GDVMMfVA5YUeVQbddRc38Yaa/AghFHj5+PhI8A56JV
- GOoRwZMf2E6ZEu+gLyxF/TYeN6JWfqKZcM2PeOpIK34bmphkXPBlWMoeeMhyau7ghEhn
- yXik9fX5xSahAaapLDbss40C6V27MzcgYVRWA+0FO2LD6X+lfRW4ez1EvacQoKoiS3ht
- BEHU+0E2hZXj9ix3a4sz9HuwFu7yFgdCNyue0vq/kHJwifBsxh3O/OJNBrfWCzXZBgfR
- I502d7Q95dwllz1Ffoz80icwg3f4/J+9GHr443ZSuENKHAPfrb7GGqEXwsx+8ZydOe6T ZQ== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3pyrbpx5t6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Apr 2023 07:34:16 -0500
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Tue, 18 Apr
- 2023 07:34:15 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Tue, 18 Apr 2023 07:34:15 -0500
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 21C6CB06;
-        Tue, 18 Apr 2023 12:34:15 +0000 (UTC)
-Date:   Tue, 18 Apr 2023 12:34:15 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Saalim Quadri <danascape@gmail.com>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <daniel.baluta@gmail.com>,
-        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8737: Convert to dtschema
-Message-ID: <20230418123415.GB68926@ediswmail.ad.cirrus.com>
-References: <20230417212400.161796-1-danascape@gmail.com>
+        with ESMTP id S231908AbjDRMqY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:46:24 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A64814F77
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:46:22 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id e9e14a558f8ab-32a7770f7d1so32155765ab.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:46:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681821982; x=1684413982;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aWKwSo+FXlLTrRAVOGN2C4OAabPij9dLF7fKxSc3DYk=;
+        b=gj0HO7uJagRwA1ORIyOVM03tkZ2LBmCT36Agq63k77L3K78EOwVrZTuPbh7tlndYv7
+         nmlmJ5bI2oONn377Mx+AJUbuuzAr3CpLV5i5/veAB0Lvxx50vMNQ6lXiY/6L8p4EDmYM
+         cLiQntTWYCFTqU5kyus2jvXkJh85KiHzGnZQ8GWWpBPndXNN5HMCVXHh66TtGH2Ed1c6
+         0CtcGVIhTP4gwmqIZNf2Wu1HNSznW/uGwPF387jaPfFSKQfjLqIAWEMVbJbC4I8e9k2c
+         5Y2c5cpPV8HxCjA9kFgzox3XtqfHKcAf3BnvCj+vpikEJf5w5jc0XTLOV+gfgzBtAqzC
+         bhsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681821982; x=1684413982;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aWKwSo+FXlLTrRAVOGN2C4OAabPij9dLF7fKxSc3DYk=;
+        b=cpw6KFJ86GuXWNIGn3QcR1XcdKvZGsHUDC+WT9nipKgoPxyLCl8uNWjK8rI9vhtqaK
+         yU2T0VQHi7fAX3yePcyWjMhfkcp9TroOv7nxawiMuFcwZ0m40TWhIXRvTnyl+3tpDFoe
+         RN98hz/8IjtJVLyVwIWK3I9L6O7kS0OA60CDwb8p47E+XTZAH2/tEN/cxOMaiWqWig3C
+         eFHzLBrvg1jyUgmKWUNjG9L4YXv3d8myMKErCAFfafEPc1eLncRoqUpht5bDUu74vwh6
+         Ew9YlWrEbTdMDuPhA8isJuP05K51F+Muag90JabwQc1/7UdYy7Q/nCjvQLnRJmzn7Ob8
+         6uYA==
+X-Gm-Message-State: AAQBX9fS3JdvAxT7jdwZrUJfXWBH0pZMi4blhj7raAUjk4/mSwpPeoPu
+        zEGJNnZwqggB0o81YPg0ixFfQw==
+X-Google-Smtp-Source: AKy350YDR3JepDrmTcd6UZ6PhjUVBbJ1Yivi4q/MOQ+1Za4ZU3x+3g9nnsHtHlSdIEEVGv4sSIuhhg==
+X-Received: by 2002:a05:6e02:10c7:b0:313:c32b:de26 with SMTP id s7-20020a056e0210c700b00313c32bde26mr11183052ilj.9.1681821981727;
+        Tue, 18 Apr 2023 05:46:21 -0700 (PDT)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id p5-20020a027805000000b0040b64b68862sm2965285jac.165.2023.04.18.05.46.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 05:46:21 -0700 (PDT)
+Message-ID: <7d97b0c3-9b0a-2e2f-13d9-b9969fd3c1d3@linaro.org>
+Date:   Tue, 18 Apr 2023 07:46:19 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230417212400.161796-1-danascape@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: T8rnZveW4jCzXGhyc7jWw9TWTi1sYJrQ
-X-Proofpoint-ORIG-GUID: T8rnZveW4jCzXGhyc7jWw9TWTi1sYJrQ
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v11 22/26] virt: gunyah: Add proxy-scheduled vCPUs
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
+ <20230304010632.2127470-23-quic_eberman@quicinc.com>
+ <98ad146d-492d-aa0c-4f6a-ba37e6bf74eb@linaro.org>
+ <274ad221-f397-b634-5742-fe6c9cb18843@quicinc.com>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <274ad221-f397-b634-5742-fe6c9cb18843@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 17, 2023 at 09:24:00PM +0000, Saalim Quadri wrote:
-> Convert the WM8737 audio CODEC bindings to DT schema
+On 4/17/23 5:41 PM, Elliot Berman wrote:
 > 
-> Signed-off-by: Saalim Quadri <danascape@gmail.com>
-> ---
+> 
+> On 3/31/2023 7:27 AM, Alex Elder wrote:
+>> On 3/3/23 7:06 PM, Elliot Berman wrote:
+> 
+> [snip]
+> 
+>>> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
+>>> index caeb3b3a3e9a..e52265fa5715 100644
+>>> --- a/include/uapi/linux/gunyah.h
+>>> +++ b/include/uapi/linux/gunyah.h
+>>> @@ -62,8 +62,32 @@ struct gh_vm_dtb_config {
+>>>   #define GH_VM_START        _IO(GH_IOCTL_TYPE, 0x3)
+>>> +/**
+>>> + * GH_FN_VCPU - create a vCPU instance to control a vCPU
+>>> + *
+>>> + * gh_fn_desc is filled with &struct gh_fn_vcpu_arg
+>>> + *
+>>> + * The vcpu type will register with the VM Manager to expect to control
+>>> + * vCPU number `vcpu_id`. It returns a file descriptor allowing 
+>>> interaction with
+>>> + * the vCPU. See the Gunyah vCPU API description sections for 
+>>> interacting with
+>>> + * the Gunyah vCPU file descriptors.
+>>> + *
+>>> + * Return: file descriptor to manipulate the vcpu. See GH_VCPU_* ioctls
+>>> + */
+>>> +#define GH_FN_VCPU         1
+>>
+>> I think you should define GH_VN_VCPU, GN_FN_IRQFD, and GN_FN_IOEVENTFD
+>> in an enumerated type.  Each has a type associated with it, and you can
+>> add the explanation for the function in the kernel-doc comments above
+>> thosse type definitions.
+>>
+> 
+> I'd like to enumify the GH_FN_* macros, but one challenge I'm facing is 
+> that it breaks the module alias implementation in patch 19.
+> 
+> MODULE_ALIAS("ghfunc:"__stringify(_type))
+> 
+> When the GH_FN_* are regular preprocessor macros backed by an integer, 
+> the preprocessor will make the module alias ghfunc:0 (or ghfunc:1, etc). 
+> This works well because I can do
+> 
+> request_module("ghfunc:%d", type);
+> 
+> If the function hasn't been registered and then gunyah_vcpu.ko gets 
+> loaded automatically.
+> 
+> With enum, compiler knows the value of GH_FN_VCPU and preprocessor will 
+> make the module alias like ghfunc:GH_FN_VCPU.
+> 
+> [snip]
+> 
+>>> +
+>>> +/*
+>>> + * Gunyah presently sends max 4 bytes of exit_reason.
+>>> + * If that changes, this macro can be safely increased without breaking
+>>> + * userspace so long as struct gh_vcpu_run < PAGE_SIZE.
+>>
+>> Is PAGE_SIZE allowed to be anything other than 4096 bytes?  Do you
+>> expect this driver to work properly if the page size were configured
+>> to be 16384 bytes?  In other words, is this a Gunyah constant, or
+>> is it *really* the page size configured for Linux?
+>>
+> 
+> Our implementations are only doing 4096 bytes. I expect the driver to 
+> work properly when using 16k pages. This really is a Linux page. It's a 
+> reflection of the alloc_page in gh_vcpu_bind().
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+OK.  I guess I'd be on the lookout for anything that uses 4096 when
+PAGE_SIZE is what's actually meant.  I have no idea what's involved
+with the hypervisor if you wanted to try something else, but if you
+haven't tested that, you could maybe do an early check in your probe
+function:
+	BUILD_BUG_ON(PAGE_SIZE != 4096);
 
-Thanks,
-Charles
+> The exit reason is copied from hypervisor into field accessible by 
+> userspace directly. Gunyah makes the exit reason size dynamic -- there's 
+> no architectural limitation preventing the exit reason from being a 
+> string or some lengthy data.
+
+Sounds good.  I like having statements like this tested, and maybe
+you have.  I.e., test with the exit_reason size something like 16
+bytes and ensure that works.  Testing this is not technically needed,
+but your comment suggests it can be done.
+
+> As I was writing this response, I realized that I should be able to make 
+> this a zero-length array and ensure that reason[] doesn't overflow 
+> PAGE_SIZE...
+
+Maybe some good came out of it?
+
+> The comment was trying to explain that Linux itself imposes a limitation 
+> on the maximum exit reason size. If we need to support longer exit 
+
+Your comment isn't clear that Linux is what limits the size.
+This is all kind of picky though.  My main point was about
+the PAGE_SIZE assumption.
+
+					-Alex
+
+> reason, we're OK to do so long as the total size doesn't overrun 
+> PAGE_SIZE. There aren't any plans to need longer exit reasons than the 8 
+> bytes mentioned today.
+> 
+> Thanks,
+> Elliot
+
