@@ -2,194 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 066AB6E601F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 13:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E86956E606F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 13:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231384AbjDRLm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 07:42:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52328 "EHLO
+        id S230318AbjDRLxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 07:53:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230070AbjDRLmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 07:42:55 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA1986A1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 04:42:48 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-2fde2879eabso261964f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 04:42:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681818167; x=1684410167;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DcagkLGH6ZUHuOuJsg0XYh/tLtTQW2kywcT7xAak0Uc=;
-        b=VJEGSliUJ1jFsZaOXkFd/SM8WredewL8AjConyayXoQxCNk20QUGuLMOfp3swmk5Fe
-         JDMy/qOSpRdvtAbJR7xvUT5gOjb+dSVn70RtfNd1dZSucxOVyRBiGcsR1NT+Yq9MxoRB
-         cnQ45noXCIfwbJjSxO6CIfJKfq6lyjUaVI0OOfWBtGBfNSucJXP42DnEIVMGNoswo77+
-         y5ByQMquNDeCgupZ563LDkMBUZ4IzFXINMdCDfNwsMd47Dr0ScYbS5lFqiXHH+ZymK/e
-         HsVITJf0UHwf1KIv8DpFoiDKozeKHnRnLoKCh/syKQU8268PwvfkWx8fePVReTvjyOE6
-         Iaaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681818167; x=1684410167;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DcagkLGH6ZUHuOuJsg0XYh/tLtTQW2kywcT7xAak0Uc=;
-        b=PjvsvQQaWfncEm5FZ4qXexjErx9omoTfIDUtUd1tRAJUxBHOJOyGe+jrqPRdkdeOMb
-         be3O2CKSDRkaJ3s9p5zAgSX49ZW64Q4LfPsa8uuAvsoQEWH0TkfqdLg6esc5VUyFpyKW
-         MKCnHwYk642GNak13TFOGfggOgVkcdEtOfJQlFbMj7tVw1lpv69FZN97c8bbKsBY/3r0
-         rXRen0VmdVsimUfuFD0F6XSkvkMtDjqainsU9SzfY8zt+t0uCXZ2auAr7EPynXOjBF9J
-         HWi3Xnpv1rlT+O/U8unB1JFaL8GgiSu7ijrLQl2orrsNKQhIQqT18PQp5/lzCVGytBpl
-         sKRQ==
-X-Gm-Message-State: AAQBX9cDoKBxf/yGZcsLUDnG2ehZjLgMnhwMg9JcIEk3Z9j4KFVqeLwD
-        YIcSb0WC3R5DwWR+kURGWAk+Pw==
-X-Google-Smtp-Source: AKy350ackhhCBc0yds/Ze67p3i/fZipb9ZS+j9xLtF86Se+PsHLaBshzI4clUNbRHKIJ+qzXbbGuVw==
-X-Received: by 2002:adf:ea4f:0:b0:2da:2aa0:13e8 with SMTP id j15-20020adfea4f000000b002da2aa013e8mr1680346wrn.26.1681818166847;
-        Tue, 18 Apr 2023 04:42:46 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7a02:f867:7c56:79a0? ([2a01:e0a:982:cbb0:7a02:f867:7c56:79a0])
-        by smtp.gmail.com with ESMTPSA id q17-20020a5d61d1000000b002faaa9a1721sm4614584wrv.58.2023.04.18.04.42.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 04:42:46 -0700 (PDT)
-Message-ID: <f8c68794-0588-14e7-27b4-cb53ec257697@linaro.org>
-Date:   Tue, 18 Apr 2023 13:42:45 +0200
+        with ESMTP id S229631AbjDRLxj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 07:53:39 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350BEE78;
+        Tue, 18 Apr 2023 04:53:29 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9EAE96602338;
+        Tue, 18 Apr 2023 12:53:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681818807;
+        bh=F5bJnkMDohUh9rvK2TZXfUylvPcAO2pWW9e3hN5M+kk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YUXB4mlxVMv26uwQoJfBYvXdX77LTIslHy9CnC5wqb8CG8myJhTIkm6RVp5YmcgxL
+         ge0idkj7yJrWuACks2Xkogd89V1gPN6lT4cu4zf9RQYEeKmxXy7UdsSb+OSaOIXseu
+         D7mPLcyA9SATfml8FhdqfFc0nOO2u255937/Nucn1hcn6vu1sH/zO5x3M8UUaSRNVW
+         B/K2EIy1nKFL1y2dU6/0x5/MqO/3n/ZH7gh8YOS6DvmX6OSeCHvv2q68j+xygd7xBG
+         M1lr1afoplg/nviV3FCBg5ijeVfbjq2QntsfyHEDDs1c+xFU58+JMCc5V+aDCPRpyG
+         BVLwQ58BhymwQ==
+Message-ID: <e2e59d5d-89cb-ba82-f0fc-ecddb9bdfc2a@collabora.com>
+Date:   Tue, 18 Apr 2023 14:53:23 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 4/5] usb: dwc3-meson-g12a: support OTG switch for all
- IP versions
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add rk3588 timer
 Content-Language: en-US
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        mturquette@baylibre.com, vkoul@kernel.org, kishon@kernel.org,
-        hminas@synopsys.com, Thinh.Nguyen@synopsys.com
-Cc:     yue.wang@amlogic.com, hanjie.lin@amlogic.com,
-        kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org
-References: <20230418111612.19479-1-ddrokosov@sberdevices.ru>
- <20230418111612.19479-5-ddrokosov@sberdevices.ru>
-Organization: Linaro Developer Services
-In-Reply-To: <20230418111612.19479-5-ddrokosov@sberdevices.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Johan Jonker <jbx6244@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+References: <20230418095344.274025-1-cristian.ciocaltea@collabora.com>
+ <20230418095344.274025-4-cristian.ciocaltea@collabora.com>
+ <a8a9e82b-996e-2b0d-4e3b-9ceda0ab81e4@gmail.com>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <a8a9e82b-996e-2b0d-4e3b-9ceda0ab81e4@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 13:16, Dmitry Rokosov wrote:
->  From now, the Amlogic A1 USB controller is capable of switching between
-> host and gadget modes based on the status of the OTG_ID signal or via
-> manual USB role change.
-> Previously, only the Amlogic A1 IP version did not use OTG support for
-> host only mode, but this is no longer applicable.
-> Therefore, the 'otg_switch_supported' option can now be removed as
-> it is no longer required.
-> 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->   drivers/usb/dwc3/dwc3-meson-g12a.c | 16 +++-------------
->   1 file changed, 3 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> index b282ad0e69c6..a13afdb219e8 100644
-> --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
-> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> @@ -140,7 +140,6 @@ static const char * const meson_a1_phy_names[] = {
->   struct dwc3_meson_g12a;
->   
->   struct dwc3_meson_g12a_drvdata {
-> -	bool otg_switch_supported;
->   	bool otg_phy_host_port_disable;
->   	struct clk_bulk_data *clks;
->   	int num_clks;
-> @@ -189,7 +188,6 @@ static int dwc3_meson_gxl_usb_post_init(struct dwc3_meson_g12a *priv);
->    */
->   
->   static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
-> -	.otg_switch_supported = true,
->   	.otg_phy_host_port_disable = true,
->   	.clks = meson_gxl_clocks,
->   	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
-> @@ -203,7 +201,6 @@ static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
->   };
->   
->   static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
-> -	.otg_switch_supported = true,
->   	.otg_phy_host_port_disable = true,
->   	.clks = meson_gxl_clocks,
->   	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
-> @@ -217,7 +214,6 @@ static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
->   };
->   
->   static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
-> -	.otg_switch_supported = true,
->   	.clks = meson_gxl_clocks,
->   	.num_clks = ARRAY_SIZE(meson_gxl_clocks),
->   	.phy_names = meson_a1_phy_names,
-> @@ -230,7 +226,6 @@ static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
->   };
->   
->   static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
-> -	.otg_switch_supported = true,
->   	.clks = meson_g12a_clocks,
->   	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
->   	.phy_names = meson_g12a_phy_names,
-> @@ -242,7 +237,6 @@ static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
->   };
->   
->   static const struct dwc3_meson_g12a_drvdata a1_drvdata = {
-> -	.otg_switch_supported = false,
->   	.clks = meson_a1_clocks,
->   	.num_clks = ARRAY_SIZE(meson_a1_clocks),
->   	.phy_names = meson_a1_phy_names,
-> @@ -307,7 +301,7 @@ static int dwc3_meson_g12a_usb2_init_phy(struct dwc3_meson_g12a *priv, int i,
->   			U2P_R0_POWER_ON_RESET,
->   			U2P_R0_POWER_ON_RESET);
->   
-> -	if (priv->drvdata->otg_switch_supported && i == USB2_OTG_PHY) {
-> +	if (i == USB2_OTG_PHY) {
->   		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
->   				   U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS,
->   				   U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS);
-> @@ -490,7 +484,7 @@ static int dwc3_meson_g12a_otg_mode_set(struct dwc3_meson_g12a *priv,
->   {
->   	int ret;
->   
-> -	if (!priv->drvdata->otg_switch_supported || !priv->phys[USB2_OTG_PHY])
-> +	if (!priv->phys[USB2_OTG_PHY])
->   		return -EINVAL;
->   
->   	if (mode == PHY_MODE_USB_HOST)
-> @@ -589,9 +583,6 @@ static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
->   	int ret, irq;
->   	struct device *dev = &pdev->dev;
->   
-> -	if (!priv->drvdata->otg_switch_supported)
-> -		return 0;
-> -
->   	if (priv->otg_mode == USB_DR_MODE_OTG) {
->   		/* Ack irq before registering */
->   		regmap_update_bits(priv->usb_glue_regmap, USB_R5,
-> @@ -841,8 +832,7 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
->   	struct device *dev = &pdev->dev;
->   	int i;
->   
-> -	if (priv->drvdata->otg_switch_supported)
-> -		usb_role_switch_unregister(priv->role_switch);
-> +	usb_role_switch_unregister(priv->role_switch);
->   
->   	of_platform_depopulate(dev);
->   
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On 4/18/23 14:29, Johan Jonker wrote:
+> 
+> 
+> On 4/18/23 11:53, Cristian Ciocaltea wrote:
+>> Add DT node for Rockchip RK3588/RK3588S SoC timer.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> index 657c019d27fa..acd89a55374a 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> @@ -1400,6 +1400,14 @@ i2c5: i2c@fead0000 {
+>>  		status = "disabled";
+>>  	};
+>>  
+> 
+>> +	rktimer: timer@feae0000 {
+> 
+> There are multiple timers.
+> Use a label in line with the TRM.
+> Maybe change your label to "timer0" in that trend?
+
+Sure, will use "timer0".
+
+>> +		compatible = "rockchip,rk3588-timer", "rockchip,rk3288-timer";
+>> +		reg = <0x0 0xfeae0000 0x0 0x20>;
+> 
+>> +		clocks = <&cru PCLK_BUSTIMER0>, <&cru CLK_BUSTIMER0>;
+>> +		clock-names = "pclk", "timer";
+>> +		interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH 0>;
+> 
+> Heiko's sort rules:
+> 
+> compatible
+> reg
+> interrupts
+> [alphabetical]
+> status [if needed]
+
+Thanks for pointing this out! The sort rule was not obvious as there are
+many other nodes that don't conform.
