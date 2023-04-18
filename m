@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3F26E6A90
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E73236E6A92
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230384AbjDRRHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 13:07:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
+        id S232048AbjDRRIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 13:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232467AbjDRRHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:07:35 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3107EFA;
-        Tue, 18 Apr 2023 10:07:32 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33I6rTIG010692;
-        Tue, 18 Apr 2023 17:07:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PNvIebMKg0s6WLeOM4MrOoRQKx0Az7eGDCsVUpNExw4=;
- b=nCJh/Lfkn9VFSeDJj2flIYMMZzbWlJFeki1VGmYoqBGbJDK0bMvZFwym32apw30uDe+T
- SfUSFjapG3yJTQAKCpTdnohVNMth82PeBFEV7duDM/mIRTBefUf2Krbgmof5zzrEzUrD
- SQSulhPp2DrNyO9qKcqAy6L0MLNoSgnrplOqkmv/EobKv8hIoTXtrXiOeOvaQQclQnTl
- 7v4+W0CptnMGpqV4WxrLd0yABFvq6TsMNKhX/Tbm5mlLsNPGGGtMn2eF5y9zzds6dek4
- 3aa6h0OZ+T8tz6BZJX1dCv1zMWjGtPbMDn0bIkX0G8+dDMy6Hzj9sLsU7u/UDePNEvfU mg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q1nr5hj9w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Apr 2023 17:07:19 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33IH7JgJ009939
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Apr 2023 17:07:19 GMT
-Received: from [10.110.100.39] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 18 Apr
- 2023 10:07:18 -0700
-Message-ID: <12846dc1-38b6-892a-3189-25db866fa38e@quicinc.com>
-Date:   Tue, 18 Apr 2023 10:07:17 -0700
+        with ESMTP id S232383AbjDRRII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:08:08 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D724486;
+        Tue, 18 Apr 2023 10:08:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681837686; x=1713373686;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=clbh2zDGy6dFpAHAbuLZHr1blTUTX9CnRVLHP8QGdRQ=;
+  b=M7tzR3zhQLiMTXUUjf/dIeb52lhRVlff1WQgrnRIHk0QDqhKt1y9dHid
+   HXCrbYc11tpu0KSMUSxZ6CXKmDAj46CydTmISfZNthYHRo2l/3Uz2Z2JD
+   Iz98wy/F+TNC0phit3Bp2NifOkQq0Rcw38E/9Ny4r/tOqT7502dk8u6bX
+   hfXi2bPCywb3yOchuux6vcGU+/zbN9D8yGMj3mj6nu0RI7POm/ETaIsJ9
+   NOlaR2uKiGMZiGITT4p1D2d32vy2PeweeLaz/PY93gbeK1xh8qu0Vuwzs
+   dGz0Q3y6gtZaAG6zdtKj5AgkbGyVqRCPxd0hkcrSgysCmps4+umkoy3Gh
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="431517791"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="431517791"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 10:08:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="865496831"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="865496831"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 18 Apr 2023 10:08:02 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pooo8-000dmJ-0x;
+        Tue, 18 Apr 2023 17:07:56 +0000
+Date:   Wed, 19 Apr 2023 01:07:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, git@amd.com,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com
+Subject: Re: [PATCH v1 2/2] clocking-wizard: Add support for versal clocking
+ wizard
+Message-ID: <202304190059.Br8jz0UK-lkp@intel.com>
+References: <20230418102855.6791-3-shubhrajyoti.datta@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v3 2/2] firmware: arm_scmi: Augment SMC/HVC to allow
- optional parameter
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230409181918.29270-1-quic_nkela@quicinc.com>
- <20230417174401.19563-1-quic_nkela@quicinc.com>
- <20230417174401.19563-3-quic_nkela@quicinc.com>
- <02b34c80-f37e-deee-29cd-de7db902797d@gmail.com>
- <20230418095846.4lkncoa4beeih2hj@bogus>
- <d05b26ff-1c49-69eb-7146-8f7cef7e1ddb@quicinc.com>
- <40e91346-19d7-c0b4-7fcc-d5a2081fe8dd@gmail.com>
-Content-Language: en-US
-From:   Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <40e91346-19d7-c0b4-7fcc-d5a2081fe8dd@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fjR5bTmHqKjnDAWCnrKSETB_i2QVL_vA
-X-Proofpoint-ORIG-GUID: fjR5bTmHqKjnDAWCnrKSETB_i2QVL_vA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-18_12,2023-04-18_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 spamscore=0 suspectscore=0 impostorscore=0 phishscore=0
- mlxlogscore=999 clxscore=1015 priorityscore=1501 mlxscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304180143
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230418102855.6791-3-shubhrajyoti.datta@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,142 +68,200 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shubhrajyoti,
 
-On 4/18/2023 9:33 AM, Florian Fainelli wrote:
-> On 4/18/23 07:20, Nikunj Kela wrote:
->>
->> On 4/18/2023 2:58 AM, Sudeep Holla wrote:
->>> On Mon, Apr 17, 2023 at 11:01:13AM -0700, Florian Fainelli wrote:
->>>> On 4/17/23 10:44, Nikunj Kela wrote:
->>>>> This patch add support for passing shmem channel address as parameter
->>>>> in smc/hvc call. This patch is useful when multiple scmi instances 
->>>>> are
->>>>> using same smc-id and firmware needs to distiguish among the 
->>>>> instances.
->>>> Typo: distinguish.
->>>>
->>>> It really would have been a lot clearer and made a whole lot more 
->>>> sense to
->>>> encode a VM ID/channel number within some of the SMCCC parameters, 
->>>> possibly
->>>> as part of the function ID itself.
->>>>
->>> Yes I was about to suggest this but then remembered one main reason 
->>> I have
->>> been given in the past against that:
->>> If the system launches high number of VMs then that means loads of FID
->>> needs to be reserved for SCMI and the hypervisor needs to support it.
->>> Basically it is not scalable which I agree but not sure if such large
->>> number of VMs are used in reality with SCMI. But I agree with the 
->>> technical
->>> reasoning.
->>>
->>> The other reason why I preferred the shmem address itself instead of 
->>> some
->>> custom VM ID/channel number is that it can easily becomes vendor 
->>> specific
->>> for no real good reason and then we need to add support for each such
->>> different parameters. Nikunj suggested getting them from DT which I 
->>> really
->>> don't like if the sole reason is just to identify the channel. We don't
->>> have standard SCMI SMC/HVC but allowing such deviations with params 
->>> from
->>> DT will just explode with various combinations for silly/no reason.
->>>
->> Would you be ok to pass the smc/hvc parameters via kernel parameters 
->> in commandline? If so, I can implement that. I just wanted to keep 
->> everything in one place hence suggested using DTB node.
->
-> Command line arguments seem a bit unnecessary here and it would force 
-> you to invent a scheme to control per SCMI device/instance parameters.
->
-Agreed!
->>
->>> [...]
->>>
->>>>> @@ -137,6 +144,8 @@ static int smc_chan_setup(struct 
->>>>> scmi_chan_info *cinfo, struct device *dev,
->>>>>        if (ret < 0)
->>>>>            return ret;
->>>>> +    if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param"))
->>>>> +        scmi_info->param = res.start;
->>>> There is not even a check that this is going to be part of the 
->>>> kernel's view
->>>> of memory, that seems a bit brittle and possibly a security hole, 
->>>> too. Your
->>>> hypervisor presumably needs to have carved out some amount of 
->>>> memory in
->>>> order for the messages to be written to/read from, and so would the VM
->>>> kernel, so eventually we should have a 'reserved-memory' entry of 
->>>> some sort,
->>>> no?
->>>>
->>> Not disagreeing here. Just checking if my understanding is correct 
->>> or not.
->>> IIUC, we need reserved-memory if it is part of the memory presented 
->>> to the
->>> OS right ? You don't need that if it is dedicated memory like part 
->>> of SRAM
->>> or something similar.
->> We are not using reserved-memory node. Instead using sram-mmio to 
->> carve out shmem for scmi instances.
->
-> OK, that works too.
->
->>>>>        /*
->>>>>         * If there is an interrupt named "a2p", then the service and
->>>>>         * completion of a message is signaled by an interrupt 
->>>>> rather than by
->>>>> @@ -156,6 +165,7 @@ static int smc_chan_setup(struct 
->>>>> scmi_chan_info *cinfo, struct device *dev,
->>>>>        }
->>>>>        scmi_info->func_id = func_id;
->>>>> +    scmi_info->is_smc64 = ARM_SMCCC_IS_64(func_id);
->>>>>        scmi_info->cinfo = cinfo;
->>>>>        smc_channel_lock_init(scmi_info);
->>>>>        cinfo->transport_info = scmi_info;
->>>>> @@ -188,7 +198,20 @@ static int smc_send_message(struct 
->>>>> scmi_chan_info *cinfo,
->>>>>        shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
->>>>> -    arm_smccc_1_1_invoke(scmi_info->func_id, 0, 0, 0, 0, 0, 0, 0, 
->>>>> &res);
->>>>> +#ifdef CONFIG_ARM64
->>>>> +    /*
->>>>> +     * if SMC32 convention is used, pass 64 bit address in
->>>>> +     * two parameters
->>>>> +     */
->>>>> +    if (!scmi_info->is_smc64)
->>>> There is no need for scmi_info to store is_smc64, just check the 
->>>> func_id
->>>> here and declare is_smc64 as a local variable to the function.
->>>>
->>> +1
->> ACK!
->>>> Also, another way to approach this would be to encode the 
->>>> parameters region
->>>> in 4KB units such that event on a 32-bit system with LPAE you are 
->>>> guaranteed
->>>> to fit the region into a 32-bit unsigned long. AFAIR virtualization 
->>>> and LPAE
->>>> are indistinguishable on real CPUs?
->>>>
->>> Agree with the idea. But can a single 4kB be used for multiple shmem 
->>> across
->>> VMs ? IIUC the hypervisor can deal with that, so I prefer it if it 
->>> is possible
->>> practically.
->> We have multiple VMs and each VM has multiple instances. We will have 
->> quite a few domains and I am not sure if single page will suffice.
->
-> I did not make myself clear enough, you can encode an offset into the 
-> shared memory area, and however big that shared memory area will be, 
-> that offset can be in a 4KB size. So for instance if you have your 
-> MMIO SRAM at 0x8000_0000, the first VM can use 0x8000_0ffff, the 
-> second VM can use 0x8000_1000 to 0x8000_1fff and so on and so forth.
->
-> Even if you need more than 4KB per VM, you can put that information 
-> into the two additional parameters you pass through the SMC/HVC call.
+kernel test robot noticed the following build warnings:
 
-Okay. I will float another version, first parameter of smc/hvc call will 
-be pfn and second the offset!
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on next-20230417]
+[cannot apply to xilinx-xlnx/master robh/for-next linus/master v6.3-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Shubhrajyoti-Datta/dt-bindings-clocking-wizard-add-versal-compatible/20230418-183046
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20230418102855.6791-3-shubhrajyoti.datta%40amd.com
+patch subject: [PATCH v1 2/2] clocking-wizard: Add support for versal clocking wizard
+config: i386-randconfig-a012-20230417 (https://download.01.org/0day-ci/archive/20230419/202304190059.Br8jz0UK-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/143916412aa6a419e20fa37059004329e300ca95
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Shubhrajyoti-Datta/dt-bindings-clocking-wizard-add-versal-compatible/20230418-183046
+        git checkout 143916412aa6a419e20fa37059004329e300ca95
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/clk/xilinx/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304190059.Br8jz0UK-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/clk/xilinx/clk-xlnx-clock-wizard.c:264:11: warning: variable 'value' is uninitialized when used here [-Wuninitialized]
+                   regh = (value / 4);
+                           ^~~~~
+   drivers/clk/xilinx/clk-xlnx-clock-wizard.c:231:11: note: initialize the variable 'value' to silence this warning
+           u32 value, regh, edged, p5en, p5fedge, regval, regval1;
+                    ^
+                     = 0
+>> drivers/clk/xilinx/clk-xlnx-clock-wizard.c:332:12: warning: implicit conversion from 'long long' to 'unsigned long' changes value from 4320000000 to 25032704 [-Wconstant-conversion]
+                   vcomax = VER_WZRD_VCO_MAX;
+                          ~ ^~~~~~~~~~~~~~~~
+   drivers/clk/xilinx/clk-xlnx-clock-wizard.c:102:27: note: expanded from macro 'VER_WZRD_VCO_MAX'
+   #define VER_WZRD_VCO_MAX                4320000000
+                                           ^~~~~~~~~~
+   2 warnings generated.
+
+
+vim +/value +264 drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+
+   225	
+   226	static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long rate,
+   227					     unsigned long parent_rate)
+   228	{
+   229		struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
+   230		void __iomem *div_addr = divider->base + divider->offset;
+   231		u32 value, regh, edged, p5en, p5fedge, regval, regval1;
+   232		unsigned long flags = 0;
+   233		int err;
+   234	
+   235		if (divider->lock)
+   236			spin_lock_irqsave(divider->lock, flags);
+   237		else
+   238			__acquire(divider->lock);
+   239	
+   240		if (!divider->is_versal) {
+   241			value = DIV_ROUND_CLOSEST(parent_rate, rate);
+   242	
+   243			/* Cap the value to max */
+   244			min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
+   245	
+   246			/* Set divisor and clear phase offset */
+   247			writel(value, div_addr);
+   248			writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
+   249	
+   250			/* Check status register */
+   251			err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
+   252						 value, value & WZRD_DR_LOCK_BIT_MASK,
+   253						 WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+   254			if (err)
+   255				goto err_reconfig;
+   256	
+   257			/* Initiate reconfiguration */
+   258			writel(WZRD_DR_BEGIN_DYNA_RECONF_5_2,
+   259			       divider->base + WZRD_DR_INIT_REG_OFFSET);
+   260			writel(WZRD_DR_BEGIN_DYNA_RECONF1_5_2,
+   261			       divider->base + WZRD_DR_INIT_REG_OFFSET);
+   262	
+   263		} else {
+ > 264			regh = (value / 4);
+   265			regval1 = readl(div_addr);
+   266			regval1 |= WZRD_CLKFBOUT_PREDIV2;
+   267			regval1 = regval1 & ~(WZRD_CLKFBOUT_EDGE | WZRD_P5EN | WZRD_P5FEDGE);
+   268			if (value % 4 > 1) {
+   269				edged = 1;
+   270				regval1 |= (edged << WZRD_EDGE_SHIFT);
+   271			}
+   272			p5fedge = value % 2;
+   273			p5en = value % 2;
+   274			regval1 = regval1 | p5en << WZRD_P5EN_SHIFT | p5fedge << WZRD_P5FEDGE_SHIFT;
+   275			writel(regval1, div_addr);
+   276	
+   277			regval = regh | regh << WZRD_CLKFBOUT_H_SHIFT;
+   278			writel(regval, div_addr + 4);
+   279			/* Check status register */
+   280			err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
+   281						 value, value & WZRD_DR_LOCK_BIT_MASK,
+   282						 WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+   283			if (err)
+   284				goto err_reconfig;
+   285	
+   286			/* Initiate reconfiguration */
+   287			writel(WZRD_DR_BEGIN_DYNA_RECONF,
+   288			       divider->base + WZRD_DR_INIT_VERSAL_OFFSET);
+   289		}
+   290		/* Check status register */
+   291		err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
+   292					 value, value & WZRD_DR_LOCK_BIT_MASK,
+   293					 WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+   294	err_reconfig:
+   295		if (divider->lock)
+   296			spin_unlock_irqrestore(divider->lock, flags);
+   297		else
+   298			__release(divider->lock);
+   299		return err;
+   300	}
+   301	
+   302	static long clk_wzrd_round_rate(struct clk_hw *hw, unsigned long rate,
+   303					unsigned long *prate)
+   304	{
+   305		u8 div;
+   306	
+   307		/*
+   308		 * since we don't change parent rate we just round rate to closest
+   309		 * achievable
+   310		 */
+   311		div = DIV_ROUND_CLOSEST(*prate, rate);
+   312	
+   313		return *prate / div;
+   314	}
+   315	
+   316	static int clk_wzrd_get_divisors(struct clk_hw *hw, unsigned long rate,
+   317					 unsigned long parent_rate)
+   318	{
+   319		struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
+   320		unsigned long vco_freq, freq, diff, vcomin, vcomax;
+   321		u32 m, d, o;
+   322		u32 mmin, mmax, dmin, dmax, omin, omax;
+   323	
+   324		if (divider->is_versal) {
+   325			mmin = VER_WZRD_M_MIN;
+   326			mmax = VER_WZRD_M_MAX;
+   327			dmin = VER_WZRD_D_MIN;
+   328			dmax = VER_WZRD_D_MAX;
+   329			omin = VER_WZRD_O_MIN;
+   330			omax = VER_WZRD_O_MAX;
+   331			vcomin = VER_WZRD_VCO_MIN;
+ > 332			vcomax = VER_WZRD_VCO_MAX;
+   333		} else {
+   334			mmin = WZRD_M_MIN;
+   335			mmax = WZRD_M_MAX;
+   336			dmin = WZRD_D_MIN;
+   337			dmax = WZRD_D_MAX;
+   338			omin = WZRD_O_MIN;
+   339			omax = WZRD_O_MAX;
+   340			vcomin = WZRD_VCO_MIN;
+   341			vcomax = WZRD_VCO_MAX;
+   342		}
+   343	
+   344		for (m = mmin; m <= mmax; m++) {
+   345			for (d = dmin; d <= dmax; d++) {
+   346				vco_freq = DIV_ROUND_CLOSEST((parent_rate * m), d);
+   347				if (vco_freq >= vcomin && vco_freq <= vcomax) {
+   348					for (o = omin; o <= omax; o++) {
+   349						freq = DIV_ROUND_CLOSEST_ULL(vco_freq, o);
+   350						diff = abs(freq - rate);
+   351	
+   352						if (diff < WZRD_MIN_ERR) {
+   353							divider->m = m;
+   354							divider->d = d;
+   355							divider->o = o;
+   356							return 0;
+   357						}
+   358					}
+   359				}
+   360			}
+   361		}
+   362		return -EBUSY;
+   363	}
+   364	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
