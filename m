@@ -2,118 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B616E6F01
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 00:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A44A6E6F08
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 00:02:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232753AbjDRWBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 18:01:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43688 "EHLO
+        id S232790AbjDRWCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 18:02:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232462AbjDRWBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 18:01:08 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB19109;
-        Tue, 18 Apr 2023 15:01:07 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-38e04d1b2b4so566309b6e.3;
-        Tue, 18 Apr 2023 15:01:07 -0700 (PDT)
+        with ESMTP id S231872AbjDRWCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 18:02:52 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F30BC189;
+        Tue, 18 Apr 2023 15:02:51 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1878f1ebf46so603023fac.1;
+        Tue, 18 Apr 2023 15:02:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681855266; x=1684447266;
+        d=1e100.net; s=20221208; t=1681855371; x=1684447371;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kUZCWdrMpmE98XPzyUWaFXep+TFtMG1Cry/8zBfjR0s=;
-        b=XpTHaG9vlO4Ryps/X4s1au6kw3UUX7cg3pRiMMGWDBFtGcaKnALIrc4K7gKhBUPAgp
-         GkdvIJeWUvb+2OookwT0eO2QYM0LlDsM9liHRElX2GFtp15ZEKOP5183RPRGE94Ws/uH
-         WU1avi8t9UOlwNOW2K0dVzNMaR7OTsrHUtyQlL9xLP/BXc5LY0mH/CoB7pXmJIMCNfSz
-         YJ/t18goriSeq0n2UkFi6VXTjXu4moGLuvvY/JcBz8+84Xzg7BnyOqp10EC4kXD5GTs3
-         Sx6bVx5WLdVt8YdvpzlcBQt20g7TzOYpM4EvVUKxKIXuY1vgdH6s2n1ZB+LosBd/GNo2
-         VRKw==
-X-Gm-Message-State: AAQBX9d/EMnqqYJBFrwVjxLfUVxE5t26MPGFqHB8ec+XaQYonxZxd1/l
-        g3i09vJcJp1bUJq+id4B1w==
-X-Google-Smtp-Source: AKy350bRDGYoUZLL6UJSFAz/QGM86RSeA9S9WXw1mapesHioxAxgjrNaBWUK+XbvQYlQk51Aa60Nmg==
-X-Received: by 2002:a54:4f12:0:b0:389:1fcb:f327 with SMTP id e18-20020a544f12000000b003891fcbf327mr2042229oiy.26.1681855266449;
-        Tue, 18 Apr 2023 15:01:06 -0700 (PDT)
+        bh=QI7D87InjhbBs5EZ8THYXnMAUWuofN84rJTqz1HIfe0=;
+        b=bo//+H4YNLIQCSS4iySrltBSQU0nchBKUaE2gANgavPsBqQEr24Vt4Ml/35igNu9s3
+         4yBhcmg8ANj2DAsKs/U1m0UfZxnI+BfcFYd0K6bzFo6xhzGJ0GoNzTRWCfT1ng2OY5Ai
+         q6+ZNih2PntH3j3rudGospW17dGUvSQDSPHxlknZ5G62KIIdrwEpF80ZRqciWJNkxOw0
+         1kLhKOSNlENMniOAHIH6tLYXzEwI/NXMcrOcou+4z3uTJXVMYlmTu6nV2iDhByfktJ0E
+         3+ctTHtc0dWWAhEfQ4wk+iPUGAql6EIRACR9mtLwSgwaLuYce+XMidqc/2KHNxoSVw3A
+         7mtQ==
+X-Gm-Message-State: AAQBX9cIp6m9LAM9ASkavio7mo/UUJPUTe24HqprSQVRG4yAtl06dQ1o
+        0lH4yZdFIkSHACoHhIT+CQ==
+X-Google-Smtp-Source: AKy350adrkwoDBM/BxR6mRY2zD33IZaIewcPncoeCx+VQU/atsuFvdm7h8sMt7+MTUZiPvNZONir+g==
+X-Received: by 2002:a05:6870:8928:b0:177:a4d0:e389 with SMTP id i40-20020a056870892800b00177a4d0e389mr2034044oao.28.1681855371247;
+        Tue, 18 Apr 2023 15:02:51 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l83-20020acabb56000000b00383ef58c15bsm6344895oif.28.2023.04.18.15.01.05
+        by smtp.gmail.com with ESMTPSA id u5-20020a056870b0c500b00172ac40356csm6011756oag.50.2023.04.18.15.02.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 15:01:05 -0700 (PDT)
-Received: (nullmailer pid 2401434 invoked by uid 1000);
-        Tue, 18 Apr 2023 22:01:04 -0000
-Date:   Tue, 18 Apr 2023 17:01:04 -0500
+        Tue, 18 Apr 2023 15:02:50 -0700 (PDT)
+Received: (nullmailer pid 2408753 invoked by uid 1000);
+        Tue, 18 Apr 2023 22:02:49 -0000
+Date:   Tue, 18 Apr 2023 17:02:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Artur Weber <aweber.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 1/3] dt-bindings: display: panel: Add Samsung S6D7AA0
- LCD panel controller
-Message-ID: <20230418220104.GA2387740-robh@kernel.org>
-References: <20230416131632.31673-1-aweber.kernel@gmail.com>
- <20230416131632.31673-2-aweber.kernel@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-phy@lists.infradead.org,
+        Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH] dt-bindings: phy: qcom,edp-phy: allow power-domains
+Message-ID: <168185536811.2408674.3978903723829554887.robh@kernel.org>
+References: <20230416151233.346336-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230416131632.31673-2-aweber.kernel@gmail.com>
+In-Reply-To: <20230416151233.346336-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 16, 2023 at 03:16:30PM +0200, Artur Weber wrote:
-> Add bindings for the S6D7AA0 LCD panel controller, including the
-> S6D7AA0-LSL080AL02 panel used in the Samsung Galaxy Tab 3 8.0 family
-> of tablets.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changed in v2:
->  - Updated commit message
->  - Applied suggestions from Krzysztof Kozlowski
-> Changed in v3:
->  - Correctly applied suggestions
-> ---
->  .../display/panel/samsung,s6d7aa0.yaml        | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> new file mode 100644
-> index 000000000000..079e2b3a9eaf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/samsung,s6d7aa0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung S6D7AA0 MIPI-DSI LCD panel controller
-> +
-> +maintainers:
-> +  - Artur Weber <aweber.kernel@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: samsung,s6d7aa0-lsl080al02
-> +
-> +  reg: true
-> +  reset-gpios: true
-> +  backlight: true
-> +
-> +  enable-supply:
-> +    description: Enable supply
 
-Comments on v1 apply here.
+On Sun, 16 Apr 2023 17:12:33 +0200, Krzysztof Kozlowski wrote:
+> At least on SC8280XP the eDP PHY is part of power domain:
+> 
+>   sc8280xp-crd.dtb: phy@220c2a00: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
+
