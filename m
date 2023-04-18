@@ -2,164 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B42526E67CC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 17:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13EBF6E67F7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 17:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbjDRPH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 11:07:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32784 "EHLO
+        id S231444AbjDRPXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 11:23:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbjDRPH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 11:07:27 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AC010E6;
-        Tue, 18 Apr 2023 08:07:26 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-38c35975545so448264b6e.1;
-        Tue, 18 Apr 2023 08:07:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681830445; x=1684422445;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YcqBimFCHj3MmeRz1Cnp48tZO7IirUdvbf3eVDP9RoM=;
-        b=ZaCQZ5shw4fjL9v2H7uvi1oHpxPnHh6DvtqHjvDTnNa/0UkAG2UbBkSvTWTIc48LN1
-         Z330zm2eHG+W0Vu+B1IdhweoBb9ZyxwEpkVMc3fAAnXtCPmj+1X5rPmpXEYO7Dv25CGc
-         NoKPRRHGvkwcgO66vzHDodS6IGD0YmTCIAe49I6QOz0U/yOZB34mzNRHy0Jymb1df0br
-         4YEWFR4iPnZX5DmeZhLaa0do9S9iaV1TBe5jPrX04bKtQpWJ689vTQwQc0Kyp3vi9m9Q
-         n3hCac+21DWLPYcSEgHtEDD+b7+zk8IGUpUS8vxUJrt6xzQUmmSMPo9wHt17aY9cQrGF
-         y9Aw==
-X-Gm-Message-State: AAQBX9fbpVE2OI8datnRj1t9nt5bsHGAMKKN9lWNkO04oPPm/W/dUoQj
-        E3/sVcDUqsVZ99wuiFbduw==
-X-Google-Smtp-Source: AKy350aQFH3SOS8eGc5PQFYBNOKHnYlUX5aaxmlfxu9uN9d7QhO70k6+CIhwuq6LQRIL6vGeIxIbfg==
-X-Received: by 2002:a05:6808:f12:b0:38c:5287:7c6d with SMTP id m18-20020a0568080f1200b0038c52877c6dmr1364330oiw.39.1681830445397;
-        Tue, 18 Apr 2023 08:07:25 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z12-20020a056808064c00b0038cabdbe3a7sm3516244oih.3.2023.04.18.08.07.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 08:07:24 -0700 (PDT)
-Received: (nullmailer pid 1536183 invoked by uid 1000);
-        Tue, 18 Apr 2023 15:07:04 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230070AbjDRPXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 11:23:37 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3CE12C8C;
+        Tue, 18 Apr 2023 08:23:27 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33IAYOGc005302;
+        Tue, 18 Apr 2023 15:23:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=/fFvPvWewR1GVh5hVO4hPrFoOL8bObIJCmqYQi9jYlU=;
+ b=h0SiLPxa1RiOBLn6kuZ3r0RPZSCpHfZzQYuD9x5PTmANEgRrk8sL2ODaxEsTiWNHK0ht
+ kWMq8DgngDezcFF2UToJCxSOGED32uD11Nh/D8e1t7E1AriHg8ViYZSsIsgzUKEqQ1rA
+ cJtWEhIRi/7AXwtFU1ob/orC0PAyY87wZxoD11T+k9denk/ifPXu/Nyn3gd7h7I8YeGN
+ v/JlQzVPdAqNIaDyRBDFaon5pb6KBCKpbqQwUByacN+TuW/nZcwvkdJvQjy8t5JLeazr
+ emrDzUJuiigTd9x1MGks6chnp64FYyLeE60W9S/QiIy2tbiyu8csWGxAURVKqx1GoHL/ Og== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q17yhu37a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 15:23:13 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33IFNB2v027839
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 15:23:11 GMT
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 18 Apr 2023 08:23:06 -0700
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Heiko Stuebner <heiko.stuebner@bq.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: display: Fix lvds.yaml references
-Date:   Tue, 18 Apr 2023 10:06:57 -0500
-Message-Id: <20230418150658.1535120-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: [PATCH V22 0/3] misc: Add driver support for Data Capture and Compare unit(DCC)
+Date:   Tue, 18 Apr 2023 20:52:34 +0530
+Message-ID: <cover.1681829664.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: v6c3ZseiAY6P9t2JkKlHXTOofo3HJR-a
+X-Proofpoint-GUID: v6c3ZseiAY6P9t2JkKlHXTOofo3HJR-a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-18_11,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 impostorscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
+ clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0 lowpriorityscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304180131
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The trailing "/" in "lvds.yaml/#" is not a valid JSON pointer. The existing
-jsonschema package allows it, but coming changes make allowed "$ref" URIs
-stricter.
+DCC(Data Capture and Compare) is a DMA engine designed for debugging purposes.
+In case of a system crash or manual software triggers by the user the DCC hardware
+stores the value at the register addresses which can be used for debugging purposes.
+The DCC driver provides the user with debugfs interface to configure the register
+addresses. The options that the DCC hardware provides include reading from registers,
+writing to registers, first reading and then writing to registers and looping
+through the values of the same register.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/display/panel/advantech,idk-1110wr.yaml | 2 +-
- .../devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml  | 2 +-
- .../devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml | 2 +-
- .../devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml | 2 +-
- Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 +-
- .../devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml    | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+In certain cases a register write needs to be executed for accessing the rest of the
+registers, also the user might want to record the changing values of a register with
+time for which he has the option to use the loop feature.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
-index 3a8c2c11f9bd..f6fea9085aab 100644
---- a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
--  - $ref: /schemas/display/lvds.yaml/#
-+  - $ref: /schemas/display/lvds.yaml#
- 
- select:
-   properties:
-diff --git a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
-index 566e11f6bfc0..ab6b7be88341 100644
---- a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
--  - $ref: /schemas/display/lvds.yaml/#
-+  - $ref: /schemas/display/lvds.yaml#
- 
- select:
-   properties:
-diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
-index 5cf3c588f46d..3623ffa6518d 100644
---- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
--  - $ref: /schemas/display/lvds.yaml/#
-+  - $ref: /schemas/display/lvds.yaml#
- 
- select:
-   properties:
-diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
-index 54750cc5440d..37f01d847aac 100644
---- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
--  - $ref: /schemas/display/lvds.yaml/#
-+  - $ref: /schemas/display/lvds.yaml#
- 
- select:
-   properties:
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-index c77ee034310a..929fe046d1e7 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
--  - $ref: /schemas/display/lvds.yaml/#
-+  - $ref: /schemas/display/lvds.yaml#
- 
- select:
-   properties:
-diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-index 2e75e3738ff0..e32d9188a3e0 100644
---- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
--  - $ref: /schemas/display/lvds.yaml/#
-+  - $ref: /schemas/display/lvds.yaml#
- 
- select:
-   properties:
--- 
-2.39.2
+The options mentioned above are exposed to the user by debugfs files once the driver
+is probed. The details and usage of this debugfs files are documented in
+Documentation/ABI/testing/debugfs-driver-dcc.
+
+As an example let us consider a couple of debug scenarios where DCC has been proved to be
+effective for debugging purposes:-
+
+i)TimeStamp Related Issue
+
+On SC7180, there was a coresight timestamp issue where it would occasionally be all 0
+instead of proper timestamp values.
+
+Proper timestamp:
+Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x13004d8f5b7aa; CC=0x9e
+
+Zero timestamp:
+Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
+
+Now this is a non-fatal issue and doesn't need a system reset, but still needs
+to be rootcaused and fixed for those who do care about coresight etm traces.
+Since this is a timestamp issue, we would be looking for any timestamp related
+clocks and such.
+
+We get all the clk register details from IP documentation and configure it
+via DCC config_read debugfs node. Before that we set the current linked list.
+
+/* Program the linked list with the addresses */
+echo R 0x10c004 > /sys/kernel/debug/dcc/../3/config
+echo R 0x10c008 > /sys/kernel/debug/dcc/../3/config
+echo R 0x10c00c > /sys/kernel/debug/dcc/../3/config
+echo R 0x10c010 > /sys/kernel/debug/dcc/../3/config
+..... and so on for other timestamp related clk registers
+
+/* Other way of specifying is in "addr len" pair, in below case it
+specifies to capture 4 words starting 0x10C004 */
+
+echo R 0x10C004 4 > /sys/kernel/debug/dcc/../3/config_read
+
+/* Enable DCC */
+echo 1 > /sys/kernel/debug/dcc/../3/enable
+
+/* Run the timestamp test for working case */
+
+/* Send SW trigger */
+echo 1 > /sys/kernel/debug/dcc/../trigger
+
+/* Read SRAM */
+cat /dev/dcc_sram > dcc_sram1.bin
+
+/* Run the timestamp test for non-working case */
+
+/* Send SW trigger */
+echo 1 > /sys/kernel/debug/dcc/../trigger
+
+/* Read SRAM */
+cat /dev/dcc_sram > dcc_sram2.bin
+
+Get the parser from [1] and checkout the latest branch.
+
+/* Parse the SRAM bin */
+python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
+python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
+
+Sample parsed output of dcc_sram1.bin:
+
+<hwioDump version="1">
+        <timestamp>03/14/21</timestamp>
+            <generator>Linux DCC Parser</generator>
+                <chip name="None" version="None">
+                <register address="0x0010c004" value="0x80000000" />
+                <register address="0x0010c008" value="0x00000008" />
+                <register address="0x0010c00c" value="0x80004220" />
+                <register address="0x0010c010" value="0x80000000" />
+            </chip>
+    <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
+</hwioDump>
+
+ii)NOC register errors
+
+A particular class of registers called NOC which are functional registers was reporting
+errors while logging the values.To trace these errors the DCC has been used effectively.
+The steps followed were similar to the ones mentioned above.
+In addition to NOC registers a few other dependent registers were configured in DCC to
+monitor it's values during a crash. A look at the dependent register values revealed that
+the crash was happening due to a secured access to one of these dependent registers.
+All these debugging activity and finding the root cause was achieved using DCC.
+
+DCC parser is available at the following open source location
+
+https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+
+Changes in v22
+
+* DCC driver is added to the new location as per discussions
+
+* Implemented the comments on the previous version of this patch
+
+Souradeep Chowdhury (3):
+  dt-bindings: misc: qcom,dcc: Add the dtschema
+  misc: dcc: Add driver support for Data Capture and Compare unit(DCC)
+  MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+    support
+
+ .../devicetree/bindings/misc/qcom,dcc.yaml         |   44 +
+ MAINTAINERS                                        |    8 +
+ drivers/misc/Kconfig                               |    8 +
+ drivers/misc/Makefile                              |    1 +
+ drivers/misc/dcc.c                                 | 1300 ++++++++++++++++++++
+ 5 files changed, 1361 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/qcom,dcc.yaml
+ create mode 100644 drivers/misc/dcc.c
+
+--
+2.7.4
 
