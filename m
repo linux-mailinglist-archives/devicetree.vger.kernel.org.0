@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 718846E69A2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:35:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15ABE6E69A5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232495AbjDRQfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:35:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48648 "EHLO
+        id S230514AbjDRQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:36:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232543AbjDRQfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:35:20 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F4441385D
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:35:18 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id ud9so74569715ejc.7
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:35:18 -0700 (PDT)
+        with ESMTP id S230502AbjDRQgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:36:36 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE20B450;
+        Tue, 18 Apr 2023 09:36:35 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id dx24so30758529ejb.11;
+        Tue, 18 Apr 2023 09:36:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681835717; x=1684427717;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bqklLL1/d8Vp5tYKo0ZG5zd2TLFgTYIUWIOvR0v621A=;
-        b=zMCO8QAb00BwxuqKZOdexZbO4o2VgDdaMdmcYIy7S3IZi6XQpoBMuZ/5mthOoy5vwx
-         C+JpSANMQLNtC2xNNHljZVxPEj9NVxwWXBP40CLzlUUtcB6LKpm/66nTfzTKGTIgxkwH
-         CcJYnJ35TVLf8SWGYaM0cbY8ZgI7bbi1HAAnPRqMsFy6hAbLDVSNjhOHsGCy9is4ISlb
-         HfsJEx/wHH6g5O/jv30gWWsZJyf+r0sC1Rutsdc6Yv1hSylUekMGP8ZEoOXZ4ebbo4aW
-         BSNk9S6LKM8RrfbpoGI0jRb09LELrJzi4eORtsOGNfDsNRHe59e36ujnQo6gLh4wZuQf
-         R3Pw==
+        d=gmail.com; s=20221208; t=1681835793; x=1684427793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PnHeIqQhcqSjPYjup2fw8CkFsVSZdUVKQ9idL5SwNNQ=;
+        b=lxLNotAZUnqMNo2fLitBC0+/A8GBfNQHJXspuNy/BTJV4W/m2eylZeo9EpWO1Cl3gZ
+         Kanq0WpjBZ5HE0eagBe9swmFzdWQiNzVV5W2m4yxelkZhQ9zBKp4Pwc3taE8Qz8pivZM
+         qLREZHFiOy9P0blgdL2BAjbj204BtjoML+UrsLfxkqqpQJqRFNDOrpfPgRw/dwfY2Kz5
+         9O3JDpQ9abjVdIKUlsHORVt8w99hmuvHq0j7toKAleOC5qrCwHaxz7fhV3E6lKYzv9Ly
+         /iZ4JF3S6qKrADkU4gHmyPmiDJ6spGhF3rzFE/UQTU/WOEctvOmP0vSUpC2TFk0sbbCd
+         mgJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681835717; x=1684427717;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bqklLL1/d8Vp5tYKo0ZG5zd2TLFgTYIUWIOvR0v621A=;
-        b=GJzWVvNtnwPATv7OIZLkbZo+KNOcb0oA+WSz/AWpmizCo3YZIJHs8hpoQWUsuG1UHv
-         qQDg3gIVoNawcLrhr0j2dosvg7U+yPf4f81YfFBa9lv/+JHmib4TwjDwrqb1AquVN1Bs
-         KhZK1tuH7l+FP5mCIVJltIcSTBJK79U0HaCdNxECceI6cZ0+4d4Jn9ygJEkcQo+Mk2sD
-         0ZNdw7L2q62cUXRP4UXEfACUlG9/fuxHvM/Is4sfcbyLprxVmkczLqqMkRURo1PxW9fB
-         UNATGBZVDvE792UcfHV+qV2+9tgbUh/zlZZ2w9lYDfrRsuphtxyGHUwLnZJHhlPlQ1wr
-         5alA==
-X-Gm-Message-State: AAQBX9dktdNyxm/22yzUo3/uUOo/7S6ehDs0O9l7ROUN0YqKAM+4LgK6
-        2jqwzWsk/DZEo2n4Sor/k/aaQw==
-X-Google-Smtp-Source: AKy350aZ4vDf25kOEHBmpxkhlb1Dx2g1MoTdgqLpnICCmomELF1kDA0FHFFTa7oKFkPIiYVUTo+DpQ==
-X-Received: by 2002:a17:907:3f08:b0:94f:9f76:c74f with SMTP id hq8-20020a1709073f0800b0094f9f76c74fmr5561973ejc.52.1681835716901;
-        Tue, 18 Apr 2023 09:35:16 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id fy1-20020a170906b7c100b0094e4b8816e0sm8175969ejb.217.2023.04.18.09.35.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 09:35:16 -0700 (PDT)
-Message-ID: <83ac1bd0-13c4-1c4b-9d1b-7205c34122ad@linaro.org>
-Date:   Tue, 18 Apr 2023 18:35:15 +0200
+        d=1e100.net; s=20221208; t=1681835793; x=1684427793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PnHeIqQhcqSjPYjup2fw8CkFsVSZdUVKQ9idL5SwNNQ=;
+        b=MmGpJCn9WHNDMLLqsZnnWAbjPF9yBv14dcZhJoX8ATEXytizUZT84UsvUtwsTa3f6X
+         79/QjrbxlintS7fUCXnF3ulbCfn+N/J+NhSlBS/ggSf2kTVG469WxO1IRzAIp4jncGgl
+         70TxAEy713t0l/4uIBsbhNzxeS/gZqsKxrL/PWEfiKSqtnc7xXNIu53xaFA8nk25evpm
+         i7XznqTfN4SDAfC+RpOnNT7B23X00ax9DivT9s0DTdlmHAaMbr7S8CvrfXxtvtCMbjYC
+         FdtIyjgGxtkHRZdPhLrsV8RUdRkA9aBRmRZJxgA2muSXnGyl2Jpo4RCF8cvMuMtlHJXU
+         eVPw==
+X-Gm-Message-State: AAQBX9cjWPPe7veynJ/KEwHA+DnQsmECtCVY+pkfY5kSTjsMF/KWG6bt
+        aRrPrcYFKwdIpoMSEYaOr+2LCUa1xIojTq76ZB4=
+X-Google-Smtp-Source: AKy350bks6DT3dUEl+VkmpiZnYFUxlCSlj2fZPlgrvNmenD3X5DPxZAwU9H/urlkcRvbqZzHSy4EoQ7+QqcLKvWjar8=
+X-Received: by 2002:a17:906:6708:b0:94a:99a4:58d7 with SMTP id
+ a8-20020a170906670800b0094a99a458d7mr11663701ejp.15.1681835793385; Tue, 18
+ Apr 2023 09:36:33 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/2] iio: light: Add support for TI OPT4001 light sensor
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20230323-add-opt4001-driver-v1-0-1451dcc1bc8a@axis.com>
- <20230323-add-opt4001-driver-v1-2-1451dcc1bc8a@axis.com>
- <72d5b078-da9e-ccbb-1557-9cacaea68e8d@linaro.org>
-In-Reply-To: <72d5b078-da9e-ccbb-1557-9cacaea68e8d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <20230310144710.1543139-1-robh@kernel.org> <20230418162500.GC1764573-robh@kernel.org>
+In-Reply-To: <20230418162500.GC1764573-robh@kernel.org>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Tue, 18 Apr 2023 11:36:22 -0500
+Message-ID: <CABb+yY3Y8oZYG1y8zfTCC8g7=T0HQp3G3N_iECudo1gduYpy-A@mail.gmail.com>
+Subject: Re: [PATCH] mailbox: Use of_property_read_bool() for boolean properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,29 +67,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 18:34, Krzysztof Kozlowski wrote:
-> On 04/04/2023 11:07, Stefan Windfeldt-Prytz wrote:
->> This driver uses the continuous mode of the chip and integration
->> time can be configured through sysfs.
->> The constants for calculating lux value differs between packaging
->> so it uses different compatible string for the two versions
->> "ti,opt4001-picostar" and "ti,opt4001-sot-5x3" since the device id
->> is the same.
-> 
-> Thank you for your patch. There is something to discuss/improve.
-> 
->> +
->> +	indio_dev->channels = opt4001_channels;
->> +	indio_dev->num_channels = ARRAY_SIZE(opt4001_channels);
->> +	indio_dev->modes = INDIO_DIRECT_MODE;
->> +	indio_dev->name = chip->client->name;
->> +
->> +	of_id = of_match_device(of_match_ptr(opt4001_of_match), &client->dev);
-> 
-> ? Drop of_match_ptr
+On Tue, Apr 18, 2023 at 11:25=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Fri, Mar 10, 2023 at 08:47:10AM -0600, Rob Herring wrote:
+> > It is preferred to use typed property access functions (i.e.
+> > of_property_read_<type> functions) rather than low-level
+> > of_get_property/of_find_property functions for reading properties.
+> > Convert reading boolean properties to to of_property_read_bool().
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  drivers/mailbox/hi6220-mailbox.c | 5 +----
+> >  drivers/mailbox/omap-mailbox.c   | 3 +--
+> >  2 files changed, 2 insertions(+), 6 deletions(-)
+>
+> Ping!
+>
+Pong :)
 
-Ah, this is old patch... so maybe you already did this.
+I don't usually reply back that it looks good and will pick for the
+merge window. I just do that. So yes, it is not overlooked.
 
-Best regards,
-Krzysztof
-
+cheers
