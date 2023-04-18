@@ -2,90 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27D626E6715
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 880A46E671D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbjDROZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 10:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34010 "EHLO
+        id S231177AbjDRO0j convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 18 Apr 2023 10:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230070AbjDROZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:25:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C8B183;
-        Tue, 18 Apr 2023 07:25:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BF1162E36;
-        Tue, 18 Apr 2023 14:25:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 088A1C433D2;
-        Tue, 18 Apr 2023 14:25:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681827905;
-        bh=JjvHV44AW8fU6gt5sWWn5MYeufuxDsNYjEhFnzDlPy0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sI9M3xspqi+Y/NNWYm/NytNctShNlUXJcV9Ix2jq08NRcH4RgkWwtnwxY5PJcEBTQ
-         STA5GupBEkw08+iWQfnuY+Wp0f2XRCjMkMdcAwEtFVu9SHwkP4s0CCcbuihldOPhwH
-         i/DWOmPLpXc3JmnzRqCvGnpZF7k8KwXQHBqHEG6Um801Z4J3yjpo2VffU8sh9+nW7O
-         mrzw20v+GMMCjsGBxhFMhD3wuMFzfDTMPFepKT6Ud7/zZsMLFmXY2Y/T6HTuoKYx2A
-         bEXCMUK1H9nXtrQ4Yy47rEg6jYvjHxvLR7gr5aakVih1LwgNWNbzQQuG6QMwoI59ST
-         eOzRFm6m9XpdA==
-Date:   Tue, 18 Apr 2023 16:25:02 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230429AbjDRO0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:26:35 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878B719BD;
+        Tue, 18 Apr 2023 07:26:32 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pomHo-0003qq-MP; Tue, 18 Apr 2023 16:26:24 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Peter Geis <pgwipeout@gmail.com>,
+        Javier Martinez Canillas <javierm@redhat.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
-Message-ID: <ZD6oPq+Na/80E7Mv@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>, Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
- <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for Pinephone Pro
+ to 1.5 MB
+Date:   Tue, 18 Apr 2023 16:26:23 +0200
+Message-ID: <3797122.KgjxqYA5nG@diego>
+In-Reply-To: <87h6tdie46.fsf@minerva.mail-host-address-is-not-set>
+References: <20230403175937.2842085-1-javierm@redhat.com> <3999080.iIbC2pHGDl@diego>
+ <87h6tdie46.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Q5HMx4PIUFk/wOvT"
-Content-Disposition: inline
-In-Reply-To: <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,148 +51,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---Q5HMx4PIUFk/wOvT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am Dienstag, 18. April 2023, 14:11:53 CEST schrieb Javier Martinez Canillas:
+> Heiko Stübner <heiko@sntech.de> writes:
+> 
+> Hello Heiko,
+> 
+> > Hi Peter,
+> >
+> > Am Dienstag, 4. April 2023, 14:52:02 CEST schrieb Peter Geis:
+> >> On Tue, Apr 4, 2023 at 3:55 AM Heiko Stübner <heiko@sntech.de> wrote:
+> >> >
+> >> > Hi,
+> >> >
+> >> > Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
+> >> > > This baud rate is set for the device by mainline u-boot and is also what
+> >> > > is set in the Pinebook Pro Device Tree, which is a device similar to the
+> >> > > PinePhone Pro but with a different form factor.
+> >> > >
+> >> > > Otherwise, the baud rate of the firmware and Linux don't match by default
+> >> > > and a 'console=ttyS2,1500000n8' kernel command line parameter is required
+> >> > > to have proper output for both.
+> >> >
+> >> > The interesting question is always if this will break someone else's setup.
+> >> > I've never really understood the strange setting of 1.5MBps, but on the
+> >> > other hand it _is_ a reality on most boards.
+> >
+> >> The 1.5M baud is default because the clock structure on rockchip
+> >> devices does not allow a clean 115200 baud. By attempting to force
+> >> 115200, it will always be slightly off (either low or high depending
+> >> on how the driver decided to round). If this actually causes any
+> >> problems is the subject of much debate.
+> >
+> > thanks so much for this piece of clock-detail. As I wrote, I never really
+> > understood the why _before_ but also never cared that much to dive
+> > into it and find out.
+> >
+> > So your explanation closes one knowledge gap in my head.
+> >
+> > Thanks a lot :-)
+> 
+> Did you make a decision about this? I guess the clock explanation is yet
+> another argument in favour of switching the PPP to a 1.5 Mbps baud rate ?
 
-Hi Tomi, hi Luca,
+Sorry, but no decision made here. Either way it's breaking for someone,
+which makes this quite hard.
 
-as mentioned on IRC already, good move to use bus notifiers here and
-drop the generic attach/detach callbacks. Those were a show stopper for
-me. This version is nicely self contained. I like that!
+The rate accuracy is the one side, the two-boot issue is the other side.
+And mainline u-boot (and levinboot - whatever that is) provides a 3rd side.
 
-> diff --git a/Documentation/i2c/index.rst b/Documentation/i2c/index.rst
-> index 6270f1fd7d4e..aaf33d1315f4 100644
-> --- a/Documentation/i2c/index.rst
-> +++ b/Documentation/i2c/index.rst
-> @@ -16,6 +16,7 @@ Introduction
->     instantiating-devices
->     busses/index
->     i2c-topology
-> +   muxes/i2c-atr
+People starting with the phone probably won't replace the bootloader
+in a first step but instead might play with a system image or newer kernel.
+So if the uart will break for everyone using the default bootloader from
+the factory that is somewhat bad.
 
-The muxes-dir is only for the description of mux drivers. I'd prefer to
-have this document not in the sub-dir. Also, renaming the document to
-"address-translations.rst" might be worth discussing.
+I don't have a Pinephone Pro myself, so I really hoped for some Acks
+or similar to appear in the meantime.
 
->     muxes/i2c-mux-gpio
->     i2c-sysfs
-> =20
-> diff --git a/Documentation/i2c/muxes/i2c-atr.rst b/Documentation/i2c/muxe=
-s/i2c-atr.rst
-> new file mode 100644
-> index 000000000000..da226fd4de63
-> --- /dev/null
-> +++ b/Documentation/i2c/muxes/i2c-atr.rst
-> @@ -0,0 +1,97 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +Kernel driver i2c-atr
-
-Maybe "I2C address translations"?
-
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +Author: Luca Ceresoli <luca@lucaceresoli.net>
-> +Author: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> +
-> +Description
-> +-----------
-> +
-> +An I2C Address Translator (ATR) is a device with an I2C slave parent
-> +("upstream") port and N I2C master child ("downstream") ports, and
-> +forwards transactions from upstream to the appropriate downstream port
-> +with a modified slave address. The address used on the parent bus is
-> +called the "alias" and is (potentially) different from the physical
-> +slave address of the child bus. Address translation is done by the
-> +hardware.
-> +
-> +An ATR looks similar to an i2c-mux except:
-> + - the address on the parent and child busses can be different
-> + - there is normally no need to select the child port; the alias used on=
- the
-> +   parent bus implies it
-> +
-> +The ATR functionality can be provided by a chip with many other
-> +features. This file provides a helper to implement an ATR within your
-
-I'd like to get rid of all "your". Maybe "client driver" here?
-
-> +driver.
-
-=2E..
-
-> +Usage:
-> +
-> + 1. In your driver (typically in the probe function) add an ATR by
-> +    calling i2c_atr_new() passing your attach/detach callbacks
-> + 2. When the attach callback is called pick an appropriate alias,
-> +    configure it in your chip and return the chosen alias in the
-> +    alias_id parameter
-> + 3. When the detach callback is called, deconfigure the alias from
-> +    your chip and put it back in the pool for later usage
-
-Remove all "your", please. Some can simply go, I'd say. The others
-replaced by "the".
-
-> +
-> +I2C ATR functions and data structures
-> +-------------------------------------
-> +
-
-=2E..
-
-> +/**
-> + * struct i2c_atr_cli2alias_pair - Holds the alias assigned to a client.
-
-I stumbled over this one because "cli" is "command line interface" for
-me... The long version isn't much longer: 'i2c_atr_client_alias_pair'
-But I'd be also fine with: 'i2c_atr_alias_pair'
-
-> + * @node:   List node
-> + * @client: Pointer to the client on the child bus
-> + * @alias:  I2C alias address assigned by the driver.
-> + *          This is the address that will be used to issue I2C transacti=
-ons
-> + *          on the parent (physical) bus.
-> + */
-
-> +EXPORT_SYMBOL_NS_GPL(i2c_atr_add_adapter, I2C_ATR);
-
-EXPORT_SYMBOL_GPL, please. We can then later think about using an I2C
-namespace for all I2C symbols.
-
-Pretty high level comments only so far. I'll keep at it this week and
-might come back with more detailed comments. But in general, this looks
-quite good to go. Moving the alias pool handling to here is the biggest
-question I have.
-
-Thank you for your patience!
-
-   Wolfram
+Do we have someone with an actual Pine64 affiliation in this loop?
 
 
---Q5HMx4PIUFk/wOvT
-Content-Type: application/pgp-signature; name="signature.asc"
+Heiko
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQ+qDoACgkQFA3kzBSg
-KbaEqA/7BSdyL0W6zqSIUkHTHRbY6TFIBZ5YQuYxvJ4O2GbF+HxzKksrNCZ8mbXM
-lMf8Na5VzuG6yeAbip6leNZZRBc4yI7B1A8d1BQ7sKDcHjvaN+OU4kPjj4UeFK7V
-fGJ1zGDS/2klcQnPrompqPujAMgyzSQO4P5MN90mc7IxWiu4z83+6DYn6EYTyt/U
-nviOZY4n9S38V0+Zerz8tksoDtJZe/YH7mH0Q8SQPS4mkVt0ii++O2ifZTabQvpy
-r0129J3uQPM4CrjTDJoNQ0YT6S/HbcJcpR/iIS/KACk/oWedTPD7eEY101kks/AS
-AbT7/qhUFNV15B97iDu30GEEXsccJVmoekE/5Sdx+H/nKmS1hT19nIVbK3htshh+
-PoaJQUogSfEXlx/ethvwSbiVXYkBYsj93M+6vddPY2cK7rCUAF6ZlkEJV5un+QM0
-/KBrijD8bCTmg0o5sSacDkbC0KzAmDdL+KZe1edXgcf8v8U1+JDP+j59CeANUoeq
-oGuv2C8nIObFwLd8mFRR9EqRTSbCAWrTBUnQk0La8+36XLBluy4vIvdLrXoDcHXh
-ql0EPjpErEH6nCyuYbuyX0Bzi8JoDspmq83UyEnxni73oooKvqtJ0gQz1gj8pQli
-Zw3zYz9Gtb919Ts97E7sSH9ZVzJ1tcdsQ8bkKRyINwrMRAXdn+M=
-=Rt6W
------END PGP SIGNATURE-----
-
---Q5HMx4PIUFk/wOvT--
