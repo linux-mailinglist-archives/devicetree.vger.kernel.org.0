@@ -2,187 +2,480 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B251C6E6EA1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:50:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 850606E6EB7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233160AbjDRVuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 17:50:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
+        id S232608AbjDRV6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 17:58:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233159AbjDRVuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:50:10 -0400
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D5512CAD;
-        Tue, 18 Apr 2023 14:50:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZNG1dBWwtDuYMKEudd5LQc/mD7lzHj6ozEPpnZ3cGaPrUefciIpb461JNYTuddkNjNTPvNopVjcELWFYjsb7HtsoV8n6AHBVVo/zi+ZN1BvN3ANHukTyn+fXR5IHH6u8BoA7BH7Nm+0i55UOYRgqddGXA7SQoAihiXL2+x4YICQ0csVSR366EPz1ZLuY+h8FkNW/3WjlumE+fSz4nTdgYkr2yUG9AEnL8S4UJjMOI9bAAHeQquR/Ce7RsxD2SCTnoZVpOVmoyb119/cbK91GI4dqxz0xPKsaiWg20TzcLA2JHC1naPzo6J98WMy2rPcdzrGp9uBekQPjX0kgATU1nA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1SiX77mWSYtvvCkRKUITeJVeuptTobeIO2s79YZu8qo=;
- b=m7D6BxViquqtLmqFeMkrlJQxLqa559Xvu5yNi7VEmi39ztxFLKSLsA66sB7poGw7bDlx+R32m0cQaM+b7jg6k2G177BlkVvMrPvgGCAlerd7lDp+iWpbAz5VkIP8m+UjemvEEGCJ81JYe7MBAXdnAvCu87wpU1PHsvrDa1qCHs4mSyGAVxkvorYUmEYifpSjtqbKqtlrsKfJuXCsAS2nlA+JSF5rhUaNQdHLh17tHG9Q6G57ivqzojOE778QG8CbEknhzmaLw3nf7WziruAu4cmjEaAmMDDOOR670CnfeOarrLfPafQ8nZ7iQTL1iXUuNQosCXb/XoqA44Ib+TijYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1SiX77mWSYtvvCkRKUITeJVeuptTobeIO2s79YZu8qo=;
- b=qK0LTlUg9SoGpHNG64jGZ454J8ZEVBrDnrULAE8Z/2mfgysbzEqXOcec6s7eTi6gq2dFvFFdEYfsxnc71Dq5kzgCo3mB/dcZZvL8Dh4dC6tfbC+dcg145jZVFaxwcV7eRuUP9c//EcuY/s3rMPZg3Wxu5nZZOrSV68KviX+XIAI=
-Received: from DM6PR06CA0013.namprd06.prod.outlook.com (2603:10b6:5:120::26)
- by PH7PR12MB5593.namprd12.prod.outlook.com (2603:10b6:510:133::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Tue, 18 Apr
- 2023 21:49:57 +0000
-Received: from DS1PEPF0000E646.namprd02.prod.outlook.com
- (2603:10b6:5:120:cafe::9f) by DM6PR06CA0013.outlook.office365.com
- (2603:10b6:5:120::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.20 via Frontend
- Transport; Tue, 18 Apr 2023 21:49:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF0000E646.mail.protection.outlook.com (10.167.18.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6319.16 via Frontend Transport; Tue, 18 Apr 2023 21:49:57 +0000
-Received: from platform-dev1.pensando.io (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Tue, 18 Apr 2023 16:49:54 -0500
-From:   Brad Larson <blarson@amd.com>
-To:     <broonie@kernel.org>
-CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
-        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
-        <brendan.higgins@linux.dev>, <briannorris@chromium.org>,
-        <brijeshkumar.singh@amd.com>, <catalin.marinas@arm.com>,
-        <davidgow@google.com>, <devicetree@vger.kernel.org>,
-        <fancer.lancer@gmail.com>, <gerg@linux-m68k.org>,
-        <gsomlo@gmail.com>, <krzk@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
-        <lee@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <p.yadav@ti.com>,
-        <p.zabel@pengutronix.de>, <piotrs@cadence.com>,
-        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
-        <samuel@sholland.org>, <skhan@linuxfoundation.org>,
-        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
-        <tonyhuang.sunplus@gmail.com>, <ulf.hansson@linaro.org>,
-        <vaishnav.a@ti.com>, <will@kernel.org>,
-        <yamada.masahiro@socionext.com>
-Subject: [PATCH v14 03/15] dt-bindings: spi: cdns: Add compatible for AMD Pensando Elba SoC
-Date:   Tue, 18 Apr 2023 14:49:45 -0700
-Message-ID: <20230418214945.54690-1-blarson@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <9c7aec03-265f-414e-9a3f-9511f40cbbc0@sirena.org.uk>
-References: <9c7aec03-265f-414e-9a3f-9511f40cbbc0@sirena.org.uk>
+        with ESMTP id S232462AbjDRV6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:58:04 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6624E109;
+        Tue, 18 Apr 2023 14:58:01 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A15BD143D;
+        Tue, 18 Apr 2023 14:58:44 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3A6193F587;
+        Tue, 18 Apr 2023 14:57:59 -0700 (PDT)
+Date:   Tue, 18 Apr 2023 22:57:48 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Shengyu Qu <wiagn233@outlook.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        lgirdwood@gmail.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Martin Botka <martin.botka@somainline.org>
+Subject: Re: [PATCH v1 3/4] regulator: axp20x: Add AXP15060 support
+Message-ID: <20230418225748.651c66d3@slackpad.lan>
+In-Reply-To: <TY3P286MB2611727CC5CAB8AD5F44EE25989C9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+References: <20230407141813.89-1-wiagn233@outlook.com>
+ <TY3P286MB26112CE5BB0C66F8B6CA297498969@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+ <20230417151818.3c7b283c@donnerap.cambridge.arm.com>
+ <TY3P286MB2611727CC5CAB8AD5F44EE25989C9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E646:EE_|PH7PR12MB5593:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3e3cfb2-3179-4dcf-67fa-08db4056da4c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 80iIufSSweYb3cLBXKu1P0RDGKEnPRDQqe5DBW9OgWUdIc96bDi2Q6URTsjEXFMGhxTln2CWnAtyw5hJs931Jg/aDAuFlC8pKjE8LuqnCPVCtq9coyFmTHSxC4cqMx5g9Un/U7cfBQ35aBnVQOwrxndvwzEPdSktE8n7HIyKI7tHXeUG+nsBpJdIh/RcMQMoUPk0Xj+/ZjKlP4G3lcl3LLOM/H+LZaEQauNlIq4IOw4KnOXAdI6ZU3+Jj6IEPwVuUyOhoRTNYCMhrumpttB9xD8tOZoPHQ58Ng0HRohSy1Gfs7z3yZUY12z/n7EkOyxwm04F9gt4t+blIS4UQOKLaFJT1DF7YnFrItarbpXZFrbfZWqquN+y9uqvi8vxELu5+YBfxEfXwNrvR4sUi+sceslvvJi73dumpbZR/6T0h80apTg+Ipk/JC8Q4do6Mb9ZLBCuSYQaUw931Xnr6FyLENmPybZpNt/+yq/cLbNJZrYspwjyzNZNknCRwPOxTdau0n2G/RsZiNmk7eQcYseP8uIWwY6fpNHeUdJGK8K7pRKHFX/55viFRvMIsql+v/nNQqmiQh7h9P7BEh+KLqYplCrIiJFv1LMnUP3w1k94QkphojsdsSFVssRfrcxJ/RoRQEpGUm278+xttOi21u1bO12LkWXh0k0c+uW21iS9/k7ujMJyUeLb2bH5oDxttUDu2rEBlAEfHT5vQ9WpvgRmZ5j/J/9jTULgwMXlf4NCMWI=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(346002)(376002)(396003)(451199021)(46966006)(36840700001)(40470700004)(316002)(6916009)(54906003)(966005)(70586007)(70206006)(4326008)(40140700001)(36756003)(26005)(1076003)(40460700003)(47076005)(36860700001)(16526019)(356005)(426003)(2616005)(336012)(81166007)(186003)(83380400001)(5660300002)(8936002)(8676002)(82310400005)(41300700001)(6666004)(478600001)(82740400003)(7416002)(2906002)(40480700001)(7406005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2023 21:49:57.5768
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3e3cfb2-3179-4dcf-67fa-08db4056da4c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E646.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5593
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the cadence qspi controller compatible for AMD Pensando
-Elba SoC boards.  The Elba qspi fifo size is 1024.
+On Tue, 18 Apr 2023 00:01:27 +0800
+Shengyu Qu <wiagn233@outlook.com> wrote:
 
-Signed-off-by: Brad Larson <blarson@amd.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Hi Shengyu,
 
-v14 changes:
-- Patch series is against rc1, this patch failed to apply to
-  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-  Rebase this patch to rc7.
+I don't insist on the changes below (that's more up to the maintainers
+to decide), but just wanted to add some more rationale to my former
+suggestions.
 
-v11 changes:
-- Removed redundant if/then for amd,pensando-elba-qspi
+> Hi,
+> > On Fri,  7 Apr 2023 22:18:12 +0800
+> > Shengyu Qu <wiagn233@outlook.com> wrote:
+> >
+> > Hi,
+> >  
+> >> The AXP15060 is a typical I2C-controlled PMIC, seen on multiple boards
+> >> with different default register value. Current driver is tested on
+> >> Starfive Visionfive 2.
+> >>
+> >> The RTCLDO is fixed, and cannot even be turned on or off. On top of
+> >> that, its voltage is customisable (either 1.8V or 3.3V). We pretend it's
+> >> a fixed 1.8V regulator since other AXP driver also do like this. Also,
+> >> BSP code ignores this regulator and it's not used according to VF2
+> >> schematic.
+> >>
+> >> Describe the AXP15060's voltage settings and switch registers, how the
+> >> voltages are encoded, and connect this to the MFD device via its
+> >> regulator ID.
+> >>
+> >> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
+> >> ---
+> >>   drivers/regulator/axp20x-regulator.c | 229 ++++++++++++++++++++++++++-
+> >>   1 file changed, 221 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> >> index d260c442b788..ece4af93df7b 100644
+> >> --- a/drivers/regulator/axp20x-regulator.c
+> >> +++ b/drivers/regulator/axp20x-regulator.c
+> >> @@ -270,6 +270,74 @@
+> >>   
+> >>   #define AXP813_PWR_OUT_DCDC7_MASK	BIT_MASK(6)
+> >>   
+> >> +#define AXP15060_DCDC1_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_DCDC2_V_CTRL_MASK		GENMASK(6, 0)
+> >> +#define AXP15060_DCDC3_V_CTRL_MASK		GENMASK(6, 0)
+> >> +#define AXP15060_DCDC4_V_CTRL_MASK		GENMASK(6, 0)
+> >> +#define AXP15060_DCDC5_V_CTRL_MASK		GENMASK(6, 0)
+> >> +#define AXP15060_DCDC6_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_ALDO1_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_ALDO2_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_ALDO3_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_ALDO4_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_ALDO5_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_BLDO1_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_BLDO2_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_BLDO3_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_BLDO4_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_BLDO5_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_CLDO1_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_CLDO2_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_CLDO3_V_CTRL_MASK		GENMASK(4, 0)
+> >> +#define AXP15060_CLDO4_V_CTRL_MASK		GENMASK(5, 0)
+> >> +#define AXP15060_CPUSLDO_V_CTRL_MASK		GENMASK(3, 0)
+> >> +
+> >> +#define AXP15060_PWR_OUT_DCDC1_MASK	BIT_MASK(0)  
+> > I'd say "BIT(0)" is the canonical way of denoting single bit masks,
+> > outside of Linux' bitmask framework.  
+> 
+> I'm using BIT(0) to keep consistent with other existing definitions.
 
-v10 changes:
-- Fix cdns,fifo-depth, only amd,pensando-elba-qspi is 1024 bytes
+I don't know if it's a good idea to copy from code which is suboptimal.
+To just denote a bit in a register, I see BIT() everywhere, BIT_MASK
+does the modulo sizeof(long), which doesn't make much sense here. It
+just looks like it's meant to be used with Linux' bitmasks, which can
+span several longs, so you use a combination of BIT_WORD/BIT_MASK.
 
-v9 changes:
-- Add 1024 to cdns,fifo-depth property to resolve dtbs_check error
+> >> +#define AXP15060_PWR_OUT_DCDC2_MASK	BIT_MASK(1)
+> >> +#define AXP15060_PWR_OUT_DCDC3_MASK	BIT_MASK(2)
+> >> +#define AXP15060_PWR_OUT_DCDC4_MASK	BIT_MASK(3)
+> >> +#define AXP15060_PWR_OUT_DCDC5_MASK	BIT_MASK(4)
+> >> +#define AXP15060_PWR_OUT_DCDC6_MASK	BIT_MASK(5)
+> >> +#define AXP15060_PWR_OUT_ALDO1_MASK	BIT_MASK(0)
+> >> +#define AXP15060_PWR_OUT_ALDO2_MASK	BIT_MASK(1)
+> >> +#define AXP15060_PWR_OUT_ALDO3_MASK	BIT_MASK(2)
+> >> +#define AXP15060_PWR_OUT_ALDO4_MASK	BIT_MASK(3)
+> >> +#define AXP15060_PWR_OUT_ALDO5_MASK	BIT_MASK(4)
+> >> +#define AXP15060_PWR_OUT_BLDO1_MASK	BIT_MASK(5)
+> >> +#define AXP15060_PWR_OUT_BLDO2_MASK	BIT_MASK(6)
+> >> +#define AXP15060_PWR_OUT_BLDO3_MASK	BIT_MASK(7)
+> >> +#define AXP15060_PWR_OUT_BLDO4_MASK	BIT_MASK(0)
+> >> +#define AXP15060_PWR_OUT_BLDO5_MASK	BIT_MASK(1)
+> >> +#define AXP15060_PWR_OUT_CLDO1_MASK	BIT_MASK(2)
+> >> +#define AXP15060_PWR_OUT_CLDO2_MASK	BIT_MASK(3)
+> >> +#define AXP15060_PWR_OUT_CLDO3_MASK	BIT_MASK(4)
+> >> +#define AXP15060_PWR_OUT_CLDO4_MASK	BIT_MASK(5)
+> >> +#define AXP15060_PWR_OUT_CPUSLDO_MASK	BIT_MASK(6)
+> >> +#define AXP15060_PWR_OUT_SW_MASK		BIT_MASK(7)
+> >> +
+> >> +#define AXP15060_DCDC23_POLYPHASE_DUAL_MASK		BIT_MASK(6)
+> >> +#define AXP15060_DCDC46_POLYPHASE_DUAL_MASK		BIT_MASK(7)
+> >> +
+> >> +#define AXP15060_DCDC234_500mV_START	0x00  
+> > Can you make those values consistently decimal? It's a bit confusing to
+> > see the 70 steps in decimal, but the start (71) in hex.  
+> Also consistence problem here.
 
----
- .../devicetree/bindings/spi/cdns,qspi-nor.yaml | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+I would actually prefer consistency within one definition. I don't
+think we should copy all old code just because it is there already. I
+honestly don't find those definitions easy to read, compare, understand
+or review.
+For the AXP313a we went with something more compressed, by just putting
+the actual values into the definition, skipping the longish macros:
 
-diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-index b310069762dd..4f15f9a0cc34 100644
---- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-+++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-@@ -46,12 +46,28 @@ allOf:
-           maxItems: 2
-           items:
-             enum: [ qspi, qspi-ocp ]
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: amd,pensando-elba-qspi
-+    then:
-+      properties:
-+        cdns,fifo-depth:
-+          enum: [ 128, 256, 1024 ]
-+          default: 1024
-+    else:
-+      properties:
-+        cdns,fifo-depth:
-+          enum: [ 128, 256 ]
-+          default: 128
- 
- properties:
-   compatible:
-     oneOf:
-       - items:
-           - enum:
-+              - amd,pensando-elba-qspi
-               - ti,k2g-qspi
-               - ti,am654-ospi
-               - intel,lgm-qspi
-@@ -76,8 +92,6 @@ properties:
-     description:
-       Size of the data FIFO in words.
-     $ref: /schemas/types.yaml#/definitions/uint32
--    enum: [ 128, 256 ]
--    default: 128
- 
-   cdns,fifo-width:
-     $ref: /schemas/types.yaml#/definitions/uint32
+	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
+	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
 
-base-commit: 67d5d9f013d6c3829383c08162939cabff14fccc
--- 
-2.17.1
+> >> +#define AXP15060_DCDC234_500mV_STEPS	70
+> >> +#define AXP15060_DCDC234_500mV_END		\
+> >> +	(AXP15060_DCDC234_500mV_START + AXP15060_DCDC234_500mV_STEPS)
+> >> +#define AXP15060_DCDC234_1220mV_START	0x47
+> >> +#define AXP15060_DCDC234_1220mV_STEPS	16
+> >> +#define AXP15060_DCDC234_1220mV_END		\
+> >> +	(AXP15060_DCDC234_1220mV_START + AXP15060_DCDC234_1220mV_STEPS)
+> >> +#define AXP15060_DCDC234_NUM_VOLTAGES	88
+> >> +
+> >> +#define AXP15060_DCDC5_800mV_START	0x00
+> >> +#define AXP15060_DCDC5_800mV_STEPS	32
+> >> +#define AXP15060_DCDC5_800mV_END		\
+> >> +	(AXP15060_DCDC5_800mV_START + AXP15060_DCDC5_800mV_STEPS)
+> >> +#define AXP15060_DCDC5_1140mV_START	0x21
+> >> +#define AXP15060_DCDC5_1140mV_STEPS	35
+> >> +#define AXP15060_DCDC5_1140mV_END		\
+> >> +	(AXP15060_DCDC5_1140mV_START + AXP15060_DCDC5_1140mV_STEPS)
+> >> +#define AXP15060_DCDC5_NUM_VOLTAGES	69
+> >> +
+> >>   #define AXP_DESC_IO(_family, _id, _match, _supply, _min, _max, _step, _vreg,	\
+> >>   		    _vmask, _ereg, _emask, _enable_val, _disable_val)		\
+> >>   	[_family##_##_id] = {							\
+> >> @@ -1001,6 +1069,104 @@ static const struct regulator_desc axp813_regulators[] = {
+> >>   		    AXP22X_PWR_OUT_CTRL2, AXP22X_PWR_OUT_DC1SW_MASK),
+> >>   };
+> >>   
+> >> +static const struct linear_range axp15060_dcdc234_ranges[] = {
+> >> +	REGULATOR_LINEAR_RANGE(500000,
+> >> +			       AXP15060_DCDC234_500mV_START,
+> >> +			       AXP15060_DCDC234_500mV_END,
+> >> +			       10000),
+> >> +	REGULATOR_LINEAR_RANGE(1220000,
+> >> +			       AXP15060_DCDC234_1220mV_START,
+> >> +			       AXP15060_DCDC234_1220mV_END,
+> >> +			       20000),
+> >> +};
+> >> +
+> >> +static const struct linear_range axp15060_dcdc5_ranges[] = {
+> >> +	REGULATOR_LINEAR_RANGE(800000,
+> >> +			       AXP15060_DCDC5_800mV_START,
+> >> +			       AXP15060_DCDC5_800mV_END,
+> >> +			       10000),
+> >> +	REGULATOR_LINEAR_RANGE(1140000,
+> >> +			       AXP15060_DCDC5_1140mV_START,
+> >> +			       AXP15060_DCDC5_1140mV_END,
+> >> +			       20000),
+> >> +};
+> >> +
+> >> +static const struct regulator_desc axp15060_regulators[] = {
+> >> +	AXP_DESC(AXP15060, DCDC1, "dcdc1", "vin1", 1500, 3400, 100,
+> >> +		 AXP15060_DCDC1_V_CTRL, AXP15060_DCDC1_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL1, AXP15060_PWR_OUT_DCDC1_MASK),
+> >> +	AXP_DESC_RANGES(AXP15060, DCDC2, "dcdc2", "vin2",
+> >> +			axp15060_dcdc234_ranges, AXP15060_DCDC234_NUM_VOLTAGES,
+> >> +			AXP15060_DCDC2_V_CTRL, AXP15060_DCDC2_V_CTRL_MASK,
+> >> +			AXP15060_PWR_OUT_CTRL1, AXP15060_PWR_OUT_DCDC2_MASK),
+> >> +	AXP_DESC_RANGES(AXP15060, DCDC3, "dcdc3", "vin3",
+> >> +			axp15060_dcdc234_ranges, AXP15060_DCDC234_NUM_VOLTAGES,
+> >> +			AXP15060_DCDC3_V_CTRL, AXP15060_DCDC3_V_CTRL_MASK,
+> >> +			AXP15060_PWR_OUT_CTRL1, AXP15060_PWR_OUT_DCDC3_MASK),
+> >> +	AXP_DESC_RANGES(AXP15060, DCDC4, "dcdc4", "vin4",
+> >> +			axp15060_dcdc234_ranges, AXP15060_DCDC234_NUM_VOLTAGES,
+> >> +			AXP15060_DCDC4_V_CTRL, AXP15060_DCDC4_V_CTRL_MASK,
+> >> +			AXP15060_PWR_OUT_CTRL1, AXP15060_PWR_OUT_DCDC4_MASK),
+> >> +	AXP_DESC_RANGES(AXP15060, DCDC5, "dcdc5", "vin5",
+> >> +			axp15060_dcdc5_ranges, AXP15060_DCDC5_NUM_VOLTAGES,
+> >> +			AXP15060_DCDC5_V_CTRL, AXP15060_DCDC5_V_CTRL_MASK,
+> >> +			AXP15060_PWR_OUT_CTRL1, AXP15060_PWR_OUT_DCDC5_MASK),
+> >> +	AXP_DESC(AXP15060, DCDC6, "dcdc6", "vin6", 500, 3400, 100,
+> >> +		 AXP15060_DCDC6_V_CTRL, AXP15060_DCDC6_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL1, AXP15060_PWR_OUT_DCDC6_MASK),
+> >> +	AXP_DESC(AXP15060, ALDO1, "aldo1", "aldoin", 700, 3300, 100,
+> >> +		 AXP15060_ALDO1_V_CTRL, AXP15060_ALDO1_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_ALDO1_MASK),
+> >> +	AXP_DESC(AXP15060, ALDO2, "aldo2", "aldoin", 700, 3300, 100,
+> >> +		 AXP15060_ALDO2_V_CTRL, AXP15060_ALDO2_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_ALDO2_MASK),
+> >> +	AXP_DESC(AXP15060, ALDO3, "aldo3", "aldoin", 700, 3300, 100,
+> >> +		 AXP15060_ALDO3_V_CTRL, AXP15060_ALDO3_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_ALDO3_MASK),
+> >> +	AXP_DESC(AXP15060, ALDO4, "aldo4", "aldoin", 700, 3300, 100,
+> >> +		 AXP15060_ALDO4_V_CTRL, AXP15060_ALDO4_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_ALDO4_MASK),
+> >> +	AXP_DESC(AXP15060, ALDO5, "aldo5", "aldoin", 700, 3300, 100,
+> >> +		 AXP15060_ALDO5_V_CTRL, AXP15060_ALDO5_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_ALDO5_MASK),
+> >> +	AXP_DESC(AXP15060, BLDO1, "bldo1", "bldoin", 700, 3300, 100,
+> >> +		 AXP15060_BLDO1_V_CTRL, AXP15060_BLDO1_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_BLDO1_MASK),
+> >> +	AXP_DESC(AXP15060, BLDO2, "bldo2", "bldoin", 700, 3300, 100,
+> >> +		 AXP15060_BLDO2_V_CTRL, AXP15060_BLDO2_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_BLDO2_MASK),
+> >> +	AXP_DESC(AXP15060, BLDO3, "bldo3", "bldoin", 700, 3300, 100,
+> >> +		 AXP15060_BLDO3_V_CTRL, AXP15060_BLDO3_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL2, AXP15060_PWR_OUT_BLDO3_MASK),
+> >> +	AXP_DESC(AXP15060, BLDO4, "bldo4", "bldoin", 700, 3300, 100,
+> >> +		 AXP15060_BLDO4_V_CTRL, AXP15060_BLDO4_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_BLDO4_MASK),
+> >> +	AXP_DESC(AXP15060, BLDO5, "bldo5", "bldoin", 700, 3300, 100,
+> >> +		 AXP15060_BLDO5_V_CTRL, AXP15060_BLDO5_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_BLDO5_MASK),
+> >> +	AXP_DESC(AXP15060, CLDO1, "cldo1", "cldoin", 700, 3300, 100,
+> >> +		 AXP15060_CLDO1_V_CTRL, AXP15060_CLDO1_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_CLDO1_MASK),
+> >> +	AXP_DESC(AXP15060, CLDO2, "cldo2", "cldoin", 700, 3300, 100,
+> >> +		 AXP15060_CLDO2_V_CTRL, AXP15060_CLDO2_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_CLDO2_MASK),
+> >> +	AXP_DESC(AXP15060, CLDO3, "cldo3", "cldoin", 700, 3300, 100,
+> >> +		 AXP15060_CLDO3_V_CTRL, AXP15060_CLDO3_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_CLDO3_MASK),
+> >> +	AXP_DESC(AXP15060, CLDO4, "cldo4", "cldoin", 700, 4200, 100,
+> >> +		 AXP15060_CLDO4_V_CTRL, AXP15060_CLDO4_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_CLDO4_MASK),
+> >> +	AXP_DESC(AXP15060, CPUSLDO, "cpusldo", NULL, 700, 1400, 50,
+> >> +		 AXP15060_CPUSLDO_V_CTRL, AXP15060_CPUSLDO_V_CTRL_MASK,
+> >> +		 AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_CPUSLDO_MASK),
+> >> +	/* Supply comes from DCDC5 */  
+> > This comment (and the two below) should be *before* the respective
+> > description.  
+> Thanks, would fix.
+> >> +	AXP_DESC_SW(AXP15060, SW, "swout", NULL,  
+> > Shouldn't the name here be "dc1sw", to match the other regulators? Also
+> > "swout" wouldn't be covered by the regulator binding regexp, IIUC.  
+> 
+> In my version of datasheet(AXP15060 v1.0), it's named SW, not dc1sw in
+> other variants' datasheet. So I think keeping "sw" would be better?
+
+I don't know, just "sw" doesn't tell much, and other PMICs already use
+DC1SW, so it's immediately clear what regulator this switch feeds
+from.
+
+> "swout" would be fixed, thanks.
+
+You wouldn't need to add to this regexp there if you just use dc1sw.
+
+Cheers,
+Andre
+
+> >> +		    AXP15060_PWR_OUT_CTRL3, AXP15060_PWR_OUT_SW_MASK),
+> >> +	/* Supply comes from DCDC1 */
+> >> +	AXP_DESC_FIXED(AXP15060, RTC_LDO, "rtc-ldo", NULL, 1800),
+> >> +	/* Supply comes from ALDO1 */
+> >> +};  
+> > So I compared all the bits and register offset above against the
+> > (AXP853T) manual: they match.
+> >  
+> >> +
+> >>   static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
+> >>   {
+> >>   	struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
+> >> @@ -1145,6 +1311,15 @@ static int axp20x_set_dcdc_workmode(struct regulator_dev *rdev, int id, u32 work
+> >>   		workmode <<= id - AXP813_DCDC1;
+> >>   		break;
+> >>   
+> >> +	case AXP15060_ID:
+> >> +		reg = AXP15060_DCDC_MODE_CTRL2;
+> >> +		if (id < AXP15060_DCDC1 || id > AXP15060_DCDC6)
+> >> +			return -EINVAL;
+> >> +
+> >> +		mask = AXP22X_WORKMODE_DCDCX_MASK(id - AXP15060_DCDC1);
+> >> +		workmode <<= id - AXP15060_DCDC1;
+> >> +		break;
+> >> +
+> >>   	default:
+> >>   		/* should not happen */
+> >>   		WARN_ON(1);
+> >> @@ -1164,7 +1339,7 @@ static bool axp20x_is_polyphase_slave(struct axp20x_dev *axp20x, int id)
+> >>   
+> >>   	/*
+> >>   	 * Currently in our supported AXP variants, only AXP803, AXP806,
+> >> -	 * and AXP813 have polyphase regulators.
+> >> +	 * AXP813 and AXP15060 have polyphase regulators.
+> >>   	 */
+> >>   	switch (axp20x->variant) {
+> >>   	case AXP803_ID:
+> >> @@ -1196,6 +1371,17 @@ static bool axp20x_is_polyphase_slave(struct axp20x_dev *axp20x, int id)
+> >>   		}
+> >>   		break;
+> >>   
+> >> +	case AXP15060_ID:
+> >> +		regmap_read(axp20x->regmap, AXP15060_DCDC_MODE_CTRL1, &reg);
+> >> +
+> >> +		switch (id) {
+> >> +		case AXP15060_DCDC3:
+> >> +			return !!(reg & AXP15060_DCDC23_POLYPHASE_DUAL_MASK);
+> >> +		case AXP15060_DCDC6:
+> >> +			return !!(reg & AXP15060_DCDC46_POLYPHASE_DUAL_MASK);
+> >> +		}
+> >> +		break;
+> >> +
+> >>   	default:
+> >>   		return false;
+> >>   	}
+> >> @@ -1217,6 +1403,7 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   	u32 workmode;
+> >>   	const char *dcdc1_name = axp22x_regulators[AXP22X_DCDC1].name;
+> >>   	const char *dcdc5_name = axp22x_regulators[AXP22X_DCDC5].name;
+> >> +	const char *aldo1_name = axp15060_regulators[AXP15060_ALDO1].name;
+> >>   	bool drivevbus = false;
+> >>   
+> >>   	switch (axp20x->variant) {
+> >> @@ -1252,6 +1439,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   		drivevbus = of_property_read_bool(pdev->dev.parent->of_node,
+> >>   						  "x-powers,drive-vbus-en");
+> >>   		break;
+> >> +	case AXP15060_ID:
+> >> +		regulators = axp15060_regulators;
+> >> +		nregulators = AXP15060_REG_ID_MAX;
+> >> +		break;
+> >>   	default:
+> >>   		dev_err(&pdev->dev, "Unsupported AXP variant: %ld\n",
+> >>   			axp20x->variant);
+> >> @@ -1278,8 +1469,9 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   			continue;
+> >>   
+> >>   		/*
+> >> -		 * Regulators DC1SW and DC5LDO are connected internally,
+> >> -		 * so we have to handle their supply names separately.
+> >> +		 * Regulators DC1SW, DC5LDO and RTCLDO on AXP15060 are
+> >> +		 * connected internally, so we have to handle their supply
+> >> +		 * names separately.
+> >>   		 *
+> >>   		 * We always register the regulators in proper sequence,
+> >>   		 * so the supply names are correctly read. See the last
+> >> @@ -1288,7 +1480,8 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   		 */
+> >>   		if ((regulators == axp22x_regulators && i == AXP22X_DC1SW) ||
+> >>   		    (regulators == axp803_regulators && i == AXP803_DC1SW) ||
+> >> -		    (regulators == axp809_regulators && i == AXP809_DC1SW)) {
+> >> +			(regulators == axp809_regulators && i == AXP809_DC1SW) ||  
+> > looks like whitespace is off here  
+> Would fix.
+> >  
+> >> +		    (regulators == axp15060_regulators && i == AXP15060_SW)) {  
+> > Can you name that AXP15060_DC1SW?
+> >  
+> >>   			new_desc = devm_kzalloc(&pdev->dev, sizeof(*desc),
+> >>   						GFP_KERNEL);
+> >>   			if (!new_desc)
+> >> @@ -1300,7 +1493,8 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   		}
+> >>   
+> >>   		if ((regulators == axp22x_regulators && i == AXP22X_DC5LDO) ||
+> >> -		    (regulators == axp809_regulators && i == AXP809_DC5LDO)) {
+> >> +			(regulators == axp809_regulators && i == AXP809_DC5LDO) ||  
+> > whitespace, and again some more times below.  
+> OK.
+> >
+> > The rest looks good to me.  
+> 
+> Thanks for reviewing.
+> 
+> Best regards,
+> 
+> Shengyu
+> 
+> >
+> > Cheers,
+> > Andre
+> >  
+> >> +		    (regulators == axp15060_regulators && i == AXP15060_CPUSLDO)) {
+> >>   			new_desc = devm_kzalloc(&pdev->dev, sizeof(*desc),
+> >>   						GFP_KERNEL);
+> >>   			if (!new_desc)
+> >> @@ -1311,6 +1505,18 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   			desc = new_desc;
+> >>   		}
+> >>   
+> >> +
+> >> +		if (regulators == axp15060_regulators && i == AXP15060_RTC_LDO) {
+> >> +			new_desc = devm_kzalloc(&pdev->dev, sizeof(*desc),
+> >> +						GFP_KERNEL);
+> >> +			if (!new_desc)
+> >> +				return -ENOMEM;
+> >> +
+> >> +			*new_desc = regulators[i];
+> >> +			new_desc->supply_name = aldo1_name;
+> >> +			desc = new_desc;
+> >> +		}
+> >> +
+> >>   		rdev = devm_regulator_register(&pdev->dev, desc, &config);
+> >>   		if (IS_ERR(rdev)) {
+> >>   			dev_err(&pdev->dev, "Failed to register %s\n",
+> >> @@ -1329,19 +1535,26 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >>   		}
+> >>   
+> >>   		/*
+> >> -		 * Save AXP22X DCDC1 / DCDC5 regulator names for later.
+> >> +		 * Save AXP22X DCDC1 / DCDC5 / AXP15060 ALDO1 regulator names for later.
+> >>   		 */
+> >>   		if ((regulators == axp22x_regulators && i == AXP22X_DCDC1) ||
+> >> -		    (regulators == axp809_regulators && i == AXP809_DCDC1))
+> >> +		    (regulators == axp809_regulators && i == AXP809_DCDC1) ||
+> >> +			(regulators == axp15060_regulators && i == AXP15060_DCDC1))
+> >>   			of_property_read_string(rdev->dev.of_node,
+> >>   						"regulator-name",
+> >>   						&dcdc1_name);
+> >>   
+> >>   		if ((regulators == axp22x_regulators && i == AXP22X_DCDC5) ||
+> >> -		    (regulators == axp809_regulators && i == AXP809_DCDC5))
+> >> +		    (regulators == axp809_regulators && i == AXP809_DCDC5) ||
+> >> +			(regulators == axp15060_regulators && i == AXP15060_DCDC5))
+> >>   			of_property_read_string(rdev->dev.of_node,
+> >>   						"regulator-name",
+> >>   						&dcdc5_name);
+> >> +
+> >> +		if (regulators == axp15060_regulators && i == AXP15060_ALDO1)
+> >> +			of_property_read_string(rdev->dev.of_node,
+> >> +						"regulator-name",
+> >> +						&aldo1_name);
+> >>   	}
+> >>   
+> >>   	if (drivevbus) {  
 
