@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A4D6E60D4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975B46E60DC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbjDRMMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:12:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42792 "EHLO
+        id S231156AbjDRMMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjDRMLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:11:37 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3236076A0
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:04 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2a8bae45579so18745491fa.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:04 -0700 (PDT)
+        with ESMTP id S231679AbjDRMLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:11:40 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D96F7DA0
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:05 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4edcc885d8fso570623e87.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681819862; x=1684411862;
+        d=linaro.org; s=google; t=1681819864; x=1684411864;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hUGnN7QmHFXWvkEalaWeWFmgMZnzSnPU7k2aFfVSknQ=;
-        b=plwhb253A2LkIUiFPKKW4tqA+balXv3q+Z41+HlVwEO3GGJ+I18gB2x6IWwj2CxBqE
-         MkqKmzM3QCoOqgtTPx33+3L+IFglDAYxAhtLbAOq/tl7qDv1OSnFRDJ9Tp2uRPyJ6U6C
-         Ovawe47VfRsAAKWF2s6aPHes/ywxtaferpYz9b1i66XNYCmsIy1Po2JoPpycLeqXrMks
-         2+fiz6J9kiydSk2brE87B8PpmnP0/3yyD0+5iXuHttN9di6fyDXGnd3uDbTOA1095hhb
-         G3gVnQOZQh/PNxVUDsu1UikNdP0M9EgcZO6Imf6P/SpV04WKuHELycwNlC26b6ODtYqc
-         QVBA==
+        bh=PbVhusCEghNKEPZ8TLDEdqw82MnqWQVPyy1y462DY9k=;
+        b=swJ6/Exu986U2znXzl7Sx2Lj5KHn8dVTqtNXNU+FIA6UM4wu/HEowRKYm/z/prpcId
+         VM4J6JeqKPWlKvFhNaIOa3hMIKyq3Ol2bCH+MuacZfeSMQYCIqw6IrWTcjFA44fKZD9D
+         cDgyxq+DxNgfR7zcwKKzE6VMiW4t6vRJl15M+NeWyeAmZWc+Jd30zpaz4oY2U++ojnTz
+         U79skAUExsLFHiqAKXKQa+kF96i1q5n4yJXyltnxgqkQljs6Ped4PgsaowdunD1QRi++
+         v82pM6y3+7PaKdK53jsDSGhmXyxvKn/4CQc7HRwfT8xxRvagvG9X6Wi9l2cdpaPbIM9I
+         SRpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681819862; x=1684411862;
+        d=1e100.net; s=20221208; t=1681819864; x=1684411864;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hUGnN7QmHFXWvkEalaWeWFmgMZnzSnPU7k2aFfVSknQ=;
-        b=aLt5LnUjroPfKg2YS5+wld7tfY4NLy8SSHCwtxgoU2CT0rb8yOHdfssCTORotg75Vu
-         DqKljGzdPJ4wXSt4Wu7vb/76bblHw2XOFVQFzIH7HQhQLc8D4yjJGFbZi0pIZMLnLMkb
-         yh16gdOQUkB3g8ds6tz7XQdD9aqXCGVZK3eOoN5Hc3vg8IDzgDc990IiWCflurSqOB9S
-         P7S3UqUlooI9LLwYpKLL3RiSUbjMwpHysuTho42qg4nmRPAiNOsXEjn/3WU8amdUERun
-         u5IMqyA3hkW1ZNq0Pzqf2l3JMgs5E194gRv3OPSNEfXyLzMrCvkPOKPZLmID6uZZrMTI
-         G1Xg==
-X-Gm-Message-State: AAQBX9dmBU3unYDlQdEXNe8QsLFcW4F0eyjC3A5sAzQ/WfH7c/26zj6o
-        j1Gx6pqzMNBP6gooxbTCbPuIgQ==
-X-Google-Smtp-Source: AKy350aAdkn4iy8subFZX8jCGOCNgse5k4x4SZZ/utypiAf7lkYkLQQR1tmWw2ojXblWEpk4Tc+Awg==
-X-Received: by 2002:a19:ac01:0:b0:4cc:a107:82f4 with SMTP id g1-20020a19ac01000000b004cca10782f4mr2762138lfc.64.1681819862525;
-        Tue, 18 Apr 2023 05:11:02 -0700 (PDT)
+        bh=PbVhusCEghNKEPZ8TLDEdqw82MnqWQVPyy1y462DY9k=;
+        b=Ba/hrbIiVti6HMG+xzxyATr4+iIi0UsD9VdX5uQvbhiiBdVbsoegwK5cVDGejdEeoo
+         TdQ7oaLzjvmHM3kV6YOyRF9syKQc2bn7yDf0f5PBG7/JIS1/OOcysG+4vzW/MwlCBO6m
+         BTH4XpsUyRbnJcxTEWdW49m5Lc1JQmLmo+xxQZuG7fMhgWFZ0hZ3Ck5ylimHb22/UWnQ
+         iJICrM2Xprp/E3HvQ3aKL/34TXv7tL1WJLQQSxCfcAbuRGz9ESpDWD2C+Qg5JqDyQ8m8
+         GL+9KqjTmrlWY3MruEnlbJIqIra+aPfX/1jotFJBvfm2MLXuWpjRABYLKaFdrhrSJJCb
+         af8w==
+X-Gm-Message-State: AAQBX9fKOAum4syKUTI9OHBj9OpldyekDr6ZQygAzIzOry++BAjo7H62
+        aN7XPeAIDlPiY6cVjnxlEjjldQ==
+X-Google-Smtp-Source: AKy350bPFfWUOLpWel/8DUUJQFJNYhY785GrX3wMbeGJZeX8OlOeyQdJUrVbfdfWsy1pAnBkEYqUkw==
+X-Received: by 2002:ac2:511b:0:b0:4eb:13ff:6ca7 with SMTP id q27-20020ac2511b000000b004eb13ff6ca7mr2818344lfb.16.1681819863993;
+        Tue, 18 Apr 2023 05:11:03 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id q17-20020a19a411000000b004d86808fd33sm2365895lfc.15.2023.04.18.05.11.01
+        by smtp.gmail.com with ESMTPSA id q17-20020a19a411000000b004d86808fd33sm2365895lfc.15.2023.04.18.05.11.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 05:11:02 -0700 (PDT)
+        Tue, 18 Apr 2023 05:11:03 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 18 Apr 2023 14:10:58 +0200
-Subject: [PATCH v2 3/5] drm/msm/mdss: Rename path references to mdp_path
+Date:   Tue, 18 Apr 2023 14:10:59 +0200
+Subject: [PATCH v2 4/5] drm/msm/mdss: Handle the reg bus ICC path
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230417-topic-dpu_regbus-v2-3-91a66d04898e@linaro.org>
+Message-Id: <20230417-topic-dpu_regbus-v2-4-91a66d04898e@linaro.org>
 References: <20230417-topic-dpu_regbus-v2-0-91a66d04898e@linaro.org>
 In-Reply-To: <20230417-topic-dpu_regbus-v2-0-91a66d04898e@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -72,89 +72,109 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681819856; l=2175;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681819856; l=3137;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=mFT0UyX9LhxCNCpprLZW/XLO+LLNqKMZSGZE8MZeFUU=;
- b=GK2A60TzVMQEAOzKUYKUR6rw8jItcwySKTJju9xkPZNGM9M1lTpTARcjPYfRz6gWTY1sXayeI4j8
- 7oyqnIXZBh56Seh+aoobZZkMDYr+Pqf4TEujHIxmbrCBrmvszl0p
+ bh=wX+gJPCe8UmLoFyI2GJLXSE1t0Mv12xmqDSsK2E8jZI=;
+ b=Fl2losD0yxtKUBCjTBabIjaes/wJD0CNKIE43B+HBU9fLD5PGoyshXp3GJ8ZfODxRfctdbQnAGhz
+ EDCNeSo8CFhnc35D2jEK9RnI6hh2Gf2ys+xxVtGeDWOXIMH07UQL
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DPU1 driver needs to handle all MDPn<->DDR paths, as well as
-CPU<->SLAVE_DISPLAY_CFG. The former ones share how their values are
-calculated, but the latter one has static predefines spanning all SoCs.
+Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
+another path that needs to be handled to ensure MDSS functions properly,
+namely the "reg bus", a.k.a the CPU-MDSS interconnect.
 
-In preparation for supporting the CPU<->SLAVE_DISPLAY_CFG path, rename
-the path-related struct members to include "mdp_".
+Gating that path may have a variety of effects.. from none to otherwise
+inexplicable DSI timeouts..
+
+On the MDSS side, we only have to ensure that it's on at what Qualcomm
+downstream calls "77 MHz", a.k.a 76.8 Mbps and turn it off at suspend.
+
+To achieve that, make msm_mdss_icc_request_bw() accept a boolean to
+indicate whether we want the busses to be on or off, as this function's
+only use is to vote for minimum or no bandwidth at all.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/msm_mdss.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/msm/msm_mdss.c | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-index e8c93731aaa1..9e2ce7f22677 100644
+index 9e2ce7f22677..4d126d20d661 100644
 --- a/drivers/gpu/drm/msm/msm_mdss.c
 +++ b/drivers/gpu/drm/msm/msm_mdss.c
-@@ -48,8 +48,8 @@ struct msm_mdss {
- 		struct irq_domain *domain;
- 	} irq_controller;
+@@ -50,6 +50,7 @@ struct msm_mdss {
  	const struct msm_mdss_data *mdss_data;
--	struct icc_path *path[2];
--	u32 num_paths;
-+	struct icc_path *mdp_path[2];
-+	u32 num_mdp_paths;
+ 	struct icc_path *mdp_path[2];
+ 	u32 num_mdp_paths;
++	struct icc_path *reg_bus_path;
  };
  
  static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
-@@ -62,13 +62,13 @@ static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
+@@ -57,6 +58,7 @@ static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
+ {
+ 	struct icc_path *path0;
+ 	struct icc_path *path1;
++	struct icc_path *reg_bus_path;
+ 
+ 	path0 = of_icc_get(dev, "mdp0-mem");
  	if (IS_ERR_OR_NULL(path0))
- 		return PTR_ERR_OR_ZERO(path0);
- 
--	msm_mdss->path[0] = path0;
--	msm_mdss->num_paths = 1;
-+	msm_mdss->mdp_path[0] = path0;
-+	msm_mdss->num_mdp_paths = 1;
- 
- 	path1 = of_icc_get(dev, "mdp1-mem");
- 	if (!IS_ERR_OR_NULL(path1)) {
--		msm_mdss->path[1] = path1;
--		msm_mdss->num_paths++;
-+		msm_mdss->mdp_path[1] = path1;
-+		msm_mdss->num_mdp_paths++;
+@@ -71,6 +73,10 @@ static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
+ 		msm_mdss->num_mdp_paths++;
  	}
  
++	reg_bus_path = of_icc_get(dev, "cpu-cfg");
++	if (!IS_ERR_OR_NULL(reg_bus_path))
++		msm_mdss->reg_bus_path = reg_bus_path;
++
  	return 0;
-@@ -79,16 +79,16 @@ static void msm_mdss_put_icc_path(void *data)
- 	struct msm_mdss *msm_mdss = data;
- 	int i;
- 
--	for (i = 0; i < msm_mdss->num_paths; i++)
--		icc_put(msm_mdss->path[i]);
-+	for (i = 0; i < msm_mdss->num_mdp_paths; i++)
-+		icc_put(msm_mdss->mdp_path[i]);
  }
  
- static void msm_mdss_icc_request_bw(struct msm_mdss *msm_mdss, unsigned long bw)
+@@ -83,12 +89,15 @@ static void msm_mdss_put_icc_path(void *data)
+ 		icc_put(msm_mdss->mdp_path[i]);
+ }
+ 
+-static void msm_mdss_icc_request_bw(struct msm_mdss *msm_mdss, unsigned long bw)
++static void msm_mdss_icc_request_bw(struct msm_mdss *msm_mdss, bool enable)
  {
  	int i;
  
--	for (i = 0; i < msm_mdss->num_paths; i++)
--		icc_set_bw(msm_mdss->path[i], 0, Bps_to_icc(bw));
-+	for (i = 0; i < msm_mdss->num_mdp_paths; i++)
-+		icc_set_bw(msm_mdss->mdp_path[i], 0, Bps_to_icc(bw));
+ 	for (i = 0; i < msm_mdss->num_mdp_paths; i++)
+-		icc_set_bw(msm_mdss->mdp_path[i], 0, Bps_to_icc(bw));
++		icc_set_bw(msm_mdss->mdp_path[i], 0, enable ? Bps_to_icc(MIN_IB_BW) : 0);
++
++	if (msm_mdss->reg_bus_path)
++		icc_set_bw(msm_mdss->reg_bus_path, 0, enable ? 76800 : 0);
  }
  
  static void msm_mdss_irq(struct irq_desc *desc)
+@@ -241,7 +250,7 @@ static int msm_mdss_enable(struct msm_mdss *msm_mdss)
+ 	 * the interconnect is enabled (non-zero bandwidth). Let's make sure
+ 	 * that the interconnects are at least at a minimum amount.
+ 	 */
+-	msm_mdss_icc_request_bw(msm_mdss, MIN_IB_BW);
++	msm_mdss_icc_request_bw(msm_mdss, true);
+ 
+ 	ret = clk_bulk_prepare_enable(msm_mdss->num_clocks, msm_mdss->clocks);
+ 	if (ret) {
+@@ -289,7 +298,7 @@ static int msm_mdss_enable(struct msm_mdss *msm_mdss)
+ static int msm_mdss_disable(struct msm_mdss *msm_mdss)
+ {
+ 	clk_bulk_disable_unprepare(msm_mdss->num_clocks, msm_mdss->clocks);
+-	msm_mdss_icc_request_bw(msm_mdss, 0);
++	msm_mdss_icc_request_bw(msm_mdss, false);
+ 
+ 	return 0;
+ }
 
 -- 
 2.40.0
