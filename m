@@ -2,119 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC32C6E5C01
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 10:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 234F66E5C1C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 10:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbjDRIbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 04:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38196 "EHLO
+        id S229756AbjDRIde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 04:33:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjDRIbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 04:31:06 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93BE2E63;
-        Tue, 18 Apr 2023 01:31:04 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 4D9B085AEC;
-        Tue, 18 Apr 2023 10:31:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1681806662;
-        bh=NER7E2tIy4C9f7YN78pLwyujIq9Yo6zWQEwmdMaeBDA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=I6eVjHo4vpZiCrxLUgi7n+p+dKPGuhcgJWLCstM5xs3PigsNjAhpryGV6rOLeEt4n
-         VVLOe8qBaeKICa1SFxitaY7sk2YMlNtuy7CaqPxU91n7mbiORqgEeKZK4Fn+106ij6
-         v8d7iNSLu4Dqfxmn9BWc3BwN2aapyUYG1lJPqiARIVprDH/B4slbnUJzEmIBH7RD9h
-         kPbmqAxWJYKnHukinQE8LyBhiYyM1X79Fk4/XVWVXdkI3lhQDMY8FV2Dn+DMfVmqXQ
-         Lvno3k5PRx1NMcu9mkR8fCxMXeggCVc4lGIgF8wtmA91wBzvZ1CD7j9cykWIbTF6Zn
-         KwRSsgDb0TxoQ==
-Message-ID: <56085a0f-02f7-6f45-f351-1f9ee612b748@denx.de>
-Date:   Tue, 18 Apr 2023 10:30:59 +0200
+        with ESMTP id S229838AbjDRId3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 04:33:29 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19397AA9
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 01:32:48 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-54fa9da5e5bso247701237b3.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 01:32:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681806765; x=1684398765;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zx9sLlnqlOZjd6yEIsiTu/BBjp44dTQyzvDnp70eYm8=;
+        b=swjKzcvAN32jeZvEshQ/vtH2R7c9QJ9Qfmsht67lFgv03sJxnJhaKEnkpdHBEVNBnQ
+         4yLX7RWjJzuwtHymyFpVjJ+78xIbyNiRSaVHkhR1yvyLx57kxI14O/PPUoQo2ERHIIPJ
+         yCv00TYeR7wIuh987ftdTaxA6gf8RLQ1V9ehc7/GsNPzq5VnMKSeiHIANeDuwMfhf1ER
+         zh8vu0VDWzAjRWFcfe9zuNs8GTqFHMcEO+qm54UN6vqUm1W8XqE+44cwdIt8BNpjW+HU
+         p47x5+11IUOYFbfgf5lBdICuLE6/5rtPqruSjvbw4DNwIHnw3IJ2HQZ+rPlMMgp4P3lT
+         4sww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681806765; x=1684398765;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zx9sLlnqlOZjd6yEIsiTu/BBjp44dTQyzvDnp70eYm8=;
+        b=KbbT2fRm8f97e1Of96c7LvxOTpERTeQ0RRYZOw7PZ08l/5bFz8Gbni6q5hCpE48WCJ
+         9e+5KCWnuIgAm4YhiTSCwu8/qfry/a43KtoCxlhaRhUoRmBV/OMQtjEU3QYeP4544G7o
+         Yzd+tk4Ja5V1Jd+XlGX6ene9xFCAgKvBhRerHE5yzWxYU1nubJA/GMDkuw7LKJlYp2ZV
+         vLMQejgyU9o3NyMLRqOZ3jES388bxJAL5Qi9EO5wAsEsLegYYsll0vmfa4I4R0MJmUra
+         4G5T91iM4U96sjfNCi7jEFjG3Yvr+qBu7lKsC9kxTS0yfiDCRSetjnCqKipsSsrgLNhi
+         QH4A==
+X-Gm-Message-State: AAQBX9fiPrqxI5bqqSbF9OdOW/0IvNfO7/UAmsrbOLlJWdRi4VVSUMEz
+        v9DCHq7Zi5SzkP/rbnowwARIppZfZ2Lc1v30ex+6Uw==
+X-Google-Smtp-Source: AKy350aE1HacagOuu/fNc38OeZciL5OE9jAYIiAGsoYZCy6awnzONSE/Lk4w4QpUwFvVBpJQIMKRkSts77glUyoLKfI=
+X-Received: by 2002:a81:4896:0:b0:552:a840:9da8 with SMTP id
+ v144-20020a814896000000b00552a8409da8mr9009367ywa.52.1681806765312; Tue, 18
+ Apr 2023 01:32:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/6] drm: bridge: samsung-dsim: Fetch pll-clock-frequency
- automatically
-Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, m.szyprowski@samsung.com,
-        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230415104104.5537-1-aford173@gmail.com>
- <20230415104104.5537-3-aford173@gmail.com>
- <7eed74e8-9f67-a410-3cec-f61a6db85238@denx.de>
- <CAHCN7xKw26TQ=t75TEDbEkA0mb9rnEwNW=7ei1=WFBZjiJMf=g@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAHCN7xKw26TQ=t75TEDbEkA0mb9rnEwNW=7ei1=WFBZjiJMf=g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+References: <20230323093141.4070840-1-peng.fan@oss.nxp.com>
+ <20230323093141.4070840-2-peng.fan@oss.nxp.com> <ZDN00vwyCOzFrDYt@google.com>
+ <DU0PR04MB94172C2BBB554E472576B2BA889B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <DU0PR04MB9417185EB8243ED2D60A6E43889B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <DU0PR04MB9417185EB8243ED2D60A6E43889B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 18 Apr 2023 10:32:09 +0200
+Message-ID: <CAPDyKFruZOP65k0SEEmCGtopp8ywJA92ChGZs2ZR=nVxqUC0OQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] input: imx_sc_key: add wakeup support
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/18/23 04:29, Adam Ford wrote:
-> On Sun, Apr 16, 2023 at 5:08 PM Marek Vasut <marex@denx.de> wrote:
->>
->> On 4/15/23 12:41, Adam Ford wrote:
->>> Fetch the clock rate of "sclk_mipi" (or "pll_clk") instead of
->>> having an entry in the device tree for samsung,pll-clock-frequency.
->>>
->>> Signed-off-by: Adam Ford <aford173@gmail.com>
->>> ---
->>>    drivers/gpu/drm/bridge/samsung-dsim.c | 12 ++++++------
->>>    1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
->>> index 9fec32b44e05..73f0c3fbbdf5 100644
->>> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
->>> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
->>> @@ -1744,11 +1744,6 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
->>>        struct device_node *node = dev->of_node;
->>>        int ret;
->>>
->>> -     ret = samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequency",
->>> -                                    &dsi->pll_clk_rate);
->>> -     if (ret < 0)
->>> -             return ret;
->>> -
->>>        ret = samsung_dsim_of_read_u32(node, "samsung,burst-clock-frequency",
->>>                                       &dsi->burst_clk_rate);
->>>        if (ret < 0)
->>
->> Does this break compatibility with old samsung DTs ?
-> 
-> My goal here was to declutter the device tree stuff and fetch data
-> automatically if possible. What if I changed this to make them
-> optional?  If they exist, we can use them, if they don't exist, we
-> could read the clock rate.  Would that be acceptable?
+On Wed, 12 Apr 2023 at 17:58, Peng Fan <peng.fan@nxp.com> wrote:
+>
+> +Ulf
+>
+> > Subject: RE: [PATCH 2/2] input: imx_sc_key: add wakeup support
+> >
+> > > Subject: Re: [PATCH 2/2] input: imx_sc_key: add wakeup support
+> > >
+> > > On Thu, Mar 23, 2023 at 05:31:41PM +0800, Peng Fan (OSS) wrote:
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > >
+> > > > Add support for waking up from system wide suspend.
+> > > >
+> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > > >  drivers/input/keyboard/imx_sc_key.c | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > >
+> > > > diff --git a/drivers/input/keyboard/imx_sc_key.c
+> > > b/drivers/input/keyboard/imx_sc_key.c
+> > > > index d18839f1f4f6..234f23cf9990 100644
+> > > > --- a/drivers/input/keyboard/imx_sc_key.c
+> > > > +++ b/drivers/input/keyboard/imx_sc_key.c
+> > > > @@ -151,6 +151,8 @@ static int imx_sc_key_probe(struct
+> > > platform_device *pdev)
+> > > >   priv->input = input;
+> > > >   platform_set_drvdata(pdev, priv);
+> > > >
+> > > > + device_init_wakeup(&pdev->dev,
+> > > device_property_read_bool(&pdev->dev, "wakeup-source"));
+> > > > +
+> > >
+> > > I wonder - could we move this to the device core?
+> >
+> > I see lots device drivers parse wakeup-source, so I also follow That. Not sure
+> > whether could move this feature to device core, but anyway I could give a
+> > try.
+>
+> Do you think it is feasible to move device_init_wakeup into device core
+> part?
 
-If you do not see any potential problem with ignoring the DT property 
-altogether, that would be better of course, but I think you cannot do 
-that with old DTs, so you should retain backward compatibility fallback, 
-yes. What do you think ?
+Not sure it would really improve things that much. Subsystems/drivers
+need to make additional configurations based upon whether this DT
+property is set anyway.
+
+Perhaps an option is to make this a part of the common input subsystem
+helper functions instead? Other subsystems do this, but I am not sure
+how feasible that would be in the input case.
+
+Kind regards
+Uffe
