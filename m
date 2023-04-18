@@ -2,220 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3B426E64B0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 717FD6E650B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232241AbjDRMvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:51:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
+        id S232277AbjDRMzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:55:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbjDRMvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:51:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0B616F8C;
-        Tue, 18 Apr 2023 05:51:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CDA7663429;
-        Tue, 18 Apr 2023 12:51:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4B5BC433EF;
-        Tue, 18 Apr 2023 12:50:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681822261;
-        bh=vDLBxL1a/LLgJCeDtLqmgJik9psfir0jW0YdoiOYOXE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XB9QondD6yuvpQ230rAKbErtOUGQVdGgu0HZ7/bxbZ43tVMXHLUSqxqbTVw7VukPP
-         i0o3zzLdDoGoGrX2T1iD57iDo1Sho+SLNmLaTYZEBHyDFcsSyWyxf25skaVEIGJKzO
-         8P42fZ4HwdDeQFcywjo9+sxSIelIcix9LowKxbHnlyUE7S7McBruMqJOyODgx2g3X9
-         2R9Veo78VzxMDphY96BvJ7uyWSc/TxHMaZXvW2Pkfu5MaOnnToSqhbPhPIcsnTutwP
-         L9Z3xRF7DUCScSDaOWqkdXGdjwQFC+zmOmo51/Ddb7rrZmoAqr2Z3RefeXGqM8rDhC
-         248WSZtCFlAXw==
-Date:   Tue, 18 Apr 2023 18:20:47 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S232265AbjDRMzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:55:36 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F984118DF
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:55:35 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id e9e14a558f8ab-329465f10fbso5584945ab.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681822534; x=1684414534;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ssndSN5/o6nxurAGdS8hKVXc9nslJH1ECG3jl8AZs3g=;
+        b=HngOU7vPHlC3qt1Fwhdc650hW/qZ0bzxdTRqxAI57zc5sCbyH3qm9vEDvEbA46rq+3
+         F/GckehCydgrudvQd9tDi+43knstriujkywRcpuqtUb3hUD1B7IB0uJtAenHmYZlsugF
+         OYeVzVttfxjxf6fyq9Ig4re6btJ+sK8d5Kuc3VfNRk1Ut+hUPI0r+mIB0FybuHf/MeCa
+         2cQ5tx6CTWBVR1uxVvk8BdnqSshHGJIRSs+wlZYRCI8zPu5VVHzwFdEz62/de/rNWiXQ
+         NItAHEaMzoAwnyVtIGmNXP5kCGsslKtll8KAJnDgtJGihJPUH1xhIbhaCzHrHVwQbUco
+         yofg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681822534; x=1684414534;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ssndSN5/o6nxurAGdS8hKVXc9nslJH1ECG3jl8AZs3g=;
+        b=QHym0kXBZnFkUK3FHEECMwE4C5Y8f7LV+9oJO5xZ4V8+j6F3m70XwCeCqEWI4WYe1E
+         Uoj933aLtD9O2Tfk2xbOcowpOv+qBuQWyjoyVdH5THicB5uTFQfEFJeVC2MoQiJuh3gO
+         xolILPI1x/WzzW+3Tm4tj94IkVjk90QZ4SI2/+cwSZPGcIQLA41b/XANp0SwSgCTn7Iy
+         D7XGXg6+UnjVtRrn0QyqO+Se0BiIvfurEvWnmaTjIerAXV7dsKVehmm+VoVGBoom9i5m
+         XOhDBn5AOSRbD/KkObzjkVtIorgE84ZAbeZPmmCOnwVnV4/tcykd0kYCkDJIOYUR6IOl
+         OO4Q==
+X-Gm-Message-State: AAQBX9cHFuiSIlhCsweJ0v4Fi1ID8dNwEllXnwa64aCPY2h+WUjzEXwR
+        PKqGutkcPup1a/ncDmNaFjmK1g==
+X-Google-Smtp-Source: AKy350aDjJnh8fM6l7KL4hLO4WISexCSqu7Hj4ikESAdghF/ET0l9snlZhpZbINx6FrqtLzq4PmNdQ==
+X-Received: by 2002:a92:d801:0:b0:32b:8bf:4d71 with SMTP id y1-20020a92d801000000b0032b08bf4d71mr5226237ilm.9.1681822534475;
+        Tue, 18 Apr 2023 05:55:34 -0700 (PDT)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id l5-20020a92d8c5000000b003158a3455bbsm3564604ilo.78.2023.04.18.05.55.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 05:55:34 -0700 (PDT)
+Message-ID: <35e383da-2d4a-686d-5492-2ad3b8b4a039@linaro.org>
+Date:   Tue, 18 Apr 2023 07:55:31 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v11 24/26] virt: gunyah: Add irqfd interface
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] soc: qcom: Introduce RPM master stats driver
-Message-ID: <20230418125047.GB5530@thinkpad>
-References: <20230405-topic-master_stats-v4-0-4217362fcc79@linaro.org>
- <20230405-topic-master_stats-v4-2-4217362fcc79@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
+ <20230304010632.2127470-25-quic_eberman@quicinc.com>
+ <a8dc6572-0a48-f772-2d8c-6329d632e0b4@linaro.org>
+ <c8e95fd5-5761-b9aa-2877-6a8827a76f21@quicinc.com>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <c8e95fd5-5761-b9aa-2877-6a8827a76f21@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230405-topic-master_stats-v4-2-4217362fcc79@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 17, 2023 at 07:37:53PM +0200, Konrad Dybcio wrote:
-> Introduce a driver to query and expose detailed, per-subsystem (as opposed
-> to the existing qcom_stats driver which exposes SoC-wide data) about low
-> power mode states of a given RPM master. That includes the APSS (ARM),
-> MPSS (modem) and other remote cores, depending on the platform
-> configuration.
+On 4/17/23 5:55 PM, Elliot Berman wrote:
+>>>
+>>> +struct gh_fn_irqfd_arg {
+>>> +    __u32 fd;
+>>
+>> Should the "fd" field be signed?  Should it be an int?  (Perhaps
+>> you're trying to define a fixed kernel API, so __s32 if signed would
+>> be better.)
+>>
 > 
-> This is a vastly cleaned up and restructured version of a similar
-> driver found in msm-5.4.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  drivers/soc/qcom/Kconfig            |  11 +++
->  drivers/soc/qcom/Makefile           |   1 +
->  drivers/soc/qcom/rpm_master_stats.c | 162 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 174 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index a491718f8064..e597799e8121 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -135,6 +135,17 @@ config QCOM_RMTFS_MEM
->  
->  	  Say y here if you intend to boot the modem remoteproc.
->  
-> +config QCOM_RPM_MASTER_STATS
-> +	tristate "Qualcomm RPM Master stats"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	help
-> +	  The RPM Master sleep stats driver provides detailed per-subsystem
-> +	  sleep/wake data, read from the RPM message RAM. It can be used to
-> +	  assess whether all the low-power modes available are entered as
-> +	  expected or to check which part of the SoC prevents it from sleeping.
-> +
-> +	  Say y here if you intend to debug or monitor platform sleep.
-> +
->  config QCOM_RPMH
->  	tristate "Qualcomm RPM-Hardened (RPMH) Communication"
->  	depends on ARCH_QCOM || COMPILE_TEST
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index 0f43a88b4894..7349371fdea1 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -14,6 +14,7 @@ obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
->  qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
->  obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
->  obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
-> +obj-$(CONFIG_QCOM_RPM_MASTER_STATS)	+= rpm_master_stats.o
->  obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
->  qcom_rpmh-y			+= rpmh-rsc.o
->  qcom_rpmh-y			+= rpmh.o
-> diff --git a/drivers/soc/qcom/rpm_master_stats.c b/drivers/soc/qcom/rpm_master_stats.c
-> new file mode 100644
-> index 000000000000..ac87401e2217
-> --- /dev/null
-> +++ b/drivers/soc/qcom/rpm_master_stats.c
-> @@ -0,0 +1,162 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023, Linaro Limited
-> + *
-> + * This driver supports what is known as "Master Stats v2" in Qualcomm
-> + * downstream kernel terms, which seems to be the only version which has
-> + * ever shipped, all the way from 2013 to 2023.
-> + */
-> +
-> +#include <linux/debugfs.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +
-> +struct master_stats_data {
-> +	void __iomem *base;
-> +	const char *label;
-> +};
-> +
-> +struct rpm_master_stats {
-> +	uint32_t active_cores;
-> +	uint32_t num_shutdowns;
-> +	uint64_t shutdown_req;
-> +	uint64_t wakeup_idx;
-> +	uint64_t bringup_req;
-> +	uint64_t bringup_ack;
-> +	uint32_t wakeup_reason; /* 0 = "rude wakeup", 1 = scheduled wakeup */
-> +	uint32_t last_sleep_trans_dur;
-> +	uint32_t last_wake_trans_dur;
-> +
-> +	/* Per-subsystem (*not necessarily* SoC-wide) XO shutdown stats */
-> +	uint32_t xo_count;
-> +	uint64_t xo_last_enter;
-> +	uint64_t last_exit;
-> +	uint64_t xo_total_dur;
+> It looked to me like some interfaces use __u32 and some use __s32. Is 
+> one technically correct?
 
-Still no u64, u32.
+Good question.  It depends on how you use it.
 
-> +} __packed;
-> +
+It's a file descriptor, so it should be an int, and it appears
+that's always a 32-bit signed (for 32 and 64 bit machines).
+So the size seems to be right.
 
-[...]
+Whether it's signed or not I think depends on whether you
+ever save an error value in this field.  I doubt you do,
+but if you do, it should be signed.  Otherwise, the largest
+value will never exceed INT_MAX/S32_MAX; and in that case
+either is fine.
 
-> +		/*
-> +		 * Generally it's not advised to fail on debugfs errors, but this
-> +		 * driver's only job is exposing data therein.
-> +		 */
-> +		dent = debugfs_create_file(data[i].label, 0444, root,
-> +					   &data[i], &master_stats_fops);
-> +		if (IS_ERR(dent)) {
-> +			debugfs_remove_recursive(root);
-> +			return -EINVAL;
+Will Gunyah ever run on a 32-bit machine?
 
-PTR_ERR(dent). Also it doesn't hurt to use dev_err_probe() here.
-
-> +		}
-> +	}
-> +
-> +	device_set_pm_not_required(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static void master_stats_remove(struct platform_device *pdev)
-> +{
-> +	struct dentry *root = platform_get_drvdata(pdev);
-> +
-> +	debugfs_remove_recursive(root);
-> +}
-> +
-> +static const struct of_device_id rpm_master_table[] = {
-> +	{ .compatible = "qcom,rpm-master-stats" },
-> +	{ },
-> +};
-> +
-> +static struct platform_driver master_stats_driver = {
-> +	.probe = master_stats_probe,
-> +	.remove_new = master_stats_remove,
-> +	.driver = {
-> +		.name = "rpm_master_stats",
-
-qcom_rpm_master_stats
-
-- Mani
-
-> +		.of_match_table = rpm_master_table,
-> +	},
-> +};
-> +module_platform_driver(master_stats_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm RPM Master Statistics driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.40.0
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+					-Alex
