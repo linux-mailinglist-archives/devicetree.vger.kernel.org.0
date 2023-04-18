@@ -2,110 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DBBC6E60ED
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C25FF6E6106
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjDRMPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:15:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52382 "EHLO
+        id S231233AbjDRMSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:18:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbjDRMPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:15:44 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E542D58;
-        Tue, 18 Apr 2023 05:15:20 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33ICElmZ010016;
-        Tue, 18 Apr 2023 07:14:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681820087;
-        bh=ATEwRLj88D73ZY92VaV6r650BMc4NPzhzx9/mXDs8N8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=nyrwf5wFaowiPfv/ywi5GjUvTQwPw6mrHQRZFAcb8PiS5Be5jU90nzsi7fBOJDa5a
-         sMhwB9sqfYilHdyYWZkOZiYTPmmpQZoHT+OB83+qbDt9ZeXhAoSl0QlMypul4UZ0DH
-         553/mAyBTXOxrRpWM9vhaYV3XGLPahR4SGkaPn0I=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33ICElgj084807
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Apr 2023 07:14:47 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 18
- Apr 2023 07:14:46 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 18 Apr 2023 07:14:46 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33ICEkHu081464;
-        Tue, 18 Apr 2023 07:14:46 -0500
-Date:   Tue, 18 Apr 2023 07:14:46 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Udit Kumar <u-kumar1@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <bb@ti.com>,
-        <vaishnav.a@ti.com>, <j-choudhary@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j7200-som: Enable I2C
-Message-ID: <20230418121446.wv5sng7i7n56yrtd@granny>
-References: <20230418050514.2392717-1-u-kumar1@ti.com>
- <20230418050514.2392717-3-u-kumar1@ti.com>
+        with ESMTP id S231225AbjDRMSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:18:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B758E4C15;
+        Tue, 18 Apr 2023 05:18:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3FC6A630E9;
+        Tue, 18 Apr 2023 12:18:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A5A3C433EF;
+        Tue, 18 Apr 2023 12:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681820322;
+        bh=0vmALujuGWkxwAKqOFwxT5rLi8ZVr3GkSFuVQvG7wE8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=KTMiaGVjYQdPwDozYPAFfHW/AH8vF1uG1kw1FwtPD9PwuYKTS1r1Fyi3Dw+LXYgcD
+         E2CbrOxC4deiXKyMuXOoQ3nqzaIeIdmq3xGjC6N0f8dHvUn5eB1Kv042ok7/KSW8ka
+         8zPgFUu4tja2qMXRFPZSIMbgcLdFKTHU801Yp+rGpi8mNmbh6LDaifYFjtlVvjJjtY
+         JHGQq3NqPcrekw1ByWkCRvhseXxLU4AmyKBUh36Hx074YZT47gobAIzgkCvqVgmqMa
+         RYGeHbdAP29wrB7eZn4Mcggkj8lGqmss3H1l6NKyGnTNJYu6g4m5UxedLHpu9K8jtX
+         PKow8KJ2JIdtw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>, Rob Herring <robh@kernel.org>
+In-Reply-To: <20230327080626.24200-1-krzysztof.kozlowski@linaro.org>
+References: <20230327080626.24200-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [RESEND PATCH 1/2] regulator: dt-bindings: qcom,rpmh: Correct
+ PM8550 family supplies
+Message-Id: <168182031987.58640.15713245847312171251.b4-ty@kernel.org>
+Date:   Tue, 18 Apr 2023 13:18:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230418050514.2392717-3-u-kumar1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-00303
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:35-20230418, Udit Kumar wrote:
-> This patch enables wkup_i2c0 node in board dts file.
-> and underneath eeprom CAV24C256WE.
+On Mon, 27 Mar 2023 10:06:25 +0200, Krzysztof Kozlowski wrote:
+> PM8550 is different than PM8550VE/VS, because the latter has much
+> smaller amount of supplies (l1-3 and s1-6) and regulators.  The PM8550
+> has on the other hand one pin for vdd-l1-l4-l10 supplies.  Correct the
+> if:then: clause with their supplies.
 > 
-> J7200 User Guide (Section 4.3, Table 4-2) :
-> https://www.ti.com/lit/ug/spruiw7a/spruiw7a.pdf
-> 
-> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> index fa44ed4c17d5..137492ae89c4 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> @@ -214,6 +214,14 @@ exp_som: gpio@21 {
->  	};
->  };
->  
-> +&wkup_i2c0 {
-> +	status = "okay";
-> +	eeprom@50 {
-> +		compatible = "atmel,24c256";
-> +		reg = <0x50>;
-> +	};
-> +};
-
-pinmux?
-speed ?
-
-> +
->  &ospi0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> -- 
-> 2.34.1
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/2] regulator: dt-bindings: qcom,rpmh: Correct PM8550 family supplies
+      commit: 902f8c9830c35cc61a7b3f63003c7246b2bf06ca
+[2/2] regulator: dt-bindings: qcom,rpmh: Combine PM6150L and PM8150L if-then
+      (no commit info)
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
