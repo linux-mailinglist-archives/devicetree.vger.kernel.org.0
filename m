@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6236E6BA1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 20:02:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB66D6E6BA5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 20:02:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232342AbjDRSCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 14:02:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39058 "EHLO
+        id S231591AbjDRSCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 14:02:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232438AbjDRSCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 14:02:06 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A79A5D1;
-        Tue, 18 Apr 2023 11:02:04 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1879fc89e67so490315fac.0;
-        Tue, 18 Apr 2023 11:02:04 -0700 (PDT)
+        with ESMTP id S230010AbjDRSCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 14:02:41 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585EF61BA;
+        Tue, 18 Apr 2023 11:02:40 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f1728c2a57so21287485e9.0;
+        Tue, 18 Apr 2023 11:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681840959; x=1684432959;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dq1XDLxilwUbRdN2NKx0IAo9lxfpPYiUEXJI1fFrVu0=;
+        b=BuyxldTXbucsx62EFsiScrzThNIX0m+NcsbtdxeiOSQpufd77ss2oho1H1Cxey9a+y
+         4hqMr8pzk3HxS3cPiYBvO5UmddlMxpW4dvw35iv3PKPnXVAg6kn8hvxcK9QXGnAfsKfN
+         Lm0uMZHHkGAwwbW0iqmlTNZ2a2Z5Q/Jm14GxYs49YdCYdGHzdgFu+YvRRqB9p5Ro82j6
+         hkhStFuALXFHpsTakvF4Y3GvsrOQCKDrBpu4A7RGmZ1Fld2rnw+RKGjs4CmpP7j0fTWz
+         //9BDnAoAlZmOIwB5gS9gfVj51ri4m+aoSbq+T+2tqYVkM4YS4GcymAkpUWQsYhrGhdd
+         q3Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681840924; x=1684432924;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=52DDXGdLNEShITAc5JOG2UZwH2YBxeM0UslFfpBYM9Y=;
-        b=BcDMrrEngYmvIOa1/XDcokFEOqM0q9fwrTI1d6f+b4/uEyEYzcV1FcrZYZgJEOt+ox
-         1Uga/89RMsgOAdXYCm9KvTlZ5+k1crNQogBNgd2HBg1BHNA54PPvOl9XrzdzaX+4Z9kU
-         n4glYyD6qP6gKIKi5Oj45G27zx/c1ZdYv5j2kAhdd5ISf4tekRaxh1rsmuHzSfXMyTyO
-         HKOjg+kwjjXEiHMRQOpZTWqr4RAWtAup7gztDgJQUjckZ7d2/aLWcYUML/tHhOyKvyUz
-         9SR5gVPdF70lB+glGIntXC3IWh+TldWOAT6i62bKH1J0RGqBOt/TjO4F6ZTgGGcogY9C
-         +qjA==
-X-Gm-Message-State: AAQBX9fIlrQtw4Vv03EkGDbZaZQMBEabTUps8ojpu9N6cEQ2plqK5Brm
-        drqY5FKKw9Ie2WXfkIvSkQ==
-X-Google-Smtp-Source: AKy350Z7akrNTmLW6o5dIL1AQ5/62r2EZXsK8BJOQQOdwSx+gZacCAHiNFH5kkVpdLx9pqKn0vSHGw==
-X-Received: by 2002:a05:6870:9a23:b0:183:eb95:7166 with SMTP id fo35-20020a0568709a2300b00183eb957166mr1813376oab.15.1681840923874;
-        Tue, 18 Apr 2023 11:02:03 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u5-20020a056870b0c500b00172ac40356csm5795710oag.50.2023.04.18.11.02.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 11:02:03 -0700 (PDT)
-Received: (nullmailer pid 2057312 invoked by uid 1000);
-        Tue, 18 Apr 2023 18:02:02 -0000
-Date:   Tue, 18 Apr 2023 13:02:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Halasa <khalasa@piap.pl>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Imre Kaloz <kaloz@openwrt.org>, linux-kernel@vger.kernel.org,
-        Linus Walleij <linusw@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Drop unneeded quotes
-Message-ID: <168184087334.2054869.5890313933665475872.robh@kernel.org>
-References: <20230327170146.4104556-1-robh@kernel.org>
+        d=1e100.net; s=20221208; t=1681840959; x=1684432959;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dq1XDLxilwUbRdN2NKx0IAo9lxfpPYiUEXJI1fFrVu0=;
+        b=VSVTap2zj5j1aB0tjxiXDUIabXY8DfHs3xPLwWiJjhR5jTFCDY2ZfeaPEkBcJDQtgK
+         rkR249UaAxzD/0WMr/Io6UjVs7j3NrP285qJstdLkr6zLhGBu+GUTHb+BHjJJIZzUrfB
+         BFmd7m3mg5p5h05EOfBW/nwtRS0EoYnstAzgiBEPKbY3xqK9gFUnoBY8yKuySB/A8zpu
+         MqTuogMyfiUTxrUCnhCrsbiq3jrmHYvQr6mHt1oGnsrHM25VaRexSYFqtTapsRB2NuT9
+         edne5AAtTzabf5IExn5Gt1kmY179LQoasi634AM1CZ8XPguieouUKnFgwmgwzpHD1xgW
+         RIFg==
+X-Gm-Message-State: AAQBX9dTPKO+WQnhaLk5U5kUJpxqE+HzejGBoMwqhNOKMxtwNR3VRKmL
+        ETU0AUCvyIG+by+qAACChsA=
+X-Google-Smtp-Source: AKy350bcOoocdidKn1c/bC+dVipSJtRDm24yqfKPnERXZZIxB81yRoRfcgQB2SuJ83eRc0ODohf6Qw==
+X-Received: by 2002:adf:f2c9:0:b0:2ef:b052:1296 with SMTP id d9-20020adff2c9000000b002efb0521296mr2699430wrp.22.1681840958643;
+        Tue, 18 Apr 2023 11:02:38 -0700 (PDT)
+Received: from [192.168.1.135] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id z1-20020a5d4d01000000b002e5f6f8fc4fsm13611818wrt.100.2023.04.18.11.02.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 11:02:37 -0700 (PDT)
+Message-ID: <f19562fa-a8c6-4870-e413-7593419b800f@gmail.com>
+Date:   Tue, 18 Apr 2023 20:02:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327170146.4104556-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend
+ property
+Content-Language: en-US
+To:     Fei Shao <fshao@chromium.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org
+References: <20230418124953.3170028-1-fshao@chromium.org>
+ <20230418124953.3170028-2-fshao@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230418124953.3170028-2-fshao@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,20 +84,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 27 Mar 2023 12:01:45 -0500, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+
+On 18/04/2023 14:49, Fei Shao wrote:
+> We observed that on Chromebook device Steelix, if Goodix GT7375P
+> touchscreen is powered in suspend (because, for example, it connects to
+> an always-on regulator) and with the reset GPIO asserted, it will
+> introduce about 14mW power leakage.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> This property is used to indicate that the touchscreen is powered in
+> suspend. If it's set, the driver will stop asserting the reset GPIO in
+> power-down, and it will do it in power-up instead to ensure that the
+> state is always reset after resuming.
+> 
+> Signed-off-by: Fei Shao <fshao@chromium.org>
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
 > ---
->  .../devicetree/bindings/timer/arm,arch_timer_mmio.yaml        | 2 +-
->  Documentation/devicetree/bindings/timer/cdns,ttc.yaml         | 2 +-
->  .../devicetree/bindings/timer/intel,ixp4xx-timer.yaml         | 4 ++--
->  .../devicetree/bindings/timer/nvidia,tegra-timer.yaml         | 4 ++--
->  .../devicetree/bindings/timer/nvidia,tegra186-timer.yaml      | 4 ++--
->  Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml   | 4 ++--
->  6 files changed, 10 insertions(+), 10 deletions(-)
 > 
-
-Applied, thanks!
-
+>   Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> index ce18d7dadae2..942acb286d77 100644
+> --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> @@ -43,6 +43,12 @@ properties:
+>         itself as long as it allows the main board to make signals compatible
+>         with what the touchscreen is expecting for its IO rails.
+>   
+> +  powered-in-suspend:
+> +    description:
+> +      This indicates that the touchscreen is powered in suspend, so the driver
+> +      will not assert the reset GPIO in power-down to prevent power leakage.
+> +    type: boolean
+> +
+>   required:
+>     - compatible
+>     - reg
