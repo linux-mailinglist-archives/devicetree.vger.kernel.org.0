@@ -2,111 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 120AA6E6AEB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0AA6E6AF6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:28:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232381AbjDRR1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 13:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36266 "EHLO
+        id S232441AbjDRR2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 13:28:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232321AbjDRR1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:27:35 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7500AF32
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:27:08 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id fw30so22386711ejc.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:27:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681838827; x=1684430827;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QYEHg2sosnOY0pAhC25Z66tH7y5mKmQfmFvbWvEdvY8=;
-        b=jUWAYBzciOdxMLyBKAteFPWMBnIQ907UER8Br2Vyks/pQVV58YB/3Ls5C7XX2LI4U2
-         jfNZziZrx0CA7NJJ38GSlS9SOx5z0Lyc+XfLua95FgQP+Jd1xUpnpxsz1MuqPw2AuZpz
-         ouVZ4wjxyv80Be9cT5epF09Ijk/TyAbTP0U4+54XlyMp/D5R11CQmJYXI4EOneLwBagn
-         PWwQ49zREJ+rtsUSQLihNcpEbLbhcvP5C9a44bagUbOn6BwCfBDmECMzIiKzk53D0LS2
-         juTtN5FQ4ke7m49HEyIaAGsTHuqeC/x05yrMil1fHl4mm8Rmg9ft5Hq6a6dGm1voGx43
-         VhSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681838827; x=1684430827;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QYEHg2sosnOY0pAhC25Z66tH7y5mKmQfmFvbWvEdvY8=;
-        b=dseZyRJWvNyrwJVs01HOBIL9fVqPNY+mhIFTqMcxhUQ+39Urwy6xr2hQImy63fv0od
-         yW49Hg8E9J7aUoSXf5QHDO4h/QEyriYvJFntOzmNxWf9k8Ft1t0NZrw3uR8EuMVjJypR
-         G3LxELBZivWwxAS6fNccsbqp422ESOlby9Era5BQe4YK1rrU5ZR+JemkSspDlmbEp+Ml
-         y1gnPX46lYdk3bTuvpruwhxr1otoehSOwcW4jgRc6TYNahSVCByxNmiEo13GohYo52al
-         DtqNaRsYVZ0RwjWFBaLh7NWjCxlIFlqtygqlFDhHRf8Rpj1jGnNwJ02UvQrgOiUV6Jf0
-         ODVw==
-X-Gm-Message-State: AAQBX9e3Ch4rgYw3zR9f+XxieeX2aYLhTS2Biu2couoNTwNZOHoqZKDq
-        Ggmn/fOw71xKpXcLF0ybKXeplA==
-X-Google-Smtp-Source: AKy350ah1qKGBvGjkmYLETOZpHpiL7PCK1pVCgTZyqcOkD9XXhiJaftKDw0p33OVAjltW7b8DVz1pg==
-X-Received: by 2002:a17:906:3e90:b0:94f:6316:ce8d with SMTP id a16-20020a1709063e9000b0094f6316ce8dmr6593515ejj.34.1681838827296;
-        Tue, 18 Apr 2023 10:27:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id j25-20020a1709062a1900b0094f614e43d0sm3829592eje.8.2023.04.18.10.27.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 10:27:06 -0700 (PDT)
-Message-ID: <79416f48-1c3d-6139-7c5f-de1907383a85@linaro.org>
-Date:   Tue, 18 Apr 2023 19:27:05 +0200
+        with ESMTP id S232605AbjDRR2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:28:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27EF9E48;
+        Tue, 18 Apr 2023 10:28:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A740F61202;
+        Tue, 18 Apr 2023 17:28:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45827C433D2;
+        Tue, 18 Apr 2023 17:28:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681838886;
+        bh=QCLMTGp0pSAawzsOxfqUZWtyxa1SJnm6R5Qw5FlWiBk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Uajfv6Bwv+DD9Vq+CBn1cSZzOAhNjxs/u0hDkHONopDzprf3D+R802y8LyxP7Axon
+         qJHKI8fH26kJHfUplSOuPamB6lmAygGxhqpCxi2wBKQSmOnQB7v3uCAXossgh/KMPZ
+         INkYU72upEymEGPZSfFJrjTiLGPdQdH18tsrCXbu6+JMLz7ePZYzj1ruFDnsquBDJy
+         BzU8GbNffHY01LIbbPjRejT9+1bs2/yPPIK5lcv2xDNh/Asdq98ARGXs5mgcMHRzGZ
+         PHyFfBxhZjyco+9k0ioy5ObdPJTrLC1xvHVGcHljsKBRVkhd1ZVdF8YB+JjXsm7JTp
+         5lyv7LgnxzNBw==
+Date:   Tue, 18 Apr 2023 18:28:00 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Mason Huo <mason.huo@starfivetech.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Shengyu Qu <wiagn233@outlook.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: Add cpu scaling for JH7110
+ SoC
+Message-ID: <20230418-talcum-unthread-618a5bd2758a@spud>
+References: <20230417063942.3141-1-mason.huo@starfivetech.com>
+ <20230417063942.3141-4-mason.huo@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 9/9] MAINTAINERS: hpe: Add GPIO, PSU
-Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
-        linux@roeck-us.net, linux@armlinux.org.uk,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230418152824.110823-1-nick.hawkins@hpe.com>
- <20230418152824.110823-10-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230418152824.110823-10-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="YJMzqe/hzL7IbIYs"
+Content-Disposition: inline
+In-Reply-To: <20230417063942.3141-4-mason.huo@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 17:28, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> List the files added for GPIO and PSU support.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+
+--YJMzqe/hzL7IbIYs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hey Mason,
+
+Just one minor comment in passing..
+
+On Mon, Apr 17, 2023 at 02:39:42PM +0800, Mason Huo wrote:
+> Add the operating-points-v2 to support cpu scaling on StarFive JH7110 SoC.
+> It supports up to 4 cpu frequency loads.
+>=20
+> Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
 > ---
->  MAINTAINERS | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a3b14ec33830..6df959ebf523 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2239,7 +2239,9 @@ M:	Nick Hawkins <nick.hawkins@hpe.com>
->  S:	Maintained
->  F:	Documentation/hwmon/gxp-fan-ctrl.rst
->  F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-> +F:	Documentation/devicetree/bindings/gpio/hpe,gxp-gpio.yaml
+>  .../jh7110-starfive-visionfive-2.dtsi         | 17 ++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 33 +++++++++++++++++++
+>  2 files changed, 50 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
+si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index cca1c8040801..b25e6d68ce53 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -227,3 +227,20 @@ &uart0 {
+>  	pinctrl-0 =3D <&uart0_pins>;
+>  	status =3D "okay";
+>  };
+> +
+> +&U74_1 {
+> +	cpu-supply =3D <&vdd_cpu>;
+> +};
+> +
+> +&U74_2 {
+> +	cpu-supply =3D <&vdd_cpu>;
+> +};
+> +
+> +&U74_3 {
+> +	cpu-supply =3D <&vdd_cpu>;
+> +};
+> +
+> +&U74_4 {
+> +	cpu-supply =3D <&vdd_cpu>;
+> +};
+> +
 
-Since the drivers are going through subsystems, your patchset is not
-bisectable.
+Applying: riscv: dts: starfive: Add cpu scaling for JH7110 SoC
+/stuff/linux/.git/rebase-apply/patch:30: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
 
-Squash respective changes with respective patches.
+Cheers,
+Conor.
 
-I also suggest do not mix three different subsystems - GPIO, hwmon and
-ARM SoC - in one patchset.
 
-Best regards,
-Krzysztof
+--YJMzqe/hzL7IbIYs
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZD7TDAAKCRB4tDGHoIJi
+0nCIAQCGgCe1FJP8wpMrSgS8zFRx/3XZ/tG/QuMA8ezQyFQiwQD9E+NV9PcHcbsD
+Ws7d9iEVlnQj6SVvRbx4tpMKsAV1ew0=
+=1AIw
+-----END PGP SIGNATURE-----
+
+--YJMzqe/hzL7IbIYs--
