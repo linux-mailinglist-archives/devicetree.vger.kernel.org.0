@@ -2,97 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 508376E6AFB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 426816E6AFE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbjDRR3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 13:29:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38724 "EHLO
+        id S231293AbjDRR3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 13:29:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjDRR3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:29:30 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB99383E2
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:29:28 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so25123123a12.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:29:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681838967; x=1684430967;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k8K/4YMZuDcuh5BZ2DbCbQlB4lFUO8Ytiq9k9HbeZFA=;
-        b=sccrfK60nOcez5USmWirFJsYTIddBTzhgQ8+MIXG+OqMLaXClvKsbybDfaXI4HH83P
-         1h0gIZDrvAZSe454VoJtEDQFWqF96DzjDyTwSs/tW7rje7D5Q60/6mxj9wvyLPqmTcv6
-         GWaCi0AsbD3XRxDwSgUUPKWjQRlYfMHVJcuPmpezdbz7T02gmiGU3nLWNVKDrWapA4e7
-         0+/a8WRnp4Sbt53ECE8t9jVjgdhwgRWurHVX06uHf79TKOjYj1Lzwqh62sseWmz0sVwg
-         LKwrm3als5Oh/PqNKvaxtb+biIJuffgECyPC35TsGxyhzenEA0KO4OeNrDFQZi/Fyrzz
-         DR2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681838967; x=1684430967;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k8K/4YMZuDcuh5BZ2DbCbQlB4lFUO8Ytiq9k9HbeZFA=;
-        b=G8QWeYu7i2xa/9cywKg7bwcczVZzql2h3JZ/p+tft8KFW3s+SnY3azCSYRTY2fnBE9
-         pcX88u6Lr5lJZc//aJE48uwHwGIAT/+bKbar9gtXHRYTVc/XH9/LjCOXTCfXD8k1x/A0
-         Setyn49kJF37y2y0LDODwZc1nC8cA4mS6wti4jcsqT1Bg3kENy/EWrpDupoVxcPdemQA
-         j1aAXmVUkiRdgoMmE6fZMB1Spoj158FWjXQdgqwnj5vDt+bGn6FbzzKonTZ07BSdAkEv
-         5a1wNLNcQiqgUbvmFQRu82q3uxCSwRmmSw6T+L8pEOZAQmVbMGJkkVa6TizHHBDAeqEH
-         pFOw==
-X-Gm-Message-State: AAQBX9eEY5TuPeSNnn6nFaUuS2N1r4pTeqAHED92RzF8T5WtE3UcZ+zO
-        GR5ATQ9b0Ub+vJnEXsntEYk6Ew==
-X-Google-Smtp-Source: AKy350arEzNQ4T5BD+P0URcn7Uvt1j65gpuJYpNBnBKMiWN16xeO5EwyxUGCCccSBZ53+R/0tGpuOQ==
-X-Received: by 2002:a05:6402:27cf:b0:506:70a3:2aa0 with SMTP id c15-20020a05640227cf00b0050670a32aa0mr3156647ede.3.1681838967266;
-        Tue, 18 Apr 2023 10:29:27 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id p9-20020a05640210c900b004fa012332ecsm7263677edu.1.2023.04.18.10.29.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 10:29:26 -0700 (PDT)
-Message-ID: <9b6f54d9-f5ee-3e1c-7924-dd5c706aaf41@linaro.org>
-Date:   Tue, 18 Apr 2023 19:29:25 +0200
+        with ESMTP id S231877AbjDRR3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:29:45 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DFB93D8;
+        Tue, 18 Apr 2023 10:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681838983; x=1713374983;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=61V/qAwqnBFdBOqNk/oS9bVHtvIe8KLKP/DdJwKdTEM=;
+  b=RVk0JmVY7d9FPd20YEeP1Z882+ucTF5CCjzoYQF+IM/nMP9jlzB7sOQy
+   txmDEKEIdWrPzeAsdhODJlkVMTDdBGxNfg9h88hPn5QrsYskPYeDBNA5p
+   gwUKICQWcEA02UoU5N7/i2Cif+GAASDJi1Tp8dISfQGGEdZezRcLSZLOh
+   0FYUkUscga1zWFsYH6qD9/ds6kq4frH3VG6EHQWqrGifgSStkENLtzIqC
+   0Zqq12sjGHcw8UDTSGBH7nUVQ5fd2LrQp5TjEX+u7iXbJr8e9jyn2e0gJ
+   Q4qzYfP/FfLP5pRrQwxDlb/xm+CX/Pm9NccHA/YIk1z1P0ZVrhmsadSXH
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334044432"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="334044432"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 10:29:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="668648225"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="668648225"
+Received: from dinguyen-mobl1.amr.corp.intel.com (HELO [10.213.190.103]) ([10.213.190.103])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 10:29:41 -0700
+Message-ID: <a1a34c32-dbd4-7a77-ab7e-5e34af85900f@linux.intel.com>
+Date:   Tue, 18 Apr 2023 12:29:40 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: clocking-wizard: add versal
- compatible
+Subject: Re: [PATCH 3/5] hwmon: (socfpga) Add hardware monitoring support on
+ SoCFPGA platforms
 Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org
-Cc:     git@amd.com, linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com
-References: <20230418102855.6791-1-shubhrajyoti.datta@amd.com>
- <20230418102855.6791-2-shubhrajyoti.datta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230418102855.6791-2-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, jdelvare@suse.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
+ <20230410153314.27127-3-dinh.nguyen@linux.intel.com>
+ <09730359-8731-e21e-3335-bf60ba7f1280@roeck-us.net>
+ <a3e966f8-8e9d-7081-1665-9d2e87acb310@linux.intel.com>
+ <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
+From:   Dinh Nguyen <dinh.nguyen@linux.intel.com>
+In-Reply-To: <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 12:28, Shubhrajyoti Datta wrote:
-> Add the devicetree compatible for Versal clocking wizard.
-> 
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+On 4/17/2023 4:51 PM, Guenter Roeck wrote:
+> On 4/17/23 13:55, Dinh Nguyen wrote:
+>>
+>> On 4/10/2023 9:44 PM, Guenter Roeck wrote:
+>>> On 4/10/23 08:33, dinh.nguyen@linux.intel.com wrote:
+>>>> From: Dinh Nguyen <dinh.nguyen@linux.intel.com>
+>>>>
+>>>> The driver supports 64-bit SoCFPGA platforms for temperature and 
+>>>> voltage
+>>>> reading using the platform's SDM(Secure Device Manager). The driver
+>>>> also uses the Stratix10 Service layer driver.
+>>>>
+>>>> This driver only supports OF SoCFPGA 64-bit platforms.
+>>>>
+>>>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>>>> Signed-off-by: Dinh Nguyen <dinh.nguyen@linux.intel.com>
+>>>> ---
+>>>>   Documentation/hwmon/index.rst                 |   1 +
+>>>>   Documentation/hwmon/socfpga-hwmon.rst         |  30 ++
+>>>>   drivers/firmware/stratix10-svc.c              |  18 +-
+>>>
+>>> Changes outside the hwmon subsystem need to be in a separate patch.
+>>
+>> will separate...
+>>
+>>>
+>>>> drivers/hwmon/Kconfig |  11 +
+>>>>   drivers/hwmon/Makefile                        |   1 +
+>>>>   drivers/hwmon/socfpga-hwmon.c                 | 406 
+>>>> ++++++++++++++++++
+>>>>   include/linux/firmware/intel/stratix10-smc.h  |  34 ++
+>>>>   .../firmware/intel/stratix10-svc-client.h     |   6 +
+>>>>   8 files changed, 506 insertions(+), 1 deletion(-)
+>>>>   create mode 100644 Documentation/hwmon/socfpga-hwmon.rst
+>>>>   create mode 100644 drivers/hwmon/socfpga-hwmon.c
+>>>>
+>>>>
+>> ...
+>>>> +
+>>>> +enum hwmon_type_op {
+>>>> +    SOCFPGA_HWMON_TYPE_TEMP,
+>>>> +    SOCFPGA_HWMON_TYPE_VOLT,
+>>>> +    SOCFPGA_HWMON_TYPE_MAX
+>>>
+>>> Unused define
+>>
+>> Removed.
+>>
+>>>
+>>>> +};
+>>>> +
+>>>> +static const char *const hwmon_types_str[] = { "temperature", 
+>>>> "voltage" };
+>>>> +
+>>>> +static umode_t socfpga_is_visible(const void *dev,
+>>>> +                  enum hwmon_sensor_types type,
+>>>> +                  u32 attr, int chan)
+>>>> +{
+>>>> +    switch (type) {
+>>>> +    case hwmon_temp:
+>>>> +    case hwmon_in:
+>>>> +        return 0444;
+>>>> +    default:
+>>>> +        return 0;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>> +static void socfpga_smc_callback(struct stratix10_svc_client *client,
+>>>> +                      struct stratix10_svc_cb_data *data)
+>>>> +{
+>>>> +    struct socfpga_hwmon_priv *priv = client->priv;
+>>>> +    struct arm_smccc_res *res = data->kaddr1;
+>>>> +
+>>>> +    if (data->status == BIT(SVC_STATUS_OK))    {
+>>>> +        if (priv->msg.command == COMMAND_HWMON_READTEMP)
+>>>> +            priv->temperature.value = res->a0;
+>>>> +        else
+>>>> +            priv->voltage.value = res->a0;
+>>>> +    } else
+>>>> +        dev_err(client->dev, "%s returned 0x%lX\n", __func__, 
+>>>> res->a0);
+>>>> +
+>>>
+>>> Missing { } in else branch. Please run checkpatch --strict and fix
+>>> continuation line alignment issues as well as unbalanced if/else
+>>> reports.
+>> Will do.
+>>>
+>>>> + complete(&priv->completion);
+>>>> +}
+>>>> +
+>>>> +static int socfpga_hwmon_send(struct socfpga_hwmon_priv *priv)
+>>>> +{
+>>>> +    int ret;
+>>>> +
+>>>> +    priv->client.receive_cb = socfpga_smc_callback;
+>>>> +
+>>>> +    ret = stratix10_svc_send(priv->chan, &priv->msg);
+>>>> +    if (ret < 0)
+>>>> +        return ret;
+>>>> +
+>>>> +    if (!wait_for_completion_timeout(&priv->completion, 
+>>>> HWMON_TIMEOUT)) {
+>>>> +        dev_err(priv->client.dev, "SMC call timeout!\n");
+>>>> +        return -ETIMEDOUT;
+>>>> +    }
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int socfpga_hwmon_err_to_errno(struct socfpga_hwmon_priv 
+>>>> *priv)
+>>>> +{
+>>>> +    int value = priv->temperature.value;
+>>>> +
+>>>> +    if (!(value & ETEMP_ERROR))
+>>>> +        return 0;
+>>>> +
+>>>
+>>> This is odd. int is normally 32 bit, this function is called from
+>>> socfpga_read() for temperatures, which presumably are defined
+>>> as "signed 32-bit fixed point binary". That means that negative
+>>> temperatures would be treated as errors. Please verify.
+>>
+>> That's correct, if bit 31 is set, then it indicates an error.
+>>
+>
+> This ...
+>
+>>>
+>>>> +    dev_err(priv->client.dev, "temperature sensor code 0x%08x\n", 
+>>>> value);
+>>>> +
+>>>
+>>> Please don't clog the log with such messages.
+>>
+>> Removed.
+>>
+>>>
+>>>> +    value &= ~ETEMP_ERROR;
+>>>> +    switch (value) {
+>>>> +    case ETEMP_NOT_PRESENT:
+>>>> +        return -ENOENT;
+>>>> +    case ETEMP_CORRUPT:
+>>>> +    case ETEMP_NOT_INITIALIZED:
+>>>> +        return -ENODATA;
+>>>> +    case ETEMP_BUSY:
+>>>> +        return -EBUSY;
+>>>> +    case ETEMP_INACTIVE:
+>>>> +    case ETEMP_TIMEOUT:
+>>>> +    case ETEMP_TOO_OLD:
+>>>> +        return -EAGAIN;
+>>>> +    default:
+>>>> +        /* Unknown error */
+>>>> +        return -EINVAL;
+>>>
+>>> Should be -EIO.
+>>>
+>> Replaced.
+>>>> +    }
+>>>> +}
+>>>> +
+>>>> +static int socfpga_read(struct device *dev, enum 
+>>>> hwmon_sensor_types type,
+>>>> +            u32 attr, int chan, long *val)
+>>>> +{
+>>>> +    struct socfpga_hwmon_priv *priv = dev_get_drvdata(dev);
+>>>> +    int ret;
+>>>> +
+>>>> +    mutex_lock(&priv->lock);
+>>>> +    reinit_completion(&priv->completion);
+>>>> +
+>>>> +    switch (type) {
+>>>> +    case hwmon_temp:
+>>>> +        priv->msg.arg[0] = BIT_ULL(priv->temperature.chan[chan]);
+>>>> +        priv->msg.command = COMMAND_HWMON_READTEMP;
+>>>> +        if (socfpga_hwmon_send(priv))
+>>>> +            goto status_done;
+>>>> +
+>>>> +        ret = socfpga_hwmon_err_to_errno(priv);
+>>>> +        if (ret)
+>>>> +            break;
+>>>> +        /*
+>>>> +         * The Temperature Sensor IP core returns the Celsius
+>>>> +         * temperature value in signed 32-bit fixed point binary
+>
+> ... and this contradict each other. If bit 31 indicates an error,
+> this can not be a signed 32-bit value.
+>
+You're right! I've re-read the spec and should have the the code look 
+for the specific error values:
 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
+0x80000000 - inactive
 
+0x80000001 - old value
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+0x80000002 - invalid channel
 
+0x80000003 -  corrupted.
 
-Best regards,
-Krzysztof
+...
+
+Dinh
 
