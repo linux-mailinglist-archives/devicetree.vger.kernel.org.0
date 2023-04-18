@@ -2,193 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 440376E60DE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6E26E60E5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbjDRMMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42790 "EHLO
+        id S230231AbjDRMMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231681AbjDRMLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:11:41 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42AC58681
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:07 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4edb9039a4cso2063564e87.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681819865; x=1684411865;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jK7H3+ErS03Ewzys5ptfYi+3TCq3sJWDKGWiaxXPxVc=;
-        b=fuHWc+pU6kSJ5B8ILg4cxboqaKg4YG4zzH+6szvYhrPIEcDw4trMLqi08eXiaM5Gkf
-         4RQaBvCm/cvtj7QAiqHndJHs1DkkQ9rMq2qm+yoTBS8AJdGFkTyndwfOxGXf//6wdsyO
-         kZW103oYYampkvOOTH33ac6xyyGemNBb2+RhXJe4rgIRdLBjZ83bpwBsIb4ikNmGvK2K
-         6UnAbgQJdzHYWJC3RS3uFVwzg56p6BGs6cAiR2F6Mf7FFVmvDb1Blg80pTKDGbfnPZnN
-         jvLrrgB9IdOweZLM57gORL1VfoEZoaRNKwQr7J/y/UYvhBtYDCHJ5Qtksulr2LnpxGf+
-         xaYA==
+        with ESMTP id S231546AbjDRMMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:12:43 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1C012C
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1681819917;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=JkJh/B/i3KU/KW7H270nTjye9dmLNKxDnAlmOJnN0vY=;
+        b=RUYQr6ua3oW39esn3cCMiA4eprZM+fHfe6V9CoM17v3Ea/VwWqo++wEmdeynNI6wtxt+Cq
+        IsR1s9m8EZ4LR/k1y75+JWVj0EZeKbIrhGjIdw9oNx25puiLbk0WyrwLfPhNlVVQ9042Iz
+        FEEF+zU9y616bi4Er3B1aH0kBooMzgU=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-25-OE4-Wi7aPRC8mOo7Wx1Z8Q-1; Tue, 18 Apr 2023 08:11:55 -0400
+X-MC-Unique: OE4-Wi7aPRC8mOo7Wx1Z8Q-1
+Received: by mail-wr1-f72.google.com with SMTP id s18-20020adfa292000000b002f562b8b12bso2527241wra.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:11:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681819865; x=1684411865;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1681819914; x=1684411914;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jK7H3+ErS03Ewzys5ptfYi+3TCq3sJWDKGWiaxXPxVc=;
-        b=dyc58VdQNO6MQBKasr6M/z2Bl1xu9QhsvR6MDVYKptH/Tf0zSJj0OLpQzkMehgUJQR
-         kTVaCTGnmFjDsIp0czdi2iHRgVWQPVdPw1RNOz7f5FqSG72bR5oBRKY9kSGQwRkwqKnY
-         /cR4tHbKJ/ZzC0Zm3h7GsdY1ybbCrBE3VdT/GMCdKGJQWjVE2Llq7cwfElzHmR/cYlkj
-         6k8LrJGs8QXOm3bCuPwnxbs63fVRSXZobkIa74hGSUBpNTL5tOF/3+1qbv1rheDeTOZe
-         9ZQU9Slw5HvmIIvPM7aVzYbbQH/SnkIvmIYaJxyX3QLuzurzPCUhFpnMliWps9qWk27g
-         VfsA==
-X-Gm-Message-State: AAQBX9e50X57lRbTR3M6q008n8JKOMqndniE+MpneaRFroZaLuA7rlD2
-        dtSgT3o0rGm+pece0yzri15XAA==
-X-Google-Smtp-Source: AKy350aWumsOXwDHQ/uYnZksZvKsIYQklkw41JcEKfVA2ot7VlI5J1+K4X9e8gNvBxNHCMWbjY7cmQ==
-X-Received: by 2002:ac2:43bb:0:b0:4ed:c3a1:752a with SMTP id t27-20020ac243bb000000b004edc3a1752amr1958180lfl.45.1681819865345;
-        Tue, 18 Apr 2023 05:11:05 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id q17-20020a19a411000000b004d86808fd33sm2365895lfc.15.2023.04.18.05.11.04
+        bh=JkJh/B/i3KU/KW7H270nTjye9dmLNKxDnAlmOJnN0vY=;
+        b=PnrjNkZKTGCa9sYkFUBnOqiXdb96EM2+wW5+eHdd72Kb57svs50oYrmNexziA5EYUt
+         K/+px2hyFPIpwzqCAerUbmiE3lkxMW5qC3p/u254UEFUbr/vNNSnV+MDJHlgOx+4G6ne
+         ndY9zM61wfXKIiei8aYVi0h2J0sh+GyeVYNg0VYNi1WRKvBTUkmWfTewEKAinO8o8j/i
+         h/F1e6ww63csMKMVYoinM/faCgPhRzd+StFH+Fj2cPDH+DKidENGrJ9paFuY/POMrZiE
+         nyahdiwgep2hDyzY83pWeH4vX2llCbZBZaGPXtz4XiwQjnrscfXtn7OWbm9dF3W3Xnsp
+         Uh8g==
+X-Gm-Message-State: AAQBX9chhsU3+XlU8zlKLMXRTgdn7MM4JEN71ec795e/j7Dt//TFWZx+
+        8el0Eu3nOD+HiIZxqBAzCvVMNSAlABby8ngmcKuPUepWrtU2PPIAcd+ywaGJ6JOJ1cLT1dToGpJ
+        o5+CyEFx+4UkuKciVBRGnpQ==
+X-Received: by 2002:a05:600c:2212:b0:3ed:711c:e8fe with SMTP id z18-20020a05600c221200b003ed711ce8femr14686236wml.2.1681819914709;
+        Tue, 18 Apr 2023 05:11:54 -0700 (PDT)
+X-Google-Smtp-Source: AKy350b65iCGtMf2oVoLYMy41tFWkUlUkLBuyvo6vU/7asGqIjHXB/GjSqEJ1yCvOz3n6/Bz0bD6nQ==
+X-Received: by 2002:a05:600c:2212:b0:3ed:711c:e8fe with SMTP id z18-20020a05600c221200b003ed711ce8femr14686210wml.2.1681819914409;
+        Tue, 18 Apr 2023 05:11:54 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id u15-20020a05600c19cf00b003ede3f5c81fsm18542538wmq.41.2023.04.18.05.11.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 05:11:05 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 18 Apr 2023 14:11:00 +0200
-Subject: [PATCH v2 5/5] drm/msm/dpu1: Handle the reg bus ICC path
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230417-topic-dpu_regbus-v2-5-91a66d04898e@linaro.org>
-References: <20230417-topic-dpu_regbus-v2-0-91a66d04898e@linaro.org>
-In-Reply-To: <20230417-topic-dpu_regbus-v2-0-91a66d04898e@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        Tue, 18 Apr 2023 05:11:54 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681819856; l=3473;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=xOdy2dn+gE2SKrybPYSqoFq4IriT0JQjTQ+e3Ay5cn0=;
- b=h9ntcpkRQz9/aOBujWPi2GBuMqSjHjzJl4e3f8Ec2wwZlXLEV4LprmN69VRjW49s9bxj9Fi/LWe0
- LEWJnLoPDtmj5vBJezWgfnSaCTM6RowO4Lqti71GkxnGl0OFOQI+
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
+ Pinephone Pro to 1.5 MB
+In-Reply-To: <3999080.iIbC2pHGDl@diego>
+References: <20230403175937.2842085-1-javierm@redhat.com>
+ <3738011.44csPzL39Z@diego>
+ <CAMdYzYqT=vVZxFK=P6xYDAht_KWk3CTsTtruPAbGqx1K9EcJsQ@mail.gmail.com>
+ <3999080.iIbC2pHGDl@diego>
+Date:   Tue, 18 Apr 2023 14:11:53 +0200
+Message-ID: <87h6tdie46.fsf@minerva.mail-host-address-is-not-set>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
-another path that needs to be handled to ensure MDSS functions properly,
-namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+Heiko St=C3=BCbner <heiko@sntech.de> writes:
 
-Gating that path may have a variety of effects.. from none to otherwise
-inexplicable DSI timeouts..
+Hello Heiko,
 
-On the DPU side, we need to keep the bus alive. The vendor driver
-kickstarts it to max (300Mbps) throughput on first commit, but in
-exchange for some battery life in rare DPU-enabled-panel-disabled
-usecases, we can request it at DPU init and gate it at suspend.
+> Hi Peter,
+>
+> Am Dienstag, 4. April 2023, 14:52:02 CEST schrieb Peter Geis:
+>> On Tue, Apr 4, 2023 at 3:55=E2=80=AFAM Heiko St=C3=BCbner <heiko@sntech.=
+de> wrote:
+>> >
+>> > Hi,
+>> >
+>> > Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canill=
+as:
+>> > > This baud rate is set for the device by mainline u-boot and is also =
+what
+>> > > is set in the Pinebook Pro Device Tree, which is a device similar to=
+ the
+>> > > PinePhone Pro but with a different form factor.
+>> > >
+>> > > Otherwise, the baud rate of the firmware and Linux don't match by de=
+fault
+>> > > and a 'console=3DttyS2,1500000n8' kernel command line parameter is r=
+equired
+>> > > to have proper output for both.
+>> >
+>> > The interesting question is always if this will break someone else's s=
+etup.
+>> > I've never really understood the strange setting of 1.5MBps, but on the
+>> > other hand it _is_ a reality on most boards.
+>
+>> The 1.5M baud is default because the clock structure on rockchip
+>> devices does not allow a clean 115200 baud. By attempting to force
+>> 115200, it will always be slightly off (either low or high depending
+>> on how the driver decided to round). If this actually causes any
+>> problems is the subject of much debate.
+>
+> thanks so much for this piece of clock-detail. As I wrote, I never really
+> understood the why _before_ but also never cared that much to dive
+> into it and find out.
+>
+> So your explanation closes one knowledge gap in my head.
+>
+> Thanks a lot :-)
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 22 ++++++++++++++++++++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h |  1 +
- 2 files changed, 21 insertions(+), 2 deletions(-)
+Did you make a decision about this? I guess the clock explanation is yet
+another argument in favour of switching the PPP to a 1.5 Mbps baud rate ?
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index dd6c1c40ab9e..5e1ed338114d 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -384,15 +384,17 @@ static int dpu_kms_global_obj_init(struct dpu_kms *dpu_kms)
- 	return 0;
- }
- 
--static int dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
-+static int dpu_kms_parse_icc_paths(struct dpu_kms *dpu_kms)
- {
- 	struct icc_path *path0;
- 	struct icc_path *path1;
-+	struct icc_path *reg_bus_path;
- 	struct drm_device *dev = dpu_kms->dev;
- 	struct device *dpu_dev = dev->dev;
- 
- 	path0 = msm_icc_get(dpu_dev, "mdp0-mem");
- 	path1 = msm_icc_get(dpu_dev, "mdp1-mem");
-+	reg_bus_path = msm_icc_get(dpu_dev, "cpu-cfg");
- 
- 	if (IS_ERR_OR_NULL(path0))
- 		return PTR_ERR_OR_ZERO(path0);
-@@ -404,6 +406,10 @@ static int dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
- 		dpu_kms->mdp_path[1] = path1;
- 		dpu_kms->num_mdp_paths++;
- 	}
-+
-+	if (!IS_ERR_OR_NULL(reg_bus_path))
-+		dpu_kms->reg_bus_path = reg_bus_path;
-+
- 	return 0;
- }
- 
-@@ -1039,7 +1045,7 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
- 		DPU_DEBUG("REG_DMA is not defined");
- 	}
- 
--	dpu_kms_parse_data_bus_icc_path(dpu_kms);
-+	dpu_kms_parse_icc_paths(dpu_kms);
- 
- 	rc = pm_runtime_resume_and_get(&dpu_kms->pdev->dev);
- 	if (rc < 0)
-@@ -1241,6 +1247,9 @@ static int __maybe_unused dpu_runtime_suspend(struct device *dev)
- 	for (i = 0; i < dpu_kms->num_mdp_paths; i++)
- 		icc_set_bw(dpu_kms->mdp_path[i], 0, 0);
- 
-+	if (dpu_kms->reg_bus_path)
-+		icc_set_bw(dpu_kms->reg_bus_path, 0, 0);
-+
- 	return 0;
- }
- 
-@@ -1261,6 +1270,15 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
- 		return rc;
- 	}
- 
-+	/*
-+	 * The vendor driver supports setting 76.8 / 150 / 300 MBps on this
-+	 * path, but it seems to go for the highest level when display output
-+	 * is enabled and zero otherwise. For simplicity, we can assume that
-+	 * DPU being enabled and running implies that.
-+	 */
-+	if (dpu_kms->reg_bus_path)
-+		icc_set_bw(dpu_kms->reg_bus_path, 0, MBps_to_icc(300));
-+
- 	dpu_vbif_init_memtypes(dpu_kms);
- 
- 	drm_for_each_encoder(encoder, ddev)
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
-index d5d9bec90705..c332381d58c4 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
-@@ -111,6 +111,7 @@ struct dpu_kms {
- 	atomic_t bandwidth_ref;
- 	struct icc_path *mdp_path[2];
- 	u32 num_mdp_paths;
-+	struct icc_path *reg_bus_path;
- };
- 
- struct vsync_info {
+--=20
+Best regards,
 
--- 
-2.40.0
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
