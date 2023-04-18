@@ -2,103 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B146E65E3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8170F6E6609
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:34:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbjDRNap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 09:30:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49864 "EHLO
+        id S229627AbjDRNez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 09:34:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231184AbjDRNao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:30:44 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5008514456
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 06:30:42 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id xi5so73183283ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 06:30:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681824641; x=1684416641;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rffFnl7mfjezGYLAktfVaaITh/gwflzEth7uD6ZC/cM=;
-        b=I5eEix0qVq0SZl6LePburT2lrcPY9omUYZ8PmE++6NBF67yQ0ze2mpF6wb4Cmgw/pD
-         xWQ3ro43dl+zw8hza5uydu/o8vSq++PgPVK98u3A0Wnl5bqZmGyd310bZwWkP0l2sMw5
-         z6Yy1SBbFdx7bDyMWYsKVEcaqhj7vQmOjGkGgaANM1pku79ENItxKjp7376/TOeeCGdF
-         pjZ85FFvXds7Wx7buAgos6OwLt6OqkOaNvxGaxOlSTWzKPGJ9IlrJeLI5KhaeGhuvLv/
-         RpTP/paZReyjbfUlSPraITZm06nQ6fAs77PjQ/DVe1oP8hWzpW+5hmyncPufTmVZFH0Z
-         h6hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681824641; x=1684416641;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rffFnl7mfjezGYLAktfVaaITh/gwflzEth7uD6ZC/cM=;
-        b=k4o8rbRa5+q4AQclRolPm0kW2TeG100Srsy1agB95o7CNoE2iEsmfV8yk0/QVTAT1q
-         a6ttSn1FyXEPD/Ux4RGD3hmrCh7YyEJJPW4+yfxTWmuBY7K0K2PiNv0TH+RXqG/fJV+H
-         zarV8j23cHsHu4DosUSroTMbTah5LFNcSKNnC01+Vy6OSNzMaa9ub08RI1Q6iaDjuOER
-         jHr5R4ETtEFUoJnQGyKNlZ3bzzy50GoYk0l2OvizVC5CscuWW8uk+f5KKz/blDNqriV+
-         ud8qAOqAbgholzavfvpa5zwM+Aq+ZHgGZiew8v7x7ImUMnlAHiYLFjfFtp7l5eCytmJ4
-         u4uA==
-X-Gm-Message-State: AAQBX9dACPBu76MVhYqiS0nbd+4JYImdvATB5Ha5TLnfDfdiZSmQVM4w
-        U51XseUz47DdIZ2GWcUJNvbABA==
-X-Google-Smtp-Source: AKy350ZW4dBad0JSllW5uCiWq3kVnCQW9P3yk9AHbLDu7uN4k47WQuQO54FdCJYumwP+hDNYtSM5ew==
-X-Received: by 2002:a17:906:b802:b0:94e:61d3:d13b with SMTP id dv2-20020a170906b80200b0094e61d3d13bmr10632661ejb.75.1681824640821;
-        Tue, 18 Apr 2023 06:30:40 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id kt2-20020a170906aac200b0094f6458157csm3523268ejb.223.2023.04.18.06.30.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 06:30:40 -0700 (PDT)
-Message-ID: <b781b14a-0bc0-3e3a-e803-a54f24cd58d3@linaro.org>
-Date:   Tue, 18 Apr 2023 15:30:39 +0200
+        with ESMTP id S229706AbjDRNey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:34:54 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E712E40;
+        Tue, 18 Apr 2023 06:34:49 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 496C124DBBD;
+        Tue, 18 Apr 2023 21:34:47 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Apr
+ 2023 21:34:47 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Apr
+ 2023 21:34:45 +0800
+Message-ID: <44908c89-1e77-8521-d5cd-2bbe7affa04c@starfivetech.com>
+Date:   Tue, 18 Apr 2023 21:34:43 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: display/msm: Add reg bus interconnect
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [-net-next v12 0/6] Add Ethernet driver for StarFive JH7110 SoC
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230417-topic-dpu_regbus-v2-0-91a66d04898e@linaro.org>
- <20230417-topic-dpu_regbus-v2-1-91a66d04898e@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230417-topic-dpu_regbus-v2-1-91a66d04898e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     <patchwork-bot+netdevbpf@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kernel@esmil.dk>,
+        <pmmoreir@synopsys.com>, <richardcochran@gmail.com>,
+        <conor@kernel.org>, <paul.walmsley@sifive.com>,
+        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <andrew@lunn.ch>,
+        <hkallweit1@gmail.com>, <pgwipeout@gmail.com>,
+        <yanhong.wang@starfivetech.com>, <tomm.merciai@gmail.com>
+References: <20230417100251.11871-1-samin.guo@starfivetech.com>
+ <168181742075.8442.13068337635820008574.git-patchwork-notify@kernel.org>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <168181742075.8442.13068337635820008574.git-patchwork-notify@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 14:10, Konrad Dybcio wrote:
-> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
-> another path that needs to be handled to ensure MDSS functions properly,
-> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
-> 
-> Gating that path may have a variety of effects.. from none to otherwise
-> inexplicable DSI timeouts..
-> 
-> Describe it in bindings to allow for use in device trees.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+ Re: [-net-next v12 0/6] Add Ethernet driver for StarFive JH7110 SoC
+From: patchwork-bot+netdevbpf@kernel.org
+to: Samin Guo <samin.guo@starfivetech.com>
+data: 2023/4/18
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Hello:
+> 
+> This series was applied to netdev/net-next.git (main)
+> by Paolo Abeni <pabeni@redhat.com>:
+> 
+> On Mon, 17 Apr 2023 18:02:45 +0800 you wrote:
+>> This series adds ethernet support for the StarFive JH7110 RISC-V SoC,
+>> which includes a dwmac-5.20 MAC driver (from Synopsys DesignWare).
+>> This series has been tested and works fine on VisionFive-2 v1.2A and
+>> v1.3B SBC boards.
+>>
+>> For more information and support, you can visit RVspace wiki[1].
+>> You can simply review or test the patches at the link [2].
+>> This patchset should be applied after the patchset [3] [4].
+>>
+>> [...]
+> 
+> Here is the summary with links:
+>   - [-net-next,v12,1/6] dt-bindings: net: snps,dwmac: Add dwmac-5.20 version
+>     https://git.kernel.org/netdev/net-next/c/13f9351180aa
+>   - [-net-next,v12,2/6] net: stmmac: platform: Add snps,dwmac-5.20 IP compatible string
+>     https://git.kernel.org/netdev/net-next/c/65a1d72f0c7c
+>   - [-net-next,v12,3/6] dt-bindings: net: snps,dwmac: Add 'ahb' reset/reset-name
+>     https://git.kernel.org/netdev/net-next/c/843f603762a5
+>   - [-net-next,v12,4/6] dt-bindings: net: Add support StarFive dwmac
+>     https://git.kernel.org/netdev/net-next/c/b76eaf7d7ede
+>   - [-net-next,v12,5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
+>     https://git.kernel.org/netdev/net-next/c/4bd3bb7b4526
+>   - [-net-next,v12,6/6] net: stmmac: dwmac-starfive: Add phy interface settings
+>     https://git.kernel.org/netdev/net-next/c/b4a5afa51cee
+> 
+> You are awesome, thank you!
+
+
+Thank you so much! Looking forward to seeing it in v6.4.
 
 Best regards,
-Krzysztof
-
+Samin
