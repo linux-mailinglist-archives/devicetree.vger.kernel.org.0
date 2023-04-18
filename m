@@ -2,139 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B26C6E5E1E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75B846E5E3C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 12:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjDRJ72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 05:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59114 "EHLO
+        id S230411AbjDRKIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 06:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbjDRJ71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:59:27 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E51B38A58;
-        Tue, 18 Apr 2023 02:58:58 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 63CD0168F;
-        Tue, 18 Apr 2023 02:59:33 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 742AE3F587;
-        Tue, 18 Apr 2023 02:58:48 -0700 (PDT)
-Date:   Tue, 18 Apr 2023 10:58:46 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Nikunj Kela <quic_nkela@quicinc.com>
-Cc:     cristian.marussi@arm.com, Sudeep Holla <sudeep.holla@arm.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] firmware: arm_scmi: Augment SMC/HVC to allow
- optional parameter
-Message-ID: <20230418095846.4lkncoa4beeih2hj@bogus>
-References: <20230409181918.29270-1-quic_nkela@quicinc.com>
- <20230417174401.19563-1-quic_nkela@quicinc.com>
- <20230417174401.19563-3-quic_nkela@quicinc.com>
- <02b34c80-f37e-deee-29cd-de7db902797d@gmail.com>
+        with ESMTP id S230325AbjDRKI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 06:08:29 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC213AA0
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 03:08:27 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id xi5so71698487ejb.13
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 03:08:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681812506; x=1684404506;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pJbsS52QI8BD8L7bxBieLvqoLUvDI9qlj6d+AdrgnkE=;
+        b=TCQn6SENxKUiWDWhguKUbbm85cwuKKTE9nnZAIR/Az6QKtuen7UP9nz99yiKw2fk6/
+         M40Q+mSYpF79fJAmx4BiBvn8UnFwwBOKTWa6by7ikSUGkANCZK++4uN84cyPVGTO+3Wq
+         8Okguo4CcwVG9g5fxTvXY62p0SsHDpjl7CimpY1v8v6nHfr14xiprIfCt1eYJse7Zgio
+         PxRpzBMrqlr/Td7rn6epU70Y/9U1oWiehSlji7ARMgDPqkwAPYba6l7+0XL6IBCPIM2N
+         NEkQOMxAszEyhiCCV3Mqa0Zw+rdcM1q8lYGCz5uLvS42mTtzI0MusuYtqMr5PyP1QUPk
+         UnDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681812506; x=1684404506;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pJbsS52QI8BD8L7bxBieLvqoLUvDI9qlj6d+AdrgnkE=;
+        b=KZyYV5PM2t8Pue/aomNEFMq2QwEJvaruZgUKuGlkgAwygVAJduvZAhBiMLk4tIs6AI
+         7sI/ijbYhRCIuj2/zKbRdf5oQSiOYo9pRrpzkdRksY9jXKtBBNhNxkyy7jH3v6xKmhb2
+         56j60+43q6Gq+QgPzPiN4+Lup6HWDI77g36kuJfDR8HRoc+OmcDowQVY+aGPFWe30w3I
+         easOnHm+ZDQBopfLjljIKuaAfyJhRwbEnfpWTWcZeOjyr8QDqtlZd7Te2uEGJUs/xTln
+         bAh7gJjEXVtBfQO2zs2zmqRnnSpax60ZHVlDlFXvpM7jr05l4p2YAlMWo3WnmIf896eu
+         sTOA==
+X-Gm-Message-State: AAQBX9c23F6AWw3GjitpJj5rzn3iDSvtVaICn+gqnT3uyWuHp6UzG9MG
+        9j0/LMdCkM/Pd0PYwoT+3E03fd3WgzpgdFnD4PQ=
+X-Google-Smtp-Source: AKy350bK/PoL+9j3PyVEjxvyP7zDgA8zwSdAmWINjdewHtyntiM5Dg7QeddoYymo3qIPHQ/t62hoRA==
+X-Received: by 2002:a17:906:7fd0:b0:94e:fe21:baf with SMTP id r16-20020a1709067fd000b0094efe210bafmr12821705ejs.21.1681812505857;
+        Tue, 18 Apr 2023 03:08:25 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id w3-20020a170906b18300b0094b5ce9d43dsm7836225ejy.85.2023.04.18.03.08.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 03:08:25 -0700 (PDT)
+Message-ID: <b06da452-1cd3-a8f0-36a9-9ee7c8a6527f@linaro.org>
+Date:   Tue, 18 Apr 2023 11:08:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <02b34c80-f37e-deee-29cd-de7db902797d@gmail.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 3/7] soundwire: qcom: allow 16-bit sample interval for
+ ports
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20230418095447.577001-1-krzysztof.kozlowski@linaro.org>
+ <20230418095447.577001-4-krzysztof.kozlowski@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230418095447.577001-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 17, 2023 at 11:01:13AM -0700, Florian Fainelli wrote:
-> On 4/17/23 10:44, Nikunj Kela wrote:
-> > This patch add support for passing shmem channel address as parameter
-> > in smc/hvc call. This patch is useful when multiple scmi instances are
-> > using same smc-id and firmware needs to distiguish among the instances.
+
+
+On 18/04/2023 10:54, Krzysztof Kozlowski wrote:
+> The port sample interval was always 16-bit, split into low and high
+> bytes.  This split was unnecessary, although harmless for older devices
+> because all of them used only lower byte (so values < 0xff).  With
+> support for Soundwire controller on Qualcomm SM8550 and its devices,
+> both bytes will be used, thus add a new 'qcom,ports-sinterval' property
+> to allow 16-bit sample intervals.
 > 
-> Typo: distinguish.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> It really would have been a lot clearer and made a whole lot more sense to
-> encode a VM ID/channel number within some of the SMCCC parameters, possibly
-> as part of the function ID itself.
->
-
-Yes I was about to suggest this but then remembered one main reason I have
-been given in the past against that:
-If the system launches high number of VMs then that means loads of FID
-needs to be reserved for SCMI and the hypervisor needs to support it.
-Basically it is not scalable which I agree but not sure if such large
-number of VMs are used in reality with SCMI. But I agree with the technical
-reasoning.
-
-The other reason why I preferred the shmem address itself instead of some
-custom VM ID/channel number is that it can easily becomes vendor specific
-for no real good reason and then we need to add support for each such
-different parameters. Nikunj suggested getting them from DT which I really
-don't like if the sole reason is just to identify the channel. We don't
-have standard SCMI SMC/HVC but allowing such deviations with params from
-DT will just explode with various combinations for silly/no reason.
-
-
-[...]
-
-> > @@ -137,6 +144,8 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
-> >   	if (ret < 0)
-> >   		return ret;
-> > +	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param"))
-> > +		scmi_info->param = res.start;
->
-> There is not even a check that this is going to be part of the kernel's view
-> of memory, that seems a bit brittle and possibly a security hole, too. Your
-> hypervisor presumably needs to have carved out some amount of memory in
-> order for the messages to be written to/read from, and so would the VM
-> kernel, so eventually we should have a 'reserved-memory' entry of some sort,
-> no?
->
-
-Not disagreeing here. Just checking if my understanding is correct or not.
-IIUC, we need reserved-memory if it is part of the memory presented to the
-OS right ? You don't need that if it is dedicated memory like part of SRAM
-or something similar.
-
-> >   	/*
-> >   	 * If there is an interrupt named "a2p", then the service and
-> >   	 * completion of a message is signaled by an interrupt rather than by
-> > @@ -156,6 +165,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
-> >   	}
-> >   	scmi_info->func_id = func_id;
-> > +	scmi_info->is_smc64 = ARM_SMCCC_IS_64(func_id);
-> >   	scmi_info->cinfo = cinfo;
-> >   	smc_channel_lock_init(scmi_info);
-> >   	cinfo->transport_info = scmi_info;
-> > @@ -188,7 +198,20 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
-> >   	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
-> > -	arm_smccc_1_1_invoke(scmi_info->func_id, 0, 0, 0, 0, 0, 0, 0, &res);
-> > +#ifdef CONFIG_ARM64
-> > +	/*
-> > +	 * if SMC32 convention is used, pass 64 bit address in
-> > +	 * two parameters
-> > +	 */
-> > +	if (!scmi_info->is_smc64)
+> ---
 > 
-> There is no need for scmi_info to store is_smc64, just check the func_id
-> here and declare is_smc64 as a local variable to the function.
->
+LGTM,
 
-+1
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-> Also, another way to approach this would be to encode the parameters region
-> in 4KB units such that event on a 32-bit system with LPAE you are guaranteed
-> to fit the region into a 32-bit unsigned long. AFAIR virtualization and LPAE
-> are indistinguishable on real CPUs?
->
-
-Agree with the idea. But can a single 4kB be used for multiple shmem across
-VMs ? IIUC the hypervisor can deal with that, so I prefer it if it is possible
-practically.
-
---
-Regards,
-Sudeep
+--srini
+> Changes since v2:
+> 1. Use uint16 for qcom,ports-sinterval.
+> 2. Add tags.
+> 
+> Changes since v1:
+> 1. Drop unneeded semicolon.
+> ---
+>   drivers/soundwire/qcom.c | 32 +++++++++++++++++++++++++-------
+>   1 file changed, 25 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index c296e0bf897b..d051dc408532 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -95,6 +95,7 @@
+>   #define SWRM_DP_BLOCK_CTRL2_BANK(n, m)	(0x1130 + 0x100 * (n - 1) + 0x40 * m)
+>   #define SWRM_DP_PORT_HCTRL_BANK(n, m)	(0x1134 + 0x100 * (n - 1) + 0x40 * m)
+>   #define SWRM_DP_BLOCK_CTRL3_BANK(n, m)	(0x1138 + 0x100 * (n - 1) + 0x40 * m)
+> +#define SWRM_DP_SAMPLECTRL2_BANK(n, m)	(0x113C + 0x100 * (n - 1) + 0x40 * m)
+>   #define SWRM_DIN_DPn_PCM_PORT_CTRL(n)	(0x1054 + 0x100 * (n - 1))
+>   #define SWR_MSTR_MAX_REG_ADDR		(0x1740)
+>   
+> @@ -131,7 +132,7 @@ enum {
+>   };
+>   
+>   struct qcom_swrm_port_config {
+> -	u8 si;
+> +	u16 si;
+>   	u8 off1;
+>   	u8 off2;
+>   	u8 bp_mode;
+> @@ -806,12 +807,20 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
+>   
+>   	value = pcfg->off1 << SWRM_DP_PORT_CTRL_OFFSET1_SHFT;
+>   	value |= pcfg->off2 << SWRM_DP_PORT_CTRL_OFFSET2_SHFT;
+> -	value |= pcfg->si;
+> +	value |= pcfg->si & 0xff;
+>   
+>   	ret = ctrl->reg_write(ctrl, reg, value);
+>   	if (ret)
+>   		goto err;
+>   
+> +	if (pcfg->si > 0xff) {
+> +		value = (pcfg->si >> 8) & 0xff;
+> +		reg = SWRM_DP_SAMPLECTRL2_BANK(params->port_num, bank);
+> +		ret = ctrl->reg_write(ctrl, reg, value);
+> +		if (ret)
+> +			goto err;
+> +	}
+> +
+>   	if (pcfg->lane_control != SWR_INVALID_PARAM) {
+>   		reg = SWRM_DP_PORT_CTRL_2_BANK(params->port_num, bank);
+>   		value = pcfg->lane_control;
+> @@ -1185,7 +1194,7 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>   	struct device_node *np = ctrl->dev->of_node;
+>   	u8 off1[QCOM_SDW_MAX_PORTS];
+>   	u8 off2[QCOM_SDW_MAX_PORTS];
+> -	u8 si[QCOM_SDW_MAX_PORTS];
+> +	u16 si[QCOM_SDW_MAX_PORTS];
+>   	u8 bp_mode[QCOM_SDW_MAX_PORTS] = { 0, };
+>   	u8 hstart[QCOM_SDW_MAX_PORTS];
+>   	u8 hstop[QCOM_SDW_MAX_PORTS];
+> @@ -1193,6 +1202,7 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>   	u8 blk_group_count[QCOM_SDW_MAX_PORTS];
+>   	u8 lane_control[QCOM_SDW_MAX_PORTS];
+>   	int i, ret, nports, val;
+> +	bool si_16 = false;
+>   
+>   	ctrl->reg_read(ctrl, SWRM_COMP_PARAMS, &val);
+>   
+> @@ -1236,9 +1246,14 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>   		return ret;
+>   
+>   	ret = of_property_read_u8_array(np, "qcom,ports-sinterval-low",
+> -					si, nports);
+> -	if (ret)
+> -		return ret;
+> +					(u8 *)si, nports);
+> +	if (ret) {
+> +		ret = of_property_read_u16_array(np, "qcom,ports-sinterval",
+> +						 si, nports);
+> +		if (ret)
+> +			return ret;
+> +		si_16 = true;
+> +	}
+>   
+>   	ret = of_property_read_u8_array(np, "qcom,ports-block-pack-mode",
+>   					bp_mode, nports);
+> @@ -1266,7 +1281,10 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+>   
+>   	for (i = 0; i < nports; i++) {
+>   		/* Valid port number range is from 1-14 */
+> -		ctrl->pconfig[i + 1].si = si[i];
+> +		if (si_16)
+> +			ctrl->pconfig[i + 1].si = si[i];
+> +		else
+> +			ctrl->pconfig[i + 1].si = ((u8 *)si)[i];
+>   		ctrl->pconfig[i + 1].off1 = off1[i];
+>   		ctrl->pconfig[i + 1].off2 = off2[i];
+>   		ctrl->pconfig[i + 1].bp_mode = bp_mode[i];
