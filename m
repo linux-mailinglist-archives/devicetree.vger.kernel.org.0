@@ -2,227 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 206EC6E5A8B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E856E5AA2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbjDRHer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 03:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45468 "EHLO
+        id S229824AbjDRHnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 03:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbjDRHeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:34:46 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17EF849DB;
-        Tue, 18 Apr 2023 00:34:45 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-63b5c4c76aaso1268476b3a.2;
-        Tue, 18 Apr 2023 00:34:45 -0700 (PDT)
+        with ESMTP id S230025AbjDRHm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:42:59 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD4585FE4
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:42:33 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4edc7cc6f46so946915e87.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:42:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681803284; x=1684395284;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=js+iwSD9dRdBHvw9elXMMmJ/oVIvO5ZqNCOrYFY3n00=;
-        b=Prz4HoHlA3UrHJHjuIb+9F7kj5FEtiebURe3gV3BcJY8Qmb29iCQVajznBZXB63mNw
-         iyX2GPs6JjfMMulR9VYsKG2zhfrjPGI1IfrFRR8k9UriJGPKyKLU2uND54gEWOsXRDqk
-         +k6ADwAfnOCgHJPjK5WCpr4aZxSEOUzqrjNuL5ue0DnpRd05H+vyP7OLfNwdLxPTKxM3
-         vYep0RKb6lanDZAgFlYaOIRxcq9D7g3HUq/+8rhngJLqCPdJTbs5nrYAjx2Ni9s7gIQ6
-         4t1Q06f7BNljgOC+x0eG2Udh0BRtxRDdb+Pt5jSDlGQzV9H6y7BR6SWPY4t3DMIkZ4v7
-         nN7g==
+        d=gmail.com; s=20221208; t=1681803752; x=1684395752;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KtqIqMNC7LuOrbOTCfwMXdHzZ9s4D5MfzU5PnZ8V9ZU=;
+        b=Qnj0pAaqHUlLnkjL7ZdgJvOGu3CJF1kbQ/d70sYVORX+UNXbanHAYgp8JzTcAlnnNr
+         6/Mw2vQx972XFVFHqG8PUgOw2oDwJDsfwMSjaFXP2vHT6C4AptLmtP/7QTJEGPsfMqZM
+         D2rBU3hr9hkl/lr4U2xKelMMJhUVyARrmxJdFNKoGkMG/T59lI0XJ686UVN0i11shX4W
+         6ctvxMeIpYDY6XnW6/hsBCpF6oCkLf2i/ZD5+zlImUb/qjdJFl8mC+IFxJYkBAy8OSJA
+         lTUx2HFDW9eFbNQG4Bhc5vGNRHK1dITWCOtE91LgMtjhE87kfX5JZ2ruhn7IHddddmlq
+         AXVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681803284; x=1684395284;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1681803752; x=1684395752;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=js+iwSD9dRdBHvw9elXMMmJ/oVIvO5ZqNCOrYFY3n00=;
-        b=MwjV1s5D/CnZYfcOanECCdGOvre8djCI2nLxRQaYsMq5jt+exMOWPLrBtRLaoMMUii
-         J1/US9W5Jz6URqtqa4+BjlMrXB3YumWHubErr+kok1uKEZSKvqNvOpUD4aC0G/AWF4nQ
-         N/go1odQnLuBju0e/vX9WHd7afs6q0VUHEsUJz2a44nUPs3HFXyfE+h+UW4I0MgatYJY
-         RG9XHf0xTAKOGgBiHavgsqXfBQA9VCpsJ4eBLrAsTAY7VJj+c+2dpDC33lNSiodMuGjh
-         8F8+tWJYwY0c473xMekg9AJ5A+WgK+JMhotVk6ga13bMwGvQA5zhBR5IcqQ67ZqxNwCS
-         OAxw==
-X-Gm-Message-State: AAQBX9cnm841ic99Y306F3Er3SXztjNyWZT39BZcTqJHCkTsx8KfHWnw
-        56QeE7mZ4XsHIsr42YoCOKo=
-X-Google-Smtp-Source: AKy350ZNHxHGvkb2a/7Pu30kHUaPaNXYp9CsqYkV6qbGNIWmkLQdNFsbunGE38TWi0P3lQ2WYgM+kA==
-X-Received: by 2002:a05:6a00:1356:b0:63d:3d2b:a7ee with SMTP id k22-20020a056a00135600b0063d3d2ba7eemr788973pfu.18.1681803284146;
-        Tue, 18 Apr 2023 00:34:44 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i12-20020aa78d8c000000b00634b9132694sm8691038pfr.126.2023.04.18.00.34.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 00:34:43 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 18 Apr 2023 00:34:41 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Om Parikh <hack3r-0m@proton.me>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: watchdog: alphascale-asm9260: convert to
- DT schema
-Message-ID: <1d10bfb3-1486-4aae-b615-7dfdf695fa78@roeck-us.net>
-References: <20230418051446.24288-1-hack3r-0m@proton.me>
+        bh=KtqIqMNC7LuOrbOTCfwMXdHzZ9s4D5MfzU5PnZ8V9ZU=;
+        b=TUZdHTpshFSQGtrueo90/5olAeJ3j9Uj8O2LPB5EZKQxRvdAF46foYY/EOKo64osLx
+         XrFDTiBtB0OAQY/mp0twDeRKhPfLFwyB/Tzx2VKxit5IIh9/4JgTEvr8mL8kIKrW46eU
+         nSZgYPqNwuuP4WWn3EFzp+JzTK863mhdZUsp4R6PnRgXEuGB/PU0w8Po397MVkIWmSw3
+         oTsycY+nHhZapgd9Awbg8Qa1bYfMMDbnNq6CNH2IXnE1jVvSu0QgbGfUc6mqdyBaCc+e
+         DC6pZiNkYto8uE0ic93aw8j1nk69CEcUpfCPsSPAgSW0CRIQP5OlaalRSwt1tw+jgjQM
+         +Qaw==
+X-Gm-Message-State: AAQBX9cO9+i5bsv2YpMiVG3+4FlMBFW1pJyQF0zEJKCk/PCESR//sbWB
+        LjcdGWaTHt2z+axtfuXd/MRxjjnVx5PNyRF4AdU=
+X-Google-Smtp-Source: AKy350YxPhK/T8mwd1xKJXt0SNqsHzgZFnLvwyzVRMnlbOkfb9QeMhsrLcDTLq3RzGU41Rm6Jqh/SMCqNO4Cot792Fc=
+X-Received: by 2002:ac2:47e7:0:b0:4ec:7967:9e93 with SMTP id
+ b7-20020ac247e7000000b004ec79679e93mr2946555lfp.0.1681803751913; Tue, 18 Apr
+ 2023 00:42:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230418051446.24288-1-hack3r-0m@proton.me>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+References: <20230405123813.2272919-1-pbrobinson@gmail.com> <168177137686.3957008.3968889356953831815.b4-ty@sntech.de>
+In-Reply-To: <168177137686.3957008.3968889356953831815.b4-ty@sntech.de>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Tue, 18 Apr 2023 08:42:20 +0100
+Message-ID: <CALeDE9N_DFdsxNf5UJL265fBTeEO=NPmUPb-YnDqiLMCWkPrOA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rk3399-pinephone-pro: Add support for volume keys
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Martijn Braam <martijn@brixit.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        linux-rockchip@lists.infradead.org, Ondrej Jirman <megi@xff.cz>,
+        linux-arm-kernel@lists.infradead.org,
+        Jarrah Gosbell <kernel@undef.tools>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 05:16:10AM +0000, Om Parikh wrote:
-> Makes alphascale-asm9260 dt bindings adhere to the dt json-schema
-> by replacing txt file with yaml file.
-> 
-> Signed-off-by: Om Parikh <hack3r-0m@proton.me>
+On Mon, Apr 17, 2023 at 11:43=E2=80=AFPM Heiko Stuebner <heiko@sntech.de> w=
+rote:
+>
+> On Wed, 5 Apr 2023 13:38:13 +0100, Peter Robinson wrote:
+> > From: Ondrej Jirman <megi@xff.cz>
+> >
+> > These are implemented via regular ADC, so regular polling is needed,
+> > for these keys to work.
+> >
+> >
+>
+> Applied, thanks!
+>
+> [1/1] arm64: dts: rk3399-pinephone-pro: Add support for volume keys
+>       commit: d3150ed535805403291b95fd84b00b0b5ef41096
+>
+> With Volume Down increased to 600mV as suggested by Ondrej
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-> ---
->  v1 -> v2:
->   - drop quotes in "$ref" value
->   - update compatible string from board name to node name
->   - drop "Olof Johansson" from maintainers
->   - update "compatible" property from enum to const
->   - drop generic reset description
-> 
->  v2 -> v3:
->   - drop timeout-sec property
->   - update description for mode property
->   - set default as "hw" for mode enum
-> 
->  .../watchdog/alphascale,asm9260-wdt.yaml      | 70 +++++++++++++++++++
->  .../bindings/watchdog/alphascale-asm9260.txt  | 35 ----------
->  2 files changed, 70 insertions(+), 35 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml
-> new file mode 100644
-> index 000000000000..fea84f5b7e6d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/alphascale,asm9260-wdt.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/alphascale,asm9260-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Alphascale asm9260 Watchdog timer
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +maintainers:
-> +  - Oleksij Rempel <linux@rempel-privat.de>
-> +
-> +properties:
-> +  compatible:
-> +    const: alphascale,asm9260-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: source clock, used for tick counter
-> +      - description: ahb gate
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mod
-> +      - const: ahb
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: wdt_rst
-> +
-> +  alphascale,mode:
-> +    description: |
-> +      Specifies the reset mode of operation. If set to sw, then reset is handled
-> +      via interrupt request, if set to debug, then it does nothing and logs.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [hw, sw, debug]
-> +    default: hw
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/alphascale,asm9260.h>
-> +    watchdog0: watchdog@80048000 {
-> +      compatible = "alphascale,asm9260-wdt";
-> +      reg = <0x80048000 0x10>;
-> +      clocks = <&acc CLKID_SYS_WDT>, <&acc CLKID_AHB_WDT>;
-> +      clock-names = "mod", "ahb";
-> +      interrupts = <55>;
-> +      timeout-sec = <30>;
-> +      alphascale,mode = "hw";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt b/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
-> deleted file mode 100644
-> index 75b265a04047..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/alphascale-asm9260.txt
-> +++ /dev/null
-> @@ -1,35 +0,0 @@
-> -Alphascale asm9260 Watchdog timer
-> -
-> -Required properties:
-> -
-> -- compatible : should be "alphascale,asm9260-wdt".
-> -- reg : Specifies base physical address and size of the registers.
-> -- clocks : the clocks feeding the watchdog timer. See clock-bindings.txt
-> -- clock-names : should be set to
-> -	"mod" - source for tick counter.
-> -	"ahb" - ahb gate.
-> -- resets : phandle pointing to the system reset controller with
-> -	line index for the watchdog.
-> -- reset-names : should be set to "wdt_rst".
-> -
-> -Optional properties:
-> -- timeout-sec : shall contain the default watchdog timeout in seconds,
-> -	if unset, the default timeout is 30 seconds.
-> -- alphascale,mode : three modes are supported
-> -	"hw" - hw reset (default).
-> -	"sw" - sw reset.
-> -	"debug" - no action is taken.
-> -
-> -Example:
-> -
-> -watchdog0: watchdog@80048000 {
-> -	compatible = "alphascale,asm9260-wdt";
-> -	reg = <0x80048000 0x10>;
-> -	clocks = <&acc CLKID_SYS_WDT>, <&acc CLKID_AHB_WDT>;
-> -	clock-names = "mod", "ahb";
-> -	interrupts = <55>;
-> -	resets = <&rst WDT_RESET>;
-> -	reset-names = "wdt_rst";
-> -	timeout-sec = <30>;
-> -	alphascale,mode = "hw";
-> -};
-> --
-> 2.40.0
-> 
-> 
+Thanks folks
