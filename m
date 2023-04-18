@@ -2,76 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D07086E654E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A26C16E6558
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232361AbjDRNEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 09:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59036 "EHLO
+        id S229706AbjDRNG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 09:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232358AbjDRNE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:04:28 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02ADB10E6;
-        Tue, 18 Apr 2023 06:04:14 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33ICtFoA018647;
-        Tue, 18 Apr 2023 15:03:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=LzUumFtrr4EeMVRLDS/dYjTQf8MdHw4wgweVrOp0zKo=;
- b=cf3bdRyeXFiTl7hRHU45JVbVLmRzx92ZLqqQPLhYN2u7pM9fX2lh6kvqaAj49qCzUP+S
- 2KEBq6zeaBhskSEmwLFvcNuEcK3SbFIz3lwWipIGCZFBW058YU218FL3QxOwv/x3wLsc
- 0MyC+HSz7PG7xQCI+7tpkii6zZK5X0drKFiW4Z/0vDTnbeN0k/6ZI8JFmsfVav3301HE
- U1pHkEqe4CAJ120k0I4kHx7aJ7IPqpdM7LDWDNxhT2NKgVMRWd5vizlOHP7N9fsmpRov
- bAPs6hw1NhMvwoI0fMlGLwrnUknEYKM74Omp+ykABBmXCsm1eQ1lpm6UW5YobKV7kVQ7 Lg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3q10ve1yvu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Apr 2023 15:03:54 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F30B610002A;
-        Tue, 18 Apr 2023 15:03:53 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EAE7821F0C8;
-        Tue, 18 Apr 2023 15:03:53 +0200 (CEST)
-Received: from [10.48.0.157] (10.48.0.157) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 18 Apr
- 2023 15:03:53 +0200
-Message-ID: <f2ad2414-526e-8b9b-aa95-a35953556f36@foss.st.com>
-Date:   Tue, 18 Apr 2023 15:03:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2] dt-bindings: mfd: stm32: Remove unnecessary blank
- lines
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232203AbjDRNGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:06:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5556516B12;
+        Tue, 18 Apr 2023 06:06:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E2BFE634A4;
+        Tue, 18 Apr 2023 13:06:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 760E3C433D2;
+        Tue, 18 Apr 2023 13:06:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681823178;
+        bh=irU7S47lLrx04AoHdnKG5DIJZ0xn/QZ8aCMYccc98MM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AOv1SRUHrnAZXksfOm/j0cs0clkFI1rKrYy6UymCUz9X7HKIdf+DTHJVWLLP29pBE
+         +IX11MJuabp4XTbz87tu1KLgAbN7ASPxAAzv1UbWmqpjz/zMY7hSIgnKFL2hcwYeSk
+         KYQEor5BaydxZft/wXBosPeOWA9DLGyQRBFDGGP+1MaLS9zy+dUd3NHZ7FZF1YTPBe
+         VkiZsPZYMi9etlMIyxhc2tZiIOdo92OXgB5Tc1cR8jm3+voIoT1Wi/kwDZ5XZJSx0n
+         ipuytYpebDnd5lg4JBHNhN3saBieIlu4ryX/ULNXp2lf6nZXKjQmUQSuBEqz24yHwt
+         d2GsMz7SLp0EA==
+Date:   Tue, 18 Apr 2023 15:06:10 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230417181342.v2.1.I483a676579cc7e3ac07e1db649091553743fecc8@changeid>
- <fde49fb8-c337-3a6b-811e-b9d7c3620393@linaro.org>
-From:   Patrick DELAUNAY <patrick.delaunay@foss.st.com>
-In-Reply-To: <fde49fb8-c337-3a6b-811e-b9d7c3620393@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.48.0.157]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-18_09,2023-04-18_01,2023-02-09_01
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v10 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link
+ III Deserializer
+Message-ID: <ZD6VwpRya6SGBAt5@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>, Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
+ <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mi+Z0PG+MUqRZwKk"
+Content-Disposition: inline
+In-Reply-To: <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,54 +96,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 4/18/23 09:22, Krzysztof Kozlowski wrote:
-> On 17/04/2023 18:14, Patrick Delaunay wrote:
->> Remove double blank line.
->>
->> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
->> ---
->>
->> Changes in v2:
->> - update commit title and commit message to reflect what the change is
->>    V1="dt-bindings: mfd: stm32: Fix STM32F4 DT include fil
-> More than one file has the same issue. This is quite a churn to handle
-> such patch one by one. Please fix all of them or just skip, as it is
-> harmless.
+--mi+Z0PG+MUqRZwKk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
 
-To be crystal clear, it is minor difference between files in U-Boot
+> +  i2c-alias-pool:
+> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> +    description:
+> +      I2C alias pool is a pool of I2C addresses on the main I2C bus that can be
+> +      used to access the remote peripherals on the serializer's I2C bus. The
+> +      addresses must be available, not used by any other peripheral. Each
+> +      remote peripheral is assigned an alias from the pool, and transactions to
+> +      that address will be forwarded to the remote peripheral, with the address
+> +      translated to the remote peripheral's real address. This property is not
+> +      needed if there are no I2C addressable remote peripherals.
 
-and in Linux, just because we correct the check-patch errors
+After some initial discussion with Tomi on IRC, this question is
+probably more for Luca:
 
-when this file for STM32F4 was up streamed in U-Boot.
-
-
-I prefer correct this line in the Linux file and no having
-
-this difference for each device tree synchronization with U-Boot.
-
-
-But if you prefer, you can drop this modification and
-
-I will align U-Boot file with this error.
-
-
-Alexandre: it could part of patch for STM32 files clean-up ?
-
-scripts/checkpatch.pl -f include/dt-bindings/*/*stm*
-
-scripts/checkpatch.pl -f arch/arm/boot/dts/stm*
+Why is "i2c-alias-pool" in the drivers binding and not a regular i2c
+binding? Same question for the implementation of the alias-pool
+handling. Shouldn't this be in the i2c-atr library? I'd think managing
+the list of aliases would look all the same in the drivers otherwise?
 
 
->
-> Best regards,
-> Krzysztof
+--mi+Z0PG+MUqRZwKk
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Regards
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQ+lb4ACgkQFA3kzBSg
+KbYYSA/9EHTjpfBICYkwQW1dIEF2SbICH4VCTgofpP1fIAbbZ0s6cCNmk/k2TYph
++ZTjCmBLERErgJVS3LRX7oFokQHC98uDYswJ6U2SVv1Q/qT56/qNLVvsD2d4q4gl
+9V7gmoSWIKLzeEthKQYKj7MYdbfwulJfauhm9svSRN6S+6rS/H7jEtaZpYDd5I44
+y3zhfNQDul4ktn+n2isKVXqP5IRMgI5WsB5IgGVhH50jy78LqmKn3b1mn/ao1P00
+9uCup1vdzsJB0VC4NExNkzRRfYcKHhwMdbU+wAQ+1sUdiO695qKY21iAUuWZGak3
+m9bjWdYsOsmLmHtruRniY8srFgQSBH+3Z/o241+pHuFOO42vh/oWpFieRfPJG5vN
+n5pVhMU538L0yVBrovAgxVMklqfAlGGXB+Q0suhXd8yzOYcYu9zJjve1f/FxOlEI
+nP4vsM3pwQ+G6Is1sEKPe/WxD1W46La/9TVO9nKF61gdeVVNs+UczR60jEJUVgsz
+riKuF/rEDz/RqWEmQxO4phmki79l/nYLtNCUtRWvYhWOwl/HERr8ctdyPQyRmHqp
+7h5nR0/ragtc7rn4A8pmK0UuQM5gOuANwsz6J5BDSBU73BYhCh4nrAkfNMbIcEQ0
+FeoSXAepQjG5Iv3acvPaMdwqamyT83qP2dznc7fom2naH+wkud0=
+=Fqdo
+-----END PGP SIGNATURE-----
 
-Patrick
-
-
+--mi+Z0PG+MUqRZwKk--
