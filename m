@@ -2,154 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D92E76E5DBE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D236E5DC0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbjDRJoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 05:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41540 "EHLO
+        id S231147AbjDRJoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 05:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjDRJnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:43:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938D159E8
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:43:32 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1pohry-0000pw-4o; Tue, 18 Apr 2023 11:43:26 +0200
-Message-ID: <67d283f3-d0db-5fc0-79e9-e7531d591aab@pengutronix.de>
-Date:   Tue, 18 Apr 2023 11:42:58 +0200
+        with ESMTP id S229838AbjDRJoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:44:02 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2934A1713
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:44:00 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4ec81779f49so2011019e87.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:44:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681811038; x=1684403038;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l2LMbqz6wH8w60oclmV6uXVVb8iyR/SHLVOrQfQu5n4=;
+        b=wG+IKMn0J81Q85iLIDHTC0YAFhqDdS8tsiOF75ljf6BHnjZsDbafzV3nSJXp0PC56O
+         hpDuwbm2sJgSBouOkRHbvM7xfqxRMm0k3GiVipJa9QK7QUG5Rt+0gV226P/QtO/oOuu0
+         22JEwj0Eh8tCPdc8LAMh1MeCYYmAVWDRhahWTR/SWJCvHRfI7pwu5MP43pQxqkBs4l0k
+         4SWXa8GLepongw7rSaoLtbiINSDxQnztcS3l7z8CusPC1q9q/SVzibU7lSb6DkKpCK96
+         2+QFKROWuG+aMTSrYv2OGZAIIOSwutcTTWldBKLJ/eDDnnxd58e7sqFj1AFdmqWF5uw4
+         nbmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681811038; x=1684403038;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l2LMbqz6wH8w60oclmV6uXVVb8iyR/SHLVOrQfQu5n4=;
+        b=OGhoK5qBk0JuFuzOMNLo0HQ/dVdPSAIUA/HSlOKTs/z9NanhpgSJM61SA7BGdZtaCn
+         9SHmQstQzO0c9KLwUM2J62UxDqVf54Q5wRPrR6oWeBLA/d8L1HIwZVxJfvB5UP3pZsp2
+         SX3+ZCjWnTRbNiq15BjDmFopLzPWEZ0E4ZsOzSSbDIlBYe/N/aVyakHj6qaqwqhEx5uG
+         7BAwDjOpIIjPU4gNQEN6CT7kkyj0kR7ofGMD2hre7mJCDAEdP7gbbrv/8066NBR/2KZ4
+         Gc8aQ4IGcGY7jquDHm3ScjzDnpTR+46L5fu7Yf7t2D6HuN04mr3rLbq2YkSopsDTk0VR
+         KFpQ==
+X-Gm-Message-State: AAQBX9fYB+bHu7tKVjzcIxh6gMzvQmkhQdpDgeFFbwTV9tKOsD8RR5Tt
+        80kpFG6NwfRNQuXwLDWLLe0kig==
+X-Google-Smtp-Source: AKy350bMMt96DgjDZhelJgwdeH91GqmXc2epqbLnaBdJ6rmoJqtReem1n9MIx8T5neOs4RY5uDia5Q==
+X-Received: by 2002:ac2:5ec2:0:b0:4ed:b9b6:fc46 with SMTP id d2-20020ac25ec2000000b004edb9b6fc46mr2509904lfq.41.1681811038405;
+        Tue, 18 Apr 2023 02:43:58 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id n3-20020ac242c3000000b004eb09081d77sm2319615lfl.91.2023.04.18.02.43.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 02:43:58 -0700 (PDT)
+Message-ID: <a17c21b7-9c0a-2458-735c-ac3b16ed337f@linaro.org>
+Date:   Tue, 18 Apr 2023 11:43:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
- properties
-Content-Language: en-US, de-DE
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     kishon@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-        s.hauer@pengutronix.de, vkoul@kernel.org, haibo.chen@nxp.com,
-        linux-kernel@vger.kernel.org,
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sa8775p: pmic: remove the PON modes
+Content-Language: en-US
+To:     Shazad Hussain <quic_shazhuss@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        linux-phy@lists.infradead.org, shawnguo@kernel.org,
-        linux-arm-kernel@lists.infradead.org, jun.li@nxp.com
-References: <20230405112118.1256151-1-j.zink@pengutronix.de>
- <20230405112118.1256151-2-j.zink@pengutronix.de>
- <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
- <3f7257ee36dc44f162a87281c8279fd5bad91dea.camel@pengutronix.de>
- <95b4afd4-c93e-628b-fd22-6fcbc1d1234e@linaro.org>
- <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
- <20230412133921.GA2017891-robh@kernel.org>
- <6953b608-973f-c603-f852-edf7ba183e64@pengutronix.de>
-In-Reply-To: <6953b608-973f-c603-f852-edf7ba183e64@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230413131705.3073911-1-brgl@bgdev.pl>
+ <20230413131705.3073911-2-brgl@bgdev.pl>
+ <3e361a73-797f-41c7-1ead-ecafee3928e4@linaro.org>
+ <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, hi Krzysztof,
 
-On 4/12/23 16:32, Johannes Zink wrote:
-> Hi Rob,
+
+On 18.04.2023 06:39, Shazad Hussain wrote:
 > 
-> On 4/12/23 15:39, Rob Herring wrote:
->> On Tue, Apr 11, 2023 at 04:22:37PM +0200, Johannes Zink wrote:
->>> Hi Krzystof,
+> 
+> On 4/13/2023 9:42 PM, Krzysztof Kozlowski wrote:
+>> On 13/04/2023 15:17, Bartosz Golaszewski wrote:
+>>> From: Parikshit Pareek <quic_ppareek@quicinc.com>
 >>>
->>> thank you for your explanations. As I'm still quite new to writing
->>> bindings, I still have some questions:
->>>
->>> On Fri, 2023-04-07 at 11:03 +0200, Krzysztof Kozlowski wrote:
->>>> On 05/04/2023 14:14, Johannes Zink wrote:
->>>>> Hi Krysztof,
->>>>>
->>>>> thanks for your review, please find my questions below.
->>>>>
->>>>> On Wed, 2023-04-05 at 13:51 +0200, Krzysztof Kozlowski wrote:
->>>>>> [snip]
->>>>>>>         A phandle to the regulator for USB VBUS.
->>>>>>> +  fsl,phy-tx-vref-tune:
->>>>>>> +    description:
->>>>>>> +      HS DC Voltage level adjustment
->>>>>>
->>>>>> "Level" in what units?
->>>>>>
->>>>>
->>>>> The datasheet just shows percent, ranging from -6 to +24%, in 2%
->>>>> increments. What unit would you suggest?
->>>>
->>>> percent
->>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
->>>
->>> I am still a bit confused how to use this properly. How can I restrict
->>> the values to multiples of 2 in order to avoid illegal values?
->>>
->>> At the moment the only thing I could come up with is something like
->>>
->>> fsl,phy-tx-vref-tune-percent:
->>>    description: |
->>>      Adjusts the high-speed DC level voltage
->>>    $ref: /schemas/types.yaml#/definitions/int32
+>>> Remove the power on reasons with reboot from the pmm8654au_0_pon.
+>>> Instead, the PoN reaons should be part of different sdam_0 mode, to
 >>
->> Note that with standard unit suffixes, you don't need a type.
+>> typo: reasons
 >>
->>>    minimum: -6
->>>    maximum: 24
->>>    default: 0
->>>
->>> Does something like this work? I am not quite sure if I am on the right
->>> track here, especially as this requires a signed int, of which I have
->>> not seen many examples so far.
+>>> be interoduced.
 >>
->> We'd have to change the type for -percent to signed. That's possible,
->> but for vendor specific properties there's not much advantage to use
->> standard units instead of just using the register values directly.
+>> introduced
+>>
+>> Anyway it does not say why. Are these power reasons not correct?
 >>
 > 
-> I don't have any objections to that, this is pretty much what I sent in 
-> my v1 patch <20230405112118.1256151-2-j.zink@pengutronix.de>, but 
-> Krzysztof requested to change the vendor specific properties to use 
-> property-units.
+> Hi Krzysztof,
+> Since sm8350 the PMIC PON peripheral was split into PON_HLOS and PON_PBS
+> to avoid security concerns with HLOS APPS being able to trigger a PMIC
+> WARM_RESET unilaterally. When the split occurred, the spare registers
+> ended up in PON_PBS, not PON_HLOS. Thus at that time, we moved to using
+> an SDAM register for Linux “reboot reason” configuration. And bootloader
+> also SDAM register to get these reboot region data to get into
+> bootloader/edl, so to have this working we need to use SDAM.
 > 
-> Would something along the lines of the st,trim-hs-current on 
-> Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml be 
-> acceptable (i.e. use an enum and annotate the meaning of the values in 
-> the description)?
-> 
-> I will, nevertheless, try to make the descriptions a bit more verbose in 
-> my v2 (wherever the datasheet gives me proper informations), as 
-> Krzysztof requested.
+Does that imply all PMICs following the PMK8350 scheme (separate HLOS and
+PBS) should direct reboot mode writes to SDAM?
 
-gentle ping - any opinions on this? Shall I just send a V2 along the 
-lines of the phy-stm32-usbphy.c?
-
-Best regards
-Johannes
-
-> 
-> Best regards
-> Johannes
-> 
->> Rob
+Konrad
+>>>
+>>> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> ---
+>>
+>> Best regards,
+>> Krzysztof
 >>
 > 
-
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-
+> -Shazad
