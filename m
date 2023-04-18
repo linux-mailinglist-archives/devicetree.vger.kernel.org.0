@@ -2,103 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A86AA6E5CE8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D1066E5D16
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjDRJEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 05:04:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39526 "EHLO
+        id S230327AbjDRJNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 05:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231238AbjDRJDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:03:38 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302846580;
-        Tue, 18 Apr 2023 02:03:28 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id ay3-20020a05600c1e0300b003f17289710aso3080599wmb.5;
-        Tue, 18 Apr 2023 02:03:27 -0700 (PDT)
+        with ESMTP id S230032AbjDRJNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:13:19 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0CE4C0B
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:13:18 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-63b57c49c4cso1626708b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:13:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681808606; x=1684400606;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ENURxkCD4SFoaP6aebwo/q0vo0bcMItJOR8Kmmrb9B8=;
-        b=hyEeYlnfKNsu+wzQODFiRayLJJCKTLCADKbn1i3jqynVZ018mc3hUSpdhvmmgx/eNs
-         r1YuePjwGg8/CTpKqWGtd+Hv7B7fX/6V41//R5EZ5stjzTsmY6HzngplXif07bjqCCgc
-         plFlxNLfNBuq2Vau1l0x+9fCzcZEwE9e/yzw1DjIecgQTT1nvydFD1Bma7+jFfw2PIO+
-         d+2SoU1Knwzj3oqYXdY5EdManDUV2g0kOR7t5EJ0lpY9SUwJ3mvJVhP+c6YKWsybu3Xb
-         fMVlBkqbmI7mjbqyZj7LgYAbkkuY67Tus5smCNEYOdXqhZr9KjGOcRD44PkZEg89sanw
-         Y27g==
+        d=linaro.org; s=google; t=1681809198; x=1684401198;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xbleKyCRtEj4mzfFg8I15iJYzLocd2tmdYnO3kTlaTM=;
+        b=mAR79v7Tn0gnysG30TB5j3Pp0X26z8pZv0JEzF+Tqkz49IEzlC+s0Yyv7WXhbv4yYq
+         F+TDUy6I52Y5dNVvbGC7sgkiB70fCfGKJlCoZViRHiaAbukG2YT+GJkxE/GlePzswAmj
+         DNwAMDwz5K8+vf+eK6BFlJCdxRf3BnXXBPMLVkGlDfyZLZ8bW09Og+LrCRbjDjweZatT
+         rrOygmPKKhxnJxCNahihy09XwykQM7h3R76R9LF6A5lVDUcVPX8gCWWpWo69b+hpjABp
+         7kgpJntY9UpqB8kDuD8Gz/rE5x9ChJESOIYcBuBskXljHfr7c/GgsMLtudPLTw8IB1e4
+         ApOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681808606; x=1684400606;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ENURxkCD4SFoaP6aebwo/q0vo0bcMItJOR8Kmmrb9B8=;
-        b=BC8c2iUC7bjT5AIt6FZQhQzBZcB8Ds5LpiGTqG01tcZzyiTrFHEYG7jZgPUDRJtiQr
-         /gFt5wkdEFHsac2+yPvk+0k6XpsVqYrMnaZZR3GWVGXeRMhOLJfO5u78ZkQh4JnfzU3Z
-         BrF6a4MgiuMycUBJ6+V4aEeVw7nHenbwTW7U68bcmhS/XZcfEkwEzfxDHwoY0Y23qiRo
-         1pyAk5ANqEEbNlfcgacyMQ2MwH70r460Aj8PRpPyzRjopaU/GW/l+K8sT+zdilrGxmuy
-         8VDAHwxn/2gjwaX1w6I99A6yBwYgBaFg4T5T1sQBlp9Bx5SROFRK5apRATVYHn5QmBzS
-         DBMw==
-X-Gm-Message-State: AAQBX9fIS26PfrmHYphGnuIdxOmtChQs08SOp0XY7DVk48+cYOk5ai55
-        OVvt5hxyZcSNO4cu7/n/+z1JMYHGskM=
-X-Google-Smtp-Source: AKy350ZbzAvqWY90P0Z3eLgU84LWQm4rGea1JWCNTJm6KLIaNScNr5BdKbE8V3dU5m0SczFMAP2Rmw==
-X-Received: by 2002:a05:600c:1c20:b0:3f1:6fb4:5645 with SMTP id j32-20020a05600c1c2000b003f16fb45645mr7486090wms.1.1681808606231;
-        Tue, 18 Apr 2023 02:03:26 -0700 (PDT)
-Received: from localhost.localdomain (61.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.61])
-        by smtp.gmail.com with ESMTPSA id u7-20020a7bcb07000000b003ee70225ed2sm14341109wmj.15.2023.04.18.02.03.25
+        d=1e100.net; s=20221208; t=1681809198; x=1684401198;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xbleKyCRtEj4mzfFg8I15iJYzLocd2tmdYnO3kTlaTM=;
+        b=X6XxFsWRK2dvdWOWRFuNZ9pqko4/Q7OrMTKKH9DBXJXhNldV8snpxHGjgqGIiza3Ju
+         1JGgNfYV37Ay5Y1CXHAcV9Kha5uftFSFY5h0DnplRNbshZ9BcezObfdVnm9AG3r5rhTT
+         5bSJb/eIQnG/Q9dcz8yT20FzXyojHdR98GKLCxTSCgzrajwsBVOfqAvwCX/NjSbzlmFm
+         Ky8SG5Cj/BWCfhqqGhDGcH2cF8Fd5tAdbGxHR0BSFnut7Tu40lWpWtJz6Ar4JOfSPGVF
+         iPxwB7+hBTXQlYH8YC+tcGufs3NFyi1HIzfh0U133X2LW4MIrb0fTuw0eg6d3DNd7Nm/
+         +Jow==
+X-Gm-Message-State: AAQBX9c9JGt/XHzhN+JzgN+ZgSLcNvGTtfTa7X1n05uW6yix/CPCnLOa
+        W2+x3OCxIpb55ZKdlOp5E7cBaA==
+X-Google-Smtp-Source: AKy350btit3r+ik6rSegfaTgfcFeOECknK0pFDr3Uu7rl6nEAw1H+XBYxFE0VoXAoRGBuSsBsAHVLA==
+X-Received: by 2002:a17:902:8e82:b0:1a6:9762:6eee with SMTP id bg2-20020a1709028e8200b001a697626eeemr1390525plb.40.1681809197881;
+        Tue, 18 Apr 2023 02:13:17 -0700 (PDT)
+Received: from localhost ([122.172.85.8])
+        by smtp.gmail.com with ESMTPSA id w11-20020a170902d70b00b001a66bf1406bsm9129056ply.144.2023.04.18.02.13.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 02:03:25 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     linux-mips@vger.kernel.org, tsbogend@alpha.franken.de,
-        john@phrozen.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
-        arinc.unal@arinc9.com
-Subject: [PATCH v3 9/9] MAINTAINERS: add Mediatek MTMIPS Clock maintainer
-Date:   Tue, 18 Apr 2023 11:03:12 +0200
-Message-Id: <20230418090312.2818879-10-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230418090312.2818879-1-sergio.paracuellos@gmail.com>
-References: <20230418090312.2818879-1-sergio.paracuellos@gmail.com>
+        Tue, 18 Apr 2023 02:13:17 -0700 (PDT)
+Date:   Tue, 18 Apr 2023 14:43:15 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
+        dmitry.osipenko@collabora.com, rafael@kernel.org,
+        jonathanh@nvidia.com, robh+dt@kernel.org, lpieralisi@kernel.org,
+        helgaas@kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
+        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
+        ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v6 6/9] cpufreq: tegra194: add OPP support and set
+ bandwidth
+Message-ID: <20230418091315.bxh4hp6g3vekdi2r@vireshk-i7>
+References: <20230411110002.19824-1-sumitg@nvidia.com>
+ <20230411110002.19824-7-sumitg@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230411110002.19824-7-sumitg@nvidia.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding myself as maintainer for Mediatek MTMIPS clock driver.
+On 11-04-23, 16:29, Sumit Gupta wrote:
+> Add support to use OPP table from DT in Tegra194 cpufreq driver.
+> Tegra SoC's receive the frequency lookup table (LUT) from BPMP-FW.
+> Cross check the OPP's present in DT against the LUT from BPMP-FW
+> and enable only those DT OPP's which are present in LUT also.
+> 
+> The OPP table in DT has CPU Frequency to bandwidth mapping where
+> the bandwidth value is per MC channel. DRAM bandwidth depends on the
+> number of MC channels which can vary as per the boot configuration.
+> This per channel bandwidth from OPP table will be later converted by
+> MC driver to final bandwidth value by multiplying with number of
+> channels before sending the request to BPMP-FW.
+> 
+> If OPP table is not present in DT, then use the LUT from BPMP-FW
+> directy as the CPU frequency table and not do the DRAM frequency
+> scaling which is same as the current behavior.
+> 
+> Now, as the CPU Frequency table is being controlling through OPP
+> table in DT. Keeping fewer entries in the table will create less
+> frequency steps and can help to scale fast to high frequencies
+> when required.
+> 
+> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> ---
+>  drivers/cpufreq/tegra194-cpufreq.c | 156 ++++++++++++++++++++++++++---
+>  1 file changed, 143 insertions(+), 13 deletions(-)
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Can this be applied independently of the rest of the series ?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d5bc223f305..581234dfa735 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13137,6 +13137,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
- F:	drivers/phy/ralink/phy-mt7621-pci.c
- 
-+MEDIATEK MTMIPS CLOCK DRIVER
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
-+F:	drivers/clk/ralink/clk-mtmips.c
-+
- MEDIATEK NAND CONTROLLER DRIVER
- L:	linux-mtd@lists.infradead.org
- S:	Orphan
 -- 
-2.25.1
-
+viresh
