@@ -2,111 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CDD26E64A7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3B426E64B0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232164AbjDRMvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43532 "EHLO
+        id S232241AbjDRMvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232170AbjDRMvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:51:15 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 355D416B23
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:50:53 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-63b5c48ea09so1750392b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1681822252; x=1684414252;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y4OHoFWLVHVOU1gGJFIZyvFQwj4I/n5rmO4u4kQqp5s=;
-        b=NaZDAMGrk+xiKbfMXkfc+hiiltFD0LlTuSqiIbDBkpzWQgLVSgj/O48zJ7VMGlzp68
-         pCDOEKpcmGwFU7dSgwQqjWorn5Z13vwzcfdi34+M2L5EwoQEbckdcNX1V9iuSn4j74qB
-         2IMNQfjqpLvm8WWUqmBcV11cHsW5gXqch7xqo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681822252; x=1684414252;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y4OHoFWLVHVOU1gGJFIZyvFQwj4I/n5rmO4u4kQqp5s=;
-        b=NBw5zF5jqJssBfhNuKxmyqYaDHdzAx0K/zgGy0XH0ca4AsG+XTQtEmVY+sCMtciO6W
-         cERrFl3zopYuiV+k5i5RuG2qXqxTah2PGhb8sDGgA7pLmRBKnBzTbo4Mx6Nz4FOig3t9
-         ik4Sa9GpTR8vIodrjx2nTONbVqE1w6MozXAzG3i2qe8Zs+1Rj5O9wNASTbJ5y4ZCTkHI
-         JbZ5nz0OhC7awCL3pJGYYvZxQ8M8nOeAbmM9NZnt3u2N7iLmZqtzC8AElrsnzZFjX5oF
-         /JvtklDXJtesDwFP6uzyeNn2BYTZAtJdAcRwgQ15ebkjHMHfABnBcdl5DDrq+lWfa7PX
-         JwEg==
-X-Gm-Message-State: AAQBX9fN5qH9bHizwJvFSSqHyGfDQJDuEjVLI/OLeb0pbwTMw/bMnuvm
-        wu4WrXa1MJqDQ34tdISwgCCGwQ==
-X-Google-Smtp-Source: AKy350YD/mHUZFPaUut90TfJLzOLDCDlzOufYyFO14OjgVg1t2eEm+ULWpBI96mTSUIsyi0jY51ohg==
-X-Received: by 2002:a05:6a00:1483:b0:638:f0b1:4df1 with SMTP id v3-20020a056a00148300b00638f0b14df1mr25744364pfu.24.1681822252585;
-        Tue, 18 Apr 2023 05:50:52 -0700 (PDT)
-Received: from fshao-glinux.tpe.corp.google.com ([2401:fa00:1:10:2fb7:301d:6083:752b])
-        by smtp.gmail.com with ESMTPSA id v11-20020a62a50b000000b0063afb08afeesm9323733pfm.67.2023.04.18.05.50.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 05:50:52 -0700 (PDT)
-From:   Fei Shao <fshao@chromium.org>
-To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Fei Shao <fshao@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S232179AbjDRMvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:51:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0B616F8C;
+        Tue, 18 Apr 2023 05:51:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CDA7663429;
+        Tue, 18 Apr 2023 12:51:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4B5BC433EF;
+        Tue, 18 Apr 2023 12:50:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681822261;
+        bh=vDLBxL1a/LLgJCeDtLqmgJik9psfir0jW0YdoiOYOXE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XB9QondD6yuvpQ230rAKbErtOUGQVdGgu0HZ7/bxbZ43tVMXHLUSqxqbTVw7VukPP
+         i0o3zzLdDoGoGrX2T1iD57iDo1Sho+SLNmLaTYZEBHyDFcsSyWyxf25skaVEIGJKzO
+         8P42fZ4HwdDeQFcywjo9+sxSIelIcix9LowKxbHnlyUE7S7McBruMqJOyODgx2g3X9
+         2R9Veo78VzxMDphY96BvJ7uyWSc/TxHMaZXvW2Pkfu5MaOnnToSqhbPhPIcsnTutwP
+         L9Z3xRF7DUCScSDaOWqkdXGdjwQFC+zmOmo51/Ddb7rrZmoAqr2Z3RefeXGqM8rDhC
+         248WSZtCFlAXw==
+Date:   Tue, 18 Apr 2023 18:20:47 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend property
-Date:   Tue, 18 Apr 2023 20:49:51 +0800
-Message-ID: <20230418124953.3170028-2-fshao@chromium.org>
-X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
-In-Reply-To: <20230418124953.3170028-1-fshao@chromium.org>
-References: <20230418124953.3170028-1-fshao@chromium.org>
+Subject: Re: [PATCH v4 2/2] soc: qcom: Introduce RPM master stats driver
+Message-ID: <20230418125047.GB5530@thinkpad>
+References: <20230405-topic-master_stats-v4-0-4217362fcc79@linaro.org>
+ <20230405-topic-master_stats-v4-2-4217362fcc79@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230405-topic-master_stats-v4-2-4217362fcc79@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We observed that on Chromebook device Steelix, if Goodix GT7375P
-touchscreen is powered in suspend (because, for example, it connects to
-an always-on regulator) and with the reset GPIO asserted, it will
-introduce about 14mW power leakage.
+On Mon, Apr 17, 2023 at 07:37:53PM +0200, Konrad Dybcio wrote:
+> Introduce a driver to query and expose detailed, per-subsystem (as opposed
+> to the existing qcom_stats driver which exposes SoC-wide data) about low
+> power mode states of a given RPM master. That includes the APSS (ARM),
+> MPSS (modem) and other remote cores, depending on the platform
+> configuration.
+> 
+> This is a vastly cleaned up and restructured version of a similar
+> driver found in msm-5.4.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/soc/qcom/Kconfig            |  11 +++
+>  drivers/soc/qcom/Makefile           |   1 +
+>  drivers/soc/qcom/rpm_master_stats.c | 162 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 174 insertions(+)
+> 
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index a491718f8064..e597799e8121 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -135,6 +135,17 @@ config QCOM_RMTFS_MEM
+>  
+>  	  Say y here if you intend to boot the modem remoteproc.
+>  
+> +config QCOM_RPM_MASTER_STATS
+> +	tristate "Qualcomm RPM Master stats"
+> +	depends on ARCH_QCOM || COMPILE_TEST
+> +	help
+> +	  The RPM Master sleep stats driver provides detailed per-subsystem
+> +	  sleep/wake data, read from the RPM message RAM. It can be used to
+> +	  assess whether all the low-power modes available are entered as
+> +	  expected or to check which part of the SoC prevents it from sleeping.
+> +
+> +	  Say y here if you intend to debug or monitor platform sleep.
+> +
+>  config QCOM_RPMH
+>  	tristate "Qualcomm RPM-Hardened (RPMH) Communication"
+>  	depends on ARCH_QCOM || COMPILE_TEST
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index 0f43a88b4894..7349371fdea1 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -14,6 +14,7 @@ obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
+>  qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
+>  obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
+>  obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
+> +obj-$(CONFIG_QCOM_RPM_MASTER_STATS)	+= rpm_master_stats.o
+>  obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
+>  qcom_rpmh-y			+= rpmh-rsc.o
+>  qcom_rpmh-y			+= rpmh.o
+> diff --git a/drivers/soc/qcom/rpm_master_stats.c b/drivers/soc/qcom/rpm_master_stats.c
+> new file mode 100644
+> index 000000000000..ac87401e2217
+> --- /dev/null
+> +++ b/drivers/soc/qcom/rpm_master_stats.c
+> @@ -0,0 +1,162 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023, Linaro Limited
+> + *
+> + * This driver supports what is known as "Master Stats v2" in Qualcomm
+> + * downstream kernel terms, which seems to be the only version which has
+> + * ever shipped, all the way from 2013 to 2023.
+> + */
+> +
+> +#include <linux/debugfs.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +
+> +struct master_stats_data {
+> +	void __iomem *base;
+> +	const char *label;
+> +};
+> +
+> +struct rpm_master_stats {
+> +	uint32_t active_cores;
+> +	uint32_t num_shutdowns;
+> +	uint64_t shutdown_req;
+> +	uint64_t wakeup_idx;
+> +	uint64_t bringup_req;
+> +	uint64_t bringup_ack;
+> +	uint32_t wakeup_reason; /* 0 = "rude wakeup", 1 = scheduled wakeup */
+> +	uint32_t last_sleep_trans_dur;
+> +	uint32_t last_wake_trans_dur;
+> +
+> +	/* Per-subsystem (*not necessarily* SoC-wide) XO shutdown stats */
+> +	uint32_t xo_count;
+> +	uint64_t xo_last_enter;
+> +	uint64_t last_exit;
+> +	uint64_t xo_total_dur;
 
-This property is used to indicate that the touchscreen is powered in
-suspend. If it's set, the driver will stop asserting the reset GPIO in
-power-down, and it will do it in power-up instead to ensure that the
-state is always reset after resuming.
+Still no u64, u32.
 
-Signed-off-by: Fei Shao <fshao@chromium.org>
----
+> +} __packed;
+> +
 
- Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-index ce18d7dadae2..942acb286d77 100644
---- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -43,6 +43,12 @@ properties:
-       itself as long as it allows the main board to make signals compatible
-       with what the touchscreen is expecting for its IO rails.
- 
-+  powered-in-suspend:
-+    description:
-+      This indicates that the touchscreen is powered in suspend, so the driver
-+      will not assert the reset GPIO in power-down to prevent power leakage.
-+    type: boolean
-+
- required:
-   - compatible
-   - reg
+> +		/*
+> +		 * Generally it's not advised to fail on debugfs errors, but this
+> +		 * driver's only job is exposing data therein.
+> +		 */
+> +		dent = debugfs_create_file(data[i].label, 0444, root,
+> +					   &data[i], &master_stats_fops);
+> +		if (IS_ERR(dent)) {
+> +			debugfs_remove_recursive(root);
+> +			return -EINVAL;
+
+PTR_ERR(dent). Also it doesn't hurt to use dev_err_probe() here.
+
+> +		}
+> +	}
+> +
+> +	device_set_pm_not_required(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static void master_stats_remove(struct platform_device *pdev)
+> +{
+> +	struct dentry *root = platform_get_drvdata(pdev);
+> +
+> +	debugfs_remove_recursive(root);
+> +}
+> +
+> +static const struct of_device_id rpm_master_table[] = {
+> +	{ .compatible = "qcom,rpm-master-stats" },
+> +	{ },
+> +};
+> +
+> +static struct platform_driver master_stats_driver = {
+> +	.probe = master_stats_probe,
+> +	.remove_new = master_stats_remove,
+> +	.driver = {
+> +		.name = "rpm_master_stats",
+
+qcom_rpm_master_stats
+
+- Mani
+
+> +		.of_match_table = rpm_master_table,
+> +	},
+> +};
+> +module_platform_driver(master_stats_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm RPM Master Statistics driver");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.40.0
+> 
+
 -- 
-2.40.0.634.g4ca3ef3211-goog
-
+மணிவண்ணன் சதாசிவம்
