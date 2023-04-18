@@ -2,115 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E57CF6E677B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D3C6E679B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230423AbjDROvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 10:51:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47448 "EHLO
+        id S231620AbjDRO4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 10:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231492AbjDROu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:50:59 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95373C16C
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 07:50:58 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f17b967bfbso9828585e9.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 07:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1681829457; x=1684421457;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kIM8LW6yI6V143LdhT1FdSGC5xNGvUqWMyNhdIh0gqk=;
-        b=ciG0U0QRb/NtYe41cCi/q6OdFth5UhsN/iDd2EGKEg6ZiIMqhZOrtWTKm4RzjQ7V4x
-         SG6tPhxsMBoSPyg/USw2sFeZX47bslwOoMGthdyWnTrxhINAm1Sx09QYoEU0j8FQqj3m
-         w9x2HmKD97bO91i2W8MbRHmEOMPKXlqiafPsO62wWViGAoof8j+vvGIxqY+eoceb9RiR
-         fAlY0EpLzv8fYDgH/UEAXCo6XElzwjMOI69zF0v0EaMYPcu2kffTndwIIvfUbzT+eiU5
-         Ss1BfG0RuANMUIHkDV8gkfDGi18LYQW5TrbVBBOEQp6eC+0McS70skcwRRla1ybCEkpV
-         Nirw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681829457; x=1684421457;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kIM8LW6yI6V143LdhT1FdSGC5xNGvUqWMyNhdIh0gqk=;
-        b=DemsLfNYCXSi6axzR6X1nJMLaR4npIHc5y4yKcMkFeAePP7yhzY2g6I0W45PXqNseX
-         P5/XK+vESZNSuW/0fKRRwHWHY+aG5rOfn9rr8F91AfD1fCsuJCQhiT1ZCVbVuemkj57q
-         V7VGXfKH24GmdZcHLMH7gm/jzEHJ51RX+EgYx08nW9MRDzEV8ky4SjpJxefSz02UwgTh
-         MTIiu1mij2qApS/mvY95wAntPccIRlaCQ6TJW/2FBhi3DkEg++4VKiIB6PxxkioTZOCu
-         TjPyBOjb6lq5LO0PHBkdu/UKD+QKCvOquWA62YOIMLEiTcUeHtmHI9cc7AzYi2OCmgUn
-         hYsg==
-X-Gm-Message-State: AAQBX9diqOqUguNVG3wCUcILA3E8RTAEQjyPWRCF2YIWxd63PSCnJh0N
-        NX17jVc89Z4OFmW4N2TQATjH4A==
-X-Google-Smtp-Source: AKy350akkeZYqk9h4w91WZNPH0iayM5/fKMO5t5pZUNl/63Lsn9FR0tYXFPO4A0GVAQnAPL7l63wJg==
-X-Received: by 2002:adf:dfc3:0:b0:2fb:b869:bc08 with SMTP id q3-20020adfdfc3000000b002fbb869bc08mr2181140wrn.23.1681829457063;
-        Tue, 18 Apr 2023 07:50:57 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id z16-20020adff750000000b002fb6a79dea0sm3787823wrp.7.2023.04.18.07.50.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 07:50:56 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zev Weiss <zev@bewilderbeest.net>
-Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: regulator: Add dt property
-Date:   Tue, 18 Apr 2023 16:50:50 +0200
-Message-Id: <20230418145051.4192963-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.39.1
+        with ESMTP id S231477AbjDRO4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:56:09 -0400
+Received: from new-shark9.inbox.lv (new-shark9.inbox.lv [194.152.32.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E04AC676;
+        Tue, 18 Apr 2023 07:55:36 -0700 (PDT)
+Received: from shark1.inbox.lv (shark1 [10.0.1.81])
+        by new-shark9.inbox.lv (Postfix) with ESMTP id CC183480813;
+        Tue, 18 Apr 2023 17:55:32 +0300 (EEST)
+Received: from shark1.inbox.lv (localhost [127.0.0.1])
+        by shark1-out.inbox.lv (Postfix) with ESMTP id BB04E11181B7;
+        Tue, 18 Apr 2023 17:55:32 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv;
+        s=p20220324; t=1681829732; x=1681831532;
+        bh=Qq9ls3B214o+xFbtaX+maHmcXec0gagOLT9ZANiZIxc=;
+        h=From:To:Cc:Subject:Date:Message-Id:X-ESPOL:From:Date:To:Cc:
+         Message-ID:Subject:Reply-To;
+        b=IEFzPkv8YbaQ4afZpB4lgM5UfwYpk3XxcJu5d/3TlbcihvfJYbm28FEfm5ojKZPGa
+         vv4w5F4OgpMMrJEjSCKq55qg3GWgvDLZRuDYHuMrYVFLVleR5KOR5v6O1XfBS7U9PP
+         Y23u45zDuFaMmR4yxUp8hoyCORwkyY5vxBid7LEk=
+Received: from localhost (localhost [127.0.0.1])
+        by shark1-in.inbox.lv (Postfix) with ESMTP id B56DA11181AA;
+        Tue, 18 Apr 2023 17:55:32 +0300 (EEST)
+Received: from shark1.inbox.lv ([127.0.0.1])
+        by localhost (shark1.inbox.lv [127.0.0.1]) (spamfilter, port 35)
+        with ESMTP id GIJBX0qtq56Y; Tue, 18 Apr 2023 17:55:32 +0300 (EEST)
+Received: from mail.inbox.lv (pop1 [127.0.0.1])
+        by shark1-in.inbox.lv (Postfix) with ESMTP id 7C61B1118182;
+        Tue, 18 Apr 2023 17:55:32 +0300 (EEST)
+From:   Karl Chan <exkcmailist@inbox.lv>
+To:     linux-amlogic@lists.infradead.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Karl Chan <exkcmailist@inbox.lv>
+Subject: [PATCH v4 0/2] arm64: dts: meson-gxl: add support for Xiaomi Mibox 3
+Date:   Tue, 18 Apr 2023 22:55:13 +0800
+Message-Id: <20230418145515.19547-1-exkcmailist@inbox.lv>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: OK
+X-ESPOL: AJqEQ3gB+w1Luca2K41p5eDjx8rAJVdbxjuDrrAx6HtHtLDGrdd2bmeUB/eRFELmMmLD
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT property regulator-supplies.
-This enables us to couple one or more regulator output to gether. This
-is use in case of Single connector having 2 or more supplies.
+The Xiaomi Mibox 3 is a TV box based on the Amlogic S905X chipset.
+There are two variants:
+- 2 GiB/8GIB
+- 1 GiB/4GIB
 
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- .../bindings/regulator/regulator-output.yaml         | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+Both variants come with:
+- 802.11a/b/g/n/ac wifi (BCM4345)
+- HDMI , AV (CVBS) and S/PDIF optical output
+- 1x USB
 
-diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
-index 078b37a1a71a..17f683d3c1f3 100644
---- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
-+++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
-@@ -21,13 +21,19 @@ properties:
-   compatible:
-     const: regulator-output
- 
--  vout-supply:
-+  regulator-supplies:
-     description:
--      Phandle of the regulator supplying the output.
-+      Specifies the name of the output supply provided by the regulator.
-+      Defaults to "vout".
-+    default: "vout"
-+
-+patternProperties:
-+  ".*-supply":
-+    description:
-+      Specified the phandle for various supplies
- 
- required:
-   - compatible
--  - vout-supply
- 
- additionalProperties: false
- 
+Karl Chan (2):
+  dt-bindings: arm: amlogic: add Xiaomi Mi box 3 binding
+  arm64: dts: meson-gxl: add support for Xiaomi Mi box 3
 
-base-commit: c55470f8b0616b0adb758077dbae9b19c5aac005
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-gxl-s905x-xiaomi-mibox3.dts | 138 ++++++++++++++++++
+ list                                          |   1 +
+ 4 files changed, 141 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
+ create mode 100644 list
+
 -- 
-2.39.1
+2.40.0
 
