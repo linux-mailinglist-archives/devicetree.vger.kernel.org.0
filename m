@@ -2,78 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB5F6E5D21
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5FF6E5D8C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:38:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbjDRJPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 05:15:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
+        id S231366AbjDRJil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 05:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230400AbjDRJPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:15:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1ED6580;
-        Tue, 18 Apr 2023 02:15:37 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 67C256603238;
-        Tue, 18 Apr 2023 10:15:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1681809336;
-        bh=zC/TAZzf2xurSfg4uBALXf9z3Fp/VkEw/HUUOGxXljA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Rj9nfVYH09a08kuz3NjQRkdFtge85SZjVxv/6WYw7KTuMe6mfabhLhi1yl7QzLnSi
-         xYiPA+lEP+bEezO6kq1bvKm3GySUVuYyJIhvkv5JelUBvLMb/07zcKs5gjmPufstis
-         0u0fW5wFE1Xm9eKHZ5j1xlgu14PrR7scMaWLQUMEIGFLQQvA2DBkOOV5uCPVz6zc2E
-         xfNe3jsPLLQPmsCEl2Gmvf4HA7PdA0x0mfmvxaGypF1pk/WHF9/8ZhrCgfAghgwwhk
-         xep4Pia4E2FiK2GKCc0HPbu8jR8ojGftLlJz3+32DKq08IfOFq5SzzvzFsYz3oXNAG
-         UALOGzOpxgklA==
-Message-ID: <a3bb307a-8deb-a038-56e7-ded2abb87255@collabora.com>
-Date:   Tue, 18 Apr 2023 11:15:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v11 7/7] MAINTAINERS: iommu/mediatek: Update the header
- file name
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        with ESMTP id S231308AbjDRJik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:38:40 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B3D1BCA;
+        Tue, 18 Apr 2023 02:38:39 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id j11so17198579ljq.10;
+        Tue, 18 Apr 2023 02:38:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681810717; x=1684402717;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Lb7Hmi4qrMx3y4a0oEkH9YVxHmM21sJHrETGqqG+9Xk=;
+        b=j0+H7Al1iBdQY1xKqRJyJwcwUhRfGBMDisXwRy29PxizwZTAUzpD6bW+61adKcZjCb
+         6RUWyoIg2FAHyStLXH+3SffSmZMDluHYsEwQp2/yAOQklNRJ+hlmczDXSktw09yySv2l
+         Tt8ER6C1f2impZbNVkRqlffjDGP9xNNcZImaK35al5VRW16bGl3u20IzQZ3A3VW77AIy
+         nIfRuo7wD4qOiZhAap7BpKExmhoZ/ATgDG0OR/Zdp06lddvMmHl3jIHyNmVktyVHvY/4
+         1ji/xcwUCl7VjtsQrEu4Lj/0umt5OvDHhGAAxHH+KK7IjHiIx88+WaI4Zk28CDNr6xOw
+         oMVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681810717; x=1684402717;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lb7Hmi4qrMx3y4a0oEkH9YVxHmM21sJHrETGqqG+9Xk=;
+        b=A4lMXVZiZWSm0NZo6222vkryqCkavS/1CNuFyUkRdAByKyYOwvA1AIeAdF43tADjvs
+         xq68jp/qN8EtQlcus2v0Nd6ru4voGUDbPxL4uPehaeSXn+2ip1EIJ11E5f+vg0t75zSH
+         miptYLCCTapo+aKyRMc6JbmUFyTTTIHSZ3zUflaLe84iQoJxRnra/vpFDaflJig1hv7m
+         Kn6Xit9PadAyqV+Ws3ZG79gKfLfqqC47tdTo02Zo70PaNRVjCPGsO159b1E2RGq3Jfno
+         qhASIU4vTv4neSLs2e0u+wSWdDPlOdBQA6RpImD/tsLrnAiNbJoKMtzbnTVEB0K/taTv
+         Vocw==
+X-Gm-Message-State: AAQBX9dXocteLqQOuYVLTVGL85BWRi+37Wfz2jJ+ZAdg9azkdorolsKR
+        Y2+DC1gPUp3mHNbMMm6Geoc=
+X-Google-Smtp-Source: AKy350Y2x+hHyvKcRq0EygCll3oxaYPxP0eJt1ReWSYTyB+WxGChHGASIbKWMjhZaV/r5vMB42Uqxw==
+X-Received: by 2002:a2e:904c:0:b0:2a8:ddb0:baa6 with SMTP id n12-20020a2e904c000000b002a8ddb0baa6mr437460ljg.4.1681810717565;
+        Tue, 18 Apr 2023 02:38:37 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id x27-20020a05651c105b00b002a8c2a4fe99sm967813ljm.28.2023.04.18.02.38.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 02:38:37 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Kalle Valo <kvalo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, ath11k@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
-        chengci.xu@mediatek.com
-References: <20230418083514.4379-1-yong.wu@mediatek.com>
- <20230418083514.4379-8-yong.wu@mediatek.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230418083514.4379-8-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Robert Marko <robimarko@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/3] dt-bindings: net: wireless: qcom,ath11k: allow describing radios
+Date:   Tue, 18 Apr 2023 11:38:20 +0200
+Message-Id: <20230418093822.24005-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/04/23 10:35, Yong Wu ha scritto:
-> We add the prefix "mediatek," for the lastest ports header file name,
-> For example, include/dt-bindings/memory/mediatek,mt8188-memory-port.h.
-> Add a new entry for this.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Qualcomm ath11k chipsets can have up to 3 radios. Each radio may need to
+be additionally described by including its MAC or available frequency
+ranges.
 
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Fix dt_binding_check (add address + size cells & reg)
+---
+ .../bindings/net/wireless/qcom,ath11k.yaml    | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 7d5f982a3d09..6a03638d20f1 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -78,6 +78,34 @@ properties:
+     items:
+       - const: wlan-smp2p-out
+ 
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^radio@[0-2]$":
++    type: object
++
++    allOf:
++      - $ref: ieee80211.yaml#
++
++    properties:
++      reg:
++        maxItems: 1
++        description: Radio index
++
++      nvmem-cells:
++        items:
++          - description: NVMEM cell with the MAC address
++
++      nvmem-cell-names:
++        items:
++          - const: mac-address
++
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
+@@ -378,6 +406,14 @@ examples:
+                           "wbm2host-tx-completions-ring1",
+                           "tcl2host-status-ring";
+         qcom,rproc = <&q6v5_wcss>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        radio@0 {
++            reg = <0x0>;
++            nvmem-cells = <&mac>;
++            nvmem-cell-names = "mac-address";
++        };
+     };
+ 
+   - |
+-- 
+2.34.1
 
