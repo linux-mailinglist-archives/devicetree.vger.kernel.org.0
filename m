@@ -2,116 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 880A46E671D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C71A6E673F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbjDRO0j convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 18 Apr 2023 10:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35054 "EHLO
+        id S231623AbjDROek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 10:34:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbjDRO0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:26:35 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878B719BD;
-        Tue, 18 Apr 2023 07:26:32 -0700 (PDT)
-Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pomHo-0003qq-MP; Tue, 18 Apr 2023 16:26:24 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Javier Martinez Canillas <javierm@redhat.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
+        with ESMTP id S231349AbjDROek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:34:40 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3ABA9F;
+        Tue, 18 Apr 2023 07:34:38 -0700 (PDT)
+Received: from mercury (unknown [91.248.213.255])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4CCB166030AB;
+        Tue, 18 Apr 2023 15:34:37 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681828477;
+        bh=YVhZnKJ5ECxtU4C6qrisrswyDM2gDfxNK8VZem9eeZo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=caxVnhAI8c9INieG9RyP2ZeqAO25TKzDcS2YHHJ0T+x8c06O1Xx4p6coX9H0j+Lf0
+         wm6EHVg8E6mXQ7+Q02N5f18n3jrSAo7kAvUJQlJKpPLq2klNxFpJ8S2sXF/KRuERSn
+         K0MgsaiS2dQtYkBIqluAqor7Tol1c4t3+OPaA6zqbgi+HY3YbB2a6rj9JLKW+HxnUp
+         UFXkw8mFVoQ+DjkS265F0We0RuYpPDErE31Eynvn1xUeoVZD+L9AYF+cSAvxRRWYf7
+         elUKUpqbuNQknCfiU0xD4ugvu4kr5Gx+jNACshChnG6o1uh6ybk6lDg+kLeOB9W2wi
+         DrMJzt4mZNCaw==
+Received: by mercury (Postfix, from userid 1000)
+        id 25A481066F0C; Tue, 18 Apr 2023 16:34:35 +0200 (CEST)
+Date:   Tue, 18 Apr 2023 16:34:35 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for Pinephone Pro
- to 1.5 MB
-Date:   Tue, 18 Apr 2023 16:26:23 +0200
-Message-ID: <3797122.KgjxqYA5nG@diego>
-In-Reply-To: <87h6tdie46.fsf@minerva.mail-host-address-is-not-set>
-References: <20230403175937.2842085-1-javierm@redhat.com> <3999080.iIbC2pHGDl@diego>
- <87h6tdie46.fsf@minerva.mail-host-address-is-not-set>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        XiaoDong Huang <derrick.huang@rock-chips.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v2 1/2] irqchip/gic-v3: Add Rockchip 3588001 errata
+ workaround
+Message-ID: <20230418143435.th22y4thv5vinwqq@mercury.elektranox.org>
+References: <20230417150038.51698-1-sebastian.reichel@collabora.com>
+ <20230417150038.51698-2-sebastian.reichel@collabora.com>
+ <86a5z6lbuv.wl-maz@kernel.org>
+ <20230417214033.25ckpswkjj6twfot@mercury.elektranox.org>
+ <865y9tlg7q.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kbbhwx4mrkobsids"
+Content-Disposition: inline
+In-Reply-To: <865y9tlg7q.wl-maz@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+
+--kbbhwx4mrkobsids
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
 Hi,
 
-Am Dienstag, 18. April 2023, 14:11:53 CEST schrieb Javier Martinez Canillas:
-> Heiko Stübner <heiko@sntech.de> writes:
-> 
-> Hello Heiko,
-> 
-> > Hi Peter,
-> >
-> > Am Dienstag, 4. April 2023, 14:52:02 CEST schrieb Peter Geis:
-> >> On Tue, Apr 4, 2023 at 3:55 AM Heiko Stübner <heiko@sntech.de> wrote:
-> >> >
-> >> > Hi,
-> >> >
-> >> > Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
-> >> > > This baud rate is set for the device by mainline u-boot and is also what
-> >> > > is set in the Pinebook Pro Device Tree, which is a device similar to the
-> >> > > PinePhone Pro but with a different form factor.
-> >> > >
-> >> > > Otherwise, the baud rate of the firmware and Linux don't match by default
-> >> > > and a 'console=ttyS2,1500000n8' kernel command line parameter is required
-> >> > > to have proper output for both.
-> >> >
-> >> > The interesting question is always if this will break someone else's setup.
-> >> > I've never really understood the strange setting of 1.5MBps, but on the
-> >> > other hand it _is_ a reality on most boards.
-> >
-> >> The 1.5M baud is default because the clock structure on rockchip
-> >> devices does not allow a clean 115200 baud. By attempting to force
-> >> 115200, it will always be slightly off (either low or high depending
-> >> on how the driver decided to round). If this actually causes any
-> >> problems is the subject of much debate.
-> >
-> > thanks so much for this piece of clock-detail. As I wrote, I never really
-> > understood the why _before_ but also never cared that much to dive
-> > into it and find out.
-> >
-> > So your explanation closes one knowledge gap in my head.
-> >
-> > Thanks a lot :-)
-> 
-> Did you make a decision about this? I guess the clock explanation is yet
-> another argument in favour of switching the PPP to a 1.5 Mbps baud rate ?
+On Tue, Apr 18, 2023 at 09:58:17AM +0100, Marc Zyngier wrote:
+> On Mon, 17 Apr 2023 22:40:33 +0100,
+> Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
+> > On Mon, Apr 17, 2023 at 05:20:08PM +0100, Marc Zyngier wrote:
+> > > Also, I don't see anything here addressing the *other* bug this
+> > > platform suffers from, which is the 32bit limit to the allocations.
+> > > Without a fix for it, this patch is pointless as the GIC may end-up
+> > > with memory it cannot reach.
+> > >
+> > > What;s the plan for that?
+> >=20
+> > It got fixed in RK3588.
+>=20
+> So what's the plan for the affected SoCs? It might be a good idea to
+> address it too, unless there are none of them in the wild?
 
-Sorry, but no decision made here. Either way it's breaking for someone,
-which makes this quite hard.
+The previous generation (RK3566 and RK3568) is affected by the 32
+bit issue as well as the shareability issue. I'm currently focusing
+on the RK3588 and that's the only Rockchip platform I have on my
+desk. Missing PCIe support is a lot more critical on RK3588, because
+multiple board designers decided to use a 2.5G PCIe network card
+instead of using the 1G network MAC from the SoC.
 
-The rate accuracy is the one side, the two-boot issue is the other side.
-And mainline u-boot (and levinboot - whatever that is) provides a 3rd side.
+Anyways, I will try to help out with RK356x once I find some time.
 
-People starting with the phone probably won't replace the bootloader
-in a first step but instead might play with a system image or newer kernel.
-So if the uart will break for everyone using the default bootloader from
-the factory that is somewhat bad.
+-- Sebastian
 
-I don't have a Pinephone Pro myself, so I really hoped for some Acks
-or similar to appear in the meantime.
+--kbbhwx4mrkobsids
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Do we have someone with an actual Pine64 affiliation in this loop?
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQ+qmoACgkQ2O7X88g7
++poOaxAAqLmebbW7CWZLqCIVVAxM/6dngT5X14eY2x27bNNmSsJGucNlvYJT6se+
+GGAUWMm66joQZ81Zr3u5ioCXrpJrdmXoiNCy3A2RBEtSiJ0A7Yi2z1yRezHuXmLd
+e38IrxQu/EbW+p3hXVetbdrrp39AiE8Rm734D/xFDbfUrwemQscfVj76Wg7EXyu3
+LNbebiGtfMPXcH2328mIIE8MaiK0jgQlkNPDQLMA749SRLxGE8TdGweHLW3dOQys
+0iY66CCRzzduB0jUnYyh+H8sVb3YVXzS31mD5+ONzdNjvA67Wz6hXmw2XLjVh+zx
+IUEzb09CH61huvjx8RQz7RLzWTjowFLORpB/ZcNnlLmMcrM8pw49x1BZZaYPzLqc
+KQcA6AcEQTRoISaVcFvRkiwDANJMCrrimuTIZV8GrTCxXoYqtH1tkEiB1VvJyTo2
+XfIAzlw+dATucraNBVHvpoi1UlL7hrJ6ltykv0TVw0oeX3OwGPSwxrkr7BwwMHu/
+8a35QogKik+uaJUBjENgjDmSa+IxyZAs7zIZmD8DcFe6Mod+VAM650iq2U8I3quv
+7tbnp8V1P56Uh348WIYiPyBvuGEJhPeopxhu455w/j+xQJHC/IHdH9B8ig1zKpRd
+cHPf8PP3N3fDSf68T5I1edptd/44fOgb6lkIOOqaqpqNglxhS50=
+=zajV
+-----END PGP SIGNATURE-----
 
-Heiko
-
-
+--kbbhwx4mrkobsids--
