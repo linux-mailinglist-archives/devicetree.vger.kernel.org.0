@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8719E6E5FB5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 13:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76156E5FD7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 13:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjDRLV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 07:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
+        id S229504AbjDRL35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 07:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjDRLV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 07:21:58 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D77993D8;
-        Tue, 18 Apr 2023 04:21:35 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxJDQ3fT5kvWkeAA--.48215S3;
-        Tue, 18 Apr 2023 19:21:27 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxC743fT5klNssAA--.53316S3;
-        Tue, 18 Apr 2023 19:21:27 +0800 (CST)
-Subject: Re: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229598AbjDRL34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 07:29:56 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0954146B8;
+        Tue, 18 Apr 2023 04:29:55 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id c9so33429162ejz.1;
+        Tue, 18 Apr 2023 04:29:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681817393; x=1684409393;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zUjxC0HW0q5I55Ax2kRGx20p8+lDHCxMQJGu0kJowSw=;
+        b=U0iCP8nOAVApaPEkGMtGpgndS6lVxObOT5lefbgS6i07iCjKPsAtfi0yrtsLTFav7C
+         dsYcDXIDHBHjLSwxkRnVns9jMC5mSyElI7ZZu8JIHF/v+r8F75GjSb/+BrBZC+ogAwgT
+         +jNu5mJgctRSYIY3mL0mxn8TGFh6qQ9Tm8hnXSGaYyUpD2epJt+wqrqM2j7fFbnwe/dm
+         PUkk3qgKtanqohQqh5BevHHP1jbw952C5P8+sTQruVtoSbQhITjeivDEXVs2fnYA+FZX
+         6PUuJQfNVssCi+Nb99qx+S4Gt95d9RG5gp/MZNRRuzQLjZFAWMerIZfHXA4P1Fe3Higa
+         a17w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681817393; x=1684409393;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zUjxC0HW0q5I55Ax2kRGx20p8+lDHCxMQJGu0kJowSw=;
+        b=FwppERspLD+BdyoDkyY86lkUCSejiqxGNxTomA6qmZNTpvECXJoLvcjRElX8qe8/Iu
+         rc6u2bojaOIj8OSieLj7YuRcSHUIYqn31O9kK4LYqppr72uaefRx6ChzlunATZM/8IJ9
+         h/Anex1ak+kn8vNNEpHrcgsWWOcE1xY3s9Tt1U6Sks4fHqrBE5710Pq2ftN86FGfhM5e
+         WxmGWcHEPp0s/BhP82HxymKaf+C2QZc2UjGWznBAVmIyyoBvBcC1iTv9jqyiT1E6kdbp
+         Ru6rBns2gtV5s+gehoC0gTC8zCCn4+2H5IU3UXRjzoJslOlfXDMk31UkZwsX10jNA3Pq
+         tHkQ==
+X-Gm-Message-State: AAQBX9cY8n0fQCS8mpIZ1t0f88maUf9rN7SNY/VWf27B6onjbXmxZWbH
+        bpWXjWuOMgHXwl1WhqGeEbI=
+X-Google-Smtp-Source: AKy350Z5PYIUr+24jeO+tsguwPxv00arJ5cPOm61+xLOM5UFxuNli8FAI+NRKMphOLz9QZFDv9jT/A==
+X-Received: by 2002:a17:906:f107:b0:895:58be:957 with SMTP id gv7-20020a170906f10700b0089558be0957mr10433828ejb.2.1681817393267;
+        Tue, 18 Apr 2023 04:29:53 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id c1-20020a17090603c100b00882f9130eafsm7799572eja.26.2023.04.18.04.29.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 04:29:52 -0700 (PDT)
+Message-ID: <a8a9e82b-996e-2b0d-4e3b-9ceda0ab81e4@gmail.com>
+Date:   Tue, 18 Apr 2023 13:29:51 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add rk3588 timer
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
-References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
- <bafedfaf-9ffe-b0ad-d51d-d4b820da3a80@linaro.org>
- <81229100-a546-74b3-d626-09d042688746@loongson.cn>
- <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <1e080e82-f20d-f3df-2eb0-f4104bfa616e@loongson.cn>
-Date:   Tue, 18 Apr 2023 19:21:27 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        Heiko Stuebner <heiko@sntech.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+References: <20230418095344.274025-1-cristian.ciocaltea@collabora.com>
+ <20230418095344.274025-4-cristian.ciocaltea@collabora.com>
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxC743fT5klNssAA--.53316S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7JFWkAFWUuF43WrW5JF4xJFb_yoWkurg_Kr
-        y8A3s7Wr1Uurs8Jw4vqF1I9ws8tr1Du34YkrW0gw4UC34fXFy5Ar4DCw1SqasxW3s3KFn0
-        kw4qgFyI9w4YvjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        27CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
-        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-        vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF04k20xvE74
-        AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
-        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
-        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
-        Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07URHq7UUUUU=
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20230418095344.274025-4-cristian.ciocaltea@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,36 +87,46 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-在 2023/4/18 下午3:06, Krzysztof Kozlowski 写道:
-> On 18/04/2023 04:53, zhuyinbo wrote:
->>
->>
->> 在 2023/4/15 上午4:43, Krzysztof Kozlowski 写道:
->>> On 12/04/2023 06:51, Yinbo Zhu wrote:
->>>> Loongson platform support spi hardware controller and this series patch
->>>> was to add spi driver and binding support.
->>>>
->>>> Change in v2:
->>>> 		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
->>>> 	 	   https://
->>>
->>> Can you stop Ccing fake address "loongson-kernel@lists.loongnix.cn"? It
->>> does not exist. Remove it from all submissions.Recently, There was some issue with the company's email server, causing
->> this mail list "loongson-kernel@lists.loongnix.cn" to only accept
->> internal emails and not accpet external emails. The company's IT is
->> working to fix this issue. and Ccing this mail list is an internal
->> requirement.  I will not send emails to this mail list until this email
->> sever issue is resolved.
+On 4/18/23 11:53, Cristian Ciocaltea wrote:
+> Add DT node for Rockchip RK3588/RK3588S SoC timer.
 > 
-> You can always Bcc it, if you have such requirement. However your
-> internal requirements should not cause my removing all the time multiple
-> bounces...
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 657c019d27fa..acd89a55374a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -1400,6 +1400,14 @@ i2c5: i2c@fead0000 {
+>  		status = "disabled";
+>  	};
+>  
 
-okay, I got it.
+> +	rktimer: timer@feae0000 {
 
-Thanks.
-> Best regards,
-> Krzysztof
-> 
+There are multiple timers.
+Use a label in line with the TRM.
+Maybe change your label to "timer0" in that trend?
 
+> +		compatible = "rockchip,rk3588-timer", "rockchip,rk3288-timer";
+> +		reg = <0x0 0xfeae0000 0x0 0x20>;
+
+> +		clocks = <&cru PCLK_BUSTIMER0>, <&cru CLK_BUSTIMER0>;
+> +		clock-names = "pclk", "timer";
+> +		interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH 0>;
+
+Heiko's sort rules:
+
+compatible
+reg
+interrupts
+[alphabetical]
+status [if needed]
+
+> +	};
+> +
+>  	wdt: watchdog@feaf0000 {
+>  		compatible = "rockchip,rk3588-wdt", "snps,dw-wdt";
+>  		reg = <0x0 0xfeaf0000 0x0 0x100>;
