@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ED7B6E5DF1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 370DC6E5DF3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 11:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbjDRJzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 05:55:07 -0400
+        id S230086AbjDRJzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 05:55:10 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjDRJzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:55:05 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A07461B7
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:54:51 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-504ecbfddd5so4469184a12.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:54:51 -0700 (PDT)
+        with ESMTP id S231138AbjDRJzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 05:55:07 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C706A77
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:54:53 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-94a35b0d130so648581066b.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 02:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681811690; x=1684403690;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2XjTw2b21Lrfk4Jj+V6+6PBPJM9Xvx/rp1PjUa4gW2g=;
-        b=PlTVbNDBEYUnR+2Y6PfJVtcYCczUn6Ca3dFuBncv4GXwgOmqtytA4fs28OTeWM4bsi
-         OS7QrnQH1b2vjIE72icuKzcpmJFOseNqLoSXZa12NOGqUkcrdFuaxFnFcg4Du1wpRfal
-         lca47bv8Mt7LBSSPs5Fr7c+RZ5PJx2XWoXdBVuIXQHWjPKRqm3z+OFgYuAlHm6PnJvlR
-         Y3lyID1XKdRBSd6vHlzn/ntqwltwmDwpMNdTt9OBbHVFz2PJIj+e3ZMtUs7wU1rOx2r0
-         XpB07nyyJfMShpJfpsx8Jh9VIi115BHRbvIg+Va21QjlNlkQBIS23un1c4Gj86aeqdf0
-         quMg==
+        d=linaro.org; s=google; t=1681811691; x=1684403691;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qQ8KevaU3QTxraZkfXWWkbBrnYMVguulcoi7GnzRXhI=;
+        b=RPWTOocd+41sseJPEHA3IfI9DCZsYutqaxHBRwl1A6XNqRizzEsiS3XBM4oSfs28Fx
+         zp3jXQscxLT9M2RbrTVwOuTrxQMYDyDX9f96fY/d72sqFtE2v0HyqeDmNLtRy49Qruj1
+         pQgr50Y2nblqGHR96iDIL+a0quDDrVSPI7gZw577X7tgFZD+NJxStQ2KrKH8zc8n6250
+         4erldJ7VJXMzt9vA+fR5s0Tr8r2lM7C+LTWYlQf4mDhdBFw2JItJx+P+rkzyswIJyQUN
+         1x2fo67hg2v/S/SLs7C8zjKy5bfBM+CIQf3P14jbCMFR+28KcV90S62OO11lMszpAudO
+         Ob6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681811690; x=1684403690;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2XjTw2b21Lrfk4Jj+V6+6PBPJM9Xvx/rp1PjUa4gW2g=;
-        b=YLuow7gnGZYMaDkpTdDCfRVGXdTx2WqwT/WPHRbAKNMUc7ynJYjp8+3lDery/jX1BL
-         3NHD5+kkNcea07AHjxc0BL0wgPMMo6rPXGVsHsq0Wzp2x6DcqtK+gGOAbttT8gIMJizU
-         X3oVEDsRBegmiI3VlfrhgKXgq+QrZtm2GLat9VKP4goRk3pnn1ODIADkLS68cT+mzNhb
-         BdCBVXmnT/eSgZkkR012yYWrbwwWJSLFfwmxFsmJDLGiC4py+I/vWH3YQsNgywRGKKV5
-         AmfLyfsFyMeI+ErQ1vxZfgQocF7rxufut06vbLgEFhJXraTSreW/o2Dbwm1r4f0b8lKc
-         yx4A==
-X-Gm-Message-State: AAQBX9dYUSbH82GW6oW3lQI9ykZQQsriB/oJekn7LCqb/3Hv0sNn2qmg
-        /b0FfT5z8CD0leE+4S7/p71gXA==
-X-Google-Smtp-Source: AKy350ZoxJAY3osQymk/xjYIDkdSjS0BzSqPxS/Lm+86HDfHKVxW1WWwARUG2qSTrkpHqDsjf2Kytg==
-X-Received: by 2002:a05:6402:748:b0:506:ae87:a36a with SMTP id p8-20020a056402074800b00506ae87a36amr1867913edy.14.1681811690360;
-        Tue, 18 Apr 2023 02:54:50 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681811691; x=1684403691;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qQ8KevaU3QTxraZkfXWWkbBrnYMVguulcoi7GnzRXhI=;
+        b=UXMZEIkAMYCZvM2QvB58sDGogzuu5owTRIJ5fQEdzd5nkp91Xrn3V0iLGvyMdjNdYN
+         GuDyGvsazXKlNPA8lKkq5jOGjpmxdpi7iqysTV+st0vFG1yjveXMWBUsybkQJTzihYAN
+         pZJA8KUYvdScAVYGqBmZqiScnZpsOwDaCs0QAgT+R3fytUZMtN7olOKYHUr8sabuvi4j
+         RZWrc5K4Vv9ytNLIWaO7IMWFioPweDXWh4nibWFOJpoM717Hcm9+p1HF1OVUibZqM8kS
+         0ULxgrBNfdoJPkH+7fRmjBU35sdUBuBApCvdrCCgTDeKtmkOAHWJgy6RYFkfayEMeLR2
+         A4wg==
+X-Gm-Message-State: AAQBX9f15LNUwDr+zWmbkI9rCjQ+kZ1B1ih/Jcv0Wpwo2z+wThrfqYf+
+        /Bn7vbCuUQjwj/CBGZF+7EMhJQ==
+X-Google-Smtp-Source: AKy350ZJ2akv/lhLAIvrIXntFS6VWUAwO+3l1rJios+Izhwxd25Sw7+kk5nrVxaPll2aNsOcEwv3Zw==
+X-Received: by 2002:aa7:c45a:0:b0:504:a2c8:ea60 with SMTP id n26-20020aa7c45a000000b00504a2c8ea60mr1740013edr.35.1681811691495;
+        Tue, 18 Apr 2023 02:54:51 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id o4-20020a509b04000000b00504d04c939fsm7076578edi.59.2023.04.18.02.54.49
+        by smtp.gmail.com with ESMTPSA id o4-20020a509b04000000b00504d04c939fsm7076578edi.59.2023.04.18.02.54.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 02:54:49 -0700 (PDT)
+        Tue, 18 Apr 2023 02:54:51 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,11 +63,14 @@ To:     Andy Gross <agross@kernel.org>,
         Rao Mandadapu <quic_srivasam@quicinc.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 0/7] soundwire: qcom: add support for SM8550 (Soundwire v2.0.0)
-Date:   Tue, 18 Apr 2023 11:54:40 +0200
-Message-Id: <20230418095447.577001-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/7] dt-bindings: soundwire: qcom: add Qualcomm Soundwire v2.0.0
+Date:   Tue, 18 Apr 2023 11:54:41 +0200
+Message-Id: <20230418095447.577001-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230418095447.577001-1-krzysztof.kozlowski@linaro.org>
+References: <20230418095447.577001-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,35 +83,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add compatible for Qualcomm Soundwire v2.0.0 controller, which comes
+with several differences against v1.7.0 in register layout and more
+ports (thus increase maxItems of each port-related property to 16).
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
 
 Changes since v2:
-1. Use uint16 for qcom,ports-sinterval.
-   DTS will be fixed in separate patchset.
-2. Add tags.
+1. Add tags.
 
 Changes since v1:
-1. Patch 1: Increase maxItems to 16 for port-related properties.
-2. Re-order patch 1 and 2.
-3. Patch 3: Drop unneeded semicolon.
-4. Patch 5: Fix lang typo in subject.
+1. Increase maxItems to 16 for port-related properties.
+---
+ .../bindings/soundwire/qcom,soundwire.yaml    | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (7):
-  dt-bindings: soundwire: qcom: add Qualcomm Soundwire v2.0.0
-  dt-bindings: soundwire: qcom: add 16-bit sample interval
-  soundwire: qcom: allow 16-bit sample interval for ports
-  soundwire: qcom: use consistently 'ctrl' as state variable name
-  soundwire: qcom: prepare for handling different register layouts
-  soundwire: qcom: add support for v2.0.0 controller
-  soundwire: qcom: use tabs for indentation in defines
-
- .../bindings/soundwire/qcom,soundwire.yaml    |  39 +-
- drivers/soundwire/qcom.c                      | 387 ++++++++++++------
- 2 files changed, 287 insertions(+), 139 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+index e4dba825ab11..98c7fc7e1189 100644
+--- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
++++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+@@ -21,6 +21,7 @@ properties:
+       - qcom,soundwire-v1.5.1
+       - qcom,soundwire-v1.6.0
+       - qcom,soundwire-v1.7.0
++      - qcom,soundwire-v2.0.0
+ 
+   reg:
+     maxItems: 1
+@@ -80,7 +81,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+ 
+   qcom,ports-sinterval-low:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -91,7 +92,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+ 
+   qcom,ports-offset1:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -102,7 +103,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+ 
+   qcom,ports-offset2:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -113,7 +114,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+ 
+   qcom,ports-lane-control:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -124,7 +125,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+ 
+   qcom,ports-block-pack-mode:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -137,7 +138,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+     items:
+       oneOf:
+         - minimum: 0
+@@ -154,7 +155,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+     items:
+       oneOf:
+         - minimum: 0
+@@ -171,7 +172,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+     items:
+       oneOf:
+         - minimum: 0
+@@ -187,7 +188,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 8
++    maxItems: 16
+     items:
+       oneOf:
+         - minimum: 0
 -- 
 2.34.1
 
