@@ -2,130 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C923C6E5821
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 06:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9784C6E584F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 07:05:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbjDREjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 00:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42502 "EHLO
+        id S230094AbjDRFFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 01:05:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjDREjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 00:39:40 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C431BDC;
-        Mon, 17 Apr 2023 21:39:39 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33I1Qn8m013458;
-        Tue, 18 Apr 2023 04:39:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=3XTWqtZ3w9Eey9pd4PsRb/Fejz/hw3NeUUOaQHLLLss=;
- b=glq8roC9jkCIWGP91biXuYIWmm1AErqmOW1al3+O4uLUbwfguEIEPcJoDJ/pT7nDjZx+
- XPBev/YHr6JNAmm1WMZiUS10NNJ8YSXPlyipv4WBACbjHY0qd63noq6tF72Rq7ys3DiN
- EfkYMwPgLBhKcnMsSHofxwesdueD6KljH0KKwYdE3H6ntTaeRhqKuYJa/HfsaZrmhGkP
- Kpg4mdYKSwsmfGf2ei8cQCOV2lR9rGnAJlgVm2eynR8vA13SluYxUwIi7zQB3Gpy5TGC
- 8gMH8ZEmjufwcuW51R67zxvYElMeXlW19mcOq8lucyZPKw0wrVCRE1xNqCS2QEhC3QBr rA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q1h0cgbbx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Apr 2023 04:39:16 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33I4dFBv004298
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Apr 2023 04:39:15 GMT
-Received: from [10.217.217.202] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 17 Apr
- 2023 21:39:08 -0700
-Message-ID: <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
-Date:   Tue, 18 Apr 2023 10:09:01 +0530
+        with ESMTP id S229517AbjDRFFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 01:05:31 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C67A3ABB;
+        Mon, 17 Apr 2023 22:05:29 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33I55Mtk055702;
+        Tue, 18 Apr 2023 00:05:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681794322;
+        bh=V+nGsErWtA6jdufLk2LE0f6l1Px9r4oo4MInT9OEVHA=;
+        h=From:To:CC:Subject:Date;
+        b=scUA+tjtos2KbgnYNlezJ0dg6BrwkJfmgWsGK6aCtjlpVUYA3DpEHUH99KouF/YOR
+         aNGEgOynPWvlyiNom1Qoxo9J6elc5pDs+T1WovZNzS+coetoJ5PjXP4egscQ8KE8/X
+         A6IBhsmfA30yEcyXOdsSG0z50aWPNl/HqGJk9CQ0=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33I55MAQ104139
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Apr 2023 00:05:22 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 18
+ Apr 2023 00:05:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 18 Apr 2023 00:05:21 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33I55Hc5046130;
+        Tue, 18 Apr 2023 00:05:18 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <bb@ti.com>,
+        <vaishnav.a@ti.com>, <j-choudhary@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH v2 0/2] arm64: dts: ti: k3-j7200-common-proc-board fixes
+Date:   Tue, 18 Apr 2023 10:35:12 +0530
+Message-ID: <20230418050514.2392717-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sa8775p: pmic: remove the PON modes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230413131705.3073911-1-brgl@bgdev.pl>
- <20230413131705.3073911-2-brgl@bgdev.pl>
- <3e361a73-797f-41c7-1ead-ecafee3928e4@linaro.org>
-Content-Language: en-US
-From:   Shazad Hussain <quic_shazhuss@quicinc.com>
-In-Reply-To: <3e361a73-797f-41c7-1ead-ecafee3928e4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4fG5p8sFF0XmZEJRWb4HKzAGsKAglQ2H
-X-Proofpoint-GUID: 4fG5p8sFF0XmZEJRWb4HKzAGsKAglQ2H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_14,2023-04-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 phishscore=0 mlxlogscore=949 malwarescore=0
- clxscore=1011 suspectscore=0 impostorscore=0 spamscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304180041
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series fixes the pin mux configuration and enable
+wkup_i2c0 at board level.
+
+Changes since v1:
+https://lore.kernel.org/all/20230414181434.2046049-1-u-kumar1@ti.com/
+Pin mux:
+- Fixed commit message and author
+
+wkup_i2c:
+- Removed Fixes tag in commit message
+- Moved wkup_i2c in som instead of common board
+- Added eeprom as child device
 
 
-On 4/13/2023 9:42 PM, Krzysztof Kozlowski wrote:
-> On 13/04/2023 15:17, Bartosz Golaszewski wrote:
->> From: Parikshit Pareek <quic_ppareek@quicinc.com>
->>
->> Remove the power on reasons with reboot from the pmm8654au_0_pon.
->> Instead, the PoN reaons should be part of different sdam_0 mode, to
-> 
-> typo: reasons
-> 
->> be interoduced.
-> 
-> introduced
-> 
-> Anyway it does not say why. Are these power reasons not correct?
-> 
+Keerthy (1):
+  arm64: dts: ti: k3-j7200: Fix  physical address of pin
 
-Hi Krzysztof,
-Since sm8350 the PMIC PON peripheral was split into PON_HLOS and PON_PBS
-to avoid security concerns with HLOS APPS being able to trigger a PMIC
-WARM_RESET unilaterally. When the split occurred, the spare registers
-ended up in PON_PBS, not PON_HLOS. Thus at that time, we moved to using
-an SDAM register for Linux “reboot reason” configuration. And bootloader
-also SDAM register to get these reboot region data to get into
-bootloader/edl, so to have this working we need to use SDAM.
+Udit Kumar (1):
+  arm64: dts: ti: k3-j7200-som: Enable I2C
 
->>
->> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
->> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> ---
-> 
-> Best regards,
-> Krzysztof
-> 
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 28 +++++++++----------
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   |  8 ++++++
+ 2 files changed, 22 insertions(+), 14 deletions(-)
 
--Shazad
+-- 
+2.34.1
+
