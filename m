@@ -2,150 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB116E66F5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 607816E6703
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbjDROTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 10:19:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56290 "EHLO
+        id S232372AbjDROVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 10:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232161AbjDROTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:19:01 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C857146C9
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 07:18:49 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sz19so16572050ejc.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 07:18:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1681827527; x=1684419527;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zST2ogY5xFX7piRNXStlaVQvyezkCUdzLc+A/+WCH/0=;
-        b=BygM/wM5k1MV5OG0uIeGXhl1I4Y8uM9RBcI23wGX2dXSi9Gd0VZELJJkozAjvziOIe
-         iXFp32fIzPuKr9Yb8XA7sAaYznKrdWVvCNnPGBIfnuCnwx2I3UPM1SrpEiH8MwDcKsqv
-         csUptvD/Ce7lo1Z8QTcggfoEcm8xeOXs9acrQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681827527; x=1684419527;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zST2ogY5xFX7piRNXStlaVQvyezkCUdzLc+A/+WCH/0=;
-        b=F2kppoLki5XBvg4JkO1OuGyrz9ife3grYUp8TkyK+/EpfZPlTIQSB09tJ5iv06hNvO
-         T1a5TV9MgryuNB20VtTtRo2EwGADTlsStvtJwiV7Jo83kiqqubwCxZPo/EPtN33LGKq7
-         XzboQFGCJd08FefIL9eGSQIC+vPmLKofI+u0npkeYvO26LgPYEklfa8Vl3+U1UCTMr+J
-         B57/rLJ1xMxkYS1yL+eB/b766KgQaKFZIQEGvBUlqY10HeA9r8BN7D+7slgPAuYIqdu7
-         7bHiA5icuIdkLV3xR7RiMm54PVsx6tzO3w7RLwDz8D6FXsS9rF1pLlagzkolqRyIygVE
-         +wQw==
-X-Gm-Message-State: AAQBX9cU7IymVp9NWmKBWY3Vw/V/6DTyqW2Ox/bK6CZCTrg2j0hEpPH9
-        DDEQeEbZk/eF3bNnrNGmRljBrjZIQKxzjKsqB2YpYA==
-X-Google-Smtp-Source: AKy350YwEGdq//vQ3i+u+fbxJMr5XUf94CkXW57d+BcSREEStc+DFwWtPxviJI0I1psnJabRZ8fOqQ==
-X-Received: by 2002:a17:906:b202:b0:94e:d688:c36d with SMTP id p2-20020a170906b20200b0094ed688c36dmr10097538ejz.38.1681827527203;
-        Tue, 18 Apr 2023 07:18:47 -0700 (PDT)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
-        by smtp.gmail.com with ESMTPSA id d9-20020a17090648c900b0094f4f2db7e0sm4022476ejt.143.2023.04.18.07.18.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 07:18:45 -0700 (PDT)
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-3f0a80b694fso24244775e9.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 07:18:44 -0700 (PDT)
-X-Received: by 2002:adf:e803:0:b0:2fa:d7ac:6462 with SMTP id
- o3-20020adfe803000000b002fad7ac6462mr485497wrm.11.1681827524446; Tue, 18 Apr
- 2023 07:18:44 -0700 (PDT)
+        with ESMTP id S232191AbjDROVH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:21:07 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71F0D3;
+        Tue, 18 Apr 2023 07:21:00 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33ICJmX5002743;
+        Tue, 18 Apr 2023 14:20:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=OArC9FmpAULTLKedM2saq3731EqYWUE/8Zd8VIDQvqM=;
+ b=F9WjVTFdyOWNJpD7igR1t0QbYin1medxsrLIK0bpC4aMB4amWuFoScNv+vPtVFvYjC3G
+ T3FpJF+kueHcK4aHsu8ztmojxPVeQu084sMdREyeTAmxt8VUWne+B5xjUYwDJB9q/jnG
+ Y9/RSIvV/pYwFh5xHa3l1k4u4mEbe227MWRpC01vrdS5yktOTOqOe7X/9+xDI+7yoeXp
+ k7nQ7tRPk4Dbf4sog6PvKdSmEOuBs7hGStBgIBage0aI3PWykGKxWP0xHWDmxhBEyQwI
+ SV6g6gH+iQv/z0loedxe9qv+aeTziR/sFzpEgrOtWLmMIXGfwd9m+WFujnSHNezojUt/ vA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q1a6cabsj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 14:20:42 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33IEKGeo013685
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 14:20:16 GMT
+Received: from [10.110.100.39] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 18 Apr
+ 2023 07:20:16 -0700
+Message-ID: <d05b26ff-1c49-69eb-7146-8f7cef7e1ddb@quicinc.com>
+Date:   Tue, 18 Apr 2023 07:20:15 -0700
 MIME-Version: 1.0
-References: <20230418124953.3170028-1-fshao@chromium.org> <20230418124953.3170028-2-fshao@chromium.org>
-In-Reply-To: <20230418124953.3170028-2-fshao@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 18 Apr 2023 07:18:32 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V8ZN3969RrPu2-zZYoEE=LDxpi8K_E8EziiDpGOSsq1w@mail.gmail.com>
-Message-ID: <CAD=FV=V8ZN3969RrPu2-zZYoEE=LDxpi8K_E8EziiDpGOSsq1w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend property
-To:     Fei Shao <fshao@chromium.org>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3 2/2] firmware: arm_scmi: Augment SMC/HVC to allow
+ optional parameter
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230409181918.29270-1-quic_nkela@quicinc.com>
+ <20230417174401.19563-1-quic_nkela@quicinc.com>
+ <20230417174401.19563-3-quic_nkela@quicinc.com>
+ <02b34c80-f37e-deee-29cd-de7db902797d@gmail.com>
+ <20230418095846.4lkncoa4beeih2hj@bogus>
+Content-Language: en-US
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20230418095846.4lkncoa4beeih2hj@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: CW-GFrCmQd8jE5Vm6nEap7yINRU4eOBk
+X-Proofpoint-GUID: CW-GFrCmQd8jE5Vm6nEap7yINRU4eOBk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-18_11,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ mlxscore=0 malwarescore=0 phishscore=0 priorityscore=1501 mlxlogscore=999
+ bulkscore=0 impostorscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304180124
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Tue, Apr 18, 2023 at 5:50=E2=80=AFAM Fei Shao <fshao@chromium.org> wrote=
-:
+On 4/18/2023 2:58 AM, Sudeep Holla wrote:
+> On Mon, Apr 17, 2023 at 11:01:13AM -0700, Florian Fainelli wrote:
+>> On 4/17/23 10:44, Nikunj Kela wrote:
+>>> This patch add support for passing shmem channel address as parameter
+>>> in smc/hvc call. This patch is useful when multiple scmi instances are
+>>> using same smc-id and firmware needs to distiguish among the instances.
+>> Typo: distinguish.
+>>
+>> It really would have been a lot clearer and made a whole lot more sense to
+>> encode a VM ID/channel number within some of the SMCCC parameters, possibly
+>> as part of the function ID itself.
+>>
+> Yes I was about to suggest this but then remembered one main reason I have
+> been given in the past against that:
+> If the system launches high number of VMs then that means loads of FID
+> needs to be reserved for SCMI and the hypervisor needs to support it.
+> Basically it is not scalable which I agree but not sure if such large
+> number of VMs are used in reality with SCMI. But I agree with the technical
+> reasoning.
 >
-> We observed that on Chromebook device Steelix, if Goodix GT7375P
-> touchscreen is powered in suspend (because, for example, it connects to
-> an always-on regulator) and with the reset GPIO asserted, it will
-> introduce about 14mW power leakage.
+> The other reason why I preferred the shmem address itself instead of some
+> custom VM ID/channel number is that it can easily becomes vendor specific
+> for no real good reason and then we need to add support for each such
+> different parameters. Nikunj suggested getting them from DT which I really
+> don't like if the sole reason is just to identify the channel. We don't
+> have standard SCMI SMC/HVC but allowing such deviations with params from
+> DT will just explode with various combinations for silly/no reason.
 >
-> This property is used to indicate that the touchscreen is powered in
-> suspend. If it's set, the driver will stop asserting the reset GPIO in
-> power-down, and it will do it in power-up instead to ensure that the
-> state is always reset after resuming.
+Would you be ok to pass the smc/hvc parameters via kernel parameters in 
+commandline? If so, I can implement that. I just wanted to keep 
+everything in one place hence suggested using DTB node.
+
+> [...]
 >
-> Signed-off-by: Fei Shao <fshao@chromium.org>
-> ---
->
->  Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml =
-b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> index ce18d7dadae2..942acb286d77 100644
-> --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> @@ -43,6 +43,12 @@ properties:
->        itself as long as it allows the main board to make signals compati=
-ble
->        with what the touchscreen is expecting for its IO rails.
->
-> +  powered-in-suspend:
-> +    description:
-> +      This indicates that the touchscreen is powered in suspend, so the =
-driver
-> +      will not assert the reset GPIO in power-down to prevent power leak=
-age.
-> +    type: boolean
-
-This seems OK to me. The overall idea is that if we ever turn off the
-power to the touchscreen we have to assert reset (active low) before
-doing so, but we don't want to hold reset if we're not actually going
-to turn the power off because it causes the touchscreen to go into a
-high power state. This gets complicated if the power rail is always-on
-or shared with another device.
-
-Alternatives I could think of:
-
-1. In the OS, monitor the regulator and see when it's about to go off
-and then assert reset. This is what I tried to do in previous patches
-but it got too messy in Linux. It also wasn't perfect since it's
-(theoretically) possible for a regulator to turn off outside of the
-scope of the OS (some PMICs will auto turn off rails when the main
-processor says it's off).
-
-2. In the OS, peek to see if our regulator is marked "always on". This
-doesn't handle the shared rail case, of course. Also, regulators that
-are "always on" from the OS perspective could still (theoretically)
-get turned off at suspend time by the PMIC.
-
-3. Don't even hook up the reset line and just leave the touchscreen
-out of reset all the time. This has the disadvantage that we can't
-reset the touchscreen if it gets into a bad state, which could be even
-more important if the touchscreen is on an always-on or shared rail.
-
-
-Given the above, the solution in ${SUBJECT} patch seems reasonable.
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>> @@ -137,6 +144,8 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+>>>    	if (ret < 0)
+>>>    		return ret;
+>>> +	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param"))
+>>> +		scmi_info->param = res.start;
+>> There is not even a check that this is going to be part of the kernel's view
+>> of memory, that seems a bit brittle and possibly a security hole, too. Your
+>> hypervisor presumably needs to have carved out some amount of memory in
+>> order for the messages to be written to/read from, and so would the VM
+>> kernel, so eventually we should have a 'reserved-memory' entry of some sort,
+>> no?
+>>
+> Not disagreeing here. Just checking if my understanding is correct or not.
+> IIUC, we need reserved-memory if it is part of the memory presented to the
+> OS right ? You don't need that if it is dedicated memory like part of SRAM
+> or something similar.
+We are not using reserved-memory node. Instead using sram-mmio to carve 
+out shmem for scmi instances.
+>>>    	/*
+>>>    	 * If there is an interrupt named "a2p", then the service and
+>>>    	 * completion of a message is signaled by an interrupt rather than by
+>>> @@ -156,6 +165,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+>>>    	}
+>>>    	scmi_info->func_id = func_id;
+>>> +	scmi_info->is_smc64 = ARM_SMCCC_IS_64(func_id);
+>>>    	scmi_info->cinfo = cinfo;
+>>>    	smc_channel_lock_init(scmi_info);
+>>>    	cinfo->transport_info = scmi_info;
+>>> @@ -188,7 +198,20 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
+>>>    	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
+>>> -	arm_smccc_1_1_invoke(scmi_info->func_id, 0, 0, 0, 0, 0, 0, 0, &res);
+>>> +#ifdef CONFIG_ARM64
+>>> +	/*
+>>> +	 * if SMC32 convention is used, pass 64 bit address in
+>>> +	 * two parameters
+>>> +	 */
+>>> +	if (!scmi_info->is_smc64)
+>> There is no need for scmi_info to store is_smc64, just check the func_id
+>> here and declare is_smc64 as a local variable to the function.
+>>
+> +1
+ACK!
+>> Also, another way to approach this would be to encode the parameters region
+>> in 4KB units such that event on a 32-bit system with LPAE you are guaranteed
+>> to fit the region into a 32-bit unsigned long. AFAIR virtualization and LPAE
+>> are indistinguishable on real CPUs?
+>>
+> Agree with the idea. But can a single 4kB be used for multiple shmem across
+> VMs ? IIUC the hypervisor can deal with that, so I prefer it if it is possible
+> practically.
+We have multiple VMs and each VM has multiple instances. We will have 
+quite a few domains and I am not sure if single page will suffice.
+> --
+> Regards,
+> Sudeep
