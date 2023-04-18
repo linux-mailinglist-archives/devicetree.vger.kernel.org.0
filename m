@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 783896E6CB9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 21:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C326E6CE1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 21:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232809AbjDRTNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 15:13:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56486 "EHLO
+        id S230465AbjDRTWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 15:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232803AbjDRTNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 15:13:10 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E7183F7;
-        Tue, 18 Apr 2023 12:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681845188; x=1713381188;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hi5rDPKAiKO3dkrZvNzmcu1W3or/62oMJmUKhJ71JxI=;
-  b=PitZOOnn+pSo1WsR747jqhlcrDSNvnom2hZNJNgUhDkVWEAIpi+4ABNE
-   yCKgfsIiHE9wRJRI4hgX/dQ6J/+2oBCwCa/Hh5ll8f4p6+icGvpmL3DQG
-   T0Wdt5+Bk9kPgxj9IfYu/VYslg/4oAAOElJwEf43GSIBJdraUwSBgevud
-   kWdUt3PD8ijPoCN/R61q8zLcNtXlBks4MlBRSNtm6InyZNsYQOxBhIOTM
-   oyvDgAqAkdF8bD1vairYGDqC5MfEUihlANxvF7WA169PjiWZnOcSNt3KQ
-   GCo8Ax1fHntGPX6f9MsM8krzPmOeQ5PZ8nJGq+SDZ5VaxCsSm/WK+fD0p
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="325599452"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
-   d="scan'208";a="325599452"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 12:13:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="641481107"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
-   d="scan'208";a="641481107"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 18 Apr 2023 12:13:04 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1poqlD-000dwL-1q;
-        Tue, 18 Apr 2023 19:13:03 +0000
-Date:   Wed, 19 Apr 2023 03:12:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Stefan Berger <stefanb@linux.ibm.com>, kexec@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        nayna@linux.ibm.com, nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Stefan Berger <stefanb@linux.ibm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Nageswara R Sastry <rnsastry@linux.ibm.com>,
-        Coiby Xu <coxu@redhat.com>
-Subject: Re: [PATCH v9 4/4] tpm/kexec: Duplicate TPM measurement log in
- of-tree for kexec
-Message-ID: <202304190215.d0zwo1ni-lkp@intel.com>
-References: <20230418134409.177485-5-stefanb@linux.ibm.com>
+        with ESMTP id S232431AbjDRTW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 15:22:27 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDDB1721;
+        Tue, 18 Apr 2023 12:22:25 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id fw30so23188114ejc.5;
+        Tue, 18 Apr 2023 12:22:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681845744; x=1684437744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MVAYFkU4mZduYsk7XhlvO4PjGSkxPXxfIXo1XXy+AEs=;
+        b=VHSLJh7a0+mKe8SJNR4lwJZ0ByLipyZYp6jzwW0N879wOMzn9Tn0xL/cbZMxu+DSV5
+         4ZF/OeV7jpVoTkqQNSRHhdQYDDswnLXGcgX7/vqMsTosqbF6RETV7WUjoq8M5LbsZKm+
+         ChbTa16747d2uH6di9ad2XsnFy87gzxUEHQ4wDWQHbx3bssEPWh+W2LPRfY+jpnn6NXz
+         rtnw62vhRqFklBkDZ6JS34otGmzZn/zJ7Rva0SWp/79WuCPEYWI7ZD9Wqv9UPwgadeoO
+         Mklj2jOVUkshn1TX4W1mYOgdM6ZR0ra5MR7nkISGaJlwU7CW9YNYNtyu37tZahbdM6Ir
+         gJEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681845744; x=1684437744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MVAYFkU4mZduYsk7XhlvO4PjGSkxPXxfIXo1XXy+AEs=;
+        b=ixRnIVnGrlhWrz2kXPoznvqM6MLlZm1/ov8MQo8D/Dl8Av8s4cnoGJmeogpo7gM6NV
+         PhGWCgNGS0z+kJYdnlKybhsow5bsrn9b4cClYrgBASTphVXCYLf7pqKz6K3QE2VDWnBk
+         6uZo6D7CHCXWZmxtw0lVBhbfZIWBDgocRaXezGPaBkH5k3/lb86oqqrUaoYCrMVG8y0z
+         Qvhb9pAfrvwARMtyiwSNBguBCjHdF5toodqAJkuXdXn18y3e/3wmFiaxs37AX43/Mlpk
+         /U/yUj6UGvSI8Hj9Vf/OOvRmK58MY6L7TmoR01e5uvzzJ8WNMIP9S5PvpgrJtnfBWzsW
+         x4/g==
+X-Gm-Message-State: AAQBX9cV5hmfCBakEX1+Etc/c/vtkBwzmYBnbd57R8y250VfM91jIWLV
+        mmSfwOA1MHGbWxLJq1+1ve9Rl23FXeaB/PM7AUFlSePHcPI=
+X-Google-Smtp-Source: AKy350YAbd1xtzBLNooSy7Q7R7XUCCs+WEyWb5S82P/Ez2u3mb+sD7/nEsuSWPBB2lXyd28OFJ8kCMKGff7hYfa98LY=
+X-Received: by 2002:a17:906:4a82:b0:94f:cee:56f2 with SMTP id
+ x2-20020a1709064a8200b0094f0cee56f2mr11285413eju.4.1681845744201; Tue, 18 Apr
+ 2023 12:22:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230418134409.177485-5-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <20230310144710.1543139-1-robh@kernel.org> <20230418162500.GC1764573-robh@kernel.org>
+ <CABb+yY3Y8oZYG1y8zfTCC8g7=T0HQp3G3N_iECudo1gduYpy-A@mail.gmail.com> <CAL_Jsq+Oxj4ZDMyS_jOXiZEL2p=mYGr4MOGxiLen1ThRVE5cMw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+Oxj4ZDMyS_jOXiZEL2p=mYGr4MOGxiLen1ThRVE5cMw@mail.gmail.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Tue, 18 Apr 2023 14:22:12 -0500
+Message-ID: <CABb+yY2owfFY_6UucBeGfP66jBMrSBPKRBzenMHgoGm25Jw2fg@mail.gmail.com>
+Subject: Re: [PATCH] mailbox: Use of_property_read_bool() for boolean properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,54 +68,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+On Tue, Apr 18, 2023 at 2:06=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Tue, Apr 18, 2023 at 11:36=E2=80=AFAM Jassi Brar <jassisinghbrar@gmail=
+.com> wrote:
+> >
+> > On Tue, Apr 18, 2023 at 11:25=E2=80=AFAM Rob Herring <robh@kernel.org> =
+wrote:
+> > >
+> > > On Fri, Mar 10, 2023 at 08:47:10AM -0600, Rob Herring wrote:
+> > > > It is preferred to use typed property access functions (i.e.
+> > > > of_property_read_<type> functions) rather than low-level
+> > > > of_get_property/of_find_property functions for reading properties.
+> > > > Convert reading boolean properties to to of_property_read_bool().
+> > > >
+> > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > > ---
+> > > >  drivers/mailbox/hi6220-mailbox.c | 5 +----
+> > > >  drivers/mailbox/omap-mailbox.c   | 3 +--
+> > > >  2 files changed, 2 insertions(+), 6 deletions(-)
+> > >
+> > > Ping!
+> > >
+> > Pong :)
+> >
+> > I don't usually reply back that it looks good and will pick for the
+> > merge window. I just do that. So yes, it is not overlooked.
+>
+> Okay. No reply nor applying it in over a month is not a great
+> experience for submitters.
+>
+I sense that. I may be wrong, but I feel any form of ack from a
+maintainer demotivates others from looking critically at the
+submission. I have seen revisions asked after many weeks of
+submission. So my idea is to let a patch roast in public glare.  Maybe
+I should reply after 2-3weeks.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 6a8f57ae2eb07ab39a6f0ccad60c760743051026]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Berger/drivers-of-kexec-ima-Support-32-bit-platforms/20230418-214600
-base:   6a8f57ae2eb07ab39a6f0ccad60c760743051026
-patch link:    https://lore.kernel.org/r/20230418134409.177485-5-stefanb%40linux.ibm.com
-patch subject: [PATCH v9 4/4] tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
-config: x86_64-randconfig-a013-20230417 (https://download.01.org/0day-ci/archive/20230419/202304190215.d0zwo1ni-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/16a833d47b9aca53a1b099dea4066b76b7f14ee1
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Stefan-Berger/drivers-of-kexec-ima-Support-32-bit-platforms/20230418-214600
-        git checkout 16a833d47b9aca53a1b099dea4066b76b7f14ee1
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/mailbox/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304190215.d0zwo1ni-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/mailbox/mailbox.c:18:
-   In file included from include/linux/mailbox_client.h:10:
->> include/linux/of.h:1664:48: warning: declaration of 'struct kimage' will not be visible outside of this function [-Wvisibility]
-   static inline void tpm_add_kexec_buffer(struct kimage *image) { }
-                                                  ^
-   1 warning generated.
-
-
-vim +1664 include/linux/of.h
-
-  1660	
-  1661	#if defined(CONFIG_KEXEC_FILE) && defined(CONFIG_OF_FLATTREE)
-  1662	void tpm_add_kexec_buffer(struct kimage *image);
-  1663	#else
-> 1664	static inline void tpm_add_kexec_buffer(struct kimage *image) { }
-  1665	#endif
-  1666	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+-j
