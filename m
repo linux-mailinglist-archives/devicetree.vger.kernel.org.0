@@ -2,812 +2,889 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 687436E5EC4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 12:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9026E5EB6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 12:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjDRK3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 06:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
+        id S229631AbjDRK06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 06:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjDRK3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 06:29:51 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F021B9;
-        Tue, 18 Apr 2023 03:29:47 -0700 (PDT)
+        with ESMTP id S229498AbjDRK0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 06:26:50 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2083.outbound.protection.outlook.com [40.107.8.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5C66E9E
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 03:26:46 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TShyXbgx2CgO99BJr6vJsn5kk2/2Tx8/6aHGb36+4fxncNB5fTN8Z33chTG/G5zou5CZkI1mSeuJZX3v+YRngsN9b7hFxoLnngPBz/hoDIUOGzFaerncAZkLe8TzNr/lqdU1zbPIDTpLMiJ+6Vs3YwvGPIgD9n3UlmmNowg8oXpaLFBGbERIHvs8896VCqxUZo+hpOCIXK6z5BHZ/mEKu2UJJ8yRWlnqDpQ7R/VBeoXkmZ+8vGbZl9znJqWow6SddCUWYXnP67Ra0MpakUi35HhD4FEmzrO/0+3FjepM5nu9+71f38XdxpiajeGVUvC7a9CAK2TkX/8zm8V+rFpg8w==
+ b=B8XFsUt8wCEZ7vTcx+CnpGoTpO13FDu+myn3N3/GHc4tHtvdwfbayMNHGz73IzdFtIHB/1BoYf0cnks7SLWy5jiQPXwzOJJkgWKW/05OvQyxbpzwdZpDdR8zR8Fu5nCM0P07tq0Pa987pCGAWY9oescBTREKscIuTbzyP/xnU0drVBvRbKZ6awgOlvqzeuRxKfVtS8z7k+nnB/nRM94zGZDEM4OAjrvRXWiA9mTavO0gHtap22gvN1RMX3lP/Ls+x2cgno9MYt37ftAmXWy7oQya3FcxGHSDTz6A+OJt+dtDkSZ5zoCzUUMsNEWcC872gbaDvval9HL15zeyxt79bw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aiVipD/8itmEtS/2bvLyxv27RhJ4jAVrnZEQVc2aObE=;
- b=G3ngvq5w0IBQflZXvih5QHwFGTL+Dbl1AJs5FSWXYoqySjqpz0oen1ILtA+sJjlCMEUQSr0trv616eiwmT+eIVWX5pVsF6NyXQtZgkTvTGF+jtM58CT7h1MVJdamggbSaOGBJORazmjy3J+zZABqRkA1JMzN/v1CJb0zE6mNop1NUEUJMKTtXMYxvaUMDQD+d7UzZOkwaBEwZxoXSN48MCnakjCn7vTzlDZtgDD1Kz0M92AdQTwnCyxxUIHqVLXmpZK0S6/SJLdkCfYyJP78BMlGcohVbqS0mft8VxNVxxy0e3JrUVki22EK6mTug77BwExxwbCuU8/xInZiPIipdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=WikdsdKWhV10jiP6cvS+rNlC77acGYmBSEagJyBALR8=;
+ b=TKDLDQtUtUxtQ5bNUtjuIxF+42wh6P92A+VLkZQUWzFJqh1VAw5S/dPEaCPEyn45OPVgIkJPBfWtAhTa+6hkqhO/oBnlud4sozDUddqYhkpLQLYQyKGeex/GBs7HCc1BPUn4WhMvONA48gWfTtARR4IeMw5EXzfiPu35EoWTnQQy34Dj+PyUDlvixNA42htci2IbINdfgC1uB8+cMA5CC0xIhGcLM5Ap4BWDYPgNjlvuX7vQ0w/8TMM+D6+HJzPqfVEizm31NT7Ar8OXWrK8a0knd1aP0c06v//95mewxnTTajBFXlYUKBz1irBkMtd3Oczm06IwNVEZ2HdQNnMlBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aiVipD/8itmEtS/2bvLyxv27RhJ4jAVrnZEQVc2aObE=;
- b=Jux53DHceqro1LCwHr4NyUS/LYNndHTsX9YanKEXpfkSFxxS8hX+vXzLBL5xx98FkiK2wTIst3Dnsz5oCQzi+ZoT6JvJOsQfvv2e8skMUCympJkQLOilwzXZUxTas+RuhRLWBkNgjhRxtkitwHTQg9yOjF4X0Zy8sIop7z/ZWtk=
-Received: from MW4PR04CA0362.namprd04.prod.outlook.com (2603:10b6:303:81::7)
- by DM6PR12MB4484.namprd12.prod.outlook.com (2603:10b6:5:28f::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Tue, 18 Apr
- 2023 10:29:45 +0000
-Received: from CO1NAM11FT051.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:81:cafe::c7) by MW4PR04CA0362.outlook.office365.com
- (2603:10b6:303:81::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.47 via Frontend
- Transport; Tue, 18 Apr 2023 10:29:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT051.mail.protection.outlook.com (10.13.174.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6319.20 via Frontend Transport; Tue, 18 Apr 2023 10:29:44 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 18 Apr
- 2023 05:29:39 -0500
-Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 18 Apr 2023 05:29:36 -0500
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-To:     <devicetree@vger.kernel.org>
-CC:     <git@amd.com>, <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
-        <sboyd@kernel.org>, <mturquette@baylibre.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <michal.simek@xilinx.com>
-Subject: [PATCH v1 2/2] clocking-wizard: Add support for versal clocking wizard
-Date:   Tue, 18 Apr 2023 15:58:55 +0530
-Message-ID: <20230418102855.6791-3-shubhrajyoti.datta@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230418102855.6791-1-shubhrajyoti.datta@amd.com>
-References: <20230418102855.6791-1-shubhrajyoti.datta@amd.com>
-MIME-Version: 1.0
+ bh=WikdsdKWhV10jiP6cvS+rNlC77acGYmBSEagJyBALR8=;
+ b=BMSsuTaAuNEC3oMnlJeoQZ6F/bGp1QicqhLbygw2quQLe0gvvbKEmr6xFO3MMBBJesUH4wUTh2rVLFtfApMzKxLfXeP7hHgIIg83Nj/CaRQJUgBKXTsDPo1BFhR9h3k3tghl8AYo3C301rjPNfhqiDW86sieZ4zicZYYrOEN6F4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
+ GV1PR04MB9184.eurprd04.prod.outlook.com (2603:10a6:150:28::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6298.45; Tue, 18 Apr 2023 10:26:42 +0000
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::3052:f2bf:2e5f:1e90]) by DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::3052:f2bf:2e5f:1e90%6]) with mapi id 15.20.6298.045; Tue, 18 Apr 2023
+ 10:26:42 +0000
+From:   Xu Yang <xu.yang_2@nxp.com>
+To:     will@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        frank.li@nxp.com, festevam@gmail.com
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
+Subject: [PATCH v2 1/3] drivers/perf: imx_ddr: Add support for NXP i.MX9 SoC DDRC PMU driver
+Date:   Tue, 18 Apr 2023 18:29:08 +0800
+Message-Id: <20230418102910.2065651-1-xu.yang_2@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: SG2PR03CA0109.apcprd03.prod.outlook.com
+ (2603:1096:4:91::13) To DB7PR04MB4505.eurprd04.prod.outlook.com
+ (2603:10a6:5:39::26)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT051:EE_|DM6PR12MB4484:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcb58b5f-f55a-4d07-e24b-08db3ff7d3f4
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4505:EE_|GV1PR04MB9184:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1a859cfd-4652-475b-c032-08db3ff766e3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 81n09bJsKCduic6WpkamHpp7V8Oxrod7IHhPa4e2pE+fv//giyVaxogQdwlg2deqPIdqoEpeE989jLhHr+gcpFlZkAob+zCV8Czen+aI0LSqK8lHj8A6pNiS3dAZu7NdimkhtkaPP4ZR/AVMubXvvyndNNAPMKuq4b3CSXfZ9wvHyOaVfpVqdmyj19xB4QyEEC2d8caOoqKEmKozDuwGTObhN1OA7ejn3kHplyglPf+UdKkdyjjMWrrQtfaihZ9Ppd8YX/ASA0z8qz1CT/Qd3rasdqtGLgTIu18HeWoeF/RH2a5GqnCBe2ZzTGYCyrxQp9rP26mQmMBbtysoT4mOtFdzO67tmYtdmtxcz22Bmy8umoFwZhnGalgwLTn8N0wRZgdk1IoP0x+0wmy+xaInqyjN65fO+Hmr8qu6uxjWQIvqmdrk7ykKDUn57fbvu+cqar4SrdxcSvUHyv5QjMqnLfPnYwJU3j5lVRQShIxEX+ZEflQUbaJFX/g6BUE3tNwUOhUblXwtWsPat4zlhQYvUYV0COGsTUradyq0f/tseG3KNXr7JeHXoAu4weFn2VbPwTYL3d/DwPwcGGhljX7xQXUc1WHzTP8DlsFkg/BMKX9i89S78abmLxwL0ZD6PvgdW9gSy8KCaaY08gkYnFJHDHm6sAOfrdAZ372p/Vws7s3UuUhIjSYhgYOXb5ImYtVwJhK4/FVAVvEeUv7S7AIS4AL/dVRd3o2ZT87t9V23lOc=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(376002)(39860400002)(396003)(451199021)(36840700001)(40470700004)(46966006)(36756003)(8936002)(8676002)(40460700003)(44832011)(5660300002)(2906002)(30864003)(82310400005)(86362001)(40480700001)(478600001)(6666004)(54906003)(186003)(2616005)(36860700001)(1076003)(70586007)(70206006)(26005)(41300700001)(356005)(82740400003)(316002)(83380400001)(81166007)(6916009)(4326008)(47076005)(426003)(336012)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2023 10:29:44.6851
+X-Microsoft-Antispam-Message-Info: bIoq8yrwOOTJ826c2sKJj8BJlwQm2V9jN2H2eABhFnSlkxrxNHJXRzNPshoAws3tljmI2oMMOx2Wkb5FA6jiqiOLMQcpmxkxsMjNny10bZGmLUKpucJNQuU8CmhRsPpIuKmvvL64osyZy9xe3KTPUr1TV4WQCBBgChucL8Wrk/oUU7emN73BQ6lv8ygr0OJeOWySNF0Pp0M8C/cAodp2nrEb2CNQX2TvVmI7pXN1RIM6/8bUNClTDf3LHG5vCOXkRpKConOYqHs+cTvkGGK7K28Hc9jwAMv9xoSaq31le/NYOl7/P+7jb2rqWa8+4nTXFZ3nz1aXpPcle2l8K2bxZ5OwefceQMTe81F2AUEfBIgW9yAF+qsXg6LG9E2luqyHZuuwYsrrlefUqDUX8WS60NurWe57cui4Vhg7aTG6k1HSWs4kt9Dx/7rhlG31qxfEqqxCweRh7U0/fEZY+2RnJQjVq15WK86e9Zi8GSDNI94GtG5FncQQV/bxzdpQ6yC1QIioXHVAcwn54OSvSyr6sUJDrgKNNU30t6Bzuk/xe2Icz8zWdeEL4ivFwHdwhruU0XFeqVmkZLuEv+IxKFpIAS4HSpG0Q4thaE+zPWpGjKEE6pV4zvRonIh9PDFJ69Qm
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(136003)(346002)(396003)(376002)(39860400002)(451199021)(6512007)(6506007)(1076003)(26005)(186003)(478600001)(52116002)(6486002)(36756003)(5660300002)(6666004)(38350700002)(8676002)(2906002)(30864003)(8936002)(316002)(66476007)(41300700001)(4326008)(86362001)(66556008)(66946007)(38100700002)(2616005)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XKMt+wGvFYpv8tNP7MQMZBH//2V0a9u5AJWeUq8c6SjEiIQXcZhGcd5ITs8D?=
+ =?us-ascii?Q?V9wttPj+84Tbq+WebTZ6gs0VJnUqjWp6lAilT0TgyBOPCtDE2aTras4j88ew?=
+ =?us-ascii?Q?q81KmpvlDD3i4eTgKjOu2TN2pZ6sawi8jaKrxP8PtXhHhlHGebImO0hsbAwg?=
+ =?us-ascii?Q?DxdUy+ejrFznFQ+M6YTNQggKabQUC9Rik9f0PMyfewibLf4a+l5o1w9cNlxe?=
+ =?us-ascii?Q?SlbBbEXDtDVpqCmfjLCX62OCQab0cHWzI3WQa9y5CY4+wv6hq7OXLIqjO+h2?=
+ =?us-ascii?Q?xqPllSrapHHSEGUL6RAwj03uZF8zOUZlCMnAjXqx2/Lf1LUYxImRnAyNLDC6?=
+ =?us-ascii?Q?+UYNpj2IXjQPHxcfA7cH43+0mRq1ymuZJa5GpNspZY2aFn8nqLF7p6MN3Uw8?=
+ =?us-ascii?Q?B/gtHPnjNQLYBByF53Erb2RKNo7n8lYeasQzAIw2csTuSmWj/NVcd4nnqCv+?=
+ =?us-ascii?Q?ODvz2Fzn1UyB26LpK3jaNC0Ug7Lc7lE6LwDnRCfnGmTYHr4k9qHk+TpjchPL?=
+ =?us-ascii?Q?hZGvlQdlQUV7H5zG8PtqRCAHqUtWf5I98pvcq625VhGlXPYTIvhnra9c8x1n?=
+ =?us-ascii?Q?v8QL0ll2JhARGLJ4sOb7RkU2EF097GFD6mO8V/2Clf7Hgg45GwyM4ulkFA4l?=
+ =?us-ascii?Q?gp4c3TWmDQChssJ88n6Je9LT9lwIpn4Hs+l1OsuDnKOviJAx9M0yaviSbsXt?=
+ =?us-ascii?Q?/NPYv5BHtFyWfMAru4f2DV3Uy4t+xwCAYQe0kY1PNl32REFXb9xqwmcfwGez?=
+ =?us-ascii?Q?2MncDT+PBaatycaBqrQoD1I2bnKl9sSBCaecSnpwQD9Huv7Q9fHcYCz6rLJl?=
+ =?us-ascii?Q?Loxba0MQEHpfFvpaxvvlNB7FMUuw/qwkF/IagJvxM0KugZDFfSEhg8OmTuRi?=
+ =?us-ascii?Q?jM9UNkuEPW7KDVQaNwYa/7pysBTQ6fDiXN4V6K4TIjWWhDwZC45kUOwvGFZt?=
+ =?us-ascii?Q?L3sUw51ly2fEtMprpCZk5aodpnhH13zpeHEwuDNtSOq+j5Jz3l5qrCxfNL01?=
+ =?us-ascii?Q?yIGoL0NmwebiVUqBGrzzDE0lNFCTrMYX5vxND7rwKXiDzIuq6/Yyqm/s9GMh?=
+ =?us-ascii?Q?alWa6NuCjY5V3n0+iVW9MxXpjmfNS7joZs+UE7S01eObAGNxGFomirAK49p1?=
+ =?us-ascii?Q?P5vnANMscsmGay9tUYDaJ2soNDqRqFUG2pFo51dpy9P5CH8RT9BMnDLKq4a4?=
+ =?us-ascii?Q?AC6oR+NiswZkxfuARne8M4XUboY9BEJXyZ3idWyHYd4sJb3wA68peEcnk1T3?=
+ =?us-ascii?Q?Iq1VRZypjuyqE5nVupSgC+dEB65vd5Lk5Ly5kOPoQHAG9fx6Km5HJfq1cvjG?=
+ =?us-ascii?Q?+A0awdBwD3o8CCVzP2Ka4olP2FG85qxUXa+u94l7XnHz56Jq/jdODj30gKmA?=
+ =?us-ascii?Q?DqJq+1ZTKkW49X4NoDQpdNgGx8ODUda4+nacoPSzps5r+dGl5QQMGKj7ERBN?=
+ =?us-ascii?Q?yghr7MlfKwXGBy4yMXQwg5n9E1L02JXTze7lwP3SLAjPvCOygWLW5JuBfiJQ?=
+ =?us-ascii?Q?Qn20hP4HVKqcgvH6WvD+wa2sKdv+Kzkuu6Ms0cplba/jF0+ycNZxWQVaUCLp?=
+ =?us-ascii?Q?pYmIi7V3KnfpPTKt9d3AxD+nK/2oiKie9fYKFTDL?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a859cfd-4652-475b-c032-08db3ff766e3
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2023 10:26:42.2305
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcb58b5f-f55a-4d07-e24b-08db3ff7d3f4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT051.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4484
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QLRElcSMdGH6GtmRs6nS6C9OOqqAUl9WyjLMJYVykcNgNNZdyC449XyTzfpIXL4l2ZnYpqaxa//QGZ5d69D7zg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9184
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Clocking Wizard for Versal adaptive compute acceleration platforms.
-Add Versal clocking wizard support.
+Add ddr performance monitor support for i.MX93.
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+There are 11 counters for ddr performance events.
+- Counter 0 is a 64-bit counter that counts only clock cycles.
+- Counter 1-10 are 32-bit counters that can monitor counter-specific
+  events in addition to counting reference events.
+
+For example:
+  perf stat -a -e imx9_ddr0/ddrc_pm_1,counter=1/,imx9_ddr0/ddrc_pm_2,counter=2/ ls
+
+Besides, this ddr pmu support AXI filter capability. It's implemented as
+counter-specific events. It now supports read transaction, write transaction
+and read beat events which corresponding respecitively to counter 2, 3 and 4.
+axi_mask and axi_id need to be as event parameters.
+
+For example:
+  perf stat -a -I 1000 -e imx9_ddr0/eddrtq_pm_rd_trans_filt,counter=2,axi_mask=ID_MASK,axi_id=ID/
+  perf stat -a -I 1000 -e imx9_ddr0/eddrtq_pm_wr_trans_filt,counter=3,axi_mask=ID_MASK,axi_id=ID/
+  perf stat -a -I 1000 -e imx9_ddr0/eddrtq_pm_rd_beat_filt,counter=4,axi_mask=ID_MASK,axi_id=ID/
+
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+
 ---
+Changes from v2:
+- optimize cycles counter reading logic according to frank's suggestion
 
- drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 506 ++++++++++++++++-----
- 1 file changed, 400 insertions(+), 106 deletions(-)
-
-diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-index e83f104fad02..18247984582a 100644
---- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-@@ -23,15 +23,41 @@
- #define WZRD_NUM_OUTPUTS	7
- #define WZRD_ACLK_MAX_FREQ	250000000UL
+diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+index 66c259000a44..8e95ec362a18 100644
+--- a/drivers/perf/Kconfig
++++ b/drivers/perf/Kconfig
+@@ -117,6 +117,14 @@ config FSL_IMX8_DDR_PMU
+ 	  can give information about memory throughput and other related
+ 	  events.
  
--#define WZRD_CLK_CFG_REG(n)	(0x200 + 4 * (n))
-+#define WZRD_CLK_CFG_REG(v, n)	(0x200 + 0x130 * (v) + 4 * (n))
- 
- #define WZRD_CLKOUT0_FRAC_EN	BIT(18)
--#define WZRD_CLKFBOUT_FRAC_EN	BIT(26)
-+#define WZRD_CLKFBOUT_1		0
-+#define WZRD_CLKFBOUT_2		1
-+#define WZRD_CLKOUT0_1		2
-+#define WZRD_CLKOUT0_2		3
-+#define WZRD_DESKEW_2		20
-+#define WZRD_DIVCLK		21
-+#define WZRD_CLKFBOUT_4		51
-+#define WZRD_CLKFBOUT_3		48
-+#define WZRD_DUTY_CYCLE		2
-+#define WZRD_O_DIV		4
++config FSL_IMX9_DDR_PMU
++	tristate "Freescale i.MX9 DDR perf monitor"
++	depends on ARCH_MXC
++	 help
++	 Provides support for the DDR performance monitor in i.MX9, which
++	 can give information about memory throughput and other related
++	 events.
 +
-+#define WZRD_CLKFBOUT_FRAC_EN	BIT(1)
-+#define WZRD_CLKFBOUT_PREDIV2	(BIT(11) | BIT(12) | BIT(9))
-+#define WZRD_MULT_PREDIV2	(BIT(10) | BIT(9) | BIT(12))
-+#define WZRD_CLKFBOUT_EDGE	BIT(8)
-+#define WZRD_P5EN		BIT(13)
-+#define WZRD_P5EN_SHIFT		13
-+#define WZRD_P5FEDGE		BIT(15)
-+#define WZRD_DIVCLK_EDGE	BIT(10)
-+#define WZRD_P5FEDGE_SHIFT	15
-+#define WZRD_CLKOUT0_PREDIV2	BIT(11)
-+#define WZRD_EDGE_SHIFT		8
- 
- #define WZRD_CLKFBOUT_MULT_SHIFT	8
- #define WZRD_CLKFBOUT_MULT_MASK		(0xff << WZRD_CLKFBOUT_MULT_SHIFT)
-+#define WZRD_CLKFBOUT_L_SHIFT	0
-+#define WZRD_CLKFBOUT_H_SHIFT	8
-+#define WZRD_CLKFBOUT_L_MASK	GENMASK(7, 0)
-+#define WZRD_CLKFBOUT_H_MASK	GENMASK(15, 8)
- #define WZRD_CLKFBOUT_FRAC_SHIFT	16
- #define WZRD_CLKFBOUT_FRAC_MASK		(0x3ff << WZRD_CLKFBOUT_FRAC_SHIFT)
-+#define WZRD_VERSAL_FRAC_MASK		GENMASK(5, 0)
- #define WZRD_DIVCLK_DIVIDE_SHIFT	0
- #define WZRD_DIVCLK_DIVIDE_MASK		(0xff << WZRD_DIVCLK_DIVIDE_SHIFT)
- #define WZRD_CLKOUT_DIVIDE_SHIFT	0
-@@ -45,6 +71,7 @@
- #define WZRD_DR_STATUS_REG_OFFSET	0x04
- #define WZRD_DR_LOCK_BIT_MASK		0x00000001
- #define WZRD_DR_INIT_REG_OFFSET		0x25C
-+#define WZRD_DR_INIT_VERSAL_OFFSET	0x14
- #define WZRD_DR_DIV_TO_PHASE_OFFSET	4
- #define WZRD_DR_BEGIN_DYNA_RECONF	0x03
- #define WZRD_DR_BEGIN_DYNA_RECONF_5_2	0x07
-@@ -52,6 +79,8 @@
- 
- #define WZRD_USEC_POLL		10
- #define WZRD_TIMEOUT_POLL		1000
-+#define WZRD_FRAC_GRADIENT		64
-+#define PREDIV2_MULT			2
- 
- /* Divider limits, from UG572 Table 3-4 for Ultrascale+ */
- #define DIV_O				0x01
-@@ -65,6 +94,14 @@
- #define WZRD_VCO_MAX			1600000000
- #define WZRD_O_MIN			1
- #define WZRD_O_MAX			128
-+#define VER_WZRD_M_MIN			4
-+#define VER_WZRD_M_MAX			432
-+#define VER_WZRD_D_MIN			1
-+#define VER_WZRD_D_MAX			123
-+#define VER_WZRD_VCO_MIN		2160000000
-+#define VER_WZRD_VCO_MAX		4320000000
-+#define VER_WZRD_O_MIN			2
-+#define VER_WZRD_O_MAX			511
- #define WZRD_MIN_ERR			20000
- #define WZRD_FRAC_POINTS		1000
- 
-@@ -120,6 +157,7 @@ struct clk_wzrd {
-  * @d:	value of the common divider
-  * @o:	value of the leaf divider
-  * @lock:	register lock
-+ * @is_versal:	Flag indicating if it versal device
-  */
- struct clk_wzrd_divider {
- 	struct clk_hw hw;
-@@ -133,6 +171,11 @@ struct clk_wzrd_divider {
- 	u32 d;
- 	u32 o;
- 	spinlock_t *lock;  /* divider lock */
-+	bool is_versal;
+ config QCOM_L2_PMU
+ 	bool "Qualcomm Technologies L2-cache PMU"
+ 	depends on ARCH_QCOM && ARM64 && ACPI
+diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
+index 13e45da61100..d37cb217d528 100644
+--- a/drivers/perf/Makefile
++++ b/drivers/perf/Makefile
+@@ -7,6 +7,7 @@ obj-$(CONFIG_ARM_PMU) += arm_pmu.o arm_pmu_platform.o
+ obj-$(CONFIG_ARM_PMU_ACPI) += arm_pmu_acpi.o
+ obj-$(CONFIG_ARM_SMMU_V3_PMU) += arm_smmuv3_pmu.o
+ obj-$(CONFIG_FSL_IMX8_DDR_PMU) += fsl_imx8_ddr_perf.o
++obj-$(CONFIG_FSL_IMX9_DDR_PMU) += fsl_imx9_ddr_perf.o
+ obj-$(CONFIG_HISI_PMU) += hisilicon/
+ obj-$(CONFIG_QCOM_L2_PMU)	+= qcom_l2_pmu.o
+ obj-$(CONFIG_QCOM_L3_PMU) += qcom_l3_pmu.o
+diff --git a/drivers/perf/fsl_imx9_ddr_perf.c b/drivers/perf/fsl_imx9_ddr_perf.c
+new file mode 100644
+index 000000000000..06754d238007
+--- /dev/null
++++ b/drivers/perf/fsl_imx9_ddr_perf.c
+@@ -0,0 +1,712 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright 2023 NXP
++
++#include <linux/bitfield.h>
++#include <linux/init.h>
++#include <linux/interrupt.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/of_device.h>
++#include <linux/of_irq.h>
++#include <linux/perf_event.h>
++
++/* Performance monitor configuration */
++#define PMCFG1  			0x00
++#define PMCFG1_RD_TRANS_FILT_EN 	BIT(31)
++#define PMCFG1_WR_TRANS_FILT_EN 	BIT(30)
++#define PMCFG1_RD_BT_FILT_EN 		BIT(29)
++#define PMCFG1_ID_MASK  		GENMASK(17, 0)
++
++#define PMCFG2  			0x04
++#define PMCFG2_ID			GENMASK(17, 0)
++
++/* Global control register affects all counters and takes priority over local control registers */
++#define PMGC0		0x40
++/* Global control register bits */
++#define PMGC0_FAC	BIT(31)
++#define PMGC0_PMIE	BIT(30)
++#define PMGC0_FCECE	BIT(29)
++
++/*
++ * 64bit counter0 exclusively dedicated to counting cycles
++ * 32bit counters monitor counter-specific events in addition to counting reference events
++ */
++#define PMLCA(n)	(0x40 + 0x10 + (0x10 * n))
++#define PMLCB(n)	(0x40 + 0x14 + (0x10 * n))
++#define PMC(n)		(0x40 + 0x18 + (0x10 * n))
++/* Local control register bits */
++#define PMLCA_FC	BIT(31)
++#define PMLCA_CE	BIT(26)
++#define PMLCA_EVENT	GENMASK(22, 16)
++
++#define NUM_COUNTERS		11
++#define CYCLES_COUNTER		0
++
++#define to_ddr_pmu(p)		container_of(p, struct ddr_pmu, pmu)
++
++#define DDR_PERF_DEV_NAME	"imx9_ddr"
++#define DDR_CPUHP_CB_NAME	DDR_PERF_DEV_NAME "_perf_pmu"
++
++static DEFINE_IDA(ddr_ida);
++
++struct imx_ddr_devtype_data {
++	const char *identifier;		/* system PMU identifier for userspace */
 +};
 +
-+struct versal_clk_data {
-+	bool is_versal;
- };
- 
- #define to_clk_wzrd(_nb) container_of(_nb, struct clk_wzrd, nb)
-@@ -152,51 +195,98 @@ static unsigned long clk_wzrd_recalc_rate(struct clk_hw *hw,
- {
- 	struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
- 	void __iomem *div_addr = divider->base + divider->offset;
--	unsigned int val;
-+	u32 div, p5en, edge, prediv2, all;
-+	unsigned int val, vall, valh;
- 
--	val = readl(div_addr) >> divider->shift;
--	val &= div_mask(divider->width);
-+	if (!divider->is_versal) {
-+		val = readl(div_addr) >> divider->shift;
-+		val &= div_mask(divider->width);
- 
--	return divider_recalc_rate(hw, parent_rate, val, divider->table,
--			divider->flags, divider->width);
-+		return divider_recalc_rate(hw, parent_rate, val, divider->table,
-+				divider->flags, divider->width);
-+	}
-+
-+	edge = !!(readl(div_addr) & WZRD_CLKFBOUT_EDGE);
-+	p5en = !!(readl(div_addr) & WZRD_P5EN);
-+	prediv2 = !!(readl(div_addr) & WZRD_CLKOUT0_PREDIV2);
-+	vall = readl(div_addr + 4) & WZRD_CLKFBOUT_L_MASK;
-+	valh = readl(div_addr + 4) >> WZRD_CLKFBOUT_H_SHIFT;
-+	all = valh + vall + edge;
-+	if (!all)
-+		all = 1;
-+
-+	if (prediv2)
-+		div = 2 * all + prediv2 * p5en;
-+	else
-+		div = all;
-+
-+	return DIV_ROUND_UP_ULL((u64)parent_rate, div);
- }
- 
- static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long rate,
- 				     unsigned long parent_rate)
- {
--	int err;
--	u32 value;
--	unsigned long flags = 0;
- 	struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
- 	void __iomem *div_addr = divider->base + divider->offset;
-+	u32 value, regh, edged, p5en, p5fedge, regval, regval1;
-+	unsigned long flags = 0;
-+	int err;
- 
- 	if (divider->lock)
- 		spin_lock_irqsave(divider->lock, flags);
- 	else
- 		__acquire(divider->lock);
- 
--	value = DIV_ROUND_CLOSEST(parent_rate, rate);
--
--	/* Cap the value to max */
--	min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
--
--	/* Set divisor and clear phase offset */
--	writel(value, div_addr);
--	writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
--
--	/* Check status register */
--	err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
--				 value, value & WZRD_DR_LOCK_BIT_MASK,
--				 WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
--	if (err)
--		goto err_reconfig;
--
--	/* Initiate reconfiguration */
--	writel(WZRD_DR_BEGIN_DYNA_RECONF_5_2,
--	       divider->base + WZRD_DR_INIT_REG_OFFSET);
--	writel(WZRD_DR_BEGIN_DYNA_RECONF1_5_2,
--	       divider->base + WZRD_DR_INIT_REG_OFFSET);
--
-+	if (!divider->is_versal) {
-+		value = DIV_ROUND_CLOSEST(parent_rate, rate);
-+
-+		/* Cap the value to max */
-+		min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
-+
-+		/* Set divisor and clear phase offset */
-+		writel(value, div_addr);
-+		writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
-+
-+		/* Check status register */
-+		err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
-+					 value, value & WZRD_DR_LOCK_BIT_MASK,
-+					 WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
-+		if (err)
-+			goto err_reconfig;
-+
-+		/* Initiate reconfiguration */
-+		writel(WZRD_DR_BEGIN_DYNA_RECONF_5_2,
-+		       divider->base + WZRD_DR_INIT_REG_OFFSET);
-+		writel(WZRD_DR_BEGIN_DYNA_RECONF1_5_2,
-+		       divider->base + WZRD_DR_INIT_REG_OFFSET);
-+
-+	} else {
-+		regh = (value / 4);
-+		regval1 = readl(div_addr);
-+		regval1 |= WZRD_CLKFBOUT_PREDIV2;
-+		regval1 = regval1 & ~(WZRD_CLKFBOUT_EDGE | WZRD_P5EN | WZRD_P5FEDGE);
-+		if (value % 4 > 1) {
-+			edged = 1;
-+			regval1 |= (edged << WZRD_EDGE_SHIFT);
-+		}
-+		p5fedge = value % 2;
-+		p5en = value % 2;
-+		regval1 = regval1 | p5en << WZRD_P5EN_SHIFT | p5fedge << WZRD_P5FEDGE_SHIFT;
-+		writel(regval1, div_addr);
-+
-+		regval = regh | regh << WZRD_CLKFBOUT_H_SHIFT;
-+		writel(regval, div_addr + 4);
-+		/* Check status register */
-+		err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
-+					 value, value & WZRD_DR_LOCK_BIT_MASK,
-+					 WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
-+		if (err)
-+			goto err_reconfig;
-+
-+		/* Initiate reconfiguration */
-+		writel(WZRD_DR_BEGIN_DYNA_RECONF,
-+		       divider->base + WZRD_DR_INIT_VERSAL_OFFSET);
-+	}
- 	/* Check status register */
- 	err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
- 				 value, value & WZRD_DR_LOCK_BIT_MASK,
-@@ -227,14 +317,35 @@ static int clk_wzrd_get_divisors(struct clk_hw *hw, unsigned long rate,
- 				 unsigned long parent_rate)
- {
- 	struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
--	unsigned long vco_freq, freq, diff;
-+	unsigned long vco_freq, freq, diff, vcomin, vcomax;
- 	u32 m, d, o;
-+	u32 mmin, mmax, dmin, dmax, omin, omax;
-+
-+	if (divider->is_versal) {
-+		mmin = VER_WZRD_M_MIN;
-+		mmax = VER_WZRD_M_MAX;
-+		dmin = VER_WZRD_D_MIN;
-+		dmax = VER_WZRD_D_MAX;
-+		omin = VER_WZRD_O_MIN;
-+		omax = VER_WZRD_O_MAX;
-+		vcomin = VER_WZRD_VCO_MIN;
-+		vcomax = VER_WZRD_VCO_MAX;
-+	} else {
-+		mmin = WZRD_M_MIN;
-+		mmax = WZRD_M_MAX;
-+		dmin = WZRD_D_MIN;
-+		dmax = WZRD_D_MAX;
-+		omin = WZRD_O_MIN;
-+		omax = WZRD_O_MAX;
-+		vcomin = WZRD_VCO_MIN;
-+		vcomax = WZRD_VCO_MAX;
-+	}
- 
--	for (m = WZRD_M_MIN; m <= WZRD_M_MAX; m++) {
--		for (d = WZRD_D_MIN; d <= WZRD_D_MAX; d++) {
-+	for (m = mmin; m <= mmax; m++) {
-+		for (d = dmin; d <= dmax; d++) {
- 			vco_freq = DIV_ROUND_CLOSEST((parent_rate * m), d);
--			if (vco_freq >= WZRD_VCO_MIN && vco_freq <= WZRD_VCO_MAX) {
--				for (o = WZRD_O_MIN; o <= WZRD_O_MAX; o++) {
-+			if (vco_freq >= vcomin && vco_freq <= vcomax) {
-+				for (o = omin; o <= omax; o++) {
- 					freq = DIV_ROUND_CLOSEST_ULL(vco_freq, o);
- 					diff = abs(freq - rate);
- 
-@@ -254,8 +365,10 @@ static int clk_wzrd_get_divisors(struct clk_hw *hw, unsigned long rate,
- static int clk_wzrd_dynamic_all_nolock(struct clk_hw *hw, unsigned long rate,
- 				       unsigned long parent_rate)
- {
-+	u32 regh, edged, p5en, p5fedge, value2, m, regval, regval1;
- 	struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
- 	unsigned long vco_freq, rate_div, clockout0_div;
-+	void __iomem *div_addr = divider->base;
- 	u32 reg, pre, value, f;
- 	int err;
- 
-@@ -263,25 +376,80 @@ static int clk_wzrd_dynamic_all_nolock(struct clk_hw *hw, unsigned long rate,
- 	if (err)
- 		return err;
- 
--	vco_freq = DIV_ROUND_CLOSEST(parent_rate * divider->m, divider->d);
--	rate_div = DIV_ROUND_CLOSEST_ULL((vco_freq * WZRD_FRAC_POINTS), rate);
--
--	clockout0_div = div_u64(rate_div,  WZRD_FRAC_POINTS);
--
--	pre = DIV_ROUND_CLOSEST_ULL(vco_freq * WZRD_FRAC_POINTS, rate);
--	f = (pre - (clockout0_div * WZRD_FRAC_POINTS));
--	f &= WZRD_CLKOUT_FRAC_MASK;
--
--	reg = FIELD_PREP(WZRD_CLKOUT_DIVIDE_MASK, clockout0_div) |
--	      FIELD_PREP(WZRD_CLKOUT0_FRAC_MASK, f);
-+	if (divider->is_versal) {
-+		writel(0, divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKFBOUT_4));
-+
-+		m = divider->m;
-+		edged = m % WZRD_DUTY_CYCLE;
-+		regh = m / WZRD_DUTY_CYCLE;
-+		regval1 = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								 WZRD_CLKFBOUT_1));
-+		regval1 |= WZRD_MULT_PREDIV2;
-+		if (edged)
-+			regval1 = regval1 | WZRD_CLKFBOUT_EDGE;
-+		else
-+			regval1 = regval1 & ~WZRD_CLKFBOUT_EDGE;
-+
-+		writel(regval1, divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								 WZRD_CLKFBOUT_1));
-+		regval1 = regh | regh << WZRD_CLKFBOUT_H_SHIFT;
-+		writel(regval1, divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								 WZRD_CLKFBOUT_2));
-+
-+		value2 = divider->d;
-+		edged = value2 % WZRD_DUTY_CYCLE;
-+		regh = (value2 / WZRD_DUTY_CYCLE);
-+		regval1 = FIELD_PREP(WZRD_DIVCLK_EDGE, edged);
-+		writel(regval1, divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								 WZRD_DESKEW_2));
-+		regval1 = regh | regh << WZRD_CLKFBOUT_H_SHIFT;
-+		writel(regval1, divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_DIVCLK));
-+
-+		value = divider->o;
-+		regh = value / WZRD_O_DIV;
-+		regval1 = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								 WZRD_CLKOUT0_1));
-+		regval1 |= WZRD_CLKFBOUT_PREDIV2;
-+		regval1 = regval1 & ~(WZRD_CLKFBOUT_EDGE | WZRD_P5EN | WZRD_P5FEDGE);
-+
-+		if (value % WZRD_O_DIV > 1) {
-+			edged = 1;
-+			regval1 |= edged << WZRD_CLKFBOUT_H_SHIFT;
-+		}
- 
--	writel(reg, divider->base + WZRD_CLK_CFG_REG(2));
--	/* Set divisor and clear phase offset */
--	reg = FIELD_PREP(WZRD_CLKFBOUT_MULT_MASK, divider->m) |
--	      FIELD_PREP(WZRD_DIVCLK_DIVIDE_MASK, divider->d);
--	writel(reg, divider->base + WZRD_CLK_CFG_REG(0));
--	writel(divider->o, divider->base + WZRD_CLK_CFG_REG(2));
--	writel(0, divider->base + WZRD_CLK_CFG_REG(3));
-+		p5fedge = value % WZRD_DUTY_CYCLE;
-+		p5en = value % WZRD_DUTY_CYCLE;
-+
-+		regval1 = regval1 | FIELD_PREP(WZRD_P5EN, p5en) | FIELD_PREP(WZRD_P5FEDGE, p5fedge);
-+		writel(regval1, divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								 WZRD_CLKOUT0_1));
-+		regval = regh | regh << WZRD_CLKFBOUT_H_SHIFT;
-+		writel(regval, divider->base + WZRD_CLK_CFG_REG(divider->is_versal,
-+								WZRD_CLKOUT0_2));
-+		div_addr = divider->base + WZRD_DR_INIT_VERSAL_OFFSET;
-+
-+	} else {
-+		vco_freq = DIV_ROUND_CLOSEST(parent_rate * divider->m, divider->d);
-+		rate_div = DIV_ROUND_CLOSEST_ULL((vco_freq * WZRD_FRAC_POINTS), rate);
-+
-+		clockout0_div = div_u64(rate_div,  WZRD_FRAC_POINTS);
-+
-+		pre = DIV_ROUND_CLOSEST_ULL(vco_freq * WZRD_FRAC_POINTS, rate);
-+		f = (pre - (clockout0_div * WZRD_FRAC_POINTS));
-+		f &= WZRD_CLKOUT_FRAC_MASK;
-+
-+		reg = FIELD_PREP(WZRD_CLKOUT_DIVIDE_MASK, clockout0_div) |
-+		      FIELD_PREP(WZRD_CLKOUT0_FRAC_MASK, f);
-+
-+		writel(reg, divider->base + WZRD_CLK_CFG_REG(divider->is_versal, 2));
-+		/* Set divisor and clear phase offset */
-+		reg = FIELD_PREP(WZRD_CLKFBOUT_MULT_MASK, divider->m) |
-+		      FIELD_PREP(WZRD_DIVCLK_DIVIDE_MASK, divider->d);
-+		writel(reg, divider->base + WZRD_CLK_CFG_REG(divider->is_versal, 0));
-+		writel(divider->o, divider->base + WZRD_CLK_CFG_REG(divider->is_versal, 2));
-+		writel(0, divider->base + WZRD_CLK_CFG_REG(divider->is_versal, 3));
-+		div_addr = divider->base + WZRD_DR_INIT_REG_OFFSET;
-+	}
- 	/* Check status register */
- 	err = readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET, value,
- 				 value & WZRD_DR_LOCK_BIT_MASK,
-@@ -290,9 +458,7 @@ static int clk_wzrd_dynamic_all_nolock(struct clk_hw *hw, unsigned long rate,
- 		return -ETIMEDOUT;
- 
- 	/* Initiate reconfiguration */
--	writel(WZRD_DR_BEGIN_DYNA_RECONF,
--	       divider->base + WZRD_DR_INIT_REG_OFFSET);
--
-+	writel(WZRD_DR_BEGIN_DYNA_RECONF, div_addr);
- 	/* Check status register */
- 	return readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET, value,
- 				 value & WZRD_DR_LOCK_BIT_MASK,
-@@ -319,17 +485,77 @@ static unsigned long clk_wzrd_recalc_rate_all(struct clk_hw *hw,
- 					      unsigned long parent_rate)
- {
- 	struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
-+	u32 edged, div2, p5en, edge, prediv2, all, regl, regh, mult;
- 	u32 m, d, o, div, reg, f;
- 
--	reg = readl(divider->base + WZRD_CLK_CFG_REG(0));
--	d = FIELD_GET(WZRD_DIVCLK_DIVIDE_MASK, reg);
--	m = FIELD_GET(WZRD_CLKFBOUT_MULT_MASK, reg);
--	reg = readl(divider->base + WZRD_CLK_CFG_REG(2));
--	o = FIELD_GET(WZRD_DIVCLK_DIVIDE_MASK, reg);
--	f = FIELD_GET(WZRD_CLKOUT0_FRAC_MASK, reg);
-+	if (!divider->is_versal) {
-+		reg = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, 0));
-+		d = FIELD_GET(WZRD_DIVCLK_DIVIDE_MASK, reg);
-+		m = FIELD_GET(WZRD_CLKFBOUT_MULT_MASK, reg);
-+		reg = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, 2));
-+		o = FIELD_GET(WZRD_DIVCLK_DIVIDE_MASK, reg);
-+		f = FIELD_GET(WZRD_CLKOUT0_FRAC_MASK, reg);
-+
-+		div = DIV_ROUND_CLOSEST(d * (WZRD_FRAC_POINTS * o + f), WZRD_FRAC_POINTS);
-+		return divider_recalc_rate(hw, parent_rate * m, div, divider->table,
-+			divider->flags, divider->width);
-+	}
-+	edge = !!(readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKFBOUT_1)) &
-+			WZRD_CLKFBOUT_EDGE);
-+
-+	reg = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKFBOUT_2));
-+	regl = FIELD_GET(WZRD_CLKFBOUT_L_MASK, reg);
-+	regh = FIELD_GET(WZRD_CLKFBOUT_H_MASK, reg);
-+
-+	mult = regl + regh + edge;
-+	if (!mult)
-+		mult = 1;
-+
-+	regl = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKFBOUT_4)) &
-+		     WZRD_CLKFBOUT_FRAC_EN;
-+	if (regl) {
-+		regl = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKFBOUT_3))
-+				& WZRD_VERSAL_FRAC_MASK;
-+		mult = mult * WZRD_FRAC_GRADIENT + regl;
-+		parent_rate = DIV_ROUND_CLOSEST((parent_rate * mult), WZRD_FRAC_GRADIENT);
-+	} else {
-+		parent_rate = parent_rate * mult;
-+	}
-+
-+	/* O Calculation */
-+	reg = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKOUT0_1));
-+	edged = FIELD_GET(WZRD_CLKFBOUT_EDGE, reg);
-+	p5en = FIELD_GET(WZRD_P5EN, reg);
-+	prediv2 = FIELD_GET(WZRD_CLKOUT0_PREDIV2, reg);
-+
-+	reg = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_CLKOUT0_2));
-+	/* Low time */
-+	regl = FIELD_GET(WZRD_CLKFBOUT_L_MASK, reg);
-+	/* High time */
-+	regh = FIELD_GET(WZRD_CLKFBOUT_H_MASK, reg);
-+	all = regh + regl + edged;
-+	if (!all)
-+		all = 1;
-+
-+	if (prediv2)
-+		div2 = PREDIV2_MULT * all + p5en;
-+	else
-+		div2 = all;
-+
-+	/* D calculation */
-+	edged = !!(readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_DESKEW_2)) &
-+		     WZRD_DIVCLK_EDGE);
-+	reg = readl(divider->base + WZRD_CLK_CFG_REG(divider->is_versal, WZRD_DIVCLK));
-+	/* Low time */
-+	regl = FIELD_GET(WZRD_CLKFBOUT_L_MASK, reg);
-+	/* High time */
-+	regh = FIELD_GET(WZRD_CLKFBOUT_H_MASK, reg);
-+	div = regl + regh + edged;
-+	if (!div)
-+		div = 1;
- 
--	div = DIV_ROUND_CLOSEST(d * (WZRD_FRAC_POINTS * o + f), WZRD_FRAC_POINTS);
--	return divider_recalc_rate(hw, parent_rate * m, div, divider->table,
-+	div = div * div2;
-+	return divider_recalc_rate(hw, parent_rate, div, divider->table,
- 			divider->flags, divider->width);
- }
- 
-@@ -492,6 +718,7 @@ static struct clk *clk_wzrd_register_divider(struct device *dev,
- 					     u8 shift, u8 width,
- 					     u8 clk_divider_flags,
- 					     u32 div_type,
-+					     bool is_versal,
- 					     spinlock_t *lock)
- {
- 	struct clk_wzrd_divider *div;
-@@ -520,6 +747,7 @@ static struct clk *clk_wzrd_register_divider(struct device *dev,
- 	div->width = width;
- 	div->flags = clk_divider_flags;
- 	div->lock = lock;
-+	div->is_versal = is_versal;
- 	div->hw.init = &init;
- 
- 	hw = &div->hw;
-@@ -588,18 +816,34 @@ static int __maybe_unused clk_wzrd_resume(struct device *dev)
- static SIMPLE_DEV_PM_OPS(clk_wzrd_dev_pm_ops, clk_wzrd_suspend,
- 			 clk_wzrd_resume);
- 
-+static const struct versal_clk_data versal_data = {
-+	.is_versal	= true,
++struct ddr_pmu {
++	struct pmu pmu;
++	void __iomem *base;
++	unsigned int cpu;
++	struct hlist_node node;
++	struct device *dev;
++	struct perf_event *events[NUM_COUNTERS];
++	int active_events;
++	enum cpuhp_state cpuhp_state;
++	const struct imx_ddr_devtype_data *devtype_data;
++	int irq;
++	int id;
 +};
 +
-+static const struct of_device_id clk_wzrd_ids[] = {
-+	{ .compatible = "xlnx,versal-clk-wizard", .data = &versal_data },
-+	{ .compatible = "xlnx,clocking-wizard"   },
-+	{ .compatible = "xlnx,clocking-wizard-v5.2"   },
-+	{ .compatible = "xlnx,clocking-wizard-v6.0"  },
-+	{ },
++static const struct imx_ddr_devtype_data imx93_devtype_data = {
++	.identifier = "imx93",
 +};
-+MODULE_DEVICE_TABLE(of, clk_wzrd_ids);
 +
- static int clk_wzrd_probe(struct platform_device *pdev)
- {
-+	const char *clkout_name, *clk_name, *clk_mul_name;
-+	u32 regl, regh, edge, regld, reghd, edged, div;
-+	const struct versal_clk_data *data;
-+	const struct of_device_id *match;
- 	int i, ret;
- 	u32 reg, reg_f, mult;
- 	unsigned long rate;
--	const char *clk_name;
- 	void __iomem *ctrl_reg;
- 	struct clk_wzrd *clk_wzrd;
--	const char *clkout_name;
- 	struct device_node *np = pdev->dev.of_node;
- 	int nr_outputs;
- 	unsigned long flags = 0;
-+	bool is_versal = 0;
- 
- 	clk_wzrd = devm_kzalloc(&pdev->dev, sizeof(*clk_wzrd), GFP_KERNEL);
- 	if (!clk_wzrd)
-@@ -647,27 +891,58 @@ static int clk_wzrd_probe(struct platform_device *pdev)
- 		goto err_disable_clk;
- 	}
- 
-+	match = of_match_node(clk_wzrd_ids, np);
-+	if (!match) {
-+		dev_err(&pdev->dev, "of_match_node failed\n");
-+		return -ENODEV;
-+	}
++static const struct of_device_id imx_ddr_pmu_dt_ids[] = {
++	{.compatible = "fsl,imx93-ddr-pmu", .data = &imx93_devtype_data},
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, imx_ddr_pmu_dt_ids);
 +
-+	data = match->data;
-+	if (data)
-+		is_versal = data->is_versal;
++static ssize_t ddr_perf_identifier_show(struct device *dev,
++					struct device_attribute *attr,
++					char *page)
++{
++	struct ddr_pmu *pmu = dev_get_drvdata(dev);
 +
- 	clkout_name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s_out0", dev_name(&pdev->dev));
- 	if (nr_outputs == 1) {
- 		clk_wzrd->clkout[0] = clk_wzrd_register_divider
- 				(&pdev->dev, clkout_name,
- 				__clk_get_name(clk_wzrd->clk_in1), 0,
--				clk_wzrd->base, WZRD_CLK_CFG_REG(3),
-+				clk_wzrd->base, WZRD_CLK_CFG_REG(is_versal, 3),
- 				WZRD_CLKOUT_DIVIDE_SHIFT,
- 				WZRD_CLKOUT_DIVIDE_WIDTH,
- 				CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO,
--				DIV_ALL, &clkwzrd_lock);
-+				DIV_ALL, is_versal, &clkwzrd_lock);
- 
- 		goto out;
- 	}
--
--	reg = readl(clk_wzrd->base + WZRD_CLK_CFG_REG(0));
--	reg_f = reg & WZRD_CLKFBOUT_FRAC_MASK;
--	reg_f =  reg_f >> WZRD_CLKFBOUT_FRAC_SHIFT;
--
--	reg = reg & WZRD_CLKFBOUT_MULT_MASK;
--	reg =  reg >> WZRD_CLKFBOUT_MULT_SHIFT;
--	mult = (reg * 1000) + reg_f;
-+	if (is_versal) {
-+		/* register multiplier */
-+		edge = !!(readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 0)) &
-+				BIT(8));
-+		regl = (readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 1)) &
-+			     WZRD_CLKFBOUT_L_MASK) >> WZRD_CLKFBOUT_L_SHIFT;
-+		regh = (readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 1)) &
-+			     WZRD_CLKFBOUT_H_MASK) >> WZRD_CLKFBOUT_H_SHIFT;
-+		mult = regl + regh + edge;
-+		if (!mult)
-+			mult = 1;
-+		mult = mult * WZRD_FRAC_GRADIENT;
++	return sysfs_emit(page, "%s\n", pmu->devtype_data->identifier);
++}
 +
-+		regl = readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 51)) &
-+			     WZRD_CLKFBOUT_FRAC_EN;
-+		if (regl) {
-+			regl = readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 48)) &
-+				WZRD_VERSAL_FRAC_MASK;
-+			mult = mult + regl;
-+		}
++static struct device_attribute ddr_perf_identifier_attr =
++	__ATTR(identifier, 0444, ddr_perf_identifier_show, NULL);
++
++static struct attribute *ddr_perf_identifier_attrs[] = {
++	&ddr_perf_identifier_attr.attr,
++	NULL,
++};
++
++static struct attribute_group ddr_perf_identifier_attr_group = {
++	.attrs = ddr_perf_identifier_attrs,
++};
++
++static ssize_t ddr_perf_cpumask_show(struct device *dev,
++				     struct device_attribute *attr, char *buf)
++{
++	struct ddr_pmu *pmu = dev_get_drvdata(dev);
++
++	return cpumap_print_to_pagebuf(true, buf, cpumask_of(pmu->cpu));
++}
++
++static struct device_attribute ddr_perf_cpumask_attr =
++	__ATTR(cpumask, 0444, ddr_perf_cpumask_show, NULL);
++
++static struct attribute *ddr_perf_cpumask_attrs[] = {
++	&ddr_perf_cpumask_attr.attr,
++	NULL,
++};
++
++static const struct attribute_group ddr_perf_cpumask_attr_group = {
++	.attrs = ddr_perf_cpumask_attrs,
++};
++
++static ssize_t ddr_pmu_event_show(struct device *dev,
++				  struct device_attribute *attr, char *page)
++{
++	struct perf_pmu_events_attr *pmu_attr;
++
++	pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
++	return sysfs_emit(page, "event=0x%02llx\n", pmu_attr->id);
++}
++
++#define IMX9_DDR_PMU_EVENT_ATTR(_name, _id)				\
++	(&((struct perf_pmu_events_attr[]) {				\
++		{ .attr = __ATTR(_name, 0444, ddr_pmu_event_show, NULL),\
++		  .id = _id, }						\
++	})[0].attr.attr)
++
++static struct attribute *ddr_perf_events_attrs[] = {
++	/* counter0 cycles event */
++	IMX9_DDR_PMU_EVENT_ATTR(cycles, 0),
++
++	/* reference events for all normal counters, need assert DEBUG19[21] bit */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ddrc1_rmw_for_ecc, 12),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_rreorder, 13),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_wreorder, 14),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_0, 15),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_1, 16),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_2, 17),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_3, 18),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_4, 19),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_5, 22),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_6, 23),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_7, 24),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_8, 25),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_9, 26),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_10, 27),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_11, 28),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_12, 31),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_13, 59),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_15, 61),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_pm_29, 63),
++
++	/* counter1 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_0, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_1, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_2, 66),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_3, 67),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_4, 68),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_5, 69),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_6, 70),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_riq_7, 71),
++
++	/* counter2 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_0, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_1, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_2, 66),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_3, 67),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_4, 68),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_5, 69),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_6, 70),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_7, 71),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_empty, 72),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_trans_filt, 73),
++
++	/* counter3 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_0, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_1, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_2, 66),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_3, 67),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_4, 68),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_5, 69),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_6, 70),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_7, 71),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_full, 72),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_wr_trans_filt, 73),
++
++	/* counter4 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_0, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_1, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_2, 66),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_3, 67),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_4, 68),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_5, 69),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_6, 70),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_7, 71),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_rdq2_rmw, 72),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_beat_filt, 73),
++
++	/* counter5 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_0, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_1, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_2, 66),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_3, 67),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_4, 68),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_5, 69),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_6, 70),
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_7, 71),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_rdq1, 72),
++
++	/* counter6 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_end_0, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_rdq2, 72),
++
++	/* counter7 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_1_2_full, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_wrq0, 65),
++
++	/* counter8 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_bias_switched, 64),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_1_4_full, 65),
++
++	/* counter9 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_wrq1, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_3_4_full, 66),
++
++	/* counter10 specific events */
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_misc_mrk, 65),
++	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_rdq0, 66),
++	NULL,
++};
++
++static const struct attribute_group ddr_perf_events_attr_group = {
++	.name = "events",
++	.attrs = ddr_perf_events_attrs,
++};
++
++PMU_FORMAT_ATTR(event, "config:0-7");
++PMU_FORMAT_ATTR(counter, "config:8-15");
++PMU_FORMAT_ATTR(axi_id, "config1:0-17");
++PMU_FORMAT_ATTR(axi_mask, "config2:0-17");
++
++static struct attribute *ddr_perf_format_attrs[] = {
++	&format_attr_event.attr,
++	&format_attr_counter.attr,
++	&format_attr_axi_id.attr,
++	&format_attr_axi_mask.attr,
++	NULL,
++};
++
++static const struct attribute_group ddr_perf_format_attr_group = {
++	.name = "format",
++	.attrs = ddr_perf_format_attrs,
++};
++
++static const struct attribute_group *attr_groups[] = {
++	&ddr_perf_identifier_attr_group,
++	&ddr_perf_cpumask_attr_group,
++	&ddr_perf_events_attr_group,
++	&ddr_perf_format_attr_group,
++	NULL,
++};
++
++static void ddr_perf_clear_counter(struct ddr_pmu *pmu, int counter)
++{
++	if (counter == CYCLES_COUNTER) {
++		writel(0, pmu->base + PMC(counter) + 0x4);
++		writel(0, pmu->base + PMC(counter));
 +	} else {
-+		reg = readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 0));
-+		reg_f = reg & WZRD_CLKFBOUT_FRAC_MASK;
-+		reg_f =  reg_f >> WZRD_CLKFBOUT_FRAC_SHIFT;
-+
-+		reg = reg & WZRD_CLKFBOUT_MULT_MASK;
-+		reg =  reg >> WZRD_CLKFBOUT_MULT_SHIFT;
-+		mult = (reg * 1000) + reg_f;
++		writel(0, pmu->base + PMC(counter));
 +	}
- 	clk_name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s_mul", dev_name(&pdev->dev));
- 	if (!clk_name) {
- 		ret = -ENOMEM;
-@@ -689,13 +964,29 @@ static int clk_wzrd_probe(struct platform_device *pdev)
- 		goto err_rm_int_clk;
- 	}
- 
--	ctrl_reg = clk_wzrd->base + WZRD_CLK_CFG_REG(0);
--	/* register div */
--	clk_wzrd->clks_internal[wzrd_clk_mul_div] = clk_register_divider
-+	if (is_versal) {
-+		edged = !!(readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 20)) &
-+			     BIT(10));
-+		regld = (readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 21)) &
-+			     WZRD_CLKFBOUT_L_MASK) >> WZRD_CLKFBOUT_L_SHIFT;
-+		reghd = (readl(clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 21)) &
-+		     WZRD_CLKFBOUT_H_MASK) >> WZRD_CLKFBOUT_H_SHIFT;
-+		div = (regld  + reghd + edged);
-+		if (!div)
-+			div = 1;
++}
 +
-+		clk_mul_name = __clk_get_name(clk_wzrd->clks_internal[wzrd_clk_mul]);
-+		clk_wzrd->clks_internal[wzrd_clk_mul_div] =
-+			clk_register_fixed_factor(&pdev->dev, clk_name,
-+						  clk_mul_name, 0, 1, div);
++static u64 ddr_perf_read_counter(struct ddr_pmu *pmu, int counter)
++{
++	u32 val_lower, val_upper;
++	u64 val;
++
++	if (counter != CYCLES_COUNTER) {
++		val = readl_relaxed(pmu->base + PMC(counter));
++		goto out;
++	}
++
++	/* special handling for reading 64bit cycle counter */
++	do {
++		val_upper = readl_relaxed(pmu->base + PMC(counter) + 0x4);
++		val_lower = readl_relaxed(pmu->base + PMC(counter));
++	} while (val_upper != readl_relaxed(pmu->base + PMC(counter) + 0x4));
++
++	val = val_upper;
++	val = (val << 32);
++	val |= val_lower;
++out:
++	return val;
++}
++
++static void ddr_perf_counter_global_config(struct ddr_pmu *pmu, bool enable)
++{
++	u32 ctrl;
++
++	ctrl = readl_relaxed(pmu->base + PMGC0);
++
++	if (enable) {
++		/*
++		 * The performance monitor must be reset before event counting
++		 * sequences. The performance monitor can be reset by first freezing
++		 * one or more counters and then clearing the freeze condition to
++		 * allow the counters to count according to the settings in the
++		 * performance monitor registers. Counters can be frozen individually
++		 * by setting PMLCAn[FC] bits, or simultaneously by setting PMGC0[FAC].
++		 * Simply clearing these freeze bits will then allow the performance
++		 * monitor to begin counting based on the register settings.
++		 */
++		ctrl |= PMGC0_FAC;
++		writel(ctrl, pmu->base + PMGC0);
++
++		/*
++		 * Freeze all counters disabled, interrupt enabled, and freeze
++		 * counters on condition enabled.
++		 */
++		ctrl &= ~PMGC0_FAC;
++		ctrl |= PMGC0_PMIE | PMGC0_FCECE;
++		writel(ctrl, pmu->base + PMGC0);
 +	} else {
-+		ctrl_reg = clk_wzrd->base + WZRD_CLK_CFG_REG(is_versal, 0);
-+		clk_wzrd->clks_internal[wzrd_clk_mul_div] = clk_register_divider
- 			(&pdev->dev, clk_name,
- 			 __clk_get_name(clk_wzrd->clks_internal[wzrd_clk_mul]),
- 			flags, ctrl_reg, 0, 8, CLK_DIVIDER_ONE_BASED |
- 			CLK_DIVIDER_ALLOW_ZERO, &clkwzrd_lock);
++		ctrl |= PMGC0_FAC;
++		ctrl &= ~(PMGC0_PMIE | PMGC0_FCECE);
++		writel(ctrl, pmu->base + PMGC0);
 +	}
- 	if (IS_ERR(clk_wzrd->clks_internal[wzrd_clk_mul_div])) {
- 		dev_err(&pdev->dev, "unable to register divider clock\n");
- 		ret = PTR_ERR(clk_wzrd->clks_internal[wzrd_clk_mul_div]);
-@@ -711,24 +1002,35 @@ static int clk_wzrd_probe(struct platform_device *pdev)
- 			goto err_rm_int_clk;
- 		}
- 
--		if (!i)
--			clk_wzrd->clkout[i] = clk_wzrd_register_divf
--				(&pdev->dev, clkout_name,
--				clk_name, flags,
--				clk_wzrd->base, (WZRD_CLK_CFG_REG(2) + i * 12),
--				WZRD_CLKOUT_DIVIDE_SHIFT,
--				WZRD_CLKOUT_DIVIDE_WIDTH,
--				CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO,
--				DIV_O, &clkwzrd_lock);
--		else
-+		if (is_versal) {
- 			clk_wzrd->clkout[i] = clk_wzrd_register_divider
--				(&pdev->dev, clkout_name,
--				clk_name, 0,
--				clk_wzrd->base, (WZRD_CLK_CFG_REG(2) + i * 12),
--				WZRD_CLKOUT_DIVIDE_SHIFT,
--				WZRD_CLKOUT_DIVIDE_WIDTH,
--				CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO,
--				DIV_O, &clkwzrd_lock);
-+						(&pdev->dev,
-+						 clkout_name, clk_name, 0,
-+						 clk_wzrd->base,
-+						 (WZRD_CLK_CFG_REG(is_versal, 3) + i * 8),
-+						 WZRD_CLKOUT_DIVIDE_SHIFT,
-+						 WZRD_CLKOUT_DIVIDE_WIDTH,
-+						 CLK_DIVIDER_ONE_BASED |
-+						 CLK_DIVIDER_ALLOW_ZERO,
-+						 DIV_O, true, &clkwzrd_lock);
-+		} else {
-+			if (!i)
-+				clk_wzrd->clkout[i] = clk_wzrd_register_divf
-+					(&pdev->dev, clkout_name, clk_name, flags, clk_wzrd->base,
-+					(WZRD_CLK_CFG_REG(is_versal, 2) + i * 12),
-+					WZRD_CLKOUT_DIVIDE_SHIFT,
-+					WZRD_CLKOUT_DIVIDE_WIDTH,
-+					CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO,
-+					DIV_O, &clkwzrd_lock);
-+			else
-+				clk_wzrd->clkout[i] = clk_wzrd_register_divider
-+					(&pdev->dev, clkout_name, clk_name, 0, clk_wzrd->base,
-+					(WZRD_CLK_CFG_REG(is_versal, 2) + i * 12),
-+					WZRD_CLKOUT_DIVIDE_SHIFT,
-+					WZRD_CLKOUT_DIVIDE_WIDTH,
-+					CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO,
-+					DIV_O, false,  &clkwzrd_lock);
-+		}
- 		if (IS_ERR(clk_wzrd->clkout[i])) {
- 			int j;
- 
-@@ -793,14 +1095,6 @@ static void clk_wzrd_remove(struct platform_device *pdev)
- 	clk_disable_unprepare(clk_wzrd->axi_clk);
- }
- 
--static const struct of_device_id clk_wzrd_ids[] = {
--	{ .compatible = "xlnx,clocking-wizard" },
--	{ .compatible = "xlnx,clocking-wizard-v5.2" },
--	{ .compatible = "xlnx,clocking-wizard-v6.0" },
--	{ },
--};
--MODULE_DEVICE_TABLE(of, clk_wzrd_ids);
--
- static struct platform_driver clk_wzrd_driver = {
- 	.driver = {
- 		.name = "clk-wizard",
++}
++
++static void ddr_perf_counter_local_config(struct ddr_pmu *pmu, int config,
++				    int counter, bool enable)
++{
++	u32 ctrl_a;
++
++	ctrl_a = readl_relaxed(pmu->base + PMLCA(counter));
++
++	if (enable) {
++		ctrl_a |= PMLCA_FC;
++		writel(ctrl_a, pmu->base + PMLCA(counter));
++
++		ddr_perf_clear_counter(pmu, counter);
++
++		/* Freeze counter disabled, condition enabled, and program event.*/
++		ctrl_a &= ~PMLCA_FC;
++		ctrl_a |= PMLCA_CE;
++		ctrl_a &= ~FIELD_PREP(PMLCA_EVENT, 0x7F);
++		ctrl_a |= FIELD_PREP(PMLCA_EVENT, (config & 0x000000FF));
++		writel(ctrl_a, pmu->base + PMLCA(counter));
++	} else {
++		/* Freeze counter. */
++		ctrl_a |= PMLCA_FC;
++		writel(ctrl_a, pmu->base + PMLCA(counter));
++	}
++}
++
++static void ddr_perf_monitor_config(struct ddr_pmu *pmu, int cfg, int cfg1, int cfg2)
++{
++	u32 pmcfg1, pmcfg2;
++	int event, counter;
++
++	event = cfg & 0x000000FF;
++	counter = (cfg & 0x0000FF00) >> 8;
++
++	pmcfg1 = readl_relaxed(pmu->base + PMCFG1);
++
++	if (counter == 2 && event == 73)
++		pmcfg1 |= PMCFG1_RD_TRANS_FILT_EN;
++	else if (counter == 2 && event != 73)
++		pmcfg1 &= ~PMCFG1_RD_TRANS_FILT_EN;
++
++	if (counter == 3 && event == 73)
++		pmcfg1 |= PMCFG1_WR_TRANS_FILT_EN;
++	else if (counter == 3 && event != 73)
++		pmcfg1 &= ~PMCFG1_WR_TRANS_FILT_EN;
++
++	if (counter == 4 && event == 73)
++		pmcfg1 |= PMCFG1_RD_BT_FILT_EN;
++	else if (counter == 4 && event != 73)
++		pmcfg1 &= ~PMCFG1_RD_BT_FILT_EN;
++
++	pmcfg1 &= ~FIELD_PREP(PMCFG1_ID_MASK, 0x3FFFF);
++	pmcfg1 |= FIELD_PREP(PMCFG1_ID_MASK, cfg2);
++	writel(pmcfg1, pmu->base + PMCFG1);
++
++	pmcfg2 = readl_relaxed(pmu->base + PMCFG2);
++	pmcfg2 &= ~FIELD_PREP(PMCFG2_ID, 0x3FFFF);
++	pmcfg2 |= FIELD_PREP(PMCFG2_ID, cfg1);
++	writel(pmcfg2, pmu->base + PMCFG2);
++}
++
++static void ddr_perf_event_update(struct perf_event *event)
++{
++	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
++	struct hw_perf_event *hwc = &event->hw;
++	int counter = hwc->idx;
++	u64 new_raw_count;
++
++	new_raw_count = ddr_perf_read_counter(pmu, counter);
++	local64_add(new_raw_count, &event->count);
++
++	/* clear counter's value every time */
++	ddr_perf_clear_counter(pmu, counter);
++}
++
++static int ddr_perf_event_init(struct perf_event *event)
++{
++	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
++	struct hw_perf_event *hwc = &event->hw;
++	struct perf_event *sibling;
++
++	if (event->attr.type != event->pmu->type)
++		return -ENOENT;
++
++	if (is_sampling_event(event) || event->attach_state & PERF_ATTACH_TASK)
++		return -EOPNOTSUPP;
++
++	if (event->cpu < 0) {
++		dev_warn(pmu->dev, "Can't provide per-task data!\n");
++		return -EOPNOTSUPP;
++	}
++
++	/*
++	 * We must NOT create groups containing mixed PMUs, although software
++	 * events are acceptable (for example to create a CCN group
++	 * periodically read when a hrtimer aka cpu-clock leader triggers).
++	 */
++	if (event->group_leader->pmu != event->pmu &&
++			!is_software_event(event->group_leader))
++		return -EINVAL;
++
++	for_each_sibling_event(sibling, event->group_leader) {
++		if (sibling->pmu != event->pmu &&
++				!is_software_event(sibling))
++			return -EINVAL;
++	}
++
++	event->cpu = pmu->cpu;
++	hwc->idx = -1;
++
++	return 0;
++}
++
++static void ddr_perf_event_start(struct perf_event *event, int flags)
++{
++	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
++	struct hw_perf_event *hwc = &event->hw;
++	int counter = hwc->idx;
++
++	local64_set(&hwc->prev_count, 0);
++
++	ddr_perf_counter_local_config(pmu, event->attr.config, counter, true);
++	hwc->state = 0;
++}
++
++static int ddr_perf_event_add(struct perf_event *event, int flags)
++{
++	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
++	struct hw_perf_event *hwc = &event->hw;
++	int cfg = event->attr.config;
++	int cfg1 = event->attr.config1;
++	int cfg2 = event->attr.config2;
++	int counter;
++
++	counter = (cfg & 0x0000FF00) >> 8;
++
++	pmu->events[counter] = event;
++	pmu->active_events++;
++	hwc->idx = counter;
++	hwc->state |= PERF_HES_STOPPED;
++
++	if (flags & PERF_EF_START)
++		ddr_perf_event_start(event, flags);
++
++	/* read trans, write trans, read beat */
++	ddr_perf_monitor_config(pmu, cfg, cfg1, cfg2);
++
++	return 0;
++}
++
++static void ddr_perf_event_stop(struct perf_event *event, int flags)
++{
++	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
++	struct hw_perf_event *hwc = &event->hw;
++	int counter = hwc->idx;
++
++	ddr_perf_counter_local_config(pmu, event->attr.config, counter, false);
++	ddr_perf_event_update(event);
++
++	hwc->state |= PERF_HES_STOPPED;
++}
++
++static void ddr_perf_event_del(struct perf_event *event, int flags)
++{
++	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
++	struct hw_perf_event *hwc = &event->hw;
++
++	ddr_perf_event_stop(event, PERF_EF_UPDATE);
++
++	pmu->active_events--;
++	hwc->idx = -1;
++}
++
++static void ddr_perf_pmu_enable(struct pmu *pmu)
++{
++	struct ddr_pmu *ddr_pmu = to_ddr_pmu(pmu);
++
++	ddr_perf_counter_global_config(ddr_pmu, true);
++}
++
++static void ddr_perf_pmu_disable(struct pmu *pmu)
++{
++	struct ddr_pmu *ddr_pmu = to_ddr_pmu(pmu);
++
++	ddr_perf_counter_global_config(ddr_pmu, false);
++}
++
++static void ddr_perf_init(struct ddr_pmu *pmu, void __iomem *base,
++			 struct device *dev)
++{
++	*pmu = (struct ddr_pmu) {
++		.pmu = (struct pmu) {
++			.module       = THIS_MODULE,
++			.capabilities = PERF_PMU_CAP_NO_EXCLUDE,
++			.task_ctx_nr  = perf_invalid_context,
++			.attr_groups  = attr_groups,
++			.event_init   = ddr_perf_event_init,
++			.add          = ddr_perf_event_add,
++			.del          = ddr_perf_event_del,
++			.start        = ddr_perf_event_start,
++			.stop         = ddr_perf_event_stop,
++			.read         = ddr_perf_event_update,
++			.pmu_enable   = ddr_perf_pmu_enable,
++			.pmu_disable  = ddr_perf_pmu_disable,
++		},
++		.base = base,
++		.dev = dev,
++	};
++}
++
++static irqreturn_t ddr_perf_irq_handler(int irq, void *p)
++{
++	struct ddr_pmu *pmu = (struct ddr_pmu *)p;
++	struct perf_event *event;
++	int i;
++
++	/*
++	 * Counters can generate an interrupt on an overflow when msb of a
++	 * counter changes from 0 to 1. For the interrupt to be signalled,
++	 * below condition mush be satisfied:
++	 * PMGC0[PMIE] = 1, PMGC0[FCECE] = 1, PMLCAn[CE] = 1
++	 * When an interrupt is signalled, PMGC0[FAC] is set by hardware and
++	 * all of the registers are frozen.
++	 * Software can clear the interrupt condition by resetting the performance
++	 * monitor and clearing the most significant bit of the counter that
++	 * generate the overflow.
++	 */
++	for (i = 0; i < NUM_COUNTERS; i++) {
++		if (!pmu->events[i])
++			continue;
++
++		event = pmu->events[i];
++
++		ddr_perf_event_update(event);
++	}
++
++	ddr_perf_counter_global_config(pmu, true);
++
++	return IRQ_HANDLED;
++}
++
++static int ddr_perf_offline_cpu(unsigned int cpu, struct hlist_node *node)
++{
++	struct ddr_pmu *pmu = hlist_entry_safe(node, struct ddr_pmu, node);
++	int target;
++
++	if (cpu != pmu->cpu)
++		return 0;
++
++	target = cpumask_any_but(cpu_online_mask, cpu);
++	if (target >= nr_cpu_ids)
++		return 0;
++
++	perf_pmu_migrate_context(&pmu->pmu, cpu, target);
++	pmu->cpu = target;
++
++	WARN_ON(irq_set_affinity(pmu->irq, cpumask_of(pmu->cpu)));
++
++	return 0;
++}
++
++static int ddr_perf_probe(struct platform_device *pdev)
++{
++	struct ddr_pmu *pmu;
++	void __iomem *base;
++	int ret, irq;
++	char *name;
++
++	base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(base))
++		return PTR_ERR(base);
++
++	pmu = devm_kzalloc(&pdev->dev, sizeof(*pmu), GFP_KERNEL);
++	if (!pmu)
++		return -ENOMEM;
++
++	ddr_perf_init(pmu, base, &pdev->dev);
++
++	pmu->devtype_data = of_device_get_match_data(&pdev->dev);
++
++	platform_set_drvdata(pdev, pmu);
++
++	pmu->id = ida_simple_get(&ddr_ida, 0, 0, GFP_KERNEL);
++	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, DDR_PERF_DEV_NAME "%d", pmu->id);
++	if (!name) {
++		ret = -ENOMEM;
++		goto format_string_err;
++	}
++
++	pmu->cpu = raw_smp_processor_id();
++	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN, DDR_CPUHP_CB_NAME,
++				      NULL, ddr_perf_offline_cpu);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "Failed to add callbacks for multi state\n");
++		goto cpuhp_state_err;
++	}
++	pmu->cpuhp_state = ret;
++
++	/* Register the pmu instance for cpu hotplug */
++	ret = cpuhp_state_add_instance_nocalls(pmu->cpuhp_state, &pmu->node);
++	if (ret) {
++		dev_err(&pdev->dev, "Error %d registering hotplug\n", ret);
++		goto cpuhp_instance_err;
++	}
++
++	/* Request irq */
++	irq = platform_get_irq(pdev, 0);
++	if (irq < 0) {
++		dev_err(&pdev->dev, "Failed to get irq: %d", irq);
++		ret = irq;
++		goto ddr_perf_err;
++	}
++
++	ret = devm_request_irq(&pdev->dev, irq, ddr_perf_irq_handler,
++			       IRQF_NOBALANCING | IRQF_NO_THREAD,
++			       DDR_CPUHP_CB_NAME, pmu);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "Request irq failed: %d", ret);
++		goto ddr_perf_err;
++	}
++
++	pmu->irq = irq;
++	ret = irq_set_affinity(pmu->irq, cpumask_of(pmu->cpu));
++	if (ret) {
++		dev_err(pmu->dev, "Failed to set interrupt affinity\n");
++		goto ddr_perf_err;
++	}
++
++	ret = perf_pmu_register(&pmu->pmu, name, -1);
++	if (ret)
++		goto ddr_perf_err;
++
++	return 0;
++
++ddr_perf_err:
++	cpuhp_state_remove_instance_nocalls(pmu->cpuhp_state, &pmu->node);
++cpuhp_instance_err:
++	cpuhp_remove_multi_state(pmu->cpuhp_state);
++cpuhp_state_err:
++format_string_err:
++	ida_simple_remove(&ddr_ida, pmu->id);
++	dev_warn(&pdev->dev, "i.MX9 DDR Perf PMU failed (%d), disabled\n", ret);
++	return ret;
++}
++
++static int ddr_perf_remove(struct platform_device *pdev)
++{
++	struct ddr_pmu *pmu = platform_get_drvdata(pdev);
++
++	cpuhp_state_remove_instance_nocalls(pmu->cpuhp_state, &pmu->node);
++	cpuhp_remove_multi_state(pmu->cpuhp_state);
++
++	perf_pmu_unregister(&pmu->pmu);
++
++	ida_simple_remove(&ddr_ida, pmu->id);
++
++	return 0;
++}
++
++static struct platform_driver imx_ddr_pmu_driver = {
++	.driver         = {
++		.name                = "imx9-ddr-pmu",
++		.of_match_table      = imx_ddr_pmu_dt_ids,
++		.suppress_bind_attrs = true,
++	},
++	.probe          = ddr_perf_probe,
++	.remove         = ddr_perf_remove,
++};
++module_platform_driver(imx_ddr_pmu_driver);
++
++MODULE_AUTHOR("Xu Yang <xu.yang_2@nxp.com>");
++MODULE_LICENSE("GPL v2");
++MODULE_DESCRIPTION("DDRC PerfMon for i.MX9 SoCs");
 -- 
-2.17.1
+2.34.1
 
