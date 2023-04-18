@@ -2,89 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F08C6E618F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9B96E6229
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:30:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231470AbjDRMZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:25:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34184 "EHLO
+        id S231678AbjDRMaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231429AbjDRMZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:25:50 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B78928684
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:25:15 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id q23so63201495ejz.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:25:15 -0700 (PDT)
+        with ESMTP id S231564AbjDRMag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:30:36 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E93C165
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:30:14 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-94eee951c70so232852466b.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:30:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681820713; x=1684412713;
+        d=linaro.org; s=google; t=1681821012; x=1684413012;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ev5WXTYPPIhAR/I8OdIpkj/pJQ+EM34lzeYbEC9ASSY=;
-        b=dt8agR7ooelnrNDzOe7AF25AFlJM3MwAKrXaOdy4Ey9KJNUCXogUfbKpjMSPn1pcuB
-         5Uv9nZRzQhygdFKEXC+jXG3NFBKjc2yT2CykBzR29oCJqOgy5TAnvSkbn1gZnp++AccP
-         RI+5h1MwMjofbgIAdFtw38DAZ3rbO/ybPgyPEVsxAkMaATLt99maVNUTfaztdMnbM0EG
-         MVJIdFT28y1VdNXKVrokaGOwzGTHFVpa713Mw6xLcH91X6YP6gs/8kOotNPZsz7JNCDC
-         aupQp44QwVMxGwT/Sru0q4r6T+3UO8eC8I0RfM3bYb4UhcMH/04LPUo4r0JkjLPOT5PN
-         NRoQ==
+        bh=RebJ7KlFGR0siwm86EnWjSWViyEw3vNqJd5Fx0fargE=;
+        b=k3rBsl8R6I0HUCPUtWmkwwHa+e/z8pHzk0R2ccAZV/j1MR8yHhrOp6+nakU++RBlOE
+         oZ294IzekZCd1ikt+zahhPJh6+D3BSTUdQ55qFFwg6L9CyM5NlusLR9boEHOyrO5J6d7
+         4u0bJUCGZCEFDdJabe+uOqJSo5gTFcjpW3St9LClsEnucWhWBR7kpmvqUJLGK2v9lD4U
+         O/DxYDMOz0XGh6v1PkxXAiYeXbw1xGg2FN4G4zY7IcwCIvdzKD9pFOgz0xjM3vf1M19F
+         HQitsfLoO/LlpA9sC5mg1ORedYHgrX6k/4+JdvkgcR/f9cUdDmcUt8ARabKBOtEYaz1v
+         93SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681820713; x=1684412713;
+        d=1e100.net; s=20221208; t=1681821012; x=1684413012;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ev5WXTYPPIhAR/I8OdIpkj/pJQ+EM34lzeYbEC9ASSY=;
-        b=XUTiysY9fJ+DHSUrK77SsZg26Nlqkyq54EjxahzzgdcpfIBd3nmpXr19DWWnCladlH
-         P4fsoYiYF8SK0xorc1QZQVMaLSHpIw8FVChRnHIUh0fKRQx9bKl+expgiE3oPCjHI+12
-         WquSSWv1+xT9AMpjcOWgI5dxaSGcHfWGGDoFA1PdXV1uVWJ1h8hjpnJuaTT5Oil38WXX
-         RzLk0U9ASl4GCkRP9hRx7DxAgVl76XdV2x//m5oGzceDZI9XqUDvF6FsbcdvlH9p8xuX
-         Y06RDlTa2IP3YDLqXJEL6zyndzaWYYTAk+kAnqMwvoTFjwftES5YgsjXpxMJviA/AZ7G
-         KFjQ==
-X-Gm-Message-State: AAQBX9d9sWQ2N9IwFPDmsI/ovYOX3NkRu+AAbcxP6W+/ZusMOsnzRdc0
-        ztd9x0L8+2QwkPvHq+2Z6TVkoQ==
-X-Google-Smtp-Source: AKy350Z4tmX0U06wZCE6q5FdRMkDP7l+18lb+7cM4mckgyRf2TzhX9qVRGvgKAwF8u1OYfdAGS6qVg==
-X-Received: by 2002:a17:906:ae56:b0:932:1af9:7386 with SMTP id lf22-20020a170906ae5600b009321af97386mr10454741ejb.27.1681820713510;
-        Tue, 18 Apr 2023 05:25:13 -0700 (PDT)
+        bh=RebJ7KlFGR0siwm86EnWjSWViyEw3vNqJd5Fx0fargE=;
+        b=b6OBv+C2fYtXXDcx9a8nYPXnFGLdcvwfvCBylKHKNA+PDum5XpIKd5wdD4gvqERGXP
+         IROv0IQk1zrki9mxYaxjA0sQa+GZvDVe5K9oSzwIcYiUzmFnyiFrRSYdrdHB66l0pyRj
+         gSCdPupS6UJpNcPGpG7+4/RqhhmRXr5ctZXwn3sR5zX56NphcimWEUGkET8K9OD789ro
+         K5kTs8PvzmD8Phsm8fwnDjpElGSDHrYtkXvFJsw3cEc3W2gpa4zzZ0MSdtstAPrYu5Eb
+         n3dHIc2wzeidho6DLxrStgSxlEeC/tF9gRd5NLEaTEf0fZo8eVIzGZVnVgxO+bp1GCIT
+         xBtg==
+X-Gm-Message-State: AAQBX9cYbBnY20qdRjMAqoFcGbCLDGZf6/ow41lMjUpUBwEjUlcs/dpM
+        YRcLYhDLCDsPz+WyvQ4ZgJOlNg==
+X-Google-Smtp-Source: AKy350YfhlmHlX4w/RB2R+FFmHcIcze1lh7/khJZjO6qYv8P8AseVca5DA+ke0RMIVkCXuUL7N9wig==
+X-Received: by 2002:aa7:c6ce:0:b0:506:741e:5c1b with SMTP id b14-20020aa7c6ce000000b00506741e5c1bmr1796854eds.12.1681821011855;
+        Tue, 18 Apr 2023 05:30:11 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id oz8-20020a1709077d8800b009532427b35asm577349ejc.7.2023.04.18.05.25.12
+        by smtp.gmail.com with ESMTPSA id d12-20020a50fe8c000000b00504c33675cesm7010724edt.35.2023.04.18.05.30.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 05:25:13 -0700 (PDT)
-Message-ID: <47f27da1-8ed1-327e-74d7-ad4e3f12e3d6@linaro.org>
-Date:   Tue, 18 Apr 2023 14:25:11 +0200
+        Tue, 18 Apr 2023 05:30:11 -0700 (PDT)
+Message-ID: <d0071447-8521-1a71-6978-7a0f7f6f7d41@linaro.org>
+Date:   Tue, 18 Apr 2023 14:30:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 7/7] ASoC: dt-bindings: mediatek,mt8188-afe: add audio
- properties
+Subject: Re: [PATCH 4/6] dt-bindings: power: supply: add MAX77659 charger
+ binding
 Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
+To:     "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "lee@kernel.org" <lee@kernel.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230413104713.7174-1-trevor.wu@mediatek.com>
- <20230413104713.7174-8-trevor.wu@mediatek.com>
- <310e8979-de96-dda8-6c95-0e6033d8b403@linaro.org>
- <b9daeea6d823b8e84db0ca0df0e04d3716a6b944.camel@mediatek.com>
- <382bc15e-f4e3-3a9f-9dbc-4d46ac1d76d6@collabora.com>
- <3fe703c1279bf4d25a890b63c23a4bc97abd4198.camel@mediatek.com>
+        "sre@kernel.org" <sre@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>
+References: <20221220132250.19383-1-Zeynep.Arslanbenzer@analog.com>
+ <20221220132250.19383-5-Zeynep.Arslanbenzer@analog.com>
+ <5ba4295f-1197-913c-b1eb-a23798c3badf@linaro.org>
+ <MN2PR03MB5197E655DE2EAACAEA2316578B9C9@MN2PR03MB5197.namprd03.prod.outlook.com>
+ <1e1fb90a-43c0-3b0a-ab7a-8ca3ce8b02ed@linaro.org>
+ <MN2PR03MB51977056C2DC014B0BC7D40F8B9D9@MN2PR03MB5197.namprd03.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3fe703c1279bf4d25a890b63c23a4bc97abd4198.camel@mediatek.com>
+In-Reply-To: <MN2PR03MB51977056C2DC014B0BC7D40F8B9D9@MN2PR03MB5197.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -95,47 +88,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 12:23, Trevor Wu (吳文良) wrote:
->> Actually, doing that is borderline-ok... there's no devicetree for
->> MT8188
->> upstream, so that's not breaking anything at all.
->> In any case, I agree that you should generally avoid doing that but I
->> think
->> that in this specific case it's fine; I'm not a devicetree maintainer
->> though.
+On 18/04/2023 11:41, Arslanbenzer, Zeynep wrote:
+>>>> No, use suffixes for common units.
+>>>
+>>> Hi Krzysztof,
+>>>
+>>> Thank you for your review. The possible register values of the fast charge safety timer are described in the datasheet as follows. I was undecided about using the common unit, second, as it may affect the comprehensibility of the code. Of course, I can use second as the common unit if you think it's more appropriate.
 >>
->> P.S.: Trevor, next time please make reviewers aware of the fact that
->> no 8188
->>        devicetree is present upstream!
+>> This is quite common property, so I do not understand why this one driver should have it written differently. I understand that parsing
+>> 0/1/2/3 is easier for the machine than 0/3/5/7 but it is not easier for humans.
+> 
+> I referenced property-units.yaml for common units.
+> 
+> As I understood hours and minutes are not common units in Linux for time so I cannot use them as suffixes. Therefore, I thought I had to use "seconds" instead of "hours" or "minutes". I am totally fine if I can use " adi,fast-charge-timer-hours" and "adi,topoff-timer-minutes". 
+
+Wrap your replies to match mailing list style.
+
+Yeah... indeed... because it should not be in DTS in the first place.
+It's not a property of the hardware, so the same as with other drivers -
+we don't store it in DT. Check other maxim drivers.
+
+> 
 >>
-> Got it. Thanks.
-> 
-> 
-> Hi krzysztof,
-> 
-> Because there is no upstream mt8188 DTS, should I move the new clock to
-> the end of clock list?
-
-What is the reason to add them in the middle? So far there was no
-argument, so always add at the end. If you have an argument, let's
-discuss it.
-
-> 
-> If I move "apll1_d4" to the end of the list at binding file, when I
-> upstream the devicetree node existing clocks and clock-names properties
-> , should I follow the sequence defined in dt-bindings
-
-If you do not follow the sequence of bindings, you upstream incorrect
-DTS which does not follow ABI and fails the tests. Therefore yes, use
-the same order as your bindings define.
-
-> or can I have a
-> new sequence based on the clock type or alphabet?
-
-Sorry, I don't know what is the order of clock type and alphabet. If you
-mean anything else than bindings, then no, because how is it supposed to
-work then?
-
+>>>
+>>> 0b00 = Timer disabled
+>>> 0b01 = 3 hours
+>>> 0b10 = 5 hours
+>>> 0b11 = 7 hours
 Best regards,
 Krzysztof
 
