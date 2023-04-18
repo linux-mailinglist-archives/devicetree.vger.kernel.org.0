@@ -2,97 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 065FA6E6E64
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C896E6E6D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232462AbjDRViB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 17:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53810 "EHLO
+        id S232753AbjDRVjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 17:39:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233036AbjDRViA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:38:00 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7984C1B;
-        Tue, 18 Apr 2023 14:37:57 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33ILbjGD004171;
-        Tue, 18 Apr 2023 16:37:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681853865;
-        bh=mirHeRfuw/laREKJBqS7iu34OMLUh22/EW5vFBP5/og=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Q6kGsaK2p56o4/FdATjW62U18MgBY/mIJYTFyioUrrkJFlOwLXGJSsQMUJh2zbVV5
-         Kc0JvxHU5drxYvPGOySK/LFrPG28HUuYdANxQ5PpCLql59K+KmL2FXWC3vem9CXkRj
-         AMXsHYNr03+h6zgloVVxXZfCFmbnMzRac7DLdPpU=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33ILbjCI083340
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Apr 2023 16:37:45 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 18
- Apr 2023 16:37:45 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 18 Apr 2023 16:37:45 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33ILbjNo035500;
-        Tue, 18 Apr 2023 16:37:45 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233095AbjDRVjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:39:53 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C047BBB5;
+        Tue, 18 Apr 2023 14:39:37 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-38c6bbbeeb3so456173b6e.1;
+        Tue, 18 Apr 2023 14:39:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681853976; x=1684445976;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9FTQgI3HTIujYCvmdGvbn1iYHKKTz5bkM55o7VU7wfs=;
+        b=CNMQe6I34mx9dAFwKVO7dYtezQBYC4huJucPEzQI94ghKB0d5HVtLam+cyyj1Aysyp
+         NGPVgN810QZ/zoX7iAlIvCC7p97LWM2nZDCUncIX8hXSDTiOBqEnm7wN9VynkMk60QaE
+         Cc0K4FXXqCqQpOpuXF58c5Ov3Sx0GofevSsnWOPZAnUP8clm/Vq7+y5Ehr8erCrnyzc7
+         jowc6n66hbLm4W83d1KiQmk3A2nK27YXL5Y3PxKsHq51tXLwrMgld8UFFfxgdAuVPEUn
+         PZSuvZHnYZ8DLl/d4QL8tqK9c9JPjbGgyuewCdGV68S9kQQE3pAKncctaITENb3R0PAB
+         IElw==
+X-Gm-Message-State: AAQBX9eXSFPFhTqxD9gJ97ApUD/2ak8K3323OfQKkNfWE2WUwZWV2gO7
+        GL4sTzSbG569law3fAUCqA==
+X-Google-Smtp-Source: AKy350ad1gFJziMA7uFDXKgRYHOImiDLZc2+2kux8SA8FrsvhCP7QU7dcKoZR+twA7gAQFYNGfgJUA==
+X-Received: by 2002:aca:644:0:b0:378:2df5:49f5 with SMTP id 65-20020aca0644000000b003782df549f5mr1944858oig.2.1681853974837;
+        Tue, 18 Apr 2023 14:39:34 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n3-20020aca2403000000b0038bffe1332dsm3950756oic.57.2023.04.18.14.39.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 14:39:31 -0700 (PDT)
+Received: (nullmailer pid 2376874 invoked by uid 1000);
+        Tue, 18 Apr 2023 21:39:29 -0000
+Date:   Tue, 18 Apr 2023 16:39:29 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Andy Gross <agross@kernel.org>, linux-watchdog@vger.kernel.org,
+        Fu Wei <fu.wei@linaro.org>, Jamie Iles <jamie@jamieiles.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Julius Werner <jwerner@chromium.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-am62x-sk-common: Improve documentation of mcasp1_pins
-Date:   Tue, 18 Apr 2023 16:37:40 -0500
-Message-ID: <20230418213740.153519-5-nm@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230418213740.153519-1-nm@ti.com>
-References: <20230418213740.153519-1-nm@ti.com>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-mediatek@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Evan Benn <evanbenn@chromium.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Sander Vanheule <sander@svanheule.net>
+Subject: Re: [PATCH 6/6] dt-bindings: watchdog: realtek,otto-wdt: simplify
+ requiring interrupt-names
+Message-ID: <168185396909.2376821.8732982905359058158.robh@kernel.org>
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
+ <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include documentation of the AMC package pin name as well to keep it
-consistent with the rest of the pinctrl documentation.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+On Sat, 15 Apr 2023 11:51:12 +0200, Krzysztof Kozlowski wrote:
+> Required properties should be listed in "required:" block.  Since
+> interrupts are already there, the dependency of interrupt-names on the
+> interrupts can be simplified.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/watchdog/realtek,otto-wdt.yaml        | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 68cc0bfc907c..633ad7103e7a 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -221,10 +221,10 @@ AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
- 
- 	main_mcasp1_pins_default: main-mcasp1-pins-default {
- 		pinctrl-single,pins = <
--			AM62X_IOPAD(0x090, PIN_INPUT, 2) /* (M24) GPMC0_BE0N_CLE.MCASP1_ACLKX */
--			AM62X_IOPAD(0x098, PIN_INPUT, 2) /* (U23) GPMC0_WAIT0.MCASP1_AFSX */
--			AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25) GPMC0_WEN.MCASP1_AXR0 */
--			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23) GPMC0_ADVN_ALE.MCASP1_AXR2 */
-+			AM62X_IOPAD(0x090, PIN_INPUT, 2) /* (M24/K17) GPMC0_BE0N_CLE.MCASP1_ACLKX */
-+			AM62X_IOPAD(0x098, PIN_INPUT, 2) /* (U23/P21) GPMC0_WAIT0.MCASP1_AFSX */
-+			AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25/J17) GPMC0_WEN.MCASP1_AXR0 */
-+			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23/K20) GPMC0_ADVN_ALE.MCASP1_AXR2 */
- 		>;
- 	};
- };
--- 
-2.40.0
+Reviewed-by: Rob Herring <robh@kernel.org>
 
