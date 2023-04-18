@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90DBA6E5A76
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4686E5A83
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbjDRHan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 03:30:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42808 "EHLO
+        id S230003AbjDRHdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 03:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjDRHam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:30:42 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C7463C0D
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:30:41 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5058181d58dso4737366a12.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:30:41 -0700 (PDT)
+        with ESMTP id S229882AbjDRHdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:33:04 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6AD3ABC
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:33:03 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id ud9so70531384ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:33:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681803040; x=1684395040;
+        d=linaro.org; s=google; t=1681803181; x=1684395181;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rVgNSlQei7ClLmAXgHdLYMij5O05eDXWOobwGEh17DQ=;
-        b=vR0c1V6fHjkOyv3+jlpqY5zM6LZj07DmVTLUWBjOaBOnR6s/0Baom+vEKaqJuhxeZ/
-         Xc2D6F3qbZCYol/JMWRydydPtMlGMn5e+nfsLiGcOe5rc+35obwyzfmNe1GgK97zBtTt
-         1Koogst0alt2YUOp73Y6GIQGW4PtGqo+3GIbQ5sYJDaUBLFX+vSBPMZa8Z6RiFe+5SP9
-         yt3weQk73jK4zbBsH2P4E87ne3NJ2xeH/QFqzjwYBdS26g7e7C44okeVj6RGWC5JQhu+
-         im64hz/ErmPn7+rNBHTtTkWqnC+09/Ynd1k5kWaNwVHcekfYvFmrb29OqVqmTdj8tHfQ
-         sdLw==
+        bh=lKgWNkOJgKXo7RHkqoeh9yErcCaH+MLb1gLiZAERQuA=;
+        b=OJprU5HxHTyBMt+ck7rplzQJAXpMZXqy/c34wblz1wvA+2c6NEHCsFuE7k9DQUS5uK
+         PEDZu+9Du9YzsgTDQxiEbNwKmEBmVNAVEFCIGO8YKmEALsFRQS+WRqch+lCrsZTxNiId
+         xXgFAcnq/K8dX20VvyXHsErhx4Brd0NQ+hrbSF0y0IZIS2xQqN12meNdmXsipeTLwzgr
+         NBHhQG5oJ8pMq7t+9vn3axHYnoE/nfP6/SJmLozCATurzChoHlM2ZsQhwR8wYagPGgi/
+         KKCSRLos27MvYGQ3g2Q8ihzQHnRQJ/1cGcpptSDFhkizuYHRy7KsQtL1rSB68+vS7fIV
+         snOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681803040; x=1684395040;
+        d=1e100.net; s=20221208; t=1681803181; x=1684395181;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rVgNSlQei7ClLmAXgHdLYMij5O05eDXWOobwGEh17DQ=;
-        b=UnK6xAjMQSIfL1SGXWMXEen3nlJMUC0qCte+yqRWuAKwgHc0bmKClrdXa1V5mw786A
-         YpHZG1plhHbnc2dXrOyKiSOmrUWhblJDrlIbvX0VtSp5RIqaBElav0frCZrDEh6+LAEj
-         Tb86/Fifrf2UHzN30HQuhJH6yiggzH/rZeIh10ld191RGtVTdGK50y1mnKupHBMs+e0P
-         AUOxG0UM8nz0qy2DtQCXl7fi6HL9Rk3Whf3NNHRquzIOR+ICrtS5qKSbSp2GrSDhmNMV
-         6zEtsqC8VOZILuP5uP65SXS21h9edCmvnra1m7vW5tvoSyzmlF+fOz9eTcOwxZPhblvO
-         /oPQ==
-X-Gm-Message-State: AAQBX9dXvftDIrKcQj3bYBzJONvRGn4Mp+ppOMusaXfSt1hm3sbLtqsD
-        SxDTPhZ0sUcQhTJWVP+//eDiQA==
-X-Google-Smtp-Source: AKy350Zoyxpwx+/pSMVZgdFa6Mkl6usfBX3ptXBL+sCtn0/rIgDyyeOnSAiaOQ8GnTcResGJW+JT7A==
-X-Received: by 2002:a50:fb17:0:b0:502:70e9:2c14 with SMTP id d23-20020a50fb17000000b0050270e92c14mr1498794edq.29.1681803039878;
-        Tue, 18 Apr 2023 00:30:39 -0700 (PDT)
+        bh=lKgWNkOJgKXo7RHkqoeh9yErcCaH+MLb1gLiZAERQuA=;
+        b=P07HhSp2/7pqakteYNWPyCJcCVIE3ZM7bb2OB8AeYOsCz2BKTBIc4zdVh87ZgRNkYQ
+         dAQxG8DK50txfTRGGBIa7gLvnbdwL8b5Tm47Q/wOOT8q3k/llMszNDhgiRgQhCPdEHsN
+         d1vyFwgBPiJGt/2uO7pi1F5ZmuHgpxrDTtruhT67iz72gIhoCiqWbOHacCKJWYpvmfpj
+         /VOTLcTTZ0lOec5DefOyvGEl8cGFemBiyTF62j+WgOlPgI+SyMt72E25+jhfxEw0iG+V
+         vwyHZe1rRPcuBGTILOZFfF09oYtT6A75PyaDu7hBsDciCbgLP83iRXs7dQvIGyWbQSsp
+         CHrQ==
+X-Gm-Message-State: AAQBX9dUg50biMVp6MJ4XSA8DWlIPjo273DRpqrGQlHnQRYDD1dZOTts
+        ncu2SSQRVKleNHD7IZGXWpNnqQ==
+X-Google-Smtp-Source: AKy350ZMPgsxFyc+nasSzANQfDhKCRfDuJqDIKTG7Y6L51+m2E9GB+q8bneIFyvzgduPcSx+jmsQGQ==
+X-Received: by 2002:a17:907:98d9:b0:94e:e039:98cc with SMTP id kd25-20020a17090798d900b0094ee03998ccmr8951881ejc.42.1681803181483;
+        Tue, 18 Apr 2023 00:33:01 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id m21-20020a509995000000b0050684020babsm5369235edb.27.2023.04.18.00.30.38
+        by smtp.gmail.com with ESMTPSA id r12-20020a170906c28c00b0094f2f0c9ed9sm4270044ejz.167.2023.04.18.00.33.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 00:30:39 -0700 (PDT)
-Message-ID: <b28e6e12-6eb3-582a-25e2-34fa2f3544f8@linaro.org>
-Date:   Tue, 18 Apr 2023 09:30:38 +0200
+        Tue, 18 Apr 2023 00:33:00 -0700 (PDT)
+Message-ID: <c111addc-db54-d1bf-855c-77c82a91a1f7@linaro.org>
+Date:   Tue, 18 Apr 2023 09:32:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH] dt-bindings: phy: qmp-ufs: fix clock and clock-names for
- sa8775p
+Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sa8775p: add the pcie smmu node
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230417130522.401605-1-brgl@bgdev.pl>
+References: <20230417125844.400782-1-brgl@bgdev.pl>
+ <20230417125844.400782-3-brgl@bgdev.pl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230417130522.401605-1-brgl@bgdev.pl>
+In-Reply-To: <20230417125844.400782-3-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,25 +85,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/04/2023 15:05, Bartosz Golaszewski wrote:
+On 17/04/2023 14:58, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> We must set *minItems* to 3, not maxItems as this platform requires
-> exactly three clocks and maxItems is already set to 3 globally.
+> Add the PCIe SMMU node for sa8775p platforms.
 > 
-> Fixes: e5796a9cdf73 ("dt-bindings: phy: qmp-ufs: describe the UFS PHY for sa8775p")
-
-Your change makes the code easier to read (more obvious), so I am okay
-with the change, but I am not okay with commit msg and Fixes tag. Issue
-is described inaccurately. There is nothing to fix here, because
-original code was correct.
-
-maxItems:3 in implies minItems:3, thus everything worked as should.
-
-Feel free to re-phrase the commit msg and remove the Fixes tag.
-
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
