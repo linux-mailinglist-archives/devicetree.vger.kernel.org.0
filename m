@@ -2,168 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E93466E6DCA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42AE66E6DDB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 23:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbjDRVDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 17:03:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56862 "EHLO
+        id S232849AbjDRVFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 17:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230408AbjDRVDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:03:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABFB7ED6;
-        Tue, 18 Apr 2023 14:03:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DC73662C35;
-        Tue, 18 Apr 2023 21:03:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 155EEC433EF;
-        Tue, 18 Apr 2023 21:03:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681851786;
-        bh=wUDQT7v4d9CA1v22EaRJl1H3C9V5twleJc7yXsj1qDA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=d5Uz3AqaD26Yv+nr9cFaoJzGbvLA3JqeJLNEPT8wSh1eb6X6EvRFOZ1SKuGjyCYpx
-         eH2HpI20aWdUaPs3W5D/b6IG/WZzl6KwS/RFlYyRmrj2rU8u8rhD2yi+B+D2Asy1aG
-         QZzpLc0Q40QmOcm3NtyQ0h0gD2NQ5jFUlsl5BFNaodBkqBr1SPZwgBdjChL8Vl6K7q
-         VzDjHXH+ceP1GDR16/ib2INaiLJASQIi75eyNC3TBuwxzV7EIo15vKo9ljsrRpjMPA
-         0kVyQPK6wtnK0kOGYyaRSwpiVK5b41MoX34NS0IlllNjSRS+UpeVDKG7EhBSgiUjHy
-         8RPrv8vYiZQzA==
-Date:   Tue, 18 Apr 2023 16:03:04 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Tyrel Datwyler <tyreld@linux.ibm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] PCI: Use of_property_present() for testing DT property
- presence
-Message-ID: <20230418210304.GA158193@bhelgaas>
+        with ESMTP id S232840AbjDRVFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 17:05:51 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011B1C172;
+        Tue, 18 Apr 2023 14:05:49 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-38e3a1a07c8so574373b6e.0;
+        Tue, 18 Apr 2023 14:05:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681851949; x=1684443949;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jIDYp/2j9X9Mpn+NMTYQeGLVTSLMhfAeiCWuUAQuqdE=;
+        b=L2D0sWRHzaKlrGOx93OnJwUvy8I49Jlsye+7qN39NcGFERnIVhaNgaBuZT0RM6roTN
+         kzAcl6SjoATgFzv9XtRJpM2Z4MAZs9c1aYsqWNZ+NMdaqcC4ldUjeIASu9PNBPK3iOus
+         o8rkyRFVd1T1DP7E0BbWPpO8/MxMnlcbcGUuaPcA+E0ssNNHILrTqq8qBfMgbqleexJH
+         tT4ExMj2hY3pSaP+E9idSSM6hn2/eb1Sl/+pac/5mx7XpHry1gafIj/pg0vqLng41ACx
+         W1JySVyD4tasYjy0kF+M/vwDsdZh5L+hggit7k4CXsGomy1O3z+7KopzA4a4V0FPpsML
+         vvNQ==
+X-Gm-Message-State: AAQBX9eoPkzWV02xyWJB49+1XRAahKNEuQ2o4vowJDznrMjhTGMWxc4a
+        jYfzkZe9YRzDPNLS4g2L9A==
+X-Google-Smtp-Source: AKy350bet3km/yb3giQkK8izKkkQaSFBeZstujhyhN82Nm+RKFFGmGsH37dO5tcBMB2o2VobJD5nKw==
+X-Received: by 2002:a05:6808:23d2:b0:38e:3902:6d37 with SMTP id bq18-20020a05680823d200b0038e39026d37mr1582824oib.59.1681851949075;
+        Tue, 18 Apr 2023 14:05:49 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l15-20020a54450f000000b00389898f4c4fsm3142112oil.45.2023.04.18.14.05.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 14:05:48 -0700 (PDT)
+Received: (nullmailer pid 2339121 invoked by uid 1000);
+        Tue, 18 Apr 2023 21:05:47 -0000
+Date:   Tue, 18 Apr 2023 16:05:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bharat Bhushan <bbhushan2@marvell.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] Watchdog: Add octeontx2 GTI watchdog driver
+Message-ID: <20230418210547.GA2322152-robh@kernel.org>
+References: <20230414102342.23696-1-bbhushan2@marvell.com>
+ <20230414102342.23696-2-bbhushan2@marvell.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230310144719.1544443-1-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230414102342.23696-2-bbhushan2@marvell.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 08:47:19AM -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
+On Fri, Apr 14, 2023 at 03:53:42PM +0530, Bharat Bhushan wrote:
+> GTI watchdog timer are programmed in "interrupt + del3t + reset mode"
+> and del3t traps are not enabled.
+> GTI watchdog exception flow is:
+>  - 1st timer expiration generates watchdog interrupt.
+>  - 2nd timer expiration is ignored
+>  - On 3rd timer expiration will trigger a system-wide core reset.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-
-Applied with AngeloGioacchino's reviewed-by to pci/enumeration for
-v6.4, thanks!
-
+> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
 > ---
->  drivers/pci/controller/pci-tegra.c     | 4 ++--
->  drivers/pci/controller/pcie-mediatek.c | 2 +-
->  drivers/pci/hotplug/rpaphp_core.c      | 4 ++--
->  drivers/pci/of.c                       | 2 +-
->  4 files changed, 6 insertions(+), 6 deletions(-)
+>  drivers/watchdog/Kconfig         |   9 ++
+>  drivers/watchdog/Makefile        |   1 +
+>  drivers/watchdog/octeontx2_wdt.c | 238 +++++++++++++++++++++++++++++++
+>  3 files changed, 248 insertions(+)
+>  create mode 100644 drivers/watchdog/octeontx2_wdt.c
 > 
-> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-> index 74c109f14ff0..79630885b9c8 100644
-> --- a/drivers/pci/controller/pci-tegra.c
-> +++ b/drivers/pci/controller/pci-tegra.c
-> @@ -1375,7 +1375,7 @@ static int tegra_pcie_phys_get(struct tegra_pcie *pcie)
->  	struct tegra_pcie_port *port;
->  	int err;
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index f0872970daf9..31ff282c62ad 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -2212,4 +2212,13 @@ config KEEMBAY_WATCHDOG
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called keembay_wdt.
 >  
-> -	if (!soc->has_gen2 || of_find_property(np, "phys", NULL) != NULL)
-> +	if (!soc->has_gen2 || of_property_present(np, "phys"))
->  		return tegra_pcie_phys_get_legacy(pcie);
->  
->  	list_for_each_entry(port, &pcie->ports, list) {
-> @@ -1944,7 +1944,7 @@ static bool of_regulator_bulk_available(struct device_node *np,
->  	for (i = 0; i < num_supplies; i++) {
->  		snprintf(property, 32, "%s-supply", supplies[i].supply);
->  
-> -		if (of_find_property(np, property, NULL) == NULL)
-> +		if (!of_property_present(np, property))
->  			return false;
->  	}
->  
-> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-> index ae5ad05ddc1d..31de7a29192c 100644
-> --- a/drivers/pci/controller/pcie-mediatek.c
-> +++ b/drivers/pci/controller/pcie-mediatek.c
-> @@ -643,7 +643,7 @@ static int mtk_pcie_setup_irq(struct mtk_pcie_port *port,
->  		return err;
->  	}
->  
-> -	if (of_find_property(dev->of_node, "interrupt-names", NULL))
-> +	if (of_property_present(dev->of_node, "interrupt-names"))
->  		port->irq = platform_get_irq_byname(pdev, "pcie_irq");
->  	else
->  		port->irq = platform_get_irq(pdev, port->slot);
-> diff --git a/drivers/pci/hotplug/rpaphp_core.c b/drivers/pci/hotplug/rpaphp_core.c
-> index 491986197c47..2316de0fd198 100644
-> --- a/drivers/pci/hotplug/rpaphp_core.c
-> +++ b/drivers/pci/hotplug/rpaphp_core.c
-> @@ -278,7 +278,7 @@ int rpaphp_check_drc_props(struct device_node *dn, char *drc_name,
->  		return -EINVAL;
->  	}
->  
-> -	if (of_find_property(dn->parent, "ibm,drc-info", NULL))
-> +	if (of_property_present(dn->parent, "ibm,drc-info"))
->  		return rpaphp_check_drc_props_v2(dn, drc_name, drc_type,
->  						be32_to_cpu(*my_index));
->  	else
-> @@ -440,7 +440,7 @@ int rpaphp_add_slot(struct device_node *dn)
->  	if (!of_node_name_eq(dn, "pci"))
->  		return 0;
->  
-> -	if (of_find_property(dn, "ibm,drc-info", NULL))
-> +	if (of_property_present(dn, "ibm,drc-info"))
->  		return rpaphp_drc_info_add_slot(dn);
->  	else
->  		return rpaphp_drc_add_slot(dn);
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 196834ed44fe..e085f2eca372 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -447,7 +447,7 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
->  		return -ENODEV;
->  
->  	/* Local interrupt-map in the device node? Use it! */
-> -	if (of_get_property(dn, "interrupt-map", NULL)) {
-> +	if (of_property_present(dn, "interrupt-map")) {
->  		pin = pci_swizzle_interrupt_pin(pdev, pin);
->  		ppnode = dn;
->  	}
-> -- 
-> 2.39.2
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> +config OCTEONTX2_WATCHDOG
+> +	tristate "OCTEONTX2 Watchdog driver"
+> +	depends on ARCH_THUNDER || (COMPILE_TEST && 64BIT)
+> +	help
+> +	 OCTEONTX2 GTI hardware supports watchdog timer. This watchdog timer are
+> +	 programmed in "interrupt + del3t + reset" mode. On first expiry it will
+> +	 generate interrupt. Second expiry (del3t) is ignored and system will reset
+> +	 on final timer expiry.
+> +
+>  endif # WATCHDOG
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index 9cbf6580f16c..aa1b813ad1f9 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -230,3 +230,4 @@ obj-$(CONFIG_MENZ069_WATCHDOG) += menz69_wdt.o
+>  obj-$(CONFIG_RAVE_SP_WATCHDOG) += rave-sp-wdt.o
+>  obj-$(CONFIG_STPMIC1_WATCHDOG) += stpmic1_wdt.o
+>  obj-$(CONFIG_SL28CPLD_WATCHDOG) += sl28cpld_wdt.o
+> +obj-$(CONFIG_OCTEONTX2_WATCHDOG) += octeontx2_wdt.o
+> diff --git a/drivers/watchdog/octeontx2_wdt.c b/drivers/watchdog/octeontx2_wdt.c
+> new file mode 100644
+> index 000000000000..7b78a092e83f
+> --- /dev/null
+> +++ b/drivers/watchdog/octeontx2_wdt.c
+> @@ -0,0 +1,238 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Marvell Octeontx2 Watchdog driver
+> + *
+> + * Copyright (C) 2023 Marvell International Ltd.
+> + *
+> + * This program is free software; you can redistribute it and/or modify
+> + * it under the terms of the GNU General Public License version 2 as
+> + * published by the Free Software Foundation.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/cpu.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/of_platform.h>
+
+It's doubtful you need anything from of_platform.h other than implicit 
+includes. Use the header(s) you need directly.
+
+Rob
