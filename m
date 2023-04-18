@@ -2,147 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E25A16E6B75
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 939326E6B7D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231793AbjDRRwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 13:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33698 "EHLO
+        id S231410AbjDRRzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 13:55:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbjDRRwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:52:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB91B45C;
-        Tue, 18 Apr 2023 10:52:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E30562CD5;
-        Tue, 18 Apr 2023 17:52:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB764C433D2;
-        Tue, 18 Apr 2023 17:52:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681840334;
-        bh=za1o6VU2W+1EIlPlbU3wstltJzV9dcg9Lopt3PW9kmM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SvOVsXMygNxTEp9k7Wj/s/hUUN8YX7V8VxpGwhKUSynCvUC7/ixbWVXJyvcwljW6E
-         w1rImy+t4HaXTEZs84/pNB9Dgu0MV1VCMg23uoNUKVk1IgmibJa2U2V2K6oCRd4bDE
-         1EfeV9Y8EwW5X2M3QR1Fq08uYWzSkk7eIQUhnMiMhx3CxwIQRZwSvYgSujN2xO+mAu
-         7wI1z1xFLLgMfeS0FSqFPSovvextNNQoiGmAv103OFTB+Ex4GU24HfM8p61qewXFIj
-         VjMojg6+fJsKQD60Ul9RDX3dGz+ZdNFLuL92YS7XHWGB2SAv+avwCimzhsBotl6HeN
-         fvRcJZkVw45yA==
-Date:   Tue, 18 Apr 2023 19:52:09 +0200
-From:   Simon Horman <horms@kernel.org>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Nageswara R Sastry <rnsastry@linux.ibm.com>,
-        Coiby Xu <coxu@redhat.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 4/4] tpm/kexec: Duplicate TPM measurement log in
- of-tree for kexec
-Message-ID: <ZD7YybmnioAs0yKR@kernel.org>
-References: <20230418134409.177485-1-stefanb@linux.ibm.com>
- <20230418134409.177485-5-stefanb@linux.ibm.com>
+        with ESMTP id S231398AbjDRRzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:55:11 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A4EC672;
+        Tue, 18 Apr 2023 10:55:08 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6a5f852002dso601792a34.3;
+        Tue, 18 Apr 2023 10:55:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681840507; x=1684432507;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aAimH9MZlv+g+G8GpQ4zpWQoJtVrlg5Iosr9QYS4Nak=;
+        b=GEtHRkiFLsoyus0dymVrSv9xDthO/vNz7lH2eu+4OqFmvFojo8Xs3fVoDZE+Ot7XUR
+         Zyhrz8GmX+0aE21MdnmuH1+GhXMVYAQ2JZHGnWp/w0TOSBoE6Uf8iOrUo2+Tmy6rcCXW
+         k3y4Gjm8bA864KmWP+uUi8EuWWmdr0slWhu12WqjYgQ2cnkkpPx1j0sUsKdr0ouQf99a
+         bsosowGKBJx4trdVAnNolgiF+93N3ZHJ2qPEaSFBqYMTYmjvu5AcWu/+Du9gumOBUJJ+
+         kia64Jno37NmimwDSJ5X3CvYFkUkulyuf4N686bpNJkANFhAtniZPCS/V17a95PhyR79
+         JckA==
+X-Gm-Message-State: AAQBX9d8XW94RgdmnK+FhvCMaqvPywcvzBJG5T4qpXLuoqLYmEuN+mEY
+        jOMBVEALp+aHpNpKlZ7pIg==
+X-Google-Smtp-Source: AKy350b+0Slg4uWLcLoeXxGzP5rqrZkZWwU3anJysWfDccBq3R0Kzv3/OD8DE87GSBVKt/ynFMiNjQ==
+X-Received: by 2002:a05:6830:1e3c:b0:6a1:535f:b095 with SMTP id t28-20020a0568301e3c00b006a1535fb095mr1507786otr.18.1681840507309;
+        Tue, 18 Apr 2023 10:55:07 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p9-20020a056830130900b00684152e9ff2sm553219otq.0.2023.04.18.10.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 10:55:06 -0700 (PDT)
+Received: (nullmailer pid 2044769 invoked by uid 1000);
+        Tue, 18 Apr 2023 17:55:05 -0000
+Date:   Tue, 18 Apr 2023 12:55:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: qcom-pdc: add
+ compatible for sa8775p
+Message-ID: <20230418175505.GA2044093-robh@kernel.org>
+References: <20230417094635.302344-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230418134409.177485-5-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230417094635.302344-1-brgl@bgdev.pl>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 09:44:09AM -0400, Stefan Berger wrote:
-> The memory area of the TPM measurement log is currently not properly
-> duplicated for carrying it across kexec when an Open Firmware
-> Devicetree is used. Therefore, the contents of the log get corrupted.
-> Fix this for the kexec_file_load() syscall by allocating a buffer and
-> copying the contents of the existing log into it. The new buffer is
-> preserved across the kexec and a pointer to it is available when the new
-> kernel is started. To achieve this, store the allocated buffer's address
-> in the flattened device tree (fdt) under the name linux,tpm-kexec-buffer
-> and search for this entry early in the kernel startup before the TPM
-> subsystem starts up. Adjust the pointer in the of-tree stored under
-> linux,sml-base to point to this buffer holding the preserved log. The TPM
-> driver can then read the base address from this entry when making the log
-> available. Invalidate the log by removing 'linux,sml-base' from the
-> devicetree if anything goes wrong with updating the buffer.
+On Mon, Apr 17, 2023 at 11:46:35AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Use subsys_initcall() to call the function to restore the buffer even if
-> the TPM subsystem or driver are not used. This allows the buffer to be
-> carried across the next kexec without involvement of the TPM subsystem
-> and ensures a valid buffer pointed to by the of-tree.
-
-Hi Stefan,
-
-some minor feedback from my side.
-
-> Use the subsys_initcall(), rather than an ealier initcall, since
-
-nit via checkpatch.pl --codespell: s/ealier/earlier/
-
-> page_is_ram() in get_kexec_buffer() only starts working at this stage.
+> Add a compatible for the Power Domain Controller on SA8775p platforms.
+> Increase the number of PDC pin mappings.
 > 
-> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Eric Biederman <ebiederm@xmission.com>
-> Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>
-> Tested-by: Coiby Xu <coxu@redhat.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> v1 -> v2:
+> - increase maxItems to a value that covers all other users of this schema and
+>   leaves some margin on top of that
 
-...
-
-> +void tpm_add_kexec_buffer(struct kimage *image)
-> +{
-> +	struct kexec_buf kbuf = { .image = image, .buf_align = 1,
-> +				  .buf_min = 0, .buf_max = ULONG_MAX,
-> +				  .top_down = true };
-> +	struct device_node *np;
-> +	void *buffer;
-> +	u32 size;
-> +	u64 base;
-> +	int ret;
-> +
-> +	if (!IS_ENABLED(CONFIG_PPC64))
-> +		return;
-> +
-> +	np = of_find_node_by_name(NULL, "vtpm");
-> +	if (!np)
-> +		return;
-> +
-> +	if (of_tpm_get_sml_parameters(np, &base, &size) < 0)
-> +		return;
-> +
-> +	buffer = vmalloc(size);
-> +	if (!buffer)
-> +		return;
-> +	memcpy(buffer, __va(base), size);
-> +
-> +	kbuf.buffer = buffer;
-> +	kbuf.bufsz = size;
-> +	kbuf.memsz = size;
-> +	ret = kexec_add_buffer(&kbuf);
-> +	if (ret) {
-> +		pr_err("Error passing over kexec TPM measurement log buffer: %d\n",
-> +		       ret);
-
-Does buffer need to be freed here?
-
-> +		return;
-> +	}
-> +
-> +	image->tpm_buffer = buffer;
-> +	image->tpm_buffer_addr = kbuf.mem;
-> +	image->tpm_buffer_size = size;
-> +}
+Looks like v4 to me... Anyways, it's applied.
