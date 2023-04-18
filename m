@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39E186E68D3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B4796E68F0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:06:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232476AbjDRQBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:01:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
+        id S232001AbjDRQGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:06:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232483AbjDRQBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:01:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 772BED325;
-        Tue, 18 Apr 2023 09:01:07 -0700 (PDT)
+        with ESMTP id S231766AbjDRQGU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:06:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373B4F7;
+        Tue, 18 Apr 2023 09:06:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C42AD63634;
-        Tue, 18 Apr 2023 16:01:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69FEC433D2;
-        Tue, 18 Apr 2023 16:01:04 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C9C9363644;
+        Tue, 18 Apr 2023 16:06:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97195C4339B;
+        Tue, 18 Apr 2023 16:06:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681833666;
-        bh=4h+zj3kmNreJRwTJjUArKQpjEjIzndIlTtS1qJbGtbw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=tqJPbRlBetahZ+VgBgVKNGPyQf5+ZI7gMEyhAsKeW9LzrA9JBB4GP9F63rMC0f4T3
-         hBN4Ar8Oqsel/qn+pV+V30XSwGgwy+565SDGBob3IpfpUn6cj3E3pd9AjZAfYu4RTV
-         a7L4XjObOyPj/K/CRqQaJYLBP3V72Pt7lm579HGtSRngHW30NAmCMRdXp45ms+lifJ
-         tnkMeXlD5jg8YGvu5JAT5aHGKUFwTCJFcRyesVKFRBBbA1/6u74OlxoLNIdm+bstS5
-         oSWc4o0mjXe6fwyzB7uQN0DWqZdJzxap8SQlu/G3GvTaaPbr190CwDxHPcjqj0Hn26
-         lf6qdDhZVHEJw==
-Message-ID: <04d21b26-afb8-3ef8-ce21-f97c1752ea99@kernel.org>
-Date:   Tue, 18 Apr 2023 18:01:02 +0200
+        s=k20201202; t=1681833978;
+        bh=ePPAUY9dJOFw/kK4NHB+f5qypog9sXqimbRgdM/SBcE=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=s+udSpDHoT4p04HgM1AmuYzYBjhYlepMKYnmZH/3AMkwo8tWPH6XFHZzk19LiaBBa
+         21WYUi5QMqvdLbV0lzNAcVJ2kTu0Pi+lGC75tN5EVDgOpkM86/4Te/m7N5s/qAiUD/
+         oHdp7Nqn0hbwb3Ua79oEb4BTnlJlYrjf3qg98pVZZ1IdFRIjV72Yi55afQaCkRiAFs
+         Y0PRxpQT9Ymku65e1BWkZwEiJ77ePgQfDh2AgjbG6aEvHso6sv7/JctyhFaH0yNvzm
+         3u0i5yBYOPaPu70XRcXHXoF5cZ8cbUFmr6xe5Ov/gYmkLWSE7PRTyEfW3JYtFfqdtI
+         mXEMGaxWAUxxw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Andy Gross <agross@kernel.org>, Rob Herring <robh@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: remoteproc: Drop unneeded quotes
+Date:   Tue, 18 Apr 2023 09:09:48 -0700
+Message-Id: <168183418160.1484313.11791175608485998992.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230327170114.4102315-1-robh@kernel.org>
+References: <20230327170114.4102315-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] dt-bindings: i2c: samsung: Fix 'deprecated' value
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230418150643.1529895-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230418150643.1529895-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 17:06, Rob Herring wrote:
-> 'deprecated' is a boolean type which should have a value of 'false' rather
-
-I think you meant 'true'.
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-> than 'yes'.
+On Mon, 27 Mar 2023 12:01:13 -0500, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-Best regards,
-Krzysztof
+> 
 
+Applied, thanks!
+
+[1/1] dt-bindings: remoteproc: Drop unneeded quotes
+      commit: 82f2734d99d7e6a2327ff4e2122dd0db425b598f
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
