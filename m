@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE2D6E64A0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CDD26E64A7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 14:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbjDRMvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 08:51:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43168 "EHLO
+        id S232164AbjDRMvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 08:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232039AbjDRMu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:50:59 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCDC16B3E
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:50:45 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id w11so28141477pjh.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:50:45 -0700 (PDT)
+        with ESMTP id S232170AbjDRMvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 08:51:15 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 355D416B23
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:50:53 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-63b5c48ea09so1750392b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 05:50:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1681822244; x=1684414244;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UvYQl2dSNs2drI6x+tVSTFEOpl8Z5ePoGgWVyp9WoW4=;
-        b=lO293BhjwNYLclYsjSpzyyLDt218sTOzbWEbdzTmjP4dBWHVcxa87ECW84PUQ2/B5B
-         jBQjO399/tOmeIpg/xIuV/QbyYVsIOx3a6SoDkdh4AOW0IJNhE+whTdu8n7gx4krMy9w
-         zTyAltktrrl8zLKmZZq+3s+/gQGCDL/kNppiU=
+        d=chromium.org; s=google; t=1681822252; x=1684414252;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y4OHoFWLVHVOU1gGJFIZyvFQwj4I/n5rmO4u4kQqp5s=;
+        b=NaZDAMGrk+xiKbfMXkfc+hiiltFD0LlTuSqiIbDBkpzWQgLVSgj/O48zJ7VMGlzp68
+         pCDOEKpcmGwFU7dSgwQqjWorn5Z13vwzcfdi34+M2L5EwoQEbckdcNX1V9iuSn4j74qB
+         2IMNQfjqpLvm8WWUqmBcV11cHsW5gXqch7xqo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681822244; x=1684414244;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UvYQl2dSNs2drI6x+tVSTFEOpl8Z5ePoGgWVyp9WoW4=;
-        b=B2Gkdt6qUXIXA91eJZksx70OjhLrjBTKyWpin3pYv/oxy3E5WefQeJEL5tmSByljhQ
-         CW/F8pNOxppQmrZIXngPqpiLuKnKCiDOFHcJ7ajBhsuF9HC57qp53d2kaxvOmSLzSz1d
-         MO1E9ePVHukQCYghqec97mzK/nM+3y5+knk4V3iLlqk/kMMrYFcOx6WfbEkyb6DOI6zy
-         wbVV41K+Ar+IDe/guCARJb1SSrXYOJS60u0LwxzjwK4HNHC2+PAe8dIQ6MHeGUZ8Yp+j
-         h73woOiaRjkdBsfvMx7KsE0nrgFY/AoLOMaNRX0sXJIaaInxK8+/9Er3gXV2Rk8KGnbH
-         PgIQ==
-X-Gm-Message-State: AAQBX9f9hMemaQG94PAvXI8MFrMz/4ceGbAtmLwSGfImMq27hSMZxaOb
-        AHzGJ77ffxbw5shCxH/5T9yP4Q==
-X-Google-Smtp-Source: AKy350Ztbx6m0tcVjG7FcO5xLpjLe3Ig3KnXB+nMZHFdI7Sk9FxbAaBQP2g0+zKuvD4RGnngbX4HBg==
-X-Received: by 2002:a05:6a21:32a2:b0:ee:3e4f:eecd with SMTP id yt34-20020a056a2132a200b000ee3e4feecdmr17968088pzb.38.1681822244288;
-        Tue, 18 Apr 2023 05:50:44 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681822252; x=1684414252;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y4OHoFWLVHVOU1gGJFIZyvFQwj4I/n5rmO4u4kQqp5s=;
+        b=NBw5zF5jqJssBfhNuKxmyqYaDHdzAx0K/zgGy0XH0ca4AsG+XTQtEmVY+sCMtciO6W
+         cERrFl3zopYuiV+k5i5RuG2qXqxTah2PGhb8sDGgA7pLmRBKnBzTbo4Mx6Nz4FOig3t9
+         ik4Sa9GpTR8vIodrjx2nTONbVqE1w6MozXAzG3i2qe8Zs+1Rj5O9wNASTbJ5y4ZCTkHI
+         JbZ5nz0OhC7awCL3pJGYYvZxQ8M8nOeAbmM9NZnt3u2N7iLmZqtzC8AElrsnzZFjX5oF
+         /JvtklDXJtesDwFP6uzyeNn2BYTZAtJdAcRwgQ15ebkjHMHfABnBcdl5DDrq+lWfa7PX
+         JwEg==
+X-Gm-Message-State: AAQBX9fN5qH9bHizwJvFSSqHyGfDQJDuEjVLI/OLeb0pbwTMw/bMnuvm
+        wu4WrXa1MJqDQ34tdISwgCCGwQ==
+X-Google-Smtp-Source: AKy350YD/mHUZFPaUut90TfJLzOLDCDlzOufYyFO14OjgVg1t2eEm+ULWpBI96mTSUIsyi0jY51ohg==
+X-Received: by 2002:a05:6a00:1483:b0:638:f0b1:4df1 with SMTP id v3-20020a056a00148300b00638f0b14df1mr25744364pfu.24.1681822252585;
+        Tue, 18 Apr 2023 05:50:52 -0700 (PDT)
 Received: from fshao-glinux.tpe.corp.google.com ([2401:fa00:1:10:2fb7:301d:6083:752b])
-        by smtp.gmail.com with ESMTPSA id v11-20020a62a50b000000b0063afb08afeesm9323733pfm.67.2023.04.18.05.50.41
+        by smtp.gmail.com with ESMTPSA id v11-20020a62a50b000000b0063afb08afeesm9323733pfm.67.2023.04.18.05.50.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 05:50:43 -0700 (PDT)
+        Tue, 18 Apr 2023 05:50:52 -0700 (PDT)
 From:   Fei Shao <fshao@chromium.org>
 To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
         Douglas Anderson <dianders@chromium.org>,
@@ -52,15 +53,15 @@ To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
 Cc:     linux-mediatek <linux-mediatek@lists.infradead.org>,
         Fei Shao <fshao@chromium.org>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Kitt <steve@sk2.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] Fix Goodix touchscreen power leakage for MT8186 boards
-Date:   Tue, 18 Apr 2023 20:49:50 +0800
-Message-ID: <20230418124953.3170028-1-fshao@chromium.org>
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend property
+Date:   Tue, 18 Apr 2023 20:49:51 +0800
+Message-ID: <20230418124953.3170028-2-fshao@chromium.org>
 X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
+In-Reply-To: <20230418124953.3170028-1-fshao@chromium.org>
+References: <20230418124953.3170028-1-fshao@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -73,36 +74,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These changes are based on the series in [1], which modified the
-i2c-hid-of-goodix driver and removed the workaround for a power leakage
-issue, so the issue revisits on Mediatek MT8186 boards (Steelix).
+We observed that on Chromebook device Steelix, if Goodix GT7375P
+touchscreen is powered in suspend (because, for example, it connects to
+an always-on regulator) and with the reset GPIO asserted, it will
+introduce about 14mW power leakage.
 
-The root cause is that the touchscreen can be powered in different ways
-depending on the hardware designs, and it's not as easy to come up with
-a solution that is both simple and elegant for all the known designs.
+This property is used to indicate that the touchscreen is powered in
+suspend. If it's set, the driver will stop asserting the reset GPIO in
+power-down, and it will do it in power-up instead to ensure that the
+state is always reset after resuming.
 
-To address the issue, I ended up adding a new boolean property for the
-driver so that we can control the power up/down sequence depending on
-that.
+Signed-off-by: Fei Shao <fshao@chromium.org>
+---
 
-Adding a new property might not be the cleanest approach for this, but
-at least the intention would be easy enough to understand, and it
-introduces relatively small change to the code and fully preserves the
-original control flow.
-I hope this is something acceptable, and I'm open to any better
-approaches.
+ Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-[1] https://lore.kernel.org/all/20230207024816.525938-1-dianders@chromium.org/
-
-
-Fei Shao (2):
-  dt-bindings: input: goodix: Add powered-in-suspend property
-  HID: i2c-hid: goodix: Add support for powered-in-suspend property
-
- .../bindings/input/goodix,gt7375p.yaml        |  6 +++
- drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 46 ++++++++++++++++---
- 2 files changed, 45 insertions(+), 7 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+index ce18d7dadae2..942acb286d77 100644
+--- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
++++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+@@ -43,6 +43,12 @@ properties:
+       itself as long as it allows the main board to make signals compatible
+       with what the touchscreen is expecting for its IO rails.
+ 
++  powered-in-suspend:
++    description:
++      This indicates that the touchscreen is powered in suspend, so the driver
++      will not assert the reset GPIO in power-down to prevent power leakage.
++    type: boolean
++
+ required:
+   - compatible
+   - reg
 -- 
 2.40.0.634.g4ca3ef3211-goog
 
