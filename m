@@ -2,101 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB276E6C6D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 20:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8876E6C78
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 20:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbjDRSyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 14:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41856 "EHLO
+        id S232705AbjDRS5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 14:57:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230526AbjDRSyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 14:54:51 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83AFA6A4E;
-        Tue, 18 Apr 2023 11:54:47 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-18777914805so5525175fac.1;
-        Tue, 18 Apr 2023 11:54:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681844087; x=1684436087;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YuUNTwvmE9txzOv3MJWv0cD410vaeLbQS17PjjR1ve4=;
-        b=D3gq0VVig7syrbOWUlelPnG7/StLbDiFPV9s0UkBYWnijmovQjUMXrujRzo0p2TjD0
-         Dnms5vb/JYQ0hajHQVR4hvJPiYWIqKUI1EHs3hW74E5ggPUgRTumFlAd7s/H+Y0YJWBw
-         jPN9I80FHntKGJqj3C93pnzWFcv8e8XHShJbR3mhM1XC8JY57Jb4EnYoVJ33usj97SNq
-         wapyDAejaI6unqEfo/HefVMOezKbzwMg9jRQhr645wjhsqXczajKDl6xIlL60+wJu70z
-         ZHjcv2RmeaP4aVg3HT6vS9n5dZp33EOY4YXX2c1vRW4cqi6tGYC4RREBq/bjOnLzTx0D
-         Jmfg==
-X-Gm-Message-State: AAQBX9d9sGbMs94N9xX8VsC+NVnKnpIiINA/RR0iCt+YxpmHgGqqJep9
-        FCUCdHTyOCLHf6hmCZydPA==
-X-Google-Smtp-Source: AKy350ZvMIBe0JAzl0BFm5iJ1agl3dvjKBx1OB0tz14YRyfTifc4bTlUfJCXk3hT+TAMvm+oast9Fg==
-X-Received: by 2002:a05:6870:1694:b0:183:f65c:8c41 with SMTP id j20-20020a056870169400b00183f65c8c41mr1849175oae.15.1681844086668;
-        Tue, 18 Apr 2023 11:54:46 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 3-20020a4a0003000000b0053b543b027bsm6121330ooh.42.2023.04.18.11.54.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Apr 2023 11:54:45 -0700 (PDT)
-Received: (nullmailer pid 2118440 invoked by uid 1000);
-        Tue, 18 Apr 2023 18:54:45 -0000
-Date:   Tue, 18 Apr 2023 13:54:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Ivan Mikhaylov <fr0st61te@gmail.com>
-Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Paul Fertser <fercerpav@gmail.com>
-Subject: Re: [PATCH 3/4] net/ftgmac100: add mac-address-increment option for
- GMA command from NC-SI
-Message-ID: <20230418185445.GA2111443-robh@kernel.org>
-References: <20230413002905.5513-1-fr0st61te@gmail.com>
- <20230413002905.5513-4-fr0st61te@gmail.com>
+        with ESMTP id S232617AbjDRS5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 14:57:35 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DCDC18E;
+        Tue, 18 Apr 2023 11:57:34 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33IBjCEa013085;
+        Tue, 18 Apr 2023 18:57:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=sg667oIlIEBEWckeWdNBRjxrMjaC/X10PCBBfquvCe8=;
+ b=E7pCv1dEUG9jPANaSDXPDZhhbaYokeuLyoxV7WkJkf2a50aI/tHSiuoGbJl+aBx/ulCT
+ p0b4wiFG2k84qqLjv/SWCbTZy62huyPskHD1bdy2HUv5CA4lzc+HG33YfQf0mGoRnz18
+ km9XIfqW5B3BEjAxyVx5k8r1mCiZZdBjzfvW5a/cyPYPE9shgP5ejg8AK+uZbeOLrO1D
+ nanC56jYxgvwEByXdHc1sk/8gFBhhvRZunJxqkh8ucCxLzUEE3udPHDa+nflqr49OVyx
+ ywnt/YYmj4s1y4qGvhFW3wmWQEkWD+6aeOPMhAj0jZkXSEKP9yHZZrzO7/2l7Zpq7uuQ YQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q1h0cjh4j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 18:57:20 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33IIvJKq029961
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 18:57:19 GMT
+Received: from car-linux11.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 18 Apr 2023 11:57:19 -0700
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+To:     <sudeep.holla@arm.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nikunj Kela <quic_nkela@quicinc.com>
+Subject: [PATCH v4 0/2] Allow parameter in smc/hvc calls
+Date:   Tue, 18 Apr 2023 11:56:57 -0700
+Message-ID: <20230418185659.29745-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230409181918.29270-1-quic_nkela@quicinc.com>
+References: <20230409181918.29270-1-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230413002905.5513-4-fr0st61te@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dSk175OiAwID0TcZQjrl4HYmyoB6hmLq
+X-Proofpoint-GUID: dSk175OiAwID0TcZQjrl4HYmyoB6hmLq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-18_13,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 phishscore=0 mlxlogscore=627 malwarescore=0
+ clxscore=1015 suspectscore=0 impostorscore=0 spamscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304180155
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 13, 2023 at 12:29:04AM +0000, Ivan Mikhaylov wrote:
-> Add s32 mac-address-increment option for Get MAC Address command from
-> NC-SI.
-> 
-> Signed-off-by: Paul Fertser <fercerpav@gmail.com>
-> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-> ---
->  Documentation/devicetree/bindings/net/ftgmac100.txt | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ftgmac100.txt b/Documentation/devicetree/bindings/net/ftgmac100.txt
-> index 29234021f601..7ef5329d888d 100644
-> --- a/Documentation/devicetree/bindings/net/ftgmac100.txt
-> +++ b/Documentation/devicetree/bindings/net/ftgmac100.txt
-> @@ -22,6 +22,10 @@ Optional properties:
->  - use-ncsi: Use the NC-SI stack instead of an MDIO PHY. Currently assumes
->    rmii (100bT) but kept as a separate property in case NC-SI grows support
->    for a gigabit link.
-> +- mac-address-increment: Increment the MAC address taken by GMA command via
-> +  NC-SI. Specifies a signed number to be added to the host MAC address as
-> +  obtained by the OEM GMA command. If not specified, 1 is used by default
-> +  for Broadcom and Intel network cards, 0 otherwise.
+Currently, smc/hvc calls are made with parameters set
+to zeros. We are using multiple scmi instances within
+a VM. We are sharing the same smc-id(func_id) with all
+scmi instance. The hypervisor needs a way to distinguish
+among hvc calls made from different instances.
 
-This would need to be common. There's been some attempts around how to 
-support a base MAC address with a transform per instance. So far it's 
-not clear that something in DT works for everyone. Until there's 
-something common (if ever), you need platform specific code somewhere to 
-handle this. The nvmem binding has had some extensions to support that.
+This patch series introduces new compatible string which
+can be used to pass shmem channel address as parameters
+to smc/hvc calls.
 
-Rob
+---
+v4 -> split shmem address into 4KB-pages and offset
+
+v3 -> pass shmem channel address as parameter
+
+v2 -> fix the compilation erros on 32bit platform(see below)
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202304100606.kUjhsRYf-lkp@intel.com/
+
+v1 -> original patches
+
+Nikunj Kela (2):
+  dt-bindings: firmware: arm,scmi: support for parameter in smc/hvc call
+  firmware: arm_scmi: Augment SMC/HVC to allow optional parameters
+
+ .../devicetree/bindings/firmware/arm,scmi.yaml     |  8 +++++++-
+ drivers/firmware/arm_scmi/driver.c                 |  1 +
+ drivers/firmware/arm_scmi/smc.c                    | 14 +++++++++++++-
+ 3 files changed, 21 insertions(+), 2 deletions(-)
+
+-- 
+2.17.1
+
