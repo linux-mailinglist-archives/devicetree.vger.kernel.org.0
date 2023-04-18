@@ -2,123 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB66D6E6BA5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 20:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2636E6BC3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 20:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbjDRSCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 14:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39956 "EHLO
+        id S232569AbjDRSL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 14:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbjDRSCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 14:02:41 -0400
+        with ESMTP id S232326AbjDRSL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 14:11:27 -0400
 Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585EF61BA;
-        Tue, 18 Apr 2023 11:02:40 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f1728c2a57so21287485e9.0;
-        Tue, 18 Apr 2023 11:02:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CC6D301
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 11:11:18 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id v10so9342885wmn.5
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 11:11:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681840959; x=1684432959;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dq1XDLxilwUbRdN2NKx0IAo9lxfpPYiUEXJI1fFrVu0=;
-        b=BuyxldTXbucsx62EFsiScrzThNIX0m+NcsbtdxeiOSQpufd77ss2oho1H1Cxey9a+y
-         4hqMr8pzk3HxS3cPiYBvO5UmddlMxpW4dvw35iv3PKPnXVAg6kn8hvxcK9QXGnAfsKfN
-         Lm0uMZHHkGAwwbW0iqmlTNZ2a2Z5Q/Jm14GxYs49YdCYdGHzdgFu+YvRRqB9p5Ro82j6
-         hkhStFuALXFHpsTakvF4Y3GvsrOQCKDrBpu4A7RGmZ1Fld2rnw+RKGjs4CmpP7j0fTWz
-         //9BDnAoAlZmOIwB5gS9gfVj51ri4m+aoSbq+T+2tqYVkM4YS4GcymAkpUWQsYhrGhdd
-         q3Kw==
+        d=freebox-fr.20221208.gappssmtp.com; s=20221208; t=1681841477; x=1684433477;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DMgcP9MFsdAN8yCKBrSy/25dv7G/Q0vscVQs09p5j8s=;
+        b=jvV/M28+57FDMWzSJdsFY6PFf9AR/7siw3/kkaXUvn5ndnMTqlu4r2mnxbVARyvh2L
+         5iMdx5mXLXb2ToFWhYcxWnkimXV+pDhDhNmmSJzx9WZ1RH1YsNWl3TGetdDvCW8xl5Ly
+         zsiYdLWpWxt9eqVzvbB3dbGWehLnDq3CXNo5fJNUaO59CejZ0qO3fKtsIcdWirsNLJZl
+         gUOyrZ9xBe1s2affK0Od2FrWY6L+ynqQCX5y97Q+bPyvbh+f6Nz7PEXBFNhwmcqKq03X
+         QkXzGns1KaKoMJerXmEzBb875X0C8QEWgetIkWbCrYpTGfazXmhjvI9CV+3TylGO7Gm/
+         JmuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681840959; x=1684432959;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dq1XDLxilwUbRdN2NKx0IAo9lxfpPYiUEXJI1fFrVu0=;
-        b=VSVTap2zj5j1aB0tjxiXDUIabXY8DfHs3xPLwWiJjhR5jTFCDY2ZfeaPEkBcJDQtgK
-         rkR249UaAxzD/0WMr/Io6UjVs7j3NrP285qJstdLkr6zLhGBu+GUTHb+BHjJJIZzUrfB
-         BFmd7m3mg5p5h05EOfBW/nwtRS0EoYnstAzgiBEPKbY3xqK9gFUnoBY8yKuySB/A8zpu
-         MqTuogMyfiUTxrUCnhCrsbiq3jrmHYvQr6mHt1oGnsrHM25VaRexSYFqtTapsRB2NuT9
-         edne5AAtTzabf5IExn5Gt1kmY179LQoasi634AM1CZ8XPguieouUKnFgwmgwzpHD1xgW
-         RIFg==
-X-Gm-Message-State: AAQBX9dTPKO+WQnhaLk5U5kUJpxqE+HzejGBoMwqhNOKMxtwNR3VRKmL
-        ETU0AUCvyIG+by+qAACChsA=
-X-Google-Smtp-Source: AKy350bcOoocdidKn1c/bC+dVipSJtRDm24yqfKPnERXZZIxB81yRoRfcgQB2SuJ83eRc0ODohf6Qw==
-X-Received: by 2002:adf:f2c9:0:b0:2ef:b052:1296 with SMTP id d9-20020adff2c9000000b002efb0521296mr2699430wrp.22.1681840958643;
-        Tue, 18 Apr 2023 11:02:38 -0700 (PDT)
-Received: from [192.168.1.135] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id z1-20020a5d4d01000000b002e5f6f8fc4fsm13611818wrt.100.2023.04.18.11.02.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 11:02:37 -0700 (PDT)
-Message-ID: <f19562fa-a8c6-4870-e413-7593419b800f@gmail.com>
-Date:   Tue, 18 Apr 2023 20:02:36 +0200
+        d=1e100.net; s=20221208; t=1681841477; x=1684433477;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DMgcP9MFsdAN8yCKBrSy/25dv7G/Q0vscVQs09p5j8s=;
+        b=P3bzgh22TZBmfsh2A1xXCiNkIyCO9Io1twtCJytPt/5W4wBzc0wNqgK/xT5GCZ8hNA
+         T6qL6v86Hag21T7LLcfayFD9ywEtCt8tcqm8t6un9E4/vu/ceCglpaJE+H2bci08Jd0n
+         ZiLA4Rtrv9K+CZIu61ZYcmfAuhLPNCaCIEGG6EDKhDq19Bu0zaq0sQSIHwxtAeJc5bqE
+         ih+rsgdqINdXW39fm+YE3lhDKSLGIK9StvIghj0wc/fJlfR8bJ/Yh4V2jQb4j3I/wW12
+         3hAYDjlwY08uxQ4GykrjZlyK0OS3kXpISiEyppf4oJ2DfGBp7rX8oJrCkcH0vlDGwNhN
+         zeEA==
+X-Gm-Message-State: AAQBX9dVEJf/qfMH5FKVfncfgod9H1ZRkMgpNne2ewyXA9jR0ztdRzEQ
+        cK65sWBkqXLIqmfGye02K3cg
+X-Google-Smtp-Source: AKy350Y/hSn1dx9JX6EP4aiodyAYctRlEPn0LIKK8iXuOmFxThlQZZf2gHkqmjrMtPzt6jnzO38+Ag==
+X-Received: by 2002:a7b:c30a:0:b0:3dc:4fd7:31e9 with SMTP id k10-20020a7bc30a000000b003dc4fd731e9mr15769036wmj.7.1681841477039;
+        Tue, 18 Apr 2023 11:11:17 -0700 (PDT)
+Received: from [127.0.1.1] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id r17-20020a5d4e51000000b002f01e181c4asm13727898wrt.5.2023.04.18.11.11.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 11:11:16 -0700 (PDT)
+From:   Arnaud Vrac <avrac@freebox.fr>
+Subject: [PATCH 0/4] Support HDMI CEC on Qualcomm SoCs
+Date:   Tue, 18 Apr 2023 20:10:42 +0200
+Message-Id: <20230418-msm8998-hdmi-cec-v1-0-176479fb2fce@freebox.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend
- property
-Content-Language: en-US
-To:     Fei Shao <fshao@chromium.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org
-References: <20230418124953.3170028-1-fshao@chromium.org>
- <20230418124953.3170028-2-fshao@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230418124953.3170028-2-fshao@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIACLdPmQC/zXNywrCMBCF4Vcps3Yg6QUmvoq4SNKpmUWiZEQKp
+ e9uKnb5w/k4GyhXYYVrt0Hlj6g8Swt76SAmXx6MMreG3vSDGS1h1kzOEaY5C0aOaChM5ExYRsv
+ QWPDKGKovMR2w8PrGvx5OfexelRdZf9e3+75/AfJnIPmKAAAA
+To:     Rob Clark <robdclark@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1793; i=avrac@freebox.fr;
+ h=from:subject:message-id; bh=am/H82hqwmU83sVoZuyNqgdTOTTt8SGXNkd+GyuveEU=;
+ b=owEBbQKS/ZANAwAIAXED/9m7NDSrAcsmYgBkPt02Pmrys1RGf4UYjuW9+8hCzdXDkgPQImhKL
+ oA0OHW17S+JAjMEAAEIAB0WIQSUwb/ndwkXHdZ/QQZxA//ZuzQ0qwUCZD7dNgAKCRBxA//ZuzQ0
+ q4oiD/9C+EMeFG+BgIyBSdfXlNecAx5BoK0RU2oOMxOuql17z4c+STsni5IYQ4ksuVMuiqjNCKh
+ u7NW9edxfnEoaVlO+RfOifXXuUv+DWZnL4Wnjv3CCtYFQr+N5w5Rx2a+BEhHlAYTu6XyX/bY5Xi
+ jsht/a/QUjDyWtT3C/40cMxz+hVJKlHkFbyTf4Tp6I0ROeO4bHxGUWL6cQeqPNpWwaW7QZHa5Gm
+ bxLkoaQJvA3UsEMPb9dJC/p0D4lk8dS2ne0B2+lGEN6c4Kn+9cBQXNfL3im3oTmwhHfo0W2zX1G
+ lu+pN6z83DV0ObBRmHJjZL7/qadtFQIIUbX6YhBh1/q3g7Rpwe2oS1nJmX/a2MIBPD9B/9KjIr1
+ ZV01SckN9NGrbQ6Qu5OXqA8MbpKGVX4fetF9TrG+MYnTEDVWE3qnLv/P27Pcvnx0ahE5Oty9mhO
+ hZM44VnYVdaQZci6l+BrrEa+LfOp44ASJe2xvRnIpLVn7OPrCr0Vhl5D9KQj63YidTlp6dNL3zV
+ i3upwSmxRdqZMlnrwSzo/v3+nCePXsd7YtKpc0NP2a7dZUTCPH/QKgbifnwcraoR0N8EenOBPmS
+ +nJ/MmCwDXje1E3H0+YAYioSmiaj0M9v8h38udUJSbp93tF+uN5oWR0GyTuM90nnUMTUa4p+pu/
+ 8mQzWFJrb+M9nVw==
+X-Developer-Key: i=avrac@freebox.fr; a=openpgp;
+ fpr=6225092072BB58E3CEEC091E75392A176D952DB4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some Qualcomm SoCs that support HDMI also support CEC, including MSM8996
+and MSM8998. The hardware block can handle a single CEC logical address
+and broadcast messages.
 
+Port the CEC driver from downstream msm-4.4 kernel. It has been tested
+on MSM8998 and passes the cec-compliance tool tests. The equivalent
+downstream driver also passed CEC CTS tests using a Quantum Data QD882E
+analyzer.
 
-On 18/04/2023 14:49, Fei Shao wrote:
-> We observed that on Chromebook device Steelix, if Goodix GT7375P
-> touchscreen is powered in suspend (because, for example, it connects to
-> an always-on regulator) and with the reset GPIO asserted, it will
-> introduce about 14mW power leakage.
-> 
-> This property is used to indicate that the touchscreen is powered in
-> suspend. If it's set, the driver will stop asserting the reset GPIO in
-> power-down, and it will do it in power-up instead to ensure that the
-> state is always reset after resuming.
-> 
-> Signed-off-by: Fei Shao <fshao@chromium.org>
+Some registers bitfield definitions were added to make the code clearer,
+and those will also be proposed for upstream in the original xml file
+from which the header was generated, in the mesa project.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Note HDMI support is not yet included upstream for MSM8998, I would
+appreciate if someone can verify this driver at least works on MSM8996,
+for which adding the pinctrl nodes for CEC should be sufficient.
 
-> ---
-> 
->   Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> index ce18d7dadae2..942acb286d77 100644
-> --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> @@ -43,6 +43,12 @@ properties:
->         itself as long as it allows the main board to make signals compatible
->         with what the touchscreen is expecting for its IO rails.
->   
-> +  powered-in-suspend:
-> +    description:
-> +      This indicates that the touchscreen is powered in suspend, so the driver
-> +      will not assert the reset GPIO in power-down to prevent power leakage.
-> +    type: boolean
-> +
->   required:
->     - compatible
->     - reg
+Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
+---
+Arnaud Vrac (4):
+      drm/msm: add some cec register bitfield details
+      drm/msm: add hdmi cec support
+      drm/msm: expose edid to hdmi cec adapter
+      arm64: dts: qcom: msm8998: add hdmi cec pinctrl nodes
+
+ arch/arm64/boot/dts/qcom/msm8998.dtsi  |  14 ++
+ drivers/gpu/drm/msm/Kconfig            |   8 +
+ drivers/gpu/drm/msm/Makefile           |   1 +
+ drivers/gpu/drm/msm/hdmi/hdmi.c        |  15 ++
+ drivers/gpu/drm/msm/hdmi/hdmi.h        |  18 +++
+ drivers/gpu/drm/msm/hdmi/hdmi.xml.h    |  62 +++++++-
+ drivers/gpu/drm/msm/hdmi/hdmi_bridge.c |   2 +
+ drivers/gpu/drm/msm/hdmi/hdmi_cec.c    | 280 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/msm/hdmi/hdmi_hpd.c    |  17 +-
+ 9 files changed, 412 insertions(+), 5 deletions(-)
+---
+base-commit: e3342532ecd39bbd9c2ab5b9001cec1589bc37e9
+change-id: 20230418-msm8998-hdmi-cec-08b5890bf41e
+
+Best regards,
+-- 
+Arnaud Vrac <avrac@freebox.fr>
+
