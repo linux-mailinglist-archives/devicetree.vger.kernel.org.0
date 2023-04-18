@@ -2,277 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 426816E6AFE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE8D16E6B17
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:31:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbjDRR3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 13:29:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39034 "EHLO
+        id S231555AbjDRRbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 13:31:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231877AbjDRR3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:29:45 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DFB93D8;
-        Tue, 18 Apr 2023 10:29:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681838983; x=1713374983;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=61V/qAwqnBFdBOqNk/oS9bVHtvIe8KLKP/DdJwKdTEM=;
-  b=RVk0JmVY7d9FPd20YEeP1Z882+ucTF5CCjzoYQF+IM/nMP9jlzB7sOQy
-   txmDEKEIdWrPzeAsdhODJlkVMTDdBGxNfg9h88hPn5QrsYskPYeDBNA5p
-   gwUKICQWcEA02UoU5N7/i2Cif+GAASDJi1Tp8dISfQGGEdZezRcLSZLOh
-   0FYUkUscga1zWFsYH6qD9/ds6kq4frH3VG6EHQWqrGifgSStkENLtzIqC
-   0Zqq12sjGHcw8UDTSGBH7nUVQ5fd2LrQp5TjEX+u7iXbJr8e9jyn2e0gJ
-   Q4qzYfP/FfLP5pRrQwxDlb/xm+CX/Pm9NccHA/YIk1z1P0ZVrhmsadSXH
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334044432"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
-   d="scan'208";a="334044432"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 10:29:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="668648225"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
-   d="scan'208";a="668648225"
-Received: from dinguyen-mobl1.amr.corp.intel.com (HELO [10.213.190.103]) ([10.213.190.103])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 10:29:41 -0700
-Message-ID: <a1a34c32-dbd4-7a77-ab7e-5e34af85900f@linux.intel.com>
-Date:   Tue, 18 Apr 2023 12:29:40 -0500
+        with ESMTP id S231216AbjDRRbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:31:53 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B365AF23
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:31:41 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-329560b1994so9234985ab.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:31:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681839100; x=1684431100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9k0KlA+hC9mQYzLLiZ5dVKxFl+N0hiQWlGuF5vi97i8=;
+        b=D0UTH6M5dPG4GgnOzVwriV2+NDKoKL5/kNLhforDESMG/u/ksIB3f7cC1digDNG9mU
+         Izf684xxrUfjTIcBEWq1EPzj+oD3URl4Q9VYR76aOyGzWAf8rSEHXKSgZ04Nx6NWZRmR
+         xG9FSdR8p8aQI4X1O79h7uPKHDn1PyZDGEr2AdT20Cdg5sO8QyHwd1B1FLybHM/mV8EP
+         ClrboJIgXnZcv7nDBLgttva5rZiFQ1HzozyiP0OeCgEGqjeiLCGBX9KntluwpydwUoF6
+         fUdvF32E5ZwOTLznXRkSfu0mouBh2z9yAqSre6X/7qK4p5EdhE2SyqEb8+XDMZmB959s
+         6dRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681839100; x=1684431100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9k0KlA+hC9mQYzLLiZ5dVKxFl+N0hiQWlGuF5vi97i8=;
+        b=S2IPdK4bCChNR0vTrczkNGv8oKInMcXMWH0sZlgbye0eZjQvOZFHWQEYqaZOWYB5Dj
+         opymczsdOneosaYZTvj4tnHZa3npt1/05BtSm059JOwXNq9XGeUg51ZpE3BqUE0ryzPN
+         pm1Oo55Lt7rUFslgs+bl7KSuVNovRpj6Vk6Lnq+x1xwEfGWTHFBefvCWEjwyEcxSpzVF
+         S9ITk/5XCN0UNSxeblM30pf2lOl1TDZseSAJjCQ9CEVY3IUR6iyhGF7SMA8PyIAFl8Z6
+         EMBKz8Ab1z7MD6VZO+jEUWN/6tqmA5LQfopGlzyGeI7inu2osSpuLZezlL93b7e3UDmU
+         h37g==
+X-Gm-Message-State: AAQBX9dhyzZGwJ6l3Qb+M81Yzx6mPRP/eY4ST6HRHZrlbRzGet9HFbR0
+        Ng0OkDSXXrV69yEEJPf39pRDEw==
+X-Google-Smtp-Source: AKy350bj62+BTyW/FZVEfhapjoRt6avqgBtoYaT9Dg6gSGxqEFMKPd6uK9VuSnelkdtpkTplCqBjqg==
+X-Received: by 2002:a92:db4e:0:b0:328:6412:df13 with SMTP id w14-20020a92db4e000000b003286412df13mr10708471ilq.19.1681839100441;
+        Tue, 18 Apr 2023 10:31:40 -0700 (PDT)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id t33-20020a05663834a100b0040fadb4f6d8sm1303211jal.81.2023.04.18.10.31.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 10:31:40 -0700 (PDT)
+Message-ID: <1c69a301-332b-3523-caeb-5d838bb5f5d2@linaro.org>
+Date:   Tue, 18 Apr 2023 12:31:38 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 3/5] hwmon: (socfpga) Add hardware monitoring support on
- SoCFPGA platforms
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v11 22/26] virt: gunyah: Add proxy-scheduled vCPUs
 Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
- <20230410153314.27127-3-dinh.nguyen@linux.intel.com>
- <09730359-8731-e21e-3335-bf60ba7f1280@roeck-us.net>
- <a3e966f8-8e9d-7081-1665-9d2e87acb310@linux.intel.com>
- <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
-From:   Dinh Nguyen <dinh.nguyen@linux.intel.com>
-In-Reply-To: <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
+ <20230304010632.2127470-23-quic_eberman@quicinc.com>
+ <98ad146d-492d-aa0c-4f6a-ba37e6bf74eb@linaro.org>
+ <274ad221-f397-b634-5742-fe6c9cb18843@quicinc.com>
+ <6d7ddd2c-526c-a131-1012-c09032579824@quicinc.com>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <6d7ddd2c-526c-a131-1012-c09032579824@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 4/18/23 12:18 PM, Elliot Berman wrote:
+> 
+> 
+> On 4/17/2023 3:41 PM, Elliot Berman wrote:
+>>
+>>
+>> On 3/31/2023 7:27 AM, Alex Elder wrote:
+>>> On 3/3/23 7:06 PM, Elliot Berman wrote:
+>>
+>> [snip]
+>>
+>>>> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
+>>>> index caeb3b3a3e9a..e52265fa5715 100644
+>>>> --- a/include/uapi/linux/gunyah.h
+>>>> +++ b/include/uapi/linux/gunyah.h
+>>>> @@ -62,8 +62,32 @@ struct gh_vm_dtb_config {
+>>>>   #define GH_VM_START        _IO(GH_IOCTL_TYPE, 0x3)
+>>>> +/**
+>>>> + * GH_FN_VCPU - create a vCPU instance to control a vCPU
+>>>> + *
+>>>> + * gh_fn_desc is filled with &struct gh_fn_vcpu_arg
+>>>> + *
+>>>> + * The vcpu type will register with the VM Manager to expect to 
+>>>> control
+>>>> + * vCPU number `vcpu_id`. It returns a file descriptor allowing 
+>>>> interaction with
+>>>> + * the vCPU. See the Gunyah vCPU API description sections for 
+>>>> interacting with
+>>>> + * the Gunyah vCPU file descriptors.
+>>>> + *
+>>>> + * Return: file descriptor to manipulate the vcpu. See GH_VCPU_* 
+>>>> ioctls
+>>>> + */
+>>>> +#define GH_FN_VCPU         1
+>>>
+>>> I think you should define GH_VN_VCPU, GN_FN_IRQFD, and GN_FN_IOEVENTFD
+>>> in an enumerated type.  Each has a type associated with it, and you can
+>>> add the explanation for the function in the kernel-doc comments above
+>>> thosse type definitions.
+>>>
+>>
+>> I'd like to enumify the GH_FN_* macros, but one challenge I'm facing 
+>> is that it breaks the module alias implementation in patch 19.
+>>
+>> MODULE_ALIAS("ghfunc:"__stringify(_type))
+>>
+>> When the GH_FN_* are regular preprocessor macros backed by an integer, 
+>> the preprocessor will make the module alias ghfunc:0 (or ghfunc:1, 
+>> etc). This works well because I can do
+>>
+>> request_module("ghfunc:%d", type);
+>>
+>> If the function hasn't been registered and then gunyah_vcpu.ko gets 
+>> loaded automatically.
+>>
+>> With enum, compiler knows the value of GH_FN_VCPU and preprocessor 
+>> will make the module alias like ghfunc:GH_FN_VCPU.
+>>
+> 
+> I still like the idea of having enum for documentation and clarity. I 
+> noticed that nfnetlink.h saw the same problem for NFNL_SUBSYS_*.
+> 
+> Is this compromise terrible and I should give up on the enum?
 
-On 4/17/2023 4:51 PM, Guenter Roeck wrote:
-> On 4/17/23 13:55, Dinh Nguyen wrote:
->>
->> On 4/10/2023 9:44 PM, Guenter Roeck wrote:
->>> On 4/10/23 08:33, dinh.nguyen@linux.intel.com wrote:
->>>> From: Dinh Nguyen <dinh.nguyen@linux.intel.com>
->>>>
->>>> The driver supports 64-bit SoCFPGA platforms for temperature and 
->>>> voltage
->>>> reading using the platform's SDM(Secure Device Manager). The driver
->>>> also uses the Stratix10 Service layer driver.
->>>>
->>>> This driver only supports OF SoCFPGA 64-bit platforms.
->>>>
->>>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->>>> Signed-off-by: Dinh Nguyen <dinh.nguyen@linux.intel.com>
->>>> ---
->>>>   Documentation/hwmon/index.rst                 |   1 +
->>>>   Documentation/hwmon/socfpga-hwmon.rst         |  30 ++
->>>>   drivers/firmware/stratix10-svc.c              |  18 +-
->>>
->>> Changes outside the hwmon subsystem need to be in a separate patch.
->>
->> will separate...
->>
->>>
->>>> drivers/hwmon/Kconfig |  11 +
->>>>   drivers/hwmon/Makefile                        |   1 +
->>>>   drivers/hwmon/socfpga-hwmon.c                 | 406 
->>>> ++++++++++++++++++
->>>>   include/linux/firmware/intel/stratix10-smc.h  |  34 ++
->>>>   .../firmware/intel/stratix10-svc-client.h     |   6 +
->>>>   8 files changed, 506 insertions(+), 1 deletion(-)
->>>>   create mode 100644 Documentation/hwmon/socfpga-hwmon.rst
->>>>   create mode 100644 drivers/hwmon/socfpga-hwmon.c
->>>>
->>>>
->> ...
->>>> +
->>>> +enum hwmon_type_op {
->>>> +    SOCFPGA_HWMON_TYPE_TEMP,
->>>> +    SOCFPGA_HWMON_TYPE_VOLT,
->>>> +    SOCFPGA_HWMON_TYPE_MAX
->>>
->>> Unused define
->>
->> Removed.
->>
->>>
->>>> +};
->>>> +
->>>> +static const char *const hwmon_types_str[] = { "temperature", 
->>>> "voltage" };
->>>> +
->>>> +static umode_t socfpga_is_visible(const void *dev,
->>>> +                  enum hwmon_sensor_types type,
->>>> +                  u32 attr, int chan)
->>>> +{
->>>> +    switch (type) {
->>>> +    case hwmon_temp:
->>>> +    case hwmon_in:
->>>> +        return 0444;
->>>> +    default:
->>>> +        return 0;
->>>> +    }
->>>> +}
->>>> +
->>>> +static void socfpga_smc_callback(struct stratix10_svc_client *client,
->>>> +                      struct stratix10_svc_cb_data *data)
->>>> +{
->>>> +    struct socfpga_hwmon_priv *priv = client->priv;
->>>> +    struct arm_smccc_res *res = data->kaddr1;
->>>> +
->>>> +    if (data->status == BIT(SVC_STATUS_OK))    {
->>>> +        if (priv->msg.command == COMMAND_HWMON_READTEMP)
->>>> +            priv->temperature.value = res->a0;
->>>> +        else
->>>> +            priv->voltage.value = res->a0;
->>>> +    } else
->>>> +        dev_err(client->dev, "%s returned 0x%lX\n", __func__, 
->>>> res->a0);
->>>> +
->>>
->>> Missing { } in else branch. Please run checkpatch --strict and fix
->>> continuation line alignment issues as well as unbalanced if/else
->>> reports.
->> Will do.
->>>
->>>> + complete(&priv->completion);
->>>> +}
->>>> +
->>>> +static int socfpga_hwmon_send(struct socfpga_hwmon_priv *priv)
->>>> +{
->>>> +    int ret;
->>>> +
->>>> +    priv->client.receive_cb = socfpga_smc_callback;
->>>> +
->>>> +    ret = stratix10_svc_send(priv->chan, &priv->msg);
->>>> +    if (ret < 0)
->>>> +        return ret;
->>>> +
->>>> +    if (!wait_for_completion_timeout(&priv->completion, 
->>>> HWMON_TIMEOUT)) {
->>>> +        dev_err(priv->client.dev, "SMC call timeout!\n");
->>>> +        return -ETIMEDOUT;
->>>> +    }
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static int socfpga_hwmon_err_to_errno(struct socfpga_hwmon_priv 
->>>> *priv)
->>>> +{
->>>> +    int value = priv->temperature.value;
->>>> +
->>>> +    if (!(value & ETEMP_ERROR))
->>>> +        return 0;
->>>> +
->>>
->>> This is odd. int is normally 32 bit, this function is called from
->>> socfpga_read() for temperatures, which presumably are defined
->>> as "signed 32-bit fixed point binary". That means that negative
->>> temperatures would be treated as errors. Please verify.
->>
->> That's correct, if bit 31 is set, then it indicates an error.
->>
->
-> This ...
->
->>>
->>>> +    dev_err(priv->client.dev, "temperature sensor code 0x%08x\n", 
->>>> value);
->>>> +
->>>
->>> Please don't clog the log with such messages.
->>
->> Removed.
->>
->>>
->>>> +    value &= ~ETEMP_ERROR;
->>>> +    switch (value) {
->>>> +    case ETEMP_NOT_PRESENT:
->>>> +        return -ENOENT;
->>>> +    case ETEMP_CORRUPT:
->>>> +    case ETEMP_NOT_INITIALIZED:
->>>> +        return -ENODATA;
->>>> +    case ETEMP_BUSY:
->>>> +        return -EBUSY;
->>>> +    case ETEMP_INACTIVE:
->>>> +    case ETEMP_TIMEOUT:
->>>> +    case ETEMP_TOO_OLD:
->>>> +        return -EAGAIN;
->>>> +    default:
->>>> +        /* Unknown error */
->>>> +        return -EINVAL;
->>>
->>> Should be -EIO.
->>>
->> Replaced.
->>>> +    }
->>>> +}
->>>> +
->>>> +static int socfpga_read(struct device *dev, enum 
->>>> hwmon_sensor_types type,
->>>> +            u32 attr, int chan, long *val)
->>>> +{
->>>> +    struct socfpga_hwmon_priv *priv = dev_get_drvdata(dev);
->>>> +    int ret;
->>>> +
->>>> +    mutex_lock(&priv->lock);
->>>> +    reinit_completion(&priv->completion);
->>>> +
->>>> +    switch (type) {
->>>> +    case hwmon_temp:
->>>> +        priv->msg.arg[0] = BIT_ULL(priv->temperature.chan[chan]);
->>>> +        priv->msg.command = COMMAND_HWMON_READTEMP;
->>>> +        if (socfpga_hwmon_send(priv))
->>>> +            goto status_done;
->>>> +
->>>> +        ret = socfpga_hwmon_err_to_errno(priv);
->>>> +        if (ret)
->>>> +            break;
->>>> +        /*
->>>> +         * The Temperature Sensor IP core returns the Celsius
->>>> +         * temperature value in signed 32-bit fixed point binary
->
-> ... and this contradict each other. If bit 31 indicates an error,
-> this can not be a signed 32-bit value.
->
-You're right! I've re-read the spec and should have the the code look 
-for the specific error values:
+You know, I've seen this pattern in the kernel and never thought
+too much about why it was done.  Maybe this is exactly the reason.
 
-0x80000000 - inactive
+It sure *seems* like there might be some macro magic that might
+cause the enum symbol's numeric value to be used but I think the
+problem is that enums are C tokens, which are not evaluated at
+preprocessor time.
 
-0x80000001 - old value
+You could probably skip the leading underscore, and do this as
+it's done for nfnetlink_groups in that same header file.
 
-0x80000002 - invalid channel
+Maybe somebody else can confirm, or has a better suggestion.
 
-0x80000003 -  corrupted.
+					-Alex
 
-...
 
-Dinh
+> enum gh_fn_type {
+> /* _GH_FN_* macro required for MODULE_ALIAS, otherwise __stringify() trick
+>   * won't work anymore */
+> #define _GH_FN_VCPU        1
+>      GH_FN_VCPU        = _GH_FN_VCPU,
+> #define _GH_FN_IRQFD        2
+>      GH_FN_IRQFD        = _GH_FN_IRQFD,
+> #define _GH_FN_IOEVENTFD    3
+>      GH_FN_IOEVENTFD        = _GH_FN_IOEVENTFD,
+> };
+> 
+>> [snip]
+>>
+>>>> +
+>>>> +/*
+>>>> + * Gunyah presently sends max 4 bytes of exit_reason.
+>>>> + * If that changes, this macro can be safely increased without 
+>>>> breaking
+>>>> + * userspace so long as struct gh_vcpu_run < PAGE_SIZE.
+>>>
+>>> Is PAGE_SIZE allowed to be anything other than 4096 bytes?  Do you
+>>> expect this driver to work properly if the page size were configured
+>>> to be 16384 bytes?  In other words, is this a Gunyah constant, or
+>>> is it *really* the page size configured for Linux?
+>>>
+>>
+>> Our implementations are only doing 4096 bytes. I expect the driver to 
+>> work properly when using 16k pages. This really is a Linux page. It's 
+>> a reflection of the alloc_page in gh_vcpu_bind().
+>>
+>> The exit reason is copied from hypervisor into field accessible by 
+>> userspace directly. Gunyah makes the exit reason size dynamic -- 
+>> there's no architectural limitation preventing the exit reason from 
+>> being a string or some lengthy data.
+>>
+>> As I was writing this response, I realized that I should be able to 
+>> make this a zero-length array and ensure that reason[] doesn't 
+>> overflow PAGE_SIZE...
+>>
+>> The comment was trying to explain that Linux itself imposes a 
+>> limitation on the maximum exit reason size. If we need to support 
+>> longer exit reason, we're OK to do so long as the total size doesn't 
+>> overrun PAGE_SIZE. There aren't any plans to need longer exit reasons 
+>> than the 8 bytes mentioned today.
+>>
+>> Thanks,
+>> Elliot
 
