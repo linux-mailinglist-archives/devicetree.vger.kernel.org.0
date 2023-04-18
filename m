@@ -2,92 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC5E6E6CA4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 21:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1A66E6CB6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 21:13:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232340AbjDRTGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 15:06:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50932 "EHLO
+        id S232804AbjDRTNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 15:13:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232717AbjDRTGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 15:06:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC86519A2;
-        Tue, 18 Apr 2023 12:06:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 56B9662799;
-        Tue, 18 Apr 2023 19:06:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B545EC433D2;
-        Tue, 18 Apr 2023 19:06:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681844770;
-        bh=kTrRXIOKBHABQ2pWiTWaUDVKadSjGYzFErkx73DzSo4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hoOnHWn/xRuJ0j+wRoGuUEUqRd3npli6dnbUdCscy1huICZm/o/m9XF1lSrwxpjJs
-         xvzFazJoGr8ph0VuhmpfPw2F7ldrUrDJnFFiPZ6pwHGuz20Sj2/6RBb8peoF2PTINR
-         rbXKDPeaK98y+dbg1wS696rbzMppawp3gCxWwivvyxqu0VDbm6+mPDUgN1Q1HYwObA
-         i3ISK2QLNArT15yR8EVNJBqBMum5He//HD+5VXarGzK2j2NXLOm+Huxih5dLkSao56
-         sCldR78C3hAUsckIMBW+OcjsNR7M8AIz5aVa2KL0JcjACx2XPlm0G/RH00h5YZdpKU
-         VygZM5jxqT/Fw==
-Received: by mail-yb1-f180.google.com with SMTP id n193so7646116ybf.12;
-        Tue, 18 Apr 2023 12:06:10 -0700 (PDT)
-X-Gm-Message-State: AAQBX9eYwRU8jw4WU8SMhsf7iRzembivq8Ikh3GbdPnGD8jisSEOFdv4
-        OdEAyQwh19DuSCDQnhl9WQA+WoLuG0n/quf1FA==
-X-Google-Smtp-Source: AKy350YVYOWCgXjIX8NCg8mPMqccSWud4t+DEI8ZLyb6xuoMFSDufniyipw9gtGay0rtZJT+8hp8SxBK/VeYqwhpKhI=
-X-Received: by 2002:a25:6c41:0:b0:b8f:1d2c:243f with SMTP id
- h62-20020a256c41000000b00b8f1d2c243fmr9837346ybc.1.1681844769788; Tue, 18 Apr
- 2023 12:06:09 -0700 (PDT)
+        with ESMTP id S232787AbjDRTNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 15:13:08 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B3376A0;
+        Tue, 18 Apr 2023 12:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681845187; x=1713381187;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MOhprBHpr43tz8sYRr2cXoGAuUvU7HU/0ZiTdde8Ipg=;
+  b=GLxZ1HKVVB+YyVOItAlI+pq5NtzK/5n8VddDLiaxgcEL+MczGl/TljgZ
+   UPadoHVB8enCd7U75KSJuLVmJ/VoKmIzvhn5Udecc/zdx8leeu6JasGVQ
+   fIJikNzaBmwESjBqWDrBRYhvIGsptDlstvtMRg/EtkDrl5p3W16IlmAHF
+   BY1x30Vm4a+kDWixrGRiOxiGDAFRMyL+okJMwiNkJtKdi3MAnRDtsbNsy
+   q+uJy5Ctb4/y6DOiv8DPuHiL3gQBAQUtMzlTPUiBp/6NxrAHEXSE2nnQW
+   e03DJESAfsE1xoIgBQpRhmma8kq1afglP50r4ueUtZID2OffH8vnraHEZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="325599447"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="325599447"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 12:13:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="641481108"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="641481108"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 18 Apr 2023 12:13:04 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1poqlD-000dwF-1b;
+        Tue, 18 Apr 2023 19:13:03 +0000
+Date:   Wed, 19 Apr 2023 03:12:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        David Yang <mmyangfl@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] clk: Add simple clock controller
+Message-ID: <202304190206.OjctYqwT-lkp@intel.com>
+References: <20230416194624.1258860-3-mmyangfl@gmail.com>
 MIME-Version: 1.0
-References: <20230310144710.1543139-1-robh@kernel.org> <20230418162500.GC1764573-robh@kernel.org>
- <CABb+yY3Y8oZYG1y8zfTCC8g7=T0HQp3G3N_iECudo1gduYpy-A@mail.gmail.com>
-In-Reply-To: <CABb+yY3Y8oZYG1y8zfTCC8g7=T0HQp3G3N_iECudo1gduYpy-A@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 18 Apr 2023 14:05:58 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Oxj4ZDMyS_jOXiZEL2p=mYGr4MOGxiLen1ThRVE5cMw@mail.gmail.com>
-Message-ID: <CAL_Jsq+Oxj4ZDMyS_jOXiZEL2p=mYGr4MOGxiLen1ThRVE5cMw@mail.gmail.com>
-Subject: Re: [PATCH] mailbox: Use of_property_read_bool() for boolean properties
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230416194624.1258860-3-mmyangfl@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 11:36=E2=80=AFAM Jassi Brar <jassisinghbrar@gmail.c=
-om> wrote:
->
-> On Tue, Apr 18, 2023 at 11:25=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
-ote:
-> >
-> > On Fri, Mar 10, 2023 at 08:47:10AM -0600, Rob Herring wrote:
-> > > It is preferred to use typed property access functions (i.e.
-> > > of_property_read_<type> functions) rather than low-level
-> > > of_get_property/of_find_property functions for reading properties.
-> > > Convert reading boolean properties to to of_property_read_bool().
-> > >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  drivers/mailbox/hi6220-mailbox.c | 5 +----
-> > >  drivers/mailbox/omap-mailbox.c   | 3 +--
-> > >  2 files changed, 2 insertions(+), 6 deletions(-)
-> >
-> > Ping!
-> >
-> Pong :)
->
-> I don't usually reply back that it looks good and will pick for the
-> merge window. I just do that. So yes, it is not overlooked.
+Hi David,
 
-Okay. No reply nor applying it in over a month is not a great
-experience for submitters.
+kernel test robot noticed the following build errors:
 
-Rob
+[auto build test ERROR on 7a934f4bd7d6f9da84c8812da3ba42ee10f5778e]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Yang/dt-bindings-clock-Add-simple-clock-controller/20230417-034857
+base:   7a934f4bd7d6f9da84c8812da3ba42ee10f5778e
+patch link:    https://lore.kernel.org/r/20230416194624.1258860-3-mmyangfl%40gmail.com
+patch subject: [PATCH v3 2/4] clk: Add simple clock controller
+config: s390-randconfig-r036-20230416 (https://download.01.org/0day-ci/archive/20230419/202304190206.OjctYqwT-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 437b7602e4a998220871de78afcb020b9c14a661)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install s390 cross compiling tool for clang build
+        # apt-get install binutils-s390x-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/242d6bab7339a967b40f9731b989913e8b2ea63c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review David-Yang/dt-bindings-clock-Add-simple-clock-controller/20230417-034857
+        git checkout 242d6bab7339a967b40f9731b989913e8b2ea63c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=s390 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304190206.OjctYqwT-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   s390x-linux-ld: DWARF error: could not find abbrev number 115
+   kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
+   coherent.c:(.text+0xc8): undefined reference to `memunmap'
+   s390x-linux-ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
+   coherent.c:(.text+0x14a): undefined reference to `memremap'
+   s390x-linux-ld: coherent.c:(.text+0x254): undefined reference to `memunmap'
+   s390x-linux-ld: kernel/dma/coherent.o: in function `dma_release_coherent_memory':
+   coherent.c:(.text+0x2c0): undefined reference to `memunmap'
+   s390x-linux-ld: DWARF error: could not find abbrev number 53
+   drivers/clk/clk-of.o: in function `of_clk_get_reg':
+>> clk-of.c:(.text+0x6a): undefined reference to `of_iomap'
+   s390x-linux-ld: drivers/clk/clk-of.o: in function `of_crg_ctrl_setup':
+   clk-of.c:(.text+0x322): undefined reference to `of_iomap'
+   s390x-linux-ld: DWARF error: could not find abbrev number 8446
+   drivers/clk/clk-fixed-mmio.o: in function `fixed_mmio_clk_setup':
+   clk-fixed-mmio.c:(.text+0x48): undefined reference to `of_iomap'
+   s390x-linux-ld: clk-fixed-mmio.c:(.text+0x68): undefined reference to `iounmap'
+   s390x-linux-ld: DWARF error: could not find abbrev number 15506
+   drivers/char/xillybus/xillybus_of.o: in function `xilly_drv_probe':
+   xillybus_of.c:(.text+0x64): undefined reference to `devm_platform_ioremap_resource'
+   s390x-linux-ld: DWARF error: could not find abbrev number 93
+   drivers/misc/open-dice.o: in function `open_dice_write':
+   open-dice.c:(.text+0xe6): undefined reference to `devm_memremap'
+   s390x-linux-ld: open-dice.c:(.text+0x176): undefined reference to `devm_memunmap'
+   s390x-linux-ld: DWARF error: could not find abbrev number 67
+   drivers/pcmcia/cistpl.o: in function `release_cis_mem':
+   cistpl.c:(.text+0xe8): undefined reference to `iounmap'
+   s390x-linux-ld: drivers/pcmcia/cistpl.o: in function `set_cis_map':
+   cistpl.c:(.text+0x4a6): undefined reference to `ioremap'
+   s390x-linux-ld: cistpl.c:(.text+0x520): undefined reference to `iounmap'
+   s390x-linux-ld: cistpl.c:(.text+0x572): undefined reference to `iounmap'
+   s390x-linux-ld: cistpl.c:(.text+0x59c): undefined reference to `ioremap'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
