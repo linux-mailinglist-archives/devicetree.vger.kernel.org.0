@@ -2,46 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0216E6941
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A27136E6947
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbjDRQVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34044 "EHLO
+        id S231545AbjDRQVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231169AbjDRQVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:21:23 -0400
+        with ESMTP id S231305AbjDRQVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:21:45 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC0B3C38;
-        Tue, 18 Apr 2023 09:21:22 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD06B773;
+        Tue, 18 Apr 2023 09:21:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC9C76364E;
-        Tue, 18 Apr 2023 16:21:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB76C4339C;
-        Tue, 18 Apr 2023 16:21:19 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 16BB46366C;
+        Tue, 18 Apr 2023 16:21:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 299E4C433EF;
+        Tue, 18 Apr 2023 16:21:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681834881;
-        bh=ap6Q5odoQ4rNoTfPJqKCKCL+ukarr6XYL6tmAzzw7Qw=;
+        s=k20201202; t=1681834896;
+        bh=0yAsboJRhuuNcS/z/N+pA0vFKY7x/4YDMsb7MJU+SG0=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=MrFuEiWQY5pEd6wb4KR1+TS3E3VXN4mi6xoxWF1ods9t1Mg/FK1Og11IWCNOFPIIw
-         c1OrFuxGXfWdR9Qc752L7Ete4iHhYkaDZPDclXzWrjkPqPIbl3HTpPVorMEfWF/m9P
-         B3z3cie4yBQSOGkt8f4D21Euykk4rqB0A2pa5pI4Gi1ab04i2Frm+HbcPgoeAh09T9
-         e48IEmR4HvUXjpjEHaXS7jxZCqi5bmdNNC+xb59EG1B3nR3+gppahy/+U0nW2QYXVB
-         OffyKv8UyCCbjdWxnEdAWJAFOOs0BGd6d57Zd2+zl2DMHAi+RBDoyDiOAtKtYmdvYw
-         6UOF3m/W48MIg==
+        b=Y0WbHURiNPne3Tmv/6+qjvK+kRFeR5BkLjL38B7xiVdEUtG6fwvVafx6CNPLDPS06
+         t7pePersbWXzMF+lgS61O0K7eLvJncdCYa3pfjUquffFQ5+MgX+2MeWWSeqMC4iKOo
+         hE12LvmMLpMvMt7zOTpOOHpE5XMPGnFO2h/8+k9O+OZu5v5RxyogDaPsFjTWZQkWWd
+         X/Kyv0T9oJ9ZizmfM5V64htLaNkp8GSRdUNZoQDOppwpn1ovFIcmaucbZXheyF+gAk
+         FdZ1lSm1Zbi61vudeBmKQbWlFGFQMPbCBhCvc+XvxGj5STp87EtBkb+0ECUqaSOyFj
+         1pQoB/WQVNB9Q==
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@gmail.com,
-        Saalim Quadri <danascape@gmail.com>
-Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230417212400.161796-1-danascape@gmail.com>
-References: <20230417212400.161796-1-danascape@gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8737: Convert to dtschema
-Message-Id: <168183487901.87933.8631683727283438800.b4-ty@kernel.org>
-Date:   Tue, 18 Apr 2023 17:21:19 +0100
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>, Rob Herring <robh@kernel.org>
+In-Reply-To: <20230418071734.5706-1-krzysztof.kozlowski@linaro.org>
+References: <20230418071734.5706-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [RESEND PATCH 1/2] regulator: dt-bindings: qcom,rpmh:
+ Correct PM8550 family supplies
+Message-Id: <168183489386.88061.8852651683552439984.b4-ty@kernel.org>
+Date:   Tue, 18 Apr 2023 17:21:33 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -56,19 +62,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Apr 2023 21:24:00 +0000, Saalim Quadri wrote:
-> Convert the WM8737 audio CODEC bindings to DT schema
+On Tue, 18 Apr 2023 09:17:33 +0200, Krzysztof Kozlowski wrote:
+> PM8550 is different than PM8550VE/VS, because the latter has much
+> smaller amount of supplies (l1-3 and s1-6) and regulators.  The PM8550
+> has on the other hand one pin for vdd-l1-l4-l10 supplies.  Correct the
+> if:then: clause with their supplies.
 > 
 > 
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: wm8737: Convert to dtschema
-      commit: c341b5681fa074faa596fbb0fa0fc256b7e2301a
+[2/2] regulator: dt-bindings: qcom,rpmh: Combine PM6150L and PM8150L if-then
+      commit: ed479907ff79007548c3bd1aed387f8cf0a62065
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
