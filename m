@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33B466E69DA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBCCB6E6A2D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbjDRQnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:43:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55312 "EHLO
+        id S232491AbjDRQwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:52:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232568AbjDRQnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:43:49 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C414740EE;
-        Tue, 18 Apr 2023 09:43:46 -0700 (PDT)
-Received: from [192.168.178.23] (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id F202ECB3CB;
-        Tue, 18 Apr 2023 16:43:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1681836225; bh=vIuKvsLduKbdJuLqS3gE6yL7XCUiBq1e88KkTbfWTJA=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc;
-        b=ItGVjgWcNdo/Uswib8zZNt18Zfz4kbVzUdCqBxQ5VGD5vchb9bo68cvDKGviLBb3u
-         H2BX/Z6zBC524zyumfeDRa9e7Roqht+9iRXI8zfkmXi9FCBI0QYf4E83Usn0G6hO/d
-         zu5FkfnhmbS+6mjGkAG92V1oCjiqJWI/4CjASH/s=
-From:   Luca Weiss <luca@z3ntu.xyz>
-Date:   Tue, 18 Apr 2023 18:43:24 +0200
-Subject: [PATCH v2 8/8] Documentation: leds: Add "rgb:status" path
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230414-pmi632-v2-8-98bafa909c36@z3ntu.xyz>
-References: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
-In-Reply-To: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
-To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S232381AbjDRQwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:52:35 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3477493C8;
+        Tue, 18 Apr 2023 09:52:30 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33IGqEpN076778;
+        Tue, 18 Apr 2023 11:52:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681836734;
+        bh=W75yG1FbhHDO6azc5l11+tUUPGbR5d0f1ih4ZwyOmN8=;
+        h=From:To:CC:Subject:Date;
+        b=AtrJ7iGbs7lvaFxdajlDXqL+3HvqxLpUlGgrvpGsZeI/b/W+6sas5ibleZggVtwOp
+         IRa1BkrQJ7ZYLtizektQxQh22VmxpJoaizlw9z9JV/UYT5Fys6kCXu8PMbRzTTFIE1
+         6cr7gXO+sQcjnN/uGryYVUyUbcpe3GWE77FnQHk0=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33IGqELQ012864
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Apr 2023 11:52:14 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 18
+ Apr 2023 11:52:14 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 18 Apr 2023 11:52:14 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33IGqELQ011969;
+        Tue, 18 Apr 2023 11:52:14 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-doc@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=728; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=vIuKvsLduKbdJuLqS3gE6yL7XCUiBq1e88KkTbfWTJA=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkPsi9m5afxit5T1vzibsBn+zy17heWoOlFzh0L
- dsKpRleV7eJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZD7IvQAKCRBy2EO4nU3X
- Vr2qD/9mYq9OTIzbUKwzqEA/BbJJX5bd0Oe7VKDxIfeNJ40qCYV//lXBjQIJamulELHCBuS0HtO
- jHDFmjksMA3gg1I+A7QmpTLn9TQY5AdnR5Oo+1XRd5O6135LfzAe/AGUaNdTOnzFK/opBAjyXH8
- EY3tBL3M9Rb1nHaa/i4AGL0Md1iEaUs58Z5euTzf1Rp4XNy/VcOtoNRkSKOvDz+JGKn4RSVT/rh
- 2PkgVswxeQVsp5jLe/hha1BdKdsuzn13RwkRt8i8IjIFCVdtNODlo2dVc+KqafCIWBBf1QsW0dP
- gPtDlMVAdUX9KFUy8HbIkFxqwMHspc+fRtbg5G1Oxlo1cx/qCjiraYXLw2E8NSznd41ICyglBYa
- S8rRRLIQyys/1IgsF8o8qNtB/5BcZV4TVCNo5DjMkXSuDNZ/QfyDIcI5W8Lh5HMSn3wrBDPsfAE
- 1dz3tS8V5pgXgXiq0t0x7ZFMAqZUKXWLqZt/uGAnORnSDRzhzciiCm6QYqLq+AbKy7bxVhagyBu
- /Mt4FH78hED1WjSTe2tbCQRSeQ5fUqJB2pWhbC6uenH6PaI6XMMib/ev5cLVaR+cZPskqYBQRc8
- e5wpPamgx7kwA3bP+NJ6Uw82+dC00rCSXhMB0nGzCSeNgc4FNKE3Us4DFdMdQjErFr6C8zj9+WD
- tn5NejdQLbgjE1w==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH 0/5] arm64: dts: ti: Drop bootargs
+Date:   Tue, 18 Apr 2023 11:52:07 -0500
+Message-ID: <20230418165212.1456415-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The path /sys/class/leds/rgb:status is already widely used with the
-qcom-lpg driver and others. Document it.
+Hi,
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- Documentation/leds/well-known-leds.txt | 1 +
- 1 file changed, 1 insertion(+)
+This has come up multiple times, so cleaning it all up.
+See [1] for context. AM64 is covered in [2].
 
-diff --git a/Documentation/leds/well-known-leds.txt b/Documentation/leds/well-known-leds.txt
-index 2160382c86be..439d4dac4472 100644
---- a/Documentation/leds/well-known-leds.txt
-+++ b/Documentation/leds/well-known-leds.txt
-@@ -58,6 +58,7 @@ LEDs on notebook body, indicating that sound input / output is muted.
- 
- * System notification
- 
-+Good: "rgb:status"
- Legacy: "status-led:{red,green,blue}" (Motorola Droid 4)
- Legacy: "lp5523:{r,g,b}" (Nokia N900)
- 
+Nishanth Menon (5):
+  arm64: dts: ti: k3-am62x-sk-common: Drop bootargs
+  arm64: dts: ti: k3-am65*: Drop bootargs
+  arm64: dts: ti: k3-j721e-*: Drop bootargs
+  arm64: dts: ti: k3-j7200-common-proc-board: Drop bootargs
+  arm64: dts: ti: k3-j721s2-common-proc-board: Drop bootargs
 
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi         | 1 -
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi     | 1 -
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts         | 1 -
+ arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts  | 1 -
+ arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts  | 1 -
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts                 | 1 -
+ arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 1 -
+ 7 files changed, 7 deletions(-)
+
+[1] https://lore.kernel.org/linux-arm-kernel/81134eb9-2b7d-05bc-3035-a47f020861a8@linaro.org/
+[2] https://lore.kernel.org/all/20230414073328.381336-1-nm@ti.com/
 -- 
 2.40.0
 
