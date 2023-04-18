@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A90F16E577C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 04:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE3696E5793
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 04:43:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjDRC37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Apr 2023 22:29:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
+        id S229655AbjDRCna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Apr 2023 22:43:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbjDRC36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 22:29:58 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57711172C;
-        Mon, 17 Apr 2023 19:29:57 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1a524c999d9so15928385ad.3;
-        Mon, 17 Apr 2023 19:29:57 -0700 (PDT)
+        with ESMTP id S229517AbjDRCn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Apr 2023 22:43:28 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF53422D;
+        Mon, 17 Apr 2023 19:43:27 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-63b51fd2972so1366412b3a.3;
+        Mon, 17 Apr 2023 19:43:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681784997; x=1684376997;
+        d=gmail.com; s=20221208; t=1681785806; x=1684377806;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=67tDMZwaozkC/4h2hdsCG2SkbsBh10T01ijQGIySkUo=;
-        b=VJarTu7ueI5jKfXJfk+sjPdWWMUCCCD6nLfSLTw6040i2UYSycKSAllI/xAR7zCoYu
-         OItvn0Oeemlm5n9LFQCXKTfuy8D8a0KV/HJTU9e5FTaY1m789aYYem58VdwQbzozMGuO
-         o6DOc+DXHNLkHxf0SrVu/H9w/aiTxiARFSfOOmT1zNos5os7TTkg2fmWd4aIe8siOduN
-         5cIo1HFO6CvnO5qWrKf7sYcZekO9EVXSC3gy7qjeeE0gr8lDbA8mAXZ8fd03elp3hfrL
-         aHdZWThvlq6kFwPX927MP9zOSAuNMOusekXfci4qH8FVvoVgT2Bh2CF9FbRVPD+QpIoi
-         y8bA==
+        bh=OmIO4AdDKQdy+8t5oD0ActH/+eFcz+x5x3nOJUUqhCQ=;
+        b=ZYk8e0xnFpSbdWGBL12gfnkN8bm66ghxLYzKfJSzINawVMKpggmz1STUYKM922oyOt
+         Eaq2nakbFzVsulDAExekVrQChKfXHBw/lKK83+dnrqNUyApP3KvSTCXu2jy/s8j6wtzO
+         wogs34JGO0c8R8X51ZRT/zyd9MUDd+7tEJhHSGl9sdHuFN+Al+Q+psLL05mQcBOO16eJ
+         8Q+9mYJLw1AIz3/PC+iPn7m3JgSm49iFCG+AbJKgmAUaPc5GbBpeej/a7OCW2f5HWFK7
+         wnbkYY6ca1IRlVhgZI+fVaeuqxInU2LmuXDpXdK0ev/nwPJM6+qxILSmHH0VlhVGx7z8
+         HDEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681784997; x=1684376997;
+        d=1e100.net; s=20221208; t=1681785807; x=1684377807;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=67tDMZwaozkC/4h2hdsCG2SkbsBh10T01ijQGIySkUo=;
-        b=CnUPEwNK3ckFB8Yo1Rl7S0xsV8VzlZ7ix1V6ouwCy/yMBajc6vSLJ98QN9j2SD1HM7
-         2lAc1i2I18vHpWw5AhKJMIQYpHs6DCQq20m0Lq/o/ZLT8UmQkOqUf89KdXUErOPLwvjk
-         bZamHdGC6WWwRor6emclLQQkuWI+GmVxi1OKfpMAjCsy5NXQZbsIncSp/zm7iLcci4s1
-         RxxDbcugCQ4HEffjPuPUT7+F/AaCDy0m36aK4MmbMWt8jqesfqRROMUAM7fu+z3+/MC2
-         q2YJ8LSXyZhU+k2qjuEykhsCYpHSCeFRMTtJJAwKau2s9+PTQgDXp2YG7KIpIFQP0+Uz
-         O8gA==
-X-Gm-Message-State: AAQBX9eZddxubmXbq7h77gJ6ipGIZ4lq6gHJWbSY+rFv/7GyA2s6ze01
-        8scXwAloJNzD+k+JvSa/D403khEV9llThXRgY0c=
-X-Google-Smtp-Source: AKy350a8gUiMivOsGNvLuu+CPxSUKtbHvfaXMbOwAEVLwgvkJrDx2eY3Li4L6RzuwTjiYRjvOxHRH6bVfvLtalZZ9bI=
-X-Received: by 2002:a17:902:e88e:b0:1a5:25db:5bc0 with SMTP id
- w14-20020a170902e88e00b001a525db5bc0mr217740plg.3.1681784996433; Mon, 17 Apr
- 2023 19:29:56 -0700 (PDT)
+        bh=OmIO4AdDKQdy+8t5oD0ActH/+eFcz+x5x3nOJUUqhCQ=;
+        b=Y567FG2f9h+ULqxLB5v96dRrrvp0EUpTlsQRuEI0i3c5OEGgGTNgmrOzgaD9zJdhrg
+         FRmgb8zL+mk33seWOIdIejpx11qha8KpTOM7MauDiEWzif/HcqPkUDwZe8jS1UQmGX9P
+         eJquShuU6DlktUrewnwC+uSByhLBrEEYbCYKGLjrzOY185ZM5TtJpdiZAL7IdsSaQrcL
+         W7sJP8rfqWEbdSPgRrxR/L51Rj94u722HX+cVUC+ZyRR6SP6mGTv8zH/XUy2pBoLL190
+         51C7ar1s5z4WWNln3EK6MZIgJYzVzhQxLE+xqxxlfI8ko615EqEl0A6QGpkymhDaYKzx
+         d1uw==
+X-Gm-Message-State: AAQBX9dJ2DBv9BdkS9uKS2SXk4m9LMMwayDW4gGdlkSKcsmDCVkZ0iOB
+        dDEZcYQkVVnQJl4T2GSgjOBtPPrWzJBmgE7QoEo=
+X-Google-Smtp-Source: AKy350aqgDdKIo5YoTPII4rMPfWaTsReCveuBWc1lewoRA1K3Hlesmnd9usHQaRZbq3AjGXKObrTSc1kQu7Xxza7oCY=
+X-Received: by 2002:a05:6a00:228b:b0:63b:641d:76d8 with SMTP id
+ f11-20020a056a00228b00b0063b641d76d8mr6976290pfe.2.1681785806554; Mon, 17 Apr
+ 2023 19:43:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230415104104.5537-1-aford173@gmail.com> <20230415104104.5537-3-aford173@gmail.com>
- <7eed74e8-9f67-a410-3cec-f61a6db85238@denx.de>
-In-Reply-To: <7eed74e8-9f67-a410-3cec-f61a6db85238@denx.de>
+References: <20230415104104.5537-1-aford173@gmail.com> <20230415104104.5537-4-aford173@gmail.com>
+ <8db7ad8da4805d7eb4471051676d179e193ee399.camel@pengutronix.de> <CAHCN7x+hFu15TM0w5DXzmWZRKEN6=MNNTVLNtpNxbirVGrapdg@mail.gmail.com>
+In-Reply-To: <CAHCN7x+hFu15TM0w5DXzmWZRKEN6=MNNTVLNtpNxbirVGrapdg@mail.gmail.com>
 From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 17 Apr 2023 21:29:44 -0500
-Message-ID: <CAHCN7xKw26TQ=t75TEDbEkA0mb9rnEwNW=7ei1=WFBZjiJMf=g@mail.gmail.com>
-Subject: Re: [PATCH 3/6] drm: bridge: samsung-dsim: Fetch pll-clock-frequency automatically
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, m.szyprowski@samsung.com,
-        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+Date:   Mon, 17 Apr 2023 21:43:15 -0500
+Message-ID: <CAHCN7xKmFzuwFVO1eR8fdVQ9iXUuB0zVadFYG5_6t8p0=dPG+w@mail.gmail.com>
+Subject: Re: [PATCH 4/6] drm: bridge: samsung-dsim: Dynamically configure DPHY timing
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
+        aford@beaconembedded.com,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
         Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Fabio Estevam <festevam@gmail.com>, m.szyprowski@samsung.com,
+        marex@denx.de, Robert Foss <rfoss@kernel.org>,
         David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,43 +89,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 16, 2023 at 5:08=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+On Mon, Apr 17, 2023 at 6:53=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
+e:
 >
-> On 4/15/23 12:41, Adam Ford wrote:
-> > Fetch the clock rate of "sclk_mipi" (or "pll_clk") instead of
-> > having an entry in the device tree for samsung,pll-clock-frequency.
+> On Mon, Apr 17, 2023 at 3:38=E2=80=AFAM Lucas Stach <l.stach@pengutronix.=
+de> wrote:
 > >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> >   drivers/gpu/drm/bridge/samsung-dsim.c | 12 ++++++------
-> >   1 file changed, 6 insertions(+), 6 deletions(-)
+> > Hi Adam,
 > >
-> > diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/br=
-idge/samsung-dsim.c
-> > index 9fec32b44e05..73f0c3fbbdf5 100644
-> > --- a/drivers/gpu/drm/bridge/samsung-dsim.c
-> > +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-> > @@ -1744,11 +1744,6 @@ static int samsung_dsim_parse_dt(struct samsung_=
-dsim *dsi)
-> >       struct device_node *node =3D dev->of_node;
-> >       int ret;
+> > Am Samstag, dem 15.04.2023 um 05:41 -0500 schrieb Adam Ford:
+> > > NXP uses a lookup table to determine the various values for
+> > > the PHY Timing based on the clock rate in their downstream
+> > > kernel.  Since the input clock can be variable, the phy
+> > > settings need to be variable too.  Add an additional variable
+> > > to the driver data to enable this feature to prevent breaking
+> > > boards that don't support it.
+> > >
 > >
-> > -     ret =3D samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequen=
-cy",
-> > -                                    &dsi->pll_clk_rate);
-> > -     if (ret < 0)
-> > -             return ret;
-> > -
-> >       ret =3D samsung_dsim_of_read_u32(node, "samsung,burst-clock-frequ=
-ency",
-> >                                      &dsi->burst_clk_rate);
-> >       if (ret < 0)
+> > I haven't checked if this generates values close to the ones in this
+> > table, but I guess it should be worth a try to use
+> > phy_mipi_dphy_get_default_config() instead.
 >
-> Does this break compatibility with old samsung DTs ?
+> I didn't know that was a thing.  I like that idea much better than the
+> table.  I just pulled what NXP had and tweaked it to fit the mainline.
+> I'll give it a try in the next few days, when I have some more time.
 
-My goal here was to declutter the device tree stuff and fetch data
-automatically if possible. What if I changed this to make them
-optional?  If they exist, we can use them, if they don't exist, we
-could read the clock rate.  Would that be acceptable?
+I tried phy_mipi_dphy_get_default_config() and the function return
+different values than what NXP's table returns, and the screen doesn't
+sync properly.  I will try to figure out the mathematical calculation
+to generate the values for this DSIM instead of using a lookup table.
 
 adam
+>
+> adam
+> >
+> > Regards,
+> > Lucas
+> >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > ---
+> > >  drivers/gpu/drm/bridge/samsung-dsim.c |  85 +++++++--
+> > >  drivers/gpu/drm/bridge/samsung-dsim.h | 254 ++++++++++++++++++++++++=
+++
+> > >  include/drm/bridge/samsung-dsim.h     |   1 +
+> > >  3 files changed, 326 insertions(+), 14 deletions(-)
+> > >  create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.h
+> > >
+> <snip>
+> >
