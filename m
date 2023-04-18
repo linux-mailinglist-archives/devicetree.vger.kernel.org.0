@@ -2,134 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0AA6E6AF6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B166E6AF9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 19:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbjDRR2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 13:28:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37478 "EHLO
+        id S230482AbjDRR3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 13:29:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232605AbjDRR2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:28:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27EF9E48;
-        Tue, 18 Apr 2023 10:28:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A740F61202;
-        Tue, 18 Apr 2023 17:28:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45827C433D2;
-        Tue, 18 Apr 2023 17:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681838886;
-        bh=QCLMTGp0pSAawzsOxfqUZWtyxa1SJnm6R5Qw5FlWiBk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Uajfv6Bwv+DD9Vq+CBn1cSZzOAhNjxs/u0hDkHONopDzprf3D+R802y8LyxP7Axon
-         qJHKI8fH26kJHfUplSOuPamB6lmAygGxhqpCxi2wBKQSmOnQB7v3uCAXossgh/KMPZ
-         INkYU72upEymEGPZSfFJrjTiLGPdQdH18tsrCXbu6+JMLz7ePZYzj1ruFDnsquBDJy
-         BzU8GbNffHY01LIbbPjRejT9+1bs2/yPPIK5lcv2xDNh/Asdq98ARGXs5mgcMHRzGZ
-         PHyFfBxhZjyco+9k0ioy5ObdPJTrLC1xvHVGcHljsKBRVkhd1ZVdF8YB+JjXsm7JTp
-         5lyv7LgnxzNBw==
-Date:   Tue, 18 Apr 2023 18:28:00 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Mason Huo <mason.huo@starfivetech.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: Add cpu scaling for JH7110
- SoC
-Message-ID: <20230418-talcum-unthread-618a5bd2758a@spud>
-References: <20230417063942.3141-1-mason.huo@starfivetech.com>
- <20230417063942.3141-4-mason.huo@starfivetech.com>
+        with ESMTP id S231268AbjDRR3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 13:29:02 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751D026BC
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:29:00 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a5so18651022ejb.6
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 10:29:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681838939; x=1684430939;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j1wiR09yWJSIDNVVbIUkBjSe4GYAxrvXyIzrFZ0S/2s=;
+        b=DQ8c8RpJDuNpMTcK6oa4OrWmMeZkKjHR4atMVV5AwE7bAddXZlw9Xrr+pD1ff5x6Zw
+         9noBnbIwVGONmMIpycQIcLzh0nkkAAlaed4kAKedDqfxiHQz8Bj125hqLXmBGUD8691Z
+         kl84fmSZiZIfJ7c54my5nYUeeiR4PLF2ZP9dXbhtGXcODtElTt13ShAQF0SJ5Y97oLgY
+         WDT5E8mTxH5k5qC9T/7ijOZKnEK/s69cxNEO00S7wI3YcfwLHULRtN4rJ7L3bXQnq8qS
+         djIWjlBV8B9EgKZzNn/vGIuRCkMNMSdvPCuXMtIvT1jx87w7P8HCNNDyY+Kory7rGyMK
+         t4CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681838939; x=1684430939;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j1wiR09yWJSIDNVVbIUkBjSe4GYAxrvXyIzrFZ0S/2s=;
+        b=BawAOLsoRh5DCX0p8RtAk1ipz5sL7U499xDSJ+fOhEIjKuKJdUVUiQtwRmNQ13ZtCS
+         7oQmtAduZ6MzRFnrUZ0vLibLl5Pu6Ym737j6OxJU+hpkL1fQAU0eGSgP41c7jr0dp32H
+         B7XftfJrBDQe9XxZ6XjLFwdV/1cACT4K7heKyNyVxiRRJ2aREQmDSSpcfvoFAlDcxD6m
+         8NK3nP/fDVsm8JAfbCeYUzpAi47IeoZOTfAvZMJhI835tAK9kXEtYkN0SVefPo4LPUG1
+         kL0AhH9NaVm6nC4afj0g2DuyXdcDFLWUfAcf/U2B9FXB4hjGKsinAt13o0xWtR/B9IVE
+         ZOpw==
+X-Gm-Message-State: AAQBX9cYiu8HMRZSkm6fdc1IA4xf9dJ9NTxw78ykz5Df4HZB4FMfdMrS
+        T5PUY7Fyhi+OuX0figAiNE5cqQ==
+X-Google-Smtp-Source: AKy350a7ZMnwKrvXukHpiO5c+poP9gMiHBS3W3x7LLSR6QP3sqvewAE5G4jo3Ti3GtMyBs4wKhPkrg==
+X-Received: by 2002:a17:906:2b0c:b0:94f:3980:bf91 with SMTP id a12-20020a1709062b0c00b0094f3980bf91mr10317366ejg.19.1681838938946;
+        Tue, 18 Apr 2023 10:28:58 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
+        by smtp.gmail.com with ESMTPSA id j19-20020a50ed13000000b00504ecc4fa96sm7165712eds.95.2023.04.18.10.28.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 10:28:58 -0700 (PDT)
+Message-ID: <1c629ae3-31e7-7536-435b-378c943ab61a@linaro.org>
+Date:   Tue, 18 Apr 2023 19:28:57 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YJMzqe/hzL7IbIYs"
-Content-Disposition: inline
-In-Reply-To: <20230417063942.3141-4-mason.huo@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 0/2] clocking-wizard: Added support for versal clocking
+ wizard
+Content-Language: en-US
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     git@amd.com, linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        sboyd@kernel.org, mturquette@baylibre.com,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com
+References: <20230418102855.6791-1-shubhrajyoti.datta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230418102855.6791-1-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/04/2023 12:28, Shubhrajyoti Datta wrote:
+> 
+> Add Versal clocking wizard IP driver support
+> 
+> The Versal clocking wizard is clock circuits customized to cater to
+> clocking requirements. It provides configurable number of outputs.
+> Adds Versal clocking wizard support to the current clocking wizard driver.
+> 
+> Datasheet link: https://docs.xilinx.com/r/en-US/pg321-clocking-wizard
 
---YJMzqe/hzL7IbIYs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is not really v1. Please link previous submissions and keep changelog.
 
-Hey Mason,
+Best regards,
+Krzysztof
 
-Just one minor comment in passing..
-
-On Mon, Apr 17, 2023 at 02:39:42PM +0800, Mason Huo wrote:
-> Add the operating-points-v2 to support cpu scaling on StarFive JH7110 SoC.
-> It supports up to 4 cpu frequency loads.
->=20
-> Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         | 17 ++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 33 +++++++++++++++++++
->  2 files changed, 50 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
-si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index cca1c8040801..b25e6d68ce53 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -227,3 +227,20 @@ &uart0 {
->  	pinctrl-0 =3D <&uart0_pins>;
->  	status =3D "okay";
->  };
-> +
-> +&U74_1 {
-> +	cpu-supply =3D <&vdd_cpu>;
-> +};
-> +
-> +&U74_2 {
-> +	cpu-supply =3D <&vdd_cpu>;
-> +};
-> +
-> +&U74_3 {
-> +	cpu-supply =3D <&vdd_cpu>;
-> +};
-> +
-> +&U74_4 {
-> +	cpu-supply =3D <&vdd_cpu>;
-> +};
-> +
-
-Applying: riscv: dts: starfive: Add cpu scaling for JH7110 SoC
-/stuff/linux/.git/rebase-apply/patch:30: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-
-Cheers,
-Conor.
-
-
---YJMzqe/hzL7IbIYs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZD7TDAAKCRB4tDGHoIJi
-0nCIAQCGgCe1FJP8wpMrSgS8zFRx/3XZ/tG/QuMA8ezQyFQiwQD9E+NV9PcHcbsD
-Ws7d9iEVlnQj6SVvRbx4tpMKsAV1ew0=
-=1AIw
------END PGP SIGNATURE-----
-
---YJMzqe/hzL7IbIYs--
