@@ -2,157 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ABFB6E6915
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D70166E6925
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjDRQNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:13:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55588 "EHLO
+        id S232051AbjDRQQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbjDRQNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:13:40 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88A09031
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:13:38 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id c9so35754832ejz.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:13:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681834417; x=1684426417;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yAv9XfH/Gcbn1WieuwEvWfpJNF3KgicHWHVmjLoU5QE=;
-        b=MOZwPa2rZB8kg7oVKePNVH/IS83tGzcDvxbHwZxW5aRMpXwgvke/oJZec/7r9KPsY3
-         /E8Ce3dkKnCCrUxgibxQN16BRAxOMC4RmGaeBGabXCiF6zMrlK47/JZpIeI8/5JmPZEz
-         NZ4yPoOe1Ry1UEt9Z2sG5hi5WriW2nMsXn+bTnPUjiF+harlrfN+Bk5hrpjjz9JiQzPF
-         xuVCtk/vM5L0Fra6G3Uc4z4BB8VZNTYHoJVlJ+8BBbADzpoS09u48P0ahanKIlzrgM/S
-         JQlgY4PfvsdS+AjVCjQ4jZvDcqZQ513NQrJip4eUyPIJkhoQJVnoFbej9rJYei4K9HYu
-         AP5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681834417; x=1684426417;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yAv9XfH/Gcbn1WieuwEvWfpJNF3KgicHWHVmjLoU5QE=;
-        b=kibnH7gK6ubWo/5KpvgWMrMtknsvGreZumi2yL0XCGMeLHtrDL8VGIOBthx83EJi2B
-         K9AySugmgwx4okWvNwuVwoY7kF8ADXJZj8x+AOYd3W0xnM59nhkffs/+QA9hVQmYG5iY
-         +hdkPI8ct5ciyZfU96yyXx+79T/w+IDqgRNrFYiNSyl3TrY3igDyVV1t0kOTJQiQfCYZ
-         8k9lSwLmZPIzpMbNnHVf+eotBLCwnMsRXCb9x80XdqPQgJ1bhrGdUz5pjYV5e4JNk8F+
-         MoQRq/h7LCPzvd8FZCoKfNWma6VbVDOMqDlV9sfFdOiK+MEzsWasqnnphS2GYzbvR/O8
-         eFQg==
-X-Gm-Message-State: AAQBX9eLQanhth9w0+7IkcX9qy3/ncHdD2IkSmZ2aIvhfZJ4lLSsSYuS
-        8OvZIFgNFYE3l4T1PBzsS9stDg==
-X-Google-Smtp-Source: AKy350byU7g05KQNnXaqyBGpF+lgnwfZRRpo4F2yMSsK2H8utAP+tW7wFMY1VbL1Ti9JpKY1Kq+r0Q==
-X-Received: by 2002:a17:907:9197:b0:94f:553:6fd6 with SMTP id bp23-20020a170907919700b0094f05536fd6mr10080280ejb.24.1681834417139;
-        Tue, 18 Apr 2023 09:13:37 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id xd10-20020a170907078a00b0095328ce9c8bsm729247ejb.67.2023.04.18.09.13.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 09:13:36 -0700 (PDT)
-Message-ID: <df267337-f258-4fbc-0fdb-ddfe31761ffa@linaro.org>
-Date:   Tue, 18 Apr 2023 18:13:35 +0200
+        with ESMTP id S231874AbjDRQQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:16:00 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201309015;
+        Tue, 18 Apr 2023 09:15:58 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33IGFZBV066640;
+        Tue, 18 Apr 2023 11:15:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681834535;
+        bh=b2Muf9dAA40HdBdETNXJB5N4N/DA+1zVrwJXAjg9daI=;
+        h=Date:Subject:To:References:From:CC:In-Reply-To;
+        b=VTZiIC/ITCgUJh36OJI1SkfMDN5QGiLg2ijgpecW+kqi+6VVdF7n0Bkh8wUPZ9By/
+         2uYskEJ56d2qeTyEiA7O2hwDju2j6q/gBFOdKAxUDVQb63Ng4+7QEzFkZMzqxiFCl/
+         IzgigGjLVcA3kOzDip1NpvCYL2/zcywxUycvbFFw=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33IGFZhc017910
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Apr 2023 11:15:35 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 18
+ Apr 2023 11:15:35 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 18 Apr 2023 11:15:35 -0500
+Received: from [128.247.81.102] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33IGFZ19006354;
+        Tue, 18 Apr 2023 11:15:35 -0500
+Message-ID: <6eb588ef-ab12-186d-b0d3-35fc505a225a@ti.com>
+Date:   Tue, 18 Apr 2023 11:15:35 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 01/10] dt-bindings: thermal: tegra: Document throttle
- temperature
+Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
+From:   "Mendez, Judith" <jm@ti.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230414125721.1043589-1-thierry.reding@gmail.com>
- <20230414125721.1043589-2-thierry.reding@gmail.com>
- <187d51b3-6fec-7a25-e472-3d9020c12db5@linaro.org> <ZD0KdAXyi0Ex1JOU@orome>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZD0KdAXyi0Ex1JOU@orome>
-Content-Type: text/plain; charset=UTF-8
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
+In-Reply-To: <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/04/2023 10:59, Thierry Reding wrote:
-> On Fri, Apr 14, 2023 at 11:47:56PM +0200, Krzysztof Kozlowski wrote:
->> On 14/04/2023 14:57, Thierry Reding wrote:
->>> From: Thierry Reding <treding@nvidia.com>
->>>
->>> Each throttling configuration needs to specify the temperature threshold
->>> at which it should start throttling. Previously this was tied to a given
->>> trip point as a cooling device and used the temperature specified for
->>> that trip point. This doesn't work well because the throttling mechanism
->>> is not a cooling device in the traditional sense.
->>>
->>> Instead, allow device trees to specify the throttle temperature in the
->>> throttle configuration directly so that the throttle doesn't need to be
->>> exposed as a cooling device.
->>>
->>> Signed-off-by: Thierry Reding <treding@nvidia.com>
->>> ---
->>>  .../bindings/thermal/nvidia,tegra124-soctherm.yaml         | 7 +++++++
->>>  1 file changed, 7 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
->>> index 4677ad6645a5..37dac851f486 100644
->>> --- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
->>> +++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+Hello Marc,
+
+On 4/14/2023 12:49 PM, Marc Kleine-Budde wrote:
+> On 13.04.2023 17:30:46, Judith Mendez wrote:
+>> On AM62x there is one MCAN in MAIN domain and two in MCU domain.
+>> The MCANs in MCU domain were not enabled since there is no
+>> hardware interrupt routed to A53 GIC interrupt controller.
+>> Therefore A53 Linux cannot be interrupted by MCU MCANs.
+> 
+> Is this a general hardware limitation, that effects all MCU domain
+> peripherals? Is there a mailbox mechanism between the MCU and the MAIN
+> domain, would it be possible to pass the IRQ with a small firmware on
+> the MCU? Anyways, that's future optimization.
+> 
+
+This is a hardware limitation that affects AM62x SoC and has been 
+carried over to at least 1 other SoC. Using the MCU is an idea that we 
+have juggled around for a while, we will definitely keep it in mind for 
+future optimization. Thanks for your feedback.
+
+>> This solution instantiates a hrtimer with 1 ms polling interval
+>> for a MCAN when there is no hardware interrupt. This hrtimer
+>> generates a recurring software interrupt which allows to call the
+>> isr. The isr will check if there is pending transaction by reading
+>> a register and proceed normally if there is.
 >>
->> File does not exist in next and no dependency is mentioned, so tricky to
->> review and figure out context. Without context the comment is:
-> 
-> Apologies, I have a conversion series for these thermal bindings. I'll
-> send those out first.
-> 
->>> @@ -120,6 +120,13 @@ properties:
->>>                # high (85%, TEGRA_SOCTHERM_THROT_LEVEL_HIGH)
->>>                - 3
->>>  
->>> +          temperature:
->>> +            $ref: /schemas/types.yaml#/definitions/int32
+>> On AM62x this series enables two MCU MCAN which will use the hrtimer
+>> implementation. MCANs with hardware interrupt routed to A53 Linux
+>> will continue to use the hardware interrupt as expected.
 >>
->> Use -millicelsius suffix instead:
->> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-> 
-> Okay.
-> 
->>> +            minimum: -273000
->>> +            maximum: 200000
->>> +            description: The temperature threshold (in millicelsius) that,
->>> +              when crossed, will trigger the configured automatic throttling.
+>> Timer polling method was tested on both classic CAN and CAN-FD
+>> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
+>> switching.
 >>
->> Don't you want some hysteresis? Or is it already using trips binding?
->> But in that case you should skip the $ref and maximum - they come from
->> thermal-zones, don't they?
+>> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
+>> 1 MBPS timer polling interval is the better timer polling interval
+>> since it has comparable latency to hardware interrupt with the worse
+>> case being 1ms + CAN frame propagation time and CPU load is not
+>> substantial. Latency can be improved further with less than 1 ms
+>> polling intervals, howerver it is at the cost of CPU usage since CPU
+>> load increases at 0.5 ms and lower polling periods than 1ms.
 > 
-> We don't use a hysteresis at the moment, but checking the register
-> documentation, there's indeed "up" and "down" thresholds, so we can add
-> another property for that.
+> Some Linux input drivers have the property poll-interval, would it make
+> sense to ass this here too?
 > 
-> This doesn't use the trips binding and in fact, one of the reasons for
-> this change is because we want to make this separate from trip points.
-> Trip points are usually associated with cooling devices and this
-> throttling mechanism doesn't really fit that concept because it is an
-> automatic mechanism that is triggered when a given temperature threshold
-> is crossed, rather than a manually activated mechanism, which is what a
-> cooling device would be.
+>> Note that in terms of power, enabling MCU MCANs with timer-polling
+>> implementation might have negative impact since we will have to wake
+>> up every 1 ms whether there are CAN packets pending in the RX FIFO or
+>> not. This might prevent the CPU from entering into deeper idle states
+>> for extended periods of time.
+>>
+>> This patch series depends on 'Enable CAN PHY transceiver driver':
+>> https://lore.kernel.org/lkml/775ec9ce-7668-429c-a977-6c8995968d6e@app.fastmail.com/T/
+> 
+> Marc
+> 
 
-OK, I just wasn't sure if the binding already includes trips, which
-would mean you should use existing 'temperature' property.
-
-In such case, I think it's better to switch to property with common unit
-- millicelsius, either low/high ranges or with hysteresis.
-
-Best regards,
-Krzysztof
-
+regards,
+Judith
