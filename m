@@ -2,119 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208EE6E65B2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB3F6E65B5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 15:20:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232390AbjDRNTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 09:19:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
+        id S231167AbjDRNUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 09:20:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232386AbjDRNTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:19:38 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C40141544C
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 06:19:36 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id ud9so72910834ejc.7
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 06:19:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681823975; x=1684415975;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bIX4Rr3ehv2fMoH6ZgqIbWsmVfGdQo2i8FUTrHShcig=;
-        b=pB7wXu1ywZIBBUonDsDq5inPakthH6Vy3I76ItK9jN1tih7yBOxvY/FgnwG4oqtgHK
-         i+M37Oh3+41Abtz3/DNjk4RR7JI9RNSbiusp5YzeRpOvWhH58yz8YdnwQqMiQ/B3Zo/p
-         WR8Kry0BQPQwA59G8HZgQorBqDdQqrVL8TwgJWjoJ+nQcEN53rwYm2+vdRBf1cxhao4y
-         2Rj3tbxzzQmDuAsIHBGb3Bx/AIMv4GQztYZL7s+WYI7Vbua+B3NnGRz7ZYaBv4JK6VoW
-         Xae7N+o6eTlS3eVftvt+Odr1ASmq5BiHw7iNsbpuq+0SuDz/Of5ikYVg18hPUCh92N1a
-         wwpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681823975; x=1684415975;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bIX4Rr3ehv2fMoH6ZgqIbWsmVfGdQo2i8FUTrHShcig=;
-        b=EqQq1sOBYpSp5AnaEl9CZOu9t9ckrWReeZ2nG1bSWFM4NGMN+ZOHaY4IVgWolzICI3
-         Stu2p7utjRHRD+U55/HPc2fSWuuMEAwNht4hMTv9BGSBpafAgcrgEoZdtaaYjhMRG49z
-         nydU+Aa+W001SbE1cZtVeOryxXPd9xcUwXD0dZqcvlY1xcnZ4qFn9h8ylp+TlmkfyCKX
-         l088MKE72d3YlFgbCo+byCZv0Do+IbzuHbUhE0LzvIonQacf3DhrEMUVE1mYJ85JjCYP
-         jzyh6QTv7a13YwhWKRx0BeX5ndOaW6p2Px6iEx5dQQDSkQ5ebUhAcJuPzZi9k2s2ghMy
-         CYAQ==
-X-Gm-Message-State: AAQBX9fKXaBJBw96anSyrPHqb2jzg8zUKd6jbIed0rjvwegSqbF1x92l
-        5edvKcj//x2nHIp0JbBPeA6Ukg==
-X-Google-Smtp-Source: AKy350auYZpuRF8dsf9xL60a7BUYDlrVge9la3UOE6deGPEpmQQCziMBihvpBb7AgbinT46ger1D5Q==
-X-Received: by 2002:a17:906:da88:b0:94f:6616:8b00 with SMTP id xh8-20020a170906da8800b0094f66168b00mr7603319ejb.74.1681823975270;
-        Tue, 18 Apr 2023 06:19:35 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id g17-20020a170906349100b0094eeea5c649sm6234681ejb.114.2023.04.18.06.19.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 06:19:34 -0700 (PDT)
-Message-ID: <ae487706-1081-bab3-0b31-1c5b3a72890e@linaro.org>
-Date:   Tue, 18 Apr 2023 15:19:33 +0200
+        with ESMTP id S230257AbjDRNUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 09:20:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8F7125B7;
+        Tue, 18 Apr 2023 06:20:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B1976634C6;
+        Tue, 18 Apr 2023 13:20:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21C74C433A8;
+        Tue, 18 Apr 2023 13:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681824037;
+        bh=Le15qIzyA/mY+IzjQpWhhnFQ+7le2f1lWEaMFgytmLw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=c8xLAmkHsW0nkFOtLrh4KvwqPUnhEusajMKpACR9nuj3twoW/V8YNROQsok5u2nKc
+         KeGZeUWm/UzuqpHNB1EOBUpjJ5vD5KGEnONAvdeoohedaDIfLZaK9yvUrnZRlYmbw4
+         0t/iII+Oq0MuAazZaM78bgQ0Pw3rmHAwJ8kX5nr1GG3FiiKTyqIkkFSFJgzRasZdzD
+         vCZLveQXUOiZ9IrCrs9dDEBuOXuJrWIWsK3VDOYLtC/eTQQHORopKncJLiFleruiee
+         Qo+elQzPXkUESOoiwDJ/mjWWtplej1OBZYyIlWGsQylNUtcXphQoOHo4ASzLUa42/L
+         vQJmCFcjlsROA==
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-54c12009c30so564632627b3.9;
+        Tue, 18 Apr 2023 06:20:37 -0700 (PDT)
+X-Gm-Message-State: AAQBX9cqGHRSpa11Xq8BE7IqeIEY33xtq557g2IForSrSCXkxpGLEiCB
+        f8PfgGW1ATzpU4EX5RKysufFTYnOr+22NaMSFw==
+X-Google-Smtp-Source: AKy350a8yALkehpzCW88Q0oQmGRQSLLwBnO5deySk641wmLRpvvXPbtgYUISPzJM/0+Di1T6M1RxMnbDeIHHj+X38k8=
+X-Received: by 2002:a81:c406:0:b0:54d:913b:c9e8 with SMTP id
+ j6-20020a81c406000000b0054d913bc9e8mr11219324ywi.5.1681824036131; Tue, 18 Apr
+ 2023 06:20:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2] dt-bindings: mfd: stm32: Remove unnecessary blank
- lines
-Content-Language: en-US
-To:     Patrick DELAUNAY <patrick.delaunay@foss.st.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230417181342.v2.1.I483a676579cc7e3ac07e1db649091553743fecc8@changeid>
- <fde49fb8-c337-3a6b-811e-b9d7c3620393@linaro.org>
- <f2ad2414-526e-8b9b-aa95-a35953556f36@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f2ad2414-526e-8b9b-aa95-a35953556f36@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230413163353.3408208-1-arnd@kernel.org>
+In-Reply-To: <20230413163353.3408208-1-arnd@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 18 Apr 2023 08:20:25 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ5V57OazJOWqgi52=FHJbdqp6c+_HhRGRJYKcBC8FqWw@mail.gmail.com>
+Message-ID: <CAL_JsqJ5V57OazJOWqgi52=FHJbdqp6c+_HhRGRJYKcBC8FqWw@mail.gmail.com>
+Subject: Re: [PATCH] of: move dummy of_device_get_match_data() helper
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 15:03, Patrick DELAUNAY wrote:
-> Hi,
-> 
-> On 4/18/23 09:22, Krzysztof Kozlowski wrote:
->> On 17/04/2023 18:14, Patrick Delaunay wrote:
->>> Remove double blank line.
->>>
->>> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
->>> ---
->>>
->>> Changes in v2:
->>> - update commit title and commit message to reflect what the change is
->>>    V1="dt-bindings: mfd: stm32: Fix STM32F4 DT include fil
->> More than one file has the same issue. This is quite a churn to handle
->> such patch one by one. Please fix all of them or just skip, as it is
->> harmless.
-> 
-> 
-> To be crystal clear, it is minor difference between files in U-Boot
-> 
-> and in Linux, just because we correct the check-patch errors
-> 
-> when this file for STM32F4 was up streamed in U-Boot.
-> 
-> 
-> I prefer correct this line in the Linux file and no having
-> 
-> this difference for each device tree synchronization with U-Boot.
+On Thu, Apr 13, 2023 at 11:33=E2=80=AFAM Arnd Bergmann <arnd@kernel.org> wr=
+ote:
+>
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> The previous patch only moved the regular declaration but missed
+> the inline function that is used with CONFIG_OF=3Dn:
+>
+> drivers/tty/serial/samsung_tty.c:2034:10: error: implicit declaration of =
+function 'of_device_get_match_data' is invalid in C99 [-Werror,-Wimplicit-f=
+unction-declaration]
+>
+> Fixes: f5a2dc751657 ("of: Move of_device_get_match_data() declaration")
 
-I don't know what is there in U-Boot, so my comment was not about it. I
-prefer all the files in Linux kernel being correct, but done once for
-all. Not once for stm32XX, then later for stm32XY and then stm32XZ...
+Despite multiple reports and having fixed it, I still managed to apply
+the wrong version of patch. Anyways, I already fixed it.
 
-Best regards,
-Krzysztof
-
+Rob
