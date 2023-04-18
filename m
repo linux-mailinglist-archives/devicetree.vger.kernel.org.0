@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D236C6E6A42
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E8096E6A4A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:58:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230384AbjDRQ4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40042 "EHLO
+        id S231539AbjDRQ6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbjDRQ4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:56:14 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5C6E7E
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:56:12 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id fy21so31934177ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681836970; x=1684428970;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E9r6vhrkko4zPYKv6JRFQGVQ2+t+vuWkDBddrUXbkwM=;
-        b=bRjrSxqIkvgEmtgigbiL9yBNKslSQECi3N6Uep879t1YooBRUvYPCO9juJiO8aCMfW
-         K/Mw2ReqyXBmN7ptsnNFmxhXh2YNlVfi0Fu82BPZwhABVY1kl3tu/AgzrMV7xa5c3uzL
-         BoSZL54V5/mBc9C/ADcwH66C5BRLYXWQrBAj7LE7bLzO+eVW5Gon94QMdF/9HJ2gw2JI
-         6/vjftyuShxpxF2B4McOMAmqWq0bs4eWBrX+UkqWXigd/hbMHCexXZOMFP15A2IVCOb+
-         Gl2vLZ4+MvriFcEs0/cCpju3vE/U5Kp207NFLzfMEpfaGqfEiJRGvlT9oJRU32/37APp
-         FhkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681836970; x=1684428970;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E9r6vhrkko4zPYKv6JRFQGVQ2+t+vuWkDBddrUXbkwM=;
-        b=KGrrky+en4uVH/AzyvWl7QIhoEKruDjT6t53ETgoKsB7nNje9+tZ5q1xot2pTWXGDS
-         MiwAbr8ZbynoJgRZFGuP9thFlsZGPSErCLGwL1tdYU+5HnBbNqMnG7A4B3/YKVVLeSIG
-         dCETHifSD9DJJu2NSg1CSgHt4UI6G2SIXsfQ6+mzPeipsQT7NXy8mPTiSt+HajxnWerA
-         KwRE1UaIkZRsOoUPShN6/ro2ZrtGnJb6dFfW5tLpOCQmww7u2SvplJra6/cEixlvFAzv
-         ENxTeFViMdkWATKoQ0yQWp5bYqverN6IjoNzVr8KI2Xb55LoXyv2STM/1ps8xT0PcjFI
-         pAjQ==
-X-Gm-Message-State: AAQBX9flZaXO0PuqwB0mQwY8NkzI0teZ/YLuirgN/GhZUIb5WOM1RMcT
-        IrDztnSjcuXOtSfKl0wrkLuXjA==
-X-Google-Smtp-Source: AKy350bPoEMLpe5oSBrQOv/9HkbetIXsMdKgm2IFpkfjExHHMqyOhIiyDer8ofhdyFWf3ShL9TrHjw==
-X-Received: by 2002:a17:906:3456:b0:94f:1a11:e07d with SMTP id d22-20020a170906345600b0094f1a11e07dmr10473537ejb.32.1681836970620;
-        Tue, 18 Apr 2023 09:56:10 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id z18-20020a1709060ad200b0094f7b713e40sm3041286ejf.126.2023.04.18.09.56.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 09:56:10 -0700 (PDT)
-Message-ID: <39307e05-adf7-3f6c-9b73-821bb55e2cda@linaro.org>
-Date:   Tue, 18 Apr 2023 18:56:09 +0200
+        with ESMTP id S231168AbjDRQ6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:58:06 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5084C13;
+        Tue, 18 Apr 2023 09:58:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1681837084; x=1713373084;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EDMH85UnS/Tuh+qqYSvZvoao8ciQ8kqWvZDn6OpTaGo=;
+  b=R4LcehIjPE4l4hNPsHvgKKALKsTy/gtE6ZD17WJ2PJ2DYVbjHs91b7Pc
+   EYHXyZnrqyT/D7RohbMWe3M/yRHeH3vw7M3uAQUNiAGwRSg6kcdYyEp7K
+   kvNLvTzx0Oxm0k/0ATHNTWG3bybtX/k6E8JjAkimhcvHpoFgT8Ri7tsbJ
+   gNmxa7jVhHNWyBftpEbEFOXgR8YfqYysd1lNJ8LQUfscrw8SPWKdi6Edd
+   rZl1Pp83YIfqD5bP63DkxPgcYPEtEjCGQE3eAbiGMi8MaNakV30bDVYix
+   m1AXB7v6uZCzGYLkg5U/YI8TQw9i518IkJ0MQouFlGcRiS/047c6khBdB
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="431513564"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="431513564"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2023 09:58:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="780550900"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+   d="scan'208";a="780550900"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 18 Apr 2023 09:58:01 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pooeR-000dlg-2o;
+        Tue, 18 Apr 2023 16:57:55 +0000
+Date:   Wed, 19 Apr 2023 00:57:23 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, git@amd.com,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com
+Subject: Re: [PATCH v1 2/2] clocking-wizard: Add support for versal clocking
+ wizard
+Message-ID: <202304190011.BMtXurPJ-lkp@intel.com>
+References: <20230418102855.6791-3-shubhrajyoti.datta@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sm8150: Drop duplicate
- function value "atest_usb2"
-To:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230418150613.1528233-1-robh@kernel.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230418150613.1528233-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230418102855.6791-3-shubhrajyoti.datta@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,16 +68,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 17:06, Rob Herring wrote:
-> The enum value "atest_usb2" appears twice. Remove the duplicate. The
-> meta-schema normally catches these, but schemas under "$defs" was not
-> getting checked. A fix for that is pending.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+Hi Shubhrajyoti,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+kernel test robot noticed the following build warnings:
 
-Best regards,
-Krzysztof
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on next-20230417]
+[cannot apply to xilinx-xlnx/master robh/for-next linus/master v6.3-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Shubhrajyoti-Datta/dt-bindings-clocking-wizard-add-versal-compatible/20230418-183046
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20230418102855.6791-3-shubhrajyoti.datta%40amd.com
+patch subject: [PATCH v1 2/2] clocking-wizard: Add support for versal clocking wizard
+config: arc-randconfig-r043-20230417 (https://download.01.org/0day-ci/archive/20230419/202304190011.BMtXurPJ-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/143916412aa6a419e20fa37059004329e300ca95
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Shubhrajyoti-Datta/dt-bindings-clocking-wizard-add-versal-compatible/20230418-183046
+        git checkout 143916412aa6a419e20fa37059004329e300ca95
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/clk/xilinx/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304190011.BMtXurPJ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/clk/xilinx/clk-xlnx-clock-wizard.c: In function 'clk_wzrd_get_divisors':
+>> drivers/clk/xilinx/clk-xlnx-clock-wizard.c:102:41: warning: unsigned conversion from 'long long int' to 'long unsigned int' changes value from '4320000000' to '25032704' [-Woverflow]
+     102 | #define VER_WZRD_VCO_MAX                4320000000
+         |                                         ^~~~~~~~~~
+   drivers/clk/xilinx/clk-xlnx-clock-wizard.c:332:26: note: in expansion of macro 'VER_WZRD_VCO_MAX'
+     332 |                 vcomax = VER_WZRD_VCO_MAX;
+         |                          ^~~~~~~~~~~~~~~~
+
+
+vim +102 drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+
+    88	
+    89	#define WZRD_M_MIN			2
+    90	#define WZRD_M_MAX			128
+    91	#define WZRD_D_MIN			1
+    92	#define WZRD_D_MAX			106
+    93	#define WZRD_VCO_MIN			800000000
+    94	#define WZRD_VCO_MAX			1600000000
+    95	#define WZRD_O_MIN			1
+    96	#define WZRD_O_MAX			128
+    97	#define VER_WZRD_M_MIN			4
+    98	#define VER_WZRD_M_MAX			432
+    99	#define VER_WZRD_D_MIN			1
+   100	#define VER_WZRD_D_MAX			123
+   101	#define VER_WZRD_VCO_MIN		2160000000
+ > 102	#define VER_WZRD_VCO_MAX		4320000000
+   103	#define VER_WZRD_O_MIN			2
+   104	#define VER_WZRD_O_MAX			511
+   105	#define WZRD_MIN_ERR			20000
+   106	#define WZRD_FRAC_POINTS		1000
+   107	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
