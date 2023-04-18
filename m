@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBAA16E5A03
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3066E5A0C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 09:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbjDRHE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 03:04:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
+        id S230143AbjDRHGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 03:06:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbjDRHE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:04:57 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110601713
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:04:56 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id xd13so36659186ejb.4
-        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:04:55 -0700 (PDT)
+        with ESMTP id S229660AbjDRHGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 03:06:11 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25CD1705
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:06:09 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id q23so61104949ejz.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 00:06:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681801494; x=1684393494;
+        d=linaro.org; s=google; t=1681801568; x=1684393568;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2WhHYJYuhXskgCt8P+rWi6MuOTcoPNUz8qBRPdqCUvo=;
-        b=kfEJdGpu4mcY9/ND1iACqI3ApTNBoJQgxiYe4R8Bt0ggC5waO4AOTmqsksRsiIl69z
-         WkOmFKzjWW+M6QEnLPLY5GPtfwclJVQQEGpwIicK0i29UWm3KUF8w7dYqnaBehQSWfBO
-         rcczfJ7SUQ7LxoiNsWQ+4X0LwnztqHRN9JuQeZsEpk7IeEYDfwWgouW7GLL9+MEV0kZj
-         VE122snZI2xMLFfHPNZcSVOoh3qlJ4+JN7QziFK6eWCw+SU/7yUnWDni7yyv+6XnxwMk
-         tltoMjBhRmOndobU5tChMPE7XsKLnjR+odVvpt1vuR9GQ1rSX/b6vL2TXFiPSe0omv5q
-         NsOw==
+        bh=+D0q7Iw7kC4pQirExIbqNpaV2BkoBjtS/zbYfLGPKpQ=;
+        b=YdWTY+b0JbdcvJIGLULiw+E7eFmc1jo0Nn70OT6NSrKdMTAHyYfCf/wFe0Fwp/rmm/
+         VAfdeo6R6DIwH304NoKi7fhwMa811yqvgMrsaGRTs4CiFtNWD3p4M4cyDDbagS53VOIw
+         seZjWqJgoYmk7wg5DwBf5UaA3TJI5+JU4pJKp2UvXjm/oiprq5xnh4SOe9B66cuEy+dX
+         wKVRUqPBSZzF0pvRHBnNpXGjXB4uKh9TS6UWlaiQkiGZrxjDRDTqo4LOMwyV75NJsnAR
+         ny+b2ORESe8ZLq7shOVBar5aYRmQo1cCPdLIE22deKstm4pgHnWKWrgvFOMrbt0/t3DB
+         NgMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681801494; x=1684393494;
+        d=1e100.net; s=20221208; t=1681801568; x=1684393568;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2WhHYJYuhXskgCt8P+rWi6MuOTcoPNUz8qBRPdqCUvo=;
-        b=HHdovlPLAF4kJRq61V/mNNUF9m8Li0pubVZJMgjmTj9Dqdy34w0Ous9qdrqO9bt7zX
-         Lj3YniaZ9AmCRE+Nr8GY5QuKcgt0HX+v2kwZxYzxnqZM5vG/YZPQHzuxx/YvR2gEjz8j
-         /Ug/GtyIVz+386cA7c6Oojo8B4j9s9pZKaYJQqdrfbmedF0yTtDH+IUXE13iuGPYs8f3
-         a6YBViJUPFXatqLYpGDDCcMr2DlG67PcB45S/rq4ZgCNCK1gWVRW1dlPctDbRFL07foh
-         RTI2Jato8ZiDMLJTSftAt3PWz07K6bjD6FsgpKWJwHsN3n2+2DZPLC3Coe/EARSq6qoH
-         kLAg==
-X-Gm-Message-State: AAQBX9eqC7SBgFsfkl09qsYYKqWP1ngp9lzVpkxQvdzDny8AE0D5VtwG
-        ulVh5bnsGJny+y7PWZSKgS1dWQ==
-X-Google-Smtp-Source: AKy350bvvxWv0MaXOCX/mRjN7rgY+3X62SrGNyVxmEt7DdeR0qfPOUZz9zMNRmA6wBR9oNJjW7Xbtg==
-X-Received: by 2002:a17:907:1701:b0:933:3a22:8513 with SMTP id le1-20020a170907170100b009333a228513mr11209930ejc.53.1681801494526;
-        Tue, 18 Apr 2023 00:04:54 -0700 (PDT)
+        bh=+D0q7Iw7kC4pQirExIbqNpaV2BkoBjtS/zbYfLGPKpQ=;
+        b=bBLW0J24LsDitOOlT/OutJf7HRdfyCbbwDTujuT6fplm5c3b+GrWAOnDo0l96dfPOs
+         T+ozg5DZjKjF0OHkKBak4yVZICW/JG5tLw4i8cspHB1a8SWkDKmkxaQVuCAa+2nMUKac
+         +dERTJYAJb1w42auZI+H+K7Kyn2z4xzjavEJv1boH7V7wWiTAOd0b/8Ks5xvKLTyU0NN
+         g/cmFNDDxfVE95gLx/51/WEZapSRx1ZTUwvyvOB/bpBIIbEmv/Y7ahKUaNslraCVZY5z
+         yyVoDvzbDy0Dhf5BDdNrE2uhdR/C51zfc5TEXI2c/WKXSBYaKvklKU5y/zfsmZ4Iztu4
+         KXrQ==
+X-Gm-Message-State: AAQBX9ddWboA9pQtRWpwP3jNmFLih/xWdwO4w/0i7aaWvyNfL07NuhCT
+        lmLCIdj7Xi/o3KxzcTuXxN3Dfg==
+X-Google-Smtp-Source: AKy350ZykbtrClI90pXvKbaBsf8ftpAs9c5AJprtnAIpnsiTE6BzqUvNDXdiBJgcCsMS1ypazOHKMw==
+X-Received: by 2002:a17:906:3e5b:b0:94f:31ee:ba36 with SMTP id t27-20020a1709063e5b00b0094f31eeba36mr7743948eji.37.1681801568168;
+        Tue, 18 Apr 2023 00:06:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
-        by smtp.gmail.com with ESMTPSA id gb32-20020a170907962000b0094f34fe27c6sm4122421ejc.170.2023.04.18.00.04.53
+        by smtp.gmail.com with ESMTPSA id zy24-20020a17090734d800b0094f44bdf7acsm3644832ejb.57.2023.04.18.00.06.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Apr 2023 00:04:54 -0700 (PDT)
-Message-ID: <6d24511a-69dd-e99c-09d2-53cc3e80bd5e@linaro.org>
-Date:   Tue, 18 Apr 2023 09:04:52 +0200
+        Tue, 18 Apr 2023 00:06:07 -0700 (PDT)
+Message-ID: <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
+Date:   Tue, 18 Apr 2023 09:06:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sa8775p: pmic: remove the PON modes
+Subject: Re: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
 Content-Language: en-US
-To:     Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
+To:     zhuyinbo <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230413131705.3073911-1-brgl@bgdev.pl>
- <20230413131705.3073911-2-brgl@bgdev.pl>
- <3e361a73-797f-41c7-1ead-ecafee3928e4@linaro.org>
- <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
+ <bafedfaf-9ffe-b0ad-d51d-d4b820da3a80@linaro.org>
+ <81229100-a546-74b3-d626-09d042688746@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <792e1f22-c3eb-80c7-0600-b478b3764f7c@quicinc.com>
+In-Reply-To: <81229100-a546-74b3-d626-09d042688746@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,35 +80,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 06:39, Shazad Hussain wrote:
+On 18/04/2023 04:53, zhuyinbo wrote:
 > 
 > 
-> On 4/13/2023 9:42 PM, Krzysztof Kozlowski wrote:
->> On 13/04/2023 15:17, Bartosz Golaszewski wrote:
->>> From: Parikshit Pareek <quic_ppareek@quicinc.com>
+> 在 2023/4/15 上午4:43, Krzysztof Kozlowski 写道:
+>> On 12/04/2023 06:51, Yinbo Zhu wrote:
+>>> Loongson platform support spi hardware controller and this series patch
+>>> was to add spi driver and binding support.
 >>>
->>> Remove the power on reasons with reboot from the pmm8654au_0_pon.
->>> Instead, the PoN reaons should be part of different sdam_0 mode, to
+>>> Change in v2:
+>>> 		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+>>> 	 	   https://
 >>
->> typo: reasons
->>
->>> be interoduced.
->>
->> introduced
->>
->> Anyway it does not say why. Are these power reasons not correct?
->>
-> 
-> Hi Krzysztof,
-> Since sm8350 the PMIC PON peripheral was split into PON_HLOS and PON_PBS
-> to avoid security concerns with HLOS APPS being able to trigger a PMIC
-> WARM_RESET unilaterally. When the split occurred, the spare registers
-> ended up in PON_PBS, not PON_HLOS. Thus at that time, we moved to using
-> an SDAM register for Linux “reboot reason” configuration. And bootloader
-> also SDAM register to get these reboot region data to get into
-> bootloader/edl, so to have this working we need to use SDAM.
+>> Can you stop Ccing fake address "loongson-kernel@lists.loongnix.cn"? It
+>> does not exist. Remove it from all submissions.Recently, There was some issue with the company's email server, causing
+> this mail list "loongson-kernel@lists.loongnix.cn" to only accept
+> internal emails and not accpet external emails. The company's IT is
+> working to fix this issue. and Ccing this mail list is an internal
+> requirement.  I will not send emails to this mail list until this email
+> sever issue is resolved.
 
-The explanation of their correctness should be in commit msg.
+You can always Bcc it, if you have such requirement. However your
+internal requirements should not cause my removing all the time multiple
+bounces...
 
 Best regards,
 Krzysztof
