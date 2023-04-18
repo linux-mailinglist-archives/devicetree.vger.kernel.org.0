@@ -2,134 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D70166E6925
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F836E6932
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 18:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232051AbjDRQQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 12:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56756 "EHLO
+        id S232299AbjDRQRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 12:17:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231874AbjDRQQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:16:00 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201309015;
-        Tue, 18 Apr 2023 09:15:58 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33IGFZBV066640;
-        Tue, 18 Apr 2023 11:15:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681834535;
-        bh=b2Muf9dAA40HdBdETNXJB5N4N/DA+1zVrwJXAjg9daI=;
-        h=Date:Subject:To:References:From:CC:In-Reply-To;
-        b=VTZiIC/ITCgUJh36OJI1SkfMDN5QGiLg2ijgpecW+kqi+6VVdF7n0Bkh8wUPZ9By/
-         2uYskEJ56d2qeTyEiA7O2hwDju2j6q/gBFOdKAxUDVQb63Ng4+7QEzFkZMzqxiFCl/
-         IzgigGjLVcA3kOzDip1NpvCYL2/zcywxUycvbFFw=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33IGFZhc017910
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Apr 2023 11:15:35 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 18
- Apr 2023 11:15:35 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 18 Apr 2023 11:15:35 -0500
-Received: from [128.247.81.102] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33IGFZ19006354;
-        Tue, 18 Apr 2023 11:15:35 -0500
-Message-ID: <6eb588ef-ab12-186d-b0d3-35fc505a225a@ti.com>
-Date:   Tue, 18 Apr 2023 11:15:35 -0500
+        with ESMTP id S232333AbjDRQRl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 12:17:41 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D129B77B
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:17:35 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id u3so22642096ejj.12
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 09:17:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681834653; x=1684426653;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=42KJEhE8WliDXadlwGw31IE1RyZkhHqOOOmNpPRT+PM=;
+        b=KCkD5CmQO+t1OWUIJ85aTWtdR5nQVPCXThrtU2ULddBE8e55fIcm8G/6X+Q4FKMe4y
+         /Cbj5yfUWNiLTjsezRegm89xel2eo/Qp9prVAL9S6+iXiFCaiqaq23dK2zI3CAS/uVMN
+         AbwJZVGYLN/41maNVhvHPyCHNstzksL12POramTmvIP1zGhW/86guIamUiGrprf3oKkC
+         ywDIGZPVlnxcR1rHVbAmK1NmHdSWmUn/ENLvc6QRp1m+rKoEBlxYhr4O5adG2m+0oe9c
+         fu641DM9rWcBHmsO+KaQxGyZuw21UKh/O/ihKVt2jSoD0/7Ff4nvgtSZeyCEz8av1dMi
+         zstg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681834653; x=1684426653;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=42KJEhE8WliDXadlwGw31IE1RyZkhHqOOOmNpPRT+PM=;
+        b=Dm71WFSN+l36E/C3UDFNWgu8RREJvmZK7LgigJBmBiK5sdbBvvAzxdKP0a9tdzUnhU
+         pc8/PAa4AQ0UB5ZS+L9PZeBNE6/kARxOZRTyZCp5dlQwNjsl6/2YhYvj9Ln2xb4Ir7eA
+         JFJIqmumobOrWHL2MTlF0VLuYVTD7wcGLwv3nkYGRh/TIdMDimNzSPcHbAOvDYtjsIMM
+         dQLLwTw3Jxa2g6TLV8cQoVIOIBaR9yhOKckQamfcPYeyR0wfx1/RqaUCcqBJ3/yxNOeq
+         Hcu64XvIrY7I0L6TW3QdwOy9lEJ3rX7/P3W9w87GkTcfurCiuusiqNZPLbHJAApzQILw
+         fsTg==
+X-Gm-Message-State: AAQBX9dB7iYpC3+Kv2dx/9A/VxZgFJPxe/Hbxrj3THfTVZBOVFNqtX31
+        jEP21ViY3IaHtgK+vxRK5XJkF4YAqS7vv2izYTXSdA==
+X-Google-Smtp-Source: AKy350aBHyNXgj+nK+6tmXt0ir6hXeImF1Efi4IRwoEL7JHqQ/WlQDxsQIHb363ensKzw8OJfVFgWA==
+X-Received: by 2002:a17:906:f14f:b0:94a:171:83b1 with SMTP id gw15-20020a170906f14f00b0094a017183b1mr11331041ejb.2.1681834653685;
+        Tue, 18 Apr 2023 09:17:33 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a276:7d35:5226:1c77? ([2a02:810d:15c0:828:a276:7d35:5226:1c77])
+        by smtp.gmail.com with ESMTPSA id v26-20020aa7dbda000000b00506b0b80786sm2020992edt.36.2023.04.18.09.17.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Apr 2023 09:17:33 -0700 (PDT)
+Message-ID: <742f546b-3952-32f4-9f20-3a355785d162@linaro.org>
+Date:   Tue, 18 Apr 2023 18:17:32 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-References: <20230413223051.24455-1-jm@ti.com>
- <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add binding for max6639
 Content-Language: en-US
-From:   "Mendez, Judith" <jm@ti.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Andrew Davis <afd@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-In-Reply-To: <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230418113217.781524-1-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230418113217.781524-1-Naresh.Solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marc,
+On 18/04/2023 13:32, Naresh Solanki wrote:
+> Add Devicetree binding documentation for Maxim MAX6639 temperature
+> monitor with PWM fan-speed controller.
 
-On 4/14/2023 12:49 PM, Marc Kleine-Budde wrote:
-> On 13.04.2023 17:30:46, Judith Mendez wrote:
->> On AM62x there is one MCAN in MAIN domain and two in MCU domain.
->> The MCANs in MCU domain were not enabled since there is no
->> hardware interrupt routed to A53 GIC interrupt controller.
->> Therefore A53 Linux cannot be interrupted by MCU MCANs.
-> 
-> Is this a general hardware limitation, that effects all MCU domain
-> peripherals? Is there a mailbox mechanism between the MCU and the MAIN
-> domain, would it be possible to pass the IRQ with a small firmware on
-> the MCU? Anyways, that's future optimization.
-> 
+Subject: drop second/last, redundant "binding for". The "dt-bindings"
+prefix is already stating that these are bindings.
 
-This is a hardware limitation that affects AM62x SoC and has been 
-carried over to at least 1 other SoC. Using the MCU is an idea that we 
-have juggled around for a while, we will definitely keep it in mind for 
-future optimization. Thanks for your feedback.
+> 
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../bindings/hwmon/maxim,max6639.yaml         | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> new file mode 100644
+> index 000000000000..20b28cd36555
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
 
->> This solution instantiates a hrtimer with 1 ms polling interval
->> for a MCAN when there is no hardware interrupt. This hrtimer
->> generates a recurring software interrupt which allows to call the
->> isr. The isr will check if there is pending transaction by reading
->> a register and proceed normally if there is.
->>
->> On AM62x this series enables two MCU MCAN which will use the hrtimer
->> implementation. MCANs with hardware interrupt routed to A53 Linux
->> will continue to use the hardware interrupt as expected.
->>
->> Timer polling method was tested on both classic CAN and CAN-FD
->> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
->> switching.
->>
->> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
->> 1 MBPS timer polling interval is the better timer polling interval
->> since it has comparable latency to hardware interrupt with the worse
->> case being 1ms + CAN frame propagation time and CPU load is not
->> substantial. Latency can be improved further with less than 1 ms
->> polling intervals, howerver it is at the cost of CPU usage since CPU
->> load increases at 0.5 ms and lower polling periods than 1ms.
-> 
-> Some Linux input drivers have the property poll-interval, would it make
-> sense to ass this here too?
-> 
->> Note that in terms of power, enabling MCU MCANs with timer-polling
->> implementation might have negative impact since we will have to wake
->> up every 1 ms whether there are CAN packets pending in the RX FIFO or
->> not. This might prevent the CPU from entering into deeper idle states
->> for extended periods of time.
->>
->> This patch series depends on 'Enable CAN PHY transceiver driver':
->> https://lore.kernel.org/lkml/775ec9ce-7668-429c-a977-6c8995968d6e@app.fastmail.com/T/
-> 
-> Marc
-> 
+Drop blank line
 
-regards,
-Judith
+This is v9. Where is the changelog? Where is previous authorship? At
+least some parts of it? Why this has less properties than old one? Why
+this has more mistakes than the old one? Go to previous patch... or fix
+everything which was already fixed.
+
+Best regards,
+Krzysztof
+
