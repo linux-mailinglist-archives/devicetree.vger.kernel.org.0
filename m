@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 591606E67A1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 16:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F73E6E67BD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 17:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231888AbjDRO4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 10:56:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53428 "EHLO
+        id S231644AbjDRPGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 11:06:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230423AbjDRO4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 10:56:48 -0400
-Received: from new-shark9.inbox.lv (new-shark9.inbox.lv [194.152.32.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4483B1445D;
-        Tue, 18 Apr 2023 07:56:40 -0700 (PDT)
-Received: from shark3.inbox.lv (shark3 [10.0.1.83])
-        by new-shark9.inbox.lv (Postfix) with ESMTP id 08106480B44;
-        Tue, 18 Apr 2023 17:55:55 +0300 (EEST)
-Received: from shark3.inbox.lv (localhost [127.0.0.1])
-        by shark3-out.inbox.lv (Postfix) with ESMTP id EA421280190;
-        Tue, 18 Apr 2023 17:55:54 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv;
-        s=p20220324; t=1681829755; x=1681831555;
-        bh=ckr+7S+AWmFP5xH8nvjhWaAJn1ssE+IC9MJBNAHU/xs=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:X-ESPOL:
-         From:Date:To:Cc:Message-ID:Subject:Reply-To;
-        b=GwIemuoYTR4T+5usu+Yn+8q0rHE8ReRdb1/pXiO61KAhblXUadS1MzFUo0twoTEP0
-         KNYAGxJ/oOqZz02lV2pDGL/f8YPqBjFVKKG9JG0+bCgMzJxTEuSdUynDRjvF8aSjAG
-         EkztrzRppt00Tx2fBBkz9GSPwI3zNcOcxoyl75ks=
-Received: from localhost (localhost [127.0.0.1])
-        by shark3-in.inbox.lv (Postfix) with ESMTP id E359E28017B;
-        Tue, 18 Apr 2023 17:55:54 +0300 (EEST)
-Received: from shark3.inbox.lv ([127.0.0.1])
-        by localhost (shark3.inbox.lv [127.0.0.1]) (spamfilter, port 35)
-        with ESMTP id jSx4nGDyTP0R; Tue, 18 Apr 2023 17:55:54 +0300 (EEST)
-Received: from mail.inbox.lv (pop1 [127.0.0.1])
-        by shark3-in.inbox.lv (Postfix) with ESMTP id 6AFA3280158;
-        Tue, 18 Apr 2023 17:55:54 +0300 (EEST)
-From:   Karl Chan <exkcmailist@inbox.lv>
-To:     linux-amlogic@lists.infradead.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, "Karl Chan" <exkcmailist@inbox.lv>,
-        Karl Chan <exxxxkc@getgoogleoff.me>
-Subject: [PATCH v4 2/2] arm64: dts: meson-gxl: add support for Xiaomi Mi box 3
-Date:   Tue, 18 Apr 2023 22:55:15 +0800
-Message-Id: <20230418145515.19547-3-exkcmailist@inbox.lv>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230418145515.19547-1-exkcmailist@inbox.lv>
-References: <20230418145515.19547-1-exkcmailist@inbox.lv>
+        with ESMTP id S230389AbjDRPGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 11:06:38 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A142997;
+        Tue, 18 Apr 2023 08:06:37 -0700 (PDT)
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-38c35975545so447616b6e.1;
+        Tue, 18 Apr 2023 08:06:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681830397; x=1684422397;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=grZMSKokWBxTMT6BuCDaQ21smq7KTeNGJhRCrqdfwnY=;
+        b=V06SPmeFVDIDD9NQ2XpVIE87cRIMXpzRhEAjqmYRj9+NkOv5iRomRQU30VYU+k1vI/
+         QaM4b0fxItAjT0VyoPgbbt+z4x9raFfaWfjAWcvAMhoYx8MfPojBfPY2A4j8QY9pV/h5
+         cv4RHfGONWpR6dFe77V6m2lO1AFVt7HcMI8PsOf8E3FXT0xY5fMXY4UGiV7NIX/We5ay
+         bT73VHe+u4FJkgLSQ8Z80j8TFmDIIaYLLnCv3c2f3EDwTwWVSl4wzgAQtm9qI7CUzq2X
+         2gnDhd7MhKuCsX8RDj1DkD2wRziWDYQVJ7R/XaKYBnGgt/L30uAfT8UuTVeoJwYW90qu
+         chqg==
+X-Gm-Message-State: AAQBX9dBKhBBmNEbALYn/TStmr9vRI7daWM571uXSE4FJ/tfdf/dzjnT
+        0i5ao0QNyVHEY4HcZJs07Q==
+X-Google-Smtp-Source: AKy350YZEHvbP5PVh2rbBKiQ4nne5bUninf44qFbBPUMLt8mF9m0hikYSD3j5eUGCPTt4Uh9jPBCzg==
+X-Received: by 2002:a54:4719:0:b0:38b:c1ae:cb1a with SMTP id k25-20020a544719000000b0038bc1aecb1amr1147526oik.22.1681830396798;
+        Tue, 18 Apr 2023 08:06:36 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z64-20020aca3343000000b0038e1564951fsm1809406oiz.55.2023.04.18.08.06.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 08:06:11 -0700 (PDT)
+Received: (nullmailer pid 1528206 invoked by uid 1000);
+        Tue, 18 Apr 2023 15:06:10 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pinctrl: qcom,pmic-mpp: Fix schema for "qcom,paired"
+Date:   Tue, 18 Apr 2023 10:06:06 -0500
+Message-Id: <20230418150606.1528107-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: OK
-X-ESPOL: AJqEQ3sB+w1Luca2K41p5eDjx8rAJVdbxjuDrrAx6HtHtLDGrdd2bmeUB/eRFELmMmLD
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,183 +64,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Karl Chan"  <exkcmailist@inbox.lv>
+The "qcom,paired" schema is all wrong. First, it's a list rather than an
+object(dictionary). Second, it is missing a required type. The meta-schema
+normally catches this, but schemas under "$defs" was not getting checked.
+A fix for that is pending.
 
-The Xiaomi Mi box 3 is a TV box based on the Amlogic S905X chipset.
-There are two variants:
-- 2 GiB/8GIB
-- 1 GiB/4GIB
-
-Both variants come with:
-- 802.11a/b/g/n/ac wifi (BCM4345)
-- HDMI , AV (CVBS) and S/PDIF optical output
-- 1x USB (utilizing both USB ports provided by the SoC)
-
-Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-gxl-s905x-xiaomi-mibox3.dts | 138 ++++++++++++++++++
- list                                          |   1 +
- 3 files changed, 140 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
- create mode 100644 list
+ Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index ccf1ba57fa87..774e7c3638bb 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -48,6 +48,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-xiaomi-mibox3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
-new file mode 100644
-index 000000000000..acc4b12ffe0f
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2016 Endless Computers, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ * Copyright (c) 2023 Karl Chan <exxxxkc@getgoogleoff.me>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905x-p212.dtsi"
-+#include <dt-bindings/sound/meson-aiu.h>
-+
-+/ {
-+	compatible = "xiaomi,mibox3", "amlogic,s905x", "amlogic,meson-gxl";
-+	model = "Xiaomi Mi Box 3";
-+
-+	dio2133: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&hdmi_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "XIAOMI-MIBOX3";
-+		audio-aux-devs = <&dio2133>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "disabled";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+/* This UART is brought out to the uart pad on upper left of the pcb */
-+&uart_AO {
-+	status = "okay";
-+};
-+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+index 9412b9362328..4c3e9ff82105 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+@@ -144,8 +144,9 @@ $defs:
+         enum: [0, 1, 2, 3, 4, 5, 6, 7]
+ 
+       qcom,paired:
+-        - description:
+-            Indicates that the pin should be operating in paired mode.
++        type: boolean
++        description:
++          Indicates that the pin should be operating in paired mode.
+ 
+     required:
+       - pins
 -- 
-2.40.0
+2.39.2
 
