@@ -2,189 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B78606E5877
-	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 07:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 693956E5996
+	for <lists+devicetree@lfdr.de>; Tue, 18 Apr 2023 08:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbjDRFT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 01:19:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55818 "EHLO
+        id S230357AbjDRGqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 02:46:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbjDRFT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 01:19:28 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2F1835BE;
-        Mon, 17 Apr 2023 22:19:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681795166; x=1713331166;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ApemhVgsU+TFdPtwqGDQRyH9z/W8/lC9uWid1us00p8=;
-  b=jm6W5vWtURdp2gOlWJQBRL340792QWIMJYTuoD5HkQyscjpgcmhPOw9u
-   +2VZ7kLGAA6xH6NylNEMyG09MgzgV6r63JlStLmpV9V1PivjXcJRx2cgz
-   NSAWD40b/QgZE4QSuZ4s/ZVDUYgnVkMk+Ey1WZrv3GyU8zXEcj3F5H/3D
-   7yxGsoQYGKdfww9iegSxtieIleAOMwca4AnWK1UncKND8VnzXXDuxQPVV
-   /6UeIT5ZpKZ4wwocX9p2E7wwH8bHCnl25X4yZVm4yLpmoP3WIL1B/gj/Z
-   9Tfl0XUwDE5DoTe7Z204E6lngPzR4uHWbA61rY0e7mP/73QNB0tuZj5Kp
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="325417315"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; 
-   d="scan'208";a="325417315"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2023 22:19:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="815071972"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; 
-   d="scan'208";a="815071972"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 17 Apr 2023 22:19:22 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1podkP-000d1P-1u;
-        Tue, 18 Apr 2023 05:19:21 +0000
-Date:   Tue, 18 Apr 2023 13:18:22 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S229756AbjDRGqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 02:46:44 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C319740C6;
+        Mon, 17 Apr 2023 23:46:43 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33I6K2Ic018348;
+        Tue, 18 Apr 2023 06:46:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=fBodCS6OjLPuwE6pG9QpKAOCBnMhMfGy+VuqjraY5QM=;
+ b=QvC5efktq2vtlJfK3snEE22CmLLclX2dtyh1y40i8hZyY84j+b6LM0sjW/B+CznnW+b+
+ jfeih+ud6jFymIt6tg+IoM/w5CK9hQe6cBo7cfqKS8/5+n3wXXtfe0RVAgCAftMvV+U3
+ R4I0GEus/vRTnhy8y/Wt3L3rnQ0K9s0PFCertwB9sc7TCFl/hWRO3tXhthiXF7J9K0+W
+ mKPOqW643sUg1C3ytGvOptgjt1Hs36JJNzYv7bEisSeM19uzP6hYve+aRFyYmJpMmZzW
+ Py7/vPiKZP6ZuZ89Uw0X0ZEc41agd3vUKJqif/0icT+jRlyG0RTgnGJJN+0GzKWj8qSc 0A== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q1nr5g20m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 06:46:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33I6kR2i006700
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Apr 2023 06:46:27 GMT
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Mon, 17 Apr 2023 23:46:23 -0700
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
         Rajendra Nayak <quic_rjendra@quicinc.com>,
         Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Subject: Re: [PATCH V1 2/3] drivers: misc: dcc: Add driver support for Data
- Capture and Compare unit(DCC)
-Message-ID: <202304181327.0grVYsHS-lkp@intel.com>
-References: <b1a9cbbcfefe133cc9047a71a2acdaa74239df29.1681480351.git.quic_schowdhu@quicinc.com>
+Subject: [PATCH V5 0/3] soc: qcom: boot_stats: Add driver support for boot_stats
+Date:   Tue, 18 Apr 2023 12:16:02 +0530
+Message-ID: <cover.1681799201.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b1a9cbbcfefe133cc9047a71a2acdaa74239df29.1681480351.git.quic_schowdhu@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6I4te8WFczQ8qznN8Lej4vZgMZ77QYY7
+X-Proofpoint-ORIG-GUID: 6I4te8WFczQ8qznN8Lej4vZgMZ77QYY7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-18_03,2023-04-17_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 suspectscore=0 impostorscore=0 phishscore=0
+ mlxlogscore=991 clxscore=1015 priorityscore=1501 mlxscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304180062
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Souradeep,
+Qualcomm's proprietary Android boot-loaders capture boot time
+stats, like the time when the bootloader started execution and at what
+point the bootloader handed over control to the kernel etc. in the IMEM
+region. This information is captured in a specific format by this driver
+by mapping a structure to the IMEM memory region and then accessing the
+members of the structure to log the information in a debugfs file.
+This information is useful in verifying if existing boot KPIs have
+regressed or not.
 
-kernel test robot noticed the following build warnings:
+A sample log in SM8450(waipio) device is as follows:-
 
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.3-rc7 next-20230417]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+/sys/kernel/debug/146aa6b0.boot_stats # cat abl_time
+17898 ms
+/sys/kernel/debug/146aa6b0.boot_stats # cat pre_abl_time
+2879 ms
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Souradeep-Chowdhury/dt-bindings-misc-qcom-dcc-Add-the-dtschema/20230414-220304
-patch link:    https://lore.kernel.org/r/b1a9cbbcfefe133cc9047a71a2acdaa74239df29.1681480351.git.quic_schowdhu%40quicinc.com
-patch subject: [PATCH V1 2/3] drivers: misc: dcc: Add driver support for Data Capture and Compare unit(DCC)
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20230418/202304181327.0grVYsHS-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 9638da200e00bd069e6dd63604e14cbafede9324)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/f3f73f6008e1ebca6fba848e260b1f938d91be95
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Souradeep-Chowdhury/dt-bindings-misc-qcom-dcc-Add-the-dtschema/20230414-220304
-        git checkout f3f73f6008e1ebca6fba848e260b1f938d91be95
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/misc/
+The Module Power Manager(MPM) sleep counter starts ticking at the PBL
+stage and the timestamp generated by the sleep counter is logged by
+the Qualcomm proprietary bootloader(ABL) at two points-> First when it
+starts execution which is logged here as "pre_abl_time" and the second
+when it is about to load the kernel logged as "abl_time". Both these
+values are read up by the driver from IMEM region and printed as above.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304181327.0grVYsHS-lkp@intel.com/
+Changes in V5
 
-All warnings (new ones prefixed by >>):
+*Fixed the build warning in V4 of the patch.
 
->> drivers/misc/dcc.c:217:14: warning: variable 'ret' is used uninitialized whenever 'for' loop exits because its condition is false [-Wsometimes-uninitialized]
-           for (i = 0; i < drvdata->nr_link_list; i++) {
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/misc/dcc.c:238:9: note: uninitialized use occurs here
-           return ret;
-                  ^~~
-   drivers/misc/dcc.c:217:14: note: remove the condition if it is always true
-           for (i = 0; i < drvdata->nr_link_list; i++) {
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/misc/dcc.c:190:9: note: initialize the variable 'ret' to silence this warning
-           int ret;
-                  ^
-                   = 0
-   1 warning generated.
+Souradeep Chowdhury (3):
+  dt-bindings: sram: qcom,imem: Add Boot Stat region within IMEM
+  soc: qcom: boot_stat: Add Driver Support for Boot Stats
+  MAINTAINERS: Add the entry for boot_stats driver support
 
+ Documentation/ABI/testing/debugfs-driver-bootstat  |  17 ++++
+ .../devicetree/bindings/sram/qcom,imem.yaml        |  22 +++++
+ MAINTAINERS                                        |   7 ++
+ drivers/soc/qcom/Kconfig                           |   9 ++
+ drivers/soc/qcom/Makefile                          |   1 +
+ drivers/soc/qcom/boot_stats.c                      | 101 +++++++++++++++++++++
+ 6 files changed, 157 insertions(+)
+ create mode 100644 Documentation/ABI/testing/debugfs-driver-bootstat
+ create mode 100644 drivers/soc/qcom/boot_stats.c
 
-vim +217 drivers/misc/dcc.c
+--
+2.7.4
 
-   186	
-   187	static int dcc_sw_trigger(struct dcc_drvdata *drvdata)
-   188	{
-   189		void __iomem *addr;
-   190		int ret;
-   191		int i;
-   192		u32 status;
-   193		u32 ll_cfg;
-   194		u32 tmp_ll_cfg;
-   195		u32 val;
-   196	
-   197		mutex_lock(&drvdata->mutex);
-   198	
-   199		for (i = 0; i < drvdata->nr_link_list; i++) {
-   200			if (!test_bit(i, drvdata->enable_bitmap))
-   201				continue;
-   202			ll_cfg = dcc_list_readl(drvdata, i, DCC_LL_CFG);
-   203			tmp_ll_cfg = ll_cfg & ~DCC_TRIGGER_MASK;
-   204			dcc_list_writel(drvdata, tmp_ll_cfg, i, DCC_LL_CFG);
-   205			dcc_list_writel(drvdata, 1, i, DCC_LL_SW_TRIGGER);
-   206			dcc_list_writel(drvdata, ll_cfg, i, DCC_LL_CFG);
-   207		}
-   208	
-   209		addr = drvdata->base + DCC_STATUS(drvdata->mem_map_ver);
-   210		if (readl_poll_timeout(addr, val, !FIELD_GET(DCC_STATUS_MASK, val),
-   211				       1, STATUS_READY_TIMEOUT)) {
-   212			dev_err(drvdata->dev, "DCC is busy after receiving sw trigger\n");
-   213			ret = -EBUSY;
-   214			goto out_unlock;
-   215		}
-   216	
- > 217		for (i = 0; i < drvdata->nr_link_list; i++) {
-   218			if (!test_bit(i, drvdata->enable_bitmap))
-   219				continue;
-   220	
-   221			status = dcc_list_readl(drvdata, i, DCC_LL_BUS_ACCESS_STATUS);
-   222			if (!status)
-   223				continue;
-   224	
-   225			dev_err(drvdata->dev, "Read access error for list %d err: 0x%x\n",
-   226				i, status);
-   227			ll_cfg = dcc_list_readl(drvdata, i, DCC_LL_CFG);
-   228			tmp_ll_cfg = ll_cfg & ~DCC_TRIGGER_MASK;
-   229			dcc_list_writel(drvdata, tmp_ll_cfg, i, DCC_LL_CFG);
-   230			dcc_list_writel(drvdata, DCC_STATUS_MASK, i, DCC_LL_BUS_ACCESS_STATUS);
-   231			dcc_list_writel(drvdata, ll_cfg, i, DCC_LL_CFG);
-   232			ret = -ENODATA;
-   233			break;
-   234		}
-   235	
-   236	out_unlock:
-   237		mutex_unlock(&drvdata->mutex);
-   238		return ret;
-   239	}
-   240	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
