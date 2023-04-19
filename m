@@ -2,84 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A836E825B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 22:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C36E6E8263
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 22:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbjDSUHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 16:07:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33410 "EHLO
+        id S231612AbjDSUJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 16:09:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjDSUHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 16:07:32 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFCFF4C20;
-        Wed, 19 Apr 2023 13:07:30 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33JJkkeH009429;
-        Wed, 19 Apr 2023 20:07:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GxeYKIlHm35YxMKMlQ09kxfFp4tfm/D2UircT7i4c5Q=;
- b=W9mmrNv3Hle+M9txgrFpZX32dKu0ijeAKpiEh1viU8FLrBKs6Ny4nfs73wOrlkOE3pMh
- ArmPJDmQf5NEf/9f4c+5+8nlwRb/lZb5o13aU9eTLqX6I+ED69/FlnF3FtDFZbjIirni
- wwjFnoUmlUgI/EOVnDX5KKCleXDv2kDfhI3vSCBEHQfL274RXPUeZXrJ0AS/ZmbyQ9TH
- ZdOtcRLmQZfsAO///rOj5QWEw7O6KYsnnBQgcZU8yBhMAgyQ23ruJe2v8GOBnpl/K3IU
- c2llugZe9EtTWp33m9NkOLYHGyNkf3BBujlo0gZ5Nx7sdlRWr7wViaoQWQ1kRH3ca0AM Eg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q26wy2dpe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Apr 2023 20:07:21 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33JK7KEa015638
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Apr 2023 20:07:20 GMT
-Received: from [10.134.71.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 19 Apr
- 2023 13:07:18 -0700
-Message-ID: <4ce0aee2-4abf-36ea-37b7-063bc8332913@quicinc.com>
-Date:   Wed, 19 Apr 2023 13:07:18 -0700
+        with ESMTP id S231522AbjDSUJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 16:09:46 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624AA5265
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 13:09:45 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5067736607fso301353a12.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 13:09:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681934984; x=1684526984;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xw+KJbFyACMkRJGroXOI3BeGOTCCUWrYEe/1oBLkoRQ=;
+        b=zxLiR99eSsw7BjcTYQ5S8E/CLIhKw3VB5JtlrC3z5U9ubcd67bhgmEL6qhgyiYHXnN
+         1FKFTMdCsvP8cWawQqMJH8WcsJXs7jKvHzVzsgZjss3z7mRJuhEnp2MklmWlA5gMjRXG
+         mAUhXVOcM/JlvX7vsTfyiWiz3Rmwe3D+OhArJEsHNLImFAO2I3OTIlHXI/TCRRyyhFR7
+         fgT92UqMmmJC/mx078VhIgAqtju+3rvlsQx52kdYVGRerlNjhFJv2cUxNcROuWBOjM+a
+         eR1UeOFNXCkXI1ObwK1mMXi0GZI7DEGzgsoWiT7tdYkbkrHnV27T/TMX25BRd/GWv2DD
+         1tug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681934984; x=1684526984;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xw+KJbFyACMkRJGroXOI3BeGOTCCUWrYEe/1oBLkoRQ=;
+        b=ds3E90qGiwlxXWBGomEOMV3w21IsOBERSMGfQSWBE2OvYVcRfxS4Y7ZBmteCEXw//0
+         4MnClQRQ8ffniQqQXVzdeIJz9tOX5J6DCrpjkhvAPP/YrqeHZ/kaYuFHS4OReh2mzy73
+         gk/agtmyqB+YS0BpmrxJI6dydlqYQE5I7yEsfJeJQo1EcymbCyqafSLWrJNr3/+KUAxz
+         poa+aEFK4qTsl3xfVa59EYSRrcdlBjAXa+Ji8V/uiiPMJmhmCEPyy95EzqW/jEIT5m14
+         k2zF2q+Of4WbNGd35t2K4VoUFF0VP0mUdLKL59dmrIXyOxGW8ww0+vL8XDe6WhwgxDfn
+         Upiw==
+X-Gm-Message-State: AAQBX9fKLBHWMglqCOqZ6WHy31YF/YXxTtTYoMMezZQpc9aUqCta3726
+        fkvgFUeXhaPU3s//S5GDyqc42kZd1TNjp5d/3gpGGQ==
+X-Google-Smtp-Source: AKy350a3Apxx+KuNFbakTzHCxKVnVUVMPDVeV2R93lEsA74lMQBPm+5IF/g1O8tqNFYYN6/peDtnqw==
+X-Received: by 2002:a05:6402:650:b0:504:b313:5898 with SMTP id u16-20020a056402065000b00504b3135898mr7270539edx.27.1681934983797;
+        Wed, 19 Apr 2023 13:09:43 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:976c:1d6c:6ed0:8935? ([2a02:810d:15c0:828:976c:1d6c:6ed0:8935])
+        by smtp.gmail.com with ESMTPSA id i10-20020aa7dd0a000000b0050685927971sm6858485edv.30.2023.04.19.13.09.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Apr 2023 13:09:43 -0700 (PDT)
+Message-ID: <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
+Date:   Wed, 19 Apr 2023 22:09:42 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [Freedreno] [PATCH 0/5] MDSS reg bus interconnect
+Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Add Loongson
+ EIOINTC
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        "Marijn Suijten" <marijn.suijten@somainline.org>,
-        <freedreno@lists.freedesktop.org>
-References: <20230417-topic-dpu_regbus-v1-0-06fbdc1643c0@linaro.org>
-From:   Jeykumar Sankaran <quic_jeykumar@quicinc.com>
-In-Reply-To: <20230417-topic-dpu_regbus-v1-0-06fbdc1643c0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1681887790.git.zhoubinbin@loongson.cn>
+ <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YbULUBUEUXCpkzUk7K87NdvQ6cs-e6oP
-X-Proofpoint-ORIG-GUID: YbULUBUEUXCpkzUk7K87NdvQ6cs-e6oP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-19_14,2023-04-18_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 clxscore=1015 mlxscore=0 malwarescore=0 spamscore=0
- mlxlogscore=999 adultscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304190174
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,45 +86,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 4/17/2023 8:30 AM, Konrad Dybcio wrote:
-> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
-> another path that needs to be handled to ensure MDSS functions properly,
-> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+On 19/04/2023 09:17, Binbin Zhou wrote:
+> Add Loongson Extended I/O Interrupt controller binding with DT schema
+> format using json-schema.
 > 
-> Gating that path may have a variety of effects.. from none to otherwise
-> inexplicable DSI timeouts..
-Current DPU driver already votes on the "reg bus" indirectly through the 
-display AHB clock handle[<&dispcc DISP_CC_MDSS_AHB_CLK>] in DTSI. Can 
-you provide more details on the issues that warrants this patch series?
-
-Thanks
-Jeykumar S
-> 
-> This series tries to address the lack of that.
-> 
-> Example path:
-> 
-> interconnects = <&bimc MASTER_AMPSS_M0 0 &config_noc SLAVE_DISPLAY_CFG 0>;
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
-> Konrad Dybcio (5):
->        dt-bindings: display/msm: Add reg bus interconnect
->        drm/msm/dpu1: Rename path references to mdp_path
->        drm/msm/mdss: Rename path references to mdp_path
->        drm/msm/mdss: Handle the reg bus ICC path
->        drm/msm/dpu1: Handle the reg bus ICC path
+>  .../loongson,eiointc.yaml                     | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
 > 
->   .../bindings/display/msm/mdss-common.yaml          |  1 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c      | 10 +++----
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            | 34 ++++++++++++++++-----
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h            |  5 ++--
->   drivers/gpu/drm/msm/msm_mdss.c                     | 35 ++++++++++++++--------
->   5 files changed, 57 insertions(+), 28 deletions(-)
-> ---
-> base-commit: d3f2cd24819158bb70701c3549e586f9df9cee67
-> change-id: 20230417-topic-dpu_regbus-abc94a770952
-> 
-> Best regards,
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+> new file mode 100644
+> index 000000000000..4ab4efb061e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/loongson,eiointc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson Extended I/O Interrupt Controller
+> +
+> +maintainers:
+> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +
+> +description: |
+> +  This interrupt controller is found on the Loongson-3 family chips and
+> +  Loongson-2K series chips and is used to distribute interrupts directly to
+> +  individual cores without forwarding them through the HT's interrupt line.
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - loongson,ls2k0500-eiointc
+> +      - loongson,ls2k2000-eiointc
+> +
+> +  reg:
+> +    items:
+> +      - description: Interrupt enable registers
+> +      - description: Interrupt status registers
+> +      - description: Interrupt clear registers
+> +      - description: Interrupt routing configuration registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: enable
+> +      - const: status
+> +      - const: clear
+> +      - const: route
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    eiointc: interrupt-controller@1fe11600 {
+> +      compatible = "loongson,ls2k0500-eiointc";
+> +      reg = <0x1fe11600 0x10>,
+> +            <0x1fe11700 0x10>,
+> +            <0x1fe11800 0x10>,
+> +            <0x1fe114c0 0x4>;
+
+Binding is OK, but are you sure you want to split the address space like
+this? It looks like two address spaces (enable+clear+status should be
+one). Are you sure this is correct?
+
+Best regards,
+Krzysztof
+
