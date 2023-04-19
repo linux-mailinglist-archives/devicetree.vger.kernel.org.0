@@ -2,109 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C346E70DA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 03:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7FA56E70E9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 04:01:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231687AbjDSByJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Apr 2023 21:54:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40544 "EHLO
+        id S231376AbjDSCBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Apr 2023 22:01:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbjDSByI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 21:54:08 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DB882658C;
-        Tue, 18 Apr 2023 18:53:58 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxUU+1ST9kB7MeAA--.36155S3;
-        Wed, 19 Apr 2023 09:53:57 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx_760ST9kxxUuAA--.24487S3;
-        Wed, 19 Apr 2023 09:53:56 +0800 (CST)
-Subject: Re: [PATCH v7 0/2] spi: loongson: add bus driver for the loongson spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S231273AbjDSCBA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Apr 2023 22:01:00 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C080136;
+        Tue, 18 Apr 2023 19:00:58 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33J20iZqA021874, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33J20iZqA021874
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Wed, 19 Apr 2023 10:00:45 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Wed, 19 Apr 2023 10:00:44 +0800
+Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Wed, 19 Apr 2023 10:00:44 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
+ 15.1.2375.32 via Frontend Transport; Wed, 19 Apr 2023 10:00:44 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230412045152.4694-1-zhuyinbo@loongson.cn>
- <bafedfaf-9ffe-b0ad-d51d-d4b820da3a80@linaro.org>
- <81229100-a546-74b3-d626-09d042688746@loongson.cn>
- <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <af895a0b-d956-9263-4f52-7110802f465b@loongson.cn>
-Date:   Wed, 19 Apr 2023 09:53:56 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 1/2] usb: dwc3: core: add support for disabling High-speed park mode
+Date:   Wed, 19 Apr 2023 10:00:42 +0800
+Message-ID: <20230419020044.15475-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-In-Reply-To: <87e1294f-405f-9be2-9b47-52cd29f7fd1a@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Cx_760ST9kxxUuAA--.24487S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7KrWDuFyUWFWUCw4fZFW5KFg_yoW8Gr48pw
-        45GFn0krW5JFW0qw1kK3y7uayvqw15tFs8Wa1rG3ykXFs8u34aqF48tF4Du3s0vrZ09w42
-        qF4kt3y5CaykXa7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bx8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
-        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-        vE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF04k20xvE74
-        AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
-        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
-        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
-        Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07Uio7NUUUUU=
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXDAG01.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Setting the PARKMODE_DISABLE_HS bit in the DWC3_USB3_GUCTL1.
+When this bit is set to '1' all HS bus instances in park mode are disabled
 
+For some USB wifi devices, if enable this feature it will reduce the
+performance. Therefore, add an option for disabling HS park mode by
+device-tree.
 
-在 2023/4/18 下午3:06, Krzysztof Kozlowski 写道:
-> On 18/04/2023 04:53, zhuyinbo wrote:
->>
->>
->> 在 2023/4/15 上午4:43, Krzysztof Kozlowski 写道:
->>> On 12/04/2023 06:51, Yinbo Zhu wrote:
->>>> Loongson platform support spi hardware controller and this series patch
->>>> was to add spi driver and binding support.
->>>>
->>>> Change in v2:
->>>> 		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
->>>> 	 	   https://
->>>
->>> Can you stop Ccing fake address "loongson-kernel@lists.loongnix.cn"? It
->>> does not exist. Remove it from all submissions.Recently, There was some issue with the company's email server, causing
->> this mail list "loongson-kernel@lists.loongnix.cn" to only accept
->> internal emails and not accpet external emails. The company's IT is
->> working to fix this issue. and Ccing this mail list is an internal
->> requirement.  I will not send emails to this mail list until this email
->> sever issue is resolved.
-> 
-> You can always Bcc it, if you have such requirement. However your
-> internal requirements should not cause my removing all the time multiple
-> bounces...
+In Synopsys's dwc3 data book:
+In a few high speed devices when an IN request is sent within 900ns of the
+ACK of the previous packet, these devices send a NAK. When connected to
+these devices, if required, the software can disable the park mode if you
+see performance drop in your system. When park mode is disabled,
+pipelining of multiple packet is disabled and instead one packet at a time
+is requested by the scheduler. This allows up to 12 NAKs in a micro-frame
+and improves performance of these slow devices.
 
-The company' IT had fix that mail list server issue and ccing that mail
-list "loongson-kernel@lists.loongnix.cn" that will not cause your
-removing all the time multiple bounces.
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+---
+ drivers/usb/dwc3/core.c | 5 +++++
+ drivers/usb/dwc3/core.h | 4 ++++
+ 2 files changed, 9 insertions(+)
 
-Thanks.
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+index 476b63618511..8fbc92a5f2cb 100644
+--- a/drivers/usb/dwc3/core.c
++++ b/drivers/usb/dwc3/core.c
+@@ -1233,6 +1233,9 @@ static int dwc3_core_init(struct dwc3 *dwc)
+ 		if (dwc->parkmode_disable_ss_quirk)
+ 			reg |= DWC3_GUCTL1_PARKMODE_DISABLE_SS;
+ 
++		if (dwc->parkmode_disable_hs_quirk)
++			reg |= DWC3_GUCTL1_PARKMODE_DISABLE_HS;
++
+ 		if (DWC3_VER_IS_WITHIN(DWC3, 290A, ANY) &&
+ 		    (dwc->maximum_speed == USB_SPEED_HIGH ||
+ 		     dwc->maximum_speed == USB_SPEED_FULL))
+@@ -1555,6 +1558,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+ 				"snps,resume-hs-terminations");
+ 	dwc->parkmode_disable_ss_quirk = device_property_read_bool(dev,
+ 				"snps,parkmode-disable-ss-quirk");
++	dwc->parkmode_disable_hs_quirk = device_property_read_bool(dev,
++				"snps,parkmode-disable-hs-quirk");
+ 	dwc->gfladj_refclk_lpm_sel = device_property_read_bool(dev,
+ 				"snps,gfladj-refclk-lpm-sel-quirk");
+ 
+diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+index 4743e918dcaf..30907ffcb3ec 100644
+--- a/drivers/usb/dwc3/core.h
++++ b/drivers/usb/dwc3/core.h
+@@ -263,6 +263,7 @@
+ #define DWC3_GUCTL1_DEV_FORCE_20_CLK_FOR_30_CLK	BIT(26)
+ #define DWC3_GUCTL1_DEV_L1_EXIT_BY_HW		BIT(24)
+ #define DWC3_GUCTL1_PARKMODE_DISABLE_SS		BIT(17)
++#define DWC3_GUCTL1_PARKMODE_DISABLE_HS		BIT(16)
+ #define DWC3_GUCTL1_RESUME_OPMODE_HS_HOST	BIT(10)
+ 
+ /* Global Status Register */
+@@ -1102,6 +1103,8 @@ struct dwc3_scratchpad_array {
+  *			generation after resume from suspend.
+  * @parkmode_disable_ss_quirk: set if we need to disable all SuperSpeed
+  *			instances in park mode.
++ * @parkmode_disable_hs_quirk: set if we need to disable all HishSpeed
++ *			instances in park mode.
+  * @tx_de_emphasis_quirk: set if we enable Tx de-emphasis quirk
+  * @tx_de_emphasis: Tx de-emphasis value
+  *	0	- -6dB de-emphasis
+@@ -1318,6 +1321,7 @@ struct dwc3 {
+ 	unsigned		dis_tx_ipgap_linecheck_quirk:1;
+ 	unsigned		resume_hs_terminations:1;
+ 	unsigned		parkmode_disable_ss_quirk:1;
++	unsigned		parkmode_disable_hs_quirk:1;
+ 	unsigned		gfladj_refclk_lpm_sel:1;
+ 
+ 	unsigned		tx_de_emphasis_quirk:1;
+-- 
+2.34.1
 
