@@ -2,109 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE86E6E7F51
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:13:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A25D6E7F64
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231980AbjDSQNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 12:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59942 "EHLO
+        id S232494AbjDSQSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 12:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbjDSQNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:13:47 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F3B92;
-        Wed, 19 Apr 2023 09:13:44 -0700 (PDT)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7F938C000B;
-        Wed, 19 Apr 2023 16:13:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1681920822;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=N/4vh+ZK/L/2udwlY6VrQJKEJLZ0t9WAYjnDkg1vBZ4=;
-        b=d6sFS7fGp2NpR2dY9bhcGf4TwHwqw1ObtI+TZBCi/nc1U0sA+OjPFzXCe2Rofi9l4oD/Ha
-        4RE8vrIawaxAR4Bo6+m4sGQKF4T76N78uJBeQw9nJyLdmHdeWJP2uNLVDnIptlV2CJSxu+
-        YohJun2xcYhRIGfpYO8zKYgPV3+Xx2QzdG5euDGmJ5ivPA8wOPvs1q7ORPgQb5fnJaSzR7
-        6x8XAO3pTvSyKmJJ4iCwrC9461BkxLWz2QfXx8j/X571yChGFMWlpic8xZCqkm0UxZnVwl
-        KHNkdHD52Q3kqxhY7kXpbQaKc1cRddEWWWeg0+tWa0NNYLIjp+Qu+Szu1d0DlA==
-Date:   Wed, 19 Apr 2023 18:13:37 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        with ESMTP id S232399AbjDSQSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:18:05 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719E419A3;
+        Wed, 19 Apr 2023 09:18:04 -0700 (PDT)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id B83CFC6E13;
+        Wed, 19 Apr 2023 16:18:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1681921082; bh=/fXev4EJCHlSFuLfMgc8DULhsUVCUngGI8FvP7ThQic=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=ul/NIajw6Y6NsmjLGNAPH+4mHN529xc6Dx6BcS9eyLgHpJwztqsxWUBI+UDfuWxkJ
+         UXuFhFKG+2Qif/ylXoPtZ37gVCi0AYmy9jp6VVa1wANlgqsVYgAQ8Exh5ID1g9t/6i
+         fAYb6HP7EuoIZZDSok0kfCk6h5Lic22qxf4BztWk=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v10 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link
- III Deserializer
-Message-ID: <20230419181337.2448179d@booty>
-In-Reply-To: <ZD+g4j7jEg2AETNe@ninjato>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
-        <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
-        <ZD6VwpRya6SGBAt5@shikoro>
-        <20230419091336.4e10ba65@booty>
-        <ZD+g4j7jEg2AETNe@ninjato>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Eduardo Valentin <edubezval@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Craig Tatlor <ctatlor97@gmail.com>
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974: correct qfprom node reg
+Date:   Wed, 19 Apr 2023 18:18:01 +0200
+Message-ID: <4820647.31r3eYUQgx@z3ntu.xyz>
+In-Reply-To: <383f6aa0-6150-22b5-425a-f9cf13bdbc50@linaro.org>
+References: <20230130-msm8974-qfprom-v1-1-975aa0e5e083@z3ntu.xyz>
+ <5664419.DvuYhMxLoT@z3ntu.xyz>
+ <383f6aa0-6150-22b5-425a-f9cf13bdbc50@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Mittwoch, 19. April 2023 18:12:04 CEST Konrad Dybcio wrote:
+> On 19.04.2023 18:00, Luca Weiss wrote:
+> > Hi Konrad,
+> >=20
+> > On Montag, 30. J=E4nner 2023 21:37:29 CEST Luca Weiss wrote:
+> >> On Montag, 30. J=E4nner 2023 19:42:51 CET Konrad Dybcio wrote:
+> >>> On 30.01.2023 19:36, Luca Weiss wrote:
+> >>>> On Montag, 30. J=E4nner 2023 19:30:04 CET Konrad Dybcio wrote:
+> >>>>> On 30.01.2023 19:20, luca@z3ntu.xyz wrote:
+> >>>>>> From: Craig Tatlor <ctatlor97@gmail.com>
+> >>>>>>=20
+> >>>>>> The qfprom actually starts at 0xfc4b8000 instead of 0xfc4bc000 as
+> >>>>>> defined previously. Adjust the tsens offsets accordingly.
+> >>>>>>=20
+> >>>>>> [luca@z3ntu.xyz: extract to standalone patch]
+> >>>>>>=20
+> >>>>>> Fixes: c59ffb519357 ("arm: dts: msm8974: Add thermal zones, tsens =
+and
+> >>>>>> qfprom nodes") Signed-off-by: Craig Tatlor <ctatlor97@gmail.com>
+> >>>>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> >>>>>> ---
+> >>>>>=20
+> >>>>> Isn't this a raw vs ecc-corrected values problem?
+> >>>>=20
+> >>>> Not quite sure what you mean.
+> >>>=20
+> >>> The QFPROM is split into two parts: one where raw values
+> >>> are stored, and the other one where ECC-corrected copies
+> >>> of them reside. Usually it's at offset of 0x4000. We should
+> >>> generally be using the ECC-corrected ones, because.. well..
+> >>> they are ECC-corrected.. You may want to check if the
+> >>> fuse you're adding reads the same value at +0x4000.
+> >>=20
+> >> Yeah that actually seems to work...
+> >>=20
+> >> But downstream's using this +0x4000 only for tsens it seems
+> >>=20
+> >>    <0xfc4bc000 0x1000> as "tsens_eeprom_physical"
+> >>=20
+> >> qcom,clock-krait-8974 is using this:
+> >>     <0xfc4b80b0 0x08> as "efuse"
+> >>=20
+> >> Also seems HDMI driver is using a mix for HDCP stuff
+> >>=20
+> >>   drivers/video/msm/mdss/mdss_hdmi_util.h:
+> >>     /* QFPROM Registers for HDMI/HDCP */
+> >>     #define QFPROM_RAW_FEAT_CONFIG_ROW0_LSB  (0x000000F8)
+> >>     #define QFPROM_RAW_FEAT_CONFIG_ROW0_MSB  (0x000000FC)
+> >>     #define HDCP_KSV_LSB                     (0x000060D8)
+> >>     #define HDCP_KSV_MSB                     (0x000060DC)
+> >>=20
+> >> Any clue why Qualcomm used it this way in downstream? I'd rather not
+> >> deviate too much if not for a good reason...
+> >=20
+> > Any comments on the above?
+>=20
+> This thread got burried to deep in the mailbox!
+>=20
+> I see two reasons why they could be using the uncorrected region:
+> - their generators are messed up in general
+>=20
+> - they may have had an early chip revision once where there were
+>   problems with this and their generators were messed up to
+>   accommodate for it and everybody forgot to fix that
+>=20
+> No other good explanations as far as I'm aware!
 
-On Wed, 19 Apr 2023 10:05:54 +0200
-Wolfram Sang <wsa@kernel.org> wrote:
+So, resolution is to use the offsets as declared in downstream, so take thi=
+s=20
+patch to have the full range available?
 
-> > > Why is "i2c-alias-pool" in the drivers binding and not a regular i2c
-> > > binding? Same question for the implementation of the alias-pool
-> > > handling. Shouldn't this be in the i2c-atr library? I'd think managing
-> > > the list of aliases would look all the same in the drivers otherwise?  
-> > 
-> > I think that this _was_ the plan, as it looks obviously cleaner, but
-> > then we agreed that we should remove the pool entirely, so I didn't
-> > bother moving it.  
-> 
-> Ah, you mean we agreed on that at the Plumbers BoF? I think we can
-> conclude this is obsolete meanwhile. GMSL encodes the target addresses
-> in DT. Rob is also fine with the binding here to encode the pool in DT.
-> Let's follow that road, I'd say.
-
-Sure, I'm not questioning that. Apologies if it did look like. I was
-just trying to explain (to myself as well) why this hadn't been done
-previously.
-
-Best regards,
+Regards
 Luca
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+
