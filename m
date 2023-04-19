@@ -2,238 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFDE46E80FB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 20:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC096E8101
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 20:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233487AbjDSSLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 14:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
+        id S230502AbjDSSNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 14:13:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231483AbjDSSLJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 14:11:09 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E225FEC
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 11:11:05 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5058181d58dso190622a12.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 11:11:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681927864; x=1684519864;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2j1Pkr50g1mSceZHX8SMamWZIYT0Wo0+87cbSXw7e3o=;
-        b=m+cMiZEoVpqxyT/om0k6XXK3bOf3Pnff/VflBJct4TbCkartXBbel29eKfpE9IWZvi
-         S4ZUKSV6EXpHQ8zuORLbeV/u+ni6sq9BlxReFP0ECkw/+0dq7VRxqb3rIB1j5B0/oT25
-         HObV51x2RuIfHa0WVmal7WRUebQo4Kp9KIDgtprIK/DwbA+Nz5es2pWXc5ulhoQbOrYX
-         IHRxkGCj8TlYwdDI44bh8wW7iHPl6mHkK8LvOCKPqHKvVWzpjUD0b+WsjUzilILMFH42
-         9UVXyk8Sn04HGtwNOPR0vij04blgLVO4iVo5jbP8BRClZ/LI99gJA/czjWEHSdLvt7DM
-         xY/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681927864; x=1684519864;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2j1Pkr50g1mSceZHX8SMamWZIYT0Wo0+87cbSXw7e3o=;
-        b=fyAW2N+ckJE1uv29DEJ1ED1fWccSCL/WfwpkeQZ+MbfpB4HwM+aogEUNeIusygarjD
-         /Hj0gLOCEvSblKwiICHFM+nEu+SxlAPLbE8TyP7mBnPYDz26RzwkwnFT82cXbR3tb4tj
-         PI8TBJ8RbmM1Xb4eb3UwMwDxSSydlYWeNpcrIUuN0A9p01BdYl6fynSAUrbcJnMALIg0
-         Glv1/hVHukMXcDeR624Evk+vDdtLRB9010Alq8nzlLkjLXTDNzcBsNFeuY/QIKHBhlz0
-         bfWIoZt3pZHKVPp23f3BWY6zKaHYYjh92/r76Z5+Q0+lwTyB6PUYOrF6IrzC5kWgHtO2
-         mIVA==
-X-Gm-Message-State: AAQBX9cD5ZdIfrsfSkSG9gvqt1Qb/Y6I4lXDQCkobYiPIKg1OT5fpqCA
-        71HkH28ptIOvkHRMf8oVGYX/3g==
-X-Google-Smtp-Source: AKy350a8Vdr07kQJG1rigtqy3d4/Y6OrVskqooISmVBchT4XXGJtlyrkQQiZkJt8od8HpD6LxrUw3w==
-X-Received: by 2002:aa7:d6c2:0:b0:505:47a:7ae8 with SMTP id x2-20020aa7d6c2000000b00505047a7ae8mr6638521edr.4.1681927864360;
-        Wed, 19 Apr 2023 11:11:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:b7d8:d88b:1fac:c802? ([2a02:810d:15c0:828:b7d8:d88b:1fac:c802])
-        by smtp.gmail.com with ESMTPSA id bo25-20020a0564020b3900b005067d129267sm7397824edb.39.2023.04.19.11.11.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 11:11:03 -0700 (PDT)
-Message-ID: <3b7394e1-1be7-ec38-61bd-708a624070ac@linaro.org>
-Date:   Wed, 19 Apr 2023 20:11:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/4] dt-bindings: clock: Add GCC bindings support for
- SDX75
-Content-Language: en-US
-To:     Taniya Das <quic_tdas@quicinc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229873AbjDSSNS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 14:13:18 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C12CE53;
+        Wed, 19 Apr 2023 11:13:15 -0700 (PDT)
+Received: from localhost (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C03436603252;
+        Wed, 19 Apr 2023 19:13:13 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681927993;
+        bh=5wpEqApFj1eBs4XebojD3UFFhW8LqZtfNsukti4eYVw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=f4q/WG/Xw2/G/I+j2N7iQoS3HKjpqf7X1jlqefn7/IXVL6bnt30k0+o9D8gN/CW0w
+         xSTD9XtpZ2G1vE2Jdyh+5H2KXEE5e2yfEF+3VGnEyP+sH3CR5gzdGaYFLBK+hMDZCP
+         KkCGSw5L8qSy00WRUCahRTGilVjBs2XqjXKox7S/D87TXxFttXwWqS8bxv1uYkmAQx
+         ys9+r+Q8CUVXa8pEZWuroYPIifiIGwbQFx5OUfhXcKb99UtvpUEUkbzjS0+cdYmlj/
+         xQWBmlVMg500CETIe3uF1ufZqD+nXkU4tB95pLJUYwpyRcny95cT2uTLZ7rHzyYJg1
+         +v1wWqAvTHeOQ==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     quic_skakitap@quicinc.com, Imran Shaik <quic_imrashai@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohiagar@quicinc.com, netdev@vger.kernel.org
-References: <20230419133013.2563-1-quic_tdas@quicinc.com>
- <20230419133013.2563-3-quic_tdas@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230419133013.2563-3-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: [PATCH v3 0/3] Enable rk3588 timer support
+Date:   Wed, 19 Apr 2023 21:13:06 +0300
+Message-Id: <20230419181309.338354-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 15:30, Taniya Das wrote:
-> From: Imran Shaik <quic_imrashai@quicinc.com>
-> 
+This patchset enables Rockchip RK3588/RK3588S SoC timer support.
+While here, it also handles a minor DT binding issue related to RK3288.
 
-Thank you for your patch. There is something to discuss/improve.
+Changes in v3:
+ - Updated commit description in patch 1, per Krzysztof's review
+ - Added Acked-by tag from Krzysztof in patch 2
+ - v2: https://lore.kernel.org/lkml/20230418120624.284551-1-cristian.ciocaltea@collabora.com/
 
-> Add support for GCC bindings and update documentation for
-> clock rpmh driver for SDX75.
+Changes in v2:
+ - Added Reviewed-by tag from Heiko in patches 1 & 2
+ - Update patch 3 according to Johan's review
+ - v1: https://lore.kernel.org/lkml/20230418095344.274025-1-cristian.ciocaltea@collabora.com/
 
-Subject: drop second/last, redundant "bindings support for". The
-"dt-bindings" prefix is already stating that these are bindings.
-But missing vendor name (Qualcomm). Both in subject and commit msg.
+Cristian Ciocaltea (3):
+  dt-bindings: timer: rockchip: Drop superfluous rk3288 compatible
+  dt-bindings: timer: rockchip: Add rk3588 compatible
+  arm64: dts: rockchip: Add rk3588 timer
 
+ .../devicetree/bindings/timer/rockchip,rk-timer.yaml      | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi                 | 8 ++++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../bindings/clock/qcom,gcc-sdx75.yaml        |  69 +++++++
->  .../bindings/clock/qcom,rpmhcc.yaml           |   1 +
->  include/dt-bindings/clock/qcom,gcc-sdx75.h    | 193 ++++++++++++++++++
->  3 files changed, 263 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx75.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx75.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdx75.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx75.yaml
-> new file mode 100644
-> index 000000000000..6489d857d5c4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx75.yaml
-
-All new devices come as SoC-IP, so qcom,sdx75-gcc
-
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,gcc-sdx75.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller on SDX75
-> +
-> +maintainers:
-> +  - Imran Shaik <quic_imrashai@quicinc.com>
-> +  - Taniya Das <quic_tdas@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm global clock control module provides the clocks, resets and power
-> +  domains on SDX75
-> +
-> +  See also:: include/dt-bindings/clock/qcom,gcc-sdx75.h
-
-Also hee
-
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,gcc-sdx75
-
-Also here
-
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: PCIE20 phy aux clock source
-> +      - description: PCIE_1 Pipe clock source
-> +      - description: PCIE_2 Pipe clock source
-> +      - description: PCIE Pipe clock source
-> +      - description: Sleep clock source
-> +      - description: USB3 phy wrapper pipe clock source
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bi_tcxo
-> +      - const: pcie20_phy_aux_clk
-> +      - const: pcie_1_pipe_clk
-> +      - const: pcie_2_pipe_clk
-> +      - const: pcie_pipe_clk
-> +      - const: sleep_clk
-> +      - const: usb3_phy_wrapper_gcc_usb30_pipe_clk
-
-Drop clock names entirely.
-
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - $ref: qcom,gcc.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    clock-controller@80000 {
-> +      compatible = "qcom,gcc-sdx75";
-> +      reg = <0x80000 0x1f7400>;
-> +      clocks = <&rpmhcc RPMH_CXO_CLK>, <&pcie20_phy_aux_clk>, <&pcie_1_pipe_clk>,
-> +               <&pcie_2_pipe_clk>, <&pcie_pipe_clk>, <&sleep_clk>,
-> +               <&usb3_phy_wrapper_gcc_usb30_pipe_clk>;
-> +      clock-names = "bi_tcxo", "pcie20_phy_aux_clk", "pcie_1_pipe_clk",
-> +                    "pcie_2_pipe_clk", "pcie_pipe_clk", "sleep_clk",
-> +                    "usb3_phy_wrapper_gcc_usb30_pipe_clk";
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-> index d5a250b7c2af..267cf8c26823 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-> @@ -27,6 +27,7 @@ properties:
->        - qcom,sdm845-rpmh-clk
->        - qcom,sdx55-rpmh-clk
->        - qcom,sdx65-rpmh-clk
-> +      - qcom,sdx75-rpmh-clk
-
-Separate patch.
-
-
->        - qcom,sm6350-rpmh-clk
->        - qcom,sm8150-rpmh-clk
->        - qcom,sm8250-rpmh-clk
-> diff --git a/include/dt-bindings/clock/qcom,gcc-sdx75.h b/include/dt-bindings/clock/qcom,gcc-sdx75.h
-> new file mode 100644
-> index 000000000000..a470e8c4fd41
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,gcc-sdx75.h
-
-qcom,sdx75-gcc
-
-> @@ -0,0 +1,193 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2022-2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SDX75_H
-> +#define _DT_BINDINGS_CLK_QCOM_GCC_SDX75_H
-> +
-> +/* GCC clocks */
-
-
-Best regards,
-Krzysztof
+-- 
+2.40.0
 
