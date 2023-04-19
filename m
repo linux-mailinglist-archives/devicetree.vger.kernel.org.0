@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0CE16E72E3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3A356E72EB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231578AbjDSGKt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 19 Apr 2023 02:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55034 "EHLO
+        id S229688AbjDSGOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 02:14:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbjDSGKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:10:47 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F075FFB;
-        Tue, 18 Apr 2023 23:10:45 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 6094224E25E;
-        Wed, 19 Apr 2023 14:10:43 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Apr
- 2023 14:10:43 +0800
-Received: from [192.168.125.106] (113.72.144.253) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Apr
- 2023 14:10:42 +0800
-Message-ID: <bf04808b-5988-c3d2-e2c4-4e8cdbaec838@starfivetech.com>
-Date:   Wed, 19 Apr 2023 14:10:41 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S231532AbjDSGOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:14:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F62DF7
+        for <devicetree@vger.kernel.org>; Tue, 18 Apr 2023 23:14:05 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1pp14k-000742-Qv; Wed, 19 Apr 2023 08:13:54 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id D371B1B2AA2;
+        Wed, 19 Apr 2023 06:13:53 +0000 (UTC)
+Date:   Wed, 19 Apr 2023 08:13:52 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     "Mendez, Judith" <jm@ti.com>
+Cc:     Oliver Hartkopp <socketcan@hartkopp.net>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
- <20230412084540.295411-2-changhuang.liang@starfivetech.com>
- <8dd0dc63-e0df-8764-f756-da032d9d671c@linaro.org>
- <eb47b7c7-bdbb-92d9-ba39-604ce487f297@starfivetech.com>
- <f6a4fb28-d635-4d99-44bb-d929cb41eef2@linaro.org>
- <b34a8d59-34e4-8358-9d2b-367f4707ca7c@starfivetech.com>
- <f0d82428-aaa5-3dd4-bc29-f1057fe749bc@linaro.org>
- <20230418184246.GA2103246-robh@kernel.org>
- <CAL_JsqKVa+XHkoDbDLaD+haC2J7QDJ_oLr9RAT=7Pvwa-rWHLg@mail.gmail.com>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <CAL_JsqKVa+XHkoDbDLaD+haC2J7QDJ_oLr9RAT=7Pvwa-rWHLg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [113.72.144.253]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>
+Subject: Re: [RFC PATCH 5/5] can: m_can: Add hrtimer to generate software
+ interrupt
+Message-ID: <20230419-trimmer-fasting-928868e8cb81-mkl@pengutronix.de>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230413223051.24455-6-jm@ti.com>
+ <20230414-bounding-guidance-262dffacd05c-mkl@pengutronix.de>
+ <4a6c66eb-2ccf-fc42-a6fc-9f411861fcef@hartkopp.net>
+ <20230416-failing-washbasin-e4fa5caea267-mkl@pengutronix.de>
+ <f58e8dce-898c-8797-5293-1001c9a75381@hartkopp.net>
+ <20230417-taking-relieving-f2c8532864c0-mkl@pengutronix.de>
+ <25806ec7-64c5-3421-aea1-c0d431e3f27f@hartkopp.net>
+ <20230417-unsafe-porridge-0b712d137530-mkl@pengutronix.de>
+ <5ece3561-4690-a721-aa83-adf80d0be9f5@ti.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cggld5pyystbuhs6"
+Content-Disposition: inline
+In-Reply-To: <5ece3561-4690-a721-aa83-adf80d0be9f5@ti.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,44 +72,91 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--cggld5pyystbuhs6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2023/4/19 2:46, Rob Herring wrote:
-> On Tue, Apr 18, 2023 at 1:42 PM Rob Herring <robh@kernel.org> wrote:
->>
->> On Thu, Apr 13, 2023 at 10:41:23AM +0200, Krzysztof Kozlowski wrote:
->>> On 13/04/2023 04:34, Changhuang Liang wrote:
->>>>>>>> +  lane_maps:
->>>>>>>
->>>>>>> Why did this appear? Underscores are not allowed. It looks like you
->>>>>>> re-implement some standard property.
->>>>>>>
->>>>>>
->>>>>> Will change to lane-maps.
->>>>>> Yes, according to Vinod advice, lane mapping table use device tree
->>>>>> to parse makes sense.
->>>>>
->>>>> Hm, I have a feeling that I saw such property, so you should dig into
->>>>> existing and in-flight bindings.
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>>
->>>>
->>>> A standard property? Like "clocks" or "resets"?
->>>
->>> Like lane-polarities now submitted to one MIPI.
->>>
->>
->> data-lanes perhaps?
-> 
-> Except that is for the controller's endpoint rather than the phy.
-> Presumably if the controller knows the mapping, then it can tell the
-> phy if it needs the information. IOW, don't just copy 'data-lanes' to
-> the phy. Follow the normal patterns.
-> 
-> Rob
+On 18.04.2023 15:59:57, Mendez, Judith wrote:
+> > > > > > > The "shortest" 11 bit CAN ID CAN frame is a Classical CAN fra=
+me with DLC =3D 0
+> > > > > > > and 1 Mbit/s (arbitration) bitrate. This should be 48 bits @1=
+Mbit =3D> ~50
+> > > > > > > usecs
+> > > > > > >=20
+> > > > > > > So it should be something about
+> > > > > > >=20
+> > > > > > >        50 usecs * (FIFO queue len - 2)
+> > > > > >=20
+> > > > > > Where does the "2" come from?
+> > > > >=20
+> > > > > I thought about handling the FIFO earlier than it gets completely=
+ "full".
+> > > > >=20
+> > > > > The fetching routine would need some time too and the hrtimer cou=
+ld also
+> > > > > jitter to some extend.
+> > > >=20
+> > > > I was assuming something like this.
+> > > >=20
+> > > > I would argue that the polling time should be:
+> > > >=20
+> > > >       50 =C2=B5s * FIFO length - IRQ overhead.
+> > > >=20
+> > > > The max IRQ overhead depends on your SoC and kernel configuration.
+> > >=20
+> > > I just tried an educated guess to prevent the FIFO to be filled up
+> > > completely. How can you estimate the "IRQ overhead"? And how do you c=
+atch
+> > > the CAN frames that are received while the IRQ is handled?
+> >=20
+> > We're talking about polling, better call it "overhead" or "latency from
+> > timer expiration until FIFO has at least one frame room". This value
+> > depends on your system.
+> >=20
+> > It depends on many, many factors, SoC, Kernel configuration (preempt RT,
+> > powersaving, frequency scaling, system load. In your example it's 100
+> > =C2=B5s. I wanted to say there's an overhead (or latency) and we need e=
+nough
+> > space in the FIFO, to cover it.
+> >=20
+>=20
+> I am not sure how to estimate IRQ overhead, but FIFO length should be 64
+> elements.
 
-I am not sure if phy can fetch from the other controller's endpoint. In 
-addition, like our JH7110 SoC, it have data-lanes configure (data-lanes = <1 2>)
-in csi2rx controller, but this data-lanes configure is not appropriate to phy, 
-maybe they are independent. 
+Ok
+
+> 50 us * 62 is about 3.1 ms and we are using 1 ms timer polling interval.
+
+Sounds good.
+
+> Running a few benchmarks showed that using 0.5 ms timer polling interval
+> starts to take a toll on CPU load, that is why I chose 1 ms polling
+> interval.
+
+However in the code you use 5 ms.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--cggld5pyystbuhs6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQ/hp0ACgkQvlAcSiqK
+BOjeFwf/UaNEfsSOA9OPls69RXd4P4lR2cQibXWCABAg/B1OHkD9BdLDKqR+mS8S
+G+PG//Ot9k8CwPoFFt+xZ0TrxIj/CakDJzawuMoJvSpToSX84V0eYZgh2oH0JBmd
+m8ocOGnz3dPGaIH+UQ6sUZQN3JxE/oeDV8AgLyD86tE6NDc4BxPARTdiH3oJP1mj
+Wn109juOs0zfj+BftxgtfvfTPcYcDxmR/8Skvy7lWi/6Oir5lpRcyVRuo6zd4wfh
+KfsuBSJ0TgdVwntMN8R/P6UXAkvburMAZZj1p3Nv91DweeiJCX7T4K07B1tGWWpu
+1iKTXZ4x3NzwMww5oizIjKx+Mjhkhg==
+=CtTc
+-----END PGP SIGNATURE-----
+
+--cggld5pyystbuhs6--
