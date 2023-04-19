@@ -2,86 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40AF36E837D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:20:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 747486E8381
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232689AbjDSVU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 17:20:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40694 "EHLO
+        id S232343AbjDSVUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 17:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232734AbjDSVT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:56 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AE14C2C
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:28 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id dx24so1559476ejb.11
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:28 -0700 (PDT)
+        with ESMTP id S232502AbjDSVTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:51 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF8EB6A49
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:25 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id xd13so1710022ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681939168; x=1684531168;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MV3WWTI6GB2UlbmqWPXHYuAERKFaJ5yLwZ7zQAEmSCc=;
-        b=QxlvU7YjTqZ8QW0ZMYPidvVtlc+7O6BYyB2BdqZZD1mix5htxage567JHDqbj9qMP+
-         3UQb6/Y/Ef0SScm48Xw2nfs65zIXEJK38yBnEvUTZyHSsO6lopAc8D459ftN32D4p6eB
-         B1qOyipY1j3KwxvTq3t/VXn7Dv3LAjLr+ZcRkn3eIsXUNutZuAYIa8i1OsGzfqcuUCtj
-         Zj/BSkuHjQ2kfx9fSy2/r2EDoY4W0E/UUXirHS+KYiYLMdZb/Td/B5+k4tcVcrvXp5rg
-         VbLT0C+RCIC55uQPIuji9EtHGuKE0+UfVrjm6AZK8zkUM/CAPWsN/WHcg/tTbp/UPbK8
-         2wvg==
+        d=linaro.org; s=google; t=1681939164; x=1684531164;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KW3N7y2mH7tdXeuZ/kIZmdwbObDrn11+y8J9xSdzllM=;
+        b=ac0VZV/XkkYkhhdeDLb7ecUkdh0YqRJZyMrv+a48jj2dtC61L4tA1RAfe+Z4YRFv33
+         lgmKHKnGQSzwjByOIMY7RCftgyIwJJ6ExchsIJxRFGkDDmDLgQi6RPOtVFaK/es3cZVV
+         fjN4sJ1JFFaA5gomq0s45vgLQLXy3EVB5rsa676mDSC8AFKYEzjtJj+rJpGgfJGDP7IX
+         +B21E/0xHqzm8FZPURoVmB4mrRY7BuBEDpsZlg+8rBjpTjK+ilhEeeI66IFyXJLvvLvf
+         G5/o4LOfCZVRU0FCAvUkGz04mVuGE1+d0OJxtc2MrFto27zmp76HMgFfXeIGFNyF6uK0
+         q6fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681939168; x=1684531168;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MV3WWTI6GB2UlbmqWPXHYuAERKFaJ5yLwZ7zQAEmSCc=;
-        b=TQoaVaxa4KFARMMZnc2mpQPdP2xE+83xjQq6klcmSpWzeF253EAl4ibIkVXtzKyoJN
-         4pZBnBCbKRh/bcuNvCp9He6qolW7SjqZJNeWkGqWsy+51CR/MNRgNAs/5tXFtCX78J6R
-         cKHTGRAponXq5M3BnDYUiQoKuzcINYJJel+0ROibZ9MeuO8FeR9dYH1t7V7iQYgaq5ON
-         CSD+GEL84QPr098/DThZI3ZLConn5AGrtiSgz/4ZjwLpceLGrUiAO2ul0aDGu4r6FwDd
-         443yAlcG9BA1GYg2JMka77N41e16L9Br1uhmtrFQj1OANMdDM+uU9Bf8//DVRWYbwlE4
-         0sQQ==
-X-Gm-Message-State: AAQBX9dhIdHbAAt7jmsK9EDJvND9f37J9VKG1cH36qUcGPj4+3J+Qqxz
-        8bmbElq6Shd1E2tWVYCOoB/5cQ==
-X-Google-Smtp-Source: AKy350Yu+/VW8kcGPFu+/SVJmKIcHBwblGAu941DbwWayz8Fd8HeeRYZBIXGajjbluqejjup52JZpw==
-X-Received: by 2002:a17:906:a84:b0:94f:62a2:d1ab with SMTP id y4-20020a1709060a8400b0094f62a2d1abmr12495900ejf.63.1681939168162;
-        Wed, 19 Apr 2023 14:19:28 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681939164; x=1684531164;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KW3N7y2mH7tdXeuZ/kIZmdwbObDrn11+y8J9xSdzllM=;
+        b=CqPD4YZGXXhsHzwTnOdnhZAWxhpgkUzgasvn1w3tn+qUD4SdXOZGi7KKAk9c0dPcRr
+         8OzCK+jbu/FvdYS1w9/m19rFgfEH9NuhCYVm76enH/hme8PFulHrqlLalszoKDmObiT5
+         WKcFfTjzyQqHWe+3XXpJT1D4uU3FjBJCY969TLWjHAk0NeKSkuIRpzhxNOcUpGDw7WcI
+         PiQiIzwfTznwzBZfLAjCJmY5SCD6zEpXtcdwKSCif/wUqv6xb1juDcaefDE31FsJRxnP
+         yBFNspmftgDPhWfJkwp3Jfv1eV4SggBTJkT2a3kjysuEhAy9Xyyg2Kun7RwKLitgUMJ2
+         cpJg==
+X-Gm-Message-State: AAQBX9cqjK7MKh1cE03oKzP4ECsh+H8R5pqyTXiEWpAh+ctYyMRoJfAh
+        5tjUsfeWXngo4Gy7o1FVK5bqWg==
+X-Google-Smtp-Source: AKy350ZyesocccCe9v+hN3fGURoHdWt4yO3+2sNTeNfvV7YJNULRBXevGRscrRPzKdqF2kuz81oXeA==
+X-Received: by 2002:a17:907:3e02:b0:94f:35ea:d773 with SMTP id hp2-20020a1709073e0200b0094f35ead773mr18298595ejc.75.1681939164055;
+        Wed, 19 Apr 2023 14:19:24 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:976c:1d6c:6ed0:8935])
-        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.19.26
+        by smtp.gmail.com with ESMTPSA id qc27-20020a170906d8bb00b0094f364b36acsm6208476ejb.165.2023.04.19.14.19.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 14:19:27 -0700 (PDT)
+        Wed, 19 Apr 2023 14:19:23 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        "Ivan T. Ivanov" <ivan.ivanov@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Molly Sophia <mollysophia379@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 18/18] arm64: dts: qcom: sdm845-polaris: add missing touchscreen child node reg
-Date:   Wed, 19 Apr 2023 23:18:56 +0200
-Message-Id: <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
+Subject: [RFT RFC PATCH] arm64: dts: qcom: sdm630-nile: correct duplicated reserved memory node
+Date:   Wed, 19 Apr 2023 23:19:21 +0200
+Message-Id: <20230419211921.79871-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
-References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,28 +73,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing reg property to touchscreen child node to fix dtbs W=1 warnings:
+SoC DTSI already comes with 85800000 reserved memory node, so assume the
+author wanted to update its length.  This fixes dtbs W=1 warning:
 
-  Warning (unit_address_vs_reg): /soc@0/geniqup@ac0000/i2c@a98000/touchscreen@20/rmi4-f12@12: node has a unit name, but no reg or ranges property
+  Warning (unique_unit_address_if_enabled): /reserved-memory/qhee-code@85800000: duplicate unit-address (also used in node /reserved-memory/reserved@85800000)
 
-Fixes: be497abe19bf ("arm64: dts: qcom: Add support for Xiaomi Mi Mix2s")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-index 8ae0ffccaab2..576f0421824f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-@@ -483,6 +483,7 @@ rmi4-f01@1 {
+---
+
+What was the original code intention?
+---
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+index 2ca713a3902a..3033723fc6ff 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+@@ -138,11 +138,6 @@ debug@ffb00000 {
+ 			no-map;
  		};
  
- 		rmi4-f12@12 {
-+			reg = <0x12>;
- 			syna,rezero-wait-ms = <0xc8>;
- 			syna,clip-x-high = <0x438>;
- 			syna,clip-y-high = <0x870>;
+-		reserved@85800000 {
+-			reg = <0x00 0x85800000 0x00 0x3700000>;
+-			no-map;
+-		};
+-
+ 		cont_splash_mem: splash@9d400000 {
+ 			reg = <0 0x9d400000 0 (1920 * 1080 * 4)>;
+ 			no-map;
+@@ -256,6 +251,10 @@ &pon_resin {
+ 	linux,code = <KEY_VOLUMEUP>;
+ };
+ 
++&qhee_code {
++	reg = <0x00 0x85800000 0x00 0x3700000>;
++};
++
+ &qusb2phy0 {
+ 	status = "okay";
+ 
 -- 
 2.34.1
 
