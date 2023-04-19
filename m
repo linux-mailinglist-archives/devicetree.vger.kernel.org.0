@@ -2,153 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A166E7FEE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF4E06E7FFA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 19:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjDSQ5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 12:57:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53392 "EHLO
+        id S229873AbjDSRBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 13:01:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233001AbjDSQ5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:57:46 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768E97A89;
-        Wed, 19 Apr 2023 09:57:44 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-63b87d23729so98902b3a.0;
-        Wed, 19 Apr 2023 09:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681923462; x=1684515462;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0Mw/lDYFPiHA1u/ehv8REC3ysizEB/FCc0wvc8nJSI8=;
-        b=auM5BcDmbwNVZAKCgqfU9qTBa0DnxHy8uM6XisJiCcrCHfHXxVPZ0K51eR0VI1osir
-         uQFKoReanval4NDO6Qf/nKO8IuorbZwjh7zAtOjGElD64zXg62MMqooCSHChva19OyYO
-         cdCpU04ia9883BWR9dDzX8docR8aAXXKMaEOD0gxT8oLp9Kf3K1kQyHjOuLMVlXzbC0W
-         GCYmoTsthaHH+wjZybNXvzK6NoNcw/FvN8bvImrio3UfSztLIorL/LT58M7GjbaZ0tBW
-         0L7cUHKvY3l+XHYXzMIBVUk7GW/brtUEd4YWZ0mk8CEcsJ0vYKeA317isIQf4cJpV9yE
-         JdTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681923462; x=1684515462;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Mw/lDYFPiHA1u/ehv8REC3ysizEB/FCc0wvc8nJSI8=;
-        b=cMEOQBlCVEjLryHZHsy+4Z51CNWzEkCB8AViiArnlfKKS0QYUDIJmewcStH3L4V8xW
-         D9k1NTShK5dbepHQ3HCUhDI6MRG1fWqqfc5A76CJ9da8BJ+Q7Wg8HeUf1jQKV5s4Jyo/
-         pgaJvZtfmQKwFlmaILV84qBmaQmoQj2guatUIzqCyHg7vwxMXGmSxAEiCAxwbDhuQv1W
-         d8erRAhEOrKNvzJPyQ5wgM5LbM4JPP+r+2PWzvUcyKPXQhoGw9totjcDjN3T7x1YN3TZ
-         VMyB+B1MJscrLHrYEzNFsjBnHX4Z9LcPaYmhWBchYD3Du9MboLPcIHoVmNR4vbsUOm1D
-         3bEA==
-X-Gm-Message-State: AAQBX9dbCESv4MGzqMg4k78oQtTdTxRGxhql6VfvhpJ3GGMEOmNPxRLl
-        ZCAAeTbMrmWuyIkyFQANYoGOQCLNRt0=
-X-Google-Smtp-Source: AKy350ZYBKCGDhd1cY26gDxbN66Pg1rTaanb9zPQNkQznfkbuskiyk8zKOAlndFEZ6/Ge7NH8GL3cQ==
-X-Received: by 2002:a05:6a00:21d3:b0:627:f85c:b7ee with SMTP id t19-20020a056a0021d300b00627f85cb7eemr4641542pfj.2.1681923462439;
-        Wed, 19 Apr 2023 09:57:42 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id s9-20020aa78d49000000b005abc30d9445sm11188135pfe.180.2023.04.19.09.57.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 09:57:42 -0700 (PDT)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 1/3] dt-bindings: PCI: brcmstb: brcm,{enable-l1ss,completion-timeout-us} props
-Date:   Wed, 19 Apr 2023 12:57:18 -0400
-Message-Id: <20230419165721.29533-2-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230419165721.29533-1-jim2101024@gmail.com>
-References: <20230419165721.29533-1-jim2101024@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232937AbjDSRA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 13:00:59 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9237699;
+        Wed, 19 Apr 2023 10:00:52 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 26B1A5FD90;
+        Wed, 19 Apr 2023 20:00:50 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1681923650;
+        bh=OU1NLvRUb+HCxU4lSgffvUw8fBAqCHnX3pFNeD8icRc=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=fAlgunqHuIq2ORPE9XrSBxjsOi6AH149QQIKo3TWZKZiA7QHDR5N5zpH3W1Y95TlD
+         we2qrtaIxkZY+2jbRZqGbJ5y979PRIASi4Mym40S16rAqyxqYz1YhnAOpiN7Z9kgcZ
+         4LlJ4d/UfQutIXxk64iwPhJ3qWojTMcC20QPa7fV8gg9rdFbHb9O2A+IOtBEiIjUDb
+         c8riV2VMvytNa3mAcfkQrqSasVePEDtKj5kHhm9KHKZDpIRpe8cmCJtFkkWUTF7G+c
+         RjeCAfxdmYr0Ygsp7W73JiI1CwWli5aX6r3rJUsOUZzL8l0Zz3Y+XY3JGpyOCM/ERr
+         ek3fRzKrrpemw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed, 19 Apr 2023 20:00:48 +0300 (MSK)
+Date:   Wed, 19 Apr 2023 20:00:43 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
+Message-ID: <20230419170043.auzfa32weevmrt4e@CAB-WSD-L081021>
+References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
+ <20230419073834.972273-2-xianwei.zhao@amlogic.com>
+ <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
+ <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
+ <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
+ <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/19 15:29:00 #21128497
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit introduces two new properties:
+On Wed, Apr 19, 2023 at 06:25:07PM +0200, Neil Armstrong wrote:
+> On 19/04/2023 18:04, Dmitry Rokosov wrote:
+> > On Wed, Apr 19, 2023 at 03:43:12PM +0200, Neil Armstrong wrote:
+> > > On 19/04/2023 15:14, Dmitry Rokosov wrote:
+> > > > On Wed, Apr 19, 2023 at 03:38:33PM +0800, =Xianwei Zhao wrote:
+> > > > > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> > > > > 
+> > > > > The C series SoCs are designed for smart IP camera
+> > > > > applications, which does not belong to Meson series.
+> > > > > So, Add ARCH_AMLIPC for the new series.
+> > > > > 
+> > > > > There are now multiple amlogic SoC seies supported, so group them under
+> > > > > their own menu. we can easily add new platforms there in the future.
+> > > > > Introduce ARCH_AMLOGIC to cover all Amlogic SoC series.
+> > > > > 
+> > > > > No functional changes introduced.
+> > > > > 
+> > > > > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> > > > > ---
+> > > > >    arch/arm64/Kconfig.platforms | 12 ++++++++++++
+> > > > >    arch/arm64/configs/defconfig |  2 ++
+> > > > >    2 files changed, 14 insertions(+)
+> > > > > 
+> > > > > diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> > > > > index 89a0b13b058d..bfbc817eef8f 100644
+> > > > > --- a/arch/arm64/Kconfig.platforms
+> > > > > +++ b/arch/arm64/Kconfig.platforms
+> > > > > @@ -162,12 +162,24 @@ config ARCH_MEDIATEK
+> > > > >    	  This enables support for MediaTek MT27xx, MT65xx, MT76xx
+> > > > >    	  & MT81xx ARMv8 SoCs
+> > > > > +menuconfig ARCH_AMLOGIC
+> > > > > +	bool "NXP SoC support"
+> > > > 
+> > > > NXP? Did you mean "Amlogic"?
+> > > > 
+> > > > > +
+> > > > > +if ARCH_AMLOGIC
+> > > > > +
+> > > > >    config ARCH_MESON
+> > > > >    	bool "Amlogic Platforms"
+> > > > >    	help
+> > > > >    	  This enables support for the arm64 based Amlogic SoCs
+> > > > >    	  such as the s905, S905X/D, S912, A113X/D or S905X/D2
+> > > > > +config ARCH_AMLIPC
+> > > > 
+> > > > Do we really need a different ARCH for Amlogic IPC?
+> > > > I can imagine that it's not the Meson architecture at all.
+> > > > But maybe a better solution is just to rename ARCH_MESON to ARCH_AMLOGIC?
+> > > 
+> > > It should be changed treewide, and is it worth it ?
+> > 
+> > As far as I understand, the A1 and S4 families are not fully compatible
+> > with the Meson architecture, and we haven't provided additional ARCH_*
+> > for them.
+> 
+> The GXBB, GXL/GXM, G12A, G12B & SM1 are also not fully compatible,
+> but they lie under the "MESON" umbrella which covers SoC since the
+> Meson6 architecture. It's a facility to include/exclude Amlogic
+> drivers/DT, nothing else.
+> 
+> If you compare it to BCM or NXP, it's different situation, the
+> different ARCH_* actually targets totally different SoCs from
+> completely different Business Units or from companies acquisitions.
+> 
+> We should have named it ARCH_AMLOGIC since the beginning, but we
+> can't change history.
+> 
+> > In my opinion, it's a good time to split the Meson architecture into
+> > proper subsets, or rename it treewide (maybe only config option
+> > ARCH_MESON => ARCH_AMLOGIC).
+> 
+> MESON is only a codename to differentiate from other SoC vendors
+> because Amlogic used it as a codename for a long time.
+> Compare this to Allwinner's "sunxi" or Qualcomm's "msm".
+> 
+> This config has no functional mean, it's only a config namespace.
+> 
+> Renaming it would need renaming it in all subsystems Kconfig/Makefiles
+> and will certainly break builds with custom kernel configs
+> in various publicly used builds like Armbian, meta-meson, LibreELEC,
+> Debian, Suse, ...
+> 
+> So it's pointless to change, and even add a different one since
+> it's not a family differentiator since the Kernel is modular
+> and works around DT to determine which drivers to probe.
+> 
+> Neil
+> 
 
-brcm,enable-l1ss (bool):
+Thank you for the detailed explanation; it makes sense!
+Actually, I disagree with creating a separate ARCH without first reworking
+all of its subsets - that's why I started this discussion.
+Now, I see that you share my perspective and believe that C3
+should be added to the ARCH_MESON subset, so I have no objections.
 
-  The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-  requires the driver probe() to deliberately place the HW one of three
-  CLKREQ# modes:
+[...]
 
-  (a) CLKREQ# driven by the RC unconditionally
-  (b) CLKREQ# driven by the EP for ASPM L0s, L1
-  (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
-
-  The HW+driver can tell the difference between downstream devices that
-  need (a) and (b), but does not know when to configure (c).  All devices
-  should work fine when the driver chooses (a) or (b), but (c) may be
-  desired to realize the extra power savings that L1SS offers.  So we
-  introduce the boolean "brcm,enable-l1ss" property to inform the driver
-  that (c) is desired.  Setting this property only makes sense when the
-  downstream device is L1SS-capable and the OS is configured to activate
-  this mode (e.g. policy==superpowersave).
-
-  This property is already present in the Raspian version of Linux, but the
-  upstream driver implementaion that follows adds more details and discerns
-  between (a) and (b).
-
-brcm,completion-timeout-us (u32):
-
-  Our HW will cause a CPU abort on any PCI transaction completion abort
-  error.  It makes sense then to increase the timeout value for this type
-  of error in hopes that the response is merely delayed.  Further,
-  L1SS-capable devices may have a long L1SS exit time and may require a
-  custom timeout value: we've been asked by our customers to make this
-  configurable for just this reason.
-
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
----
- .../devicetree/bindings/pci/brcm,stb-pcie.yaml   | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 7e15aae7d69e..239cc95545bd 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -64,6 +64,22 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  brcm,enable-l1ss:
-+    description: Indicates that PCIe L1SS power savings
-+      are desired, the downstream device is L1SS-capable, and the
-+      OS has been configured to enable this mode.  For boards
-+      using a mini-card connector, this mode may not meet the
-+      TCRLon maximum time of 400ns, as specified in 3.2.5.2.5
-+      of the PCI Express Mini CEM 2.0 specification.
-+    type: boolean
-+
-+  brcm,completion-timeout-us:
-+    description: Number of microseconds before PCI transaction
-+      completion timeout abort is signalled.
-+    minimum: 16
-+    default: 1000000
-+    maximum: 19884107
-+
-   brcm,scb-sizes:
-     description: u64 giving the 64bit PCIe memory
-       viewport size of a memory controller.  There may be up to
 -- 
-2.17.1
-
+Thank you,
+Dmitry
