@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFCEA6E7346
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AED816E734B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231795AbjDSG3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 02:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
+        id S229821AbjDSG3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 02:29:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231667AbjDSG2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:28:54 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C999D618A;
-        Tue, 18 Apr 2023 23:28:33 -0700 (PDT)
+        with ESMTP id S232036AbjDSG3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:29:32 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B768E9778;
+        Tue, 18 Apr 2023 23:28:55 -0700 (PDT)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
         (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 47CC4219A4;
-        Wed, 19 Apr 2023 06:28:32 +0000 (UTC)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 15E291FD84;
+        Wed, 19 Apr 2023 06:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1681885712; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+        t=1681885728; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
          mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=WDZk9ptfe7tbUXycBmi8ymyKPOJ3g9Qe7BcZTpGDyuE=;
-        b=oxwafQ2ccV7f7lVYioIxDUV8J+79F/Hzy+DIwUxLlyyH27arC5FHAUaS84Mw+XJWc/jyr2
-        HEANx4UeTbiXx1QzuAjHtHJrysd/fD/5vYljBqmySsFYASAlnxKviZTKCpAELsaZjyGmUX
-        Qkxil6KIB3yu440jrX4DATXS1g8XodI=
+        bh=sacuHrbOUS6+cQyU7TKPM4wfq6Bszs3UYCL4nwf7Amo=;
+        b=zK7vdgGj2z3zmOTNykONnpJVYaDhVZSOaa4Wp5UbzUE6kMy5slhIMGx2kbYp+1xkTisTz1
+        GIr4/D4uXfkGZ70/E687e0KWJ4T8LMS3pI0Q2LRSlRg2zELKwcvC1xlaBB9AxaD0vndWVG
+        lyK3oyXV+jSyax8lltpQS91fP0q0s/4=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1681885712;
+        s=susede2_ed25519; t=1681885728;
         h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
          mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=WDZk9ptfe7tbUXycBmi8ymyKPOJ3g9Qe7BcZTpGDyuE=;
-        b=xSvNkokDqkNKt6RLNKbJdBIFLqV/S2CkVOHgoj3OjMy99drKd3PYyy5JDeLLUi3OqFM0BS
-        WF36gQuXFp5NFkDQ==
+        bh=sacuHrbOUS6+cQyU7TKPM4wfq6Bszs3UYCL4nwf7Amo=;
+        b=XAyNhlNt9ap4AKRey2cFAw7iMXNaDIg8CPLgb88mv9JPdRDCXmR/3q0rhgGjMnREVK0w1+
+        Y3UYoMhk8RDvyiAQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
         (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 161701390E;
-        Wed, 19 Apr 2023 06:28:32 +0000 (UTC)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E58EF1390E;
+        Wed, 19 Apr 2023 06:28:47 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
         by imap2.suse-dmz.suse.de with ESMTPSA
-        id YTH2AxCKP2RJJgAAMHmgww
-        (envelope-from <tiwai@suse.de>); Wed, 19 Apr 2023 06:28:32 +0000
-Date:   Wed, 19 Apr 2023 08:28:31 +0200
-Message-ID: <87mt342xo0.wl-tiwai@suse.de>
+        id tCk7Nx+KP2RmJgAAMHmgww
+        (envelope-from <tiwai@suse.de>); Wed, 19 Apr 2023 06:28:47 +0000
+Date:   Wed, 19 Apr 2023 08:28:47 +0200
+Message-ID: <87leio2xnk.wl-tiwai@suse.de>
 From:   Takashi Iwai <tiwai@suse.de>
 To:     Rob Herring <robh@kernel.org>
 Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
         devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ALSA: ppc/tumbler: Use of_property_present() for testing DT property presence
-In-Reply-To: <20230310144733.1546500-1-robh@kernel.org>
-References: <20230310144733.1546500-1-robh@kernel.org>
+Subject: Re: [PATCH] ALSA: Use of_property_read_bool() for boolean properties
+In-Reply-To: <20230310144734.1546587-1-robh@kernel.org>
+References: <20230310144734.1546587-1-robh@kernel.org>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
@@ -74,14 +74,12 @@ Rob Herring wrote:
 > 
 > It is preferred to use typed property access functions (i.e.
 > of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
-Applied now to for-next branch.
+Applied to for-next branch.
 
 thanks,
 
