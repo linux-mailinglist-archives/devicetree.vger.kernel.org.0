@@ -2,137 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C811A6E7CEE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 16:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 428BE6E7CFB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 16:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233156AbjDSOie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 10:38:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
+        id S232784AbjDSOjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 10:39:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233085AbjDSOid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 10:38:33 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8137C3C17;
-        Wed, 19 Apr 2023 07:38:31 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id he11-20020a05600c540b00b003ef6d684102so1568822wmb.3;
-        Wed, 19 Apr 2023 07:38:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681915110; x=1684507110;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pRLB4jafvDSF5N3zbFXDTvNqa3CWokYQT7DnSmldu+s=;
-        b=B6s2epmCAFJBrmAoB93mRJYd/ff0qly363oyJkb5paDWH4zH4tdPVJFuITaSc1N72l
-         U4HOTyjY88hj/udELRS4uSsrNpX5Vpe17ZUdi4PI3fI7mxs93bxsNH/lHXhAtxTrYF3X
-         i9RchJQa5d4MWGxMb7ZxqdEbEsXlWy5QyUpsoiS9jq/wk84HwkYHCeDhdlaDpOvN+Htu
-         Oxt4nxTx6igTQpl1D/YjYYQFslkA/GlMXAAK6XWyLulRa2HfeYEP30j0TSAF5jggaNRw
-         6jP7dxN14tx+r8E/mw9Lp7VGwEfMhTVokzsg46F+eIHoMyLbe57euwMka7/nx7vlLAPc
-         jXDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681915110; x=1684507110;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pRLB4jafvDSF5N3zbFXDTvNqa3CWokYQT7DnSmldu+s=;
-        b=T8aSBHJlNG46OLRHSqbty/MNf1skaCeraAf5Gj1QKZ1ejAn711d925OQOGQNvaotd4
-         rjZWk2P3l4MwODynOxEwNvLS3nzzhqHkzY49W7p2D8+TnUJmZKQYyhvfTEO56csGOpcR
-         zOfjdFA3fHBovzzbjD+9JmZPniH3U5eucbJUCDvomI3AudahbXzzkVbMMrU+La5Qxf80
-         Rvwcy8SWmEou1UhbmkonlSzTtiXJXkfXmvyt9VVlxt+6l18Rjmi+3ui2+OyLtMx45oLq
-         vPy8KFOxUXXYO2FcTTEp9R6HakeZ6Z9Nt8jlk8NxOocP/Vu7R98H6O/FnX96q9fiZRy3
-         DP6A==
-X-Gm-Message-State: AAQBX9c74N46jhIt65zZs2arG+tYdbr/WgTfRKP8BjCK6qg0JkOPBO3J
-        Ly1/3oknkxNEy93hHssl6Jo=
-X-Google-Smtp-Source: AKy350aAVpJgiBuQowINe7K2XwUMEspk5c7HruQFKHK8h6zPcSaAvxR/p4r/S6XEU+mKmXvjSgNJ6w==
-X-Received: by 2002:a1c:4c02:0:b0:3f1:78a7:6bd2 with SMTP id z2-20020a1c4c02000000b003f178a76bd2mr5488015wmf.27.1681915109688;
-        Wed, 19 Apr 2023 07:38:29 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-93-173.ip49.fastwebnet.it. [93.34.93.173])
-        by smtp.gmail.com with ESMTPSA id m14-20020a056000008e00b002c71b4d476asm15911066wrx.106.2023.04.19.07.38.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 07:38:28 -0700 (PDT)
-Message-ID: <643ffce4.050a0220.73dcc.1bec@mx.google.com>
-X-Google-Original-Message-ID: <ZD/84vlr8Pe7ntT2@Ansuel-xps.>
-Date:   Wed, 19 Apr 2023 16:38:26 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231795AbjDSOji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 10:39:38 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 427776E80;
+        Wed, 19 Apr 2023 07:39:17 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33JEd2EH125730;
+        Wed, 19 Apr 2023 09:39:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681915142;
+        bh=D0p2krU/Tl2rjp8hr8uRJrf8+8CgtChn0G/J3nT/yQM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=gz9AU5f5ncVZgWLxhSr/1uWh8c2nRAJMhBew64+M3tfqIrjq9KjavCdTIooME9T8O
+         e0+YD2GhRMNQqhx2POXM0OlhcYKJrNXZtFs9aBg/YJQV8vpG4ZsKljCynhVuO2Pf0Y
+         liRD456sLBi/CcKgAQ4isyx3qW01l/yadsWbxnzM=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33JEd13j000691
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Apr 2023 09:39:01 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 19
+ Apr 2023 09:39:01 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 19 Apr 2023 09:39:01 -0500
+Received: from [128.247.81.102] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33JEd16r028564;
+        Wed, 19 Apr 2023 09:39:01 -0500
+Message-ID: <5d81aeb6-2b52-5807-5b42-daa87767144f@ti.com>
+Date:   Wed, 19 Apr 2023 09:38:58 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RFC PATCH 5/5] can: m_can: Add hrtimer to generate software
+ interrupt
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Oliver Hartkopp <socketcan@hartkopp.net>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-        Jonathan McDowell <noodles@earth.li>
-Subject: Re: [net-next PATCH v7 13/16] ARM: dts: qcom: ipq8064-rb3011: Add
- Switch LED for each port
-References: <20230417151738.19426-1-ansuelsmth@gmail.com>
- <20230417151738.19426-14-ansuelsmth@gmail.com>
- <289b7604-d32d-49d9-8f06-87147d6fd473@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <289b7604-d32d-49d9-8f06-87147d6fd473@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        Schuyler Patton <spatton@ti.com>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230413223051.24455-6-jm@ti.com>
+ <20230414-bounding-guidance-262dffacd05c-mkl@pengutronix.de>
+ <4a6c66eb-2ccf-fc42-a6fc-9f411861fcef@hartkopp.net>
+ <20230416-failing-washbasin-e4fa5caea267-mkl@pengutronix.de>
+ <f58e8dce-898c-8797-5293-1001c9a75381@hartkopp.net>
+ <20230417-taking-relieving-f2c8532864c0-mkl@pengutronix.de>
+ <25806ec7-64c5-3421-aea1-c0d431e3f27f@hartkopp.net>
+ <20230417-unsafe-porridge-0b712d137530-mkl@pengutronix.de>
+ <5ece3561-4690-a721-aa83-adf80d0be9f5@ti.com>
+ <20230419-trimmer-fasting-928868e8cb81-mkl@pengutronix.de>
+Content-Language: en-US
+From:   "Mendez, Judith" <jm@ti.com>
+In-Reply-To: <20230419-trimmer-fasting-928868e8cb81-mkl@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 19, 2023 at 02:53:45PM +0200, Krzysztof Kozlowski wrote:
-> On 17/04/2023 17:17, Christian Marangi wrote:
-> > Add Switch LED for each port for MikroTik RB3011UiAS-RM.
-> > 
-> > MikroTik RB3011UiAS-RM is a 10 port device with 2 qca8337 switch chips
-> > connected.
-> > 
-> > It was discovered that in the hardware design all 3 Switch LED trace of
-> > the related port is connected to the same LED. This was discovered by
-> > setting to 'always on' the related led in the switch regs and noticing
-> > that all 3 LED for the specific port (for example for port 1) cause the
-> > connected LED for port 1 to turn on. As an extra test we tried enabling
-> > 2 different LED for the port resulting in the LED turned off only if
-> > every led in the reg was off.
-> > 
-> > Aside from this funny and strange hardware implementation, the device
-> > itself have one green LED for each port, resulting in 10 green LED one
-> > for each of the 10 supported port.
-> > 
-> > Cc: Jonathan McDowell <noodles@earth.li>
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 120 ++++++++++++++++++++++
+Hello Marc,
+
+On 4/19/2023 1:13 AM, Marc Kleine-Budde wrote:
+> On 18.04.2023 15:59:57, Mendez, Judith wrote:
+>>>>>>>> The "shortest" 11 bit CAN ID CAN frame is a Classical CAN frame with DLC = 0
+>>>>>>>> and 1 Mbit/s (arbitration) bitrate. This should be 48 bits @1Mbit => ~50
+>>>>>>>> usecs
+>>>>>>>>
+>>>>>>>> So it should be something about
+>>>>>>>>
+>>>>>>>>         50 usecs * (FIFO queue len - 2)
+>>>>>>>
+>>>>>>> Where does the "2" come from?
+>>>>>>
+>>>>>> I thought about handling the FIFO earlier than it gets completely "full".
+>>>>>>
+>>>>>> The fetching routine would need some time too and the hrtimer could also
+>>>>>> jitter to some extend.
+>>>>>
+>>>>> I was assuming something like this.
+>>>>>
+>>>>> I would argue that the polling time should be:
+>>>>>
+>>>>>        50 µs * FIFO length - IRQ overhead.
+>>>>>
+>>>>> The max IRQ overhead depends on your SoC and kernel configuration.
+>>>>
+>>>> I just tried an educated guess to prevent the FIFO to be filled up
+>>>> completely. How can you estimate the "IRQ overhead"? And how do you catch
+>>>> the CAN frames that are received while the IRQ is handled?
+>>>
+>>> We're talking about polling, better call it "overhead" or "latency from
+>>> timer expiration until FIFO has at least one frame room". This value
+>>> depends on your system.
+>>>
+>>> It depends on many, many factors, SoC, Kernel configuration (preempt RT,
+>>> powersaving, frequency scaling, system load. In your example it's 100
+>>> µs. I wanted to say there's an overhead (or latency) and we need enough
+>>> space in the FIFO, to cover it.
+>>>
+>>
+>> I am not sure how to estimate IRQ overhead, but FIFO length should be 64
+>> elements.
 > 
-> Please do not send the DTS patches to the net-next, but to the Qualcomm
-> SoC maintainers. The DTS must not be mixed with driver code.
+> Ok
 > 
+>> 50 us * 62 is about 3.1 ms and we are using 1 ms timer polling interval.
+> 
+> Sounds good.
+> 
+>> Running a few benchmarks showed that using 0.5 ms timer polling interval
+>> starts to take a toll on CPU load, that is why I chose 1 ms polling
+>> interval.
+> 
+> However in the code you use 5 ms.
 
-Hi,
+Yes, it was a mistake, will send out a respin with the correct value, 
+thanks.
 
-sorry for the mess, it was asked to give an user of the LED feature for
-qca8k so I was a bit confused on where to include it and at the end I
-decided to put it in this series.
-
-What was the correct way? 2 different series and reference the DT one in
-the net-next? (or not targetting net-next at all?)
-
-
-
--- 
-	Ansuel
+regards,
+Judith
