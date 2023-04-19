@@ -2,166 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E8256E7F75
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F1F6E7F8B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233443AbjDSQUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 12:20:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35526 "EHLO
+        id S233434AbjDSQZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 12:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbjDSQUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:20:37 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8631980
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 09:20:35 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4ec81436975so3018278e87.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 09:20:35 -0700 (PDT)
+        with ESMTP id S231652AbjDSQZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:25:11 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C7B2718
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 09:25:10 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f1728c2a57so29177145e9.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 09:25:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681921234; x=1684513234;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ajS5AwxNAy2StLCvTIgtNL2E/BG5ps9eI73QSwxiK0o=;
-        b=WgCraIJeytpaVNDyRFYnEcSSd0AK31/l2q4zlRFQPqpG/SfRk6BHFpgSX8NfNdhahQ
-         GHJXZoVyf932ZGFKkVGxqpRbmxNgEfQpB5f/9JTEfB96StJgPapjvSrJI51fOUR3+l9c
-         FEb6Uzt44RB+SLfbTk6dhjnP7Gyl5khb1G+1Qs5rV0K84vq/aUFEjw6+UNNOrCOiB4k+
-         b6qxmoqZP0RfaoM0nWzzdsScx25XX60puYEaANlHfrkp6GlM2/jPEi3W55WdtvfSuVCo
-         6IdOvjlzIUGdrWWKzCFCsKZJd90mlEGSYVvIcjWW0jGiMfM5Q3eVjoK4pyU9jb5M6YSC
-         dsSw==
+        d=linaro.org; s=google; t=1681921509; x=1684513509;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KDLywrz5b75EyvwZQRzMU6ycEyStfUxaWPFipQ5tg48=;
+        b=hT1rN1a1+DEvbJ7pV9UBV5Q091PwLaK/e33DPwFbSxXKP4blf4l2fjuds2md+XP++5
+         84C+pxozpUTh5V6lAJ2nlNJXnRrLqTalFNU/dBYQvQyvlbDtKl9qSaHyMPS25OdAES2l
+         sgC/bybInm1EKd0pT7fEzBybpTZ7Pr2obzhLRpSr4bNP4tJNzY3x+kHP1/CQlFp1agLu
+         jKYnlVVVqlPE5h3jMb69FZd93PSsJ05fozvgfDlUHALQDqHaeDgNe1c9vCLTR5wJtpbi
+         TNBEF6gG7k2Q1PlCNUVKpqR4fIM7Bh+Z//Eil1lH2H8Qzds04Bk+xkDAI5EeutudJwf2
+         +xiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681921234; x=1684513234;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ajS5AwxNAy2StLCvTIgtNL2E/BG5ps9eI73QSwxiK0o=;
-        b=fycksw8hCAW0M9UvkB5jdQYpzL0qlJpaMb6JMJ8vyomDJt/mHWo34tC+bMxH/eKj2m
-         IxIDmuDjIwLZS2H9oGDdCAKqQFk753UQ3WocBtYMgLmoRBMpbwO+Sm0AIulpSvNPVH4T
-         lT/VyoXrhXrZ+TyEvMwTZoXyRE6ZfdUVDkqN9qFxXzNfCtgfvQ782va+YC7d0yw53+Wa
-         6zU2ucGRYGu6T004JiK5c/qmwR0WVUIHhBapWVoFLAUy7MaP1YakuGljI0xdLFwBzM5I
-         rHUljflWrIT0W5pVK/ctPLFD4TPB0yHmGnAfXf7gd4kv1uXWCKxD6QL5GRxKzvc0TzVp
-         3INw==
-X-Gm-Message-State: AAQBX9fAcNQZALXs7Or3jaclZomxkFfxl5ZoH0OvhQRwD5UV1Rx56boI
-        wtr/xbfWQe0nC6FlSaPQRT5AxA==
-X-Google-Smtp-Source: AKy350bqi18ppcGPBlkMku8yd3Jx5EyZwDkYGPgR2kbJpG00DnGcpfdYtIrhfwi4ng3KClUhyYSqnw==
-X-Received: by 2002:ac2:4942:0:b0:4ec:9df9:f11a with SMTP id o2-20020ac24942000000b004ec9df9f11amr3992000lfi.9.1681921233811;
-        Wed, 19 Apr 2023 09:20:33 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id f19-20020ac251b3000000b004db4936c866sm2718538lfk.38.2023.04.19.09.20.32
+        d=1e100.net; s=20221208; t=1681921509; x=1684513509;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KDLywrz5b75EyvwZQRzMU6ycEyStfUxaWPFipQ5tg48=;
+        b=PFSmed0tY4hFO3PuOlat0IMl/kJX+w6yikJKreozrUGUmBJVE2FzA1/TB0RwKjY4q6
+         vJpVtTfc60friYUx01P9fHDGG+CxKaL1WotD1XvSCsT3zvQRS1Sgfw8GXj9CrMFAO9gE
+         nLYRsvn5XKM65HH8tKZFDuQiBfhWDYcvV40hMdV6Iw+CRqoU2nbyV+HsKA6gfInVqe0d
+         3m3xDz/pRNUWzQu6zKCqpTFsYTZkZ3JwjeJuyi8PUfvOWB2LKXo0g26pFhmG5NEiVFbj
+         y4zyfu3/zuD+RfqEPTWw84a59xq2/sYyHRJqkr14xr0qD7FAWHCbhZOMoEAT/KJE0Wz0
+         Bl9g==
+X-Gm-Message-State: AAQBX9f+WbOcgXheJnKTQkm3HWuxBTN57+kNbK0Fc0Vb6g9Rk8fUqWyh
+        4o23cXTjGZqq4I4hnXJqpPlFkp+JlGDULttd9MLZbA==
+X-Google-Smtp-Source: AKy350Z1xrx0ylaGtxFse5ngydIJsR5DorpLbBAJ3nrjbAGOpY37kZDJKfqK/DCa8EU0mCUZEsJ+2w==
+X-Received: by 2002:adf:e6c3:0:b0:2ef:bb9f:e9e1 with SMTP id y3-20020adfe6c3000000b002efbb9fe9e1mr5243251wrm.56.1681921508739;
+        Wed, 19 Apr 2023 09:25:08 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1360:9fbb:dfd6:2db4? ([2a01:e0a:982:cbb0:1360:9fbb:dfd6:2db4])
+        by smtp.gmail.com with ESMTPSA id g17-20020adff3d1000000b002f777345d21sm13432098wrp.95.2023.04.19.09.25.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 09:20:33 -0700 (PDT)
-Message-ID: <6862340f-64fa-c0cb-8d20-f8f4d14038e9@linaro.org>
-Date:   Wed, 19 Apr 2023 18:20:32 +0200
+        Wed, 19 Apr 2023 09:25:08 -0700 (PDT)
+Message-ID: <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
+Date:   Wed, 19 Apr 2023 18:25:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH] ARM: dts: qcom: msm8974: correct qfprom node reg
+ Thunderbird/102.10.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Craig Tatlor <ctatlor97@gmail.com>
-References: <20230130-msm8974-qfprom-v1-1-975aa0e5e083@z3ntu.xyz>
- <5664419.DvuYhMxLoT@z3ntu.xyz>
- <383f6aa0-6150-22b5-425a-f9cf13bdbc50@linaro.org>
- <4820647.31r3eYUQgx@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <4820647.31r3eYUQgx@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
+ <20230419073834.972273-2-xianwei.zhao@amlogic.com>
+ <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
+ <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
+ <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
+Organization: Linaro Developer Services
+In-Reply-To: <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 19.04.2023 18:18, Luca Weiss wrote:
-> On Mittwoch, 19. April 2023 18:12:04 CEST Konrad Dybcio wrote:
->> On 19.04.2023 18:00, Luca Weiss wrote:
->>> Hi Konrad,
+On 19/04/2023 18:04, Dmitry Rokosov wrote:
+> On Wed, Apr 19, 2023 at 03:43:12PM +0200, Neil Armstrong wrote:
+>> On 19/04/2023 15:14, Dmitry Rokosov wrote:
+>>> On Wed, Apr 19, 2023 at 03:38:33PM +0800, =Xianwei Zhao wrote:
+>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>
+>>>> The C series SoCs are designed for smart IP camera
+>>>> applications, which does not belong to Meson series.
+>>>> So, Add ARCH_AMLIPC for the new series.
+>>>>
+>>>> There are now multiple amlogic SoC seies supported, so group them under
+>>>> their own menu. we can easily add new platforms there in the future.
+>>>> Introduce ARCH_AMLOGIC to cover all Amlogic SoC series.
+>>>>
+>>>> No functional changes introduced.
+>>>>
+>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>> ---
+>>>>    arch/arm64/Kconfig.platforms | 12 ++++++++++++
+>>>>    arch/arm64/configs/defconfig |  2 ++
+>>>>    2 files changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>>>> index 89a0b13b058d..bfbc817eef8f 100644
+>>>> --- a/arch/arm64/Kconfig.platforms
+>>>> +++ b/arch/arm64/Kconfig.platforms
+>>>> @@ -162,12 +162,24 @@ config ARCH_MEDIATEK
+>>>>    	  This enables support for MediaTek MT27xx, MT65xx, MT76xx
+>>>>    	  & MT81xx ARMv8 SoCs
+>>>> +menuconfig ARCH_AMLOGIC
+>>>> +	bool "NXP SoC support"
 >>>
->>> On Montag, 30. Jänner 2023 21:37:29 CEST Luca Weiss wrote:
->>>> On Montag, 30. Jänner 2023 19:42:51 CET Konrad Dybcio wrote:
->>>>> On 30.01.2023 19:36, Luca Weiss wrote:
->>>>>> On Montag, 30. Jänner 2023 19:30:04 CET Konrad Dybcio wrote:
->>>>>>> On 30.01.2023 19:20, luca@z3ntu.xyz wrote:
->>>>>>>> From: Craig Tatlor <ctatlor97@gmail.com>
->>>>>>>>
->>>>>>>> The qfprom actually starts at 0xfc4b8000 instead of 0xfc4bc000 as
->>>>>>>> defined previously. Adjust the tsens offsets accordingly.
->>>>>>>>
->>>>>>>> [luca@z3ntu.xyz: extract to standalone patch]
->>>>>>>>
->>>>>>>> Fixes: c59ffb519357 ("arm: dts: msm8974: Add thermal zones, tsens and
->>>>>>>> qfprom nodes") Signed-off-by: Craig Tatlor <ctatlor97@gmail.com>
->>>>>>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>>>>>>> ---
->>>>>>>
->>>>>>> Isn't this a raw vs ecc-corrected values problem?
->>>>>>
->>>>>> Not quite sure what you mean.
->>>>>
->>>>> The QFPROM is split into two parts: one where raw values
->>>>> are stored, and the other one where ECC-corrected copies
->>>>> of them reside. Usually it's at offset of 0x4000. We should
->>>>> generally be using the ECC-corrected ones, because.. well..
->>>>> they are ECC-corrected.. You may want to check if the
->>>>> fuse you're adding reads the same value at +0x4000.
->>>>
->>>> Yeah that actually seems to work...
->>>>
->>>> But downstream's using this +0x4000 only for tsens it seems
->>>>
->>>>    <0xfc4bc000 0x1000> as "tsens_eeprom_physical"
->>>>
->>>> qcom,clock-krait-8974 is using this:
->>>>     <0xfc4b80b0 0x08> as "efuse"
->>>>
->>>> Also seems HDMI driver is using a mix for HDCP stuff
->>>>
->>>>   drivers/video/msm/mdss/mdss_hdmi_util.h:
->>>>     /* QFPROM Registers for HDMI/HDCP */
->>>>     #define QFPROM_RAW_FEAT_CONFIG_ROW0_LSB  (0x000000F8)
->>>>     #define QFPROM_RAW_FEAT_CONFIG_ROW0_MSB  (0x000000FC)
->>>>     #define HDCP_KSV_LSB                     (0x000060D8)
->>>>     #define HDCP_KSV_MSB                     (0x000060DC)
->>>>
->>>> Any clue why Qualcomm used it this way in downstream? I'd rather not
->>>> deviate too much if not for a good reason...
+>>> NXP? Did you mean "Amlogic"?
 >>>
->>> Any comments on the above?
+>>>> +
+>>>> +if ARCH_AMLOGIC
+>>>> +
+>>>>    config ARCH_MESON
+>>>>    	bool "Amlogic Platforms"
+>>>>    	help
+>>>>    	  This enables support for the arm64 based Amlogic SoCs
+>>>>    	  such as the s905, S905X/D, S912, A113X/D or S905X/D2
+>>>> +config ARCH_AMLIPC
+>>>
+>>> Do we really need a different ARCH for Amlogic IPC?
+>>> I can imagine that it's not the Meson architecture at all.
+>>> But maybe a better solution is just to rename ARCH_MESON to ARCH_AMLOGIC?
 >>
->> This thread got burried to deep in the mailbox!
->>
->> I see two reasons why they could be using the uncorrected region:
->> - their generators are messed up in general
->>
->> - they may have had an early chip revision once where there were
->>   problems with this and their generators were messed up to
->>   accommodate for it and everybody forgot to fix that
->>
->> No other good explanations as far as I'm aware!
+>> It should be changed treewide, and is it worth it ?
 > 
-> So, resolution is to use the offsets as declared in downstream, so take this 
-> patch to have the full range available?
-No, the correct resolution to "fix QFPROM reg" would be to
-increase the size to 0x7000-0x4000 = 0x3000, as we should be
-using the ECC-corrected entries.
+> As far as I understand, the A1 and S4 families are not fully compatible
+> with the Meson architecture, and we haven't provided additional ARCH_*
+> for them.
 
-Konrad
+The GXBB, GXL/GXM, G12A, G12B & SM1 are also not fully compatible,
+but they lie under the "MESON" umbrella which covers SoC since the
+Meson6 architecture. It's a facility to include/exclude Amlogic
+drivers/DT, nothing else.
+
+If you compare it to BCM or NXP, it's different situation, the
+different ARCH_* actually targets totally different SoCs from
+completely different Business Units or from companies acquisitions.
+
+We should have named it ARCH_AMLOGIC since the beginning, but we
+can't change history.
+
+> In my opinion, it's a good time to split the Meson architecture into
+> proper subsets, or rename it treewide (maybe only config option
+> ARCH_MESON => ARCH_AMLOGIC).
+
+MESON is only a codename to differentiate from other SoC vendors
+because Amlogic used it as a codename for a long time.
+Compare this to Allwinner's "sunxi" or Qualcomm's "msm".
+
+This config has no functional mean, it's only a config namespace.
+
+Renaming it would need renaming it in all subsystems Kconfig/Makefiles
+and will certainly break builds with custom kernel configs
+in various publicly used builds like Armbian, meta-meson, LibreELEC,
+Debian, Suse, ...
+
+So it's pointless to change, and even add a different one since
+it's not a family differentiator since the Kernel is modular
+and works around DT to determine which drivers to probe.
+
+Neil
+
 > 
-> Regards
-> Luca
+>>>
+>>>> +	bool "Amlogic IPC Platforms"
+>>>> +	help
+>>>> +	  This enables support for the arm64 based Amlogic IPC SoCs
+>>>> +	  such as the C302X, C308L
+>>>> +endif
+>>>> +
+>>>>    config ARCH_MVEBU
+>>>>    	bool "Marvell EBU SoC Family"
+>>>>    	select ARMADA_AP806_SYSCON
+>>>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+>>>> index 7790ee42c68a..f231bd1723fd 100644
+>>>> --- a/arch/arm64/configs/defconfig
+>>>> +++ b/arch/arm64/configs/defconfig
+>>>> @@ -46,7 +46,9 @@ CONFIG_ARCH_LG1K=y
+>>>>    CONFIG_ARCH_HISI=y
+>>>>    CONFIG_ARCH_KEEMBAY=y
+>>>>    CONFIG_ARCH_MEDIATEK=y
+>>>> +CONFIG_ARCH_AMLOGIC=y
+>>>>    CONFIG_ARCH_MESON=y
+>>>> +CONFIG_ARCH_AMLIPC=y
+>>>>    CONFIG_ARCH_MVEBU=y
+>>>>    CONFIG_ARCH_NXP=y
+>>>>    CONFIG_ARCH_LAYERSCAPE=y
+>>>> -- 
+>>>> 2.37.1
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> linux-amlogic mailing list
+>>>> linux-amlogic@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>>>
+>>
 > 
-> 
-> 
+
