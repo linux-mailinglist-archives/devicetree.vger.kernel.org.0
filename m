@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C912D6E8357
+	by mail.lfdr.de (Postfix) with ESMTP id 1CC286E8355
 	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231860AbjDSVTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 17:19:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
+        id S231598AbjDSVTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 17:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbjDSVTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:10 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F3F7298
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:08 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id sz19so1751654ejc.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:08 -0700 (PDT)
+        with ESMTP id S231497AbjDSVTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:12 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F656A49
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:11 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id b16so1732420ejz.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681939148; x=1684531148;
+        d=linaro.org; s=google; t=1681939150; x=1684531150;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EnOb+4WvI3k1YdYX+1AvaBMgcWn4PAgPOR6hlBIZSsg=;
-        b=qLYMzbNhdcjmPz6cfxJn3bGOM2Km6FW1YmIbKOjJvqE9z413u5VXhlEYuHsO94MDox
-         aik9g9oBccLuJSaaq8hOPeSlV2Vh9WLF0xtNq9/ssLa4F2QyBN7NMnrBo2JMnCfUhULu
-         DBTaU/Fe2KnZ0ZJUioZO3eqjrX6HxyBHNvPUMMhtvRtckLyT4DtItJlK4qX97GeQ03JL
-         W4vVzCkd/1RFguQxAX7Kuom2DTEL/N7PQmyozj3K4BNZ4FVshTXPL8UEs4pAF5AbYrP5
-         EQ+aTjI3joCx00zs3izwqHY4KMYIaZvCjcmSs8OX0+bY7x1XinSIv0qgsfjWSr292iBC
-         KlpA==
+        bh=lbjB7nNg2fivtclYxRNMULQiQZCAt+Dj4vs0IV9gBiw=;
+        b=X7+k4JKLQ24aACDfO7O4HUc/jExbhVt9xzDU8JAuV+gxy+355v3VuJimmv0Zh1VkD3
+         BU/dHPucFcJ2AlzizHRy5VeLgCM0yivWSXPVV0/tkxy0UtnJZKYCv5PjXfNEEaKC9vjE
+         /Pi3vzdWb1ybFElEIhPo3STckQqJ3ZDQb0iu8yJIyj2VVSPScvFo8zhQ+g5kzMNupxFQ
+         4tGsby4xbCaPqwLlw2YAGBJ2z664b6QDSbL248mTHTSUmRlOC5h0H7lciBKg984uwKJV
+         fjnCcvHYUhEIAggAxcY1TaR0J42agUvyRNdfIsiW2+fDMW579m8jHL8XeuM5y1XgAiH2
+         NwvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681939148; x=1684531148;
+        d=1e100.net; s=20221208; t=1681939150; x=1684531150;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EnOb+4WvI3k1YdYX+1AvaBMgcWn4PAgPOR6hlBIZSsg=;
-        b=aJes06tIo2unS3XACVUpt5NoMKaNZKeUUs8RQYufqCXIQttB4Rj1E8vJwTisS8PyUx
-         Mg7obevTo4m7WL2GcNcRqrEWAUU4Ic4+kqij1747NHflIVPyMzRYeg9jrTAWwwnCn5FN
-         yvhASyXjMZptnCBhaQQSpl/Pv3hbbMHEu3x/9A4ViVWiJYst6jNKXpTs1d50ZANoGxxt
-         EAXj+eb8nqzTGpDYiTNo467UgV48+gxOPeJA5p2KCL34P+b0jF6ymjS0QRmHQyVQ51w8
-         jYAcpmYl0TqtCq9Xxn34KRaTLRtqyyyZvWWn32h2SxYtWoO7VGteU//BZNLsE3VFyFPG
-         TMww==
-X-Gm-Message-State: AAQBX9dmMp+MYjRBYVqzygM+f9ej4naZoVRoVLBrXReZNGwXefaixRsB
-        u6lqp6NCAe+BrJ7CLqn1VvjwNA==
-X-Google-Smtp-Source: AKy350YTKzQgMxhrGZvKhw4q0lFbnY04oC9f6dJvFGJnaXAvk9OrpzrjAt3GIZJXqG6YpnsUsI2ItA==
-X-Received: by 2002:a17:906:d935:b0:94e:d97e:7a5d with SMTP id rn21-20020a170906d93500b0094ed97e7a5dmr15777623ejb.47.1681939148244;
-        Wed, 19 Apr 2023 14:19:08 -0700 (PDT)
+        bh=lbjB7nNg2fivtclYxRNMULQiQZCAt+Dj4vs0IV9gBiw=;
+        b=PP24QAy7wwzNrfcSZspuvujQOmI+5GcG0mzlgbwP2qiZSKRT7ayM9yik7jZtl7Vf/P
+         E+M2LyY+6k0sSBASMHaMNeg0Xxt6MEPsfrD9WPWlljxvNsstydoztMW+AmbSgTl5+6ko
+         wrqo1phZ5pKzlUrbEgoW0xP+DxMe4KSo4uhBSem6Yht7Rlu/whaNaEhy2XxSkNOiyDKA
+         mHjYe2LClM3EBoH3PI0B/E96R0zWGtWgKotYVI26Zcorz0mZP3Fa0ciBqDiXLQtDXL5L
+         uFzAiNYME/hy4whAhZ7/uK6k5wmM7T0JFIu/IQLNt0ohWVtk+H3h1+KJKPCjaam/5s1T
+         2y0Q==
+X-Gm-Message-State: AAQBX9dOpQ1y9oW6a+julugUWnHjanKkZVTDSv/obxhrmePfDgyl8nLm
+        4x0Iq2GhkkFBA3WzRpDNU+Cuyg==
+X-Google-Smtp-Source: AKy350Y4tcCAW3OxlWfP5OotfW+Kuokv348bNlCXZE3G6VutesGeO79/PMLWMSreeki0Yvivme6LDQ==
+X-Received: by 2002:a17:906:2dda:b0:92b:f118:ef32 with SMTP id h26-20020a1709062dda00b0092bf118ef32mr18184354eji.48.1681939150295;
+        Wed, 19 Apr 2023 14:19:10 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:976c:1d6c:6ed0:8935])
-        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.19.06
+        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.19.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 14:19:07 -0700 (PDT)
+        Wed, 19 Apr 2023 14:19:09 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -76,9 +76,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 06/18] arm64: dts: qcom: msm8953: correct WCNSS unit address
-Date:   Wed, 19 Apr 2023 23:18:44 +0200
-Message-Id: <20230419211856.79332-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 07/18] arm64: dts: qcom: msm8976: correct MMC unit address
+Date:   Wed, 19 Apr 2023 23:18:45 +0200
+Message-Id: <20230419211856.79332-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
 References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
@@ -87,7 +87,7 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,27 +96,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Match unit-address to reg entry to fix dtbs W=1 warnings:
 
-  Warning (simple_bus_reg): /soc@0/remoteproc@a21b000: simple-bus unit address format error, expected "a204000"
+  Warning (simple_bus_reg): /soc@0/mmc@7824000: simple-bus unit address format error, expected "7824900"
+  Warning (simple_bus_reg): /soc@0/mmc@7864000: simple-bus unit address format error, expected "7864900"
+  Warning (simple_bus_reg): /soc@0/mmc@7a24000: simple-bus unit address format error, expected "7a24900"
 
-Fixes: b12428640ebe ("arm64: dts: MSM8953: Add wcnss nodes")
+Fixes: 0484d3ce0902 ("arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8976.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index 4038e47a4610..d1d6f80bb2e6 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -1425,7 +1425,7 @@ i2c_8: i2c@7af8000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+index f47fb8ea71e2..753b9a2105ed 100644
+--- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+@@ -822,7 +822,7 @@ spmi_bus: spmi@200f000 {
+ 			#interrupt-cells = <4>;
+ 		};
+ 
+-		sdhc_1: mmc@7824000 {
++		sdhc_1: mmc@7824900 {
+ 			compatible = "qcom,msm8976-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0x07824900 0x500>, <0x07824000 0x800>;
+ 			reg-names = "hc", "core";
+@@ -838,7 +838,7 @@ sdhc_1: mmc@7824000 {
  			status = "disabled";
  		};
  
--		wcnss: remoteproc@a21b000 {
-+		wcnss: remoteproc@a204000 {
- 			compatible = "qcom,pronto-v3-pil", "qcom,pronto";
- 			reg = <0x0a204000 0x2000>, <0x0a202000 0x1000>, <0x0a21b000 0x3000>;
- 			reg-names = "ccu", "dxe", "pmu";
+-		sdhc_2: mmc@7864000 {
++		sdhc_2: mmc@7864900 {
+ 			compatible = "qcom,msm8976-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0x07864900 0x11c>, <0x07864000 0x800>;
+ 			reg-names = "hc", "core";
+@@ -957,7 +957,7 @@ otg: usb@78db000 {
+ 			#reset-cells = <1>;
+ 		};
+ 
+-		sdhc_3: mmc@7a24000 {
++		sdhc_3: mmc@7a24900 {
+ 			compatible = "qcom,msm8976-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0x07a24900 0x11c>, <0x07a24000 0x800>;
+ 			reg-names = "hc", "core";
 -- 
 2.34.1
 
