@@ -2,71 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2035F6E78E7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 13:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCAB6E7930
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:01:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232465AbjDSLrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 07:47:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41718 "EHLO
+        id S232971AbjDSMA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 08:00:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbjDSLrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 07:47:07 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA264C22;
-        Wed, 19 Apr 2023 04:47:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681904824; x=1713440824;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=iZ9zP/czoiwzuGqd+7mx8aaZzCqymmjJky/8w2YBO04=;
-  b=GgvKPk+mwm7KiUFEw7XrE0YujxMqz2by6rrkwi2/ApqTB/p18T46wKRJ
-   W/WNg6ntzZAhQJzxBVzIuwvLUsOxVlJGb+6+7AbelE2kGUCQ3tNbKxGum
-   HOLFAGxB1sQFVCJZ42a1peO/SvIjL4Mp0ENv8ZEL3UISiUrs0f1WprJD/
-   fSBDkFrnntw5waSZytW3iPJEYkEYRj7ODfmpvi6qHXToUAx24nhiIJqDj
-   FDoKqtdfj90NqM8Q0cZpN2o5mGQnQa2+oZ+Fa1d1MNQp23N3Afl/cU4Xt
-   cLMw97VDIE9bdf/Yo1De6FiL89pzIODT2kHDoeTVpueiONq3F6sqY728j
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="325759615"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; 
-   d="scan'208";a="325759615"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2023 04:47:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="721902168"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; 
-   d="scan'208";a="721902168"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 19 Apr 2023 04:47:00 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pp6H5-002DIC-0p;
-        Wed, 19 Apr 2023 14:46:59 +0300
-Date:   Wed, 19 Apr 2023 14:46:58 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dinh Nguyen <dinh.nguyen@linux.intel.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
-        dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com
-Subject: Re: [PATCH 3/5] hwmon: (socfpga) Add hardware monitoring support on
- SoCFPGA platforms
-Message-ID: <ZD/UsuzhZmK3AFJn@smile.fi.intel.com>
-References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
- <20230410153314.27127-3-dinh.nguyen@linux.intel.com>
- <09730359-8731-e21e-3335-bf60ba7f1280@roeck-us.net>
- <a3e966f8-8e9d-7081-1665-9d2e87acb310@linux.intel.com>
- <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
- <a1a34c32-dbd4-7a77-ab7e-5e34af85900f@linux.intel.com>
+        with ESMTP id S232428AbjDSMAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:00:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9EBF9EE7;
+        Wed, 19 Apr 2023 05:00:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CD40163E38;
+        Wed, 19 Apr 2023 12:00:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 26F76C4339B;
+        Wed, 19 Apr 2023 12:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681905624;
+        bh=kL7MXaHfZUb5tJRqat4CTB+HjhFYT3TLVG/TA9D/yOU=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=DyKJ7lZEgtxMcBtN3hFQTRgImJ0r78sfGAFkj0/1IpnBOGNsodsEKSA9n0/0u0zCO
+         SgdGBFEnVUCVGNcpn/Ixzg07lTnEoadfHZM4weInv6uDSQC+j0CJ1RugD/nQc8zwmw
+         E8PTmOC86u/lnpdLrK75GluGpZ9SrXGcd+dYzkcgt+yXotoUcyFs3p4hDqNpU5buzO
+         qFucbkE1pCfekMm8Bs7nIlumeB8LyAjG71S9QQu5COc77iM+C+pK2Z+fnfnT+SnZi/
+         MR0UaF2bXx6TEF5b74pA63/E6RUiJ9UPY/tCxKwchlVvt9AIQhuMjJgYRSAJ+b/fuz
+         RRji8WNy9Cycw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 00DF7E3309C;
+        Wed, 19 Apr 2023 12:00:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a1a34c32-dbd4-7a77-ab7e-5e34af85900f@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Subject: Re: [net-next PATCH v7 00/16] net: Add basic LED support for switch/phy
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168190562399.2268.16556585281655823731.git-patchwork-notify@kernel.org>
+Date:   Wed, 19 Apr 2023 12:00:23 +0000
+References: <20230417151738.19426-1-ansuelsmth@gmail.com>
+In-Reply-To: <20230417151738.19426-1-ansuelsmth@gmail.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, corbet@lwn.net, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, pavel@ucw.cz,
+        lee@kernel.org, john@phrozen.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,46 +65,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 12:29:40PM -0500, Dinh Nguyen wrote:
-> On 4/17/2023 4:51 PM, Guenter Roeck wrote:
-> > On 4/17/23 13:55, Dinh Nguyen wrote:
+Hello:
 
-...
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-> > ... and this contradict each other. If bit 31 indicates an error,
-> > this can not be a signed 32-bit value.
-> > 
-> You're right! I've re-read the spec and should have the the code look for
-> the specific error values:
+On Mon, 17 Apr 2023 17:17:22 +0200 you wrote:
+> This is a continue of [1]. It was decided to take a more gradual
+> approach to implement LEDs support for switch and phy starting with
+> basic support and then implementing the hw control part when we have all
+> the prereq done.
 > 
-> 0x80000000 - inactive
-> 0x80000001 - old value
-> 0x80000002 - invalid channel
-> 0x80000003 -  corrupted.
+> This series implements only the brightness_set() and blink_set() ops.
+> An example of switch implementation is done with qca8k.
+> 
+> [...]
 
-No, they are not hex. Probably you need to define an error space with it, but
-at least just use signed _decimal_ values.
+Here is the summary with links:
+  - [net-next,v7,01/16] net: dsa: qca8k: move qca8k_port_to_phy() to header
+    https://git.kernel.org/netdev/net-next/c/3e8b4d6277fd
+  - [net-next,v7,02/16] net: dsa: qca8k: add LEDs basic support
+    https://git.kernel.org/netdev/net-next/c/1e264f9d2918
+  - [net-next,v7,03/16] net: dsa: qca8k: add LEDs blink_set() support
+    https://git.kernel.org/netdev/net-next/c/91acadcc6e59
+  - [net-next,v7,04/16] leds: Provide stubs for when CLASS_LED & NEW_LEDS are disabled
+    https://git.kernel.org/netdev/net-next/c/e5029edd5393
+  - [net-next,v7,05/16] net: phy: Add a binding for PHY LEDs
+    https://git.kernel.org/netdev/net-next/c/01e5b728e9e4
+  - [net-next,v7,06/16] net: phy: phy_device: Call into the PHY driver to set LED brightness
+    https://git.kernel.org/netdev/net-next/c/684818189b04
+  - [net-next,v7,07/16] net: phy: marvell: Add software control of the LEDs
+    https://git.kernel.org/netdev/net-next/c/2d3960e58ef7
+  - [net-next,v7,08/16] net: phy: phy_device: Call into the PHY driver to set LED blinking
+    https://git.kernel.org/netdev/net-next/c/4e901018432e
+  - [net-next,v7,09/16] net: phy: marvell: Implement led_blink_set()
+    https://git.kernel.org/netdev/net-next/c/ea9e86485dec
+  - [net-next,v7,10/16] dt-bindings: net: ethernet-controller: Document support for LEDs node
+    https://git.kernel.org/netdev/net-next/c/57b6c752c5c0
+  - [net-next,v7,11/16] dt-bindings: net: dsa: qca8k: add LEDs definition example
+    https://git.kernel.org/netdev/net-next/c/ed617bc022f4
+  - [net-next,v7,12/16] ARM: dts: qcom: ipq8064-rb3011: Drop unevaluated properties in switch nodes
+    https://git.kernel.org/netdev/net-next/c/939595c79d12
+  - [net-next,v7,13/16] ARM: dts: qcom: ipq8064-rb3011: Add Switch LED for each port
+    https://git.kernel.org/netdev/net-next/c/09930f1fb875
+  - [net-next,v7,14/16] dt-bindings: net: phy: Document support for LEDs node
+    https://git.kernel.org/netdev/net-next/c/18a24b694a2b
+  - [net-next,v7,15/16] arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
+    https://git.kernel.org/netdev/net-next/c/380a8fe1b2f4
+  - [net-next,v7,16/16] Documentation: LEDs: Describe good names for network LEDs
+    https://git.kernel.org/netdev/net-next/c/c693ea2fd6e3
 
-Instead of BIT(31) this should go as
-
-#define ..._ERR_BASE   INT_MIN // or equivalent if the type is not int
-#define ..._ERR_MAX ... // or whatever name is better
-
-Then in your code
-
-	if (value >= _ERR_MAX)
-		return 0;
-
-	err = _ERR_MAX - value;
-	switch (err) {
-		...
-	}
-
-P.S. I asked during internal review if the values are bit fielded when errors.
-AFAIU that time they are, now it seems different.
-
+You are awesome, thank you!
 -- 
-With Best Regards,
-Andy Shevchenko
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
