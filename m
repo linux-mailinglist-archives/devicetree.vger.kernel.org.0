@@ -2,92 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E11216E7DB8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975F26E7E31
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbjDSPM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 11:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34816 "EHLO
+        id S233607AbjDSPYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 11:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232269AbjDSPM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:12:57 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A384B1988;
-        Wed, 19 Apr 2023 08:12:55 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33JFCfKW021422;
-        Wed, 19 Apr 2023 10:12:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681917161;
-        bh=yzdOdCedXGYszW/kSm/+v6xAAPi2uDa2BGQ6xPSX1Qw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=G2zAdQ/WKg+yIe5PX3WrSTB/YrusrtPvUgQcPe+3DHW6XtTY+ldryWohP2vYmGbMU
-         diyhS0YVGrewu2lb+pT6iQblsF3H3At4PIdYSPaJ4vcSmhL4PFF4OlkZyJaCD4ob8N
-         aDBwaXr2qaTxIwQf/BJq0a3eI5LobzR8W1Q3niTA=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33JFCfFL116821
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Apr 2023 10:12:41 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 19
- Apr 2023 10:12:41 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 19 Apr 2023 10:12:41 -0500
-Received: from [128.247.81.102] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33JFCe0m082677;
-        Wed, 19 Apr 2023 10:12:40 -0500
-Message-ID: <ede39204-3ba0-657b-4618-3e5395942a48@ti.com>
-Date:   Wed, 19 Apr 2023 10:12:40 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
-Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>
-CC:     Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233482AbjDSPY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:24:27 -0400
+Received: from synguard (unknown [212.29.212.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A06665BF;
+        Wed, 19 Apr 2023 08:23:48 -0700 (PDT)
+Received: from dali.siklu.local (dali.siklu.local [192.168.42.30])
+        by synguard (Postfix) with ESMTP id 3CCF14DFC5;
+        Wed, 19 Apr 2023 18:14:59 +0300 (IDT)
+From:   Shmuel Hazan <shmuel.h@siklu.com>
+To:     Russell King <linux@armlinux.org.uk>
+Cc:     Marcin Wojtas <mw@semihalf.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        horatiu.vultur@microchip.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Schuyler Patton <spatton@ti.com>
-References: <20230413223051.24455-1-jm@ti.com>
- <8552c377-b2e9-749a-9f0c-7c444fe012c6@ti.com>
-From:   "Mendez, Judith" <jm@ti.com>
-In-Reply-To: <8552c377-b2e9-749a-9f0c-7c444fe012c6@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, Shmuel Hazan <shmuel.h@siklu.com>
+Subject: [PATCH v3 0/3] net: mvpp2: tai: add extts support 
+Date:   Wed, 19 Apr 2023 18:14:54 +0300
+Message-Id: <20230419151457.22411-1-shmuel.h@siklu.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,FSL_HELO_NON_FQDN_1,
+        HELO_NO_DOMAIN,RDNS_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Vignesh,
+This patch series adds support for PTP event capture on the Aramda
+80x0/70x0. This feature is mainly used by tools linux ts2phc(3) in order
+to synchronize a timestamping unit (like the mvpp2's TAI) and a system
+DPLL on the same PCB. 
 
-On 4/14/2023 1:12 AM, Vignesh Raghavendra wrote:
-> Hi Judith,
-> 
-> On 14/04/23 04:00, Judith Mendez wrote:
->> Judith Mendez (5):
->>    arm64: dts: ti: Add AM62x MCAN MAIN domain transceiver overlay
->>    arm64: defconfig: Enable MCAN driver
->>    dt-binding: can: m_can: Remove required interrupt attributes
->>    arm64: dts: ti: Enable multiple MCAN for AM62x in MCU MCAN overlay
->>    can: m_can: Add hrtimer to generate software interrupt
-> 
-> This is fine for RFC, but next time, please split DT and defconfig
-> changes (1/5,2/5, and 4/5) to separate series as they have to go via
-> arm64 tree.
+The patch series includes 3 patches: the second one implements the
+actual extts function.
 
-Thanks, will do in the next respin.
+Changes in v2:
+	* Fixed a deadlock in the poll worker.
+	* Removed tabs from comments.
+
+Changes in v3:
+	* Added more explanation about the change in behavior in mvpp22_tai_start.
+	* Explain the reason for choosing 95ms as a polling rate.
+
+Shmuel Hazan (3):
+  net: mvpp2: tai: add refcount for ptp worker
+  net: mvpp2: tai: add extts support
+  dt-bindings: net: marvell,pp2: add extts docs
+
+ .../devicetree/bindings/net/marvell,pp2.yaml  |  18 +
+ .../net/ethernet/marvell/mvpp2/mvpp2_tai.c    | 334 ++++++++++++++++--
+ 2 files changed, 317 insertions(+), 35 deletions(-)
+
+
+base-commit: 3e7bb4f2461710b70887704af7f175383251088e
+-- 
+2.40.0
+
