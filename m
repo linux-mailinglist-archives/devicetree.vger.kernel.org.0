@@ -2,82 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DD226E7B1E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 15:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89D0F6E7B70
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 16:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232648AbjDSNnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 09:43:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49712 "EHLO
+        id S231147AbjDSOAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 10:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbjDSNnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 09:43:17 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A08496A55
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 06:43:15 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id o29-20020a05600c511d00b003f1739de43cso1454234wms.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 06:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681911794; x=1684503794;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HZA8xnxtLCau3xeUJDwqvV4qTTmMB91klxm30umz0uQ=;
-        b=jJFoqGz86rmujeiO5U607w6Dnd7J3apqwykbvvt5bUCY4kIj8Cif0WANeAuVPGTEuS
-         iHZ1aErIZdKRy5GmyLTblFUROizMYYFqlWXffD2cJ4QC7vUItyQOs7Hk/4ZE3i5POF+J
-         5njpxQXk9ilntHb+pwHWX+kCqEIuATFOQ+0pIZ9McbSkyDDZp5mgiJ2RaGOYgU6b3Y85
-         qAltwKEMXjzU9EIfegNRao6eTkOl/1cJpDHIikjk2whhPiEwe91wSFuGuSKeXtwneJkU
-         ATvFEk/sATbg86Kw6v8vq+eTzH8flAlz+GVFG+/4iNyy5YNOg0ADFl+MtNUVojkrN/KC
-         yptQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681911794; x=1684503794;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HZA8xnxtLCau3xeUJDwqvV4qTTmMB91klxm30umz0uQ=;
-        b=Tp3Uqd7N3OA9Wlx978NZ9cZl0NxwFTuvE/SD2LiIcYWDm0ftbvUYFZbnl0mTdmF/6N
-         Re7G4tHTAE2PwPFFOAO6fKPMs41gNZIsGN1sZrN2+48A3N9tbh9vZndIvt6QgkoSqDH3
-         LbSosvPInenIDGGqVKS/pnR5J3LkUCAHwQZ/N+xIquERtVfyD8uaDChtfJ+rUVOL2ZYS
-         pBRh2Ti9h1ZMZafpBKthuZClOQkOfPchp/jd1SP8BGfQUC5XCBsVy0PzzkNwZ2NUYD0S
-         aPX8vH+R8SyEPNaKlhgrnIgeKVtV1ML93kf8vFAltusybEmsIFQuwhn83M6V/eHy2xm6
-         aIUQ==
-X-Gm-Message-State: AAQBX9cVseSKegZRTriMsfNbD2zxzNVFHI5lA4n0lvXNU66ZN9bODGIe
-        9bIunUsUQFunT7WgTrJ3t47ckQ==
-X-Google-Smtp-Source: AKy350aCnVr5xUdDLfvotskDQKq4zjir2EkydStBZxfN4WDOoGflyfK+hy5eON1v5GoQ798VpeVv9Q==
-X-Received: by 2002:a05:600c:20e:b0:3f1:76d0:8bb0 with SMTP id 14-20020a05600c020e00b003f176d08bb0mr6744673wmi.36.1681911794106;
-        Wed, 19 Apr 2023 06:43:14 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1360:9fbb:dfd6:2db4? ([2a01:e0a:982:cbb0:1360:9fbb:dfd6:2db4])
-        by smtp.gmail.com with ESMTPSA id q1-20020adfcd81000000b002ff77b033b1sm808990wrj.33.2023.04.19.06.43.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 06:43:13 -0700 (PDT)
-Message-ID: <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
-Date:   Wed, 19 Apr 2023 15:43:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
-Content-Language: en-US
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        =Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S229978AbjDSOAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 10:00:45 -0400
+X-Greylist: delayed 154347 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 19 Apr 2023 07:00:43 PDT
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57A3F83;
+        Wed, 19 Apr 2023 07:00:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681912840; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=pvBk3KjtOqhsVP0fpd8sLK3TZ1iPPEOEMap3voQ1pMPZtV9W8bNXxRx2GNdcl4+TLI
+    JS5lpze7kXo5dfPZkUjgI3MDZdanV3cSyIi0FfBu3tZTtmF2MzTO5pS7qOCl9ykEvw2Y
+    vhNkZZuclPm+iIzBYGFMa0tE4pfAu8icBlL3XiyM62xUCtutuyqyEJmdGp7dgsNfp9Hx
+    3ejg2IqJ1ar/1/dGjvVRRpMsAUWfJghhkpwC4oo0zr5H/0Pg/Ryz3qcbdB+q6rhhMB5O
+    CwUdz9HPUi4zUnHcdaeEKL2C554ozIBPQ7gZw+Fc5q1QxUpH4TRIavB8lQDBGbDhsi6C
+    eyxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1681912840;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=khgLveWxOtEKwyxE2H65XlSSu/fm5Gz0M5cVj1ZTRVQ=;
+    b=j0jO8HFRZgQH8Pqmiqk3dcwZmfdwcBT7smkvNJL2IphNrx2qzyF67lNqlPA4GJWBfY
+    X7OqFtHu6698SdycUnVDBt3rCghQXmNWxt6xQH/c2ooTytuwIC/Egt+taERiDWCtBhkc
+    BD/TcMkN4EjTDr3zeBFi2Fqv3yoeIMEWI1d1jzk90SLnGNonpjwGb1ORU/wV6NpLMevg
+    A7GyqTGIvoudmgESPNI9xAVurZIbJpwp6mdEfjQYzuXsw5YWxdgrXYoRNrcCgNBemH1n
+    SHcu+8v0Q3My3FJ6+gSNiV5rB3wzhGzjupQU1bBvuErZ6VTt3rJhhLAONd479a6inNs0
+    1V1g==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1681912840;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=khgLveWxOtEKwyxE2H65XlSSu/fm5Gz0M5cVj1ZTRVQ=;
+    b=eWzHib70vHw+5Bol3kA1vcx3kxZxzTyRGMiJ4zMq5YkjJAl3SKphIGJY15TgkOxJdl
+    Pbc4OPFC9gTSmTkI1HphhyRWpL8D8zfOriRmnWtXk+7C8OP3b1Vjnd3X50G3UoBCnOt6
+    nmhRugRT4Vw/60zhcl4rna+RL3XeRcr30/3QzCVfnErPTzwu8xjSdQrXuWbCIuUAGKhp
+    FoT4qFtlA8sgz0dKK/E2mIzrs/K3jsqA/Owm7FJmp2T60wqCYwJKO8fh3W5tRYj7vCbS
+    tE4QAM4cKSgeNQkORn+KvrejqBBOz71jtNM8JoXwA+QumOHOT7mhU0spJlBc4KdeeLcF
+    TOTg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1681912840;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=khgLveWxOtEKwyxE2H65XlSSu/fm5Gz0M5cVj1ZTRVQ=;
+    b=K+LMlUTc2w6j06vhnHh7av6fPcrcYXmZdGiN9nKrW8XxKUT5izZYEYK5wq9H+NbJgA
+    NljCDk0AYBjY0BOnidBA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8p+F1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
+    with ESMTPSA id j6420az3JE0el5p
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 19 Apr 2023 16:00:40 +0200 (CEST)
+Date:   Wed, 19 Apr 2023 16:00:34 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
- <20230419073834.972273-2-xianwei.zhao@amlogic.com>
- <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
-Organization: Linaro Developer Services
-In-Reply-To: <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH RFT v2 01/14] dt-bindings: clock: qcom,rpmcc: Add a way
+ to enable unused clock cleanup
+Message-ID: <ZD_0AmYU-N5vzv8f@gerhold.net>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+ <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
+ <ZD2YYrOdQMD3pi7u@gerhold.net>
+ <d63d4896afe8a1a901470f88862ce608.sboyd@kernel.org>
+ <3873483f-7f7d-a146-cca9-b50f054289d4@linaro.org>
+ <6407af2a-18c6-9baf-cc9b-dcf7001812b7@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6407af2a-18c6-9baf-cc9b-dcf7001812b7@linaro.org>
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,89 +99,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 15:14, Dmitry Rokosov wrote:
-> On Wed, Apr 19, 2023 at 03:38:33PM +0800, =Xianwei Zhao wrote:
->> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>
->> The C series SoCs are designed for smart IP camera
->> applications, which does not belong to Meson series.
->> So, Add ARCH_AMLIPC for the new series.
->>
->> There are now multiple amlogic SoC seies supported, so group them under
->> their own menu. we can easily add new platforms there in the future.
->> Introduce ARCH_AMLOGIC to cover all Amlogic SoC series.
->>
->> No functional changes introduced.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   arch/arm64/Kconfig.platforms | 12 ++++++++++++
->>   arch/arm64/configs/defconfig |  2 ++
->>   2 files changed, 14 insertions(+)
->>
->> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
->> index 89a0b13b058d..bfbc817eef8f 100644
->> --- a/arch/arm64/Kconfig.platforms
->> +++ b/arch/arm64/Kconfig.platforms
->> @@ -162,12 +162,24 @@ config ARCH_MEDIATEK
->>   	  This enables support for MediaTek MT27xx, MT65xx, MT76xx
->>   	  & MT81xx ARMv8 SoCs
->>   
->> +menuconfig ARCH_AMLOGIC
->> +	bool "NXP SoC support"
+On Wed, Apr 19, 2023 at 01:31:01PM +0200, Konrad Dybcio wrote:
+> What should we do about the non-bus RPM clocks though? I don't fancy
+> IPA_CLK running 24/7.. And Stephan Gerhold was able to achieve VDD_MIN
+> on msm8909 with these clocks shut down (albeit with a very basic dt setup)!
 > 
-> NXP? Did you mean "Amlogic"?
-> 
->> +
->> +if ARCH_AMLOGIC
->> +
->>   config ARCH_MESON
->>   	bool "Amlogic Platforms"
->>   	help
->>   	  This enables support for the arm64 based Amlogic SoCs
->>   	  such as the s905, S905X/D, S912, A113X/D or S905X/D2
->>   
->> +config ARCH_AMLIPC
-> 
-> Do we really need a different ARCH for Amlogic IPC?
-> I can imagine that it's not the Meson architecture at all.
-> But maybe a better solution is just to rename ARCH_MESON to ARCH_AMLOGIC?
-
-It should be changed treewide, and is it worth it ?
-
-Neil
-
-> 
->> +	bool "Amlogic IPC Platforms"
->> +	help
->> +	  This enables support for the arm64 based Amlogic IPC SoCs
->> +	  such as the C302X, C308L
->> +endif
->> +
->>   config ARCH_MVEBU
->>   	bool "Marvell EBU SoC Family"
->>   	select ARMADA_AP806_SYSCON
->> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->> index 7790ee42c68a..f231bd1723fd 100644
->> --- a/arch/arm64/configs/defconfig
->> +++ b/arch/arm64/configs/defconfig
->> @@ -46,7 +46,9 @@ CONFIG_ARCH_LG1K=y
->>   CONFIG_ARCH_HISI=y
->>   CONFIG_ARCH_KEEMBAY=y
->>   CONFIG_ARCH_MEDIATEK=y
->> +CONFIG_ARCH_AMLOGIC=y
->>   CONFIG_ARCH_MESON=y
->> +CONFIG_ARCH_AMLIPC=y
->>   CONFIG_ARCH_MVEBU=y
->>   CONFIG_ARCH_NXP=y
->>   CONFIG_ARCH_LAYERSCAPE=y
->> -- 
->> 2.37.1
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> Taking into account the old interconnect-enabled DTs, some of the
+> clocks would need to be on so that the QoS writes can succeed
+> (e.g. the MAS_IPA endpoint needs IPA_CLK), it gets complicated again..
 > 
 
+I guess MSM8996 is the only platform affected by this? sdm630.dtsi seems
+to list the clock already in the a2noc and all others don't seem to have
+an interconnect driver yet.
+
+This will be subjective and someone will surely disagree but...
+
+IMO forcing all RPM clocks on during boot and keeping them enabled is
+not part of the DT ABI. If you don't describe the hardware correctly and
+are missing necessary clocks in the description (like the IPA_CLK on the
+interconnect node) then your DT is wrong and should be fixed.
+
+I would see this a bit like typical optimizing C compilers nowadays. If
+you write correct code it can optimize, e.g. drop unnecessary function
+calls. But if you write incorrect code with undefined behavior it's not
+the fault of the compiler if you run into trouble. The code must be
+fixed.
+
+The DT bindings don't specify that unused resources (clocks, ...) stay
+"magically" active. They specify that that the resources you reference
+are available. As such, I would say the OS is free to optimize here and
+turn off unused resources.
+
+The more important point IMO is not breaking all platforms without
+interconnect drivers. This goes beyond just adding a missing clock to
+the DT, you need to write the driver first. But having the max vote in
+icc_smd_rpm (somehow) should hopefully take care of that.
+
+> I suppose something like this would work-ish:
+> 
+> 0. remove clock handles as they're now contained within icc and
+>    use them as a "legacy marker"
+> 1. add:
+> 	if (qp->bus_clocks)
+> 		// skip qos writes
+
+Maybe you can just check if all necessary clocks for QOS are there or
+not? I don't think it's a problem to skip it on broken DTs. I think it
+would be even fine to refuse loading the interconnect driver completely
+and just have the standard max vote (as long as that results in a
+booting system).
+
+> 
+> This will:
+> - let us add is_enabled so that all RPM clocks bar XO_A will be cleaned up
+> - save massively on code complexity
+> 
+
++1
+
+> at the cost of retroactively removing features (QoS settings) for people
+> with old DTs and new kernels (don't tell Torvalds!)
+> 
+
+I doubt anyone will notice :p
+
+> This DTB ABI stuff really gets in the way sometimes :/ We're only now
+> fixing up U-Boot to be able to use upstream Linux DTs and other than
+> that I think only OpenBSD uses it with 8280.. Wish we could get rid of
+> all old junk once and then establish immutability but oh well..
+
+Nice, thanks a lot for working on addressing the Qualcomm DT mess in
+U-Boot. I've been meaning to work this myself for a long time but never
+found the time to start... :')
+
+Thanks,
+Stephan
