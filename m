@@ -2,176 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4E06E7FFA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 19:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D0036E8031
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 19:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbjDSRBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 13:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56258 "EHLO
+        id S230032AbjDSRR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 13:17:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbjDSRA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 13:00:59 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9237699;
-        Wed, 19 Apr 2023 10:00:52 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 26B1A5FD90;
-        Wed, 19 Apr 2023 20:00:50 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1681923650;
-        bh=OU1NLvRUb+HCxU4lSgffvUw8fBAqCHnX3pFNeD8icRc=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=fAlgunqHuIq2ORPE9XrSBxjsOi6AH149QQIKo3TWZKZiA7QHDR5N5zpH3W1Y95TlD
-         we2qrtaIxkZY+2jbRZqGbJ5y979PRIASi4Mym40S16rAqyxqYz1YhnAOpiN7Z9kgcZ
-         4LlJ4d/UfQutIXxk64iwPhJ3qWojTMcC20QPa7fV8gg9rdFbHb9O2A+IOtBEiIjUDb
-         c8riV2VMvytNa3mAcfkQrqSasVePEDtKj5kHhm9KHKZDpIRpe8cmCJtFkkWUTF7G+c
-         RjeCAfxdmYr0Ygsp7W73JiI1CwWli5aX6r3rJUsOUZzL8l0Zz3Y+XY3JGpyOCM/ERr
-         ek3fRzKrrpemw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Wed, 19 Apr 2023 20:00:48 +0300 (MSK)
-Date:   Wed, 19 Apr 2023 20:00:43 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-CC:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
-Message-ID: <20230419170043.auzfa32weevmrt4e@CAB-WSD-L081021>
-References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
- <20230419073834.972273-2-xianwei.zhao@amlogic.com>
- <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
- <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
- <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
- <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
+        with ESMTP id S229558AbjDSRR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 13:17:56 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47EF165B5;
+        Wed, 19 Apr 2023 10:17:54 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f178da21b2so278215e9.1;
+        Wed, 19 Apr 2023 10:17:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681924673; x=1684516673;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xBoqLsLFILpUeqaQAwB4b5qUgereH6wIMwsI7Fa/SsY=;
+        b=EK+rvPhTQN0/qi3dNdP2dEsmCTVhxtE+gr9YKuIDcjBI7O53jFUlcILeDZiRZrI2Ta
+         2qM7ie1i2kzb1TLqtZgJ+xhhcyrGriDgSgpI4vcOMq9bKh5odcNFFd25SLNDdCs/iUBd
+         Y00Wc4yHg6kkGZDJj9aKKp+B6Io3fj6Ec0bw3p5kA+boKNZHRK8vtzp9dIOTn+iWtNsJ
+         BhB1SVzLmGkBbweQ0bl97Az5asa+O6PJGPpx727RgeeSMho0919dd3iU+qPAFWkk1Oh7
+         0dstp3k6FhPhGklkYvin8Ocw+F4E+BnTKIuF1HjfMSkmJGygT9zTwfEPcE7TAjf7JGmx
+         9g6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681924673; x=1684516673;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xBoqLsLFILpUeqaQAwB4b5qUgereH6wIMwsI7Fa/SsY=;
+        b=PL43iCADts3q17awKom0oodsKdUhVmRe13EY6CvF1kQmifhHI5s2NlhR6ZbkizVuYb
+         lKUbTPKMQnEun/zaBiaU4LYgXJ2nGItk8rM6cZmXtKA+7liiqH8+ZWWQHfR4JtIvBMsn
+         S1ydOdAAZXKBTIVSb/weAvh24UkRgEA8qxhsqnOknJ040UYD6CcpHsD0si9xUq+qrCXj
+         x85WPTBJxF90UtVGLCOs8uHTuh4d9xrROEwNTDkyCX4r3c6VBgEXvTpwsEo2k/HR1gz6
+         P+xeOmxy/YxWjRhCNY8rzJAu8uPGxVnDK3z/pQXJCwoZrQaTd7onZ9cF6VgMuUCmGlpw
+         HYww==
+X-Gm-Message-State: AAQBX9f0yf1Vb+2GbZX3zRcaEWx1dai+BbcMKbmqAzgdsTZUaiOLpdE6
+        aeg2Ev09U9wnHmClUpvmmqw=
+X-Google-Smtp-Source: AKy350bwMT9R/pz2b9g2K/44mP9753047Xgad1tVmPzf1Qt31ES4WXB8r6Kt+BKO1skqHoHGuE6VpA==
+X-Received: by 2002:a5d:500d:0:b0:2f6:9bc4:76f1 with SMTP id e13-20020a5d500d000000b002f69bc476f1mr5721779wrt.1.1681924672646;
+        Wed, 19 Apr 2023 10:17:52 -0700 (PDT)
+Received: from archbox.v.cablecom.net (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id t3-20020a5d5343000000b002c55521903bsm16304136wrv.51.2023.04.19.10.17.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Apr 2023 10:17:52 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: fix nEXTRST on SOQuartz
+Date:   Wed, 19 Apr 2023 19:17:31 +0200
+Message-Id: <20230419171731.28641-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/19 15:29:00 #21128497
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 19, 2023 at 06:25:07PM +0200, Neil Armstrong wrote:
-> On 19/04/2023 18:04, Dmitry Rokosov wrote:
-> > On Wed, Apr 19, 2023 at 03:43:12PM +0200, Neil Armstrong wrote:
-> > > On 19/04/2023 15:14, Dmitry Rokosov wrote:
-> > > > On Wed, Apr 19, 2023 at 03:38:33PM +0800, =Xianwei Zhao wrote:
-> > > > > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > > > > 
-> > > > > The C series SoCs are designed for smart IP camera
-> > > > > applications, which does not belong to Meson series.
-> > > > > So, Add ARCH_AMLIPC for the new series.
-> > > > > 
-> > > > > There are now multiple amlogic SoC seies supported, so group them under
-> > > > > their own menu. we can easily add new platforms there in the future.
-> > > > > Introduce ARCH_AMLOGIC to cover all Amlogic SoC series.
-> > > > > 
-> > > > > No functional changes introduced.
-> > > > > 
-> > > > > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > > > > ---
-> > > > >    arch/arm64/Kconfig.platforms | 12 ++++++++++++
-> > > > >    arch/arm64/configs/defconfig |  2 ++
-> > > > >    2 files changed, 14 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> > > > > index 89a0b13b058d..bfbc817eef8f 100644
-> > > > > --- a/arch/arm64/Kconfig.platforms
-> > > > > +++ b/arch/arm64/Kconfig.platforms
-> > > > > @@ -162,12 +162,24 @@ config ARCH_MEDIATEK
-> > > > >    	  This enables support for MediaTek MT27xx, MT65xx, MT76xx
-> > > > >    	  & MT81xx ARMv8 SoCs
-> > > > > +menuconfig ARCH_AMLOGIC
-> > > > > +	bool "NXP SoC support"
-> > > > 
-> > > > NXP? Did you mean "Amlogic"?
-> > > > 
-> > > > > +
-> > > > > +if ARCH_AMLOGIC
-> > > > > +
-> > > > >    config ARCH_MESON
-> > > > >    	bool "Amlogic Platforms"
-> > > > >    	help
-> > > > >    	  This enables support for the arm64 based Amlogic SoCs
-> > > > >    	  such as the s905, S905X/D, S912, A113X/D or S905X/D2
-> > > > > +config ARCH_AMLIPC
-> > > > 
-> > > > Do we really need a different ARCH for Amlogic IPC?
-> > > > I can imagine that it's not the Meson architecture at all.
-> > > > But maybe a better solution is just to rename ARCH_MESON to ARCH_AMLOGIC?
-> > > 
-> > > It should be changed treewide, and is it worth it ?
-> > 
-> > As far as I understand, the A1 and S4 families are not fully compatible
-> > with the Meson architecture, and we haven't provided additional ARCH_*
-> > for them.
-> 
-> The GXBB, GXL/GXM, G12A, G12B & SM1 are also not fully compatible,
-> but they lie under the "MESON" umbrella which covers SoC since the
-> Meson6 architecture. It's a facility to include/exclude Amlogic
-> drivers/DT, nothing else.
-> 
-> If you compare it to BCM or NXP, it's different situation, the
-> different ARCH_* actually targets totally different SoCs from
-> completely different Business Units or from companies acquisitions.
-> 
-> We should have named it ARCH_AMLOGIC since the beginning, but we
-> can't change history.
-> 
-> > In my opinion, it's a good time to split the Meson architecture into
-> > proper subsets, or rename it treewide (maybe only config option
-> > ARCH_MESON => ARCH_AMLOGIC).
-> 
-> MESON is only a codename to differentiate from other SoC vendors
-> because Amlogic used it as a codename for a long time.
-> Compare this to Allwinner's "sunxi" or Qualcomm's "msm".
-> 
-> This config has no functional mean, it's only a config namespace.
-> 
-> Renaming it would need renaming it in all subsystems Kconfig/Makefiles
-> and will certainly break builds with custom kernel configs
-> in various publicly used builds like Armbian, meta-meson, LibreELEC,
-> Debian, Suse, ...
-> 
-> So it's pointless to change, and even add a different one since
-> it's not a family differentiator since the Kernel is modular
-> and works around DT to determine which drivers to probe.
-> 
-> Neil
-> 
+In pre-production prototypes (of which I only know one person
+having one, Peter Geis), GPIO0 pin A5 was tied to the SDMMC
+power enable pin on the CM4 connector. On all production models,
+this is not the case; instead, this pin is used for the nEXTRST
+signal, and the SDMMC power enable pin is always pulled high.
 
-Thank you for the detailed explanation; it makes sense!
-Actually, I disagree with creating a separate ARCH without first reworking
-all of its subsets - that's why I started this discussion.
-Now, I see that you share my perspective and believe that C3
-should be added to the ARCH_MESON subset, so I have no objections.
+Since everyone currently using the SOQuartz device trees will
+want this change, it is made to the tree without splitting the
+trees into two separate ones of which users will then inevitably
+choose the wrong one.
 
-[...]
+This fixes USB and PCIe on a wide variety of CM4IO-compatible
+boards which either rely on the 3.3V being there or use the
+nEXTRST signal.
 
+Fixes: 5859b5a9c3ac ("arm64: dts: rockchip: add SoQuartz CM4IO dts")
+Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+---
+ .../boot/dts/rockchip/rk3566-soquartz-cm4.dts | 18 +++++++------
+ .../boot/dts/rockchip/rk3566-soquartz.dtsi    | 25 ++++++++++---------
+ 2 files changed, 24 insertions(+), 19 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+index 263ce40770dd..cddf6cd2fecb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+@@ -28,6 +28,16 @@ vcc_5v: vcc-5v-regulator {
+ 		regulator-max-microvolt = <5000000>;
+ 		vin-supply = <&vcc12v_dcin>;
+ 	};
++
++	vcc_sd_pwr: vcc-sd-pwr-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_sd_pwr";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc3v3_sys>;
++	};
+ };
+ 
+ /* phy for pcie */
+@@ -130,13 +140,7 @@ &saradc {
+ };
+ 
+ &sdmmc0 {
+-	vmmc-supply = <&sdmmc_pwr>;
+-	status = "okay";
+-};
+-
+-&sdmmc_pwr {
+-	regulator-min-microvolt = <3300000>;
+-	regulator-max-microvolt = <3300000>;
++	vmmc-supply = <&vcc_sd_pwr>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
+index ce7165d7f1a1..f589a4fdaccb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
+@@ -65,6 +65,17 @@ led_work: led-work {
+ 		};
+ 	};
+ 
++	nextrst_pin: nextrst-pin-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&nextrst_h>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-name = "nextrst";
++	};
++
+ 	sdio_pwrseq: sdio-pwrseq {
+ 		status = "okay";
+ 		compatible = "mmc-pwrseq-simple";
+@@ -104,16 +115,6 @@ vcc3v3_sys: vcc3v3-sys-regulator {
+ 		regulator-max-microvolt = <3300000>;
+ 		vin-supply = <&vcc5v0_sys>;
+ 	};
+-
+-	sdmmc_pwr: sdmmc-pwr-regulator {
+-		compatible = "regulator-fixed";
+-		enable-active-high;
+-		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&sdmmc_pwr_h>;
+-		regulator-name = "sdmmc_pwr";
+-		status = "disabled";
+-	};
+ };
+ 
+ &cpu0 {
+@@ -539,8 +540,8 @@ wifi_enable_h: wifi-enable-h {
+ 		};
+ 	};
+ 
+-	sdmmc-pwr {
+-		sdmmc_pwr_h: sdmmc-pwr-h {
++	nextrst {
++		nextrst_h: nextrst-h {
+ 			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
 -- 
-Thank you,
-Dmitry
+2.40.0
+
