@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA31D6E799F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9708F6E79A1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232540AbjDSMXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 08:23:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41760 "EHLO
+        id S233081AbjDSMXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 08:23:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233093AbjDSMXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:23:25 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BBAC46B4
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 05:23:24 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id k15so16046829ljq.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 05:23:23 -0700 (PDT)
+        with ESMTP id S233188AbjDSMX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:23:27 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B706173B
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 05:23:25 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4edc63c82d1so1849038e87.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 05:23:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681907002; x=1684499002;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GvSDQyWj5f7txFAaXfGbFGlFj80hp9DwoTE4MYUMfaI=;
-        b=qQXEVp3KKH6Du+RXV3eFlXBV5WmXao+AQpZ70WoxPKDUZDClEb9+50HtcFx2Z0LJhY
-         U7eEfIGGzpRAC8P5IGgETSEYany5RpjRFYz2T8PUkuio7dmEIV6pPQrFijiGEreD39b7
-         Mk4vfA0KWDPkZquu3X+SDLLMR0mGqTAC4Z3VEyW0HiP9IkfGy+ebioIyzFEuwh3/KAao
-         mrZWtijKQva4B2vuyvw4tpxQMa7t6LyxKi10+EqNCsl4GqYzpypZiMJk6aSDLmZ8yvzg
-         G/pzCTbK9KAk2/5E/Abf900QD0kOrE8LhmYzUex9f83N+5CKN0ue7tu4+fzujK83K0Qy
-         gNSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681907002; x=1684499002;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1681907003; x=1684499003;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GvSDQyWj5f7txFAaXfGbFGlFj80hp9DwoTE4MYUMfaI=;
-        b=ikE35+KYt+3AKYRHVTkWhgx3itAeGdMC6UtqzR8s0xFywt6P83gy2t3NguQGdhR7cX
-         qC4T1DO8pEpaJXwwvILmtWCmAYLP/iDS22zfBuxgVyuKRIg4np5TRgH7mz0OJ6qbN0jB
-         rU3utDeeu5lOlAEtTFKK/0uDB1DM8itJ6ZE5uZJMHYLao83tPn+de9FABtrl3sG/vLWx
-         BPwmHWuoJ6CF024gddXdPnCEUN5BqmRA00eCGRt7n7vhK3K0HrR7naSaTKG5Mul1IN6y
-         bkLA4ZjcPyJsaXudHeotSpDTPf92nwVmYyvI16mhj/9pK2I+zanpa1EbV4gXjrI13wTy
-         3LlA==
-X-Gm-Message-State: AAQBX9dz+5QQdFpmLBr6Th3B2VUq/WrZjeZYsPki7zjMc4qnoCgNgEpk
-        JS7SrB+1kIZOrNgHDTPjJbXskw==
-X-Google-Smtp-Source: AKy350YctxTOqV88ACpaBhsr8dT+ngoxxLJTPBKjze0bRc2AdDbM4iKjM4iKXe2jpw3pVyk7E5VoVA==
-X-Received: by 2002:a2e:9b58:0:b0:2a7:8301:a968 with SMTP id o24-20020a2e9b58000000b002a78301a968mr809901ljj.12.1681907002262;
-        Wed, 19 Apr 2023 05:23:22 -0700 (PDT)
+        bh=rpIrKGGSuGWfWoM6hvqicgJY+QR4yE0dRd/xAmGj4Vk=;
+        b=azVSMzjNenkmgem6Oe0hWPFKOwsCHgbHWMLXJ28e6ZxNmp7PCJvtCCaDdygiIrjwyr
+         tScYR7rXvC+Lg10tvwGReL1RV9nKYyuEz9e3BJuajHu2g5PyWpFdIzP8Lg3WvlwnB2ph
+         JVEq+U032vYj21ScvJXWgrdlbdxU43eOov5ZAYs0/d7Qg8LvHZnXWkQdxK+Fkzp34EWM
+         Z5HhLOrpNrsP9rwyqCQA9LepbxFv5+X5vfschdJrltUEgMracRVa1qrZOJfmoXJ4aUVr
+         uVT/p+BI7NdJDnwkJw8NlfE/GIPsbRWY6qFjQkzytpnRfIKsGOV/10UENqmy6uvpBnJ2
+         wm4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681907003; x=1684499003;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rpIrKGGSuGWfWoM6hvqicgJY+QR4yE0dRd/xAmGj4Vk=;
+        b=GVzDAYESVfpQCwH+Tbk4XZDjBH8bR+VBcKruOk5vk4d7gJPM0qtDFYg54425Glxty4
+         7vrLR7O7Lw0QZ3fJN1KOV/3+7VIFDJwXi4jFEHr2WXIfSxOxElLOxzB4ChBH5uArAg++
+         H9nfNg2/mkSfj4zyKL3qxW3x5do8s3HrQbbpDP2BoaTvp9dt6lqP45mXp38IYnXgqwdC
+         ScM2g3EzFy/xCQ4oQ+GmxBO0yMhFfhcWgAx1az0/BPafFfhPExIhwOrVMaAKOkNn86Gr
+         qpdkIsvKRrOMoxxL3f0YShDwmdffSkeMkmzpQvHsbKJ5gBXmA4J3o9HY3rIlsGzVPOWM
+         NuRA==
+X-Gm-Message-State: AAQBX9c9VDUeA7M7UQjyNnL7HoGNuSM1VQ4AjajGsUshXl5bxnlceM0N
+        tZ5Pd4tdOhj8hwK0lilRfq/PiQ==
+X-Google-Smtp-Source: AKy350YUWVlbiha/VXyCsQIxcwwqUaHjLH3eUPzyALQnO3vkbpfApgWBZx5XkVFDC48tTqGMUUuSFA==
+X-Received: by 2002:a19:f71a:0:b0:4ed:d4ac:1e17 with SMTP id z26-20020a19f71a000000b004edd4ac1e17mr1539663lfe.49.1681907003424;
+        Wed, 19 Apr 2023 05:23:23 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id a23-20020a2e8317000000b002a79d7ceb93sm2925550ljh.9.2023.04.19.05.23.21
+        by smtp.gmail.com with ESMTPSA id a23-20020a2e8317000000b002a79d7ceb93sm2925550ljh.9.2023.04.19.05.23.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 05:23:21 -0700 (PDT)
+        Wed, 19 Apr 2023 05:23:23 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v5 0/2] Introduce RPM Master stats
-Date:   Wed, 19 Apr 2023 14:23:19 +0200
-Message-Id: <20230405-topic-master_stats-v5-0-2e1c98a8b63e@linaro.org>
+Date:   Wed, 19 Apr 2023 14:23:20 +0200
+Subject: [PATCH v5 1/2] dt-bindings: soc: qcom: Add RPM Master stats
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADfdP2QC/4XN0coCIRAF4FcJr39DR7fF/6r3iIjRtBU2DbWli
- H33pu4iaC/PMOc7D1Z9ib6y/9WDFT/FGnOi0P2tmBswnTyPR8oMBCihRcdbvkTHz1ibL4fasFV
- uEYREg8GoI6Oixeq5LZjcQNV0HUc6XooP8fZe2u0pD7G2XO7v4Um+rj83JskFl1YGhF4Z06ntG
- BOWvM7lxF7eBMsGkNFJRw/e2Y0UX4ZaNhQZ4CxY1AGEgS9DLxuaDA2yVxsIzvXmw5jn+QnLN5L
- llgEAAA==
+Message-Id: <20230405-topic-master_stats-v5-1-2e1c98a8b63e@linaro.org>
+References: <20230405-topic-master_stats-v5-0-2e1c98a8b63e@linaro.org>
+In-Reply-To: <20230405-topic-master_stats-v5-0-2e1c98a8b63e@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -71,11 +69,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         Manivannan Sadhasivam <mani@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1681907001; l=2588;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681907001; l=3242;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=vst71VT1XxXM0DP8FwVpxSkBNbeYnYkFdFEDddcpBLE=;
- b=BFtLTW3/iZpy/yhAJGrGCAu8CttzFDJb0tjON8E9/a3Uatd/zLrnfDRLM1M4kEvakebpr/AWGjtr
- A8sZ6pdLB+ric4O7HTz2+87pECKqLftYnzaAHmKmnvmdm+gW7Wp5
+ bh=p+kMF2wI4gUD7vWxW6rNWesT2Ay4RZ53dQRi1h/ATdY=;
+ b=q1DsNMEJ7vggCx+E2l6mlDctPkj30e8vrqGILNMEjQZu/dcOjiT04Xcutcj2BpdCzw+0QJ6FMmYB
+ tA/Q3z4hDRcHlc8C0Y+YQ9jtMgZgAmn+vBk35D67i/yTOKGMZN10
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,69 +86,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v4 -> v5:
-- pick up tags
-- uintXY_t -> uXY
-- driver.name = "rpm_master_stats" -> "qcom_rpm_master_stats"
-- use dev_err_probe for debugfs file creation fail
-- use PTR_ERR(dent) intead of -EINVAL for debugfs file creation fail
+The RPM MSG RAM contains per-RPM-master (e.g. APPS, ADSP etc.) sleep
+statistics. They let one assess which core is actively preventing the
+system from entering a true low-power mode.
 
-v4: https://lore.kernel.org/r/20230405-topic-master_stats-v4-0-4217362fcc79@linaro.org
-
-v3 -> v4:
-- Use "data" instead of "d" for naming local struct master_stats_data *
-- Add "qcom_" prefix in the debugfs path
-- Add "Qualcomm" prefix in MODULE_NAME
-- Make the struct __packed__ to avoid padding surprises
-  (even though it looks like there shouldn't be any, by eye)
-- use IS_ERR for checking debugfs_create_file return value instead of
-  nullchecking, that apparently changed..
-- Use -ENODEV instead of -EINVAL when a MSG RAM handle is not found
-- Add missing of_node_put() after of_parse_phandle()
-
-- Vastly improve the documentation bit
-
-v3: https://lore.kernel.org/r/20230405-topic-master_stats-v3-0-2cb2ba4f2092@linaro.org
-
-v2 -> v3:
-- rename rpm-master-stats.yaml to qcom,rpm-master-stats.yaml
-
-v2: https://lore.kernel.org/r/20230405-topic-master_stats-v2-0-51c304ecb610@linaro.org
-
-v1 -> v2:
-- Drop the `-` in /properties/compatible to make our entry be of the
-  correct type [1/2]
-- Change %s to %d for printing out the iterator [2/2]
-
-v1: https://lore.kernel.org/r/20230405-topic-master_stats-v1-0-1b1fa2739953@linaro.org
-
-The RPM MSG ram includes per-subsystem low-power mode entry/exit/
-residence/etc. statistics which are very useful for trying to debug
-what I'd call "SoC insomnia", or IOW the plaftorm refusing to drop
-the voltage rails to a minimum and gate the non-critical clocks.
-
-This series adds a very short and simple driver to query that data
-and expose it through debugfs.
-
-The base used for writing this driver is:
-https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.14.r1/drivers/soc/qcom/rpm_master_stat.c
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Konrad Dybcio (2):
-      dt-bindings: soc: qcom: Add RPM Master stats
-      soc: qcom: Introduce RPM master stats driver
+ .../bindings/soc/qcom/qcom,rpm-master-stats.yaml   | 69 ++++++++++++++++++++++
+ 1 file changed, 69 insertions(+)
 
- .../bindings/soc/qcom/qcom,rpm-master-stats.yaml   |  69 +++++++++
- drivers/soc/qcom/Kconfig                           |  11 ++
- drivers/soc/qcom/Makefile                          |   1 +
- drivers/soc/qcom/rpm_master_stats.c                | 163 +++++++++++++++++++++
- 4 files changed, 244 insertions(+)
----
-base-commit: 67d5d9f013d6c3829383c08162939cabff14fccc
-change-id: 20230405-topic-master_stats-ba201a9af93d
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,rpm-master-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,rpm-master-stats.yaml
+new file mode 100644
+index 000000000000..8a654979ce92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,rpm-master-stats.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/qcom,rpm-master-stats.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. (QTI) RPM Master Stats
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@linaro.org>
++
++description: |
++  The Qualcomm RPM (Resource Power Manager) architecture includes a concept
++  of "RPM Masters". They can be thought of as "the local gang leaders", usually
++  spanning a single subsystem (e.g. APSS, ADSP, CDSP). All of the RPM decisons
++  (particularly around entering hardware-driven low power modes: XO shutdown
++  and total system-wide power collapse) are first made at Master-level, and
++  only then aggregated for the entire system.
++
++  The Master Stats provide a few useful bits that can be used to assess whether
++  our device has entered the desired low-power mode, how long it took to do so,
++  the duration of that residence, how long it took to come back online,
++  how many times a given sleep state was entered and which cores are actively
++  voting for staying awake.
++
++  This scheme has been used on various SoCs in the 2013-2023 era, with some
++  newer or higher-end designs providing this information through an SMEM query.
++
++properties:
++  compatible:
++    const: qcom,rpm-master-stats
++
++  qcom,rpm-msg-ram:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: Phandle to an RPM MSG RAM slice containing the master stats
++    minItems: 1
++    maxItems: 5
++
++  qcom,master-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description:
++      The name of the RPM Master which owns the MSG RAM slice where this
++      instance of Master Stats resides
++    minItems: 1
++    maxItems: 5
++
++required:
++  - compatible
++  - qcom,rpm-msg-ram
++  - qcom,master-names
++
++additionalProperties: false
++
++examples:
++  - |
++    stats {
++      compatible = "qcom,rpm-master-stats";
++      qcom,rpm-msg-ram = <&apss_master_stats>,
++                         <&mpss_master_stats>,
++                         <&adsp_master_stats>,
++                         <&cdsp_master_stats>,
++                         <&tz_master_stats>;
++      qcom,master-names = "APSS",
++                          "MPSS",
++                          "ADSP",
++                          "CDSP",
++                          "TZ";
++    };
++...
 
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.40.0
 
