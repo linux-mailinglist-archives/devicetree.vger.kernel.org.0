@@ -2,172 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 332426E7ABE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 15:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 528746E7AC4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 15:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233338AbjDSN3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 09:29:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37582 "EHLO
+        id S233313AbjDSNar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 09:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232840AbjDSN3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 09:29:46 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2052.outbound.protection.outlook.com [40.92.53.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 527721544C;
-        Wed, 19 Apr 2023 06:29:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MwkaxYNHukXj7gbfaBaV2Qh04a+NAZbLgAQcsWP9aDkwCvlpQAsUexhx63DBP+Ul2cW6BD6rRBNSyXKfCU2P4oVFR+Axzx8Gap7lI3yw0gxXr5HuvO25fIL1v9MtKELpxPXXDkIyBapplv3/q4BbYqvkKDrhgnytBUQo3Eknr0RzPAGwgbbveZmJ31h3AGAEmo/VOav/jxZCj6Wv+THTSpKfQ5fPTY/5MGis1yxUA+6E98zfQLTAeoHzXfVDhEVa+B8vTX1zBZO30knGu3O4b1tnxzxcySNmqHc0VrjzN3VQouOTz6+1mcdCsptWiBbpXomWmg2lx8gSJr+7JuLjGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=33GUqICiCnkF6JRlgP5XU19Spt09i0olFYBr0mpwcFA=;
- b=iTA0UU0SCMSmHBg3oACh3PG1WA9c47coOTpsjrNRTE9vhOse6RJR73kh/BlZT7NONqp+Lq2FunNtAq3Y+rCv2KBT4af0qQWKjyAjzNuNggri7I4HnaX0KG+vFY4vcmnKAmeu6qpxrFwEM8c8zP82spHsTrrb4dGxJaOkFeEPYlFTNkuAif5htp7HDMNmXVqpDqciEapi82RfEe873qgSh8k8bfFOHzR9CCCLhHgPpj3So60vqzory5AJ0Xfx4qYq0Imt2UJgzSvRfzZMTjtopsAm8NbaG4c/U5utEYFhZR1/BWCHXyr0xJUtYHzgDI0m7GBRFVtkRyntFv7wy9jczA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=33GUqICiCnkF6JRlgP5XU19Spt09i0olFYBr0mpwcFA=;
- b=LenzCRyItFX1/vGqrvubQDZXRIdUIASGDGGNBSLn0wp9dQrP4ytIjCUhrN/0SiGrg4nQu2opM9Qki4YElIpOeYh3y6bla+/1WbGAswDFd5j4Ytnkrv4kmruA38a8FRf+Chn6yuLNaKQ7JdYY/t+SDOHTbGc8xcgEo/Qs5zbYVNEbrOeRItxRviPG3lgdOfWl47iujsgy44P1Vow+GsRkaAUFgnsg9PFREFXHb6l7ZisHmrcOupfwyEqsU8MKp5ez1e6rgVeILWmHczUi0/HDjx6u7gwxBTFbU8+6kRFJq3Oqaxt1Nn+QChXHnaNX5FZtjOn6rX1PgWsNtHXQh3PliA==
-Received: from TYZPR04MB6321.apcprd04.prod.outlook.com (2603:1096:400:28a::14)
- by TYZPR04MB6428.apcprd04.prod.outlook.com (2603:1096:400:28e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Wed, 19 Apr
- 2023 13:28:37 +0000
-Received: from TYZPR04MB6321.apcprd04.prod.outlook.com
- ([fe80::4705:d219:7cf0:46f4]) by TYZPR04MB6321.apcprd04.prod.outlook.com
- ([fe80::4705:d219:7cf0:46f4%3]) with mapi id 15.20.6298.045; Wed, 19 Apr 2023
- 13:28:37 +0000
-Message-ID: <TYZPR04MB6321F7B16354AD78B491C20096629@TYZPR04MB6321.apcprd04.prod.outlook.com>
-Date:   Wed, 19 Apr 2023 21:28:25 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH RFC v4 0/4] mmc: add support for the dw-mmc controller on
- Hi3798MV200
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     tianshuliang <tianshuliang@hisilicon.com>,
-        Jiancheng Xue <xuejiancheng@hisilicon.com>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        David Yang <mmyangfl@gmail.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230415-mmc-hi3798mv200-v4-0-44096e187f53@outlook.com>
-Content-Language: en-US
-From:   Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <20230415-mmc-hi3798mv200-v4-0-44096e187f53@outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-TMN:  [ZwYAkDZUZNeEqZ90XtI4mprkTeL4Yp9tmoR4x4y2bXXXWqMYHCtohU5CNpWAudCe]
-X-ClientProxiedBy: SJ0PR03CA0208.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::33) To TYZPR04MB6321.apcprd04.prod.outlook.com
- (2603:1096:400:28a::14)
-X-Microsoft-Original-Message-ID: <3cd40781-fd8b-c9c8-e8e6-ffc6b274a31e@outlook.com>
+        with ESMTP id S233467AbjDSNap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 09:30:45 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89FD118DB;
+        Wed, 19 Apr 2023 06:30:42 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33J9Vw3f019170;
+        Wed, 19 Apr 2023 13:30:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=3/4LOYP4bcBxN7rBsgeI0mA4SxJDW4dMYl8d7m/+UUI=;
+ b=OfVsM3/hKTRnW/IANAANLjYd/RRHlAfEn4Vf3jw7dwoOUDSf0Iga2gYnCaI6Cq5Qcd6T
+ KIbT7XzRhPKB4vHxYIwmRz4WrkgESMMDDeOpJRRnaM8zlGYzQCmMOPJ1ZZJHMKbsm6f6
+ rmjncLsThA0qmchNvJqaovBx1cp0KqblaaxJczLSV0HtBo5NmlCWPcZYdirGRGlTpxn5
+ KuXITKk3wLkrv8EoDzbbBEQEz812+VgTnISMG3A66/kAre9WJPUSAFK/ktphdLDQbmaE
+ 3nGViY8T98+igFMtC9tmsunzxfMkI+ujTCZniTz9JXwiCVSoXOBncB76WOtj+XbltGRA NQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q234h9ttt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Apr 2023 13:30:36 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33JDUZAt010546
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Apr 2023 13:30:35 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 19 Apr 2023 06:30:29 -0700
+From:   Taniya Das <quic_tdas@quicinc.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>
+CC:     <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        <quic_rohiagar@quicinc.com>, <netdev@vger.kernel.org>
+Subject: [PATCH 0/4] Add GCC and RPMHCC support for sdx75
+Date:   Wed, 19 Apr 2023 19:00:09 +0530
+Message-ID: <20230419133013.2563-1-quic_tdas@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR04MB6321:EE_|TYZPR04MB6428:EE_
-X-MS-Office365-Filtering-Correlation-Id: 39d18946-109b-4b26-d3f4-08db40d9fb85
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: aUcBwpMdV+nT2YNhfEb0z7O5K1ab0zSqcYfBLX7O3N3ySOQnEWRa00ecjANREd6haQHhaLW+CPoKYpcq/7BAfkrBEzdGfZGNYplphurELqvnS9NgcCf6+Ll1TseLZEKn9nq6jouPTFQnH4+1erD8WSx4YjbAcEafyEoKVbVFCnIPpR7MRnpLrOmeE6NYfIYeLX2hBuVP2rkl0WmZeNAtq7wO/vloDcAxLjV2LJZg2h9LN98TOnInsMge8lx64GX96seIuItv8KkushAIMbpdVzKy2+JmHjXPcySD1c/q4ZTjcKu7J9WMWOgNJqULaBj/D3orJZ2i1w2kSQ29fSslt2LK9wiUS8sfggAZhyU9ghLF7aytk2+jnSSh2VzNEukHfPDF3xyFlWOgBDR5KqKxnkkWzAaZt0XL4bwkoSq55/QJZSkVfyTMgd5fyXyeWfxuuZhKX4ysMZaMRiNZIH3ntNR9QdWb4naBbTC+LdlsqU5Op1LLOVzEuLiQMadhCEOCciyRz0BJnKbwkakbE2ewh/BDXAFMkFUMmsDYoIea5Ee+Vlm77ZlTkbWV6q/anhBv5wYrxe9xdp71UMRvWpcofi7l2mIFHPlIMaMYR3GNh5d34thgYk+5YgPB2UR8jjUcCByGFzzlwZv9VKvyocsYpw==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aDR3YW81dDRJZU9iYTcyUEJZTFZRRllrZzFjZU1UWS8yb0JYMzlLZ1ZMcTdS?=
- =?utf-8?B?THVRUUZtNzVCZXFjdHZMMGROMmdzdFUzb3BGQXlLUEJJaTVXNDJpR3BKS0Zz?=
- =?utf-8?B?UjNVQ1pzQXBOdG02L1dQemxqM3FKQnhXSUd0UU1keWhJL1NWYnNjR21LdC9J?=
- =?utf-8?B?U0NxZGNRMFFkZ1U0ajFKVUthYXREelNNM2pybWdxdXBhMlBrYVNoQ1JFQ2gw?=
- =?utf-8?B?NEtNTFJRT2dKSktyQmR6NDVZeUdFMXBLeE51UHpNZUhGWlRqOEM1WlIvWUtQ?=
- =?utf-8?B?OEllN3pZZ1g0OENUSWNwcHRQYjRHM0M1Y2FTMy9LSXMyOUVDbWxlcVJQWjlV?=
- =?utf-8?B?QThzbHJiZmhXNi9uV0xFTHFreS84SFZsY3EyVnZIQy9Edk45S2ZxVnhxUVpX?=
- =?utf-8?B?RUZCMXFoekEwWm9vbGdRU3p1L3ZNR211VGxiQU1RdXZIMzVKdGY0ME9ES3N0?=
- =?utf-8?B?RE1zZmxKM2VKT2JhZW1GVERQaWtuMDZqemlyWisrTXFNb0lnSmFoYklZMElN?=
- =?utf-8?B?YW1uV0xiN1ZxQzNYeXZLb3RTS1Nnc3JKYmtJSHhEd2xTUXVnNWdEV21RTWxK?=
- =?utf-8?B?ejJEQ3lwbCs3ZlgzYVU3NXhocmdjeEJqRDBVVE5WR29CZXg5SDM1dG5UMUFn?=
- =?utf-8?B?VFUwaHdiMkpRWGxRb3FSd1N6Q3BXQjRPbTlWVnYwRHRuRS84Ui83bHNQMTVL?=
- =?utf-8?B?WlFIV1VwWWFDZHFGNy9ZUGF0VDEwN1FLVThhamxjUTV6TG5xa005aHYxRllP?=
- =?utf-8?B?RithWnNIR2QvY2NLTnJWenllU2FDcktLYWsyTys0WWZmMUF6QVhsSmJZOWlr?=
- =?utf-8?B?QjlMemUydk9acytCaThoL0tjcm96NjdVNUs0Mmt0VXhHdGNEOFNoSVlQSVlw?=
- =?utf-8?B?dXdFTkR5cUpPWHZYbUJ3S2k0NWNzaGtOVlEzdzArY05zYnZoOHh4NUNaVXVM?=
- =?utf-8?B?UHJ4SkdmQURWcW92bW0rZXlXbUZUSGFDVjJpR3lLdjFNUnl1YVk5MldRQXA5?=
- =?utf-8?B?TW1TMGNWREQyQTNMaEJrckpjalRFYjhRb3dSdFhHTVgrTGxkNXI4RWRFTWJ0?=
- =?utf-8?B?ZFMvMmEzR0dHd2MvK3M2ZDRHMGxVMTVRVW0vSHh6Nzg0d3dRWGtTM2VYejZz?=
- =?utf-8?B?VnhsdGNJRlF6UHRoTmU4bFhEcWRKbHJWMkM1Zm1jc1UyTlhyNEtUbmxacE5h?=
- =?utf-8?B?TFBuOGhJL1l5OVNOZzh1ZXJ4c3RNeWI5Y3p6amxkdDF5d213N0NDcU1JMG1X?=
- =?utf-8?B?WmQyVlVFRkRsRjIwak5RNHhDY1pyeFJndHFZRUZwOW14YTBQM3pTbVQ5ODA2?=
- =?utf-8?B?Unc0cVZMVnF5bGUraEhqcS9vRXVkNnNkSm9FR2dTbkRQMWhlNmJ3aEpGWDF1?=
- =?utf-8?B?MDUwNlFBRjFLME1wcXdGMTU2b0NtamUzYmlXamVDa0x6UndpSDJ3TmhxVUxG?=
- =?utf-8?B?V1NUbS9GUDdkUThPVXdvVXVkak5MMktnSWo2dXZXQnJUZ3NsZGM0ZzU0dVdZ?=
- =?utf-8?B?SFZSMzNQT1kvSVZMb05Tc0grQ1JCTW11a0tTOGkwNTA2cXJZcGdkQThEWWdF?=
- =?utf-8?B?Q202T2dkcTQ0d2tDQlhPY2ZNYVNIdGZBRTRRUHM4THJVMnpQTUZUWFdzZWZG?=
- =?utf-8?B?ZXUvZExzQjNqRW9wK0hDMEc4c1FPS29IMUNXTDA5Z2VpZzNkZVVuR1hMS1dQ?=
- =?utf-8?B?RXZEdi9idFgzRFRMZTc3dWorOFh5eCt6eXZ4S3RYUWVEMnVHUVRkcGRlQmxX?=
- =?utf-8?Q?wo3gTDWHAyoT+JyHdw=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 39d18946-109b-4b26-d3f4-08db40d9fb85
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR04MB6321.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 13:28:37.8756
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB6428
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jbH2GNoPS2CqrYWOh5a5-Dad0XklO1lu
+X-Proofpoint-ORIG-GUID: jbH2GNoPS2CqrYWOh5a5-Dad0XklO1lu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-19_08,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 clxscore=1011 malwarescore=0 suspectscore=0 mlxscore=0
+ lowpriorityscore=0 impostorscore=0 adultscore=0 phishscore=0 spamscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304190121
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/16/2023 5:19 PM, Yang Xiwen via B4 Relay wrote:
-> The dw-mmc controller found on Hi3798MV200 is like the one found on
-> Hi3798CV200, but has some tweaks.
-> Also refreshed the dt-binding and converted it to YAML.
-> 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
-> Changes in v4:
-> - fix license of dt-binding document.
-> - some other fixes to dt-binding document.
-> - Link to v3: https://lore.kernel.org/r/20230415-mmc-hi3798mv200-v3-0-00e2368c0709@outlook.com
-> 
-> Changes in v3:
-> - split dt-binding commit into 2 parts, one for renaming, the other for
->   new compatible string.
-> - some other fixes to dt-binding document.
-> - Link to v2: https://lore.kernel.org/r/20230415-mmc-hi3798mv200-v2-0-1d274f9b71da@outlook.com
-> 
-> Changes in v2:
-> - add DDR52 support
-> - edit dt-binding, substitude all hi3798cv200 with histb
-> - send email to more people
-> - Link to v1: https://lore.kernel.org/r/20230415-mmc-hi3798mv200-v1-0-db5b91d939d4@outlook.com
-> 
-> ---
-> Yang Xiwen (4):
->       mmc: dw_mmc: hi3798cv200: rename to dw_mmc-histb
->       mmc: dw_mmc: histb: add support for hi3798mv200
->       dt-binding: mmc: hi3798cv200-dw-mshc: convert to YAML and rename to histb-dw-mshc
->       dt-binding: mmc: histb-dw-mshc: Add Hi3798MV200 compatible string
-> 
->  .../bindings/mmc/hi3798cv200-dw-mshc.txt           |  40 ---
->  .../bindings/mmc/hisilicon,histb-dw-mshc.yaml      |  93 ++++++
->  drivers/mmc/host/Kconfig                           |   8 +-
->  drivers/mmc/host/Makefile                          |   2 +-
->  drivers/mmc/host/dw_mmc-hi3798cv200.c              | 206 -------------
->  drivers/mmc/host/dw_mmc-histb.c                    | 339 +++++++++++++++++++++
->  6 files changed, 437 insertions(+), 251 deletions(-)
-> ---
-> base-commit: 76f598ba7d8e2bfb4855b5298caedd5af0c374a8
-> change-id: 20230415-mmc-hi3798mv200-ce15e9b96866
-> 
-> Best regards,
-Sorry for wasting your time, but please don't review this patchset
-anymore. I decided to rewrite it.
--- 
-Best regards,
-Yang Xiwen
+This series of patches extends the invert logic for branch2 clocks and adds
+GCC, RPMH clocks devicetree bindings and driver support for SDX75 platform.
+
+Imran Shaik (4):
+  clk: qcom: branch: Extend the invert logic for branch2 clocks
+  dt-bindings: clock: Add GCC bindings support for SDX75
+  clk: qcom: rpmh: Add RPMH clocks support for SDX75
+  clk: qcom: Add GCC driver support for SDX75
+
+ .../bindings/clock/qcom,gcc-sdx75.yaml        |   69 +
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |    8 +
+ drivers/clk/qcom/clk-rpmh.c                   |   19 +
+ drivers/clk/qcom/gcc-sdx75.c                  | 2990 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sdx75.h    |  193 ++
+ 8 files changed, 3289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx75.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sdx75.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx75.h
+
+--
+2.17.1
 
