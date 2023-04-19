@@ -2,36 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B7476E81BE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 21:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5716E81CD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 21:24:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230432AbjDSTQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 15:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37502 "EHLO
+        id S229978AbjDSTYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 15:24:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbjDSTQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 15:16:36 -0400
+        with ESMTP id S229822AbjDSTYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 15:24:49 -0400
 Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047AD527C;
-        Wed, 19 Apr 2023 12:16:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BDA2527E;
+        Wed, 19 Apr 2023 12:24:48 -0700 (PDT)
 Received: from local
         by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
          (Exim 4.96)
         (envelope-from <daniel@makrotopia.org>)
-        id 1ppDIA-0003s0-1W;
-        Wed, 19 Apr 2023 21:16:34 +0200
-Date:   Wed, 19 Apr 2023 20:16:29 +0100
+        id 1ppDQ6-0003wa-0a;
+        Wed, 19 Apr 2023 21:24:46 +0200
+Date:   Wed, 19 Apr 2023 20:24:41 +0100
 From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+To:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 2/2] arm64: dts: mt7622: handle interrupts from MT7531 switch
- on BPI-R64
-Message-ID: <ZEA-DV_OsmFg5egL@makrotopia.org>
+        <angelogioacchino.delregno@collabora.com>,
+        John Crispin <john@phrozen.org>
+Subject: [PATCH 0/2] Support PWM on MediaTek MT7981
+Message-ID: <cover.1681932165.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -44,32 +48,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit ba751e28d442 ("net: dsa: mt7530: add interrupt support")
-the mt7530 driver can act as an interrupt controller. Wire up irq line
-of the MT7531 switch on the BananaPi BPi-R64 board, so the status of
-the PHYs of the five 1000Base-T ports doesn't need to be polled any
-more.
+Add support for PWM on the MediaTek MT7981 to pwm-mediatek.c as well
+as new mediatek,mt7981-pwm compatible string to the existing bindings.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Daniel Golle (2):
+  dt-bindings: pwm: mediatek: Add mediatek,mt7981 compatible
+  pwm: mediatek: Add support for MT7981
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-index d583e816684cf..aabd104b12acf 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-@@ -150,6 +150,10 @@ mdio: mdio-bus {
- 		switch@0 {
- 			compatible = "mediatek,mt7531";
- 			reg = <0>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&pio>;
-+			interrupts = <53 IRQ_TYPE_LEVEL_HIGH>;
- 			reset-gpios = <&pio 54 0>;
- 
- 			ports {
+ .../bindings/pwm/mediatek,mt2712-pwm.yaml     |  1 +
+ drivers/pwm/pwm-mediatek.c                    | 54 ++++++++++++++++---
+ 2 files changed, 47 insertions(+), 8 deletions(-)
+
+
+base-commit: 67d5d9f013d6c3829383c08162939cabff14fccc
 -- 
 2.40.0
 
