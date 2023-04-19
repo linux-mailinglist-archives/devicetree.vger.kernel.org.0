@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C6356E836E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3A966E8372
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:20:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231980AbjDSVUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 17:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41424 "EHLO
+        id S232303AbjDSVUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 17:20:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbjDSVTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:47 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B129ED5
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:24 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id b16so1733564ejz.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:24 -0700 (PDT)
+        with ESMTP id S232203AbjDSVTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:48 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2C47EF6
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:25 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id kt6so1870978ejb.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681939163; x=1684531163;
+        d=linaro.org; s=google; t=1681939165; x=1684531165;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LxZotJCBuSXrPf8oI9KwqBQsknW/+qUDEYf4hkhaOIg=;
-        b=OQLe/TaThV5tSOB9ahCx8C6AMYc/9Bt6N2hb4mlfsqH7lQocCWruh7FLYi3a+XVYZS
-         Wu3TG/pXAxtzCv7PzGIpk3E+mjt3V+a8oWhPMuFBtkHqHlXPJSQjZxn8hKQJJk5+XQgw
-         D1hoMBnN7ymSJh5tN9kowxvq7eqGtDOuqZ7zoqnITkEjMCPSOyKOhwkcp6jSzGByPYRn
-         HYj68zrLUI+PopsWigfk5uGVHgywm+AqRMnfPeB3gUiaIOnb0sbFUP5rug6LxOvz5SiQ
-         vL0LKK0QKQ5sTORxChMq6bafFIC4KE67oQEGVLnoXEoHYJb5hcZmHapiBjt5nmlS6P4K
-         ul/Q==
+        bh=A5lqdT+tLsAr+XE4OnUIxn/ulTD3/L58wPb8AxCBTws=;
+        b=sXxL9wp1L0KgiqQcaJ91MTlHmO817qJTXS1VLtbZQqnebCX9CgSr/nIxosJONZ4TmY
+         lWgCtt2v4FSymGLOsRMyyH4htAjmLlOpzf+IHAba5mi8uQn+azdignEfEhIz7cCo2e/e
+         aLUwUwqFMpbVug6TZS8Rbs69J0i/kMVTZf+c0sVh3ASDbsLyTc6+3YSZ8lOubu2l8XgY
+         rQQsgPC7X07o3OO+3mUSnZSnJnRK02USFnodLtQQWFtvM5I1CzGm4Fi8OQMl/Mg4ST04
+         bxDK6GVsiiBggXovp53Qh7ERywhsRJS9Zf68fPmMoolCT62Y9BebisHTl5BwzHdJbf+i
+         jePw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681939163; x=1684531163;
+        d=1e100.net; s=20221208; t=1681939165; x=1684531165;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LxZotJCBuSXrPf8oI9KwqBQsknW/+qUDEYf4hkhaOIg=;
-        b=ajKyDed/4xDFtc4qcf/LdBD1BJ/IdTyo6TBkYFHX1CnbEnlvzr2fOgJWkXMPRMSBHe
-         IXV0XfDrNfZNC/hQd4FFwa+RvRSARSbfoe9dXPyiSCmjOwNeNWpFNwt/V9fArVTLyiyN
-         0hFsHhnoeTDjaCEhyOm8ig5yJED1BjURdzGYKXEE7av8jeoMy/CWuYoKohT0cQaCwEmV
-         XpBQtVcwThBNHON6xcF6Rb9gRiuS6fupoP1d+r5t0A4LdxdOebzP8Kcsz7E1EvZHP2Tf
-         bykNoCloCqUYBmNVN+GSSsccZXsZocAtaxmGwZAE2c1aVRDTtkS2mO7uIj8CK4zvAnER
-         A88Q==
-X-Gm-Message-State: AAQBX9duVJFx6lCCGWDPSCXtOi2kPG5EYKboZ4GfxVWv/gfAHBslSaro
-        lQJtdqpcJQuVbuUWvKlqCwBsVA==
-X-Google-Smtp-Source: AKy350ZiO6TX8HGzkEtPJr4W05JOFpXLTrLjEp7FEJjzHVO6c4y0S1TAOuY2mqPoDkzIkUlaOV+dAA==
-X-Received: by 2002:a17:907:9197:b0:94e:e092:6eda with SMTP id bp23-20020a170907919700b0094ee0926edamr14092761ejb.53.1681939163158;
-        Wed, 19 Apr 2023 14:19:23 -0700 (PDT)
+        bh=A5lqdT+tLsAr+XE4OnUIxn/ulTD3/L58wPb8AxCBTws=;
+        b=hVdOeAUzRh5+wcGnOLEKPna2o9Z/IXwjxOKl5EEqPHa1YFevR1TMZnBa7zyPgmSfbQ
+         lFkf9LOFbw5Ut6FypEwdSbhUv8aeao3ARKCRIxayIQAB+uGoIhcOd5mcauitnIajquWX
+         2Bb49O4yGO+FbzpTCBmVkqeZtFSt/u75WFz3HOLWGOBXL7cKDRSiZxr/msibzoWvtB46
+         df1TAi7JktNTSaFFoCjcYk451Z7pPR8ynOaMqX+QcwhdfYjwP0G2DhfVcCT+6KYvLU4C
+         YNN/4ZkDdXWRnCnzB26NE8ujKLvfsLRKbth6q/PoK4um40eqZ7IvWFVzJ3bNpKj3bIOB
+         D3yg==
+X-Gm-Message-State: AAQBX9dE8BJf9b2WNpXEjhMbpCApv/oPp+0M5AC+kMmcFX9p3SAgfCzo
+        FTTaHjvjegEK35nt9MaXThLFcQ==
+X-Google-Smtp-Source: AKy350ZOf4pTeH1i/ZXrfyG/XvEUHhtav0md9ZsxF2GujDO8x0UriBQqO0YR4sz1WiTMWV9mHYvU7A==
+X-Received: by 2002:a17:907:7787:b0:94e:8cdb:bcee with SMTP id ky7-20020a170907778700b0094e8cdbbceemr15086898ejc.70.1681939165015;
+        Wed, 19 Apr 2023 14:19:25 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:976c:1d6c:6ed0:8935])
-        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.19.21
+        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.19.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 14:19:22 -0700 (PDT)
+        Wed, 19 Apr 2023 14:19:24 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -76,9 +76,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 15/18] arm64: dts: qcom: sm8350: correct USB phy unit address
-Date:   Wed, 19 Apr 2023 23:18:53 +0200
-Message-Id: <20230419211856.79332-15-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 16/18] arm64: dts: qcom: sm8550: correct crypto unit address
+Date:   Wed, 19 Apr 2023 23:18:54 +0200
+Message-Id: <20230419211856.79332-16-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
 References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
@@ -96,27 +96,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Match unit-address to reg entry to fix dtbs W=1 warnings:
 
-  Warning (simple_bus_reg): /soc@0/phy@88e9000: simple-bus unit address format error, expected "88e8000"
+  Warning (simple_bus_reg): /soc@0/crypto@1de0000: simple-bus unit address format error, expected "1dfa000"
 
-Fixes: 2458a305e80e ("arm64: dts: qcom: sm8350: switch to combo usb3/dp phy")
+Fixes: 433477c3bf0b ("arm64: dts: qcom: sm8550: add QCrypto nodes")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 5ca21cd1cbec..425af2c38a37 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2140,7 +2140,7 @@ usb_2_hsphy: phy@88e4000 {
- 			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 43192ef21aec..90d2b7057b75 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -1858,7 +1858,7 @@ cryptobam: dma-controller@1dc4000 {
+ 				 <&apps_smmu 0x481 0x0>;
  		};
  
--		usb_1_qmpphy: phy@88e9000 {
-+		usb_1_qmpphy: phy@88e8000 {
- 			compatible = "qcom,sm8350-qmp-usb3-dp-phy";
- 			reg = <0 0x088e8000 0 0x3000>;
- 
+-		crypto: crypto@1de0000 {
++		crypto: crypto@1dfa000 {
+ 			compatible = "qcom,sm8550-qce", "qcom,sm8150-qce", "qcom,qce";
+ 			reg = <0x0 0x01dfa000 0x0 0x6000>;
+ 			dmas = <&cryptobam 4>, <&cryptobam 5>;
 -- 
 2.34.1
 
