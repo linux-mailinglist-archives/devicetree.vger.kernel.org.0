@@ -2,195 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 242906E81B0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 21:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E7F6E81B9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 21:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjDSTHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 15:07:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34162 "EHLO
+        id S230121AbjDSTPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 15:15:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjDSTHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 15:07:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4130565B6;
-        Wed, 19 Apr 2023 12:07:02 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33JGiLbp030220;
-        Wed, 19 Apr 2023 19:06:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=G/y8ctTcURCYoZmiuLkLbWXgnfrdu76wyZiUSLHo2Ho=;
- b=cDK4YRXujHSOFTJOMGYS7EvoADjvXAdnrheVTaxZqdhZKTsqPjIQc2SNKFcGXNUIIcho
- CssuFkbh4TQoOf3dT6yGxG48d404avLzqkTsp4mmGoT9HqaMWhx56MJ4Q+qBGLlsJerT
- qMHayZ1QY+N1nr4XKCDoPOXk0a/cnPdW9o6vV7ho/qpIsaQelG01iXpZoy9DXu0er/eO
- SXe3Feyu5XqEQYKN6MnWbDWe3WOu+SqqhDadykXJnV6JTLZyBHuQp/cfVbg6DfBRVX8i
- CODSMbJPY0+vlBYUMnwmPMVjmX+mrINQMDjJ8+OFHWxJGdE5tt0/mFBp5Wd/YslTUKN1 hA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q26wy29j5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Apr 2023 19:06:52 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33JJ6pG8019846
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Apr 2023 19:06:51 GMT
-Received: from [10.134.71.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 19 Apr
- 2023 12:06:50 -0700
-Message-ID: <11c72462-b256-d0db-a666-9615da4420f6@quicinc.com>
-Date:   Wed, 19 Apr 2023 12:06:50 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [Freedreno] [PATCH 5/5] drm/msm/dpu1: Handle the reg bus ICC path
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229631AbjDSTP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 15:15:29 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2076.outbound.protection.outlook.com [40.107.220.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 478BD5BA1;
+        Wed, 19 Apr 2023 12:15:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dLccC/QRy/W9cWbJNDzH+ERbbyFXjzssKdpcsmcnQbZQWCTDCXlaVJ7h6jZH4oxPEgq+XiIlr4OXRocUmunok8SQgU6tFiWTOuHqTtgd2u0PC3zi/9QrqWnhvLaWc5G1CMb6FhGyuRpwqi0Ek3T4kPltBKn6pAnSR9S3tu1myNkzGtavsqY6PMCr64tG+g6agJGu9tkjW7OtA6UriM7kQjmWv2nb1t6RoQBoa/eBQi+G5UnsIPdfz/MvuFT+2WUBhMbledtbWS2j8R5IJUIONAHQFnQYBlBSpeAb/KugKpnHIzfNunrRLRQthFqCXKXrqnhu6hqNcwrihhmO6AH1WQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KZEqIsa4sqU6g9powWv6/gQ0+9RhX7HcgUK6LzrHpCY=;
+ b=fDCtr01UlH+rpRfCkaCYyNkZERxNwiXklWRdpNLgyq4tTgLMRz8X7M47F4aYB0FbyWEN8Pc5pV8eMDb/MwmW+SH/riRwX6uAQcs3h63p6aS1LyjFgqBW6ms8C3GqfvvKXJzHQ+DD9MdpNS9OnM3NeinQFsVmVURg9AFowYKB+36OdCOXt16gLB5fistv7yapsAV65F5e01o5hFMMuPmIS4YS9dsY/KJOPUkvhinErdiK8DMVyS+lnNDWfgOg7quEoi+gLE/6KgvFj1mJTDcwi0xMFgSlvnwPT/cAOpypZ+aQAgMBa45xrawqq+gb3DJ4bpzShmdz3/SRVDlm6YPzcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KZEqIsa4sqU6g9powWv6/gQ0+9RhX7HcgUK6LzrHpCY=;
+ b=oUxyctjyjQvl5oKAHfdqkgOanNBrBiIRAHI1GfZnbg2FUMkGnUPwS6Ox8ZV1Phgsul3IpnaBLiK2mjMZsZbK6H7HTsVkdMknwxbGcPYlU7SbJWFqqLJx3BYdHGIrOxQNQde9VypsIJJcuJ30saqyc89hVtypfw557kkOPFn0FzE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by SJ0PR08MB7783.namprd08.prod.outlook.com
+ (2603:10b6:a03:3de::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Wed, 19 Apr
+ 2023 19:15:21 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::d2d1:7af4:ef32:542]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::d2d1:7af4:ef32:542%6]) with mapi id 15.20.6298.045; Wed, 19 Apr 2023
+ 19:15:20 +0000
+Date:   Wed, 19 Apr 2023 14:15:17 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        "Marijn Suijten" <marijn.suijten@somainline.org>,
-        <freedreno@lists.freedesktop.org>
-References: <20230417-topic-dpu_regbus-v1-0-06fbdc1643c0@linaro.org>
- <20230417-topic-dpu_regbus-v1-5-06fbdc1643c0@linaro.org>
-From:   Jeykumar Sankaran <quic_jeykumar@quicinc.com>
-In-Reply-To: <20230417-topic-dpu_regbus-v1-5-06fbdc1643c0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uZuyWiNw6UBDUJjAuj75d_TvKXv1_VVz
-X-Proofpoint-ORIG-GUID: uZuyWiNw6UBDUJjAuj75d_TvKXv1_VVz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-19_13,2023-04-18_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 clxscore=1011 mlxscore=0 malwarescore=0 spamscore=0
- mlxlogscore=999 adultscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304190167
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH] dt-bindings: input: touchscreen: goodix: clarify
+ irq-gpios misleading text
+Message-ID: <ZEA9xZH5+nEjDWcS@nixie71>
+References: <20230419171849.946986-1-luca.ceresoli@bootlin.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230419171849.946986-1-luca.ceresoli@bootlin.com>
+X-ClientProxiedBy: DM6PR21CA0019.namprd21.prod.outlook.com
+ (2603:10b6:5:174::29) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|SJ0PR08MB7783:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1fe298bb-976c-4f78-f994-08db410a6ac5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: S5IzAw936m3H2NlooZ7zK29RFz6sxtl7GCp2Lpe7rcxHSp45hKXkz8/8jGPASWRXKwFg9c5FgfAo0jitPha5tSpNJMRAhbRNf5EFcSq2vBtL38FnWWh8cy0i04Nb/VrquKrxbsHr2/UVca0GnVJ0QzkHum+2PfL2zVbwAd4lp2vXwRBMXQw4tWuHBtv4ua83GB9W97PDhmJb6rpwW42MJcsaAljAownMe3V70QuGOd9ONIGh+NVfQA34rtlc3xLd1umj6oAFLHtXFNuLHQ7M4LStoRyZutPliu7R8Cv7d1u5fOJFixzdFGSFdjavVXmCYEsqDMTXLLa6n1x1k40rvD9icSRFDv1V+37zv/a4gp/ppCqG+mtsvYG/WjEQTWwbSoW2J8i8AcrboWPAL+0IsTiOJfzACXQh68awlVfk3/49xKHIZDWv4ZAFVhc25w3vImhThS99p8G13y4bY4pIQ3CW3s2b9T5YlefCiKYsKzUDaw7IXfPX1650EKtKagakzr7f5JDR6n8xfwHFJ2Btbqcg/uF+wO9NiMyAZ0oWf7uRVKy7szLonRFtre6ODWwO4rB0f2mf/VAXfj4N3VlJzRhlIu5LeGzQYSekE54GxIU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(136003)(376002)(346002)(39830400003)(396003)(366004)(451199021)(186003)(6916009)(4326008)(54906003)(316002)(66556008)(66946007)(66476007)(6486002)(478600001)(6666004)(8936002)(33716001)(8676002)(5660300002)(41300700001)(7416002)(2906002)(86362001)(38100700002)(26005)(6512007)(6506007)(83380400001)(9686003)(67856001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OXFkxqnhGF9eunw2XReGSHykh3T2KDMSj/yKnDkBTJlBeKnTLD2Ep9hVe/vs?=
+ =?us-ascii?Q?KvJfkbhGHsBoBSw3RpM8ZzvPXvMj+W1OVko8uyH8C7E2B2pggdIhqEIB0j3E?=
+ =?us-ascii?Q?MGexfLUsoKg5+lwXroKBuiliBjy2UlNRE1dbRpq1fwt83jYkJNEPrXeGgcmA?=
+ =?us-ascii?Q?Qkyk71xIRi7baS+2JLGa/ynQ5kevbJcRyLlVlVEzJFFTZOBbWBfIuZ3/FB3N?=
+ =?us-ascii?Q?7QxOV10FOraOzBaaxwL9OgGdTqCYd6Dp4RyMuSHlUdwpDKAeCTMiZEEbLVgg?=
+ =?us-ascii?Q?n5OZQLfF2j6YUxDIAz3XB1TneeWjwVDFDB/9oUJOjIZaF8a0grSiHcYuAHXI?=
+ =?us-ascii?Q?Oj685HB9fQbBb7gCNlth/snBN8dHEixqMUNgYRroRFadtNdiHLrhmnwsz75x?=
+ =?us-ascii?Q?D30unXUvYHd9SqHeXjMz+62XKnywsKJQ+YM6TOmt2KT4RG+UdaT5umUyadSD?=
+ =?us-ascii?Q?5tj+HAKYhFpWpW1Hg7qB9qlrGpylUXo0z3ZYobCmqEpPhtxK0jyZGZRaWDy4?=
+ =?us-ascii?Q?dGy0v3yaLH9luVEXjH0RAQLBQGdJnJf0wJP8Sx5sV7cfZ906TITIloBHK8NI?=
+ =?us-ascii?Q?sNHEwqb9dTjmxZIeyABhwmu0034spT9P5K1xDKze7J6QMxxsDEKi2D7Aaa+R?=
+ =?us-ascii?Q?Z/qwCQZjY14OoWB3qFufw8LO11SDfKg2/Qf+s0pK2QEtnsf8zdQIyLQ4scI2?=
+ =?us-ascii?Q?LCmiAXEyatTe1xYUqRPsiWum1THwKZV36oIIdIEqv9gQD7nwHzwN5PT4FT0V?=
+ =?us-ascii?Q?1WL7YtO2UUVHWPBxKVCALtRyLQ2tn3xEeBaqGABtbSK50ntev0nUyA2gYISq?=
+ =?us-ascii?Q?Nia4BK+H0O5ro9ZzetPWnz0ppWQRyNP4eGEbrIY8sblD5rUruJTJBhFRD9V5?=
+ =?us-ascii?Q?OJ/OtboR4cJVHonw0o1inZm1uCOUnblF77NrQfeB8Hi91I85oezJL6vrIgAN?=
+ =?us-ascii?Q?Be0Cs9oG6P54Ya7UX3Wyd8daA1LXxUgw4l2j1TrAABJAIkX/5Rzppqh6Q3sO?=
+ =?us-ascii?Q?jar2tLwwdW7OFqgOuQb4uUQcaIrckLpELcJ3TJgsWzSqDB6BXpr3I4BEz5w7?=
+ =?us-ascii?Q?nPsE2oY0EcX5Db5tVRXBij8pEj+4Hmv16dOyJRfnWNbN8pPc3LQOZ/maLArz?=
+ =?us-ascii?Q?lyT0rJfxyiM71onfn3cowaSxyDLtcGu38hv3mkR4xGc4I9aVxwQE+1qMDxon?=
+ =?us-ascii?Q?cyrnCQHD/QiAAsDkrYMo9/qYe8rGflsbUc3oyV3Q3Afke7PWwhiRdDNZG0fu?=
+ =?us-ascii?Q?JFZEow67wDKQ4tLW9Q9rE5K4mVyK0fpYL+MKnEAcjWSs4yIW1/re2rGz2Nws?=
+ =?us-ascii?Q?4ffUKPMCCcw6fxBp90UVV/b1muzyC61rADdUAhgFf47EbU2M5D3FzGU7k54z?=
+ =?us-ascii?Q?VWzDplG1M5pAZZeCxbarl+l/+gi4tY5A3AXLCiX2uVRcZPClwth0WPQhxolv?=
+ =?us-ascii?Q?Vn2cH57XeGkIIokZFdIM2C4u72F+t2u2gbf0K7Ih8JHGsYDkgwyMEisWJIyn?=
+ =?us-ascii?Q?p4tFsVs3K6R2y83gknAh9asEFU2GsE8GAu4RHLxHkTU/QDiWNyPGJYy3T46D?=
+ =?us-ascii?Q?f0cb7z77ARbF8vmJBJQUSwLIIOxMe/TjAXIYoC1B?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fe298bb-976c-4f78-f994-08db410a6ac5
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 19:15:20.7454
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c3TAf269wtMQSjytCjcZytp94LNdr9iWCNXcnjMJC0FFCrWgs+NbYVHvMEPyuCM2OoHvEFp2Sq2DENUvXwx3pA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR08MB7783
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Luca,
 
-
-On 4/17/2023 8:30 AM, Konrad Dybcio wrote:
-> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
-> another path that needs to be handled to ensure MDSS functions properly,
-> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+On Wed, Apr 19, 2023 at 07:18:49PM +0200, Luca Ceresoli wrote:
+> The irq-gpios description misleading, apparently saying that driving the
+> IRQ GPIO resets the device, which is even more puzzling as there is a reset
+> GPIO as well.
 > 
-> Gating that path may have a variety of effects.. from none to otherwise
-> inexplicable DSI timeouts..
+> In reality the IRQ pin can be driven during the reset sequence to configure
+> the client address, as it becomes clear after checking both the datasheet
+> and the driver code. Improve the text to clarify that.
 > 
-> On the DPU side, we need to keep the bus alive. The vendor driver
-> kickstarts it to max (300Mbps) throughput on first commit, but in
-> exchange for some battery life in rare DPU-enabled-panel-disabled
-> usecases, we can request it at DPU init and gate it at suspend.
+> Also rephrase to remove reference to the driver, which is not appropriate
+> in the bindings.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 22 ++++++++++++++++++++--
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h |  1 +
->   2 files changed, 21 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/input/touchscreen/goodix.yaml         | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index dd6c1c40ab9e..d1f77faebbc0 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -384,15 +384,17 @@ static int dpu_kms_global_obj_init(struct dpu_kms *dpu_kms)
->   	return 0;
->   }
->   
-> -static int dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
-> +static int dpu_kms_parse_icc_paths(struct dpu_kms *dpu_kms)
->   {
->   	struct icc_path *path0;
->   	struct icc_path *path1;
-> +	struct icc_path *reg_bus_path;
->   	struct drm_device *dev = dpu_kms->dev;
->   	struct device *dpu_dev = dev->dev;
->   
->   	path0 = msm_icc_get(dpu_dev, "mdp0-mem");
->   	path1 = msm_icc_get(dpu_dev, "mdp1-mem");
-> +	reg_bus_path = msm_icc_get(dpu_dev, "cpu-cfg");
->   
->   	if (IS_ERR_OR_NULL(path0))
->   		return PTR_ERR_OR_ZERO(path0);
-> @@ -404,6 +406,10 @@ static int dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
->   		dpu_kms->mdp_path[1] = path1;
->   		dpu_kms->num_mdp_paths++;
->   	}
-> +
-> +	if (!IS_ERR_OR_NULL(reg_bus_path))
-> +		dpu_kms->reg_bus_path = reg_bus_path;
-> +
->   	return 0;
->   }
->   
-> @@ -1039,7 +1045,7 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
->   		DPU_DEBUG("REG_DMA is not defined");
->   	}
->   
-> -	dpu_kms_parse_data_bus_icc_path(dpu_kms);
-> +	dpu_kms_parse_icc_paths(dpu_kms);
->   
->   	rc = pm_runtime_resume_and_get(&dpu_kms->pdev->dev);
->   	if (rc < 0)
-> @@ -1241,6 +1247,9 @@ static int __maybe_unused dpu_runtime_suspend(struct device *dev)
->   	for (i = 0; i < dpu_kms->num_mdp_paths; i++)
->   		icc_set_bw(dpu_kms->mdp_path[i], 0, 0);
->   
-> +	if (dpu_kms->reg_bus_path)
-> +		icc_set_bw(dpu_kms->reg_bus_path, 0, 0);
-> +
->   	return 0;
->   }
->   
-> @@ -1261,6 +1270,15 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
->   		return rc;
->   	}
->   
-> +	/*
-> +	 * The vendor driver supports setting 76.8 / 150 / 300 Mbps on this
-How do you arrive at these distint BW values? Are they provided by the 
-ICC fwk for the given path?
-> +	 * path, but it seems to go for the highest level when display output
-> +	 * is enabled and zero otherwise. For simplicity, we can assume that
-> +	 * DPU being enabled and running implies that.
-> +	 */
-> +	if (dpu_kms->reg_bus_path)
-> +		icc_set_bw(dpu_kms->reg_bus_path, 0, MBps_to_icc(300));
-> +
->   	dpu_vbif_init_memtypes(dpu_kms);
->   
->   	drm_for_each_encoder(encoder, ddev)
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
-> index d5d9bec90705..c332381d58c4 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
-> @@ -111,6 +111,7 @@ struct dpu_kms {
->   	atomic_t bandwidth_ref;
->   	struct icc_path *mdp_path[2];
->   	u32 num_mdp_paths;
-> +	struct icc_path *reg_bus_path;
->   };
->   
->   struct vsync_info {
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> index 3d016b87c8df..26ad104052ba 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> @@ -37,8 +37,8 @@ properties:
+>      maxItems: 1
+>  
+>    irq-gpios:
+> -    description: GPIO pin used for IRQ. The driver uses the interrupt gpio pin
+> -      as output to reset the device.
+> +    description: GPIO pin used for IRQ. The IRQ line can be driven during the
+> +      reset sequence to configure the client address.
+
+This is a step in the right direction, but in my humble opinion it is now
+ambiguous who drives the bidirectional IRQ pin (device or driver). Perhaps
+combining both versions conveys the appropriate message:
+
+"...The driver uses the interrupt GPIO pin as an output to configure the client
+address during the reset sequence."
+
+>      maxItems: 1
+>  
+>    reset-gpios:
+> -- 
+> 2.34.1
 > 
+
+Kind regards,
+Jeff LaBundy
