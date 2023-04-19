@@ -2,168 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C80AF6E7F19
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 417F46E7F33
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 18:09:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232698AbjDSQEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 12:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
+        id S232747AbjDSQI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 12:08:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231779AbjDSQEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:04:13 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1606273B;
-        Wed, 19 Apr 2023 09:04:09 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id CAFDD5FD27;
-        Wed, 19 Apr 2023 19:04:06 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1681920246;
-        bh=gczPHOPFC5Oa1n8xm+YVvEBQVDVJ/qk+fMtEFwJEsz0=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=Rntcl+dI83kBRnQMotz3w+kPs6cXaxOeaHoNULYPvfFluGi/jgz/hol9F2mzMbhJ5
-         Ia7QNayXMPQOyp136/IAb9vB/tkh6IiNj04EtRg14/gGRSm2Duol+VJKmwqo6D9FoJ
-         Yy+TEKkDv1596uDkkHPs0R+N9QkWyWj7al3qZ89Az3eWyA941MTXJnIBiexBbgjpbz
-         fkNCbSuIWLohl46J6iSTGl8/y8NDD+iy3VbsYxy+IfA+nmiRAdhKewSJd0L548KQ5Q
-         6591RQ3MnJ14GH9UdtmFRKm2jOAubITdS+NrsblJzIK/S72qlvcMoLzLjK8S6WqJ2E
-         qUf+Pwk5cJAxg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Wed, 19 Apr 2023 19:04:05 +0300 (MSK)
-Date:   Wed, 19 Apr 2023 19:04:05 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-CC:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
-Message-ID: <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
-References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
- <20230419073834.972273-2-xianwei.zhao@amlogic.com>
- <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
- <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
+        with ESMTP id S232395AbjDSQI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 12:08:58 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2484A198C;
+        Wed, 19 Apr 2023 09:08:57 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33JFjlK0027779;
+        Wed, 19 Apr 2023 16:08:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=TV6b7P46eRi1BMrrVIut2ypd01ZL60YmD6uD8CrDt84=;
+ b=OFWpavpY0904LrUMzwEavIVzKrn77RNS4ROD/VORkY951LFJ41xyyQAA2Th2aT57RAnw
+ OFdr5IUqsdpLZ5ADcXqb4W+zfrgtmOhii1HbidAi+F5i9FIL8kZ3N81Pb+x7mf0pwo1i
+ BkNhPJGAaLkOH7ToBCz3jR+e8x/jMATYc4dwr26c71Z2z1LYoS8SPVRhxvR0wmF8v+Va
+ BRv2oJipE+QxRRzU6EALl7h6M6cI+oqCcE2E0IwSSKhjgVNrYKNyGF0IJYqOoDXpjMUV
+ fcSo5nGlc4s7ucSAH9lKUy3/L8a80lPHD4656WVBb+7REuzG36CPSLFiHYWJdRwdrBxW qg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q26wy1u1r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Apr 2023 16:08:41 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33JG8e5e019112
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Apr 2023 16:08:40 GMT
+Received: from [10.110.10.142] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 19 Apr
+ 2023 09:08:39 -0700
+Message-ID: <9808142e-d6e6-71bc-f362-09b878cb3b87@quicinc.com>
+Date:   Wed, 19 Apr 2023 09:08:38 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/19 10:42:00 #21127526
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V22 2/3] misc: dcc: Add driver support for Data Capture
+ and Compare unit(DCC)
+Content-Language: en-US
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1681829664.git.quic_schowdhu@quicinc.com>
+ <e4f41fa61d9dd66f68bbd7650c6fbf96810c3569.1681829664.git.quic_schowdhu@quicinc.com>
+ <2023041833-alienate-trash-f4da@gregkh>
+ <f1456dd7-5dcf-d91a-459c-65efca4a3444@quicinc.com>
+ <50844899-b047-42fd-807a-db7136e5e590@app.fastmail.com>
+ <44834c75-4db7-ec8a-9367-c6b83fa96b22@quicinc.com>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <44834c75-4db7-ec8a-9367-c6b83fa96b22@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MwTmVPbXfvqJz-nmmImwrS4c6f1USKpV
+X-Proofpoint-ORIG-GUID: MwTmVPbXfvqJz-nmmImwrS4c6f1USKpV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-19_10,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 clxscore=1011 mlxscore=0 malwarescore=0 spamscore=0
+ mlxlogscore=999 adultscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304190145
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 19, 2023 at 03:43:12PM +0200, Neil Armstrong wrote:
-> On 19/04/2023 15:14, Dmitry Rokosov wrote:
-> > On Wed, Apr 19, 2023 at 03:38:33PM +0800, =Xianwei Zhao wrote:
-> > > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > > 
-> > > The C series SoCs are designed for smart IP camera
-> > > applications, which does not belong to Meson series.
-> > > So, Add ARCH_AMLIPC for the new series.
-> > > 
-> > > There are now multiple amlogic SoC seies supported, so group them under
-> > > their own menu. we can easily add new platforms there in the future.
-> > > Introduce ARCH_AMLOGIC to cover all Amlogic SoC series.
-> > > 
-> > > No functional changes introduced.
-> > > 
-> > > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > > ---
-> > >   arch/arm64/Kconfig.platforms | 12 ++++++++++++
-> > >   arch/arm64/configs/defconfig |  2 ++
-> > >   2 files changed, 14 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> > > index 89a0b13b058d..bfbc817eef8f 100644
-> > > --- a/arch/arm64/Kconfig.platforms
-> > > +++ b/arch/arm64/Kconfig.platforms
-> > > @@ -162,12 +162,24 @@ config ARCH_MEDIATEK
-> > >   	  This enables support for MediaTek MT27xx, MT65xx, MT76xx
-> > >   	  & MT81xx ARMv8 SoCs
-> > > +menuconfig ARCH_AMLOGIC
-> > > +	bool "NXP SoC support"
-> > 
-> > NXP? Did you mean "Amlogic"?
-> > 
-> > > +
-> > > +if ARCH_AMLOGIC
-> > > +
-> > >   config ARCH_MESON
-> > >   	bool "Amlogic Platforms"
-> > >   	help
-> > >   	  This enables support for the arm64 based Amlogic SoCs
-> > >   	  such as the s905, S905X/D, S912, A113X/D or S905X/D2
-> > > +config ARCH_AMLIPC
-> > 
-> > Do we really need a different ARCH for Amlogic IPC?
-> > I can imagine that it's not the Meson architecture at all.
-> > But maybe a better solution is just to rename ARCH_MESON to ARCH_AMLOGIC?
+On 4/19/2023 3:20 AM, Souradeep Chowdhury wrote:
 > 
-> It should be changed treewide, and is it worth it ?
-
-As far as I understand, the A1 and S4 families are not fully compatible
-with the Meson architecture, and we haven't provided additional ARCH_*
-for them.
-In my opinion, it's a good time to split the Meson architecture into
-proper subsets, or rename it treewide (maybe only config option
-ARCH_MESON => ARCH_AMLOGIC).
-
-> > 
-> > > +	bool "Amlogic IPC Platforms"
-> > > +	help
-> > > +	  This enables support for the arm64 based Amlogic IPC SoCs
-> > > +	  such as the C302X, C308L
-> > > +endif
-> > > +
-> > >   config ARCH_MVEBU
-> > >   	bool "Marvell EBU SoC Family"
-> > >   	select ARMADA_AP806_SYSCON
-> > > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> > > index 7790ee42c68a..f231bd1723fd 100644
-> > > --- a/arch/arm64/configs/defconfig
-> > > +++ b/arch/arm64/configs/defconfig
-> > > @@ -46,7 +46,9 @@ CONFIG_ARCH_LG1K=y
-> > >   CONFIG_ARCH_HISI=y
-> > >   CONFIG_ARCH_KEEMBAY=y
-> > >   CONFIG_ARCH_MEDIATEK=y
-> > > +CONFIG_ARCH_AMLOGIC=y
-> > >   CONFIG_ARCH_MESON=y
-> > > +CONFIG_ARCH_AMLIPC=y
-> > >   CONFIG_ARCH_MVEBU=y
-> > >   CONFIG_ARCH_NXP=y
-> > >   CONFIG_ARCH_LAYERSCAPE=y
-> > > -- 
-> > > 2.37.1
-> > > 
-> > > 
-> > > _______________________________________________
-> > > linux-amlogic mailing list
-> > > linux-amlogic@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> > 
 > 
+> On 4/19/2023 1:00 PM, Arnd Bergmann wrote:
+>> On Wed, Apr 19, 2023, at 09:00, Souradeep Chowdhury wrote:
+>>> On 4/18/2023 9:15 PM, Greg Kroah-Hartman wrote:
+>>>>
+>>>>> The following is the justification of using debugfs interface over the
+>>>>> other alternatives like sysfs/ioctls
+>>>>>
+>>>>> i) As can be seen from the debugfs attribute descriptions, some of the
+>>>>> debugfs attribute files here contains multiple arguments which 
+>>>>> needs to
+>>>>> be accepted from the user. This goes against the design style of 
+>>>>> sysfs.
+>>>>>
+>>>>> ii) The user input patterns have been made simple and convenient in 
+>>>>> this
+>>>>> case with the use of debugfs interface as user doesn't need to shuffle
+>>>>> between different files to execute one instruction as was the case on
+>>>>> using other alternatives.
+>>>>
+>>>> Why do you have debugfs and also a misc device?  How are they related?
+>>>> Why both?  Why not just one?  What userspace tools are going to use
+>>>> either of these interfaces and where are they published to show how 
+>>>> this
+>>>> all was tested?
+>>>
+>>> DCC has two fundamental steps of usage:-
+>>>
+>>> 1.Configuring the register addresses on the dcc_sram which is done by
+>>> user through the debugfs interface. For example:-
+>>>
+>>> echo R 0x10c004 > /sys/kernel/debug/dcc/../3/config
+>>>
+>>> Here we are configuring the register addresses for list 3, the 'R'
+>>> indicates a read operation, so this register value will be read
+>>> in case of a software trigger or kernel panic/watchdog bite and
+>>> dumped into the dcc_sram.
+>>
+>> Can you describe why the register location needs to be
+>> runtime configurable? I would have expected this type of setting
+>> to be part of the devicetree, which already describes other
+>> parts that interact with sram devices.
+> 
+> Register addresses are made runtime configurable to give the user the
+> option of going for a software trigger. So the user can debug issues
+> during run-time as well. These register locations are arbitrary
+> and is configured by the user for debugging purposes and is not related 
+> to the DCC hardware itself.
 
--- 
-Thank you,
-Dmitry
+Please note that we don't want to recompile the devicetree for new 
+settings since these registers can be set by team of engineers who are 
+debugging system level issues with various IPs across the SOCs. You 
+don't want to recompile the images while reproducing the system hangs/IP 
+watchdogs etc;
+
+---Trilok Soni
+
+
