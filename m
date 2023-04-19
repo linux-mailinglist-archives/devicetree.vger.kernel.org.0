@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B46FD6E7979
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF826E7988
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233188AbjDSMQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 08:16:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36606 "EHLO
+        id S231584AbjDSMUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 08:20:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233072AbjDSMQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:16:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 610D57ABA;
-        Wed, 19 Apr 2023 05:16:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F16F363E66;
-        Wed, 19 Apr 2023 12:16:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EF20C4339B;
-        Wed, 19 Apr 2023 12:16:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681906606;
-        bh=vOvpQ3+rrqqBbRbFydKvDIk2cD9E7nojPBzJyQmBXk0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cyhuUwYyxGrRnhpnJNKUmB2sLN+ILUiL3k2p5uymTI8TyF0qlEXMrFD/ScUc0oMrZ
-         GOa8Ej1IygCtjkQV9HJv0GQGQxkYh5W9CpLWS7CQaoe7zd32g5AdBtj6wQAs1fsvMe
-         Xs3Yl9QM6E8HFxjlMUcL2pWsHc4VWOWTYEPojmby9HP/la1IRfQGwQFOwJBrk5O0BT
-         wPW/vT2Ni3Xycgzc4bsdZLQvzK74iY8ps7WJ3B3wZrHnnC7mjCjALIgrDQbAsoizpK
-         2Ex2gBSZISO3GMmoZw9W47dCcMUd7JOqs3/ytj5AGxM5FQ3g4m2dSZ8haQwWdXEb/A
-         tEwzrAuO2vtYw==
-Message-ID: <8744edbb-45f9-d4c5-245b-6c820512a981@kernel.org>
-Date:   Wed, 19 Apr 2023 15:16:41 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] dt-bindings: mfd: ti,j721e-system-controller: Add SoC
- chip ID
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
+        with ESMTP id S233213AbjDSMUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:20:23 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447325FDF;
+        Wed, 19 Apr 2023 05:20:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=tdgAKK/gYzuoiQCUdGhjbA+MZqUGxSXIKXMiOdNq7UI=; b=OKzubX8YBDGiER5gWN/c5zLmad
+        iAFJFJdWpI6cgx+vojAcFYJjGEKTvLs7I8eivhaAQNz7p7xGIlAPP0ruyG7Yr0v3SVJlOdCIGNzO3
+        p5eS5RznAdYEd/OWuiptl4yqk51mwTaT1aul48JafVCGz4HSYVvyoufJjswqHECXVPOU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pp6n4-00Ah32-7d; Wed, 19 Apr 2023 14:20:02 +0200
+Date:   Wed, 19 Apr 2023 14:20:02 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20230418010019.1222431-1-nm@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230418010019.1222431-1-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH v7 00/16] net: Add basic LED support for
+ switch/phy
+Message-ID: <ceb81b05-caf7-4738-b288-02aa662ccd49@lunn.ch>
+References: <20230417151738.19426-1-ansuelsmth@gmail.com>
+ <20230418212746.7db8096e@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230418212746.7db8096e@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 04:00, Nishanth Menon wrote:
-> The system-controller node also contains the chip-id node that is used
-> to identify the SoC specific properties. Add a pattern property to
-> match to the same, and add to the example.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
+> IIRC we were supposed to take these via netdev with acks from Pavel/Lee.
+> So we need acks on patches 4/5/16 ? If there is a repost, could you
+> take out the arch/arm patches? They should not go via netdev, we'll try
+> to filter them out when applying but mistakes happen.
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+The 370rd patch could in theory go via netdev. I maintain it, both at
+the board and mvebu SoC level, so can give my Acked-by:, in addition
+to my Signed-off-by:. It is very unlikely there will be any sort of
+merge conflict.
+
+      Andrew
