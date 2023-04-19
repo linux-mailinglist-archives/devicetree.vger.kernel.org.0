@@ -2,127 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E30046E7EBF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DC56E7EE7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233627AbjDSPoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 11:44:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35374 "EHLO
+        id S232897AbjDSPyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 11:54:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233580AbjDSPoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:44:07 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D25EA27D
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 08:43:47 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id b10so4163060ybk.9
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 08:43:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1681919026; x=1684511026;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZyYHVq2KKyE4C0IhwyY/WppUE1xI3kMg23q7uSOq+Tg=;
-        b=mq/T2vtNxXsqvV9+XBOj8ljMXbwdH35ftq6Edkr4Z9p/Ws48v0F1g562PaWhDZ9lyu
-         QNVf17Bl/xg69M/35RaR2nxHDzPBIr4IkalAQOG8aVxJqrKg3mnoQrGEpOFP3ZpL9kmu
-         QjBC2RKb2QhkZZ4ofLJdO92XY+NJRCc2G4LAE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681919026; x=1684511026;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZyYHVq2KKyE4C0IhwyY/WppUE1xI3kMg23q7uSOq+Tg=;
-        b=if0bA54W65I5cjbC6pfU5AZyGCzIZYs5XUe7LINtXBnKjDXczxKu/zbvjA1uzZi3SM
-         GjrKy2AFzrVPZfxS0QBJDgs9n8G4fvwnGTE0PJBHMbte0698ZEOykdPOZCGNfgP2BEaS
-         d3gSoBBxl/NUo0FKF7h3XORgB+cYI7Oq2WzfUbEfT1tmaoURQxKP/iWIDmQbt7i4lxS9
-         pE9pHPXI7YNs3Y/6DhlT7kue+raQybnMASk6kq7+cYPuuJL1lQOrG4PkZqWVJAt23DSL
-         8RKNTLcWetlk+eji5HgWCtLdeatxGgwtT889mirX4Cgfd72g2atF4oUI1HpvIMIn3QYN
-         KdjA==
-X-Gm-Message-State: AAQBX9d3tqcxIjUW98kti4110+c2oxtdKstZoBNyo0iUUBdN2Md1Q2sK
-        cfSorsCfIB4xU0JM35HRi9xEFg==
-X-Google-Smtp-Source: AKy350bFwaBgNEXJbLUNW+dGLPL2d4Nckb5SJpfQgSSZ1Mhjcg8+CCNw85X/Q6v4u1lw+lQkNl36Rw==
-X-Received: by 2002:a25:4d56:0:b0:b25:a1e1:5b65 with SMTP id a83-20020a254d56000000b00b25a1e15b65mr172416ybb.5.1681919026732;
-        Wed, 19 Apr 2023 08:43:46 -0700 (PDT)
-Received: from localhost ([2620:0:1035:15:55c6:7cf1:a68:79b0])
-        by smtp.gmail.com with UTF8SMTPSA id cc21-20020a05690c095500b00545a08184cesm4539823ywb.94.2023.04.19.08.43.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 08:43:46 -0700 (PDT)
-From:   Mark Yacoub <markyacoub@chromium.org>
-X-Google-Original-From: Mark Yacoub <markyacoub@google.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     seanpaul@chromium.org, suraj.kandpal@intel.com,
-        dianders@chromium.org, dmitry.baryshkov@linaro.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org,
-        Mark Yacoub <markyacoub@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v10 09/10] arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
-Date:   Wed, 19 Apr 2023 11:43:19 -0400
-Message-ID: <20230419154321.1993419-10-markyacoub@google.com>
-X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
-In-Reply-To: <20230419154321.1993419-1-markyacoub@google.com>
-References: <20230419154321.1993419-1-markyacoub@google.com>
+        with ESMTP id S229716AbjDSPye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:54:34 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F5A97;
+        Wed, 19 Apr 2023 08:54:32 -0700 (PDT)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9C064C6E13;
+        Wed, 19 Apr 2023 15:54:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1681919670; bh=B8kuaxrbAOudg29ZKx0Ja65ggx/7tCW1jdSRrEzOEg8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=OOf2krUf0GDXjRktD6QuRvtJJ11p9hXbPfBUtkQjMk/ZQRgKptb5l2R9CC12R0lz7
+         9JJsrSoQUUXFAswTxYZ69jw9RFrtfilFDmoOq6DA1yjJ4gbHXnAvcDJ6ooS+FYdzfg
+         J+aWTWAdC2GzEK05IVBAyyuK62qU/evrKI6Y5cAw=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 2/3] media: dt-bindings: ov2685: convert to dtschema
+Date:   Wed, 19 Apr 2023 17:54:29 +0200
+Message-ID: <2675347.mvXUDI8C0e@z3ntu.xyz>
+In-Reply-To: <CAL_JsqLB37Y-V-8uWPdnc_YaActtQUhJArv50Rz8K_CF5cbNhw@mail.gmail.com>
+References: <20230129-ov2685-improvements-v4-0-e71985c5c848@z3ntu.xyz>
+ <20230129-ov2685-improvements-v4-2-e71985c5c848@z3ntu.xyz>
+ <CAL_JsqLB37Y-V-8uWPdnc_YaActtQUhJArv50Rz8K_CF5cbNhw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Paul <seanpaul@chromium.org>
+On Mittwoch, 19. April 2023 01:54:18 CEST Rob Herring wrote:
+> On Thu, Mar 23, 2023 at 12:58=E2=80=AFPM Luca Weiss <luca@z3ntu.xyz> wrot=
+e:
+> > Convert the text-based dt-bindings to yaml.
+> >=20
+> > Changes from original txt:
+> > * Take wording for various properties from other yaml bindings, this
+> >=20
+> >   removes e.g. volt amount from schema since it isn't really relevant
+> >   and the datasheet is a better source.
+> >=20
+> > * Don't make reset-gpios a required property since it can be tied to
+> >=20
+> >   DOVDD instead.
+> >=20
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> >=20
+> >  .../devicetree/bindings/media/i2c/ov2685.txt       |  41 ---------
+> >  .../devicetree/bindings/media/i2c/ovti,ov2685.yaml | 101
+> >  +++++++++++++++++++++ MAINTAINERS                                     =
+ =20
+> >  |   1 +
+> >  3 files changed, 102 insertions(+), 41 deletions(-)
+>=20
+> Now warning in linux-next:
+>=20
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/media/rockc=
+hip
+> -isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+>         From schema:
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/media/i2c/o=
+vti
+> ,ov2685.yaml
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/media/i2c/o=
+vt
+> i,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is
+> too short
+>         From schema:
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/media/i2c/o=
+vti
+> ,ov2685.yaml
 
-Add the register ranges required for HDCP key injection and
-HDCP TrustZone interaction as described in the dt-bindings for the
-sc7180 dp controller.
+Right, since Sakari changed maxItems=3D1 to maxItems=3D2, now minItems is a=
+lso 2=20
+but it should be 1. I'll send a patch to fix this.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+Regards
+Luca
 
----
-Changes in v3:
--Split off into a new patch containing just the dts change (Stephen)
--Add hdcp compatible string (Stephen)
-Changes in v4:
--Rebase on Bjorn's multi-dp patchset
-Changes in v5:
--Put the tz register offsets in trogdor dtsi (Rob C)
-Changes in v6:
--Rebased: Removed modifications in sc7180.dtsi as it's already upstream
-Changes in v7:
--Change registers offset
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 423630c4d02c7..89d913fa6e3eb 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -822,6 +822,14 @@ &mdss_dp {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&dp_hot_plug_det>;
-+
-+	reg = <0 0x0ae90000 0 0x200>,
-+	      <0 0x0ae90200 0 0x200>,
-+	      <0 0x0ae90400 0 0xc00>,
-+	      <0 0x0ae91000 0 0x400>,
-+	      <0 0x0ae91400 0 0x400>,
-+	      <0 0x0aed1000 0 0x174>,
-+	      <0 0x0aee1000 0 0x2c>;
- };
- 
- &mdss_dp_out {
--- 
-2.40.0.634.g4ca3ef3211-goog
 
