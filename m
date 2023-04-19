@@ -2,117 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D39216E79D1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A10E6E7A10
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232459AbjDSMgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 08:36:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54214 "EHLO
+        id S233247AbjDSMx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 08:53:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231592AbjDSMgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:36:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA025E50;
-        Wed, 19 Apr 2023 05:36:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 496EE63643;
-        Wed, 19 Apr 2023 12:36:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCAAEC433D2;
-        Wed, 19 Apr 2023 12:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681907774;
-        bh=zLBNrnGTS7PfXsbReuF8yNgt/hxvun5C/cZPrBU/CSw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TJQRX6bqVXlEh0BHEpwDcce45PLXeFw1aEKh6SbRv1HWjjPMJvn0Loxo0bEg9WvG1
-         9Q/ucLIH+iAKcumTIy/dOF56okqDGd6c0Ex83XKG8ScsrxuzYMP6dTeMMEW3DaHT/P
-         uVh7wfQHdHrLdUsHj6m728kRMkFmlH2WTv6q3xRhU9/V/sYpThvyQ2PAv5QJ9HcHjB
-         xNp/8j5US+ehIlqeYZx7ilsbeieyScNJDN820HnixqzNkAZRGu0Wt47BW9CAqnh+Ei
-         2iMVb9goliJ+2oNfU0T995yAUkCLGCajdjcDwrzhOJfHLS8r0Fre65vAVhlLf6YfH5
-         P8yBDCCBe/oRA==
-Date:   Wed, 19 Apr 2023 13:36:07 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v8 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <c24f8a28-23d4-46e3-8ff2-4b6f4e39b493@sirena.org.uk>
-References: <20230419062202.28749-1-zhuyinbo@loongson.cn>
- <20230419062202.28749-3-zhuyinbo@loongson.cn>
+        with ESMTP id S233236AbjDSMxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:53:23 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25614C35
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 05:53:20 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id l15so9528552ljq.8
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 05:53:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681908799; x=1684500799;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QMBCA5yw/oGfimd2NHVa6yO5ZZCg77a4Ic/kI2eNphg=;
+        b=h9kTrlyKUWFgKDtCZbvRQYWYmyQTTUYjsvtkpewc5Es2vkPhsiI7h7BKbj/TUaKnPb
+         4dtVS3BQNDbOrIvLma6Ld2NHKHZhUmVj09rhzhzwItxPv6Kfwm4zBWttXc6qUm3dl4pa
+         DS0DTS/Yl0CoL/7dreNtxjIHb0MigC4n1ZxjwWTOsAbTTJwSe8HKEtsMSAr+TphDKXXs
+         EJRDlCZ2aGvmO6Age7wSUMjZcIpj25E5b7wHy9OU9MVmBk4lXfd9WoB6CPblJgsOycnV
+         SmRJmuHpot7o/BeEj6ylNwbLxHLz685PMMmwKrnbCeO/Bl+gd2r+/NizXrrSqtMbcPJT
+         DKwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681908799; x=1684500799;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QMBCA5yw/oGfimd2NHVa6yO5ZZCg77a4Ic/kI2eNphg=;
+        b=kshXogUIh79U3MsGquOFUD05UHcMDqGHxQ9bALaVt2IPLtG3Qg1ZIj9PiMQZ1Cnh7G
+         1s6/GwXg4TROlS2ZVdlZX+nRHb0bDt1o5+l05dDCUp9ilfQjvY1YEJq8R64yNNtTRmPl
+         joP7BoDZ/3gn/xNmCAQbvff/ZUHcTrPmtznuD9xfFIpCW4u4N7rKeROcOo/JelMQnM17
+         1nZZWMxLpJ3+B+FgS90qqlSOraLtc6Q0LTb0txen2pyafAWjkazLnkaDD1O5jkzEDCcq
+         HFux3SCRqBzBu44EV5aFhb9N//7GNk+o3YBbZ12KTRaJ+vDcgjK9AZG0rqA6sb59VBAr
+         giDg==
+X-Gm-Message-State: AAQBX9dAjhZZC8TQ+T3vxTSL8ZktFlgE6Yn5m/h6GDe1WLamCYWvWpIX
+        8ejColM2wDqCnarz8JLhR0k6jw==
+X-Google-Smtp-Source: AKy350aDzkAD3Q/u8kBELBmFxaiO3RXvBBwWX2cp8Kg2z437bXJqkkgU2k+w6M87slL2KBz2TDwUzQ==
+X-Received: by 2002:a2e:81c1:0:b0:2a8:c7e0:7764 with SMTP id s1-20020a2e81c1000000b002a8c7e07764mr2002348ljg.18.1681908799134;
+        Wed, 19 Apr 2023 05:53:19 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id s22-20020a2e98d6000000b002a76c16ad65sm2926079ljj.87.2023.04.19.05.53.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Apr 2023 05:53:18 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v3 0/2] SM8350 VIDEOCC
+Date:   Wed, 19 Apr 2023 14:53:15 +0200
+Message-Id: <20230413-topic-lahaina_vidcc-v3-0-0e404765f945@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NVSAr3jEmrWbbgVZ"
-Content-Disposition: inline
-In-Reply-To: <20230419062202.28749-3-zhuyinbo@loongson.cn>
-X-Cookie: This is your fortune.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADvkP2QC/42NywrCMBREf6VkbSS5aSi68j9EJK82F0IiSQ1K6
+ b+bdudGXM4Mc85CisvoCjl3C8muYsEUWxCHjhiv4uQo2pYJMBCs54LO6YGGBuUVRnWvaI2h2li
+ ldT9I2QNpT62KozqraHz7xmcIrXxkN+JrV11vLXssc8rv3Vz51v6WVE4Z5aIfTxpASS0uoY05H
+ VOeyAas8AcEGmQcgFvJBiel/IKs6/oBs6YhVxEBAAA=
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1681908797; l=1372;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=6E/NVLCFN0cz1qLPeyVZ6lRKVL5OuGw548pAFCDFvaM=;
+ b=TJWMzhD/AM3ES32AO5r4OTxJbqrMbuaix/oHUX0cnA9TOLLeNKUpSXs8lLXt9nu5y065KqL8Oa1a
+ ZK7VNXR+B/VFXrykOG0xjMIveZMMwI4NDmq3NGyy5YLWTNV1wC4T
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v2 -> v3:
+- Use a consistent VIDEO_CC_ prefix for resets
+- Separate out the binding (and don't pick up the rb as a consequence)
+- drop all pm_clks code
 
---NVSAr3jEmrWbbgVZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+v2: https://lore.kernel.org/r/20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org
 
-On Wed, Apr 19, 2023 at 02:22:02PM +0800, Yinbo Zhu wrote:
+v1 -> v2:
+- "){" -> ") {"
+- subsys_initcall -> module_platform_driver
+- constify lucid_5lpe_vco & .hw.init
+- devm_add_action_or_reset -> devm_pm_runtime_enable
 
-> +       clk = devm_clk_get(dev, NULL);
-> +       if (!IS_ERR(clk))
-> +               spi->clk_rate = clk_get_rate(clk);
+v1: https://lore.kernel.org/r/20230413-topic-lahaina_vidcc-v1-0-134f9b22a5b3@linaro.org
 
-I notice we never actually enable this clock.  I guess it's some system
-clock which is needed for basic system functionality which is always on
-and we just need the rate but it looks a bit off.
+This serires brings support for SM8350 videocc and updates the
+related dt-bindings.
 
-> +static int __maybe_unused loongson_spi_suspend(struct device *dev)
-> +{
-> +	struct loongson_spi *loongson_spi;
-> +	struct spi_master *master;
-> +
-> +	master = dev_get_drvdata(dev);
-> +	loongson_spi = spi_master_get_devdata(master);
-> +
-> +	loongson_spi->spcr = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-> +	loongson_spi->sper = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
-> +	loongson_spi->spsr = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG);
-> +	loongson_spi->para = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_PARA_REG);
-> +	loongson_spi->sfcs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG);
-> +	loongson_spi->timi = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_TIMI_REG);
-> +
-> +	spi_master_suspend(master);
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: clock: Add SM8350 VIDEOCC
+      clk: qcom: Introduce SM8350 VIDEOCC
 
-This saves the register state before suspending at the SPI level but
-that means that if there were any transfers in progress then the
-register state might be changed by the active transfers after we've
-saved the state, meaning we might restore a state for an active
-transfer.  The spi_master_suspend() should go first, then save the
-register state.  The resume is OK, it's just the suspend.
+ .../bindings/clock/qcom,sm8350-videocc.yaml        |  81 +++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/videocc-sm8350.c                  | 552 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8350-videocc.h    |  35 ++
+ include/dt-bindings/reset/qcom,sm8350-videocc.h    |  18 +
+ 6 files changed, 696 insertions(+)
+---
+base-commit: 67d5d9f013d6c3829383c08162939cabff14fccc
+change-id: 20230413-topic-lahaina_vidcc-bcdabb475542
 
---NVSAr3jEmrWbbgVZ
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQ/4DcACgkQJNaLcl1U
-h9A0hQf7BHmvHA2QmbUR7lbb9AQGd+7eHamujsA+9a+BEsCykdhf6qhZpsPDPBHn
-iSMfk+EvhYzgETram9i92BRsRk6246qOgrXI0okifQUzIr8SnKW+HGKPYfcu1tB9
-0OoX41xcRkL4sxS/ScF35N2MzNw3i7Y7071JOjAvhoiLbYlTKYRpDPwmHPfrgbsl
-CjVvtBNemnLTKKlrNy1VeejNey+HNo1ahRPRmz5kyNToZyPlIIxuabmqO1BDHOe4
-NP9Ihdo01mzJkBnbufA/+d52OjiFOhNWjqVlZa9XXEv5D49K7Ua+eq/WS8NJk643
-IhcP6AaWaI1gAlw0T1LDLkvwN1qbgQ==
-=VLa1
------END PGP SIGNATURE-----
-
---NVSAr3jEmrWbbgVZ--
