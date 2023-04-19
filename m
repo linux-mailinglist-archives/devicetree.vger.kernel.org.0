@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 661B06E743F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 09:44:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCEA26E7444
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 09:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232448AbjDSHo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 03:44:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59242 "EHLO
+        id S232576AbjDSHql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 03:46:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbjDSHoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 03:44:15 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430D11BD
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 00:44:07 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id xd13so45378887ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 00:44:07 -0700 (PDT)
+        with ESMTP id S232432AbjDSHp4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 03:45:56 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7448AF5
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 00:45:47 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-94f910ea993so161662966b.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 00:45:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681890246; x=1684482246;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5XcewxUaRmMB0bvB1yX5pcm0BRTmU/2QobJdamhHLzI=;
-        b=s9t8iT4fCOHu/LapeRaWbJVmJR+7efkha/xWhrGHhJEbRA1lhRv4ac3kWalrn+FHro
-         DlKYOvCn9lhgbYlWgB9Ts5Ra80MxkpN5QoyUmXJkqbDlhpNP3mh3GCxjXj1vzC1hYXB/
-         wRPY1A++YFC4rwsjkXRmCGucJnzldcYqQ5FUDot+Shn69uV+NNwD7jKkLyDPgCwXpVUJ
-         zBiOJ/B8qR25leLhvGSBIBqw2iWfxls2YHvhRtfThYNqpoGp3aahpXXEhx8AXGWAJAcn
-         8vtt9E8rjGbPJMh0h/wPOBlwiUTEjEXNcXq0ccfEFI0gp558vnZjLx1e5YgBOdcACYu9
-         bv9w==
+        d=linaro.org; s=google; t=1681890346; x=1684482346;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iHFSVmnBHgJzRBucjthBtFRkyCVVu3jxJ7HbaOvsy4E=;
+        b=T8rcoi4uc5QP0oaPpPEX3GPlycGGm+btMZffpkKlPXBIHslJgpMyKfjAgSgSkrQuQ9
+         i67efb6rK4OtRuL+V7o86Z6wxS2+O1j3qbD+Z4tlBs0vTspsFBN6S5bk3Hk1v0xTWhJw
+         p9IoklDJi2wfrflu6v5DMG1Y+oXe990hwU8c5bb6BbVwje7GHM8XaZBLXIJfpTuGMg59
+         leb3ztmVa8ZKgT4LKzY9eleB6QnxPYnJ5SeYwT+8s/QJbrS3LRxwLapqOGrmCo6LZwG6
+         QNd6ws5PchcUxbifs7rFihHW8bkviUTu4AMJNYEMtWt8n5JEQim7nQq1GwG4h/hYwfun
+         zKjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681890246; x=1684482246;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1681890346; x=1684482346;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5XcewxUaRmMB0bvB1yX5pcm0BRTmU/2QobJdamhHLzI=;
-        b=C0NSlmruFuQTgv3mAiBo+R8ER12zyGm64eutmSKkqq+Szesj90IWb0LM7haZJh2RRC
-         7/1GTVuB2xL0HSynhHQd88Dmky/6TQfgKk+1cEgn7nzn0mur97B5D1f7dIQosSIvrgOg
-         Ei1Dfmni1NuqaYaZg233OUtZCbrFrb4a/GOHeinkgYHMK6XMkgri8RNkqgXxC7COwoMC
-         HoH0uQl17O8GAt74XgEN5D8l5QZDTxKyPdc7lW8BkkQGAI/3nHW+rAxPOBCZzfpXHae4
-         609Y62cTQQRaypFBXagPwqN7EpExH4m66rSw3FxkSe0R+kDgnIT/HCNPmL5R0GONUwYe
-         /FdA==
-X-Gm-Message-State: AAQBX9cXGsnSAUwOUtLLyfoDgHlloDkL1M61aXEIw58/8S7WNPZ7nNYp
-        VFOCxdVFKPF/ZoYwPaEeSUSGVQ==
-X-Google-Smtp-Source: AKy350bt8NOHcrvpmK/4aLkRfTLaXW10/2pUREaJ9mSFZPdF/VW+TEqJienNXG5c2C7v75vd9lCnwg==
-X-Received: by 2002:a17:907:3f0a:b0:94f:3eca:ab05 with SMTP id hq10-20020a1709073f0a00b0094f3ecaab05mr14230945ejc.59.1681890245736;
-        Wed, 19 Apr 2023 00:44:05 -0700 (PDT)
+        bh=iHFSVmnBHgJzRBucjthBtFRkyCVVu3jxJ7HbaOvsy4E=;
+        b=F3AzVujCINR/ytmukYcnCwGwLq63NGM5V4llStdThUbgtIqAzo1ZJJ30/EUQQJpkRE
+         XUY+dBgZh/OihZ+PdAWUisvUrNRLb3liSvGIVcYWZb8piGCuC1cX0xpfb4VRQRj8hwt0
+         1fruJOQRVZbAexb30wWyalvjo7fxzW6u/8zL0sQYgYu77Ci+6T3XwpNUQwVj09bJfNJJ
+         DILcoNFWNhWAbufAK4Jx5gBLsXgq/uadDNpnDy+JR955+dzQrMciDHQ2hr4sTMS+JnaT
+         wYjMIQzasOQYrd1qTnNBpuHsiMX3Ec/78rLTi67mH4pVeOhH44dwuViUfHfKyd2C4urX
+         2Slw==
+X-Gm-Message-State: AAQBX9eSaPX+c4rCqsQ6HPMG6estiVZZUAP9i9A67olEkYQy45Ti740g
+        zmCLAf8EbU9dvawDfeAB0uvTZg==
+X-Google-Smtp-Source: AKy350bVuPcsEqrtDM1HSpKOyU4PTGA+UlfcRFz4jC16pTIUyqVFZK3mTqMzBmOidShsowjMkarm/g==
+X-Received: by 2002:a50:ff07:0:b0:506:beb5:7b4e with SMTP id a7-20020a50ff07000000b00506beb57b4emr3532896edu.8.1681890345754;
+        Wed, 19 Apr 2023 00:45:45 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:62f5:eb43:f726:5fee? ([2a02:810d:15c0:828:62f5:eb43:f726:5fee])
-        by smtp.gmail.com with ESMTPSA id p24-20020a170906615800b00923f05b2931sm9068632ejl.118.2023.04.19.00.44.05
+        by smtp.gmail.com with ESMTPSA id l9-20020a056402124900b0050488d1d376sm7937321edw.0.2023.04.19.00.45.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 00:44:05 -0700 (PDT)
-Message-ID: <cb9b7b33-37e6-0ef8-148e-40658b62e391@linaro.org>
-Date:   Wed, 19 Apr 2023 09:44:04 +0200
+        Wed, 19 Apr 2023 00:45:45 -0700 (PDT)
+Message-ID: <9557633d-efe0-4292-391c-9ae23c53c2dc@linaro.org>
+Date:   Wed, 19 Apr 2023 09:45:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v3 0/2] dt-bindings: sti: updates for STi platform
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-References: <20230213185633.15187-1-avolmat@me.com> <ZD78vycteFErVHsj@imac101>
+Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
 Content-Language: en-US
+To:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
+ <20230419073834.972273-2-xianwei.zhao@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZD78vycteFErVHsj@imac101>
+In-Reply-To: <20230419073834.972273-2-xianwei.zhao@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,14 +81,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 22:25, Alain Volmat wrote:
-> Hi Rob,
+On 19/04/2023 09:38, =Xianwei Zhao wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> gentle reminder, could you consider this serie of dt-bindings updates
-> for the STi platform.
+> The C series SoCs are designed for smart IP camera
+> applications, which does not belong to Meson series.
+> So, Add ARCH_AMLIPC for the new series.
+> 
+> There are now multiple amlogic SoC seies supported, so group them under
+> their own menu. we can easily add new platforms there in the future.
+> Introduce ARCH_AMLOGIC to cover all Amlogic SoC series.
+> 
+> No functional changes introduced.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  arch/arm64/Kconfig.platforms | 12 ++++++++++++
+>  arch/arm64/configs/defconfig |  2 ++
+>  2 files changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index 89a0b13b058d..bfbc817eef8f 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -162,12 +162,24 @@ config ARCH_MEDIATEK
+>  	  This enables support for MediaTek MT27xx, MT65xx, MT76xx
+>  	  & MT81xx ARMv8 SoCs
+>  
+> +menuconfig ARCH_AMLOGIC
+> +	bool "NXP SoC support"
 
-You got necessary reviews, no need to ping more. What do you expect more
-from DT? This is not a patch for DT to pick up.
+NXP? There is already amlogic anyway.
+
 
 Best regards,
 Krzysztof
