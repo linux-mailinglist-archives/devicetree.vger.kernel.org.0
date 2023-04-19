@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F286E8124
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 20:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 994E56E8141
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 20:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbjDSSVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 14:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40354 "EHLO
+        id S229605AbjDSS35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 14:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232791AbjDSSVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 14:21:19 -0400
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B795558A;
-        Wed, 19 Apr 2023 11:21:18 -0700 (PDT)
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-541f2112f82so3228eaf.1;
-        Wed, 19 Apr 2023 11:21:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681928478; x=1684520478;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BytL5fcLKRsxYJZE+iS1QqeRvdEysPc/md0SBratCqA=;
-        b=Udpihy7IEJkBMAc7IFf4sDFKyICbJK/tZ/Nv5gd2hwHfnumUT3LbAf+82kI1So/D1T
-         /TA6GP7N62pBoxy/tmv+O5LXrfVMtqUhZ+XxmiRB8eaoSahhxqH0pQ7o7hHt0SCpR6jm
-         H3LMwBlPyXTULJC/byOX9D9U+dwK0zHl8hzIyqYqQw0wdM259w1Ct28yzfAt8dx8lO+4
-         9yBqWEKU5K3yhvHspLNG9OCjk6gp7oMpvWY+EnOKAWipM9BVSVQ5j6bgS5cga30BNxnu
-         ELEmDCnGVIlXobk4fqsyl8vPiKzgiPDHsCw3S6k+1PbCAvBxXzvOIEVrRL2fQw83SOu6
-         L4WQ==
-X-Gm-Message-State: AAQBX9dXrQTbvB7IURi3ea8UmSk6Dqj86DTNs+IiUmYMIw3AQHgSsvUF
-        d5R9itkRELLKFRXuehrRH/lJSP9KeQ==
-X-Google-Smtp-Source: AKy350Yt9qsTaasoCcDlU7nudwLXTG30d0LR9e18XdhMiTcCh9n5QexGpq/0F5we9s7EdYumgsduYA==
-X-Received: by 2002:aca:130a:0:b0:38d:edc1:92 with SMTP id e10-20020aca130a000000b0038dedc10092mr3679092oii.45.1681928477829;
-        Wed, 19 Apr 2023 11:21:17 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n131-20020acabd89000000b0038c06ae307asm7336832oif.52.2023.04.19.11.21.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 11:21:17 -0700 (PDT)
-Received: (nullmailer pid 480920 invoked by uid 1000);
-        Wed, 19 Apr 2023 18:21:16 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S230306AbjDSS34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 14:29:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4862D70;
+        Wed, 19 Apr 2023 11:29:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AA5BF63999;
+        Wed, 19 Apr 2023 18:29:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 526D2C433D2;
+        Wed, 19 Apr 2023 18:29:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681928994;
+        bh=vMXfRaz6Lvtcg+eyS+REMKN/wpTcy7NYyfkAUOR0zJg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MjGLzzXjq3WtVQOhNBbkXl6tYCYtPzO7X4nxU4kRLw1P2i7DNLZMHGATgULoqm3nh
+         w39+dRh5X6znik+W2DQw3jNpX9NOmBuh2kcSemVX0FQgnpmtDPVuLBRrVuUMr1L2rp
+         rVz9e09h+sUvI8vvmV31wNWfqW7ZhNW8ruqcw9VqsjB8s9x2+tq7qWqNxcfXgo2D6e
+         RRQ3yOAnfaoMuIKJ1CvsjXCZ1Oq6i50w2SC1KazzvkRHIEG9QXLP/guBTV56kmY1m+
+         IPktL+tnHi8Q3VgoSq5K8yId0fDO/QIJ8EmFHNc+YKV5kcd4ieOj7xvv8bY7Ei4ri8
+         PYOONAfsqpnbg==
+Date:   Wed, 19 Apr 2023 19:29:48 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, vkoul@kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Message-ID: <20230419-labored-camper-644d51a7ca96@spud>
+References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-2-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc:     festevam@gmail.com, V.Sethi@nxp.com, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, aisheng.dong@nxp.com, shawnguo@kernel.org,
-        linux-arm-kernel@lists.infradead.org, gaurav.jain@nxp.com,
-        devicetree@vger.kernel.org, s.hauer@pengutronix.de,
-        sahil.malhotra@nxp.com, robh+dt@kernel.org
-In-Reply-To: <20230419175538.855493-2-pankaj.gupta@nxp.com>
-References: <20230419175538.855493-1-pankaj.gupta@nxp.com>
- <20230419175538.855493-2-pankaj.gupta@nxp.com>
-Message-Id: <168192843988.479874.10918604277415401966.robh@kernel.org>
-Subject: Re: [PATCH v2 1/7] doc: device tree binding addition for ele MU
-Date:   Wed, 19 Apr 2023 13:21:16 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="WQONS9/NxbuziPoO"
+Content-Disposition: inline
+In-Reply-To: <20230419035646.43702-2-changhuang.liang@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,40 +65,125 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 19 Apr 2023 23:25:32 +0530, Pankaj Gupta wrote:
-> Documentation update with addition of new device tree
-> for NXP ele-mu (Edgelock Enclave Message Unit), driver.
-> 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+--WQONS9/NxbuziPoO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hey Changhuang, DT/PHY folks,
+
+On Tue, Apr 18, 2023 at 08:56:41PM -0700, Changhuang Liang wrote:
+> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
+> rx/tx power switch, and it don't need the properties of reg and
+> interrupts.
+
+Putting this here since the DT guys are more likely to see it this way..
+Given how the implementation of the code driving this new
+power-controller and the code driving the existing one are rather
+different (you've basically re-written the entire driver in this series),
+should the dphy driver implement its own power-controller?
+
+I know originally Changuang had tried something along those lines:
+https://lore.kernel.org/linux-riscv/5dc4ddc2-9d15-ebb2-38bc-8a544ca67e0d@st=
+arfivetech.com/
+
+I see that that was shut down pretty much, partly due to the
+non-standard property, hence this series adding the dphy power domain to
+the existing driver.
+
+If it was done by looking up the pmu with a
+of_find_compatible_node(NULL, "power-controller", "starfive,jh7110-aon-pmu")
+type thing, would that make sense? Although, maybe that is not a
+question for you, and this series may actually have been better entirely
+bundled with the dphy series so the whole thing can be reviewed as a
+unit. I've added=20
+
+IOW, don't change this patch, or the dts patch, but move all of the
+code back into the phy driver..
+
+Sorry for not asking this sooner Changhuang,
+Conor.
+
+(hopefully this didn't get sent twice, mutt complained of a bad email
+addr during sending the first time)
+
+>=20
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 > ---
->  .../bindings/arm/freescale/fsl,ele_mu.yaml    | 139 ++++++++++++++++++
->  1 file changed, 139 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,ele_mu.yaml
-> 
+>  .../bindings/power/starfive,jh7110-pmu.yaml       | 15 +++++++++++++--
+>  include/dt-bindings/power/starfive,jh7110-pmu.h   |  3 +++
+>  2 files changed, 16 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.=
+yaml b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> index 98eb8b4110e7..c50507c38e14 100644
+> --- a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> +++ b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> @@ -8,6 +8,7 @@ title: StarFive JH7110 Power Management Unit
+> =20
+>  maintainers:
+>    - Walker Chen <walker.chen@starfivetech.com>
+> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+> =20
+>  description: |
+>    StarFive JH7110 SoC includes support for multiple power domains which =
+can be
+> @@ -17,6 +18,7 @@ properties:
+>    compatible:
+>      enum:
+>        - starfive,jh7110-pmu
+> +      - starfive,jh7110-aon-pmu
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -29,10 +31,19 @@ properties:
+> =20
+>  required:
+>    - compatible
+> -  - reg
+> -  - interrupts
+>    - "#power-domain-cells"
+> =20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-pmu
+> +    then:
+> +      required:
+> +        - reg
+> +        - interrupts
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> diff --git a/include/dt-bindings/power/starfive,jh7110-pmu.h b/include/dt=
+-bindings/power/starfive,jh7110-pmu.h
+> index 132bfe401fc8..0bfd6700c144 100644
+> --- a/include/dt-bindings/power/starfive,jh7110-pmu.h
+> +++ b/include/dt-bindings/power/starfive,jh7110-pmu.h
+> @@ -14,4 +14,7 @@
+>  #define JH7110_PD_ISP		5
+>  #define JH7110_PD_VENC		6
+> =20
+> +#define JH7110_PD_DPHY_TX	0
+> +#define JH7110_PD_DPHY_RX	1
+> +
+>  #endif
+> --=20
+> 2.25.1
+>=20
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--WQONS9/NxbuziPoO
+Content-Type: application/pgp-signature; name="signature.asc"
 
-yamllint warnings/errors:
+-----BEGIN PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/freescale/fsl,ele_mu.example.dtb: ele_mu: mboxes: [[4294967295, 2, 0], [4294967295, 3, 0]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/freescale/fsl,ele_mu.yaml
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEAzHAAKCRB4tDGHoIJi
+0u+LAQDoC/J42sKvykFP5qu+R/A4l+E/risoiAZPqG87amq8hAEAu8g9zCq2G8zr
+mxK73nG/PSMv3yXlgoY53l0N+kWSgw8=
+=pKPl
+-----END PGP SIGNATURE-----
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230419175538.855493-2-pankaj.gupta@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--WQONS9/NxbuziPoO--
