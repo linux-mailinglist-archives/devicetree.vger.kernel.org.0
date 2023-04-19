@@ -2,145 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D366E79C1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 14:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D7E76E80C1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 20:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233001AbjDSM2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 08:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47894 "EHLO
+        id S233134AbjDSSA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 14:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232848AbjDSM2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 08:28:48 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2050.outbound.protection.outlook.com [40.107.7.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31DB415A13;
-        Wed, 19 Apr 2023 05:28:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YNohnLL/Wv2NAhUeDpPt5QnSI27FaOdyEna8N6R1hFWacdpT/EWWv4nK91Cg4L/TAj6OmkVcuw5A7c7m4qBpUzrMWuCPBXdYq6l9hJcUyUG5iQp1oJfCWKJqZLN/6d6GqJwjnq2GOFd13a5CvE/y3/0CYgEgVCk/H+Z6sIEzXOT5LlC6jioKj3/R2juG2NxLZMeXAUck6bMYYO+6G4P+lNl6XgstvT/klFVb8h6RXCPB1EUwJe8lXm3J0I1FR0r5Qj3h5JKJX5WljQ6oJ3bWtcxMJJU6dR5vRdt71zkM33yUM4jxG1aHagaHRm47+TE/L/eFXAaL5RebttzHB6Kxwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7dBZFctoi+HaxjOjd8B9Bvo86l9CZ9XFJYprHXz/0+U=;
- b=PFwcGS+3FR3Ok7IQn3TCYGecLTu6LYjryZ3HBhLfL+rFnEAIKiQvEjhb0n7XZPd/qGoKLESSDeV0x88QKyiNtjTxly7bVmF2Sbzby0R9DQheNZNyEUOOHM3PEpsZNbt8lSy8r5IJRR26BQ4yzz+4Z289sd+ZiLV4lGAdlD8NEspchQ8fGyh8anTZY9BaKklEsXWN4hnBnGKqXc3VIxSL2jgXZaWSbgwt+VlyOuBeX7ibVnOhVJHmBNyXUivZ7eWv1wITcDNjlxcBZ+1pFPB/2Yc/6PCkTrhs0ctxmxZE87kZCCf1O0CVXXeP31WGEC0JhiqHX3YJSbEj3Wm8gpsGhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7dBZFctoi+HaxjOjd8B9Bvo86l9CZ9XFJYprHXz/0+U=;
- b=Z/xr+hwbSbV4a4LYMafX43pat/X9mUzt2BzAjVHEGt/IqvjxkD60yeIZGl+0olw/u0LWSDdJZD7qfxQg6u+CAvt0rbEpGIqbIX83seM4deC+cmGwoWG0XdgM+JmnNRGiEQMW9BvMKGSRx/VcFu2D4rjH0v7JXT9V+2hGjWWHYvE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8630.eurprd04.prod.outlook.com (2603:10a6:10:2dd::15)
- by PR3PR04MB7386.eurprd04.prod.outlook.com (2603:10a6:102:85::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.22; Wed, 19 Apr
- 2023 12:26:59 +0000
-Received: from DU2PR04MB8630.eurprd04.prod.outlook.com
- ([fe80::bb08:83bc:69ce:21ed]) by DU2PR04MB8630.eurprd04.prod.outlook.com
- ([fe80::bb08:83bc:69ce:21ed%9]) with mapi id 15.20.6298.030; Wed, 19 Apr 2023
- 12:26:58 +0000
-From:   Pankaj Gupta <pankaj.gupta@nxp.com>
-To:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        gaurav.jain@nxp.com, sahil.malhotra@nxp.com, aisheng.dong@nxp.com,
-        V.Sethi@nxp.com
-Cc:     Pankaj Gupta <pankaj.gupta@nxp.com>
-Subject: [PATCH v2 7/7] MAINTAINERS: Added maintainer details
-Date:   Wed, 19 Apr 2023 23:25:38 +0530
-Message-Id: <20230419175538.855493-8-pankaj.gupta@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230419175538.855493-1-pankaj.gupta@nxp.com>
-References: <20230419175538.855493-1-pankaj.gupta@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR06CA0008.apcprd06.prod.outlook.com
- (2603:1096:4:186::23) To DU2PR04MB8630.eurprd04.prod.outlook.com
- (2603:10a6:10:2dd::15)
+        with ESMTP id S233187AbjDSSAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 14:00:25 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6594561AF
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 11:00:23 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so804618a12.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 11:00:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681927222; x=1684519222;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2I2Wa/X6Ddr2CE5rQy/YNbr0tj1O7f8j69D9Dt8gE8A=;
+        b=KgWFma0xE4JrAty0GXMD93VqdwMMQIlJ/WTBKlcDPSiu2gr2ApC/KBIL5x5MzOoOaT
+         zuk+E+XH70UbzTgeMvkyYHBjzgsDbJXH6f9KskUTlEVotUPiy/51lmikd0CA2zw4KfxA
+         blhu0oGCRtDvKCEo1CJMEszRr7mdLRfVGIPPBgwtgj40ThdEz3hVE6CxZIzKvrxylG05
+         c/it9ENcHlXEJJMnjc8CVl1b1stylRltWTKg1RDZq4ulfnC2KUukSwv2iaDI6tPGNgDg
+         HBlNwZxjNbwPVIqvQz1Fxu3hSDF7ONd+61B7zLtnj+RDOdGDHDplqBILRkCOQG+iLpHo
+         fRTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681927222; x=1684519222;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2I2Wa/X6Ddr2CE5rQy/YNbr0tj1O7f8j69D9Dt8gE8A=;
+        b=Ob8md2Xblgdox7yy5/8v6UPQfCh/dBlX+hBPfW1JPY4H82MufDtzmbiI6rR+hhAldU
+         GxABi9HpYrK/bZ+LZ4qtOH39MHXtpGS/+d6CBssteynfTVfyrNFJecIknBUr63fwPJc0
+         qJOkVdaUr0ZsVqazfhXjKvO2nfOT+5dWcalJwJHA33hGGGhSSyjsA3YOT5oRuNtXmXF0
+         +FzPVobjSsrz6BeC3781jkAHZ8vJi0QkMWSlkOyd+lI6Oo+MxfulwtazAmTQsqCJM4uL
+         lfMLR0SAWy4EglBNIQZRumlhG3tKMhNZcmwCdM33r0bvzH9zNllIQ0vx7FOCPHqPmySj
+         +dWA==
+X-Gm-Message-State: AAQBX9fC9cAbHvQQGsar3yg/3pD58wbmlT5rk1PHcFt3nSzxaVsy9k9j
+        qKtdW/3q2z5f7zHM6BCPfSrDvg==
+X-Google-Smtp-Source: AKy350a42tEOCE3He5e94ySjqTXikL5UDReEMgplEfXFidB0B095T+B4soS12NaB+U7/9uOpgw8fEg==
+X-Received: by 2002:aa7:dbd5:0:b0:504:9e79:e86f with SMTP id v21-20020aa7dbd5000000b005049e79e86fmr3031031edt.18.1681927221879;
+        Wed, 19 Apr 2023 11:00:21 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:b7d8:d88b:1fac:c802? ([2a02:810d:15c0:828:b7d8:d88b:1fac:c802])
+        by smtp.gmail.com with ESMTPSA id m20-20020a50ef14000000b00501d39f1d2dsm8260610eds.41.2023.04.19.11.00.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Apr 2023 11:00:21 -0700 (PDT)
+Message-ID: <d655a748-4022-8d77-2f40-83bace7394b2@linaro.org>
+Date:   Wed, 19 Apr 2023 20:00:19 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8630:EE_|PR3PR04MB7386:EE_
-X-MS-Office365-Filtering-Correlation-Id: 497d0195-bb9e-43c0-2e4a-08db40d15eb6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: o2CiAkPUF9tccGdpz+yJxRWK2JaLLaWCYnMIGEeysiix0U9wS/FvaiG8yB7kniHF5D4rEWLkoJ9UWpoorpHiac2ha+WnoXCDsP0S0B2qr5IEoQkOYDuAf2mbVyRKsgLop0tcKEt0zOIJjdqRK42wcajpgORNxEPAnjHgyxeUHbyW9ydhx5pfiLlzcBqo2FzwWQo/NQpV/IZW5D9I+pjf9pG7LlSFRj7n/DowyIW3/4KPBE6x/UgyWn8NqZolk7a3tdzTZVmhHiBk4Y5oX/tyI7HucD0OQw0jUalql+Sn0bugpcsOWYESmMKv9ETOdVkwXLUKzOKanhjlOlAVANwkyPFiFnYcap29X6Ov+U8A7f/1TBhhPHJWWRPJlhiq3bd5y4vYHPwhR8jot0wMwnAKyWHAK0jOcNphFQFPkkCOxRLvGUACvKCk4BZk36q5gnOoBA2twpal/Qr+IsptnXLf0cMH/HBHQISXn7NuyO0RMRBaXSxCYXpjVot0dsPVxpEu0fIy4ylz9o2ryMPdw+Mucva3AqN+gDqVEmCk2j2eIyMAmX/bAEWK7mtaFL0u6lcZ8R9ljGHQ6B4m6w2R9dADmQB6AfSmrHegwlN2kJf6SZm8QJJTDAKPePhB2uwExcRMs3FCYccHbz+q9YlH5libYw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(366004)(346002)(396003)(136003)(376002)(451199021)(6636002)(83380400001)(478600001)(2616005)(52116002)(6486002)(6512007)(6506007)(1076003)(26005)(6666004)(66556008)(4326008)(66476007)(41300700001)(66946007)(921005)(316002)(186003)(5660300002)(44832011)(38100700002)(8676002)(38350700002)(2906002)(8936002)(4744005)(86362001)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ByWPhJRzvZLGgg5QRFz5p6Bd7v7FPNrGsxGF/4Kq9/Ag2apJrClbX3y/ifsi?=
- =?us-ascii?Q?88yw0638NDXoqJLxDjLW2qMi9w3+AppNiWhr4IazkX8cSOVUukuYDZ4DFF++?=
- =?us-ascii?Q?wo0TDSBg1Yq3Ic097QieeYspOECdX7htTk2AXGqHLJnS99a8qMpfau94ud5w?=
- =?us-ascii?Q?3GSxXVoSZt24ZvxfDrNdQw72EN8FxJ9bqmIMmpMfs2jZ1IV61nJhpuwxqNv2?=
- =?us-ascii?Q?MCNg5gD8hKt4pqxnn5Xc+KccIrFa74+XRTvHhXZ1p8L7BoBZ98CzmhEzVYA1?=
- =?us-ascii?Q?k4bGpzIvM7LSuLPXNNJj0jVD56o8UOlThIoJRfDGFImqfIdHuqCxll9dFdIT?=
- =?us-ascii?Q?N7xDSuKhpVvfIVIk1xhdeWBZQjVbm1EC3uQc0KkfPQDgozJjYT1IrQ2d+YiH?=
- =?us-ascii?Q?heVYMkvthlh4Es0VXpYaTgFnxAG5kO+tE/sq2d46QbRM1dj6SJYQxsTPiOUa?=
- =?us-ascii?Q?mEDEdgthBVDJ4kX8YI7QRqeJrTXvI7zR5ZH9+aDlhBJCqo9/jYETTykEtfeJ?=
- =?us-ascii?Q?5Z37B+bx35GAPtLFqsiiLrEPzyiBkwnyRk/RU7s/yn/OKvC8pv8FUGyartki?=
- =?us-ascii?Q?ZkZdaPOX53wcrr5smLYsijnbOvIwUCVQ2ekNjFjhXjoTk1UQAFJ4jdcNryJq?=
- =?us-ascii?Q?tAC8+Bpu34GfER4T9TV+U8i+2z7cSxSgdnW1L8erQWZTXfwLAQ7tO7zNSgRz?=
- =?us-ascii?Q?uQBO+c/JaZTIlpo6Dag4QJJpp0rJ2XyLcq4Z7VTXWx6FO9LN3gHR8zHSf5AN?=
- =?us-ascii?Q?zohsURpq52ZtWToa5rozjruR+psJiZr5bxDHBU3J0zSICP0NjzDo7juEJ40k?=
- =?us-ascii?Q?qI7i3DfG9qoUwzn7mIhTlWSPk9TEGbyQ5aJeuXko8x1mU6ie/+jc7wwRvzij?=
- =?us-ascii?Q?MwSuukbAuoRS/KtS4amHYebnudrFW9Qp9cCeXNvjjEvFsMSEt3Cxewof9h2t?=
- =?us-ascii?Q?EJ9iJpU+YpUzkdIx8ACEN+/DvBYHLxC8zlI70jY+b1mbgoE8BuSVtA8i728l?=
- =?us-ascii?Q?CendY3pWkv3tyGN4jiUDbuL9qoM0Sc4hxQGUpl/uHCAz53smB5lVgSr4yiJU?=
- =?us-ascii?Q?5Tq8+s2+hURAON2ZEqqbA8dPX+uSR/aEBHLR6JnmCZCKVM5Y9bqZchjhPjSM?=
- =?us-ascii?Q?FkBFYLkwk0pN6S0YCsdyyqScOmY2YI5ZojGbKRue4BO9rV0t9t3hyWAxecio?=
- =?us-ascii?Q?HgkfOTJQmQKxwimznwzJy1naGajsi9jYymYSGqvJYIGzWOSUyK2ztmQdh+8y?=
- =?us-ascii?Q?08KaJstkOMI9f8NUQj+FQpcTeP7c+wz5Zl5QQ/2J0EnugowTmD3ohKGEGrfX?=
- =?us-ascii?Q?p1hmX2uPKPVQP9A/HMzEK9EqB0Nl+mvtCr/LK9P6a6/xU+6aH6Yq1uXDiQ3z?=
- =?us-ascii?Q?i9lq2m33gaRyUe8jqKAXosj9rFtRdca4U31mqItz3va7M3t/GG0m43q7tn0Q?=
- =?us-ascii?Q?Gz563zuKmW7mJCBT7BqNvLHlGxK9n2WXLp7gCf2PpaPYIY+MT/SqJIuz7Z6f?=
- =?us-ascii?Q?XlJlBW9WW0B8q1IGvr/FiZ7lSwow6Cpa2yI3jffYyNlfg4ypb3hWo2CcnUZP?=
- =?us-ascii?Q?1LH9x95GymJzakE2TL2hUUbvhuSMBchRmlLQLXfV?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 497d0195-bb9e-43c0-2e4a-08db40d15eb6
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8630.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 12:26:58.8050
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9Rwdl0R+jTrODUD3R59xiwmS8p7qKzW55Oy2KnKTuiLsE7QZGWf0oK25XOqCZiWHO5dN2ZJaGMCRBvCz/xq1HA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7386
-X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_00,DATE_IN_FUTURE_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20230419034833.43243-1-changhuang.liang@starfivetech.com>
+ <20230419034833.43243-2-changhuang.liang@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230419034833.43243-2-changhuang.liang@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MAINTAINERS: Added maintainer details for ele-mu driver.
+On 19/04/2023 05:48, Changhuang Liang wrote:
+> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
+> rx/tx power switch, and it don't need the properties of reg and
+> interrupts.
+> 
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  .../bindings/power/starfive,jh7110-pmu.yaml       | 15 +++++++++++++
 
-Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0e64787aace8..59201de85009 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8103,6 +8103,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/crypto/fsl-sec4.txt
- F:	drivers/crypto/caam/
- 
-+NXP Edgelock Enclave MU DRIVER
-+M:	Pankaj Gupta <pankaj.gupta@nxp.com>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/arm/freescale/fsl,ele_mu.yaml
-+F:	drivers/firmware/imx/
-+
- FREESCALE COLDFIRE M5441X MMC DRIVER
- M:	Angelo Dureghello <angelo.dureghello@timesys.com>
- L:	linux-mmc@vger.kernel.org
--- 
-2.34.1
+Best regards,
+Krzysztof
 
