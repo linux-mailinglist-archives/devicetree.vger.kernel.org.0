@@ -2,144 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2B66E82D3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 22:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB21C6E8303
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:08:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbjDSUku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 16:40:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49896 "EHLO
+        id S231290AbjDSVII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 17:08:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbjDSUkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 16:40:49 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2071B6A5B;
-        Wed, 19 Apr 2023 13:40:48 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33JKePwK094762;
-        Wed, 19 Apr 2023 15:40:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681936825;
-        bh=jOrxa9o67/74X9hSjtDGSG0DsUqVFc0DPP8/q1F7lUA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=dJiy0JCCecFVI/WM8n+HkyJbRjQRn7q9di9toqnVl3BnFe5cbVdER1tJSMdrIap+l
-         HmCOt/34ZZ4Frfy2LSjE2C4vQY9iA6InfLUZdyxZTRLFCcPGnruOAweIsw5tE77WWJ
-         mN9RKSgzhxu/w8mVY0YFV6QrSqd/tdrO3QqeCdvw=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33JKeP7b029513
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Apr 2023 15:40:25 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 19
- Apr 2023 15:40:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 19 Apr 2023 15:40:24 -0500
-Received: from [128.247.81.102] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33JKeOSH000620;
-        Wed, 19 Apr 2023 15:40:24 -0500
-Message-ID: <52a37e51-4143-9017-42ee-8d17c67028e3@ti.com>
-Date:   Wed, 19 Apr 2023 15:40:24 -0500
+        with ESMTP id S229540AbjDSVIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:08:07 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA464684
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:08:05 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2a8a59daec5so775191fa.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681938483; x=1684530483;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y4Qr1DXe1yvvm/vxNEQkt+SEuJu0KzbnH1GeDOIlXyQ=;
+        b=hC5WFtDnayfS8GWsFSCr2rWJ952sK2ZuuSjzPTBUweoBJYnzyc2+eTgmkgOhIxUf6S
+         BDUeCh7ucPblx5vCU3jh+xHT7Ufl8nN568uL5OmBnUcENBwm8bURgtNWq1VHsGfHoQUI
+         ao+7dER7M8FSI9y9EZ9ygtz4MVXj+UtJo1J/wkLA5md3YI1VllMsFuxHqDOoAv3Q/9eq
+         pKf1KX9NK63kJsc6Lw4xl+brmE4IpG3DC+/l8nMljCwNPA2FnaRThvXhgBlOpuVAso6f
+         HVSuaVmL/BsETOwLRgDgVwyJFI+rsgciODVoEphuGnhlT6K2XNQYlcHlybGlaxaYDPjF
+         6pAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681938483; x=1684530483;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y4Qr1DXe1yvvm/vxNEQkt+SEuJu0KzbnH1GeDOIlXyQ=;
+        b=LnZa0LtMLKGn5zfyx1dw65pMwKL987vxMuxYu5pGoV91ck/ruMj9vCadTAKcX64/9v
+         zbGdgLMSvXLBh8RwkDhG7I8qYbRCypm7/wcd12FUB4eyVQBeJu4vpe4/GB3mS1DZiJ6b
+         I0dCiytHlkq2S4Q3cgBQdKMKdwOWXTNTAVM4nzIuoT4g+w67QCXoAS1DggF+1/HyZGfi
+         3g7RbpJN29d4OWAfx+N6XLEpnAfQrNzShjCciOakHDg+iOpdiyw18PjjgIiaQXOpELTT
+         uT1RYSFN7fItCssRvW05f3BG5llMMWFMc28XCledHWpYqTFQLRMwQzzMrNFqQ34ek6ef
+         ZYVQ==
+X-Gm-Message-State: AAQBX9dvS3egqm6oEH1PkGyT3JQ1e9C7o+su8G6o8K6ZneJa18zdWaNa
+        F0FW9oh9JYgGZdznT0MdrwihZB8AbVgUhO4kcIQ=
+X-Google-Smtp-Source: AKy350bRPbKgT0N5fxItGxuOvv+MyhtWesynq8EjEf51YmaoGEZIZO4bHS/rGvjxJZSOp9eSI5UMZA==
+X-Received: by 2002:ac2:4833:0:b0:4cc:96f8:f9c6 with SMTP id 19-20020ac24833000000b004cc96f8f9c6mr4457459lft.5.1681938483555;
+        Wed, 19 Apr 2023 14:08:03 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id r4-20020ac24d04000000b004db0a7ce483sm11410lfi.162.2023.04.19.14.08.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Apr 2023 14:08:03 -0700 (PDT)
+Message-ID: <6e55d3fa-744e-1f85-7642-6138f4e6e5a5@linaro.org>
+Date:   Wed, 19 Apr 2023 23:08:01 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH RFT v2 01/14] dt-bindings: clock: qcom,rpmcc: Add a way to
+ enable unused clock cleanup
 Content-Language: en-US
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Andrew Davis <afd@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-References: <20230413223051.24455-1-jm@ti.com>
- <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
- <6eb588ef-ab12-186d-b0d3-35fc505a225a@ti.com>
- <20230419-stretch-tarantula-e0d21d067483-mkl@pengutronix.de>
-From:   "Mendez, Judith" <jm@ti.com>
-In-Reply-To: <20230419-stretch-tarantula-e0d21d067483-mkl@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+ <20230303-topic-rpmcc_sleep-v2-1-ae80a325fe94@linaro.org>
+ <ZD2YYrOdQMD3pi7u@gerhold.net>
+ <d63d4896afe8a1a901470f88862ce608.sboyd@kernel.org>
+ <3873483f-7f7d-a146-cca9-b50f054289d4@linaro.org>
+ <6407af2a-18c6-9baf-cc9b-dcf7001812b7@linaro.org>
+ <ZD_0AmYU-N5vzv8f@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZD_0AmYU-N5vzv8f@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marc,
 
-On 4/19/2023 1:10 AM, Marc Kleine-Budde wrote:
-> On 18.04.2023 11:15:35, Mendez, Judith wrote:
->> Hello Marc,
+
+On 19.04.2023 16:00, Stephan Gerhold wrote:
+> On Wed, Apr 19, 2023 at 01:31:01PM +0200, Konrad Dybcio wrote:
+>> What should we do about the non-bus RPM clocks though? I don't fancy
+>> IPA_CLK running 24/7.. And Stephan Gerhold was able to achieve VDD_MIN
+>> on msm8909 with these clocks shut down (albeit with a very basic dt setup)!
 >>
->> On 4/14/2023 12:49 PM, Marc Kleine-Budde wrote:
->>> On 13.04.2023 17:30:46, Judith Mendez wrote:
->>>> On AM62x there is one MCAN in MAIN domain and two in MCU domain.
->>>> The MCANs in MCU domain were not enabled since there is no
->>>> hardware interrupt routed to A53 GIC interrupt controller.
->>>> Therefore A53 Linux cannot be interrupted by MCU MCANs.
->>>
->>> Is this a general hardware limitation, that effects all MCU domain
->>> peripherals? Is there a mailbox mechanism between the MCU and the MAIN
->>> domain, would it be possible to pass the IRQ with a small firmware on
->>> the MCU? Anyways, that's future optimization.
+>> Taking into account the old interconnect-enabled DTs, some of the
+>> clocks would need to be on so that the QoS writes can succeed
+>> (e.g. the MAS_IPA endpoint needs IPA_CLK), it gets complicated again..
 >>
->> This is a hardware limitation that affects AM62x SoC and has been carried
->> over to at least 1 other SoC. Using the MCU is an idea that we have juggled
->> around for a while, we will definitely keep it in mind for future
->> optimization. Thanks for your feedback.
 > 
-> Once you have a proper IRQ de-multiplexer, you can integrate it into the
-> system with a DT change only. No need for changes in the m_can driver.
+> I guess MSM8996 is the only platform affected by this? sdm630.dtsi seems
+> to list the clock already in the a2noc and all others don't seem to have
+> an interconnect driver yet.
 > 
-
-Is this a recommendation for the current patch?
-
-The reason I am asking is because adding firmware for the M4 to forward
-a mailbox with the IRQ to the A53 sounds like a good idea and we have 
-been juggling the idea, but it is not an ideal solution if customers are
-using the M4 for other purposes like safety.
-
->>>> This solution instantiates a hrtimer with 1 ms polling interval
->>>> for a MCAN when there is no hardware interrupt. This hrtimer
->>>> generates a recurring software interrupt which allows to call the
->>>> isr. The isr will check if there is pending transaction by reading
->>>> a register and proceed normally if there is.
->>>>
->>>> On AM62x this series enables two MCU MCAN which will use the hrtimer
->>>> implementation. MCANs with hardware interrupt routed to A53 Linux
->>>> will continue to use the hardware interrupt as expected.
->>>>
->>>> Timer polling method was tested on both classic CAN and CAN-FD
->>>> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
->>>> switching.
->>>>
->>>> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
->>>> 1 MBPS timer polling interval is the better timer polling interval
->>>> since it has comparable latency to hardware interrupt with the worse
->>>> case being 1ms + CAN frame propagation time and CPU load is not
->>>> substantial. Latency can be improved further with less than 1 ms
->>>> polling intervals, howerver it is at the cost of CPU usage since CPU
->>>> load increases at 0.5 ms and lower polling periods than 1ms.
+> This will be subjective and someone will surely disagree but...
 > 
-> Have you seen my suggestion of the poll-interval?
+> IMO forcing all RPM clocks on during boot and keeping them enabled is
+> not part of the DT ABI. If you don't describe the hardware correctly and
+> are missing necessary clocks in the description (like the IPA_CLK on the
+> interconnect node) then your DT is wrong and should be fixed.
 > 
-> Some Linux input drivers have the property poll-interval, would it make
-> sense to ass this here too?
+> I would see this a bit like typical optimizing C compilers nowadays. If
+> you write correct code it can optimize, e.g. drop unnecessary function
+> calls. But if you write incorrect code with undefined behavior it's not
+> the fault of the compiler if you run into trouble. The code must be
+> fixed.
+> 
+> The DT bindings don't specify that unused resources (clocks, ...) stay
+> "magically" active. They specify that that the resources you reference
+> are available. As such, I would say the OS is free to optimize here and
+> turn off unused resources.
+> 
+> The more important point IMO is not breaking all platforms without
+> interconnect drivers. This goes beyond just adding a missing clock to
+> the DT, you need to write the driver first. But having the max vote in
+> icc_smd_rpm (somehow) should hopefully take care of that.
+Hm, interesting argument.
 
-Looking at some examples, I do think we could implement this 
-poll-interval attribute, then read in the driver and initialize the 
-hrtimer based on this. I like the idea to submit as a future 
-optimization patch, thanks!
+Krzysztof, Bjorn, what's your stance on this?
 
-regards,
-Judith
+We *need* to add unused cleanup to rpmcc for feature completion and
+there's no good way of discerning whether it's safe to do so..
+
+Doing so will make clk_ignore_unused necessary to boot with legacy DTs.
+
+Stephan argues the DTs were incomplete from the start and the breakage
+is only a result of us previously abusing what's essentially undefined
+behavior.. I think I second this, but it is *a* breakage so I want to
+know your opinion.
+
+FWIW the same happens when we have simple-framebuffer enabled and then
+introduce dispcc on a given platform without adding the clocks under
+the simplefb node and we've not been frowning upon that too much, so I'd
+be willing to give it a pass if you're okay with it..
+
+Not caring about this would make things far, far easier really..
+
+Konrad
+> 
+>> I suppose something like this would work-ish:
+>>
+>> 0. remove clock handles as they're now contained within icc and
+>>    use them as a "legacy marker"
+>> 1. add:
+>> 	if (qp->bus_clocks)
+>> 		// skip qos writes
+> 
+> Maybe you can just check if all necessary clocks for QOS are there or
+> not? I don't think it's a problem to skip it on broken DTs. I think it
+> would be even fine to refuse loading the interconnect driver completely
+> and just have the standard max vote (as long as that results in a
+> booting system).
+> 
+>>
+>> This will:
+>> - let us add is_enabled so that all RPM clocks bar XO_A will be cleaned up
+>> - save massively on code complexity
+>>
+> 
+> +1
+> 
+>> at the cost of retroactively removing features (QoS settings) for people
+>> with old DTs and new kernels (don't tell Torvalds!)
+>>
+> 
+> I doubt anyone will notice :p
+> 
+>> This DTB ABI stuff really gets in the way sometimes :/ We're only now
+>> fixing up U-Boot to be able to use upstream Linux DTs and other than
+>> that I think only OpenBSD uses it with 8280.. Wish we could get rid of
+>> all old junk once and then establish immutability but oh well..
+> 
+> Nice, thanks a lot for working on addressing the Qualcomm DT mess in
+> U-Boot. I've been meaning to work this myself for a long time but never
+> found the time to start... :')
+> 
+> Thanks,
+> Stephan
