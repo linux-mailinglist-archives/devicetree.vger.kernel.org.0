@@ -2,206 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 881206E8617
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 01:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0F586E8AFB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbjDSXxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 19:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53134 "EHLO
+        id S233782AbjDTHLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:11:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjDSXxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 19:53:34 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 503F94C15
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 16:53:32 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id h8so896535ljf.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 16:53:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681948410; x=1684540410;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vNfByshoyjqkggpUZm4KV9+i8uHaEm21yhuILnAoxFQ=;
-        b=GggfLPCUiqfeSHJrj6P8FmwsZw0QiQ8fZ4ZQIfL2Jq3r/4vobPeWQ+MuTGHySvnjk6
-         S+wB+8BGrooeS4Q4zN5PZu0Fm+tnI757qZ+e4NRIO5eBgieDINdrGTPQWf+aGuf4Senf
-         hwB94WfCRNUIuDbFM+Fa1mL42QBPwpS1HYWP9Y+cdfjuEunR4nS3ClAcOiPVbBmdv33t
-         o7WjAjCGDa1qRb/J7aIuWfz0/gloNazkIJP5kpKQkJK0+cir/SZQ9Mz3Eh8eO8BLDZO1
-         hAutJ7sZ9EdTbhojc9h9VHDDJVijVNh7zT+VHchgCcNvDM5ZkAPSV1tPzJTfDbU6/aaT
-         3OgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681948410; x=1684540410;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vNfByshoyjqkggpUZm4KV9+i8uHaEm21yhuILnAoxFQ=;
-        b=HN+OeRGbjfAtGYOixksZQDvG8Ufx5gpUh99ozYFE0KnjI+4r4wUcCmc7iOhQGOLzQa
-         zTJqukTv6RLevdbgwB/hsEoXaaHUrjhSLi53kV8BnTkA8KFLY5uhnWA0NDZ35+jA55dW
-         lE2EgWD4o9FhPJom1Pf96uxTuwOwuYMVamY80SpWDa2wMwZ5ZvSJOK2nTH6kVfVuJz2U
-         sC2yJZhHq+DJU+kRMwv4FnzX4YZEDRXUwWgmgxO8le++vUNpDsxqxdYoO5xGpHUbRr1A
-         7TCt/H6pTWZoJB6QBiTqt1VrPKvp8hUbVFpZCKt9kcE/MCL3zivYOwTIhC8mOiAAWveb
-         Cssw==
-X-Gm-Message-State: AAQBX9f8VAr/A0cHIyb9j9/zG8LNeAla5FZLMTRXs3RAY3KVq/tuQ3/J
-        I7mYQ7v/F8/4wSWBjamTEAoMlg==
-X-Google-Smtp-Source: AKy350biEzgLEyIpYHveGxLtCjMiXGmGu+3e1mnunIHc5qW3Ihz5GGf3Ox/yara6uiG/98fMFL2FRQ==
-X-Received: by 2002:a2e:8852:0:b0:29a:9b26:4e25 with SMTP id z18-20020a2e8852000000b0029a9b264e25mr2398442ljj.6.1681948410594;
-        Wed, 19 Apr 2023 16:53:30 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id w9-20020ac24429000000b004ed149acc08sm47886lfl.93.2023.04.19.16.53.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 16:53:30 -0700 (PDT)
-Message-ID: <9d7f81fc-945e-9704-4eb2-d2e5cb31297e@linaro.org>
-Date:   Thu, 20 Apr 2023 02:53:29 +0300
+        with ESMTP id S229496AbjDTHLx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:11:53 -0400
+X-Greylist: delayed 19610 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 20 Apr 2023 00:11:51 PDT
+Received: from mail.heimpalkorhaz.hu (mail.heimpalkorhaz.hu [193.224.51.23])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7AB110;
+        Thu, 20 Apr 2023 00:11:51 -0700 (PDT)
+Received: from mail.heimpalkorhaz.hu (localhost [127.0.0.1])
+        (Authenticated sender: lmateisz@heimpalkorhaz.hu)
+        by mail.heimpalkorhaz.hu (Postfix) with ESMTPA id D0F3B384A1BDDF;
+        Thu, 20 Apr 2023 01:59:06 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.heimpalkorhaz.hu D0F3B384A1BDDF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=heimpalkorhaz.hu;
+        s=default; t=1681948747;
+        bh=0SvEQ2qxWUr6CAhQeUp6fE6iKpfYW2PiFDnjTXdqJls=;
+        h=Date:From:To:Subject:Reply-To:From;
+        b=gMPj4snOI5ESUdbEhfkXPRpZwvIV/7HnohgSWn5+ZIArdbtl5ckJ4Cb1pVUTHfXpa
+         uOedmA8uaqDb3CkDmOXhWIVsNnIuyZzKpM45ewmmd+miCyeYBFNoE8RZxOZxheZA4Z
+         mSjQy4y6UbTs0Tu7nvwUTlLrDsKQhAnXwE4w8OT/zqAzDPZ3PgGIUhV0q8+U7rN7eL
+         SfxgjxJuB/q14VlyLe1xBKXZet2qVj7m64kQHyuGMGPVZFey2sR8ZNPTxVk6PodR9V
+         Qy+azuqOCn5VdVuqwnM8YO2mGrEPEDuVj6IEJ1hHp1mshS5eEM0xX3sehEY3oMq4lh
+         dQGSNSUcAycLg==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/4] drm/msm: add some cec register bitfield details
-Content-Language: en-GB
-To:     Arnaud Vrac <avrac@freebox.fr>, Rob Clark <robdclark@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20230418-msm8998-hdmi-cec-v1-0-176479fb2fce@freebox.fr>
- <20230418-msm8998-hdmi-cec-v1-1-176479fb2fce@freebox.fr>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230418-msm8998-hdmi-cec-v1-1-176479fb2fce@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Date:   Thu, 20 Apr 2023 01:59:06 +0200
+From:   MK <mk@heimpalkorhaz.hu>
+To:     undisclosed-recipients:;
+Subject: Hallo zonneschijn, hoe gaat het?
+Reply-To: marion.k07081@gmail.com
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <5e720fb798e6f8d100eb1b63975da9f6@heimpalkorhaz.hu>
+X-Sender: mk@heimpalkorhaz.hu
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [5.46 / 20.00];
+        R_UNDISC_RCPT(3.00)[];
+        FORGED_RECIPIENTS(2.00)[m:,s:ria.engels@upcmail.nl,s:riandre56@upcmail.nl,s:s.marcus@upcmail.nl,s:s.natoewal@upcmail.nl,s:s.ritoe@upcmail.nl,s:s.zelst@upcmail.nl,s:secretariaat.zwcdts@upcmail.nl,s:sonnevelt@upcmail.nl,s:svennauta@upcmail.nl,s:t.adrichem@upcmail.nl,s:t.buitenhuis5@upcmail.nl,s:t.michelbrink@upcmail.nl,s:thea.g@upcmail.nl,s:v.klasens@upcmail.nl,s:w.angel7@upcmail.nl,s:w.maronier@upcmail.nl,s:w.stevens22@upcmail.nl,s:w.zweijpfenning@upcmail.nl,s:waza@upcmail.nl,s:wielle695@upcmail.nl,s:wimels@upcmail.nl,s:yvonne.hemert@upcmail.nl,s:d.blokland88@upcmail.nl,s:a.wierda4@upcmail.nl,s:r.van.emmerik@upcmail.nl,s:Ruisch06-83202551sruisch@upcmail.nl,s:Ruisch06-46358145mruisch@upcmail.nl,s:7w.heijdacker@upcmail.nl,s:a.zegers11@upcmail.nl,s:rufin.yune@upf.pf,s:info@upplevnordanstig.se,s:buzzwurks@usa.net,s:info@usaeconnect.com,s:test@user.nl,s:rawnar@users.sourceforge.net,s:info@uskeatsen.nl,s:kgpadilh@usp.br,s:vian@usp.br,s:jo8@usvhercules.nl,s:aare.kasemets@ut.ee,s:olli.ylonen
+ @uta.fi,s:a.reite@utanet.at,s:ph.lorentz@utex.ma,s:andyz@utexas.edu,s:external@utn.stjr.is,s:postur@utn.stjr.is,s:j.nganji@utoronto.ca,s:odlc@utoronto.ca,s:nico@utrecht-promotions.nl,s:duurzame-energierijnenburg@utrecht.nl,s:j.gootzen@utrecht.nl,s:johan.simon@utrecht.nl,s:k.vandenbos@uu.nl,s:m.asadpoor@uu.nl,s:n.h.g.devries@uu.nl,s:o.h.klungel@uu.nl,s:Y.Zhou1@uu.nl,s:c.vanewijk@uva.nl,s:e.s.bergvelt@uva.nl,s:g.m.m.kuipers@uva.nl,s:anne.vermeer@uvt.nl,s:RWarne@uvu.edu,s:n.schiphouwer@uvvz.nl,s:info@uwe.be,s:mthuys@uwnet.nl,s:draaisma@uwnwt.nl,s:alexontwerpt@uwsieraad.nl,s:veerle.taelman@uz.kuleuven.be,s:bart.op.de.beeck@uza.be,s:marie-jose.tassignon@uza.be,s:paul.parizel@uza.be,s:wouter.vaneerdeweg@uza.be,s:05susanne.bohler@uzbrussel.be,s:13ursula.vandeneede@uzbrussel.be,s:72ida.flament@uzbrussel.be,s:bart.depreitere@uzleuven.be,s:Karel.Vankeer@uzleuven.be,s:rik.willems@uzleuven.be,s:sofie.coenen@uzleuven.be,s:roland@uzn.nl,s:carla@v-breemen.demon.nl,s:alex@v2.nl,s:accounthaube@v7ver
+ sand.de,s:Jeroen@vabnethems.nl,s:riem@val.be,s:auquiere@valbiom.be,s:willy@van-roemburg.nl,s:info@vanbaallingerie.nl,s:astrologie@vanblommestein.nl,s:marnix@vandekerkhove.be,s:infol@vandepoel-expertise.be,s:roel@vanderdrift.nl,s:wilco@vandermerch.net,s:Francoise@vanderwaals01.demon.nl,s:vandort@vandort.com,s:matthias@vanduysen.be,s:CARLA@VANENTHOVEN.NL,s:info@vanerck.be,s:bureau@vanhentenrijk.be];
+        SUBJECT_ENDS_QUESTION(1.00)[];
+        GENERIC_REPUTATION(-0.59)[-0.58872629738287];
+        BAYES_SPAM(0.15)[64.09%];
+        MIME_GOOD(-0.10)[text/plain];
+        FROM_EQ_ENVFROM(0.00)[];
+        MIME_TRACE(0.00)[0:+];
+        RCVD_COUNT_ZERO(0.00)[0];
+        TO_DN_ALL(0.00)[];
+        RCPT_COUNT_ONE(0.00)[1];
+        REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+        FROM_HAS_DN(0.00)[];
+        MID_RHS_MATCH_FROM(0.00)[];
+        FREEMAIL_ENVRCPT(0.00)[upcmail.nl,usa.net,utanet.at,verizon.net,VERIZON.NET,versatel.nl,videotron.ca,vip.onet.pl,virgilio.it,virgin.net,vodafonethuis.nl,wanadoo.fr,web.de,windowslive.com,worldnet.att.net,wp.pl,xs4all.nl,XS4all.nl,xtra.co.nz,ya.ru,yahoo.ca,Yahoo.Ca,yahoo.co.in,yahoo.co.jp,yahoo.co.nz,yahoo.co.uk,yahoo.com,YAHOO.COM,yahoo.com.ar,yahoo.com.au,yahoo.com.br,yahoo.com.ph,yahoo.com.sg,yahoo.com.tw,yahoo.de,yahoo.dk,yahoo.es,yahoo.fr,yahoo.gr,yahoo.it];
+        FREEMAIL_REPLYTO(0.00)[gmail.com];
+        HAS_REPLYTO(0.00)[marion.k07081@gmail.com]
+X-Rspamd-Queue-Id: D0F3B384A1BDDF
+X-Rspamd-Server: mail.heimpalkorhaz.hu
+X-Spam-Status: No, score=1.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 21:10, Arnaud Vrac wrote:
-> The register names and bitfields were determined from the downstream
-> msm-4.4 driver.
-> 
-> Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
-> ---
->   drivers/gpu/drm/msm/hdmi/hdmi.xml.h | 62 ++++++++++++++++++++++++++++++++++++-
->   1 file changed, 61 insertions(+), 1 deletion(-)
+Het spijt me u te storen en uw privacy te schenden. Ik ben vrijgezel,
+   eenzaam en heeft behoefte aan een zorgzame, liefdevolle en romantische 
+metgezel.
 
-I have opened MR against Mesa at 
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22588.
+Ik ben een geheime bewonderaar en zou graag de mogelijkheid willen 
+onderzoeken
+leer meer over elkaar. Ik weet dat het vreemd is om contact met je op te 
+nemen
+op deze manier en ik hoop dat je me kunt vergeven. Ik ben een verlegen 
+persoon en
+dit is de enige manier waarop ik weet dat ik je aandacht kan trekken. Ik 
+wil gewoon
+om te weten wat je denkt en het is niet mijn bedoeling om je te 
+beledigen.
+Ik hoop dat we vrienden kunnen zijn als je dat wilt, hoewel ik dat zou 
+willen
+om meer te zijn dan alleen een vriend. Ik weet dat je een paar vragen 
+hebt
+vraag het en ik hoop dat ik met een paar iets van je nieuwsgierigheid 
+kan bevredigen
+antwoorden.
 
-The patch is:
+Ik geloof in het gezegde dat 'voor de wereld ben je maar één persoon,
+maar voor een speciaal iemand ben jij de wereld'. Alles wat ik wil is 
+liefde,
+romantische zorg en aandacht van een speciale metgezel die ik ben
+in de hoop dat jij dat zou zijn.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Ik hoop dat dit bericht het begin is van een lange termijn
+communicatie tussen ons, stuur gewoon een antwoord op dit bericht, it
+zal me gelukkig maken.
 
-Minor nit below
 
-> 
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.xml.h b/drivers/gpu/drm/msm/hdmi/hdmi.xml.h
-> index 973b460486a5a..b4dd6e8cba6b7 100644
-> --- a/drivers/gpu/drm/msm/hdmi/hdmi.xml.h
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.xml.h
-> @@ -76,6 +76,13 @@ enum hdmi_acr_cts {
->   	ACR_48 = 3,
->   };
->   
-> +enum hdmi_cec_tx_status {
-> +	CEC_TX_OK = 0,
-> +	CEC_TX_NACK = 1,
-> +	CEC_TX_ARB_LOSS = 2,
-> +	CEC_TX_MAX_RETRIES = 3,
-> +};
-> +
->   #define REG_HDMI_CTRL						0x00000000
->   #define HDMI_CTRL_ENABLE					0x00000001
->   #define HDMI_CTRL_HDMI						0x00000002
-> @@ -476,20 +483,73 @@ static inline uint32_t HDMI_DDC_REF_REFTIMER(uint32_t val)
->   #define REG_HDMI_HDCP_SW_LOWER_AKSV				0x00000288
->   
->   #define REG_HDMI_CEC_CTRL					0x0000028c
-> +#define HDMI_CEC_CTRL_ENABLE					0x00000001
-> +#define HDMI_CEC_CTRL_SEND_TRIGGER				0x00000002
-> +#define HDMI_CEC_CTRL_FRAME_SIZE__MASK				0x000001f0
-> +#define HDMI_CEC_CTRL_FRAME_SIZE__SHIFT				4
-> +static inline uint32_t HDMI_CEC_CTRL_FRAME_SIZE(uint32_t val)
-> +{
-> +	return ((val) << HDMI_CEC_CTRL_FRAME_SIZE__SHIFT) & HDMI_CEC_CTRL_FRAME_SIZE__MASK;
-> +}
-> +#define HDMI_CEC_CTRL_LINE_OE					0x00000200
->   
->   #define REG_HDMI_CEC_WR_DATA					0x00000290
-> +#define HDMI_CEC_WR_DATA_BROADCAST				0x00000001
-> +#define HDMI_CEC_WR_DATA_DATA__MASK				0x0000ff00
-> +#define HDMI_CEC_WR_DATA_DATA__SHIFT				8
-> +static inline uint32_t HDMI_CEC_WR_DATA_DATA(uint32_t val)
-> +{
-> +	return ((val) << HDMI_CEC_WR_DATA_DATA__SHIFT) & HDMI_CEC_WR_DATA_DATA__MASK;
-> +}
->   
-> -#define REG_HDMI_CEC_CEC_RETRANSMIT				0x00000294
-> +#define REG_HDMI_CEC_RETRANSMIT					0x00000294
-> +#define HDMI_CEC_RETRANSMIT_ENABLE				0x00000001
-> +#define HDMI_CEC_RETRANSMIT_COUNT__MASK				0x000000fe
-> +#define HDMI_CEC_RETRANSMIT_COUNT__SHIFT			1
-> +static inline uint32_t HDMI_CEC_RETRANSMIT_COUNT(uint32_t val)
-> +{
-> +	return ((val) << HDMI_CEC_RETRANSMIT_COUNT__SHIFT) & HDMI_CEC_RETRANSMIT_COUNT__MASK;
-> +}
->   
->   #define REG_HDMI_CEC_STATUS					0x00000298
-> +#define HDMI_CEC_STATUS_BUSY					0x00000001
-> +#define HDMI_CEC_STATUS_TX_FRAME_DONE				0x00000008
-> +#define HDMI_CEC_STATUS_TX_STATUS__MASK				0x000000f0
-> +#define HDMI_CEC_STATUS_TX_STATUS__SHIFT			4
-> +static inline uint32_t HDMI_CEC_STATUS_TX_STATUS(enum hdmi_cec_tx_status val)
-> +{
-> +	return ((val) << HDMI_CEC_STATUS_TX_STATUS__SHIFT) & HDMI_CEC_STATUS_TX_STATUS__MASK;
-> +}
->   
->   #define REG_HDMI_CEC_INT					0x0000029c
-> +#define HDMI_CEC_INT_TX_DONE					0x00000001
-> +#define HDMI_CEC_INT_TX_DONE_MASK				0x00000002
-> +#define HDMI_CEC_INT_TX_ERROR					0x00000004
-> +#define HDMI_CEC_INT_TX_ERROR_MASK				0x00000008
-> +#define HDMI_CEC_INT_MONITOR					0x00000010
-> +#define HDMI_CEC_INT_MONITOR_MASK				0x00000020
-> +#define HDMI_CEC_INT_RX_DONE					0x00000040
-> +#define HDMI_CEC_INT_RX_DONE_MASK				0x00000080
->   
->   #define REG_HDMI_CEC_ADDR					0x000002a0
->   
->   #define REG_HDMI_CEC_TIME					0x000002a4
-> +#define HDMI_CEC_TIME_ENABLE					0x00000001
-> +#define HDMI_CEC_TIME_SIGNAL_FREE_TIME__MASK			0x0000ff80
-> +#define HDMI_CEC_TIME_SIGNAL_FREE_TIME__SHIFT			7
-> +static inline uint32_t HDMI_CEC_TIME_SIGNAL_FREE_TIME(uint32_t val)
-> +{
-> +	return ((val) << HDMI_CEC_TIME_SIGNAL_FREE_TIME__SHIFT) & HDMI_CEC_TIME_SIGNAL_FREE_TIME__MASK;
-> +}
->   
->   #define REG_HDMI_CEC_REFTIMER					0x000002a8
-> +#define HDMI_CEC_REFTIMER_ENABLE				0x00010000
+Knuffels en kussen,
 
-I think this should come after the REFTIMER field.
-
-> +#define HDMI_CEC_REFTIMER_REFTIMER__MASK			0x0000ffff
-> +#define HDMI_CEC_REFTIMER_REFTIMER__SHIFT			0
-> +static inline uint32_t HDMI_CEC_REFTIMER_REFTIMER(uint32_t val)
-> +{
-> +	return ((val) << HDMI_CEC_REFTIMER_REFTIMER__SHIFT) & HDMI_CEC_REFTIMER_REFTIMER__MASK;
-> +}
->   
->   #define REG_HDMI_CEC_RD_DATA					0x000002ac
->   
-> 
-
--- 
-With best wishes
-Dmitry
-
+Marion.
