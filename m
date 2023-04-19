@@ -2,106 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D532F6E74CB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 10:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D7606E7577
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 10:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232288AbjDSIQx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 19 Apr 2023 04:16:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56968 "EHLO
+        id S232650AbjDSIkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 04:40:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229978AbjDSIQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 04:16:52 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCED100;
-        Wed, 19 Apr 2023 01:16:50 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 12E2824DBBD;
-        Wed, 19 Apr 2023 16:16:42 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Apr
- 2023 16:16:41 +0800
-Received: from [192.168.125.108] (113.72.144.253) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Apr
- 2023 16:16:40 +0800
-Message-ID: <f7e07efc-c274-4fc2-20c1-4c5e2e1c989e@starfivetech.com>
-Date:   Wed, 19 Apr 2023 16:16:40 +0800
+        with ESMTP id S232470AbjDSIkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 04:40:05 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6082B5BA1
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 01:40:04 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id fw30so26824094ejc.5
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 01:40:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681893603; x=1684485603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=22bAOLCz/Hy85xNiRLfskrgiPMdU7+7siODBKDyg0pM=;
+        b=Roj6MyT9vIcHinFEsCO2tp5BU2nLbWl5k4IXdVB6bc+f7ht4jujN6z1Bmxd9qQ8qn2
+         zFtB1wqbtsQ27dsrF9B5aagcbpMvEYG8vwTwCO5VIueFo2JjRNY1Gu4HL747upNNJuyz
+         HKF08W5gs/S+XpR7VCZsrSWmDzq0PZbwV0X0NTDRAYUn39hxCKgPumQkrxJtDt3gOk0j
+         vzLcwOFqPodX16rUDhNyEzInj6L39Kdsg93yQ1sZn5lpzFwy9U7bVPDx9ove2XxNyPo7
+         xsV79+2rVWIu2BARwcEa9yzoXurcaUk8k1+wK4H9Xd3BX3rL52Hm4dHvc+nKwrezfPv5
+         H+Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681893603; x=1684485603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=22bAOLCz/Hy85xNiRLfskrgiPMdU7+7siODBKDyg0pM=;
+        b=Fh/zPJGaCBhVgVyBAgf1hlA32EkfZ2Cik1GbLt9wG9ZgbPx1QBQuSR8ZuslJ0Iyv1W
+         WOMMbAqCKVPeUb+e2TlScloAGl2l/lzHIDJuo1Uj+GRC1CnL/OjRzX7ursZxoSAb3PoW
+         k75251Ko1sFFox2mZW6j+NDGcsT3NAqCekti8BVK0hdPCbOYAkbGyK9bK3N9voQ642aB
+         F/1kx5RKBV4kpAunScoWodX+Iwh218eg3yjiygv5ZAaAjWxmDM3e752J9jHr5cnUqBbq
+         qfknlnsJlR9iZHGbP5duOcekl+NGyVS6Oio/rr74920mmXi5WmqqzYmnuSvlcyPEIgBx
+         aXAw==
+X-Gm-Message-State: AAQBX9fDU8bK4hRLcAITRd1m5/7ub0AozmQoR3DwjNoOLxWHw13mzdbR
+        Z06Ui1EUkGPn0QokSIkqta/WZQ==
+X-Google-Smtp-Source: AKy350b+cfnZW26IV+4t/7ysLlAr1MEF2r2CKzPqtzi5Sg7f4/mQ3aCj9ZIau1Rp/s/ffwbV1c+uHg==
+X-Received: by 2002:a17:906:80d4:b0:94f:247d:44d2 with SMTP id a20-20020a17090680d400b0094f247d44d2mr12482285ejx.5.1681893602752;
+        Wed, 19 Apr 2023 01:40:02 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:62f5:eb43:f726:5fee? ([2a02:810d:15c0:828:62f5:eb43:f726:5fee])
+        by smtp.gmail.com with ESMTPSA id b1-20020a170906038100b0094f5f6ba306sm4636696eja.41.2023.04.19.01.40.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Apr 2023 01:40:02 -0700 (PDT)
+Message-ID: <f80fcbeb-f916-63da-a5c3-f80f6315f3e0@linaro.org>
+Date:   Wed, 19 Apr 2023 10:40:01 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 0/7] Add JH7110 USB and USB PHY driver support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 5/9] regulator: rt5033: Change regulator names to
+ lowercase
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Peter Chen" <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Mason Huo" <mason.huo@starfivetech.com>
-References: <20230406015216.27034-1-minda.chen@starfivetech.com>
- <517670ca-ba2e-811e-3eb2-7f38011c9690@linaro.org>
- <985d0a57-1fc8-5725-4d3a-33dcc5d49d67@starfivetech.com>
- <5953bc83-9609-6d12-7e9b-ca5202151fb3@linaro.org>
- <a75ed45c-55c4-ff94-86f9-313ec79720ac@starfivetech.com>
- <c79e7d05-0b62-40e6-0864-35b2821c69e7@linaro.org>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <c79e7d05-0b62-40e6-0864-35b2821c69e7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [113.72.144.253]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1681646904.git.jahau@rocketmail.com>
+ <d4218947e354aee45589acb1060ce41727a26750.1681646904.git.jahau@rocketmail.com>
+ <19ceb0f6-1225-c8cb-1469-3d657e66d171@linaro.org>
+ <e6cc8658-fe93-c2c0-603e-093cdafb3cca@rocketmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e6cc8658-fe93-c2c0-603e-093cdafb3cca@rocketmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/04/2023 23:24, Jakob Hauser wrote:
+> Hi Krzysztof,
+> 
+> On 16.04.23 20:32, Krzysztof Kozlowski wrote:
+>> On 16/04/2023 14:44, Jakob Hauser wrote:
+>>> Lowercase is preferred for node names.
+>>
+>> This will break all existing users. In-tree and out-of-tree. Where is
+>> the binding update?
+> 
+> In my reply to Rob's comments in v1 I was pointing out that this will 
+> affect an existing driver. There was no reaction.
+> 
+> As far as I can see, there is no in-tree usage yet. Though I can't tell 
+> about out-of-tree usage. Although if there is, adding the rt5033-charger 
+> driver might already causes the need for changes.
+> 
+> Well, to stay on the safe side, I'll drop this patch in v3 and will 
+> change the bindings (patch 9) back to uppercase.
+> 
 
+Your v1 binding patch did not explain that you document existing ABI, so
+you got comments like for a new binding. This is not really new binding,
+is it?
 
-On 2023/4/18 20:22, Krzysztof Kozlowski wrote:
-> On 18/04/2023 13:12, Minda Chen wrote:
->>>>>>
->>>>>>
->>>>>> base-commit: 0ec57cfa721fbd36b4c4c0d9ccc5d78a78f7fa35
->>>>>> prerequisite-patch-id: 24a6e3442ed1f5454ffb4a514cfd768436a87090
->>>>>> prerequisite-patch-id: 55390537360f25c8b9cbfdc30b73ade004f436f7
->>>>>
->>>>> fatal: bad object 55390537360f25c8b9cbfdc30b73ade004f436f7
->>>>>
->>>>> What commits do you reference? How are they helpful?
->>>>>
->>>> I use "git format-patch --base=(commit) to generate patchset.
->>>> Maybe I set the wrong base commit.
->>>
->>> How are they helpful if these are private commits?
->>>> Best regards,
->>> Krzysztof
->>>
->> base-commit is not private commits. 
->> I should set base commit 197b6b60ae7bc51dd0814953c562833143b292aa. This is 6.3-rc4 commit.
->> But I set 0ec57cfa721fbd36b4c4c0d9ccc5d78a78f7fa35. This is 6.3-rc4's previous commit.
-> 
-> You missed the point. I am not talking about base commit. I am talking
-> about your prerequisites, which are useless. What can we do with such SHA?
-> 
-> Best regards,
-> Krzysztof
-> 
-OK， I will delete them
+Best regards,
+Krzysztof
+
