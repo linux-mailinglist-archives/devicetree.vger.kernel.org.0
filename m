@@ -2,139 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4CE6E7237
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 06:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9A996E724B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 06:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231891AbjDSEUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 00:20:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
+        id S231652AbjDSE1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 00:27:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232305AbjDSEUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 00:20:41 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2069.outbound.protection.outlook.com [40.107.244.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 731DE7A80;
-        Tue, 18 Apr 2023 21:20:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TUlT2D6rV0PtgpgoqQSQ1fa1FgHzVHKtrhtBpeawpbOId85nS6ZZa6Jag/14U9thdPFYMJn5LPoxd+92JVGpMEmZ2lKxXwt65gR0kXHsl3GkYDmuW+rFVBPV9JNUOD2UWUP4pDO+bkmWGt6obP/4DOyLoSzEGh/oR7wBmde4WypRYun9jmJANv4PL4903mW3zquuFZM7mewQtmrwy451BGwqp3LzdqgGsfS4CthvgVUAjYNdeOcC20cMnhlnLgn6V9e9Jx888PejulARM+IPV6C2zdfu64kbVrfFtzvsQbN3vQb5XfB/th1IyA9Lx3wUVYM+RkETmOC2nTZksaTRwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EUXj2ElTOnvAcy08m0ea9S1QZpa/0OKybIYvDr0np8s=;
- b=KaoF/cHM3pgFbR/h+ReCuVDKsYU4c7GLPNB2gxMX9I8owMAQ5hR+chf2W4uTF15fvpzjJrp8EHkBDVRxXRbHYkViiRQ48v8A5d+OE5aX/L8/Mx6X6yydSPzXzbcbw2doQB5tHZzo/uzJwb6tQbIvxU4DCkkXzf+GRB+q3TDYHr2RmYF+eCqQQk8Me9Vm0Yhj0vdmQRDDzfGQFwzLrgzTHz4Ab44bWxDVbkQCm2S+jlE3dwAn8KF4Wm0dixoU0biLv1pjK9szoZu6xoH+h/aPEtCqAFWsjRDq+8i97yeagNi2SMBDrGX3IdtgrogRyAyGC1lLfJV/yYsblm+wv9cR/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EUXj2ElTOnvAcy08m0ea9S1QZpa/0OKybIYvDr0np8s=;
- b=QxwlF3+y8Lt4yRv32MK/anFTHSbAN/RjUPrllPQZOJp8SVcvNWte2jeVkYIfzHxXsJ6vN4iBYTIOiRZ0da9er+0Ih6CqzinnhrsrfIyqInpSWeOvV2NXWzME8ad6IAPvh4rqsr9IyxV0JMu3HwjarrB9TeYtlQx9FRmlhvfQg8w=
-Received: from MW4PR04CA0213.namprd04.prod.outlook.com (2603:10b6:303:87::8)
- by SN7PR12MB8602.namprd12.prod.outlook.com (2603:10b6:806:26d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Wed, 19 Apr
- 2023 04:20:34 +0000
-Received: from CO1NAM11FT095.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:87:cafe::87) by MW4PR04CA0213.outlook.office365.com
- (2603:10b6:303:87::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.47 via Frontend
- Transport; Wed, 19 Apr 2023 04:20:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT095.mail.protection.outlook.com (10.13.174.179) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6319.22 via Frontend Transport; Wed, 19 Apr 2023 04:20:34 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 18 Apr
- 2023 23:20:30 -0500
-Received: from xsjlizhih40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 18 Apr 2023 23:20:29 -0500
-From:   Lizhi Hou <lizhi.hou@amd.com>
-To:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-        <frowand.list@gmail.com>, <helgaas@kernel.org>
-CC:     Lizhi Hou <lizhi.hou@amd.com>, <clement.leger@bootlin.com>,
-        <max.zhen@amd.com>, <sonal.santan@amd.com>, <larry.liu@amd.com>,
-        <brian.xu@amd.com>, <stefano.stabellini@xilinx.com>,
-        <trix@redhat.com>
-Subject: [PATCH V8 3/3] PCI: Add PCI quirks to generate device tree node for Xilinx Alveo U50
-Date:   Tue, 18 Apr 2023 21:19:54 -0700
-Message-ID: <1681877994-16487-4-git-send-email-lizhi.hou@amd.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1681877994-16487-1-git-send-email-lizhi.hou@amd.com>
-References: <1681877994-16487-1-git-send-email-lizhi.hou@amd.com>
+        with ESMTP id S230211AbjDSE1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 00:27:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D9961A7;
+        Tue, 18 Apr 2023 21:27:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4EFD262F3A;
+        Wed, 19 Apr 2023 04:27:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84120C433EF;
+        Wed, 19 Apr 2023 04:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681878468;
+        bh=z8Cnl+y8ZhRaFWwRA/tNVWmuFrnUGtE2tQkn1vH03MQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=fkdNpsYCFIgLsxaPwHhk+tlApLi0x3z8fn+/RXy3qBRrG8HKTZez0cdG9Q4Tn/zqW
+         pbDuIK7Da13J3SVPnzCq8RxZzzgxK+kf8tZ6dWxM2DMVeSgbb65dPl/5IMaYQFO5JA
+         KP50dxYOK1RDFKc0Y7gZPql9cVf/tMGsfCEMPbyLZOu0DQ2ZHSzYxU2sddWHCPbQOl
+         zzZoCJi5Or1D/qjAUeytjnOtePKUobrfvCVhfdaLSJqEHKsy3omA7a3/vShF6y/rwu
+         WrvBO1Cz20shBfjEi4kU67X8yeUUEdEMLA6ULoUN2Ez2V/Qs3xPheEqlSS5fpqZr8Q
+         bSFubUXxlgcKA==
+Date:   Tue, 18 Apr 2023 21:27:46 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH v7 00/16] net: Add basic LED support for
+ switch/phy
+Message-ID: <20230418212746.7db8096e@kernel.org>
+In-Reply-To: <20230417151738.19426-1-ansuelsmth@gmail.com>
+References: <20230417151738.19426-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT095:EE_|SN7PR12MB8602:EE_
-X-MS-Office365-Filtering-Correlation-Id: 440221b8-7dc0-4867-415e-08db408d6bd6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k/1jsKVWSZQ1Otr15Caw8JsPUEc+BPwi+o6pb+54UT+Kh/I5gR9RjEIUAOjtUOQ2GlvYyot32d/AsQoLPrC5zZ2liuZKYdBCU6fPNwdOH10GA1kN2fgA+Wprafx14XVldOa1SBPjG1WYWJ4z4Xy1FeBH/T8A0OQF6FuRHUaYlrr0VWv+iocfk++KewGAnWlWLlCBSFAyo97pJv0EuWDqwKt5uraHuUmd7rlk/jdgp8hA/KOlbsjHV75VrMPVZ2KbGAhBzlu0gosVUnS7kQZAtEjNc0VA8k5ACU63x7ImyB1/1sQaLsVyO5HWeRgXzt4/hVISEx/QX191DSRNNMhNid9FNHBYiuiiIU65c3yzu2xah1LeXcAkYXrDN3D8RqAGRU/70xT4YFPTbYz1MqUX57EIKRPBwqKmQuNSojqYkA8QvdxBHBhWkPgoiyUxapk5eX00b8pyoesagWE8rFRqw9rutR38YQu0IFbCkZ/3iiiCwmzVtJDsfZXWNObTBKSo15whnr6PdEjBKQmykFfTKTumg4oMS/92x4f1oioGdNK7t09tWEZ4MaHcC/CjbySzn416Asph/uvk1f925/6EWIy4PEHhI78A14hgVhlHaxcz65Wl+7d1EUJHdsdGE6L5za9iKfgv8rkgXnhTxLXR796ZxyypxrKwjnjgXlJAF6UP4HGHMBCLIN3tbh22JYi9/Xb2gn+Mq4pmbBj5ug/mKGkCshKfSQXnx8TFDyA9nOs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(346002)(376002)(396003)(451199021)(36840700001)(40470700004)(46966006)(8936002)(36756003)(8676002)(40460700003)(44832011)(2906002)(82310400005)(86362001)(5660300002)(70206006)(40480700001)(478600001)(6666004)(54906003)(110136005)(186003)(2616005)(36860700001)(70586007)(26005)(316002)(356005)(82740400003)(81166007)(47076005)(41300700001)(4326008)(426003)(336012)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 04:20:34.5420
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 440221b8-7dc0-4867-415e-08db408d6bd6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT095.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8602
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Xilinx Alveo U50 PCI card exposes multiple hardware peripherals on
-its PCI BAR. The card firmware provides a flattened device tree to
-describe the hardware peripherals on its BARs. This allows U50 driver to
-load the flattened device tree and generate the device tree node for
-hardware peripherals underneath.
+On Mon, 17 Apr 2023 17:17:22 +0200 Christian Marangi wrote:
+> This is a continue of [1]. It was decided to take a more gradual
+> approach to implement LEDs support for switch and phy starting with
+> basic support and then implementing the hw control part when we have all
+> the prereq done.
+> 
+> This series implements only the brightness_set() and blink_set() ops.
+> An example of switch implementation is done with qca8k.
+> 
+> For PHY a more generic approach is used with implementing the LED
+> support in PHY core and with the user (in this case marvell) adding all
+> the required functions.
+> 
+> Currently we set the default-state as "keep" to not change the default
+> configuration of the declared LEDs since almost every switch have a
+> default configuration.
 
-To generate device tree node for U50 card, added PCI quirks to call
-of_pci_make_dev_node() for U50.
-
-Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
----
- drivers/pci/quirks.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index 44cab813bf95..35745e7b457a 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -6023,3 +6023,14 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
- #endif
-+
-+/*
-+ * For PCI device which have multiple downstream devices, its driver may use
-+ * a flattened device tree to describe the downstream devices.
-+ * To overlay the flattened device tree, the PCI device and all its ancestor
-+ * devices need to have device tree nodes on system base device tree. Thus,
-+ * before driver probing, it might need to add a device tree node as the final
-+ * fixup.
-+ */
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5020, of_pci_make_dev_node);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5021, of_pci_make_dev_node);
+IIRC we were supposed to take these via netdev with acks from Pavel/Lee.
+So we need acks on patches 4/5/16 ? If there is a repost, could you
+take out the arch/arm patches? They should not go via netdev, we'll try
+to filter them out when applying but mistakes happen.
 -- 
-2.34.1
-
+pw-bot: need-ack
