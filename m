@@ -2,193 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DFF66E7D92
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C6C6E7DA9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232395AbjDSPCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 11:02:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55770 "EHLO
+        id S232992AbjDSPKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 11:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231822AbjDSPCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:02:34 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCCA910EB;
-        Wed, 19 Apr 2023 08:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1681916553; x=1713452553;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XBiJTfIgTend9c6JUHceG7etl4rakE4n2xhOljQ08Ns=;
-  b=fF3I6BocbVy8c3+l49qn7oSHg122SKJQ3bdbFDqwf3qMsuNOMpQ5Pzlf
-   ENpb2ZNwiwDRm61ZpIAOXjDhvfV4kgtydr56g3gUYffU8OnYs6ElVatY3
-   nPo4Yx/CfpFe6/GUUzw0t3yZ7m/47WDPm+ZT4oLgg9LWe5Xa8081VigId
-   cZ9CAO1NQ6pc5lOw5B+F5/0u/68cOnPrEOEC8EckbEcuLFEl1tApsnC3C
-   As46FZbgRfP3TBu0OiHfyn5Q4HIjbyY3f9rLVCwK6krxbqufvBg9mJDed
-   9MIyKq50YEB1EbA/YDIqQa6wiOPeKXctSBxTqdq618aAmYk+9oe/rcB6A
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="334281333"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; 
-   d="scan'208";a="334281333"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2023 08:02:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="724079780"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; 
-   d="scan'208";a="724079780"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 19 Apr 2023 08:01:58 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pp9Jg-000ewD-0s;
-        Wed, 19 Apr 2023 15:01:52 +0000
-Date:   Wed, 19 Apr 2023 23:01:26 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     nick.hawkins@hpe.com, verdun@hpe.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
-        linux@roeck-us.net, linux@armlinux.org.uk,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v1 2/9] hwmon: (gxp_fan_ctrl) Give GPIO access to fan data
-Message-ID: <202304192243.9hwJ1Cad-lkp@intel.com>
-References: <20230418152824.110823-3-nick.hawkins@hpe.com>
+        with ESMTP id S233296AbjDSPJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:09:55 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF5C65FFD
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 08:09:50 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-2468495aad8so2244448a91.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 08:09:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681916990; x=1684508990;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9xYRx4lxSwrTz8KomOP3X7PYWUvothv5g/ZoMajkQIs=;
+        b=sXPBCslnv6R9uVZX7Gq3xtSsKpgzb0/01i98xXOZQx+KbP4KqVddhPYdcEVIH92o4/
+         pmZSEaoq7K27ohwgJ+wenSjn0dMQerb+uCo2ZucB/ttrkOH+5nH3PbagzZ3PTu4MLinA
+         TuKX/J6WZKuecdQ+SbtWPDBxIT9YSQFdk9EpXU82KxmWB7eepY+FOWYRQZw89n6lAOaK
+         XrVRagqX0pIaFphG3FrY/Kf+S15ViKgyd1zdDEgbm2ZGDCRg5ygwZkCfIxnA/TylLYqo
+         kupYb4zacsCkJMBL3td7FdPMMyd0LNOaVeCVWWXhum1Qx2Kzg3cACS2tSOJI8K/kMrPz
+         X4Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681916990; x=1684508990;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9xYRx4lxSwrTz8KomOP3X7PYWUvothv5g/ZoMajkQIs=;
+        b=en0vdoG4AkMQw6caEMynF09KOcKBf/5h6g6Z+wuWTwI1Ew76SIw6Y057X3ZBEPL/e0
+         0rioDLcznYDYU6DUrEInX61a3s8OkiFcIKOOKthLOvpBI/uHDWPy+j07c5UzwOfHPRVZ
+         7/M4ECsP5Lc3ZLk/DCKV2EqG5PZMuBps9uzi/X/lKsULAuN2Xq1nnwrrc2QOYhQrBtGd
+         fM+vUuaRJfkpXHfpH/yj74SNe9Nyv16aSMVeM+7LA2VBoVxXUpPncpXG4jSxStaKoYb2
+         0gbfcAFCYBtyVlccN4MqFbewVYimzRA0kD2MmV0GC79CVs5NZB1y7aJslBYCvA07aOY2
+         kUcw==
+X-Gm-Message-State: AAQBX9cQWGWaSL37AcBAcangrKmQ0ngrPuX6DCBVfC35WJw2jxV8dZ2W
+        9y8/LkQIsWJ5a6pcXMNY66InIA==
+X-Google-Smtp-Source: AKy350ZOsj/rgDa7m85kCFSt/yyAxPXdtikhF0MU23Wn0WjNTH8dh6EXRwbGslBJniiqLHyCe3xjGQ==
+X-Received: by 2002:a17:90a:72c8:b0:246:9bad:2354 with SMTP id l8-20020a17090a72c800b002469bad2354mr3110204pjk.43.1681916990193;
+        Wed, 19 Apr 2023 08:09:50 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:302c:551a:91d2:840f])
+        by smtp.gmail.com with ESMTPSA id ip11-20020a17090b314b00b00246626343aesm1541885pjb.25.2023.04.19.08.09.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Apr 2023 08:09:49 -0700 (PDT)
+Date:   Wed, 19 Apr 2023 09:09:47 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     TingHan Shen =?utf-8?B?KOayiOW7t+e/sCk=?= 
+        <TingHan.Shen@mediatek.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v9 05/11] remoteproc: mediatek: Extract remoteproc
+ initialization flow
+Message-ID: <ZEAEO3ZOptIoIskz@p14s>
+References: <20230328022733.29910-1-tinghan.shen@mediatek.com>
+ <20230328022733.29910-6-tinghan.shen@mediatek.com>
+ <20230331174431.GA3504605@p14s>
+ <46baff1f95fa13976d7a07b5e50ff2175e464baa.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230418152824.110823-3-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <46baff1f95fa13976d7a07b5e50ff2175e464baa.camel@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Apr 19, 2023 at 03:38:14AM +0000, TingHan Shen (沈廷翰) wrote:
+> Hi Mathieu,
+> 
+> On Fri, 2023-03-31 at 11:44 -0600, Mathieu Poirier wrote:
+> > External email : Please do not click links or open attachments until you have verified the sender or the content.
+> > 
+> > 
+> > On Tue, Mar 28, 2023 at 10:27:27AM +0800, Tinghan Shen wrote:
+> > > This is the preparation for probing multi-core SCP. The remoteproc
+> > > initialization flow is similar on cores and is reused to avoid
+> > > redundant code.
+> > > 
+> > > The registers of config and l1tcm are shared for multi-core
+> > > SCP. Reuse the mapped addresses for all cores.
+> > > 
+> > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >  drivers/remoteproc/mtk_scp.c | 64 +++++++++++++++++++++++++-----------
+> > >  1 file changed, 45 insertions(+), 19 deletions(-)
+> > > 
+> > > diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> > > index a3b9bc158cd9..32ecd1450c6f 100644
+> > > --- a/drivers/remoteproc/mtk_scp.c
+> > > +++ b/drivers/remoteproc/mtk_scp.c
+> > > @@ -23,6 +23,13 @@
+> > >  #define MAX_CODE_SIZE 0x500000
+> > >  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
+> > > 
+> > > +struct mtk_scp_of_regs {
+> > > +     void __iomem *reg_base;
+> > > +     void __iomem *l1tcm_base;
+> > > +     size_t l1tcm_size;
+> > > +     phys_addr_t l1tcm_phys;
+> > > +};
+> > > +
+> > 
+> > This should represent the cluster with a list of mtk_scp instead of @cluster_cores as
+> > introduced in the next patch.
+> 
+> If I'm understanding you correctly, you're suggesting that @cluster_cores should be included 
+> as a member of this structure. Is that correct?
 
-kernel test robot noticed the following build warnings:
+Correct.  Than this structure is allocated in probe() and added as driver data
+for the platform device.  Its name should also be something like
+mtk_scp_cluster or something like that.  I suggest you look at what has been
+done in ti_k3_r5_remoteproc.c, your end design should be quite similar to that.
+In fact you are close but a few things need to be addressed.
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on robh/for-next linus/master v6.3-rc7]
-[cannot apply to brgl/gpio/for-next next-20230418]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/nick-hawkins-hpe-com/gpio-gxp-Add-HPE-GXP-GPIO/20230418-233513
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20230418152824.110823-3-nick.hawkins%40hpe.com
-patch subject: [PATCH v1 2/9] hwmon: (gxp_fan_ctrl) Give GPIO access to fan data
-config: hexagon-randconfig-r045-20230419 (https://download.01.org/0day-ci/archive/20230419/202304192243.9hwJ1Cad-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 437b7602e4a998220871de78afcb020b9c14a661)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/be3722d7f32fea1ea375090d05cbfdd3dd4e04d3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review nick-hawkins-hpe-com/gpio-gxp-Add-HPE-GXP-GPIO/20230418-233513
-        git checkout be3722d7f32fea1ea375090d05cbfdd3dd4e04d3
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash block/partitions/ drivers/hwmon/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304192243.9hwJ1Cad-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/hwmon/gxp-fan-ctrl.c:7:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from drivers/hwmon/gxp-fan-ctrl.c:7:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from drivers/hwmon/gxp-fan-ctrl.c:7:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
->> drivers/hwmon/gxp-fan-ctrl.c:32:4: warning: no previous prototype for function 'get_fans_installed' [-Wmissing-prototypes]
-   u8 get_fans_installed(void)
-      ^
-   drivers/hwmon/gxp-fan-ctrl.c:32:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   u8 get_fans_installed(void)
-   ^
-   static 
->> drivers/hwmon/gxp-fan-ctrl.c:52:4: warning: no previous prototype for function 'get_fans_failed' [-Wmissing-prototypes]
-   u8 get_fans_failed(void)
-      ^
-   drivers/hwmon/gxp-fan-ctrl.c:52:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   u8 get_fans_failed(void)
-   ^
-   static 
-   8 warnings generated.
-
-
-vim +/get_fans_installed +32 drivers/hwmon/gxp-fan-ctrl.c
-
-    31	
-  > 32	u8 get_fans_installed(void)
-    33	{
-    34		static u8 val;
-    35	
-    36		val = readb(drvdata->plreg + OFS_FAN_INST);
-    37	
-    38		return val;
-    39	}
-    40	EXPORT_SYMBOL(get_fans_installed);
-    41	
-    42	static long fan_failed(struct device *dev, int fan)
-    43	{
-    44		struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-    45		u8 val;
-    46	
-    47		val = readb(drvdata->plreg + OFS_FAN_FAIL);
-    48	
-    49		return !!(val & BIT(fan));
-    50	}
-    51	
-  > 52	u8 get_fans_failed(void)
-    53	{
-    54		static u8 val;
-    55	
-    56		val = readb(drvdata->plreg + OFS_FAN_FAIL);
-    57	
-    58		return val;
-    59	}
-    60	EXPORT_SYMBOL(get_fans_failed);
-    61	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> 
+> Best regards,
+> TingHan
+> 
+> > 
+> > >  /**
+> > >   * scp_get() - get a reference to SCP.
+> > >   *
+> > > @@ -855,7 +862,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
+> > >       }
+> > >  }
+> > > 
+> > > -static int scp_probe(struct platform_device *pdev)
+> > > +static int scp_rproc_init(struct platform_device *pdev,
+> > > +                       struct mtk_scp_of_regs *of_regs)
+> > >  {
+> > >       struct device *dev = &pdev->dev;
+> > >       struct device_node *np = dev->of_node;
+> > > @@ -879,6 +887,11 @@ static int scp_probe(struct platform_device *pdev)
+> > >       scp->data = of_device_get_match_data(dev);
+> > >       platform_set_drvdata(pdev, scp);
+> > > 
+> > > +     scp->reg_base = of_regs->reg_base;
+> > > +     scp->l1tcm_base = of_regs->l1tcm_base;
+> > > +     scp->l1tcm_size = of_regs->l1tcm_size;
+> > > +     scp->l1tcm_phys = of_regs->l1tcm_phys;
+> > > +
+> > >       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
+> > >       scp->sram_base = devm_ioremap_resource(dev, res);
+> > >       if (IS_ERR(scp->sram_base))
+> > > @@ -888,24 +901,6 @@ static int scp_probe(struct platform_device *pdev)
+> > >       scp->sram_size = resource_size(res);
+> > >       scp->sram_phys = res->start;
+> > > 
+> > > -     /* l1tcm is an optional memory region */
+> > > -     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> > > -     scp->l1tcm_base = devm_ioremap_resource(dev, res);
+> > > -     if (IS_ERR(scp->l1tcm_base)) {
+> > > -             ret = PTR_ERR(scp->l1tcm_base);
+> > > -             if (ret != -EINVAL) {
+> > > -                     return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
+> > > -             }
+> > > -     } else {
+> > 
+> >                 scp->l1tcm_base = NULL;
+> > 
+> > > -             scp->l1tcm_size = resource_size(res);
+> > > -             scp->l1tcm_phys = res->start;
+> > > -     }
+> > > -
+> > > -     scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
+> > > -     if (IS_ERR(scp->reg_base))
+> > > -             return dev_err_probe(dev, PTR_ERR(scp->reg_base),
+> > > -                                  "Failed to parse and map cfg memory\n");
+> > > -
+> > >       ret = scp->data->scp_clk_get(scp);
+> > >       if (ret)
+> > >               return ret;
+> > > @@ -957,6 +952,37 @@ static int scp_probe(struct platform_device *pdev)
+> > >       return ret;
+> > >  }
+> > > 
+> > > +static int scp_probe(struct platform_device *pdev)
+> > > +{
+> > > +     struct device *dev = &pdev->dev;
+> > > +     struct mtk_scp_of_regs scp_regs;
+> > > +     struct resource *res;
+> > > +     int ret;
+> > > +
+> > > +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+> > > +     scp_regs.reg_base = devm_ioremap_resource(dev, res);
+> > > +     if (IS_ERR(scp_regs.reg_base))
+> > > +             return dev_err_probe(dev, PTR_ERR(scp_regs.reg_base),
+> > > +                                  "Failed to parse and map cfg memory\n");
+> > > +
+> > > +     /* l1tcm is an optional memory region */
+> > > +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> > > +     scp_regs.l1tcm_base = devm_ioremap_resource(dev, res);
+> > > +     if (IS_ERR(scp_regs.l1tcm_base)) {
+> > > +             ret = PTR_ERR(scp_regs.l1tcm_base);
+> > > +             if (ret != -EINVAL)
+> > > +                     return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
+> > > +
+> > > +             scp_regs.l1tcm_size = 0;
+> > > +             scp_regs.l1tcm_phys = 0;
+> > > +     } else {
+> > > +             scp_regs.l1tcm_size = resource_size(res);
+> > > +             scp_regs.l1tcm_phys = res->start;
+> > > +     }
+> > > +
+> > > +     return scp_rproc_init(pdev, &scp_regs);
+> > > +}
+> > > +
+> > >  static int scp_remove(struct platform_device *pdev)
+> > >  {
+> > >       struct mtk_scp *scp = platform_get_drvdata(pdev);
+> > > --
+> > > 2.18.0
+> > > 
+> 
+> -- 
+> Best regards,
+> TingHan
