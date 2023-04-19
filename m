@@ -2,86 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A462B6E7762
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 12:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6EBB6E777F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 12:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232589AbjDSK2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 06:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40792 "EHLO
+        id S232284AbjDSKfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 06:35:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbjDSK2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 06:28:44 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF524EE6
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:28:42 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4eed6ddcae1so151511e87.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:28:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681900120; x=1684492120;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/VybvqKxQBBjDVUhiroFfMYUdC6zzghkLtNDu/WEbXQ=;
-        b=F1g1LfaupkHvYGX4hXRemCRjRdU9QpJizHsTb6EnZ7xTEl05oERKa1+MylQD+Ud17I
-         3s609V08kX1xd6CeIueDdxQwHlujSJIKLLCmtbycbPoMyhi7imo87c07ekSD7YDpihwv
-         gNbPYVGLXRGd008MdDx7rkJFBD7ojIgbzqt7NCAMmqtlqnyUFQrsbWXNnlk7/B6e9IN/
-         PyQQ2WBqMAB1fC07FGM+vvnjRhmhuEINNqbZILQJZvCYgiWS/skaT+N7v2O4WJR4/yXU
-         1Or1Om0Gg4u4fh88HKcZAUdeMTusLaV6fKMnpXghFi2yA378BoyAedaxKo3/HsqcAvid
-         obKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681900120; x=1684492120;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/VybvqKxQBBjDVUhiroFfMYUdC6zzghkLtNDu/WEbXQ=;
-        b=g1K+SfmI5pTRwz7bYEXOP2NUbLa6yXEKPtNM1/sjFy1PTWax4iW4SAb+Eq3VubIDZ8
-         +wZQZbBy6JxR5ddgB0tOuvo4yLhq/k9fjM0VYwF/+GMMYxTzM0Rw4xsABGXLdVLlqGXG
-         SYHVg7P1EcEqkTf3ij6WbioIJypZdbtcmLYfDWvO97JqbDm425RAnFsz71HwicFEN/WL
-         Aubagml5myrWGRgj04GBbplS4jAu0RqaJAj2T1Ru3nqK+1SVImtQGzF7tsyDlvN5B1ia
-         YGuQsJwulWUussRyNiXWLLT/Vj1NsSHc+JKl5f5U5PtWBr937Z2+1n0YFUC14Q6w5xYF
-         sweg==
-X-Gm-Message-State: AAQBX9f0dfiqVlCEVCKCh/ORpLJBnQiuTdGTgT4F96Q7KNkJs3saYjc3
-        8trdVllzp4ryPKSty20SBFLVlA==
-X-Google-Smtp-Source: AKy350bR2i4Ob8duVzV3tJMTy/E3Eui8ihwuBJFLOmUXsND88vLrHCUaWPcS+3HzXFhjrd13jx5MGg==
-X-Received: by 2002:ac2:55b2:0:b0:4ec:7973:1ac with SMTP id y18-20020ac255b2000000b004ec797301acmr777061lfg.22.1681900120711;
-        Wed, 19 Apr 2023 03:28:40 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id p11-20020ac246cb000000b004edd84f4646sm194670lfo.91.2023.04.19.03.28.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 03:28:40 -0700 (PDT)
-Message-ID: <4b9e8dba-aeb7-092b-ebec-6c1fd7bbaa12@linaro.org>
-Date:   Wed, 19 Apr 2023 12:28:38 +0200
+        with ESMTP id S232243AbjDSKfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 06:35:42 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBC95FD2;
+        Wed, 19 Apr 2023 03:35:40 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33JAZW9l058843;
+        Wed, 19 Apr 2023 05:35:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681900532;
+        bh=FH17H7KKtGPSsc0jpS9WI6drpuyTQIl/Hov80h2U7MQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=xPOATEyt/vrN714FxUdZcb/yQsuBv/3wnPS0hnLTlHKx5WuCh22Ptdehp2Q/APzv+
+         lo/wczYrn96fBe6ek7p6EsQ8z7voD4SgsTzzWYbQPRvw8s4wmvbjbY0GGFHOQCAt5r
+         fFktfJfRtacfaLi/QJQsg4UV2amiCccoAygNaOwI=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33JAZW5k079299
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Apr 2023 05:35:32 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 19
+ Apr 2023 05:35:31 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 19 Apr 2023 05:35:32 -0500
+Received: from [172.24.145.7] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33JAZST3028110;
+        Wed, 19 Apr 2023 05:35:28 -0500
+Message-ID: <bc58b9cc-f1a1-9c60-341c-9a00777e7142@ti.com>
+Date:   Wed, 19 Apr 2023 16:05:27 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sdm632-fairphone-fp3: Add
- notification LED
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 4/5] arm64: dts: ti: k3-j784s4-main: Add DSS and
+ DP-bridge node
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
- <20230414-pmi632-v2-7-98bafa909c36@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230414-pmi632-v2-7-98bafa909c36@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <nm@ti.com>,
+        <vigneshr@ti.com>, <afd@ti.com>
+CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <a-bhatia1@ti.com>
+References: <20230419061710.290068-1-j-choudhary@ti.com>
+ <20230419061710.290068-5-j-choudhary@ti.com>
+ <83c8bce1-f4e2-899e-46a9-0ba9da702572@linaro.org>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <83c8bce1-f4e2-899e-46a9-0ba9da702572@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,65 +74,98 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 18.04.2023 18:43, Luca Weiss wrote:
-> The phone features a notification LED connected to the pmi632. Configure
-> the RGB led found on it.
+On 19/04/23 13:21, Krzysztof Kozlowski wrote:
+> On 19/04/2023 08:17, Jayesh Choudhary wrote:
+>> From: Rahul T R <r-ravikumar@ti.com>
+>>
+>> Add DSS and DP-bridge node for J784S4 SoC. DSS IP in J784S4 is
+>> same as DSS IP in J721E, so same compatible is being used.
+>> The DP is Cadence MHDP8546.
+>>
+>> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+>> [j-choudhary@ti.com: move all k3-j784s4-main.dtsi changes together]
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 77 ++++++++++++++++++++++
+>>   1 file changed, 77 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index 51aa476dedba..739741e93bc1 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -1373,4 +1373,81 @@ main_spi7: spi@2170000 {
+>>   		clocks = <&k3_clks 383 1>;
+>>   		status = "disabled";
+>>   	};
+>> +
+>> +	mhdp: dp-bridge@a000000 {
+>> +		compatible = "ti,j721e-mhdp8546";
+>> +
+>> +		reg = <0x0 0xa000000 0x0 0x30a00>,
+>> +		      <0x0 0x4f40000 0x0 0x20>;
+>> +		reg-names = "mhdptx", "j721e-intg";
+>> +
+>> +		clocks = <&k3_clks 217 11>;
+>> +
+>> +		interrupt-parent = <&gic500>;
+>> +		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +		power-domains = <&k3_pds 217 TI_SCI_PD_EXCLUSIVE>;
+>> +
+>> +		status = "disabled";
+>> +
+>> +		dp0_ports: ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +		};
+>> +	};
+>> +
+>> +	dss: dss@4a00000 {
+>> +		compatible = "ti,j721e-dss";
+>> +		reg =
+>> +			<0x00 0x04a00000 0x00 0x10000>,
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Fix indent/stray line break.
+> 
+>> +			<0x00 0x04a10000 0x00 0x10000>,
+>> +			<0x00 0x04b00000 0x00 0x10000>,
+>> +			<0x00 0x04b10000 0x00 0x10000>,
+>> +
+>> +			<0x00 0x04a20000 0x00 0x10000>,
+>> +			<0x00 0x04a30000 0x00 0x10000>,
+>> +			<0x00 0x04a50000 0x00 0x10000>,
+>> +			<0x00 0x04a60000 0x00 0x10000>,
+>> +
+>> +			<0x00 0x04a70000 0x00 0x10000>,
+>> +			<0x00 0x04a90000 0x00 0x10000>,
+>> +			<0x00 0x04ab0000 0x00 0x10000>,
+>> +			<0x00 0x04ad0000 0x00 0x10000>,
+>> +
+>> +			<0x00 0x04a80000 0x00 0x10000>,
+>> +			<0x00 0x04aa0000 0x00 0x10000>,
+>> +			<0x00 0x04ac0000 0x00 0x10000>,
+>> +			<0x00 0x04ae0000 0x00 0x10000>,
+>> +			<0x00 0x04af0000 0x00 0x10000>;
+>> +
+>> +		reg-names = "common_m", "common_s0",
+>> +			"common_s1", "common_s2",
+>> +			"vidl1", "vidl2","vid1","vid2",
+>> +			"ovr1", "ovr2", "ovr3", "ovr4",
+>> +			"vp1", "vp2", "vp3", "vp4",
+>> +			"wb";
+>> +
+>> +		clocks =	<&k3_clks 218 0>,
+> 
+> Broken indentation.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts | 29 +++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
+Indentation at both places are similar to j721e dss node.
+Changes are needed in both?
+
+-Jayesh
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> index 70e683b7e4fc..301eca9a4f31 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> @@ -4,8 +4,10 @@
->   */
->  /dts-v1/;
->  
-> +#include <dt-bindings/leds/common.h>
->  #include "sdm632.dtsi"
->  #include "pm8953.dtsi"
-> +#include "pmi632.dtsi"
->  
->  / {
->  	model = "Fairphone 3";
-> @@ -83,6 +85,33 @@ &pm8953_resin {
->  	linux,code = <KEY_VOLUMEDOWN>;
->  };
->  
-> +&pmi632_lpg {
-> +	status = "okay";
-> +
-> +	multi-led {
-> +		color = <LED_COLOR_ID_RGB>;
-> +		function = LED_FUNCTION_STATUS;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		led@1 {
-> +			reg = <1>;
-> +			color = <LED_COLOR_ID_RED>;
-> +		};
-> +
-> +		led@2 {
-> +			reg = <2>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +		};
-> +
-> +		led@3 {
-> +			reg = <3>;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +		};
-> +	};
-> +};
-> +
->  &sdhc_1 {
->  	status = "okay";
->  	vmmc-supply = <&pm8953_l8>;
+> 
+> 
+> Best regards,
+> Krzysztof
 > 
