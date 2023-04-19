@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A92546E75CB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 10:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9C16E75E7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 11:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbjDSI5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 04:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
+        id S232776AbjDSJBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 05:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232779AbjDSI5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 04:57:07 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3629118DB
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 01:56:58 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id u3so27705605ejj.12
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 01:56:58 -0700 (PDT)
+        with ESMTP id S232016AbjDSJBB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 05:01:01 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68CD12C93
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 02:00:58 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-51b33c72686so2475174a12.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 02:00:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681894617; x=1684486617;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=9elements.com; s=google; t=1681894858; x=1684486858;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mFuzy4TuvFqYZVB9yIonpVvfyyHxImCxfwDErPMQgRg=;
-        b=H/iMr/DovWLHt2YCjeW6aLfRxx2KGDYSy/hsKKdRIiNQKmpU9pgW72ZIATuskwh2gK
-         GPWY+4ijiNsyeM+X4Dbf7/YsVp23JLhKLRC6kcInZXIlj+ZHf+E6rLY8R3slKcoER14e
-         oolLGqzzPaJX8IkBrpJpwcP7ZQMMnl5zUgQca6wpzbKSkAPDcyqEDwds585KkzrMAQoO
-         Dod9TgyryqBl6bb8iOWLH6zWlaYfhOcMN/q5of2nXEtHI1u52DMhLtJA5CSrFGAcLNy1
-         A+DJhj/85CcQFOg9iz3jbKKDywW0wP/I3HBB/u9J3zdFiuzvjTcqRuuxIG1RGNMdwrUJ
-         SHRg==
+        bh=4Ri0q2/V4tp17Jo0FXn5qCoZ/hu41lgkAXDj8GUCjG4=;
+        b=e6FJpg1/lSg6Fzj64vBbsl3hJAjBsz1G6UqWuw88c4fCh0Ew+10L4n3OelrDuC/FYl
+         T9bPIjDBNkK8VJgcBXm/Y44QI7KGymGCU8jRiql7yqxtIn6E5UtgM9PN2lBQQ35k6Hii
+         MxFmS5MtHJzoqeTTkVde59z2lr+YDlX1hvdSMPFsG2qt6rJmJ/IKVwnRYVMalzsQMndr
+         WfvI7BkSiEvkIKby0wY4PP407ZIZfBlD+SilDCXTaVRheNk19wY8jBX7r4u1M0WeeoRp
+         Lqp/1jduTdNNC2GmwNkkWoktbumIo8+SLEGDZeLo2Df88eg2DxTrKyykm4Zv7/JnMJ5R
+         MZMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681894617; x=1684486617;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1681894858; x=1684486858;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mFuzy4TuvFqYZVB9yIonpVvfyyHxImCxfwDErPMQgRg=;
-        b=gqbjeJ8V5z9tqdAa1ECtdtGifzqExzIxTeW59zxYHfIUnCe7gLk8+Kqw0/VtmpJ8WP
-         iKltcLgKH0RFGOq5o+vy0vJ/O5GBh22xdJ43HIS/s0I3iqnX2Eb03QVVPKigKjMj+fJW
-         wlYPJNdOTsB/dQm1cFwq/NGLFL7sMgKdD2pC8hDn4jONJ0ufKxpEj3LN4FBl/WV6B+Np
-         cFYvR2+9YIw/lja5dijN2K0Qq9HF4HhnVKJHQZjCJ0hG9XGk9xMaruzLgJRNFEjgWmtl
-         ba4k8pQ/lxxPtzFv56FzCwLquHT8HIeOVwlIwAUAQDvzPtiUFCsuj1eyYPMPkrm2YpeG
-         GP4A==
-X-Gm-Message-State: AAQBX9eV5/zGed4ArenlaHcfwFsphmdTvXqtUMnYjTiSkNSPmid1A5Rj
-        cl1Bl+NdfOYQr6TSZVVtLMYB+Q==
-X-Google-Smtp-Source: AKy350ZHhQqP60s84sOXg5hEoFCicZMMdVpYkZ1g5erVI/+cot6zkgX/52ioHeJ+kkdg+Elklcr+nw==
-X-Received: by 2002:a17:907:9805:b0:94f:3cf5:6d7f with SMTP id ji5-20020a170907980500b0094f3cf56d7fmr13114320ejc.46.1681894617176;
-        Wed, 19 Apr 2023 01:56:57 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:62f5:eb43:f726:5fee? ([2a02:810d:15c0:828:62f5:eb43:f726:5fee])
-        by smtp.gmail.com with ESMTPSA id be5-20020a1709070a4500b0094f282fc29asm5844742ejc.207.2023.04.19.01.56.56
+        bh=4Ri0q2/V4tp17Jo0FXn5qCoZ/hu41lgkAXDj8GUCjG4=;
+        b=a3mMyD4ZTENecCHOqrzoPpS61/Upkm/VBjQ6o80i7A2Qt6MNKjGPRu+fHJYpGHttnZ
+         SAv/YHjGFgPGDIFgmsnU8paXSakXHwKeefJxjmn/jP5ZGtWoKeENCK3IHf4Do1Bx7fgT
+         ysy/Ip3qccBnsi6UhJ25Ruy5uvJhC3ScJo/sSnkM/khZwpQ3SEgft/82cJuOh+sXK2Hx
+         3O9nptd//YBs5QuPddhndBA4WGI4Z6DkLhl8Jfhvjlkc2wwRd3wSGb+TTmvUOoHl2RXc
+         n2SHuDeYeWgQLFfx/kSHV30FQPbrACYCWTr5zZ6AzrQCKnGGrlshWNN402CpWr3zuQan
+         5ejQ==
+X-Gm-Message-State: AAQBX9edHId4EnpI2+nLqeJ4J+0+uMn6ft5fS9Nh88LsORSxncExJpgy
+        ca8Or2eay3sRLu64HqfZC/buIQ==
+X-Google-Smtp-Source: AKy350b6IXvh1v6ck6A/sCyMXZ3FN45V2eFT0zulVRY/vapMyIBlskFX9zTC4ovnUc9DmdwJuOK7Bw==
+X-Received: by 2002:a17:902:f683:b0:1a9:20d6:3c3f with SMTP id l3-20020a170902f68300b001a920d63c3fmr631660plg.55.1681894858066;
+        Wed, 19 Apr 2023 02:00:58 -0700 (PDT)
+Received: from ?IPV6:2405:201:d02f:d855:461d:14be:2cce:b776? ([2405:201:d02f:d855:461d:14be:2cce:b776])
+        by smtp.gmail.com with ESMTPSA id iz17-20020a170902ef9100b001a19f2f81a3sm10976492plb.175.2023.04.19.02.00.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 01:56:56 -0700 (PDT)
-Message-ID: <77d94fe0-75d2-8f64-19c6-fc19438ba71a@linaro.org>
-Date:   Wed, 19 Apr 2023 10:56:55 +0200
+        Wed, 19 Apr 2023 02:00:57 -0700 (PDT)
+Message-ID: <e63bba13-05f0-7d1b-bf11-04ef5eda3afd@9elements.com>
+Date:   Wed, 19 Apr 2023 14:30:54 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH] dt-bindings: display: panel: add common definition of
- ports
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add binding for max6639
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230418113217.781524-1-Naresh.Solanki@9elements.com>
+ <742f546b-3952-32f4-9f20-3a355785d162@linaro.org>
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-References: <20230416153929.356330-1-krzysztof.kozlowski@linaro.org>
- <20230418222613.GA2408838-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230418222613.GA2408838-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <742f546b-3952-32f4-9f20-3a355785d162@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -84,59 +79,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 00:26, Rob Herring wrote:
-> On Sun, Apr 16, 2023 at 05:39:29PM +0200, Krzysztof Kozlowski wrote:
->> Few panel bindings for dual-link connections just type "ports: true",
->> which does not enforce any type.  Add common definition of ports, so the
->> type will be fixed.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../bindings/display/panel/panel-common.yaml     | 16 ++++++++++++++++
->>  1 file changed, 16 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
->> index 5b38dc89cb21..ad62d34e6fa3 100644
->> --- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
->> +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
->> @@ -70,6 +70,16 @@ properties:
->>    port:
->>      $ref: /schemas/graph.yaml#/properties/port
->>  
->> +  # For dual-link connections
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +    patternProperties:
->> +      "^port@[0-9a-f]+$":
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
+Hi Krysztof,
+
+On 18-04-2023 09:47 pm, Krzysztof Kozlowski wrote:
+> On 18/04/2023 13:32, Naresh Solanki wrote:
+>> Add Devicetree binding documentation for Maxim MAX6639 temperature
+>> monitor with PWM fan-speed controller.
 > 
-> This allows any undocumented property.
-
-Yes, which I hope the device schema (using this panel-common) will
-narrow with additionalProperties: false.
-
-I can make it explicit: additionalProperties: true.
-
-Otherwise, how do I allow custom properties like:
-Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml
-
+> Subject: drop second/last, redundant "binding for". The "dt-bindings"
+> prefix is already stating that these are bindings.
+Ack
 > 
->> +
->> +    required:
->> +      - port@0
+>>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> ---
+>>   .../bindings/hwmon/maxim,max6639.yaml         | 55 +++++++++++++++++++
+>>   1 file changed, 55 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>> new file mode 100644
+>> index 000000000000..20b28cd36555
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>> @@ -0,0 +1,55 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
 >> +
 > 
-> I don't think this should be added here because users must define what 
-> each port is. With it here, we're going to validate the nodes twice as 
-> well. Same can be said for 'port' though. It can't be extended though.
+> Drop blank line
+Ack
+> 
+> This is v9. Where is the changelog? Where is previous authorship? At
+> least some parts of it? Why this has less properties than old one? Why
+> this has more mistakes than the old one? Go to previous patch... or fix
+> everything which was already fixed.
+This patch is to add basic dt support only hence no additional properties.
 
-So you propose to drop entire "ports" here and expect every panel schema
-to define it instead?
-
-Best regards,
-Krzysztof
-
+> 
+> Best regards,
+> Krzysztof
+> 
+Regards,
+Naresh
