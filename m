@@ -2,101 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D86E46E8212
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 21:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1FF76E821C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 21:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbjDSTqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 15:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
+        id S231376AbjDSTtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 15:49:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjDSTqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 15:46:19 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BD959E3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 12:46:08 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id b16so1185639ejz.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 12:46:08 -0700 (PDT)
+        with ESMTP id S230237AbjDSTs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 15:48:59 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3577444AE
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 12:48:57 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2a8ad872ea5so409011fa.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 12:48:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681933567; x=1684525567;
+        d=linaro.org; s=google; t=1681933735; x=1684525735;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xnojFPy5RTEqRDct+HdyhHqsL+VmjmztLl0PLEw/hhE=;
-        b=G4zRGoAv5Q40HURFW1PVwlBZ9n4aW/FztTLI1kq2TGWD8hxZfrOWbxWWdGVK/M43P8
-         thq3OUWBRBj96Lr3teS+Ff5xZyY1Upc6N3MZyR1pS/b55gPjOTpzakRwYlsNC3/yq5EA
-         RHo/wLpe4p3E9hnHIrrZJ4aRvFGhR5cgf5YQE0CpeMYCXkOuQr1I6cHAHt4JiKxOaK0R
-         R10vbzugJdEKL2z+VRQizWV+1wvzOVAn4iNB775qbJ8nthn+Y3q573B4hYsk4mugUdYi
-         ZkEBAymhzRybR+EZQwBQ1WCXGtAEB3maTu2+mJ/HP3KmXpk+UmnjzfschH8xAYRfyaCa
-         CkiA==
+        bh=ZTyNKupNsXf2g+91PrPeU2a11PGoDFN20zA7SNUiqa0=;
+        b=MMVV0oI5iZoLMSWrFHuxhrPHwJWEwWo9NDFSTsUMvnDuxZ+ftMo4+2t6pSqxU/9zmJ
+         mJUFGHmFF2pV4n4Id8zA4IIb3ilQOlhiHMhX4mMxPIQyKQaeGNNvWKtP4PurPzpIhTkn
+         oGTsuccZQM1EF0j7uvUbWVrUbGLhXq+13He/orOkcSzXMNoCNX4xK1SIjK2NMhusK+Na
+         JuMFlyaJAEtG1hhtBW4em31/vbbQoD8sJTaRcZd9vMMXPU90sQBJ0HmV2B5gsod0c75t
+         O9WgpZXhUexEQm42tyn8FN+8KiCi6gKXsDTSA+f7JNwh6Cks81lze41j4B8dxyWx5E1/
+         J5qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681933567; x=1684525567;
+        d=1e100.net; s=20221208; t=1681933735; x=1684525735;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xnojFPy5RTEqRDct+HdyhHqsL+VmjmztLl0PLEw/hhE=;
-        b=RM5oiiqb3Pt/EY+CPBXlH2+t5m5EBDaArVjvVpJnV/MwKDnsxyDNqxiCg8Dtl6fAwp
-         Nsw69B2R8awSrR07B3tsPVMaTc+6a+9QWAahFgZnBEvZKe1bojyQ0WwfAVlb0vKTrLM8
-         tdtYyR7R6Y09OmBZF1tE8B3szSVNlyPh+xZzzwSo2Px2QQybLRWY61Mv4nF1X/poHyGC
-         TeMX2qL2y+2/5iQZjr+pdhtjKK+b9LDtDWnomLwI1Zxj5sde1D/oxy0saRumr4LP7BMT
-         pH16MHBRx9lauFv/iPj8iGRuQAOEB6iWRI+HAL5CR0tUiFXBFiOx++tbTPxDT1R0i33O
-         NDbQ==
-X-Gm-Message-State: AAQBX9d6skursum0aU/8gfHvf3o9wiPcOhmxknXkCRIEJPH0hY5GS86Q
-        YAUmb9EpZvsyupwQhExjduNKzQ==
-X-Google-Smtp-Source: AKy350a48tYBtw6AgdUuQuyA2+jKVWfuCW1oUOTTZQ6v9GJcRr/W2CyIfEVv6HZSYkFNR7wDckiLUg==
-X-Received: by 2002:a17:906:71c5:b0:94e:e5fe:b54f with SMTP id i5-20020a17090671c500b0094ee5feb54fmr18322784ejk.23.1681933567148;
-        Wed, 19 Apr 2023 12:46:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:976c:1d6c:6ed0:8935? ([2a02:810d:15c0:828:976c:1d6c:6ed0:8935])
-        by smtp.gmail.com with ESMTPSA id s24-20020a170906779800b0094edbe5c7ddsm8366821ejm.38.2023.04.19.12.46.06
+        bh=ZTyNKupNsXf2g+91PrPeU2a11PGoDFN20zA7SNUiqa0=;
+        b=AGOlmi4sbZZI4R/NCtOcBTwk9W3Gk+0VAEVf2LxQFlRbhsFlV2mfRWqcsCrI/dym/S
+         00NqOmyG4VT8a7ripYAfzqUlAa7aU4VjKr306RoDRyTx9c9L7poexN15pqyfM69UMuGa
+         CUYv3uGBox1+1tNZLSW3ltWge0oM35vOewoAqVWT3pXCx9zH3iu6tHboVXEix+Rk5LbB
+         4VprEOxoQoXMm41KbmHBSmOuMws80Q5mHWF1ALwgZWRnIR150Ngx877PmRt5j9SQNxL+
+         u6QFd2/jQ9W+eU5BwugbJiOIsfmO0X7TkGrbyDu3o6zHkuWSfl1MazFm2wQLxZZPSOAU
+         PZ1A==
+X-Gm-Message-State: AAQBX9cnJswo0iQOQMzJUDPKnNtgnc95tFaK0K86hDjNuRczv2w7GJmt
+        DvoHJWMz/nxrxcu254OAD9tEnA==
+X-Google-Smtp-Source: AKy350YKG23tnDYXxO75yYLkS8XJe3vIMC1X4eB1eASmgz1L1is/D1f87aLJjfvgYP27+NZxb0G9wg==
+X-Received: by 2002:a19:740a:0:b0:4ec:92e4:e0c3 with SMTP id v10-20020a19740a000000b004ec92e4e0c3mr4073568lfe.62.1681933735325;
+        Wed, 19 Apr 2023 12:48:55 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id 7-20020ac25687000000b004edc2a023ffsm1351395lfr.36.2023.04.19.12.48.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 12:46:06 -0700 (PDT)
-Message-ID: <689e05e5-5c1f-9417-b2be-988c6a6d4c5a@linaro.org>
-Date:   Wed, 19 Apr 2023 21:46:05 +0200
+        Wed, 19 Apr 2023 12:48:54 -0700 (PDT)
+Message-ID: <e15ec005-ef52-c14c-bdeb-faaca207d39b@linaro.org>
+Date:   Wed, 19 Apr 2023 21:48:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+ Thunderbird/102.9.1
+Subject: Re: [Freedreno] [PATCH 5/5] drm/msm/dpu1: Handle the reg bus ICC path
 Content-Language: en-US
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
+To:     Jeykumar Sankaran <quic_jeykumar@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-2-changhuang.liang@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230419035646.43702-2-changhuang.liang@starfivetech.com>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        freedreno@lists.freedesktop.org
+References: <20230417-topic-dpu_regbus-v1-0-06fbdc1643c0@linaro.org>
+ <20230417-topic-dpu_regbus-v1-5-06fbdc1643c0@linaro.org>
+ <11c72462-b256-d0db-a666-9615da4420f6@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <11c72462-b256-d0db-a666-9615da4420f6@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 05:56, Changhuang Liang wrote:
-> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
-> rx/tx power switch, and it don't need the properties of reg and
-> interrupts.
+
+
+On 19.04.2023 21:06, Jeykumar Sankaran wrote:
 > 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  .../bindings/power/starfive,jh7110-pmu.yaml       | 15 +++++++++++++--
->  include/dt-bindings/power/starfive,jh7110-pmu.h   |  3 +++
+> 
+> On 4/17/2023 8:30 AM, Konrad Dybcio wrote:
+>> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
+>> another path that needs to be handled to ensure MDSS functions properly,
+>> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+>>
+>> Gating that path may have a variety of effects.. from none to otherwise
+>> inexplicable DSI timeouts..
+>>
+>> On the DPU side, we need to keep the bus alive. The vendor driver
+>> kickstarts it to max (300Mbps) throughput on first commit, but in
+>> exchange for some battery life in rare DPU-enabled-panel-disabled
+>> usecases, we can request it at DPU init and gate it at suspend.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 22 ++++++++++++++++++++--
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h |  1 +
+>>   2 files changed, 21 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> index dd6c1c40ab9e..d1f77faebbc0 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> @@ -384,15 +384,17 @@ static int dpu_kms_global_obj_init(struct dpu_kms *dpu_kms)
+>>       return 0;
+>>   }
+>>   -static int dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
+>> +static int dpu_kms_parse_icc_paths(struct dpu_kms *dpu_kms)
+>>   {
+>>       struct icc_path *path0;
+>>       struct icc_path *path1;
+>> +    struct icc_path *reg_bus_path;
+>>       struct drm_device *dev = dpu_kms->dev;
+>>       struct device *dpu_dev = dev->dev;
+>>         path0 = msm_icc_get(dpu_dev, "mdp0-mem");
+>>       path1 = msm_icc_get(dpu_dev, "mdp1-mem");
+>> +    reg_bus_path = msm_icc_get(dpu_dev, "cpu-cfg");
+>>         if (IS_ERR_OR_NULL(path0))
+>>           return PTR_ERR_OR_ZERO(path0);
+>> @@ -404,6 +406,10 @@ static int dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
+>>           dpu_kms->mdp_path[1] = path1;
+>>           dpu_kms->num_mdp_paths++;
+>>       }
+>> +
+>> +    if (!IS_ERR_OR_NULL(reg_bus_path))
+>> +        dpu_kms->reg_bus_path = reg_bus_path;
+>> +
+>>       return 0;
+>>   }
+>>   @@ -1039,7 +1045,7 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+>>           DPU_DEBUG("REG_DMA is not defined");
+>>       }
+>>   -    dpu_kms_parse_data_bus_icc_path(dpu_kms);
+>> +    dpu_kms_parse_icc_paths(dpu_kms);
+>>         rc = pm_runtime_resume_and_get(&dpu_kms->pdev->dev);
+>>       if (rc < 0)
+>> @@ -1241,6 +1247,9 @@ static int __maybe_unused dpu_runtime_suspend(struct device *dev)
+>>       for (i = 0; i < dpu_kms->num_mdp_paths; i++)
+>>           icc_set_bw(dpu_kms->mdp_path[i], 0, 0);
+>>   +    if (dpu_kms->reg_bus_path)
+>> +        icc_set_bw(dpu_kms->reg_bus_path, 0, 0);
+>> +
+>>       return 0;
+>>   }
+>>   @@ -1261,6 +1270,15 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
+>>           return rc;
+>>       }
+>>   +    /*
+>> +     * The vendor driver supports setting 76.8 / 150 / 300 Mbps on this
+> How do you arrive at these distint BW values? Are they provided by the ICC fwk for the given path?
+They're hardcoded in the SDE driver.
 
-I have impression I just reviewed your v2... Apply the comments,
-reviews/acks etc from that email.
-
-Best regards,
-Krzysztof
-
+Konrad
+>> +     * path, but it seems to go for the highest level when display output
+>> +     * is enabled and zero otherwise. For simplicity, we can assume that
+>> +     * DPU being enabled and running implies that.
+>> +     */
+>> +    if (dpu_kms->reg_bus_path)
+>> +        icc_set_bw(dpu_kms->reg_bus_path, 0, MBps_to_icc(300));
+>> +
+>>       dpu_vbif_init_memtypes(dpu_kms);
+>>         drm_for_each_encoder(encoder, ddev)
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+>> index d5d9bec90705..c332381d58c4 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+>> @@ -111,6 +111,7 @@ struct dpu_kms {
+>>       atomic_t bandwidth_ref;
+>>       struct icc_path *mdp_path[2];
+>>       u32 num_mdp_paths;
+>> +    struct icc_path *reg_bus_path;
+>>   };
+>>     struct vsync_info {
+>>
