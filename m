@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E3A16E805C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 19:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4D26E809D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 19:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229739AbjDSR3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 13:29:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41430 "EHLO
+        id S232283AbjDSRrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 13:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbjDSR3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 13:29:20 -0400
+        with ESMTP id S232543AbjDSRrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 13:47:35 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1974B5B94;
-        Wed, 19 Apr 2023 10:29:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D935B194;
+        Wed, 19 Apr 2023 10:47:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A86E764123;
-        Wed, 19 Apr 2023 17:29:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97ACCC433EF;
-        Wed, 19 Apr 2023 17:29:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 702BA64150;
+        Wed, 19 Apr 2023 17:47:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC77C433EF;
+        Wed, 19 Apr 2023 17:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681925357;
-        bh=dBjJtM9HGcn63G8tRHjZ+HaXYz8+0XXQc0yx7wTgNAc=;
+        s=k20201202; t=1681926448;
+        bh=pWh482ug9z2sqnnRAVNa0CWvtOeNXthB5Oa4dpUf8qQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LMrM/BtLJo/Bjo57ErdeSVhavDIBrLKpi1nsJNkJJWr7Uuog4uqgqi69EvbBUKm1M
-         mX6opbOHJ4ghRP9F1ERGpGU0SVClOEoVogB2/Mwg5LzJP3/a5Uldpwb3yF1EU8LbJn
-         zK2IdWtq6edx3Ah7pm2zRFy1s8dE6uCP9ysdl7SUjlGvP4AVu5thwdke+FICZfkNmy
-         SxLwCD2VOzeeG/I2d4hu10Vo+++tXdEIAZE3siYysrxWx+8UjO1f+6sgZc3Oi8zg0e
-         /Sgz1aFj2gRnX0139Fs6D00HgzTl2aR8fu7rcrKCQs5pprzgYVG7hsX7LXtaSXT00w
-         kGn7JMVJDSowg==
-Date:   Wed, 19 Apr 2023 18:29:12 +0100
+        b=rMmN2j+aACy9B0E/Ue1a6PZkHU8A2yZS+0gPvkPupDu9QQDJyAGC88hSS/m648/R2
+         GrC7k6Fb9IUzJaW5n9403JAe+m23Ys2HJrvmivPjpKIyPu4CAL9F85FH+QFULb4RXx
+         /KS1owff7JcbEQQ4MC4D5vPbT6JTXCN4L9J0PdU1dXQW0CfYhjrBGRWCcvrtSABVW/
+         His9baU6XFrvJe5lsiQpyNu4qfncE6Q0A87qRN1zrLDlSLgqG8t77yQWEj/LUuAzE2
+         SXIy5boFrKgfCFXczjXPAwdTJFjbToB3lCC5mp1Nvmy+yZDYIU1j7wra8brKFT9GMJ
+         D/BJpMbGnkCdQ==
+Date:   Wed, 19 Apr 2023 18:47:24 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Changhuang Liang <changhuang.liang@starfivetech.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -44,15 +44,16 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Hal Feng <hal.feng@starfivetech.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: Re: [RESEND v2 3/6] soc: starfive: Modify ioremap to regmap
-Message-ID: <20230419-headdress-surcharge-8017d6db444b@spud>
+Subject: Re: [RESEND v2 4/6] soc: starfive: Extract JH7110 pmu private
+ operations
+Message-ID: <20230419-atypical-unbounded-99cbbff3091a@spud>
 References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-4-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-5-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="XH9Lm32OUTczAMsU"
+        protocol="application/pgp-signature"; boundary="7GNjDzVc5Xp9dcL9"
 Content-Disposition: inline
-In-Reply-To: <20230419035646.43702-4-changhuang.liang@starfivetech.com>
+In-Reply-To: <20230419035646.43702-5-changhuang.liang@starfivetech.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,189 +65,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---XH9Lm32OUTczAMsU
+--7GNjDzVc5Xp9dcL9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 18, 2023 at 08:56:43PM -0700, Changhuang Liang wrote:
-> Modify ioremap to regmap which can be compatible with the syscon
-> interface, such as:
-> struct regmap *syscon_node_to_regmap(struct device_node *np)
-> Convenient introduction of syscon operation.
+On Tue, Apr 18, 2023 at 08:56:44PM -0700, Changhuang Liang wrote:
+> Move JH7110 private operation into private data of compatible.
+> Convenient to expand different compatible.
 
-What's missing here is an explanation of *why* you are making this
-compatible with the syscon interface. Provided everything else is fine,
-I can fix this when applying the series.
+I prefer how the code looks in v2, thanks.
+However, just as in the prior patch, "Convenient to expand different
+compatible" isn't really a justification - specifically, supporting the
+power domain controller serving the dphy is your motivation here. The
+important difference being that it uses a regmap from a syscon and has
+no interrupts nor the encourage features.
 
-Thanks,
-Conor.
+Although, given the only real similarity the code driving each of the
+PMUs is the variable names, I guess you could argue that this driver
+should be left alone and the "aon dphy" should be a different driver
+altogether.
 
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  drivers/soc/starfive/jh71xx_pmu.c | 43 +++++++++++++++++--------------
->  1 file changed, 23 insertions(+), 20 deletions(-)
->=20
-> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh7=
-1xx_pmu.c
-> index 7d5f50d71c0d..306218c83691 100644
-> --- a/drivers/soc/starfive/jh71xx_pmu.c
-> +++ b/drivers/soc/starfive/jh71xx_pmu.c
-> @@ -6,13 +6,13 @@
->   */
-> =20
->  #include <linux/interrupt.h>
-> -#include <linux/io.h>
-> -#include <linux/iopoll.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
-> +#include <linux/regmap.h>
->  #include <dt-bindings/power/starfive,jh7110-pmu.h>
-> =20
->  /* register offset */
-> @@ -59,7 +59,7 @@ struct jh71xx_pmu_match_data {
->  struct jh71xx_pmu {
->  	struct device *dev;
->  	const struct jh71xx_pmu_match_data *match_data;
-> -	void __iomem *base;
-> +	struct regmap *base;
->  	struct generic_pm_domain **genpd;
->  	struct genpd_onecell_data genpd_data;
->  	int irq;
-> @@ -75,11 +75,14 @@ struct jh71xx_pmu_dev {
->  static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *pmd, u32 mask, bo=
-ol *is_on)
->  {
->  	struct jh71xx_pmu *pmu =3D pmd->pmu;
-> +	unsigned int val;
-> =20
->  	if (!mask)
->  		return -EINVAL;
-> =20
-> -	*is_on =3D readl(pmu->base + JH71XX_PMU_CURR_POWER_MODE) & mask;
-> +	regmap_read(pmu->base, JH71XX_PMU_CURR_POWER_MODE, &val);
-> +
-> +	*is_on =3D val & mask;
-> =20
->  	return 0;
->  }
-> @@ -130,7 +133,7 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev=
- *pmd, u32 mask, bool on)
->  		encourage_hi =3D JH71XX_PMU_SW_ENCOURAGE_DIS_HI;
->  	}
-> =20
-> -	writel(mask, pmu->base + mode);
-> +	regmap_write(pmu->base, mode, mask);
-> =20
->  	/*
->  	 * 2.Write SW encourage command sequence to the Software Encourage Reg =
-(offset 0x44)
-> @@ -140,21 +143,21 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_d=
-ev *pmd, u32 mask, bool on)
->  	 *   Then write the lower bits of the command sequence, followed by the=
- upper
->  	 *   bits. The sequence differs between powering on & off a domain.
->  	 */
-> -	writel(JH71XX_PMU_SW_ENCOURAGE_ON, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-> -	writel(encourage_lo, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-> -	writel(encourage_hi, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, JH71XX_PMU_SW_ENCOURAG=
-E_ON);
-> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, encourage_lo);
-> +	regmap_write(pmu->base, JH71XX_PMU_SW_ENCOURAGE, encourage_hi);
-> =20
->  	spin_unlock_irqrestore(&pmu->lock, flags);
-> =20
->  	/* Wait for the power domain bit to be enabled / disabled */
->  	if (on) {
-> -		ret =3D readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MO=
-DE,
-> -						val, val & mask,
-> -						1, JH71XX_PMU_TIMEOUT_US);
-> +		ret =3D regmap_read_poll_timeout_atomic(pmu->base, JH71XX_PMU_CURR_POW=
-ER_MODE,
-> +						      val, val & mask,
-> +						      1, JH71XX_PMU_TIMEOUT_US);
->  	} else {
-> -		ret =3D readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MO=
-DE,
-> -						val, !(val & mask),
-> -						1, JH71XX_PMU_TIMEOUT_US);
-> +		ret =3D regmap_read_poll_timeout_atomic(pmu->base, JH71XX_PMU_CURR_POW=
-ER_MODE,
-> +						      val, !(val & mask),
-> +						      1, JH71XX_PMU_TIMEOUT_US);
->  	}
-> =20
->  	if (ret) {
-> @@ -190,14 +193,14 @@ static void jh71xx_pmu_int_enable(struct jh71xx_pmu=
- *pmu, u32 mask, bool enable)
->  	unsigned long flags;
-> =20
->  	spin_lock_irqsave(&pmu->lock, flags);
-> -	val =3D readl(pmu->base + JH71XX_PMU_TIMER_INT_MASK);
-> +	regmap_read(pmu->base, JH71XX_PMU_TIMER_INT_MASK, &val);
-> =20
->  	if (enable)
->  		val &=3D ~mask;
->  	else
->  		val |=3D mask;
-> =20
-> -	writel(val, pmu->base + JH71XX_PMU_TIMER_INT_MASK);
-> +	regmap_write(pmu->base, JH71XX_PMU_TIMER_INT_MASK, val);
->  	spin_unlock_irqrestore(&pmu->lock, flags);
->  }
-> =20
-> @@ -206,7 +209,7 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void=
- *data)
->  	struct jh71xx_pmu *pmu =3D data;
->  	u32 val;
-> =20
-> -	val =3D readl(pmu->base + JH71XX_PMU_INT_STATUS);
-> +	regmap_read(pmu->base, JH71XX_PMU_INT_STATUS, &val);
-> =20
->  	if (val & JH71XX_PMU_INT_SEQ_DONE)
->  		dev_dbg(pmu->dev, "sequence done.\n");
-> @@ -220,8 +223,8 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void=
- *data)
->  		dev_err(pmu->dev, "p-channel fail event.\n");
-> =20
->  	/* clear interrupts */
-> -	writel(val, pmu->base + JH71XX_PMU_INT_STATUS);
-> -	writel(val, pmu->base + JH71XX_PMU_EVENT_STATUS);
-> +	regmap_write(pmu->base, JH71XX_PMU_INT_STATUS, val);
-> +	regmap_write(pmu->base, JH71XX_PMU_EVENT_STATUS, val);
-> =20
->  	return IRQ_HANDLED;
->  }
-> @@ -271,7 +274,7 @@ static int jh71xx_pmu_probe(struct platform_device *p=
-dev)
->  	if (!pmu)
->  		return -ENOMEM;
-> =20
-> -	pmu->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	pmu->base =3D device_node_to_regmap(np);
->  	if (IS_ERR(pmu->base))
->  		return PTR_ERR(pmu->base);
-> =20
-> --=20
-> 2.25.1
->=20
+I don't have a strong opinion though & if it's fine with Walker and
+noone else objects, it's fine with me...
 
---XH9Lm32OUTczAMsU
+--7GNjDzVc5Xp9dcL9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEAk6AAKCRB4tDGHoIJi
-0h3vAQCRte93vA8RyHW8U1k0Hkk+ce6ZTjaT7mORbWdqxxyMYQEAm8X5jywC5/ts
-d4zGZg32pS+F5jY8JrcLpbEy0yHqewo=
-=5Bxg
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEApKwAKCRB4tDGHoIJi
+0tYVAPwISZbXM40tjQmXEGDayikBInHUpr/oPqkALLx8vo+MDwD9ELD9t2yG84GK
+wfCi0TDnkKmKRjeXnQ8LaIq5theaXws=
+=YkVs
 -----END PGP SIGNATURE-----
 
---XH9Lm32OUTczAMsU--
+--7GNjDzVc5Xp9dcL9--
