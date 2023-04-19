@@ -2,287 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4BB6E73CF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 09:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29DDC6E7409
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 09:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231980AbjDSHRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 03:17:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
+        id S232035AbjDSHbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 03:31:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231925AbjDSHRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 03:17:36 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5E97249E7;
-        Wed, 19 Apr 2023 00:17:34 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.110.113])
-        by gateway (Coremail) with SMTP id _____8CxidmNlT9kI9EeAA--.36611S3;
-        Wed, 19 Apr 2023 15:17:33 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.110.113])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxWb2JlT9koa8uAA--.54188S4;
-        Wed, 19 Apr 2023 15:17:32 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH V3 2/2] irqchip/loongson-eiointc: Add DT init support
-Date:   Wed, 19 Apr 2023 15:17:06 +0800
-Message-Id: <5174796829043e74840277edf28aaee4f2325755.1681887790.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <cover.1681887790.git.zhoubinbin@loongson.cn>
-References: <cover.1681887790.git.zhoubinbin@loongson.cn>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxWb2JlT9koa8uAA--.54188S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3JFyktr43Xr45CF4DArWUurg_yoWxCry7pF
-        WUCF98trWrXFy7WrW5ta1DX34ayws5urW7Xa4fWFWftanrCryUGF1FyF1qkryjk3yrXF4a
-        vF4UZr1Uu3W5Kw7anT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E
-        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxV
-        Aaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxY
-        O2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGV
-        WUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_
-        Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rV
-        WUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4U
-        JbIYCTnIWIevJa73UjIFyTuYvjxU4Xo7DUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231593AbjDSHbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 03:31:17 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CB046B4;
+        Wed, 19 Apr 2023 00:31:16 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id D22A65C00E9;
+        Wed, 19 Apr 2023 03:31:13 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 19 Apr 2023 03:31:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1681889473; x=1681975873; bh=Ec
+        4Ecq7H4INlX/3HvS/3quM8Fg2PkdC80uzcjyfYOJI=; b=VCrvrExRrgs5WTxoZZ
+        b6o/Wn2xY9uJ3qgnfSXPHzVACCJFSvPUT43RJKboctcCzfUNkn7ogvkr3elFgR/M
+        27VCCKLYRMGJVjesdnqXOwG2mKT832b4mUV5B1yip1QgIGOXbSdVRlXfrVnZccOw
+        fr2r14Q+bm9TIv7qW02iL3XQJ3n3UYsoeIDU8vmboqRUY2lsgR5loRzRYpsePbqd
+        nge+onwZXU23O/r7jHcJLdPA7WLVY44GczoWuEV6ydDj1vYIGLQ37RhJKlR1vgBZ
+        vMJoUaF5k0kQK2fmgPVfy30/qOO4HfoQs/MReHs5M0mSxznrdoHJaHC760rSVOQR
+        QyYA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1681889473; x=1681975873; bh=Ec4Ecq7H4INlX
+        /3HvS/3quM8Fg2PkdC80uzcjyfYOJI=; b=eDxpRvKP0y6qok6rzsgrcxDtk+GQR
+        TeXy/o7hCOxk0uNMbc6fzVQStfx4nLMCkWQ0yg7XRBbSGOhaCDTfkYeHgzfFReRu
+        YPteXgf/lUZQtJp9EZ01EfE4OMbg47vvuxNAYHJIjFxwKMgmanr8WXC2Kbj8qiXz
+        mgK9LOvLf+eiMq/72zW+jwlZ3Ifn70I0+3RwgjHlG8vypIkUHIa8iJZ+2xPSyYO2
+        cORgp4wXKBmhCWniyA2nbxGa8NE8SnzNvy5Pbqq02Bo6alUiUPpW04wILREz7vke
+        bp2jt+PyCi1Rrf3JyscVvv/Iqwq3TamOEC7wPo/mjsSInowRzLSUmkkYQ==
+X-ME-Sender: <xms:wZg_ZKK7RGecFL3GExmwiIm6Lbli87fWw2G6KWBniHgKX_jiYuh4aA>
+    <xme:wZg_ZCKMJXYshqb4GuqM3Mz6NUxZ2Ymt6BpUnClRvB_VqAmSssPN9P3bCXQwWRQeT
+    gOpxs4WOu1WYpLhRSg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdelledguddvgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:wZg_ZKuOm6wxINAVt4yFGBHqv3B_xo0u20VVwglKwHTj1qxUyh2REQ>
+    <xmx:wZg_ZPbM8FQbKIH_sk0XL6z_staU5GJAPYoj5BOzthGSM01yoyoF0Q>
+    <xmx:wZg_ZBYNuAUN-42j8eiCykeAILB1jjTKPF8i8OPJWe0cYjwQgvMoFg>
+    <xmx:wZg_ZHARBlYD2gjZbKDzIbN2uSn5eFYBnsjVQL5_7EhMfS0rs5FLKA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 698B9B60086; Wed, 19 Apr 2023 03:31:13 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-372-g43825cb665-fm-20230411.003-g43825cb6
+Mime-Version: 1.0
+Message-Id: <50844899-b047-42fd-807a-db7136e5e590@app.fastmail.com>
+In-Reply-To: <f1456dd7-5dcf-d91a-459c-65efca4a3444@quicinc.com>
+References: <cover.1681829664.git.quic_schowdhu@quicinc.com>
+ <e4f41fa61d9dd66f68bbd7650c6fbf96810c3569.1681829664.git.quic_schowdhu@quicinc.com>
+ <2023041833-alienate-trash-f4da@gregkh>
+ <f1456dd7-5dcf-d91a-459c-65efca4a3444@quicinc.com>
+Date:   Wed, 19 Apr 2023 09:30:52 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Souradeep Chowdhury" <quic_schowdhu@quicinc.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc:     "Andy Gross" <agross@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, "Alex Elder" <elder@ieee.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        "Sibi Sankar" <quic_sibis@quicinc.com>,
+        "Rajendra Nayak" <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH V22 2/3] misc: dcc: Add driver support for Data Capture and Compare
+ unit(DCC)
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add EIOINTC irqchip DT support, which is needed for Loongson chips
-based on DT and supporting EIOINTC, such as the Loongson-2K0500 SOC.
+On Wed, Apr 19, 2023, at 09:00, Souradeep Chowdhury wrote:
+> On 4/18/2023 9:15 PM, Greg Kroah-Hartman wrote:
+>> 
+>>> The following is the justification of using debugfs interface over the
+>>> other alternatives like sysfs/ioctls
+>>>
+>>> i) As can be seen from the debugfs attribute descriptions, some of the
+>>> debugfs attribute files here contains multiple arguments which needs to
+>>> be accepted from the user. This goes against the design style of sysfs.
+>>>
+>>> ii) The user input patterns have been made simple and convenient in this
+>>> case with the use of debugfs interface as user doesn't need to shuffle
+>>> between different files to execute one instruction as was the case on
+>>> using other alternatives.
+>> 
+>> Why do you have debugfs and also a misc device?  How are they related?
+>> Why both?  Why not just one?  What userspace tools are going to use
+>> either of these interfaces and where are they published to show how this
+>> all was tested?
+>
+> DCC has two fundamental steps of usage:-
+>
+> 1.Configuring the register addresses on the dcc_sram which is done by 
+> user through the debugfs interface. For example:-
+>
+> echo R 0x10c004 > /sys/kernel/debug/dcc/../3/config
+>
+> Here we are configuring the register addresses for list 3, the 'R'
+> indicates a read operation, so this register value will be read
+> in case of a software trigger or kernel panic/watchdog bite and
+> dumped into the dcc_sram.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/irqchip/irq-loongson-eiointc.c | 129 ++++++++++++++++++-------
- 1 file changed, 95 insertions(+), 34 deletions(-)
+Can you describe why the register location needs to be
+runtime configurable? I would have expected this type of setting
+to be part of the devicetree, which already describes other
+parts that interact with sram devices.
 
-diff --git a/drivers/irqchip/irq-loongson-eiointc.c b/drivers/irqchip/irq-loongson-eiointc.c
-index d15fd38c1756..cfeb40daf1d7 100644
---- a/drivers/irqchip/irq-loongson-eiointc.c
-+++ b/drivers/irqchip/irq-loongson-eiointc.c
-@@ -39,6 +39,7 @@ static int nr_pics;
- 
- struct eiointc_priv {
- 	u32			node;
-+	u32			vec_count;
- 	nodemask_t		node_map;
- 	cpumask_t		cpuspan_map;
- 	struct fwnode_handle	*domain_handle;
-@@ -156,18 +157,18 @@ static int eiointc_router_init(unsigned int cpu)
- 	if ((cpu_logical_map(cpu) % CORES_PER_EIO_NODE) == 0) {
- 		eiointc_enable();
- 
--		for (i = 0; i < VEC_COUNT / 32; i++) {
-+		for (i = 0; i < eiointc_priv[0]->vec_count / 32; i++) {
- 			data = (((1 << (i * 2 + 1)) << 16) | (1 << (i * 2)));
- 			iocsr_write32(data, EIOINTC_REG_NODEMAP + i * 4);
- 		}
- 
--		for (i = 0; i < VEC_COUNT / 32 / 4; i++) {
-+		for (i = 0; i < eiointc_priv[0]->vec_count / 32 / 4; i++) {
- 			bit = BIT(1 + index); /* Route to IP[1 + index] */
- 			data = bit | (bit << 8) | (bit << 16) | (bit << 24);
- 			iocsr_write32(data, EIOINTC_REG_IPMAP + i * 4);
- 		}
- 
--		for (i = 0; i < VEC_COUNT / 4; i++) {
-+		for (i = 0; i < eiointc_priv[0]->vec_count / 4; i++) {
- 			/* Route to Node-0 Core-0 */
- 			if (index == 0)
- 				bit = BIT(cpu_logical_map(0));
-@@ -178,7 +179,7 @@ static int eiointc_router_init(unsigned int cpu)
- 			iocsr_write32(data, EIOINTC_REG_ROUTE + i * 4);
- 		}
- 
--		for (i = 0; i < VEC_COUNT / 32; i++) {
-+		for (i = 0; i < eiointc_priv[0]->vec_count / 32; i++) {
- 			data = 0xffffffff;
- 			iocsr_write32(data, EIOINTC_REG_ENABLE + i * 4);
- 			iocsr_write32(data, EIOINTC_REG_BOUNCE + i * 4);
-@@ -198,7 +199,7 @@ static void eiointc_irq_dispatch(struct irq_desc *desc)
- 
- 	chained_irq_enter(chip, desc);
- 
--	for (i = 0; i < VEC_REG_COUNT; i++) {
-+	for (i = 0; i < eiointc_priv[0]->vec_count / VEC_COUNT_PER_REG; i++) {
- 		pending = iocsr_read64(EIOINTC_REG_ISR + (i << 3));
- 		iocsr_write64(pending, EIOINTC_REG_ISR + (i << 3));
- 		while (pending) {
-@@ -316,7 +317,7 @@ static void eiointc_resume(void)
- 	eiointc_router_init(0);
- 
- 	for (i = 0; i < nr_pics; i++) {
--		for (j = 0; j < VEC_COUNT; j++) {
-+		for (j = 0; j < eiointc_priv[0]->vec_count; j++) {
- 			desc = irq_resolve_mapping(eiointc_priv[i]->eiointc_domain, j);
- 			if (desc && desc->handle_irq && desc->handle_irq != handle_bad_irq) {
- 				raw_spin_lock(&desc->lock);
-@@ -373,11 +374,44 @@ static int __init acpi_cascade_irqdomain_init(void)
- 	return 0;
- }
- 
-+static int __init eiointc_init(struct eiointc_priv *priv, int parent_irq,
-+			       u64 node_map)
-+{
-+	int i;
-+
-+	node_map = node_map ? node_map : -1ULL;
-+	for_each_possible_cpu(i) {
-+		if (node_map & (1ULL << (cpu_to_eio_node(i)))) {
-+			node_set(cpu_to_eio_node(i), priv->node_map);
-+			cpumask_or(&priv->cpuspan_map, &priv->cpuspan_map,
-+				   cpumask_of(i));
-+		}
-+	}
-+
-+	priv->eiointc_domain = irq_domain_create_linear(priv->domain_handle,
-+							priv->vec_count,
-+							&eiointc_domain_ops,
-+							priv);
-+	if (!priv->eiointc_domain) {
-+		pr_err("loongson-extioi: cannot add IRQ domain\n");
-+		return -ENOMEM;
-+	}
-+
-+	eiointc_priv[nr_pics++] = priv;
-+	eiointc_router_init(0);
-+	irq_set_chained_handler_and_data(parent_irq, eiointc_irq_dispatch, priv);
-+	register_syscore_ops(&eiointc_syscore_ops);
-+	cpuhp_setup_state_nocalls(CPUHP_AP_IRQ_LOONGARCH_STARTING,
-+				  "irqchip/loongarch/intc:starting",
-+				  eiointc_router_init, NULL);
-+
-+	return 0;
-+}
-+
- int __init eiointc_acpi_init(struct irq_domain *parent,
- 				     struct acpi_madt_eio_pic *acpi_eiointc)
- {
--	int i, ret, parent_irq;
--	unsigned long node_map;
-+	int parent_irq, ret;
- 	struct eiointc_priv *priv;
- 
- 	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-@@ -391,39 +425,20 @@ int __init eiointc_acpi_init(struct irq_domain *parent,
- 		goto out_free_priv;
- 	}
- 
-+	priv->vec_count = VEC_COUNT;
- 	priv->node = acpi_eiointc->node;
--	node_map = acpi_eiointc->node_map ? : -1ULL;
--
--	for_each_possible_cpu(i) {
--		if (node_map & (1ULL << cpu_to_eio_node(i))) {
--			node_set(cpu_to_eio_node(i), priv->node_map);
--			cpumask_or(&priv->cpuspan_map, &priv->cpuspan_map, cpumask_of(i));
--		}
--	}
--
--	/* Setup IRQ domain */
--	priv->eiointc_domain = irq_domain_create_linear(priv->domain_handle, VEC_COUNT,
--					&eiointc_domain_ops, priv);
--	if (!priv->eiointc_domain) {
--		pr_err("loongson-eiointc: cannot add IRQ domain\n");
--		goto out_free_handle;
--	}
--
--	eiointc_priv[nr_pics++] = priv;
--
--	eiointc_router_init(0);
--
- 	parent_irq = irq_create_mapping(parent, acpi_eiointc->cascade);
--	irq_set_chained_handler_and_data(parent_irq, eiointc_irq_dispatch, priv);
- 
--	register_syscore_ops(&eiointc_syscore_ops);
--	cpuhp_setup_state_nocalls(CPUHP_AP_IRQ_LOONGARCH_STARTING,
--				  "irqchip/loongarch/intc:starting",
--				  eiointc_router_init, NULL);
-+	ret = eiointc_init(priv, parent_irq, acpi_eiointc->node_map);
-+	if (ret < 0)
-+		goto out_free_handle;
- 
- 	acpi_set_vec_parent(acpi_eiointc->node, priv->eiointc_domain, pch_group);
- 	acpi_set_vec_parent(acpi_eiointc->node, priv->eiointc_domain, msi_group);
-+
- 	ret = acpi_cascade_irqdomain_init();
-+	if (ret < 0)
-+		goto out_free_handle;
- 
- 	return ret;
- 
-@@ -435,3 +450,49 @@ int __init eiointc_acpi_init(struct irq_domain *parent,
- 
- 	return -ENOMEM;
- }
-+
-+static int __init eiointc_of_init(struct device_node *of_node,
-+				  struct device_node *parent)
-+{
-+	int parent_irq, ret;
-+	struct eiointc_priv *priv;
-+
-+	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	parent_irq = irq_of_parse_and_map(of_node, 0);
-+	if (parent_irq <= 0) {
-+		ret = -ENODEV;
-+		goto out_free_priv;
-+	}
-+
-+	ret = irq_set_handler_data(parent_irq, priv);
-+	if (ret < 0)
-+		goto out_free_priv;
-+
-+	/*
-+	 * In particular, the number of devices supported by the LS2K0500
-+	 * extended I/O interrupt vector is 128.
-+	 */
-+	if (of_device_is_compatible(of_node, "loongson,ls2k0500-eiointc"))
-+		priv->vec_count = 128;
-+	else
-+		priv->vec_count = VEC_COUNT;
-+
-+	priv->node = 0;
-+	priv->domain_handle = of_node_to_fwnode(of_node);
-+
-+	ret = eiointc_init(priv, parent_irq, 0);
-+	if (ret < 0)
-+		goto out_free_priv;
-+
-+	return 0;
-+
-+out_free_priv:
-+	kfree(priv);
-+	return ret;
-+}
-+
-+IRQCHIP_DECLARE(loongson_ls2k0500_eiointc, "loongson,ls2k0500-eiointc", eiointc_of_init);
-+IRQCHIP_DECLARE(loongson_ls2k2000_eiointc, "loongson,ls2k2000-eiointc", eiointc_of_init);
--- 
-2.39.1
+How does a user ensure that the address they configure does
+not overlap with some other use of the sram?
 
+    Arnd
