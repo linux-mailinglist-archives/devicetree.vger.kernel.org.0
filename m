@@ -2,277 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B3626E72F5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABF8D6E7300
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbjDSGPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 02:15:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        id S231687AbjDSGRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 02:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbjDSGPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:15:33 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D721996;
-        Tue, 18 Apr 2023 23:15:30 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (133-32-181-51.west.xps.vectant.ne.jp [133.32.181.51])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DD1FC12F;
-        Wed, 19 Apr 2023 08:15:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1681884922;
-        bh=rkUOMWQkU584u4Ts3QSMexZDobe08ycYK92hPZWwusc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=akrbepo9QwNMMW1Aba5GtEsYHKwgwhM2FVI4ESLzXhXlkN5m8E8uY6s/KrDh1Y5yp
-         VlzHKEqzVEzYTIBC8LKnRe4ChQ6UbNGIGJfVDzUS2kp+PhdMkLuE96fubp6Xg7l3IM
-         Z6q2r5Af1W6CPOw1HeKIk5PQ0aHci+Wn3fxHYY/c=
-Date:   Wed, 19 Apr 2023 09:15:40 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jack Zhu <jack.zhu@starfivetech.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v4 6/8] media: dt-bindings: Add bindings for JH7110
- Camera Subsystem
-Message-ID: <20230419061540.GB11679@pendragon.ideasonboard.com>
-References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
- <20230413035541.62129-7-jack.zhu@starfivetech.com>
+        with ESMTP id S231663AbjDSGR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:17:28 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D4D5249;
+        Tue, 18 Apr 2023 23:17:27 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33J6HBju124832;
+        Wed, 19 Apr 2023 01:17:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1681885031;
+        bh=VGHbi0oJgL1qmQOp3YO+KPZ9VWHxOlwOKogoET5tOWo=;
+        h=From:To:CC:Subject:Date;
+        b=xFf2xvyfT7KHpvAOu/5NO3grnYDgOBaR3DBd8j7YHALRShTQozu2M3PTB17Pkut+w
+         A3LvdWrZb9t83v7mSz7RnOETkw+ktBjyfOowk/SwQ38EdyPwxHVbSoMEg3eXbBKcM0
+         OINYgPRV6dCil+88yXaQNvq/9BbwVyO4ngSqTBas=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33J6HBcA125717
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Apr 2023 01:17:11 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 19
+ Apr 2023 01:17:11 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 19 Apr 2023 01:17:11 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33J6HAoJ045391;
+        Wed, 19 Apr 2023 01:17:11 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>
+CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <a-bhatia1@ti.com>, <j-choudhary@ti.com>
+Subject: [PATCH v3 0/5] Add peripherals for J784S4
+Date:   Wed, 19 Apr 2023 11:47:05 +0530
+Message-ID: <20230419061710.290068-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230413035541.62129-7-jack.zhu@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
+This series adds support for:
+- SERDES, WIZ DT nodes, Serdes lane control mux
+- MAIN CPSW2G nodes
+- DSS and DisplayPort-0 nodes
 
-Thank you for the patch.
+This series depends on DMA support patches for J784S4[1] which are
+applied to linux-next.
 
-On Thu, Apr 13, 2023 at 11:55:39AM +0800, Jack Zhu wrote:
-> Add the bindings documentation for Starfive JH7110 Camera Subsystem
-> which is used for handing image sensor data.
-> 
-> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
-> ---
->  .../bindings/media/starfive,jh7110-camss.yaml | 164 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 171 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> new file mode 100644
-> index 000000000000..4cd144f1b845
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Starfive SoC CAMSS ISP
-> +
-> +maintainers:
-> +  - Jack Zhu <jack.zhu@starfivetech.com>
-> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
-> +
-> +description:
-> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
-> +  consists of a VIN controller (Video In Controller, a top-level control until)
-> +  and an ISP.
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-camss
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: syscon
-> +      - const: isp
-> +
-> +  clocks:
-> +    maxItems: 7
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_func
-> +      - const: wrapper_clk_c
-> +      - const: dvp_inv
-> +      - const: axiwr
-> +      - const: mipi_rx0_pxl
-> +      - const: ispcore_2x
-> +      - const: isp_axi
-> +
-> +  resets:
-> +    maxItems: 6
-> +
-> +  reset-names:
-> +    items:
-> +      - const: wrapper_p
-> +      - const: wrapper_c
-> +      - const: axird
-> +      - const: axiwr
-> +      - const: isp_top_n
-> +      - const: isp_top_axi
-> +
-> +  power-domains:
-> +    items:
-> +      - description: JH7110 ISP Power Domain Switch Controller.
-> +
-> +  interrupts:
-> +    maxItems: 4
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Input port for receiving DVP data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-width:
-> +                const: 8
-> +
-> +              data-shift:
-> +                const: 2
+DisplayPort has been tested on local J784S4 EVM. Test log:
+<https://gist.github.com/Jayesh2000/b1465fc170cd97db4f0956770fafbc50>
 
-As far as I can tell, those two properties are not handled by the
-driver. I assume this is because the driver doesn't support the DVP
-input yet. That's fine, but it makes it a bit hard to review the device
-tree. Could you provide some information about the DVP hardware
-interface ? Does it support both BT.656 and sync signals, or just sync
-signals ? Are the polarities of the clock and h/v sync controllable ?
-Is the parallel input bus 8-bit wide or are other options supported ?
-And finally, what are you modelling with data-shift: 2 ?
+Changelog v3->v2:
+- fix dtc warnings for 'scm_conf' and 'serdes_ln_ctrl' nodes
+  (Checked all the changes of the series with W=12 option during build)
+- added clock-frequency for serdes_refclk along with other EVM changes
+  This refclk is being used by all the instances of serdes_wiz which
+  are disabled by default. So configuring refclk when the serdes nodes
+  are used for the first time is okay.
 
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input port for receiving CSI data.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - power-domains
-> +  - interrupts
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    isp@19840000 {
-> +        compatible = "starfive,jh7110-camss";
-> +        reg = <0x19840000 0x10000>,
-> +              <0x19870000 0x30000>;
-> +        reg-names = "syscon", "isp";
-> +        clocks = <&ispcrg 0>,
-> +                 <&ispcrg 13>,
-> +                 <&ispcrg 2>,
-> +                 <&ispcrg 12>,
-> +                 <&ispcrg 1>,
-> +                 <&syscrg 51>,
-> +                 <&syscrg 52>;
-> +        clock-names = "apb_func",
-> +                      "wrapper_clk_c",
-> +                      "dvp_inv",
-> +                      "axiwr",
-> +                      "mipi_rx0_pxl",
-> +                      "ispcore_2x",
-> +                      "isp_axi";
-> +        resets = <&ispcrg 0>,
-> +                 <&ispcrg 1>,
-> +                 <&ispcrg 10>,
-> +                 <&ispcrg 11>,
-> +                 <&syscrg 41>,
-> +                 <&syscrg 42>;
-> +        reset-names = "wrapper_p",
-> +                      "wrapper_c",
-> +                      "axird",
-> +                      "axiwr",
-> +                      "isp_top_n",
-> +                      "isp_top_axi";
-> +        power-domains = <&pwrc 5>;
-> +        interrupts = <92>, <87>, <88>, <90>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            port@0 {
-> +                reg = <0>;
-> +                vin_from_sc2235: endpoint {
-> +                    remote-endpoint = <&sc2235_to_vin>;
-> +                    bus-width = <8>;
-> +                    data-shift = <2>;
-> +                    hsync-active = <1>;
-> +                    vsync-active = <0>;
-> +                    pclk-sample = <1>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                vin_from_csi2rx: endpoint {
-> +                    remote-endpoint = <&csi2rx_to_vin>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bbb8b5c0187b..b8c76b0d7eb3 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19909,6 +19909,13 @@ M:	Ion Badulescu <ionut@badula.org>
->  S:	Odd Fixes
->  F:	drivers/net/ethernet/adaptec/starfire*
->  
-> +STARFIVE CAMERA SUBSYSTEM DRIVER
-> +M:	Jack Zhu <jack.zhu@starfivetech.com>
-> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> +
->  STARFIVE DEVICETREES
->  M:	Emil Renner Berthing <kernel@esmil.dk>
->  S:	Maintained
+Changelog v1->v2:
+- Moved J784S4 EVM changes together to the last patch
+  (Suggested by Andrew)
+
+v2 patch link:
+<https://lore.kernel.org/all/20230414151553.339599-1-j-choudhary@ti.com/>
+
+[1]:
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=00e34c94987e4fe866f12ad8eac17268c936880c>
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=82e6051a48957a89066d15b17bb85d2f662f2bad>
+<https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=436b288687176bf4d2c1cd25b86173e5a1649a60>
+
+
+Rahul T R (2):
+  arm64: dts: ti: k3-j784s4-main: Add DSS and DP-bridge node
+  arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
+
+Siddharth Vadapalli (3):
+  arm64: dts: ti: k3-j784s4-main: Add system controller and SERDES lane
+    mux
+  arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
+  arm64: dts: ti: k3-j784s4: Add WIZ and SERDES PHY nodes
+
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 164 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 338 +++++++++++++++++++++
+ 2 files changed, 502 insertions(+)
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
