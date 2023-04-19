@@ -2,168 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 429116E7467
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 09:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E356E749C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 10:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232465AbjDSHwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 03:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38902 "EHLO
+        id S231186AbjDSIGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 04:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232589AbjDSHwd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 03:52:33 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3499F118D5
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 00:51:57 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id fw30so26560439ejc.5
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 00:51:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681890710; x=1684482710;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fDlxSPCrAX4Nl9Tp9ky3UcOflYJp7M8armR9xRbnOzc=;
-        b=Ok8e+/8gGGf3Sa6VRx391vR3zJfaYlDBevI4ECtzvfcpTjvGwPZ9LtNnTj6mSrBogi
-         jbYaCmWh4YZThAmp4u/PY1t9VQgCPIcuFOXBfoJoZ9rQ9aMasEc4EZBHhxXuh7/1xykQ
-         qPWnGey5Gp59fchiFiOBeLqnJt2p9Z2+HHc822a1HfsEcqWrZNYUyf6wMjKMHQ4EF+Rp
-         /FSzBzuaVCx5p3AC7CJdtsDShQb59/TlyCgKu1NDluOqRzVCdgt6s9qv2YyaPASuJkA2
-         gaBdcGw1QGrR1HoLibzvwgoeaVoDwwOmHtFSQW1Dv6dcVr7A+wNWAuQP9f2WhrY8maS6
-         bhCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681890710; x=1684482710;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fDlxSPCrAX4Nl9Tp9ky3UcOflYJp7M8armR9xRbnOzc=;
-        b=imv+E3X9onmK1ipRGtGjTZaWQiwuaOgXPj6Gftn+WaCvHhSI+nXxygc3yicvCixE1G
-         zLpPBi88szkZ8baD6WRlk4Ud+ssvJbzVcP9Z98HJvqiUrdkyQIcshmzIwdHqv6d4RNLs
-         oHLeujt1D9VyL//ecobaYzOsrUlhxRamZRKeQ7t4ZW9xP+DhFTEVPSAK5m2ONwSA6lsW
-         2dUTQoRe0XTLKOAcZhnb+H07rCzNTw9sbN8CELQCwABFhsuPHzolllYhlf+FLSrSD+Ys
-         GanFfZMVbvKGtu8A6hDKkTKaWAIjNgCmVutAqvY5xC6zVhpREgHCUaf0f+Ewchb1RNn7
-         DAHA==
-X-Gm-Message-State: AAQBX9f8q2u9X7Azhtq6UHJcrOz1UQ4ueo1+9EWK0RlHM3CODw3jmTQK
-        mU89ny30vAX2aWGf5C2wSrzmzQ==
-X-Google-Smtp-Source: AKy350ZRTyS4+GTp8Pj7HoAthP042Am2UGVyUuHn7lPYpES4AgScsdDSfBMWEMGre6ktSarvslITpQ==
-X-Received: by 2002:a17:906:149b:b0:92f:924b:e8f4 with SMTP id x27-20020a170906149b00b0092f924be8f4mr14128126ejc.4.1681890709967;
-        Wed, 19 Apr 2023 00:51:49 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:62f5:eb43:f726:5fee? ([2a02:810d:15c0:828:62f5:eb43:f726:5fee])
-        by smtp.gmail.com with ESMTPSA id xg12-20020a170907320c00b0094ee99eeb01sm7389793ejb.150.2023.04.19.00.51.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 00:51:49 -0700 (PDT)
-Message-ID: <83c8bce1-f4e2-899e-46a9-0ba9da702572@linaro.org>
-Date:   Wed, 19 Apr 2023 09:51:48 +0200
+        with ESMTP id S230340AbjDSIF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 04:05:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36D94C3D;
+        Wed, 19 Apr 2023 01:05:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 704F163C3A;
+        Wed, 19 Apr 2023 08:05:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45613C433EF;
+        Wed, 19 Apr 2023 08:05:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681891557;
+        bh=Pmk67VN1KWoYfHH9fjaJIYCfiu0cDeym63+mdBdupLc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cCJZZmOedUDG1K/cSy1AWLOZeG4g9dchhxqqkUkLKke4h6X0efXb0JLcMFgGQK9zj
+         xKj301TGX6JOGQc3d3XNmbncOaA7zMl+Z1FFtJcg7PtcSxYNTfJvWN5saXSatOw8L0
+         cQaFFeJwyy3gDVP3FYSSjx+q8L5UtpQdpeyZEgLNNKYwuSy3rerveY7+2HF8zIzMPQ
+         J/OBwTuhZdHrBhHodhIlGMNelE3DvXcxH0YXX0zhqEABM49kL/uh1tZRMuwBij2Uc3
+         gBm6UJD7dfx/MPmcoEFeSaynqzxz4AK39dodj08oVE443cpy+92Ys6i0SyJV3s75J6
+         ayjuFUiWwO6cQ==
+Date:   Wed, 19 Apr 2023 10:05:54 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v10 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link
+ III Deserializer
+Message-ID: <ZD+g4j7jEg2AETNe@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>, Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
+ <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
+ <ZD6VwpRya6SGBAt5@shikoro>
+ <20230419091336.4e10ba65@booty>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 4/5] arm64: dts: ti: k3-j784s4-main: Add DSS and
- DP-bridge node
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com,
-        afd@ti.com
-Cc:     s-vadapalli@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, a-bhatia1@ti.com
-References: <20230419061710.290068-1-j-choudhary@ti.com>
- <20230419061710.290068-5-j-choudhary@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230419061710.290068-5-j-choudhary@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5uh5ZyA4HcdyiNVD"
+Content-Disposition: inline
+In-Reply-To: <20230419091336.4e10ba65@booty>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 08:17, Jayesh Choudhary wrote:
-> From: Rahul T R <r-ravikumar@ti.com>
-> 
-> Add DSS and DP-bridge node for J784S4 SoC. DSS IP in J784S4 is
-> same as DSS IP in J721E, so same compatible is being used.
-> The DP is Cadence MHDP8546.
-> 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> [j-choudhary@ti.com: move all k3-j784s4-main.dtsi changes together]
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 77 ++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index 51aa476dedba..739741e93bc1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -1373,4 +1373,81 @@ main_spi7: spi@2170000 {
->  		clocks = <&k3_clks 383 1>;
->  		status = "disabled";
->  	};
-> +
-> +	mhdp: dp-bridge@a000000 {
-> +		compatible = "ti,j721e-mhdp8546";
-> +
-> +		reg = <0x0 0xa000000 0x0 0x30a00>,
-> +		      <0x0 0x4f40000 0x0 0x20>;
-> +		reg-names = "mhdptx", "j721e-intg";
-> +
-> +		clocks = <&k3_clks 217 11>;
-> +
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		power-domains = <&k3_pds 217 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		status = "disabled";
-> +
-> +		dp0_ports: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +
-> +	dss: dss@4a00000 {
-> +		compatible = "ti,j721e-dss";
-> +		reg =
-> +			<0x00 0x04a00000 0x00 0x10000>,
 
-Fix indent/stray line break.
-
-> +			<0x00 0x04a10000 0x00 0x10000>,
-> +			<0x00 0x04b00000 0x00 0x10000>,
-> +			<0x00 0x04b10000 0x00 0x10000>,
-> +
-> +			<0x00 0x04a20000 0x00 0x10000>,
-> +			<0x00 0x04a30000 0x00 0x10000>,
-> +			<0x00 0x04a50000 0x00 0x10000>,
-> +			<0x00 0x04a60000 0x00 0x10000>,
-> +
-> +			<0x00 0x04a70000 0x00 0x10000>,
-> +			<0x00 0x04a90000 0x00 0x10000>,
-> +			<0x00 0x04ab0000 0x00 0x10000>,
-> +			<0x00 0x04ad0000 0x00 0x10000>,
-> +
-> +			<0x00 0x04a80000 0x00 0x10000>,
-> +			<0x00 0x04aa0000 0x00 0x10000>,
-> +			<0x00 0x04ac0000 0x00 0x10000>,
-> +			<0x00 0x04ae0000 0x00 0x10000>,
-> +			<0x00 0x04af0000 0x00 0x10000>;
-> +
-> +		reg-names = "common_m", "common_s0",
-> +			"common_s1", "common_s2",
-> +			"vidl1", "vidl2","vid1","vid2",
-> +			"ovr1", "ovr2", "ovr3", "ovr4",
-> +			"vp1", "vp2", "vp3", "vp4",
-> +			"wb";
-> +
-> +		clocks =	<&k3_clks 218 0>,
-
-Broken indentation.
+--5uh5ZyA4HcdyiNVD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
 
+> > Why is "i2c-alias-pool" in the drivers binding and not a regular i2c
+> > binding? Same question for the implementation of the alias-pool
+> > handling. Shouldn't this be in the i2c-atr library? I'd think managing
+> > the list of aliases would look all the same in the drivers otherwise?
+>=20
+> I think that this _was_ the plan, as it looks obviously cleaner, but
+> then we agreed that we should remove the pool entirely, so I didn't
+> bother moving it.
 
-Best regards,
-Krzysztof
+Ah, you mean we agreed on that at the Plumbers BoF? I think we can
+conclude this is obsolete meanwhile. GMSL encodes the target addresses
+in DT. Rob is also fine with the binding here to encode the pool in DT.
+Let's follow that road, I'd say.
 
+
+--5uh5ZyA4HcdyiNVD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQ/oN8ACgkQFA3kzBSg
+KbYOVQ//SvRa7pFpZDsYmp4BoiKZFaS1vYbwJiVFgXLFu7s+LqMkohp0KNgRl+YK
+VIhqZcpIR7gp52ikHDp0BinRmDoKLp2j1sAmiPzQJHKOHMWfErdDpzAybKAV/1HW
+0GXCzZeDwOnURHFO8WRwqBn2LFa6HLO1F3Rnp7apuvbqb3JaKDvRdXWpIFsRgITF
+73hVZKOm8bIn8cc3NRAJr6n2PIQVoLOmvcO/WZQIY2ZJZabcB7Z8LAYexHb4OPJp
+qG+IN4JPqhWyKelvbDKIuvpmiNtRmO3RMczBa4MSNSipTpeRYjtJCJXJW8Gvewe8
+dpqU2/1RfTH+vAo0XJ6tI7UPgmb6g1EE9d/lFRQC+t1gKFQzGtIoa+ay9okQUzln
+MZJAOxu2o64uE5mA6HXFpTemhb/7H31kSxKxu1neKMCsY/7o9CRWxMlEe5s/FBmR
+1ieHG7udVNqD+/z5HyiaLOEpdhcqeqEkTTdgEIjeQBEwlkFM1gT5da7sUoLNUy/e
+N0ZvHG9SAejFX9hw6gtv702mUczNQHGCBp/joWRNqU+/dOSSBwYYc+mmISSSj4rh
+MvxoL4dBcn81ZFIScL9RlG4UxmwdYJ0O0CFgLaO9hcosLk0kBUmWO7UlrgD9WWzu
+I7dNoWqXkoPDorW0pimTPu45z5GdZu2T+p93+0cB/xO8GlYvwyo=
+=FA+C
+-----END PGP SIGNATURE-----
+
+--5uh5ZyA4HcdyiNVD--
