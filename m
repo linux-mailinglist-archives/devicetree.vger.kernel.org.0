@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76FEA6E834C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E0F6E834E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:19:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231458AbjDSVTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 17:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40326 "EHLO
+        id S231572AbjDSVTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 17:19:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231157AbjDSVTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:04 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 727AD4C20
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:03 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id xi5so1516123ejb.13
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:03 -0700 (PDT)
+        with ESMTP id S231282AbjDSVTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:19:09 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CE859D8
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:05 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id sz19so1751176ejc.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 14:19:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681939142; x=1684531142;
+        d=linaro.org; s=google; t=1681939143; x=1684531143;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=x+S1PGV40leJbvMByVhOfE65UL2JdGFknuaSBN+G7W4=;
-        b=TfjcQJQmpkTC4C8RQY6hX3CePx/OXPgugf9zPuXGeYyxiyxOXV7aqHdIu18qSoM7Rz
-         81yNQE0/f/N8TwHM0Gg0fInqIo9vXQ5Mv1tgaNiFvsjKFqGRBnXrA2oZLXUyTVMe4vbA
-         aHYEdDtYWZDMUPQlkMepRIxmXeI0+9dDmHSs1uVB0QstAu9D3p0XKOvaCT/f4TXoIqPH
-         MSMefRKxklUNfQVrjfV6VSxF8A2528e8+JI1NbWvKWS4KkLnpC08uNUKOcneCFHS6VbV
-         BxQi3jomtKsXYQ6clT/oumkRq/QBIY8BkQ2dZtd7DkNw8eV+PFyyLEWYClqpmOWmjQNA
-         d9fw==
+        bh=n9sXuVfDtTEtcj09LqpGPu1s71CoqkhBhSS1LJGdjt0=;
+        b=yq03X9VzdWaE4PNxtM/nyVT7uXaTmoxieq0VpfJKUBg7HJ5zM861O9NQUruSsja9OE
+         co3byMGTx99C54l2xJEkUUB0GsB/FlsuKzMppgwBV6sgs40AnEAPybt/06stP93KLhiN
+         /Ug5rDU+A92M2/NeA7GGXLf0fqJI8ZHhKtEGXnwwyQ6tnHTb4gnJh/P6Me77i9uUhbHc
+         enObnMdSfo3Z+YApi6GVOG3rKGnFvTspzyRdHQzAgbWwwUxrcwki3cUalBKP2/5nHLue
+         tKicwlmR+XChxYiNeZnbsKVkFQjWrhoNUSqpMZk1RZOtQ67Q+tuUZVudl9I3yFIutOCD
+         5+lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681939142; x=1684531142;
+        d=1e100.net; s=20221208; t=1681939143; x=1684531143;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=x+S1PGV40leJbvMByVhOfE65UL2JdGFknuaSBN+G7W4=;
-        b=HzHfBzl65yQxjPuc4uxha84wjDGzAcUyp4uG336LL8Z2CRL3rqamh5Zhmt70Fy+B78
-         62tb9VXSX9S4gQ2mT0V8S+7TqDsPLEUESS8r/upSTjj8DsSKqrYRkPAsAaXqf4caHffY
-         QrblDe4XA/R0uBxKS+QB+AFJr8THtkuu9XsRKdb9sIheHZAW1t9rztOkRqIX4+k76Y3N
-         R7Ys/0+l7+XyDPNK66XX++S6E1hoNjm1J2pnfI2kGuft8VmPTMMlONOL8dsT4AwjVeuS
-         NMZJE4v97HI0YEBt53hG00eFWq6jA9hh79O2r2hy+ZQd/Tuf/BTSysGCLG9u6xwti8CU
-         AtHw==
-X-Gm-Message-State: AAQBX9cpttj5nR0N8UkljVEAyrT2Eq8wxKKNNvEkeBm4QpW5gr2QbKe6
-        Zz+BHvyruDb8xlP5ero7xa/KDw==
-X-Google-Smtp-Source: AKy350ZUWRhMuvZa/+7AptTp8ymbNo/9VKL3BoRqvF2YrAnLclMmqxpFVX15zU+FOVqH/VBGfOb7BA==
-X-Received: by 2002:a17:906:4fd4:b0:94f:a8fd:b69f with SMTP id i20-20020a1709064fd400b0094fa8fdb69fmr10397282ejw.18.1681939141878;
-        Wed, 19 Apr 2023 14:19:01 -0700 (PDT)
+        bh=n9sXuVfDtTEtcj09LqpGPu1s71CoqkhBhSS1LJGdjt0=;
+        b=P3ca/t5mUghi3apmMdskuS1fYI7Xu6AEXKxHtBQYD6K7wcN9jWuF+BB8WE3WYSzlFq
+         rQlp9w2RI+94rXOAyxtEIpsTV3FyEDNroz30W/hmaiv21v6d8XjRgxNCoAnrVeyrW2D6
+         RWl8GhvgOITML2BZ1saxsbypoq04SDlb7ZiC5SmAdGDu6TtqqQ4isw/nrGHMNDtYnYOZ
+         NFAoUp/70VaSUei4nANpgo+EYhBPPEcOpCQfge2rf9P7vT43Y7yNbM02yxo84MU+QQlP
+         vUT2YLGwTNcPkpy7BlnQr7kzsSyfd5IIP0fmjVCrg6WW308SHYEAzBsllj3j9QzwN4Oo
+         4yxg==
+X-Gm-Message-State: AAQBX9ffWoVZp4AbWol0FErn+4nnW3oORvg4D+efEV+y22mffo81rGHY
+        WxnCX7kiO0hVQgj1PvIQqpEF4g==
+X-Google-Smtp-Source: AKy350YQMfUsTBcCO/aJgUFGI/BqiOsnannEgK3R2Ph4GqNtWbe8DQvv+DTgcy+F+JTu+Bt9EaDOLg==
+X-Received: by 2002:a17:906:82c5:b0:93f:2256:fc05 with SMTP id a5-20020a17090682c500b0093f2256fc05mr18361664ejy.55.1681939143554;
+        Wed, 19 Apr 2023 14:19:03 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:976c:1d6c:6ed0:8935])
-        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.18.59
+        by smtp.gmail.com with ESMTPSA id a12-20020a17090682cc00b0094f109a5b3asm7092739ejy.135.2023.04.19.14.19.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 14:19:01 -0700 (PDT)
+        Wed, 19 Apr 2023 14:19:03 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -76,9 +76,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 02/18] arm64: dts: qcom: msm8916: correct camss unit address
-Date:   Wed, 19 Apr 2023 23:18:40 +0200
-Message-Id: <20230419211856.79332-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 03/18] arm64: dts: qcom: msm8916: correct MMC unit address
+Date:   Wed, 19 Apr 2023 23:18:41 +0200
+Message-Id: <20230419211856.79332-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
 References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
@@ -87,7 +87,7 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,27 +96,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Match unit-address to reg entry to fix dtbs W=1 warnings:
 
-  Warning (simple_bus_reg): /soc@0/camss@1b00000: simple-bus unit address format error, expected "1b0ac00"
+  Warning (simple_bus_reg): /soc@0/mmc@7824000: simple-bus unit address format error, expected "7824900"
+  Warning (simple_bus_reg): /soc@0/mmc@7864000: simple-bus unit address format error, expected "7864900"
 
-Fixes: 58f479f90a7c ("arm64: dts: qcom: msm8916: Add CAMSS support")
+Fixes: c4da5a561627 ("arm64: dts: qcom: Add msm8916 sdhci configuration nodes")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 834e0b66b7f2..894a99431158 100644
+index 894a99431158..f6ccce0dad4e 100644
 --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1162,7 +1162,7 @@ dsi_phy0: phy@1a98300 {
- 			};
+@@ -1554,7 +1554,7 @@ lpass_codec: audio-codec@771c000 {
+ 			#sound-dai-cells = <1>;
  		};
  
--		camss: camss@1b00000 {
-+		camss: camss@1b0ac00 {
- 			compatible = "qcom,msm8916-camss";
- 			reg = <0x01b0ac00 0x200>,
- 				<0x01b00030 0x4>,
+-		sdhc_1: mmc@7824000 {
++		sdhc_1: mmc@7824900 {
+ 			compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0x07824900 0x11c>, <0x07824000 0x800>;
+ 			reg-names = "hc", "core";
+@@ -1572,7 +1572,7 @@ sdhc_1: mmc@7824000 {
+ 			status = "disabled";
+ 		};
+ 
+-		sdhc_2: mmc@7864000 {
++		sdhc_2: mmc@7864900 {
+ 			compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0x07864900 0x11c>, <0x07864000 0x800>;
+ 			reg-names = "hc", "core";
 -- 
 2.34.1
 
