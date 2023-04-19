@@ -2,159 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E986E77A2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 12:44:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A726E77B2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 12:47:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232677AbjDSKo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 06:44:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51080 "EHLO
+        id S231688AbjDSKrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 06:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232218AbjDSKov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 06:44:51 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F673132
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:44:50 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-32abc2e7da8so6025685ab.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:44:50 -0700 (PDT)
+        with ESMTP id S231722AbjDSKrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 06:47:20 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35DF72A8;
+        Wed, 19 Apr 2023 03:47:18 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1a920d4842bso1841615ad.2;
+        Wed, 19 Apr 2023 03:47:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1681901089; x=1684493089;
+        d=gmail.com; s=20221208; t=1681901238; x=1684493238;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZC1F9AUB3Liv54B7ZdgG3WiGq9lyqgr8Df3/jIkfoOU=;
-        b=AyOYoPtTtbkdJwMORE7Hw6/92sSOZlyaTfc38twYc/wtymc7DPQhk5P18IX9lH9lIx
-         7xCPp4PsgNx88YOUwQcLGL48RMcH9lmCGgzct2ChnsYBcz6KTsA23ZScWLk87uovspnn
-         lPH52c1fqhy1ldns0LWbbSlCVUkegLKg1wsLE=
+        bh=ef5jinu68hChsQPL90lIFDCf/6lC4PbhW9wu+rG7+o0=;
+        b=Gt7govrcwA6PFE6GqKzvccIYmexBSH1eg54UQoXqmm+G6yIfqc7dhRciA+N80wC8I4
+         /Nfs0TnHx2XlvKAlRBlO3EpJ1YrIYPgMu5XQJttcAEVMrD6i2gCuAFV8dlYBPOPDKU9y
+         lYSlaeFsedD2qQEm4+rlOAnrRBWZtO13+Cgq1U3wyYMH9c8Lq4Z3Iszpa+Ff0BX7dp5W
+         Q4DyqgiCT2SAawiR4a2FcBCjAZ7HSNwHrYyFB6V7EgZ12b4P+Ja6gFfYCzs6LbQBUsQq
+         jTn9PK9uRd1UcgUT0+YEEGOV0OAtMpkOjm3pKZW7zDuJMzTKHXoi/es/zCK5fWA/PwjZ
+         j7zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681901089; x=1684493089;
+        d=1e100.net; s=20221208; t=1681901238; x=1684493238;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZC1F9AUB3Liv54B7ZdgG3WiGq9lyqgr8Df3/jIkfoOU=;
-        b=YXRA2SEo1CFJMA3mcGPDxKCPe19jjcFo6TGf/epvQavnPLiolFPF0RNqjqaT7Uo9GB
-         htPMhyEpt+0Hv7Qp+IP7SwQ/znkD2hdrmeIxBqWSvAqt0N+coOEWDzPvXtL826YgEYTT
-         yqylz9mx7jsiwrXBEGchitoPrR7rMI8a7rfRpY88r55xNAexrV6gFnsIh4rqrBwo7H/M
-         PqJxHzcA4oQcGARt7T8acrQVkuEoyjXWXm/+NE/t7WgFSkiKj6G6SKMVaAao9V4QyYvR
-         1fVKGuZk2NdxtcfSoKY92eLLa2ZnXBsmIQZbo9X5uaRf61q4TzRjgU9kWvdnGChOmyZf
-         3UeQ==
-X-Gm-Message-State: AAQBX9clRRhoS4VneR/5lVwFlbMmVN7GdQvmBIYaA93OmJ2mXXVsLHQV
-        VviVTLmolnAW73YFZIlpJa9JLKZgdJMiNk1F5Aya/byY
-X-Google-Smtp-Source: AKy350Zvs5MtwNSdGKELpVRtrDskb+QrOVbFF1VBPYL23E+IoRJ71LmFBE0SYcxSqxDzxhYiQ6EjTw==
-X-Received: by 2002:a92:d9c5:0:b0:32a:8da8:8820 with SMTP id n5-20020a92d9c5000000b0032a8da88820mr12752093ilq.17.1681901089410;
-        Wed, 19 Apr 2023 03:44:49 -0700 (PDT)
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com. [209.85.166.174])
-        by smtp.gmail.com with ESMTPSA id v20-20020a927a14000000b0032b3a49d5fdsm1466586ilc.75.2023.04.19.03.44.48
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 03:44:48 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-32b1c8ff598so19174335ab.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:44:48 -0700 (PDT)
-X-Received: by 2002:a92:ced0:0:b0:329:4c5e:15d8 with SMTP id
- z16-20020a92ced0000000b003294c5e15d8mr10421971ilq.2.1681901088205; Wed, 19
- Apr 2023 03:44:48 -0700 (PDT)
+        bh=ef5jinu68hChsQPL90lIFDCf/6lC4PbhW9wu+rG7+o0=;
+        b=ZX5tTPuTiBcD9US3rU8pQ3WmolZngXpHtT3nsGJAlbnT0uTBa7pQYybxqizwQdy9cR
+         /6aSgmsIq+TehT/r6nc61RlYgY9zuoD23j1NJjxGiKOUqIHCLqa3rYiNLDi5ysH/fSDU
+         XO/6QvcYGrUeYEKNOzlcMwxrJYJI5DmFA9fR7ZUxQeK+5V8ywbL1PpQzIUuTlzNfuH/r
+         2/CXg2SlsN1mp/jmRRcnM+peIqMLcHeIDt0GvWqjnNMkKDPC0GgvPICmY9FdMncTFBys
+         9Jc6EiFxXtvgjzhpoJYM0goIwIPAWDQ8XiGqMvcWGy5QX/NUNkjM7NBlraMDbyyj+wVj
+         4M6Q==
+X-Gm-Message-State: AAQBX9d7r5eDjsoHlLdeNLSeR3kpjsQfPpcZH4BSDg9eQYxkFc9w5lU8
+        pGE7YiqdiWUOoP6MDm3AQsV0ivGH45imX7MQdavcEXp4Jlk=
+X-Google-Smtp-Source: AKy350aHmthhp0IFZ0TnKbCamhN7olX7ZFASuauGWbeHtx1TZh+J0gjvGhLHwKEsUYp7tk86iFQW4196TmK7coLmgQo=
+X-Received: by 2002:a17:902:da84:b0:1a6:c4fd:d42 with SMTP id
+ j4-20020a170902da8400b001a6c4fd0d42mr5164953plx.67.1681901237872; Wed, 19 Apr
+ 2023 03:47:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230418124953.3170028-1-fshao@chromium.org> <20230418124953.3170028-2-fshao@chromium.org>
- <ZD8z57MBvcfExJx8@nixie71>
-In-Reply-To: <ZD8z57MBvcfExJx8@nixie71>
-From:   Fei Shao <fshao@chromium.org>
-Date:   Wed, 19 Apr 2023 18:44:11 +0800
-X-Gmail-Original-Message-ID: <CAC=S1ngBt9DmBobMkQXWhqE1UUxFv2U6iFd42nT=1N7r8+pFUg@mail.gmail.com>
-Message-ID: <CAC=S1ngBt9DmBobMkQXWhqE1UUxFv2U6iFd42nT=1N7r8+pFUg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend property
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+References: <20230415104104.5537-1-aford173@gmail.com> <3e47f0d1017fe4c9f71a5de65f32c6ba1662efe2.camel@pengutronix.de>
+ <CAHCN7xL4+9NogrnXA1PEWorwY7JpSGBozDtHT83JvzjfinmS+A@mail.gmail.com>
+In-Reply-To: <CAHCN7xL4+9NogrnXA1PEWorwY7JpSGBozDtHT83JvzjfinmS+A@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 19 Apr 2023 05:47:06 -0500
+Message-ID: <CAHCN7xK8K+DsNAFTVAezwJQzZ7RCDb2CjCBZ8dNb=S8d1BmtMA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] drm: bridge: samsung-dsim: Support multi-lane calculations
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        aford@beaconembedded.com,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Fabio Estevam <festevam@gmail.com>, m.szyprowski@samsung.com,
+        marex@denx.de, Robert Foss <rfoss@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
+On Mon, Apr 17, 2023 at 6:55=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> On Mon, Apr 17, 2023 at 3:43=E2=80=AFAM Lucas Stach <l.stach@pengutronix.=
+de> wrote:
+> >
+> > Hi Adam,
+> >
+> > Am Samstag, dem 15.04.2023 um 05:40 -0500 schrieb Adam Ford:
+> > > If there is more than one lane, the HFP, HBP, and HSA is calculated i=
+n
+> > > bytes/pixel, then they are divided amongst the different lanes with s=
+ome
+> > > additional overhead. This is necessary to achieve higher resolutions =
+while
+> > > keeping the pixel clocks lower as the number of lanes increase.
+> > >
+> >
+> > In the testing I did to come up with my patch "drm: bridge: samsung-
+> > dsim: fix blanking packet size calculation" the number of lanes didn't
+> > make any difference. My testing might be flawed, as I could only
+> > measure the blanking after translation from MIPI DSI to DPI, so I'm
+> > interested to know what others did here. How did you validate the
+> > blanking with your patch? Would you have a chance to test my patch and
+> > see if it works or breaks in your setup?
 
-On Wed, Apr 19, 2023 at 8:21=E2=80=AFAM Jeff LaBundy <jeff@labundy.com> wro=
-te:
->
-> Hi Fei,
->
-> On Tue, Apr 18, 2023 at 08:49:51PM +0800, Fei Shao wrote:
-> > We observed that on Chromebook device Steelix, if Goodix GT7375P
-> > touchscreen is powered in suspend (because, for example, it connects to
-> > an always-on regulator) and with the reset GPIO asserted, it will
-> > introduce about 14mW power leakage.
-> >
-> > This property is used to indicate that the touchscreen is powered in
-> > suspend. If it's set, the driver will stop asserting the reset GPIO in
-> > power-down, and it will do it in power-up instead to ensure that the
-> > state is always reset after resuming.
-> >
-> > Signed-off-by: Fei Shao <fshao@chromium.org>
-> > ---
->
-> This is an interesting problem; were you able to root-cause why the silic=
-on
-> exhibits this behavior? Simply asserting reset should not cause it to dra=
-w
-> additional power, let alone 14 mW. This almost sounds like a back-powerin=
-g
-> problem during suspend.
->
-There was a fix for this behavior before so I didn't dig into it on
-the silicon side.
-I can ask internally and see if we can have Goodix to confirm this is
-a known HW erratum.
+Lucas,
 
-> If this is truly expected behavior, is it sufficient to use the always_on
-> constraint of the relevant regulator(s) to make this decision as opposed =
-to
-> introducing a new property?
->
-That sounds good to me. IIUC, for the existing designs, the boards
-that would set this property would also exclusively set
-`regulator-always-on` in their supply, so that should suffice.
-Let me revise the patch. Thanks!
+I tried your patch instead of mine.  Yours is dependent on the
+hs_clock being always set to the burst clock which is configured by
+the device tree.  I unrolled a bit of my stuff and replaced it with
+yours.  It worked at 1080p, but when I tried a few other resolutions,
+they did not work.  I assume it's because the DSI clock is fixed and
+not changing based on the pixel clock.  In the version I did, I only
+did that math when the lanes were > 1. In your patch, you divide by 8,
+and in mine, I fetch the bits-per-pixel (which is 8) and I divide by
+that just in case the bpp ever changes from 8.  Overall,  I think our
+patches basically do the same thing.
 
-Fei
-> >
-> >  Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yam=
-l b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > index ce18d7dadae2..942acb286d77 100644
-> > --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > @@ -43,6 +43,12 @@ properties:
-> >        itself as long as it allows the main board to make signals compa=
-tible
-> >        with what the touchscreen is expecting for its IO rails.
-> >
-> > +  powered-in-suspend:
-> > +    description:
-> > +      This indicates that the touchscreen is powered in suspend, so th=
-e driver
-> > +      will not assert the reset GPIO in power-down to prevent power le=
-akage.
-> > +    type: boolean
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > --
-> > 2.40.0.634.g4ca3ef3211-goog
-> >
+adam
+
 >
-> Kind regards,
-> Jeff LaBundy
+> Mine was purely by trial and error.  I don't have a scope, nor do I
+> have a copy of the MIPI DSI spec, so if the image sync'd with my
+> monitor, I treated it as successful.
+>
+> I can give yours a try, but it might be a few days since I've only
+> been working on this stuff a bit in my spare time.
+>
+> adam
+>
+> >
+> > Regards,
+> > Lucas
+> >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > ---
+> > >  drivers/gpu/drm/bridge/samsung-dsim.c | 40 +++++++++++++++++++++++--=
+--
+> > >  1 file changed, 34 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/=
+bridge/samsung-dsim.c
+> > > index e0a402a85787..1ccbad4ea577 100644
+> > > --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+> > > +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+> > > @@ -215,6 +215,7 @@
+> > >  #define DSI_RX_FIFO_SIZE             256
+> > >  #define DSI_XFER_TIMEOUT_MS          100
+> > >  #define DSI_RX_FIFO_EMPTY            0x30800002
+> > > +#define DSI_HSYNC_PKT_OVERHEAD       6
+> > >
+> > >  #define OLD_SCLK_MIPI_CLK_NAME               "pll_clk"
+> > >
+> > > @@ -879,13 +880,40 @@ static void samsung_dsim_set_display_mode(struc=
+t samsung_dsim *dsi)
+> > >                       | DSIM_MAIN_VBP(m->vtotal - m->vsync_end);
+> > >               samsung_dsim_write(dsi, DSIM_MVPORCH_REG, reg);
+> > >
+> > > -             reg =3D DSIM_MAIN_HFP(m->hsync_start - m->hdisplay)
+> > > -                     | DSIM_MAIN_HBP(m->htotal - m->hsync_end);
+> > > -             samsung_dsim_write(dsi, DSIM_MHPORCH_REG, reg);
+> > > +             /*
+> > > +              * If there is more than one lane, the HFP, HBP, and HS=
+A
+> > > +              * is calculated in bytes/pixel, then they are divided
+> > > +              * amongst the different lanes with some additional
+> > > +              * overhead correction
+> > > +              */
+> > > +             if (dsi->lanes > 1) {
+> > > +                     u32 hfp, hbp, hsa;
+> > > +                     int bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->f=
+ormat) / 8;
+> > > +
+> > > +                     hfp =3D ((m->hsync_start - m->hdisplay) * bpp) =
+/ dsi->lanes;
+> > > +                     hfp -=3D (hfp > DSI_HSYNC_PKT_OVERHEAD) ? DSI_H=
+SYNC_PKT_OVERHEAD : 0;
+> > > +
+> > > +                     hbp =3D ((m->htotal - m->hsync_end) * bpp) / ds=
+i->lanes;
+> > > +                     hbp -=3D (hbp > DSI_HSYNC_PKT_OVERHEAD) ? DSI_H=
+SYNC_PKT_OVERHEAD : 0;
+> > >
+> > > -             reg =3D DSIM_MAIN_VSA(m->vsync_end - m->vsync_start)
+> > > -                     | DSIM_MAIN_HSA(m->hsync_end - m->hsync_start);
+> > > -             samsung_dsim_write(dsi, DSIM_MSYNC_REG, reg);
+> > > +                     hsa =3D ((m->hsync_end - m->hsync_start) * bpp)=
+ / dsi->lanes;
+> > > +                     hsa -=3D (hsa > DSI_HSYNC_PKT_OVERHEAD) ? DSI_H=
+SYNC_PKT_OVERHEAD : 0;
+> > > +
+> > > +                     reg =3D DSIM_MAIN_HFP(hfp) | DSIM_MAIN_HBP(hbp)=
+;
+> > > +                     samsung_dsim_write(dsi, DSIM_MHPORCH_REG, reg);
+> > > +
+> > > +                     reg =3D DSIM_MAIN_VSA(m->vsync_end - m->vsync_s=
+tart)
+> > > +                             | DSIM_MAIN_HSA(hsa);
+> > > +                     samsung_dsim_write(dsi, DSIM_MSYNC_REG, reg);
+> > > +             } else {
+> > > +                     reg =3D DSIM_MAIN_HFP(m->hsync_start - m->hdisp=
+lay)
+> > > +                             | DSIM_MAIN_HBP(m->htotal - m->hsync_en=
+d);
+> > > +                     samsung_dsim_write(dsi, DSIM_MHPORCH_REG, reg);
+> > > +
+> > > +                     reg =3D DSIM_MAIN_VSA(m->vsync_end - m->vsync_s=
+tart)
+> > > +                             | DSIM_MAIN_HSA(m->hsync_end - m->hsync=
+_start);
+> > > +                     samsung_dsim_write(dsi, DSIM_MSYNC_REG, reg);
+> > > +             }
+> > >       }
+> > >       reg =3D  DSIM_MAIN_HRESOL(m->hdisplay, num_bits_resol) |
+> > >               DSIM_MAIN_VRESOL(m->vdisplay, num_bits_resol);
+> >
