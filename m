@@ -2,83 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97DD26E7EF7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9696E7F01
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 17:59:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233451AbjDSP44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 11:56:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47122 "EHLO
+        id S233752AbjDSP7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 11:59:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233025AbjDSP4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:56:55 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4376189;
-        Wed, 19 Apr 2023 08:56:52 -0700 (PDT)
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1ppAAc-0003JF-Ra; Wed, 19 Apr 2023 17:56:34 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Marc Zyngier <maz@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        XiaoDong Huang <derrick.huang@rock-chips.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>, kernel@collabora.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: (subset) [PATCH v4 0/2] Add Rockchip RK3588 GIC ITS support
-Date:   Wed, 19 Apr 2023 17:56:33 +0200
-Message-Id: <168191977930.4131912.6423526852468293382.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230418142109.49762-1-sebastian.reichel@collabora.com>
-References: <20230418142109.49762-1-sebastian.reichel@collabora.com>
+        with ESMTP id S233750AbjDSP7n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 11:59:43 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D7FA976C;
+        Wed, 19 Apr 2023 08:59:33 -0700 (PDT)
+Received: from [192.168.178.23] (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id B2BC1CCC24;
+        Wed, 19 Apr 2023 15:59:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1681919941; bh=29YVH+wvkFvIAvk+OfYcMsg5UAxmZflvPbyzwpWUGyQ=;
+        h=From:Date:Subject:To:Cc;
+        b=duRjoaqxMd7KrFKsjgT67DBKCWOxdg/jdBNp7W8PhjFQdLnJ2R1R/lFMXgi8iUVF8
+         aXOREQ1KusvTKm//ik6F5YjJ/Ar6EiuctAWb4XI/R2GXfIq87G/OBJBohMaYn81XVb
+         ZwZtGYTsvGHj1mh3V1OhDCcDlNSmHPGb8kpwfO6Q=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Date:   Wed, 19 Apr 2023 17:58:27 +0200
+Subject: [PATCH] media: dt-bindings: ov2685: Correct data-lanes attribute
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230419-ov2685-dtschema-fixup-v1-1-c850a34b3a26@z3ntu.xyz>
+X-B4-Tracking: v=1; b=H4sIAKIPQGQC/x2NQQqDMBBFryKz7kCMiTW9inSRxKkJ2CiZKgXx7
+ h26fI//+Ccw1UwMj+aESkfmvBaB9tZATL7MhHkSBq10p0zrcD10P1icPhwTvT2+8nffMChjjTO
+ 2c/cBpA2eCUP1JSapy74sIrdKsv6fjc/r+gEiwFSQfAAAAA==
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1066; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=29YVH+wvkFvIAvk+OfYcMsg5UAxmZflvPbyzwpWUGyQ=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkQA/AGCGc9DMo94kVXJSlJG96EBN28m/8t+QV6
+ UejZ8C/SLuJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZEAPwAAKCRBy2EO4nU3X
+ VjHFD/49kidiQBIqLlqC+lb1EDiZ2QcJjSo5jVbuq06TLSkUJxLM2ualY8+mmAW3rbb94+Lcjkp
+ RQI1df1oFgCjro+rKx2PaodK6J5OedHu20hdzYFnJX9iuYKpzTR4gkBmHEooL6tdTOTXWw7IvQB
+ 8ShoWNrVLXXyaEk1BaPimWKBHhuHmEOo2v71LOiYYRoOoAoMeDNPP0boDf6asKuwIBPGtkakqw9
+ 1FNpi1C5CP/UViBXYIXTUjgh52Rd4VII7X/HCsP1MnSawft6QrasAK7+VFY5Y8C+aIaGJrJPvII
+ l+pv0cIhRKCpGPL2N41umQWDXL4HCZIIwuLkL5ELhbsX8lN3XSHwlCej3XESoE9S1mTO36YA5v9
+ q4XSbP4xZuh300KwtNQKtY7niXiaS0ZXvcVuFJew9QCr2efnb5n3EwCe5egPiVTz/CrB/E3oJL1
+ gRzWehmdQ8Z6mbCsFQzV2rSs3IwQBPn2Kkdps2kUTuIxO1FP7aYTo0Gncem/6ylOUrMl/OLBFNH
+ ASh4RWAMtMJT6TA4xSQiydGWKzAABsuR5uYq0tRen131ntw4EaJCZyvXHZUsR9T+e1hlClZ1NMi
+ OTEgJuM5DWTQl26Jb2jD1aiS1hYpKDO9zjZA2C/0ZoEdVjBitygDZVOXiB0tZj8KI5GcS80l864
+ 6ok4pzXgIsLs+Lg==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Apr 2023 16:21:07 +0200, Sebastian Reichel wrote:
-> This adds GIC ITS support to Rockchip RK3588, which is affected
-> by an integration issue effectively breaking shareability support.
-> PCIe2 support will follow in its own series.
-> 
-> Changelog:
->  * Changes since PATCHv3
->   - https://lore.kernel.org/lkml/20230417214035.101190-1-sebastian.reichel@collabora.com/
->   - Add RB from AngeloGioacchino Del Regno
->   - Update patch description
->   - Update Kconfig description
->   - rename flags from BROKEN_SHAREABILITY to FORCE_NON_SHAREABLE
->  * Changes since PATCHv2
->   - https://lore.kernel.org/lkml/20230417150038.51698-1-sebastian.reichel@collabora.com/
->   - apply changes requested by Marc Zyngier
->  * PATCHv1
->   - https://lore.kernel.org/lkml/20230227151847.207922-1-lucas.tanure@collabora.com/
->   - uses of_dma_is_coherent() instead of providing errata info from kernel
->  * RFCv1
->   - https://lore.kernel.org/lkml/20230310080518.78054-1-lucas.tanure@collabora.com/
->   - uses 0x0201743b IIDR for quirk detection and misses errata #
-> 
-> [...]
+When adapting the original doc conversion to support 2 lanes, minItems
+should've been added as well since the sensor supports either 1 or 2
+lanes. Add minItems to make the validation happy again.
 
-Applied, thanks!
+Fixes: 8d561d78aeab ("media: dt-bindings: ov2685: convert to dtschema")
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-[2/2] arm64: dts: rockchip: rk3588: add GIC ITS support
-      commit: 9325c119312ce7e228216c1070fbaaeb96f7afcf
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+index 8b389314c352..e2ffe0a9c26b 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+@@ -49,6 +49,7 @@ properties:
+ 
+         properties:
+           data-lanes:
++            minItems: 1
+             maxItems: 2
+ 
+         required:
+
+---
+base-commit: 4aa1da8d99724f6c0b762b58a71cee7c5e2e109b
+change-id: 20230419-ov2685-dtschema-fixup-b04549453978
 
 Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Luca Weiss <luca@z3ntu.xyz>
+
