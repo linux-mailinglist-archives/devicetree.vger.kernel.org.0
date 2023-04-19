@@ -2,130 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7F736E77D5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 12:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1280A6E7864
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 13:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232453AbjDSKzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 06:55:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
+        id S232292AbjDSLTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 07:19:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbjDSKza (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 06:55:30 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50BB413C3D
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:55:01 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ec81436975so2802622e87.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 03:55:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681901700; x=1684493700;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lh/sqHL3qHKRy6dQR9+KQaAuRIDGOMEf4MBRJHiB854=;
-        b=N5fsIoDmgtEt/kcUKU0QATGP7wRO0N11y0zOW5T0Yg/sEWU0itWCnApN8KjjAMbJ4H
-         UzpUmzhkgUkI5YoWZfKAhnGC9ZlN1K7h+V9rYKUdmh6VG8drZXpIuQdiW4Yl0e9bW7kv
-         KcIOzhLrfnws8zkxXZRbc5Fs/hXR+rdLUTj3ighFEs90DZqUGK1SAUZgbWBy3rqGuLhQ
-         eA7ovAOYp0/UXNxbl0cLAOvECynlzfdOKHj2GwTdJmbKQsIesQVODgcYrVMkakn+OXyp
-         ZInZYY442RScnrYcIw/0pA0sBdTRlTDHWMwKPz1wLBTHCAKDxpJpPc+C6yGrm6XoNnMi
-         OGrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681901700; x=1684493700;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lh/sqHL3qHKRy6dQR9+KQaAuRIDGOMEf4MBRJHiB854=;
-        b=FvxMFh7+a9JE2SVrYN0OuDBYypLdXzsEbVzB7LvwyJCjQCexurM2WI0WzZrMPFZW89
-         pazgr6GT0d4lAWnU4KUZIkv2Lk/actrPNUC6zAc6rHsIOjPQxtHBV89V5gWD8p7nF9U6
-         q8ogZZZelQ/863Wdm6/pLtk1Kw0GjAS/xOKkYBhaqy0D7qZyZjXVh2e0oEk2u9uOFNyo
-         z64tVISplg7NSRfyia9CL7TqtOLIWJq5ynvLE6hBqFjK1ctfe3zcohb1cuLY+ffghOhC
-         jEu7dLTN9Nd57NlWLTQ6IYTGMllMXxA8N2sVhYhD/MAFutdswrbOCtjKpvvXNQ7gXCF8
-         eVeg==
-X-Gm-Message-State: AAQBX9fcAry6I9dtIQKrepZ70xFrukiWD2SDOJfPpZm+PRN6L6oWPrYP
-        RNpiSpUerZa1s9GINblIENhTDQ==
-X-Google-Smtp-Source: AKy350Z6ikEpiz+UqB2/wfMi4ArQIxiTpGKOyPcyl4zyXnvhdgCwOAbXSMbb9famVCg8NVkkDb/ZBQ==
-X-Received: by 2002:a05:6512:204:b0:4db:d97:224d with SMTP id a4-20020a056512020400b004db0d97224dmr3921802lfo.19.1681901699942;
-        Wed, 19 Apr 2023 03:54:59 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id e7-20020ac25467000000b004edc20b8929sm1243763lfn.69.2023.04.19.03.54.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 03:54:59 -0700 (PDT)
-Message-ID: <65e285d0-e3a8-030d-ee9e-28b875526288@linaro.org>
-Date:   Wed, 19 Apr 2023 12:54:57 +0200
+        with ESMTP id S232724AbjDSLS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 07:18:57 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D403F76B0;
+        Wed, 19 Apr 2023 04:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=0tGMLj6kAURlLI3fWADrBTdC3h3MoLbtauinovC6cY0=; b=rfGM9A0BUOOxp55ZLo2ZLnug1b
+        CY36q79wUnmKom9zmyMiJljEMI79dXq2S3v0kxoKtuNYXTJPKwy2hYoL2C6ubzeKfYeWv7Ns8+YQS
+        Dm2evaLg88rLY19FkJ/FClz17PfPm5QbDFQz5sz41KOxuDCUA93ZhOBD2MlOxksnzuj3ix8p01pV1
+        g1N9OZ8eLpr+3EMSChlPsfp4Xxzt3dcNZt2IcB4wau8kUbvEJmZeq4/NsIdtgVu3ACi/oy+uNyM6e
+        ie9CfPx5HfaUT0viXGpjidwW9r9B+T4Zj2ZdGNcf3nGSAfy1NcCLUuu1HEmbz7VRzdW3AnRvhYPbZ
+        FgJdAZSA==;
+Received: from p200300ccff0a67001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0a:6700:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pp5pF-00085i-PN; Wed, 19 Apr 2023 13:18:13 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pp5pF-004cHG-11;
+        Wed, 19 Apr 2023 13:18:13 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     pavel@ucw.cz, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andreas@kemnade.info,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: [PATCH v6 0/2] leds: Add a driver for the BD2606MVV
+Date:   Wed, 19 Apr 2023 13:18:04 +0200
+Message-Id: <20230419111806.1100437-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH V2 4/4] arm64: dts: qcom: ipq9574: rename al02-c7 dts to
- rdp433
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
-References: <20230417053355.25691-1-quic_devipriy@quicinc.com>
- <20230417053355.25691-5-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230417053355.25691-5-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the binding description and the corresponding driver for
+the BD2606.
 
+Changes in V6:
+- comments about dealing with shared brightness registers
+- comment about building as a module
 
-On 17.04.2023 07:33, Devi Priya wrote:
-> Rename the dts after Reference Design Platform(RDP) to adopt
-> standard naming convention.
-> 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Changes in V5:
+- remove "driver" from the binding subject line
+- avoid presenting shared brightness to the userspace
+  by allowing only on/off in such cases.
 
-Konrad
->  Changes since V9:
-> 	- Renamed the Board Device Tree Source to use the RDP numbers
-> 
->  arch/arm64/boot/dts/qcom/Makefile                               | 2 +-
->  .../boot/dts/qcom/{ipq9574-al02-c7.dts => ipq9574-rdp433.dts}   | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->  rename arch/arm64/boot/dts/qcom/{ipq9574-al02-c7.dts => ipq9574-rdp433.dts} (97%)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index e0e2def48470..f926e7e1aa7d 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -9,7 +9,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
-> -dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-al02-c7.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> similarity index 97%
-> rename from arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
-> rename to arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> index 2c8430197ec0..2ce8e09e7565 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
->  /*
-> - * IPQ9574 AL02-C7 board device tree source
-> + * IPQ9574 RDP433 board device tree source
->   *
->   * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
->   * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+Changes in V4:
+- minor tuning of description in bindings
+ 
+Changes in V3:
+- binding cleanup
+- move active variable from long-living struct onto stack
+
+Changes in V2:
+- Add Datasheet link
+- use fwnode api
+- remove childnode count check, that will bail out
+  anyways later.
+- add enable-gpios to binding but not to driver due to lack of
+  testing ability
+
+Andreas Kemnade (2):
+  dt-bindings: leds: Add ROHM BD2606MVV LED
+  leds: bd2606mvv: Driver for the Rohm 6 Channel i2c LED driver
+
+ .../bindings/leds/rohm,bd2606mvv.yaml         |  81 +++++++++
+ drivers/leds/Kconfig                          |  14 ++
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-bd2606mvv.c                 | 160 ++++++++++++++++++
+ 4 files changed, 256 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml
+ create mode 100644 drivers/leds/leds-bd2606mvv.c
+
+-- 
+2.39.2
+
