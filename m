@@ -2,164 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C296E83F4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 23:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D78A26E8503
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 00:33:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbjDSVxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 17:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
+        id S232941AbjDSWdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 18:33:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjDSVxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 17:53:31 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F9F3C1E;
-        Wed, 19 Apr 2023 14:53:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1681941173; i=j.neuschaefer@gmx.net;
-        bh=E3MwaTC39cHV5jEqiGIoFdw7WcRGnfVKbe7RZwo68iw=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=LMkeOne8W12inAaZ/YilffTeUnstAOesHyxyoojqAF5QqEUyGHFxXGenviIBKVZDv
-         JnFaTLZIwIz3H+zJWTjMJ/H7Fpp+Gcf37ot94tS7gYcv30+KcJjbDGk6+QUbyjlRsc
-         sEXODlI9TmrUm1cnPr8pVmari2bYex5Hp2SPEZ6F+rTqtyxKZKvg1n7n2SSHHdCqQT
-         dr/LDcwBco9ZBLrQXmOqurNrgJzOy62MvR4W/y+N4LS8VaWG/i259Gqywatxeuextl
-         ZuMxy4V9fyIuQhAxmG9bH4+B+NE6EvnU6fY6FZOvo7gZJ3nfZXxM4mLMo2i8DZjc1o
-         I6NB30sJayYag==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M8QWG-1ptfZl1Qe0-004QMs; Wed, 19
- Apr 2023 23:52:53 +0200
-Date:   Wed, 19 Apr 2023 23:52:57 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     j.neuschaefer@gmx.net, avifishman70@gmail.com,
-        benjaminfair@google.com, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org, krzk+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
-        mturquette@baylibre.com, openbmc@lists.ozlabs.org,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
-        tali.perry1@gmail.com, tglx@linutronix.de, tmaimon77@gmail.com,
-        venture@google.com, wim@linux-watchdog.org, yuenn@google.com
-Subject: Re: [PATCH v6 2/2] clk: wpcm450: Add Nuvoton WPCM450 clock/reset
- controller driver
-Message-ID: <ZEBiuRH3DjVUO/Kp@probook>
-References: <20230415111355.696738-1-j.neuschaefer@gmx.net>
- <20230415111355.696738-3-j.neuschaefer@gmx.net>
- <c04038f2-b7aa-7c37-df93-6950831579f6@wanadoo.fr>
+        with ESMTP id S232249AbjDSWdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 18:33:39 -0400
+Received: from sonic301-22.consmr.mail.ir2.yahoo.com (sonic301-22.consmr.mail.ir2.yahoo.com [77.238.176.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C417ED7
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 15:33:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1681943520; bh=QgwEvaxznVhbwwwaHbod/jvh/kKZgXY3lH4q0rCY3ds=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=VwI0AQbt4Q21SVAwfqoq19LalICgTCbX2sgLECExRwMLEHwxowDFT6xzfQvYzdkRXbk1pGHIO007UVxsqKF8HyIPf1LGjg0NFMfaBmhNIQlifY4t0WsdF1tYMpJmWrLiqGd9rK2eQYl4KTrn0gvMEIyyzqKbR5vT4nKutyCbq0XZpp/ybaaucqqQsZZkDZjcZBfmrfkYr/MNTVefezzPSq+LxLYlVuf4dNkoEDtoq1OYwPWj9CGJas+tDJJiLw5hZIow4Y6qO1MOfCx2QqV5CuprBz7G+4FTlTUDK9YuZu9CJt+ttSFfjiKeMbvArEDpEPBy4mYPNM5bdKYPgu8Viw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1681943520; bh=XDu9khijmdB7X0y6fqGvIA9Er265cvHz9qHDkwGGrje=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=d2nthbyl/oa/lfpfmu+qqrwNli4PTre9vL3SHhpAUTn6uBWkhZF2q0X50zwlROasf+l6nZ/T/zmdrve5/7fN1GcMrKh/qdez5U8ywg5X9VnlfZTAxTEttH9YG9K8TuM4Q69UumvQMWwHtKl8XMrZ3wYuuKYULhj4BzTw9Hjp9yeOhTd8+CeoSIDEIRomGssi0KmmvVSEuW95uU4RaZteeAu3hqURn4M+tfr28WncYl5NoB1FrnPcrvaewRwdBFerSelG2u4Pw02jQHDXTdLr+JN5WA/bMTtRWo0DvWkgxOYE2HblQyB3LBUOeCePmCm10BOBBcs+aBMerwG/LQBSmQ==
+X-YMail-OSG: VxESa2YVM1l1UBi7CnVMMdeUyMabjI2yhujSfxTI15FY8xVT9nXwAEQ2N41OhRg
+ EL.LdobvcowL3ITCt2mH_WldyMsB9B9ctIbnYUEauVKmyCb9c3HOEXOJjnqJMKE1V3H2Ulqg5bVy
+ .XMcr6d3kKLi5Fn142rDiJHSLI0qzwMuT8Y6T.m7GRn4kGQwQ_l3B7TH47MAA8hH26TVRYrYbxa4
+ HFcef6KaKUwoaVvn_9zv3d0pb7yZ0N_4qoL9bPY0RrFet4mt8Uquv3xP6JdCmbImHrec0_08_XVW
+ 80jXdeLetLq0nO4EuVvw1TZQIQ8MoZWL8YEMPuOhbkqbMPBKvB5lvfZxbTKn9TtyTajRiL4JXyL.
+ nVmG1d6uHdCCv06xEOQ5AWL5H9UrV_XZ.Qm10ixKTnbtl9b1z1HaAWPlm9tUJocjwyTmbXiZqf.0
+ lZf1vfySnAYtXFvUi.FyzGPSlfsO770.7mK4bH1fb18CbXBkidflUFKsykRgliwr12lCIia9ZlB6
+ AGYF1iqWgy_k7neFDhr6FocV2fB5M_2u7r3NqVTW7q8.wI3o7WrPjm4c3_ZDLvXmLDOrVNgnnLKf
+ FyXVsHr.OJyASBSGGRA1gatXmS7zSwLDh4egK3ZRRIX1ucS_6ZIJDlQ1fdj1AaQsnNnx..t7XXhf
+ 1KZ7o7bz9Q6m6lMJfPkS5AN1CZ9gDd0AXZZ8F3lmVQjjRjzUwnkpOtU1I70tCMPl8EITXNdUtZCf
+ TdBAqf5eQTHgWHcKnqzbP_Z18PBISYMyQWU4oOZ2ADWAmCtHRFHFADy3jm0F2cyjpxO9gQ1lAi1b
+ umhGfuoJHHNoY9BdMRzT2dI_3D4fW3QMbQuy5clMDwvuq1ZThxKR.5eu0fOVimKfTRhRbCFqAlva
+ YLwIVSVnNVSUTbtS2VepiX_Fu8FF77LCUn508HgtpDm1Fy7Yc4yvatkYV6Zalyq3ZRxRcXvJcO0X
+ X0RaKDOAVTM4LHsuWpA_KpopSVxxCVWLOaKK419w7LeILxdMtS62zK6VKdmsVf516gnnhOSIZZy1
+ lslymiUCony4TKa47sragF8rMP1mVvfw6zoe9e._E.Bgnc7CYloW8aHABWbJKJiTwz5y2M4ll11E
+ aDehcX6D7jG.QUw2RUbO_9_.SdaddRhcbovYrXr4KakXZSGjhbGSnLybZPwSs3xEQq_VKBbQzv0j
+ NK1_ECBxWqytqk3cEcCVcmJkOwAsDCn1R645K.9xGaqpjbm6y4n7Znq6jhKLWOptxRg40gsgQsMP
+ ZqPT51QRCLzU1rJOywZIQ7RZruXVv.BXAqeym4rtINfIG6pLQb3OB1lD4mjaOypLouITexynJTzc
+ 4H26ZJnQT7_Ch2ZB5UwyxMag3mOy.KOJhybeqRWa0.GEu5uKjR45Pcg1gVAYoRA8gBei6iTg8b9b
+ fwGOS2sOFo2opWnx2NaN7SCZczx5xv7Dfct3Sr1k52rrIrCSbT2WKTxXXsNF6G1wocx47EMMvCL5
+ PUmoa8_1tmQ4H3VyPdhMbg2MedMNQrqww1.vl6tPKLBpbIvMsgCcEW3R.AhM03Z6koVDXv2FXc7U
+ GlopzlDyUb_bNhybuavz1bCF7kXqgrKkIEthT1x38P5Z9hg.FaV6hjhfWsNMBpet9vSAdEKqWvL5
+ QeOmMJPiXz1OUYVo0aa3DUj3.3rXk1t8mh4t8EH69QavAbgswPIfCSjldRESfxjAHDVmAIYqcBE7
+ f6cfKBazKUZt_RJuHDa82FMsxcpT5XLWaf49XqQxnylVWb6eXkZX98Kmurh0fwbTRzUyEEy_4eHj
+ cnLQ_gtHm82izJqlffIGWhxE5p7XYnaD9gI.hV2h3J6lOs5aKXBRc.EWJfQsxbF6rt1..GfjqFYY
+ DOjF1DUJPjQKVz7uWKtxwgIJhk8SVwGOr0Gfcf4jJqfJucOcUEbUh0_6CPWPQrkrIJMt2vbmFbjk
+ gF9Wbskeyk_3qDO_VPGyTXkk8RJ10eC3GInssPsXFbXzJyAfrWucI6orJa2qC1OJpqPlXGKjdV9J
+ wpX9qt0lVyzty0jT4HcVKnpIGBCD.bUI7uSNPjVvOl1SZbF_u6eL.8Q23HDy_neMrI7xM1KiaaMY
+ A7DEPos7sr2XvgALthc2N9f24YYN96m_ticET7IduPGToB01Z5p5e.8YWz9M1RNXNpHjSqopU9YR
+ 4RRw2PPzJUo21iRzIbmVgsazpNfOCWCbdr44W3DClOfdG.wm3KIyzb6MIQmKxgE8GtRaBMqjj04h
+ zm4BwTbpuCtG9BHsESXkht6rJlEtpC77dRD2xLKl3ERbqbcAWlllfNoguaVI8plqEi2uwOsdYChC
+ _0sWpVxBE_lESUb5R68_MZ7Gilf0DsUsw
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: dc59d37e-63ac-409d-9792-67e4d82a1f8b
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ir2.yahoo.com with HTTP; Wed, 19 Apr 2023 22:32:00 +0000
+Received: by hermes--production-ir2-74cd8fc864-jl5bm (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 318f31df962c705776d30bee69907fb4;
+          Wed, 19 Apr 2023 22:21:27 +0000 (UTC)
+Message-ID: <b044de68-e9d7-ae23-a2da-96df78f95821@rocketmail.com>
+Date:   Thu, 20 Apr 2023 00:21:26 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nBgbEHe+7HdynUHs"
-Content-Disposition: inline
-In-Reply-To: <c04038f2-b7aa-7c37-df93-6950831579f6@wanadoo.fr>
-X-Provags-ID: V03:K1:TTKfScm3X+1lV46i2xneBJJ+mRnIdHaebMSneyl8EkLY7S7V6ir
- tmEvh62wdv/WVjbqdH7A84xGNb3RKFAch9n0YeCEcF0Igi49ekDymYcVSXXM2R9hgXdaLO7
- dp/ICD4eIfn/dwbQzeE8iunQWMeFvF0BYiArqRE9d8zM1ppM0/o03p5BANY3lRmUNvTqR9u
- b8Xg1w19VhdJqSmL5lteA==
-UI-OutboundReport: notjunk:1;M01:P0:wJFEDQxfRL4=;ah7J+2kmEogfH5rqEMt6ppjheoH
- KrP7wiEcbiG50T6ZYLvyues+omkXepggjO1En8RKwfFQvj9Q+/y30OpG4QV4dyzjUN32pBp8k
- ZTOgqXUIPXH09ZtfnfM5ucGA2R7aA9xIY/8m0Qx0Yx4uhsV16pEv2Ha7tGLWu+a/yy6tayKSP
- xPZUwjW4slngP1ZdWok+JvE2R5s/MzPU9UbEGeuW32Lvdi4Qsmy2H+O/D+Mll3FavTSh+cu0A
- HRhfEflMdgGaYjR3Wrk9oXiLuozTAkbmMf3jCKoqkZbfksy0A2NgAmXsk8syQv9WZri75JWBM
- XOZe5Wg+QW0I6VMzgyXpbPtoSAvWQEFICalKEQfNxdnhRuXGb5EfRaolqY4L4+OjPFFKcEzFH
- Kwpj5X72qUDcZG1Wc4Ll5dlHra46FzDl/zktU65dDa0zbQWPNcGMkFeldM2tQ0KORW+S17Vxv
- bJI0IoSK+2qbFL8239d0Q9Ri/Cjp8AnawJWxWswlaEDN/ItKwjHD1P8WoNStTpfMfT7OBdGsJ
- Y4YhWqJPLhP/d1YvVS8CbI19IEIVGctfHMOh++sB4XXw9mAdMi983yL9429cG7UYEBYHLk7Mo
- HcNDjXXcynLxVelOIm0Wt2I4V9gB+p1H2V59i/4ozElhg74t2lo4Q6NXbx15TBHKhuyY4rZoM
- /PpP7mqUYeLL169L133ueg8iz2uzY3DtntdvNPRlHBO1J24vRPukY6oxol70s1Vk3cqi6vldI
- Z2OWlxj7ZzhJI4goYOm21BAmiSmrNtz07c0UP8kJgq5AUTo/YZexa5Yc8mrZqSyJi77YimMQe
- xf0z2cjZPWQdKZxeMR0MwDmDHCf//oF/Hr+QkfMG9d6w9yVC0UU05ikuA8AZS36uNOTOHH08q
- hKRT8qoU1bMND9hd87X4fZRw/56xTQwjo7noyODDFxPbqIBT8EW0TwbyA2MPek3sGnt7MVPDk
- oJSfanfvsoDljHysdHMo1TiqsIc=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 5/9] regulator: rt5033: Change regulator names to
+ lowercase
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1681646904.git.jahau@rocketmail.com>
+ <d4218947e354aee45589acb1060ce41727a26750.1681646904.git.jahau@rocketmail.com>
+ <19ceb0f6-1225-c8cb-1469-3d657e66d171@linaro.org>
+ <e6cc8658-fe93-c2c0-603e-093cdafb3cca@rocketmail.com>
+ <f80fcbeb-f916-63da-a5c3-f80f6315f3e0@linaro.org>
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <f80fcbeb-f916-63da-a5c3-f80f6315f3e0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.21365 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---nBgbEHe+7HdynUHs
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 19.04.23 10:40, Krzysztof Kozlowski wrote:
+> On 18/04/2023 23:24, Jakob Hauser wrote:
+>> On 16.04.23 20:32, Krzysztof Kozlowski wrote:
+>>> On 16/04/2023 14:44, Jakob Hauser wrote:
+>>>> Lowercase is preferred for node names.
+>>>
+>>> This will break all existing users. In-tree and out-of-tree. Where is
+>>> the binding update?
+>>
+>> In my reply to Rob's comments in v1 I was pointing out that this will
+>> affect an existing driver. There was no reaction.
+>>
+>> As far as I can see, there is no in-tree usage yet. Though I can't tell
+>> about out-of-tree usage. Although if there is, adding the rt5033-charger
+>> driver might already causes the need for changes.
+>>
+>> Well, to stay on the safe side, I'll drop this patch in v3 and will
+>> change the bindings (patch 9) back to uppercase.
+> 
+> Your v1 binding patch did not explain that you document existing ABI, so
+> you got comments like for a new binding. This is not really new binding,
+> is it?
 
-Hello Christophe,
+The bindings for the mfd and regulator are new, even though the drivers 
+are already existing. Sorry for not being clear on this in v1. This is 
+due to historic reasons of the old patchset, more information on that 
+further down.
 
-On Sat, Apr 15, 2023 at 02:16:09PM +0200, Christophe JAILLET wrote:
-> Le 15/04/2023 =C3=A0 13:13, Jonathan Neusch=C3=A4fer a =C3=A9crit=C2=A0:
-> > This driver implements the following features w.r.t. the clock and reset
-> > controller in the WPCM450 SoC:
-> >=20
-> > - It calculates the rates for all clocks managed by the clock controller
-> > - It leaves the clock tree mostly unchanged, except that it enables/
-> >    disables clock gates based on usage.
-> > - It exposes the reset lines managed by the controller using the
-> >    Generic Reset Controller subsystem
-> >=20
-> > NOTE: If the driver and the corresponding devicetree node are present,
-> >        the driver will disable "unused" clocks. This is problem until
-> >        the clock relations are properly declared in the devicetree (in a
-> >        later patch). Until then, the clk_ignore_unused kernel parameter
-> >        can be used as a workaround.
-> >=20
-> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer-hi6Y0CQ0nG0@publ=
-ic.gmane.org>
-> > ---
-[...]
-> > +	// Enables/gates
-> > +	for (i =3D 0; i < ARRAY_SIZE(clken_data); i++) {
-> > +		const struct wpcm450_clken_data *data =3D &clken_data[i];
-> > +
-> > +		hw =3D clk_hw_register_gate_parent_data(NULL, data->name, &data->par=
-ent, data->flags,
-> > +						      clk_base + REG_CLKEN, data->bitnum,
-> > +						      data->flags, &wpcm450_clk_lock);
->=20
-> If an error occures in the 'for' loop or after it, should this be
-> clk_hw_unregister_gate()'ed somewhere?
+The current situation in the mainline kernel is as follows.
 
-Ideally yes =E2=80=94
+drivers
+-------
+rt5033:            drivers/mfd/rt5033.c
+rt5033-regulator:  drivers/regulator/rt5033-regulator.c
+rt5033-charger:    not existent
+rt5033-battery:    drivers/power/supply/rt5033_battery.c
+rt5033-leds:       not existent
 
-in this case, if the clock driver fails, the system is arguably in such
-a bad state that there isn't much point in bothering.
+bindings
+--------
+rt5033:            not existent
+rt5033-regulator:  not existent
+rt5033-charger:    not existent
+rt5033-battery:    .../bindings/power/supply/richtek,rt5033-battery.yaml
+rt5033-leds:       not existent
 
+The reason for that discrepancy:
+RT5033 mfd, regulator and fuelgauge drivers were applied but charger & 
+documentation didn't make [1]. They were submitted again but it phased 
+out at that point, last known state is [2]. The LEDs are also a phased 
+out patchset [3]. The fuelgauge binding was added not so long ago by 
+Stephan [4].
 
->=20
-> CJ
->=20
-> > +		if (IS_ERR(hw)) {
-> > +			pr_err("Failed to register gate: %pe\n", hw);
-> > +			goto err_free;
-> > +		}
-> > +		clk_data->hws[data->bitnum] =3D hw;
-> > +	}
+[1] 
+https://lore.kernel.org/all/1421899601-19327-1-git-send-email-beomho.seo@samsung.com/T/#t
+[2] 
+https://lore.kernel.org/lkml/1425864191-4121-1-git-send-email-beomho.seo@samsung.com/T/#t
+[3] 
+https://lore.kernel.org/linux-leds/1448446948-13729-1-git-send-email-ingi2.kim@samsung.com/T/#u
+[4] 
+https://lore.kernel.org/linux-devicetree/20210517105113.240379-1-stephan@gerhold.net/T/#m197b5719a5d37b17ba4ff9f3b3ff4bd4efcda71e
 
-
-
-Best regards,
-Jonathan
-
---nBgbEHe+7HdynUHs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmRAYpUACgkQCDBEmo7z
-X9v2qw/9EiZBIWVLXrb/H+SBZLajTH8gs/+wWatpfYY9MHKe6PQ4wEqD3wHZvC1j
-XNyEizeN9zKD617uEUNnj4LS65mXB9jpk+IBn2V3S9m8aK0ZnohGPIBQbp7fJxRD
-scBOpgCKxii9YUjJFDwfJc+aGteD1FZCV5ufF6W7tAlpqdpRJiV4Sxyui6tplBjb
-tmz3EbyRRYJ5IW+qM84oS9xocMvIyFUcSqIAyHZNzS2QyUzl48dHpwjfGn2jJ2q8
-enIxwqOsbNUNyYJHynYGVqQGTusRYJxd6Qg7c2fZyOtsRdvvS/cvTvaNeFap27zr
-4ciW+NTiD40FzGgrq8glOz18+fBi4HIpR9XYDIYSPNAIiQEmj3Uzn78EQ7xNrSk5
-6pjoPtE6AkYtGe/M7CAAjHkV6xiuKIXTXxZQMCI/vw22rg76CJkNzq1UapIqmYUQ
-klfYRnd/UFavPt57hVLC94KgBZO2tmikTOksaSnZw6tN0CCXwaz9MnAPR/aaA8YC
-8eO/7oNgydKM/K1fUrFBWbR0Td8MLlHmH35xsa9kdVayHin9v7oK8oqtCDFQvDHL
-1cd6KQcPHppWTQ7A8nWIjlmm+lm0Y5n1dfRL7/k/Lj6RrpkTOp6BQ+xqIM4LCpQb
-SQNXKoHLuiincVsxMWIWi+qDKYENxeosPds/iY3v6vSY82fkv50=
-=r2E3
------END PGP SIGNATURE-----
-
---nBgbEHe+7HdynUHs--
+Kind regards,
+Jakob
