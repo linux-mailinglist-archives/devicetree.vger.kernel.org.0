@@ -2,229 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D476E7301
-	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CAAB6E7329
+	for <lists+devicetree@lfdr.de>; Wed, 19 Apr 2023 08:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231796AbjDSGRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 02:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60344 "EHLO
+        id S232000AbjDSGYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 02:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbjDSGR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:17:29 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D038525F;
-        Tue, 18 Apr 2023 23:17:27 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33J6HJh7022698;
-        Wed, 19 Apr 2023 01:17:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1681885039;
-        bh=xNUIKXBBWa/IdIZgk/VsRjGwKSnuZMpj29WMOW5S6cI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=B+FrE5Lk6vMo3Ez9eo8UNxW9Dtmxm5LBHOgW9dv9rXuBLnZ4CDxCpe42U9wV+nbFB
-         TfE1lYKMOatQh4Ptyyoadp5uO1tOsJMTv1iqMESBoxfmot04tbArz+RwKx91sz2mW9
-         VMdLBigzny2NlJcEYXTqKJlRCoGuvG3w7qW0d0Jw=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33J6HJe0125790
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Apr 2023 01:17:19 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 19
- Apr 2023 01:17:18 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 19 Apr 2023 01:17:18 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33J6HIhS018725;
-        Wed, 19 Apr 2023 01:17:18 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>
-CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <a-bhatia1@ti.com>, <j-choudhary@ti.com>
-Subject: [PATCH v3 5/5] arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
-Date:   Wed, 19 Apr 2023 11:47:10 +0530
-Message-ID: <20230419061710.290068-6-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230419061710.290068-1-j-choudhary@ti.com>
-References: <20230419061710.290068-1-j-choudhary@ti.com>
+        with ESMTP id S231790AbjDSGYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 02:24:33 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 966DB44BC;
+        Tue, 18 Apr 2023 23:23:49 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxJFyViD9ktcseAA--.47963S3;
+        Wed, 19 Apr 2023 14:22:13 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dxjb6NiD9k0okuAA--.15004S2;
+        Wed, 19 Apr 2023 14:22:10 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v8 0/2] spi: loongson: add bus driver for the loongson spi
+Date:   Wed, 19 Apr 2023 14:22:00 +0800
+Message-Id: <20230419062202.28749-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8Dxjb6NiD9k0okuAA--.15004S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxWFy3Zr48trWrJw4UuFW5Awb_yoW5tw4kpF
+        W5C3Z8Kr4DJF4xArs3Jay7ua4rZ3yrXrZrXay3t39ruryDZ34UZr1ktF15ZrsrAF4ayFn2
+        qFy0grs5Ga4UZwUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b7xFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcxkI7VAKI48JMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxV
+        CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
+        6r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
+        WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG
+        6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
+        1UYxBIdaVFxhVjvjDU0xZFpf9x07Uio7NUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rahul T R <r-ravikumar@ti.com>
+Loongson platform support spi hardware controller and this series patch
+was to add spi driver and binding support.
 
-Enable display for J784S4 EVM.
+Change in v2:
+		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+	 	   https://
+		   lore.kernel.org/all/20230307115022.12846-1-zhuyinbo@loongson.cn/
+		2. Remove the clock-names in spi yaml file.
+		3. Add "loongson,ls7a-spi" compatible in spi yaml file.
+		4. Add an || COMPILE_TEST and drop && PCI then add some CONFIG_PCI
+		   macro to limit some pci code.
+		5. Make the spi driver top code comment block that use C++ style.
+		6. Drop spi->max_speed_hz.
+		7. Add a spin_lock for loongson_spi_setup.
+		8. Add a timeout and cpu_relax() in loongson_spi_write_read_8bit.
+		9. Add spi_transfer_one and drop transfer and rework entire spi
+		   driver that include some necessary changes.
+		10. Use module_init replace subsys_initcall.
+		11. About PM interface that I don't find any issue so I don't add
+		    any changes.
+Change in v3:
+		1. This [PATCH v3 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Drop the unused blank line in loongson,ls-spi.yaml file.
+		3. Replace clock minItems with clock maxItems in yaml file.
+		4. Separate spi driver into platform module, pci module and core
+		   module.
+		5. Replace DIV_ROUND_UP with DIV_ROUND_UP_ULL to fix compile error
+		   "undefined reference to `__aeabi_uldivmod'" and  "__udivdi3 undefined"
+		   that reported by test robot.
+		6. Remove the spin lock.
+		7. Clear the loongson_spi->hz and loongson_spi->mode in setup to fixup
+		   the issue that multiple spi device transfer that maybe cause spi was
+		   be misconfigured.
+Change in v4:
+		1. This [PATCH v4 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Add "#include <linux/io.h>" in spi-loongson-core.c for fix the compile
+		   issue which devm_ioremap no declaration.
+		3. Add "EXPORT_SYMBOL_GPL(loongson_spi_dev_pm_ops)" in
+		   spi-loongson-core.c for fix the compile issue which
+		   loongson_spi_dev_pm_ops undefined.
+Change in v5:
+		1. Get rid of the clock patch's dependency and open-code the clock IDs.
+		2. Fixup checkpatch issue that by installed ply and gitpython package
+		   locally, but this series of patch's code doesn't have any change.
+Change in v6:
+		1. Remove the "#include <dt-bindings/clock/loongson,ls2k-clk.h>" in
+		   yaml file.
+Change in v7:
+		1. Remove the "loongson,ls7a-spi" and change yaml file name as
+		   "loongson,ls2k-spi.yaml".
+		2. Use module_pci_driver and module_platform_driver to replace
+		   module_init and module_exit.
+		3. Drop ".owner	= THIS_MODULE" in spi platform driver.
+		4. Add devm_spi_alloc_master devm_spi_register_master to simplify code.
+		5. Add pci_disable_device() in loongson_spi_pci_unregister.
+Change in v8:
+		1. Add reviewed-by information for spi bindings patch.
+		2. Fixup the uncorrect spi yaml file path in MAINTAINERS file.
+		3. Add spi_master_suspend and spi_master_resume in spi pm function.
 
-Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux for
-DP HPD. Add the clock frequency for serdes_refclk.
+Yinbo Zhu (2):
+  dt-bindings: spi: add loongson spi
+  spi: loongson: add bus driver for the loongson spi controller
 
-Add the endpoint nodes to describe connection from:
-DSS => MHDP => DisplayPort connector.
+ .../bindings/spi/loongson,ls2k-spi.yaml       |  41 +++
+ MAINTAINERS                                   |  10 +
+ drivers/spi/Kconfig                           |  31 ++
+ drivers/spi/Makefile                          |   3 +
+ drivers/spi/spi-loongson-core.c               | 296 ++++++++++++++++++
+ drivers/spi/spi-loongson-pci.c                |  72 +++++
+ drivers/spi/spi-loongson-plat.c               |  47 +++
+ drivers/spi/spi-loongson.h                    |  41 +++
+ 8 files changed, 541 insertions(+)
 
-Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
-required for controlling DP power. Set status for all required nodes
-for DP-0 as "okay".
-
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-[j-choudhary@ti.com: move all the changes together to enable DP-0 in EVM]
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 116 +++++++++++++++++++++++
- 1 file changed, 116 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index aef6f53ae8ac..03c9bf34cb1b 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -102,6 +102,28 @@ vdd_sd_dv: regulator-TLV71033 {
- 		states = <1800000 0x0>,
- 			 <3300000 0x1>;
- 	};
-+
-+	dp0_pwr_3v3: regulator-dp0-prw {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dp0-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	dp0: dp0-connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+		dp-pwr-supply = <&dp0_pwr_3v3>;
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&dp0_out>;
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -163,6 +185,19 @@ vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
- 			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
- 		>;
- 	};
-+
-+	dp0_pins_default: dp0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0cc, PIN_INPUT, 12) /* (AM37) SPI0_CS0.DP0_HPD */
-+		>;
-+	};
-+
-+	main_i2c4_pins_default: main-i2c4-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AG33) MCAN14_TX.I2C4_SCL */
-+			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
-+		>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -301,3 +336,84 @@ &main_cpsw1_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&main_phy0>;
- };
-+
-+&serdes_refclk {
-+	clock-frequency = <100000000>;
-+};
-+
-+&dss {
-+	status = "okay";
-+	assigned-clocks = <&k3_clks 218 2>,
-+			  <&k3_clks 218 5>,
-+			  <&k3_clks 218 14>,
-+			  <&k3_clks 218 18>;
-+	assigned-clock-parents = <&k3_clks 218 3>,
-+				 <&k3_clks 218 7>,
-+				 <&k3_clks 218 16>,
-+				 <&k3_clks 218 22>;
-+};
-+
-+&serdes_wiz4 {
-+	status = "okay";
-+};
-+
-+&serdes4 {
-+	status = "okay";
-+	serdes4_dp_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <4>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_DP>;
-+		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
-+			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
-+	};
-+};
-+
-+&mhdp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0_pins_default>;
-+	phys = <&serdes4_dp_link>;
-+	phy-names = "dpphy";
-+};
-+
-+&dss_ports {
-+	port {
-+		dpi0_out: endpoint {
-+			remote-endpoint = <&dp0_in>;
-+		};
-+	};
-+};
-+
-+&main_i2c4 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c4_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp4: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&dp0_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0 {
-+		reg = <0>;
-+		dp0_in: endpoint {
-+			remote-endpoint = <&dpi0_out>;
-+		};
-+	};
-+
-+	port@4 {
-+		reg = <4>;
-+		dp0_out: endpoint {
-+			remote-endpoint = <&dp0_connector_in>;
-+		};
-+	};
-+};
 -- 
-2.25.1
+2.20.1
 
