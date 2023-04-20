@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AFCF6E907E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C020A6E9084
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234949AbjDTKmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
+        id S234696AbjDTKmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:42:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234951AbjDTKlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:41:51 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87758692
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:40:30 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4ec8da7aaf8so461839e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:40:30 -0700 (PDT)
+        with ESMTP id S234411AbjDTKmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:42:22 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DF959CF
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:41:19 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2a776fb84a3so4134201fa.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:41:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681987229; x=1684579229;
+        d=linaro.org; s=google; t=1681987278; x=1684579278;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jvpctlVTJ1U3NkaamvHUx4lltTx2+8ORxLeM8FtUVpM=;
-        b=ApAKhT1sM3KPSUG0xc4B8WNojVMTwaVEy8yQ0NtoSlWtHiLV508ALD+W2+LyBqkcmV
-         BJ10MPqeCcGHLEYrixfR5Hg/+TB2IA++Cih2ntgQVHQ8VZCSEk0+SLy89+kqMERRDlyG
-         G/4KymO6c6wq/ahstnZVmmVqEKiB3X977c8LhhO1uz2lN2huNAT+OBUQDkpse6jKeIjh
-         GAjCG3uiTdspE5kMf2hrxiEbnzsS6WJ1z4GArqBzeGh0cQBtVl8OhG/sHFug+9sGHurp
-         Yg89E7oKGLrdvwis6NpIH7dZmkjfzc+b+C40/JVB+FLSypcrPXIyHEQV7de46Rc1if5B
-         myjg==
+        bh=yYJib+KQpRN6Chzv9c6xYxJsgyv5cT5aVycO+xQckao=;
+        b=VBUTkbmrolkfG2HfEcgTK0vDuXwjt6JD29+KkTRVwL/3szw1ASTwqK1tfPffuYb3Ji
+         4K4Ijw7CasoMUf2pLiGr35Pi2Fq+YlI1U9gBRhSYZU/n9WO/Dlnn/Iot3GjzKtMNKJSX
+         IGhL2vLPMC8YaqZrO9s5cF94R+Lk9D/kQS0YfhA5o+++uBY3xX3AY/BXKZJqBDZQ8N2W
+         UJKvF9GQOlRcofDCf8qU5zmjTINV78rsbZPBgktwrn6hqTJrpuAENz8nQCZSmzSqGjXi
+         eiPxN7VA1HwSY4kRvGLYqn/85LfagJEtte9GsiNFUYkUOjimR4Plwydj9uxVJA0yQo+t
+         6kvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681987229; x=1684579229;
+        d=1e100.net; s=20221208; t=1681987278; x=1684579278;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jvpctlVTJ1U3NkaamvHUx4lltTx2+8ORxLeM8FtUVpM=;
-        b=hn3sf+eErc6UUqha939zmXW5321i28n0nn2hxXzpSOj3hFQkcXGMIkQJ2Jpt90qwoL
-         QrTR/EInL9Ob74lb/eKVPwPZmv/OMlGubSbl6urnrns7B7Nv3BYOQwvziJjG7mhquYGq
-         UHPwBPd0qPjhUeeeaKj8Y15Sn56Tbi2ZejI1YY9seycYIyaN5+RvpPkZ5oAE+DHC9ng4
-         ouH4hKnoAuG5SeUnWYGFf6YMJdDka0ph1Tq9gI8UGHFnivilUm+MXXcfZWQ68vK0Ekrz
-         7AalnMxc9NCwi+/OYOh4fd40AI/O1rfSiAirPxFOgaKdoBK2Umju3WEu8FoSs3rvYBWE
-         S5mw==
-X-Gm-Message-State: AAQBX9eQA5i5/xMOcNjnfhay+u9e2rBj3vKddfmr9aWl3n6BXc6Cwapx
-        TdsQS2/urlxgJPGQXWXMMZa/Hg==
-X-Google-Smtp-Source: AKy350bo4obzA3arKwwe6MWk7x6ej3rKRw0ia25dayIgHfP2h0gbpHYkQFjPBSqTrtkH/QImfQa61g==
-X-Received: by 2002:a19:a40a:0:b0:4eb:5305:a70f with SMTP id q10-20020a19a40a000000b004eb5305a70fmr272344lfc.50.1681987228751;
-        Thu, 20 Apr 2023 03:40:28 -0700 (PDT)
+        bh=yYJib+KQpRN6Chzv9c6xYxJsgyv5cT5aVycO+xQckao=;
+        b=bkP5X2UQg7S+Rin1tvNRHp154eMEorAhvMBrK05Bg74ViAY3qxC2lci/07boLJOqQ2
+         lj+gy2q0VfZiWScdWEIhr64Pa1NylyVgVqMhdcyOTOXlU1Ey2rYJ0e1Tvvlm+G+S8RLA
+         dRYZNnjXYJWilE5g7Bws5Axi0/re7SD0JhUS4WqPS/IwCDaZOQ9CV1+XWOSkJYJEX4sw
+         Vy8avHFKt1Owscb6reOsSmI7bNLDwif0WgM6jaRTIgXR89SDSIiJxHeIelNYlLuzskE5
+         VnHYuOytUDOCm7mdCAMg1V7F+j70tvWg4rkW1dqgw0huSx1t3i2MXISt09diTD9/WWKW
+         xgfQ==
+X-Gm-Message-State: AAQBX9eyARQywnqvWBrjFeVH6ytIDjcM97inI4wG31HIxyqLGjqQrqk2
+        9aN9wkzp/C4zmPg5ZZLjaVWl4g==
+X-Google-Smtp-Source: AKy350bflVL4FNLvEiOCx3SDmmD4O9EV3jKBx3p9B/hdDwhOXn3V1VVtrkWhvhhaPJtrfxeCjcsQ4A==
+X-Received: by 2002:ac2:5550:0:b0:4db:4fe8:fd0f with SMTP id l16-20020ac25550000000b004db4fe8fd0fmr302284lfk.25.1681987278035;
+        Thu, 20 Apr 2023 03:41:18 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id d25-20020ac25459000000b004eae73a0530sm176472lfn.39.2023.04.20.03.40.27
+        by smtp.gmail.com with ESMTPSA id e13-20020ac2546d000000b004b567e1f8e5sm174205lfn.125.2023.04.20.03.41.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:40:28 -0700 (PDT)
-Message-ID: <bb28a19d-a6a4-89a2-1d7b-99146220d923@linaro.org>
-Date:   Thu, 20 Apr 2023 12:40:25 +0200
+        Thu, 20 Apr 2023 03:41:17 -0700 (PDT)
+Message-ID: <2549bb8a-c64f-ee23-307a-1e39a86d9814@linaro.org>
+Date:   Thu, 20 Apr 2023 12:41:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH] media: dt-bindings: qcom: camss: correct unit address
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: correct unit address
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230420072442.36308-1-krzysztof.kozlowski@linaro.org>
+References: <20230420072429.36255-1-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230420072442.36308-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420072429.36255-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,61 +93,28 @@ On 20.04.2023 09:24, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml | 2 +-
->  Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml  | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml  | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-> index 12ec3e1ea869..abd444e12d05 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-> @@ -155,7 +155,7 @@ examples:
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index b6452ed78802..d9aa54c11663 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -328,7 +328,7 @@ examples:
+>    - |
 >      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/clock/qcom,gcc-msm8916.h>
->  
-> -    camss: camss@1b00000 {
-> +    camss: camss@1b0ac00 {
->        compatible = "qcom,msm8916-camss";
->  
->        clocks = <&gcc GCC_CAMSS_TOP_AHB_CLK>,
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> index 6aeb3d6d02d5..db2604802d51 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> @@ -221,7 +221,7 @@ examples:
->      #include <dt-bindings/clock/qcom,gcc-msm8996.h>
->      #include <dt-bindings/clock/qcom,mmcc-msm8996.h>
->  
-> -    camss: camss@a00000 {
-> +    camss: camss@a34000 {
->        compatible = "qcom,msm8996-camss";
->  
->        clocks = <&mmcc CAMSS_TOP_AHB_CLK>,
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> index b28c8e17f158..2f23baf32b61 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> @@ -227,7 +227,7 @@ examples:
->      #include <dt-bindings/clock/qcom,gcc-sdm660.h>
->      #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->  
-> -    camss: camss@ca00000 {
-> +    camss: camss@ca00020 {
->        compatible = "qcom,sdm660-camss";
->  
->        clocks = <&mmcc CAMSS_AHB_CLK>,
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> index f9a003882f84..8f5c9aff37fb 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> @@ -219,7 +219,7 @@ examples:
->        #address-cells = <2>;
->        #size-cells = <2>;
->  
-> -      camss: camss@a00000 {
-> +      camss: camss@acb3000 {
->          compatible = "qcom,sdm845-camss";
->  
->          clocks = <&clock_camcc CAM_CC_CAMNOC_AXI_CLK>,
+>      // Example 1 (new calbiration data: for pre v1 IP):
+> -    thermal-sensor@900000 {
+> +    thermal-sensor@4a9000 {
+>          compatible = "qcom,msm8916-tsens", "qcom,tsens-v0_1";
+>          reg = <0x4a9000 0x1000>, /* TM */
+>                <0x4a8000 0x1000>; /* SROT */
+> @@ -358,7 +358,7 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      // Example 1 (legacy: for pre v1 IP):
+> -    tsens1: thermal-sensor@900000 {
+> +    tsens1: thermal-sensor@4a9000 {
+>             compatible = "qcom,msm8916-tsens", "qcom,tsens-v0_1";
+>             reg = <0x4a9000 0x1000>, /* TM */
+>                   <0x4a8000 0x1000>; /* SROT */
