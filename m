@@ -2,114 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 583766E98FE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 18:01:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8FAE6E9908
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 18:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232835AbjDTQBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 12:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54892 "EHLO
+        id S233952AbjDTQES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 12:04:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232605AbjDTQBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 12:01:31 -0400
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE928110;
-        Thu, 20 Apr 2023 09:01:30 -0700 (PDT)
-Received: by mail-oo1-f44.google.com with SMTP id c17-20020a4aa4d1000000b005418821052aso783375oom.6;
-        Thu, 20 Apr 2023 09:01:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682006490; x=1684598490;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mIpdpe/NpR/Ih+cQndC/G+rH56/6XJaiFLeSU8K5oA0=;
-        b=WijXUS6T6QWuDPimJfAW988Zx7ImcnbTa7nQW0fqT57JquB7KfWSN9F82unEbyd4Bl
-         qM7+Vag7UXbuiTg8k62pqMkygod26HcHvCGelhL59AcH5yZXAuD7wgSFktvrw1SYEbKD
-         p32FIUkSGUHXFFiqkfROs3JcK7tiQQxULGANkn0+d78/NVlZduLAsTtfL+nUmLVyJSRS
-         RE8ThYit8mhFqYLXdmII1r6S0rI+6hQ7kB+0SPl9Qo1w74fLiXo2BGoSd+YeUlOs6Gkv
-         9aAZ02X1vGCEpEaPDlYTKdQVcBqhPG4M8M/z0LY/g6hNoKp8iV/QQHNaDeWT9jU5kwhg
-         vzBg==
-X-Gm-Message-State: AAQBX9fmjKMBo+bX6s7x2+b823EXKaGtO90ZeF37RszS1jfYYBq7nWP7
-        +lZX2HO5mBqOWiqFWfBYVg==
-X-Google-Smtp-Source: AKy350bt+0X2w1Rb34a72ni3IOj9CQFLCcOcDdhi78zN3O8KOC08bs/0RKiA7zeCHsbuuGFdNtrbGw==
-X-Received: by 2002:a4a:95af:0:b0:546:1d7b:20be with SMTP id o44-20020a4a95af000000b005461d7b20bemr765333ooi.7.1682006489810;
-        Thu, 20 Apr 2023 09:01:29 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v12-20020a4aad8c000000b0054542d3219asm748526oom.11.2023.04.20.09.01.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 09:01:29 -0700 (PDT)
-Received: (nullmailer pid 2950580 invoked by uid 1000);
-        Thu, 20 Apr 2023 16:01:28 -0000
-Date:   Thu, 20 Apr 2023 11:01:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/3] dt-bindings: nvmem: brcm,nvram: add
- #nvmem-cell-cells for MACs
-Message-ID: <20230420160128.GA2945386-robh@kernel.org>
-References: <20230406110804.12024-1-zajec5@gmail.com>
+        with ESMTP id S231435AbjDTQER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 12:04:17 -0400
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94321FE3;
+        Thu, 20 Apr 2023 09:04:15 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1ppWlU-0000Ho-2l;
+        Thu, 20 Apr 2023 18:04:09 +0200
+Date:   Thu, 20 Apr 2023 17:04:02 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 0/2] net: ethernet: mtk_eth_soc: use WO firmware for MT7981
+Message-ID: <cover.1681994362.git.daniel@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230406110804.12024-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 06, 2023 at 01:08:02PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Broadcom's NVRAM contains MACs for Ethernet interfaces. Those MACs are
-> usually base addresses that are also used for calculating other MACs.
-> 
-> For example if a router vendor decided to use gmac0 it most likely
-> programmed NVRAM of each unit with a proper "et0macaddr" value. That is
-> a base.
-> 
-> Ethernet interface is usually connected to switch port. Switch usually
-> includes few LAN ports and a WAN port. MAC of WAN port gets calculated
-> as relative address to the interface one. Offset varies depending on
-> device model.
-> 
-> Wireless MACs may also need to be calculated using relevant offsets.
-> 
-> To support all those scenarios let MAC NVMEM cells be referenced with an
-> index specifying MAC offset.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../devicetree/bindings/nvmem/brcm,nvram.yaml        | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> index 36def7128fca..a921e05cc544 100644
-> --- a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> @@ -36,14 +36,26 @@ properties:
->    et0macaddr:
->      type: object
->      description: First Ethernet interface's MAC address
-> +    properties:
-> +      "#nvmem-cell-cells":
-> +        description: The first argument is a MAC address offset.
-> +        const: 1
+In order to support wireless offloading on MT7981 we need to load the
+appropriate firmware. Recognize MT7981 by introducing a new DT compatible
+and load mt7981_wo.bin if it is set.
 
-Not a new issue, but these nodes are missing 'additionalProperties: 
-false'. Can you add that. With that,
+Changes since v1:
+ * retain alphabetic order in dt-bindings
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Daniel Golle (2):
+  dt-bindings: net: mediatek: add WED RX binding for MT7981 eth driver
+  net: ethernet: mtk_eth_soc: use WO firmware for MT7981
+
+ .../bindings/arm/mediatek/mediatek,mt7622-wed.yaml         | 1 +
+ drivers/net/ethernet/mediatek/mtk_wed_mcu.c                | 7 ++++++-
+ drivers/net/ethernet/mediatek/mtk_wed_wo.h                 | 1 +
+ 3 files changed, 8 insertions(+), 1 deletion(-)
+
+-- 
+2.40.0
 
