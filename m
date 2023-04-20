@@ -2,136 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B339C6E9C70
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 21:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 203BC6E9CC2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 21:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbjDTTYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 15:24:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46962 "EHLO
+        id S231723AbjDTT6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 15:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231739AbjDTTYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 15:24:37 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE823A81
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 12:24:32 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f17e584462so9400635e9.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 12:24:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1682018670; x=1684610670;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5qbGFeXrDs3WrhBf+lvrgBNLjjhcPXH+cPYhZsQiewQ=;
-        b=Ac93lBa/9BLRzbTUcFMyNcv0LR2mn86n/7LatpQPOmPnIeoIVS8CMN5ZA4Iiz1PkjZ
-         k7LurRp9dERgJMIKohVtx2XFerLcvtT5P7XychnJe/uyHOW8OrpB7+9bv/UK5bKJsF0R
-         8CjUlmeFciVl84uA73WfydbjH1kKJ6p2QhMpxSsY9X8httdTo+kuoT3F34O/gbd3J1/b
-         077FldUCsxn9J1s8HoAg8seAPzexZiBy28xqZ3yjUUW1/C12KIvwV4n3MdTbIN8QT2RJ
-         04ifTJHe+F9y0D7nmU85oTFm+xDCXZgLwp1/3w2zWMhr6zsf5tna9dhewowre5/cX4R4
-         DX5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682018670; x=1684610670;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5qbGFeXrDs3WrhBf+lvrgBNLjjhcPXH+cPYhZsQiewQ=;
-        b=MQEu0/u6nxJ/bi5D+we/PmDhtzxY8W5OR5qYG2EUeg61qP00rH4BaLVfxJzcdgYqcx
-         yuzNjm6jkXE0eKO2qIK3TvzP9Q2sqYHj4q6mgcfttJTfhqS5teAL01n6KVGfkBAMMbQf
-         Rl9b86dexBtlopO0LI4wE6mjvGEVVy9IErCzGuwanpJ1z1T3NWsN8DQcGq2u0gEkkn3R
-         kqFqeSnDvarmX6trnm+FBc8naBF6C7NcqQ8CzkK4QvMu1to9TzUkJDo1tEp/YkJfv4bk
-         z1Y0/hQ7g2IJMkUhk1XNEIbjTpYWUcuDshcKLkoQRS7cPDi73XWjIrZWZs03ufg5yc+Z
-         iHUA==
-X-Gm-Message-State: AAQBX9cFHh6pmh6qyA5U1L2ToJoTG9grV8DD8cLWbHcQPLV+dfDBzCUX
-        jGnk7LuHeMYLISShWtWHw3fPbw==
-X-Google-Smtp-Source: AKy350YFXEqpYPMnNXKVKG8zJoE9qjBhRYvK5gdYrbXLZB4JxciYLP00LR0MySN3gmTFbydhvWggBA==
-X-Received: by 2002:a05:6000:1c9:b0:2fb:ad8:288f with SMTP id t9-20020a05600001c900b002fb0ad8288fmr2015321wrx.11.1682018670573;
-        Thu, 20 Apr 2023 12:24:30 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id u3-20020a7bcb03000000b003f16f3cc9fcsm2825651wmj.9.2023.04.20.12.24.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 12:24:30 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     zev@bewilderbeest.net, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229963AbjDTT6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 15:58:51 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C9C5B2;
+        Thu, 20 Apr 2023 12:58:50 -0700 (PDT)
+Received: from localhost ([185.104.138.31]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MkYHO-1qbKQp06ZS-00m0Ex; Thu, 20 Apr 2023 21:58:33 +0200
+Date:   Thu, 20 Apr 2023 21:58:26 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: regulator: Add support for multiple supplies
-Date:   Thu, 20 Apr 2023 21:24:01 +0200
-Message-Id: <20230420192402.3695265-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.39.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] Support Honeywell mprls0025pa pressure sensor
+Message-ID: <ZEGZYiS0znC2/fZC@arbad>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Provags-ID: V03:K1:0RdDq5hj+rqhLGKh3tScDOe0f+IURDleBqsVJ0ab2ideUlEI6Ic
+ OzpRtBvPTED7+CeoMPkq2WtVvrbft4aX8KXSFdcWfX0QAyeH3jU15F2LuaRHBPmK/wtYSBn
+ DcphjEQ8M7pvhLOOjFbXq5rAhtNzoqeXDemo+OZ93fbSDAl8EXiCsl5jTqm+JOT/Mn+/5XA
+ okOX6BdaNmgObNvJNp+RA==
+UI-OutboundReport: notjunk:1;M01:P0:LtZiKkPcRTs=;0XaQIH/BrbVYWKmEVh9gBx8maiw
+ JHslhfOZLfaQNYe2vcmDr8+6J8UhMik4GKiA9c9HEzpAZsgpwNQqebEhg2ZldfwliiArvxsX4
+ 8W9G8Il9tBE72+I2GlTTtoTCObvN9opoQKG1YL3gWpu4mF95qbNt3Y5Oo5IM3dYJfG5Pa7PZo
+ y5SEadTwEfJA5NG5Iq0/aZbeZqeMMG5KEuv0WLuKEJ6JVyLdZjg4BvtjgNJNeN7A9vOnMz8SR
+ Wfrk4kakAm7YoKG60Obz3n+DPhWRh0bG52xS3r+m/H9eNAO7AsyG1XyFyxGx+7UIDsWBH3ZE6
+ h083E1qgeLzS3hWS5rmitiRYj4J0mJMk2+KmSs0JMb8w+dvJhrV+21yHktfKBze7Hi/lNm28i
+ DMR0flpoumfpXsywGxZ0HBg3OoBpwO0q1v+hp2v4Pw45SKpBLm28c2jFHWK+VAO0elgN/tpIB
+ CUsWQXr5kRSVbzKLYRlln/DxlxLUY1tbMwuD6v0X9lo40MnX8eY1zvcpjBwdnVpF/PyNgxBo4
+ S0fIEHDsPY3XQ/Ea9onJLxnC9k9K22dIFqetu4pCrDjFys/YtuKaGX11DR1OJ+5KhYSztIqrO
+ wBC+PE7z7XYP9HAhVCO488fqhW6gVyYY6SO2h9P7p533pFK4UDyG/G4+HwcW33mzn2On6GASW
+ uD615gQB2dQxrPiw1xlQF5/isErTlpc9bPBeKll0fw==
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add optional DT property 'regulator-supplies' to handle connectors with
-multiple supplies.
-If this property is present, it will determine all regulator supplies.
-Otherwise, the 'vout' supply will be used as a fallback.
+Support Honeywell mprls0025pa pressure sensor.
 
-This change improves support for connector like PCIe connectors on
-mainboards that can be powered by 12V and 3.3V supplies.
+This patch series adds support for Honeywell mprls0025pa pressure sensor series.
+There are a variety of sensors with different pressure ranges supported.
 
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-...
-Change in V2:
-- Added example
-- Update property type & description.
-- Improve commit message
----
- .../bindings/regulator/regulator-output.yaml  | 21 ++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
+Changes in v3:
+- Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
+  - fix errors while doing dt_binding_check
+  - add vdd-supply
+- Patch 2: "iio: pressure: Honeywell mpr pressure sensor"
+  - change to _RAW interface
+  - add transfer function
+  - add regulator
+  - move to device_property_xxx functions
+  - many more changes from the feedbacks
+- Patch 3: "MAINTAINERS: Add Honeywell mpr sensor"
+  - change file names
 
-diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
-index 078b37a1a71a..a9dce26991ff 100644
---- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
-+++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
-@@ -21,13 +21,22 @@ properties:
-   compatible:
-     const: regulator-output
- 
--  vout-supply:
-+  regulator-supplies:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-     description:
--      Phandle of the regulator supplying the output.
-+      Optional property that specifies supply names provided by
-+      the regulator. Defaults to "vout" if not specified. The
-+      array contains a list of supply names.
-+      Each supply name corresponds to a phandle in the
-+      patternProperties.
-+
-+patternProperties:
-+  ".*-supply":
-+    description:
-+      Specifies the phandle for various supplies
- 
- required:
-   - compatible
--  - vout-supply
- 
- additionalProperties: false
- 
-@@ -37,3 +46,9 @@ examples:
-           compatible = "regulator-output";
-           vout-supply = <&output_reg>;
-       };
-+      out2 {
-+          compatible = "regulator-output";
-+          regulator-supplies = "sw0", "sw1";
-+          sw0-supply = <&out2_sw0>;
-+          sw1-supply = <&out2_sw1>;
-+      };
+Changes in v2:
+- Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
+  - change the global sensor decription of mpr to the specific sensor
+    mprls0025pa
+  - change compatible string
+  - rename the file to honeywell,mprls0025pa.yaml
+  - honeywell,pmin-pascal and honeywell,pmax-pascal: add unit pascal to property
+    names 
+  - add new property honeywell,transfer-function
+- Patch 2: "iio: pressure: Honeywell mpr pressure sensor"
+  - no change so far
+  - will be changed and send out as new version when the dt definition is
+    settled down
+- Patch 3: "MAINTAINERS: Add Honeywell mpr sensor"
+  - no change so far
 
-base-commit: 43c75e470e5b56a992acb08474810e6822f0989c
+Andreas Klinger (3):
+  dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor
+  iio: pressure: Honeywell mpr pressure sensor
+  MAINTAINERS: Add Honeywell mpr sensor
+
+ .../iio/pressure/honeywell,mprls0025pa.yaml   |  98 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/pressure/Kconfig                  |  12 +
+ drivers/iio/pressure/Makefile                 |   1 +
+ drivers/iio/pressure/mprls0025pa.c            | 429 ++++++++++++++++++
+ 5 files changed, 547 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+ create mode 100644 drivers/iio/pressure/mprls0025pa.c
+
+
+base-commit: e0ee50101346ca9cef52da75e3fb4380c27c042a
 -- 
-2.39.1
-
+2.30.2
