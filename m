@@ -2,139 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 321666E8ACF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 08:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 227F56E8AD7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233691AbjDTG6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 02:58:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52044 "EHLO
+        id S229612AbjDTHAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:00:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbjDTG6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 02:58:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49FE2D42;
-        Wed, 19 Apr 2023 23:58:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BA4164557;
-        Thu, 20 Apr 2023 06:58:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CB7CC433D2;
-        Thu, 20 Apr 2023 06:58:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1681973884;
-        bh=A+bLNsF6LzOed0PVhdtMwFsw4F1i3Dt8U4VT0TXawxU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ehlXKtdn2Z4AN0E9m9LxE/lKyDT2WCXAwbTAmg1gpXjbC6EFgpXTk5ydvz5mhxvor
-         CERF7hAHIR0TdRq8gbrT9D8rZaAdzxmkrItm4DUlkRi5hiLzQxC0L7DqyJnqVHqO69
-         GIurBMOjzCMO35RSw3wad7GV9FMgl1ZjMarAqriE=
-Date:   Thu, 20 Apr 2023 08:58:01 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Trilok Soni <quic_tsoni@quicinc.com>
-Cc:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH V22 2/3] misc: dcc: Add driver support for Data Capture
- and Compare unit(DCC)
-Message-ID: <ZEDieaIsf7ptqvHq@kroah.com>
-References: <cover.1681829664.git.quic_schowdhu@quicinc.com>
- <e4f41fa61d9dd66f68bbd7650c6fbf96810c3569.1681829664.git.quic_schowdhu@quicinc.com>
- <2023041833-alienate-trash-f4da@gregkh>
- <f1456dd7-5dcf-d91a-459c-65efca4a3444@quicinc.com>
- <50844899-b047-42fd-807a-db7136e5e590@app.fastmail.com>
- <44834c75-4db7-ec8a-9367-c6b83fa96b22@quicinc.com>
- <9808142e-d6e6-71bc-f362-09b878cb3b87@quicinc.com>
- <2024b144-42cf-1044-258c-2dc6c6af0d88@quicinc.com>
+        with ESMTP id S229712AbjDTHAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:00:17 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F04446BE;
+        Thu, 20 Apr 2023 00:00:14 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0A42F24E0F6;
+        Thu, 20 Apr 2023 15:00:13 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
+ 2023 15:00:13 +0800
+Received: from [192.168.125.106] (113.72.144.253) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
+ 2023 15:00:12 +0800
+Message-ID: <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+Date:   Thu, 20 Apr 2023 15:00:10 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2024b144-42cf-1044-258c-2dc6c6af0d88@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-2-changhuang.liang@starfivetech.com>
+ <20230419-labored-camper-644d51a7ca96@spud>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230419-labored-camper-644d51a7ca96@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.253]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 19, 2023 at 09:10:14AM -0700, Trilok Soni wrote:
-> On 4/19/2023 9:08 AM, Trilok Soni wrote:
-> > On 4/19/2023 3:20 AM, Souradeep Chowdhury wrote:
-> > > 
-> > > 
-> > > On 4/19/2023 1:00 PM, Arnd Bergmann wrote:
-> > > > On Wed, Apr 19, 2023, at 09:00, Souradeep Chowdhury wrote:
-> > > > > On 4/18/2023 9:15 PM, Greg Kroah-Hartman wrote:
-> > > > > > 
-> > > > > > > The following is the justification of using debugfs
-> > > > > > > interface over the
-> > > > > > > other alternatives like sysfs/ioctls
-> > > > > > > 
-> > > > > > > i) As can be seen from the debugfs attribute
-> > > > > > > descriptions, some of the
-> > > > > > > debugfs attribute files here contains multiple
-> > > > > > > arguments which needs to
-> > > > > > > be accepted from the user. This goes against the
-> > > > > > > design style of sysfs.
-> > > > > > > 
-> > > > > > > ii) The user input patterns have been made simple
-> > > > > > > and convenient in this
-> > > > > > > case with the use of debugfs interface as user
-> > > > > > > doesn't need to shuffle
-> > > > > > > between different files to execute one instruction as was the case on
-> > > > > > > using other alternatives.
-> > > > > > 
-> > > > > > Why do you have debugfs and also a misc device?  How are they related?
-> > > > > > Why both?  Why not just one?  What userspace tools are going to use
-> > > > > > either of these interfaces and where are they published
-> > > > > > to show how this
-> > > > > > all was tested?
-> > > > > 
-> > > > > DCC has two fundamental steps of usage:-
-> > > > > 
-> > > > > 1.Configuring the register addresses on the dcc_sram which is done by
-> > > > > user through the debugfs interface. For example:-
-> > > > > 
-> > > > > echo R 0x10c004 > /sys/kernel/debug/dcc/../3/config
-> > > > > 
-> > > > > Here we are configuring the register addresses for list 3, the 'R'
-> > > > > indicates a read operation, so this register value will be read
-> > > > > in case of a software trigger or kernel panic/watchdog bite and
-> > > > > dumped into the dcc_sram.
-> > > > 
-> > > > Can you describe why the register location needs to be
-> > > > runtime configurable? I would have expected this type of setting
-> > > > to be part of the devicetree, which already describes other
-> > > > parts that interact with sram devices.
-> > > 
-> > > Register addresses are made runtime configurable to give the user the
-> > > option of going for a software trigger. So the user can debug issues
-> > > during run-time as well. These register locations are arbitrary
-> > > and is configured by the user for debugging purposes and is not
-> > > related to the DCC hardware itself.
-> > 
-> > Please note that we don't want to recompile the devicetree for new
-> > settings since these registers can be set by team of engineers who are
-> > debugging system level issues with various IPs across the SOCs. You
-> > don't want to recompile the images while reproducing the system hangs/IP
-> > watchdogs etc;
+
+
+On 2023/4/20 2:29, Conor Dooley wrote:
+> Hey Changhuang, DT/PHY folks,
 > 
-> ...and also these registers list is not fixed, it will vary based on the
-> problem you are seeing and debugging on the SOC across the IPs.
+> On Tue, Apr 18, 2023 at 08:56:41PM -0700, Changhuang Liang wrote:
+>> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
+>> rx/tx power switch, and it don't need the properties of reg and
+>> interrupts.
+> 
+> Putting this here since the DT guys are more likely to see it this way..
+> Given how the implementation of the code driving this new
+> power-controller and the code driving the existing one are rather
+> different (you've basically re-written the entire driver in this series),
+> should the dphy driver implement its own power-controller?
+> 
+> I know originally Changuang had tried something along those lines:
+> https://lore.kernel.org/linux-riscv/5dc4ddc2-9d15-ebb2-38bc-8a544ca67e0d@starfivetech.com/
+> 
+> I see that that was shut down pretty much, partly due to the
+> non-standard property, hence this series adding the dphy power domain to
+> the existing driver.
+> 
+> If it was done by looking up the pmu with a
+> of_find_compatible_node(NULL, "power-controller", "starfive,jh7110-aon-pmu")
+> type thing, would that make sense? Although, maybe that is not a
+> question for you, and this series may actually have been better entirely
+> bundled with the dphy series so the whole thing can be reviewed as a
+> unit. I've added 
+> 
+> IOW, don't change this patch, or the dts patch, but move all of the
+> code back into the phy driver..
+> 
 
-Then all of this should be documented in the driver, and in the
-changelog please.
+Maybe this way can not do that? power domain is binding before driver probe,
+if I use "of_find_compatible_node" it phy(DPHY rx) probe. Maybe I can only operate 
+this power switch in my phy(DPHY rx) driver, so the all patch of this series isn't 
+make sense.
 
-thanks,
+In my opinion, We will also submit DPHY TX module later which use this series.
+Maybe this series should independent?
 
-greg k-h
+> Sorry for not asking this sooner Changhuang,
+> Conor.
+> 
+> (hopefully this didn't get sent twice, mutt complained of a bad email
+> addr during sending the first time)
+> 
+
+I'm sorry for that, I will notice later.
+
+>>
+>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>> ---
+>>  .../bindings/power/starfive,jh7110-pmu.yaml       | 15 +++++++++++++--
+>>  include/dt-bindings/power/starfive,jh7110-pmu.h   |  3 +++
+>>  2 files changed, 16 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+>> index 98eb8b4110e7..c50507c38e14 100644
+>> --- a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+>> +++ b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+>> @@ -8,6 +8,7 @@ title: StarFive JH7110 Power Management Unit
+>>  
+>>  maintainers:
+>>    - Walker Chen <walker.chen@starfivetech.com>
+>> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+>>  
+>>  description: |
+>>    StarFive JH7110 SoC includes support for multiple power domains which can be
+>> @@ -17,6 +18,7 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - starfive,jh7110-pmu
+>> +      - starfive,jh7110-aon-pmu
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -29,10 +31,19 @@ properties:
+>>  
+>>  required:
+>>    - compatible
+>> -  - reg
+>> -  - interrupts
+>>    - "#power-domain-cells"
+>>  
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: starfive,jh7110-pmu
+>> +    then:
+>> +      required:
+>> +        - reg
+>> +        - interrupts
+>> +
+>>  additionalProperties: false
+>>  
+>>  examples:
+>> diff --git a/include/dt-bindings/power/starfive,jh7110-pmu.h b/include/dt-bindings/power/starfive,jh7110-pmu.h
+>> index 132bfe401fc8..0bfd6700c144 100644
+>> --- a/include/dt-bindings/power/starfive,jh7110-pmu.h
+>> +++ b/include/dt-bindings/power/starfive,jh7110-pmu.h
+>> @@ -14,4 +14,7 @@
+>>  #define JH7110_PD_ISP		5
+>>  #define JH7110_PD_VENC		6
+>>  
+>> +#define JH7110_PD_DPHY_TX	0
+>> +#define JH7110_PD_DPHY_RX	1
+>> +
+>>  #endif
+>> -- 
+>> 2.25.1
+>>
