@@ -2,63 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7176E9A34
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:03:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DCC86E9A22
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:00:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbjDTRDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 13:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S230450AbjDTRA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 13:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbjDTRDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:03:10 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A973230CA;
-        Thu, 20 Apr 2023 10:03:09 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id 5614622812f47-38c00f19654so532524b6e.2;
-        Thu, 20 Apr 2023 10:03:09 -0700 (PDT)
+        with ESMTP id S229507AbjDTRAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:00:19 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E0A4EE8;
+        Thu, 20 Apr 2023 09:59:58 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id l1-20020a4acf01000000b005472eb23b30so852303oos.1;
+        Thu, 20 Apr 2023 09:59:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682009873; x=1684601873;
+        d=1e100.net; s=20221208; t=1682009978; x=1684601978;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sskrH87l2JddzTI2ulk4grlY8ICMx+GkEeA1KtebY70=;
-        b=RnjI77ZDbTXXHvi4J6+N72aXu9CipAb0rOEhgVU6jwsHWxzcDtjZ3VKGkmXsCQ/DLo
-         WiPcW/cfTIr3EHWqkqWj4bAsava9z8zYt4r+bi4QUZilJ4PQG9FqxAd/eeJ7SLkus7Up
-         yscAcpNJnz0Gvt4psE8E/cPlPA8szkrt8N7mKxbdfndt4DXG+Q/ESml9Z0LwfxB+TPor
-         PaQUKHetaNzydlhwbwk4+g/KYkHnOseru50aivXVQ+znSnwsrPoQLOAhxFulXebcSDdj
-         L3dMoggKdUCkeKtHIILU1El8L4Sh5/N3TR6iUKOjq8vUqQXoTHsJVFWSXo1/tM1KiUJ9
-         PxTg==
-X-Gm-Message-State: AAQBX9eQLV7Nnvk6xIugO4lB3zSl1ucCH1t7zZAvaPty0laPi4LxtPpU
-        Wud019uhlCb1WlSO4py/YQ==
-X-Google-Smtp-Source: AKy350YBjL+oqX2R5+mr73qGeuIpf6viyx4+RGoEDkYDmMt6BGN9FChhDAsnd3DggYVvXwoK7BNF2g==
-X-Received: by 2002:a05:6808:2104:b0:38d:e623:bb1a with SMTP id r4-20020a056808210400b0038de623bb1amr1681315oiw.50.1682009873379;
-        Thu, 20 Apr 2023 09:57:53 -0700 (PDT)
+        bh=AQjtV9NB28V3LmK6dJUu6sjUOfdt/1VooQe/0CCGd8U=;
+        b=fIfBZ4zt65FWRdgqteWfeGfQiNWwJJtyPwZykVb0a/ZW3fsaEVEJbFUNSjDyMjzCCg
+         GH65i48e3HQHsrKrAjutyaUKW/JpA2N6xyOVnKgmkv+2geEHniuyFzZ06rh1wy/cG+Xd
+         G0eT4sumn7xd7CVOYsmgIZqJwPSn1kcfWTfmEt+c3TLRcUmalnpOA6WgxwJrvT4r2iNy
+         lQQpEmR5tjhq6OB0F873vaoxInLmz1CSpWk12GdAm0kAJtAddCxCPHbvv+Nb7kxOm7ah
+         9HnLFqS8Ek8VBtdsm4YyMxBh3qpXhj4ZZ92F1sbk7TY64piG5iIqdCV4wgAF5vUdofeo
+         FrFA==
+X-Gm-Message-State: AAQBX9fBgLXz+BhUeADumXotpv2i/FA8Rr752P9DQPcqhV75GsucfP+X
+        vrgNzVXtkFEmouGgIiS63g==
+X-Google-Smtp-Source: AKy350ajRi0Dr2GcMCYAxgauZp8jskHLMpNAKhE4wWw3toeDBnVAUGu2G0hk44QXhGaq3YcGVMyPwA==
+X-Received: by 2002:a4a:ad04:0:b0:544:dc2c:9f78 with SMTP id r4-20020a4aad04000000b00544dc2c9f78mr1108037oon.6.1682009978108;
+        Thu, 20 Apr 2023 09:59:38 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r83-20020acaf356000000b003845f4991c7sm765305oih.11.2023.04.20.09.57.52
+        by smtp.gmail.com with ESMTPSA id e131-20020acab589000000b00383d9700294sm746146oif.40.2023.04.20.09.59.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 09:57:52 -0700 (PDT)
-Received: (nullmailer pid 3013188 invoked by uid 1000);
-        Thu, 20 Apr 2023 16:57:52 -0000
-Date:   Thu, 20 Apr 2023 11:57:52 -0500
+        Thu, 20 Apr 2023 09:59:37 -0700 (PDT)
+Received: (nullmailer pid 3015138 invoked by uid 1000);
+        Thu, 20 Apr 2023 16:59:36 -0000
+Date:   Thu, 20 Apr 2023 11:59:36 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Xu Yang <xu.yang_2@nxp.com>, linux-usb@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: usb: ci-hdrc-usb2: allow multiple PHYs
-Message-ID: <168200987182.3013134.13057709706986760718.robh@kernel.org>
-References: <20230420065051.22994-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: correct unit address
+Message-ID: <168200997627.3015083.10232502258112260692.robh@kernel.org>
+References: <20230420072429.36255-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230420065051.22994-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420072429.36255-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,20 +73,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 20 Apr 2023 08:50:51 +0200, Krzysztof Kozlowski wrote:
-> Qualcomm MSM8974 comes with USB HS phy in two variants, although final
-> DTS chooses only one.  Allow such combination in the ChipIdea USB2
-> bindings and also disallow any other properties in the ulpi node.
+On Thu, 20 Apr 2023 09:24:29 +0200, Krzysztof Kozlowski wrote:
+> Match unit-address to first reg entry.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 > ---
-> 
-> DTS will be fixed separately.
-> ---
->  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
