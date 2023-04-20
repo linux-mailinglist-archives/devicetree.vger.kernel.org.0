@@ -2,63 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4176E8D3A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 10:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FADA6E8D59
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 10:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233921AbjDTIyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 04:54:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46906 "EHLO
+        id S234469AbjDTI4M convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 Apr 2023 04:56:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234101AbjDTIxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 04:53:34 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7B044B0;
-        Thu, 20 Apr 2023 01:51:43 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id A82DF24E248;
-        Thu, 20 Apr 2023 16:51:40 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
- 2023 16:51:40 +0800
-Received: from [192.168.60.111] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
- 2023 16:51:39 +0800
-Message-ID: <bf265594-3bd1-eba5-7a4a-910e331dcca8@starfivetech.com>
-Date:   Thu, 20 Apr 2023 16:51:39 +0800
+        with ESMTP id S234292AbjDTIyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 04:54:45 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 91BD74C2B;
+        Thu, 20 Apr 2023 01:53:19 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E80F3106F;
+        Thu, 20 Apr 2023 01:54:02 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A73643F5A1;
+        Thu, 20 Apr 2023 01:53:17 -0700 (PDT)
+Date:   Thu, 20 Apr 2023 09:53:15 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Ludwig Kormann <ludwig.kormann@in-circuit.de>, samuel@sholland.org,
+        jernej.skrabec@gmail.com, wens@csie.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] arm: dts: sunxi: Add ICnova A20 ADB4006 board
+ support
+Message-ID: <20230420095315.5aaab9eb@donnerap.cambridge.arm.com>
+In-Reply-To: <b84537c0-cb58-621a-2b6d-3bbaac5091de@linaro.org>
+References: <20230419121229.1384024-1-ludwig.kormann@in-circuit.de>
+        <b84537c0-cb58-621a-2b6d-3bbaac5091de@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 6/8] media: dt-bindings: Add bindings for JH7110 Camera
- Subsystem
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        "Todor Tomov" <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Ezequiel Garcia" <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
- <20230413035541.62129-7-jack.zhu@starfivetech.com>
- <20230419061540.GB11679@pendragon.ideasonboard.com>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <20230419061540.GB11679@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,229 +48,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 19 Apr 2023 15:05:17 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 19/04/2023 14:12, Ludwig Kormann wrote:
+> > Add board support for ICnova A20 SomPi compute module on
+> > ICnova ADB4006 development board.
+> > 
+> > Specification:
+> > SoM
+> > - Processor: Allwinner A20 Cortex-A7 Dual Core at 1GHz
+> > - 512MB DDR3 RAM
+> > - Fast Ethernet (Phy: Realtek RTL8201CP)
+> > ADB4006
+> > - I2C
+> > - 2x USB 2.0
+> > - 1x Fast Ethernet port
+> > - 1x SATA
+> > - 2x buttons (PWRON, Boot)
+> > - 2x LEDS
+> > - serial console
+> > - HDMI
+> > - µSD-Card slot
+> > - Audio Line-In / Line-Out
+> > - GPIO pinheaders
+> > 
+> > https://wiki.in-circuit.de/index.php5?title=ICnova_ADB4006
+> > https://wiki.in-circuit.de/index.php5?title=ICnova_A20_SODIMM
+> > 
+> > ---
+> > 
+> > changes in v2:
+> > - use short licensing header
+> > - remove deprecated elements from led nodes
+> > - disable csi power supply
+> > - add missing pins in usbphy node
+> > - split dts into SoM dtsi and carrier board dts
+> > 
+> > v1 of this patch was sent to the uboot mailing list [1].
+> > 
+> > [1] https://lists.denx.de/pipermail/u-boot/2023-April/514605.html
+> > 
+> > Signed-off-by: Ludwig Kormann <ludwig.kormann@in-circuit.de>
+> > ---
+> >  .../devicetree/bindings/arm/sunxi.yaml        |   6 +  
+> 
+> Bindings are always separate patches. checkpatch did not complain?
+> 
+> >  arch/arm/boot/dts/Makefile                    |   1 +
+> >  .../boot/dts/sun7i-a20-icnova-a20-adb4006.dts | 137 ++++++++++++++++++
+> >  arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi   |  63 ++++++++
+> >  4 files changed, 207 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+> >  create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > index 013821f4a7b8..12f0c236f17b 100644
+> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > @@ -305,6 +305,12 @@ properties:
+> >            - const: allwinner,i12-tvbox
+> >            - const: allwinner,sun7i-a20
+> >  
+> > +      - description: ICNova A20 ADB4006
+> > +        items:
+> > +          - const: incircuit,icnova-a20-adb4006
+> > +          - const: incircuit,icnova-a20
+> > +          - const: allwinner,sun7i-a20
+> > +
+> >        - description: ICNova A20 SWAC
+> >          items:
+> >            - const: incircuit,icnova-a20-swac
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 3cc32722c394..b6b408417261 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1321,6 +1321,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
+> >  	sun7i-a20-hummingbird.dtb \
+> >  	sun7i-a20-itead-ibox.dtb \
+> >  	sun7i-a20-i12-tvbox.dtb \
+> > +	sun7i-a20-icnova-a20-adb4006.dtb \
+> >  	sun7i-a20-icnova-swac.dtb \
+> >  	sun7i-a20-lamobo-r1.dtb \
+> >  	sun7i-a20-linutronix-testbox-v2.dtb \
+> > diff --git a/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts b/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+> > new file mode 100644
+> > index 000000000000..c1606c085e4e
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+> > @@ -0,0 +1,137 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)  
+> 
+> Unusual license. Are you sure you are ok with GPLv5.0?
+
+Is it really unusual? This is literally the most commonly used dual license
+for DTs, grep counts 252 users in arm and 573 users in arm64.
+
+Or is it that it's deprecated and we recommend (GPL-2.0 OR MIT) for new
+files?
+
+Cheers,
+Andre
 
 
-On 2023/4/19 14:15, Laurent Pinchart wrote:
-> Hi Jack,
 > 
-> Thank you for the patch.
+> Also, at the end of your files - drop stray blank lines.
 > 
-> On Thu, Apr 13, 2023 at 11:55:39AM +0800, Jack Zhu wrote:
->> Add the bindings documentation for Starfive JH7110 Camera Subsystem
->> which is used for handing image sensor data.
->> 
->> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
->> ---
->>  .../bindings/media/starfive,jh7110-camss.yaml | 164 ++++++++++++++++++
->>  MAINTAINERS                                   |   7 +
->>  2 files changed, 171 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> new file mode 100644
->> index 000000000000..4cd144f1b845
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> @@ -0,0 +1,164 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Starfive SoC CAMSS ISP
->> +
->> +maintainers:
->> +  - Jack Zhu <jack.zhu@starfivetech.com>
->> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
->> +
->> +description:
->> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
->> +  consists of a VIN controller (Video In Controller, a top-level control until)
->> +  and an ISP.
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-camss
->> +
->> +  reg:
->> +    maxItems: 2
->> +
->> +  reg-names:
->> +    items:
->> +      - const: syscon
->> +      - const: isp
->> +
->> +  clocks:
->> +    maxItems: 7
->> +
->> +  clock-names:
->> +    items:
->> +      - const: apb_func
->> +      - const: wrapper_clk_c
->> +      - const: dvp_inv
->> +      - const: axiwr
->> +      - const: mipi_rx0_pxl
->> +      - const: ispcore_2x
->> +      - const: isp_axi
->> +
->> +  resets:
->> +    maxItems: 6
->> +
->> +  reset-names:
->> +    items:
->> +      - const: wrapper_p
->> +      - const: wrapper_c
->> +      - const: axird
->> +      - const: axiwr
->> +      - const: isp_top_n
->> +      - const: isp_top_axi
->> +
->> +  power-domains:
->> +    items:
->> +      - description: JH7110 ISP Power Domain Switch Controller.
->> +
->> +  interrupts:
->> +    maxItems: 4
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: Input port for receiving DVP data.
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              bus-width:
->> +                const: 8
->> +
->> +              data-shift:
->> +                const: 2
-> 
-> As far as I can tell, those two properties are not handled by the
-> driver. I assume this is because the driver doesn't support the DVP
-> input yet. That's fine, but it makes it a bit hard to review the device
-> tree. Could you provide some information about the DVP hardware
-> interface ? Does it support both BT.656 and sync signals, or just sync
-> signals ? Are the polarities of the clock and h/v sync controllable ?
-> Is the parallel input bus 8-bit wide or are other options supported ?
-> And finally, what are you modelling with data-shift: 2 ?
+> Best regards,
+> Krzysztof
 > 
 
-Hello Laurent,
-
-The DVP hardware supports BT.656 and sync signals, can control the
-polarities of h/v sync, supports 8/10/12 bit wide, and data-shift: 2 is
-line 9-2.
-
-Jack
-
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: Input port for receiving CSI data.
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - power-domains
->> +  - interrupts
->> +  - ports
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    isp@19840000 {
->> +        compatible = "starfive,jh7110-camss";
->> +        reg = <0x19840000 0x10000>,
->> +              <0x19870000 0x30000>;
->> +        reg-names = "syscon", "isp";
->> +        clocks = <&ispcrg 0>,
->> +                 <&ispcrg 13>,
->> +                 <&ispcrg 2>,
->> +                 <&ispcrg 12>,
->> +                 <&ispcrg 1>,
->> +                 <&syscrg 51>,
->> +                 <&syscrg 52>;
->> +        clock-names = "apb_func",
->> +                      "wrapper_clk_c",
->> +                      "dvp_inv",
->> +                      "axiwr",
->> +                      "mipi_rx0_pxl",
->> +                      "ispcore_2x",
->> +                      "isp_axi";
->> +        resets = <&ispcrg 0>,
->> +                 <&ispcrg 1>,
->> +                 <&ispcrg 10>,
->> +                 <&ispcrg 11>,
->> +                 <&syscrg 41>,
->> +                 <&syscrg 42>;
->> +        reset-names = "wrapper_p",
->> +                      "wrapper_c",
->> +                      "axird",
->> +                      "axiwr",
->> +                      "isp_top_n",
->> +                      "isp_top_axi";
->> +        power-domains = <&pwrc 5>;
->> +        interrupts = <92>, <87>, <88>, <90>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            port@0 {
->> +                reg = <0>;
->> +                vin_from_sc2235: endpoint {
->> +                    remote-endpoint = <&sc2235_to_vin>;
->> +                    bus-width = <8>;
->> +                    data-shift = <2>;
->> +                    hsync-active = <1>;
->> +                    vsync-active = <0>;
->> +                    pclk-sample = <1>;
->> +                };
->> +            };
->> +
->> +            port@1 {
->> +                reg = <1>;
->> +                vin_from_csi2rx: endpoint {
->> +                    remote-endpoint = <&csi2rx_to_vin>;
->> +                };
->> +            };
->> +        };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index bbb8b5c0187b..b8c76b0d7eb3 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19909,6 +19909,13 @@ M:	Ion Badulescu <ionut@badula.org>
->>  S:	Odd Fixes
->>  F:	drivers/net/ethernet/adaptec/starfire*
->>  
->> +STARFIVE CAMERA SUBSYSTEM DRIVER
->> +M:	Jack Zhu <jack.zhu@starfivetech.com>
->> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
->> +L:	linux-media@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> +
->>  STARFIVE DEVICETREES
->>  M:	Emil Renner Berthing <kernel@esmil.dk>
->>  S:	Maintained
-> 
