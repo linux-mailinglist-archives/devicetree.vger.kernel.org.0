@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1C06E9105
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97B356E9109
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235047AbjDTKxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34594 "EHLO
+        id S234990AbjDTKx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235052AbjDTKwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:52:42 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E427ED0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:08 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4edbd6cc46bso464333e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:08 -0700 (PDT)
+        with ESMTP id S235004AbjDTKxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:53:00 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947466E85
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:32 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2a8bca69e8bso4104381fa.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681987787; x=1684579787;
+        d=linaro.org; s=google; t=1681987796; x=1684579796;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=InyLlK4ZtefcdVP8ZL9xZOCBp894Qu9V02DBGf4WABw=;
-        b=hwxCE0kwvpWsmhPDmqhYOWdsEvTGtOMuY9PfG9/0bBzNaMSaIPbHp7grf4S6EUuSgH
-         HIQh40NwJcX+xqX/l+oMjW6uj5YaYoLGZ+FOSzT4lqHRa5oW/m62IqHkXUHGNjpgKEoZ
-         Wfg8yH0ShGhjLPD7LA25IWjzz7RhDGjOzaH4jVq6+Sr2JDyzuz7tsN5IeNr4wZS4YqOs
-         FuzLdXyXq6s1HieL9s5kQ0n3IZIwFOWo3czcw1hhuXSpI+B/hOPDc7X6dJ+Kr8BtC8+H
-         h7o+empLmdYjc0kTf039TeD7PSceGZ3ZjUv7LCa3PxO/IpNUm8NWAiN9RM5ghYNa78xt
-         QBwA==
+        bh=ISDDN/N0rEFfikck66+Z24/wyAdEVwOWe2CAWFioEtc=;
+        b=m7Jj8i9f+dxN4pwDEwqdt1rEmZEIpxG/BGeSJTz2aaCvdZtfxX4mijbyxzKdQhsINY
+         cLK4ReKiMRmU7R7Gdeb7JVzLDXsD0CuBQ8aCbSEABRzvzYMEAtYpLAXwPVVyVGTZHzNS
+         YLkMdS9vN6Zzt7Xefp9i1UEx0BaKUCavs8DsJitp9bECMMZcxpEcJHHmzCtnZIdwwWZK
+         w7VquKC6iZJJGtOnVF6zSFGmgeySkYB1lpv2pFOMztHe9IOn3ki7XxPXHeDjTIV1pjZB
+         YF7//5t0yfzHbpq8EnciSB/5/EXbz+N7+wx5KzC9EnE10oBZT5F9+uDdnVyJYXxF0Yw7
+         dS/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681987787; x=1684579787;
+        d=1e100.net; s=20221208; t=1681987796; x=1684579796;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=InyLlK4ZtefcdVP8ZL9xZOCBp894Qu9V02DBGf4WABw=;
-        b=Nig98GFW/HYylpQhEL8u/jbF7DFbEbrPURu7YyWPdkS6mDla6lzDoy4f0vh3QLrL2R
-         QCsxHKTVBLZ5a3dDWSSHtsKFcsiKhYunI7Nk37UqpbknFlAUiVSTrudgYO6bcGDWnal7
-         FZ2jpwW2aq3wxNUKhsIySY8dWMOf+RTTVKquMTw5mjbhtminuirEDdp/K6lCCtXI1qTR
-         NpI5VAVpR2XUz1czbwmHujmikllQKOUdBj/hNv0dq57xYlhjyby/3Bc4TFJn8Md7hmsV
-         GEUrqJdl4nlJw/nqVgnI8ZlDNEWM6DEgfm6TNy6we7iLbbWWxeDzR8/Eels365CcO8PF
-         httA==
-X-Gm-Message-State: AAQBX9fZk7jgQaFsqwG+UYR1LQWYPBQBPt7VRcZHdVRazhF0B9Wuw98Y
-        IygmYQ//EKzUItXk361+GIBC/+mJTXxZo2V9txQ=
-X-Google-Smtp-Source: AKy350YSZFVa83jooVWaAgBJ/WWjOs/wEnd2zsHegiDhOqtGMl92F7BKp48PPSVqPUqqkJgLz0LjXg==
-X-Received: by 2002:a05:6512:38af:b0:4ed:d216:8217 with SMTP id o15-20020a05651238af00b004edd2168217mr292199lft.11.1681987786777;
-        Thu, 20 Apr 2023 03:49:46 -0700 (PDT)
+        bh=ISDDN/N0rEFfikck66+Z24/wyAdEVwOWe2CAWFioEtc=;
+        b=A9YC5ePAuhSn9s2ZOojPcjqPC0RaVS7gsdNhjsIY3sRjDdcP6s2ScGFzBNMrXNRueO
+         ++pQbJDMFxIuplO0cbEtIosqrABw9lnOH9n4KutGk08OibY+7rEmp0fLLcrV42uXBf1r
+         5iqAnTNkfuam8e7yELk9ulI9u+3R6/FBFhMt+1aw885KKOBgpQrFS3E1KVWPsP3khNQC
+         AXwZggzB2HnYkJfhZHUoioEM7Mu5MATNLsNJ1beoZRwhH/iwBT98mLC5NtUCnrdV5dDD
+         JqxOpqgSk7+2eUmJnCCZjXmbLKXl6RjTIFI1aiCTdZ181U4muriftoOzchfrRoGTBgU0
+         4cxg==
+X-Gm-Message-State: AAQBX9eFKvQGDcG2rN1SuAShjKsplHzqd0TBHU8o5wx32NzVeGTJFTiN
+        UDHiZMoq91/T5KJZoRVlvCjdX9gjju5C13vvzGc=
+X-Google-Smtp-Source: AKy350btW5RbCt9icEEmJrgaBl4QuZbI3JbV48JNxQtlsfwxW2WyBcP/31up+3Eh0wFNc3zDvvCuIA==
+X-Received: by 2002:ac2:4905:0:b0:4ed:c9b0:6a42 with SMTP id n5-20020ac24905000000b004edc9b06a42mr369436lfi.12.1681987796498;
+        Thu, 20 Apr 2023 03:49:56 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05651211f000b004edc5a39121sm172914lfs.242.2023.04.20.03.49.45
+        by smtp.gmail.com with ESMTPSA id h15-20020ac2596f000000b004cca1658a41sm175011lfp.300.2023.04.20.03.49.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:49:46 -0700 (PDT)
-Message-ID: <686ee776-8f5f-9814-1f89-0ab9f0e7b2b8@linaro.org>
-Date:   Thu, 20 Apr 2023 12:49:45 +0200
+        Thu, 20 Apr 2023 03:49:56 -0700 (PDT)
+Message-ID: <ae2d4903-9147-fe8f-1911-d49ef5a4cb51@linaro.org>
+Date:   Thu, 20 Apr 2023 12:49:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 08/10] ARM: dts: qcom: apq8060-dragonboard: move
- regulators out of simple-bus
+Subject: Re: [PATCH 09/10] ARM: dts: qcom: msm8960-cdp: move regulator out of
+ simple-bus
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
- <20230420075053.41976-8-krzysztof.kozlowski@linaro.org>
+ <20230420075053.41976-9-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230420075053.41976-8-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420075053.41976-9-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,113 +84,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 20.04.2023 09:50, Krzysztof Kozlowski wrote:
 > Regulators is not a bus, so drop incomplete simple-bus usage to fix dtbs
-> W=1 warnings:
+> W=1 warning:
 > 
->   Warning (simple_bus_reg): /regulators/regulator-fixed: missing or empty reg/ranges property
->   Warning (simple_bus_reg): /regulators/xc622a331mrg: missing or empty reg/ranges property
->   Warning (simple_bus_reg): /regulators/nds332p: missing or empty reg/ranges property
->   Warning (simple_bus_reg): /regulators/txb0104rgyr: missing or empty reg/ranges property
+>   Warning (simple_bus_reg): /regulators/gpio-regulator: missing or empty reg/ranges property
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../arm/boot/dts/qcom-apq8060-dragonboard.dts | 80 +++++++++----------
->  1 file changed, 38 insertions(+), 42 deletions(-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm/boot/dts/qcom-msm8960-cdp.dts | 16 ++++++----------
+>  1 file changed, 6 insertions(+), 10 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-> index 8e4b61e4d4b1..e830cb2395aa 100644
-> --- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-> @@ -18,50 +18,46 @@ chosen {
+> diff --git a/arch/arm/boot/dts/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+> index 8fa2befa629a..6c1bc3818883 100644
+> --- a/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+> @@ -15,16 +15,12 @@ chosen {
 >  		stdout-path = "serial0:115200n8";
 >  	};
 >  
 > -	regulators {
 > -		compatible = "simple-bus";
 > -
-> -		/* Main power of the board: 3.7V */
-> -		vph: regulator-fixed {
+> -		ext_l2: gpio-regulator {
 > -			compatible = "regulator-fixed";
-> -			regulator-min-microvolt = <3700000>;
-> -			regulator-max-microvolt = <3700000>;
-> -			regulator-name = "VPH";
-> -			regulator-type = "voltage";
-> -			regulator-always-on;
-> -			regulator-boot-on;
-> -		};
-> -
-> -		/* GPIO controlled ethernet power regulator */
-> -		dragon_veth: xc622a331mrg {
-> -			compatible = "regulator-fixed";
-> -			regulator-name = "XC6222A331MR-G";
-> -			regulator-min-microvolt = <3300000>;
-> -			regulator-max-microvolt = <3300000>;
-> -			vin-supply = <&vph>;
-> -			gpio = <&pm8058_gpio 40 GPIO_ACTIVE_HIGH>;
+> -			regulator-name = "ext_l2";
+> -			gpio = <&msmgpio 91 0>;
+> -			startup-delay-us = <10000>;
 > -			enable-active-high;
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&dragon_veth_gpios>;
-> -			regulator-always-on;
 > -		};
-> +	/* Main power of the board: 3.7V */
-> +	vph: regulator-fixed {
+> +	ext_l2: gpio-regulator {
 > +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +		regulator-name = "VPH";
-> +		regulator-type = "voltage";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	/* GPIO controlled ethernet power regulator */
-> +	dragon_veth: xc622a331mrg {
-These names could also be fixed up, but that's for another day..
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "XC6222A331MR-G";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vph>;
-> +		gpio = <&pm8058_gpio 40 GPIO_ACTIVE_HIGH>;
+> +		regulator-name = "ext_l2";
+> +		gpio = <&msmgpio 91 0>;
+> +		startup-delay-us = <10000>;
 > +		enable-active-high;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&dragon_veth_gpios>;
-> +		regulator-always-on;
-> +	};
->  
-> -		/* VDDvario fixed regulator */
-> -		dragon_vario: nds332p {
-> -			compatible = "regulator-fixed";
-> -			regulator-name = "NDS332P";
-> -			regulator-min-microvolt = <1800000>;
-> -			regulator-max-microvolt = <1800000>;
-> -			vin-supply = <&pm8058_s3>;
-> -		};
-> +	/* VDDvario fixed regulator */
-> +	dragon_vario: nds332p {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "NDS332P";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&pm8058_s3>;
-> +	};
->  
-> -		/* This is a levelshifter for SDCC5 */
-> -		dragon_vio_txb: txb0104rgyr {
-> -			compatible = "regulator-fixed";
-> -			regulator-name = "Dragon SDCC levelshifter";
-> -			vin-supply = <&pm8058_l14>;
-> -			regulator-always-on;
-> -		};
-> +	/* This is a levelshifter for SDCC5 */
-> +	dragon_vio_txb: txb0104rgyr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "Dragon SDCC levelshifter";
-> +		vin-supply = <&pm8058_l14>;
-> +		regulator-always-on;
 >  	};
+>  };
 >  
->  	/*
