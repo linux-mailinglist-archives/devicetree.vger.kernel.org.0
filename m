@@ -2,66 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F5D6E9617
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E0316E962D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbjDTNn2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 Apr 2023 09:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47814 "EHLO
+        id S229960AbjDTNrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 09:47:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231495AbjDTNn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:43:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243D7619C
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 06:43:25 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1ppUYu-0001Bj-Uu; Thu, 20 Apr 2023 15:43:01 +0200
-Message-ID: <19d2c40180d0b9176e17aa6e91c1e7f36f77f626.camel@pengutronix.de>
-Subject: Re: [PATCH 1/6] drm: bridge: samsung-dsim: Support multi-lane
- calculations
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
+        with ESMTP id S229547AbjDTNrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:47:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D81892;
+        Thu, 20 Apr 2023 06:47:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E6E78649A4;
+        Thu, 20 Apr 2023 13:47:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 074D9C433D2;
+        Thu, 20 Apr 2023 13:47:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681998429;
+        bh=1QyZRHlOCNh9KYcYd1u1wFLy/1mxyOjwo5PSkFTP51Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S7KbwL3B37Ss08VH2w5iWaWpX9Jl6YME4jhFY3c8tFLqpQ16ldi0kp6YLjZ4L5QKH
+         EUKyNwzn2BqYWOpofJeddadPrTiicNAOoOnsiW76Plp8dZeB87tTpub5KknGRaeGTB
+         PpAKO0551ifA+rY5VD4PCGpp8twUlDNplmKCBsKh1WeWjHwIMFvwo6jds6K6I+bl49
+         uY/LpWRzxcPDknDfGFvSyIlP0VSxxhcX78w2I+rEs8NkuzepB6EWjCcu9oKldt0w4I
+         Ao5xZvvalV+RC9NJXFPB17qfXkZFueFyGRUx5eHCrDaG/zYCLeaqizq+a7w9EOIAQU
+         w1b4GUDOuYqYA==
+Date:   Thu, 20 Apr 2023 14:47:03 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        aford@beaconembedded.com,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Fabio Estevam <festevam@gmail.com>, m.szyprowski@samsung.com,
-        marex@denx.de, Robert Foss <rfoss@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Inki Dae <inki.dae@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Date:   Thu, 20 Apr 2023 15:42:57 +0200
-In-Reply-To: <CAHCN7x+bZHZHxYk=qC3QFS07kLO85w_rj1tOuX1Y3fJXekmvMQ@mail.gmail.com>
-References: <20230415104104.5537-1-aford173@gmail.com>
-         <3e47f0d1017fe4c9f71a5de65f32c6ba1662efe2.camel@pengutronix.de>
-         <CAHCN7xL4+9NogrnXA1PEWorwY7JpSGBozDtHT83JvzjfinmS+A@mail.gmail.com>
-         <CAHCN7xK8K+DsNAFTVAezwJQzZ7RCDb2CjCBZ8dNb=S8d1BmtMA@mail.gmail.com>
-         <f42a2a11c1a2df4d773b61a449e8f4d5a9a010d1.camel@pengutronix.de>
-         <CAHCN7x+bZHZHxYk=qC3QFS07kLO85w_rj1tOuX1Y3fJXekmvMQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 3/7] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <20230420134703.GC996918@google.com>
+References: <20230417171601.74656-1-herve.codina@bootlin.com>
+ <20230417171601.74656-4-herve.codina@bootlin.com>
+ <20230420123946.GB996918@google.com>
+ <20230420151551.78c1288b@bootlin.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230420151551.78c1288b@bootlin.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,116 +64,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 20.04.2023 um 08:24 -0500 schrieb Adam Ford:
-> On Thu, Apr 20, 2023 at 8:06 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+On Thu, 20 Apr 2023, Herve Codina wrote:
+
+> On Thu, 20 Apr 2023 13:39:46 +0100
+> Lee Jones <lee@kernel.org> wrote:
+> 
+> > On Mon, 17 Apr 2023, Herve Codina wrote:
 > > 
-> > Hi Adam,
-> > 
-> > Am Mittwoch, dem 19.04.2023 um 05:47 -0500 schrieb Adam Ford:
-> > > On Mon, Apr 17, 2023 at 6:55 AM Adam Ford <aford173@gmail.com> wrote:
-> > > > 
-> > > > On Mon, Apr 17, 2023 at 3:43 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > > > 
-> > > > > Hi Adam,
-> > > > > 
-> > > > > Am Samstag, dem 15.04.2023 um 05:40 -0500 schrieb Adam Ford:
-> > > > > > If there is more than one lane, the HFP, HBP, and HSA is calculated in
-> > > > > > bytes/pixel, then they are divided amongst the different lanes with some
-> > > > > > additional overhead. This is necessary to achieve higher resolutions while
-> > > > > > keeping the pixel clocks lower as the number of lanes increase.
-> > > > > > 
-> > > > > 
-> > > > > In the testing I did to come up with my patch "drm: bridge: samsung-
-> > > > > dsim: fix blanking packet size calculation" the number of lanes didn't
-> > > > > make any difference. My testing might be flawed, as I could only
-> > > > > measure the blanking after translation from MIPI DSI to DPI, so I'm
-> > > > > interested to know what others did here. How did you validate the
-> > > > > blanking with your patch? Would you have a chance to test my patch and
-> > > > > see if it works or breaks in your setup?
+> > > The Lantiq PEF2256 is a framer and line interface component designed to
+> > > fulfill all required interfacing between an analog E1/T1/J1 line and the
+> > > digital PCM system highway/H.100 bus.
 > > > 
-> > > Lucas,
-> > > 
-> > > I tried your patch instead of mine.  Yours is dependent on the
-> > > hs_clock being always set to the burst clock which is configured by
-> > > the device tree.  I unrolled a bit of my stuff and replaced it with
-> > > yours.  It worked at 1080p, but when I tried a few other resolutions,
-> > > they did not work.  I assume it's because the DSI clock is fixed and
-> > > not changing based on the pixel clock.  In the version I did, I only
-> > > did that math when the lanes were > 1. In your patch, you divide by 8,
-> > > and in mine, I fetch the bits-per-pixel (which is 8) and I divide by
-> > > that just in case the bpp ever changes from 8.  Overall,  I think our
-> > > patches basically do the same thing.
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > >  drivers/mfd/Kconfig         |  16 +
+> > >  drivers/mfd/Makefile        |   1 +
+> > >  drivers/mfd/pef2256-regs.h  | 250 ++++++++++
+> > >  drivers/mfd/pef2256.c       | 950 ++++++++++++++++++++++++++++++++++++  
 > > 
-> > The calculations in your and my patch are quite different. I'm not
-> > taking into account the number of lanes or the MIPI format. I'm basing
-> 
-> I was looking more at the division by 8 and the overhead correction of 6.
-> This number 6 also appears in the NXP downstream kernel [1].  I know
-> Marek V had some concerns about that.
-> 
-Yea, I don't fully remember the details about the overhead. Need to
-page that back in. The division by 8 in my patch is just to get from
-the bit to a byte clock, nothing to do with the MIPI format bits per
-channel or something like that.
-
-> > the blanking size purely on the ratio between MIPI DSI byte clock and
-> > the DPI interface clock. It's quite counter-intuitive that the host
-> > would scale the blanking to the number of lanes automatically, but
-> > still require the MIPI packet offset removed, but that's what my
-> > measurements showed to produce the correct blanking after translation
-> > to DPI by the TC358767 bridge chip.
-> 
-> How many lanes is your DSI interface using?
-> 
-When I did the measurements to come up with the patch, I varied the
-number of lanes between 1 and 4. Different number of lanes didn't make
-a difference. In fact trying to compensate for the number of lanes when
-calculating the blanking size to program into the controller lead to
-wildly wrong blanking on the DPI side of the external bridge.
-
+> > 95% of this driver needs to be moved somewhere else.
 > > 
-> > If you dynamically scale the HS clock, then you would need to input the
-> > real used HS clock to the calculation in my patch, instead of the fixed
-> > burst mode rate.
+> > What is a Framer?  Perhaps sound/ is a good candidate?
 > 
-> I think what you're saying makes sense.
+> The pef2256 framer is a device that transfers data to/from a TDM (time-slots
+> data) from/to quite old telecommunication lines (E1 in my case).
+> Several subsystem can set/get data to/from the TDM. Each device using their
+> own time-slots set.
 > 
-> The code I originally modeled this from was from the NXP downstream
-> kernel where they define the calculation as being in words [2]. I am
-> not saying the NXP code is perfect, but the NXP code works.  With this
-> series, my monitors are able to sync a bunch of different resolutions
-> from 1080p down to 640x480 and a bunch in between with various refresh
-> rates too. That was the goal of this series.
-> 
-> Instead of just using your patch as-is, I will adapt yours to use the
-> scaled clock to see how it behaves and get back to you.
-> 
+> On my use-case, I have some audio consumer and a not yet upstreamed HDLC
+> consumer. Both of them uses the framer to know the E1 link state.
+> The framer needs to be initialized 'globally' and not by a specific consumer
+> as several consumers can use the framer.
 
-Thanks, that would be very much appreciated.
+I can't think of a good place for this.
 
-I also don't assert that my calculation is perfect, as I also don't
-have any more information and needed to resort to observing the
-blanking after translation by the external bridge, so I hope we could
-get some better understanding of how things really work by checking
-what works for both our systems.
+If all else fails, it's drivers/misc
 
->   I have
-> finished reworking the dynamic DPHY settings, and I've fixed up making
-> the PLL device tree optional. If your patch works, I'll drop my
-> calculation and just build off what you have to use the scaled HS
-> clock when I submit the V2 and I'll make sure I CC you.
+> > >  include/linux/mfd/pef2256.h |  52 ++
+> > >  5 files changed, 1269 insertions(+)
+> > >  create mode 100644 drivers/mfd/pef2256-regs.h
+> > >  create mode 100644 drivers/mfd/pef2256.c
+> > >  create mode 100644 include/linux/mfd/pef2256.h  
+> > 
+> > [...]
+> > 
+> > > +static int pef2256_add_audio_devices(struct pef2256 *pef2256)
+> > > +{
+> > > +	const char *compatible = "lantiq,pef2256-codec";
+> > > +	struct mfd_cell *audio_devs;
+> > > +	struct device_node *np;
+> > > +	unsigned int count = 0;
+> > > +	unsigned int i;
+> > > +	int ret;
+> > > +
+> > > +	for_each_available_child_of_node(pef2256->dev->of_node, np) {
+> > > +		if (of_device_is_compatible(np, compatible))
+> > > +			count++;
+> > > +	}  
+> > 
+> > Converting Device Tree nodes into MFD cells to register with the
+> > Platform Device API is not a reasonable use-case of MFD.
+> > 
+> > Have the CODEC driver match on "lantiq,pef2256-codec" and let it
+> > instantiate itself.
 > 
-Thanks, I'm open to re-do my measurements with your new patches.
-
-Regards,
-Lucas
-
-> adam
-> 
-> [1] - https://github.com/nxp-imx/linux-imx/blob/lf-6.1.y/drivers/gpu/drm/bridge/sec-dsim.c#L270
-> [2] - https://github.com/nxp-imx/linux-imx/blob/lf-6.1.y/drivers/gpu/drm/bridge/sec-dsim.c#L914
+> As the framer is going to used by several subsystem, I cannot instantiate
+> it in the specific ASoC subsystem.
 > 
 > > 
-> > Regards,
-> > Lucas
+> > Your first version using of_platform_populate() was closer to the mark.
+> 
+> The issue was that I need MFD cells for the pinctrl part.
 
+Why can't it be represented in DT?
+
+> > > +	if (!count)
+> > > +		return 0;
+> > > +
+> > > +	audio_devs = kcalloc(count, sizeof(*audio_devs), GFP_KERNEL);
+> > > +	if (!audio_devs)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	for (i = 0; i < count; i++) {
+> > > +		(audio_devs + i)->name = "lantiq-pef2256-codec";
+> > > +		(audio_devs + i)->of_compatible = compatible;
+> > > +		(audio_devs + i)->id = i;
+> > > +	}
+> > > +
+> > > +	ret = mfd_add_devices(pef2256->dev, 0, audio_devs, count, NULL, 0, NULL);
+> > > +	kfree(audio_devs);
+> > > +	return ret;
+> > > +}  
+
+-- 
+Lee Jones [李琼斯]
