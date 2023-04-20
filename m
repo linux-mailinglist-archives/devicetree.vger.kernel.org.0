@@ -2,113 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F586E8AFB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6AAD6E862C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 02:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233782AbjDTHLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 03:11:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59692 "EHLO
+        id S230102AbjDTAHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 20:07:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjDTHLx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:11:53 -0400
-X-Greylist: delayed 19610 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 20 Apr 2023 00:11:51 PDT
-Received: from mail.heimpalkorhaz.hu (mail.heimpalkorhaz.hu [193.224.51.23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7AB110;
-        Thu, 20 Apr 2023 00:11:51 -0700 (PDT)
-Received: from mail.heimpalkorhaz.hu (localhost [127.0.0.1])
-        (Authenticated sender: lmateisz@heimpalkorhaz.hu)
-        by mail.heimpalkorhaz.hu (Postfix) with ESMTPA id D0F3B384A1BDDF;
-        Thu, 20 Apr 2023 01:59:06 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.heimpalkorhaz.hu D0F3B384A1BDDF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=heimpalkorhaz.hu;
-        s=default; t=1681948747;
-        bh=0SvEQ2qxWUr6CAhQeUp6fE6iKpfYW2PiFDnjTXdqJls=;
-        h=Date:From:To:Subject:Reply-To:From;
-        b=gMPj4snOI5ESUdbEhfkXPRpZwvIV/7HnohgSWn5+ZIArdbtl5ckJ4Cb1pVUTHfXpa
-         uOedmA8uaqDb3CkDmOXhWIVsNnIuyZzKpM45ewmmd+miCyeYBFNoE8RZxOZxheZA4Z
-         mSjQy4y6UbTs0Tu7nvwUTlLrDsKQhAnXwE4w8OT/zqAzDPZ3PgGIUhV0q8+U7rN7eL
-         SfxgjxJuB/q14VlyLe1xBKXZet2qVj7m64kQHyuGMGPVZFey2sR8ZNPTxVk6PodR9V
-         Qy+azuqOCn5VdVuqwnM8YO2mGrEPEDuVj6IEJ1hHp1mshS5eEM0xX3sehEY3oMq4lh
-         dQGSNSUcAycLg==
+        with ESMTP id S229499AbjDTAHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 20:07:46 -0400
+X-Greylist: delayed 374 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 19 Apr 2023 17:07:45 PDT
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53637524B
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:07:45 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (174-21-172-149.tukw.qwest.net [174.21.172.149])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 45069401;
+        Wed, 19 Apr 2023 17:01:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1681948890;
+        bh=pvBFZe6aNKnnGQpibVcXWzLk+OxdYqXD2UbQjrEDfp0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TYoRseOyAvyZhFb31OMcQvY8dwZedJ8jh72GMdcktGH9E2hTE4/HArAa2eFhpl/C5
+         1OQZcgcAu3YZOtj2jrkSV8ppwpSLRr+bXOYLCIEjuCTBrdrNcciZ3/B62dMADuhgjj
+         uLMuorT0E/RvEp7gEOYMIzdRw9r8pRDxb6kPqpEc=
+Date:   Wed, 19 Apr 2023 17:01:28 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add dt property
+Message-ID: <0da2b301-8780-48c0-a5dc-326474011e8d@hatter.bewilderbeest.net>
+References: <20230418145051.4192963-1-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-Date:   Thu, 20 Apr 2023 01:59:06 +0200
-From:   MK <mk@heimpalkorhaz.hu>
-To:     undisclosed-recipients:;
-Subject: Hallo zonneschijn, hoe gaat het?
-Reply-To: marion.k07081@gmail.com
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <5e720fb798e6f8d100eb1b63975da9f6@heimpalkorhaz.hu>
-X-Sender: mk@heimpalkorhaz.hu
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [5.46 / 20.00];
-        R_UNDISC_RCPT(3.00)[];
-        FORGED_RECIPIENTS(2.00)[m:,s:ria.engels@upcmail.nl,s:riandre56@upcmail.nl,s:s.marcus@upcmail.nl,s:s.natoewal@upcmail.nl,s:s.ritoe@upcmail.nl,s:s.zelst@upcmail.nl,s:secretariaat.zwcdts@upcmail.nl,s:sonnevelt@upcmail.nl,s:svennauta@upcmail.nl,s:t.adrichem@upcmail.nl,s:t.buitenhuis5@upcmail.nl,s:t.michelbrink@upcmail.nl,s:thea.g@upcmail.nl,s:v.klasens@upcmail.nl,s:w.angel7@upcmail.nl,s:w.maronier@upcmail.nl,s:w.stevens22@upcmail.nl,s:w.zweijpfenning@upcmail.nl,s:waza@upcmail.nl,s:wielle695@upcmail.nl,s:wimels@upcmail.nl,s:yvonne.hemert@upcmail.nl,s:d.blokland88@upcmail.nl,s:a.wierda4@upcmail.nl,s:r.van.emmerik@upcmail.nl,s:Ruisch06-83202551sruisch@upcmail.nl,s:Ruisch06-46358145mruisch@upcmail.nl,s:7w.heijdacker@upcmail.nl,s:a.zegers11@upcmail.nl,s:rufin.yune@upf.pf,s:info@upplevnordanstig.se,s:buzzwurks@usa.net,s:info@usaeconnect.com,s:test@user.nl,s:rawnar@users.sourceforge.net,s:info@uskeatsen.nl,s:kgpadilh@usp.br,s:vian@usp.br,s:jo8@usvhercules.nl,s:aare.kasemets@ut.ee,s:olli.ylonen
- @uta.fi,s:a.reite@utanet.at,s:ph.lorentz@utex.ma,s:andyz@utexas.edu,s:external@utn.stjr.is,s:postur@utn.stjr.is,s:j.nganji@utoronto.ca,s:odlc@utoronto.ca,s:nico@utrecht-promotions.nl,s:duurzame-energierijnenburg@utrecht.nl,s:j.gootzen@utrecht.nl,s:johan.simon@utrecht.nl,s:k.vandenbos@uu.nl,s:m.asadpoor@uu.nl,s:n.h.g.devries@uu.nl,s:o.h.klungel@uu.nl,s:Y.Zhou1@uu.nl,s:c.vanewijk@uva.nl,s:e.s.bergvelt@uva.nl,s:g.m.m.kuipers@uva.nl,s:anne.vermeer@uvt.nl,s:RWarne@uvu.edu,s:n.schiphouwer@uvvz.nl,s:info@uwe.be,s:mthuys@uwnet.nl,s:draaisma@uwnwt.nl,s:alexontwerpt@uwsieraad.nl,s:veerle.taelman@uz.kuleuven.be,s:bart.op.de.beeck@uza.be,s:marie-jose.tassignon@uza.be,s:paul.parizel@uza.be,s:wouter.vaneerdeweg@uza.be,s:05susanne.bohler@uzbrussel.be,s:13ursula.vandeneede@uzbrussel.be,s:72ida.flament@uzbrussel.be,s:bart.depreitere@uzleuven.be,s:Karel.Vankeer@uzleuven.be,s:rik.willems@uzleuven.be,s:sofie.coenen@uzleuven.be,s:roland@uzn.nl,s:carla@v-breemen.demon.nl,s:alex@v2.nl,s:accounthaube@v7ver
- sand.de,s:Jeroen@vabnethems.nl,s:riem@val.be,s:auquiere@valbiom.be,s:willy@van-roemburg.nl,s:info@vanbaallingerie.nl,s:astrologie@vanblommestein.nl,s:marnix@vandekerkhove.be,s:infol@vandepoel-expertise.be,s:roel@vanderdrift.nl,s:wilco@vandermerch.net,s:Francoise@vanderwaals01.demon.nl,s:vandort@vandort.com,s:matthias@vanduysen.be,s:CARLA@VANENTHOVEN.NL,s:info@vanerck.be,s:bureau@vanhentenrijk.be];
-        SUBJECT_ENDS_QUESTION(1.00)[];
-        GENERIC_REPUTATION(-0.59)[-0.58872629738287];
-        BAYES_SPAM(0.15)[64.09%];
-        MIME_GOOD(-0.10)[text/plain];
-        FROM_EQ_ENVFROM(0.00)[];
-        MIME_TRACE(0.00)[0:+];
-        RCVD_COUNT_ZERO(0.00)[0];
-        TO_DN_ALL(0.00)[];
-        RCPT_COUNT_ONE(0.00)[1];
-        REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-        FROM_HAS_DN(0.00)[];
-        MID_RHS_MATCH_FROM(0.00)[];
-        FREEMAIL_ENVRCPT(0.00)[upcmail.nl,usa.net,utanet.at,verizon.net,VERIZON.NET,versatel.nl,videotron.ca,vip.onet.pl,virgilio.it,virgin.net,vodafonethuis.nl,wanadoo.fr,web.de,windowslive.com,worldnet.att.net,wp.pl,xs4all.nl,XS4all.nl,xtra.co.nz,ya.ru,yahoo.ca,Yahoo.Ca,yahoo.co.in,yahoo.co.jp,yahoo.co.nz,yahoo.co.uk,yahoo.com,YAHOO.COM,yahoo.com.ar,yahoo.com.au,yahoo.com.br,yahoo.com.ph,yahoo.com.sg,yahoo.com.tw,yahoo.de,yahoo.dk,yahoo.es,yahoo.fr,yahoo.gr,yahoo.it];
-        FREEMAIL_REPLYTO(0.00)[gmail.com];
-        HAS_REPLYTO(0.00)[marion.k07081@gmail.com]
-X-Rspamd-Queue-Id: D0F3B384A1BDDF
-X-Rspamd-Server: mail.heimpalkorhaz.hu
-X-Spam-Status: No, score=1.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230418145051.4192963-1-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Het spijt me u te storen en uw privacy te schenden. Ik ben vrijgezel,
-   eenzaam en heeft behoefte aan een zorgzame, liefdevolle en romantische 
-metgezel.
+On Tue, Apr 18, 2023 at 07:50:50AM PDT, Naresh Solanki wrote:
+>Add DT property regulator-supplies.
+>This enables us to couple one or more regulator output to gether. This
+>is use in case of Single connector having 2 or more supplies.
+>
+>Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>---
+> .../bindings/regulator/regulator-output.yaml         | 12 +++++++++---
+> 1 file changed, 9 insertions(+), 3 deletions(-)
+>
+>diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>index 078b37a1a71a..17f683d3c1f3 100644
+>--- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>+++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>@@ -21,13 +21,19 @@ properties:
+>   compatible:
+>     const: regulator-output
+>
+>-  vout-supply:
+>+  regulator-supplies:
+>     description:
+>-      Phandle of the regulator supplying the output.
+>+      Specifies the name of the output supply provided by the regulator.
+>+      Defaults to "vout".
+>+    default: "vout"
+>+
 
-Ik ben een geheime bewonderaar en zou graag de mogelijkheid willen 
-onderzoeken
-leer meer over elkaar. Ik weet dat het vreemd is om contact met je op te 
-nemen
-op deze manier en ik hoop dat je me kunt vergeven. Ik ben een verlegen 
-persoon en
-dit is de enige manier waarop ik weet dat ik je aandacht kan trekken. Ik 
-wil gewoon
-om te weten wat je denkt en het is niet mijn bedoeling om je te 
-beledigen.
-Ik hoop dat we vrienden kunnen zijn als je dat wilt, hoewel ik dat zou 
-willen
-om meer te zijn dan alleen een vriend. Ik weet dat je een paar vragen 
-hebt
-vraag het en ik hoop dat ik met een paar iets van je nieuwsgierigheid 
-kan bevredigen
-antwoorden.
+Was this meant to be specified as a string-array to allow providing 
+multiple names?
 
-Ik geloof in het gezegde dat 'voor de wereld ben je maar één persoon,
-maar voor een speciaal iemand ben jij de wereld'. Alles wat ik wil is 
-liefde,
-romantische zorg en aandacht van een speciale metgezel die ik ben
-in de hoop dat jij dat zou zijn.
+>+patternProperties:
+>+  ".*-supply":
+>+    description:
+>+      Specified the phandle for various supplies
+>
+> required:
+>   - compatible
+>-  - vout-supply
+>
+> additionalProperties: false
+>
+>
 
-Ik hoop dat dit bericht het begin is van een lange termijn
-communicatie tussen ons, stuur gewoon een antwoord op dit bericht, it
-zal me gelukkig maken.
+I think it would be nice to also update the examples to show what a 
+multi-supply instance would look like.
 
+A slightly more descriptive subject line would also be good -- "Add dt 
+property" is a bit vague.
 
-Knuffels en kussen,
-
-Marion.
+>base-commit: c55470f8b0616b0adb758077dbae9b19c5aac005
+>-- 
+>2.39.1
+>
