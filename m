@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E98AA6E903C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3856E9065
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234505AbjDTKb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:31:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41720 "EHLO
+        id S233735AbjDTKhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:37:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234519AbjDTKb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:31:29 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67460268A;
-        Thu, 20 Apr 2023 03:29:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1681986541; x=1713522541;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PxxF+ybrqPaMA+5/3lIm0KfonobVUIOCFzFZF6VC8s4=;
-  b=sTF+OV/hKGRWtan4VU324dX6U+waQMcMNgEhiWfZs3ZAybiJ5tBTt3ue
-   Kx9UV4YCN8Qf2BO5y85dyYuM/9s/pUFr/Mc6Rb0sc1fcnH5VnUAo8BgET
-   i+XeBwVpZsxq+4kjeUtjXiySF3t4hrZY3isTeyNnjFOR8kOZ4cAmelYpZ
-   rHDzt96FhO3GgVqsp/8HSvt8chjEEFL8Rl48nFGa9MLQEDH6HmaLRoWml
-   EBtKVywvkN8bsfpqxgOAmoSzqJSvti0yutKRRJauV3VsRT3nuzdTdJ3aF
-   sJo0z+x8UFU3a/Q3EcF0n668YslRKSWR1EjJWiubF7pNVxGGKj8C8VqTZ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,212,1677567600"; 
-   d="asc'?scan'208";a="148053676"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Apr 2023 03:28:44 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 20 Apr 2023 03:28:43 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 20 Apr 2023 03:28:40 -0700
-Date:   Thu, 20 Apr 2023 11:28:24 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Nylon Chen <nylon.chen@sifive.com>
-CC:     <aou@eecs.berkeley.edu>, <conor@kernel.org>,
-        <emil.renner.berthing@canonical.com>, <geert+renesas@glider.be>,
-        <heiko@sntech.de>, <krzysztof.kozlowski+dt@linaro.org>,
-        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <devicetree@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <nylon7717@gmail.com>,
-        <zong.li@sifive.com>, <greentime.hu@sifive.com>,
-        <vincent.chen@sifive.com>
-Subject: Re: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED
- algorithm
-Message-ID: <20230420-pension-threaten-bc9a549465ab@wendy>
-References: <20230420093457.18936-1-nylon.chen@sifive.com>
- <20230420093457.18936-3-nylon.chen@sifive.com>
+        with ESMTP id S234664AbjDTKgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:36:12 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4647A84
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:33:44 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ec816c9d03so456571e87.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681986823; x=1684578823;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Km7fYpP6TW/v//SsQT00GnyneejX9uUDDOVhZE5n5xI=;
+        b=omq6USS+6wPohpA8a0n0uXqurlRJCRBlTGmxbfed9VYsZHD6xxp8Z7lnZYfHm7JF1I
+         Ugpb+KXIro1kjq1OfPs/dZ6amfgct3ZJMGypRTpYuXvYKpOIUql260eVCSIMUrd5WgjY
+         +GpYIVfVvePMUmhYkvkT1o0AGpbnHfyTNjN1ZFAiNSBto9kJZJW3xqHauaSmXBWxOxlo
+         rINiyoQlHMS/gGmDujvisgk8WaJgXNBaKbfyRczEyQWAOV7mmXi7kLfxPt5NCz2a8A6d
+         zoE+048Nw6BlGD5ThUmW0JyZND4vPI5ZFOpBhYp+4uCOfMUTcCFM6P7YFbN2ZP+Y9nF3
+         thDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681986823; x=1684578823;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Km7fYpP6TW/v//SsQT00GnyneejX9uUDDOVhZE5n5xI=;
+        b=UkQMm3qToqO9hvVbrobWk7dmQR60LqHLSr4K/wNox940gK7hs+M5q3vvCoTYG0CdVK
+         FcuASj+Mgf4cWLVvZkfhmMimqfHX8w0h4jCm8+wkbO/BmVRaHR64uxvRAx/Mer+0zyyu
+         BM+JQBi5VeZ0UIenac6nh0hhseFS8FbPJg3XVPqBMGsreyA1fOjWuX4lc3zWTCZ5xhE+
+         lFDNfWzk984U3wQCYcEG2ck4Z64jzfFpzL2JPTNhMYUXmwtecyogqZ8tQQrZoMoIlElf
+         o/3tvvnYfdZqB97oqDwKkAZFHexBerMeiHaa1JaeNgpuVB8OwDjOqj56IpZa0/Kb3hYM
+         hSDQ==
+X-Gm-Message-State: AAQBX9e9HCdGr/2J3bg3L6GR1jYSe6PCHRVQc4If5UAtjeT1dfbnCvkG
+        2McisBSRlyBcPsI/mwUxAjJ1Fw==
+X-Google-Smtp-Source: AKy350bbg9I6ZBPxb4VonvL9ujTQrhDttBE9Pxlis6/qvpG/a5zlxV4mrfqhjY4IdvKCqIzishwMyQ==
+X-Received: by 2002:ac2:5444:0:b0:4eb:2529:cbb2 with SMTP id d4-20020ac25444000000b004eb2529cbb2mr445613lfn.49.1681986822894;
+        Thu, 20 Apr 2023 03:33:42 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id n1-20020a2e8781000000b002a7e9e4e9dcsm190172lji.114.2023.04.20.03.33.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 03:33:42 -0700 (PDT)
+Message-ID: <2c4d7635-4b59-fcbd-133e-984205379e11@linaro.org>
+Date:   Thu, 20 Apr 2023 13:33:41 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="221CyLf96APVzjPW"
-Content-Disposition: inline
-In-Reply-To: <20230420093457.18936-3-nylon.chen@sifive.com>
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 2/2] clk: qcom: Introduce SM8350 VIDEOCC
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230413-topic-lahaina_vidcc-v3-0-0e404765f945@linaro.org>
+ <20230413-topic-lahaina_vidcc-v3-2-0e404765f945@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230413-topic-lahaina_vidcc-v3-2-0e404765f945@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---221CyLf96APVzjPW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 19/04/2023 15:53, Konrad Dybcio wrote:
+> Add support for the Video Clock Controller found on the SM8350 SoC.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/clk/qcom/Kconfig          |   9 +
+>   drivers/clk/qcom/Makefile         |   1 +
+>   drivers/clk/qcom/videocc-sm8350.c | 552 ++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 562 insertions(+)
 
-On Thu, Apr 20, 2023 at 05:34:57PM +0800, Nylon Chen wrote:
-> The `frac` variable represents the pulse inactive time, and the result of
-> this algorithm is the pulse active time. Therefore, we must reverse the
-> result.
->=20
-> The reference is SiFive FU740-C000 Manual[0]
->=20
-> Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b=
-16acba_fu740-c000-manual-v1p6.pdf [0]
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Hmm, I don't recall reviewing or acking this patch. I do recalling doing
-it for 1/2 though:
-https://lore.kernel.org/linux-pwm/Y9len4GinXQ101xr@spud/
+-- 
+With best wishes
+Dmitry
 
-Please remove these from your next submission, I don't have any knowledge
-of this driver nor do I maintain it, thanks.
-
-> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-
-This SoB is new too AFAICT and looks a bit odd.
-Should there be a Co-developed-by for Vincent?
-
-Thanks,
-Conor.
-
---221CyLf96APVzjPW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEETyAAKCRB4tDGHoIJi
-0twCAQD+D5uuZoL6Zj8V7Jd9fPKoYRdogs5ET3HIn+Gcls1UdQEAzjD2zPc7ebgY
-pOORg2ws5wOTXnrM95U5x6F9kWjMzws=
-=E5F/
------END PGP SIGNATURE-----
-
---221CyLf96APVzjPW--
