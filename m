@@ -2,145 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 292866E8B77
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E83B6E8B7F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234087AbjDTHaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 03:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44510 "EHLO
+        id S229749AbjDTHfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233819AbjDTHap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:30:45 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C7BC6;
-        Thu, 20 Apr 2023 00:30:26 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6A92A75B;
-        Thu, 20 Apr 2023 09:30:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1681975817;
-        bh=LSTUdwSzih54Ne5MHSrVZTV2gSAf73YZM/ix1OR5sSM=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=eINLHip+7W7yspC8vrI6Q7upOEFVPAKsa5wFC3BBqLZAiiQvtAnllddOvVgD9oKDu
-         AeDmRW7Ngr4Auw3rvYLCIGkkHTnT7naDl5pMxjxx7ktoLAenkSgqm4OG2gX+FYNJEe
-         uBNocvBtFJAo/N02BDS5hJnB+IA/Q9pWdRLyrT/I=
-Message-ID: <b85a2198-dffd-6c1e-53ea-61bc4d14ce2a@ideasonboard.com>
-Date:   Thu, 20 Apr 2023 10:30:19 +0300
+        with ESMTP id S234115AbjDTHff (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:35:35 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D2335AF
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:35:34 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-54fbb713301so28750487b3.11
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:35:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681976133; x=1684568133;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oRrgwJWD+8vJRxL9WL2rW+4K8XNxrX77Zqnik++vJco=;
+        b=V9ZZeQCguzR5s2+a6zt5ViV/VcZ+MawMWiQ9nWrHrmXXlj9v/UaQS/O6PJRaT1tsOf
+         h5tuQEjKStlQgMKhkXFOOcFmS8B21iMRc/pb0uRoREw//QmWb6GXKizIyZkwfuZuGyvc
+         nRnyrpjDyZwNDguS9iq6WQnUktSEpOTpCGJrLDrolPM6fgKork4xnuTa9B2uFi9C0zcw
+         SB6x5/FLx4hgdeIH4iav6r2eq1lLbS9I+A0sikp4EO7/1dkNPVS4XMM5Q+cbDY+g+lEF
+         vG4BJH/hcBbMb1ApWBnTaaxzurUWTCqxIik+LXS0lzoFMzLweYAM3YZjRvawKEuA4FsE
+         rRsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681976133; x=1684568133;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oRrgwJWD+8vJRxL9WL2rW+4K8XNxrX77Zqnik++vJco=;
+        b=BmBGlypD5peTCtbpWa/M1p1bjsGg8LtHP7kq3o8X7Fhfi1TEngd2lJNOqP/DTTlTEa
+         7ijwFaauT7iiHhBXbgR7Bjv7gPBVDbbjiZpJL4pxMFU33et89ylpENLRchnKrbjgHikt
+         uJFERQTYqfNociIUn69rw5fvS2DuElR4R7b+CqCLCyOrl6r7SIc6+hMy93SG0ODwnn6/
+         rZtXJeRxg0LbdUKQQmb7S7CzkqXL4/cFVv9Pnh6n7hk3sLqe6eJxrni934rnuGCFoXS3
+         3t4F8m0FPfKnaHEGUKvjtB6fhQlWYhvsnBHWficOzVA8d8cZYy1TkVtfA7iPXt0RLNHf
+         xWiQ==
+X-Gm-Message-State: AAQBX9efac9i/QzzVpDzxZmY7wQOndnHSKim+C0ZxhybJW6YO8tFu34K
+        6J1kiuUBN9tp2j3/CA+DEJb8Jak5Q/QEK/ltzbvyVA==
+X-Google-Smtp-Source: AKy350YaQVz1wjGKUyNZHlXqYFpw2kdjS+Sgqe2y5mQGrXyThLkKM3iPTeHdsD8UdaeJzMrBxzAyirCqaJIDymtnh3A=
+X-Received: by 2002:a81:61c4:0:b0:555:dc97:8e76 with SMTP id
+ v187-20020a8161c4000000b00555dc978e76mr172577ywb.44.1681976133614; Thu, 20
+ Apr 2023 00:35:33 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v10 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link III
- Deserializer
-To:     Wolfram Sang <wsa@kernel.org>, linux-media@vger.kernel.org,
+References: <20230416131632.31673-1-aweber.kernel@gmail.com> <20230416131632.31673-3-aweber.kernel@gmail.com>
+In-Reply-To: <20230416131632.31673-3-aweber.kernel@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 20 Apr 2023 09:35:22 +0200
+Message-ID: <CACRpkdaTmHASz25uzDoeZBG2=e7XRLK67DENfAtCbaFp+AYnYA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] drm/panel: Add Samsung S6D7AA0 panel controller driver
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
- <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
- <ZD6VwpRya6SGBAt5@shikoro>
-Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <ZD6VwpRya6SGBAt5@shikoro>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 16:06, Wolfram Sang wrote:
-> 
->> +  i2c-alias-pool:
->> +    $ref: /schemas/types.yaml#/definitions/uint16-array
->> +    description:
->> +      I2C alias pool is a pool of I2C addresses on the main I2C bus that can be
->> +      used to access the remote peripherals on the serializer's I2C bus. The
->> +      addresses must be available, not used by any other peripheral. Each
->> +      remote peripheral is assigned an alias from the pool, and transactions to
->> +      that address will be forwarded to the remote peripheral, with the address
->> +      translated to the remote peripheral's real address. This property is not
->> +      needed if there are no I2C addressable remote peripherals.
-> 
-> After some initial discussion with Tomi on IRC, this question is
-> probably more for Luca:
-> 
-> Why is "i2c-alias-pool" in the drivers binding and not a regular i2c
+Hi Artur,
 
-Where should be the binding documented? A new 
-Documentation/devicetree/bindings/i2c/i2c-atr.yaml file that only 
-contains the i2c-alias-pool?
+thanks for your patch!
 
-> binding? Same question for the implementation of the alias-pool
-> handling. Shouldn't this be in the i2c-atr library? I'd think managing
-> the list of aliases would look all the same in the drivers otherwise?
+On Sun, Apr 16, 2023 at 3:16=E2=80=AFPM Artur Weber <aweber.kernel@gmail.co=
+m> wrote:
 
-I think this is fine, but I also think that we need to keep the door 
-open to other kinds of alias management. We only have a single user for 
-this for now. A driver/device might have other requirements for its 
-i2c-atr. Say, a pool per link, or perhaps runtime events may affect the 
-pool.
+> Initial driver for S6D7AA0-controlled panels, currently only for the
+> LSL080AL02 panel used in the Samsung Galaxy Tab 3 8.0 family of tablets.
+>
+> It should be possible to extend this driver to work with other panels
+> using this IC.
+>
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+> Changed in v2:
+>  - Removed unused panel_name property from desc struct
 
-If we dictate the use of i2c-alias-pool property and the i2c-atr will 
-automatically get an alias from that pool, i2c-atr won't be usable for 
-the hypothetical drivers that have other needs.
+Overall this driver looks very good. I could merge it once the DT bindings
+are ACKed by the DT maintainers and some minor stuff fixed.
 
-With that in mind the current binding and i2c-atr.c is safe, as the 
-i2c-atr.c isn't even aware of the pool.
+Some comments below:
 
-We can easily re-arrange the code later if and when we get more users 
-and understand their needs. But the bindings are important to get 
-right(-ish) now. So:
+> +/* Manufacturer command set */
+> +#define CMD_BL_CTL             0xc3
+> +#define CMD_OTP_RELOAD         0xd0
+> +#define CMD_PASSWD1            0xf0
+> +#define CMD_PASSWD2            0xf1
+> +#define CMD_PASSWD3            0xfc
 
-- Is the "i2c-alias-pool" property a driver property or a common 
-property for all drivers using i2c-atr?
+Some drivers prefix these commands with "MCS" such as
+MCS_BL_CTL.
 
-- It the property mandatory or optional? It must be optional, as a setup 
-(meaning, e.g., what cameras you happen to connect) might not have any 
-i2c addressable remote devices, in which case the driver doesn't even 
-need i2c-atr (even if it supports i2c-atr). But is it optional even in 
-the case where the driver needs i2c-atr? In other words, do we allow 
-some other way to manage the aliases?
+MCS =3D Manufacturer Command Set (I think)
 
-How does this sound:
+Some just name the identifers after the panel such as
+s6d27a1 which has S6D27A1_RESCTL etc.
 
-- If "i2c-alias-pool" is present in the DT data of the device passed to 
-i2c_atr_new(), i2c_atr_new() will parse the property. i2c-atr.c will 
-export functions to get a new alias and to release a previously reserved 
-alias. The driver can use those functions in attach/detach_client() 
-callbacks. In other words, the alias pool management wouldn't be fully 
-automatic inside the i2c-atr, but it would provide helpers for the 
-driver to do the common work.
+CMD seems a bit general to me and may be mistaken for
+the actual DCS commands.
 
-- If "i2c-alias-pool" is not present, i2c-atr.c will behave as it does 
-now, and expects the driver to manage the aliases.
+> +struct s6d7aa0 {
+> +       struct drm_panel panel;
+> +       struct mipi_dsi_device *dsi;
+> +       struct gpio_desc *reset_gpio;
+> +       struct regulator *enable_supply;
+> +       const struct s6d7aa0_panel_desc *desc;
+> +       bool prepared;
 
-Also, looking at the ub960 code... I don't think this will simplify the 
-attach/detach_client callbacks much. Most of the code in those functions 
-is about managing the UB960's registers related to ATR, not managing the 
-address pool itself. However, it will remove the probe time 
-"i2c-alias-pool" parsing from the driver, which is nice.
+Skip this state variable, the core keeps track of whether the
+panel is enabled or not.
 
-  Tomi
+> +static void s6d7aa0_reset(struct s6d7aa0 *ctx)
+> +{
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +       msleep(50);
 
+This first de-assertion is unnecessary isn't it?
+
+The reset line will just be asserted longer if it is already asserted.
+
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +       msleep(50);
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +       msleep(50);
+> +}
+
+(...)
+
+> +static int s6d7aa0_on(struct s6d7aa0 *ctx)
+> +{
+> +       struct mipi_dsi_device *dsi =3D ctx->dsi;
+> +       struct device *dev =3D &dsi->dev;
+> +       int ret;
+> +
+> +       dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
+
+(...)
+
+> +static int s6d7aa0_off(struct s6d7aa0 *ctx)
+> +{
+> +       struct mipi_dsi_device *dsi =3D ctx->dsi;
+> +       struct device *dev =3D &dsi->dev;
+> +       int ret;
+> +
+> +       dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
+
+I haven't seen this mode flag MIPI_DSI_MODE_LPM set and
+masked in other DSI panel drivers! Is this something we should
+fix everywhere then? Or even something the core should be
+doing?
+
+Yours,
+Linus Walleij
