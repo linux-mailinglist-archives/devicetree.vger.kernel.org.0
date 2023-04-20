@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A628F6E90A8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D282C6E90AC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:46:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234809AbjDTKpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
+        id S234695AbjDTKqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:46:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234022AbjDTKpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:45:30 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B49C5B95
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:44:41 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4edb93139ddso453622e87.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:44:41 -0700 (PDT)
+        with ESMTP id S234780AbjDTKph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:45:37 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5AB25FDE
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:44:49 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id bz21so2204574ljb.11
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:44:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681987478; x=1684579478;
+        d=linaro.org; s=google; t=1681987485; x=1684579485;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3XNpiIL0WrRgC2bDtAggRhXy91Dz9Y4MTH2vqhKCM0s=;
-        b=q6+rX/LhWY9b89ZQ1jZZgV4E2JEbxql5ZB1Z6gbCACBI3mUmnwLFkKxsSywSoRo1oj
-         LH2Q+4lpNDDy0oogUZyr4chmXygXhKZkiZxgtxry2wMm1ftBI+dZ/EKe+mEvKvjSEEPq
-         kopzdba/J9DJk/DZ/XqTAsM0QvIOa1RCWUj2hZ9mwLx1VO7MHwvh+wNx2pUnvZgH9mPl
-         7NCmj6gDGpwC7Y2sQ8zQ55lh4LH3a8RBf1reoy+pcr81PXpVy3ILB2zQGZoKzxsj3OoB
-         c1yfBkNBvb02ZIc0OsgX6XQzLd8Qnaeg3rkkcZp1dPSW/k3UcdQah+YtBjH/6sIQ5Y8T
-         tiJg==
+        bh=NDBPC0wFbIKsQZoWPfEGX6WRQ9xiDvkTL2ZeFIPvDFU=;
+        b=yx5Px9buDqqDr8xmNx8GdBHiGDEU/l1BTjG92tiK7sqhS55CarAwXYM7qe7Lgs6WCD
+         Y6bnL97yQejv5aU+ppQYqhfYUU5sAz8Soo2rZxleh4sz74IU6hbyY1ns14btT9Bq8Ubd
+         kKNJWRp4/azZ/OVnU4J065sBnfvdjETg201seJJ0IxFwYZOFCCw2EBocrMa9xw28rOio
+         8Ymh7taR/bm8SqRD2ZW8jAwce2YcGzJsVYkfeKwFCCfKHegeeh52pAWpEbZFu/4kqCOu
+         HUg1Y98ImyD3FDQwA56OkQEkTCwtOtcCvxE3HXP8cQUJWWhRNyykHevafrqXbNK1WClB
+         fHBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681987478; x=1684579478;
+        d=1e100.net; s=20221208; t=1681987485; x=1684579485;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3XNpiIL0WrRgC2bDtAggRhXy91Dz9Y4MTH2vqhKCM0s=;
-        b=Z/OWIhGPZ0d86hbu1I4lqVIKc+yAqPbqWz73Pz8lyv5ea2ZuoogjCBydmkIvSrrSAa
-         F1mgf8fh02ymT+08BwXQ7PQ8tiZTJmCg7NAOJr2QjELwXE3cpMaciNG4TxU9USDxnMPw
-         6+tp2IAK879u9N+kZvP15dsCxfc1NQveKhuwHO+pK8vcT7sDExufA62BSckFdwmhRUFA
-         7BmCJ7H0iKcPjPqyczAi8ak+MvMA75iX0RLb6BEN0rqtQSnWhIfS7W1K9S+iMGsTO3zR
-         fOgG7XnHQzb4OjynleadwUeHfZdipwpZULIav0+glFfw0u10Z4SbDGTJTFdWM/OU/sad
-         nd7A==
-X-Gm-Message-State: AAQBX9fwZNjbilCRXM5fzDImuYRoNSvsR6XIS1oWiQvDFI3qJ0N+9ypA
-        T2sSiGEjagEu4axbcc8s9yE6KQ==
-X-Google-Smtp-Source: AKy350YwOzxQU9lPgHKHy79R0GAjFPaMgSJcop6YS2qFvLzrhDS+xLG/6gHC2jQp3t5B8SrCSAi1Ow==
-X-Received: by 2002:ac2:4851:0:b0:4d8:6540:a72f with SMTP id 17-20020ac24851000000b004d86540a72fmr333238lfy.46.1681987478341;
-        Thu, 20 Apr 2023 03:44:38 -0700 (PDT)
+        bh=NDBPC0wFbIKsQZoWPfEGX6WRQ9xiDvkTL2ZeFIPvDFU=;
+        b=fSmV33BxM4er4uUR4HPDXkmuyBfI6erPK6BB2PDfyCXfg/ytOcqQaXK8k/xPV6y5SD
+         J4xv7uFhVCBpFMKLJ6ukhSojAtkeRbsgwuWUgyzP46RtbohQRZB3XAgNTMG6oFmaJ0Kk
+         RaeRboOka5ZOJKVqxn9Cvu+WkdwsQScWVa2Q29yGNygHHa4wB47TxER8lob5udwgKQuY
+         Ox5HoGJS08JCHp28d7/EB0VFmAurrxE6K2fFjjvGDzOqeqJpwN8wKfg0Mv9fJHl/GBYb
+         pOAaXc5Qu6KnQhqnThXk3tDlLdSRRyIWvUg+Xowqy4DYfUzwtxljiVHzS17kHbIU8ydQ
+         bFMQ==
+X-Gm-Message-State: AAQBX9c4HTfN7GQuzc4fsAVT2vz1Avt9p5IRpPa5vKLiiQBVQslNq2Sa
+        f0gHzsw8zyCxNhXPDZ+2gKMHDA==
+X-Google-Smtp-Source: AKy350ZTq7qKInAOLfLcX8kHRmTOTrLc9qohA100GDKDhXYRx4ykIgV2vU4JhA69z+cJ1l+Dmcpz6g==
+X-Received: by 2002:a2e:9c1a:0:b0:2a9:f1bd:5711 with SMTP id s26-20020a2e9c1a000000b002a9f1bd5711mr335955lji.27.1681987485523;
+        Thu, 20 Apr 2023 03:44:45 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id n24-20020a195518000000b004db513b017esm178849lfe.45.2023.04.20.03.44.36
+        by smtp.gmail.com with ESMTPSA id y20-20020a2e7d14000000b002a9ed7f6f90sm194087ljc.73.2023.04.20.03.44.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:44:37 -0700 (PDT)
-Message-ID: <00c43e01-7034-3ade-947e-e2a6451d64b2@linaro.org>
-Date:   Thu, 20 Apr 2023 12:44:36 +0200
+        Thu, 20 Apr 2023 03:44:45 -0700 (PDT)
+Message-ID: <aecfb100-9ed8-8d41-d6ec-dfe192fcb0a6@linaro.org>
+Date:   Thu, 20 Apr 2023 12:44:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 3/7] arm64: dts: qcom: msm8994: add unit address to soc
+Subject: Re: [PATCH 4/7] arm64: dts: qcom: msm8996: add unit address to soc
  node
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,14 +65,14 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230420063610.11068-1-krzysztof.kozlowski@linaro.org>
- <20230420063610.11068-3-krzysztof.kozlowski@linaro.org>
+ <20230420063610.11068-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230420063610.11068-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420063610.11068-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,19 +92,18 @@ On 20.04.2023 08:36, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8994.dtsi | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> index 4041f3a690fe..184bdde5c78d 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> @@ -340,8 +340,7 @@ modem_smp2p_in: slave-kernel {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index f0114e4fdd37..8a40c4b0f94c 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -604,7 +604,7 @@ slpi_smp2p_in: slave-kernel {
 >  		};
 >  	};
 >  
 > -	soc: soc {
-> -
 > +	soc: soc@0 {
 >  		#address-cells = <1>;
 >  		#size-cells = <1>;
