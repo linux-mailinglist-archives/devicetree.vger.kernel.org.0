@@ -2,151 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 539CF6E91CD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 13:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87DC6E9252
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 13:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235238AbjDTLF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 07:05:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55154 "EHLO
+        id S234064AbjDTLVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 07:21:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235358AbjDTLEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 07:04:53 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4501B4;
-        Thu, 20 Apr 2023 04:03:29 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id E4AFE24E2AB;
-        Thu, 20 Apr 2023 19:01:00 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
- 2023 19:01:00 +0800
-Received: from ubuntu.localdomain (113.72.144.253) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
- 2023 19:00:59 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S234240AbjDTLU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 07:20:58 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB0EAF30
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 04:19:02 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id n31so465525wms.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 04:19:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1681989484; x=1684581484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RziL4H96Ec3j032prmOzYzjQ6nh/ZxH/lsLBU5oyee0=;
+        b=aWaeNs6T1pRUJx87FY4CL5DqfD3UrRFGn9M6V1V3WjPfy7SkOPPEXzX5mnBI7VI6SW
+         RdGHP6TAeHOb7kUKZyeBvkJrKIbLpEDG4mb2cCqtRi134fu3YHR1hQJqM4MnoNIixTS6
+         0PPKT60S8CUzPiTQdZWtJpiGCXYGlLM1vY4FTIXXwaE/F4iZoWqxP0ZLsNCOeaxEA7eX
+         eqP2kOj53eQ/CCNjGp/yPPUauVDlmT3U07+mR3ONCVO7NoPGgAtXqQ4AYP8gcRYnfRgY
+         K0PCR3b0xTkGlbXmdkbnezu8TLc83siwgYOvfVgEma9q/ri7PsN1FfMxnkhWtFqomGBW
+         lD3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681989484; x=1684581484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RziL4H96Ec3j032prmOzYzjQ6nh/ZxH/lsLBU5oyee0=;
+        b=RHGjgT3qY/pVVM94rqCbOWTYy0UcO+r049r1WwMYfb+d45iCIt9EU+d7raW2Uc7wz2
+         BAnvp1vJJS0JdeynxQhoFUPjUCpL1mKsymxoWdKIDmYe+daaBGw6HINWx5uxf4H7IGts
+         6GHbOOCkSD7bvPM4k13fysCRnHzRMVW9oy3k3pJyJXrv495ZpLZiyL1Wc0CyqtXQzmI9
+         w8RHs+BTD3aMwVIAQCjrJEP5d33nrY7FOkajFqIiVH3EF4CcA8OqK5uFRyfkbcm7HhRd
+         vBTqbVDepiISitE8ti/h46KhajTPvQx/mlO7jWXNkq4gu9r+freVXKo6BUqN43TTM/Ni
+         MWMg==
+X-Gm-Message-State: AAQBX9e6d016k1P0+CUHoctuK8oXBdh5rXzx5uzXrMu35Fr+K7Y1/RhD
+        RwRU7auXkqTWdf4E1XCBUg8M99cTyd8o7jS1sSixWQ==
+X-Google-Smtp-Source: AKy350Y3dCHEWDy4Lzb3VbMaIMPpHjb7SfC/YYkzk5z5v/qCJqge+HiIoRmlD70/Msrwk/t0Rjd/3g==
+X-Received: by 2002:a1c:7315:0:b0:3f1:70cf:a2d9 with SMTP id d21-20020a1c7315000000b003f170cfa2d9mr991160wmb.9.1681989484048;
+        Thu, 20 Apr 2023 04:18:04 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id h3-20020a5d5043000000b002c70ce264bfsm1680980wrt.76.2023.04.20.04.18.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Apr 2023 04:18:03 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Minda Chen" <minda.chen@starfivetech.com>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: [PATCH v5 7/7] riscv: dts: starfive: Add USB dts configuration for JH7110
-Date:   Thu, 20 Apr 2023 19:00:52 +0800
-Message-ID: <20230420110052.3182-8-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230420110052.3182-1-minda.chen@starfivetech.com>
-References: <20230420110052.3182-1-minda.chen@starfivetech.com>
+        Naresh Solanki <Naresh.Solanki@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
+Date:   Thu, 20 Apr 2023 13:17:57 +0200
+Message-Id: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.144.253]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB wrapper layer and Cadence USB3 controller dts
-configuration for StarFive JH7110 SoC and VisionFive2
-Board.
-USB controller connect to PHY, The PHY dts configuration
-are also added.
+From: Marcello Sylvester Bauer <sylv@sylv.io>
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+Add Devicetree binding documentation for Maxim MAX6639 temperature
+monitor with PWM fan-speed controller.
+
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+...
+Changes in V2:
+- Update subject
+- Drop blank lines
 ---
- .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 44 +++++++++++++++++++
- 2 files changed, 51 insertions(+)
+ .../bindings/hwmon/maxim,max6639.yaml         | 52 +++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 1155b97b593d..fa97ebfd93ad 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -221,3 +221,10 @@
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
+diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+new file mode 100644
+index 000000000000..1aaedfd7cee0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&usb0 {
-+	phys = <&usbphy0>;
-+	phy-names = "usb2";
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 29cd798b6732..eee395e19cdb 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -366,6 +366,50 @@
- 			status = "disabled";
- 		};
- 
-+		usb0: usb@10100000 {
-+			compatible = "starfive,jh7110-usb";
-+			reg = <0x0 0x10100000 0x0 0x10000>,
-+			      <0x0 0x10110000 0x0 0x10000>,
-+			      <0x0 0x10120000 0x0 0x10000>;
-+			reg-names = "otg", "xhci", "dev";
-+			interrupts = <100>, <108>, <110>;
-+			interrupt-names = "host", "peripheral", "otg";
-+			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-+				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-+				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-+			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-+			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-+				 <&stgcrg JH7110_STGRST_USB0_APB>,
-+				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-+				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-+			reset-names = "pwrup", "apb", "axi", "utmi_apb";
-+			starfive,stg-syscon = <&stg_syscon 0x4>;
-+			status = "disabled";
-+		};
++title: Maxim max6639
 +
-+		usbphy0: phy@10200000 {
-+			compatible = "starfive,jh7110-usb-phy";
-+			reg = <0x0 0x10200000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
-+			clock-names = "125m", "app_125m";
-+			#phy-cells = <0>;
-+		};
++maintainers:
++  - Naresh Solanki <Naresh.Solanki@9elements.com>
 +
-+		pciephy0: phy@10210000 {
-+			compatible = "starfive,jh7110-pcie-phy";
-+			reg = <0x0 0x10210000 0x0 0x10000>;
-+			#phy-cells = <0>;
-+		};
++description: |
++  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
++  fan-speed controller.  It monitors its own temperature and one external
++  diode-connected transistor or the temperatures of two external diode-connected
++  transistors, typically available in CPUs, FPGAs, or GPUs.
 +
-+		pciephy1: phy@10220000 {
-+			compatible = "starfive,jh7110-pcie-phy";
-+			reg = <0x0 0x10220000 0x0 0x10000>;
-+			#phy-cells = <0>;
-+		};
++  Datasheets:
++    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
 +
- 		stgcrg: clock-controller@10230000 {
- 			compatible = "starfive,jh7110-stgcrg";
- 			reg = <0x0 0x10230000 0x0 0x10000>;
++properties:
++  compatible:
++    enum:
++      - maxim,max6639
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      fan-controller@10 {
++        compatible = "maxim,max6639";
++        reg = <0x10>;
++      };
++    };
++...
+
+base-commit: b8610e0fe08f1476895f141be60f8dd842f0adac
 -- 
-2.17.1
+2.39.1
 
