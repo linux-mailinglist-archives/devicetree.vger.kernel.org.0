@@ -2,63 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 713036E8EC6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D904A6E8ED5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233683AbjDTKBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44246 "EHLO
+        id S234202AbjDTKEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbjDTKBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:01:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC811C0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:01:31 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ppR6F-0003P8-0I; Thu, 20 Apr 2023 12:01:11 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
+        with ESMTP id S234296AbjDTKEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:04:44 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DCD210E3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:04:42 -0700 (PDT)
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id C903A1B3D36;
-        Thu, 20 Apr 2023 10:01:07 +0000 (UTC)
-Date:   Thu, 20 Apr 2023 12:01:07 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: can: Make interrupt attributes
- optional for MCAN
-Message-ID: <20230420-zoom-demystify-c31d6bf25295-mkl@pengutronix.de>
-References: <20230419223323.20384-1-jm@ti.com>
- <20230419223323.20384-3-jm@ti.com>
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 268C34131F
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:04:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1681985080;
+        bh=MPSX/AfZygcMhOCNuxX1ZecGolc5hbcZ2NhciybSDRM=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=b6v/jqmA6ujYWkGJoyz6sY7E2xd9+810N4cyaOlOReZ/QBOnWRDLRSdYgE/Td26hL
+         aSyFx1T5kmV7XDKlK3w8O/bAt/VGft8A9gM6euaY2O5k3cXq+zQkqDonsv6pGebYTx
+         xNP8YYZk4MRr07mmmYUynHSnIziIH6av3NRg5QxkPJRnTvZ2rOAq4tlO7kYvUnPl7y
+         m0ApYR7OdwJ+8pywj7+WozFoQee6GE3Q3lsb0Tfh4RLdbbGJeeGq41tf7JTm/Nsy1V
+         T0ixv/5VgWr4g8V2GWygmcqyuimp9ipPfTiK1xwvnmLC724rxa+T349v462sCkDjxx
+         mVfWF9whStzSA==
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-74d0b039ecfso32776585a.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:04:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681985079; x=1684577079;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MPSX/AfZygcMhOCNuxX1ZecGolc5hbcZ2NhciybSDRM=;
+        b=N4Nw1EzGTKWeiifp59a5yLLA2MvPtgwN+oXhNbG9l3Y4tkIEo3j7lNWVAJvUELtdDX
+         d1l6Z4ORicS07tXz7rzP4rapESwxZuXMMYgxC8PB7KZjK0zfMz8aIof38drnxWQeoZjO
+         m/m9dlAW1mRaZfSpiz/1hWWupxRLqgKrjXBHDb4lfuXbGXflLkjCJxiZKozGB7XdZioy
+         skBC8r00VQIQhnu2LYhwJ61DMT0HnFTF2SxDnsaAOJg3vDMpQqJnxlZ+vQtTEh7EpLvw
+         2SPZPc7c6FOBMafHqp6ai+SVeES0xwthfD9v1xsD/28UIza2uBOL/T7urbRAaJB8ow7O
+         niuw==
+X-Gm-Message-State: AAQBX9dAXGMYPdqHsEbxE14KCftvg8CAiLKcUfXeJ/zdzzaMNiwZAo1O
+        k06d3TuVF9ENeKo11/9KAIuAWsttlFVPqLOinlMTLoG911+N6DXC8awV36h+nwzEQrNhl5eUJE8
+        Tu3c57PilHRFQMKstQprO/QYF/WZ6NI/5rqSfakL6XqsCSOjx23IkYIM=
+X-Received: by 2002:ac8:5792:0:b0:3ef:5733:29e4 with SMTP id v18-20020ac85792000000b003ef573329e4mr667777qta.64.1681985079082;
+        Thu, 20 Apr 2023 03:04:39 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YZOJhhJ2/DG8mPZrGpHZG2bUew/6AA3c59/iwkpF1lN4P7gKE74NKz6hnyMtvTbz3kA9sQrlj/oL+Xnlk50P8=
+X-Received: by 2002:ac8:5792:0:b0:3ef:5733:29e4 with SMTP id
+ v18-20020ac85792000000b003ef573329e4mr667740qta.64.1681985078844; Thu, 20 Apr
+ 2023 03:04:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="o65i4erlcrvj4ggl"
-Content-Disposition: inline
-In-Reply-To: <20230419223323.20384-3-jm@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20230420093457.18936-1-nylon.chen@sifive.com> <20230420093457.18936-3-nylon.chen@sifive.com>
+In-Reply-To: <20230420093457.18936-3-nylon.chen@sifive.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 20 Apr 2023 12:04:22 +0200
+Message-ID: <CAJM55Z-smXpgL+QyTSeAWt=B-RS_qtbrFZtJpP-cQS0gsQnDSw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED algorithm
+To:     Nylon Chen <nylon.chen@sifive.com>
+Cc:     aou@eecs.berkeley.edu, conor@kernel.org, geert+renesas@glider.be,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        nylon7717@gmail.com, zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,111 +81,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---o65i4erlcrvj4ggl
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 19.04.2023 17:33:21, Judith Mendez wrote:
-> For MCAN, remove interrupt and interrupt names from the required
-> section.
->=20
-> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-> routed to A53 Linux, instead they will use software interrupt
-> by hrtimer. Make interrupt attributes optional in MCAN node
-> by removing from required section.
->=20
-> Signed-off-by: Judith Mendez <jm@ti.com>
-
-This series basically adds polling support to the driver, which is
-needed due to HW limitations.
-
-The proposed logic in the driver is to use polling if
-platform_get_irq_byname() fails (due to whatever reason) use polling
-with a hard-coded interval.
-
-In the kernel I've found the following properties that describe the
-polling interval:
-
-bindings/input/input.yaml:
-
-|   poll-interval:
-|     description: Poll interval time in milliseconds.
-|     $ref: /schemas/types.yaml#/definitions/uint32
-
-
-bindings/thermal/thermal-zones.yaml:
-
-|       polling-delay:
-|         $ref: /schemas/types.yaml#/definitions/uint32
-|         description:
-|           The maximum number of milliseconds to wait between polls when
-|           checking this thermal zone. Setting this to 0 disables the poll=
-ing
-|           timers setup by the thermal framework and assumes that the ther=
-mal
-|           sensors in this zone support interrupts.
-
-bindings/regulator/dlg,da9121.yaml
-
-|   dlg,irq-polling-delay-passive-ms:
-|     minimum: 1000
-|     maximum: 10000
-|     description: |
-|       Specify the polling period, measured in milliseconds, between inter=
-rupt status
-|       update checks. Range 1000-10000 ms.
-
-=46rom my point of view the poll-interval from the input subsystem looks
-good. Any objections to use it to specify the polling interval for
-IRQ-less devices, too?
-
+On Thu, 20 Apr 2023 at 11:35, Nylon Chen <nylon.chen@sifive.com> wrote:
+>
+> The `frac` variable represents the pulse inactive time, and the result of
+> this algorithm is the pulse active time. Therefore, we must reverse the
+> result.
+>
+> The reference is SiFive FU740-C000 Manual[0]
+>
+> Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf [0]
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
 > ---
->  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 2 --
->  1 file changed, 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b=
-/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> index 67879aab623b..43f1aa9addc0 100644
-> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> @@ -122,8 +122,6 @@ required:
->    - compatible
->    - reg
->    - reg-names
-> -  - interrupts
-> -  - interrupt-names
->    - clocks
->    - clock-names
->    - bosch,mram-cfg
-> --=20
-> 2.17.1
->=20
->=20
+>  drivers/pwm/pwm-sifive.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
+> index 393a4b97fc19..d5d5f36da297 100644
+> --- a/drivers/pwm/pwm-sifive.c
+> +++ b/drivers/pwm/pwm-sifive.c
+> @@ -132,13 +132,13 @@ static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  {
+>         struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
+>         struct pwm_state cur_state;
+> -       unsigned int duty_cycle;
+> +       unsigned int duty_cycle, period;
+>         unsigned long long num;
+>         bool enabled;
+>         int ret = 0;
+>         u32 frac;
+>
+> -       if (state->polarity != PWM_POLARITY_INVERSED)
+> +       if (state->polarity != PWM_POLARITY_NORMAL && state->polarity != PWM_POLARITY_INVERSED)
+>                 return -EINVAL;
+>
+>         cur_state = pwm->state;
+> @@ -154,10 +154,13 @@ static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>          * calculating the register values first and then writing them
+>          * consecutively
+>          */
+> +       period = max(state->period, ddata->approx_period);
 
-regards,
-Marc
+Hi Nylon,
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+I don't understand this patch. You introduce this new variable,
+period, and set it here but you never seem to use it. If you planned
+to use it instead of state->period below, why should it be the max of
+the old period and what is requested? What happens if the consumer
+wants to lower the period?
 
---o65i4erlcrvj4ggl
-Content-Type: application/pgp-signature; name="signature.asc"
+Also above you now allow both PWM_POLARITY_NORMAL and
+PWM_POLARITY_INVERSED but you treat both cases the same.
 
------BEGIN PGP SIGNATURE-----
+/Emil
 
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRBDWAACgkQvlAcSiqK
-BOgXTQf/a2tgk8HJj9aGY01UCY7qxZI15vq+GQKZTz2NdrdOQvE7dor75W3b4Nsr
-XXfwCNcz+sZYKc4AyM82uELkd1hY9nZ4GDyv2Vy/3+z3lTqY9jU0poapxCxnY4CQ
-zNT05yiZA8THyUWTlAOvLICvCDRw4BswbMigvavw/0uWls6KbegRsP4+aMcs9snd
-vhDNK8Ab/vmpKjVxVo/Vkaf/B8bq7UkmyOXsbwYEeTHqjfTGQwZcWvg0YZ1svvyS
-haxZ3+T5AccASnr2aztH8Ke6UZvHczoQTlRJpByUo3soZGy4BXaOdk18WjT+lzpZ
-vdy5RYmDDQiJ1DK+sQaI/oDEWGAeUQ==
-=LuRH
------END PGP SIGNATURE-----
-
---o65i4erlcrvj4ggl--
+>         num = (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
+>         frac = DIV64_U64_ROUND_CLOSEST(num, state->period);
+> -       /* The hardware cannot generate a 100% duty cycle */
+>         frac = min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
+> +       /* The hardware cannot generate a 100% duty cycle */
+> +       frac = (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
+> +
+>
+>         mutex_lock(&ddata->lock);
+>         if (state->period != ddata->approx_period) {
+> --
+> 2.40.0
+>
