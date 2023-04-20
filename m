@@ -2,261 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F54C6E9DA1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBE076E9DBC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:16:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbjDTVE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 17:04:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40938 "EHLO
+        id S232678AbjDTVQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 17:16:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbjDTVEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 17:04:22 -0400
-Received: from smtprelay06.ispgateway.de (smtprelay06.ispgateway.de [80.67.18.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BB544AF;
-        Thu, 20 Apr 2023 14:04:11 -0700 (PDT)
-Received: from [92.206.161.29] (helo=note-book.lan)
-        by smtprelay06.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <git@apitzsch.eu>)
-        id 1ppbRm-0006yb-L2; Thu, 20 Apr 2023 23:04:06 +0200
-From:   =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date:   Thu, 20 Apr 2023 23:03:51 +0200
-Subject: [PATCH RESEND v2 2/2] Input: atmel_mxt_ts - support capacitive
- keys
+        with ESMTP id S232584AbjDTVQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 17:16:38 -0400
+Received: from sonic303-21.consmr.mail.ir2.yahoo.com (sonic303-21.consmr.mail.ir2.yahoo.com [77.238.178.202])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C9A5FE6
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:16:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1682025392; bh=2cXD0H+8C9TOtE0twf5ja4IdtSpWhQNZkSsdMMaF/VM=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=OjucL3hrhsflPim8zDNL4lf0T/RsaUHpe6vPDRY5WHffHd6aSpqTTWxkZxITfvNCG0TKyrtGnrJ3pYFTffv365B/Qys04SYqdLIBtBTdAkvMFFoBf+n3LMhINkPZ5eX173GsM95slPOwbquDf1H0XWQuxcObzt5Gpu7QFj9B+lYKAW9LtENAGlCfVCSAgv0tmkhtMxEP7wdR1drgvUjNysT5wE/Zmu5V0g2SSZrP8iyp3a/cS4A8IX3ubwK0QvjksYrEDe0MNyxNlQ1FlysoS4f1OP1QHGozKGNbSCHoqqFYYxo8mQzoHTWczCgiKgxnUaajVtCoZRFgKg1lrCsmig==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1682025392; bh=HH7xdCwOqAI5AFLL3G6I8A7z31zNEqVCCfdhdFiTqZu=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=WcYHuItzaBR1AGDmSm/ptmUdyou3mb+HfNsbtvKkJLmwJP2HcXVhk73T6+DREEgRi8/Bo81FnWl+EaFxsAngSw+BBSg19L0vtc4SI5W4t6mWzd8MqL/5hx24UgrUmq3M4eZ9vsXBnlKV/g4WUjHROqq39GP9AZkCbuqAsS2BLAh9e0/9LNqYLVQSVkCWNsWpcim0//TPx0B7wKIhDTJzZ2m5qLeT+Zkdqjxh1CkXVBRE2CkTKaq0wZnQiX+H4gZxT5b/oE3hCoy/SlfyAO/uUAVBLwc7D5R79mMsk3lEANTM+xTXZ5d6ZZ1NhbzOOotAC6k7mOp00w2RLw+7qzSzLg==
+X-YMail-OSG: qoECEQ8VM1lXh.TorHFnYRdwnJ81IpfmNe_v9Ur1yauaTEoKvXltaIyhD89XHhU
+ GKFHpbcMOX8KCZ31bumc7TU2ndZI_L_zWasrJMLEIdf5N5obvAtVTJlTZe1MVdNnAJgp4BiufGSs
+ FZKf3QdOSMUJtLn95UT7jSzjZvk0W0t33E4oO_qIvsVvDmq_3TrRNQmGvQpB5UifT2JElP.X3rpx
+ 2wOsBFFGs.AUWsMGyX0lBFFzdcORln6qzuI3U_eRJcEg25KhdWXg5jFV0hEtt97zemQx9JcbQ9AX
+ z2bXNpEQ1fUWf0YcLCG1p49N_5nULlKhMZM9CMs497zJZombO7c4JYjIx.enVAPB1X2zAKEFscFD
+ AkaZXQ4E0SYqp04rdqshzbbBi0IFSjUdc6sumTG6OtuqSYZ3.iy9L4zIL4_7yuIOE1fw.LEl9DIf
+ 0NtANVk1ul9Pc9lcQMBGFEsN8IZL3iQN5Xb5WVGeYkj7nCrKrMD5vPvfLufEAbtT8tdCYg1M3sjF
+ FgJxPgawictFqgCwQX5diKmUNe5w5iS6H5_RU64mTP4Mtg5j7ao_1.WIydY5WId_0TkZCx9yFPuX
+ m6BLBJ_Th3wVrEK1xClA58KbAKEeIv.MV8gYzYWRCZXh7iO0sgQ725.unebLCzs2yhHus52DI5.h
+ XHy37PqG8vQa_5UWSUkqhUyYLXjWCGBRIBZ4gCw4v9scGLLjdrG1leK91pWtXXTpKeyEpSzNMcOa
+ Tw9RJc0Ua7Thd9eHNMJyyFdF6.cY3.VMrdt01avFPpdPO3dhwhEpgWJSkzhXFuLOB3ApDkf2m8kv
+ zOCMtS8BJK1s.KxOt6Zu8NCSzY1sJbLE1qb04qA2tGZXWAMX.pKPni8QWPc4IX1s3okR9hcLfMcU
+ mrS6vUuYpGKy5gaORbeQ3C1fHKaJme.apHsIFARcEd.BwzX5kaqAvddDGlv0xbta8d17EqBzgXlm
+ hiq6MQHpLF5e3JmSGBjHBY.aCdook6JB7NMr5YlUf1Wl5AeKtCgXedqT81xhWmFt9t2NIHOSVhKx
+ yTUmoRE.4iD_jbBE0_A2mItLlicOzizSpqnNDnHAZBaIMOxLVs3fUXr06ogXrg.mH9K8gEd1e6Dw
+ FxfqP14LMCXZ.EOoUnSudg0jre5uD1FxcCv12sKBB4nWnkUgE9b0G1Gqsj8u1I1cWDtfM0O6bYpM
+ FiAxqmA2PAcPt2XHrWIWvO3LzpDMbRyitnUqci7Y4wm70TyWT73ZaaNfntG3x9TmI5.z_ArAzXO4
+ rk5IdZECpqtX9p52NlvNYsmz0845LJFry4FyfrkhgnNh5Sx8vW0QnyVIsZ22is6rLOe7GpeW30VF
+ 54Ae6m0HUY_ezbFc_a6SxbmxFDRZbitgrv30SlAQF21SzexgJEZDjOAx0ScXR.KF.m__t7e9Jk5.
+ fTZ3CDNbhIHjBY.6HZXNLWt4D9tjP9HepnhqGNrqoHNZ84bHF9UAe54vMeqjv2QfB6zCW626jjf1
+ 7JL4KdNU2CKQHE.k5V9nHN.INXD_y2AAiReBVLQtG2DPwRY7X.5NUxn4pRVMmlK1OnWcARMnZmXu
+ fPnzOCh8u4znxMPkyBBMjAjiGLD7EOk3k6iE8.AbbtGHsttvD8UIWykLrh2nePEvf21yPUuL_TiW
+ oZB9byKtcKE44kUXHvpmoadZBXh7I2siPjcs9sBFfJBJRgD0VLn787qXA4.SnuD..XojJZMHVZ6f
+ i2jB07Q0pFzG9mD0nHss_3j5dT.D3iGl5P5oqfjkANk1XLom96aGeXDxC9qInmo27HQxK.3vsgYn
+ qeZNlf.MMiV5JypxHjrFAheUJvzwIxKxUxkanBA6mTDktgjw97AHWZDSnL20c38lZVCOduLLm6Je
+ eDJmX8zw.2di3LK1WTf3z4E9tfmU07jSBeOb9X54fr2Id.Wv6RGRmAQcJXbhTe1yjXHtveHSP2B4
+ qrf6d1nTlAGnYtL3v.ME8ZtjwQwANV_wp6LLfrAsHruS437i843Vr.Mpxl4TnJfpOIPpuihf348n
+ cYVNlyHaESdBpMqUxNtGICJNW9vka8rJjKwfIOEg.XwYNNRYEOx8bRsXKjSOSWBM9o07Gi0R3Aox
+ xRDmpMl6timkIHrhfXlRie1nw8mwTrbr1lgYPLzpcCHX9ksdpIrI2u7xhWOaqc_gI1PupskF0zz7
+ RElXhkKFGmrvKxDROPZoLr7iewHMDcSbKfX1_rKDHqIBUygP6sFnmnPImDbZgipALz_ZwNimPDb.
+ N3XuunSzmc3.DzjwcqYqSJv1oifhaR6VZZSpwR.enLqmQHtZjje7SWq55zoYaWq8lEpy8Eqglrgd
+ JafHZEt43jPpmhEObNowP1aueOqVwadw-
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: 0d8dffc6-73dc-4a25-936a-6821c4513787
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic303.consmr.mail.ir2.yahoo.com with HTTP; Thu, 20 Apr 2023 21:16:32 +0000
+Received: by hermes--production-ir2-74cd8fc864-jl5bm (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID a7d5ee9a0540dd2923f65aa81657ee83;
+          Thu, 20 Apr 2023 21:16:28 +0000 (UTC)
+Message-ID: <662eeda8-8605-4124-75d3-9df6bd81bcb7@rocketmail.com>
+Date:   Thu, 20 Apr 2023 23:16:26 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230407-atmel_keys-v2-2-e7b016886109@apitzsch.eu>
-References: <20230407-atmel_keys-v2-0-e7b016886109@apitzsch.eu>
-In-Reply-To: <20230407-atmel_keys-v2-0-e7b016886109@apitzsch.eu>
-To:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 9/9] dt-bindings: Add documentation for rt5033 mfd,
+ regulator and charger
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.2
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1681646904.git.jahau@rocketmail.com>
+ <9275af790e6e21b5cf661a2444effe4caf2be02e.1681646904.git.jahau@rocketmail.com>
+ <CACRpkdZEtG=OjTECDO=SvFk89MqL10sKKMOABPEs-xxYv1hmqw@mail.gmail.com>
+ <CACRpkdaRkJ-JVNqAOQLuOgDztDfUP7DBQU9QP7AMbnK=eN2HWQ@mail.gmail.com>
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <CACRpkdaRkJ-JVNqAOQLuOgDztDfUP7DBQU9QP7AMbnK=eN2HWQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+X-Mailer: WebService/1.1.21365 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for touch keys found in some Atmel touch controller
-configurations.
-
-Reviewed-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/input/touchscreen/atmel_mxt_ts.c | 85 ++++++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
-
-diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
-index 996bf434e1cb..eb368dd1abf0 100644
---- a/drivers/input/touchscreen/atmel_mxt_ts.c
-+++ b/drivers/input/touchscreen/atmel_mxt_ts.c
-@@ -55,6 +55,7 @@
- #define MXT_TOUCH_KEYARRAY_T15		15
- #define MXT_TOUCH_PROXIMITY_T23		23
- #define MXT_TOUCH_PROXKEY_T52		52
-+#define MXT_TOUCH_PTC_KEYS_T97		97
- #define MXT_PROCI_GRIPFACE_T20		20
- #define MXT_PROCG_NOISE_T22		22
- #define MXT_PROCI_ONETOUCH_T24		24
-@@ -326,9 +327,13 @@ struct mxt_data {
- 	u16 T71_address;
- 	u8 T9_reportid_min;
- 	u8 T9_reportid_max;
-+	u8 T15_reportid_min;
-+	u8 T15_reportid_max;
- 	u16 T18_address;
- 	u8 T19_reportid;
- 	u16 T44_address;
-+	u8 T97_reportid_min;
-+	u8 T97_reportid_max;
- 	u8 T100_reportid_min;
- 	u8 T100_reportid_max;
- 
-@@ -344,6 +349,9 @@ struct mxt_data {
- 	u32 *t19_keymap;
- 	unsigned int t19_num_keys;
- 
-+	u32 *t15_keymap;
-+	unsigned int t15_num_keys;
-+
- 	enum mxt_suspend_mode suspend_mode;
- 
- 	u32 wakeup_method;
-@@ -375,6 +383,7 @@ static bool mxt_object_readable(unsigned int type)
- 	case MXT_TOUCH_KEYARRAY_T15:
- 	case MXT_TOUCH_PROXIMITY_T23:
- 	case MXT_TOUCH_PROXKEY_T52:
-+	case MXT_TOUCH_PTC_KEYS_T97:
- 	case MXT_TOUCH_MULTITOUCHSCREEN_T100:
- 	case MXT_PROCI_GRIPFACE_T20:
- 	case MXT_PROCG_NOISE_T22:
-@@ -891,6 +900,25 @@ static void mxt_proc_t9_message(struct mxt_data *data, u8 *message)
- 	data->update_input = true;
- }
- 
-+static void mxt_proc_t15_messages(struct mxt_data *data, u8 *message)
-+{
-+	struct input_dev *input_dev = data->input_dev;
-+	unsigned long keystates = get_unaligned_le32(&message[2]);
-+	int key;
-+
-+	for (key = 0; key < data->t15_num_keys; key++) {
-+		input_report_key(input_dev, data->t15_keymap[key],
-+			!!(keystates & BIT(key)));
-+	}
-+
-+	data->update_input = true;
-+}
-+
-+static void mxt_proc_t97_messages(struct mxt_data *data, u8 *message)
-+{
-+	mxt_proc_t15_messages(data, message);
-+}
-+
- static void mxt_proc_t100_message(struct mxt_data *data, u8 *message)
- {
- 	struct device *dev = &data->client->dev;
-@@ -1017,6 +1045,12 @@ static int mxt_proc_message(struct mxt_data *data, u8 *message)
- 	} else if (report_id >= data->T9_reportid_min &&
- 		   report_id <= data->T9_reportid_max) {
- 		mxt_proc_t9_message(data, message);
-+	} else if (report_id >= data->T15_reportid_min &&
-+		   report_id <= data->T15_reportid_max) {
-+		mxt_proc_t15_messages(data, message);
-+	} else if (report_id >= data->T97_reportid_min &&
-+		   report_id <= data->T97_reportid_max) {
-+		mxt_proc_t97_messages(data, message);
- 	} else if (report_id >= data->T100_reportid_min &&
- 		   report_id <= data->T100_reportid_max) {
- 		mxt_proc_t100_message(data, message);
-@@ -1689,9 +1723,13 @@ static void mxt_free_object_table(struct mxt_data *data)
- 	data->T71_address = 0;
- 	data->T9_reportid_min = 0;
- 	data->T9_reportid_max = 0;
-+	data->T15_reportid_min = 0;
-+	data->T15_reportid_max = 0;
- 	data->T18_address = 0;
- 	data->T19_reportid = 0;
- 	data->T44_address = 0;
-+	data->T97_reportid_min = 0;
-+	data->T97_reportid_max = 0;
- 	data->T100_reportid_min = 0;
- 	data->T100_reportid_max = 0;
- 	data->max_reportid = 0;
-@@ -1764,6 +1802,10 @@ static int mxt_parse_object_table(struct mxt_data *data,
- 						object->num_report_ids - 1;
- 			data->num_touchids = object->num_report_ids;
- 			break;
-+		case MXT_TOUCH_KEYARRAY_T15:
-+			data->T15_reportid_min = min_id;
-+			data->T15_reportid_max = max_id;
-+			break;
- 		case MXT_SPT_COMMSCONFIG_T18:
- 			data->T18_address = object->start_address;
- 			break;
-@@ -1773,6 +1815,10 @@ static int mxt_parse_object_table(struct mxt_data *data,
- 		case MXT_SPT_GPIOPWM_T19:
- 			data->T19_reportid = min_id;
- 			break;
-+		case MXT_TOUCH_PTC_KEYS_T97:
-+			data->T97_reportid_min = min_id;
-+			data->T97_reportid_max = max_id;
-+			break;
- 		case MXT_TOUCH_MULTITOUCHSCREEN_T100:
- 			data->multitouch = MXT_TOUCH_MULTITOUCHSCREEN_T100;
- 			data->T100_reportid_min = min_id;
-@@ -2050,6 +2096,7 @@ static int mxt_initialize_input_device(struct mxt_data *data)
- 	int error;
- 	unsigned int num_mt_slots;
- 	unsigned int mt_flags = 0;
-+	int i;
- 
- 	switch (data->multitouch) {
- 	case MXT_TOUCH_MULTI_T9:
-@@ -2095,6 +2142,10 @@ static int mxt_initialize_input_device(struct mxt_data *data)
- 	input_dev->open = mxt_input_open;
- 	input_dev->close = mxt_input_close;
- 
-+	input_dev->keycode = data->t15_keymap;
-+	input_dev->keycodemax = data->t15_num_keys;
-+	input_dev->keycodesize = sizeof(data->t15_keymap[0]);
-+
- 	input_set_capability(input_dev, EV_KEY, BTN_TOUCH);
- 
- 	/* For single touch */
-@@ -2162,6 +2213,12 @@ static int mxt_initialize_input_device(struct mxt_data *data)
- 				     0, 255, 0, 0);
- 	}
- 
-+	/* For T15 and T97 Key Array */
-+	if (data->T15_reportid_min || data->T97_reportid_min) {
-+		for (i = 0; i < data->t15_num_keys; i++)
-+			input_set_capability(input_dev, EV_KEY, data->t15_keymap[i]);
-+	}
-+
- 	input_set_drvdata(input_dev, data);
- 
- 	error = input_register_device(input_dev);
-@@ -3080,8 +3137,10 @@ static void mxt_input_close(struct input_dev *dev)
- static int mxt_parse_device_properties(struct mxt_data *data)
- {
- 	static const char keymap_property[] = "linux,gpio-keymap";
-+	static const char buttons_property[] = "linux,keycodes";
- 	struct device *dev = &data->client->dev;
- 	u32 *keymap;
-+	u32 *buttonmap;
- 	int n_keys;
- 	int error;
- 
-@@ -3111,6 +3170,32 @@ static int mxt_parse_device_properties(struct mxt_data *data)
- 		data->t19_num_keys = n_keys;
- 	}
- 
-+	if (device_property_present(dev, buttons_property)) {
-+		n_keys = device_property_count_u32(dev, buttons_property);
-+		if (n_keys <= 0) {
-+			error = n_keys < 0 ? n_keys : -EINVAL;
-+			dev_err(dev, "invalid/malformed '%s' property: %d\n",
-+				buttons_property, error);
-+			return error;
-+		}
-+
-+		buttonmap = devm_kmalloc_array(dev, n_keys, sizeof(*buttonmap),
-+					       GFP_KERNEL);
-+		if (!buttonmap)
-+			return -ENOMEM;
-+
-+		error = device_property_read_u32_array(dev, buttons_property,
-+						       buttonmap, n_keys);
-+		if (error) {
-+			dev_err(dev, "failed to parse '%s' property: %d\n",
-+				buttons_property, error);
-+			return error;
-+		}
-+
-+		data->t15_keymap = buttonmap;
-+		data->t15_num_keys = n_keys;
-+	}
-+
- 	return 0;
- }
- 
-
--- 
-2.40.0
-
+SGkgTGludXMhDQoNCk9uIDIwLjA0LjIzIDEwOjAzLCBMaW51cyBXYWxsZWlqIHdyb3RlOg0K
+PiBPbiBUaHUsIEFwciAyMCwgMjAyMyBhdCA5OjU54oCvQU0gTGludXMgV2FsbGVpaiA8bGlu
+dXMud2FsbGVpakBsaW5hcm8ub3JnPiB3cm90ZToNCj4+DQo+PiBIaSBKYWtvYiwNCj4+DQo+
+PiB0aGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+Pg0KPj4gVGhlIGZvbGxvd2luZyBjYXVnaHQg
+bXkgZXllOg0KPj4NCj4+IE9uIFN1biwgQXByIDE2LCAyMDIzIGF0IDI6NTDigK9QTSBKYWtv
+YiBIYXVzZXIgPGphaGF1QHJvY2tldG1haWwuY29tPiB3cm90ZToNCj4+DQo+Pj4gQWRkIGRl
+dmljZSB0cmVlIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiBmb3IgcnQ1MDMzIG11bHRpZnVuY3Rp
+b24gZGV2aWNlLCB2b2x0YWdlDQo+Pj4gcmVndWxhdG9yIGFuZCBiYXR0ZXJ5IGNoYXJnZXIu
+DQo+Pj4NCj4+PiBDYzogQmVvbWhvIFNlbyA8YmVvbWhvLnNlb0BzYW1zdW5nLmNvbT4NCj4+
+PiBDYzogQ2hhbndvbyBDaG9pIDxjdzAwLmNob2lAc2Ftc3VuZy5jb20+DQo+Pj4gU2lnbmVk
+LW9mZi1ieTogSmFrb2IgSGF1c2VyIDxqYWhhdUByb2NrZXRtYWlsLmNvbT4NCj4+PiAtLS0N
+Cj4+PiBUaGUgcGF0Y2ggaXMgYmFzZWQgb24gbGludXgtbmV4dCAodGFnICJuZXh0LTIwMjMw
+NDEzIikuDQo+PiAoLi4uKQ0KPj4+IC0tLSAvZGV2L251bGwNCj4+PiArKysgYi9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcG93ZXIvc3VwcGx5L3JpY2h0ZWsscnQ1MDMz
+LWNoYXJnZXIueWFtbA0KPj4gKC4uLikNCj4+PiArICByaWNodGVrLHByZS1taWNyb2FtcDoN
+Cj4+PiArICAgIGRlc2NyaXB0aW9uOg0KPj4+ICsgICAgICBDdXJyZW50IG9mIHByZS1jaGFy
+Z2UgbW9kZS4gVGhlIHByZS1jaGFyZ2UgY3VycmVudCBsZXZlbHMgYXJlIDM1MCBtQSB0bw0K
+Pj4+ICsgICAgICA2NTAgbUEgcHJvZ3JhbW1lZCBieSBJMkMgcGVyIDEwMCBtQS4NCj4+PiAr
+ICAgIG1heEl0ZW1zOiAxDQo+Pj4gKw0KPj4+ICsgIHJpY2h0ZWssZmFzdC1taWNyb2FtcDoN
+Cj4+PiArICAgIGRlc2NyaXB0aW9uOg0KPj4+ICsgICAgICBDdXJyZW50IG9mIGZhc3QtY2hh
+cmdlIG1vZGUuIFRoZSBmYXN0LWNoYXJnZSBjdXJyZW50IGxldmVscyBhcmUgNzAwIG1BDQo+
+Pj4gKyAgICAgIHRvIDIwMDAgbUEgcHJvZ3JhbW1lZCBieSBJMkMgcGVyIDEwMCBtQS4NCj4+
+PiArICAgIG1heEl0ZW1zOiAxDQo+Pj4gKw0KPj4+ICsgIHJpY2h0ZWssZW9jLW1pY3JvYW1w
+Og0KPj4+ICsgICAgZGVzY3JpcHRpb246DQo+Pj4gKyAgICAgIFRoaXMgcHJvcGVydHkgaXMg
+ZW5kIG9mIGNoYXJnZSBjdXJyZW50LiBJdHMgbGV2ZWwgcmFuZ2VzIGZyb20gMTUwIG1BIHRv
+DQo+Pj4gKyAgICAgIDYwMCBtQS4gQmV0d2VlbiAxNTAgbUEgYW5kIDMwMCBtQSBpbiA1MCBt
+QSBzdGVwcywgYmV0d2VlbiAzMDAgbUEgYW5kIDYwMCBtQQ0KPj4+ICsgICAgICBpbiAxMDAg
+bUEgc3RlcHMuDQo+Pj4gKyAgICBtYXhJdGVtczogMQ0KPj4+ICsNCj4+PiArICByaWNodGVr
+LHByZS10aHJlc2hvbGQtbWljcm92b2x0Og0KPj4+ICsgICAgZGVzY3JpcHRpb246DQo+Pj4g
+KyAgICAgIFZvbHRhZ2Ugb2YgcHJlLWNoYXJnZSBtb2RlLiBJZiB0aGUgYmF0dGVyeSB2b2x0
+YWdlIGlzIGJlbG93IHRoZSBwcmUtY2hhcmdlDQo+Pj4gKyAgICAgIHRocmVzaG9sZCB2b2x0
+YWdlLCB0aGUgY2hhcmdlciBpcyBpbiBwcmUtY2hhcmdlIG1vZGUgd2l0aCBwcmUtY2hhcmdl
+IGN1cnJlbnQuDQo+Pj4gKyAgICAgIEl0cyBsZXZlbHMgYXJlIDIuMyBWIHRvIDMuOCBWIHBy
+b2dyYW1tZWQgYnkgSTJDIHBlciAwLjEgVi4NCj4+PiArICAgIG1heEl0ZW1zOiAxDQo+Pj4g
+Kw0KPj4+ICsgIHJpY2h0ZWssY29uc3QtbWljcm92b2x0Og0KPj4+ICsgICAgZGVzY3JpcHRp
+b246DQo+Pj4gKyAgICAgIEJhdHRlcnkgcmVndWxhdGlvbiB2b2x0YWdlIG9mIGNvbnN0YW50
+IHZvbHRhZ2UgbW9kZS4gVGhpcyB2b2x0YWdlIGxldmVscyBmcm9tDQo+Pj4gKyAgICAgIDMu
+NjUgViB0byA0LjQgViBieSBJMkMgcGVyIDAuMDI1IFYuDQo+Pj4gKyAgICBtYXhJdGVtczog
+MQ0KPj4NCj4+IFRoZXNlIGFyZSB2ZXJ5IGdlbmVyaWMgY3VycmVudHMgYW5kIHZvbHRhZ2Vz
+LCBhbmQgdGhlaXIgdXNhZ2UgaXMgd2VsbCBrbm93bg0KPj4gYW5kIGdlbmVyaWMuIFNvIHRo
+ZXkgc2hvdWxkIG5vdCBiZSBwcmVmaXhlZCAicmljaHRlaywiLg0KPj4NCj4+IFVzZSB0aGUg
+cHJvcGVydGllcyBhbHJlYWR5IGRlZmluZWQgaW4NCj4+IERvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9wb3dlci9zdXBwbHkvYmF0dGVyeS55YW1sDQo+PiBmb3IgdGhlc2U6
+DQo+Pg0KPj4gcHJlY2hhcmdlLWN1cnJlbnQtbWljcm9hbXANCj4+IGNvbnN0YW50LWNoYXJn
+ZS1jdXJyZW50LW1heC1taWNyb2FtcA0KPj4gY2hhcmdlLXRlcm0tY3VycmVudC1taWNyb2Ft
+cA0KPj4gcHJlY2hhcmdlLXVwcGVyLWxpbWl0LW1pY3Jvdm9sdA0KPj4gY29uc3RhbnQtY2hh
+cmdlLXZvbHRhZ2UtbWF4LW1pY3Jvdm9sdA0KPj4NCj4+IFBsZWFzZSBkb3VibGUtY2hlY2ss
+IEkgdGhpbmsgdGhvc2UgYXJlIHRoZSBvbmVzIHlvdSBuZWVkLg0KPj4NCj4+IFBlcmhhcHMg
+aXQgaXMgcG9zc2libGUgdG8ganVzdCAkcmVmIHRoZXNlIHByb3BlcnRpZXMgZGlyZWN0bHkg
+YW5kIGFkZA0KPj4gdGhlIGFkZGl0aW9uYWwgcmVzdHJpY3Rpb25zIG9uIHRvcC4NCj4gDQo+
+IE9uIHNlY29uZCB0aG91Z2h0LCB0aGVzZSBhcmUgcmVhbGx5IHdlaXJkIHByb3BlcnRpZXMg
+dG8gaGF2ZSBvbiB0aGUNCj4gKmNoYXJnZXIqIGlzbid0IGl0Pw0KPiANCj4gSXQgaXMgcmVh
+bGx5ICpiYXR0ZXJ5KiByZXN0cmljdGlvbnMuDQo+IA0KPiBBIGNoYXJnZXIgY2FuIGNoYXJn
+ZSBtYW55IGRpZmZlcmVudCBiYXR0ZXJpZXMgd2l0aCBkaWZmZXJlbnQgQ0MvQ1YNCj4gc2V0
+dGluZ3MuDQo+IA0KPiBJIHRoaW5rIHlvdXIgY2hhcmdlciBzaG91bGQgY29udGFpbiBhIHBo
+YW5kbGUgdG8gYSBiYXR0ZXJ5IGFuZCB0aGUgYmF0dGVyeQ0KPiBub2RlIHNob3VsZCBjb250
+YWluIHRoZXNlIGxpbWl0cy4NCj4gDQo+ICAgIG1vbml0b3JlZC1iYXR0ZXJ5Og0KPiAgICAg
+ICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3BoYW5kbGUNCj4gICAg
+ICBkZXNjcmlwdGlvbjogcGhhbmRsZSB0byBiYXR0ZXJ5IG5vZGUNCj4gDQo+IFRoZW4geW91
+IGNhbiBqdXN0IHVzZSB0aGUgc3RhbmRhcmQgYmF0dGVyeSBiaW5kaW5ncyBmb3IgdGhlc2Ug
+cHJvcGVydGllcw0KPiBvbiB0aGUgYmF0dGVyeS4NCj4gDQo+IFNlZSBmb3IgZXhhbXBsZToN
+Cj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bvd2VyL3N1cHBseS9zdGVy
+aWNzc29uLGFiODUwMC1jaGFyZ2VyLnlhbWwNCj4gDQo+IFRoZXJlIHdpbGwgYmUgZHJpdmVy
+IGNoYW5nZXMgbmVlZGVkIHRvbywgYnV0IHRoaXMgd2lsbCBiZSB3YXkgY2xlYW5lci4NCj4g
+DQo+IFlvdXJzLA0KPiBMaW51cyBXYWxsZWlqDQoNClRoZXNlIGFyZSBpbnRlcmVzdGluZyBo
+aW50cyENCg0KSSB3YXMgZmlyc3QgYSBiaXQgY29uZnVzZWQgYnkgdGhlIHRlcm0gImJhdHRl
+cnkiLiBJIGFzc29jaWF0ZWQgdGhhdCB0ZXJtIA0Kd2l0aCB0aGUgZHJpdmVyICJydDUwMzMt
+YmF0dGVyeSIuIEJ1dCBJIHRoaW5rIHRoYXQgdGhvdWdodCB3YXMgd3JvbmcuIA0KVGhlIGRy
+aXZlciAicnQ1MDMzLWJhdHRlcnkiIGlzIGp1c3QgdGhlIGZ1ZWwgZ2F1Z2UuDQoNCkhhcmR3
+YXJlLXdpc2UsIHRoZSBtZmQgKGluY2wuIGNoYXJnZXIpIGFuZCBmdWVsIGdhdWdlIGFyZSBv
+biBkaWZmZXJlbnQgDQpJMkMgbGluZXMuIFRoZXJlZm9yZSwgdGhlIGRpZmZlcmVudCBkcml2
+ZXJzIGFjY2VzcyBkaWZmZXJlbnQgcmVnaXN0ZXJzLg0KDQpDaGFyZ2VyIHJlZ2lzdGVyczoN
+Cmh0dHBzOi8vZ2l0aHViLmNvbS90b3J2YWxkcy9saW51eC9ibG9iL3Y2LjMtcmM3L2luY2x1
+ZGUvbGludXgvbWZkL3J0NTAzMy1wcml2YXRlLmgjTDEzLUwyMw0KDQpGdWVsIGdhdWdlIHJl
+Z2lzdGVyczoNCmh0dHBzOi8vZ2l0aHViLmNvbS90b3J2YWxkcy9saW51eC9ibG9iL3Y2LjMt
+cmM3L2luY2x1ZGUvbGludXgvbWZkL3J0NTAzMy1wcml2YXRlLmgjTDIxNS1MMjQzDQoNClRo
+ZSB0aGluZ3MgYmVpbmcgc2V0IG9yIHJlYWQgaW4gdGhvc2UgcmVnaXN0ZXJzIGtpbmQgb2Yg
+ZGV0ZXJtaW5lIHdoaWNoIA0KdGhpbmdzIGFyZSBkb25lIGluIHdoaWNoIGRyaXZlci4NCg0K
+VGhlIHByb3BlcnRpZXMgd2UgdGFsayBhYm91dCBoZXJlIGFyZSB0aGUgc2V0dGluZ3MgZm9y
+IHRoZSBjaGFyZ2VyLiBUaGV5IA0KdGVsbCB0aGUgY2hhcmdlciBob3cgaXQgc2hvdWxkIGJl
+aGF2ZS4gSXQgbWFrZXMgc2Vuc2UgdG8gcHJvY2VzcyB0aG9zZSANCnNldHRpbmdzIHdpdGhp
+biB0aGUgY2hhcmdlciBkcml2ZXIuIFRoZSBmdWVsIGdhdWdlLCBvbiB0aGUgb3RoZXIgaGFu
+ZCwgDQpyZXR1cm5zIGluZm9ybWF0aW9uIGxpa2UgYWN0dWFsIHZvbHRhZ2UgYW5kIHBlcmNl
+bnRhZ2UuDQoNClRoZSBvbmx5IHRoaW5nIHRoYXQgc2VlbXMgbm90IHBsYWNlZCB3ZWxsIGlz
+IHRoZSAic3RhdHVzIiBwcm9wZXJ0eSBsaWtlIA0KY2hhcmdpbmcvZGlzY2hhcmdpbmcvbm90
+LWNoYXJnaW5nL2V0Yy4gQXQgUlQ1MDMzIHRoaXMgaW5mb3JtYXRpb24gaXMgDQp3aXRoaW4g
+dGhlIGNoYXJnZXIgcmVnaXN0ZXIuIFVzZXJzcGFjZSBsYXllciAiVVBvd2VyIiBleHBlY3Rz
+IHRoaXMgZnJvbSANCnRoZSAiYmF0dGVyeSIgZGV2aWNlLiBQYXRjaCA4IG9mIHRoaXMgc2Vy
+aWVzIHYyIGNhcnJpZXMgdGhhdCBwcm9wZXJ0eSANCmZyb20gdGhlIGNoYXJnZXIgb3ZlciB0
+byB0aGUgZnVlbCBnYXVnZS4gVGhvdWdoIHRoaXMgaXMgYSBiaXQgb2YgYSANCnF1aXJrLiBB
+bmQgaXQgY3JlYXRlcyBkZXBlbmRlbmNpZXMgYmV0d2VlbiB0d28gZHJpdmVycyB3aGljaCBh
+Y3R1YWxseSANCndvdWxkIGJlIGluZGVwZW5kZW50IGZyb20gZWFjaCBvdGhlci4NCg0KLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCkJhY2sgdG8gdGhlIHRvcGljLiBX
+aGVuIHdlIHRhbGsgYWJvdXQgImJhdHRlcnkiIGhlcmUsIGl0IHNlZW1zIHRvIG1lIA0KdGhh
+dCBpdCdzIGFib3V0IHRoZSByZXByZXNlbnRhdGlvbiBpbiB0aGUgZGV2aWNldHJlZS4NCg0K
+Q3VycmVudGx5IGl0IGlzOg0KDQogICAgIHBtaWNAMzQgew0KICAgICAgICAgY29tcGF0aWJs
+ZSA9ICJyaWNodGVrLHJ0NTAzMyI7DQogICAgICAgICAuLi4uDQogICAgICAgICBjaGFyZ2Vy
+IHsNCiAgICAgICAgICAgICBjb21wYXRpYmxlID0gInJpY2h0ZWsscnQ1MDMzLWNoYXJnZXIi
+Ow0KICAgICAgICAgICAgIHJpY2h0ZWsscHJlLW1pY3JvYW1wID0gPDQ1MDAwMD47DQogICAg
+ICAgICAgICAgcmljaHRlayxmYXN0LW1pY3JvYW1wID0gPDEwMDAwMDA+Ow0KICAgICAgICAg
+ICAgIHJpY2h0ZWssZW9jLW1pY3JvYW1wID0gPDE1MDAwMD47DQogICAgICAgICAgICAgcmlj
+aHRlayxwcmUtdGhyZXNob2xkLW1pY3Jvdm9sdCA9IDwzNTAwMDAwPjsNCiAgICAgICAgICAg
+ICByaWNodGVrLGNvbnN0LW1pY3Jvdm9sdCA9IDw0MzUwMDAwPjsNCiAgICAgICAgICAgICBl
+eHRjb24gPSA8Jm11aWM+Ow0KICAgICAgICAgfTsNCiAgICAgfTsNCg0KQWNjb3JkaW5nIHRv
+IHlvdXIgcmVtYXJrcywgdGhlIHByb3BlcnRpZXMgY291bGQgYmUgIm91dHNvdXJjZWQiIGlu
+dG8gYQ0KYmF0dGVyeSBub2RlLiAoQnR3LiBJIGhhdmUgZG91YmxlLWNoZWNrZWQgdGhlIHBy
+b3BlcnR5IG5hbWVzLikNCg0KICAgICBiYXR0ZXJ5OiBiYXR0ZXJ5IHsNCiAgICAgICAgIGNv
+bXBhdGlibGUgPSAic2ltcGxlLWJhdHRlcnkiOw0KICAgICAgICAgcHJlY2hhcmdlLWN1cnJl
+bnQtbWljcm9hbXAgPSA8NDUwMDAwPjsNCiAgICAgICAgIGNvbnN0YW50LWNoYXJnZS1jdXJy
+ZW50LW1heC1taWNyb2FtcCA9IDwxMDAwMDAwPjsNCiAgICAgICAgIGNoYXJnZS10ZXJtLWN1
+cnJlbnQtbWljcm9hbXAgPSA8MTUwMDAwPjsNCiAgICAgICAgIHByZWNoYXJnZS11cHBlci1s
+aW1pdC1taWNyb3ZvbHQgPSA8MzUwMDAwMD47DQogICAgICAgICBjb25zdGFudC1jaGFyZ2Ut
+dm9sdGFnZS1tYXgtbWljcm92b2x0ID0gPDQzNTAwMDA+Ow0KICAgICB9Ow0KDQogICAgIHBt
+aWNAMzQgew0KICAgICAgICAgY29tcGF0aWJsZSA9ICJyaWNodGVrLHJ0NTAzMyI7DQogICAg
+ICAgICAuLi4uDQogICAgICAgICBjaGFyZ2VyIHsNCiAgICAgICAgICAgICBjb21wYXRpYmxl
+ID0gInJpY2h0ZWsscnQ1MDMzLWNoYXJnZXIiOw0KICAgICAgICAgICAgIG1vbml0b3JlZC1i
+YXR0ZXJ5ID0gPCZiYXR0ZXJ5PjsNCiAgICAgICAgICAgICBleHRjb24gPSA8Jm11aWM+Ow0K
+ICAgICAgICAgfTsNCiAgICAgfTsNCg0KUGVyc29uYWxseSBJIHdvdWxkIGNob29zZSB0aGUg
+Y3VycmVudCBpbXBsZW1lbnRhdGlvbiBmb3IgdHdvIHJlYXNvbnMgDQoocG9zc2libHkgd2Vh
+ayBvbmVzKToNCg0KMSkgVGhlIG9yaWdpbmFsIGF1dGhvciBvZiB0aGUgZHJpdmVyIGFuZCBk
+b2N1bWVudGF0aW9uIGlzIEJlb21obyBTZW8uIEkgDQp0cmllZCB0byBwcmVzZXJ2ZSB0aGUg
+b3JpZ2luYWwgc3RydWN0dXJlIGFzIGZhciBhcyBwb3NzaWJsZS4gVGhpcyBpcyANCnByb2Jh
+Ymx5IHJhdGhlciBhIHF1ZXN0aW9uIG9mIGVkaXRpbmcgdGhhbiBhIHRlY2huaWNhbCBvbmUu
+DQoNCjIpIEF0IGxlYXN0IGluIG15IG1pbmQgaXQncyBzdGlsbCB0aGUgc2V0dXAgZm9yIHRo
+ZSBjaGFyZ2VyLiBJdCBzZXRzIHVwIA0KYSB0aGUgY2hhcmdpbmcgYmVoYXZpb3Igb2YgYSBj
+ZXJ0YWluIGNvbnN1bWVyIGRldmljZS4gQW5kIHRoZSBjaG9pY2Ugb2YgDQp0aGVpciB2YWx1
+ZXMgaXMgbGltaXRlZCB0byB0aGUgaGFyZHdhcmUgb2YgdGhlIGNoYXJnZXIuIEFjY29yZGlu
+Z2x5IHRoZSANCmR0LWJpbmRpbmdzIHdvdWxkIHNheSB3aGF0IHRoZSBjaGFyZ2VyIGhhcmR3
+YXJlIGlzIGNhcGFibGUgdG8gZG8uIA0KVGhlcmVmb3JlIEknZCBzYXkgaXQncyByZWFzb25h
+YmxlIHRvIGhhdmUgdGhvc2UgdmFsdWVzIGluIHRoZSBjaGFyZ2VyIA0Kbm9kZSBhbmQgdXNl
+IHZlbmRvciBwcm9wZXJ0aWVzLg0KDQpJIGFncmVlIHRvIHlvdSB0aGF0IGFjdHVhbGx5IHRo
+ZSBwaHlzaWNhbCBiYXR0ZXJ5IGlzIGRldGVybWluaW5nIGhvdyANCnRoZXNlIHZhbHVlcyBz
+aG91bGQgYmUgc2V0LiBJbiB0aGUgZW5kLCBhcyBmYXIgYXMgSSBjYW4gc2VlLCBpdCBpcyBh
+IA0KcmVwcmVzZW50YXRpb24gdGhpbmcgaW4gdGhlIGRldmljZXRyZWUuIEF0IGxlYXN0IGlu
+IG91ciBjYXNlIGhlcmUuDQoNCk5vdCBzdXJlIGhvdyB0byBwcm9jZWVkIGhlcmUuIEkgd291
+bGQgc3RpY2sgdG8gdGhlIGN1cnJlbnQgDQppbXBsZW1lbnRhdGlvbi4gSWYgc29tZW9uZSBz
+dHJvbmdseSBwcmVmZXJzIHRoZSAiYmF0dGVyeSIgcmVwcmVzZW50YXRpb24gDQpzdHlsZSwg
+SSdtIG9wZW4gdG8gc3dpdGNoIHRvIHRoaXMuDQoNCkhvd2V2ZXIsIEknbSBub3Qgc3VyZSBo
+b3cgdGhlIGR0LWJpbmRpbmdzIHdvdWxkIGxvb2sgbGlrZSBpbiB0aGF0IGNhc2UuIA0KVGhv
+c2UgYmF0dGVyeSBwcm9wZXJ0aWVzIHdvdWxkIG5vdCBiZSBwYXJ0IG9mIHRoZSBSVDUwMzMg
+bm9kZSwgdGh1cyB0aGV5IA0KYmFzaWNhbGx5IHdvdWxkIG5vdCBiZSBwYXJ0IG9mIHRoZSBS
+VDUwMzMgZG9jdW1lbnRhdGlvbi4gQWdhaW4gSSB0aGluayANCml0IG1ha2VzIHNlbnNlIHRv
+IGhhbmRsZSB0aG9zZSBwcm9wZXJ0aWVzIHdpdGhpbiB0aGUgY2hhcmdlciBub2RlIGFzIA0K
+ImNoYXJnZXIgc2V0dGluZ3MiIHByb3BlcnRpZXMuDQoNCktpbmQgcmVnYXJkcywNCkpha29i
+DQo=
