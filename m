@@ -2,144 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E826E9516
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 245E36E9541
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjDTMxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 08:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45094 "EHLO
+        id S230352AbjDTNBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 09:01:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjDTMxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:53:32 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8632108
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 05:53:31 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id dx24so6040502ejb.11
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 05:53:30 -0700 (PDT)
+        with ESMTP id S230424AbjDTNBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:01:24 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3117A9B;
+        Thu, 20 Apr 2023 06:00:58 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-54fb615ac3dso40498997b3.2;
+        Thu, 20 Apr 2023 06:00:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681995209; x=1684587209;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yt/93M/ZglXCV5CdFMYaJPyFKnZmjhNWMeYNcvDG6Tw=;
-        b=XhOmjAMRB2e+Qpr3a2unzCwIqWMnXTkLGkgmKSw0hT4kQEfDAet5siIZR0pugqzn9Y
-         p1zlW4+hyVgl63cWo2i5zfeDSm4OyqyDZI8+8nvNTH4ki+i1v7Hit3PwFF68gMQ/Bp6Q
-         W6M8y8rHBoJ1zuHn6DGIvus71YqoGkZjQKlBGpJiIuAmZuvTRoPiGn/yUlCJ+N4S7Ym7
-         0X9qIfP7+lDXnOsN1GIPkoSK1Yu916xun5VnAStqybqXSrULVUNHAWnmlw7shqbwYdR3
-         gc8ErvbBsLRStDmaBQ2jWcKKKUWqR/PHTybAZv9X8KgDfPMB5h7rKDt5V6+dCE4vefHJ
-         qmpQ==
+        d=gmail.com; s=20221208; t=1681995658; x=1684587658;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cOz2vJX6O8WYQA+86dOvET6FW/q2m4As7J1doBwYieQ=;
+        b=SFRtVWPbBXUIMuQ5P64CLBS539wch2e8cP9vsCUiPg+MkKM1b6+nHJeIRma1Q6nfuK
+         2Xkt9YhXhCLJJDY4Eoj+HOSRlAOi29R+7GNtTRQCr3rFvzIYFrhx+tN6A5ZJAoKEVNt/
+         dIkO8/SDhE2/lJXuibw7QLyOZr6gn3O/YEZWSYPJLs/Sr6VIcUskUVRD4N1SsU88+i3c
+         x/R6malWXYad5p55JNi/JMAm/sKSADuSZz9GhivHU1NIf/Ozptz6YpIjuysVjzULsfsj
+         cFZ1oD6bSFQON9lmQnOkarivg3aQZT7ejPxI8tF/48fBVWJKbcshoVRRuctm1+Pk23Ud
+         QIBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681995209; x=1684587209;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yt/93M/ZglXCV5CdFMYaJPyFKnZmjhNWMeYNcvDG6Tw=;
-        b=EpD1uN+BRp0S7B8j5UJ6Fd2zOji7zwurOWWN5qca5JsDqR7VAR7NnWrryx9Rml/bvC
-         D1NK4wYa3yPjOGTytYUHExZIfRxeQhLeQM07Bz7F2JtShyjxfnWfVIrba8R+kJ8db6Ow
-         OH87QuXlCyRNe/+UIlf15kLX91b60Q5BTrpGl2WNvkKOxoUSnoNIRTlpBZnG5iNy8Z9k
-         yhpq0KNT3ev4NEzSXiMJsPG8FeglHlf50KeSLrKxBpFcQbhI+CzYDXnO5y9bVPYh0vT/
-         YAMiiULgUrIt50DeAmPNk3Jx90+ucb0nk2rLms0xQ1vAIpZKiBcCzdkFli6KIW2EU3fa
-         EF1A==
-X-Gm-Message-State: AAQBX9eB2Hf2r7+x0OXojZ419ubpBdqhxtwqOzKzFQZ0LlQ96BlkURdQ
-        9jspQsQcTygNbLm5iV+t0V68+w==
-X-Google-Smtp-Source: AKy350baSjVgWRqOUGHMeVmFH80WRC9SRLw80YwzKRtI2kUKPfO5wRzIp1r9y3oLBMp/xs3FAmWLIQ==
-X-Received: by 2002:a17:906:7308:b0:932:7f5c:4bb2 with SMTP id di8-20020a170906730800b009327f5c4bb2mr1613373ejc.75.1681995209486;
-        Thu, 20 Apr 2023 05:53:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bcb8:77e6:8f45:4771? ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id d16-20020a1709063ed000b0094f499257f7sm695940ejj.151.2023.04.20.05.53.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 05:53:29 -0700 (PDT)
-Message-ID: <fab4f22e-cb22-6ad4-6e14-19c1e80c11be@linaro.org>
-Date:   Thu, 20 Apr 2023 14:53:28 +0200
+        d=1e100.net; s=20221208; t=1681995658; x=1684587658;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cOz2vJX6O8WYQA+86dOvET6FW/q2m4As7J1doBwYieQ=;
+        b=K7GJ+/ZbxVdD6BYEsEznRoGDvP4YwN94wcFwIA1FWRjnm0PBTD4hpwXZuZazCW8gsC
+         g/ymRW9AWfpaSD6J1sbUqD0JZ7vKYRZTv09krRxR5TxUHmunaFYOJ+zAB8wbDWmtV2j9
+         +xNWi9uROBaep8F10Imnlf93MoOK8YnAjNArs3xgt4gBuh204u+hfNqldjxOVPgI+eeV
+         7he0LF4ssXLrOIwKBpKuehgWdXvP2plAv+72f6lGzlMQTwtIZ+10TpBuGfXL1ONufoU9
+         77oK/+bOnxLyRQX+snvuwHtzBTmhOdpXFYE7lxzsf0nhx+CTifS2HenlmbJD8R0X6VZY
+         H41Q==
+X-Gm-Message-State: AAQBX9cmc7MimmaYOQbcPuJWxHpFNUNMAgDjIh6hbFauNUQPeG+f9imQ
+        MfMTRvcYFQrXchJTHZjxHcJFeJuotseAfibim2s=
+X-Google-Smtp-Source: AKy350ZkKzpMEQFQALpd3cUpdAhLhNufP4l2LeGvrYz2hiijurncKr1W1aLvwH6jsswb6m6sGIjecPmAmxB6QTrh0pk=
+X-Received: by 2002:a0d:e0c1:0:b0:54c:1405:2ce with SMTP id
+ j184-20020a0de0c1000000b0054c140502cemr712660ywe.49.1681995657810; Thu, 20
+ Apr 2023 06:00:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/1] arm: dts: sunxi: Add ICnova A20 ADB4006 board
- support
-Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Ludwig Kormann <ludwig.kormann@in-circuit.de>, samuel@sholland.org,
-        jernej.skrabec@gmail.com, wens@csie.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20230419121229.1384024-1-ludwig.kormann@in-circuit.de>
- <b84537c0-cb58-621a-2b6d-3bbaac5091de@linaro.org>
- <20230420095315.5aaab9eb@donnerap.cambridge.arm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230420095315.5aaab9eb@donnerap.cambridge.arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <cover.1681887790.git.zhoubinbin@loongson.cn> <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
+ <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
+In-Reply-To: <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Thu, 20 Apr 2023 21:00:42 +0800
+Message-ID: <CAMpQs4JjHvVOzQz-1Y-q9ut6tWUpakrHeozuwPg0dzoDcUFEGA@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Add Loongson EIOINTC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2023 10:53, Andre Przywara wrote:
->> Bindings are always separate patches. checkpatch did not complain?
->>
->>>  arch/arm/boot/dts/Makefile                    |   1 +
->>>  .../boot/dts/sun7i-a20-icnova-a20-adb4006.dts | 137 ++++++++++++++++++
->>>  arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi   |  63 ++++++++
->>>  4 files changed, 207 insertions(+)
->>>  create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
->>>  create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
->>> index 013821f4a7b8..12f0c236f17b 100644
->>> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
->>> @@ -305,6 +305,12 @@ properties:
->>>            - const: allwinner,i12-tvbox
->>>            - const: allwinner,sun7i-a20
->>>  
->>> +      - description: ICNova A20 ADB4006
->>> +        items:
->>> +          - const: incircuit,icnova-a20-adb4006
->>> +          - const: incircuit,icnova-a20
->>> +          - const: allwinner,sun7i-a20
->>> +
->>>        - description: ICNova A20 SWAC
->>>          items:
->>>            - const: incircuit,icnova-a20-swac
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index 3cc32722c394..b6b408417261 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>> @@ -1321,6 +1321,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
->>>  	sun7i-a20-hummingbird.dtb \
->>>  	sun7i-a20-itead-ibox.dtb \
->>>  	sun7i-a20-i12-tvbox.dtb \
->>> +	sun7i-a20-icnova-a20-adb4006.dtb \
->>>  	sun7i-a20-icnova-swac.dtb \
->>>  	sun7i-a20-lamobo-r1.dtb \
->>>  	sun7i-a20-linutronix-testbox-v2.dtb \
->>> diff --git a/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts b/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
->>> new file mode 100644
->>> index 000000000000..c1606c085e4e
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
->>> @@ -0,0 +1,137 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)  
->>
->> Unusual license. Are you sure you are ok with GPLv5.0?
-> 
-> Is it really unusual? This is literally the most commonly used dual license
-> for DTs, grep counts 252 users in arm and 573 users in arm64.
-> 
+On Thu, Apr 20, 2023 at 4:09=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 19/04/2023 09:17, Binbin Zhou wrote:
+> > Add Loongson Extended I/O Interrupt controller binding with DT schema
+> > format using json-schema.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../loongson,eiointc.yaml                     | 74 +++++++++++++++++++
+> >  1 file changed, 74 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/loongson,eiointc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
+ngson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
+/loongson,eiointc.yaml
+> > new file mode 100644
+> > index 000000000000..4ab4efb061e1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,e=
+iointc.yaml
+> > @@ -0,0 +1,74 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/loongson,eioin=
+tc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Loongson Extended I/O Interrupt Controller
+> > +
+> > +maintainers:
+> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> > +
+> > +description: |
+> > +  This interrupt controller is found on the Loongson-3 family chips an=
+d
+> > +  Loongson-2K series chips and is used to distribute interrupts direct=
+ly to
+> > +  individual cores without forwarding them through the HT's interrupt =
+line.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/interrupt-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - loongson,ls2k0500-eiointc
+> > +      - loongson,ls2k2000-eiointc
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: Interrupt enable registers
+> > +      - description: Interrupt status registers
+> > +      - description: Interrupt clear registers
+> > +      - description: Interrupt routing configuration registers
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: enable
+> > +      - const: status
+> > +      - const: clear
+> > +      - const: route
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  '#interrupt-cells':
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-controller
+> > +  - '#interrupt-cells'
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    eiointc: interrupt-controller@1fe11600 {
+> > +      compatible =3D "loongson,ls2k0500-eiointc";
+> > +      reg =3D <0x1fe11600 0x10>,
+> > +            <0x1fe11700 0x10>,
+> > +            <0x1fe11800 0x10>,
+> > +            <0x1fe114c0 0x4>;
+>
+> Binding is OK, but are you sure you want to split the address space like
+> this? It looks like two address spaces (enable+clear+status should be
+> one). Are you sure this is correct?
+>
+Hi Krzysztof:
 
-No, the most commonly used is GPL-2.0 (optionally OR MIT/BSD). GPLv3 and
-later appear, but it is actually weird to use it for kernel DTS where in
-general we said no to GPLv3.
+These registers are all in the range of chip configuration registers,
+in the case of LS2K0500, which has a base address of 0x1fe10000.
+However, the individual register addresses are not contiguous with
+each other, and most are distributed across modules, so I feel that
+they should be listed in detail as they are used.
 
-And my question is not the only one... just grep from responses from
-other maintainers.
+Thanks.
+Binbin
 
-Best regards,
-Krzysztof
-
+> Best regards,
+> Krzysztof
+>
+>
