@@ -2,153 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56BAF6E8B71
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292866E8B77
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234069AbjDTH2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 03:28:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42320 "EHLO
+        id S234087AbjDTHaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234056AbjDTH2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:28:51 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB12659EF
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:28:23 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id b16so4294606ejz.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681975693; x=1684567693;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5gylQokwHrbKYZEvA2K7+6XwCFe14DDzlgchEo04KvA=;
-        b=PutHU7bS6zImLQPyXAcvT5qTwrDitmhfAm5VM1+biikonfodBkAl+VjkfwYnfuDbnr
-         8DABuf5pRWz4qsEN5FJr/iEZW/KlsYhRmn7Apoj12ZPet64lIiCBhz8KDwA3PLzGuTwf
-         ZOtuwuGepUi9L22adCrN1IVo8Q4r5vfmiIb7RqpHG5yzZkc5LfDuqnwFpN8CeTOLP2pI
-         UdAzq7jL2e73KouKLIjISvE2g5W3gNBMKpN3LCCqnDuZ6np0h/opk1L2+gzWfegQJOvt
-         Ak3rVuqinaeEcG3E8tT6KeMnXd7bz2hZpwYPAr9bf6beTjSDMfsNTLEmYq65ikpAimQ1
-         xeFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681975693; x=1684567693;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5gylQokwHrbKYZEvA2K7+6XwCFe14DDzlgchEo04KvA=;
-        b=FFle7CYcG7HRYrfomW2/+RJo2KjkquY0M0oH6Lw41tLHC1dEQ9jn9MQZ7GIr9hmVxt
-         TF1VRp2/Ct95h9aSCeWsdywAiqbj5PzJG97KKCB2u57/FKipGkjN0MKnBNVJmt5aToUF
-         qrOPCnV0RhFYzqVwvkfGnZsOMWeqWUstYh3FeC6cpbBymA6NJ1q61a7MpePkwMufaocJ
-         f27AfCUMaQTWeFb0nsi/ONZlIUT6yZs3R8vMEjpG0sWA8CTlJWLuCdfGep3lvzp94c6x
-         /TKfbDQ5kQP5+41yRA8nPh1bCHXilXX6Fwf6AIMDBhDLM2IG5NlRhgBWCU5zn8MlBAQN
-         KGUA==
-X-Gm-Message-State: AAQBX9fPL0l27/Y8WI1vK8XNtBu4XamjCtIuglIr9Z3trjmgTYunWuNe
-        eU4xK69DdJQXAcKg3A8ZW5xBkw==
-X-Google-Smtp-Source: AKy350Z2Pe07K6VAQBdXbOWfVpcV85qsOc3+ruWuxMJ8aAHh/6Nhgchll3UoLIwNDYYAPVPdf4QCtg==
-X-Received: by 2002:a17:906:1055:b0:94f:6218:191e with SMTP id j21-20020a170906105500b0094f6218191emr517129ejj.20.1681975693177;
-        Thu, 20 Apr 2023 00:28:13 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id oz5-20020a170906cd0500b0094f58a85bc5sm390396ejb.180.2023.04.20.00.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 00:28:12 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        stable@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: ipq4019: fix broken NAND controller properties override
-Date:   Thu, 20 Apr 2023 09:28:11 +0200
-Message-Id: <20230420072811.36947-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233819AbjDTHap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:30:45 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C7BC6;
+        Thu, 20 Apr 2023 00:30:26 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6A92A75B;
+        Thu, 20 Apr 2023 09:30:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1681975817;
+        bh=LSTUdwSzih54Ne5MHSrVZTV2gSAf73YZM/ix1OR5sSM=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=eINLHip+7W7yspC8vrI6Q7upOEFVPAKsa5wFC3BBqLZAiiQvtAnllddOvVgD9oKDu
+         AeDmRW7Ngr4Auw3rvYLCIGkkHTnT7naDl5pMxjxx7ktoLAenkSgqm4OG2gX+FYNJEe
+         uBNocvBtFJAo/N02BDS5hJnB+IA/Q9pWdRLyrT/I=
+Message-ID: <b85a2198-dffd-6c1e-53ea-61bc4d14ce2a@ideasonboard.com>
+Date:   Thu, 20 Apr 2023 10:30:19 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v10 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link III
+ Deserializer
+To:     Wolfram Sang <wsa@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
+ <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
+ <ZD6VwpRya6SGBAt5@shikoro>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <ZD6VwpRya6SGBAt5@shikoro>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After renaming NAND controller node name from "qpic-nand" to
-"nand-controller", the board DTS/DTSI also have to be updated:
+On 18/04/2023 16:06, Wolfram Sang wrote:
+> 
+>> +  i2c-alias-pool:
+>> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+>> +    description:
+>> +      I2C alias pool is a pool of I2C addresses on the main I2C bus that can be
+>> +      used to access the remote peripherals on the serializer's I2C bus. The
+>> +      addresses must be available, not used by any other peripheral. Each
+>> +      remote peripheral is assigned an alias from the pool, and transactions to
+>> +      that address will be forwarded to the remote peripheral, with the address
+>> +      translated to the remote peripheral's real address. This property is not
+>> +      needed if there are no I2C addressable remote peripherals.
+> 
+> After some initial discussion with Tomi on IRC, this question is
+> probably more for Luca:
+> 
+> Why is "i2c-alias-pool" in the drivers binding and not a regular i2c
 
-  Warning (unit_address_vs_reg): /soc/qpic-nand@79b0000: node has a unit name, but no reg or ranges property
+Where should be the binding documented? A new 
+Documentation/devicetree/bindings/i2c/i2c-atr.yaml file that only 
+contains the i2c-alias-pool?
 
-Cc: <stable@vger.kernel.org>
-Fixes: 9e1e00f18afc ("ARM: dts: qcom: Fix node name for NAND controller node")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dts |  8 ++++----
- arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi   | 10 +++++-----
- arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1.dtsi   | 12 ++++++------
- 3 files changed, 15 insertions(+), 15 deletions(-)
+> binding? Same question for the implementation of the alias-pool
+> handling. Shouldn't this be in the i2c-atr library? I'd think managing
+> the list of aliases would look all the same in the drivers otherwise?
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dts b/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dts
-index 79b0c6318e52..0993f840d1fc 100644
---- a/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dts
-+++ b/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dts
-@@ -11,9 +11,9 @@ soc {
- 		dma-controller@7984000 {
- 			status = "okay";
- 		};
--
--		qpic-nand@79b0000 {
--			status = "okay";
--		};
- 	};
- };
-+
-+&nand {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi b/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi
-index a63b3778636d..468ebc40d2ad 100644
---- a/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi
-@@ -102,10 +102,10 @@ pci@40000000 {
- 			status = "okay";
- 			perst-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
- 		};
--
--		qpic-nand@79b0000 {
--			pinctrl-0 = <&nand_pins>;
--			pinctrl-names = "default";
--		};
- 	};
- };
-+
-+&nand {
-+	pinctrl-0 = <&nand_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1.dtsi b/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1.dtsi
-index 0107f552f520..7ef635997efa 100644
---- a/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1.dtsi
-@@ -65,11 +65,11 @@ i2c@78b7000 { /* BLSP1 QUP2 */
- 		dma-controller@7984000 {
- 			status = "okay";
- 		};
--
--		qpic-nand@79b0000 {
--			pinctrl-0 = <&nand_pins>;
--			pinctrl-names = "default";
--			status = "okay";
--		};
- 	};
- };
-+
-+&nand {
-+	pinctrl-0 = <&nand_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
--- 
-2.34.1
+I think this is fine, but I also think that we need to keep the door 
+open to other kinds of alias management. We only have a single user for 
+this for now. A driver/device might have other requirements for its 
+i2c-atr. Say, a pool per link, or perhaps runtime events may affect the 
+pool.
+
+If we dictate the use of i2c-alias-pool property and the i2c-atr will 
+automatically get an alias from that pool, i2c-atr won't be usable for 
+the hypothetical drivers that have other needs.
+
+With that in mind the current binding and i2c-atr.c is safe, as the 
+i2c-atr.c isn't even aware of the pool.
+
+We can easily re-arrange the code later if and when we get more users 
+and understand their needs. But the bindings are important to get 
+right(-ish) now. So:
+
+- Is the "i2c-alias-pool" property a driver property or a common 
+property for all drivers using i2c-atr?
+
+- It the property mandatory or optional? It must be optional, as a setup 
+(meaning, e.g., what cameras you happen to connect) might not have any 
+i2c addressable remote devices, in which case the driver doesn't even 
+need i2c-atr (even if it supports i2c-atr). But is it optional even in 
+the case where the driver needs i2c-atr? In other words, do we allow 
+some other way to manage the aliases?
+
+How does this sound:
+
+- If "i2c-alias-pool" is present in the DT data of the device passed to 
+i2c_atr_new(), i2c_atr_new() will parse the property. i2c-atr.c will 
+export functions to get a new alias and to release a previously reserved 
+alias. The driver can use those functions in attach/detach_client() 
+callbacks. In other words, the alias pool management wouldn't be fully 
+automatic inside the i2c-atr, but it would provide helpers for the 
+driver to do the common work.
+
+- If "i2c-alias-pool" is not present, i2c-atr.c will behave as it does 
+now, and expects the driver to manage the aliases.
+
+Also, looking at the ub960 code... I don't think this will simplify the 
+attach/detach_client callbacks much. Most of the code in those functions 
+is about managing the UB960's registers related to ATR, not managing the 
+address pool itself. However, it will remove the probe time 
+"i2c-alias-pool" parsing from the driver, which is nice.
+
+  Tomi
 
