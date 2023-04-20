@@ -2,80 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7356D6E90E6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8086E90E9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234089AbjDTKtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35178 "EHLO
+        id S234353AbjDTKtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:49:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234353AbjDTKsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:48:13 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F6F193CF
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:46:51 -0700 (PDT)
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8D4F94427B
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:46:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1681987589;
-        bh=F3y8BN0jlMaf7/OefEZ2rjMsbi1pghhAI/wUe5Hh9AI=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=ilFdSw6CzQMLJlClbrs+UPR8HwY5wllJJPZl4T2r8LTv+XwQhvkdgy4sc7P0Jh0o3
-         rl1PtsdsbFjtTUhXAlsUNZ80ejk1HjeS+IPR/H+nQ2IjxSHxnYA9rT/NjHgcZy8lUe
-         DvEJK0it3Mnz9tsBfsyvLIa8ggfgABqc8JY1WkYe3vSUq1YFooepiTfI8bT9Guon8r
-         w2qRufyNxkCDGCjeS0eQiTIfLVLPq0IuavJf+ADmGSkGxeW+STMsGihfeYBiSygFOO
-         qjR55ejeMPWT6dqhuyNjuG2/izsKUF/7Ez0LPabRqNlJr+UPDd8BM4LLWGWhYEXxp8
-         cbMvu918k7EIA==
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-3ef3b962f24so3328091cf.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:46:29 -0700 (PDT)
+        with ESMTP id S234935AbjDTKsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:48:12 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7500A93CD
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:46:50 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2a8a59daec5so3791181fa.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:46:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681987608; x=1684579608;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iep7/xE+gJ5/a5+wqfQTrPkvE8qVynHVQIC8DVLeC9Y=;
+        b=pPAhAYrPsjoObGLSXgVWFClu5ALl895r9YusyXjqzuu9dOdvOjd03KeN+CHp52Zs8f
+         G+dJ4UkETlljzPP1XvX92jukvJZqJU0zpP605DIFvo1P8Fn6XVPnOIyMfcxzk+Q4V9on
+         nIjpd1fgf2L8VoyIIppy8bdzvaUwf0HSKjuZNMuH8BUWz2zp9yuvVcL7xT0QqKxnMGh3
+         TzTvaX7yClz9R128KD8QIXeRSc2GEnOas2fcEtM5OklbBwwtSD2iLdXZhVypjYBLGgOI
+         YzbhJvPMCGYaMqCWBNLCDQbaLgVIGia3g1wXOlzK5UQtyxe6TQ/LRQWBQwrj436J1EEA
+         PX8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681987587; x=1684579587;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F3y8BN0jlMaf7/OefEZ2rjMsbi1pghhAI/wUe5Hh9AI=;
-        b=K7ZjrNpjI5SXopsd4pFHne8axU3BNRhxs7Y83joMPh1Xm6d/5/uDeDvuhJhz7tm6m8
-         lK0OVhgLhFwQhXhlHGwowIoXY+D5SdmfBGTMGbMm6cUJkPZy0bgrARjaMxJ9ADRd2Cs/
-         X3+XEZE90nSzOkSdNhAXFxHICz2UyRGZmzb6L9GxrvumBqB5zDg6NA/K+7FoEjnDL6GC
-         yfuT5hQzevOYfKJuyFZ5JPtoyWgDrpIGI3/mhS/u6JRvxRwiKAUhxyjNV1NHRgYfkizn
-         +5z6H/Tvp4ksA7B6Pxe6algFgb3VznOF7h94CN7MJszqupt6dzf5niwd1ncXCSH2Mul9
-         O7/A==
-X-Gm-Message-State: AAQBX9eq0QAKSh+/V9Y7r7cpFCcH+wNbAhNTHJjRtJ/tLmHJDSgKa7Aw
-        rxQvEvYJOHybIKc8AYnrrdHh9VR+qi0iBqNhw7+qc6k1H2j3yaSxBCS/9YKhS41YQGyvcq9S82e
-        73+Kh22jXLEa+/GFdbU9FJpuHsdbBMs3SByV1k08tmnIfSE4jNx1YmNk=
-X-Received: by 2002:a05:622a:170b:b0:3ef:484e:7973 with SMTP id h11-20020a05622a170b00b003ef484e7973mr1456667qtk.14.1681987586891;
-        Thu, 20 Apr 2023 03:46:26 -0700 (PDT)
-X-Google-Smtp-Source: AKy350aPYR7Fs/UFZEmSN2soKoZh191KzwTCbW7h0Z/qNLwNI/EkX6rPG4MJfxnGXHnvGnaLWVGWBBsurS54hcEETGE=
-X-Received: by 2002:a05:622a:170b:b0:3ef:484e:7973 with SMTP id
- h11-20020a05622a170b00b003ef484e7973mr1456646qtk.14.1681987586654; Thu, 20
- Apr 2023 03:46:26 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681987608; x=1684579608;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iep7/xE+gJ5/a5+wqfQTrPkvE8qVynHVQIC8DVLeC9Y=;
+        b=iQixTASLmxijycE12WCaEujM+0wn4u2kAveMoe4cIXrcJ8/SO5wvBfeLbYzbAJnQCG
+         arnNKGWGdIFfwqtVWtbstjPi4t+0rbijunWywozLSAPPfLhA0Rp9FbZZIx+PhfonYI4Q
+         gV4rcQuK9FgllexBrqzvFlhGHGlDBRu3o5EKN8oj4qyTOnScewjFYAM6doND+TkzO0Ag
+         zB+Ph4WGGdCIDP4nHTRTBiulh9lK8qq0e6vmf3fNjxA7jl4ENlFbfR6L+DYPWgFtSuNb
+         YeXHWK1oQw9lVIia0mLeVh9mslsu8uQqJCEvrGJXcj9gWYvI33JUjH4r8M4D+kgXTbP3
+         V1AA==
+X-Gm-Message-State: AAQBX9e0MHe10lHLLJejL1+ZFtb4erBHzGxwt3N1IF7yjdDeUtI3VWUY
+        OQ6elE1d83LgfN12bgZ2gptwjQ==
+X-Google-Smtp-Source: AKy350arSbY0SEXSii248y1vwLv+UCD6rWyTNQacHSu8SnbTtOUQPUvymv+aI8RMqOLM6s6P/Os73A==
+X-Received: by 2002:ac2:4e72:0:b0:4de:7a23:23e2 with SMTP id y18-20020ac24e72000000b004de7a2323e2mr284361lfs.21.1681987608266;
+        Thu, 20 Apr 2023 03:46:48 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id u17-20020a056512095100b004ec88128dc4sm177307lft.68.2023.04.20.03.46.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 03:46:47 -0700 (PDT)
+Message-ID: <98d8fb6c-5e64-43be-17d5-ae37db69201b@linaro.org>
+Date:   Thu, 20 Apr 2023 12:46:46 +0200
 MIME-Version: 1.0
-References: <20230420093457.18936-1-nylon.chen@sifive.com> <20230420093457.18936-3-nylon.chen@sifive.com>
- <CAJM55Z-smXpgL+QyTSeAWt=B-RS_qtbrFZtJpP-cQS0gsQnDSw@mail.gmail.com> <CAHh=Yk86AV542Y7wG6rkHTc4va1Gof3uXtj84zzK5m+khL_Aiw@mail.gmail.com>
-In-Reply-To: <CAHh=Yk86AV542Y7wG6rkHTc4va1Gof3uXtj84zzK5m+khL_Aiw@mail.gmail.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Thu, 20 Apr 2023 12:46:10 +0200
-Message-ID: <CAJM55Z9TPVyJyWwWAS2FznSc8FvnR7qMxQ412eMzBkD=5abp6g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED algorithm
-To:     Nylon Chen <nylon.chen@sifive.com>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        nylon7717@gmail.com, zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 04/10] ARM: dts: qcom: ipq8064: drop leading 0 from
+ unit-address
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
+ <20230420075053.41976-4-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230420075053.41976-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,103 +80,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Apr 2023 at 12:41, Nylon Chen <nylon.chen@sifive.com> wrote:
->
-> Hi, Emil
->
-> Emil Renner Berthing <emil.renner.berthing@canonical.com> =E6=96=BC 2023=
-=E5=B9=B44=E6=9C=8820=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:04=E5=
-=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Thu, 20 Apr 2023 at 11:35, Nylon Chen <nylon.chen@sifive.com> wrote:
-> > >
-> > > The `frac` variable represents the pulse inactive time, and the resul=
-t of
-> > > this algorithm is the pulse active time. Therefore, we must reverse t=
-he
-> > > result.
-> > >
-> > > The reference is SiFive FU740-C000 Manual[0]
-> > >
-> > > Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86=
-ed8b16acba_fu740-c000-manual-v1p6.pdf [0]
-> > >
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-> > > ---
-> > >  drivers/pwm/pwm-sifive.c | 9 ++++++---
-> > >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > > index 393a4b97fc19..d5d5f36da297 100644
-> > > --- a/drivers/pwm/pwm-sifive.c
-> > > +++ b/drivers/pwm/pwm-sifive.c
-> > > @@ -132,13 +132,13 @@ static int pwm_sifive_apply(struct pwm_chip *ch=
-ip, struct pwm_device *pwm,
-> > >  {
-> > >         struct pwm_sifive_ddata *ddata =3D pwm_sifive_chip_to_ddata(c=
-hip);
-> > >         struct pwm_state cur_state;
-> > > -       unsigned int duty_cycle;
-> > > +       unsigned int duty_cycle, period;
-> > >         unsigned long long num;
-> > >         bool enabled;
-> > >         int ret =3D 0;
-> > >         u32 frac;
-> > >
-> > > -       if (state->polarity !=3D PWM_POLARITY_INVERSED)
-> > > +       if (state->polarity !=3D PWM_POLARITY_NORMAL && state->polari=
-ty !=3D PWM_POLARITY_INVERSED)
-> > >                 return -EINVAL;
-> > >
-> > >         cur_state =3D pwm->state;
-> > > @@ -154,10 +154,13 @@ static int pwm_sifive_apply(struct pwm_chip *ch=
-ip, struct pwm_device *pwm,
-> > >          * calculating the register values first and then writing the=
-m
-> > >          * consecutively
-> > >          */
-> > > +       period =3D max(state->period, ddata->approx_period);
-> >
-> > Hi Nylon,
-> >
-> > I don't understand this patch. You introduce this new variable,
-> > period, and set it here but you never seem to use it. If you planned
-> > to use it instead of state->period below, why should it be the max of
-> > the old period and what is requested? What happens if the consumer
-> > wants to lower the period?
-> Sorry this was an oversight on my part, there was a line correction that =
-didn't change to
-> - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> + frac =3D DIV64_U64_ROUND_CLOSEST(num, period);
 
-I see, so then my second question was why period needs to be the
-larger of the previous period and the requested period.
 
-What happens if the requested period, state->period, is lower than the
-old period, ddata->approx_period? Then the period will be changed to
-state->period below, but the calculations will be made using period =3D
-ddata->approx_period, right?
+On 20.04.2023 09:50, Krzysztof Kozlowski wrote:
+> Unit-address should not start with 0:
+> 
+>   Warning (simple_bus_reg): /soc/syscon@03000000: simple-bus unit address format error, expected "3000000"
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> >
-> > Also above you now allow both PWM_POLARITY_NORMAL and
-> > PWM_POLARITY_INVERSED but you treat both cases the same.
-> I may have misunderstood what Uwe means here, I will confirm again here
-> >
-> > /Emil
-> >
-> > >         num =3D (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
-> > >         frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > > -       /* The hardware cannot generate a 100% duty cycle */
-> > >         frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> > > +       /* The hardware cannot generate a 100% duty cycle */
-> > > +       frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
-> > > +
-> > >
-> > >         mutex_lock(&ddata->lock);
-> > >         if (state->period !=3D ddata->approx_period) {
-> > > --
-> > > 2.40.0
-> > >
+>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> index 621edf508a88..182018d79a7b 100644
+> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> @@ -609,7 +609,7 @@ saw1: regulator@2099000 {
+>  			regulator;
+>  		};
+>  
+> -		nss_common: syscon@03000000 {
+> +		nss_common: syscon@3000000 {
+>  			compatible = "syscon";
+>  			reg = <0x03000000 0x0000FFFF>;
+some random uppercase hex, if you'd like to clean that up too!
+
+Konrad
+
+>  		};
