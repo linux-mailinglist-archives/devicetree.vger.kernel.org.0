@@ -2,102 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 728A76E9509
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:50:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC7F6E9511
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231487AbjDTMuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 08:50:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42062 "EHLO
+        id S231669AbjDTMwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 08:52:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjDTMt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:49:59 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41442EC
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 05:49:58 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id xi5so5971858ejb.13
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 05:49:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681994997; x=1684586997;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=86inLg404iy6XZr71SasfCq+JcTZG2gc/SGQxXWY/6o=;
-        b=ewdl5zIzTb8Mb0OWtnf8fTIKE8H0qqG6mX9jAgtmwfdnUfORpwAQluc2xLkCrrbD6I
-         z+xRcFlNRGEYEQ5IuiTscCoq/5gl88w/CRG+eBGnkMaZOoibewDxQkXy2VVRTbzlaBKq
-         MUaQjvweyhGGi6IvJVOO3j3olh9q8tAh15GRlSNPiZKhwH0vqvLmqk3FFbLUJkX5loUB
-         aRhfZNeA3aOK0vushyxTKhGd2VZHLGuKOwWBVf+/N0fYOJ4y0AAGCM2KxDJ5gVFnC2gp
-         iHOmsM5nbquivT3o43u/ZgDhncRWA4bE6ezOoaOrxJJljYYaQRbckSkwhXfYRCx9OiUf
-         O4tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681994997; x=1684586997;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=86inLg404iy6XZr71SasfCq+JcTZG2gc/SGQxXWY/6o=;
-        b=hS6hih1ElnPBHaLAB3gkEEoar4SJNRcGBTC5LRBTLARfOb/PuKq5G5uJOgcDVDaU8O
-         g9aFS7PJWxVvUdgOruOfoHtkxuAf/2J+DVVAPcWdqEENiNekDxwnr6EEpG4UfYY2Mp8R
-         L7c0BlJoewQ+KObmYYsAFGt6A4xrVBkmJNQUiWeBsks9ZyUQC2uWgTRdW6zmEg2vVd5D
-         s4b7c1gZybAi0ML9DU5W+jxx1SCjYpcAHdoqC5nHNqs7+DwOJ5CMs6sNNpMu/BjVRsB4
-         UiuEy1PaTJwyicpoZJqerqucZ4PDYsiNKrrJgHrkS7BH3bv/vQqdR6q+QxRd94iSc2Rt
-         h7Pg==
-X-Gm-Message-State: AAQBX9fIskBdukj4dIA2liQZw7SQqjNStNiu7hT091IZXemmzcGHRRrz
-        0Wp/xIQA5maae/taIEm55ptUWw==
-X-Google-Smtp-Source: AKy350Yx+YoxEu26bUs+n4hWzHl2DS/ZsBBqF9kIcEeumzVXzc+55WJ2bfeR5ZuzHO7Iv3lxtaHQqw==
-X-Received: by 2002:a17:906:53d2:b0:930:b130:b7b with SMTP id p18-20020a17090653d200b00930b1300b7bmr1640306ejo.6.1681994996750;
-        Thu, 20 Apr 2023 05:49:56 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bcb8:77e6:8f45:4771? ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id o9-20020a170906774900b0094f8ec35070sm697649ejn.113.2023.04.20.05.49.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 05:49:56 -0700 (PDT)
-Message-ID: <daa2de06-9906-cc4c-600e-9f16351d7d43@linaro.org>
-Date:   Thu, 20 Apr 2023 14:49:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: dts: qcom: ipq4019: fix broken NAND controller
- properties override
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231616AbjDTMwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:52:19 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8446E91;
+        Thu, 20 Apr 2023 05:52:06 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2974640006;
+        Thu, 20 Apr 2023 12:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1681995124;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=JSvkVShDg2ogaaxh+qhZHwOBGnoML0lh9gLtFf0aYJY=;
+        b=K3NraIj0bS9d2Ti9kkDjrdUnGd5Vvl/H4l2VnJrcbWQBF35iNR1tne4vvmzKC50ehtfOnv
+        Lsy5pl7nk09AurzhQFsU/l069qzTDJVv5jyfQJqHeMcT+TgmkBZWzIg6BJ+95OLkQ8eC8F
+        c4aFDnEtkuZvSztyCp/ifxAvgEDsxyMo4GYY4WxZO7Zv9hpU4dREDRkwnaC9z58aGPEMBe
+        FKzuNaLV9K3xz7EUhO7l3wBEIzrMBkFPTns6DknzBLDw/XaGvLcEL1QddQoT3OdDYRAD5G
+        YVY7RN4OH1eEvWC/b70AG4MHSqBbmTAeZ26WA59htBOYIJH3BTyXA7ZofApklQ==
+Date:   Thu, 20 Apr 2023 14:52:02 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     stable@vger.kernel.org
-References: <20230420072811.36947-1-krzysztof.kozlowski@linaro.org>
- <ab7c0eab-4b80-2186-de92-dea3df58c298@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ab7c0eab-4b80-2186-de92-dea3df58c298@linaro.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 2/7] mfd: core: Ensure disabled devices are skiped
+ without aborting
+Message-ID: <20230420145202.4e21b51d@bootlin.com>
+In-Reply-To: <20230420122955.GA996918@google.com>
+References: <20230417171601.74656-1-herve.codina@bootlin.com>
+        <20230417171601.74656-3-herve.codina@bootlin.com>
+        <20230420122955.GA996918@google.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2023 12:42, Konrad Dybcio wrote:
-> 
-> 
-> On 20.04.2023 09:28, Krzysztof Kozlowski wrote:
->> After renaming NAND controller node name from "qpic-nand" to
->> "nand-controller", the board DTS/DTSI also have to be updated:
->>
->>   Warning (unit_address_vs_reg): /soc/qpic-nand@79b0000: node has a unit name, but no reg or ranges property
->>
->> Cc: <stable@vger.kernel.org>
-> Cc: <stable@vger.kernel.org> # 5.12
-> 
-> (g show 9e1e00f18afc:Makefile | head, rounded up to first release)
+On Thu, 20 Apr 2023 13:29:55 +0100
+Lee Jones <lee@kernel.org> wrote:
 
-You do not have to do this. The Fixes tag defines backporting.
+> On Mon, 17 Apr 2023, Herve Codina wrote:
+> 
+> > The loop searching for a matching device based on its compatible
+> > string is aborted when a matching disabled device is found.
+> > This abort avoid to add devices as soon as one disabled device
+> > is found.
+> > 
+> > Continue searching for an other device instead of aborting on the
+> > first disabled one fixes the issue.
+> > 
+> > Fixes: 22380b65dc70 ("mfd: mfd-core: Ensure disabled devices are ignored without error")
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  drivers/mfd/mfd-core.c | 18 +++++++++++++-----
+> >  1 file changed, 13 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/mfd/mfd-core.c b/drivers/mfd/mfd-core.c
+> > index 16d1861e9682..7c47b50b358d 100644
+> > --- a/drivers/mfd/mfd-core.c
+> > +++ b/drivers/mfd/mfd-core.c
+> > @@ -176,6 +176,7 @@ static int mfd_add_device(struct device *parent, int id,
+> >  	struct platform_device *pdev;
+> >  	struct device_node *np = NULL;
+> >  	struct mfd_of_node_entry *of_entry, *tmp;
+> > +	bool not_available;
+> >  	int ret = -ENOMEM;
+> >  	int platform_id;
+> >  	int r;
+> > @@ -211,13 +212,13 @@ static int mfd_add_device(struct device *parent, int id,
+> >  		goto fail_res;
+> >  
+> >  	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
+> > +		not_available = false;  
+> 
+> Why not do:
+> 
+> 		bool disabled = false;
+> 
+> ... here instead?
+
+Yes, I can change to 'disabled'.
+
+> 
+> >  		for_each_child_of_node(parent->of_node, np) {
+> >  			if (of_device_is_compatible(np, cell->of_compatible)) {
+> > -				/* Ignore 'disabled' devices error free */
+> > +				/* Skip 'disabled' devices */
+> >  				if (!of_device_is_available(np)) {
+> > -					of_node_put(np);  
+> 
+> Why are you removing the put?
+
+The of_node_put() is done internally by for_each_child_of_node() calling
+of_get_next_child().
+As the for_each_child_of_node() loop is not break, the of_node_put() must
+not be called here as it will be called by of_get_next_child().
+
+> 
+> > -					ret = 0;
+> > -					goto fail_alias;
+> > +					not_available = true;
+> > +					continue;
+> >  				}
+> >  
+> >  				ret = mfd_match_of_node_to_dev(pdev, np, cell);
+> > @@ -227,10 +228,17 @@ static int mfd_add_device(struct device *parent, int id,
+> >  				if (ret)
+> >  					goto fail_alias;
+> >  
+> > -				break;
+> > +				goto match;
+> >  			}
+> >  		}
+> >  
+> > +		if (not_available) {
+> > +			/* Ignore 'disabled' devices error free */
+> > +			ret = 0;
+> > +			goto fail_alias;
+> > +		}
+> > +
+> > +match:
+> >  		if (!pdev->dev.of_node)
+> >  			pr_warn("%s: Failed to locate of_node [id: %d]\n",
+> >  				cell->name, platform_id);
+> > -- 
+> > 2.39.2
+> >   
+> 
 
 Best regards,
-Krzysztof
+Hervé
 
