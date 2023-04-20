@@ -2,151 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD9B6E87EF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 04:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E7A36E8818
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 04:41:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231710AbjDTCYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 22:24:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35926 "EHLO
+        id S233443AbjDTClc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 22:41:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229767AbjDTCYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 22:24:18 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D9A6448A;
-        Wed, 19 Apr 2023 19:24:14 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-63b62d2f729so476437b3a.1;
-        Wed, 19 Apr 2023 19:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681957454; x=1684549454;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5hCnIiv0UZoUyqA3j7om4LR5r+3eUZFma/siIy2qvxI=;
-        b=aHY0KqzYmBUMNi2SicP8NE4mewVj4KbcqsIdBEOZnX3xv6AbcZVdLJaMN/46ZG2byr
-         rBxvGegBdnF3Blj7IULlxmIG7Vc3WSEf6BxpnZwgTSwm5BKMmNTladesWKF27zZEbwa1
-         2/069yWBd3mg4yjNl+d9e9NWhFp+40oZgCrJat2dufA7loHBzTGP7MZEEccaSghk9UNB
-         QdRJWyYbYJMp0DMsz6nPSJSA6qCJqVd/sd/tHuSTY6mh0fdNp7D77VyWAz3HdyDGpgw/
-         MVZJFN+jnIfr2ZMz23p3AofUQ3GIbgveA3oSWQVTDDG8Ucl0RVwh3QnYcf1cgW4/5zAf
-         pf4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681957454; x=1684549454;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5hCnIiv0UZoUyqA3j7om4LR5r+3eUZFma/siIy2qvxI=;
-        b=GVf+oQFaY6dVbZ6G6pD54B55hRS7qyPREg6bf/4taRGUeIKE2VVsAGu0nnDNZkgrrD
-         aAGzDOBizcdvazbaqx6bHVCGEK7183HWvboM1vDZ/5Wl5TwrcLQ2QqzGci4v0zb19n7E
-         fWDQMbMay/QGK/YrzlOdSOWh9+KGJb2L06+XyFfkNVNOOQyVDHx0ZIy2x+X/oZHJGk9z
-         IPhmbXv66BPXPoLL1h4BsvEz7ioV03usk3hwAx1Y1FhD2oWXauUlye7o6arn2foK7bLR
-         NidWL0yI3g1OFhETNY0s103nuuxjmwSFLprj2IUaRAiCk+wiWhccCia7W7bSXPcdSMGq
-         6tag==
-X-Gm-Message-State: AAQBX9dsk+sISvE+Fu/LrzhqmqTYGs2EdGXpabgI6ITqa/JznjH2hmf1
-        zwHx7tWKYPhto3eSkkna+ZBzJIR7bIEXLZv4n7I=
-X-Google-Smtp-Source: AKy350ZadxRbNfm3xfOR9s+wQOjZ3vM83wayISANsNazFfeiI4PtzsEAeWCrcjhACnyQu547bwbY7U3jZ3QonfXSGK4=
-X-Received: by 2002:a17:90a:ad90:b0:247:bd63:c3af with SMTP id
- s16-20020a17090aad9000b00247bd63c3afmr181414pjq.8.1681957453496; Wed, 19 Apr
- 2023 19:24:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230415104104.5537-1-aford173@gmail.com> <20230415104104.5537-5-aford173@gmail.com>
- <807aa6c6-bbea-abcc-172d-17e22d1a3988@denx.de> <CAHCN7x+NUnMtLbj_7A_uqxPsi5NXRXsPFwDnn=sf1bgm-Q-BsQ@mail.gmail.com>
- <88e53197-2819-c068-eba6-a218a19d8d15@denx.de> <CAHCN7xLbbyTaN43pJe3NMdupoGb5vC3yXc_vBn6+CRChWCt92A@mail.gmail.com>
- <ac7ce475-23dd-4d9d-afd1-ad139496a510@denx.de>
-In-Reply-To: <ac7ce475-23dd-4d9d-afd1-ad139496a510@denx.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 19 Apr 2023 21:24:02 -0500
-Message-ID: <CAHCN7xKZnHGkErwpT-zXR6P-nMxBbg4OVNSr1An2vBaTpOsuqA@mail.gmail.com>
-Subject: Re: [PATCH 5/6] drm: bridge: samsung-dsim: Support non-burst mode
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, m.szyprowski@samsung.com,
-        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233449AbjDTCl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 22:41:27 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515F7558A;
+        Wed, 19 Apr 2023 19:41:22 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A620824DB89;
+        Thu, 20 Apr 2023 10:41:19 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
+ 2023 10:41:19 +0800
+Received: from SD-Server.starfivetech.com (113.72.144.253) by
+ EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Thu, 20 Apr 2023 10:41:18 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Walker Chen <walker.chen@starfivetech.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v2 0/4] Add TDM audio on StarFive JH7110
+Date:   Thu, 20 Apr 2023 10:41:14 +0800
+Message-ID: <20230420024118.22677-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.144.253]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 17, 2023 at 6:23=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
->
-> On 4/18/23 00:24, Adam Ford wrote:
-> > On Mon, Apr 17, 2023 at 3:08=E2=80=AFPM Marek Vasut <marex@denx.de> wro=
-te:
-> >>
-> >> On 4/17/23 13:57, Adam Ford wrote:
-> >>> On Sun, Apr 16, 2023 at 5:13=E2=80=AFPM Marek Vasut <marex@denx.de> w=
-rote:
-> >>>>
-> >>>> On 4/15/23 12:41, Adam Ford wrote:
-> >>>>> The high-speed clock is hard-coded to the burst-clock
-> >>>>> frequency specified in the device tree.  However, when
-> >>>>> using devices like certain bridge chips without burst mode
-> >>>>> and varying resolutions and refresh rates, it may be
-> >>>>> necessary to set the high-speed clock dynamically based
-> >>>>> on the desired pixel clock for the connected device.
-> >>>>
-> >>>> The link rate negotiation should happen internally between the neare=
-st
-> >>>> bridge and DSIM, so please add that to DRM core instead of hacking
-> >>>> around it by tweaking the HS clock again.
-> >>>
-> >>> I thought you tried to add something like this before and had some re=
-sistance.
-> >>
-> >> Yes, all my attempts were rejected by a single reviewer. I suspended m=
-y
-> >> efforts in that area for now.
-> >>
-> >>> The Pixel clock is set by the bridge already without any new code
-> >>> added to the DRM core..  I am just reading that value that's there,
-> >>> and setting the clock accordingly.  I don't see how this is a hack.
-> >>
-> >> Assume you have a DSI-to-HDMI bridge attached to your DSIM bridge, it
-> >> operates in non-burst mode, like ADV7533 . How would you configure the
-> >
-> > I have an ADV7535
-> >
-> >> HS clock rate for such a bridge in DT ? (hint: you cannot, because the
-> >> required clock comes from the EDID, which may not be available just ye=
-t)
-> >
-> > The whole idea is that you wouldn't want to or need to configure the
-> > clock speed in the device tree because it comes from the
-> > EDID->bridge->DSI.
-> >
-> > I've tested this configuration on imx8mm, imx8mn, and imx8mp and I can
-> > change the resolution and refresh rate on the fly and the DSI will
-> > automatically readjust accordingly.   If you fixed the clock in the
-> > device tree, you wouldn't be able to do that, and that was the point
-> > of this patch.
->
-> Uh, I retract my comment, I was clearly confused here and we're talking
-> about the same thing.
+This patchset adds TDM audio driver for the StarFive JH7110 SoC. The
+first patch adds device tree binding for TDM module. The second patch
+adds the item for JH7110 audio board to the dt-binding of StarFive
+SoC-based boards. The third patch adds tdm driver support for JH7110
+SoC. The last patch adds device node of tdm and sound card to JH7110 dts.
 
-I'm working on a V2 for this series.  Are you OK with this if I update
-the commit message a bit to make it more clear?
+The series has been tested on the VisionFive 2 board by plugging the
+raspberry pie audio board. 
 
-adam
+For more information of raspberry pie audio board, you can take a look
+at the following webpage:
+https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/
+
+The last patch should be applied after the following patchset:
+https://lore.kernel.org/all/20230411135558.44282-1-xingyu.wu@starfivetech.com/
+
+Changes since v1:
+- Rebased on Linux 6.3-rc4.
+- Added the dts file dedicated to describe audio card.
+- Added the item for JH7110 audio board to the dt-binding of StarFive
+  SoC-based boards.
+
+---
+v1: https://lore.kernel.org/all/20230329153320.31390-1-walker.chen@starfivetech.com/
+
+Walker Chen (4):
+  dt-bindings: sound: Add TDM for StarFive JH7110
+  dt-bindings: riscv: Add item for StarFive JH7110 audio board
+  ASoC: starfive: Add JH7110 TDM driver
+  riscv: dts: starfive: add tdm node and sound card
+
+ .../devicetree/bindings/riscv/starfive.yaml   |   1 +
+ .../bindings/sound/starfive,jh7110-tdm.yaml   |  98 +++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/starfive/Makefile         |   1 +
+ .../starfive/jh7110-starfive-audio-card.dts   |  67 ++
+ .../jh7110-starfive-visionfive-2.dtsi         |  40 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  21 +
+ sound/soc/Kconfig                             |   1 +
+ sound/soc/Makefile                            |   1 +
+ sound/soc/starfive/Kconfig                    |  15 +
+ sound/soc/starfive/Makefile                   |   2 +
+ sound/soc/starfive/jh7110_tdm.c               | 579 ++++++++++++++++++
+ sound/soc/starfive/jh7110_tdm.h               | 155 +++++
+ 13 files changed, 987 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-audio-card.dts
+ create mode 100644 sound/soc/starfive/Kconfig
+ create mode 100644 sound/soc/starfive/Makefile
+ create mode 100644 sound/soc/starfive/jh7110_tdm.c
+ create mode 100644 sound/soc/starfive/jh7110_tdm.h
+
+
+base-commit: 197b6b60ae7bc51dd0814953c562833143b292aa
+prerequisite-patch-id: 30bec4dba6f250a6edd0c2cbab2ce09442e50e8a
+prerequisite-patch-id: bb939c0c7c26b08addfccd890f9d3974b6eaec53
+prerequisite-patch-id: 8a6f135bcabdad4a4bfb21f0c6a0ffd2bb57efe7
+prerequisite-patch-id: c2366f993a9d85e28c06d8d09f064dd5e8b29a61
+prerequisite-patch-id: 50d53a21f91f4087fc80b6f1f72864adfb0002b9
+prerequisite-patch-id: 0df3703af91c30f1ca2c47f5609012f2d7200028
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: 551fae54377090044c3612fca9740a9b359abdd2
+prerequisite-patch-id: c7fdf904f398d478f0ed6d57eb878982bc73329d
+prerequisite-patch-id: 1b2d0982b18da060c82134f05bf3ce16425bac8d
+prerequisite-patch-id: 090ba4b78d47bc19204916e76fdbc70021785388
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 4637a8fa2334a45fa6b64351f4e9e28d3e2d60d3
+prerequisite-patch-id: 32647ec60a3b614e1c59ec8e54cb511ae832c22f
+prerequisite-patch-id: aa06658ecf89c92d0dfdd6a4ba6d9e6e67532971
+prerequisite-patch-id: 1387a7e87b446329dfc21f3e575ceae7ebcf954c
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: 9007c8610fdcd387592475949864edde874c20a2
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 9f911969d0a550648493952c99096d26e05d4d83
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: 80042661ff6156ce577a72e9eb8c0b218b624829
+prerequisite-patch-id: 398744c61913c76a35754de867c4f820ca7a8d99
+prerequisite-patch-id: f59269382164b5d642a5e10443ca447f5caa595c
+prerequisite-patch-id: 1babe83d6bf999bad17584dc595480f9070a5369
+prerequisite-patch-id: 77be3d122d66df813f13088141ce27b21107a341
+prerequisite-patch-id: 9fbb7ad1dd258bb8ff5946c4a0e59de4bfd82a04
+prerequisite-patch-id: 6f6984916dffd0cc66aa733c9b6bd3a55495a50c
+prerequisite-patch-id: 39e1be2a3d1593577ab997f55f59367cba665aa7
+prerequisite-patch-id: 584c256c9acb52ee2773d0c81c3f4977fc18155a
+prerequisite-patch-id: b37ac15032973e1fcd918f157c82a0606775c9e9
+prerequisite-patch-id: 32deea16304859842af5c2151bc41d91cf6dfc9b
+prerequisite-patch-id: 20ac2450fb93b3f69f83fc720fd4800a95e618a6
+prerequisite-patch-id: 6abf359fa445f4104432ddee27044dfbfb128417
+-- 
+2.17.1
+
