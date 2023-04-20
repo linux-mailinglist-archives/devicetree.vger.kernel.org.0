@@ -2,76 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3056E8D90
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4496E8DAE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:11:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234228AbjDTJH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 05:07:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54790 "EHLO
+        id S234296AbjDTJL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 05:11:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234264AbjDTJGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:06:45 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C8A649CB
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:03:20 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-54f6a796bd0so30813987b3.12
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:03:20 -0700 (PDT)
+        with ESMTP id S229447AbjDTJLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:11:41 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F0B1BD3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:11:01 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id ca18e2360f4ac-7606d6bb711so76110039f.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:11:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681981399; x=1684573399;
+        d=chromium.org; s=google; t=1681981857; x=1684573857;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m0lEu5YJQSzQFxLtW0nkX+zXvl36aiYVGcyvCiPixt4=;
-        b=Lx01WmClNNLFRpGg+In/O4wEqUkR2lWOznPywlD2hjcxmjZXdVIW3YFG9qZ7Pq4e3Z
-         Rgps52rtW/IoGHUlaz7fel1d85Ug67ce5/LGg601cOqvvZiXE/rfkUVSfZ7fMLuqyBPz
-         dDX1tHsQdHskJLHgdC9wYMCjoIuHR6qwpBvwsuiDlV2OVabfgT1k00i29DrsbEKLiu/8
-         zl0t/QFvlxE8JB3xMD8r9bU6cGxYzy62Gv0mIrsi8vy7s0+ErNX7X2o827HIoea7xeVf
-         ESSdUDEYQbC4aDpaY6I/BZxtM7LhoqDU+vBM/PU9EHWrtzOhxBa1YQe6ICEoDt4HkMcl
-         dSYA==
+        bh=jApLsIPicCWYWY8ghJs6Wqkso3cOUL2m8oysLKQNPCs=;
+        b=Ur9jtx0E94T0GI9XNaXArOQcj0se42481pOZjFlLPL+HB5Lj3VQ0Skl82gG5KPW/re
+         V0XDWaTSQ6C8cKi+Hx/1+6fYNfQIAmbBMmPo9Tx61XMp6Lk4cMhypk7IL0R+08PSOOT6
+         fulCTs04wVatbGLIdZn0FIjfOxwjNWV2iKIEk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681981399; x=1684573399;
+        d=1e100.net; s=20221208; t=1681981857; x=1684573857;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m0lEu5YJQSzQFxLtW0nkX+zXvl36aiYVGcyvCiPixt4=;
-        b=a5SJfgFC4WoWhAvBMroJzHt52bH4xDgyyov+HCUkmFYq1QZntisnEVqrjd07Ec7GfT
-         X4xxeTVZgGxBcVcZIJLDEKNIDXaQGftkkzttNn+WPdzXObWXhdw7sV+MrgEnYaSlZl+9
-         mSfZnCid+Jpkce+g9la3zywCKZZi0KOgoT0V6kfDFtMpa32HorqysUUG5Hehudx41nM7
-         /uZsph2DU47DjLvj5YxDEebHjsGE63u82wPV8Xd/dbICtu/ihY5nGAKk0qCSMmeJGeKI
-         dumxAliqRWs9Wbg/5AkuxXGPGVRipGyhWl3ohZCyJH+l5/fSQSt7Krd5IVV2U8rZS4qn
-         eVGw==
-X-Gm-Message-State: AAQBX9fLqDEGKw5nIeHR3SP1lSSQb0rJXmJE1JHbT8Eg4jDNc+8fOJN6
-        sBEpFvQx9hNFkgMb578TUiyCKNEsWoxmUL6IdIGjYg==
-X-Google-Smtp-Source: AKy350ZBGFzJdduxJk5FBk9RHyO91bkq1YawBzCvhgQU8l3ruIDlhnnpA3/WlZoEi7i2+Wl5XbOmMkRi7FOmAWcw8rg=
-X-Received: by 2002:a81:4fd0:0:b0:54f:2df2:9907 with SMTP id
- d199-20020a814fd0000000b0054f2df29907mr323563ywb.20.1681981399463; Thu, 20
- Apr 2023 02:03:19 -0700 (PDT)
+        bh=jApLsIPicCWYWY8ghJs6Wqkso3cOUL2m8oysLKQNPCs=;
+        b=jOVeF+MYgyYDZ+d8EI2RLTpjP93oV1e30xdkFI758gUEJjYnpZFLXaypKzityA5U8k
+         MUwGG5o4ERLzBcUwOY4INko74yVeLRtKJ/Kf95fX5nqaBBorQQWEj8pWddJCWH2Wc67S
+         mAgYAtyQ5ypkE+MPP9hxumgk+3FmJap+E0f15U6uJ7vizgourj85L/Aj9VqTspxhwgr2
+         E1fos+BOM3iLYwjaJ0/ZpxX6TfcGMErtkrY5u7aRXNBCcqz6jAhB8AZ4JUNHKVZSWQui
+         MZKZgEjvMRhX1Uu29CkXQI+dc0ZtISlCp7Ftvz7zi8jtvCk8X0TUqrNb7E7TrWWlZ34e
+         Rjrw==
+X-Gm-Message-State: AAQBX9eDL5BPT2R+4Vlh1al7tQLj+9fzLhTC6Vb3xxzEFormMid8o7Yt
+        2qW4EU0ltsfiYnJ+eFIKLMfUhjsKWfXIcdv5OfP1rA==
+X-Google-Smtp-Source: AKy350Y4t++JqRfXaFXQUgB02uSAJYZVXkFSdgGLBxELTeSwXAZpeLFbnln9lKU9ujIzGQATjnMs8vmkMD8DbLkGgsY=
+X-Received: by 2002:a02:b019:0:b0:40f:910c:92d6 with SMTP id
+ p25-20020a02b019000000b0040f910c92d6mr253400jah.6.1681981856946; Thu, 20 Apr
+ 2023 02:10:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230418-msm8998-hdmi-cec-v1-0-176479fb2fce@freebox.fr>
- <20230418-msm8998-hdmi-cec-v1-2-176479fb2fce@freebox.fr> <2c2d4ce0-11e7-a0f7-0b24-d8f13b80923f@linaro.org>
- <CAG9NU6-ne+2zZL1WsZv3beVoUdtG5CyMScabwcqzM0d0nnK_vg@mail.gmail.com>
-In-Reply-To: <CAG9NU6-ne+2zZL1WsZv3beVoUdtG5CyMScabwcqzM0d0nnK_vg@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 20 Apr 2023 12:03:08 +0300
-Message-ID: <CAA8EJpqkJ5C-sMwwTLE2RRQQj0U+fLy8eDX+AUPZjzNmJijy=Q@mail.gmail.com>
-Subject: Re: [PATCH 2/4] drm/msm: add hdmi cec support
-To:     Arnaud Vrac <avrac@freebox.fr>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+References: <20230331091145.737305-1-treapking@chromium.org>
+ <20230331091145.737305-5-treapking@chromium.org> <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
+ <CAEXTbpdcbB_z4ZGCGzc-cM74ECKyxekbroKCWFnhH8eR=4HmvA@mail.gmail.com>
+ <CAE-0n50atfmr-bFh5XtTCm4WpSijJGSe0B5JP8ni7CCYk7Bs5A@mail.gmail.com> <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
+In-Reply-To: <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Thu, 20 Apr 2023 17:10:46 +0800
+Message-ID: <CAEXTbpeKe1dVHp9cauMN-9nQb35oJ-ZhdFV-8BiWzjjhWAy0Zg@mail.gmail.com>
+Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
+ mode-switch support
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Benson Leung <bleung@chromium.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chen-Yu Tsai <wenst@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,514 +100,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Apr 2023 at 10:24, Arnaud Vrac <avrac@freebox.fr> wrote:
+On Thu, Apr 20, 2023 at 2:10=E2=80=AFPM Stephen Boyd <swboyd@chromium.org> =
+wrote:
 >
-> Le jeu. 20 avr. 2023 =C3=A0 02:20, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> a =C3=A9crit :
-> >
-> > On 18/04/2023 21:10, Arnaud Vrac wrote:
-> > > Some Qualcomm SoCs that support HDMI also support CEC, including MSM8=
-996
-> > > and MSM8998. The hardware block can handle a single CEC logical addre=
-ss
-> > > and broadcast messages.
+> Quoting Stephen Boyd (2023-04-13 17:22:46)
+> > Quoting Pin-yen Lin (2023-04-13 02:50:44)
 > > >
-> > > Port the CEC driver from downstream msm-4.4 kernel. It has been teste=
+> > > Actually the `mode-switch` property here is mainly because
+> > > `fwnode_typec_mux_get`[1] and `typec_mux_match`[2] only return matche=
+s
+> > > when the property is present. I am not sure what side effects would b=
+e
+> > > if I remove the ID-matching condition in `typec_mux_match`, so I adde=
 d
-> > > on MSM8998 and passes the cec-compliance tool tests.
+> > > the property here.
 > > >
-> > > Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
-> > > ---
-> > >   drivers/gpu/drm/msm/Kconfig         |   8 ++
-> > >   drivers/gpu/drm/msm/Makefile        |   1 +
-> > >   drivers/gpu/drm/msm/hdmi/hdmi.c     |  15 ++
-> > >   drivers/gpu/drm/msm/hdmi/hdmi.h     |  18 +++
-> > >   drivers/gpu/drm/msm/hdmi/hdmi_cec.c | 280 +++++++++++++++++++++++++=
-+++++++++++
-> > >   5 files changed, 322 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfi=
-g
-> > > index 85f5ab1d552c4..2a02c74207935 100644
-> > > --- a/drivers/gpu/drm/msm/Kconfig
-> > > +++ b/drivers/gpu/drm/msm/Kconfig
-> > > @@ -165,3 +165,11 @@ config DRM_MSM_HDMI_HDCP
-> > >       default y
-> > >       help
-> > >         Choose this option to enable HDCP state machine
-> > > +
-> > > +config DRM_MSM_HDMI_CEC
-> > > +     bool "Enable HDMI CEC support in MSM DRM driver"
-> > > +     depends on DRM_MSM && DRM_MSM_HDMI
-> > > +     select CEC_CORE
-> > > +     default y
-> > > +     help
-> > > +       Choose this option to enable CEC support
-> > > diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makef=
-ile
-> > > index 7274c41228ed9..0237a2f219ac2 100644
-> > > --- a/drivers/gpu/drm/msm/Makefile
-> > > +++ b/drivers/gpu/drm/msm/Makefile
-> > > @@ -131,6 +131,7 @@ msm-$(CONFIG_DRM_MSM_DP)+=3D dp/dp_aux.o \
-> > >
-> > >   msm-$(CONFIG_DRM_FBDEV_EMULATION) +=3D msm_fbdev.o
-> > >
-> > > +msm-$(CONFIG_DRM_MSM_HDMI_CEC) +=3D hdmi/hdmi_cec.o
-> > >   msm-$(CONFIG_DRM_MSM_HDMI_HDCP) +=3D hdmi/hdmi_hdcp.o
-> > >
-> > >   msm-$(CONFIG_DRM_MSM_DSI) +=3D dsi/dsi.o \
-> > > diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hd=
-mi/hdmi.c
-> > > index 3132105a2a433..1dde3890e25c0 100644
-> > > --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
-> > > +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-> > > @@ -11,6 +11,8 @@
-> > >   #include <drm/drm_bridge_connector.h>
-> > >   #include <drm/drm_of.h>
-> > >
-> > > +#include <media/cec.h>
-> > > +
-> > >   #include <sound/hdmi-codec.h>
-> > >   #include "hdmi.h"
-> > >
-> > > @@ -53,6 +55,9 @@ static irqreturn_t msm_hdmi_irq(int irq, void *dev_=
-id)
-> > >       if (hdmi->hdcp_ctrl)
-> > >               msm_hdmi_hdcp_irq(hdmi->hdcp_ctrl);
-> > >
-> > > +     /* Process CEC: */
-> > > +     msm_hdmi_cec_irq(hdmi);
-> > > +
-> > >       /* TODO audio.. */
-> > >
-> > >       return IRQ_HANDLED;
-> > > @@ -66,6 +71,8 @@ static void msm_hdmi_destroy(struct hdmi *hdmi)
-> > >        */
-> > >       if (hdmi->workq)
-> > >               destroy_workqueue(hdmi->workq);
-> > > +
-> > > +     msm_hdmi_cec_exit(hdmi);
-> > >       msm_hdmi_hdcp_destroy(hdmi);
-> > >
-> > >       if (hdmi->i2c)
-> > > @@ -139,6 +146,8 @@ static int msm_hdmi_init(struct hdmi *hdmi)
-> > >               hdmi->hdcp_ctrl =3D NULL;
-> > >       }
-> > >
-> > > +     msm_hdmi_cec_init(hdmi);
-> > > +
-> > >       return 0;
-> > >
-> > >   fail:
-> > > @@ -198,6 +207,12 @@ int msm_hdmi_modeset_init(struct hdmi *hdmi,
-> > >
-> > >       drm_connector_attach_encoder(hdmi->connector, hdmi->encoder);
-> > >
-> > > +     if (hdmi->cec_adap) {
-> > > +             struct cec_connector_info conn_info;
-> > > +             cec_fill_conn_info_from_drm(&conn_info, hdmi->connector=
-);
-> > > +             cec_s_conn_info(hdmi->cec_adap, &conn_info);
-> > > +     }
-> > > +
-> > >       ret =3D devm_request_irq(dev->dev, hdmi->irq,
-> > >                       msm_hdmi_irq, IRQF_TRIGGER_HIGH,
-> > >                       "hdmi_isr", hdmi);
-> > > diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.h b/drivers/gpu/drm/msm/hd=
-mi/hdmi.h
-> > > index e8dbee50637fa..c639bd87f4b8f 100644
-> > > --- a/drivers/gpu/drm/msm/hdmi/hdmi.h
-> > > +++ b/drivers/gpu/drm/msm/hdmi/hdmi.h
-> > > @@ -29,6 +29,7 @@ struct hdmi_audio {
-> > >   };
-> > >
-> > >   struct hdmi_hdcp_ctrl;
-> > > +struct cec_adapter;
-> > >
-> > >   struct hdmi {
-> > >       struct drm_device *dev;
-> > > @@ -73,6 +74,7 @@ struct hdmi {
-> > >       struct workqueue_struct *workq;
-> > >
-> > >       struct hdmi_hdcp_ctrl *hdcp_ctrl;
-> > > +     struct cec_adapter *cec_adap;
-> > >
-> > >       /*
-> > >       * spinlock to protect registers shared by different execution
-> > > @@ -261,4 +263,20 @@ static inline void msm_hdmi_hdcp_off(struct hdmi=
-_hdcp_ctrl *hdcp_ctrl) {}
-> > >   static inline void msm_hdmi_hdcp_irq(struct hdmi_hdcp_ctrl *hdcp_ct=
-rl) {}
-> > >   #endif
-> > >
-> > > +/*
-> > > + * cec
-> > > + */
-> > > +#ifdef CONFIG_DRM_MSM_HDMI_CEC
-> > > +int msm_hdmi_cec_init(struct hdmi *hdmi);
-> > > +void msm_hdmi_cec_exit(struct hdmi *hdmi);
-> > > +void msm_hdmi_cec_irq(struct hdmi *hdmi);
-> > > +#else
-> > > +static inline int msm_hdmi_cec_init(struct hdmi *hdmi)
-> > > +{
-> > > +     return -ENXIO;
-> > > +}
-> > > +static inline void msm_hdmi_cec_exit(struct hdmi *hdmi) {}
-> > > +static inline void msm_hdmi_cec_irq(struct hdmi *hdmi) {}
-> > > +#endif
-> > > +
-> > >   #endif /* __HDMI_CONNECTOR_H__ */
-> > > diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_cec.c b/drivers/gpu/drm/ms=
-m/hdmi/hdmi_cec.c
-> > > new file mode 100644
-> > > index 0000000000000..51326e493e5da
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/msm/hdmi/hdmi_cec.c
-> > > @@ -0,0 +1,280 @@
-> > > +#include <linux/iopoll.h>
-> > > +#include <media/cec.h>
-> > > +
-> > > +#include "hdmi.h"
-> > > +
-> > > +#define HDMI_CEC_INT_MASK ( \
-> > > +     HDMI_CEC_INT_TX_DONE_MASK | \
-> > > +     HDMI_CEC_INT_TX_ERROR_MASK | \
-> > > +     HDMI_CEC_INT_RX_DONE_MASK)
-> > > +
-> > > +struct hdmi_cec_ctrl {
-> > > +     struct hdmi *hdmi;
-> > > +     struct work_struct work;
-> > > +     spinlock_t lock;
-> > > +     u32 irq_status;
-> > > +     u32 tx_status;
-> > > +     u32 tx_retransmits;
-> > > +};
-> > > +
-> > > +static int msm_hdmi_cec_adap_enable(struct cec_adapter *adap, bool e=
-nable)
-> > > +{
-> > > +     struct hdmi_cec_ctrl *cec_ctrl =3D adap->priv;
-> > > +     struct hdmi *hdmi =3D cec_ctrl->hdmi;
-> > > +
-> > > +     if (enable) {
-> > > +             /* timer frequency, 19.2Mhz * 0.05ms / 1000ms =3D 960 *=
-/
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_REFTIMER,
-> > > +                        HDMI_CEC_REFTIMER_REFTIMER(960) |
-> > > +                        HDMI_CEC_REFTIMER_ENABLE);
-> > > +
-> > > +             /* read and write timings */
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_RD_RANGE, 0x30AB9888);
+> > > Is it feasible to remove the `mode-switch` property here given the
+> > > existing implementation of the Type-C framework?
 > >
-> > lowercase hex please. We are trying to switch to it.
+> > Omitting the mode-switch property would require changes to the type-c
+> > framework.
 > >
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_WR_RANGE, 0x888AA888);
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_RD_START_RANGE, 0x8888888=
-8);
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_RD_TOTAL_RANGE, 0x99);
-> > > +
-> > > +             /* start bit low pulse duration, 3.7ms */
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_RD_ERR_RESP_LO, 74);
-> > > +
-> > > +             /* signal free time, 7 * 2.4ms */
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_TIME,
-> > > +                        HDMI_CEC_TIME_SIGNAL_FREE_TIME(7 * 48) |
-> > > +                        HDMI_CEC_TIME_ENABLE);
-> > > +
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_COMPL_CTL, 0xF);
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_WR_CHECK_CONFIG, 0x4);
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_RD_FILTER, BIT(0) | (0x7F=
-F << 4));
-> > > +
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_INT, HDMI_CEC_INT_MASK);
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_CTRL, HDMI_CEC_CTRL_ENABL=
-E);
-> > > +     } else {
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_INT, 0);
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_CTRL, 0);
-> > > +             cancel_work_sync(&cec_ctrl->work);
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int msm_hdmi_cec_adap_log_addr(struct cec_adapter *adap, u8 l=
-ogical_addr)
-> > > +{
-> > > +     struct hdmi_cec_ctrl *cec_ctrl =3D adap->priv;
-> > > +     struct hdmi *hdmi =3D cec_ctrl->hdmi;
-> > > +
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_ADDR, logical_addr & 0xF);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int msm_hdmi_cec_adap_transmit(struct cec_adapter *adap, u8 a=
-ttempts,
-> > > +                                   u32 signal_free_time, struct cec_=
-msg *msg)
-> > > +{
-> > > +     struct hdmi_cec_ctrl *cec_ctrl =3D adap->priv;
-> > > +     struct hdmi *hdmi =3D cec_ctrl->hdmi;
-> > > +     u8 retransmits;
-> > > +     u32 broadcast;
-> > > +     u32 status;
-> > > +     int i;
-> > > +
-> > > +     /* toggle cec in order to flush out bad hw state, if any */
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_CTRL, 0);
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_CTRL, HDMI_CEC_CTRL_ENABLE);
-> > > +
-> > > +     /* flush register writes */
-> > > +     wmb();
-> > > +
-> > > +     retransmits =3D attempts ? (attempts - 1) : 0;
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_RETRANSMIT,
-> > > +                HDMI_CEC_RETRANSMIT_ENABLE |
-> > > +                HDMI_CEC_RETRANSMIT_COUNT(retransmits));
-> > > +
-> > > +     broadcast =3D cec_msg_is_broadcast(msg) ? HDMI_CEC_WR_DATA_BROA=
-DCAST : 0;
-> > > +     for (i =3D 0; i < msg->len; i++) {
-> > > +             hdmi_write(hdmi, REG_HDMI_CEC_WR_DATA,
-> > > +                        HDMI_CEC_WR_DATA_DATA(msg->msg[i]) | broadca=
-st);
-> > > +     }
-> > > +
-> > > +     /* check line status */
-> > > +     if (read_poll_timeout(hdmi_read, status, !(status & HDMI_CEC_ST=
-ATUS_BUSY),
-> > > +                           5, 1000, false, hdmi, REG_HDMI_CEC_STATUS=
-)) {
-> > > +             pr_err("CEC line is busy. Retry failed\n");
-> > > +             return -EBUSY;
-> > > +     }
-> > > +
-> > > +     cec_ctrl->tx_retransmits =3D retransmits;
-> > > +
-> > > +     /* start transmission */
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_CTRL,
-> > > +                HDMI_CEC_CTRL_ENABLE |
-> > > +                HDMI_CEC_CTRL_SEND_TRIGGER |
-> > > +                HDMI_CEC_CTRL_FRAME_SIZE(msg->len) |
-> > > +                HDMI_CEC_CTRL_LINE_OE);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static void msm_hdmi_cec_adap_free(struct cec_adapter *adap)
-> > > +{
-> > > +     struct hdmi_cec_ctrl *cec_ctrl =3D adap->priv;
-> > > +
-> > > +     cec_ctrl->hdmi->cec_adap =3D NULL;
-> > > +     kfree(cec_ctrl);
-> > > +}
-> > > +
-> > > +static const struct cec_adap_ops msm_hdmi_cec_adap_ops =3D {
-> > > +     .adap_enable =3D msm_hdmi_cec_adap_enable,
-> > > +     .adap_log_addr =3D msm_hdmi_cec_adap_log_addr,
-> > > +     .adap_transmit =3D msm_hdmi_cec_adap_transmit,
-> > > +     .adap_free =3D msm_hdmi_cec_adap_free,
-> > > +};
-> > > +
-> > > +#define CEC_IRQ_FRAME_WR_DONE 0x01
-> > > +#define CEC_IRQ_FRAME_RD_DONE 0x02
+> > I'm wondering if we can have this anx driver register mode switches for
+> > however many endpoints exist in the output port all the time when the
+> > aux-bus node doesn't exist. Then the type-c framework can walk from the
+> > usb-c-connector to each connected node looking for a device that is bot=
+h
+> > a drm_bridge and a mode-switch. When it finds that combination, it know=
+s
+> > that the mode-switch has been found. This hinges on the idea that a
+> > device that would have the mode-switch property is a drm_bridge and
+> > would register a mode-switch with the type-c framework.
 > >
-> > Please move these to top. Also you might consider replacing this mask
-> > with two boolean flags.
-> >
-> > > +
-> > > +static void msm_hdmi_cec_handle_rx_done(struct hdmi_cec_ctrl *cec_ct=
-rl)
-> > > +{
-> > > +     struct hdmi *hdmi =3D cec_ctrl->hdmi;
-> > > +     struct cec_msg msg =3D {};
-> > > +     u32 data;
-> > > +     int i;
-> > > +
-> > > +     data =3D hdmi_read(hdmi, REG_HDMI_CEC_RD_DATA);
-> > > +     msg.len =3D (data & 0x1f00) >> 8;
-> >
-> > We can also use FIELD_GET here. I'll add defines to the mesa merge requ=
-est.
+> > It may be a little complicated though, because we would only register
+> > one drm_bridge for the input to this anx device. The type-c walking cod=
+e
+> > would need to look at the graph endpoint, and find the parent device to
+> > see if it is a drm_bridge.
 >
-> Ok, I wasn't sure if it made sense to add the bitfield definition for
-> this since it's only valid for the first byte of the message. I'll add
-> the change since this has been integrated into mesa.
+> I've been thinking more about this. I think we should only have the
+> 'mode-switch' property possible when the USB input pins (port@2) are
+> connected and the DPI input pins are connected (port@0). Probably you
+> don't have that case though?
+
+No we don't have the use case that uses the USB input pins on anx7625.
 >
-> >
-> > > +     if (msg.len < 1 || msg.len > CEC_MAX_MSG_SIZE)
-> > > +             return;
-> > > +
-> > > +     msg.msg[0] =3D data & 0xff;
-> > > +     for (i =3D 1; i < msg.len; i++)
-> > > +             msg.msg[i] =3D hdmi_read(hdmi, REG_HDMI_CEC_RD_DATA) & =
-0xff;
-> > > +
-> > > +     cec_received_msg(hdmi->cec_adap, &msg);
-> > > +}
-> > > +
-> > > +static void msm_hdmi_cec_handle_tx_done(struct hdmi_cec_ctrl *cec_ct=
-rl)
-> > > +{
-> > > +     struct hdmi *hdmi =3D cec_ctrl->hdmi;
-> > > +     u32 tx_status;
-> > > +
-> > > +     tx_status =3D (cec_ctrl->tx_status & HDMI_CEC_STATUS_TX_STATUS_=
-_MASK) >>
-> > > +             HDMI_CEC_STATUS_TX_STATUS__SHIFT;
-> >
-> > FIELD_GET(HDMI_CEC_STATUS_TX_STATUS__MASK, cec_ctrl->tx_status).
-> >
-> > > +
-> > > +     switch (tx_status) {
-> > > +     case 0:
-> >
-> > Please use valus from enum hdmi_cec_tx_status
-> >
-> > > +             cec_transmit_done(hdmi->cec_adap,
-> > > +                               CEC_TX_STATUS_OK, 0, 0, 0, 0);
-> > > +             break;
-> > > +     case 1:
-> > > +             cec_transmit_done(hdmi->cec_adap,
-> > > +                               CEC_TX_STATUS_NACK, 0, 1, 0, 0);
-> > > +             break;
-> > > +     case 2:
-> > > +             cec_transmit_done(hdmi->cec_adap,
-> > > +                               CEC_TX_STATUS_ARB_LOST, 1, 0, 0, 0);
-> > > +             break;
-> > > +     case 3:
-> > > +             cec_transmit_done(hdmi->cec_adap,
-> > > +                               CEC_TX_STATUS_MAX_RETRIES |
-> > > +                               CEC_TX_STATUS_NACK,
-> > > +                               0, cec_ctrl->tx_retransmits + 1, 0, 0=
-);
-> > > +             break;
-> > > +     default:
-> > > +             cec_transmit_done(hdmi->cec_adap,
-> > > +                               CEC_TX_STATUS_ERROR, 0, 0, 0, 1);
-> > > +             break;
-> > > +     }
-> > > +}
-> > > +
-> > > +static void msm_hdmi_cec_work(struct work_struct *work)
-> > > +{
-> > > +     struct hdmi_cec_ctrl *cec_ctrl =3D
-> > > +             container_of(work, struct hdmi_cec_ctrl, work);
-> > > +     unsigned long flags;
-> > > +
-> > > +     spin_lock_irqsave(&cec_ctrl->lock, flags);
-> > > +
-> > > +     if (cec_ctrl->irq_status & CEC_IRQ_FRAME_WR_DONE)
-> > > +             msm_hdmi_cec_handle_tx_done(cec_ctrl);
-> > > +
-> > > +     if (cec_ctrl->irq_status & CEC_IRQ_FRAME_RD_DONE)
-> > > +             msm_hdmi_cec_handle_rx_done(cec_ctrl);
-> > > +
-> > > +     cec_ctrl->irq_status =3D 0;
-> > > +     cec_ctrl->tx_status =3D 0;
-> > > +
-> > > +     spin_unlock_irqrestore(&cec_ctrl->lock, flags);
-> > > +}
-> > > +
-> > > +void msm_hdmi_cec_irq(struct hdmi *hdmi)
-> > > +{
-> > > +     struct hdmi_cec_ctrl *cec_ctrl;
-> > > +     unsigned long flags;
-> > > +     u32 int_status;
-> > > +
-> > > +     if (!hdmi->cec_adap)
-> > > +             return;
-> > > +
-> > > +     cec_ctrl =3D hdmi->cec_adap->priv;
-> > > +
-> > > +     int_status =3D hdmi_read(hdmi, REG_HDMI_CEC_INT);
-> > > +     if (!(int_status & HDMI_CEC_INT_MASK))
-> > > +             return;
-> > > +
-> > > +     spin_lock_irqsave(&cec_ctrl->lock, flags);
-> > > +
-> > > +     if (int_status & (HDMI_CEC_INT_TX_DONE | HDMI_CEC_INT_TX_ERROR)=
-) {
-> > > +             cec_ctrl->tx_status =3D hdmi_read(hdmi, REG_HDMI_CEC_ST=
-ATUS);
-> > > +             cec_ctrl->irq_status |=3D CEC_IRQ_FRAME_WR_DONE;
-> > > +     }
-> > > +
-> > > +     if (int_status & HDMI_CEC_INT_RX_DONE)
-> > > +             cec_ctrl->irq_status |=3D CEC_IRQ_FRAME_RD_DONE;
-> > > +
-> > > +     spin_unlock_irqrestore(&cec_ctrl->lock, flags);
-> > > +
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_INT, int_status);
-> > > +     queue_work(hdmi->workq, &cec_ctrl->work);
-> > > +}
-> > > +
-> > > +int msm_hdmi_cec_init(struct hdmi *hdmi)
-> > > +{
-> > > +     struct platform_device *pdev =3D hdmi->pdev;
-> > > +     struct hdmi_cec_ctrl *cec_ctrl;
-> > > +     struct cec_adapter *cec_adap;
-> > > +     int ret;
-> >
-> > hdmi_cec_enable from msm-4.4 tells that CEC is not supported if
-> > REG_HDMI_VERSION reads < 0x30000001. Could you please add this check?
->
-> Ack. I wonder which SoCs before MSM8996 can actually support CEC.
+> In your case, this device should register either one or two drm_bridges
+> that connect to whatever downstream is actually muxing the 2 DP lanes
+> with the USB SS lanes onto the usb-c-connector.
 
-Granted the commit at [1], one can assume that apq8084 supported CEC
-and it even wasn't the first one.
+What do you mean by "muxing the 2 DP lanes with the USB SS lanes''? In
+our use case, the USB data lanes from both ports are connected to a
+USB hub, but the DP lanes are muxed by the crosspoint switch on
+anx7625. HPD and AUX for the external display are muxed by the EC. You
+can find the diagram at
+https://lore.kernel.org/linux-usb/YxGzk6DNAt0aCvIY@chromium.org/
 
-[1] https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/commit/8d8640d18491=
-660f8c6bd082fd2030e2d7cbc1f8
+> If that is the EC for
+> ChromeOS, then the EC should have a binding that accepts some number of
+> input ports for DP. The EC would act as a drm_bridge, or in this case
+> probably two bridges, and also as two type-c switches for each
+> drm_bridge corresponding to the usb-c-connector nodes. When DP is on the
+> cable, the type-c switch/mux would signal to the drm_bridge that the
+> display is 'connected' via DRM_BRIDGE_OP_DETECT and struct
+> drm_bridge_funcs::detect(). Then the drm_bridge in this anx part would
+> implement struct drm_bridge_funcs::atomic_enable() and configure the
+> crosspoint switch the right way depending on the reg property of the
+> output node in port@1.
 
-I checked, on apq8064 this register reads as  0x2010000. I'd guess the
-first chips to support CEC were msm8974/apq8074
+So there will be two drm bridges that act as the downstreams for
+anx7625, and we find the downstream with connector_status_connected to
+configure the crosspoint switch? How do we support that kind of
+topology given that the drm bridge chain is currently a list? Are you
+suggesting making the bridge topology to a tree, or maintaining the
+two downstreams inside the anx7625 driver and not attaching them to
+the bridge chain?
+
+Also, if we still register mode switches on the two downstream
+bridges, why do you prefer that over the original approach that
+register switches in the anx7625 driver?
 
 >
-> >
-> >
-> >
-> >
-> > > +
-> > > +     cec_ctrl =3D kzalloc(sizeof (*cec_ctrl), GFP_KERNEL);
-> > > +     if (!cec_ctrl)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     cec_ctrl->hdmi =3D hdmi;
-> > > +     INIT_WORK(&cec_ctrl->work, msm_hdmi_cec_work);
-> > > +
-> > > +     cec_adap =3D cec_allocate_adapter(&msm_hdmi_cec_adap_ops,
-> > > +                                     cec_ctrl, "msm",
-> > > +                                     CEC_CAP_DEFAULTS |
-> > > +                                     CEC_CAP_CONNECTOR_INFO, 1);
-> > > +     ret =3D PTR_ERR_OR_ZERO(cec_adap);
-> > > +     if (ret < 0) {
-> > > +             kfree(cec_ctrl);
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     /* Set the logical address to Unregistered */
-> > > +     hdmi_write(hdmi, REG_HDMI_CEC_ADDR, 0xf);
-> > > +
-> > > +     ret =3D cec_register_adapter(cec_adap, &pdev->dev);
-> > > +     if (ret < 0) {
-> > > +             cec_delete_adapter(cec_adap);
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     hdmi->cec_adap =3D cec_adap;
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +void msm_hdmi_cec_exit(struct hdmi *hdmi)
-> > > +{
-> > > +     cec_unregister_adapter(hdmi->cec_adap);
-> > > +}
-
-
-
---=20
-With best wishes
-Dmitry
+> Because you don't have the part that implements the orientation-switch,
+> you don't need to implement the code for it. I think simply adding
+> support in the binding for mode-switch and orientation-switch if this is
+> directly wired to a usb-c-connector should be sufficient. Those
+> properties would be at the top-level and not part of the graph binding.
