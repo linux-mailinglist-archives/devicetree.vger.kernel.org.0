@@ -2,152 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2E2E6E98E3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 583766E98FE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 18:01:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231435AbjDTP6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 11:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52966 "EHLO
+        id S232835AbjDTQBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 12:01:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233921AbjDTP6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:58:15 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB83E35B5
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:57:57 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4edbd6cc46bso661549e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:57:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682006275; x=1684598275;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vNUf+/1kABmy7fyuOrfNxFVz/b750ayYzUND39pLMfE=;
-        b=gOzPqTG52EcJJcC8fSMrLBACgoU65xT1Z+2PjNPM5cnkRbYSCM9JE5KV4kM6VHLMD+
-         m/cGI6Q7aQc4PWxGUHI9ii+DnQOezZgZ6e5RFr+OOsCjgmPIU/Rpnrt+MoyUW1J32WAO
-         7DjiXhHxpe5rlclutblk1w9ENYHmCaD9M5cJ2AnL18YIxDMs265nUu44Qkzdsv+f6dkZ
-         8xqreK1i0x72eG7mKXPs2hZASBf9YxBwKtht08gqQxYSeSAxs1U+5qqQjFEea/9X/t2n
-         aX8Bajyb+mbUKSd5Fc44amn3GVSbJiZCNf8kaEdrUy+0I67ioo5gNgOvCFrMBsb7mCOo
-         9QyA==
+        with ESMTP id S232605AbjDTQBb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 12:01:31 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE928110;
+        Thu, 20 Apr 2023 09:01:30 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id c17-20020a4aa4d1000000b005418821052aso783375oom.6;
+        Thu, 20 Apr 2023 09:01:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682006275; x=1684598275;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682006490; x=1684598490;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vNUf+/1kABmy7fyuOrfNxFVz/b750ayYzUND39pLMfE=;
-        b=X3d5SrXF9Tc8SQ+NRVJvZ9nwq8iKmRoY4wABM9+pmqQ1do2+4YCpbsuIcvm1tb6vEw
-         If87oyQSR/pSYbJSXz31u4EgvKLhAn75AWbKk/90kpctaJFy4gYfs8cFshF+hBv4g3cF
-         6sYJLaCAqbSlea4Gw72AMgeHeqvdFoKYuqItXTBnFkQnGY/LH69CkS9I8HpQ2whNt68Y
-         O2Tm4Gzo6e2OkXpSw0+mxfYa8BKJV/2EWKU7Nx3cwXv6p15hLX7xD5XLDkQ4O7lBV4J8
-         OyKYHWMfCL9LWMWt2uXmLGP7amUk+NYBURH9EoQvFuzND62KXsUCqzBdFRDGnsRVKdub
-         jCxA==
-X-Gm-Message-State: AAQBX9fwEsZ9mr6GSRJIizrI4Jc1pp5VkRyHtiCOszvRuDfBNcSXgtiH
-        +8LELI5i5/vY/fqMltFVTrCFfFgHNlrg8W2Qbx8=
-X-Google-Smtp-Source: AKy350arn52bKLxZfJWKLLKPNIrb1lNv+4X1nIWe0dPWFxR0J7UgHvmPzDdNeiVmfrlAhRPBheO41g==
-X-Received: by 2002:ac2:490b:0:b0:4eb:50ba:cb06 with SMTP id n11-20020ac2490b000000b004eb50bacb06mr669625lfi.49.1682006275410;
-        Thu, 20 Apr 2023 08:57:55 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id d2-20020ac25ec2000000b004edc4928f2asm255230lfq.71.2023.04.20.08.57.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 08:57:54 -0700 (PDT)
-Message-ID: <e3bd41d8-f0c5-6756-13bf-bf29c786ab5c@linaro.org>
-Date:   Thu, 20 Apr 2023 17:57:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH RFT v2 00/14] SMD RPMCC sleep preparations
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        bh=mIpdpe/NpR/Ih+cQndC/G+rH56/6XJaiFLeSU8K5oA0=;
+        b=WijXUS6T6QWuDPimJfAW988Zx7ImcnbTa7nQW0fqT57JquB7KfWSN9F82unEbyd4Bl
+         qM7+Vag7UXbuiTg8k62pqMkygod26HcHvCGelhL59AcH5yZXAuD7wgSFktvrw1SYEbKD
+         p32FIUkSGUHXFFiqkfROs3JcK7tiQQxULGANkn0+d78/NVlZduLAsTtfL+nUmLVyJSRS
+         RE8ThYit8mhFqYLXdmII1r6S0rI+6hQ7kB+0SPl9Qo1w74fLiXo2BGoSd+YeUlOs6Gkv
+         9aAZ02X1vGCEpEaPDlYTKdQVcBqhPG4M8M/z0LY/g6hNoKp8iV/QQHNaDeWT9jU5kwhg
+         vzBg==
+X-Gm-Message-State: AAQBX9fmjKMBo+bX6s7x2+b823EXKaGtO90ZeF37RszS1jfYYBq7nWP7
+        +lZX2HO5mBqOWiqFWfBYVg==
+X-Google-Smtp-Source: AKy350bt+0X2w1Rb34a72ni3IOj9CQFLCcOcDdhi78zN3O8KOC08bs/0RKiA7zeCHsbuuGFdNtrbGw==
+X-Received: by 2002:a4a:95af:0:b0:546:1d7b:20be with SMTP id o44-20020a4a95af000000b005461d7b20bemr765333ooi.7.1682006489810;
+        Thu, 20 Apr 2023 09:01:29 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v12-20020a4aad8c000000b0054542d3219asm748526oom.11.2023.04.20.09.01.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Apr 2023 09:01:29 -0700 (PDT)
+Received: (nullmailer pid 2950580 invoked by uid 1000);
+        Thu, 20 Apr 2023 16:01:28 -0000
+Date:   Thu, 20 Apr 2023 11:01:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
         linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/3] dt-bindings: nvmem: brcm,nvram: add
+ #nvmem-cell-cells for MACs
+Message-ID: <20230420160128.GA2945386-robh@kernel.org>
+References: <20230406110804.12024-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230406110804.12024-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8.03.2023 22:35, Konrad Dybcio wrote:
-> v1 -> v2:
-> - Use CLK_IS_CRITICAL instead of leaving a clk enable vote, expand macros
->   to do so
-> - Fix the keepalive clocks for 8998 & 660 (CNoC -> PNoC, it was
->   confusingly named cnoc_periph downstream)
-> - Introduce .determinte_rate to ensure we don't set keepalive clocks'
->   rates below 19.2 MHz
-> - Add a (!conditional!) way to test the ultimate goal of all these changes
->   by essentially enabling unused clk cleanup through a dt property (for
->   legacy reasons)
+On Thu, Apr 06, 2023 at 01:08:02PM +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> v2 was tested on:
+> Broadcom's NVRAM contains MACs for Ethernet interfaces. Those MACs are
+> usually base addresses that are also used for calculating other MACs.
 > 
-> - MSM8996 Sony Kagura (can disable unused)
-> - MSM8998 Sony Maple (can disable unused with OOT icc)
-> - SM6375 Sony PDX225 (can disable unused with OOT icc)
+> For example if a router vendor decided to use gmac0 it most likely
+> programmed NVRAM of each unit with a proper "et0macaddr" value. That is
+> a base.
 > 
-> v1: https://lore.kernel.org/r/20230303-topic-rpmcc_sleep-v1-0-d9cfaf9b27a7@linaro.org
+> Ethernet interface is usually connected to switch port. Switch usually
+> includes few LAN ports and a WAN port. MAC of WAN port gets calculated
+> as relative address to the interface one. Offset varies depending on
+> device model.
 > 
-> This series brings support for a couple of things necessary for the full
-> system idle on SMD RPM SoCs, namely unused clk shutdown and keepalive
-> votes (permanent active votes that are required on certain clocks for the
-> platform to function).
+> Wireless MACs may also need to be calculated using relevant offsets.
 > 
-> Tested on MSM8996 and SM6375, does not seem to introduce any additional
-> regressions.
+> To support all those scenarios let MAC NVMEM cells be referenced with an
+> index specifying MAC offset.
 > 
-> Keepalive clocks for other platforms were gathered by digging in old
-> downstream kernels, please give them a test.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
-> Konrad Dybcio (11):
->       dt-bindings: clock: qcom,rpmcc: Add a way to enable unused clock cleanup
-
->       clk: qcom: smd-rpm_ Make __DEFINE_CLK_SMD_RPM_BRANCH_PREFIX accept flags
->       clk: qcom: smd-rpm: Make DEFINE_CLK_SMD_RPM_BRANCH_A accept flags
->       clk: qcom: smd-rpm: Make BI_TCXO_AO critical
-Stephen, parallel to all of the discussions, would you be willing to
-take patches 4-6 as they are? XO_A being critical is something that
-won't hurt without the rest.
-
-Konrad
-
->       clk: qcom: smd-rpm: Make __DEFINE_CLK_SMD_RPM_PREFIX accept flags
->       clk: qcom: smd-rpm: Separate out a macro for defining an AO clock
->       clk: qcom: smd-rpm: Add support for keepalive votes
->       clk: qcom: smd-rpm: Introduce DEFINE_CLK_SMD_RPM_BUS_KEEPALIVE
->       clk: qcom: smd-rpm: Hook up PCNoC_0 keep_alive
->       clk: qcom: smd-rpm: Hook up CNoC_1 and SNoC_2 keep_alive
->       arm64: dts: qcom: msm8996: Enable rpmcc unused clk disablement
+>  .../devicetree/bindings/nvmem/brcm,nvram.yaml        | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> Shawn Guo (3):
->       clk: qcom: smd-rpm: Add .is_enabled hook
->       clk: qcom: smd-rpm: Add .is_prepared hook
->       clk: qcom: smd-rpm: Mark clock enabled in clk_smd_rpm_handoff()
-> 
->  .../devicetree/bindings/clock/qcom,rpmcc.yaml      |   6 +
->  arch/arm64/boot/dts/qcom/msm8996.dtsi              |   1 +
->  drivers/clk/qcom/clk-smd-rpm.c                     | 133 +++++++++++++++------
->  3 files changed, 106 insertions(+), 34 deletions(-)
-> ---
-> base-commit: fc31900c948610e7b5c2f15fb7795832c8325327
-> change-id: 20230303-topic-rpmcc_sleep-d67aad9f3012
-> 
-> Best regards,
+> diff --git a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
+> index 36def7128fca..a921e05cc544 100644
+> --- a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
+> @@ -36,14 +36,26 @@ properties:
+>    et0macaddr:
+>      type: object
+>      description: First Ethernet interface's MAC address
+> +    properties:
+> +      "#nvmem-cell-cells":
+> +        description: The first argument is a MAC address offset.
+> +        const: 1
+
+Not a new issue, but these nodes are missing 'additionalProperties: 
+false'. Can you add that. With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
