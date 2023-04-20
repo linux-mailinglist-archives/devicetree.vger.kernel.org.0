@@ -2,284 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD636E8E5B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CF476E8E63
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233895AbjDTJkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 05:40:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51608 "EHLO
+        id S233777AbjDTJnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 05:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233961AbjDTJjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:39:46 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB775B81
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:38:06 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ppQjR-0008Cs-Mx; Thu, 20 Apr 2023 11:37:37 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id A56391B3CD6;
-        Thu, 20 Apr 2023 09:37:35 +0000 (UTC)
-Date:   Thu, 20 Apr 2023 11:37:35 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S232154AbjDTJmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:42:44 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD7524C01;
+        Thu, 20 Apr 2023 02:40:47 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id k15so2105724ljq.4;
+        Thu, 20 Apr 2023 02:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681983645; x=1684575645;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MXezQIL8nQT7EHNZDg5A3zwX32Ez5Xt7dCXaMMgSYRE=;
+        b=gS0rvfbFTHrddVjRYYkBoQBAkbBKiIIfAmjXA4hDLm9cXNQydDv8xPgKzQo/+DmUbU
+         oD1tZQOtRIWCnc+gQ2Cq+6kJj9Du0D1TR3ZiQZZ30NM3ONRqJ2dWO0EhCl26r6v9vOlf
+         uT4CK8+IbhFRfzC4312mdPAtqiJnnSeEpFTVSX66bLXHQnZAQciXyXlfZ1DkcLIMIh8N
+         6Zig+xCX6r6qlJ2WeG0vnHtoV8sJyvZZmH6HBcWeKY9dXxNBK40I9KnjCffHX35gNWa4
+         NZhT9Sb3XDmnFjYrdQ95ZUXrsmNJexNQuiNql4jxqOh4bULx2kBy2J1Lt6uExf5LQDTn
+         J1Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681983645; x=1684575645;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MXezQIL8nQT7EHNZDg5A3zwX32Ez5Xt7dCXaMMgSYRE=;
+        b=eq52xzJ0UZo2finzLWbJCX0QZ8MvhCtsRYGpe3TMxaIP1G8zqplAYFTfO6MHw2Aw+Q
+         7ewa6/RDSYLk13tl/cfEnpUTwdtrZZ4F4N0uBnB7240iiw+nlk2HF2gkFYRNqQTVwxge
+         R6jOE5BZjlXmjPqQASjY36zqsOWSkeT+gmZUmAxky+d0P2blC/SNsMfyC6BecWWrK30h
+         6E6wJTFh7S7EuM1N/nYflww/MxNpgKFUlCs+OyBZhdNd5JwfwaalQqpp+mBpHaMt/CJy
+         XuUQDqAG5NYCPcoZEyoIW31Gebnhv7qvdjBJAzi5NknAS1heT+aYJBrNkU/1VVtbgB2F
+         /mJA==
+X-Gm-Message-State: AAQBX9f7DEAtW55zoT8KOfw98Vpbsvv24PxLKh78OdfzT6Qe2cCe/fIJ
+        sAUQsgqKNS4jCC6Ce+o0JWhbiRuwpmK0tQRqNIw=
+X-Google-Smtp-Source: AKy350Y3JU2L27iVYwrYrXipxJ1TJZFDuoI/VJwjHdGAyJUSB58qs8J62vQpxs+N4iZAkbdBoW8mRtHUbMFIKKOb1xM=
+X-Received: by 2002:a2e:a0d3:0:b0:2a9:eec1:71f5 with SMTP id
+ f19-20020a2ea0d3000000b002a9eec171f5mr181058ljm.4.1681983644357; Thu, 20 Apr
+ 2023 02:40:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org> <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
+From:   Molly Sophia <mollysophia379@gmail.com>
+Date:   Thu, 20 Apr 2023 17:40:33 +0800
+Message-ID: <CAK0UmJBMUSWSjO8d44aL+uaRfwKZ25VvNMZOH_BKUT35g5weUg@mail.gmail.com>
+Subject: Re: [PATCH 18/18] arm64: dts: qcom: sdm845-polaris: add missing
+ touchscreen child node reg
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH 1/4] can: m_can: Add hrtimer to generate software
- interrupt
-Message-ID: <20230420-unlikable-overstep-6ad655c5bbdc-mkl@pengutronix.de>
-References: <20230419223323.20384-1-jm@ti.com>
- <20230419223323.20384-2-jm@ti.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ikdkjwlh4qdhgblk"
-Content-Disposition: inline
-In-Reply-To: <20230419223323.20384-2-jm@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        "Ivan T. Ivanov" <ivan.ivanov@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Adam Skladowski <a39.skl@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Robert Foss <rfoss@kernel.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---ikdkjwlh4qdhgblk
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 19.04.2023 17:33:20, Judith Mendez wrote:
-> Add an hrtimer to MCAN struct. Each MCAN will have its own
-> hrtimer instantiated if there is no hardware interrupt found.
->=20
-> The hrtimer will generate a software interrupt every 1 ms. In
-> hrtimer callback, we check if there is a transaction pending by
-> reading a register, then process by calling the isr if there is.
->=20
-> Signed-off-by: Judith Mendez <jm@ti.com>
+On Thu, Apr 20, 2023 at 5:19=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Add missing reg property to touchscreen child node to fix dtbs W=3D1 warn=
+ings:
+>
+>   Warning (unit_address_vs_reg): /soc@0/geniqup@ac0000/i2c@a98000/touchsc=
+reen@20/rmi4-f12@12: node has a unit name, but no reg or ranges property
+>
+> Fixes: be497abe19bf ("arm64: dts: qcom: Add support for Xiaomi Mi Mix2s")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/net/can/m_can/m_can.c          | 30 ++++++++++++++++++++++++--
->  drivers/net/can/m_can/m_can.h          |  3 +++
->  drivers/net/can/m_can/m_can_platform.c | 13 +++++++++--
->  3 files changed, 42 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-> index a5003435802b..8784bdea300a 100644
-> --- a/drivers/net/can/m_can/m_can.c
-> +++ b/drivers/net/can/m_can/m_can.c
-> @@ -23,6 +23,7 @@
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/hrtimer.h>
-> =20
->  #include "m_can.h"
-> =20
-> @@ -1587,6 +1588,11 @@ static int m_can_close(struct net_device *dev)
->  	if (!cdev->is_peripheral)
->  		napi_disable(&cdev->napi);
-> =20
-> +	if (dev->irq < 0) {
-> +		dev_dbg(cdev->dev, "Disabling the hrtimer\n");
-> +		hrtimer_cancel(&cdev->hrtimer);
-> +	}
-> +
->  	m_can_stop(dev);
->  	m_can_clk_stop(cdev);
->  	free_irq(dev->irq, dev);
-> @@ -1793,6 +1799,18 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff=
- *skb,
->  	return NETDEV_TX_OK;
->  }
-> =20
-> +enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
-> +{
-> +	struct m_can_classdev *cdev =3D
-> +		container_of(timer, struct m_can_classdev, hrtimer);
-> +
-> +	m_can_isr(0, cdev->net);
-> +
-> +	hrtimer_forward_now(timer, ms_to_ktime(1));
-> +
-> +	return HRTIMER_RESTART;
-> +}
-> +
->  static int m_can_open(struct net_device *dev)
->  {
->  	struct m_can_classdev *cdev =3D netdev_priv(dev);
-> @@ -1827,13 +1845,21 @@ static int m_can_open(struct net_device *dev)
->  		}
-> =20
->  		INIT_WORK(&cdev->tx_work, m_can_tx_work_queue);
-> -
->  		err =3D request_threaded_irq(dev->irq, NULL, m_can_isr,
->  					   IRQF_ONESHOT,
->  					   dev->name, dev);
-> +
-
-nitpick:
-Please remove these 2 newline changes.
-
->  	} else {
-> -		err =3D request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
-> +		if (dev->irq > 0)	{
-
-Please follow the kernel coding style and use a space not a tab after
-the closing ")" of the "if".
-
-> +			err =3D request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
->  				  dev);
-> +		}
-> +
-> +		else	{
-
-Please use kernel coding style: "} else {"
-
-> +			dev_dbg(cdev->dev, "Enabling the hrtimer\n");
-> +			cdev->hrtimer.function =3D &hrtimer_callback;
-> +			hrtimer_start(&cdev->hrtimer, ns_to_ktime(0), HRTIMER_MODE_REL_PINNED=
-);
-> +		}
-
-I think there's no need to have nested else branches, what about this
-approach?
-
---- a/drivers/net/can/m_can/m_can.c
-+++ b/drivers/net/can/m_can/m_can.c
-@@ -1831,9 +1831,11 @@ static int m_can_open(struct net_device *dev)
-                 err =3D request_threaded_irq(dev->irq, NULL, m_can_isr,
-                                            IRQF_ONESHOT,
-                                            dev->name, dev);
--        } else {
-+        } else if (dev->irq) {
-                 err =3D request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev-=
->name,
-                                   dev);
-+        } else {
-+                // polling
-         }
-=20
-         if (err < 0) {
-
->  	}
-> =20
->  	if (err < 0) {
-> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-> index a839dc71dc9b..ed046d77fdb9 100644
-> --- a/drivers/net/can/m_can/m_can.h
-> +++ b/drivers/net/can/m_can/m_can.h
-> @@ -28,6 +28,7 @@
->  #include <linux/pm_runtime.h>
->  #include <linux/slab.h>
->  #include <linux/uaccess.h>
-> +#include <linux/hrtimer.h>
-> =20
->  /* m_can lec values */
->  enum m_can_lec_type {
-> @@ -93,6 +94,8 @@ struct m_can_classdev {
->  	int is_peripheral;
-> =20
->  	struct mram_cfg mcfg[MRAM_CFG_NUM];
-> +
-> +	struct hrtimer hrtimer;
->  };
-> =20
->  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int =
-sizeof_priv);
-> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_c=
-an/m_can_platform.c
-> index 9c1dcf838006..7540db74b7d0 100644
-> --- a/drivers/net/can/m_can/m_can_platform.c
-> +++ b/drivers/net/can/m_can/m_can_platform.c
-> @@ -7,6 +7,7 @@
-> =20
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
-> +#include <linux/hrtimer.h>
-> =20
->  #include "m_can.h"
-> =20
-> @@ -98,8 +99,16 @@ static int m_can_plat_probe(struct platform_device *pd=
-ev)
->  	addr =3D devm_platform_ioremap_resource_byname(pdev, "m_can");
->  	irq =3D platform_get_irq_byname(pdev, "int0");
->  	if (IS_ERR(addr) || irq < 0) {
-> -		ret =3D -EINVAL;
-> -		goto probe_fail;
-> +		if (irq =3D=3D -EPROBE_DEFER) {
-> +			ret =3D -EPROBE_DEFER;
-> +			goto probe_fail;
-> +		}
-> +		if (IS_ERR(addr)) {
-> +			ret =3D PTR_ERR(addr);
-> +			goto probe_fail;
-> +		}
-> +		dev_dbg(mcan_class->dev, "Failed to get irq, initialize hrtimer\n");
-> +		hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL_P=
-INNED);
-
-Looks better. Please remove the outer "if (IS_ERR(addr) || irq < 0)" and
-move the error checking directly after "addr =3D devm_platform_ioremap_reso=
-urce_byname()".
-
-What do you think about introducing the "poll-interval" property and
-only enable polling if it is set?
-
->  	}
-> =20
->  	/* message ram could be shared */
-> --=20
-> 2.17.1
->=20
+>  arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/ar=
+m64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> index 8ae0ffccaab2..576f0421824f 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> @@ -483,6 +483,7 @@ rmi4-f01@1 {
+>                 };
+>
+>                 rmi4-f12@12 {
+> +                       reg =3D <0x12>;
+>                         syna,rezero-wait-ms =3D <0xc8>;
+>                         syna,clip-x-high =3D <0x438>;
+>                         syna,clip-y-high =3D <0x870>;
+> --
+> 2.34.1
 >
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---ikdkjwlh4qdhgblk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRBB9wACgkQvlAcSiqK
-BOg0zgf8CBj+E5MKzrz5bNRXj0BWuK0IdUDA6yeaHlfkfp2NkkBFuJt+CkVPvX0y
-e+kKRBxqpIlZ+fPxzMVqyP0AuGHn4+9wtfMngfEvtTi/BlhuBkQMRQYVTPcUEjwI
-bNggMFPpIj0Re1c15cICUOBFLlmTUvpD5mC08LprvOtLKF78R336dOwVkrM+gNjF
-ke3ickmvQjQFlS370Ge6YeABRISdipavv7e0xvoWt613yTCnXShppLIGfQm7d6rF
-Cs7GTVwYLEmtepUK2GwjKrKLRF4N6CfHezmTq/Y7e0ztnEUeE4IOqicFxoLaAsRj
-++iDnGMinJGDZXBdwVY5EKos9lehIQ==
-=9hcv
------END PGP SIGNATURE-----
-
---ikdkjwlh4qdhgblk--
+Reviewed-by: Molly Sophia <mollysophia379@gmail.com>
