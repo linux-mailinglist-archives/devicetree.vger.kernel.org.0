@@ -2,268 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D90D96E9E21
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B7B6E9E8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 00:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232762AbjDTVvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 17:51:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59108 "EHLO
+        id S231610AbjDTWFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 18:05:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232760AbjDTVvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 17:51:49 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C002B5FE6;
-        Thu, 20 Apr 2023 14:51:47 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1a66e7a52d3so13484515ad.0;
-        Thu, 20 Apr 2023 14:51:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682027507; x=1684619507;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yVE01ylZkiaFGup+LhU1TXOAFtn7Qpb50IDlJ/jgNDc=;
-        b=r5QSxx7KROfLSvjDZ1attNdLGBbIm9pVYlB1kuCGkaOpXX+YY9XdQGLVyFse5Hkqx2
-         e3NmozoV7tU7qSx1On2idzSnkMyz48GQ1if2bTVyySEiXj7sVowIoyS5gPtAfumTPhlQ
-         BQChZ2rmvHPok1sieKW6qXHmMePkVJPgPMuMcuhdcu+J5SIT9+S0stRpV9qEKW05qrPY
-         XpGNOauhzVNFtaM8GRvnqZ704XlfCiPVsghT7kft3FzZx+OpRfu38axGJ27sHtFCW0qy
-         rFHHjY2vwVjNZRvHPA7lxI900DY5gd3/3JG1FTkqjPuOZQpaanRQEUTnJD18Fo3Ox7Ar
-         eBfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682027507; x=1684619507;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yVE01ylZkiaFGup+LhU1TXOAFtn7Qpb50IDlJ/jgNDc=;
-        b=WRXnGkDQT306zrb1WEcAElb6LVgdT0YijLMc1zfkB+dX+sZAq3Z8uEvFokh/KVm/Cs
-         cmEMMM8K2B2yvHRjia8+N8SieWGcj2MSLtyzYjPo+wvuj8by94o6/6RnX4dK2NCOehQb
-         AjekWKJIsO1lxBE5jEGPFz/hsd7qAbZX5RsSJl4P79a5ezIe9+QKiwIHArnxNdtowTZh
-         lxs8rA5N4BYznsH/HLF7tWldcVBYQQdXRR/FrNcPvY9rL9Fju6fpghut8/rcyYHFh4rI
-         PepHaXSXpPQnDFAbIAUC0ekvEfC32zu7hd8ErKWZFGf2eUE57/ek2u4SNwwhEeL/CgfL
-         xh8A==
-X-Gm-Message-State: AAQBX9cZ5I8S6iNslI6wJnIIjQGXdNq4cxnDFhGW9aOqnDb5Z9e8rY75
-        ylJzLkrZdDKxXNMPSdIH/hJuT/HIa+2DFAeuAwg=
-X-Google-Smtp-Source: AKy350ZmmeQF+mHZjkmjNw9SKtantBJ3NorHQzjJ4xVPb0uEfo7oV30t7YnZZbsWD3PmqKjJH5YbsDwLAbUCjEGDsi0=
-X-Received: by 2002:a17:902:c3cd:b0:1a6:de48:c9b9 with SMTP id
- j13-20020a170902c3cd00b001a6de48c9b9mr2898495plj.47.1682027506996; Thu, 20
- Apr 2023 14:51:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230415104104.5537-1-aford173@gmail.com> <3e47f0d1017fe4c9f71a5de65f32c6ba1662efe2.camel@pengutronix.de>
- <CAHCN7xL4+9NogrnXA1PEWorwY7JpSGBozDtHT83JvzjfinmS+A@mail.gmail.com>
- <CAHCN7xK8K+DsNAFTVAezwJQzZ7RCDb2CjCBZ8dNb=S8d1BmtMA@mail.gmail.com>
- <f42a2a11c1a2df4d773b61a449e8f4d5a9a010d1.camel@pengutronix.de>
- <CAHCN7x+bZHZHxYk=qC3QFS07kLO85w_rj1tOuX1Y3fJXekmvMQ@mail.gmail.com> <19d2c40180d0b9176e17aa6e91c1e7f36f77f626.camel@pengutronix.de>
-In-Reply-To: <19d2c40180d0b9176e17aa6e91c1e7f36f77f626.camel@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 20 Apr 2023 16:51:35 -0500
-Message-ID: <CAHCN7x+HYmGoxZ107OdY1aJYtjNWB4p3fqJ1tGjOAK2eO356yA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] drm: bridge: samsung-dsim: Support multi-lane calculations
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        aford@beaconembedded.com,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Fabio Estevam <festevam@gmail.com>, m.szyprowski@samsung.com,
-        marex@denx.de, Robert Foss <rfoss@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Inki Dae <inki.dae@samsung.com>,
+        with ESMTP id S229820AbjDTWFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 18:05:01 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCE4DEB;
+        Thu, 20 Apr 2023 15:04:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682028299; x=1713564299;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QLTm7S7Qy0Ej6mfl0KwCOlaAKC/xPF/JLj0bt0xnj1E=;
+  b=Gb7ueCvr88+Ru5BpHfXeRXWo/XOzBdsZW0ysuiM+WOkl4gFiitfcMPea
+   4tTr+p7fplGzCyWmi7nd36VnklbrmJ3fSrtUVrYunN5/llPNliq7CkF3v
+   WOrs/rNB087l+JfO3n1XM0dNIj7YMG+DDnCW+1wG7TFdI8dD8++YQdvsA
+   vmwr3W2v9JrHZ0nCzeqmYI9SQAP+a9SVeCnzKbjzCUOZsJfzhdd8LJURo
+   iBCeCgOprk9n94xuhRFVYr550MfQD5ilUIZk6doCrMiVXy5oespfOC6+G
+   4LfPZrfZmt+F+iKINQ0lGZSoNDTNGEJEVI/dsNET+I3aOAQ/ghYA8/Y0D
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="344614348"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; 
+   d="scan'208";a="344614348"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2023 15:04:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="685523795"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; 
+   d="scan'208";a="685523795"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 20 Apr 2023 15:04:56 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1ppcOd-000g8W-1Y;
+        Thu, 20 Apr 2023 22:04:55 +0000
+Date:   Fri, 21 Apr 2023 06:04:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] iio: pressure: Honeywell mprls0025pa pressure
+ sensor
+Message-ID: <202304210512.5qdqDRgd-lkp@intel.com>
+References: <ZEGZ7VMrqaPNzhwj@arbad>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZEGZ7VMrqaPNzhwj@arbad>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 8:43=E2=80=AFAM Lucas Stach <l.stach@pengutronix.de=
-> wrote:
->
-> Am Donnerstag, dem 20.04.2023 um 08:24 -0500 schrieb Adam Ford:
-> > On Thu, Apr 20, 2023 at 8:06=E2=80=AFAM Lucas Stach <l.stach@pengutroni=
-x.de> wrote:
-> > >
-> > > Hi Adam,
-> > >
-> > > Am Mittwoch, dem 19.04.2023 um 05:47 -0500 schrieb Adam Ford:
-> > > > On Mon, Apr 17, 2023 at 6:55=E2=80=AFAM Adam Ford <aford173@gmail.c=
-om> wrote:
-> > > > >
-> > > > > On Mon, Apr 17, 2023 at 3:43=E2=80=AFAM Lucas Stach <l.stach@peng=
-utronix.de> wrote:
-> > > > > >
-> > > > > > Hi Adam,
-> > > > > >
-> > > > > > Am Samstag, dem 15.04.2023 um 05:40 -0500 schrieb Adam Ford:
-> > > > > > > If there is more than one lane, the HFP, HBP, and HSA is calc=
-ulated in
-> > > > > > > bytes/pixel, then they are divided amongst the different lane=
-s with some
-> > > > > > > additional overhead. This is necessary to achieve higher reso=
-lutions while
-> > > > > > > keeping the pixel clocks lower as the number of lanes increas=
-e.
-> > > > > > >
-> > > > > >
-> > > > > > In the testing I did to come up with my patch "drm: bridge: sam=
-sung-
-> > > > > > dsim: fix blanking packet size calculation" the number of lanes=
- didn't
-> > > > > > make any difference. My testing might be flawed, as I could onl=
-y
-> > > > > > measure the blanking after translation from MIPI DSI to DPI, so=
- I'm
-> > > > > > interested to know what others did here. How did you validate t=
-he
-> > > > > > blanking with your patch? Would you have a chance to test my pa=
-tch and
-> > > > > > see if it works or breaks in your setup?
-> > > >
-> > > > Lucas,
-> > > >
-> > > > I tried your patch instead of mine.  Yours is dependent on the
-> > > > hs_clock being always set to the burst clock which is configured by
-> > > > the device tree.  I unrolled a bit of my stuff and replaced it with
-> > > > yours.  It worked at 1080p, but when I tried a few other resolution=
-s,
-> > > > they did not work.  I assume it's because the DSI clock is fixed an=
-d
-> > > > not changing based on the pixel clock.  In the version I did, I onl=
-y
-> > > > did that math when the lanes were > 1. In your patch, you divide by=
- 8,
-> > > > and in mine, I fetch the bits-per-pixel (which is 8) and I divide b=
-y
-> > > > that just in case the bpp ever changes from 8.  Overall,  I think o=
-ur
-> > > > patches basically do the same thing.
-> > >
-> > > The calculations in your and my patch are quite different. I'm not
-> > > taking into account the number of lanes or the MIPI format. I'm basin=
-g
+Hi Andreas,
 
-I was taking the number of lanes into account in order to calculate
-the clock rate, since 4-lanes can run slower.
+kernel test robot noticed the following build warnings:
 
-> >
-> > I was looking more at the division by 8 and the overhead correction of =
-6.
-> > This number 6 also appears in the NXP downstream kernel [1].  I know
-> > Marek V had some concerns about that.
-> >
-> Yea, I don't fully remember the details about the overhead. Need to
-> page that back in. The division by 8 in my patch is just to get from
-> the bit to a byte clock, nothing to do with the MIPI format bits per
-> channel or something like that.
->
-> > > the blanking size purely on the ratio between MIPI DSI byte clock and
-> > > the DPI interface clock. It's quite counter-intuitive that the host
-> > > would scale the blanking to the number of lanes automatically, but
-> > > still require the MIPI packet offset removed, but that's what my
-> > > measurements showed to produce the correct blanking after translation
-> > > to DPI by the TC358767 bridge chip.
-> >
-> > How many lanes is your DSI interface using?
-> >
-> When I did the measurements to come up with the patch, I varied the
-> number of lanes between 1 and 4. Different number of lanes didn't make
-> a difference. In fact trying to compensate for the number of lanes when
-> calculating the blanking size to program into the controller lead to
-> wildly wrong blanking on the DPI side of the external bridge.
->
-> > >
-> > > If you dynamically scale the HS clock, then you would need to input t=
-he
-> > > real used HS clock to the calculation in my patch, instead of the fix=
-ed
-> > > burst mode rate.
-> >
-> > I think what you're saying makes sense.
-> >
-> > The code I originally modeled this from was from the NXP downstream
-> > kernel where they define the calculation as being in words [2]. I am
-> > not saying the NXP code is perfect, but the NXP code works.  With this
-> > series, my monitors are able to sync a bunch of different resolutions
-> > from 1080p down to 640x480 and a bunch in between with various refresh
-> > rates too. That was the goal of this series.
-> >
-> > Instead of just using your patch as-is, I will adapt yours to use the
-> > scaled clock to see how it behaves and get back to you.
-> >
->
-> Thanks, that would be very much appreciated.
+[auto build test WARNING on e0ee50101346ca9cef52da75e3fb4380c27c042a]
 
-Lucas,
+url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mprls0025pa-sensor/20230421-040254
+base:   e0ee50101346ca9cef52da75e3fb4380c27c042a
+patch link:    https://lore.kernel.org/r/ZEGZ7VMrqaPNzhwj%40arbad
+patch subject: [PATCH v3 2/3] iio: pressure: Honeywell mprls0025pa pressure sensor
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230421/202304210512.5qdqDRgd-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/3d6a7eae49611392fb6f7563dcb71b74f12a0a78
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mprls0025pa-sensor/20230421-040254
+        git checkout 3d6a7eae49611392fb6f7563dcb71b74f12a0a78
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/iio/pressure/
 
-I took your patch and added a dsi state variable named "hs_clock"  to
-keep track of the output of samsung_dsim_set_pll which should be the
-active high-speed clock.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304210512.5qdqDRgd-lkp@intel.com/
 
-I then replaced one line in your code to reference the hs_clock
-instead of the burst clock:
+All warnings (new ones prefixed by >>):
 
-@@ -960,7 +962,7 @@ static void samsung_dsim_set_display_mode(struct
-samsung_dsim *dsi)
-        u32 reg;
+   In file included from include/linux/device.h:15,
+                    from include/linux/acpi.h:15,
+                    from include/linux/i2c.h:13,
+                    from drivers/iio/pressure/mprls0025pa.c:17:
+   drivers/iio/pressure/mprls0025pa.c: In function 'mpr_read_pressure':
+>> drivers/iio/pressure/mprls0025pa.c:169:30: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long unsigned int' [-Wformat=]
+     169 |                 dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(wdata));
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
+     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/iio/pressure/mprls0025pa.c:169:17: note: in expansion of macro 'dev_err'
+     169 |                 dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(wdata));
+         |                 ^~~~~~~
+   drivers/iio/pressure/mprls0025pa.c:169:70: note: format string is defined here
+     169 |                 dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(wdata));
+         |                                                                     ~^
+         |                                                                      |
+         |                                                                      int
+         |                                                                     %ld
+   drivers/iio/pressure/mprls0025pa.c:208:30: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long unsigned int' [-Wformat=]
+     208 |                 dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(buf));
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
+     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/iio/pressure/mprls0025pa.c:208:17: note: in expansion of macro 'dev_err'
+     208 |                 dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(buf));
+         |                 ^~~~~~~
+   drivers/iio/pressure/mprls0025pa.c:208:70: note: format string is defined here
+     208 |                 dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(buf));
+         |                                                                     ~^
+         |                                                                      |
+         |                                                                      int
+         |                                                                     %ld
 
-        if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO) {
--               int byte_clk_khz =3D dsi->burst_clk_rate / 1000 / 8;
-+               int byte_clk_khz =3D dsi->hs_clock / 1000 / 8;
-                int hfp =3D (m->hsync_start - m->hdisplay) *
-byte_clk_khz / m->clock;
 
-With that change, your patch works with the rest of my code, and I
-think it's easier to read, and it doesn't involve recalculating the
-clock speed each time since it's cached.  If you're OK with that, I'll
-incorporate your code into V2 of my series, and I'll apply my changes
-as a subsequent patch.  I hope to be able to send out V2 this weekend.
+vim +169 drivers/iio/pressure/mprls0025pa.c
 
-I would be curious to know frm Marek Szyprowski what the impact is on
-the Samsung devices, if any.
+  > 17	#include <linux/i2c.h>
+    18	#include <linux/module.h>
+    19	#include <linux/mod_devicetable.h>
+    20	#include <linux/device.h>
+    21	#include <linux/gpio/consumer.h>
+    22	#include <linux/regulator/consumer.h>
+    23	#include <linux/math64.h>
+    24	
+    25	#include <asm/unaligned.h>
+    26	
+    27	#include <linux/iio/iio.h>
+    28	#include <linux/iio/buffer.h>
+    29	#include <linux/iio/triggered_buffer.h>
+    30	#include <linux/iio/trigger_consumer.h>
+    31	
+    32	/* bits in i2c status byte */
+    33	#define MPR_I2C_POWER	BIT(6)	/* device is powered */
+    34	#define MPR_I2C_BUSY	BIT(5)	/* device is busy */
+    35	#define MPR_I2C_MEMORY	BIT(2)	/* integrity test passed */
+    36	#define MPR_I2C_MATH	BIT(0)	/* internal math saturation */
+    37	
+    38	#define MPR_NANO_PART	1000000000LL
+    39	
+    40	/*
+    41	 * _INPUT interface:
+    42	 * Calculation formular from the datasheet:
+    43	 * pressure = (press_cnt - outputmin) * scale + pmin
+    44	 * with:
+    45	 * * pressure	- measured pressure in Pascal
+    46	 * * press_cnt	- raw value read from sensor
+    47	 * * pmin	- minimum pressure range value of sensor (data->pmin)
+    48	 * * pmax	- maximum pressure range value of sensor (data->pmax)
+    49	 * * outputmin	- minimum numerical range raw value delivered by sensor (MPR_OUT_MIN)
+    50	 * * outputmax	- maximum numerical range raw value delivered by sensor (MPR_OUT_MAX)
+    51	 * * scale	- (pmax - pmin) / (outputmax - outputmin)
+    52	 *
+    53	 * _RAW interface:
+    54	 * pressure = (raw + offset) * scale
+    55	 * --> need to adjust offset for fitting into _RAW interface
+    56	 * Values for _RAW interface:
+    57	 * * raw	- press_cnt
+    58	 * * scale	- (pmax - pmin) / (outputmax - outputmin)
+    59	 * * offset	- (-1 * outputmin) - pmin / scale
+    60	 *                note: With all sensors from the datasheet pmin = 0 which reduces the offset to
+    61	 *                (-1 * outputmin)
+    62	 */
+    63	
+    64	/*
+    65	 * transfer function A: 10%   to 90%   of 2^24
+    66	 * transfer function B:  2.5% to 22.5% of 2^24
+    67	 * transfer function C: 20%   to 80%   of 2^24
+    68	 */
+    69	enum mpr_func_id {
+    70		MPR_FUNCTION_A,
+    71		MPR_FUNCTION_B,
+    72		MPR_FUNCTION_C,
+    73	};
+    74	
+    75	struct mpr_func_spec {
+    76		u32			output_min;
+    77		u32			output_max;
+    78	};
+    79	
+    80	static const struct mpr_func_spec mpr_func_spec[] = {
+    81		[MPR_FUNCTION_A] = {.output_min = 1677722, .output_max = 15099494},
+    82		[MPR_FUNCTION_B] = {.output_min =  419430, .output_max =  3774874},
+    83		[MPR_FUNCTION_C] = {.output_min = 3355443, .output_max = 13421773},
+    84	};
+    85	
+    86	struct mpr_chan {
+    87		s32			pres;		/* pressure value */
+    88		s64			ts;		/* timestamp */
+    89	};
+    90	
+    91	struct mpr_data {
+    92		struct i2c_client	*client;
+    93		struct mutex		lock;		/* i2c transactions */
+    94		u32			pmin;		/* minimal pressure in pascal */
+    95		u32			pmax;		/* maximal pressure in pascal */
+    96		u32			function;	/* transfer function */
+    97		u32			outmin;		/* minimal numerical range raw value from sensor */
+    98		u32			outmax;		/* maximal numerical range raw value from sensor */
+    99		int                     scale;          /* int part of scale */
+   100		int                     scale2;         /* nano part of scale */
+   101		int                     offset;         /* int part of offset */
+   102		int                     offset2;        /* nano part of offset */
+   103		struct gpio_desc	*gpiod_reset;	/* reset */
+   104		int			irq;		/* end of conversion interrupt */
+   105		struct completion	completion;	/* handshake from irq to read */
+   106		struct mpr_chan		chan;		/* channel values for buffered mode */
+   107		struct regulator	*vdd;		/* optional external voltage regulator */
+   108	};
+   109	
+   110	static const struct iio_chan_spec mpr_channels[] = {
+   111		{
+   112			.type = IIO_PRESSURE,
+   113			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+   114						BIT(IIO_CHAN_INFO_SCALE) |
+   115						BIT(IIO_CHAN_INFO_OFFSET),
+   116			.scan_index = 0,
+   117			.scan_type = {
+   118				.sign = 's',
+   119				.realbits = 32,
+   120				.storagebits = 32,
+   121				.endianness = IIO_CPU,
+   122			},
+   123		},
+   124		IIO_CHAN_SOFT_TIMESTAMP(1),
+   125	};
+   126	
+   127	static void mpr_reset(struct mpr_data *data)
+   128	{
+   129		if (data->gpiod_reset) {
+   130			gpiod_set_value(data->gpiod_reset, 0);
+   131			udelay(10);
+   132			gpiod_set_value(data->gpiod_reset, 1);
+   133		}
+   134	}
+   135	
+   136	/**
+   137	 * mpr_read_pressure() - Read pressure value from sensor via I2C
+   138	 * @data: Pointer to private data struct.
+   139	 * @press: Output value read from sensor.
+   140	 *
+   141	 * Reading from the sensor by sending and receiving I2C telegrams.
+   142	 *
+   143	 * If there is an end of conversion (EOC) interrupt registered the function waits for a maximum of
+   144	 * one second for the interrupt.
+   145	 *
+   146	 * Context: The function can sleep and data->lock should be held when calling it.
+   147	 * Return:
+   148	 * * 0		- OK, the pressure value could be read
+   149	 * * -ETIMEDOUT	- Timeout while waiting for the EOC interrupt or busy flag is still set after nloops
+   150	 *		  attempts of reading
+   151	 */
+   152	static int mpr_read_pressure(struct mpr_data *data, s32 *press)
+   153	{
+   154		struct device *dev = &data->client->dev;
+   155		int ret, i;
+   156		u8 wdata[] = {0xAA, 0x00, 0x00};
+   157		s32 status;
+   158		int nloops = 10;
+   159		u8 buf[5];
+   160	
+   161		reinit_completion(&data->completion);
+   162	
+   163		ret = i2c_master_send(data->client, wdata, sizeof(wdata));
+   164		if (ret < 0) {
+   165			dev_err(dev, "error while writing ret: %d\n", ret);
+   166			return ret;
+   167		}
+   168		if (ret != sizeof(wdata)) {
+ > 169			dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(wdata));
+   170			return -EIO;
+   171		}
+   172	
+   173		if (data->irq > 0) {
+   174			ret = wait_for_completion_timeout(&data->completion, HZ);
+   175			if (!ret) {
+   176				dev_err(dev, "timeout while waiting for eoc interrupt\n");
+   177				return -ETIMEDOUT;
+   178			}
+   179		} else {
+   180			/* wait until status indicates data is ready */
+   181			for (i = 0; i < nloops; i++) {
+   182				/*
+   183				 * datasheet only says to wait at least 5 ms for the data but leave the
+   184				 * maximum response time open
+   185				 * --> let's try it nloops (10) times which seems to be quite long
+   186				 */
+   187				usleep_range(5000, 10000);
+   188				status = i2c_smbus_read_byte(data->client);
+   189				if (status < 0) {
+   190					dev_err(dev, "error while reading, status: %d\n", status);
+   191					return status;
+   192				}
+   193				if (!(status & MPR_I2C_BUSY))
+   194					break;
+   195			}
+   196			if (i == nloops) {
+   197				dev_err(dev, "timeout while reading\n");
+   198				return -ETIMEDOUT;
+   199			}
+   200		}
+   201	
+   202		ret = i2c_master_recv(data->client, buf, sizeof(buf));
+   203		if (ret < 0) {
+   204			dev_err(dev, "error in i2c_master_recv ret: %d\n", ret);
+   205			return ret;
+   206		}
+   207		if (ret != sizeof(buf)) {
+   208			dev_err(dev, "received size doesn't fit - ret: %d / %d\n", ret, sizeof(buf));
+   209			return -EIO;
+   210		}
+   211	
+   212		if (buf[0] & MPR_I2C_BUSY) {
+   213			/* it should never be the case that status still indicates business */
+   214			dev_err(dev, "data still not ready: %08x\n", buf[0]);
+   215			return -ETIMEDOUT;
+   216		}
+   217	
+   218		*press = get_unaligned_be24(&buf[1]);
+   219	
+   220		dev_dbg(dev, "received: %*ph cnt: %d\n", ret, buf, *press);
+   221	
+   222		return 0;
+   223	}
+   224	
 
-adam
-
->
-> I also don't assert that my calculation is perfect, as I also don't
-> have any more information and needed to resort to observing the
-> blanking after translation by the external bridge, so I hope we could
-> get some better understanding of how things really work by checking
-> what works for both our systems.
->
-> >   I have
-> > finished reworking the dynamic DPHY settings, and I've fixed up making
-> > the PLL device tree optional. If your patch works, I'll drop my
-> > calculation and just build off what you have to use the scaled HS
-> > clock when I submit the V2 and I'll make sure I CC you.
-> >
-> Thanks, I'm open to re-do my measurements with your new patches.
->
-> Regards,
-> Lucas
->
-> > adam
-> >
-> > [1] - https://github.com/nxp-imx/linux-imx/blob/lf-6.1.y/drivers/gpu/dr=
-m/bridge/sec-dsim.c#L270
-> > [2] - https://github.com/nxp-imx/linux-imx/blob/lf-6.1.y/drivers/gpu/dr=
-m/bridge/sec-dsim.c#L914
-> >
-> > >
-> > > Regards,
-> > > Lucas
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
