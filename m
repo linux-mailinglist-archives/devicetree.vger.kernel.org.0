@@ -2,108 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6AAD6E862C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 02:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F416E8624
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 02:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbjDTAHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 20:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
+        id S229995AbjDTAEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 20:04:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjDTAHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 20:07:46 -0400
-X-Greylist: delayed 374 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 19 Apr 2023 17:07:45 PDT
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53637524B
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:07:45 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (174-21-172-149.tukw.qwest.net [174.21.172.149])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 45069401;
-        Wed, 19 Apr 2023 17:01:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1681948890;
-        bh=pvBFZe6aNKnnGQpibVcXWzLk+OxdYqXD2UbQjrEDfp0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TYoRseOyAvyZhFb31OMcQvY8dwZedJ8jh72GMdcktGH9E2hTE4/HArAa2eFhpl/C5
-         1OQZcgcAu3YZOtj2jrkSV8ppwpSLRr+bXOYLCIEjuCTBrdrNcciZ3/B62dMADuhgjj
-         uLMuorT0E/RvEp7gEOYMIzdRw9r8pRDxb6kPqpEc=
-Date:   Wed, 19 Apr 2023 17:01:28 -0700
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add dt property
-Message-ID: <0da2b301-8780-48c0-a5dc-326474011e8d@hatter.bewilderbeest.net>
-References: <20230418145051.4192963-1-Naresh.Solanki@9elements.com>
+        with ESMTP id S229499AbjDTAEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 20:04:37 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35D55245
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:04:35 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id h2so816326ljh.13
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:04:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681949074; x=1684541074;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2G0wIqdDVL8V39zkJtaHo7rk4P3NZp9I0rLrpXM9zn0=;
+        b=ya9kSiyBckKHw/r5XP0RpjppGN8C/dq36rqTYAJvC6A2i2Kt1Li1CimdnM/QtObhTV
+         DYguK5harSijONZXVc8I2r/8lMWFDfdf0lKNA84XLvrOobSJcF+2TKQoyxJ86qx3rCVV
+         bYh60YAv9An1fz6a3JLbsKTDytP7Ra5S7IzncImyW+RDdwXSafn7sfhxMgRD+Erlttl1
+         tanmzY3LciKOi588uvpU+fuicolrdsBhsiwwWUcsD+79nHbQYWopyfYoVwKvyFe4pMol
+         5/z9ZnHWZzmMqjtvGZoolAPK6i9phaF1eho33xYgtQnrocBTBecbhjk8V+4FxlxZKngY
+         bBVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681949074; x=1684541074;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2G0wIqdDVL8V39zkJtaHo7rk4P3NZp9I0rLrpXM9zn0=;
+        b=JEld0IO9CRFKf4elVdiSPrB9dZBDrch7k3V5IQ+n27sMCvMHrqRlqEuNJCAU7TeDX5
+         MoguPc87EX1f+A1maqNZxFX0uy7s7YS0YQRhFU2bzp2yMO4qYPtjJs8y2dFJ9tXySvQo
+         jsr97XlC7lsU+WxuzOQ9M15QGAFAtIdy7v2xiumpwl4RI6NrZjFV6lNjyt+70H/ajSsS
+         BMzLD9lycHcpSmKqYde4RM5NRIDDCEnahii9yZmDb9WGRJwdkI1xJHheoyYty48hu6dQ
+         UBmn49tXAFce0jHFgEhX43HwcB26WzcKvkZDSuA3HpUULrtYHe0GtSyEolz24LDy1xGU
+         PYvA==
+X-Gm-Message-State: AAQBX9d3b1BiPVHBZ8MPu920WobuHC4m7cxfVhy4Xx7U26hm2ajD+33O
+        T2OuUuxMkO5DikyuJjVXe66uFw==
+X-Google-Smtp-Source: AKy350ZDEvgIQKSNHuZRDRgq4zUgypLURFd+FcdttpfqeiOpNO/OlnbRi8mFkVC84Iv0ldK9RshuOQ==
+X-Received: by 2002:a2e:9a82:0:b0:2a7:75ae:3e63 with SMTP id p2-20020a2e9a82000000b002a775ae3e63mr2324997lji.27.1681949073956;
+        Wed, 19 Apr 2023 17:04:33 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id n9-20020ac242c9000000b004eb42f5367bsm52229lfl.19.2023.04.19.17.04.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Apr 2023 17:04:33 -0700 (PDT)
+Message-ID: <372bb455-2e45-a230-e393-542d4fe5a5e5@linaro.org>
+Date:   Thu, 20 Apr 2023 03:04:32 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230418145051.4192963-1-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/4] drm/msm: expose edid to hdmi cec adapter
+Content-Language: en-GB
+To:     Arnaud Vrac <avrac@freebox.fr>, Rob Clark <robdclark@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+References: <20230418-msm8998-hdmi-cec-v1-0-176479fb2fce@freebox.fr>
+ <20230418-msm8998-hdmi-cec-v1-3-176479fb2fce@freebox.fr>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230418-msm8998-hdmi-cec-v1-3-176479fb2fce@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 07:50:50AM PDT, Naresh Solanki wrote:
->Add DT property regulator-supplies.
->This enables us to couple one or more regulator output to gether. This
->is use in case of Single connector having 2 or more supplies.
->
->Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->---
-> .../bindings/regulator/regulator-output.yaml         | 12 +++++++++---
-> 1 file changed, 9 insertions(+), 3 deletions(-)
->
->diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->index 078b37a1a71a..17f683d3c1f3 100644
->--- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->+++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->@@ -21,13 +21,19 @@ properties:
->   compatible:
->     const: regulator-output
->
->-  vout-supply:
->+  regulator-supplies:
->     description:
->-      Phandle of the regulator supplying the output.
->+      Specifies the name of the output supply provided by the regulator.
->+      Defaults to "vout".
->+    default: "vout"
->+
+On 18/04/2023 21:10, Arnaud Vrac wrote:
+> When edid has been read after hpd, pass it to the cec adapter so that it
+> can extract the physical address of the device on the cec bus.
+> Invalidate the physical address when hpd is low.
 
-Was this meant to be specified as a string-array to allow providing 
-multiple names?
+If there is another bridge in a chain (e.g. display-connector) which 
+handles HPD, then the msm_hdmi_bridge_detect() might get skipped. Please 
+also add the hpd_notify() callback which invalidate the physical 
+address. See adv7511, which does that both in its own HPD path and in 
+the hpd_notify().
 
->+patternProperties:
->+  ".*-supply":
->+    description:
->+      Specified the phandle for various supplies
->
-> required:
->   - compatible
->-  - vout-supply
->
-> additionalProperties: false
->
->
+> 
+> Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
+> ---
+>   drivers/gpu/drm/msm/hdmi/hdmi_bridge.c |  2 ++
+>   drivers/gpu/drm/msm/hdmi/hdmi_hpd.c    | 17 +++++++++++++----
+>   2 files changed, 15 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c b/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c
+> index 9b1391d27ed39..efc3bd4908e83 100644
+> --- a/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c
+> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/delay.h>
+>   #include <drm/drm_bridge_connector.h>
+>   #include <drm/drm_edid.h>
+> +#include <media/cec.h>
+>   
+>   #include "msm_kms.h"
+>   #include "hdmi.h"
+> @@ -256,6 +257,7 @@ static struct edid *msm_hdmi_bridge_get_edid(struct drm_bridge *bridge,
+>   	hdmi_write(hdmi, REG_HDMI_CTRL, hdmi_ctrl | HDMI_CTRL_ENABLE);
+>   
+>   	edid = drm_get_edid(connector, hdmi->i2c);
+> +	cec_s_phys_addr_from_edid(hdmi->cec_adap, edid);
+>   
+>   	hdmi_write(hdmi, REG_HDMI_CTRL, hdmi_ctrl);
+>   
+> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c b/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c
+> index bfa827b479897..cb3eb2625ff63 100644
+> --- a/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c
+> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/delay.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/pinctrl/consumer.h>
+> +#include <media/cec.h>
+>   
+>   #include "msm_kms.h"
+>   #include "hdmi.h"
+> @@ -230,15 +231,17 @@ enum drm_connector_status msm_hdmi_bridge_detect(
+>   {
+>   	struct hdmi_bridge *hdmi_bridge = to_hdmi_bridge(bridge);
+>   	struct hdmi *hdmi = hdmi_bridge->hdmi;
+> -	enum drm_connector_status stat_gpio, stat_reg;
+> +	enum drm_connector_status status, stat_gpio, stat_reg;
+>   	int retry = 20;
+>   
+>   	/*
+>   	 * some platforms may not have hpd gpio. Rely only on the status
+>   	 * provided by REG_HDMI_HPD_INT_STATUS in this case.
+>   	 */
+> -	if (!hdmi->hpd_gpiod)
+> -		return detect_reg(hdmi);
+> +	if (!hdmi->hpd_gpiod) {
+> +		status = detect_reg(hdmi);
+> +		goto out;
+> +	}
+>   
+>   	do {
+>   		stat_gpio = detect_gpio(hdmi);
+> @@ -259,5 +262,11 @@ enum drm_connector_status msm_hdmi_bridge_detect(
+>   		DBG("hpd gpio tells us: %d", stat_gpio);
+>   	}
+>   
+> -	return stat_gpio;
+> +	status = stat_gpio;
+> +
+> +out:
+> +	if (!status)
+> +		cec_phys_addr_invalidate(hdmi->cec_adap);
+> +
+> +	return status;
+>   }
+> 
 
-I think it would be nice to also update the examples to show what a 
-multi-supply instance would look like.
+-- 
+With best wishes
+Dmitry
 
-A slightly more descriptive subject line would also be good -- "Add dt 
-property" is a bit vague.
-
->base-commit: c55470f8b0616b0adb758077dbae9b19c5aac005
->-- 
->2.39.1
->
