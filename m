@@ -2,95 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7676E915B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 13:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0597C6E9166
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 13:02:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235224AbjDTK7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48928 "EHLO
+        id S235238AbjDTLCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 07:02:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235229AbjDTK7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:59:34 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD88EB754
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:57:00 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4edcdfa8638so469701e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:57:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681988218; x=1684580218;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ewXgvjZPyKJ1n9zRzGA+zaxH8tx/0y3F71LiiYkR2ak=;
-        b=svru7IbwP6ExPzDgfv843KSwDqykuPfskwv51l5aXc28Yn0wLbbGYRt1/NrJhVNo9p
-         3wlQTGapLh4laFO1ud6TnELrE6tVv4ARuY9bhLjPj46AyrzjZF5nvQ90grV4cplkH6yr
-         RlVPw1CiKdiEeCTTUyDrIe8HRVtgisyRDAULEjvGow6Qg2G+9SUm7yUFezZeudK4YSF5
-         sTevhHGCuE+dxPA0gQ1PxW/G/Am682OdBtocCIfhQ24snlqmv+GuJoDiEzoLnKDzIydp
-         Kq6j8Jr2W/t2rpMGFd0lDTsnexFkk1w5N18pF8UzGMkcajhHkNULjsIbxHXW4llUnAIq
-         238w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681988218; x=1684580218;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ewXgvjZPyKJ1n9zRzGA+zaxH8tx/0y3F71LiiYkR2ak=;
-        b=CCTwgW0eVo2nCD178u2Pia5oii5dTOgnJUO9ekoPbGN4jWzd52+jrs+PZSjXYOZGaG
-         dm+MRw8jFjMCgN6GVYhmpqZKggdb0SqQd/GdiB0rEgkeWlUxR8xpohEZPnlcS//JbY0k
-         CCYw/unh3JUbDa7xOUkqfJPVW5odd01543Kv48J6wzv+3gT2xhYIkj97yRqgiicbJtV1
-         ul6NBHke7kxuQJDEFL/RS/CW8ZSwgWrEPw7eu+i4EYV7gtLUQSDJn84a8lfoAeuFAmMe
-         nmVep3P7mQ5aOAZkS8lRzTPcUrIeVYrPftH4nuJmiKw1w2Pk0ni9ef8hw11lTT9BN6EX
-         VtiA==
-X-Gm-Message-State: AAQBX9fbeuP0/rg2WJBwG9d73pcsn/wsJqKUDn9qEUERidvsfWnMGcji
-        KAsRZ/uFBoWO3LxcDGyFPNryPA==
-X-Google-Smtp-Source: AKy350aZEBUcNWwWy8BRAL2PcQovivMdG+ijcjU9vEvc3OrpwMqNonvwDYisKpMubQQS4ikCM6fVPA==
-X-Received: by 2002:ac2:5d25:0:b0:4b3:d6e1:26bb with SMTP id i5-20020ac25d25000000b004b3d6e126bbmr303602lfb.29.1681988217863;
-        Thu, 20 Apr 2023 03:56:57 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05651238a600b004db3e2d3efesm178171lft.204.2023.04.20.03.56.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:56:57 -0700 (PDT)
-Message-ID: <9c2e19a7-9483-c321-a455-f019080b3f8c@linaro.org>
-Date:   Thu, 20 Apr 2023 12:56:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 18/18] arm64: dts: qcom: sdm845-polaris: add missing
- touchscreen child node reg
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S235249AbjDTLBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 07:01:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAFB8698;
+        Thu, 20 Apr 2023 03:59:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 801F3647B0;
+        Thu, 20 Apr 2023 10:59:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 957A1C433EF;
+        Thu, 20 Apr 2023 10:59:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681988344;
+        bh=38GdaOC/ZdsLruczbK6dZAmJPEO/Z19GwYh7RGf94T8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r5eHJyx34GhxJIkKbtNxdWPJ2p5RIfjz09FFsSdtJKyiVigc2w3W5wZOwvfHvbNFi
+         ARMirrK+wJL2QxB9j3J3fG6rXY1L0vhbdKkMW8gJNIYZEmFfU+cAWs7UwgUy2I8Gga
+         UUkrKuqtRbOsyrT/dNZ9sWtO2jw6qB2Ia4k46QbOyDl1cGrwI27KHCi6GUv3LHafpy
+         neDIDEjfMBHLcDHb7MJrAtvVAhCliPvqVr7gf3gwBdloF1zMyRWNZfrYqzWueRilxP
+         K76hMiIHBdHBAzEADc42uBZDTySZkx5TSpfxzO85A48g4yTIEUu+S3h+IDG6tXIQJM
+         uedDm6N7VQckQ==
+Date:   Thu, 20 Apr 2023 11:58:59 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Benjamin Bara <bbara93@gmail.com>
+Cc:     Support Opensource <support.opensource@diasemi.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        "Ivan T. Ivanov" <ivan.ivanov@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Molly Sophia <mollysophia379@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
- <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Steve Twiss <stwiss.opensource@diasemi.com>,
+        DLG-Adam.Thomson.Opensource@dm.renesas.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Benjamin Bara <benjamin.bara@skidata.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: dlg,da9063: document voltage
+ monitoring
+Message-ID: <20230420105859.GL9904@google.com>
+References: <20230403-da9063-disable-unused-v3-0-cc4dc698864c@skidata.com>
+ <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230403-da9063-disable-unused-v3-3-cc4dc698864c@skidata.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,31 +64,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 05 Apr 2023, Benjamin Bara wrote:
 
-
-On 19.04.2023 23:18, Krzysztof Kozlowski wrote:
-> Add missing reg property to touchscreen child node to fix dtbs W=1 warnings:
+> From: Benjamin Bara <benjamin.bara@skidata.com>
 > 
->   Warning (unit_address_vs_reg): /soc@0/geniqup@ac0000/i2c@a98000/touchscreen@20/rmi4-f12@12: node has a unit name, but no reg or ranges property
+> Document that the da9063 only provides under- *and* over-voltage
+> monitoring in one, and therefore requires both to be configured with the
+> same severity and value. Add an example for clarification.
 > 
-> Fixes: be497abe19bf ("arm64: dts: qcom: Add support for Xiaomi Mi Mix2s")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>  Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
 
-Konrad
->  arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> index 8ae0ffccaab2..576f0421824f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> @@ -483,6 +483,7 @@ rmi4-f01@1 {
->  		};
->  
->  		rmi4-f12@12 {
-> +			reg = <0x12>;
->  			syna,rezero-wait-ms = <0xc8>;
->  			syna,clip-x-high = <0x438>;
->  			syna,clip-y-high = <0x870>;
+Applied, thanks
+
+-- 
+Lee Jones [李琼斯]
