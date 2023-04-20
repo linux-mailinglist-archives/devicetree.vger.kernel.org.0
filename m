@@ -2,137 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82686E977D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 16:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C06166E978A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 16:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbjDTOq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 10:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40200 "EHLO
+        id S229849AbjDTOsL convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 Apr 2023 10:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231607AbjDTOq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 10:46:28 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A845244A0;
-        Thu, 20 Apr 2023 07:46:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682001987; x=1713537987;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=llG0vdmQ3GbbFQezbra+B4SwkMPYTwzKiy7sh3sn9Fs=;
-  b=EVzQ7I0ptt9wxb+pBii/1+KbPm4O2Awl3pEosZ4bicfT9OLNbIQYYyMI
-   jmG2SyMuYJ8aP44UyOQ5n6tWMBmvOBhY4lyG8xRim4Ctr8pbtr6luhyX8
-   45taG984eyjRLqvcGbqPZJzMN0tz3UC4NmkK5ANMUkQc7V8UiF1bCCew5
-   +qbmp56/YtHBZn3fWpcJjXFlaxSo/9OaE7Mbu3PKvTCXH8acEemmPuSWb
-   rV/Xhak5ZoLkoxy8vQjAHfv2dH7ERPPIUEGMqQV/sszHN1sk9ebAiEiOq
-   QdrgVI4UZE6xqslYiHMhvOyHT3pzz3Hdhb0ZALsXymdn8NfpL9wb/Hk4h
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="373656941"
-X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; 
-   d="scan'208";a="373656941"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2023 07:46:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="642163287"
-X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; 
-   d="scan'208";a="642163287"
-Received: from shwetag-mobl4.amr.corp.intel.com (HELO [10.209.147.40]) ([10.209.147.40])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2023 07:46:22 -0700
-Message-ID: <f6e4a78d-0199-3135-f85d-800457a731b0@linux.intel.com>
-Date:   Thu, 20 Apr 2023 09:46:20 -0500
+        with ESMTP id S230510AbjDTOsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 10:48:10 -0400
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F17649EA;
+        Thu, 20 Apr 2023 07:48:09 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id t15so2386934ybb.1;
+        Thu, 20 Apr 2023 07:48:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682002088; x=1684594088;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HmDRYCu7Jt3gKtDxjGvoyq8djfPIkMFFRvz5U28UbdA=;
+        b=RR3rzs+PLTL82Qt8XkW3K5uY9dCVZXEo9UBWlAmzBFQPAmQR6euI3yJXWCNcSCz34P
+         +vhruw8LUgS3Vh3NZHFwJ5RRRuPpo48lkSKoDEe+oht2wXV9XZC7fod+S+MlnYqkV2XX
+         OdQE6PDBjZvIvxbiCIEkvyItWtE8E415F5BlzcjVZeTVJYIFm4VNWDu9hRz0L3Z0QCnw
+         bFslnbnVnDR12FW/qz0tC9ZMweYLxITJEFs/w5+3oS56vceI5Rpu3KJowm8qmlgJ/j84
+         638SDNipkZr8UNnacwaxsBwH/n/wj8CuvYKjYQim4vFveNk3odu6ea+1zm6lEJAaeTK3
+         sLcw==
+X-Gm-Message-State: AAQBX9cgKKhkaCV+rMHY0las0e6hgH5LwHX6Z5UpgcjXAUrl5olR3P+K
+        OTVZug/Hrqnn0YZgoACHxDAT4aTq1q6nAMId
+X-Google-Smtp-Source: AKy350YH1aRn+xnhJFHoVei8B4cPuzRlzuwZa6FxejeJAAIhMsbumu6r+Ih+OjcKLEnkFtm8CGyV6A==
+X-Received: by 2002:a25:343:0:b0:b67:3785:823c with SMTP id 64-20020a250343000000b00b673785823cmr1340487ybd.36.1682002087260;
+        Thu, 20 Apr 2023 07:48:07 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id p68-20020a254247000000b00b9570d01d27sm329995yba.56.2023.04.20.07.48.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 07:48:06 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-54fbb713301so44313037b3.11;
+        Thu, 20 Apr 2023 07:48:06 -0700 (PDT)
+X-Received: by 2002:a0d:df95:0:b0:54c:27e7:b1fd with SMTP id
+ i143-20020a0ddf95000000b0054c27e7b1fdmr1072994ywe.37.1682002086443; Thu, 20
+ Apr 2023 07:48:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 3/5] hwmon: (socfpga) Add hardware monitoring support on
- SoCFPGA platforms
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
-        dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com
-References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
- <20230410153314.27127-3-dinh.nguyen@linux.intel.com>
- <09730359-8731-e21e-3335-bf60ba7f1280@roeck-us.net>
- <a3e966f8-8e9d-7081-1665-9d2e87acb310@linux.intel.com>
- <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
- <a1a34c32-dbd4-7a77-ab7e-5e34af85900f@linux.intel.com>
- <ZD/UsuzhZmK3AFJn@smile.fi.intel.com>
-Content-Language: en-US
-From:   Dinh Nguyen <dinh.nguyen@linux.intel.com>
-In-Reply-To: <ZD/UsuzhZmK3AFJn@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230411120810.368437-1-biju.das.jz@bp.renesas.com> <20230411120810.368437-5-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230411120810.368437-5-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 20 Apr 2023 16:47:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU4NTcNL6MYEqTmRtPP3iTSNTfnoEttPwevFyXZ_Vk4aA@mail.gmail.com>
+Message-ID: <CAMuHMdU4NTcNL6MYEqTmRtPP3iTSNTfnoEttPwevFyXZ_Vk4aA@mail.gmail.com>
+Subject: Re: [PATCH v7 4/8] drm: rzg2l-du: Add RZ/V2L DU Support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Biju,
 
-On 4/19/2023 6:46 AM, Andy Shevchenko wrote:
-> On Tue, Apr 18, 2023 at 12:29:40PM -0500, Dinh Nguyen wrote:
->> On 4/17/2023 4:51 PM, Guenter Roeck wrote:
->>> On 4/17/23 13:55, Dinh Nguyen wrote:
-> ...
+On Tue, Apr 11, 2023 at 2:08 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add support for RZ/V2L DU. The RZ/V2L DU block is identical to
+> RZ/G2L SoC.
 >
->>> ... and this contradict each other. If bit 31 indicates an error,
->>> this can not be a signed 32-bit value.
->>>
->> You're right! I've re-read the spec and should have the the code look for
->> the specific error values:
->>
->> 0x80000000 - inactive
->> 0x80000001 - old value
->> 0x80000002 - invalid channel
->> 0x80000003 -  corrupted.
-> No, they are not hex. Probably you need to define an error space with it, but
-> at least just use signed _decimal_ values.
->
-> Instead of BIT(31) this should go as
->
-> #define ..._ERR_BASE   INT_MIN // or equivalent if the type is not int
-> #define ..._ERR_MAX ... // or whatever name is better
->
-> Then in your code
->
-> 	if (value >= _ERR_MAX)
-> 		return 0;
->
-> 	err = _ERR_MAX - value;
-> 	switch (err) {
-> 		...
-> 	}
->
-> P.S. I asked during internal review if the values are bit fielded when errors.
-> AFAIU that time they are, now it seems different.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v7:
+>  * New patch.
 
-Can I ask what's wrong with this simple implementation?
+Thanks for your patch!
 
-static int socfpga_hwmon_err_to_errno(struct socfpga_hwmon_priv *priv)
-{
-         int value = priv->temperature.value;
+> --- a/drivers/gpu/drm/rcar-du/rzg2l_du_drv.c
+> +++ b/drivers/gpu/drm/rcar-du/rzg2l_du_drv.c
+> @@ -53,6 +53,7 @@ static const struct rcar_du_device_info rzg2l_du_r9a07g044_info = {
+>
+>  static const struct of_device_id rzg2l_du_of_table[] = {
+>         { .compatible = "renesas,r9a07g044-du", .data = &rzg2l_du_r9a07g044_info },
+> +       { .compatible = "renesas,r9a07g054-du", .data = &rzg2l_du_r9a07g044_info },
+>         { /* sentinel */ }
 
-         switch (value) {
-         case ETEMP_NOT_PRESENT:
-                 return -ENOENT;
-         case ETEMP_CORRUPT:
-         case ETEMP_NOT_INITIALIZED:
-                 return -ENODATA;
-         case ETEMP_BUSY:
-                 return -EBUSY;
-         case ETEMP_INACTIVE:
-         case ETEMP_TIMEOUT:
-         case ETEMP_TOO_OLD:
-                 return -EAGAIN;
-         default:
-                 /* No error */
-                 return 0;
-         }
-}
+So this change implies no fallback compatible value, OK.
 
-Dinh
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
