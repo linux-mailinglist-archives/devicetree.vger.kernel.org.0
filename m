@@ -2,145 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B17D16E9447
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE9D96E9476
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234924AbjDTMaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 08:30:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49792 "EHLO
+        id S234950AbjDTMdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 08:33:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbjDTMaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:30:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD9B658B;
-        Thu, 20 Apr 2023 05:30:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AFE3161647;
-        Thu, 20 Apr 2023 12:30:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B46EEC433D2;
-        Thu, 20 Apr 2023 12:29:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681993801;
-        bh=VE7EWjRbie5rJybEr6+xbW/1EFmgykY9w+gQ4IWRzQA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fd0AjzBesaZOfkihQtIdI1XWLKkZFcQ8C040snGRpbZuiXicincyOqwzgcU6jyxOE
-         boa7J6EMQWbHkRsfTLTFGfgWSuudj1+NCK59q7+hS2yR0l3tL+5q14m5dhs/kS5VI3
-         ibjH8uvcrLR/qZFI82P8hXNLV+bLyvbVit+ovqW29M2b486ESGULIYgNf9Vvm97M9q
-         l0jtc4AgjG1KpDm9o72+IgfMQShsOQcyrU2Iqd821k0dpsvSrvuonXOhicNCPuMj9R
-         5udkdqVaSdDIB0ONGTy0J6vpbo1TLJwUr9+OwYwNL7v1C1VSsPiGTMHXYA3dWZHDds
-         YTcl3QsNqJ0Hg==
-Date:   Thu, 20 Apr 2023 13:29:55 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 2/7] mfd: core: Ensure disabled devices are skiped
- without aborting
-Message-ID: <20230420122955.GA996918@google.com>
-References: <20230417171601.74656-1-herve.codina@bootlin.com>
- <20230417171601.74656-3-herve.codina@bootlin.com>
+        with ESMTP id S233000AbjDTMdO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:33:14 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267831FD2;
+        Thu, 20 Apr 2023 05:32:57 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6a5febde157so325814a34.3;
+        Thu, 20 Apr 2023 05:32:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681993976; x=1684585976;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=tMwSPKQCjaI+s6rgmrEgsLCZjsqIZCT4Ezs2S+deB98=;
+        b=AVzFbTxfXT6m+ICvWBNmzeWRlDjEKmeRAFm2huww9Dz8bJXs2ZTNqcaxKTMHxGlTdY
+         CSUW4d7hVwQs41pZGQKVqY/nS3GZiCryK7WhpIkOACBw93fCqxjeHYG2wasbMrgNxgJS
+         +CBPkRQd6hq/eUEK+88/G+jv4gfsLsTkP45YoYzKtpK0awqCglfA+ubvtqCjAwQQhZn5
+         0ESdpeAMl17MqKZkQ4aTG+wsACDd1qj/DLIQvII9vq8I3xpeBRWMWQME0LOEsApjOI/m
+         iBb2+N0e7dckCYVUCEKpaO/7v9jUWVBSEGQO56td0IPxRwpAP7P6I7deGtWSSZcwy1iz
+         BeZw==
+X-Gm-Message-State: AAQBX9cKD4L9FLI1dnyMBDE5r7pU+/VQSBRGVW/A195oevZIOczGkiqM
+        XXNPcur2iWhLj46GxsKrVQ==
+X-Google-Smtp-Source: AKy350YSGHZoEpx8/m/b2yMMUz7U5VCKfW6SofU/pYibL7OdS2HPNJjWi1oKmkk22+MMy/jv5K3amw==
+X-Received: by 2002:a9d:65d0:0:b0:69c:8354:c5de with SMTP id z16-20020a9d65d0000000b0069c8354c5demr652098oth.2.1681993976169;
+        Thu, 20 Apr 2023 05:32:56 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z13-20020a9d62cd000000b006a2cc609ddasm681829otk.2.2023.04.20.05.32.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Apr 2023 05:32:55 -0700 (PDT)
+Received: (nullmailer pid 2632250 invoked by uid 1000);
+        Thu, 20 Apr 2023 12:32:54 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230417171601.74656-3-herve.codina@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     linux-gpio@vger.kernel.org, richardcochran@gmail.com,
+        manivannan.sadhasivam@linaro.org, andersson@kernel.org,
+        linux-arm-msm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, agross@kernel.org, netdev@vger.kernel.org
+In-Reply-To: <1681966915-15720-2-git-send-email-quic_rohiagar@quicinc.com>
+References: <1681966915-15720-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1681966915-15720-2-git-send-email-quic_rohiagar@quicinc.com>
+Message-Id: <168199391964.2630980.4927574228536419171.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SDX75 pinctrl
+ devicetree compatible
+Date:   Thu, 20 Apr 2023 07:32:54 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Apr 2023, Herve Codina wrote:
 
-> The loop searching for a matching device based on its compatible
-> string is aborted when a matching disabled device is found.
-> This abort avoid to add devices as soon as one disabled device
-> is found.
+On Thu, 20 Apr 2023 10:31:54 +0530, Rohit Agarwal wrote:
+> Add device tree binding Documentation details for Qualcomm SDX75
+> pinctrl driver.
 > 
-> Continue searching for an other device instead of aborting on the
-> first disabled one fixes the issue.
-> 
-> Fixes: 22380b65dc70 ("mfd: mfd-core: Ensure disabled devices are ignored without error")
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
->  drivers/mfd/mfd-core.c | 18 +++++++++++++-----
->  1 file changed, 13 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mfd/mfd-core.c b/drivers/mfd/mfd-core.c
-> index 16d1861e9682..7c47b50b358d 100644
-> --- a/drivers/mfd/mfd-core.c
-> +++ b/drivers/mfd/mfd-core.c
-> @@ -176,6 +176,7 @@ static int mfd_add_device(struct device *parent, int id,
->  	struct platform_device *pdev;
->  	struct device_node *np = NULL;
->  	struct mfd_of_node_entry *of_entry, *tmp;
-> +	bool not_available;
->  	int ret = -ENOMEM;
->  	int platform_id;
->  	int r;
-> @@ -211,13 +212,13 @@ static int mfd_add_device(struct device *parent, int id,
->  		goto fail_res;
->  
->  	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
-> +		not_available = false;
-
-Why not do:
-
-		bool disabled = false;
-
-... here instead?
-
->  		for_each_child_of_node(parent->of_node, np) {
->  			if (of_device_is_compatible(np, cell->of_compatible)) {
-> -				/* Ignore 'disabled' devices error free */
-> +				/* Skip 'disabled' devices */
->  				if (!of_device_is_available(np)) {
-> -					of_node_put(np);
-
-Why are you removing the put?
-
-> -					ret = 0;
-> -					goto fail_alias;
-> +					not_available = true;
-> +					continue;
->  				}
->  
->  				ret = mfd_match_of_node_to_dev(pdev, np, cell);
-> @@ -227,10 +228,17 @@ static int mfd_add_device(struct device *parent, int id,
->  				if (ret)
->  					goto fail_alias;
->  
-> -				break;
-> +				goto match;
->  			}
->  		}
->  
-> +		if (not_available) {
-> +			/* Ignore 'disabled' devices error free */
-> +			ret = 0;
-> +			goto fail_alias;
-> +		}
-> +
-> +match:
->  		if (!pdev->dev.of_node)
->  			pr_warn("%s: Failed to locate of_node [id: %d]\n",
->  				cell->name, platform_id);
-> -- 
-> 2.39.2
+>  .../bindings/pinctrl/qcom,sdx75-tlmm.yaml          | 195 +++++++++++++++++++++
+>  1 file changed, 195 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
 > 
 
--- 
-Lee Jones [李琼斯]
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml:50:13: [error] empty value in block mapping (empty-values)
+./Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml:84:52: [warning] too few spaces after comma (commas)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml: 'patternPropetries' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+./Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/bindings/pinctrl/qcom,sdx75-tlmm.yaml
+./Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/pinctrl/qcom,sdx75-tlmm.yaml#
+Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.example.dts:32.13-36: ERROR (duplicate_property_names): /example-0/pinctrl@03000000:#interrupt-cells: Duplicate property name
+ERROR: Input tree has errors, aborting (use -f to force output)
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.example.dtb] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1681966915-15720-2-git-send-email-quic_rohiagar@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
