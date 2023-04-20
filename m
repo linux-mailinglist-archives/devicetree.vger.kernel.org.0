@@ -2,75 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78216E8E2A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F50F6E8E4E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234049AbjDTJfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 05:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50078 "EHLO
+        id S234053AbjDTJht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 05:37:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234281AbjDTJfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:35:17 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A413358A
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:35:14 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-517bb11ca34so596095a12.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:35:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1681983314; x=1684575314;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ryva+FQmb09SgOiCE7P4pQBiT6BdeSdh3y4Qn91oZ9M=;
-        b=d4ER6huQjMtUV4wHdMb9ME9KpU3d2FGtvqsgiDTUlUyLvDePcXJ0PKh98S6NEnsa2G
-         XpQA1rCPbkz2/bCmmRIw/iKSY7Jc/iG598aSV3OIGqyeUx4IBcGUZKtO4vIBwSqT9r0P
-         p5FSKMM0VYyfyGjMat2EmIyNNAimvy6yE8WNCYrKGxEhDc/YAWf+Pc70ybdNvL8zO+JA
-         QpNju3Pf0hJEFC4gFdxrSa9X6mz6r/WWX5OMVqulCgrYK2qAWDlWa525eBQUcoKAVN9a
-         K70k1rCm/C/aU30qmXDSBl7EG/LeuOhixKwJILpFQprjgRGLNArBduUmQD/Zx6K1YSUy
-         l2Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681983314; x=1684575314;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ryva+FQmb09SgOiCE7P4pQBiT6BdeSdh3y4Qn91oZ9M=;
-        b=gl1YrI/yjh5PAk+pPc3JOnM3x93cyMUy4D2T8RiDjHNWupt+wShnolYQ4Fx6CXLX1a
-         1m4F4HzuXJDeGyPZIVw3qfZmQWEeHQrAv4Q2od2dScOIZ56ygC697/v6HkON1nuI4nwE
-         VNajLOcPaDxhy9XUcthJxHQXZ+sucxvWPYyak6b2+of0DQF5Wp0GzH/HE8NgoCHMQht5
-         z6Oig8DAy8hPiWDAFE6kV0uqzW9PUZg8C8kccTVbh6S9bpQ7MlNSZsmMvvOGE/U8FG3O
-         GBbh5112OjXK8rBzvm1LZTyt2Tn+op8XP95r82GWYRCS3jMTSAkVc3HstZT86LVkN+BD
-         0Q6w==
-X-Gm-Message-State: AAQBX9d4BbOhVaGhRbGMhO043621mkCmS9D72rwcts+0leKJW7kRhuR8
-        P015CmQOiTlh+kTWbYKGl7ZC6A==
-X-Google-Smtp-Source: AKy350br6fKdRCr0Nj4YKMv9Nvtjoq+VqjzrOMC15lETcCmUtAqFU5evu54VS9v+FLXPiour7tCHKQ==
-X-Received: by 2002:a17:90b:10c:b0:23f:9fac:6b35 with SMTP id p12-20020a17090b010c00b0023f9fac6b35mr1017558pjz.39.1681983313820;
-        Thu, 20 Apr 2023 02:35:13 -0700 (PDT)
-Received: from hsinchu15.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id p5-20020a63c145000000b0051ba9d772f9sm781551pgi.59.2023.04.20.02.35.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 02:35:13 -0700 (PDT)
-From:   Nylon Chen <nylon.chen@sifive.com>
-To:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     nylon.chen@sifive.com, nylon7717@gmail.com, zong.li@sifive.com,
-        greentime.hu@sifive.com, vincent.chen@sifive.com,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED algorithm
-Date:   Thu, 20 Apr 2023 17:34:57 +0800
-Message-Id: <20230420093457.18936-3-nylon.chen@sifive.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230420093457.18936-1-nylon.chen@sifive.com>
-References: <20230420093457.18936-1-nylon.chen@sifive.com>
+        with ESMTP id S234353AbjDTJgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:36:47 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA52840E5
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:36:29 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1ppQi7-0007zh-Cf; Thu, 20 Apr 2023 11:36:15 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id D72831B3CD1;
+        Thu, 20 Apr 2023 09:36:12 +0000 (UTC)
+Date:   Thu, 20 Apr 2023 11:36:12 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     "Mendez, Judith" <jm@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
+Message-ID: <20230420-scarf-landscape-86202cc821ca-mkl@pengutronix.de>
+References: <20230413223051.24455-1-jm@ti.com>
+ <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
+ <6eb588ef-ab12-186d-b0d3-35fc505a225a@ti.com>
+ <20230419-stretch-tarantula-e0d21d067483-mkl@pengutronix.de>
+ <52a37e51-4143-9017-42ee-8d17c67028e3@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4xgtlkkfta6kixje"
+Content-Disposition: inline
+In-Reply-To: <52a37e51-4143-9017-42ee-8d17c67028e3@ti.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,57 +63,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The `frac` variable represents the pulse inactive time, and the result of
-this algorithm is the pulse active time. Therefore, we must reverse the
-result.
 
-The reference is SiFive FU740-C000 Manual[0]
+--4xgtlkkfta6kixje
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf [0]
+On 19.04.2023 15:40:24, Mendez, Judith wrote:
+> Hello Marc,
+>=20
+> On 4/19/2023 1:10 AM, Marc Kleine-Budde wrote:
+> > On 18.04.2023 11:15:35, Mendez, Judith wrote:
+> > > Hello Marc,
+> > >=20
+> > > On 4/14/2023 12:49 PM, Marc Kleine-Budde wrote:
+> > > > On 13.04.2023 17:30:46, Judith Mendez wrote:
+> > > > > On AM62x there is one MCAN in MAIN domain and two in MCU domain.
+> > > > > The MCANs in MCU domain were not enabled since there is no
+> > > > > hardware interrupt routed to A53 GIC interrupt controller.
+> > > > > Therefore A53 Linux cannot be interrupted by MCU MCANs.
+> > > >=20
+> > > > Is this a general hardware limitation, that effects all MCU domain
+> > > > peripherals? Is there a mailbox mechanism between the MCU and the M=
+AIN
+> > > > domain, would it be possible to pass the IRQ with a small firmware =
+on
+> > > > the MCU? Anyways, that's future optimization.
+> > >=20
+> > > This is a hardware limitation that affects AM62x SoC and has been car=
+ried
+> > > over to at least 1 other SoC. Using the MCU is an idea that we have j=
+uggled
+> > > around for a while, we will definitely keep it in mind for future
+> > > optimization. Thanks for your feedback.
+> >=20
+> > Once you have a proper IRQ de-multiplexer, you can integrate it into the
+> > system with a DT change only. No need for changes in the m_can driver.
+> >=20
+>=20
+> Is this a recommendation for the current patch?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
----
- drivers/pwm/pwm-sifive.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+It is a recommendation on how to get around the hardware limitation,
+instead of falling back to polling.
 
-diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-index 393a4b97fc19..d5d5f36da297 100644
---- a/drivers/pwm/pwm-sifive.c
-+++ b/drivers/pwm/pwm-sifive.c
-@@ -132,13 +132,13 @@ static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- {
- 	struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
- 	struct pwm_state cur_state;
--	unsigned int duty_cycle;
-+	unsigned int duty_cycle, period;
- 	unsigned long long num;
- 	bool enabled;
- 	int ret = 0;
- 	u32 frac;
- 
--	if (state->polarity != PWM_POLARITY_INVERSED)
-+	if (state->polarity != PWM_POLARITY_NORMAL && state->polarity != PWM_POLARITY_INVERSED)
- 		return -EINVAL;
- 
- 	cur_state = pwm->state;
-@@ -154,10 +154,13 @@ static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 	 * calculating the register values first and then writing them
- 	 * consecutively
- 	 */
-+	period = max(state->period, ddata->approx_period);
- 	num = (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
- 	frac = DIV64_U64_ROUND_CLOSEST(num, state->period);
--	/* The hardware cannot generate a 100% duty cycle */
- 	frac = min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-+	/* The hardware cannot generate a 100% duty cycle */
-+	frac = (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
-+
- 
- 	mutex_lock(&ddata->lock);
- 	if (state->period != ddata->approx_period) {
--- 
-2.40.0
+> The reason I am asking is because adding firmware for the M4 to forward
+> a mailbox with the IRQ to the A53 sounds like a good idea and we have been
+> juggling the idea, but it is not an ideal solution if customers are
+> using the M4 for other purposes like safety.
 
+Of course, the feasibility of this approach depends on your system
+design.
+
+> > > > > This solution instantiates a hrtimer with 1 ms polling interval
+> > > > > for a MCAN when there is no hardware interrupt. This hrtimer
+> > > > > generates a recurring software interrupt which allows to call the
+> > > > > isr. The isr will check if there is pending transaction by reading
+> > > > > a register and proceed normally if there is.
+> > > > >=20
+> > > > > On AM62x this series enables two MCU MCAN which will use the hrti=
+mer
+> > > > > implementation. MCANs with hardware interrupt routed to A53 Linux
+> > > > > will continue to use the hardware interrupt as expected.
+> > > > >=20
+> > > > > Timer polling method was tested on both classic CAN and CAN-FD
+> > > > > at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
+> > > > > switching.
+> > > > >=20
+> > > > > Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
+> > > > > 1 MBPS timer polling interval is the better timer polling interval
+> > > > > since it has comparable latency to hardware interrupt with the wo=
+rse
+> > > > > case being 1ms + CAN frame propagation time and CPU load is not
+> > > > > substantial. Latency can be improved further with less than 1 ms
+> > > > > polling intervals, howerver it is at the cost of CPU usage since =
+CPU
+> > > > > load increases at 0.5 ms and lower polling periods than 1ms.
+> >=20
+> > Have you seen my suggestion of the poll-interval?
+> >=20
+> > Some Linux input drivers have the property poll-interval, would it make
+> > sense to ass this here too?
+>=20
+> Looking at some examples, I do think we could implement this poll-interval
+> attribute, then read in the driver and initialize the hrtimer based on th=
+is.
+> I like the idea to submit as a future optimization patch, thanks!
+
+I would like to have the DT bindings in place, as handling legacy DT
+without poll interval adds unnecessary complexity.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--4xgtlkkfta6kixje
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRBB4kACgkQvlAcSiqK
+BOi3tQgAncJzwRYQqm5rHunLZQBQJZ76dTGRYf7AFrYVzqwbbW1wO2e2uv8H4Drg
+hCSh+DaPGLyBBi0ZCUtvO0dql90ZD0wLvX/Eis8q2R/qkWdor3VTNiWBhwGcuTIa
+WITJE1rmdTBbpRXZ6M6KMyJi4MFaM8mKr11VXsHK2HJIRVDcL3nMy6DM5/mMhjzf
+n8JgumGKM5+VxTNSdyQVWpZxe9GSQC3yYrSTYvIw/VGcrITBdnSn92Svpc6jE+PF
+DNLcCOMBYU3cNtdqEsNsej7TCKEJQIYY+ImhaQ8ya9bE3coIwdVqq2BPJW19q5TN
+BgEwQXsNBy+Eq9WSPE4QKLyWvKxHRA==
+=JDN9
+-----END PGP SIGNATURE-----
+
+--4xgtlkkfta6kixje--
