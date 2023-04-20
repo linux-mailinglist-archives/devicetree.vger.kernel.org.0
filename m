@@ -2,88 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CF476E8E63
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A815A6E8E72
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:45:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233777AbjDTJnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 05:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
+        id S234451AbjDTJpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 05:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232154AbjDTJmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:42:44 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD7524C01;
-        Thu, 20 Apr 2023 02:40:47 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id k15so2105724ljq.4;
-        Thu, 20 Apr 2023 02:40:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681983645; x=1684575645;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MXezQIL8nQT7EHNZDg5A3zwX32Ez5Xt7dCXaMMgSYRE=;
-        b=gS0rvfbFTHrddVjRYYkBoQBAkbBKiIIfAmjXA4hDLm9cXNQydDv8xPgKzQo/+DmUbU
-         oD1tZQOtRIWCnc+gQ2Cq+6kJj9Du0D1TR3ZiQZZ30NM3ONRqJ2dWO0EhCl26r6v9vOlf
-         uT4CK8+IbhFRfzC4312mdPAtqiJnnSeEpFTVSX66bLXHQnZAQciXyXlfZ1DkcLIMIh8N
-         6Zig+xCX6r6qlJ2WeG0vnHtoV8sJyvZZmH6HBcWeKY9dXxNBK40I9KnjCffHX35gNWa4
-         NZhT9Sb3XDmnFjYrdQ95ZUXrsmNJexNQuiNql4jxqOh4bULx2kBy2J1Lt6uExf5LQDTn
-         J1Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681983645; x=1684575645;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MXezQIL8nQT7EHNZDg5A3zwX32Ez5Xt7dCXaMMgSYRE=;
-        b=eq52xzJ0UZo2finzLWbJCX0QZ8MvhCtsRYGpe3TMxaIP1G8zqplAYFTfO6MHw2Aw+Q
-         7ewa6/RDSYLk13tl/cfEnpUTwdtrZZ4F4N0uBnB7240iiw+nlk2HF2gkFYRNqQTVwxge
-         R6jOE5BZjlXmjPqQASjY36zqsOWSkeT+gmZUmAxky+d0P2blC/SNsMfyC6BecWWrK30h
-         6E6wJTFh7S7EuM1N/nYflww/MxNpgKFUlCs+OyBZhdNd5JwfwaalQqpp+mBpHaMt/CJy
-         XuUQDqAG5NYCPcoZEyoIW31Gebnhv7qvdjBJAzi5NknAS1heT+aYJBrNkU/1VVtbgB2F
-         /mJA==
-X-Gm-Message-State: AAQBX9f7DEAtW55zoT8KOfw98Vpbsvv24PxLKh78OdfzT6Qe2cCe/fIJ
-        sAUQsgqKNS4jCC6Ce+o0JWhbiRuwpmK0tQRqNIw=
-X-Google-Smtp-Source: AKy350Y3JU2L27iVYwrYrXipxJ1TJZFDuoI/VJwjHdGAyJUSB58qs8J62vQpxs+N4iZAkbdBoW8mRtHUbMFIKKOb1xM=
-X-Received: by 2002:a2e:a0d3:0:b0:2a9:eec1:71f5 with SMTP id
- f19-20020a2ea0d3000000b002a9eec171f5mr181058ljm.4.1681983644357; Thu, 20 Apr
- 2023 02:40:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org> <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230419211856.79332-18-krzysztof.kozlowski@linaro.org>
-From:   Molly Sophia <mollysophia379@gmail.com>
-Date:   Thu, 20 Apr 2023 17:40:33 +0800
-Message-ID: <CAK0UmJBMUSWSjO8d44aL+uaRfwKZ25VvNMZOH_BKUT35g5weUg@mail.gmail.com>
-Subject: Re: [PATCH 18/18] arm64: dts: qcom: sdm845-polaris: add missing
- touchscreen child node reg
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        "Ivan T. Ivanov" <ivan.ivanov@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+        with ESMTP id S234317AbjDTJpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:45:17 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3611707;
+        Thu, 20 Apr 2023 02:44:46 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E314E660325E;
+        Thu, 20 Apr 2023 10:44:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1681983884;
+        bh=68zdNUXDpJ8cN3/P2jWta2FlLdWOTdLtngTHhQNCf+Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mDHqb5aPFBSb6iBFtvaXQENJchILKhe40cIAYr4YP6mXnRq7MDs8i9KloFU+5Gxgw
+         RFItZvxuuBafyihdNczuWdqN6ngIDx01l3styj4ozPvtobLyDsY7PLkpv4l5zVq8fv
+         JiEaxKOYmyK/pZIoSIxT8v7QrvJmTVeQu1Jda2RaLMY9Mdj7x/aaElL3YB8kNaWtB5
+         bpo02cIJnUxYWlpeF8jkAbJ51Ug1gN4NilvT3Eof9oKM01ErYb7JQX05KcOttyaW+w
+         W/wcYe0+OiQuwugPYwXHgiKADfKuUK+JYt8xJMIt5Z/NQJF17ijADs/RGf6eQE4Lsv
+         sshJhnY85+QKA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 0/5] MT8195 Acer Tomato - devicetrees Part 3
+Date:   Thu, 20 Apr 2023 11:44:28 +0200
+Message-Id: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,36 +55,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 5:19=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Add missing reg property to touchscreen child node to fix dtbs W=3D1 warn=
-ings:
->
->   Warning (unit_address_vs_reg): /soc@0/geniqup@ac0000/i2c@a98000/touchsc=
-reen@20/rmi4-f12@12: node has a unit name, but no reg or ranges property
->
-> Fixes: be497abe19bf ("arm64: dts: qcom: Add support for Xiaomi Mi Mix2s")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/ar=
-m64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> index 8ae0ffccaab2..576f0421824f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> @@ -483,6 +483,7 @@ rmi4-f01@1 {
->                 };
->
->                 rmi4-f12@12 {
-> +                       reg =3D <0x12>;
->                         syna,rezero-wait-ms =3D <0xc8>;
->                         syna,clip-x-high =3D <0x438>;
->                         syna,clip-y-high =3D <0x870>;
-> --
-> 2.34.1
->
+This series adds support for the WiFi card on PCI-Express,
+eDP (internal) and DP (external) displays and adds thermal
+configuration for the "extra" thermistors present on Cherry boards.
 
-Reviewed-by: Molly Sophia <mollysophia379@gmail.com>
+All Cherry Chromebooks now have working display and wireless
+connectivity!
+
+At this point, the only missing component is vcodec decoders, but
+that's to be done in mt8195.dtsi, globally, not machine specific.
+Please note that in this series the eDP panel was put on aux-bus,
+hence this depends on the series introducing support for it [1]
+in the mtk-dp driver.
+
+[1]: https://lore.kernel.org/lkml/20230404104800.301150-1-angelogioacchino.delregno@collabora.com/
+
+AngeloGioacchino Del Regno (5):
+  arm64: dts: mediatek: cherry: Add platform thermal configuration
+  arm64: dts: mediatek: cherry: Assign dp-intf aliases
+  arm64: dts: mediatek: cherry: Configure eDP and internal display
+  arm64: dts: mediatek: cherry: Enable PCI-Express ports for WiFi
+  arm64: dts: mediatek: cherry-tomato-r1: Enable NVMe PCI-Express port
+
+ .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |   7 +
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      | 164 ++++++++++++++++++
+ 2 files changed, 171 insertions(+)
+
+-- 
+2.40.0
+
