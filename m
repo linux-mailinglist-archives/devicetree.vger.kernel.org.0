@@ -2,108 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 544FE6E8FFA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 947F46E8FFE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231936AbjDTKVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:21:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
+        id S234342AbjDTKWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:22:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234782AbjDTKV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:21:28 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA284C30;
-        Thu, 20 Apr 2023 03:20:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1681986026; x=1713522026;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=p04UFiXEk3VmCHfHIzOZk2Ms3A+ezDFOWY1y5ayhRR0=;
-  b=kzmaXkhdAzZsybw377rJ8D2Bl6b5eGjOwhcalyRgVao6MrDvn5jC+qfe
-   R54/CDmfbGdGdpzarOHFKbW3UfT0d0ib0c0lfotlPIRG0MMLrev33yAS2
-   1vg/TKYRK6DiIwDV+X2jSyDkT/RFmhLU/I1HMcKUFCj1tiOUED5ndmxrd
-   s/DVPVKClWXvRs7ZCrjPPjsqZuBcPwge7z241pjNV5+sqZ6CjvjHTGh4I
-   FBqRNC3R5Fx/557dga1UgOF+5bcanqyxFS1qoPrjWoPRJDTtup08PacwU
-   12FU5sCvJPNKqdkc/d+R4GAnnDf4JHQ99JU0GbkTrt+BISXROBZdOoAEw
-   w==;
-X-IronPort-AV: E=Sophos;i="5.99,212,1677567600"; 
-   d="asc'?scan'208";a="221784309"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Apr 2023 03:20:25 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 20 Apr 2023 03:20:25 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 20 Apr 2023 03:20:22 -0700
-Date:   Thu, 20 Apr 2023 11:20:05 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Nylon Chen <nylon.chen@sifive.com>
-CC:     <aou@eecs.berkeley.edu>, <conor@kernel.org>,
-        <emil.renner.berthing@canonical.com>, <geert+renesas@glider.be>,
-        <heiko@sntech.de>, <krzysztof.kozlowski+dt@linaro.org>,
-        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <devicetree@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <nylon7717@gmail.com>,
-        <zong.li@sifive.com>, <greentime.hu@sifive.com>,
-        <vincent.chen@sifive.com>
-Subject: Re: [PATCH v3 1/2] riscv: dts: sifive: unleashed/unmatched: Remove
- PWM controlled LED's active-low properties
-Message-ID: <20230420-backshift-negotiate-1c3d508582d2@wendy>
-References: <20230420093457.18936-1-nylon.chen@sifive.com>
- <20230420093457.18936-2-nylon.chen@sifive.com>
+        with ESMTP id S234286AbjDTKVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:21:37 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDD349DE
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:20:43 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id bz21so2137640ljb.11
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:20:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681986042; x=1684578042;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K4p+Jwfh4f6O4EpesT7nZbdGy3tVSOOPuyRDN6YS6gs=;
+        b=EAwDI9yyVDLLbl6cAmcIwJbwcp8ZpDiZ7blcuGT4r1FqsctbdaZ4XrGUljVnifY3Zn
+         Gndd3JpvtkoUpNJkkB37SgCfPDPh3+TTL6sH3TGYYmTp99MHNg1Q5KxI+eItbzsIWlRv
+         UDveXKcjkTTPp4ZqP0Hx+0XrHpoNUfoJDi/J2NinFWQ1GW19KdEjHhm80L9X4DW/rc1j
+         eFWJVxxL9lI1ylb4JevgcquIYmeSA+0qUBd/wWCniICejXyZTJVK4RLwiUlHvueh+dUa
+         W/ST1rGntxJ+10N1r1mCsoT4xsmxNi34U/nXKOmhH6O6HRePbYTO9OLzUdPrQjc+Oq84
+         5BCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681986042; x=1684578042;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K4p+Jwfh4f6O4EpesT7nZbdGy3tVSOOPuyRDN6YS6gs=;
+        b=c+2fpSh7fA39lRku+EIW0yQ30MNxns/msDW4lh5cEvFv+ukXzaT+nUgjkrM7Pm6dBl
+         nkjO+Fz3LNZ75uBKirDxrtQxIbIWhsAOLUeXv6lqGjo9lA3azy3tSDKflkTerMBbluit
+         EjmdIJoYpjZkzUDc8RACPt/RLCbizv3QH6xbSg21wfum4lZgdrsa9fcw+8ImAWmV3p/Z
+         dwvdiPa93zWKcG6CdmQVMVYXAdEC8BAq3z3psdOuWxhtd8raSz3O49g/XLSReSWAR8c+
+         i100laP4S06YeH7m2roVTnSBaIiEO9/JWZ4TXTr7LlwRy/7Z9IroC9ehXikL575G8IjW
+         MPdA==
+X-Gm-Message-State: AAQBX9fWqzMi5fzjeRCQf8t2Ary3GmjRx2EpyRD4bz19waXRYF0N0wvW
+        gwaBMz/UJFXgOf2wY+2C7+AzrA==
+X-Google-Smtp-Source: AKy350YWnFordrnmpiF7wIFWOYpQ/eTVAH3HUoCFwHRfS6GXxx1v6PZoYzAu8N/3JQL6nqKGub3QJA==
+X-Received: by 2002:a2e:9895:0:b0:2a8:bc05:1d7a with SMTP id b21-20020a2e9895000000b002a8bc051d7amr258934ljj.30.1681986042057;
+        Thu, 20 Apr 2023 03:20:42 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id n3-20020a2e8783000000b002a8e4678da4sm186778lji.139.2023.04.20.03.20.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 03:20:41 -0700 (PDT)
+Message-ID: <b9b6e799-c8a2-7d8c-4d87-56d899048454@linaro.org>
+Date:   Thu, 20 Apr 2023 12:20:39 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pPcnETLhjtC5Ocdl"
-Content-Disposition: inline
-In-Reply-To: <20230420093457.18936-2-nylon.chen@sifive.com>
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH RFT v2 00/14] SMD RPMCC sleep preparations
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+ <66c41caf-bf21-61af-c6e4-52b34b69c1ce@linaro.org>
+ <ZEDwLB3RwT6mHIu4@gerhold.net>
+ <6175f709-8c88-6ec3-4c31-cac9f2440b52@linaro.org>
+ <ZEEOJ7VhccqCNTbj@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZEEOJ7VhccqCNTbj@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---pPcnETLhjtC5Ocdl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 20, 2023 at 05:34:56PM +0800, Nylon Chen wrote:
-> This removes the active-low properties of the PWM-controlled LEDs in
-> the HiFive Unmatched device tree.
->=20
-> The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schemat=
-ics-v3.pdf[1].
->=20
-> Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf845=
-3f8698_hifive-unleashed-a00-schematics-1.pdf [0]
-> Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce7=
-6f4192_hifive-unmatched-schematics-v3.pdf [1]
->=20
 
-Just a minor nit here, there should not be a blank line between the
-link:s and the rest of the trailers.
+On 20.04.2023 12:04, Stephan Gerhold wrote:
+> On Thu, Apr 20, 2023 at 11:36:24AM +0200, Konrad Dybcio wrote:
+>> On 20.04.2023 09:56, Stephan Gerhold wrote:
+>>> On Thu, Apr 20, 2023 at 03:50:16AM +0200, Konrad Dybcio wrote:
+>>>> On 8.03.2023 22:35, Konrad Dybcio wrote:
+>>>>> Keepalive clocks for other platforms were gathered by digging in old
+>>>>> downstream kernels, please give them a test.
+>>>> I have an implementation of rpmcc-within-icc ready(ish) locally. Turns out
+>>>> some SoCs need a keepalive (19.2MHz, active-only) vote on clocks that
+>>>> are NOT governed by interconnect.. So before we can disable clocks,
+>>>> both will need to be implemented.. ugh... I was hoping we could avoid
+>>>> having it in rpmcc..
+>>> Can you give an example? Which clocks are affected on which SoC?
+>> msm8998/sdm660 and PNoC
+> 
+> I don't see a PNoC for 8998/660, do you mean the "cnoc_periph_clk"
+It's the same, but Qualcomm kept changing the name every kernel
+release, so that's why we have 50 defines for the same thing
+upstream :(
 
-Cheers,
-Conor.
 
---pPcnETLhjtC5Ocdl
-Content-Type: application/pgp-signature; name="signature.asc"
+> downstream? Like the other NoCs it seems to be a RPM_BUS_CLK_TYPE, which
+> means it does fit best into interconnect in my opinion. From a quick
+> grep I don't see any usage of it in msm-4.4 downstream other than the
+> active-only keepalive vote. So maybe you could just send that vote once
+> in icc_rpm_smd and then ignore that clock (don't expose it at all)?
+Hm, perhaps that does sound like a good idea! As far as I understand,
+it's governed internally.. Older SoCs had a separate PNoC fabric
+exposed.
 
------BEGIN PGP SIGNATURE-----
+Konrad
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEER1QAKCRB4tDGHoIJi
-0pdYAQCPVswMeIM5oND35Up46NzXuOHouWn5KIqzUs0HHAlgLQD/QKvS9/hYcyAB
-eE/lmP3GQ/5SacVC8RcfI3No2qzVJQI=
-=PEvj
------END PGP SIGNATURE-----
-
---pPcnETLhjtC5Ocdl--
+> 
+> Thanks,
+> Stephan
